@@ -1,12 +1,15 @@
-Definition: Reductive Group
-%
-
-%
-definition
+---
+title: "RepTheory"
 ---
 
-Definition: Algebraic Group
-%
+- Definition: Reductive Group
 
-%
-definition
+    ?
+
+    tags: definition
+
+- Definition: Algebraic Group
+
+    ?
+
+    tags: definition

@@ -1,19 +1,21 @@
-Embedding
-%
-Homeomorphism onto its image
-%
-definition
+---
+title: "Topology"
 ---
 
-Immersion
-%
-?
-%
-definition
----
+- Embedding
 
-Submersion
-%
-?
-%
-definition
+    Homeomorphism onto its image
+
+    tags: definition
+
+- Immersion
+
+    ?
+
+    tags: definition
+
+- Submersion
+
+    ?
+
+    tags: definition

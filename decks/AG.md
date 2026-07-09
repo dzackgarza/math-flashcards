@@ -1,5 +1,9 @@
-Riemann-Roch Formula
-%
-\[ l(D)-l(K-D)=\operatorname{deg}(D)-p+1 \]
-%
-formula
+---
+title: "AG"
+---
+
+- Riemann-Roch Formula
+
+    $$ l(D)-l(K-D)=\operatorname{deg}(D)-p+1 $$
+
+    tags: formula

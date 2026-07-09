@@ -1,26 +1,27 @@
-Riemann-Roch Formula
-%
-\[ l(D)-l(K-D)=\operatorname{deg}(D)-p+1 \]
-%
-formula
+---
+title: "Algebraic Geometry::AG"
 ---
 
-Scheme definition of a variety
-%
-A variety is a finite type separated schemes over a field
-%
-algebraic geometry
----
+- Riemann-Roch Formula
 
-Comparison between maximal and prime ideals
-%
-?
-%
-commutative algebra
----
+    $$ l(D)-l(K-D)=\operatorname{deg}(D)-p+1 $$
 
-*Reduced* scheme
-%
-A scheme $X$ is reduced $\iff \OO_X(U)$ is a reduced ring for every open $U \subset X$.
-%
-definitions
+    tags: formula
+
+- Scheme definition of a variety
+
+    A variety is a finite type separated schemes over a field
+
+    tags: algebraic-geometry
+
+- Comparison between maximal and prime ideals
+
+    ?
+
+    tags: commutative-algebra
+
+- *Reduced* scheme
+
+    A scheme $X$ is reduced $\iff \OO_X(U)$ is a reduced ring for every open $U \subset X$.
+
+    tags: definitions
