@@ -42,12 +42,15 @@ title: "Qual Algebra::QualAlgebraGroups"
 just build          # compile every deck in decks/ into apkg/
 ```
 
-Under the hood each deck is compiled through Pandoc + ankdown-for-math:
+The tool is fetched from GitHub via `uvx` — no local checkout needed. Under the hood:
 
 ```bash
-pandoc --lua-filter <ankdown>/ankdown.lua "decks/<Subject>/<Deck>.md" -t plain \
-  | ankdown compile --output "apkg/<Deck>.apkg"
+uvx --from git+https://github.com/dzackgarza/ankdown-for-math \
+  ankdown build decks --output-dir apkg
 ```
+
+`ankdown build` runs Pandoc with its own bundled lua filter, so a single command
+turns the Markdown decks into `.apkg` packages. (Pandoc must be on `PATH`.)
 
 Math renders via MathJax using the macro set generated from the LaTeX sources in
 [pandoc-config](https://github.com/dzackgarza/pandoc-config)
