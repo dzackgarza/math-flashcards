@@ -70,7 +70,7 @@ title: "Reading::Homotopy"
 
     $ {\mathsf{K}}_q(A) \to {\operatorname{HH}}_q(A) $.
 
-- Why is Hocshild homology an approximation of K-theory?
+- Why is Hochschild homology an approximation of K-theory?
 
     The Dennis trace factors as $ {\mathsf{K}}_q(A) \to HC^-_q(A)\to {\operatorname{HH}}_q(A) $.
 
@@ -78,7 +78,7 @@ title: "Reading::Homotopy"
 
 - What does $ {\operatorname{THH}}(A) $ mean?
 
-    $ {\operatorname{THH}}(HA) $ for $ HA $ the Eilenberg-Maclane spectrum.
+    $ {\operatorname{THH}}(HA) $ for $ HA $ the Eilenberg-MacLane spectrum.
 
     Idea of construction: replace $ {\mathbf{Z}} $ with $ {\mathbf{S}} $ and $ \otimes_{\mathbf{Z}} $ with $ \wedge $ to form acyclic bar complex.
 

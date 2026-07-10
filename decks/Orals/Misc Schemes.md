@@ -74,7 +74,7 @@ title: "Orals::Misc Schemes"
 
     For $ f: X\to S $ smooth and $ g: T\to S $ qc and $ {\mathcal{F}}\in {\mathsf{Sh}}(T) $ of $ C_n{\hbox{-}} $modules (torsion), there is an isomorphism $ f^* {\mathbf{R}}^q g_* {\mathcal{F}} { \, \xrightarrow{\sim}\, }{\mathbf{R}}^q \tilde g_* (f')^*{\mathcal{F}} $ where $ \tilde g: X \underset{\scriptscriptstyle {S} }{\times} T \to X $ and $ \tilde f: X \underset{\scriptscriptstyle {S} }{\times} T\to T $.
 
-- What is **proper base chang**?
+- What is **proper base change**?
 
     If $ \pi: X\to S $ is proper and $ {\mathcal{F}} $ is a torsion sheaf on $ X $ with $ f: T\to S $, the base change morphism $ f^{-1}{\mathbf{R}}^i \pi_* {\mathcal{F}} { \, \xrightarrow{\sim}\, }{\mathbf{R}}^i \tilde\pi_* \tilde f^{-1}{\mathcal{F}} $.
 
@@ -224,7 +224,7 @@ title: "Orals::Misc Schemes"
 
 - What is a **prime divisor** on a scheme?
 
-    A closed integral subscheme of dimension 1. Need $ X $ to be be a Noetherian integral separated scheme which is regular in codimension 1.
+    A closed integral subscheme of dimension 1. Need $ X $ to be a Noetherian integral separated scheme which is regular in codimension 1.
 
 - What is a **geometrically connected** scheme?
 

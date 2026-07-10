@@ -12,7 +12,7 @@ title: "Research::Definitions"
 
     $$\kappa(X, D)\coloneqq\limsup _{m \in {\mathbf{Z}}_{\geq 0}} \frac{\log \left(h^0\left(\mathcal{O}_X(m D)\right)\right)}{\log m}$$
 
-    Equivalently, the Itaka dimension of the canonical
+    Equivalently, the Iitaka dimension of the canonical
 
     $$\kappa(X) \coloneqq\kappa(X; \omega_X)$$
 
@@ -26,9 +26,9 @@ title: "Research::Definitions"
 
     $ {\mathcal{L}}\in \operatorname{Pic}(X) $ is big iff $ \kappa(X; {\mathcal{L}}) = \dim(X) $ is maximal, i.e. $ \dim \operatorname{im}\phi_{{\left\lvert {m} \right\rvert} {\mathcal{L}}} = \dim(X) $ for $ n\gg 1 $.
 
-- What is Itaka dimension?
+- What is Iitaka dimension?
 
-    For $ {\mathcal{L}}\in \operatorname{Pic}(X) $, define the *Itaka dimension* of $ {\mathcal{L}}\in \operatorname{Pic}(X) $ as the maximal embedding dimension:
+    For $ {\mathcal{L}}\in \operatorname{Pic}(X) $, define the *Iitaka dimension* of $ {\mathcal{L}}\in \operatorname{Pic}(X) $ as the maximal embedding dimension:
 
     $$\kappa(X; {\mathcal{L}}) \coloneqq\sup_{m\in {\mathbf{Z}}_{\geq 0}} \left\{{\dim \phi_{{\left\lvert {m{\mathcal{L}}} \right\rvert}}(X)}\right\},\qquad \phi_{{\left\lvert {m{\mathcal{L}}} \right\rvert}}:X\to {\mathbf{P}}^n$$
 
@@ -68,7 +68,7 @@ title: "Research::Definitions"
 
     For a minimal smooth projective surface $ X $,
 
-    $ \kappa(X) = -\infty \iff $rRuled, rational.
+    $ \kappa(X) = -\infty \iff $Ruled, rational.
 
     $ \implies X\cong {\mathbf{P}}^{2} $ or a minimal ruled surface.
 
@@ -112,7 +112,7 @@ title: "Research::Definitions"
 
     Normal and admits a dominant rational map $ {\mathbf{P}}^N\dashrightarrow X $ for some $ N $, or dominated by a rational variety so that $ k({\mathbf{P}}^n)/k(X) $ is a purely transcendental (separable) extension of finite type.
 
-    Idea: similar to rational, e.. $ h^0(\Omega^{\geq 1}_X) = 0 $, Luroth asks if unirational implies rational. True for curves, false for 3-folds and higher.
+    Idea: similar to rational, e.g. $ h^0(\Omega^{\geq 1}_X) = 0 $, Luroth asks if unirational implies rational. True for curves, false for 3-folds and higher.
 
 - What is a **uniruled** variety?
 

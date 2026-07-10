@@ -172,7 +172,7 @@ title: "Quals::Real Analysis"
 
     Closure of space of finite-rank operators in the norm topology
 
-- What is the Borel-Canteli lemma?
+- What is the Borel-Cantelli lemma?
 
     $ \sum P(E_n) < \infty \implies P(\limsup_n E_n) == 0 $
 

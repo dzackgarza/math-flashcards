@@ -186,7 +186,7 @@ title: "Reading::Unsorted"
 
     $ p $ where $ p \equiv 3 \operatorname{mod}4 $.
 
-    Follows because $ N(\alpha) = p $ prrime forces $ \alpha $ to be prime.
+    Follows because $ N(\alpha) = p $ prime forces $ \alpha $ to be prime.
 
 - Which primes are sums of two squares?
 

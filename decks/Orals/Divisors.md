@@ -6,7 +6,7 @@ title: "Orals::Divisors"
 
     A pair $ (s, U) $ with $ U\subseteq X $ open containing all associated points of $ X $, $ s\in H^0(U; {\mathcal{L}}) $, and $ (s_1, U_1) \sim (s_2, U_2) \iff $ $ s_1=s_2 $ on $ U_{12} $.
 
-- How are Weil divisors related to 1Cartier divisors?
+- How are Weil divisors related to Cartier divisors?
 
     Coincide when $ X $ is integral, separated, Noetherian, locally factorial (local rings are UFDs), and principal divisors coincide as well. In general one has a map $ \operatorname{CDiv}(X) \to \operatorname{Div}(X) $ where $ D $ defined by $ \left\{{(U_i, f_i)}\right\} $ is mapped to $ \sum_{Y\in \operatorname{Div}(X)} v_Y(f_i) Y $ where $ i $ is any index where $ U_i \cap Y $ is nonempty. The inverse construction: given $ D\in \operatorname{Div}(X) $, it induces $ D_x \in \operatorname{Spec}{\mathcal{O}}_{X, x} $, which is a UFD so $ D_x $ is a principal divisor $ D_x = (f_x) $ where $ f_x \in K(X) $. Lift to a principal divisor $ (f_x) $ on $ X $; its restriction to $ \operatorname{Spec}{\mathcal{O}}_{X, x} $ coincides with $ D $ so they differ only by prime divisors that don't pass through $ x $. Only finitely many such primes have nonzero coefficients in $ D $ or $ (f_x) $, so there is an open $ U_x \ni x $ such that $ D $ and $ (f_x) $ restrict to the same divisor. Now cover $ X $ by the $ U_x $ and use the $ f_x $ to defined a Cartier divisor.
 
@@ -82,7 +82,7 @@ title: "Orals::Divisors"
 
 - Discuss **complete divisors** on a smooth complete curve.
 
-    Every principal divisor has degree zero: use the general result that if $ \Phi: X\to Y $ is a finite morpism of curves, $ \deg(\Phi^* D) = \deg(\Phi) \deg D $ for any $ D\in \operatorname{Div}(Y) $.
+    Every principal divisor has degree zero: use the general result that if $ \Phi: X\to Y $ is a finite morphism of curves, $ \deg(\Phi^* D) = \deg(\Phi) \deg D $ for any $ D\in \operatorname{Div}(Y) $.
 
     If $ f\in k $ then $ (f) = 0 $, otherwise $ f\not\in k $ so consider the extension $ L \coloneqq k(f) $. The inclusion $ L \hookrightarrow K(X) $ induces a finite morphism $ \phi: X\to {\mathbf{P}}^1 $ and $ (f) = \phi^{-1}(D) $ where $ D\coloneqq 1[0] - 1[\infty] $, and $ \deg D = 0 $ on $ {\mathbf{P}}^1 $.
 

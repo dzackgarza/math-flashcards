@@ -110,7 +110,7 @@ title: "Orals::Cohomology of Schemes"
 
 - What are the **conormal** sheaf and the **normal sheaf**?
 
-    For $ Y\hookrightarrow X $ a closed embedding of smooth varieties, $ N_{Y/X} {}^{ \vee }\coloneqq{\mathcal{I}}_Y/{\mathcal{I}}_Y^2 $ is the conormal sheave and $ N_{Y/X} = ({\mathcal{I}}_Y/{\mathcal{I}}_Y^2) {}^{ \vee } $ is the normal sheaf, which is locally free of rank $ \operatorname{codim}_X(Y) $.
+    For $ Y\hookrightarrow X $ a closed embedding of smooth varieties, $ N_{Y/X} {}^{ \vee }\coloneqq{\mathcal{I}}_Y/{\mathcal{I}}_Y^2 $ is the conormal sheaf and $ N_{Y/X} = ({\mathcal{I}}_Y/{\mathcal{I}}_Y^2) {}^{ \vee } $ is the normal sheaf, which is locally free of rank $ \operatorname{codim}_X(Y) $.
 
 - What is a **derivation**?
 
@@ -118,7 +118,7 @@ title: "Orals::Cohomology of Schemes"
 
 - What is the module of relative differentials $ \Omega_{B/A} $?
 
-    $ \Omega_{B/A}\in   {}_{B}{\mathsf{Mod}} $ with $ d\in \mathop{\mathrm{Der}}_A(B, \Omega_{B/A}) $ satisfying a universal property: for any $ M\in   {}_{B}{\mathsf{Mod}} $ and $ d'\in \mathop{\mathrm{Der}}_A(B, M) $, it factors through $ d $. Can be construct as $ \mathsf{Free}_B(db {~\mathrel{\Big\vert}~}b\in B)/R $ where $ R $ are relations $ d(b_1+b_2)-d(b_1)-d(b_2), da, d(b_1b_2)-d(b_1)b_2-b_1d(b_2) $.
+    $ \Omega_{B/A}\in   {}_{B}{\mathsf{Mod}} $ with $ d\in \mathop{\mathrm{Der}}_A(B, \Omega_{B/A}) $ satisfying a universal property: for any $ M\in   {}_{B}{\mathsf{Mod}} $ and $ d'\in \mathop{\mathrm{Der}}_A(B, M) $, it factors through $ d $. Can be constructed as $ \mathsf{Free}_B(db {~\mathrel{\Big\vert}~}b\in B)/R $ where $ R $ are relations $ d(b_1+b_2)-d(b_1)-d(b_2), da, d(b_1b_2)-d(b_1)b_2-b_1d(b_2) $.
 
 - What is the **sheaf of differentials** or **relative differential forms**?
 
@@ -198,7 +198,7 @@ title: "Orals::Cohomology of Schemes"
 
     Any morphism $ {\mathcal{X}}\to X $ of schemes to $ X $ which is flat.
 
-- How can one check is a morphism is flat?
+- How can one check if a morphism is flat?
 
     For $ f: X\to Y $ with $ Y $ integral and regular of dimension 1, $ f $ is flat iff every *associated point* maps to $ \eta_Y $. For $ X $ reduced, this says every irreducible component of $ X $ dominates $ Y $.
 

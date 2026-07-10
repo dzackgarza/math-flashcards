@@ -314,7 +314,7 @@ title: "Research::Papers"
 
 - What is primitive cohomology?
 
-    Let $ (X, g) $ be a compact Khler manifold. Then the primitive cohomology is defined as
+    Let $ (X, g) $ be a compact Kahler manifold. Then the primitive cohomology is defined as
 
     $$H^k(X, \mathbb{R})_{{\operatorname{prim}}}:=\operatorname{Ker}\left(\Lambda: H^k(X, \mathbb{R}) \longrightarrow H^{k-2}(X, \mathbb{R})\right)$$
 
@@ -322,7 +322,6 @@ title: "Research::Papers"
 
     $$H^{p, q}(X)_{{\operatorname{prim}}}:=\operatorname{Ker}\left(\Lambda: H^{p, q}(X) \longrightarrow H^{p-1, q-1}(X)\right)$$
 
-    s
 
     I.e. any Kahler class induces a representation of $ {\mathfrak{sl}}_2({\mathbf{C}}) $ on $ H^*(X; {\mathbf{R}}) $.
 
@@ -356,6 +355,6 @@ title: "Research::Papers"
 
     Set $ \overline{\mathbb{D}_\rho} $ the closure of the compact dual (dropping $ {\left\lvert {x} \right\rvert} > 0 $)
 
-    Define $ \overline{\mathbb{D}_\rho}^\mathrm{BB} = \mathbb{D}_\rho \cup\bigcup_{J} B_J $ by adding *rational boundary components*, usually $ {\mathbb{H}}{\textstyle\coprod}(-{\mathbb{H}}) $ or points.s
+    Define $ \overline{\mathbb{D}_\rho}^\mathrm{BB} = \mathbb{D}_\rho \cup\bigcup_{J} B_J $ by adding *rational boundary components*, usually $ {\mathbb{H}}{\textstyle\coprod}(-{\mathbb{H}}) $ or points.
 
     BB compactification is $ \overline{\mathbb{D}_\rho/\Gamma}\coloneqq\overline{\mathbb{D}_\rho}^{\mathrm{BB}}/\Gamma $.

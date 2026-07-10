@@ -18,7 +18,7 @@ title: "Reading::AG_General"
 
     $ \pi $ is flat
 
-    $ {\partial}_2: S{ {}^{ \scriptstyle\otimes_{R}^{2} }  }\to S $ is flat.s
+    $ {\partial}_2: S{ {}^{ \scriptstyle\otimes_{R}^{2} }  }\to S $ is flat.
 
     $ S $ is finitely presented over $ R $
 

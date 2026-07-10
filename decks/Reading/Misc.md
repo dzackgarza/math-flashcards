@@ -58,7 +58,7 @@ title: "Reading::Misc"
 
 - What is the fundamental theorem of Galois theory for schemes?
 
-    Let $ X $ be a connected scheme. Then there exists a profinite group $ \pi $, uniquely determined up to isomorphism, such that the category $ \mathbf{F E t}_X $ of finite tale coverings of $ X $ is equivalent to the category $ \pi $-sets of finite sets on which $ \pi $ acts continuously.
+    Let $ X $ be a connected scheme. Then there exists a profinite group $ \pi $, uniquely determined up to isomorphism, such that the category $ \mathbf{F E t}_X $ of finite etale coverings of $ X $ is equivalent to the category $ \pi $-sets of finite sets on which $ \pi $ acts continuously.
 
 - What is $ \pi_1^\text{ét}\operatorname{Spec}{\mathbf{Z}} $?
 

@@ -58,7 +58,7 @@ title: "Orals::Morphisms"
 
     Let $ \operatorname{ch}k = p, k={ \overline{k} } $ and take the Frobenius morphism $ f:X\to Y $ to $ X=Y={\mathbf{P}}^n_{/ {k}} $.
 
-    Since $ d(t^p)=0 $, the map $ f^*\Omega_{Y/k}\to \Omega_{X/k} $ is zero and $ \Omega_{X/Y} \cong \Omega_{X/k} $ is locally free of rank 1 but but $ \operatorname{reldim}f = 0 $, so $ f $ is nowhere smooth.
+    Since $ d(t^p)=0 $, the map $ f^*\Omega_{Y/k}\to \Omega_{X/k} $ is zero and $ \Omega_{X/Y} \cong \Omega_{X/k} $ is locally free of rank 1 but $ \operatorname{reldim}f = 0 $, so $ f $ is nowhere smooth.
 
 - What is a consequence of smoothness?
 
@@ -122,7 +122,7 @@ title: "Orals::Morphisms"
 
     $ \operatorname{Bl}_0 {\mathbf{A}}^2 \xrightarrow{\pi} {\mathbf{A}}^2 $, since $ {\sharp}\pi^{-1}(p) = 1 $ for all $ p\neq 0 $ and $ \pi^{-1}(0)\cong {\mathbf{P}}^1 $, contradicting equidimensionality.
 
-    Take a nodal curve $ X $ and $ f:\tilde X\to X $ its normalization -- if this were flat, $ f_* {\mathcal{O}}_{\tilde X} $ would be a flat sheaf of $ {\mathcal{O}}_X{\hbox{-}} $modules, which is coherent and thus locally free, and rank 1 and thus univertible; however the node $ q $ has two preimages $ p_1, p_2 $, so $ (f_* {\mathcal{O}}_{\tilde X})_q $ needs two generators as an $ {\mathcal{O}}_X{\hbox{-}} $module.
+    Take a nodal curve $ X $ and $ f:\tilde X\to X $ its normalization -- if this were flat, $ f_* {\mathcal{O}}_{\tilde X} $ would be a flat sheaf of $ {\mathcal{O}}_X{\hbox{-}} $modules, which is coherent and thus locally free, and rank 1 and thus invertible; however the node $ q $ has two preimages $ p_1, p_2 $, so $ (f_* {\mathcal{O}}_{\tilde X})_q $ needs two generators as an $ {\mathcal{O}}_X{\hbox{-}} $module.
 
     Any nontrivial normalization.
 
@@ -214,7 +214,7 @@ title: "Orals::Morphisms"
 
     Use that $ {\mathbf{A}}^n $ is not proper: $ X \underset{\scriptscriptstyle {k} }{\times} X \to X $ is not closed for $ X\coloneqq{\mathbf{A}}^1 $ since it is the coordinate projection, and $ V(xy-c) \mapsto {\mathbf{G}}_m $ which is not closed.
 
-- What is a a **projective morphism**?
+- What is a **projective morphism**?
 
     $ f:X\to Y $ which factors as $ X\hookrightarrow{\mathbf{P}}^N_{/ {Y}} \twoheadrightarrow Y $, a closed immersion followed by the natural projection, where $ {\mathbf{P}}^N_{/ {Y}} \coloneqq{\mathbf{P}}^N_{/ {{\mathbf{Z}}}} \underset{\scriptscriptstyle {\operatorname{Spec}{\mathbf{Z}}} }{\times} Y $.
 
@@ -258,7 +258,7 @@ title: "Orals::Morphisms"
 
     - $ f:X\to S $ is quasiseparated iff the diagonal is quasicompact.
 
-- What is qcqs? (Quasi-compact and quaiseparated)
+- What is qcqs? (Quasi-compact and quasiseparated)
 
     Quasicompact: inverse images of quasicompact sets are quasicompact. Quasiseparated: the diagonal is quasicompact.
 

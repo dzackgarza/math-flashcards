@@ -132,7 +132,7 @@ title: "Learning::NT"
 
     Terminates, so $ 1 = G_i {~\trianglelefteq~}\cdots {~\trianglelefteq~}G_1 {~\trianglelefteq~}G_0 = D $.
 
-- Describe tame and wld ramification
+- Describe tame and wild ramification
 
     Locally:
 

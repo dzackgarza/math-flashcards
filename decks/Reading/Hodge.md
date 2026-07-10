@@ -176,7 +176,7 @@ title: "Reading::Hodge"
 
     Yields a positive definite Hermitian metric $ h(u, w)\coloneqq\sum_{p+q=k} (-1)^p Q(v^{p, q}, w^{p, q}) $.
 
-- What is Griffiths transversaility?
+- What is Griffiths transversality?
 
     $$\nabla({\mathcal{F}}^p)\subseteq {\mathcal{F}}^{p-1} \otimes\Omega^1$$
 
@@ -254,7 +254,7 @@ title: "Reading::Hodge"
 
     For $ f:X\to Y $ projective, $ {\mathbf{R}}f_* K $ decomposes into a sum of IC complexes associated to PVHS when $ K $ is in a certain subcategory of regular holonomic $    {}_{\mathcal{D}}{\mathsf{Mod}}  $.
 
-- What is the significant of the weight filtration?
+- What is the significance of the weight filtration?
 
     $ {\mathsf{gr}\,}_\ell W_* $ carries a pure HS of weight $ \ell $, so looks like $ H^\ell $ of a smooth projective variety.
 

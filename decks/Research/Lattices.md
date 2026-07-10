@@ -344,7 +344,7 @@ title: "Research::Lattices"
 
     $ \dim = 16: E_8{ {}^{ \scriptscriptstyle\oplus^{2} }  }, \Lambda_{16} $.
 
-    $ \dim = 24 $: 24 Neimeier lattices,
+    $ \dim = 24 $: 24 Niemeier lattices,
 
     Including the Leech lattice: uniquely has no roots.
 
@@ -380,7 +380,7 @@ title: "Research::Lattices"
 
     Conway's group $ {\operatorname{O}}(N) $ the isometries of the Leech lattice, contains the Mathieu group $ M_{23} $
 
-- Discuss Neimeier lattices.
+- Discuss Niemeier lattices.
 
     Niemeier classifies definite even unimodular lattices of rank 24.
 
@@ -408,7 +408,7 @@ title: "Research::Lattices"
 
     *(Answer was a figure; image not recovered.)*
 
-- What is Rohklin's theorem?
+- What is Rokhlin's theorem?
 
     If $ X $ is a smooth closed spin 4-manifold, $ H^2(X) $ is an even lattice and $ \operatorname{sgn}H^2(X) \equiv 0 \operatorname{mod}16 $.
 

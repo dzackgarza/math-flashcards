@@ -46,7 +46,7 @@ title: "Reading::ClassFieldTheory"
 
     $ I\in   {}_{{\mathbf{Z}}}{\mathsf{Mod}}^{\mathrm{free}} $ has basis $ \left\{{[g] - [e] {~\mathrel{\Big\vert}~}g\in G}\right\} $.
 
-- When does the augmentation SES spit? Why care?
+- When does the augmentation SES split? Why care?
 
     Only if $ G $ is trivial: a section has to send 1 to a $ G{\hbox{-}} $invariant element, which is either zero or a multiple of $ N $.
 
@@ -434,7 +434,7 @@ title: "Reading::ClassFieldTheory"
 
     NOT true that every finite index subgroup is closed!
 
-- How do you extra a Hausdorff topological group from an non-Hausdorff one?
+- How do you extract a Hausdorff topological group from an non-Hausdorff one?
 
     Mod out by the closure of the identity.
 
@@ -530,7 +530,7 @@ title: "Reading::ClassFieldTheory"
 
     $ H^q({ \mathsf{Gal}}(k^{ {}^{ \operatorname{sep} } }/k); M) $ the profinite group cohomology.
 
-- What is the Weil-Chatalet group $ \mathrm{WC}(A/K) $?
+- What is the Weil-Chatelet group $ \mathrm{WC}(A/K) $?
 
     For $ A\in{\mathsf{Grp}}{\mathsf{Sch}} $ commutative, or $ A $ any commutative group, $ H^1(K; A)\coloneqq H^1({ \mathsf{Gal}}(k^{ {}^{ \operatorname{sep} } }/k); A(k^{ {}^{ \operatorname{sep} } })) $.
 
@@ -612,13 +612,13 @@ title: "Reading::ClassFieldTheory"
 
     Need
 
-- What is Artin-Schreir theory?
+- What is Artin-Schreier theory?
 
     Characteristic $ p $ analogue of Kummer theory.
 
     Want an analogue for cyclic extensions of prime power order $ p^k $, AS works for $ k=1 $.
 
-- How is Artin-Schrier theory expressed cohomologicallly?
+- How is Artin-Schreier theory expressed cohomologically?
 
     Take $ \phi \coloneqq\operatorname{Frob}- 1 $ so $ \phi(x) = x^p-x $, this is an isogeny of $ {\mathbf{G}}_a $ so get a SES $ { \mathbf{F} }_p\hookrightarrow k^{ {}^{ \operatorname{sep} } } \xrightarrow[]{\phi} { \mathrel{\mkern-16mu}\rightarrow }\,  k^{ {}^{ \operatorname{sep} } } $.
 
@@ -644,7 +644,7 @@ title: "Reading::ClassFieldTheory"
 
     $ \operatorname{cohdim}_\ell C_p =0 $ if $ p\neq \ell $ and $ \infty $ if $ p=\ell $, so $ \operatorname{cohdim}C_p = \infty $.
 
-- DIscuss $ \operatorname{cohdim}G $ for $ G $ a pro$ {\hbox{-}}p $ group.
+- Discuss $ \operatorname{cohdim}G $ for $ G $ a pro$ {\hbox{-}}p $ group.
 
     $ \operatorname{cohdim}_p G \leq n \iff H^{n+1}(G; C_p) = 0 $.
 
@@ -712,7 +712,7 @@ title: "Reading::ClassFieldTheory"
 
     All homogeneous polynomials $ f\in k[x_1,\cdots, x_n] $ of degree $ d < n $ have a nonzero root in $ k $.
 
-- What is the Chevalley-Warring theorem?
+- What is the Chevalley-Warning theorem?
 
     $ { \mathbf{F} }_q $ is a $ C_1 $ field.
 
@@ -832,7 +832,7 @@ title: "Reading::ClassFieldTheory"
 
     $ I \coloneqq\mathop{\mathrm{Aut}}(k^{ {}^{ \operatorname{sep} } }/k^{\scriptscriptstyle\mathrm{un}}) = \ker(g_k \twoheadrightarrow g_{{ \mathbf{F} }_q}) $ is the inertia group
 
-    $ I_p $ is the wild ramification, the Sylow $ p{\hbox{-}} $subgroup of of $ I $.
+    $ I_p $ is the wild ramification, the Sylow $ p{\hbox{-}} $subgroup of $ I $.
 
 - Define the higher unit groups.
 
@@ -874,7 +874,7 @@ title: "Reading::ClassFieldTheory"
 
     $ \mathrm{Res}^{K}_{L}: \mathrm{Br}(K) \to \mathrm{Br}(L) $ is $ \cdot n: {\mathbf{Q}}/{\mathbf{Z}}\to {\mathbf{Q}}/{\mathbf{Z}} $ where $ n \coloneqq[L: K] $.
 
-    Corestrictionis the identity.
+    Corestriction is the identity.
 
 - What is $ \mathrm{Br}(L/K) $ for $ L/K $ a finite extension?
 
@@ -1018,7 +1018,7 @@ title: "Reading::ClassFieldTheory"
 
     $ f\equiv g \in k{\llbracket x_1,\cdots, x_n \rrbracket  }/\left\langle{x_1,\cdots,x_n}\right\rangle^k $, so equal up to terms of order $ k $.
 
-- When can power series but substituted into each other?
+- When can power series be substituted into each other?
 
     When the constant term is zero, e.g. $ e^{e^x} $ has infinitely many constant terms.
 
@@ -1078,7 +1078,7 @@ title: "Reading::ClassFieldTheory"
 
     - Totally ramified.
 
-- How are an ramified and a totally ramified extension related?
+- How are an unramified and a totally ramified extension related?
 
     - Disjoint
 

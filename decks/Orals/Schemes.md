@@ -290,7 +290,7 @@ title: "Orals::Schemes"
 
 - What is the **reduced induced scheme structure** on $ Z\subseteq X $ a closed subset?
 
-    For any $ T\subseteq X $ closed, construct a unique closed $ Z\subseteq X $ such that $ {\left\lvert {Z} \right\rvert} = {\left\lvert {T} \right\rvert} $ and $ Z $ s reduced. For affine $ X\subseteq \operatorname{Spec}A $, take $ {\mathcal{I}}\coloneqq\bigcap_{{\mathfrak{m}}\in X}{\mathfrak{m}} $ and the subscheme it defines; for arbitrary schemes do this locally and glue.
+    For any $ T\subseteq X $ closed, construct a unique closed $ Z\subseteq X $ such that $ {\left\lvert {Z} \right\rvert} = {\left\lvert {T} \right\rvert} $ and $ Z $ is reduced. For affine $ X\subseteq \operatorname{Spec}A $, take $ {\mathcal{I}}\coloneqq\bigcap_{{\mathfrak{m}}\in X}{\mathfrak{m}} $ and the subscheme it defines; for arbitrary schemes do this locally and glue.
 
 - What is the **scheme-theoretic image**?
 

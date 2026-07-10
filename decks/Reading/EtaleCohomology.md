@@ -26,7 +26,7 @@ title: "Reading::EtaleCohomology"
 
 - Give an example of a finite flat map that is not etale
 
-    $ t\mapsto t^2 $ on $ {\mathbf{A}}^1{\circlearrowleft} $ since it's ramified at zero: $ \Omega^1_f = k[t]\,dt/d(t^2) $ but $ 2t\,dt $ doesn't generate $ k[t]\,dt $. Not the relative differentials are torsion.
+    $ t\mapsto t^2 $ on $ {\mathbf{A}}^1{\circlearrowleft} $ since it's ramified at zero: $ \Omega^1_f = k[t]\,dt/d(t^2) $ but $ 2t\,dt $ doesn't generate $ k[t]\,dt $. Note the relative differentials are torsion.
 
 - Give an example of a morphism that is not etale, but is finite flat where $ \Omega^1_{X/Y} $ is not torsion?
 
@@ -132,7 +132,7 @@ title: "Reading::EtaleCohomology"
 
     Gluing data: $ \mathop{\mathrm{proj}}_1^* {\mathcal{F}}\underset{\phi}{ { \, \xrightarrow{\sim}\, }} \mathop{\mathrm{proj}}_2^* {\mathcal{F}} $ where $ \mathop{\mathrm{proj}}_i: U \underset{\scriptscriptstyle {X} }{\times} U\to U $.
 
-    Cocyle condition: for $ \mathop{\mathrm{proj}}_{ij}U{ {}^{ \scriptscriptstyle \underset{\scriptscriptstyle {X} }{\times}^{3} }  }\to U{ {}^{ \scriptscriptstyle \underset{\scriptscriptstyle {X} }{\times}^{2} }  } $, $ \mathop{\mathrm{proj}}_{23}^* \phi \circ \mathop{\mathrm{proj}}_{12}^* \phi = \mathop{\mathrm{proj}}_{13}^*\phi $.
+    Cocycle condition: for $ \mathop{\mathrm{proj}}_{ij}U{ {}^{ \scriptscriptstyle \underset{\scriptscriptstyle {X} }{\times}^{3} }  }\to U{ {}^{ \scriptscriptstyle \underset{\scriptscriptstyle {X} }{\times}^{2} }  } $, $ \mathop{\mathrm{proj}}_{23}^* \phi \circ \mathop{\mathrm{proj}}_{12}^* \phi = \mathop{\mathrm{proj}}_{13}^*\phi $.
 
 - What is effective descent?
 
@@ -178,7 +178,7 @@ title: "Reading::EtaleCohomology"
 
 - Describe faithfully flat descent along $ \operatorname{Frob}: X\to X^{(p)} $ over $ { \mathbf{F} }_p $.
 
-    Vector bundles on $ X^{(p)} $ are equivalent to descent date for vector bundles on $ X^{(p)} $, described as vector bundles $ {\mathcal{E}} $ on $ X $ with a flat connection $ \nabla:{\mathcal{E}}\to {\mathcal{E}}\otimes\Omega^1_{X} $ with $ p{\hbox{-}} $curvature zero.
+    Vector bundles on $ X^{(p)} $ are equivalent to descent data for vector bundles on $ X^{(p)} $, described as vector bundles $ {\mathcal{E}} $ on $ X $ with a flat connection $ \nabla:{\mathcal{E}}\to {\mathcal{E}}\otimes\Omega^1_{X} $ with $ p{\hbox{-}} $curvature zero.
 
 - What is an algebraic space?
 
@@ -282,7 +282,7 @@ title: "Reading::EtaleCohomology"
 
 - What is $ H^*(X; \underline{{ \mathbf{F} }_p}) $ for $ X\in {\mathsf{Sch}}_{/ {{ \mathbf{F} }_p}} $ quasiprojective?
 
-    Use $ {\mathbf{G}}_a \coloneqq\mathop{\mathrm{Hom}}({-}, {\mathbf{A}}^1) $ where $ U\mapsto {\mathcal{O}}_U(U) $ and the Artin-Schreir exact sequence
+    Use $ {\mathbf{G}}_a \coloneqq\mathop{\mathrm{Hom}}({-}, {\mathbf{A}}^1) $ where $ U\mapsto {\mathcal{O}}_U(U) $ and the Artin-Schreier exact sequence
 
     $$\underline{{ \mathbf{F} }_p} \hookrightarrow{\mathbf{G}}_a  \xrightarrow[]{x^p-x} { \mathrel{\mkern-16mu}\rightarrow }\, {\mathbf{G}}_a$$
 

@@ -692,7 +692,7 @@ title: "Research::K3s"
 
     $ \chi(L) - \chi({\mathcal{O}}_X) = {1\over 2} (L.L \otimes\omega_X {}^{ \vee }) $.
 
-- Define the Nron-Severi group.
+- Define the Neron-Severi group.
 
     $ {\operatorname{NS}}(X) \coloneqq\operatorname{Pic}(X) / \operatorname{Pic}^0(X) $, line bundles algebraically equivalent to zero.
 
@@ -890,7 +890,7 @@ title: "Research::K3s"
 
     Big and nef on a K3 implies effective.
 
-- What is the generalization of Kodaira vanishing for projective surfaces (KodairaRamanujam vanishing theorem)?
+- What is the generalization of Kodaira vanishing for projective surfaces (Kodaira-Ramanujam vanishing theorem)?
 
     For $ X $ a smooth projective surface over $ \operatorname{ch}k = 0 $, if $ L $ is big and nef then
 
@@ -1126,11 +1126,11 @@ title: "Research::K3s"
 
 - What is the Hodge-Riemann pairing?
 
-    Consider a rational (or integral) Khler class $ \omega \in H^2(X, \mathbf{Q}) $ on a smooth projective manifold $ X $. Then define on $ H^n(X, \mathbf{Q}) $ with $ n \leq d=\operatorname{dim}_{\mathbf{C}} X $ the following pairing:
+    Consider a rational (or integral) Kahler class $ \omega \in H^2(X, \mathbf{Q}) $ on a smooth projective manifold $ X $. Then define on $ H^n(X, \mathbf{Q}) $ with $ n \leq d=\operatorname{dim}_{\mathbf{C}} X $ the following pairing:
 
     $$(v, w) \longmapsto(-1)^{n(n-1) / 2} \int_X v \wedge w \wedge \omega^{d-n}$$
 
-- What is the primitive part of cohomology with respect to a rational Khler class $ \omega\in H^2(X; {\mathbf{Q}}) $?
+- What is the primitive part of cohomology with respect to a rational Kahler class $ \omega\in H^2(X; {\mathbf{Q}}) $?
 
     $$H^n(X, \mathbf{Q})_{\mathrm{p}}:=\operatorname{Ker}\left(\wedge \omega^{d-n+1}: H^n(X; \mathbf{Q}) \longrightarrow H^{2 d-n+2}(X; \mathbf{Q})\right)$$
 

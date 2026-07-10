@@ -4,11 +4,11 @@ title: "Orals::Looijenga IAS"
 
 - What is a cusp singularity?
 
-    Any singularity such the the exceptional divisor of the minimal resolution is a cycle of rational curves.
+    Any singularity such that the exceptional divisor of the minimal resolution is a cycle of rational curves.
 
 - What does it mean for a singularity to be **smoothable**, i.e. what is a **smoothing**?
 
-    For $ X $ with isolated singularities, a flat family $ {\mathcal{X}}\to \mathbb{D} $ with $ {\mathcal{X}}_0 \cong X $ and all nearby fibers $ {\mathcal{X}}_t $ smooth. E.g. most plane curves are smoothable, not automatic for surfaces. Hypersurface singularities are always smoothable. There is no general criterion. There exists non-smoothable varieties: e.g. a cone over a 2-dimensional abelian variety which can't be a limit of smooth projective varieties. Alternatively, quotient singularities in dimension $ \geq 3 $, since these are rigid. Du val singularities are smoothable, since they are hypersurface type, replace $ F(x,y,z)= 0 $ with $ F(x,y,z) = t $.
+    For $ X $ with isolated singularities, a flat family $ {\mathcal{X}}\to \mathbb{D} $ with $ {\mathcal{X}}_0 \cong X $ and all nearby fibers $ {\mathcal{X}}_t $ smooth. E.g. most plane curves are smoothable, not automatic for surfaces. Hypersurface singularities are always smoothable. There is no general criterion. There exists non-smoothable varieties: e.g. a cone over a 2-dimensional abelian variety which can't be a limit of smooth projective varieties. Alternatively, quotient singularities in dimension $ \geq 3 $, since these are rigid. Du Val singularities are smoothable, since they are hypersurface type, replace $ F(x,y,z)= 0 $ with $ F(x,y,z) = t $.
 
 - What is a **rational surface**?
 
@@ -80,7 +80,7 @@ title: "Orals::Looijenga IAS"
 
 - Discuss almost toric fibrations over a disc.
 
-    Represented by $ \mu: (Y, D, \omega)\to S $ a symplectic anticanonical pair where components of $ D $ map to $ {{\partial}}S $. Doing internal blowups on aboundary component $ P_i\subseteq {{\partial}}S $ corresponds to an internal blowup on $ D_i $ in $ Y $, similarly for node smoothing.
+    Represented by $ \mu: (Y, D, \omega)\to S $ a symplectic anticanonical pair where components of $ D $ map to $ {{\partial}}S $. Doing internal blowups on a boundary component $ P_i\subseteq {{\partial}}S $ corresponds to an internal blowup on $ D_i $ in $ Y $, similarly for node smoothing.
 
 - What is a **stratified space**?
 
