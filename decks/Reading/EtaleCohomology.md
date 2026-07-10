@@ -474,7 +474,7 @@ title: "Reading::EtaleCohomology"
 
     Torsors $ \tau $ map to the sheaf quotient $ (T\times \tau)/G $.
 
-- What is a Severi-Brauer X`{\hbox{-}}`{=tex}$schemes?
+- What is a Severi-Brauer $ X{\hbox{-}} $scheme?
 
     Forms of $ {\mathbf{P}}^n_X $; for $ X=\operatorname{Spec}k $ these are Severi-Brauer varieties.
 

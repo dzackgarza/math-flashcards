@@ -85,7 +85,7 @@ title: "Reading::FunctionFields"
 
 - Prop 4.2.4: $ e_L(x) $ is entire on $ C_\infty $ which has a Taylor expansion at $ x=0 $ with coefficiets in $ M $.
 
-    - Proof: convergence is due to discreteness of $L, the Taylor expansion is from $ G_M \coloneqq{ \mathsf{Gal}}(M^{ {}^{ \operatorname{sep} } }/M $) which fixes $ L $ and the natura of the continuous action $ G_M\curvearrowright M^{ {}^{ \operatorname{sep} } } $. d it $ e_L $ is a non-constant entire function and thus surjective.
+    - Proof: convergence is due to discreteness of $ L $, the Taylor expansion is from $ G_M \coloneqq { \mathsf{Gal}}(M^{ {}^{ \operatorname{sep} } }/M) $ which fixes $ L $ and the nature of the continuous action $ G_M\curvearrowright M^{ {}^{ \operatorname{sep} } } $. So $ e_L $ is a non-constant entire function and thus surjective.
 
 - Thm 4.3.1 (fundamental)
 

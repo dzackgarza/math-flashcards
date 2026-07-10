@@ -144,7 +144,7 @@ title: "Research::Papers"
 
 - What are the moduli stacks $ {\mathcal{M}}_\rho, F_\rho $?
 
-    Moduli of $ \rho $`{\hbox{-}}`{=tex}$marked resp. $ \rho{\hbox{-}} $markable K3 surfaces, where e.g. $ {\mathcal{M}}_\rho(B) $ is the groupoid of $ \rho{\hbox{-}} $marked familes over $ B $.
+    Moduli of $ \rho{\hbox{-}} $marked resp. $ \rho{\hbox{-}} $markable K3 surfaces, where e.g. $ {\mathcal{M}}_\rho(B) $ is the groupoid of $ \rho{\hbox{-}} $marked familes over $ B $.
 
 - How are deformation classes of K3 surfaces with nonsymplectic automorphisms $ (X, \sigma) $ classified?
 

@@ -782,9 +782,9 @@ title: "Research::K3s"
 
     $ \operatorname{rank}_{\mathbf{Z}}H^2 = 22 $ since $ e(X) = c_2(X) = 24 $ and $ b_2(X) = 22 $, and this defines a unimodular lattice $ {\mathbf{E}}_8(-1){ {}^{ \scriptscriptstyle\oplus^{2} }  } \oplus U{ {}^{ \scriptscriptstyle\oplus^{3} }  } $.
 
-- What is the Hodge-Frlicher spectral sequence?
+- What is the Hodge-Frölicher spectral sequence?
 
-    \[$H^q(X; \Omega^p_X) \Rightarrow H^{p+q}(X; {\mathbf{C}})\]
+    $$H^q(X; \Omega^p_X) \Rightarrow H^{p+q}(X; {\mathbf{C}})$$
 
 - Discuss bounds on $ p(X) $.
 
