@@ -54,7 +54,7 @@ title: "Orals::Looijenga IAS"
 
 - Discuss the **dual divisors** $ D $ and $ \widehat{D} $.
 
-    For $ (\overline{V}, p) $ the germ of a cusp, the exceptional divisor $ D $ of a minimal resolution forms (by definition) a cycle of smooth rational transversely intersecting curves with $ D_{i\operatorname{mod}n}\cdot D_{i+1 \operatorname{mod}n} = 1 $, which is characterized by the diagonal of the intersection matrix $ \mathbf{d} = {\left[ {d_1,\cdots, d_n} \right]} $. The hyperbolic Innoue surface has two cycles $ D, \widehat{D} $ which blow down to dual cusps $ p, \widehat{p} $.
+    For $ (\overline{V}, p) $ the germ of a cusp, the exceptional divisor $ D $ of a minimal resolution forms (by definition) a cycle of smooth rational transversely intersecting curves with $ D_{i\operatorname{mod}n}\cdot D_{i+1 \operatorname{mod}n} = 1 $, which is characterized by the diagonal of the intersection matrix $ \mathbf{d} = {\left[ {d_1,\cdots, d_n} \right]} $. The hyperbolic Inoue surface has two cycles $ D, \widehat{D} $ which blow down to dual cusps $ p, \widehat{p} $.
 
 - What is **Looijenga's conjecture**?
 
@@ -62,11 +62,11 @@ title: "Orals::Looijenga IAS"
 
 - Why is the converse to Looijenga's conjecture true?
 
-    Statement: If $ \widehat{D} $ contracts to a smoothable cusp singularity $ \widehat{p} $, then $ D $ is the anticanonical divisor for some rational surface. Suppose $ \widehat{p} $ is smoothable, then Loojienga shows $ \overline{V} $ has a universal deformation which is semi-universal for the germ $ (\overline{V}, p, \widehat{p}) $, so one gets a deformation $ \pi: {\mathcal{V}}\to \mathbb{D} $ with $ {\mathcal{V}}_0 = \overline{V} $ where $ (\overline{V}, p) $ is constant and $ (\overline{V}, \widehat{p}) $ is smoothed. The general fiber $ {\mathcal{V}}_t $ is a surface with a cusp singularity $ p_t $ (basically $ p $); simultaneously smooth all $ p_t $ to get $ {\mathcal{Y}}\to \mathbb{D} $ where $ {\mathcal{Y}}_t $ is smooth and $ {\mathcal{Y}}_0 $ is a partially contracted $ V $ with a cusp $ \widehat{p} $. The general fibers $ {\mathcal{Y}}_t $ are the desired rational surfaces with anticanonical divisor $ D $.
+    Statement: If $ \widehat{D} $ contracts to a smoothable cusp singularity $ \widehat{p} $, then $ D $ is the anticanonical divisor for some rational surface. Suppose $ \widehat{p} $ is smoothable, then Looijenga shows $ \overline{V} $ has a universal deformation which is semi-universal for the germ $ (\overline{V}, p, \widehat{p}) $, so one gets a deformation $ \pi: {\mathcal{V}}\to \mathbb{D} $ with $ {\mathcal{V}}_0 = \overline{V} $ where $ (\overline{V}, p) $ is constant and $ (\overline{V}, \widehat{p}) $ is smoothed. The general fiber $ {\mathcal{V}}_t $ is a surface with a cusp singularity $ p_t $ (basically $ p $); simultaneously smooth all $ p_t $ to get $ {\mathcal{Y}}\to \mathbb{D} $ where $ {\mathcal{Y}}_t $ is smooth and $ {\mathcal{Y}}_0 $ is a partially contracted $ V $ with a cusp $ \widehat{p} $. The general fibers $ {\mathcal{Y}}_t $ are the desired rational surfaces with anticanonical divisor $ D $.
 
 - What is a **pseudofan**?
 
-    For $ (V, D) $ an ACP where $ D = \sum_{i=1}^nD_i $ is a cycle, the pseudofanof $ (V, D) $ is the triangulated IAS whose underlying triangulated surface is $ { \mathrm{Cone} }(\Gamma(D)) $, the cone over the dual complex of $ D $.
+    For $ (V, D) $ an ACP where $ D = \sum_{i=1}^nD_i $ is a cycle, the pseudofan of $ (V, D) $ is the triangulated IAS whose underlying triangulated surface is $ { \mathrm{Cone} }(\Gamma(D)) $, the cone over the dual complex of $ D $.
 
 - What are the two main **surgeries** on pseudofans?
 
@@ -78,7 +78,7 @@ title: "Orals::Looijenga IAS"
 
     A Lagrangian fibration $ \mu: (X, \omega) \to S $ whose general fiber is a smooth $ T^2 $ which undergoes symplectic reduction at $ {{\partial}}S $ where fibers in $ S^\circ $ degenerate to wedges of $ S^2 $ at finitely many specified points. The **almost toric base** generalizes the moment polytope and has an IA structure with $ v\in S^{\mathrm{sing}}\iff \mu^{-1}(v) $ is singular. $ \mu^{-1}({{\partial}}S) $ is an anticanonical divisor on $ X $.
 
-- Disuss almost toric fibrations over a disc.
+- Discuss almost toric fibrations over a disc.
 
     Represented by $ \mu: (Y, D, \omega)\to S $ a symplectic anticanonical pair where components of $ D $ map to $ {{\partial}}S $. Doing internal blowups on aboundary component $ P_i\subseteq {{\partial}}S $ corresponds to an internal blowup on $ D_i $ in $ Y $, similarly for node smoothing.
 
@@ -90,7 +90,7 @@ title: "Orals::Looijenga IAS"
 
     A fibration $ f: (X^{2n}, \omega) \to B $ which is a proper continuous map where $ B $ is an $ n{\hbox{-}} $dimensional stratified space and $ f $ is a smooth submersion over the top stratum of $ B $ with connected Lagrangian fibers, where the remaining fibers are connected stratified spaces with isotropic strata.
 
-- What is an order $ k $ **refinment** of an IAS?
+- What is an order $ k $ **refinement** of an IAS?
 
     For $ S $ an IAS, the new IAS $ S[k] $ gotten by post-composing the charts on $ S $ with multiplication by $ k $.
 
@@ -138,7 +138,7 @@ title: "Orals::Looijenga IAS"
 
 - What is the **dual complex** of a type III anticanonical pair?
 
-    For $ ({\mathcal{X}}_0, D) $ an ACP, the triangulation of $ S^2 $ with vertices are the components of $ V_i $, directed edges $ e_{ij} $ for double curves $ D_{ij} $, triangular faces are triiple points $ T_{ijk} $.
+    For $ ({\mathcal{X}}_0, D) $ an ACP, the triangulation of $ S^2 $ with vertices are the components of $ V_i $, directed edges $ e_{ij} $ for double curves $ D_{ij} $, triangular faces are triple points $ T_{ijk} $.
 
 - What is a **degeneration**?
 
@@ -166,7 +166,7 @@ title: "Orals::Looijenga IAS"
 
 - What is the relation to **SYZ mirror symmetry**?
 
-    Generally about boundaries in a CY moduli space, particularly near especially "bad" degenerations: maximally unipotent degenerations (MUD) or large complex structure limits. One can find special Lagrangian tori on CYs near these limit points, and approaching the limit, expect to see a larger portion of the CY filled by tori. Toric degnerations are a special case of MUD. Expect the base $ B $ of a special Lagrangian fibration to be the Gromov-Hausdorff limit of a sequence of CYs near MUD, and GH limit should be the dual intersection complex of the AG degeneration. The base is an affine manifold. If $ \pi:{\mathcal{X}}\to \mathbb{D} $ is such a degeneration of CYs and $ {\mathcal{X}} $ is polarized (equipped with $ {\mathcal{L}}\in \operatorname{Pic}({\mathcal{X}}) $ relatively ample), should exists a dual polarization $ \widehat{{\mathcal{L}}} $ on $ \widehat{{\mathcal{X}}} $.
+    Generally about boundaries in a CY moduli space, particularly near especially "bad" degenerations: maximally unipotent degenerations (MUD) or large complex structure limits. One can find special Lagrangian tori on CYs near these limit points, and approaching the limit, expect to see a larger portion of the CY filled by tori. Toric degenerations are a special case of MUD. Expect the base $ B $ of a special Lagrangian fibration to be the Gromov-Hausdorff limit of a sequence of CYs near MUD, and GH limit should be the dual intersection complex of the AG degeneration. The base is an affine manifold. If $ \pi:{\mathcal{X}}\to \mathbb{D} $ is such a degeneration of CYs and $ {\mathcal{X}} $ is polarized (equipped with $ {\mathcal{L}}\in \operatorname{Pic}({\mathcal{X}}) $ relatively ample), should exists a dual polarization $ \widehat{{\mathcal{L}}} $ on $ \widehat{{\mathcal{X}}} $.
 
 - What is **charge**?
 
@@ -190,13 +190,13 @@ title: "Orals::Looijenga IAS"
 
 - What is the **developing map**?
 
-    For $ S $ an IAS with singularities, take contractible opens $ U \subset S\setminus S^{\mathrm{sing}} $ with charts $ \phi_U: U\to {\mathbf{R}}^2 $, uniquely defined up to an element of $ {\operatorname{SL}}_2({\mathbf{Z}})\rtimes{\mathbf{Z}}^2 $, and define $ \Phi: \widetilde{S\setminus S^{\mathrm{sing}}} \to {\mathbf{R}}^2 $ from the universal cover by gluing any charts $ \phi_U, \phi_V $ which agree on $ U\cap V $. Equivalet to the data of a monodromy representation $ \pi_1(S\setminus S^{\mathrm{sing}}) \to {\operatorname{SL}}_2({\mathbf{Z}}) \rtimes{\mathbf{Z}}^2 $.
+    For $ S $ an IAS with singularities, take contractible opens $ U \subset S\setminus S^{\mathrm{sing}} $ with charts $ \phi_U: U\to {\mathbf{R}}^2 $, uniquely defined up to an element of $ {\operatorname{SL}}_2({\mathbf{Z}})\rtimes{\mathbf{Z}}^2 $, and define $ \Phi: \widetilde{S\setminus S^{\mathrm{sing}}} \to {\mathbf{R}}^2 $ from the universal cover by gluing any charts $ \phi_U, \phi_V $ which agree on $ U\cap V $. Equivalent to the data of a monodromy representation $ \pi_1(S\setminus S^{\mathrm{sing}}) \to {\operatorname{SL}}_2({\mathbf{Z}}) \rtimes{\mathbf{Z}}^2 $.
 
 - How are ACPs related to toric pairs?
 
     Prop 5.1: every ACP $ (Y, D) $ is a sequence of node smoothings and internal blowups of a toric pair $ (\overline{Y}, \overline{D}) $.
 
-- What is the neative self-intersection of an edge in an IAS?
+- What is the negative self-intersection of an edge in an IAS?
 
     For $ e_{ik} $ an edge in $ \Delta \subset T $ for an IAS, letting $ e_{ij}, e_{il} $ be the edges emanating from $ v_i $ clockwise and counterclockwise to $ e_{ik} $, define $ d_{ik} $ to be the "negative self intersection" of $ e_{ik} $ by
 

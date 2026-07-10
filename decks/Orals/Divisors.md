@@ -20,13 +20,13 @@ title: "Orals::Divisors"
 
 - Show that every degree zero divisor on $ {\mathbf{P}}^1 $ is principal.
 
-    Any $ p_1, p_2 $ are linarly equivalent by taking $ f(z) = {z-a\over z-b} $.
+    Any $ p_1, p_2 $ are linearly equivalent by taking $ f(z) = {z-a\over z-b} $.
 
 - Show that not every degree zero divisor on an elliptic curve is principal. What is $ \operatorname{Pic}(E) $?
 
     Take $ p_1\neq p_2 $, then if $ p_1-p_2 = (f) $ for some $ f: E\to {\mathbf{P}}^1 $ this produces an injective holomorphic map and forces $ E\cong {\mathbf{P}}^1 $; however e.g. $ g(E) = 1\neq 0 = g({\mathbf{P}}^1) $. In general $ \operatorname{Pic}(E) \cong \operatorname{Pic}^0(E) \oplus {\mathbf{Z}}\cong E\oplus {\mathbf{Z}} $.
 
-- Show that if $ D = V(f) $ is a hypersuface in $ {\mathbf{P}}^n $ then $ D\sim \deg(f) H $, so $ \operatorname{Pic}({\mathbf{P}}^n) = \left\langle{H}\right\rangle_{\mathbf{Z}} $.
+- Show that if $ D = V(f) $ is a hypersurface in $ {\mathbf{P}}^n $ then $ D\sim \deg(f) H $, so $ \operatorname{Pic}({\mathbf{P}}^n) = \left\langle{H}\right\rangle_{\mathbf{Z}} $.
 
     Let $ d\coloneqq\deg f $ and $ H = V(x_0) $, then $ D - dH = (g) $ where $ g(x_0,\cdots, x_n) = {f(x_0,\cdots, x_n) \over x_0^d} $.
 
@@ -244,7 +244,7 @@ title: "Orals::Divisors"
 
     $ \kappa(X) \coloneqq-\infty $ if $ P_d(X) = 0 $ for all $ d>0 $, otherwise $ \kappa(X) = \min \left\{{k \in {\mathbf{Z}}{~\mathrel{\Big\vert}~}{P_d\over d^k} \leq { \mathsf{O}}(1) }\right\} $ (i.e. the smallest $ k $ for which this is bounded, or the minimal $ k $ so that $ P_d(X) \in { \mathsf{O}}(d^k) $). Generally $ \kappa(X) \in \left\{{-\infty}\right\}\cup[0, \dim X] $.
 
-- What is the **arithemetic genus**? The **geometric genus**?
+- What is the **arithmetic genus**? The **geometric genus**?
 
     $ p_a(X) \coloneqq(-1)^r \qty{\chi({\mathcal{O}}_X) - 1} $ and $ p_g(X) = h^{n, 0} = h^0(\Omega_{X/k}^n) $.
 
@@ -266,7 +266,7 @@ title: "Orals::Divisors"
 
 - Prove the ramification formula for canonical divisors.
 
-    For $ f: X\to Y $ ake the cotangent exact sequence
+    For $ f: X\to Y $ take the cotangent exact sequence
 
     $$f^* \Omega_{Y/k} \hookrightarrow\Omega_{X/k} \twoheadrightarrow\Omega_{X/Y}$$
 

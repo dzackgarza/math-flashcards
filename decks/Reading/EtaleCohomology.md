@@ -72,11 +72,11 @@ title: "Reading::EtaleCohomology"
 
     **Small**: $ X_\text{ét}\subset {\mathsf{Sch}}_{/ {X}} $ consisting of all etale morphisms over $ X $, and families $ \left\{{f_\alpha}\right\} $ cover if $ \cup\operatorname{im}f_\alpha = X $.
 
-    **Big**: $ X_\text{Ét}= {\mathsf{Sch}}_{/ {X}} $ all schems over $ X $ where covering families $ f_\alpha $ all etale with $ \cup\operatorname{im}f_\alpha = X $.
+    **Big**: $ X_\text{Ét}= {\mathsf{Sch}}_{/ {X}} $ all schemes over $ X $ where covering families $ f_\alpha $ all etale with $ \cup\operatorname{im}f_\alpha = X $.
 
 - What is the fppf topology?
 
-    $ X_{\operatorname{fppf}}\subset {\mathsf{Sch}}_{/ {X}} $ with faithfuly flat and finite presentation structure morphisms, covers are covers as in $ X_\text{ét} $.
+    $ X_{\operatorname{fppf}}\subset {\mathsf{Sch}}_{/ {X}} $ with faithfully flat and finite presentation structure morphisms, covers are covers as in $ X_\text{ét} $.
 
 - What are $ X_{\mathrm{zar}} $ and $ X_{\mathrm{Zar}} $?
 
@@ -206,7 +206,7 @@ title: "Reading::EtaleCohomology"
 
 - What is the stalk of an etale sheaf $ {\mathcal{F}} $?
 
-    $ {\mathcal{F}}_{\overline{x}} \coloneqq(\iota_{\overline{x}})^* {\mathcal{F}} $, desribed as a colimit over pointed etale covers of $ \overline{x}\to X $.
+    $ {\mathcal{F}}_{\overline{x}} \coloneqq(\iota_{\overline{x}})^* {\mathcal{F}} $, described as a colimit over pointed etale covers of $ \overline{x}\to X $.
 
 - What is $ (\iota_{\overline{x}})^*{\mathcal{O}}_X^\text{ét} $?
 
@@ -244,7 +244,7 @@ title: "Reading::EtaleCohomology"
 
 - Discuss adjointness of sheafification.
 
-    Left adjoint to the forgetful functor $ {\mathsf{Sh}}(X_\text{ét})\to  \underset{ \mathsf{pre}} {\mathsf{Sh}}(X_\text{ét}) $ (left adoints are a mapping out property).
+    Left adjoint to the forgetful functor $ {\mathsf{Sh}}(X_\text{ét})\to  \underset{ \mathsf{pre}} {\mathsf{Sh}}(X_\text{ét}) $ (left adjoints are a mapping out property).
 
 - Why is $ {\mathsf{Sh}}(X_\text{ét}) $ abelian?
 
@@ -324,7 +324,7 @@ title: "Reading::EtaleCohomology"
 
     Send $ {\mathcal{L}}\to \underline{ \operatorname{Spec}} _X \bigoplus_{n\in {\mathbf{Z}}}{\mathcal{L}}{ {}^{ \scriptstyle\otimes_{}^{n} }  } $.
 
-- Descibre $ {\mathsf{\operatorname{GL}_n}{\hbox{-}}\mathsf{Torsors}} $?
+- Describe $ {\mathsf{\operatorname{GL}_n}{\hbox{-}}\mathsf{Torsors}} $?
 
     Vector bundles of rank $ n $, sending a bundle $ {\mathcal{E}}\to \mathop{\mathrm{Frame}}({\mathcal{E}}) \coloneqq\mathop{\mathrm{Isom}}_{X_\text{ét}}({\mathcal{O}}{ {}^{ \scriptscriptstyle\oplus^{n} }  }, {\mathcal{E}}) $ with inverse $ T\mapsto (T\times {\mathcal{O}}{ {}^{ \scriptscriptstyle\oplus^{n} }  })/ \operatorname{GL}_n $, using that $ \operatorname{GL}_n = \underline{\mathop{\mathrm{Aut}}}({\mathcal{O}}_X{ {}^{ \scriptscriptstyle\oplus^{n} }  }) $.
 
@@ -502,7 +502,7 @@ title: "Reading::EtaleCohomology"
 
     $ [\alpha]\in \Br(X) \iff \exists {\mathcal{E}} $ and $ \alpha{\hbox{-}} $twisted vector bundle.
 
-    The forward direction corresponds to $ \delta([\alpha]) $, the reverse is projectiving a bundle to get a form of $ {\mathbf{P}}^n $.
+    The forward direction corresponds to $ \delta([\alpha]) $, the reverse is projectivizing a bundle to get a form of $ {\mathbf{P}}^n $.
 
 - Why is $ \Br(X) $ a group?
 

@@ -36,7 +36,7 @@ title: "Reading::Homotopy"
 
     $ R = ({\mathbf{Z}}[x]/\left\langle{x^n}\right\rangle, \left\langle{x}\right\rangle) $ partially known using trace methods: $ {\mathbf{Z}}^{m-1} $ in odd degrees, order $ \approx (mi)!(i!)^{m-2} $ in even degrees $ 2i $.
 
-    $ R = {\mathbf{Z}}[x,y]/\left\langle{xy}\right\rangle, F[x,y]/\left\langle{xy}\right\rangle $ for $ F $ characteristc $ p $ well-understood.
+    $ R = {\mathbf{Z}}[x,y]/\left\langle{xy}\right\rangle, F[x,y]/\left\langle{xy}\right\rangle $ for $ F $ characteristic $ p $ well-understood.
 
 - Give example applications of computing $ {\mathsf{K}}(R) $.
 
@@ -50,7 +50,7 @@ title: "Reading::Homotopy"
 
     $ B_n^{\mathrm{cyc}}(A) \coloneqq A{ {}^{ \scriptstyle\otimes_{}^{n+1} }  } $ with
 
-    Differentials: collapsing $ {\partial}_i(\mathbf{a}) = a_0\otimes\cdots \otimes a_i a_{i+1}\otimes\cdots\otimes a_n $ for $ 0\leq i\leq n-1 $ and cyclcing $ {\partial}_i(\mathbf{a}) = a_n a_0\otimes\cdots \otimes a_{n-1} $ for $ i=n $.
+    Differentials: collapsing $ {\partial}_i(\mathbf{a}) = a_0\otimes\cdots \otimes a_i a_{i+1}\otimes\cdots\otimes a_n $ for $ 0\leq i\leq n-1 $ and cycling $ {\partial}_i(\mathbf{a}) = a_n a_0\otimes\cdots \otimes a_{n-1} $ for $ i=n $.
 
     Form the full differential as $ {\partial}= \sum_i (-1)^i {\partial}_i $.
 

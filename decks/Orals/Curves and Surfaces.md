@@ -50,7 +50,7 @@ title: "Orals::Curves and Surfaces"
 
 - When is $ K_C $ very ample?
 
-    For $ g\geq 2 $, $ K_C $ is very ample iff $ C $ is not hyperlliptic (admits a finite morphism $ C\to {\mathbf{P}}^2 $ of degree 2).
+    For $ g\geq 2 $, $ K_C $ is very ample iff $ C $ is not hyperelliptic (admits a finite morphism $ C\to {\mathbf{P}}^2 $ of degree 2).
 
 - When is $ K_C $ BPF?
 

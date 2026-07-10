@@ -288,7 +288,7 @@ title: "Research::K3s"
 
     All K3s: $ \dcosetr{\Omega}{{\operatorname{O}}(\Lambda_{\mathrm{K3}})} $, 20-dimensional.
 
-    Projective: 19-dimensonal, since one has to vary periods in the orthogonal complement of an ample class.
+    Projective: 19-dimensional, since one has to vary periods in the orthogonal complement of an ample class.
 
 - What is the dimension of quartics in $ {\mathbf{P}}^3 $? Up to coordinate changes?
 
@@ -534,7 +534,7 @@ title: "Research::K3s"
 
     Proper morphism, connected fibers are smooth genus 1 algebraic curves.
 
-    Equivalently, by proper base change, the generic fiberis a smooth genus 1 curve.
+    Equivalently, by proper base change, the generic fiber is a smooth genus 1 curve.
 
     E.g. any product of elliptic curves, surfaces with $ \kappa(X) = 1 $, Enriques surfaces
 
@@ -782,7 +782,7 @@ title: "Research::K3s"
 
     $ \operatorname{rank}_{\mathbf{Z}}H^2 = 22 $ since $ e(X) = c_2(X) = 24 $ and $ b_2(X) = 22 $, and this defines a unimodular lattice $ {\mathbf{E}}_8(-1){ {}^{ \scriptscriptstyle\oplus^{2} }  } \oplus U{ {}^{ \scriptscriptstyle\oplus^{3} }  } $.
 
-- What is the Hodge-Frölicher spectral sequence?
+- What is the Hodge-Frolicher spectral sequence?
 
     $$H^q(X; \Omega^p_X) \Rightarrow H^{p+q}(X; {\mathbf{C}})$$
 
@@ -1110,7 +1110,7 @@ title: "Research::K3s"
 
 - Discuss the status of the Hodge conjecture.
 
-    Can fail for nonprojective hyperkhlers, integral version known not to hold.
+    Can fail for nonprojective hyperkahlers, integral version known not to hold.
 
     Known for $ (1, 1){\hbox{-}} $classes and $ (\dim X-1, \dim X - 1){\hbox{-}} $classes.
 
@@ -1414,7 +1414,7 @@ title: "Research::K3s"
 
     Surjectivity: every $ d\in \mathbb{D} $ is a period point for some marked K3.
 
-    Thus almost a coarse moduli space: familes $ {\mathcal{X}}\to B $ yield $ B\to \mathbb{D} $ and points correspond to iso classes, but quotienting by change-of-marking yields a non-Hausdorff quotient since it does not act properly discontinuously.
+    Thus almost a coarse moduli space: families $ {\mathcal{X}}\to B $ yield $ B\to \mathbb{D} $ and points correspond to iso classes, but quotienting by change-of-marking yields a non-Hausdorff quotient since it does not act properly discontinuously.
 
 - What are the two most widely studied classes of K3s?
 
@@ -1432,7 +1432,7 @@ title: "Research::K3s"
 
     A pair $ (X, h \in {\operatorname{NS}}(X)^{\mathrm{amp}}) $ with $ h $ primitive and $ h^2 = 2k $.
 
-- What is the strong Torellli theorem for polarized K3s?
+- What is the strong Torelli theorem for polarized K3s?
 
     Every Hodge isometry $ \varphi: H^2(X;{\mathbf{Z}}) { \, \xrightarrow{\sim}\, }H^2(X';{\mathbf{Z}}) $ is induced by a unique isomorphism $ f:X { \, \xrightarrow{\sim}\, }X' $ with $ \phi = f^* $.
 

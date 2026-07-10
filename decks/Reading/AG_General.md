@@ -106,7 +106,7 @@ title: "Reading::AG_General"
 
 - What is the Torelli theorem for K3s?
 
-    Isomorphisms $ \sigma: X^{\prime} \rightarrow X $ are in bijection with the isometries $ \sigma^*: H^2(X, \mathbb{Z}) \rightarrow H^2\left(X^{\prime}, \mathbb{Z}\right) $ satisfyings $ \sigma^*\left(H^{2,0}(X)\right)=H^{2,0}\left(X^{\prime}\right) $ and $ \sigma^*\left(\mathcal{K}_X\right)=\mathcal{K}_{X^{\prime}} $.
+    Isomorphisms $ \sigma: X^{\prime} \rightarrow X $ are in bijection with the isometries $ \sigma^*: H^2(X, \mathbb{Z}) \rightarrow H^2\left(X^{\prime}, \mathbb{Z}\right) $ satisfying $ \sigma^*\left(H^{2,0}(X)\right)=H^{2,0}\left(X^{\prime}\right) $ and $ \sigma^*\left(\mathcal{K}_X\right)=\mathcal{K}_{X^{\prime}} $.
 
 - What is the hard Lefschetz theorem?
 
@@ -150,7 +150,7 @@ title: "Reading::AG_General"
 
     Conjecture: rigid representations are "motivic", of geometric origin.
 
-    E.g. irreducible rigid flat connections are subquotients of the Gauss-Manin connection on a family of smooth projective varieties over an open dense subvvariety of $ X $.
+    E.g. irreducible rigid flat connections are subquotients of the Gauss-Manin connection on a family of smooth projective varieties over an open dense subvariety of $ X $.
 
     The underlying local system is a summand of $ {\mathbf{R}}^if_* \underline{{\mathbf{C}}} $ for $ f:Y\to U $ a smooth projective morphism to a dense subvariety.
 

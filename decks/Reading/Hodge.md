@@ -118,7 +118,7 @@ title: "Reading::Hodge"
 
 - What is an MHS?
 
-    A decreasnig Hodge filtration $ \operatorname{Fil}_H V $ and an increasing weight filtration $ \operatorname{Fil}^W V $ such that the filtration on $ {\mathsf{gr}\,}_\ell^W $ induced by $ \operatorname{Fil}_H $ gives a HS of pure weight $ \ell $.
+    A decreasing Hodge filtration $ \operatorname{Fil}_H V $ and an increasing weight filtration $ \operatorname{Fil}^W V $ such that the filtration on $ {\mathsf{gr}\,}_\ell^W $ induced by $ \operatorname{Fil}_H $ gives a HS of pure weight $ \ell $.
 
 - Discuss MHSs.
 
@@ -190,7 +190,7 @@ title: "Reading::Hodge"
 
 - Give a sufficient condition for the Leray spectral sequence to degenerate.
 
-    $ f:X\to Y $ smooth projective, by Deligne, as a conseuence of Hard Lefschetz.
+    $ f:X\to Y $ smooth projective, by Deligne, as a consequence of Hard Lefschetz.
 
 - What is a connection?
 

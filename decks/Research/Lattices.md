@@ -208,7 +208,7 @@ title: "Research::Lattices"
 
     Equivalently, $ q_V: V { \, \xrightarrow{\sim}\, }V {}^{ \vee } $ where $ q_V(x) \coloneqq\beta(x, {-}) $.
 
-- What is an integral lattice? What is a common mitake here?
+- What is an integral lattice? What is a common mistake here?
 
     $ \operatorname{im}\beta \subseteq {\mathbf{Z}} $.
 
@@ -382,7 +382,7 @@ title: "Research::Lattices"
 
 - Discuss Neimeier lattices.
 
-    Neimeir classifies definite even unimodular lattices of rank 24.
+    Niemeier classifies definite even unimodular lattices of rank 24.
 
     All obtained as primitive sublattices of $ \Pi_{1, 25} =U \oplus E_8(-1){ {}^{ \scriptscriptstyle\oplus^{3} }  } $ by specifying a primitive isotropic vector.
 
@@ -394,7 +394,7 @@ title: "Research::Lattices"
 
 - Why are 8 and 24 special?
 
-    8 is the smallest dimension of an even unimodular attice, namely $ E_8 $
+    8 is the smallest dimension of an even unimodular lattice, namely $ E_8 $
 
     24 is the smallest dimension of an even unimodular lattice with no roots (check $ \theta $ functions)
 
@@ -434,7 +434,7 @@ title: "Research::Lattices"
 
     $$\frac{1}{2 \zeta(k)} G_k$$
 
-- Give an explicit formula for the normalized Eistenstein series $ E_k $.
+- Give an explicit formula for the normalized Eisenstein series $ E_k $.
 
     $$E_k(z)=1-\frac{2 k}{B_k} \sum_{m=1}^{\infty} \sigma_{k-1}(m) q^m$$
 

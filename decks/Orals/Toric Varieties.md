@@ -196,7 +196,7 @@ title: "Orals::Toric Varieties"
 
     $ \operatorname{CDiv}_T(U_\sigma) \cong M/M(\sigma) $ where $ M(\sigma) \coloneqq\sigma {}^{ \vee }\cap M $, and $ \operatorname{CDiv}_T(X_\Sigma) = \cocolim_{\sigma \in \Sigma} M/M(\sigma) $. More concretely described by Cartier data $ \left\{{(U_\sigma, m_\sigma)}\right\} $ where $ { \left.{{D}} \right|_{{U_\sigma}} } = \operatorname{div}(\chi^{m_\sigma}) $ for $ m_\sigma\in M $ with $ {\left\langle {\rho },~{m_\sigma} \right\rangle} = -a_\rho $ for every $ \rho\in \Sigma(1) $, where $ D = \sum a_\rho D_\rho $.
 
-    Can also obtain ffrom polytopes: write $ P = \left\{{m\in M_{\mathbf{R}}{~\mathrel{\Big\vert}~}{\left\langle {\mu_F},~{m} \right\rangle} \geq -a_F \,\,\text{ for all facets } F\leq P}\right\} $ where $ \mu_F $ is the minimal generator along the normal to the facet $ F $. Then take $ D \coloneqq\sum a_F D_F $ where $ D_F $ is the divisor for the ray associated to $ F $ in $ X_P $.
+    Can also obtain from polytopes: write $ P = \left\{{m\in M_{\mathbf{R}}{~\mathrel{\Big\vert}~}{\left\langle {\mu_F},~{m} \right\rangle} \geq -a_F \,\,\text{ for all facets } F\leq P}\right\} $ where $ \mu_F $ is the minimal generator along the normal to the facet $ F $. Then take $ D \coloneqq\sum a_F D_F $ where $ D_F $ is the divisor for the ray associated to $ F $ in $ X_P $.
 
 - What is $ K_X $ for $ X $ toric?
 

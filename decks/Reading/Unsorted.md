@@ -102,7 +102,7 @@ title: "Reading::Unsorted"
 
     $ P^*=\left\{u \in N_{\mathbb{R}}:\langle m, u\rangle \geq-1 \text { for any } m \in P\right\} \text {. } $
 
-- What is an orthgogonal space?
+- What is an orthogonal space?
 
     $ X\in {\mathsf{Fun}}(L, \CGWH)^\text{cts} $ where $ L $ is the (topological) linear isometry category (objects = inner product spaces, homs are $ \mathop{\mathrm{Isom}}(V, W) $ with the Stiefel manifold topology)
 
@@ -234,7 +234,7 @@ title: "Reading::Unsorted"
 
     EDs: the first five.
 
-    Note: onlly finitely many units.
+    Note: only finitely many units.
 
 - Which real quadratic fields are PIDS? EDs?
 

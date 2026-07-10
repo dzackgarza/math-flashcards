@@ -40,7 +40,7 @@ title: "Research::Papers"
 
     $ \dim = 16 \implies \Gamma_8{ {}^{ \scriptscriptstyle\oplus^{2} }  }, \Gamma_{16} $.
 
-    $ \dim = 32 \implies N_i, i\leq 24 $ the Niemeir lattices, including the Leech lattices.
+    $ \dim = 32 \implies N_i, i\leq 24 $ the Niemeier lattices, including the Leech lattices.
 
 - What is an even lattice?
 
@@ -90,7 +90,7 @@ title: "Research::Papers"
 
 - Discuss $ {\operatorname{NS}}(X) $ for $ X $ a projective K3.
 
-    $ S_X $ is nodegenerate of signature $ (1, r_X - 1) $ where $ r_X \coloneqq\operatorname{rank}{\operatorname{NS}}(X) $ is the Picard number.
+    $ S_X $ is nondegenerate of signature $ (1, r_X - 1) $ where $ r_X \coloneqq\operatorname{rank}{\operatorname{NS}}(X) $ is the Picard number.
 
     For a K3, By Lefschetz $ (1, 1) $,
 
@@ -98,7 +98,7 @@ title: "Research::Papers"
 
 - What is the transcendental lattice? Its signature?
 
-    $ T_X = (S_X)^\perp \subseteq H^2(X; {\mathbf{Z}}) $ the orthgonal complement of Neron-Severi.
+    $ T_X = (S_X)^\perp \subseteq H^2(X; {\mathbf{Z}}) $ the orthogonal complement of Neron-Severi.
 
     Signature $ (2, 20-r_X) $
 
@@ -144,7 +144,7 @@ title: "Research::Papers"
 
 - What are the moduli stacks $ {\mathcal{M}}_\rho, F_\rho $?
 
-    Moduli of $ \rho{\hbox{-}} $marked resp. $ \rho{\hbox{-}} $markable K3 surfaces, where e.g. $ {\mathcal{M}}_\rho(B) $ is the groupoid of $ \rho{\hbox{-}} $marked familes over $ B $.
+    Moduli of $ \rho{\hbox{-}} $marked resp. $ \rho{\hbox{-}} $markable K3 surfaces, where e.g. $ {\mathcal{M}}_\rho(B) $ is the groupoid of $ \rho{\hbox{-}} $marked families over $ B $.
 
 - How are deformation classes of K3 surfaces with nonsymplectic automorphisms $ (X, \sigma) $ classified?
 
@@ -194,7 +194,7 @@ title: "Research::Papers"
 
 - What is Kulikov's key result on degenerations of K3s?
 
-    For $ Y^*\to C^* $ a family, there is a finite base change $ (C', 0) \to (C, 0) $ and a birational modifcation of its pullback $ Y'\dashrightarrow X $ such that $ X $ has smooth total space, $ K_X \sim_{C'} 0 $, and $ X_0 $ is reduced normal crossings.
+    For $ Y^*\to C^* $ a family, there is a finite base change $ (C', 0) \to (C, 0) $ and a birational modification of its pullback $ Y'\dashrightarrow X $ such that $ X $ has smooth total space, $ K_X \sim_{C'} 0 $, and $ X_0 $ is reduced normal crossings.
 
 - What are the log monodromies for Kulikov degenerations.
 
@@ -244,7 +244,7 @@ title: "Research::Papers"
 
 - What is a semitoroidal compactification?
 
-    Simultaneously generalizes BB and toroidal comactifications.
+    Simultaneously generalizes BB and toroidal compactifications.
 
 - What is $ F_{2d} $?
 
@@ -262,7 +262,7 @@ title: "Research::Papers"
 
     $ (\mathbb{D}_\rho \setminus\Delta_\rho)/\Gamma_\rho $
 
-    Obtained from smooth K3s by contractin $ (-2){\hbox{-}} $curves orthogonal to $ C_1 \in  \mathrm{Fix}(\sigma) $ with $ g\geq 2 $
+    Obtained from smooth K3s by contracting $ (-2){\hbox{-}} $curves orthogonal to $ C_1 \in  \mathrm{Fix}(\sigma) $ with $ g\geq 2 $
 
     Has a separated stack.
 
@@ -270,7 +270,7 @@ title: "Research::Papers"
 
     The geometrically meaningful compactification Valery constructs, stable pairs w/automorphisms
 
-    Main theorem: is a semitoroidal comapctification of $ \mathbb{D}_\rho/\Gamma_\rho $.
+    Main theorem: is a semitoroidal compactification of $ \mathbb{D}_\rho/\Gamma_\rho $.
 
 - What are the lattice signatures for $ S_X, T_X $?
 
@@ -342,7 +342,7 @@ title: "Research::Papers"
 
     No log centers.
 
-- What is the importance of a regognizable divisor?
+- What is the importance of a recognizable divisor?
 
     If $ R $ is recognizable, then $ \overline{F_\rho}^{\mathrm{slc}} $ is a semitoroidal compactification of $ F_\rho $ for a unique semifan $ {\mathcal{F}}_R $.
 

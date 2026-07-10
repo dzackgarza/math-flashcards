@@ -4,7 +4,7 @@ title: "Reading::FunctionFields"
 
 - Essential feature of Wiles FLT: arithmetic cohomology.
 
-    - Put a topology on the algebra of functions, vs the discete set of solutions over $ { \mathbf{F} }_q $.
+    - Put a topology on the algebra of functions, vs the discrete set of solutions over $ { \mathbf{F} }_q $.
 
 - $ e_C(\ell z) = C_\ell(e_C(z)) $ where $ C_\ell $ is an additive polynomial: analog of $ e^{\ell z} = (e^z)^\ell $.
 
@@ -17,11 +17,11 @@ title: "Reading::FunctionFields"
 
     - The Carlitz module is the simplest Drinfeld modules.
     - Constructs a moduli of such modules
-    - Uiformize the moduli using Tate's rigid analytic geometry.
+    - Uniformize the moduli using Tate's rigid analytic geometry.
     - His goal: prove Langlands-esque reciprocity laws.
     - Yields class fields.
     - Generalize elliptic curves and higher so-called $ T{\hbox{-}} $modules which generalize abelian varieties.
-    - Generlize *to* shtukas: Drinfeld modules with a vector bundle.
+    - Generalize *to* shtukas: Drinfeld modules with a vector bundle.
 
 - Toward analogs of $ L{\hbox{-}} $functions for abelian varieties and analogs of RH for them: fix $ K $ a function field,
 
@@ -32,15 +32,15 @@ title: "Reading::FunctionFields"
 - Three themes:
 
     - Function fields are "bigger" than number fields: over $ {\mathbf{Q}} $, analytically complete and then take a degree 2 field extension to close algebraically to get $ {\mathbf{C}} $, but for function fields, completing yields a local field which may have infinitely many extensions of a fixed degree. Things identified in the number field case split up in the function field case.
-    - Arithmetic/geometric dichotomy: function fields have two types of cylcotomic extensions, adjoining $ \zeta_n $ (everywhere unramified, related to extensions of constant field) or ramified "geometric" extensions (by division values of Drinfeld modules).
+    - Arithmetic/geometric dichotomy: function fields have two types of cyclotomic extensions, adjoining $ \zeta_n $ (everywhere unramified, related to extensions of constant field) or ramified "geometric" extensions (by division values of Drinfeld modules).
     - Two $ T $'s, as an operator (gives rise to $ L{\hbox{-}} $functions and a scalar (gives rise to $ \Gamma{\hbox{-}} $functions).
 
-- Main fetures of Drinfeld modules:
+- Main features of Drinfeld modules:
 
     - The lattice $ { \mathbf{F} }_q[T]\xi $
     - Its exponential, similar to $ e_C(x) $
     - The multiplication formula for $ e_C(x) $, similar to the Carlitz module $ C $
-    - Algebraicty of $ C $ and reduction to "finite fields"
+    - Algebraicity of $ C $ and reduction to "finite fields"
     - The action of $ { \mathbf{F} }_q[t] $ on rational points via $ C $.
 
 - Notation:
@@ -64,7 +64,7 @@ title: "Reading::FunctionFields"
     - $ A $ is Dedekind at $ \operatorname{Spec}A = X\setminus\left\{{ \infty }\right\} $
     - $ A^{\times}= { \mathbf{F} }_q^{\times} $ since every nonconstant $ a\in A $ needs zeros to balance out the pole at $ \infty $ since $ \deg a = 0 $ for any principal divisor $ a $.
 
-- Prop 4.1.1: for $ I \subseteq k $ a nontrivial $ A{\hbox{-}} $fractonal ideal, $ I\subset K $ is discrete and cocompact.
+- Prop 4.1.1: for $ I \subseteq k $ a nontrivial $ A{\hbox{-}} $fractional ideal, $ I\subset K $ is discrete and cocompact.
 
     - Discreteness: $ \exists a\in k^{\times} $ st $ aI \subseteq A $.
     - Compactness of $ K/I $: Riemann-Roch
@@ -75,15 +75,15 @@ title: "Reading::FunctionFields"
     - $ {\mathbf{Q}}\leadsto k $
     - $ {\mathbf{R}}\leadsto K $\
 
-- Motto: function field theory decomposes classifical number-theoretic objects into arithmetic components.
+- Motto: function field theory decomposes classical number-theoretic objects into arithmetic components.
 
-    - Example: will need many Hilber class fields to play the role of $ {\mathbf{Q}} $,
+    - Example: will need many Hilbert class fields to play the role of $ {\mathbf{Q}} $,
 
 - Definition 4.2.1 ($ M{\hbox{-}} $lattices)
 
     *(Answer was a figure; image not recovered.)*
 
-- Prop 4.2.4: $ e_L(x) $ is entire on $ C_\infty $ which has a Taylor expansion at $ x=0 $ with coefficiets in $ M $.
+- Prop 4.2.4: $ e_L(x) $ is entire on $ C_\infty $ which has a Taylor expansion at $ x=0 $ with coefficients in $ M $.
 
     - Proof: convergence is due to discreteness of $ L $, the Taylor expansion is from $ G_M \coloneqq { \mathsf{Gal}}(M^{ {}^{ \operatorname{sep} } }/M) $ which fixes $ L $ and the nature of the continuous action $ G_M\curvearrowright M^{ {}^{ \operatorname{sep} } } $. So $ e_L $ is a non-constant entire function and thus surjective.
 
@@ -109,7 +109,7 @@ title: "Reading::FunctionFields"
 
     which has rank $ d = \operatorname{rank}_A(L) $.
 
-- Def 4.4.1: an $ A{\hbox{-}} $field $ F $ is a field with a morphim $ i:A\to F $; $ \ker i ={\mathfrak{p}} $ is prime and $ \operatorname{ch}F \coloneqq{\mathfrak{p}} $; $ F $ has "generic characteristic" (char zero) if $ {\mathfrak{p}}= \left\langle{0}\right\rangle $, otherwise $ F $ has finite characteristic.
+- Def 4.4.1: an $ A{\hbox{-}} $field $ F $ is a field with a morphism $ i:A\to F $; $ \ker i ={\mathfrak{p}} $ is prime and $ \operatorname{ch}F \coloneqq{\mathfrak{p}} $; $ F $ has "generic characteristic" (char zero) if $ {\mathfrak{p}}= \left\langle{0}\right\rangle $, otherwise $ F $ has finite characteristic.
 
     - Agrees with definition for $ A = { \mathbf{F} }_r[T] $.
 
@@ -142,7 +142,7 @@ title: "Reading::FunctionFields"
 
     where $ P_X(1) = h(k) $ is the class number of the field $ k $.
 
-    - Satsifies a functional equation
+    - Satisfies a functional equation
 
     $$P_X(u) = r^g u^{2g} P_X\qty{1\over ru}$$
 

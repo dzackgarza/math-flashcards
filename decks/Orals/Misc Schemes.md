@@ -28,11 +28,11 @@ title: "Orals::Misc Schemes"
 
 - What is a **morphism of locally ringed spaces**?
 
-    A morphism $ X\to Y $ in $ \mathsf{Loc}\mathsf{Ring} $ is a morphism $ \phi $ in $ \mathsf{CRing} $ where $ \phi({\mathfrak{m}}_X) \subseteq {\mathfrak{m}}_Y $. A morphism of ringed spaces is a pair $ (f, f^\sharp): (X, {\mathcal{O}}_X) \to (Y, {\mathcal{O}}_Y) $ where $ f: {\left\lvert {X} \right\rvert}\to {\left\lvert {Y} \right\rvert}\in {\mathsf{Top}} $ and $ f^\sharp: {\mathcal{O}}_Y\to f_* {\mathcal{O}}_X $. A morphism of *locally* ringed spacces is a morphism as above where $ f_x: {\mathcal{O}}_{X, x}\to {\mathcal{O}}_{y, f(x)} $ is a morphism of local rings for each $ x\in X $.
+    A morphism $ X\to Y $ in $ \mathsf{Loc}\mathsf{Ring} $ is a morphism $ \phi $ in $ \mathsf{CRing} $ where $ \phi({\mathfrak{m}}_X) \subseteq {\mathfrak{m}}_Y $. A morphism of ringed spaces is a pair $ (f, f^\sharp): (X, {\mathcal{O}}_X) \to (Y, {\mathcal{O}}_Y) $ where $ f: {\left\lvert {X} \right\rvert}\to {\left\lvert {Y} \right\rvert}\in {\mathsf{Top}} $ and $ f^\sharp: {\mathcal{O}}_Y\to f_* {\mathcal{O}}_X $. A morphism of *locally* ringed spaces is a morphism as above where $ f_x: {\mathcal{O}}_{X, x}\to {\mathcal{O}}_{y, f(x)} $ is a morphism of local rings for each $ x\in X $.
 
 - For $ X\to S $ a scheme, what is a $ T{\hbox{-}} $valued point of $ X $ for $ T $ a scheme?
 
-    A cheme morphism $ T\to X $.
+    A scheme morphism $ T\to X $.
 
 - What is a **generic point**?
 
@@ -210,7 +210,7 @@ title: "Orals::Misc Schemes"
 
     For $ p\in X $ and a linear system $ {\left\lvert {D_0} \right\rvert} $, $ p $ is a base point iff $ p\in \mathop{\mathrm{supp}}D $ for all $ D\in {\left\lvert {D_0} \right\rvert} $, where $ \mathop{\mathrm{supp}}D $ is the union of all prime divisors in $ D $.
 
-- What is a **strict tranform**?
+- What is a **strict transform**?
 
     For $ \pi: \tilde X\to X $ a blowup with center $ Z $ and $ Y\leq X $ a closed subscheme, the closure $ { \operatorname{cl}}_{\tilde X} \pi^{-1}(Y\setminus Z $).
 

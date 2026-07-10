@@ -136,7 +136,7 @@ title: "Reading::ClassFieldTheory"
 
     $ \zgmod(P_n\to M) =   {}_{{\mathbf{Z}}}{\mathsf{Mod}}(P_n \to M)^G $, so $ f(g.g_0,\cdots, g.g_n) = gf(g_0,\cdots, g_n) $ for $ f: G{ {}^{ \scriptscriptstyle\times^{n+1} }  }\to M $.
 
-- Descriibe $ Z^1(G; M) $ and $ B^1(G; M) $
+- Describe $ Z^1(G; M) $ and $ B^1(G; M) $
 
     $ f\in Z^1(G; M) $ are functions $ f: G\to M $ st $ f(g_1 g_2) = f(g_1) + g_1 f(g_2) $, so twisted by $ g_1 $.
 
@@ -178,7 +178,7 @@ title: "Reading::ClassFieldTheory"
 
 - What is Artin's holomorphy conjecture?
 
-    Every Artin $ L{\hbox{-}} $function attached to a nontrivial representaiton of a finite group has a holomorphic continuation to $ {\mathbf{C}} $.
+    Every Artin $ L{\hbox{-}} $function attached to a nontrivial representation of a finite group has a holomorphic continuation to $ {\mathbf{C}} $.
 
     Shown recently for $ A_5 $ using Langlands.
 
@@ -412,7 +412,7 @@ title: "Reading::ClassFieldTheory"
 
     Suggests target group for CFT should be $ K^{\times} $, so there should be an isomorphism between $ { \mathsf{Gal}}^{\operatorname{ab}}(\overline{K}/K) $ and $ \mathsf{pro}K^{\times} $.
 
-- Characterize compact totally disconneced spaces.
+- Characterize compact totally disconnected spaces.
 
     Inverse limits of finite discrete spaces.
 
@@ -446,7 +446,7 @@ title: "Reading::ClassFieldTheory"
 
     No! $ V\coloneqq\prod { \mathbf{F} }_2 $ has $ \aleph_0 $ open subgroups but $ 2^{2^{\aleph_0}} $ index 2 subgroups.
 
-- Write a profinte group as a limit.
+- Write a profinite group as a limit.
 
     $ G = \cocolim_{U\leq G \text{ open}, [G:U] < \infty} G/U $.
 
@@ -546,7 +546,7 @@ title: "Reading::ClassFieldTheory"
 
     Zero for $ n\geq 1 $; "additive" Hilbert 90 since $ \implies H^n(K; {\mathbf{G}}_a) = 0 $.
 
-- What is the norrmal basis theorem?
+- What is the normal basis theorem?
 
     For $ L/K $ Galois, $ \exists \alpha\in L $ such that $ G_{L/K}.\alpha $ generates $ L\in   {}_{K}{\mathsf{Mod}} $.
 
@@ -690,7 +690,7 @@ title: "Reading::ClassFieldTheory"
 
     Classified finite dimensional central simple division algebras.
 
-    $ \mathrm{Br}({\mathbf{R}}) \cong C_2 \left\langle{{\mathbf{R}}, {\mathbb{H}}}\right\rangle $ where $ \dim_{\mathbf{R}}{\mathbb{H}}= 4 $ is the Hamilton quaterions.
+    $ \mathrm{Br}({\mathbf{R}}) \cong C_2 \left\langle{{\mathbf{R}}, {\mathbb{H}}}\right\rangle $ where $ \dim_{\mathbf{R}}{\mathbb{H}}= 4 $ is the Hamilton quaternions.
 
     Proof: $ \mathrm{Br}({\mathbf{R}}) = \widehat{H}^0(\mathop{\mathrm{Aut}}({\mathbf{C}}/{\mathbf{R}}); {\mathbf{C}}^{\times}) = {\mathbf{R}}^{\times}/N{\mathbf{C}}^{\times}= {\mathbf{R}}^{\times}/{\mathbf{R}}_{\gt 0} = C_2 $.
 
@@ -894,7 +894,7 @@ title: "Reading::ClassFieldTheory"
 
     Alternatively, for abelian extensions, $ { \mathsf{Gal}}(L/K)  { \, \xrightarrow{\sim}\, }\operatorname{coker}N $.
 
-- Discuss the signifiance of $ \omega $.
+- Discuss the significance of $ \omega $.
 
     Isomorphisms of $ \omega_{L/K} $ assemble into a compatible inverse system.
 
@@ -936,7 +936,7 @@ title: "Reading::ClassFieldTheory"
 
     $ \iff f $ is closed with quasicompact fibers.
 
-    For $ X $ Hausdorff and $ Y $ locally compact, $ \iff $ primage of compact is compact.
+    For $ X $ Hausdorff and $ Y $ locally compact, $ \iff $ preimage of compact is compact.
 
 - What is the Galois correspondence induced by the reciprocity map?
 
@@ -980,9 +980,9 @@ title: "Reading::ClassFieldTheory"
 
 - What is local CFT?
 
-    The reciprocity map $ \omega: {\mathbf{G}}_m(K) \to G_K^{\operatorname{ab}} $ beomes an isomorphism after passing to the profinite completion.
+    The reciprocity map $ \omega: {\mathbf{G}}_m(K) \to G_K^{\operatorname{ab}} $ becomes an isomorphism after passing to the profinite completion.
 
-- What is eplicit class field theory?
+- What is explicit class field theory?
 
     Since $ K^{\operatorname{ab}}/K $ is a countably infinite degree algebraic extension, produce a sequence of algebraic numbers $ a_n $ such that $ K^{\operatorname{ab}}= \colim(K[a_1]\hookrightarrow K[a_1, a_2]\hookrightarrow\cdots) $.
 
@@ -1020,7 +1020,7 @@ title: "Reading::ClassFieldTheory"
 
 - When can power series but substituted into each other?
 
-    When the constant term is zero, e.g. $ e^{e^x} $ has infinitely many contant terms.
+    When the constant term is zero, e.g. $ e^{e^x} $ has infinitely many constant terms.
 
 - What is a formal group law?
 

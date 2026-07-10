@@ -214,7 +214,7 @@ title: "Learning::NT"
 
 - What is an etale sheaf?
 
-    A full subcategory $ {\mathsf{Sh}}_\text{ét}\coloneqq{\mathsf{Sh}}_\text{ét}(\mathsf{CAlg}_{/ {{\mathbf{Z}}}}) \leq {\mathsf{Fun}}(\mathsf{CAlg}_{/ {{\mathbf{Z}}}}, {\mathsf{Spaces}}) $ where if $ R\to S $ is etale anred faithfully flat, there is a weak equivalence $ F(R) \to { \operatorname{Tot} }F(S{ {}^{ \scriptstyle\otimes_{R}^{\bullet} }  }) $.
+    A full subcategory $ {\mathsf{Sh}}_\text{ét}\coloneqq{\mathsf{Sh}}_\text{ét}(\mathsf{CAlg}_{/ {{\mathbf{Z}}}}) \leq {\mathsf{Fun}}(\mathsf{CAlg}_{/ {{\mathbf{Z}}}}, {\mathsf{Spaces}}) $ where if $ R\to S $ is etale and faithfully flat, there is a weak equivalence $ F(R) \to { \operatorname{Tot} }F(S{ {}^{ \scriptstyle\otimes_{R}^{\bullet} }  }) $.
 
 - What is the section conjecture?
 

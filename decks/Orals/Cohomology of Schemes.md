@@ -176,7 +176,7 @@ title: "Orals::Cohomology of Schemes"
 
 - What is a **regular immersion**?
 
-    An immmersion whose sheaf of ideals is regular, where $ {\mathcal{I}}\leq {\mathcal{O}}_X $ is regular iff for every $ x\in \mathop{\mathrm{supp}}({\mathcal{O}}_X/{\mathcal{I}}) $ admits an open neighborhood $ U $ and a regular sequence $ f_1,\cdots, f_r\in {\mathcal{O}}_X(U) $ generating $ { \left.{{{\mathcal{I}}}} \right|_{{U}} } $.
+    An immersion whose sheaf of ideals is regular, where $ {\mathcal{I}}\leq {\mathcal{O}}_X $ is regular iff for every $ x\in \mathop{\mathrm{supp}}({\mathcal{O}}_X/{\mathcal{I}}) $ admits an open neighborhood $ U $ and a regular sequence $ f_1,\cdots, f_r\in {\mathcal{O}}_X(U) $ generating $ { \left.{{{\mathcal{I}}}} \right|_{{U}} } $.
 
 - What are consequences of a morphism being flat?
 
@@ -216,7 +216,7 @@ title: "Orals::Cohomology of Schemes"
 
 - Discuss cohomology for $ {\mathsf{QCoh}}(\operatorname{Spec}A) $.
 
-    $ H^{i\geq 1}(\operatorname{Spec}A, {\mathcal{F}}) = 0 $ for any $ {\mathcal{F}}\in {\mathsf{QCoh}}(\operatorname{Spec}A) $. Why: let $ M = {{\Gamma}\qty{X; {\mathcal{F}}} } $ and take $ M\hookrightarrow I $ an injective resolution in $   {}_{A}{\mathsf{Mod}} $ to get an exact sequence $ \tilde M \hookrightarrow\tilde I \in {\mathsf{QCoh}}(X) $. Check $ {\mathcal{F}}\cong \tilde M $ by an earily result and each $ \tilde I^i $ is flasque thus $ \Gamma{\hbox{-}} $acyclic, so use it to compute cohomology. Apply $ {{\Gamma}\qty{X; {-}} } $ to $ 0\to \tilde M\to \tilde I $ to get $ 0\to M\to I\in   {}_{A}{\mathsf{Mod}} $ and thus $ H^0({\mathcal{F}}) = M $ and $ H^i({\mathcal{F}}) = 0 $ for $ i\geq 1 $.
+    $ H^{i\geq 1}(\operatorname{Spec}A, {\mathcal{F}}) = 0 $ for any $ {\mathcal{F}}\in {\mathsf{QCoh}}(\operatorname{Spec}A) $. Why: let $ M = {{\Gamma}\qty{X; {\mathcal{F}}} } $ and take $ M\hookrightarrow I $ an injective resolution in $   {}_{A}{\mathsf{Mod}} $ to get an exact sequence $ \tilde M \hookrightarrow\tilde I \in {\mathsf{QCoh}}(X) $. Check $ {\mathcal{F}}\cong \tilde M $ by an early result and each $ \tilde I^i $ is flasque thus $ \Gamma{\hbox{-}} $acyclic, so use it to compute cohomology. Apply $ {{\Gamma}\qty{X; {-}} } $ to $ 0\to \tilde M\to \tilde I $ to get $ 0\to M\to I\in   {}_{A}{\mathsf{Mod}} $ and thus $ H^0({\mathcal{F}}) = M $ and $ H^i({\mathcal{F}}) = 0 $ for $ i\geq 1 $.
 
 - What is $ H^i(X; {\mathcal{O}}_X(n)) $ for $ X \coloneqq{\mathbf{P}}^r_{/ {A}} $?
 

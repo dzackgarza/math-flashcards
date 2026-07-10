@@ -48,7 +48,7 @@ title: "Reading::Hochschild"
 
     $ k[x] $ is hereditary, since $ \mathrm{gldim}_{\mathrm{left}} k[x_1, \cdots, x_{n}]= n $ by the Hilbert syzygy theorem.
 
-- What is the left global dimenson of a ring?
+- What is the left global dimension of a ring?
 
     $$\mathrm{gldim}_{\mathrm{left}} R \coloneqq\sup_{M\in   {}_{R}{\mathsf{Mod}}} \mathrm{projdim}_R M$$
 
@@ -72,7 +72,7 @@ title: "Reading::Hochschild"
 
 - What is the Kunneth theorem?
 
-    Theorem A.5.2 (Knneth Theorem). Let $ C $. and $ D $. be complexes of right and left $ R $-modules, respectively, for which $ C_n $ and $ d\left(C_n\right) $ are flat $ R $-modules for all $ n \in \mathbb{Z} $. Then for all $ n \in \mathbb{Z} $, there is a short exact sequence:
+    Theorem A.5.2 (Kunneth Theorem). Let $ C $. and $ D $. be complexes of right and left $ R $-modules, respectively, for which $ C_n $ and $ d\left(C_n\right) $ are flat $ R $-modules for all $ n \in \mathbb{Z} $. Then for all $ n \in \mathbb{Z} $, there is a short exact sequence:
 
     $$\begin{aligned} 0 \longrightarrow \bigoplus_{i+j=n} \mathrm{H}_i(C) \otimes_R \mathrm{H}_j(D) \longrightarrow & \mathrm{H}_n\left(C \otimes_R D\right) \longrightarrow \\ & \bigoplus_{i+j=n-1} \operatorname{Tor}_1^R\left(\mathrm{H}_i(C), \mathrm{H}_j(D)\right) \longrightarrow 0 \end{aligned}$$
 

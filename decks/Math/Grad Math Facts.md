@@ -204,7 +204,7 @@ title: "Math::Grad Math Facts"
 
 - What are the parametric and symmetric equations of lines in $ {\mathbf{R}}^3 $?
 
-    Parameteric: $ r(t) = t\mathbf{p}_0 + (1-t)\mathbf{p}_1 $.
+    Parametric: $ r(t) = t\mathbf{p}_0 + (1-t)\mathbf{p}_1 $.
 
     Symmetric: solve for $ t $ in each component and set equal to get
 

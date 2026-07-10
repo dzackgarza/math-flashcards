@@ -4,7 +4,7 @@ title: "Orals::Sheaves"
 
 - What is a **presheaf**?
 
-    A functor $ F: {\mathsf{Open}}(X)^{\operatorname{op}}\to \mathsf{CRing} $ (say) preserving terminal obejcts, i.e. for each open $ U \subseteq X $ a ring $ F(U) $ where $ F(\emptyset) = 0 $, for every $ U\hookrightarrow V $ a restriction $ \mathop{\mathrm{Res}}_{V< U}: F(V)\to F(U) $, where $ \mathop{\mathrm{Res}}_{U, U} = \operatorname{id}_U $ and $ U\hookrightarrow V\hookrightarrow W \leadsto \mathop{\mathrm{Res}}_{VU} \circ \mathop{\mathrm{Res}}_{WV} = \mathop{\mathrm{Res}}_{WU} $.
+    A functor $ F: {\mathsf{Open}}(X)^{\operatorname{op}}\to \mathsf{CRing} $ (say) preserving terminal objects, i.e. for each open $ U \subseteq X $ a ring $ F(U) $ where $ F(\emptyset) = 0 $, for every $ U\hookrightarrow V $ a restriction $ \mathop{\mathrm{Res}}_{V< U}: F(V)\to F(U) $, where $ \mathop{\mathrm{Res}}_{U, U} = \operatorname{id}_U $ and $ U\hookrightarrow V\hookrightarrow W \leadsto \mathop{\mathrm{Res}}_{VU} \circ \mathop{\mathrm{Res}}_{WV} = \mathop{\mathrm{Res}}_{WU} $.
 
 - What is a **sheaf**?
 
