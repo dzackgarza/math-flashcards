@@ -45,6 +45,10 @@ desktop-frontend:
 desktop-test:
     uv run desktop/tests/workbench.py
 
+# Verify source preservation and card boundaries against Pandoc
+desktop-source-test:
+    cd desktop && bun test tests/source-roundtrip.test.ts
+
 # Apply the canonical formatters to desktop sources
 desktop-format:
     uvx ruff check --fix desktop/backend.py desktop/tests/workbench.py
