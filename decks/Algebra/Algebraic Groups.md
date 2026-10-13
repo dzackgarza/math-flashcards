@@ -2,14 +2,18 @@
 title: "Algebra::Algebraic Groups"
 ---
 
-- Definition: Reductive Group
+::: {.front card-id="card-e5b732b2176f7d0c" tags="definition"}
+Definition: Reductive Group
+:::
 
-    ?
+::: {.back card-id="card-e5b732b2176f7d0c"}
+?
+:::
 
-    tags: definition
+::: {.front card-id="card-d81d0c4e36265ee6" tags="definition"}
+Definition: Algebraic Group
+:::
 
-- Definition: Algebraic Group
-
-    ?
-
-    tags: definition
+::: {.back card-id="card-d81d0c4e36265ee6"}
+?
+:::

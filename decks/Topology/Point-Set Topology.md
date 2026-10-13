@@ -2,20 +2,26 @@
 title: "Topology::Point-Set Topology"
 ---
 
-- Embedding
+::: {.front card-id="card-6ac0da19537d1bf9" tags="definition"}
+Embedding
+:::
 
-    Homeomorphism onto its image
+::: {.back card-id="card-6ac0da19537d1bf9"}
+Homeomorphism onto its image
+:::
 
-    tags: definition
+::: {.front card-id="card-85d8e3873abb3fcb" tags="definition"}
+Immersion
+:::
 
-- Immersion
+::: {.back card-id="card-85d8e3873abb3fcb"}
+?
+:::
 
-    ?
+::: {.front card-id="card-041a7aff1bdad643" tags="definition"}
+Submersion
+:::
 
-    tags: definition
-
-- Submersion
-
-    ?
-
-    tags: definition
+::: {.back card-id="card-041a7aff1bdad643"}
+?
+:::

@@ -37,7 +37,8 @@
     ],
     "resources": {
       "../backend.py": "backend.py",
-      "../backend.py.lock": "backend.py.lock"
+      "../backend.py.lock": "backend.py.lock",
+      "../paired-cards.lua": "paired-cards.lua"
     }
   }
 }

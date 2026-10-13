@@ -15,14 +15,14 @@ import {
   Stack,
   Text,
   TextInput,
+  TagsInput,
   Title,
   Tree,
   type TreeNodeData,
 } from "@mantine/core";
-import { useDebouncedValue } from "@mantine/hooks";
+import { useDebouncedCallback, useDebouncedValue } from "@mantine/hooks";
 import { modals } from "@mantine/modals";
 import CodeMirror from "@uiw/react-codemirror";
-import { markdown } from "@codemirror/lang-markdown";
 import { isTauri } from "@tauri-apps/api/core";
 import { getCurrentWindow } from "@tauri-apps/api/window";
 import { appConfigDir, join } from "@tauri-apps/api/path";
@@ -31,7 +31,15 @@ import { load } from "@tauri-apps/plugin-store";
 import { watch } from "@tauri-apps/plugin-fs";
 import { MathJax, MathJaxContext } from "better-react-mathjax";
 import DOMPurify from "dompurify";
-import { cards, replaceCard, type CardRange } from "./cards";
+import {
+  cards,
+  replaceField,
+  replaceTags,
+  removeCard,
+  newCard,
+  type CardRange,
+} from "./cards";
+import { cardLanguage } from "./editor";
 import {
   request,
   workspaceSchema,
@@ -83,9 +91,13 @@ export default function App() {
   const [previewError, setPreviewError] = useState("");
   const [previewLoading, setPreviewLoading] = useState(false);
   const [index, setIndex] = useState(0);
-  const [cardDraft, setCardDraft] = useState<
-    (CardRange & { source: string }) | null
-  >(null);
+  const [draft, setDraft] = useState<{
+    source: string;
+    card: CardRange;
+    front: string;
+    back: string;
+  } | null>(null);
+  const [loadRevision, setLoadRevision] = useState(0);
   const [side, setSide] = useState<Side>("Front");
   const [task, setTask] = useState<Task>("Idle");
   const [buildResult, setBuildResult] = useState<"Ready" | "Failed">("Ready");
@@ -95,10 +107,14 @@ export default function App() {
   const [cardFilter, setCardFilter] = useState("");
   const [debouncedSource] = useDebouncedValue(document?.source, 400);
   const navigation = useRef(0);
-  const ranges = useMemo(
-    () => cards(document?.source ?? ""),
-    [document?.source],
-  );
+  const parsed = useMemo(() => {
+    try {
+      return { cards: cards(document?.source ?? ""), error: "" };
+    } catch (failure) {
+      return { cards: [], error: String(failure) };
+    }
+  }, [document?.source]);
+  const ranges = parsed.cards;
   const dirty = document !== null && document.source !== document.saved;
   const busy = task !== "Idle";
   const selected = ranges[index];
@@ -123,6 +139,10 @@ export default function App() {
     });
   }
 
+  const refreshOnChange = useDebouncedCallback(() => {
+    refresh().catch((failure) => setError(String(failure)));
+  }, 700);
+
   async function chooseWorkspace(root: string) {
     setTask("Loading");
     setError("");
@@ -136,7 +156,7 @@ export default function App() {
       setFolder(result.root);
       setDecks(result.decks);
       setDocument(null);
-      setCardDraft(null);
+      setDraft(null);
       setPreview(null);
       setLog("");
       setBuildResult("Ready");
@@ -177,7 +197,9 @@ export default function App() {
         documentSchema,
       );
       if (token !== navigation.current) return;
+      cards(result.source);
       setDocument({ ...result, path, saved: result.source });
+      setLoadRevision((revision) => revision + 1);
       selectCard(0, result.source);
       setSide("Front");
       setPreview(null);
@@ -193,7 +215,7 @@ export default function App() {
   }
 
   useEffect(() => {
-    if (!document || debouncedSource === undefined) return;
+    if (!document || debouncedSource !== document.source) return;
     let active = true;
     setPreviewLoading(true);
     setPreviewError("");
@@ -221,7 +243,13 @@ export default function App() {
     return () => {
       active = false;
     };
-  }, [workspace, document?.path, debouncedSource]);
+  }, [
+    workspace,
+    document?.path,
+    document?.source,
+    loadRevision,
+    debouncedSource,
+  ]);
 
   useEffect(() => {
     if (!isTauri()) return;
@@ -279,7 +307,16 @@ export default function App() {
           "access" in event.type
         )
           return;
-        refresh().catch((failure) => setError(String(failure)));
+        if (
+          !event.paths.some(
+            (path) =>
+              !/(?:^|\/)(?:\.git|node_modules|src-tauri|test-artifacts)(?:\/|$)/.test(
+                path.replace(/\\/g, "/"),
+              ) && !path.includes(".flashcards-"),
+          )
+        )
+          return;
+        refreshOnChange();
       },
       { recursive: true, delayMs: 700 },
     )
@@ -292,7 +329,7 @@ export default function App() {
       disposed = true;
       stop?.();
     };
-  }, [workspace]);
+  }, [workspace, refreshOnChange]);
 
   function edit(source: string) {
     if (!document || document.source === source) return;
@@ -301,22 +338,28 @@ export default function App() {
   }
 
   function selectCard(cardIndex: number, source: string) {
-    const range = cards(source)[cardIndex];
     setIndex(cardIndex);
     setSide("Front");
-    setCardDraft(
-      range ? { ...range, source: source.slice(range.from, range.to) } : null,
+    const card = cards(source)[cardIndex];
+    setDraft(
+      card
+        ? { source, card, front: card.front.value, back: card.back.value }
+        : null,
     );
   }
 
-  function editCard(value: string) {
-    if (!document || !cardDraft) return;
-    edit(replaceCard(document.source, cardDraft, value));
-    setCardDraft({
-      ...cardDraft,
-      to: cardDraft.from + value.length,
-      source: value,
-    });
+  function editCard(field: "front" | "back", value: string) {
+    if (!document || !draft) return;
+    const next = { ...draft, [field]: value };
+    let source = draft.source;
+    const sides: ("front" | "back")[] = ["front", "back"];
+    for (const side of sides.sort(
+      (a, b) => draft.card[b].from - draft.card[a].from,
+    )) {
+      source = replaceField(source, draft.card[side], next[side]);
+    }
+    setDraft(next);
+    edit(source);
   }
 
   async function save() {
@@ -377,9 +420,7 @@ export default function App() {
 
   function addCard() {
     if (!document) return;
-    const source =
-      document.source +
-      "\n\n- New question\n\n    New answer\n\n    tags: new\n";
+    const source = document.source + "\n\n" + newCard(crypto.randomUUID());
     selectCard(ranges.length, source);
     edit(source);
   }
@@ -392,9 +433,7 @@ export default function App() {
       labels: { confirm: "Delete", cancel: "Cancel" },
       confirmProps: { color: "red" },
       onConfirm: () => {
-        const source =
-          document.source.slice(0, selected.from) +
-          document.source.slice(selected.to);
+        const source = removeCard(document.source, selected);
         selectCard(Math.max(0, index - 1), source);
         edit(source);
       },
@@ -423,7 +462,7 @@ export default function App() {
           </Box>
           <Group>
             <Text size="sm" c="dimmed">
-              {workspace ? "Markdown workspace" : "Open a workspace to begin"}
+              {workspace ? "Deck workspace" : "Open a workspace to begin"}
             </Text>
             {busy && <Loader size="sm" aria-label={task} />}
           </Group>
@@ -590,7 +629,7 @@ export default function App() {
                   <Group mt="md">
                     <Button
                       onClick={save}
-                      disabled={!dirty || busy || mismatch}
+                      disabled={!dirty || busy || mismatch || !!parsed.error}
                       loading={task === "Saving"}
                     >
                       Save deck
@@ -608,7 +647,7 @@ export default function App() {
                     </Button>
                     <Button
                       onClick={generate}
-                      disabled={dirty || busy || mismatch}
+                      disabled={dirty || busy || mismatch || !!parsed.error}
                       loading={task === "Generating"}
                     >
                       Generate Anki deck
@@ -639,7 +678,7 @@ export default function App() {
                           size="compact-sm"
                           variant="light"
                           onClick={addCard}
-                          disabled={busy}
+                          disabled={busy || !!parsed.error}
                         >
                           Add card
                         </Button>
@@ -693,35 +732,85 @@ export default function App() {
                     <Paper withBorder p="md">
                       <Group justify="space-between" mb="sm">
                         <Title order={3} size="h5">
-                          Card source
+                          Edit card
                         </Title>
                         <Button
                           color="red"
                           variant="subtle"
                           size="compact-sm"
                           onClick={deleteCard}
-                          disabled={!selected || busy}
+                          disabled={!selected || busy || !!parsed.error}
                         >
                           Delete card
                         </Button>
                       </Group>
-                      {cardDraft ? (
-                        <CodeMirror
-                          key={document.path + ":" + index}
-                          value={cardDraft.source}
-                          height="240px"
-                          extensions={[markdown()]}
-                          editable={!busy}
-                          onChange={editCard}
-                          aria-label="Card Markdown"
-                        />
+                      {draft ? (
+                        <Stack gap="md">
+                          {(["front", "back"] as const).map((field) => (
+                            <Box key={field} className={"side-editor " + field}>
+                              <Title
+                                order={4}
+                                size="h6"
+                                mb="xs"
+                                id={field + "-label"}
+                              >
+                                {field === "front" ? "Front" : "Back"}
+                              </Title>
+                              <CodeMirror
+                                key={
+                                  document.path +
+                                  ":" +
+                                  draft.card.id +
+                                  ":" +
+                                  field
+                                }
+                                value={draft[field]}
+                                minHeight="100px"
+                                maxHeight="220px"
+                                extensions={[cardLanguage]}
+                                basicSetup={{
+                                  lineNumbers: false,
+                                  foldGutter: false,
+                                }}
+                                editable={!busy}
+                                onChange={(value) => editCard(field, value)}
+                                aria-label={
+                                  field === "front" ? "Front" : "Back"
+                                }
+                              />
+                            </Box>
+                          ))}
+                          <TagsInput
+                            label="Tags"
+                            value={(selected?.tags ?? draft.card.tags)
+                              .split(",")
+                              .map((tag) => tag.trim())
+                              .filter(Boolean)}
+                            onChange={(tags) => {
+                              if (!selected) return;
+                              const source = replaceTags(
+                                document.source,
+                                selected,
+                                tags,
+                              );
+                              setDraft({
+                                ...draft,
+                                source,
+                                card: cards(source)[index],
+                              });
+                              edit(source);
+                            }}
+                            disabled={busy || !!parsed.error}
+                          />
+                        </Stack>
                       ) : (
                         <Text c="dimmed">Add a card to begin.</Text>
                       )}
-                      <Text size="xs" c="dimmed" mt="sm">
-                        First list block: front. Indented blocks: back. Tags use
-                        a trailing tags: line.
-                      </Text>
+                      {parsed.error && (
+                        <Alert color="red" title="Invalid card">
+                          {parsed.error}
+                        </Alert>
+                      )}
                     </Paper>
                     <Paper withBorder p="md">
                       <Group justify="space-between" mb="md">
@@ -748,8 +837,8 @@ export default function App() {
                         </Alert>
                       ) : mismatch ? (
                         <Alert color="red" title="Card structure differs">
-                          The editor and exporter found different card
-                          boundaries. Reload and check the source before saving.
+                          The editor and exporter found different card pairs.
+                          Reload the deck before saving.
                         </Alert>
                       ) : preview && rendered ? (
                         <MathJaxContext

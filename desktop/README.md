@@ -35,9 +35,15 @@ refreshes the installation from an existing build.
 ## Use
 
 Select **Browse** or enter a workspace path. Open the workspace and select a deck.
-Search the deck tree or card list to find a card. Edit its Markdown source in
-CodeMirror. Each outer list item is a card; its first block is the front and its
-remaining blocks are the back. A trailing `tags:` paragraph supplies tags.
+Search the deck tree or card list to find a card. Edit **Front** and **Back** in
+their separate CodeMirror fields. Both fields accept Markdown and LaTeX, with
+Pandoc syntax and TeX highlighting from Zettlr's parser. Set tags with **Tags**.
+The app creates the card ID and stores the sides as paired fenced divs.
+Each side can contain paragraphs, lists, math, and nested divs.
+
+A deck contains `.front` and `.back` divs with a shared `card-id` attribute.
+Pairs can appear in any order; fronts set the card order. Missing sides,
+duplicate sides, and missing IDs are errors. See the [format](../README.md#card-format).
 
 The preview uses the exporter's Pandoc filter and math macros. Select Front or
 Back, click the preview, or focus it and press Space or Enter to flip. The side
@@ -80,7 +86,7 @@ See [Anki's packaged deck documentation](https://docs.ankiweb.net/manual/importi
 | `just desktop-dev` | Native Tauri development window |
 | `just desktop-web` | Browser editor with the real backend on localhost |
 | `just desktop-frontend` | TypeScript check and frontend build |
-| `just desktop-source-test` | Source preservation and Pandoc boundaries for repository decks |
+| `just desktop-source-test` | Side preservation, pair validation, and agreement with Pandoc |
 | `just desktop-test` | Managed browser scenario with real filesystem edits and real APKG generation |
 | `just desktop-native-test` | Built native window and export on an isolated X11 display |
 | `just desktop-format` | Canonical Python, TypeScript, CSS, and Rust formatting |

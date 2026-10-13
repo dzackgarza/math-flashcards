@@ -1,13 +1,10 @@
-# ankdown-for-math is fetched from GitHub via uvx — no local checkout required.
-ANKDOWN_REF := "git+https://github.com/dzackgarza/ankdown-for-math"
-
 [private]
 default:
     @just --list
 
 # Compile every deck under decks/ into apkg/
 build:
-    uvx --from "{{ANKDOWN_REF}}" ankdown build decks --output-dir apkg
+    uv run --locked desktop/backend.py build .
 
 # Sanity-check that every deck is well-formed new-format Markdown
 test:
@@ -65,7 +62,7 @@ desktop-test:
 
 # Verify source preservation and card boundaries against Pandoc
 desktop-source-test:
-    cd desktop && bun test tests/source-roundtrip.test.ts
+    cd desktop && bun test tests/source-roundtrip.test.ts tests/paired-cards.test.ts
 
 # Capture and exercise the built native window on an isolated display
 desktop-native-test:

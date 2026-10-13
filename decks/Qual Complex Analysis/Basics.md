@@ -2,44 +2,58 @@
 title: "Qual Complex Analysis::Basics"
 ---
 
-- $\arctan(0) = \cdots$
+::: {.front card-id="card-fc7980ff12c7ffbf" tags="formula"}
+$\arctan(0) = \cdots$
+:::
 
-    $\arctan(0) = 0$
+::: {.back card-id="card-fc7980ff12c7ffbf"}
+$\arctan(0) = 0$
+:::
 
-    tags: formula
+::: {.front card-id="card-2d305cad87c6c59b" tags="formula"}
+$\arctan\qty{1\over \sqrt 3} = \cdots$
+:::
 
-- $\arctan\qty{1\over \sqrt 3} = \cdots$
+::: {.back card-id="card-2d305cad87c6c59b"}
+$\arctan\qty{1\over \sqrt 3} = {\pi\over 6}$
+:::
 
-    $\arctan\qty{1\over \sqrt 3} = {\pi\over 6}$
+::: {.front card-id="card-04057a39257444a7" tags="formula"}
+$\arctan\qty{\sqrt{3} \over 3} = \cdots$
+:::
 
-    tags: formula
+::: {.back card-id="card-04057a39257444a7"}
+$\arctan\qty{\sqrt{3} \over 3} = {\pi\over 6}$
+:::
 
-- $\arctan\qty{\sqrt{3} \over 3} = \cdots$
+::: {.front card-id="card-87ca1c324a0e7fe6" tags="formula"}
+$\arctan(1) = \cdots$
+:::
 
-    $\arctan\qty{\sqrt{3} \over 3} = {\pi\over 6}$
+::: {.back card-id="card-87ca1c324a0e7fe6"}
+$\arctan(1) = {\pi\over 4}$
+:::
 
-    tags: formula
+::: {.front card-id="card-b9ab8ffc020f07fe" tags="formula"}
+$\arctan(\sqrt 3) = \cdots$
+:::
 
-- $\arctan(1) = \cdots$
+::: {.back card-id="card-b9ab8ffc020f07fe"}
+$\arctan(\sqrt 3) = {\pi \over 3}$
+:::
 
-    $\arctan(1) = {\pi\over 4}$
+::: {.front card-id="card-1c1427a24bc7dc54" tags="formula"}
+$\arctan(\infty) = \cdots$
+:::
 
-    tags: formula
+::: {.back card-id="card-1c1427a24bc7dc54"}
+$\arctan(\infty) = {\pi \over 2}$
+:::
 
-- $\arctan(\sqrt 3) = \cdots$
+::: {.front card-id="card-c6801344324a2f26" tags="formula"}
+$\arctan$ values:
+:::
 
-    $\arctan(\sqrt 3) = {\pi \over 3}$
-
-    tags: formula
-
-- $\arctan(\infty) = \cdots$
-
-    $\arctan(\infty) = {\pi \over 2}$
-
-    tags: formula
-
-- $\arctan$ values:
-
-    ?
-
-    tags: formula
+::: {.back card-id="card-c6801344324a2f26"}
+?
+:::

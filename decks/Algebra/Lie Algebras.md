@@ -2,47 +2,55 @@
 title: "Algebra::Lie Algebras"
 ---
 
-- $ \Phi $
+::: {.front card-id="card-3258d55eef2bcb2b" tags="lie-algebra"}
+$ \Phi $
+:::
 
-    The **root system**.
+::: {.back card-id="card-3258d55eef2bcb2b"}
+The **root system**.
 
-    $$
-    \alpha \in \Phi \subset \mathfrak{h}^* \iff [h, x] = \alpha(h) x \text{ for all } h\in \mathfrak{h}
-    $$
+$$
+\alpha \in \Phi \subset \mathfrak{h}^* \iff [h, x] = \alpha(h) x \text{ for all } h\in \mathfrak{h}
+$$
 
-    - Span a Euclidean space
-    - $\alpha, c\alpha \in \Phi \implies c=-1$
-    - $ s_\alpha \Phi \subseteq \Phi$ for all $ \alpha $
+- Span a Euclidean space
+- $\alpha, c\alpha \in \Phi \implies c=-1$
+- $ s_\alpha \Phi \subseteq \Phi$ for all $ \alpha $
+:::
 
-    tags: lie-algebra
+::: {.front card-id="card-4e1818b58dff2d3d" tags="lie-algebra"}
+$ \mathfrak{g}_\alpha $
+:::
 
-- $ \mathfrak{g}_\alpha $
+::: {.back card-id="card-4e1818b58dff2d3d"}
+The **root space**.
 
-    The **root space**.
+$$
+\mathfrak{g}_\alpha = \{g\in \mathfrak{g} \mid [h, g] = \alpha(h) g\}
+$$
+:::
 
-    $$
-    \mathfrak{g}_\alpha = \{g\in \mathfrak{g} \mid [h, g] = \alpha(h) g\}
-    $$
+::: {.front card-id="card-a6d7a6a5d7b36275" tags="topics"}
+$ \Lambda_r $
+:::
 
-    tags: lie-algebra
+::: {.back card-id="card-a6d7a6a5d7b36275"}
+The (integral) **root lattice**.
 
-- $ \Lambda_r $
+$$
+\Lambda_r = \mathrm{span}_{\mathbb{Z}}\Phi \subset E
+$$
 
-    The (integral) **root lattice**.
+Has a basis given by $ \Phi $ or $ \Delta $.
+:::
 
-    $$
-    \Lambda_r = \mathrm{span}_{\mathbb{Z}}\Phi \subset E
-    $$
+::: {.front card-id="card-f9e8cf553a1714d8" tags="topics"}
+$ \alpha\beta $
+:::
 
-    Has a basis given by $ \Phi $ or $ \Delta $.
-
-    tags: topics
-
-- $ \alpha\beta $
-
-    Something new.
-    $$
-    a^b = c
-    $$
-
-    tags: topics
+::: {.back card-id="card-f9e8cf553a1714d8"}
+Something new.
+$$
+a^b = c
+$$
+:::

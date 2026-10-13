@@ -15,7 +15,7 @@ Markdown and compiled to `.apkg` with
 
 ## Layout
 
-- `decks/` — card sources as nested Markdown lists, grouped by subject
+- `decks/` — paired Front and Back divs, grouped by subject
   (`decks/<Subject>/<Deck>.md`). Each file is one deck.
 - `apkg/` — compiled Anki packages, importable directly into Anki.
 - `desktop/` — the Tauri deck editor. See its [guide](desktop/README.md).
@@ -29,7 +29,7 @@ just desktop-install
 Launch **Math Flashcards** from the application menu or run `math-flashcards`.
 Use `just desktop-update` to rebuild and update the installed app and desktop entry.
 Open a workspace folder that contains `decks/`. Select a deck in the tree.
-The editor supports card search, source editing, adding and deleting cards,
+The editor supports card search, separate Front and Back editing, adding and deleting cards,
 math preview, and a front/back flip control. Save the deck, then select
 **Generate Anki deck** to regenerate its package in `apkg/`.
 
@@ -43,27 +43,32 @@ lists dependencies, verification commands, and the Anki import boundary.
 
 ## Card format
 
-Each card is a top-level list item (the **front**); its answer is the indented body
-(the **back**). Math uses `$…$` (inline) and `$$…$$` (display). An optional trailing
-`tags:` line sets per-card Anki tags. The frontmatter `title` is the Anki deck name,
-with `::` denoting sub-decks.
+Each card has a `.front` div and a `.back` div with the same `card-id` attribute.
+Each ID needs exactly one side of each type. Pairing uses the ID; fronts set the
+card order. Each side accepts normal Pandoc Markdown and LaTeX. Math uses `$…$`
+(inline) and `$$…$$` (display). The front div's optional `tags` attribute sets Anki
+tags. The frontmatter `title` is the Anki deck name, with `::` denoting sub-decks.
 
 ```markdown
 ---
 title: "Qual Algebra::QualAlgebraGroups"
 ---
 
-- Simple group
+::: {.front card-id="simple-group" tags="definition"}
+Simple group
+:::
 
-    No nontrivial normal subgroups.
+::: {.back card-id="simple-group"}
+No nontrivial normal subgroups.
+:::
 
-    tags: definition
+::: {.front card-id="class-equation" tags="theorem"}
+Class Equation
+:::
 
-- Class Equation
-
-    $$\abs{G} = \abs{Z(G)} + \sum_i [G : C_G(x_i)]$$
-
-    tags: theorem
+::: {.back card-id="class-equation"}
+$$\abs{G} = \abs{Z(G)} + \sum_i [G : C_G(x_i)]$$
+:::
 ```
 
 ## Building
@@ -72,15 +77,10 @@ title: "Qual Algebra::QualAlgebraGroups"
 just build          # compile every deck in decks/ into apkg/
 ```
 
-The tool is fetched from GitHub via `uvx` — no local checkout needed. Under the hood:
-
-```bash
-uvx --from git+https://github.com/dzackgarza/ankdown-for-math \
-  ankdown build decks --output-dir apkg
-```
-
-`ankdown build` runs Pandoc with its own bundled lua filter, so a single command
-turns the Markdown decks into `.apkg` packages. (Pandoc must be on `PATH`.)
+The locked Python bridge fetches Ankdown from GitHub through `uv`.
+Pandoc reads and validates the paired divs. The bridge uses Ankdown's existing
+math and media filter and package writer to generate `.apkg` files.
+Pandoc and `uv` must be on `PATH`.
 
 Math renders via MathJax using the macro set generated from the LaTeX sources in
 [pandoc-config](https://github.com/dzackgarza/pandoc-config)

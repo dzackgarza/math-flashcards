@@ -159,8 +159,8 @@ def main(*, entry: Path | None = None) -> None:
                         "mousemove",
                         "--window",
                         window,
-                        "830",
-                        "900",
+                        "1200",
+                        "550",
                         "click",
                         "1",
                     ],
@@ -216,6 +216,25 @@ def main(*, entry: Path | None = None) -> None:
                         output=str(artifacts / "native-generated.png"),
                     )
                 package.write_bytes(b"external package edit")
+                # Bursts of build writes must leave the app responsive and bounded.
+                # xdotool owns window PID lookup; ps observes actual native children.
+                app_pid = subprocess.check_output(
+                    ["xdotool", "getwindowpid", window], text=True
+                ).strip()
+                build_directory = root / "desktop" / "src-tauri" / "target"
+                build_directory.mkdir(parents=True)
+                for index in range(40):
+                    (build_directory / f"artifact-{index}").write_text("build output")
+                    processes = subprocess.check_output(
+                        ["ps", "-eo", "ppid=,comm="], text=True
+                    )
+                    backend_children = [
+                        line
+                        for line in processes.splitlines()
+                        if line.split() == [app_pid, "uv"]
+                    ]
+                    assert len(backend_children) <= 2
+                    time.sleep(0.05)
                 time.sleep(2)
                 with mss.mss() as screen:
                     shot = screen.grab(

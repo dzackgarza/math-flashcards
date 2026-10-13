@@ -2,8 +2,10 @@
 title: "Schemes"
 ---
 
-- *Reduced* scheme
+::: {.front card-id="card-b38c8e6647f07ec1" tags="definitions"}
+*Reduced* scheme
+:::
 
-    A scheme $X$ is reduced $\iff \OO_X(U)$ is a reduced ring for every open $U \subset X$.
-
-    tags: definitions
+::: {.back card-id="card-b38c8e6647f07ec1"}
+A scheme $X$ is reduced $\iff \OO_X(U)$ is a reduced ring for every open $U \subset X$.
+:::

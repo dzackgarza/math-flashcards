@@ -1,7 +1,7 @@
 import { expect, test } from "bun:test";
 import { Glob } from "bun";
 import { resolve } from "node:path";
-import { cards, replaceCard } from "../src/cards";
+import { cards, replaceField } from "../src/cards";
 import { previewSchema } from "../src/bridge";
 
 test("repository card ranges preserve source and agree with Pandoc export", async () => {
@@ -12,9 +12,8 @@ test("repository card ranges preserve source and agree with Pandoc export", asyn
     const source = await Bun.file(resolve(workspace, "decks", path)).text();
     const ranges = cards(source);
     for (const range of ranges) {
-      expect(
-        replaceCard(source, range, source.slice(range.from, range.to)),
-      ).toBe(source);
+      for (const field of [range.front, range.back])
+        expect(replaceField(source, field, field.value)).toBe(source);
     }
     const process = Bun.spawn(
       [

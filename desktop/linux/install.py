@@ -67,7 +67,10 @@ def publish(source: Path, destination: Path) -> None:
 
 def install(spec: Installation) -> Path:
     binary = spec.build_dir / "desktop"
-    resources = [spec.build_dir / name for name in ("backend.py", "backend.py.lock")]
+    resources = [
+        spec.build_dir / name
+        for name in ("backend.py", "backend.py.lock", "paired-cards.lua")
+    ]
     for source in (binary, *resources):
         if not source.is_file():
             raise FileNotFoundError(f"Build the desktop app first: {source}")

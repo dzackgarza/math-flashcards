@@ -2,56 +2,74 @@
 title: "Algebra::Commutative Algebra"
 ---
 
-- *Reduced* ring
+::: {.front card-id="card-78a30c232cf446be" tags="definition"}
+*Reduced* ring
+:::
 
-    A ring $R$ is *reduced* $\iff R$ has no nonzero nilpotent elements, i.e. $x^n  = 0 \implies x=0$.
+::: {.back card-id="card-78a30c232cf446be"}
+A ring $R$ is *reduced* $\iff R$ has no nonzero nilpotent elements, i.e. $x^n  = 0 \implies x=0$.
+:::
 
-    tags: definition
+::: {.front card-id="card-4857b1586d54ca2b" tags="theorem"}
+Nakayama's Lemma
+:::
 
-- Nakayama's Lemma
+::: {.back card-id="card-4857b1586d54ca2b"}
+If $M \in \rmod$ is finitely generated and $I\normal R$ with $I \subseteq \mcj(R)$, then $$IM = M \implies M = 0.$$
+:::
 
-    If $M \in \rmod$ is finitely generated and $I\normal R$ with $I \subseteq \mcj(R)$, then $$IM = M \implies M = 0.$$
+::: {.front card-id="card-03b60cc91948791d" tags="definition"}
+Definition: A natural transformation between $F, G: \mathcal{C}\to\mathcal{D}$
+:::
 
-    tags: theorem
+::: {.back card-id="card-03b60cc91948791d"}
+A natural transformation $\eta$ is a class of morphism $\eta = \theset{\eta_x: F(x) \to G(x)~\forall x\in  \mathcal{C}}$ such that the following square commutes:
+:::
 
-- Definition: A natural transformation between $F, G: \mathcal{C}\to\mathcal{D}$
+::: {.front card-id="card-2b24915fc8a6f88e" tags="theorem"}
+Noether Normalization
+:::
 
-    A natural transformation $\eta$ is a class of morphism $\eta = \theset{\eta_x: F(x) \to G(x)~\forall x\in  \mathcal{C}}$ such that the following square commutes:
+::: {.back card-id="card-2b24915fc8a6f88e"}
+?
+:::
 
-    tags: definition
+::: {.front card-id="card-2e1939e74e2dff9e" tags="theorem"}
+Zariski's Lemma
+:::
 
-- Noether Normalization
+::: {.back card-id="card-2e1939e74e2dff9e"}
+If a field extension is finitely generated as a $k\dash$algebra then it is finite degree.
+:::
 
-    ?
+::: {.front card-id="card-4d279de678f7f5fe" tags="algebra, commutative-algebra"}
+Regular Ring
+:::
 
-    tags: theorem
+::: {.back card-id="card-4d279de678f7f5fe"}
+$R$ is regular $\iff R$ is Noetherian and every finitely generated $R\dash$module has a finite resolution by finitely-generated projective $R\dash$modules.
+:::
 
-- Zariski's Lemma
+::: {.front card-id="card-e7c416c9ce41a7cd" tags="commutative-algebra"}
+Dedekind Rings
+:::
 
-    If a field extension is finitely generated as a $k\dash$algebra then it is finite degree.
+::: {.back card-id="card-e7c416c9ce41a7cd"}
+Every ideal is projective.
+:::
 
-    tags: theorem
+::: {.front card-id="card-cacc12c1d9815f7a" tags="algebra"}
+Idempotent
+:::
 
-- Regular Ring
+::: {.back card-id="card-cacc12c1d9815f7a"}
+An element $x$ in a set with a closed binary operation $\cdot$ is *idempotent* iff $x\cdot x = x$.
+:::
 
-    $R$ is regular $\iff R$ is Noetherian and every finitely generated $R\dash$module has a finite resolution by finitely-generated projective $R\dash$modules.
+::: {.front card-id="card-3e058eb429a38ac7" tags="definition"}
+Definition: Primary Decomposition
+:::
 
-    tags: algebra, commutative-algebra
-
-- Dedekind Rings
-
-    Every ideal is projective.
-
-    tags: commutative-algebra
-
-- Idempotent
-
-    An element $x$ in a set with a closed binary operation $\cdot$ is *idempotent* iff $x\cdot x = x$.
-
-    tags: algebra
-
-- Definition: Primary Decomposition
-
-    ?
-
-    tags: definition
+::: {.back card-id="card-3e058eb429a38ac7"}
+?
+:::

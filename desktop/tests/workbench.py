@@ -44,7 +44,14 @@ def main() -> None:
             page.get_by_text("Qual Basics", exact=True).click()
             page.get_by_text("Special Angles", exact=True).click()
             expect(page.get_by_text("Unsynced", exact=True).first).to_be_visible()
-            expect(page.locator(".cm-editor")).to_be_visible()
+            expect(page.locator(".side-editor.front .cm-editor")).to_be_visible()
+            expect(page.locator(".side-editor.back .cm-editor")).to_be_visible()
+            expect(page.locator(".side-editor.front .cm-content")).to_have_text(
+                r"$\sin(\pi/6) = \cdots$"
+            )
+            expect(page.locator(".side-editor.back .cm-content")).to_contain_text(
+                r"\sin(\pi/6) = {1\over 2}"
+            )
             expect(page.get_by_role("button", name="Flip card")).to_be_visible(
                 timeout=30000
             )
@@ -58,13 +65,16 @@ def main() -> None:
             expect(page.locator(".card-preview mjx-container")).to_be_visible()
             page.screenshot(path=str(artifacts / "back.png"))
             page.get_by_role("button", name="Add card", exact=True).click()
-            editor = page.locator(".cm-content")
-            editor.fill("- Added question\n\n    Added answer\n")
-            editor.press("Control+End")
-            editor.press("Enter")
-            editor.press("Enter")
-            editor.type("    tags: edited")
-            expect(editor).to_contain_text("tags: edited")
+            front_editor = page.locator(".side-editor.front .cm-content")
+            back_editor = page.locator(".side-editor.back .cm-content")
+            front_editor.fill("Added question\n\nSecond question paragraph with $x^2$")
+            back_editor.fill(
+                "Added answer\n\n$$\\frac{1}{2}$$\n\n- First fact\n- Second fact"
+            )
+            page.get_by_role("combobox", name="Tags", exact=True).fill("edited")
+            page.get_by_role("combobox", name="Tags", exact=True).press("Enter")
+            expect(front_editor).to_contain_text("Second question paragraph")
+            expect(back_editor).to_contain_text("Second fact")
             expect(page.get_by_text("Unsaved changes", exact=True)).to_be_visible()
             page.screenshot(path=str(artifacts / "editing.png"))
             page.get_by_role("button", name="Save deck", exact=True).click()
@@ -76,6 +86,14 @@ def main() -> None:
                 in (root / "decks" / "Qual Basics" / "Special Angles.md").read_text()
             )
             assert deck_path.read_bytes().startswith(authored_source)
+            page.get_by_role("button", name="Reload deck", exact=True).click()
+            expect(front_editor).to_have_text(r"$\sin(\pi/6) = \cdots$", timeout=30000)
+            expect(
+                page.get_by_role("button", name="Added question", exact=True)
+            ).to_be_visible(timeout=30000)
+            page.get_by_role("button", name="Added question", exact=True).click()
+            expect(front_editor).to_contain_text("Second question paragraph")
+            expect(back_editor).to_contain_text("Second fact")
             page.get_by_role("button", name="Generate Anki deck", exact=True).click()
             expect(page.get_by_text("Up to date", exact=True).first).to_be_visible(
                 timeout=60000
@@ -131,7 +149,7 @@ def main() -> None:
             page.get_by_role("button", name="Add card", exact=True).click()
             external_source = (
                 deck_path.read_text()
-                + "\n\n- External question\n\n    External answer\n"
+                + '\n\n::: {.front card-id="external"}\nExternal question\n:::\n\n::: {.back card-id="external"}\nExternal answer\n:::\n'
             )
             deck_path.write_text(external_source)
             page.get_by_role("button", name="Save deck", exact=True).click()
@@ -145,8 +163,23 @@ def main() -> None:
             expect(page.get_by_text("Saved", exact=True).first).to_be_visible(
                 timeout=30000
             )
+            for side in ("front", "back"):
+                deck_path.write_text(
+                    f'---\ntitle: "Unpaired deck"\n---\n\n::: {{.{side} card-id="unpaired"}}\nContent\n:::\n'
+                )
+                page.get_by_role("button", name="Reload deck", exact=True).click()
+                expect(page.get_by_text("Action failed", exact=True)).to_be_visible(
+                    timeout=30000
+                )
+                page.get_by_role(
+                    "button", name="Generate Anki deck", exact=True
+                ).click()
+                expect(page.get_by_text("Failed", exact=True)).to_be_visible(
+                    timeout=30000
+                )
+                assert package.read_bytes() == good_package
             deck_path.write_text(
-                '---\ntitle: "Failure deck"\n---\n\n- Missing answer\n'
+                '---\ntitle: "Failure deck"\n---\n\n::: {.front card-id="failure"}\nMissing answer\n:::\n\n::: {.back card-id="failure"}\n\n:::\n'
             )
             page.get_by_role("button", name="Reload deck", exact=True).click()
             expect(

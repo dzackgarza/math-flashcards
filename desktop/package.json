@@ -11,7 +11,12 @@
   },
   "dependencies": {
     "@codemirror/lang-markdown": "^6.5.2",
-    "@lezer/markdown": "^1.8.0",
+    "@codemirror/language": "^6.13.1",
+    "@codemirror/legacy-modes": "^6.5.5",
+    "@codemirror/state": "^6.7.6",
+    "@lezer/common": "^1.5.3",
+    "@lezer/highlight": "^1.2.5",
+    "@lezer/markdown": "file:vendor/lezer-markdown-pandoc.tgz",
     "@mantine/core": "^9.7.2",
     "@mantine/hooks": "^9.7.2",
     "@mantine/modals": "^9.7.2",
@@ -37,5 +42,8 @@
     "typescript": "~6.0.3",
     "vite": "^8.0.16",
     "vite-plugin-static-copy": "^4.1.1"
+  },
+  "overrides": {
+    "@lezer/markdown": "file:vendor/lezer-markdown-pandoc.tgz"
   }
 }

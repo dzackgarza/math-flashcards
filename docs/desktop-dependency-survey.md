@@ -1,6 +1,6 @@
 # Desktop dependency survey
 
-Date: 2026-10-13. Selected architecture: CodeMirror source editing.
+Date: 2026-10-14. Selected architecture: separate CodeMirror Front and Back fields.
 
 ## Recommendation
 
@@ -16,8 +16,8 @@ must be locked to tested releases during implementation.
 | Desktop window and frontend build | [Tauri with Vite](https://v2.tauri.app/start/frontend/vite/) | Official React/TypeScript scaffold |
 | Deck navigation | [Mantine Tree](https://mantine.dev/core/tree/) | Folder hierarchy and selectable deck nodes |
 | App layout | [Mantine AppShell](https://mantine.dev/core/app-shell/), [Splitter](https://mantine.dev/core/splitter/) | Deck tree, card list, editor, preview |
-| Editing | [React CodeMirror](https://github.com/uiwjs/react-codemirror), `@codemirror/lang-markdown` | Markdown editor, history, selection and keyboard commands |
-| Source ranges | [Lezer Markdown](https://lezer.codemirror.net/docs/ref/) | Locate outer list items; edit a selected source range |
+| Editing | [React CodeMirror](https://github.com/uiwjs/react-codemirror), `@codemirror/lang-markdown` | Separate Front and Back fields, history, selection and keyboard commands |
+| Source ranges and syntax | Zettlr-Pandoc's Lezer fork | Pandoc fenced divs, attributes, math, and source positions; shared parser for both editors and deck pairing |
 | External changes | [Tauri filesystem plugin](https://v2.tauri.app/plugin/file-system/) | Watch the selected workspace |
 | Process execution and output | [Tauri commands](https://v2.tauri.app/develop/calling-rust/) and Python subprocess | A typed bridge request; exporter completion and diagnostics |
 | Workspace selection | [Tauri dialog plugin](https://v2.tauri.app/plugin/dialog/) | Native folder picker |
@@ -35,7 +35,7 @@ must be locked to tested releases during implementation.
 | Individually assembled headless components | Requires additional styling and composition for the same surface | Prefer the complete component library |
 | CodeMirror source editing | Retains LaTeX and Markdown as text; exposes source positions | Use |
 | [Tiptap Markdown](https://tiptap.dev/docs/editor/markdown) | Converts Markdown through an editor document model; its documented Markdown extension is beta and has preservation limits | Use only if rich text authoring is chosen |
-| [remark/mdast](https://github.com/remarkjs/remark) | Mature parsing and transformation ecosystem; useful for source ranges | Lezer already supplies ranges in the chosen editor; confirm outer-list coverage before adoption |
+| [remark/mdast](https://github.com/remarkjs/remark) | Mature parsing and transformation ecosystem; useful for source ranges | Zettlr's Lezer fork supplies Pandoc syntax and ranges in CodeMirror |
 | Browser Markdown renderer plus KaTeX | Adds a second rendering interpretation and macro configuration | Reuse Pandoc card HTML and exporter MathJax |
 | New Rust APKG implementation | Duplicates package generation, media and model ownership | Reuse ankdown |
 
@@ -45,11 +45,10 @@ Local evidence: `README.md`, `justfile`, and the sibling checkout's
 `ankdown/ankdown.lua`, `ankdown/cli.py`, and `ankdown/mathjax.html`.
 The sibling checkout must be compared with the pinned exporter revision before wiring.
 
-The Lua filter takes outer bullet or ordered lists. Its first item block becomes
-the front. Remaining blocks become the back. It handles tag paragraphs, nested
-answer lists, math, images and generated media. It emits card HTML as JSON.
-Preview must run that filter with the deck's resource directory, then display
-the returned front or back with the same macros as export.
+The paired-card filter validates `.front` and `.back` divs linked by `card-id`.
+It supplies each complete side to Ankdown's filter as a block container.
+Ankdown handles math, images, generated media, and card HTML.
+Preview uses the same filter chain and math macros as export.
 
 The CLI accepts an individual Markdown file with an explicit output path.
 Directory builds map relative deck paths to filenames by replacing separators
@@ -57,13 +56,10 @@ with `__`. Regeneration uses the whole saved deck, including its metadata and me
 Process events can show a running indicator and real diagnostics. The current
 CLI provides completion output rather than a percentage progress stream.
 
-Use editor transactions to replace, insert or delete an outer card range.
-Keep the original document around those ranges. Lezer owns syntax recognition;
-the app owns mapping an outer list item to a card. Pandoc remains the authority
-for rendered card content. Verify nested lists, display math, raw LaTeX, tables,
-images, frontmatter and multiple outer lists against existing sources before
-accepting the range adapter. Compare disk content before saving to detect an
-external edit while a draft is open.
+Each CodeMirror field edits only one div body. Keep the authored document around
+that body. Zettlr's Lezer fork owns Pandoc syntax recognition and attribute
+parsing. The app pairs sides by ID. Pandoc validates the same pairs for loading,
+saving, preview, and export. Saves compare disk content to detect external edits.
 
 ## Generation state
 
@@ -93,13 +89,13 @@ collection require a separate identity/import design if requested.
 
 ## Architecture decision
 
-Recommended: a source editor with a card preview, built under `desktop/` in this
+Selected: separate Front and Back editors with a card preview, built under `desktop/` in this
 repository. The current request establishes a new desktop surface here; the
 existing archive notice concerns the content maintenance location.
 
 Alternative: a rich text editor using Tiptap, with additional extensions and
 Markdown round-trip verification for the mathematical source corpus.
 
-The desktop editor uses the recommended source architecture. A native command
+The desktop editor stores paired fenced divs linked by card ID. A native command
 runs the pinned Python exporter bridge. The filesystem plugin watches the
 selected workspace; the bridge owns file reads, saves and generation.

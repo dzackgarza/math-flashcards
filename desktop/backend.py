@@ -34,6 +34,7 @@ from platformdirs import user_cache_path
 from pydantic import BaseModel, ConfigDict, Field, TypeAdapter
 
 EXPORTER = Path(ankdown.cli.__file__).parent
+PAIR_FILTER = Path(__file__).with_name("paired-cards.lua")
 REVISION = "5878dff3082334d33609b0999eb849d8c6db6812"
 type MacroDefinition = str | list[str | int]
 
@@ -169,6 +170,7 @@ def database() -> Iterator[sqlite3.Connection]:
 def input_hashes(path: Path, media: list[Path]) -> dict[str, str]:
     files = [
         path,
+        PAIR_FILTER,
         *media,
         *(
             EXPORTER / name
@@ -229,6 +231,8 @@ def render(path: Path, source: str, scratch: Path) -> Iterator[RenderedDeck]:
                 "pandoc",
                 "-f",
                 "markdown",
+                "--lua-filter",
+                str(PAIR_FILTER),
                 "--lua-filter",
                 str(EXPORTER / "ankdown.lua"),
                 temporary.name,
@@ -366,6 +370,7 @@ def dispatch(request: Request) -> Workspace | Document | Preview | Generated:
         case GenerateInput():
             return generate(root, path)
         case SaveInput():
+            preview(root, path, request.source)
             if digest(path.read_bytes()) != request.expected:
                 raise ValueError("This deck changed on disk. Reload it before saving.")
             # tempfile + atomic replace: https://docs.python.org/3/library/tempfile.html
@@ -381,7 +386,7 @@ def dispatch(request: Request) -> Workspace | Document | Preview | Generated:
                 os.fsync(temporary.fileno())
             Path(temporary.name).replace(path)
         case LoadInput():
-            pass
+            preview(root, path, path.read_text())
     source = path.read_bytes().decode("utf-8")
     return Document(
         source=source,
@@ -392,6 +397,15 @@ def dispatch(request: Request) -> Workspace | Document | Preview | Generated:
 
 
 app = cyclopts.App()
+
+
+@app.command
+def build(workspace: Path) -> None:
+    """Generate every paired-card deck in a workspace."""
+    root = workspace_path(str(workspace))
+    for path in sorted((root / "decks").rglob("*.md")):
+        result = generate(root, deck_path(root, str(path.relative_to(root / "decks"))))
+        print(result.package)
 
 
 @app.default

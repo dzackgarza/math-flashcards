@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Sanity-check that every deck under decks/ is well-formed ankdown-for-math Markdown.
-Fails (exit 1) on any regression: missing title frontmatter, no cards, leftover
-old-format separators, or references to (missing) local figures."""
+"""Validate paired card decks with Pandoc and the app's pairing filter."""
+import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -17,13 +17,17 @@ for p in sorted(DECKS.rglob("*.md")):
     text = p.read_text(encoding="utf-8")
     if not re.match(r'^---\ntitle: "[^"]+"\n---\n', text):
         errors.append(f"{rel}: missing/!malformed title frontmatter")
-    items = [ln for ln in text.splitlines() if re.match(r'^- \S', ln)]
+    process = subprocess.run(
+        ['pandoc', '-f', 'markdown', '--lua-filter', str(ROOT / 'desktop' / 'paired-cards.lua'), '-t', 'json', str(p)],
+        capture_output=True, text=True,
+    )
+    if process.returncode != 0:
+        errors.append(f"{rel}: {process.stderr.strip()}")
+        continue
+    items = json.loads(process.stdout)['blocks'][0]['c']
     if not items:
-        errors.append(f"{rel}: no cards (top-level '- ' items)")
+        errors.append(f"{rel}: no cards")
     card_count += len(items)
-    body = re.sub(r'^---\n.*?\n---\n', '', text, count=1, flags=re.S)  # drop frontmatter
-    if re.search(r'(?m)^%\s*$', body) or re.search(r'(?m)^---\s*$', body):
-        errors.append(f"{rel}: leftover old-format separator (% or ---)")
     for img in re.findall(r'!\[[^\]]*\]\((?!https?://)[^)]*\)', text):
         errors.append(f"{rel}: reference to missing local figure: {img}")
 

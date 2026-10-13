@@ -1,8 +1,10 @@
 use std::io::Write;
 use std::path::PathBuf;
 use std::process::{Command, Stdio};
+use std::sync::Arc;
 use tauri::{Manager, path::BaseDirectory};
 use tauri_plugin_fs::FsExt;
+use tokio::sync::Semaphore;
 
 #[derive(serde::Deserialize)]
 struct Scope {
@@ -16,12 +18,24 @@ struct WorkspaceScope {
 
 // Tauri's command boundary: https://v2.tauri.app/develop/calling-rust/
 #[tauri::command]
-async fn request(app: tauri::AppHandle, payload: String) -> Result<String, String> {
+async fn request(
+    app: tauri::AppHandle,
+    slots: tauri::State<'_, Arc<Semaphore>>,
+    payload: String,
+) -> Result<String, String> {
+    // Tokio bounds native backend concurrency: https://docs.rs/tokio/latest/tokio/sync/struct.Semaphore.html
+    let permit = slots
+        .inner()
+        .clone()
+        .acquire_owned()
+        .await
+        .map_err(|e| e.to_string())?;
     let script = app
         .path()
         .resolve("backend.py", BaseDirectory::Resource)
         .map_err(|e| e.to_string())?;
     tauri::async_runtime::spawn_blocking(move || {
+        let _permit = permit;
         let scope: Scope = serde_json::from_str(&payload).map_err(|e| e.to_string())?;
         eprintln!("Backend request: {}", scope.action);
         let mut child = Command::new("uv")
@@ -60,6 +74,7 @@ async fn request(app: tauri::AppHandle, payload: String) -> Result<String, Strin
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
+        .manage(Arc::new(Semaphore::new(2)))
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_store::Builder::default().build())
         .plugin(tauri_plugin_fs::init())

@@ -2,22 +2,42 @@
 title: "Vocabulary"
 ---
 
-- Sanguine
+::: {.front card-id="card-b8340220eff2eb88"}
+Sanguine
+:::
 
-    Optimistic despite bad circumstances (also blood red in literature)
+::: {.back card-id="card-b8340220eff2eb88"}
+Optimistic despite bad circumstances (also blood red in literature)
+:::
 
-- Divagate
+::: {.front card-id="card-bef45e8579a7af78"}
+Divagate
+:::
 
-    To stray off course
+::: {.back card-id="card-bef45e8579a7af78"}
+To stray off course
+:::
 
-- Gelid
+::: {.front card-id="card-9fd84f30dc94e5fd"}
+Gelid
+:::
 
-    Icy cold
+::: {.back card-id="card-9fd84f30dc94e5fd"}
+Icy cold
+:::
 
-- Schlepp
+::: {.front card-id="card-0a28883c60bfa534"}
+Schlepp
+:::
 
-    Carry
+::: {.back card-id="card-0a28883c60bfa534"}
+Carry
+:::
 
-- Limn
+::: {.front card-id="card-f4733a5a146283f4"}
+Limn
+:::
 
-    Depict in a painting or in words, highlight with a bright color or light
+::: {.back card-id="card-f4733a5a146283f4"}
+Depict in a painting or in words, highlight with a bright color or light
+:::
