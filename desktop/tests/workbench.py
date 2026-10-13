@@ -5,7 +5,6 @@
 """Exercise the editor and real export pipeline in a disposable workspace."""
 
 import json
-import os
 from pathlib import Path
 import shutil
 import sqlite3
@@ -42,9 +41,13 @@ def main() -> None:
             page.get_by_text("Special Angles", exact=True).click()
             expect(page.get_by_text("Unsynced", exact=True).first).to_be_visible()
             expect(page.locator(".cm-editor")).to_be_visible()
+            expect(page.get_by_role("button", name="Flip card")).to_be_visible(timeout=30000)
+            expect(page.locator(".card-preview mjx-container")).to_be_visible(timeout=30000)
+            expect(page.get_by_text("Unsaved changes", exact=True)).not_to_be_visible()
             page.screenshot(path=str(artifacts / "front.png"))
             page.get_by_role("button", name="Flip card").click()
             expect(page.get_by_role("radio", name="Back", exact=True)).to_be_checked()
+            expect(page.locator(".card-preview mjx-container")).to_be_visible()
             page.screenshot(path=str(artifacts / "back.png"))
             page.get_by_role("button", name="Add card", exact=True).click()
             editor = page.locator(".cm-content")
