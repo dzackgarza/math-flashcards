@@ -1,0 +1,4 @@
+#!/bin/sh
+set -eu
+export PATH=@DEPENDENCY_PATH@:"$PATH"
+exec @APPLICATION@ "$@"

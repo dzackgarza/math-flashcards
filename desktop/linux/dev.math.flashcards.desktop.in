@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Name=Math Flashcards
+GenericName=Mathematics flashcard editor
+Comment=Edit Markdown cards and generate Anki decks
+Exec=math-flashcards
+TryExec=math-flashcards
+Icon=dev.math.flashcards
+Terminal=false
+Categories=Education;Math;
+Keywords=Anki;Mathematics;Flashcards;
+StartupNotify=true
+StartupWMClass=desktop

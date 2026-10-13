@@ -24,10 +24,10 @@ Markdown and compiled to `.apkg` with
 
 ```bash
 just desktop-install
-just desktop-build
-just desktop-run
 ```
 
+Launch **Math Flashcards** from the application menu or run `math-flashcards`.
+Use `just desktop-update` to rebuild and update the installed app and desktop entry.
 Open a workspace folder that contains `decks/`. Select a deck in the tree.
 The editor supports card search, source editing, adding and deleting cards,
 math preview, and a front/back flip control. Save the deck, then select

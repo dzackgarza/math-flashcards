@@ -9,14 +9,28 @@ From the repository root:
 
 ```bash
 just desktop-install
-just desktop-build
-just desktop-run
 ```
 
 Build dependencies: Bun, Rust, Cargo, `just`, and the [Tauri Linux prerequisites](https://v2.tauri.app/start/prerequisites/).
 Runtime dependencies: `uv` and Pandoc on `PATH`. The first backend call fetches
 the locked Python dependencies, including the pinned Ankdown exporter.
 The native build includes the bridge, its dependency lock, and local MathJax assets.
+Installation adds **Math Flashcards** to the application menu and installs the
+`math-flashcards` command. Run `just desktop-update` from this checkout to rebuild
+and update the app, icon, launcher, and desktop entry.
+
+| Installed item | Location |
+| --- | --- |
+| Desktop entry | `$XDG_DATA_HOME/applications/dev.math.flashcards.desktop` |
+| App and resources | `$XDG_DATA_HOME/math-flashcards/` |
+| Icon | `$XDG_DATA_HOME/icons/hicolor/128x128/apps/dev.math.flashcards.png` |
+| Command | `~/.local/bin/math-flashcards` |
+| Preferences | `$XDG_CONFIG_HOME/dev.math.flashcards/preferences.json` |
+
+Unset XDG data and configuration directories use `~/.local/share` and `~/.config`.
+The launcher supplies the installed `uv` and Pandoc directories to the app.
+The installed app runs independently of the source checkout. `just desktop-deploy`
+refreshes the installation from an existing build.
 
 ## Use
 
@@ -45,7 +59,7 @@ the exporter result or error. An empty answer is an export error.
 | Generating | The exporter is running |
 | Failed | The last export attempt failed; the previous package remains |
 
-Preferences use Tauri's app data directory. Build records use the platform cache
+Preferences use Tauri's app configuration directory. Build records use the platform cache
 directory under `math-flashcards/builds.sqlite3`. Existing packages start as
 Unsynced until the app generates a verified package. Native filesystem watches
 refresh saved package status after workspace changes.

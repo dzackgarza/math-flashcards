@@ -25,6 +25,7 @@ import CodeMirror from "@uiw/react-codemirror";
 import { markdown } from "@codemirror/lang-markdown";
 import { isTauri } from "@tauri-apps/api/core";
 import { getCurrentWindow } from "@tauri-apps/api/window";
+import { appConfigDir, join } from "@tauri-apps/api/path";
 import { open } from "@tauri-apps/plugin-dialog";
 import { load } from "@tauri-apps/plugin-store";
 import { watch } from "@tauri-apps/plugin-fs";
@@ -44,6 +45,12 @@ import {
 
 type Task = "Idle" | "Loading" | "Saving" | "Generating";
 type Side = "Front" | "Back";
+
+function preferences() {
+  return appConfigDir()
+    .then((directory) => join(directory, "preferences.json"))
+    .then((path) => load(path));
+}
 
 function treeData(decks: Summary[], filter: string): TreeNodeData[] {
   const roots: TreeNodeData[] = [];
@@ -134,7 +141,7 @@ export default function App() {
       setLog("");
       setBuildResult("Ready");
       if (isTauri()) {
-        const store = await load("preferences.json");
+        const store = await preferences();
         await store.set("workspace", result.root);
         await store.save();
       }
@@ -218,7 +225,7 @@ export default function App() {
 
   useEffect(() => {
     if (!isTauri()) return;
-    load("preferences.json")
+    preferences()
       .then(async (store) => {
         const saved = await store.get<string>("workspace");
         if (saved) setFolder(saved);

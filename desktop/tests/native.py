@@ -1,6 +1,6 @@
 # /// script
 # requires-python = ">=3.12"
-# dependencies = ["mss==10.1.0"]
+# dependencies = ["mss==10.1.0", "cyclopts==4.15.0"]
 # ///
 """Capture the built native WebKit app in an isolated X11 display."""
 
@@ -12,11 +12,13 @@ import time
 import zipfile
 from pathlib import Path
 
+import cyclopts
 import mss
 import mss.tools
 
 
-def main() -> None:
+def main(*, entry: Path | None = None) -> None:
+    """Exercise a built app, or launch an installed desktop entry through Gio."""
     desktop = Path(__file__).resolve().parents[1]
     artifacts = desktop / "test-artifacts"
     artifacts.mkdir(exist_ok=True)
@@ -32,8 +34,11 @@ def main() -> None:
             uv_cache = subprocess.check_output(
                 ["uv", "cache", "dir"], text=True
             ).strip()
+            command = [str(desktop / "src-tauri" / "target" / "release" / "desktop")]
+            if entry is not None:
+                command = ["gio", "launch", str(entry.resolve(strict=True))]
             process = subprocess.Popen(
-                [str(desktop / "src-tauri" / "target" / "release" / "desktop")],
+                command,
                 stdout=log,
                 stderr=log,
                 env=os.environ
@@ -44,6 +49,7 @@ def main() -> None:
                     "UV_CACHE_DIR": uv_cache,
                 },
             )
+            window: str | None = None
             try:
                 window = subprocess.check_output(
                     [
@@ -51,13 +57,17 @@ def main() -> None:
                         "search",
                         "--sync",
                         "--onlyvisible",
-                        "--pid",
-                        str(process.pid),
                         "--name",
                         "Math Flashcards",
                     ],
                     text=True,
+                    timeout=30,
                 ).splitlines()[0]
+                wm_class = subprocess.check_output(
+                    ["xprop", "-id", window, "WM_CLASS"], text=True
+                )
+                print(wm_class, flush=True)
+                assert '"desktop"' in wm_class
                 print("Native window:", window, flush=True)
                 time.sleep(2)
                 with mss.mss() as screen:
@@ -191,6 +201,10 @@ def main() -> None:
                     )
                 assert package.is_file(), (artifacts / "native.log").read_text()
                 assert zipfile.is_zipfile(package)
+                preferences_path = (
+                    environment / "config" / "dev.math.flashcards" / "preferences.json"
+                )
+                assert preferences_path.is_file()
                 time.sleep(1)
                 with mss.mss() as screen:
                     shot = screen.grab(
@@ -214,9 +228,14 @@ def main() -> None:
                     )
                 print("Native app opened, rendered a deck, and generated its APKG.")
             finally:
-                process.terminate()
+                if window is not None:
+                    subprocess.run(["xdotool", "windowclose", window], check=True)
+                else:
+                    process.terminate()
                 process.wait(timeout=10)
 
 
 if __name__ == "__main__":
-    main()
+    app = cyclopts.App()
+    app.default(main)
+    app()
