@@ -31,6 +31,6 @@ export function replaceCard(
   replacement: string,
 ): string {
   return (
-    source.slice(0, card.from) + replacement.trimEnd() + source.slice(card.to)
+    source.slice(0, card.from) + replacement + source.slice(card.to)
   );
 }

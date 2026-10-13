@@ -312,7 +312,7 @@ export default function App() {
     setIndex(ranges.length);
     setSide("Front");
     edit(
-      document.source.trimEnd() +
+      document.source +
         "\n\n- New question\n\n    New answer\n\n    tags: new\n",
     );
   }

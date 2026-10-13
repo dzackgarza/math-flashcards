@@ -27,6 +27,10 @@ desktop-install:
 desktop-dev:
     cd desktop && bunx tauri dev
 
+# Open the built native app
+desktop-run:
+    desktop/src-tauri/target/release/desktop
+
 # Serve the editor with its real backend for browser inspection
 desktop-web:
     cd desktop && bunx vite --host 127.0.0.1
@@ -48,6 +52,10 @@ desktop-test:
 # Verify source preservation and card boundaries against Pandoc
 desktop-source-test:
     cd desktop && bun test tests/source-roundtrip.test.ts
+
+# Capture and exercise the built native window on an isolated display
+desktop-native-test:
+    xvfb-run -a -s '-screen 0 1600x1200x24' uv run desktop/tests/native.py
 
 # Apply the canonical formatters to desktop sources
 desktop-format:
