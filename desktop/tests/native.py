@@ -9,6 +9,7 @@ import shutil
 import subprocess
 import tempfile
 import time
+import zipfile
 from pathlib import Path
 
 import mss
@@ -20,22 +21,27 @@ def main() -> None:
     artifacts = desktop / "test-artifacts"
     artifacts.mkdir(exist_ok=True)
     with tempfile.TemporaryDirectory(prefix="flashcards-native-") as directory:
-        root = Path(directory)
+        environment = Path(directory)
+        root = environment / "workspace"
         (root / "decks" / "Qual Basics").mkdir(parents=True)
         shutil.copyfile(
             desktop.parent / "decks" / "Qual Basics" / "Special Angles.md",
             root / "decks" / "Qual Basics" / "Special Angles.md",
         )
         with (artifacts / "native.log").open("w") as log:
+            uv_cache = subprocess.check_output(
+                ["uv", "cache", "dir"], text=True
+            ).strip()
             process = subprocess.Popen(
                 [str(desktop / "src-tauri" / "target" / "release" / "desktop")],
                 stdout=log,
                 stderr=log,
                 env=os.environ
                 | {
-                    "XDG_CONFIG_HOME": str(root / "config"),
-                    "XDG_CACHE_HOME": str(root / "cache"),
-                    "XDG_DATA_HOME": str(root / "data"),
+                    "XDG_CONFIG_HOME": str(environment / "config"),
+                    "XDG_CACHE_HOME": str(environment / "cache"),
+                    "XDG_DATA_HOME": str(environment / "data"),
+                    "UV_CACHE_DIR": uv_cache,
                 },
             )
             try:
@@ -176,7 +182,15 @@ def main() -> None:
                     if package.is_file():
                         break
                     time.sleep(0.25)
+                with mss.mss() as screen:
+                    shot = screen.grab(
+                        {"left": 0, "top": 0, "width": 1440, "height": 1000}
+                    )
+                    mss.tools.to_png(
+                        shot.rgb, shot.size, output=str(artifacts / "native-last.png")
+                    )
                 assert package.is_file(), (artifacts / "native.log").read_text()
+                assert zipfile.is_zipfile(package)
                 time.sleep(1)
                 with mss.mss() as screen:
                     shot = screen.grab(
@@ -186,6 +200,17 @@ def main() -> None:
                         shot.rgb,
                         shot.size,
                         output=str(artifacts / "native-generated.png"),
+                    )
+                package.write_bytes(b"external package edit")
+                time.sleep(2)
+                with mss.mss() as screen:
+                    shot = screen.grab(
+                        {"left": 0, "top": 0, "width": 1440, "height": 1000}
+                    )
+                    mss.tools.to_png(
+                        shot.rgb,
+                        shot.size,
+                        output=str(artifacts / "native-unsynced.png"),
                     )
                 print("Native app opened, rendered a deck, and generated its APKG.")
             finally:

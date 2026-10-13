@@ -97,7 +97,9 @@ def main() -> None:
             page.get_by_role("button", name="Delete card", exact=True).click()
             page.get_by_role("button", name="Delete", exact=True).click()
             page.get_by_role("button", name="Save deck", exact=True).click()
-            expect(page.get_by_text("Saved", exact=True).first).to_be_visible(timeout=30000)
+            expect(page.get_by_text("Saved", exact=True).first).to_be_visible(
+                timeout=30000
+            )
             expect(page.get_by_text("Unsynced", exact=True).first).to_be_visible()
             assert (
                 "Added question"

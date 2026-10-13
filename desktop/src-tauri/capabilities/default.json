@@ -10,6 +10,7 @@
     "dialog:allow-open",
     "store:default",
     "fs:allow-watch",
-    "fs:allow-unwatch"
+    "fs:allow-unwatch",
+    "core:window:allow-destroy"
   ]
 }

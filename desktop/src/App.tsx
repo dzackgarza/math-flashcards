@@ -24,6 +24,7 @@ import { modals } from "@mantine/modals";
 import CodeMirror from "@uiw/react-codemirror";
 import { markdown } from "@codemirror/lang-markdown";
 import { isTauri } from "@tauri-apps/api/core";
+import { getCurrentWindow } from "@tauri-apps/api/window";
 import { open } from "@tauri-apps/plugin-dialog";
 import { load } from "@tauri-apps/plugin-store";
 import { watch } from "@tauri-apps/plugin-fs";
@@ -234,12 +235,43 @@ export default function App() {
   }, [dirty]);
 
   useEffect(() => {
+    if (!isTauri()) return;
+    const window = getCurrentWindow();
+    let disposed = false;
+    let stop: (() => void) | undefined;
+    window
+      .onCloseRequested((event) => {
+        if (!dirty) return;
+        event.preventDefault();
+        confirmNavigation(() => {
+          window.destroy().catch((failure) => setError(String(failure)));
+        });
+      })
+      .then((unlisten) => {
+        if (disposed) unlisten();
+        else stop = unlisten;
+      })
+      .catch((failure) => setError(String(failure)));
+    return () => {
+      disposed = true;
+      stop?.();
+    };
+  }, [dirty]);
+
+  useEffect(() => {
     if (!workspace || !isTauri()) return;
     let disposed = false;
     let stop: (() => void) | undefined;
     watch(
       workspace,
-      () => {
+      (event) => {
+        // Access events describe reads, not changed inputs: https://v2.tauri.app/reference/javascript/fs/#watcheventkind
+        if (
+          event.type !== "any" &&
+          event.type !== "other" &&
+          "access" in event.type
+        )
+          return;
         refresh().catch((failure) => setError(String(failure)));
       },
       { recursive: true, delayMs: 700 },
@@ -256,6 +288,7 @@ export default function App() {
   }, [workspace]);
 
   function edit(source: string) {
+    if (!document || document.source === source) return;
     setDocument((current) => (current ? { ...current, source } : current));
     setPreviewLoading(true);
   }

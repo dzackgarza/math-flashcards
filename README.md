@@ -1,7 +1,6 @@
-> **Archived — this content now lives in [dzackgarza/new-qual-site](https://github.com/dzackgarza/new-qual-site).**
+> **Deck content archive — this content now lives in [dzackgarza/new-qual-site](https://github.com/dzackgarza/new-qual-site).**
 >
-> Everything here was migrated into that repository and is maintained there.
-> Nothing new lands in this one.
+> The deck content was migrated into that repository and is maintained there.
 >
 > Content coverage was checked against this repository at `69cecc4` before archiving.
 > The comparisons are in `artifacts/issue-11/source-reviews/content-coverage-verification.md`
@@ -19,6 +18,28 @@ Markdown and compiled to `.apkg` with
 - `decks/` — card sources as nested Markdown lists, grouped by subject
   (`decks/<Subject>/<Deck>.md`). Each file is one deck.
 - `apkg/` — compiled Anki packages, importable directly into Anki.
+- `desktop/` — the Tauri deck editor. See its [guide](desktop/README.md).
+
+## Desktop editor
+
+```bash
+just desktop-install
+just desktop-build
+just desktop-run
+```
+
+Open a workspace folder that contains `decks/`. Select a deck in the tree.
+The editor supports card search, source editing, adding and deleting cards,
+math preview, and a front/back flip control. Save the deck, then select
+**Generate Anki deck** to regenerate its package in `apkg/`.
+
+The package badge shows **Up to date**, **Unsynced**, **Generating**, or **Failed**.
+Source and media changes, exporter changes, and changes to the generated package
+make it unsynced. A separate badge shows unsaved edits. Failed exports retain
+the previous package. Disk changes are checked before a save.
+
+Use `just desktop-dev` for native development. The [desktop guide](desktop/README.md)
+lists dependencies, verification commands, and the Anki import boundary.
 
 ## Card format
 

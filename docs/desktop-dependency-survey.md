@@ -1,6 +1,6 @@
 # Desktop dependency survey
 
-Date: 2026-10-13. Architecture choice is pending.
+Date: 2026-10-13. Selected architecture: CodeMirror source editing.
 
 ## Recommendation
 
@@ -18,10 +18,11 @@ must be locked to tested releases during implementation.
 | App layout | [Mantine AppShell](https://mantine.dev/core/app-shell/), [Splitter](https://mantine.dev/core/splitter/) | Deck tree, card list, editor, preview |
 | Editing | [React CodeMirror](https://github.com/uiwjs/react-codemirror), `@codemirror/lang-markdown` | Markdown editor, history, selection and keyboard commands |
 | Source ranges | [Lezer Markdown](https://lezer.codemirror.net/docs/ref/) | Locate outer list items; edit a selected source range |
-| File access and external changes | [Tauri filesystem plugin](https://v2.tauri.app/plugin/file-system/) | Read, save, enumerate and watch the selected workspace |
-| Process execution and output | [Tauri shell plugin](https://v2.tauri.app/plugin/shell/) | Scoped exporter commands; stdout, stderr and termination events |
+| External changes | [Tauri filesystem plugin](https://v2.tauri.app/plugin/file-system/) | Watch the selected workspace |
+| Process execution and output | [Tauri commands](https://v2.tauri.app/develop/calling-rust/) and Python subprocess | A typed bridge request; exporter completion and diagnostics |
 | Workspace selection | [Tauri dialog plugin](https://v2.tauri.app/plugin/dialog/) | Native folder picker |
-| Preferences and generation records | [Tauri store plugin](https://v2.tauri.app/plugin/store/) | Workspace path and successful build fingerprints |
+| Preferences | [Tauri store plugin](https://v2.tauri.app/plugin/store/) | Workspace path |
+| Generation records | Python SQLite and [platformdirs](https://platformdirs.readthedocs.io/) | Successful build fingerprints in the platform cache |
 | Card HTML and APKG | [ankdown-for-math](https://github.com/dzackgarza/ankdown-for-math), [Pandoc Lua filters](https://pandoc.org/lua-filters.html) | Reuse the filter's front/back JSON and exporter CLI |
 | Math rendering | [MathJax](https://docs.mathjax.org/en/v3.2/web/typeset.html) | Match the exporter's MathJax 3 configuration and macro asset |
 | Flip and status controls | Mantine Card, Badge, SegmentedControl, Button, Alert, Loader | Explicit Front/Back state; clickable preview; visible build state |
@@ -99,5 +100,6 @@ existing archive notice concerns the content maintenance location.
 Alternative: a rich text editor using Tiptap, with additional extensions and
 Markdown round-trip verification for the mathematical source corpus.
 
-The governing operating policy requires a choice before implementing an
-architecture with significant impact. Application code starts after that choice.
+The desktop editor uses the recommended source architecture. A native command
+runs the pinned Python exporter bridge. The filesystem plugin watches the
+selected workspace; the bridge owns file reads, saves and generation.

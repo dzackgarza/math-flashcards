@@ -23,6 +23,7 @@ async fn request(app: tauri::AppHandle, payload: String) -> Result<String, Strin
         .map_err(|e| e.to_string())?;
     tauri::async_runtime::spawn_blocking(move || {
         let scope: Scope = serde_json::from_str(&payload).map_err(|e| e.to_string())?;
+        eprintln!("Backend request: {}", scope.action);
         let mut child = Command::new("uv")
             .args(["run", "--locked", "--script"])
             .arg(script)
@@ -38,6 +39,7 @@ async fn request(app: tauri::AppHandle, payload: String) -> Result<String, Strin
             .write_all(format!("{payload}\n").as_bytes())
             .map_err(|e| e.to_string())?;
         let output = child.wait_with_output().map_err(|e| e.to_string())?;
+        eprintln!("Backend result: {} {}", scope.action, output.status);
         let diagnostics = String::from_utf8(output.stderr).map_err(|e| e.to_string())?;
         if !output.status.success() {
             return Err(diagnostics);
