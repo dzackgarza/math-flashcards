@@ -14,21 +14,21 @@
 from __future__ import annotations
 
 import base64
-from contextlib import contextmanager
 import hashlib
-import json
 import mimetypes
 import os
-from pathlib import Path
 import sqlite3
 import subprocess
 import sys
 import tempfile
-from typing import Annotated, Iterator, Literal
+from collections.abc import Iterator
+from contextlib import contextmanager
+from pathlib import Path
+from typing import Annotated, Literal
 
 import ankdown.cli
-from bs4 import BeautifulSoup
 import cyclopts
+from bs4 import BeautifulSoup
 from filelock import FileLock
 from platformdirs import user_cache_path
 from pydantic import BaseModel, ConfigDict, Field, TypeAdapter
@@ -159,21 +159,40 @@ def database() -> Iterator[sqlite3.Connection]:
     cache = user_cache_path("math-flashcards")
     cache.mkdir(parents=True, exist_ok=True)
     with sqlite3.connect(cache / "builds.sqlite3") as connection:
-        connection.execute("CREATE TABLE IF NOT EXISTS builds (path TEXT PRIMARY KEY, record TEXT NOT NULL)")
+        connection.execute(
+            "CREATE TABLE IF NOT EXISTS builds (path TEXT PRIMARY KEY, record TEXT NOT NULL)"
+        )
         yield connection
 
 
 def input_hashes(path: Path, media: list[Path]) -> dict[str, str]:
-    files = [path, *media, *(EXPORTER / name for name in ("ankdown.lua", "cli.py", "mathjax.html", "mathjax-macros.json", "card.css"))]
+    files = [
+        path,
+        *media,
+        *(
+            EXPORTER / name
+            for name in (
+                "ankdown.lua",
+                "cli.py",
+                "mathjax.html",
+                "mathjax-macros.json",
+                "card.css",
+            )
+        ),
+    ]
     hashes = {str(file): digest(file.read_bytes()) for file in files}
     hashes["exporter"] = REVISION
-    hashes["pandoc"] = digest(subprocess.run(["pandoc", "--version"], check=True, capture_output=True).stdout)
+    hashes["pandoc"] = digest(
+        subprocess.run(["pandoc", "--version"], check=True, capture_output=True).stdout
+    )
     return hashes
 
 
 def status(path: Path, output: Path) -> Literal["Up to date", "Unsynced"]:
     with database() as connection:
-        row = connection.execute("SELECT record FROM builds WHERE path = ?", (str(path),)).fetchone()
+        row = connection.execute(
+            "SELECT record FROM builds WHERE path = ?", (str(path),)
+        ).fetchone()
     if row is None or not output.is_file():
         return "Unsynced"
     record = BuildRecord.model_validate_json(row[0])
@@ -195,11 +214,26 @@ def status(path: Path, output: Path) -> Literal["Up to date", "Unsynced"]:
 def render(path: Path, source: str, scratch: Path) -> Iterator[RenderedDeck]:
     # Pandoc owns card parsing: https://pandoc.org/lua-filters.html
     # Keeping the input beside its deck preserves the exporter's image resolution.
-    with tempfile.NamedTemporaryFile(mode="w", suffix=".tmp", prefix=".flashcards-", dir=path.parent, encoding="utf-8") as temporary:
+    with tempfile.NamedTemporaryFile(
+        mode="w",
+        suffix=".tmp",
+        prefix=".flashcards-",
+        dir=path.parent,
+        encoding="utf-8",
+    ) as temporary:
         temporary.write(source)
         temporary.flush()
         process = subprocess.run(
-            ["pandoc", "-f", "markdown", "--lua-filter", str(EXPORTER / "ankdown.lua"), temporary.name, "-t", "plain"],
+            [
+                "pandoc",
+                "-f",
+                "markdown",
+                "--lua-filter",
+                str(EXPORTER / "ankdown.lua"),
+                temporary.name,
+                "-t",
+                "plain",
+            ],
             cwd=scratch,
             env=os.environ | {"PWD": str(scratch)},
             capture_output=True,
@@ -236,11 +270,23 @@ def preview(root: Path, path: Path, source: str) -> Preview:
                             image_path = mapping[name]
                             mime = mimetypes.guess_type(image_path.name)[0]
                             if mime is None:
-                                raise ValueError(f"Unknown image type: {image_path.name}")
-                            image["src"] = f"data:{mime};base64," + base64.b64encode(image_path.read_bytes()).decode()
+                                raise ValueError(
+                                    f"Unknown image type: {image_path.name}"
+                                )
+                            image["src"] = (
+                                f"data:{mime};base64,"
+                                + base64.b64encode(image_path.read_bytes()).decode()
+                            )
                     setattr(card, field, str(soup))
-            macros = TypeAdapter(dict[str, MacroDefinition]).validate_json((EXPORTER / "mathjax-macros.json").read_text())
-            return Preview(title=deck.meta.title, cards=deck.cards, macros=macros, css=(EXPORTER / "card.css").read_text())
+            macros = TypeAdapter(dict[str, MacroDefinition]).validate_json(
+                (EXPORTER / "mathjax-macros.json").read_text()
+            )
+            return Preview(
+                title=deck.meta.title,
+                cards=deck.cards,
+                macros=macros,
+                css=(EXPORTER / "card.css").read_text(),
+            )
 
 
 def generate(root: Path, path: Path) -> Generated:
@@ -249,30 +295,67 @@ def generate(root: Path, path: Path) -> Generated:
     cache = user_cache_path("math-flashcards")
     cache.mkdir(parents=True, exist_ok=True)
     with FileLock(cache / (digest(str(path).encode()) + ".lock")):
-        source = path.read_text(encoding="utf-8")
-        with tempfile.TemporaryDirectory(prefix=".flashcards-build-", dir=output.parent) as directory:
+        source = path.read_bytes().decode("utf-8")
+        with tempfile.TemporaryDirectory(
+            prefix=".flashcards-build-", dir=output.parent
+        ) as directory:
             scratch = Path(directory)
             with render(path, source, scratch) as deck:
-                media = [file for file in media_paths(deck, root, scratch).values() if not file.is_relative_to(scratch)]
+                media = [
+                    file
+                    for file in media_paths(deck, root, scratch).values()
+                    if not file.is_relative_to(scratch)
+                ]
                 inputs = input_hashes(path, media)
                 if inputs[str(path)] != digest(source.encode()):
-                    raise ValueError("The deck changed before generation. Generate it again.")
+                    raise ValueError(
+                        "The deck changed before generation. Generate it again."
+                    )
                 temporary = scratch / output.name
                 process = subprocess.run(
-                    [sys.executable, "-m", "ankdown.cli", "compile", "--output", str(temporary)],
-                    input=deck.model_dump_json(), cwd=scratch, capture_output=True, text=True, check=True,
+                    [
+                        sys.executable,
+                        "-m",
+                        "ankdown.cli",
+                        "compile",
+                        "--output",
+                        str(temporary),
+                    ],
+                    input=deck.model_dump_json(),
+                    cwd=scratch,
+                    capture_output=True,
+                    text=True,
+                    check=True,
                 )
-                record = BuildRecord(inputs=inputs, package=digest(temporary.read_bytes()))
+                record = BuildRecord(
+                    inputs=inputs, package=digest(temporary.read_bytes())
+                )
                 temporary.replace(output)
                 with database() as connection:
-                    connection.execute("INSERT OR REPLACE INTO builds VALUES (?, ?)", (str(path), record.model_dump_json()))
-                return Generated(status=status(path, output), package=str(output), log=process.stdout + process.stderr)
+                    connection.execute(
+                        "INSERT OR REPLACE INTO builds VALUES (?, ?)",
+                        (str(path), record.model_dump_json()),
+                    )
+                return Generated(
+                    status=status(path, output),
+                    package=str(output),
+                    log=process.stdout + process.stderr,
+                )
 
 
 def dispatch(request: Request) -> Workspace | Document | Preview | Generated:
     root = workspace_path(request.workspace)
     if isinstance(request, ListInput):
-        return Workspace(decks=[Summary(path=str(path.relative_to(root / "decks")), status=status(path, package_path(root, path))) for path in sorted((root / "decks").rglob("*.md")) if path.resolve().is_relative_to(root / "decks")])
+        return Workspace(
+            decks=[
+                Summary(
+                    path=str(path.relative_to(root / "decks")),
+                    status=status(path, package_path(root, path)),
+                )
+                for path in sorted((root / "decks").rglob("*.md"))
+                if path.resolve().is_relative_to(root / "decks")
+            ]
+        )
     path = deck_path(root, request.path)
     output = package_path(root, path)
     match request:
@@ -284,15 +367,26 @@ def dispatch(request: Request) -> Workspace | Document | Preview | Generated:
             if digest(path.read_bytes()) != request.expected:
                 raise ValueError("This deck changed on disk. Reload it before saving.")
             # tempfile + atomic replace: https://docs.python.org/3/library/tempfile.html
-            with tempfile.NamedTemporaryFile(mode="w", dir=path.parent, prefix=".flashcards-save-", encoding="utf-8", delete=False) as temporary:
+            with tempfile.NamedTemporaryFile(
+                mode="w",
+                dir=path.parent,
+                prefix=".flashcards-save-",
+                encoding="utf-8",
+                delete=False,
+            ) as temporary:
                 temporary.write(request.source)
                 temporary.flush()
                 os.fsync(temporary.fileno())
             Path(temporary.name).replace(path)
         case LoadInput():
             pass
-    source = path.read_text(encoding="utf-8")
-    return Document(source=source, hash=digest(source.encode()), status=status(path, output), package=str(output))
+    source = path.read_bytes().decode("utf-8")
+    return Document(
+        source=source,
+        hash=digest(source.encode()),
+        status=status(path, output),
+        package=str(output),
+    )
 
 
 app = cyclopts.App()

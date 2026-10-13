@@ -44,3 +44,10 @@ desktop-frontend:
 # Exercise the editor against its real backend; serve desktop-web first
 desktop-test:
     uv run desktop/tests/workbench.py
+
+# Apply the canonical formatters to desktop sources
+desktop-format:
+    uvx ruff check --fix desktop/backend.py desktop/tests/workbench.py
+    uvx ruff format desktop/backend.py desktop/tests/workbench.py
+    cd desktop && bunx prettier --write src vite.config.ts index.html
+    cd desktop/src-tauri && cargo fmt

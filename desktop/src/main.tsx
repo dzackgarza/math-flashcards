@@ -8,8 +8,13 @@ import "./App.css";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <MantineProvider defaultColorScheme="light" theme={{ primaryColor: "indigo", defaultRadius: "md" }}>
-      <ModalsProvider><App /></ModalsProvider>
+    <MantineProvider
+      defaultColorScheme="light"
+      theme={{ primaryColor: "indigo", defaultRadius: "md" }}
+    >
+      <ModalsProvider>
+        <App />
+      </ModalsProvider>
     </MantineProvider>
   </React.StrictMode>,
 );

@@ -12,19 +12,36 @@ function workbenchBackend(): Plugin {
     name: "workbench-backend",
     configureServer(server) {
       server.middlewares.use("/api/request", async (request, response) => {
-        if (request.method !== "POST" || request.headers["x-flashcards"] !== "1") {
-          response.writeHead(403).end("Use the editor to access this endpoint.");
+        if (
+          request.method !== "POST" ||
+          request.headers["x-flashcards"] !== "1"
+        ) {
+          response
+            .writeHead(403)
+            .end("Use the editor to access this endpoint.");
           return;
         }
-        const child = spawn("uv", ["run", "--locked", "--script", fileURLToPath(new URL("./backend.py", import.meta.url))]);
+        const child = spawn("uv", [
+          "run",
+          "--locked",
+          "--script",
+          fileURLToPath(new URL("./backend.py", import.meta.url)),
+        ]);
         const stdout = text(child.stdout);
         const stderr = text(child.stderr);
-        child.on("error", (error) => response.writeHead(500).end(error.message));
+        child.on("error", (error) =>
+          response.writeHead(500).end(error.message),
+        );
         child.on("close", async (code) => {
           const result = await stdout;
           const diagnostics = await stderr;
-          response.setHeader("Content-Type", code === 0 ? "application/json" : "text/plain");
-          response.writeHead(code === 0 ? 200 : 422).end(code === 0 ? result : diagnostics);
+          response.setHeader(
+            "Content-Type",
+            code === 0 ? "application/json" : "text/plain",
+          );
+          response
+            .writeHead(code === 0 ? 200 : 422)
+            .end(code === 0 ? result : diagnostics);
         });
         child.stdin.end((await text(request)) + "\n");
       });
@@ -33,7 +50,24 @@ function workbenchBackend(): Plugin {
 }
 
 export default defineConfig({
-  plugins: [react(), workbenchBackend(), viteStaticCopy({ targets: [{ src: "node_modules/mathjax/es5", dest: ".", rename: "mathjax" }] })],
+  plugins: [
+    react(),
+    workbenchBackend(),
+    viteStaticCopy({
+      targets: [
+        {
+          src: "node_modules/mathjax/es5/**/*",
+          dest: "mathjax",
+          rename: { stripBase: 3 },
+        },
+      ],
+    }),
+  ],
   clearScreen: false,
-  server: { port: 1420, strictPort: true, host: "127.0.0.1", watch: { ignored: ["**/src-tauri/**", "**/test-artifacts/**"] } },
+  server: {
+    port: 1420,
+    strictPort: true,
+    host: "127.0.0.1",
+    watch: { ignored: ["**/src-tauri/**", "**/test-artifacts/**"] },
+  },
 });

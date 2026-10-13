@@ -1,15 +1,74 @@
 /* Mantine owns controls and tokens; Grid owns the two workspace layouts. */
-body { margin: 0; background: var(--mantine-color-gray-0); }
-.workbench { display: grid; grid-template-columns: minmax(13rem, 17rem) minmax(0, 1fr); gap: var(--mantine-spacing-md); align-items: start; }
-.card-workbench { display: grid; grid-template-columns: minmax(12rem, 15rem) minmax(0, 1fr); gap: var(--mantine-spacing-md); align-items: start; }
-.document-panel, .editor-panel { min-width: 0; }
-.card-preview { min-height: 12rem; cursor: pointer; border-top: 3px solid var(--mantine-color-indigo-5); }
-.card-preview.back { border-top-color: var(--mantine-color-teal-5); background: var(--mantine-color-teal-0); }
-.card-preview:focus-visible { outline: 2px solid var(--mantine-color-indigo-5); outline-offset: 3px; }
-.math-content { font-size: 1.1rem; line-height: 1.7; overflow-wrap: anywhere; }
-.math-content img { max-width: 100%; height: auto; }
-.math-content mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
-.math-content table { border-collapse: collapse; max-width: 100%; }
-.math-content td, .math-content th { border: 1px solid var(--mantine-color-gray-3); padding: .4rem; }
-@media (max-width: 64em) { .card-workbench { grid-template-columns: 1fr; } .workbench { grid-template-columns: minmax(11rem, 14rem) minmax(0, 1fr); } }
-@media (max-width: 48em) { .workbench { grid-template-columns: 1fr; } .deck-panel .mantine-ScrollArea-root { height: 12rem !important; min-height: 0; } }
+body {
+  margin: 0;
+  background: var(--mantine-color-gray-0);
+}
+.workbench {
+  display: grid;
+  grid-template-columns: minmax(13rem, 17rem) minmax(0, 1fr);
+  gap: var(--mantine-spacing-md);
+  align-items: start;
+}
+.card-workbench {
+  display: grid;
+  grid-template-columns: minmax(12rem, 15rem) minmax(0, 1fr);
+  gap: var(--mantine-spacing-md);
+  align-items: start;
+}
+.document-panel,
+.editor-panel {
+  min-width: 0;
+}
+.card-preview {
+  min-height: 12rem;
+  cursor: pointer;
+  border-top: 3px solid var(--mantine-color-indigo-5);
+}
+.card-preview.back {
+  border-top-color: var(--mantine-color-teal-5);
+  background: var(--mantine-color-teal-0);
+}
+.card-preview:focus-visible {
+  outline: 2px solid var(--mantine-color-indigo-5);
+  outline-offset: 3px;
+}
+.math-content {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.math-content img {
+  max-width: 100%;
+  height: auto;
+}
+.math-content mjx-container[display="true"] {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+}
+.math-content table {
+  border-collapse: collapse;
+  max-width: 100%;
+}
+.math-content td,
+.math-content th {
+  border: 1px solid var(--mantine-color-gray-3);
+  padding: 0.4rem;
+}
+@media (max-width: 64em) {
+  .card-workbench {
+    grid-template-columns: 1fr;
+  }
+  .workbench {
+    grid-template-columns: minmax(11rem, 14rem) minmax(0, 1fr);
+  }
+}
+@media (max-width: 48em) {
+  .workbench {
+    grid-template-columns: 1fr;
+  }
+  .deck-panel .mantine-ScrollArea-root {
+    height: 12rem !important;
+    min-height: 0;
+  }
+}

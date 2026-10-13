@@ -15,7 +15,9 @@ export function cards(source: string): CardRange[] {
       const list = node.node.parent;
       if (list?.parent?.name !== "Document") return false;
       const content = node.node.getChild("Paragraph");
-      const label = content ? source.slice(content.from, content.to).split("\n")[0] : "Untitled card";
+      const label = content
+        ? source.slice(content.from, content.to).split("\n")[0]
+        : "Untitled card";
       ranges.push({ from: node.from, to: node.to, label });
       return false;
     },
@@ -23,6 +25,12 @@ export function cards(source: string): CardRange[] {
   return ranges;
 }
 
-export function replaceCard(source: string, card: CardRange, replacement: string): string {
-  return source.slice(0, card.from) + replacement.trimEnd() + source.slice(card.to);
+export function replaceCard(
+  source: string,
+  card: CardRange,
+  replacement: string,
+): string {
+  return (
+    source.slice(0, card.from) + replacement.trimEnd() + source.slice(card.to)
+  );
 }
