@@ -15,3 +15,6 @@ test:
 
 # CI entry point (used by the pre-push hook)
 test-ci: test
+
+# Commit gate entry point
+test-commit: test
