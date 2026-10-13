@@ -4,6 +4,7 @@
 # ///
 """Capture the built native WebKit app in an isolated X11 display."""
 
+import json
 import os
 import shutil
 import subprocess
@@ -37,17 +38,17 @@ def main(*, entry: Path | None = None) -> None:
             command = [str(desktop / "src-tauri" / "target" / "release" / "desktop")]
             if entry is not None:
                 command = ["gio", "launch", str(entry.resolve(strict=True))]
+            runtime_environment = os.environ | {
+                "XDG_CONFIG_HOME": str(environment / "config"),
+                "XDG_CACHE_HOME": str(environment / "cache"),
+                "XDG_DATA_HOME": str(environment / "data"),
+                "UV_CACHE_DIR": uv_cache,
+            }
             process = subprocess.Popen(
                 command,
                 stdout=log,
                 stderr=log,
-                env=os.environ
-                | {
-                    "XDG_CONFIG_HOME": str(environment / "config"),
-                    "XDG_CACHE_HOME": str(environment / "cache"),
-                    "XDG_DATA_HOME": str(environment / "data"),
-                    "UV_CACHE_DIR": uv_cache,
-                },
+                env=runtime_environment,
             )
             window: str | None = None
             try:
@@ -70,6 +71,16 @@ def main(*, entry: Path | None = None) -> None:
                 assert '"desktop"' in wm_class
                 print("Native window:", window, flush=True)
                 time.sleep(2)
+                preferences_path = (
+                    environment / "config" / "dev.math.flashcards" / "preferences.json"
+                )
+                for _ in range(120):
+                    if preferences_path.is_file():
+                        break
+                    time.sleep(0.25)
+                assert json.loads(preferences_path.read_text())["workspace"] == str(
+                    desktop.parent
+                )
                 with mss.mss() as screen:
                     shot = screen.grab(
                         {"left": 0, "top": 0, "width": 1440, "height": 1000}
@@ -201,10 +212,9 @@ def main(*, entry: Path | None = None) -> None:
                     )
                 assert package.is_file(), (artifacts / "native.log").read_text()
                 assert zipfile.is_zipfile(package)
-                preferences_path = (
-                    environment / "config" / "dev.math.flashcards" / "preferences.json"
+                assert json.loads(preferences_path.read_text())["workspace"] == str(
+                    root
                 )
-                assert preferences_path.is_file()
                 time.sleep(1)
                 with mss.mss() as screen:
                     shot = screen.grab(
@@ -245,7 +255,49 @@ def main(*, entry: Path | None = None) -> None:
                         shot.size,
                         output=str(artifacts / "native-unsynced.png"),
                     )
-                print("Native app opened, rendered a deck, and generated its APKG.")
+                subprocess.run(["xdotool", "windowclose", window], check=True)
+                window = None
+                process.wait(timeout=10)
+                log.write("\nWorkspace restart\n")
+                log.flush()
+                process = subprocess.Popen(
+                    command, stdout=log, stderr=log, env=runtime_environment
+                )
+                window = subprocess.check_output(
+                    [
+                        "xdotool",
+                        "search",
+                        "--sync",
+                        "--onlyvisible",
+                        "--name",
+                        "Math Flashcards",
+                    ],
+                    text=True,
+                    timeout=30,
+                ).splitlines()[0]
+                for _ in range(120):
+                    restarted_log = (
+                        (artifacts / "native.log")
+                        .read_text()
+                        .split("Workspace restart\n")[-1]
+                    )
+                    if "Backend result: list exit status: 0" in restarted_log:
+                        break
+                    time.sleep(0.25)
+                assert "Backend result: list exit status: 0" in restarted_log
+                time.sleep(1)
+                with mss.mss() as screen:
+                    shot = screen.grab(
+                        {"left": 0, "top": 0, "width": 1440, "height": 1000}
+                    )
+                    mss.tools.to_png(
+                        shot.rgb,
+                        shot.size,
+                        output=str(artifacts / "native-restored-workspace.png"),
+                    )
+                print(
+                    "Native app opens the default workspace, saves workspace changes, and restores them after restart."
+                )
             finally:
                 if window is not None:
                     subprocess.run(["xdotool", "windowclose", window], check=True)

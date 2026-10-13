@@ -38,9 +38,18 @@ def main() -> None:
             expect(
                 page.get_by_role("heading", name="Math Flashcards", exact=True)
             ).to_be_visible()
+            expect(page.get_by_label("Workspace folder")).to_have_value(
+                str(repo.parent), timeout=30000
+            )
+            expect(
+                page.get_by_role("button", name="Refresh workspace", exact=True)
+            ).to_be_enabled(timeout=30000)
             page.screenshot(path=str(artifacts / "empty.png"))
             page.get_by_label("Workspace folder").fill(str(root))
             page.get_by_role("button", name="Open workspace", exact=True).click()
+            expect(
+                page.get_by_role("button", name="Open workspace", exact=True)
+            ).to_be_enabled(timeout=30000)
             page.get_by_text("Qual Basics", exact=True).click()
             page.get_by_text("Special Angles", exact=True).click()
             expect(page.get_by_text("Unsynced", exact=True).first).to_be_visible()

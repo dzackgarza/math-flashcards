@@ -34,7 +34,10 @@ refreshes the installation from an existing build.
 
 ## Use
 
-Select **Browse** or enter a workspace path. Open the workspace and select a deck.
+The app opens the saved workspace on startup. On first launch it opens the
+repository used to build the app. Preferences use the standard Tauri store in
+the XDG configuration directory.
+Select **Browse** or enter a workspace path to change it, then select a deck.
 Search the deck tree or card list to find a card. Edit **Front** and **Back** in
 their separate CodeMirror fields. Both fields accept Markdown and LaTeX, with
 Pandoc syntax and TeX highlighting from Zettlr's parser. Set tags with **Tags**.

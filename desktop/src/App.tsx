@@ -57,7 +57,12 @@ type Side = "Front" | "Back";
 function preferences() {
   return appConfigDir()
     .then((directory) => join(directory, "preferences.json"))
-    .then((path) => load(path));
+    .then((path) =>
+      load(path, {
+        defaults: { workspace: __DEFAULT_WORKSPACE__ },
+        autoSave: false,
+      }),
+    );
 }
 
 function treeData(decks: Summary[], filter: string): TreeNodeData[] {
@@ -252,11 +257,16 @@ export default function App() {
   ]);
 
   useEffect(() => {
-    if (!isTauri()) return;
+    if (!isTauri()) {
+      void chooseWorkspace(__DEFAULT_WORKSPACE__);
+      return;
+    }
     preferences()
       .then(async (store) => {
         const saved = await store.get<string>("workspace");
-        if (saved) setFolder(saved);
+        if (typeof saved !== "string" || !saved)
+          throw new Error("The saved workspace must be a folder path.");
+        await chooseWorkspace(saved);
       })
       .catch((failure) => setError(String(failure)));
   }, []);

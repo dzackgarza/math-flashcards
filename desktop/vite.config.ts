@@ -50,6 +50,11 @@ function workbenchBackend(): Plugin {
 }
 
 export default defineConfig({
+  define: {
+    __DEFAULT_WORKSPACE__: JSON.stringify(
+      fileURLToPath(new URL("..", import.meta.url)),
+    ),
+  },
   plugins: [
     react(),
     workbenchBackend(),
