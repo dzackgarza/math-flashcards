@@ -12,7 +12,6 @@ import {
   Menu,
   Modal,
   Paper,
-  ScrollArea,
   Select,
   Stack,
   Text,
@@ -799,7 +798,7 @@ export default function Organizer({
             <Text fw={650} size="sm" mb="sm">
               Move to a deck
             </Text>
-            <ScrollArea viewportRef={rail} h="calc(100vh - 340px)" mih={180}>
+            <Box ref={rail} className="deck-scroll">
               <Stack gap="sm">
                 {visibleDecks.map((deck) => (
                   <DeckTile
@@ -814,7 +813,7 @@ export default function Organizer({
                   />
                 ))}
               </Stack>
-            </ScrollArea>
+            </Box>
           </Paper>
           <Stack gap="md" className="card-board">
             <Paper withBorder p="md">

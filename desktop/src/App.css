@@ -136,6 +136,11 @@ body {
   position: sticky;
   top: 5.5rem;
 }
+.deck-scroll {
+  height: calc(100vh - 340px);
+  min-height: 180px;
+  overflow-y: auto;
+}
 .card-board {
   min-width: 0;
 }
@@ -189,7 +194,7 @@ body {
   .deck-rail {
     position: static;
   }
-  .deck-rail .mantine-ScrollArea-root {
+  .deck-rail .deck-scroll {
     height: 12rem !important;
     min-height: 0 !important;
   }

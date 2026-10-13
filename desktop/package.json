@@ -23,6 +23,7 @@
     "@lezer/highlight": "^1.2.5",
     "@lezer/markdown": "file:vendor/lezer-markdown-pandoc.tgz",
     "@mantine/core": "^9.7.2",
+    "@mantine/form": "^9.7.2",
     "@mantine/hooks": "^9.7.2",
     "@mantine/modals": "^9.7.2",
     "@tabler/icons-react": "^3.49.0",

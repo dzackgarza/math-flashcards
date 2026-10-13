@@ -22,6 +22,7 @@ import {
 } from "@mantine/core";
 import { useDebouncedCallback, useDebouncedValue } from "@mantine/hooks";
 import { modals } from "@mantine/modals";
+import { useForm } from "@mantine/form";
 import CodeMirror from "@uiw/react-codemirror";
 import { isTauri } from "@tauri-apps/api/core";
 import { getCurrentWindow } from "@tauri-apps/api/window";
@@ -91,7 +92,14 @@ function treeData(decks: Summary[], filter: string): TreeNodeData[] {
 export default function App() {
   const [view, setView] = useState<"Organize" | "Edit">("Organize");
   const [organizerDeck, setOrganizerDeck] = useState<string | null>(null);
-  const [folder, setFolder] = useState("");
+  const workspaceForm = useForm({
+    mode: "uncontrolled",
+    initialValues: { workspace: "" },
+    validate: {
+      workspace: (value) =>
+        value.trim() ? null : "Choose a workspace folder.",
+    },
+  });
   const [workspace, setWorkspace] = useState("");
   const [decks, setDecks] = useState<Summary[]>([]);
   const [document, setDocument] = useState<Document | null>(null);
@@ -161,7 +169,7 @@ export default function App() {
       );
       navigation.current++;
       setWorkspace(result.root);
-      setFolder(result.root);
+      workspaceForm.setFieldValue("workspace", result.root);
       setDecks(result.decks);
       setDocument(null);
       setOrganizerDeck(null);
@@ -511,8 +519,8 @@ export default function App() {
               <TextInput
                 label="Workspace folder"
                 placeholder="Folder containing decks/"
-                value={folder}
-                onChange={(event) => setFolder(event.currentTarget.value)}
+                key={workspaceForm.key("workspace")}
+                {...workspaceForm.getInputProps("workspace")}
                 style={{ flex: 1, minWidth: 220 }}
               />
               {isTauri() && (
@@ -534,12 +542,13 @@ export default function App() {
                 </Button>
               )}
               <Button
-                disabled={!folder || busy}
-                onClick={() =>
+                disabled={busy}
+                onClick={() => {
+                  if (workspaceForm.validate().hasErrors) return;
                   confirmNavigation(() => {
-                    void chooseWorkspace(folder);
-                  })
-                }
+                    void chooseWorkspace(workspaceForm.getValues().workspace);
+                  });
+                }}
               >
                 Open workspace
               </Button>
