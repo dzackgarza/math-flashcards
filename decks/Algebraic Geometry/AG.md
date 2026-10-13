@@ -23,7 +23,7 @@ Comparison between maximal and prime ideals
 :::
 
 ::: {.back card-id="card-4de1217ef87a1ec0"}
-?
+Every maximal ideal is prime. A prime ideal $\mathfrak p$ is maximal exactly when $R/\mathfrak p$ is a field; prime alone says $R/\mathfrak p$ is an integral domain. Geometrically, maximal ideals are closed points of $\operatorname{Spec}R$; other prime ideals can be generic points.
 :::
 
 ::: {.front card-id="card-8510b4c9963ebda3" tags="definitions"}

@@ -137,7 +137,7 @@ What is Noether normalization?
 :::
 
 ::: {.back card-id="card-c3c4d762b57c058f"}
-*(Answer was a figure; image not recovered.)*
+If $A$ is a finitely generated algebra over a field $k$, there are algebraically independent $x_1,\ldots,x_d\in A$ such that $A$ is finite over $k[x_1,\ldots,x_d]$, where $d=\dim A$.
 :::
 
 ::: {.front card-id="card-333bb97f5f81c327"}

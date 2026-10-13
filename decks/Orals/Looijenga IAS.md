@@ -139,7 +139,7 @@ What are the two main **surgeries** on pseudofans?
 ::: {.back card-id="card-f270c4dc468b873e"}
 Internal blowups and node smoothing.
 
-Pics:
+An internal blowup inserts an interior exceptional curve and changes one boundary self-intersection $D_i^2\mapsto D_i^2-1$. Smoothing a node between $D_i$ and $D_{i+1}$ replaces those components by one with self-intersection $D_i^2+D_{i+1}^2+2$.
 :::
 
 ::: {.front card-id="card-a45da020a729aa8b"}

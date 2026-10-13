@@ -31,7 +31,7 @@ Noether Normalization
 :::
 
 ::: {.back card-id="card-5f275823adfee719"}
-?
+If $A$ is a finitely generated algebra over a field $k$, there are algebraically independent elements $x_1,\ldots,x_d\in A$ such that $A$ is finite as a module over $k[x_1,\ldots,x_d]$. Here $d=\dim A$.
 :::
 
 ::: {.front card-id="card-98c2393af97156a9" tags="theorem"}

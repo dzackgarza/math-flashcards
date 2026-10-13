@@ -36,7 +36,7 @@ Normal Field Extension
 :::
 
 ::: {.back card-id="card-e91fb8d6da14cb93"}
-?
+An algebraic extension $L/K$ is normal if every irreducible polynomial in $K[x]$ with a root in $L$ splits completely over $L$. Equivalently, $L$ is the splitting field over $K$ of a family of polynomials.
 :::
 
 ::: {.front card-id="card-4ac687c564143aba" tags="definition"}
@@ -44,7 +44,7 @@ Separable Field Extension
 :::
 
 ::: {.back card-id="card-4ac687c564143aba"}
-?
+An algebraic extension $L/K$ is separable if every element of $L$ has a separable minimal polynomial over $K$; that is, its minimal polynomial has no repeated root in an algebraic closure.
 :::
 
 ::: {.front card-id="card-7cbda29629a8f07a" tags="notation, definition"}

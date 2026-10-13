@@ -33,7 +33,7 @@ Open Mapping Theorem
 :::
 
 ::: {.back card-id="card-b71874f5765eec11"}
-?
+Every surjective bounded linear map between Banach spaces is open: it sends open sets to open sets.
 :::
 
 ::: {.front card-id="card-445ba0597d9308b6" tags="theorem"}
@@ -41,5 +41,5 @@ Closed Graph Theorem
 :::
 
 ::: {.back card-id="card-445ba0597d9308b6"}
-?
+A linear map between Banach spaces is bounded if and only if its graph is closed in the product Banach space.
 :::

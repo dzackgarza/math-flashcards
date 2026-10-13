@@ -7,7 +7,7 @@ What is the **fiber product** of schemes?
 :::
 
 ::: {.back card-id="card-134f85a8c9a41dbd"}
-*(Answer was a figure; image not recovered.)*
+For maps $X\to S$ and $Y\to S$, the fiber product $X\times_S Y$ represents pairs of maps over $S$: $\operatorname{Hom}_S(T,X\times_S Y)\cong\operatorname{Hom}_S(T,X)\times\operatorname{Hom}_S(T,Y)$. For affine schemes, $\operatorname{Spec}A\times_{\operatorname{Spec}R}\operatorname{Spec}B\cong\operatorname{Spec}(A\otimes_R B)$.
 :::
 
 ::: {.front card-id="card-a82b6f5d3938ff3c"}

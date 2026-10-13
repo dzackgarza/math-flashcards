@@ -104,7 +104,7 @@ Mean value theorem for holomorphic and harmonic functions
 :::
 
 ::: {.back card-id="card-ab44a5c54c77da84"}
-?
+If $f$ is holomorphic on a neighborhood of $\overline{D(a,r)}$, then $f(a)=\frac1{2\pi}\int_0^{2\pi}f(a+re^{it})\,dt$. If $u$ is harmonic there, the same circle average equals $u(a)$; its average over $D(a,r)$ also equals $u(a)$.
 :::
 
 ::: {.front card-id="card-f37b9861f4f3af0c" tags="definition"}
@@ -112,5 +112,5 @@ Schwarz Lemma
 :::
 
 ::: {.back card-id="card-f37b9861f4f3af0c"}
-?
+If $f:\mathbb D\to\mathbb D$ is holomorphic and $f(0)=0$, then $|f(z)|\leq|z|$ and $|f'(0)|\leq1$. Equality at a nonzero $z$, or equality in the derivative bound, forces $f(z)=e^{i\theta}z$.
 :::

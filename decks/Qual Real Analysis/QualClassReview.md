@@ -151,11 +151,11 @@ $$
 :::
 
 ::: {.front card-id="card-17e7d38a9f92423f" tags="proof"}
-Proposition: Convergence in measure is equivalent to a.e. convergence
+How are convergence in measure and almost-everywhere convergence related?
 :::
 
 ::: {.back card-id="card-17e7d38a9f92423f"}
-Proof: ? Use Egorov's Theorem
+On a finite measure space, almost-everywhere convergence implies convergence in measure: Egorov's theorem gives uniform convergence outside a set of arbitrarily small measure. Conversely, convergence in measure gives an almost-everywhere convergent subsequence: choose $n_k$ with $\mu(|f_{n_k}-f|>2^{-k})<2^{-k}$ and apply Borel–Cantelli. The full sequence need not converge almost everywhere.
 :::
 
 ::: {.front card-id="card-7355ee6da5d3f002" tags="definition"}

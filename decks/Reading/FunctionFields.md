@@ -128,7 +128,7 @@ Definition 4.2.1 ($ M{\hbox{-}} $lattices)
 :::
 
 ::: {.back card-id="card-9d15d0cc12f3a90f"}
-*(Answer was a figure; image not recovered.)*
+Let $M\subseteq C_\infty$ be a field containing $k$. An $M$-lattice is an $A$-submodule $L\subseteq M^{\mathrm{sep}}\subseteq C_\infty$ that is finitely generated over $A$, discrete in $C_\infty$, and stable under $G_M=\operatorname{Gal}(M^{\mathrm{sep}}/M)$. Its rank is $\operatorname{rank}_A L$.
 :::
 
 ::: {.front card-id="card-a47a773808d252c6"}

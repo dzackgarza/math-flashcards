@@ -283,7 +283,7 @@ What are the allowed indeterminate forms for L'Hopital's rule?
 :::
 
 ::: {.back card-id="card-7cd1c0cd5720855d"}
-- Grad Math Facts-2
+The direct forms are $0/0$ and $\infty/\infty$. Rewrite products such as $0\cdot\infty$, differences such as $\infty-\infty$, and powers such as $0^0$, $1^\infty$, or $\infty^0$ before applying the rule. The derivative quotient must meet the rule's hypotheses.
 :::
 
 ::: {.front card-id="card-dfbf87f69f38785a"}
@@ -347,7 +347,7 @@ What is the ratio test?
 :::
 
 ::: {.back card-id="card-f304a76d8de0f862"}
-Grad Math Facts-3
+For $\sum a_n$ with $a_n\ne0$ eventually, let $L=\lim_{n\to\infty}|a_{n+1}/a_n|$ if it exists. The series converges absolutely if $L<1$, diverges if $L>1$, and the test is inconclusive if $L=1$.
 :::
 
 ::: {.front card-id="card-e75a240f6a028504"}
@@ -355,7 +355,7 @@ What is the root test?
 :::
 
 ::: {.back card-id="card-e75a240f6a028504"}
-Grad Math Facts-3
+For $\sum a_n$, let $L=\limsup_{n\to\infty}|a_n|^{1/n}$. The series converges absolutely if $L<1$, diverges if $L>1$, and the test is inconclusive if $L=1$.
 :::
 
 ::: {.front card-id="card-30a6b9e80aa8b86a"}
@@ -471,7 +471,7 @@ How do you solve a linear second order ODE?
 :::
 
 ::: {.back card-id="card-aaf11f8908744b0b"}
-Grad Math Facts-3
+For $y''+p(x)y'+q(x)y=g(x)$, first find independent solutions $y_1,y_2$ of the homogeneous equation. The general solution is $c_1y_1+c_2y_2+y_p$, where $y_p$ is a particular solution, obtainable by variation of parameters. For constant coefficients, solve the characteristic polynomial for $y_1,y_2$.
 :::
 
 ::: {.front card-id="card-cad38830857677f5"}

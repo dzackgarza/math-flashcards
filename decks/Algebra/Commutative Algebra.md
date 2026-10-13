@@ -31,7 +31,7 @@ Noether Normalization
 :::
 
 ::: {.back card-id="card-2b24915fc8a6f88e"}
-?
+If $A$ is a finitely generated algebra over a field $k$, there are algebraically independent elements $x_1,\ldots,x_d\in A$ such that $A$ is finite as a module over $k[x_1,\ldots,x_d]$. Here $d=\dim A$.
 :::
 
 ::: {.front card-id="card-2e1939e74e2dff9e" tags="theorem"}
@@ -71,5 +71,5 @@ Definition: Primary Decomposition
 :::
 
 ::: {.back card-id="card-3e058eb429a38ac7"}
-?
+In a Noetherian ring, every ideal $I$ can be written as a finite intersection $I=Q_1\cap\cdots\cap Q_r$ of primary ideals. An ideal $Q$ is primary if $ab\in Q$ and $a\notin Q$ imply $b^n\in Q$ for some $n\geq1$.
 :::

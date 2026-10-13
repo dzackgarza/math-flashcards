@@ -577,9 +577,9 @@ For $ C\hookrightarrow S $ a curve in a surface, what is $ \omega_C $?
 :::
 
 ::: {.back card-id="card-624368019a58567d"}
-Idea: differential forms with (no?) poles along $ C $, and base change to $ {\mathcal{O}}_C $:
-
-$$\omega_S = (\omega_S \otimes{\mathcal{O}}_S(C))\otimes{\mathcal{O}}_C.$$
+For a smooth curve $C$ in a smooth surface $S$, adjunction gives
+$$\omega_C\cong(\omega_S\otimes\mathcal O_S(C))|_C.$$
+The factor $\mathcal O_S(C)$ permits a simple pole along $C$ before taking the residue on $C$.
 :::
 
 ::: {.front card-id="card-f73cddec8b039beb"}

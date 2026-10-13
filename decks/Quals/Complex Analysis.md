@@ -22,7 +22,7 @@ Conformal map $ {\mathbb{H}}\to \mathbb{D} $
 :::
 
 ::: {.back card-id="card-4ae0c0de5beac5d5"}
-*(Answer was a figure; image not recovered.)*
+$z\mapsto(z-i)/(z+i)$ maps $\mathbb H$ biholomorphically onto $\mathbb D$.
 :::
 
 ::: {.front card-id="card-2b14a36e3cecc0f9"}
@@ -30,7 +30,7 @@ Conformal map: right-half-plane to $ \mathbb{D} $
 :::
 
 ::: {.back card-id="card-2b14a36e3cecc0f9"}
-*(Answer was a figure; image not recovered.)*
+$z\mapsto(z-1)/(z+1)$ maps $\{\operatorname{Re}z>0\}$ biholomorphically onto $\mathbb D$.
 :::
 
 ::: {.front card-id="card-d38f3ddcd71ba318"}
@@ -38,7 +38,7 @@ Conformal map: $ {\mathbb{H}}\setminus(-\infty ,0] $ to a horizontal strip
 :::
 
 ::: {.back card-id="card-d38f3ddcd71ba318"}
-*(Answer was a figure; image not recovered.)*
+The principal logarithm maps $\mathbb H$ biholomorphically onto $\{w:0<\operatorname{Im}w<\pi\}$. The negative real ray is already outside $\mathbb H$.
 :::
 
 ::: {.front card-id="card-f32689d12d5d73f7"}
@@ -46,7 +46,7 @@ Conformal map: what does $ z+a^{-1} $ do?
 :::
 
 ::: {.back card-id="card-f32689d12d5d73f7"}
-*(Answer was a figure; image not recovered.)*
+For $a\ne0$, $z\mapsto z+a^{-1}$ translates the plane by $1/a$ and preserves angles and distances.
 :::
 
 ::: {.front card-id="card-51daf9d2997f7b1f"}
@@ -54,5 +54,5 @@ Conformal map: upper half-disc to $ {\mathbb{H}} $
 :::
 
 ::: {.back card-id="card-51daf9d2997f7b1f"}
-*(Answer was a figure; image not recovered.)*
+$z\mapsto-(z+z^{-1})$ maps $\{z:|z|<1,\ \operatorname{Im}z>0\}$ biholomorphically onto $\mathbb H$.
 :::

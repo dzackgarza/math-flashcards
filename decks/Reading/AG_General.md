@@ -161,7 +161,7 @@ Draw a picture of 3-dimensional vanishing cycles.
 :::
 
 ::: {.back card-id="card-6c5784cabdbc59b9"}
-*(Answer was a figure; image not recovered.)*
+For the smoothing $X_t=\{z_1^2+z_2^2+z_3^2+z_4^2=t\}\subset\mathbb C^4$ with $t>0$, the real locus $\{(x_1,\ldots,x_4)\in\mathbb R^4:\sum x_i^2=t\}$ is a three-sphere $S^3\subset X_t$. It shrinks to the node as $t\to0$; this is the vanishing cycle.
 :::
 
 ::: {.front card-id="card-00f3486c354c5d79"}

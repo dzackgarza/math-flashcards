@@ -503,11 +503,11 @@ $$
 :::
 
 ::: {.front card-id="card-5979542421630a15" tags="proof"}
-Proposition: Convergence in measure is equivalent to a.e. convergence
+How are convergence in measure and almost-everywhere convergence related?
 :::
 
 ::: {.back card-id="card-5979542421630a15"}
-Proof: ? Use Egorov's Theorem
+On a finite measure space, almost-everywhere convergence implies convergence in measure: Egorov's theorem gives uniform convergence outside a set of arbitrarily small measure. Conversely, convergence in measure gives an almost-everywhere convergent subsequence: choose $n_k$ with $\mu(|f_{n_k}-f|>2^{-k})<2^{-k}$ and apply Borel–Cantelli. The full sequence need not converge almost everywhere.
 :::
 
 ::: {.front card-id="card-1f66fb5d19d7ca5a" tags="definition"}
@@ -535,11 +535,11 @@ $$
 :::
 
 ::: {.front card-id="card-217b54f71199df11" tags="proof"}
-Proposition: $\int f = 0 \implies \int f = 0$ a.e.
+Proposition: If $f\geq 0$ and $\int f=0$, then $f=0$ almost everywhere.
 :::
 
 ::: {.back card-id="card-217b54f71199df11"}
-Proof: ?
+For each $n\geq1$, let $E_n=\{x:f(x)\geq 1/n\}$. Then $0=\int f\geq\mu(E_n)/n$, so $\mu(E_n)=0$. Since $\{f>0\}=\bigcup_{n\geq1}E_n$, it has measure zero.
 :::
 
 ::: {.front card-id="card-1541c4af4bbc91b2" tags="technique"}
@@ -557,7 +557,7 @@ Proposition: $\sum \abs{f_n} \in L^1 \implies \sum \abs{f_n(x)} < \infty$ a.e.
 :::
 
 ::: {.back card-id="card-86b13568f4c9d30b"}
-Proof: by contradiction.
+Tonelli's theorem gives $\int\sum_n|f_n(x)|\,d\mu=\sum_n\int|f_n|\,d\mu<\infty$. A nonnegative function with finite integral is finite almost everywhere. Therefore $\sum_n|f_n(x)|<\infty$ almost everywhere.
 :::
 
 ::: {.front card-id="card-5dc4f130ff994760" tags="counterexamples"}

@@ -417,7 +417,7 @@ What is the Yoneda splice of $ f\in {\operatorname{HH}}^n(A) $ and $ g\in {\oper
 :::
 
 ::: {.back card-id="card-3401788769da2a76"}
-*(Answer was a figure; image not recovered.)*
+Identify $\operatorname{HH}^n(A)=\operatorname{Ext}_{A^e}^n(A,A)$. Represent $f$ and $g$ by exact $n$- and $m$-extensions of $A$ by $A$. Their Yoneda splice joins the terminal $A$ of one extension to the initial $A$ of the other, producing an $(n+m)$-extension. Its class is the cup product $f\smile g$ (with order fixed by the composition convention).
 :::
 
 ::: {.front card-id="card-f4cf8157c4893998"}

@@ -217,9 +217,7 @@ Describe tame and wild ramification
 :::
 
 ::: {.back card-id="card-3b503d303e16a541"}
-Locally:
-
-Globally:
+For a finite extension of discretely valued fields with residue characteristic $p$, ramification is tame if the ramification index is prime to $p$ and the residue extension is separable; otherwise it is wild. For a finite extension of global fields, test this condition at each nonarchimedean place. The extension is tamely ramified if it is tame at every such place; wild ramification occurs at a place whose local extension is wild.
 :::
 
 ::: {.front card-id="card-6966b7db2a0f8235"}

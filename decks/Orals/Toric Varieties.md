@@ -419,7 +419,7 @@ What is $ P_{-K_X} $ for $ X = {\mathbf{P}}^2 $? What is its dual?
 :::
 
 ::: {.back card-id="card-c993598eef760f0d"}
-*(Answer was a figure; image not recovered.)*
+For the fan of $\mathbb P^2$ with rays $(1,0)$, $(0,1)$, and $(-1,-1)$, $-K_X=D_1+D_2+D_3$. Hence $P_{-K_X}=\{(a,b):a\geq-1,\ b\geq-1,\ a+b\leq1\}$, with vertices $(-1,-1)$, $(2,-1)$, and $(-1,2)$. Its polar dual is $\operatorname{conv}\{(1,0),(0,1),(-1,-1)\}$.
 :::
 
 ::: {.front card-id="card-642aa3c2c055fbb4"}
@@ -427,7 +427,7 @@ How can you read the projective embedding off of a polytope?
 :::
 
 ::: {.back card-id="card-642aa3c2c055fbb4"}
-*(Answer was a figure; image not recovered.)*
+For a very ample lattice polytope $P$, its lattice points give the monomial sections of the associated line bundle. The map of the dense torus is $t\mapsto[\chi^m(t)]_{m\in P\cap M}$ into $\mathbb P^{|P\cap M|-1}$; its closure is the embedded projective toric variety.
 :::
 
 ::: {.front card-id="card-34edf68d86bf5e90"}
@@ -499,7 +499,7 @@ Why are toric varieties **normal**?
 :::
 
 ::: {.back card-id="card-62d3e5cd4d47b6a7"}
-Need local rings to be integrally closed; the local ring at $ x_\sigma $ is $ R_\sigma = \cap_{?} R_{\tau_i} $, but each $ R_{\tau_i} $ is of the form $ {\mathbf{C}}[x_1,x_2^{\pm 1},\cdots, x_n^{\pm 1}] $ and intersections of integrally closed domains are again integrally closed..
+For a cone $\sigma$, the affine chart is $U_\sigma=\operatorname{Spec}k[S_\sigma]$ with $S_\sigma=\sigma^\vee\cap M$. This semigroup is saturated: if $qm\in S_\sigma$ for $q>0$ and $m\in M$, then $m\in S_\sigma$. A finitely generated saturated affine semigroup has an integrally closed semigroup algebra. Thus every affine toric chart is normal, so the toric variety is normal.
 :::
 
 ::: {.front card-id="card-9b1476b64dfbcdf6"}
@@ -539,7 +539,7 @@ How do blowups and contractions of fans change self-intersection numbers?
 :::
 
 ::: {.back card-id="card-e3191417e1c27334"}
-*(Answer was a figure; image not recovered.)*
+On a smooth toric surface, blowing up the fixed point where adjacent invariant curves $D_i,D_{i+1}$ meet inserts the ray $u_i+u_{i+1}$. The new exceptional curve has self-intersection $-1$, and the strict transforms of $D_i,D_{i+1}$ each lose one in self-intersection. Contracting an invariant $(-1)$-curve reverses these changes.
 :::
 
 ::: {.front card-id="card-700c8b1f3d679d6c"}

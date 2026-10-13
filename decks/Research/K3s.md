@@ -977,7 +977,7 @@ Give lower bounds on $ \rho(X) $ when $ \zeta_p\curvearrowright X $.
 :::
 
 ::: {.back card-id="card-7f7b0e69e329f6b1"}
-*(Answer was a figure; image not recovered.)*
+For a complex projective K3 surface with a symplectic automorphism of prime order $p$, the coinvariant lattice lies in $\operatorname{NS}(X)$, and averaging an ample class gives an additional invariant algebraic class. Hence $\rho(X)\geq1+\operatorname{rank}(H^2(X,\mathbb Z)^{\sigma})^\perp$: for $p=2,3,5,7$, the respective bounds are $9,13,17,19$.
 :::
 
 ::: {.front card-id="card-ff30a885bc572a3d"}
@@ -993,7 +993,7 @@ Compute the dimension of moduli of K3s with an order 3 symplectic automorphism.
 :::
 
 ::: {.back card-id="card-b5a57050c6bdb637"}
-Dimension 7. How to show: ...?
+For algebraic complex K3 surfaces, the dimension is $7$. An order-three symplectic automorphism has six fixed points. The Lefschetz formula gives $6=2+\operatorname{tr}(\sigma^*|H^2)$; with eigenvalue multiplicities $a$ for $1$ and $b$ for each primitive cube root, $a-b=4$ and $a+2b=22$. Thus $a=10$, $b=6$, and the coinvariant lattice has rank $12$ in $\operatorname{NS}(X)$. An invariant ample class raises the generic Picard rank to $13$, leaving $20-13=7$ moduli. Families attain this bound (Garbagnati–Sarti, *Symplectic automorphisms of prime order on K3 surfaces*, §5).
 :::
 
 ::: {.front card-id="card-f729e40766440d54"}
@@ -1889,7 +1889,7 @@ What is a Hodge isometry?
 :::
 
 ::: {.back card-id="card-875031744b580783"}
-An isomorphism $ V_1 { \, \xrightarrow{\sim}\, }V_2 $ of Hodge structures compatible with their polarizations?
+For polarized Hodge structures $(V_1,q_1)$ and $(V_2,q_2)$, a Hodge isometry is an isomorphism $f:V_1\xrightarrow{\sim}V_2$ of Hodge structures such that $q_2(fx,fy)=q_1(x,y)$ for all $x,y\in V_1$.
 :::
 
 ::: {.front card-id="card-f684c22e4863facf"}
@@ -2169,7 +2169,9 @@ What is the Hodge diamond for a surface?
 :::
 
 ::: {.back card-id="card-b895e365a3b35d5b"}
-*(Answer was a figure; image not recovered.)*
+For a smooth projective complex surface, the Hodge diamond is
+$$\begin{matrix}&&1&&\\&q&&q&\\p_g&&h^{1,1}&&p_g\\&q&&q&\\&&1&&\end{matrix}$$
+where $q=h^{1,0}=h^1(\mathcal O_X)$ and $p_g=h^{2,0}=h^0(\omega_X)$.
 :::
 
 ::: {.front card-id="card-0cd3beb8bbe51b60"}
@@ -2209,7 +2211,8 @@ What is the Hodge diamond of a K3?
 :::
 
 ::: {.back card-id="card-21ac3decc987c016"}
-*(Answer was a figure; image not recovered.)*
+For a complex K3 surface, $q=0$, $p_g=1$, and $h^{1,1}=20$. Its Hodge diamond is
+$$\begin{matrix}&&1&&\\&0&&0&\\1&&20&&1\\&0&&0&\\&&1&&\end{matrix}.$$
 :::
 
 ::: {.front card-id="card-8ace99975d2c209d"}

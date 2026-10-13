@@ -55,5 +55,5 @@ $\arctan$ values:
 :::
 
 ::: {.back card-id="card-c6801344324a2f26"}
-?
+$\arctan 0=0$, $\arctan(1/\sqrt3)=\pi/6$, $\arctan 1=\pi/4$, $\arctan\sqrt3=\pi/3$, and $\lim_{x\to+\infty}\arctan x=\pi/2$.
 :::
