@@ -17,7 +17,7 @@ test:
 test-ci: test
 
 # Commit gate entry point
-test-commit: test
+test-commit: test desktop-frontend desktop-source-test desktop-test
 
 # Install the desktop dependencies
 desktop-install:
@@ -45,9 +45,9 @@ desktop-frontend:
     cd desktop && bunx tsc --noEmit
     cd desktop && bunx vite build
 
-# Exercise the editor against its real backend; serve desktop-web first
+# Exercise the editor against its real backend with an isolated server
 desktop-test:
-    uv run desktop/tests/workbench.py
+    cd desktop && bunx start-server-and-test 'just -f ../justfile desktop-web' http-get://127.0.0.1:1420 'uv run tests/workbench.py'
 
 # Verify source preservation and card boundaries against Pandoc
 desktop-source-test:
@@ -59,7 +59,7 @@ desktop-native-test:
 
 # Apply the canonical formatters to desktop sources
 desktop-format:
-    uvx ruff check --fix desktop/backend.py desktop/tests/workbench.py
-    uvx ruff format desktop/backend.py desktop/tests/workbench.py
-    cd desktop && bunx prettier --write src vite.config.ts index.html
+    uvx ruff check --fix desktop/backend.py desktop/tests
+    uvx ruff format desktop/backend.py desktop/tests
+    cd desktop && bunx prettier --write src tests/*.ts vite.config.ts index.html
     cd desktop/src-tauri && cargo fmt

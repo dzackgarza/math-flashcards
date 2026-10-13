@@ -15,6 +15,7 @@ export type Request =
 
 export const statusSchema = z.enum(["Up to date", "Unsynced"]);
 export const workspaceSchema = z.object({
+  root: z.string(),
   decks: z.array(z.object({ path: z.string(), status: statusSchema })),
 });
 export const documentSchema = z.object({

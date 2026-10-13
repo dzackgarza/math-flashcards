@@ -112,6 +112,7 @@ class Summary(BaseModel):
 
 
 class Workspace(BaseModel):
+    root: str
     decks: list[Summary]
 
 
@@ -347,6 +348,7 @@ def dispatch(request: Request) -> Workspace | Document | Preview | Generated:
     root = workspace_path(request.workspace)
     if isinstance(request, ListInput):
         return Workspace(
+            root=str(root),
             decks=[
                 Summary(
                     path=str(path.relative_to(root / "decks")),
@@ -354,7 +356,7 @@ def dispatch(request: Request) -> Workspace | Document | Preview | Generated:
                 )
                 for path in sorted((root / "decks").rglob("*.md"))
                 if path.resolve().is_relative_to(root / "decks")
-            ]
+            ],
         )
     path = deck_path(root, request.path)
     output = package_path(root, path)
@@ -400,7 +402,10 @@ def main() -> None:
         result = dispatch(request)
     except subprocess.CalledProcessError as error:
         print(error.stderr, file=sys.stderr)
-        raise
+        sys.exit(error.returncode)
+    except (ValueError, FileNotFoundError) as error:
+        print(str(error), file=sys.stderr)
+        sys.exit(1)
     print(result.model_dump_json())
 
 

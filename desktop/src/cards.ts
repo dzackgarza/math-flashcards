@@ -30,7 +30,5 @@ export function replaceCard(
   card: CardRange,
   replacement: string,
 ): string {
-  return (
-    source.slice(0, card.from) + replacement + source.slice(card.to)
-  );
+  return source.slice(0, card.from) + replacement + source.slice(card.to);
 }

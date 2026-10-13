@@ -29,7 +29,7 @@ import { load } from "@tauri-apps/plugin-store";
 import { watch } from "@tauri-apps/plugin-fs";
 import { MathJax, MathJaxContext } from "better-react-mathjax";
 import DOMPurify from "dompurify";
-import { cards, replaceCard } from "./cards";
+import { cards, replaceCard, type CardRange } from "./cards";
 import {
   request,
   workspaceSchema,
@@ -75,8 +75,12 @@ export default function App() {
   const [previewError, setPreviewError] = useState("");
   const [previewLoading, setPreviewLoading] = useState(false);
   const [index, setIndex] = useState(0);
+  const [cardDraft, setCardDraft] = useState<
+    (CardRange & { source: string }) | null
+  >(null);
   const [side, setSide] = useState<Side>("Front");
   const [task, setTask] = useState<Task>("Idle");
+  const [buildResult, setBuildResult] = useState<"Ready" | "Failed">("Ready");
   const [error, setError] = useState("");
   const [log, setLog] = useState("");
   const [filter, setFilter] = useState("");
@@ -120,15 +124,17 @@ export default function App() {
         workspaceSchema,
       );
       navigation.current++;
-      setWorkspace(root);
-      setFolder(root);
+      setWorkspace(result.root);
+      setFolder(result.root);
       setDecks(result.decks);
       setDocument(null);
+      setCardDraft(null);
       setPreview(null);
       setLog("");
+      setBuildResult("Ready");
       if (isTauri()) {
         const store = await load("preferences.json");
-        await store.set("workspace", root);
+        await store.set("workspace", result.root);
         await store.save();
       }
     } catch (failure) {
@@ -164,11 +170,12 @@ export default function App() {
       );
       if (token !== navigation.current) return;
       setDocument({ ...result, path, saved: result.source });
-      setIndex(0);
+      selectCard(0, result.source);
       setSide("Front");
       setPreview(null);
       setPreviewError("");
       setLog("");
+      setBuildResult("Ready");
       setCardFilter("");
     } catch (failure) {
       setError(String(failure));
@@ -253,6 +260,25 @@ export default function App() {
     setPreviewLoading(true);
   }
 
+  function selectCard(cardIndex: number, source: string) {
+    const range = cards(source)[cardIndex];
+    setIndex(cardIndex);
+    setSide("Front");
+    setCardDraft(
+      range ? { ...range, source: source.slice(range.from, range.to) } : null,
+    );
+  }
+
+  function editCard(value: string) {
+    if (!document || !cardDraft) return;
+    edit(replaceCard(document.source, cardDraft, value));
+    setCardDraft({
+      ...cardDraft,
+      to: cardDraft.from + value.length,
+      source: value,
+    });
+  }
+
   async function save() {
     if (!document) return;
     const saving = document;
@@ -290,6 +316,7 @@ export default function App() {
   async function generate() {
     if (!document || dirty) return;
     setTask("Generating");
+    setBuildResult("Ready");
     setError("");
     setLog("Generating the saved deck…");
     try {
@@ -302,6 +329,7 @@ export default function App() {
     } catch (failure) {
       setError(String(failure));
       setLog(String(failure));
+      setBuildResult("Failed");
     } finally {
       setTask("Idle");
     }
@@ -309,12 +337,11 @@ export default function App() {
 
   function addCard() {
     if (!document) return;
-    setIndex(ranges.length);
-    setSide("Front");
-    edit(
+    const source =
       document.source +
-        "\n\n- New question\n\n    New answer\n\n    tags: new\n",
-    );
+      "\n\n- New question\n\n    New answer\n\n    tags: new\n";
+    selectCard(ranges.length, source);
+    edit(source);
   }
 
   function deleteCard() {
@@ -325,16 +352,23 @@ export default function App() {
       labels: { confirm: "Delete", cancel: "Cancel" },
       confirmProps: { color: "red" },
       onConfirm: () => {
-        edit(
+        const source =
           document.source.slice(0, selected.from) +
-            document.source.slice(selected.to),
-        );
-        setIndex(Math.max(0, index - 1));
+          document.source.slice(selected.to);
+        selectCard(Math.max(0, index - 1), source);
+        edit(source);
       },
     });
   }
 
-  const packageState = task === "Generating" ? "Generating" : document?.status;
+  const packageState =
+    task === "Generating"
+      ? "Generating"
+      : buildResult === "Failed"
+        ? "Failed"
+        : dirty
+          ? "Unsynced"
+          : document?.status;
   return (
     <AppShell header={{ height: 76 }} padding="lg">
       <AppShell.Header px="lg">
@@ -597,8 +631,7 @@ export default function App() {
                                   h="auto"
                                   py="sm"
                                   onClick={() => {
-                                    setIndex(cardIndex);
-                                    setSide("Front");
+                                    selectCard(cardIndex, document.source);
                                   }}
                                   styles={{
                                     label: {
@@ -632,19 +665,14 @@ export default function App() {
                           Delete card
                         </Button>
                       </Group>
-                      {selected ? (
+                      {cardDraft ? (
                         <CodeMirror
                           key={document.path + ":" + index}
-                          value={document.source.slice(
-                            selected.from,
-                            selected.to,
-                          )}
+                          value={cardDraft.source}
                           height="240px"
                           extensions={[markdown()]}
                           editable={!busy}
-                          onChange={(value) =>
-                            edit(replaceCard(document.source, selected, value))
-                          }
+                          onChange={editCard}
                           aria-label="Card Markdown"
                         />
                       ) : (

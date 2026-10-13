@@ -7,7 +7,11 @@ use tauri_plugin_fs::FsExt;
 #[derive(serde::Deserialize)]
 struct Scope {
     action: String,
-    workspace: PathBuf,
+}
+
+#[derive(serde::Deserialize)]
+struct WorkspaceScope {
+    root: PathBuf,
 }
 
 // Tauri's command boundary: https://v2.tauri.app/develop/calling-rust/
@@ -39,9 +43,10 @@ async fn request(app: tauri::AppHandle, payload: String) -> Result<String, Strin
             return Err(diagnostics);
         }
         if scope.action == "list" {
-            let root = scope.workspace.canonicalize().map_err(|e| e.to_string())?;
+            let root: WorkspaceScope =
+                serde_json::from_slice(&output.stdout).map_err(|e| e.to_string())?;
             app.fs_scope()
-                .allow_directory(root, true)
+                .allow_directory(root.root, true)
                 .map_err(|e| e.to_string())?;
         }
         String::from_utf8(output.stdout).map_err(|e| e.to_string())
