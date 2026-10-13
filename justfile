@@ -18,3 +18,29 @@ test-ci: test
 
 # Commit gate entry point
 test-commit: test
+
+# Install the desktop dependencies
+desktop-install:
+    cd desktop && bun install --frozen-lockfile
+
+# Run the native desktop app
+desktop-dev:
+    cd desktop && bunx tauri dev
+
+# Serve the editor with its real backend for browser inspection
+desktop-web:
+    cd desktop && bunx vite --host 127.0.0.1
+
+# Build the frontend and native executable
+desktop-build:
+    cd desktop && bunx tsc --noEmit
+    cd desktop && bunx tauri build --no-bundle
+
+# Compile the desktop frontend
+desktop-frontend:
+    cd desktop && bunx tsc --noEmit
+    cd desktop && bunx vite build
+
+# Exercise the editor against its real backend; serve desktop-web first
+desktop-test:
+    uv run desktop/tests/workbench.py

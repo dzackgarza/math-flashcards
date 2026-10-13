@@ -1,32 +1,39 @@
-import { defineConfig } from "vite";
+import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
-// @ts-expect-error type error without @types/node package
-import process from "node:process";
-const host = process.env.TAURI_DEV_HOST;
+import { viteStaticCopy } from "vite-plugin-static-copy";
+import { spawn } from "node:child_process";
+import { text } from "node:stream/consumers";
+import { fileURLToPath } from "node:url";
 
-// https://vite.dev/config/
-export default defineConfig(() => ({
-  plugins: [react()],
-
-  // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`
-  //
-  // 1. prevent Vite from obscuring rust errors
-  clearScreen: false,
-  // 2. tauri expects a fixed port, fail if that port is not available
-  server: {
-    port: 1420,
-    strictPort: true,
-    host: host || false,
-    hmr: host
-      ? {
-          protocol: "ws",
-          host,
-          port: 1421,
+// Vite's development middleware runs the same bridge as the native command.
+// https://vite.dev/guide/api-plugin.html#configureserver
+function workbenchBackend(): Plugin {
+  return {
+    name: "workbench-backend",
+    configureServer(server) {
+      server.middlewares.use("/api/request", async (request, response) => {
+        if (request.method !== "POST" || request.headers["x-flashcards"] !== "1") {
+          response.writeHead(403).end("Use the editor to access this endpoint.");
+          return;
         }
-      : undefined,
-    watch: {
-      // 3. tell Vite to ignore watching `src-tauri`
-      ignored: ["**/src-tauri/**"],
+        const child = spawn("uv", ["run", "--locked", "--script", fileURLToPath(new URL("./backend.py", import.meta.url))]);
+        const stdout = text(child.stdout);
+        const stderr = text(child.stderr);
+        child.on("error", (error) => response.writeHead(500).end(error.message));
+        child.on("close", async (code) => {
+          const result = await stdout;
+          const diagnostics = await stderr;
+          response.setHeader("Content-Type", code === 0 ? "application/json" : "text/plain");
+          response.writeHead(code === 0 ? 200 : 422).end(code === 0 ? result : diagnostics);
+        });
+        child.stdin.end((await text(request)) + "\n");
+      });
     },
-  },
-}));
+  };
+}
+
+export default defineConfig({
+  plugins: [react(), workbenchBackend(), viteStaticCopy({ targets: [{ src: "node_modules/mathjax/es5", dest: ".", rename: "mathjax" }] })],
+  clearScreen: false,
+  server: { port: 1420, strictPort: true, host: "127.0.0.1", watch: { ignored: ["**/src-tauri/**", "**/test-artifacts/**"] } },
+});
