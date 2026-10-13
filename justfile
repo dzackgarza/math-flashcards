@@ -14,7 +14,7 @@ test:
 test-ci: test
 
 # Commit gate entry point
-test-commit: test desktop-frontend desktop-source-test desktop-test
+test-commit: test desktop-frontend desktop-source-test desktop-test desktop-organization-test
 
 # Install the desktop build dependencies
 desktop-dependencies:
@@ -60,9 +60,13 @@ desktop-frontend:
 desktop-test:
     cd desktop && bunx start-server-and-test 'just -f ../justfile desktop-web' http-get://127.0.0.1:1420 'uv run tests/workbench.py'
 
+# Exercise card organization and real multi-deck file changes
+desktop-organization-test:
+    uv run desktop/tests/organization.py
+
 # Verify source preservation and card boundaries against Pandoc
 desktop-source-test:
-    cd desktop && bun test tests/source-roundtrip.test.ts tests/paired-cards.test.ts
+    cd desktop && bun test tests/source-roundtrip.test.ts tests/paired-cards.test.ts tests/organization.test.ts
 
 # Capture and exercise the built native window on an isolated display
 desktop-native-test:

@@ -136,6 +136,20 @@ def main(*, entry: Path | None = None) -> None:
                         "mousemove",
                         "--window",
                         window,
+                        "1380",
+                        "38",
+                        "click",
+                        "1",
+                    ],
+                    check=True,
+                )
+                time.sleep(0.5)
+                subprocess.run(
+                    [
+                        "xdotool",
+                        "mousemove",
+                        "--window",
+                        window,
                         "105",
                         "323",
                         "click",
@@ -254,6 +268,80 @@ def main(*, entry: Path | None = None) -> None:
                         shot.rgb,
                         shot.size,
                         output=str(artifacts / "native-unsynced.png"),
+                    )
+                target = root / "decks" / "Native Target.md"
+                target.write_text('---\ntitle: "Native::Target"\n---\n\n')
+                time.sleep(2)
+                subprocess.run(
+                    [
+                        "xdotool",
+                        "mousemove",
+                        "--window",
+                        window,
+                        "1325",
+                        "38",
+                        "click",
+                        "1",
+                    ],
+                    check=True,
+                )
+                time.sleep(4)
+                with mss.mss() as screen:
+                    shot = screen.grab(
+                        {"left": 0, "top": 0, "width": 1440, "height": 1000}
+                    )
+                    mss.tools.to_png(
+                        shot.rgb,
+                        shot.size,
+                        output=str(artifacts / "native-organization-before.png"),
+                    )
+                subprocess.run(
+                    [
+                        "xdotool",
+                        "mousemove",
+                        "--window",
+                        window,
+                        "525",
+                        "543",
+                        "mousedown",
+                        "1",
+                    ],
+                    check=True,
+                )
+                time.sleep(0.2)
+                subprocess.run(
+                    ["xdotool", "mousemove", "--window", window, "550", "565"],
+                    check=True,
+                )
+                time.sleep(0.2)
+                subprocess.run(
+                    ["xdotool", "mousemove", "--window", window, "145", "430"],
+                    check=True,
+                )
+                time.sleep(0.5)
+                subprocess.run(["xdotool", "mouseup", "1"], check=True)
+                for _ in range(120):
+                    if "card-id" in target.read_text():
+                        break
+                    time.sleep(0.25)
+                assert r"$\sin(\pi/6) = \cdots$" in target.read_text(), (
+                    artifacts / "native.log"
+                ).read_text()
+                assert (
+                    r"$\sin(\pi/6) = \cdots$"
+                    not in (
+                        root / "decks" / "Qual Basics" / "Special Angles.md"
+                    ).read_text()
+                )
+                time.sleep(2)
+                with mss.mss() as screen:
+                    shot = screen.grab(
+                        {"left": 0, "top": 0, "width": 1440, "height": 1000}
+                    )
+                    mss.tools.to_png(
+                        shot.rgb,
+                        shot.size,
+                        output=str(artifacts / "native-organized.png"),
                     )
                 subprocess.run(["xdotool", "windowclose", window], check=True)
                 window = None

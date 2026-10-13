@@ -22,6 +22,16 @@ function Pandoc(doc)
     end
   end
   local items = {}
+  if #front_order == 0 and FORMAT == 'plain' then
+    io.stdout:write(pandoc.json.encode({
+      meta = {
+        title = doc.meta.title and pandoc.utils.stringify(doc.meta.title) or 'Ankdown Deck',
+        model = doc.meta.model and pandoc.utils.stringify(doc.meta.model) or 'Ankdown Model',
+      },
+      cards = pandoc.List({}),
+    }))
+    os.exit(0)
+  end
   for _, id in ipairs(front_order) do
     local pair = pairs_by_id[id]
     local front = #pair.front.content > 0 and pandoc.Div(pair.front.content) or pandoc.Para({})

@@ -10,6 +10,11 @@
     "tauri": "tauri"
   },
   "dependencies": {
+    "@atlaskit/pragmatic-drag-and-drop": "^4.0.0",
+    "@atlaskit/pragmatic-drag-and-drop-auto-scroll": "^3.2.1",
+    "@atlaskit/pragmatic-drag-and-drop-hitbox": "^3.0.0",
+    "@atlaskit/pragmatic-drag-and-drop-live-region": "^2.1.0",
+    "@atlaskit/pragmatic-drag-and-drop-react-drop-indicator": "^4.2.4",
     "@codemirror/lang-markdown": "^6.5.2",
     "@codemirror/language": "^6.13.1",
     "@codemirror/legacy-modes": "^6.5.5",
@@ -20,6 +25,7 @@
     "@mantine/core": "^9.7.2",
     "@mantine/hooks": "^9.7.2",
     "@mantine/modals": "^9.7.2",
+    "@tabler/icons-react": "^3.49.0",
     "@tauri-apps/api": "^2",
     "@tauri-apps/plugin-dialog": "^2.8.2",
     "@tauri-apps/plugin-fs": "^2.7.0",
@@ -28,6 +34,7 @@
     "better-react-mathjax": "^3.0.2",
     "dompurify": "^3.4.17",
     "mathjax": "3.2.2",
+    "pathe": "^2.0.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "zod": "^4.6.7"

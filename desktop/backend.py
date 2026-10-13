@@ -7,6 +7,7 @@
 #   "filelock==3.20.3",
 #   "platformdirs==4.5.1",
 #   "pydantic==2.12.5",
+#   "send2trash==1.8.3",
 # ]
 # ///
 """Typed desktop bridge to the existing Pandoc and Ankdown pipeline."""
@@ -32,6 +33,7 @@ from bs4 import BeautifulSoup
 from filelock import FileLock
 from platformdirs import user_cache_path
 from pydantic import BaseModel, ConfigDict, Field, TypeAdapter
+from send2trash import send2trash
 
 EXPORTER = Path(ankdown.cli.__file__).parent
 PAIR_FILTER = Path(__file__).with_name("paired-cards.lua")
@@ -71,8 +73,28 @@ class GenerateInput(DeckInput):
     action: Literal["generate"]
 
 
+class Change(BaseModel):
+    path: str
+    source: str | None
+    expected: str | None
+
+
+class OrganizeInput(Input):
+    action: Literal["organize"]
+    changes: list[Change] = Field(min_length=1)
+
+
+class ChangedDeck(BaseModel):
+    path: str
+    hash: str | None
+
+
+class Organized(BaseModel):
+    changed: list[ChangedDeck]
+
+
 type Request = Annotated[
-    ListInput | LoadInput | PreviewInput | SaveInput | GenerateInput,
+    ListInput | LoadInput | PreviewInput | SaveInput | GenerateInput | OrganizeInput,
     Field(discriminator="action"),
 ]
 
@@ -348,8 +370,90 @@ def generate(root: Path, path: Path) -> Generated:
                 )
 
 
-def dispatch(request: Request) -> Workspace | Document | Preview | Generated:
+def publish_changes(root: Path, changes: list[Change]) -> Organized:
+    cache = user_cache_path("math-flashcards")
+    cache.mkdir(parents=True, exist_ok=True)
+    with FileLock(cache / (digest(str(root).encode()) + ".workspace.lock")):
+        paths = [(root / "decks" / change.path).resolve() for change in changes]
+        if len(set(paths)) != len(paths):
+            raise ValueError("Each deck can change only once in an operation.")
+        originals: dict[Path, bytes | None] = {}
+        for change, path in zip(changes, paths, strict=True):
+            if not path.is_relative_to(root / "decks") or path.suffix != ".md":
+                raise ValueError(
+                    "The deck must stay inside the workspace decks folder."
+                )
+            original = path.read_bytes() if path.is_file() else None
+            actual = digest(original) if original is not None else None
+            if actual != change.expected:
+                raise ValueError("A deck changed on disk. Reload it before organizing.")
+            if change.source is None and original is None:
+                raise ValueError("The deck to absorb is missing.")
+            if change.source is not None:
+                path.parent.mkdir(parents=True, exist_ok=True)
+                preview(root, path, change.source)
+            originals[path] = original
+        # Stage every file before publishing; restore published files on failure.
+        # tempfile + atomic replace: https://docs.python.org/3/library/tempfile.html
+        with tempfile.TemporaryDirectory(
+            prefix=".flashcards-organize-", dir=root
+        ) as directory:
+            scratch = Path(directory)
+            staged: dict[Path, Path] = {}
+            backups: dict[Path, Path] = {}
+            for index, (change, path) in enumerate(zip(changes, paths, strict=True)):
+                original = originals[path]
+                if original is not None:
+                    backup = scratch / f"{index}.original"
+                    backup.write_bytes(original)
+                    backups[path] = backup
+                if change.source is not None:
+                    temporary = scratch / f"{index}.updated"
+                    with temporary.open("w", encoding="utf-8") as handle:
+                        handle.write(change.source)
+                        handle.flush()
+                        os.fsync(handle.fileno())
+                    staged[path] = temporary
+            for change, path in zip(changes, paths, strict=True):
+                actual = digest(path.read_bytes()) if path.is_file() else None
+                if actual != change.expected:
+                    raise ValueError("A deck changed during organization. Reload it.")
+            published: list[Path] = []
+            try:
+                # Destinations precede sources; a process interruption retains card content.
+                for change, path in zip(changes, paths, strict=True):
+                    path.parent.mkdir(parents=True, exist_ok=True)
+                    if change.source is None:
+                        send2trash(path)
+                    else:
+                        staged[path].replace(path)
+                    published.append(path)
+            except OSError:
+                for path in reversed(published):
+                    if path in backups:
+                        backups[path].replace(path)
+                    else:
+                        send2trash(path)
+                raise
+        return Organized(
+            changed=[
+                ChangedDeck(
+                    path=change.path,
+                    hash=digest(change.source.encode())
+                    if change.source is not None
+                    else None,
+                )
+                for change in changes
+            ]
+        )
+
+
+def dispatch(
+    request: Request,
+) -> Workspace | Document | Preview | Generated | Organized:
     root = workspace_path(request.workspace)
+    if isinstance(request, OrganizeInput):
+        return publish_changes(root, request.changes)
     if isinstance(request, ListInput):
         return Workspace(
             root=str(root),
@@ -370,21 +474,16 @@ def dispatch(request: Request) -> Workspace | Document | Preview | Generated:
         case GenerateInput():
             return generate(root, path)
         case SaveInput():
-            preview(root, path, request.source)
-            if digest(path.read_bytes()) != request.expected:
-                raise ValueError("This deck changed on disk. Reload it before saving.")
-            # tempfile + atomic replace: https://docs.python.org/3/library/tempfile.html
-            with tempfile.NamedTemporaryFile(
-                mode="w",
-                dir=path.parent,
-                prefix=".flashcards-save-",
-                encoding="utf-8",
-                delete=False,
-            ) as temporary:
-                temporary.write(request.source)
-                temporary.flush()
-                os.fsync(temporary.fileno())
-            Path(temporary.name).replace(path)
+            publish_changes(
+                root,
+                [
+                    Change(
+                        path=request.path,
+                        source=request.source,
+                        expected=request.expected,
+                    )
+                ],
+            )
         case LoadInput():
             preview(root, path, path.read_text())
     source = path.read_bytes().decode("utf-8")

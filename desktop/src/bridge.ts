@@ -5,6 +5,7 @@ export type Request =
   | { action: "list"; workspace: string }
   | { action: "load" | "generate"; workspace: string; path: string }
   | { action: "preview"; workspace: string; path: string; source: string }
+  | { action: "organize"; workspace: string; changes: Change[] }
   | {
       action: "save";
       workspace: string;
@@ -12,6 +13,16 @@ export type Request =
       source: string;
       expected: string;
     };
+
+export interface Change {
+  path: string;
+  source: string | null;
+  expected: string | null;
+}
+
+export const organizedSchema = z.object({
+  changed: z.array(z.object({ path: z.string(), hash: z.string().nullable() })),
+});
 
 export const statusSchema = z.enum(["Up to date", "Unsynced"]);
 export const workspaceSchema = z.object({

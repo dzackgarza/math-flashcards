@@ -1,5 +1,6 @@
 import { Text } from "@codemirror/state";
 import { parser, Pandoc, scanPandocAttributeList } from "@lezer/markdown";
+import { dirname, join, relative } from "pathe";
 
 export interface FieldRange {
   from: number;
@@ -142,4 +143,110 @@ export function removeCard(source: string, card: CardRange): string {
 // Pandoc owns fenced div syntax: https://pandoc.org/MANUAL.html#divs-and-spans
 export function newCard(id: string): string {
   return `::: {.front card-id="${id}"}\nNew question\n:::\n\n::: {.back card-id="${id}"}\nNew answer\n:::\n`;
+}
+
+function cardSource(source: string, card: CardRange): string {
+  return [card.front, card.back]
+    .map((field) => source.slice(field.from, field.to))
+    .join("\n\n");
+}
+
+// Lezer's source ranges retain authored bodies during organization.
+// https://lezer.codemirror.net/docs/guide/#syntax-trees
+function deckSource(source: string, segments: string[]): string {
+  const ranges = cards(source);
+  const first = ranges.length
+    ? Math.min(...ranges.flatMap((card) => [card.front.from, card.back.from]))
+    : source.length;
+  return (
+    source.slice(0, first) +
+    segments.join("\n\n") +
+    (segments.length ? "\n" : "")
+  );
+}
+
+export function reorderCards(source: string, ids: string[]): string {
+  const ranges = cards(source);
+  if (
+    ids.length !== ranges.length ||
+    new Set(ids).size !== ids.length ||
+    ids.some((id) => !ranges.some((card) => card.id === id))
+  )
+    throw new Error("The card order must include each card once.");
+  return deckSource(
+    source,
+    ids.map((id) => cardSource(source, ranges.find((card) => card.id === id)!)),
+  );
+}
+
+export function transferCards(
+  source: string,
+  destination: string,
+  ids: string[],
+  before?: string,
+  locations?: { source: string; destination: string },
+): { source: string; destination: string } {
+  const origin = cards(source);
+  const target = cards(destination);
+  if (
+    !ids.length ||
+    new Set(ids).size !== ids.length ||
+    ids.some((id) => !origin.some((card) => card.id === id))
+  )
+    throw new Error("Select existing cards to move.");
+  if (target.some((card) => ids.includes(card.id)))
+    throw new Error("The destination already contains a selected card ID.");
+  if (before && !target.some((card) => card.id === before))
+    throw new Error("The destination card changed. Reload the deck.");
+  const remaining = origin.filter((card) => !ids.includes(card.id));
+  const moved = origin
+    .filter((card) => ids.includes(card.id))
+    .map((card) => {
+      const raw = cardSource(source, card);
+      if (!locations) return raw;
+      const replacements: { from: number; to: number; value: string }[] = [];
+      // The Pandoc parser owns URLs; pathe owns relative file paths.
+      // https://github.com/unjs/pathe
+      deckParser.parse(raw).iterate({
+        enter(node) {
+          if (node.name !== "URL") return;
+          const original = raw.slice(node.from, node.to);
+          const angle = original.startsWith("<");
+          const url = angle ? original.slice(1, -1) : original;
+          if (/^(?:[a-z][\w+.-]*:|\/|#)/i.test(url)) return;
+          const suffix = /[?#].*$/.exec(url)?.[0] ?? "";
+          const file = suffix ? url.slice(0, -suffix.length) : url;
+          const moved =
+            relative(
+              dirname(locations.destination),
+              join(dirname(locations.source), file),
+            ) + suffix;
+          replacements.push({
+            from: node.from,
+            to: node.to,
+            value: angle ? "<" + moved + ">" : moved,
+          });
+        },
+      });
+      let updated = raw;
+      for (const replacement of replacements.sort((a, b) => b.from - a.from))
+        updated =
+          updated.slice(0, replacement.from) +
+          replacement.value +
+          updated.slice(replacement.to);
+      return updated;
+    });
+  const segments = target.map((card) => cardSource(destination, card));
+  segments.splice(
+    before ? target.findIndex((card) => card.id === before) : segments.length,
+    0,
+    ...moved,
+  );
+  return {
+    source: deckSource(
+      source,
+      remaining.map((card) => cardSource(source, card)),
+    ),
+    destination: deckSource(destination, segments),
+  };
 }

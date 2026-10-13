@@ -50,6 +50,7 @@ def main() -> None:
             expect(
                 page.get_by_role("button", name="Open workspace", exact=True)
             ).to_be_enabled(timeout=30000)
+            page.get_by_text("Edit", exact=True).click()
             page.get_by_text("Qual Basics", exact=True).click()
             page.get_by_text("Special Angles", exact=True).click()
             expect(page.get_by_text("Unsynced", exact=True).first).to_be_visible()

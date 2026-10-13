@@ -38,6 +38,16 @@ The app opens the saved workspace on startup. On first launch it opens the
 repository used to build the app. Preferences use the standard Tauri store in
 the XDG configuration directory.
 Select **Browse** or enter a workspace path to change it, then select a deck.
+**Organize** opens the deck gallery. Open a deck for rendered card tiles, then
+open a card to edit its sides. **Edit** provides the card editor and deck tree.
+
+Use a card's drag handle to reorder it or move it onto a deck. Checkboxes select
+a group; Shift selects a range. The toolbar can move a selection, change its
+order, or split it into a new deck. Drag a deck onto another deck to absorb it,
+then confirm the destination. Deck menus provide the same absorption action.
+**Undo** reverses the last organization operation. These changes save immediately.
+See [card organization](../docs/card-organization.md) for the design sources and
+file operations. Relative media links follow their original files across moves.
 Search the deck tree or card list to find a card. Edit **Front** and **Back** in
 their separate CodeMirror fields. Both fields accept Markdown and LaTeX, with
 Pandoc syntax and TeX highlighting from Zettlr's parser. Set tags with **Tags**.
@@ -91,6 +101,7 @@ See [Anki's packaged deck documentation](https://docs.ankiweb.net/manual/importi
 | `just desktop-frontend` | TypeScript check and frontend build |
 | `just desktop-source-test` | Side preservation, pair validation, and agreement with Pandoc |
 | `just desktop-test` | Managed browser scenario with real filesystem edits and real APKG generation |
+| `just desktop-organization-test` | Visual drag, grouped moves, reorder, absorption, split, Undo, and conflicts |
 | `just desktop-native-test` | Built native window and export on an isolated X11 display |
 | `just desktop-format` | Canonical Python, TypeScript, CSS, and Rust formatting |
 

@@ -89,3 +89,116 @@ body {
     min-height: 0 !important;
   }
 }
+
+.deck-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+  gap: var(--mantine-spacing-md);
+}
+.deck-tile {
+  transition:
+    border-color 120ms,
+    box-shadow 120ms,
+    background-color 120ms;
+}
+.deck-tile:hover {
+  border-color: var(--mantine-color-indigo-3);
+  box-shadow: var(--mantine-shadow-xs);
+}
+.deck-tile.drop-active {
+  outline: 2px solid var(--mantine-color-indigo-5);
+  background: var(--mantine-color-indigo-0);
+}
+.deck-open {
+  width: 100%;
+  min-height: 3.5rem;
+}
+.drag-handle {
+  cursor: grab;
+  touch-action: none;
+}
+.drag-handle:active {
+  cursor: grabbing;
+}
+.drag-handle:disabled {
+  cursor: not-allowed;
+}
+.dragging {
+  opacity: 0.35;
+}
+.organizer-layout {
+  display: grid;
+  grid-template-columns: 15rem minmax(0, 1fr);
+  align-items: start;
+  gap: var(--mantine-spacing-md);
+}
+.deck-rail {
+  position: sticky;
+  top: 5.5rem;
+}
+.card-board {
+  min-width: 0;
+}
+.card-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+  gap: var(--mantine-spacing-md);
+  min-height: 12rem;
+  padding: 4px;
+}
+.organizer-card {
+  position: relative;
+  border-top: 3px solid var(--mantine-color-indigo-3);
+  transition:
+    box-shadow 120ms,
+    border-color 120ms;
+}
+.organizer-card:hover {
+  box-shadow: var(--mantine-shadow-sm);
+}
+.organizer-card.selected {
+  outline: 2px solid var(--mantine-color-indigo-5);
+  background: var(--mantine-color-indigo-0);
+}
+.card-open {
+  width: 100%;
+}
+.card-thumbnail {
+  height: 10rem;
+  overflow: hidden;
+  padding: 1rem;
+  text-align: center;
+  display: grid;
+  align-content: center;
+  font-size: 1rem;
+}
+.card-thumbnail p {
+  margin: 0.3rem 0;
+}
+.card-tags {
+  min-height: 2.5rem;
+}
+.empty-deck {
+  grid-column: 1 / -1;
+  text-align: center;
+}
+@media (max-width: 64em) {
+  .organizer-layout {
+    grid-template-columns: 1fr;
+  }
+  .deck-rail {
+    position: static;
+  }
+  .deck-rail .mantine-ScrollArea-root {
+    height: 12rem !important;
+    min-height: 0 !important;
+  }
+}
+@media (max-width: 48em) {
+  .card-gallery {
+    grid-template-columns: 1fr;
+  }
+  .organizer .mantine-Button-root {
+    min-height: 2.75rem;
+  }
+}
