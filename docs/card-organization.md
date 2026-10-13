@@ -24,6 +24,10 @@ Move, earlier/later buttons, Absorb, and Split provide those alternatives.
 Selected: Atlassian Pragmatic drag and drop, its hitbox and indicator packages,
 and existing Mantine components. This adds organization to the existing editor.
 
+The window sets `dragDropEnabled: false` so the webview handles the board's
+HTML drag events. [Tauri's window configuration](https://v2.tauri.app/reference/config/#dragdropenabled)
+documents the native handler switch.
+
 ## Operations
 
 Drag a card handle to reorder it. Drag selected cards onto a deck to move the
