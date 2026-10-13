@@ -103,10 +103,13 @@ def main(*, entry: Path | None = None) -> None:
                         "ctrl+a",
                         "type",
                         "--clearmodifiers",
+                        "--delay",
+                        "50",
                         str(root),
                     ],
                     check=True,
                 )
+                time.sleep(0.5)
                 subprocess.run(
                     [
                         "xdotool",
@@ -319,6 +322,18 @@ def main(*, entry: Path | None = None) -> None:
                     check=True,
                 )
                 time.sleep(0.5)
+                subprocess.run(
+                    ["xdotool", "mousemove", "--window", window, "140", "435"],
+                    check=True,
+                )
+                time.sleep(0.5)
+                with mss.mss() as screen:
+                    shot = screen.grab(
+                        {"left": 0, "top": 0, "width": 1440, "height": 1000}
+                    )
+                    mss.tools.to_png(
+                        shot.rgb, shot.size, output=str(artifacts / "native-drag.png")
+                    )
                 subprocess.run(["xdotool", "mouseup", "1"], check=True)
                 for _ in range(120):
                     if "card-id" in target.read_text():
