@@ -1,25 +1,44 @@
 import { useEffect, useMemo, useRef, useState, type MouseEvent } from "react";
 import {
+  ActionIcon,
   Alert,
-  AppShell,
-  Badge,
   Box,
   Button,
-  Divider,
+  CloseButton,
   Group,
+  Kbd,
   Loader,
-  Paper,
+  Popover,
   Stack,
   Text,
   TextInput,
   TagsInput,
   Title,
+  Tooltip,
   Tree,
+  UnstyledButton,
   useTree,
   type TreeNodeData,
 } from "@mantine/core";
-import { useDebouncedCallback } from "@mantine/hooks";
-import { IconArrowBackUp, IconPlus } from "@tabler/icons-react";
+import { useDebouncedCallback, useHotkeys } from "@mantine/hooks";
+import {
+  Spotlight,
+  spotlight,
+  type SpotlightActionGroupData,
+} from "@mantine/spotlight";
+import {
+  IconArrowBackUp,
+  IconCards,
+  IconChevronDown,
+  IconChevronRight,
+  IconFolder,
+  IconFolderOpen,
+  IconPlus,
+  IconRefresh,
+  IconSearch,
+  IconTrash,
+} from "@tabler/icons-react";
+import { basename } from "pathe";
 import {
   monitorForElements,
   type ElementEventPayloadMap,
@@ -50,7 +69,7 @@ import {
   type CardRange,
 } from "./cards";
 import { type Side, SideEditor } from "./editor";
-import { loadMathJax, type MathJaxRuntime } from "./math";
+import { loadMathJax, previewHtml, type MathJaxRuntime } from "./math";
 import {
   CardRow,
   NewDeckForm,
@@ -84,11 +103,9 @@ function preferences() {
     );
 }
 
-function treeData(decks: Summary[], filter: string): TreeNodeData[] {
+function treeData(decks: Summary[]): TreeNodeData[] {
   const roots: TreeNodeData[] = [];
-  for (const deck of decks.filter((item) =>
-    item.path.toLowerCase().includes(filter.toLowerCase()),
-  )) {
+  for (const deck of decks) {
     let children = roots;
     let value = "";
     const parts = deck.path.split("/");
@@ -130,7 +147,7 @@ export default function App() {
   const [buildResult, setBuildResult] = useState<"Ready" | "Failed">("Ready");
   const [error, setError] = useState("");
   const [log, setLog] = useState("");
-  const [filter, setFilter] = useState("");
+  const [workspaceMenu, setWorkspaceMenu] = useState(false);
   const [cardFilter, setCardFilter] = useState("");
   const [selection, setSelection] = useState<string[]>([]);
   const [notice, setNotice] = useState<Notice | null>(null);
@@ -150,7 +167,7 @@ export default function App() {
   const dirty = document !== null && document.source !== document.saved;
   const busy = task !== "Idle";
   const selected = ranges[index];
-  const data = useMemo(() => treeData(decks, filter), [decks, filter]);
+  const data = useMemo(() => treeData(decks), [decks]);
   // Pandoc counts the saved deck's cards; the editor parser must agree.
   const mismatch = useMemo(
     () => document !== null && document.cards !== cards(document.saved).length,
@@ -693,417 +710,544 @@ export default function App() {
         : dirty
           ? "Unsynced"
           : document?.status;
+  // One status: unsaved source first, then the package.
+  const status = dirty ? "Unsaved changes" : packageState;
+  const tone =
+    status === "Up to date"
+      ? "synced"
+      : status === "Failed"
+        ? "failed"
+        : status === "Generating"
+          ? "working"
+          : "pending";
+  const blocked = busy || mismatch || !!parsed.error;
+  const canSave = dirty && !blocked;
+  const canGenerate = document !== null && !dirty && !blocked;
+  const previews = useMemo(
+    () =>
+      mathjax
+        ? ranges.map((range) => ({
+            front: previewHtml(mathjax, range.front.value),
+            back: previewHtml(mathjax, range.back.value.split(/\n\s*\n/)[0]),
+          }))
+        : null,
+    [mathjax, ranges],
+  );
+  const statuses = useMemo(
+    () => new Map(decks.map((deck) => [deck.path, deck.status])),
+    [decks],
+  );
+
+  useHotkeys(
+    [
+      [
+        "mod+S",
+        () => {
+          if (canSave) void save();
+        },
+      ],
+    ],
+    [],
+    true,
+  );
+
+  function openWorkspace() {
+    if (workspaceForm.validate().hasErrors) return;
+    setWorkspaceMenu(false);
+    confirmNavigation(() => {
+      void chooseWorkspace(workspaceForm.getValues().workspace);
+    });
+  }
+
+  function refreshWorkspace() {
+    refresh().catch((failure) => setError(String(failure)));
+  }
+
+  const commands: SpotlightActionGroupData[] = [
+    {
+      group: "Actions",
+      actions: [
+        ...(document
+          ? [
+              {
+                id: "add-card",
+                label: "Add card",
+                disabled: blocked,
+                onClick: addCard,
+              },
+              {
+                id: "save",
+                label: "Save deck",
+                disabled: !canSave,
+                onClick: () => void save(),
+              },
+              {
+                id: "generate",
+                label: "Generate Anki deck",
+                disabled: !canGenerate,
+                onClick: () => void generate(),
+              },
+            ]
+          : []),
+        ...(workspace
+          ? [
+              {
+                id: "new-deck",
+                label: "New deck",
+                disabled: busy,
+                onClick: createDeck,
+              },
+              {
+                id: "refresh",
+                label: "Refresh workspace",
+                disabled: busy,
+                onClick: refreshWorkspace,
+              },
+            ]
+          : []),
+      ],
+    },
+    {
+      group: "Decks",
+      actions: decks.map((deck) => ({
+        id: "deck:" + deck.path,
+        label: deckName(deck.path),
+        description: deck.path.split("/").slice(0, -1).join(" / "),
+        onClick: () =>
+          confirmNavigation(() => {
+            void chooseDeck(deck.path);
+          }),
+      })),
+    },
+    {
+      group: "Cards",
+      actions: document
+        ? ranges.map((range, cardIndex) => ({
+            id: "card:" + range.id,
+            label: range.label,
+            onClick: () => {
+              setSelection([range.id]);
+              selectCard(cardIndex, document.source);
+            },
+          }))
+        : [],
+    },
+  ];
+
   return (
-    <AppShell header={{ height: 76 }} padding="lg">
-      <AppShell.Header px="lg">
-        <Group h="100%" justify="space-between">
-          <Box>
-            <Title order={1} size="h3">
-              Math Flashcards
-            </Title>
-            <Text size="sm" c="dimmed">
-              Write, review, export
-            </Text>
-          </Box>
-          <Group>
-            <Text size="sm" c="dimmed">
-              {workspace ? "Deck workspace" : "Open a workspace to begin"}
-            </Text>
-            {busy && <Loader size="sm" aria-label={task} />}
-          </Group>
+    <div className="app">
+      <aside className="sidebar">
+        <Group justify="space-between" wrap="nowrap" className="sidebar-head">
+          <Title order={1} className="app-title">
+            Math Flashcards
+          </Title>
+          {busy && <Loader size={14} aria-label={task} />}
         </Group>
-      </AppShell.Header>
-      <AppShell.Main>
-        <Stack gap="md">
-          <Paper withBorder p="md">
-            <Group align="end" wrap="wrap">
+        <Popover
+          opened={workspaceMenu}
+          onChange={setWorkspaceMenu}
+          width={440}
+          position="bottom-start"
+          shadow="lg"
+        >
+          <Popover.Target>
+            <UnstyledButton
+              className="workspace-button"
+              aria-label="Workspace"
+              onClick={() => setWorkspaceMenu((value) => !value)}
+            >
+              <IconFolder size={16} stroke={1.75} />
+              <span className="workspace-name">
+                {workspace ? basename(workspace) : "Choose a workspace"}
+              </span>
+              <IconChevronDown size={14} />
+            </UnstyledButton>
+          </Popover.Target>
+          <Popover.Dropdown>
+            <Stack gap="sm">
               <TextInput
                 label="Workspace folder"
                 placeholder="Folder containing decks/"
                 key={workspaceForm.key("workspace")}
                 {...workspaceForm.getInputProps("workspace")}
-                style={{ flex: 1, minWidth: 220 }}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") openWorkspace();
+                }}
               />
-              {isTauri() && (
-                <Button
-                  variant="default"
-                  onClick={async () => {
-                    const selectedFolder = await open({
-                      directory: true,
-                      multiple: false,
-                      title: "Choose the deck workspace",
-                    });
-                    if (selectedFolder)
+              <Group gap="xs" justify="flex-end">
+                {isTauri() && (
+                  <Button
+                    variant="default"
+                    leftSection={<IconFolderOpen size={16} />}
+                    onClick={async () => {
+                      const selectedFolder = await open({
+                        directory: true,
+                        multiple: false,
+                        title: "Choose the deck workspace",
+                      });
+                      if (!selectedFolder) return;
+                      setWorkspaceMenu(false);
                       confirmNavigation(() => {
                         void chooseWorkspace(selectedFolder);
                       });
-                  }}
-                >
-                  Browse
-                </Button>
-              )}
-              <Button
-                disabled={busy}
-                onClick={() => {
-                  if (workspaceForm.validate().hasErrors) return;
-                  confirmNavigation(() => {
-                    void chooseWorkspace(workspaceForm.getValues().workspace);
-                  });
-                }}
-              >
-                Open workspace
-              </Button>
-              <Button
-                variant="default"
-                disabled={!workspace || busy}
-                onClick={() => {
-                  refresh().catch((failure) => setError(String(failure)));
-                }}
-              >
-                Refresh workspace
-              </Button>
-            </Group>
-          </Paper>
-          {error && (
-            <Alert
-              color="red"
-              title="Action failed"
-              withCloseButton
-              onClose={() => setError("")}
-            >
-              <Text
-                size="sm"
-                style={{ whiteSpace: "pre-wrap", overflowWrap: "anywhere" }}
-              >
-                {error}
-              </Text>
-            </Alert>
-          )}
-          {notice && (
-            <Alert color="teal" withCloseButton onClose={() => setNotice(null)}>
-              <Group justify="space-between">
-                <Text size="sm" role="status">
-                  {notice.label}
-                </Text>
-                {notice.undo && (
-                  <Button
-                    variant="subtle"
-                    size="compact-sm"
-                    leftSection={<IconArrowBackUp size={16} />}
-                    disabled={busy}
-                    onClick={() =>
-                      organize(notice.undo!, null, "Undo complete.").catch(
-                        (failure) => setError(String(failure)),
-                      )
-                    }
+                    }}
                   >
-                    Undo
+                    Browse
                   </Button>
                 )}
+                <Button
+                  variant="default"
+                  disabled={!workspace || busy}
+                  onClick={refreshWorkspace}
+                >
+                  Refresh workspace
+                </Button>
+                <Button disabled={busy} onClick={openWorkspace}>
+                  Open workspace
+                </Button>
               </Group>
-            </Alert>
+            </Stack>
+          </Popover.Dropdown>
+        </Popover>
+        <UnstyledButton
+          className="command-button"
+          onClick={() => spotlight.open()}
+        >
+          <IconSearch size={15} stroke={1.75} />
+          <span>Search</span>
+          <Kbd size="xs">Ctrl K</Kbd>
+        </UnstyledButton>
+        <div ref={deckViewport} className="deck-scroll">
+          <Tree
+            data={data}
+            tree={tree}
+            levelOffset={14}
+            renderNode={({ node, expanded, hasChildren, elementProps }) => (
+              <TreeRow
+                {...elementProps}
+                path={node.value.slice(1)}
+                folder={hasChildren}
+                disabled={busy}
+                expand={() => tree.expand(node.value)}
+                data-active={
+                  document?.path === node.value.slice(1) || undefined
+                }
+                onClick={(event) => {
+                  elementProps.onClick?.(event);
+                  if (!hasChildren && !busy)
+                    confirmNavigation(() => {
+                      void chooseDeck(node.value.slice(1));
+                    });
+                }}
+              >
+                {hasChildren ? (
+                  <IconChevronRight
+                    size={14}
+                    className={"tree-chevron" + (expanded ? " open" : "")}
+                  />
+                ) : (
+                  <IconCards size={15} stroke={1.75} className="tree-icon" />
+                )}
+                <span className="tree-label">{node.label}</span>
+                {!hasChildren &&
+                  statuses.get(node.value.slice(1)) === "Unsynced" && (
+                    <span className="tree-dot" aria-hidden />
+                  )}
+              </TreeRow>
+            )}
+          />
+          {workspace && decks.length === 0 && (
+            <Text c="dimmed" size="sm" px="xs">
+              This workspace has no Markdown decks.
+            </Text>
           )}
-          <div className="workbench">
-            <Paper withBorder p="md" className="deck-panel">
-              <Stack gap="sm">
-                <Group justify="space-between">
-                  <Title order={2} size="h5">
-                    Decks
-                  </Title>
-                  <Button
-                    size="compact-sm"
-                    variant="light"
-                    leftSection={<IconPlus size={14} />}
-                    disabled={!workspace || busy}
-                    onClick={createDeck}
-                  >
-                    New deck
-                  </Button>
+        </div>
+        <Button
+          variant="subtle"
+          color="gray"
+          justify="flex-start"
+          leftSection={<IconPlus size={16} />}
+          disabled={!workspace || busy}
+          onClick={createDeck}
+        >
+          New deck
+        </Button>
+      </aside>
+      <div className="content">
+        {error && (
+          <Alert
+            className="banner"
+            color="red"
+            title="Action failed"
+            withCloseButton
+            onClose={() => setError("")}
+          >
+            <Text
+              size="sm"
+              style={{ whiteSpace: "pre-wrap", overflowWrap: "anywhere" }}
+            >
+              {error}
+            </Text>
+          </Alert>
+        )}
+        {!document ? (
+          <Stack className="empty-state" align="center" justify="center">
+            <IconCards size={40} stroke={1.25} className="empty-icon" />
+            <Title order={2} fz={20}>
+              Your decks, in one place
+            </Title>
+            <Text c="dimmed" ta="center" maw={360}>
+              {workspace
+                ? "Select a deck in the sidebar to edit its cards."
+                : "Choose the workspace folder that contains decks/."}
+            </Text>
+            {!workspace && (
+              <Button onClick={() => setWorkspaceMenu(true)}>
+                Choose workspace
+              </Button>
+            )}
+          </Stack>
+        ) : (
+          <div className="panes">
+            <section className="card-column">
+              <header className="column-head">
+                <Group justify="space-between" wrap="nowrap" align="start">
+                  <Box miw={0}>
+                    <Title order={2} fz={20} className="deck-title">
+                      {deckName(document.path)}
+                    </Title>
+                    <Text size="sm" c="dimmed" truncate>
+                      {[
+                        ...document.path.split("/").slice(0, -1),
+                        ranges.length === 1
+                          ? "1 card"
+                          : ranges.length + " cards",
+                      ].join(" · ")}
+                    </Text>
+                  </Box>
+                  <Tooltip label="Add card" openDelay={400}>
+                    <ActionIcon
+                      variant="subtle"
+                      size="lg"
+                      aria-label="Add card"
+                      onClick={addCard}
+                      disabled={blocked}
+                    >
+                      <IconPlus size={18} />
+                    </ActionIcon>
+                  </Tooltip>
                 </Group>
                 <TextInput
-                  aria-label="Find a deck"
-                  placeholder="Find a deck…"
-                  value={filter}
-                  onChange={(event) => setFilter(event.currentTarget.value)}
+                  mt="sm"
+                  variant="filled"
+                  aria-label="Find a card"
+                  placeholder="Find a card"
+                  leftSection={<IconSearch size={15} />}
+                  value={cardFilter}
+                  onChange={(event) => setCardFilter(event.currentTarget.value)}
                 />
-                <div ref={deckViewport} className="deck-scroll">
-                  <Tree
-                    data={data}
-                    tree={tree}
-                    renderNode={({
-                      node,
-                      expanded,
-                      hasChildren,
-                      elementProps,
-                    }) => (
-                      <TreeRow
-                        {...elementProps}
-                        path={node.value.slice(1)}
-                        folder={hasChildren}
-                        disabled={busy}
-                        expand={() => tree.expand(node.value)}
-                        onClick={(event) => {
-                          elementProps.onClick?.(event);
-                          if (!hasChildren && !busy)
-                            confirmNavigation(() => {
-                              void chooseDeck(node.value.slice(1));
-                            });
-                        }}
-                      >
-                        <Text size="sm" c={hasChildren ? "dimmed" : "indigo"}>
-                          {hasChildren ? (expanded ? "▾" : "▸") : "▤"}
-                        </Text>
-                        <Text
-                          size="sm"
-                          fw={
-                            document?.path === node.value.slice(1) ? 700 : 400
-                          }
-                          style={{ overflowWrap: "anywhere" }}
-                        >
-                          {node.label}
-                        </Text>
-                      </TreeRow>
-                    )}
-                  />
-                  {workspace && decks.length === 0 && (
-                    <Text c="dimmed" size="sm">
-                      This workspace has no Markdown decks.
-                    </Text>
-                  )}
-                </div>
-              </Stack>
-            </Paper>
-            {!document ? (
-              <Paper withBorder p="xl">
-                <Stack align="center" justify="center" h={420}>
-                  <Title order={2}>Your decks, in one place</Title>
-                  <Text c="dimmed" ta="center">
-                    Open a workspace, then select a deck to edit and review its
-                    cards.
-                  </Text>
-                </Stack>
-              </Paper>
-            ) : (
-              <Stack gap="md" className="document-panel">
-                <Paper withBorder p="md">
-                  <Group justify="space-between" align="start">
-                    <Box>
-                      <Title order={2} size="h4">
-                        {document.path.replace(/\.md$/, "")}
-                      </Title>
-                      <Text size="sm" c="dimmed">
-                        {document.path}
-                      </Text>
-                    </Box>
-                    <Group gap="xs">
-                      <Badge color={dirty ? "orange" : "gray"} variant="light">
-                        {dirty ? "Unsaved changes" : "Saved"}
-                      </Badge>
-                      <Badge
-                        color={
-                          packageState === "Up to date" ? "teal" : "orange"
-                        }
-                        variant="light"
-                      >
-                        {packageState}
-                      </Badge>
-                    </Group>
-                  </Group>
-                  <Group mt="md">
-                    <Button
-                      onClick={save}
-                      disabled={!dirty || busy || mismatch || !!parsed.error}
-                      loading={task === "Saving"}
-                    >
-                      Save deck
-                    </Button>
-                    <Button
-                      variant="default"
-                      disabled={busy}
-                      onClick={() =>
-                        confirmNavigation(() => {
-                          void chooseDeck(document.path);
-                        })
-                      }
-                    >
-                      Reload deck
-                    </Button>
-                    <Button
-                      onClick={generate}
-                      disabled={dirty || busy || mismatch || !!parsed.error}
-                      loading={task === "Generating"}
-                    >
-                      Generate Anki deck
-                    </Button>
-                    <Text size="sm" c="dimmed">
-                      {dirty
-                        ? "Save your changes before generating."
-                        : "Package reflects the saved deck."}
-                    </Text>
-                  </Group>
-                  <Text
-                    size="xs"
-                    c="dimmed"
-                    mt="sm"
-                    style={{ overflowWrap: "anywhere" }}
-                  >
-                    {document.package}
-                  </Text>
-                </Paper>
-                <div className="card-workbench">
-                  <Paper withBorder p="md">
-                    <Stack gap="sm">
-                      <Group justify="space-between">
-                        <Title order={3} size="h5">
-                          Cards
-                        </Title>
-                        <Button
-                          size="compact-sm"
-                          variant="light"
-                          onClick={addCard}
-                          disabled={busy || !!parsed.error}
-                        >
-                          Add card
-                        </Button>
-                      </Group>
-                      <TextInput
-                        aria-label="Find a card"
-                        placeholder="Find a card…"
-                        value={cardFilter}
-                        onChange={(event) =>
-                          setCardFilter(event.currentTarget.value)
-                        }
+              </header>
+              <div ref={cardViewport} className="card-scroll">
+                {ranges.map(
+                  (range, cardIndex) =>
+                    (range.label + "\n" + range.back.value)
+                      .toLowerCase()
+                      .includes(cardFilter.toLowerCase()) && (
+                      <CardRow
+                        key={range.id}
+                        id={range.id}
+                        path={document.path}
+                        label={range.label}
+                        preview={previews?.[cardIndex] ?? null}
+                        active={index === cardIndex}
+                        selected={selection.includes(range.id)}
+                        group={ranges
+                          .map((card) => card.id)
+                          .filter((id) => selection.includes(id))}
+                        disabled={busy || dirty || !!parsed.error}
+                        choose={(event) => chooseRow(range.id, event)}
                       />
-                      <div ref={cardViewport} className="card-scroll">
-                        <Stack gap={4}>
-                          {ranges.map(
-                            (range, cardIndex) =>
-                              range.label
-                                .toLowerCase()
-                                .includes(cardFilter.toLowerCase()) && (
-                                <CardRow
-                                  key={range.id}
-                                  id={range.id}
-                                  path={document.path}
-                                  label={range.label}
-                                  active={index === cardIndex}
-                                  selected={selection.includes(range.id)}
-                                  group={ranges
-                                    .map((card) => card.id)
-                                    .filter((id) => selection.includes(id))}
-                                  disabled={busy || dirty || !!parsed.error}
-                                  choose={(event) => chooseRow(range.id, event)}
-                                />
-                              ),
-                          )}
-                        </Stack>
-                      </div>
-                      <Text size="xs" c="dimmed">
-                        {dirty
-                          ? "Save the deck to move its cards."
-                          : "Drag cards to reorder them, or onto a deck to move them. Ctrl-click or Shift-click selects several."}
-                      </Text>
-                    </Stack>
-                  </Paper>
-                  <Stack gap="md" className="editor-panel">
-                    <Paper withBorder p="md">
-                      <Group justify="space-between" mb="sm">
-                        <Title order={3} size="h5">
-                          Edit card
-                        </Title>
+                    ),
+                )}
+              </div>
+              <Text className="column-foot" size="sm" c="dimmed">
+                {dirty
+                  ? "Save the deck to move its cards."
+                  : "Drag cards to reorder them, or onto a deck to move them. Ctrl-click or Shift-click selects several."}
+              </Text>
+            </section>
+            <main className="editor-column">
+              <header className="toolbar">
+                <Group
+                  gap={8}
+                  wrap="nowrap"
+                  className="status"
+                  title={document.package}
+                >
+                  <span className={"status-dot " + tone} aria-hidden />
+                  <Text size="sm" fw={500}>
+                    {status}
+                  </Text>
+                </Group>
+                <Group gap="xs" wrap="nowrap">
+                  <Button
+                    variant="subtle"
+                    color="gray"
+                    leftSection={<IconRefresh size={16} />}
+                    disabled={busy}
+                    onClick={() =>
+                      confirmNavigation(() => {
+                        void chooseDeck(document.path);
+                      })
+                    }
+                  >
+                    Reload deck
+                  </Button>
+                  <Button
+                    variant="default"
+                    onClick={save}
+                    disabled={!canSave}
+                    loading={task === "Saving"}
+                  >
+                    Save deck
+                  </Button>
+                  <Button
+                    onClick={generate}
+                    disabled={!canGenerate}
+                    loading={task === "Generating"}
+                  >
+                    Generate Anki deck
+                  </Button>
+                </Group>
+              </header>
+              <div className="editor-scroll">
+                <div className="card-stage">
+                  {parsed.error && (
+                    <Alert color="red" title="Invalid card">
+                      {parsed.error}
+                    </Alert>
+                  )}
+                  {mismatch && (
+                    <Alert color="red" title="Card structure differs">
+                      The editor and exporter found different card pairs. Reload
+                      the deck before saving.
+                    </Alert>
+                  )}
+                  {draft ? (
+                    <>
+                      <Group justify="space-between">
+                        <Text size="sm" c="dimmed">
+                          Card {index + 1} of {ranges.length}
+                        </Text>
                         <Button
                           color="red"
                           variant="subtle"
                           size="compact-sm"
+                          leftSection={<IconTrash size={14} />}
                           onClick={deleteCard}
-                          disabled={!selected || busy || !!parsed.error}
+                          disabled={!selected || blocked}
                         >
                           Delete card
                         </Button>
                       </Group>
-                      {draft ? (
-                        <Stack gap="md">
-                          <div className="side-editors">
-                            {(["front", "back"] as const).map((side) => (
-                              <SideEditor
-                                key={
-                                  document.path +
-                                  ":" +
-                                  draft.card.id +
-                                  ":" +
-                                  side
-                                }
-                                side={side}
-                                value={draft[side]}
-                                mathjax={mathjax}
-                                editable={!busy}
-                                onChange={(value) => editCard(side, value)}
-                              />
-                            ))}
-                          </div>
-                          <TagsInput
-                            label="Tags"
-                            value={(selected?.tags ?? draft.card.tags)
-                              .split(",")
-                              .map((tag) => tag.trim())
-                              .filter(Boolean)}
-                            onChange={(tags) => {
-                              if (!selected) return;
-                              const source = replaceTags(
-                                document.source,
-                                selected,
-                                tags,
-                              );
-                              setDraft({
-                                ...draft,
-                                source,
-                                card: cards(source)[index],
-                              });
-                              edit(source);
-                            }}
-                            disabled={busy || !!parsed.error}
+                      <div className="side-editors">
+                        {(["front", "back"] as const).map((side) => (
+                          <SideEditor
+                            key={
+                              document.path + ":" + draft.card.id + ":" + side
+                            }
+                            side={side}
+                            value={draft[side]}
+                            mathjax={mathjax}
+                            editable={!busy}
+                            onChange={(value) => editCard(side, value)}
                           />
-                        </Stack>
-                      ) : (
-                        <Text c="dimmed">Add a card to begin.</Text>
-                      )}
-                      {parsed.error && (
-                        <Alert color="red" title="Invalid card">
-                          {parsed.error}
-                        </Alert>
-                      )}
-                      {mismatch && (
-                        <Alert color="red" title="Card structure differs">
-                          The editor and exporter found different card pairs.
-                          Reload the deck before saving.
-                        </Alert>
-                      )}
-                    </Paper>
-                    {log && (
-                      <Paper withBorder p="md">
-                        <Title order={3} size="h5">
-                          Generation output
-                        </Title>
-                        <Divider my="sm" />
-                        <Text
-                          component="pre"
-                          size="sm"
-                          style={{
-                            whiteSpace: "pre-wrap",
-                            overflowWrap: "anywhere",
-                          }}
-                        >
-                          {log}
-                        </Text>
-                      </Paper>
-                    )}
-                  </Stack>
+                        ))}
+                      </div>
+                      <TagsInput
+                        label="Tags"
+                        placeholder="Add a tag"
+                        value={(selected?.tags ?? draft.card.tags)
+                          .split(",")
+                          .map((tag) => tag.trim())
+                          .filter(Boolean)}
+                        onChange={(tags) => {
+                          if (!selected) return;
+                          const source = replaceTags(
+                            document.source,
+                            selected,
+                            tags,
+                          );
+                          setDraft({
+                            ...draft,
+                            source,
+                            card: cards(source)[index],
+                          });
+                          edit(source);
+                        }}
+                        disabled={busy || !!parsed.error}
+                      />
+                    </>
+                  ) : (
+                    <Text c="dimmed" ta="center" py="xl">
+                      Add a card to begin.
+                    </Text>
+                  )}
+                  {log && (
+                    <details className="generation-log">
+                      <summary>Generation output</summary>
+                      <pre>{log}</pre>
+                    </details>
+                  )}
                 </div>
-              </Stack>
-            )}
+              </div>
+            </main>
           </div>
-        </Stack>
-      </AppShell.Main>
-    </AppShell>
+        )}
+      </div>
+      {notice && (
+        <div className="snackbar">
+          <Text size="sm" role="status">
+            {notice.label}
+          </Text>
+          {notice.undo && (
+            <Button
+              variant="subtle"
+              color="indigo.2"
+              size="compact-sm"
+              leftSection={<IconArrowBackUp size={16} />}
+              disabled={busy}
+              onClick={() =>
+                organize(notice.undo!, null, "Undo complete.").catch(
+                  (failure) => setError(String(failure)),
+                )
+              }
+            >
+              Undo
+            </Button>
+          )}
+          <CloseButton
+            size="sm"
+            variant="transparent"
+            aria-label="Dismiss"
+            className="snackbar-close"
+            onClick={() => setNotice(null)}
+          />
+        </div>
+      )}
+      <Spotlight
+        actions={commands}
+        limit={40}
+        highlightQuery
+        nothingFound="Nothing found"
+        shortcut="mod + K"
+        tagsToIgnore={[]}
+        triggerOnContentEditable
+        searchProps={{
+          leftSection: <IconSearch size={18} />,
+          placeholder: "Search decks, cards, and commands",
+        }}
+      />
+    </div>
   );
 }

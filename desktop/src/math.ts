@@ -11,7 +11,8 @@ import {
   EditorView,
   WidgetType,
 } from "@codemirror/view";
-import { type SyntaxNodeRef } from "@lezer/common";
+import { type SyntaxNode, type SyntaxNodeRef } from "@lezer/common";
+import { deckParser } from "./cards";
 import { pandocLatexMathEnvironmentAtStart } from "@lezer/markdown";
 import type { Macros } from "./bridge";
 
@@ -121,11 +122,11 @@ class MathWidget extends WidgetType {
   }
 }
 
+// `text` is the source of `node`.
 function equation(
-  state: EditorState,
+  text: string,
   node: SyntaxNodeRef,
 ): { equation: string; display: boolean } | null {
-  const text = state.sliceDoc(node.from, node.to);
   if (node.name === "RawInline") {
     const environment = pandocLatexMathEnvironmentAtStart(text);
     return environment && environment.end === text.length
@@ -167,7 +168,7 @@ function decorate(
         )
       )
         return false;
-      const math = equation(state, node);
+      const math = equation(state.sliceDoc(node.from, node.to), node);
       if (!math) return;
       widgets.push(
         Decoration.replace({
@@ -229,4 +230,58 @@ export function renderedMath(mathjax: MathJaxRuntime) {
     })),
     EditorView.focusChangeEffect.of((_, focusing) => focusEffect.of(focusing)),
   ];
+}
+
+const skipped = new Set([
+  "EmphasisMark",
+  "CodeMark",
+  "LinkMark",
+  "URL",
+  "LinkLabel",
+  "LinkTitle",
+  "HeaderMark",
+  "ListMark",
+  "QuoteMark",
+  "Image",
+  "HTMLTag",
+  "PandocDivMark",
+  "PandocAttribute",
+]);
+const tags: Record<string, string> = {
+  StrongEmphasis: "strong",
+  Emphasis: "em",
+};
+const escape = (text: string) =>
+  text.replace(/[&<>"]/g, (character) => "&#" + character.charCodeAt(0) + ";");
+const previews = new Map<string, string>();
+
+// One line of card Markdown as inline HTML, for card lists. The deck parser
+// finds emphasis and math as the editor does; MathJax renders the math.
+export function previewHtml(mathjax: MathJaxRuntime, text: string): string {
+  const cached = previews.get(text);
+  if (cached !== undefined) return cached;
+  const render = (node: SyntaxNode): string => {
+    const source = text.slice(node.from, node.to);
+    if (["InlineCode", "FencedCode", "RawInline"].includes(node.name)) {
+      const math = equation(source, node);
+      if (math)
+        return mathjax.tex2chtml(math.equation, { display: false }).outerHTML;
+    }
+    if (skipped.has(node.name)) return "";
+    let html = "";
+    let position = node.from;
+    for (let child = node.firstChild; child; child = child.nextSibling) {
+      html += escape(text.slice(position, child.from)) + render(child);
+      position = child.to;
+    }
+    html += escape(text.slice(position, node.to));
+    const tag = tags[node.name];
+    return tag ? `<${tag}>${html}</${tag}>` : html;
+  };
+  const html = render(deckParser.parse(text).topNode).replace(/\s+/g, " ");
+  // CHTML adds the stylesheet for new characters on document update.
+  mathjax.startup.document.clear();
+  mathjax.startup.document.updateDocument();
+  previews.set(text, html);
+  return html;
 }

@@ -31,7 +31,9 @@ just desktop-install
 
 Launch **Math Flashcards** from the application menu or run `math-flashcards`.
 Use `just desktop-update` to rebuild and update the installed app and desktop entry.
-Open a workspace folder that contains `decks/`. Select a deck in the tree.
+Open a workspace folder that contains `decks/` from the workspace menu in the
+sidebar. Select a deck in the tree. Ctrl-K opens a command menu that finds decks,
+cards, and actions; Ctrl-S saves the deck.
 The editor supports card search, side-by-side Front and Back editing with math
 rendered in place, and adding and deleting cards. Save the deck, then select
 **Generate Anki deck** to regenerate its package in `apkg/`.
@@ -41,10 +43,10 @@ Ctrl-click or Shift-click selects several cards to drag together. Drag a deck on
 another deck to merge them. **New deck** creates an empty deck, and **Undo**
 restores the last organization change.
 
-The package badge shows **Up to date**, **Unsynced**, **Generating**, or **Failed**.
-Source and media changes, exporter changes, and changes to the generated package
-make it unsynced. A separate badge shows unsaved edits. Failed exports retain
-the previous package. Disk changes are checked before a save.
+The toolbar status shows **Unsaved changes**, or else the package state:
+**Up to date**, **Unsynced**, **Generating**, or **Failed**. Source and media
+changes, exporter changes, and changes to the generated package make it
+unsynced. Failed exports retain the previous package. Disk changes are checked before a save.
 
 Use `just desktop-dev` for native development. The [desktop guide](desktop/README.md)
 lists dependencies, verification commands, and the Anki import boundary.

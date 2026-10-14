@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { Box, Title } from "@mantine/core";
+import { Box, Text } from "@mantine/core";
 import CodeMirror from "@uiw/react-codemirror";
 import { commonmarkLanguage, markdown } from "@codemirror/lang-markdown";
 import { StreamLanguage } from "@codemirror/language";
@@ -57,14 +57,13 @@ export function SideEditor({
     [mathjax],
   );
   return (
-    <Box className={"side-editor " + side}>
-      <Title order={4} size="h6" mb="xs">
+    <Box className={"side-editor card-face " + side}>
+      <Text className="eyebrow" component="h3">
         {label}
-      </Title>
+      </Text>
       <CodeMirror
         value={value}
-        minHeight="100px"
-        maxHeight="60vh"
+        minHeight="160px"
         extensions={extensions}
         basicSetup={{
           lineNumbers: false,

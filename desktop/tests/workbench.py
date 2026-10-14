@@ -35,9 +35,11 @@ def main() -> None:
             console: list[str] = []
             page.on("pageerror", lambda error: console.append(str(error)))
             page.goto("http://127.0.0.1:1420")
+            status = page.locator(".toolbar .status")
             expect(
                 page.get_by_role("heading", name="Math Flashcards", exact=True)
             ).to_be_visible()
+            page.get_by_role("button", name="Workspace", exact=True).click()
             expect(page.get_by_label("Workspace folder")).to_have_value(
                 str(repo.parent), timeout=30000
             )
@@ -48,8 +50,8 @@ def main() -> None:
             page.get_by_label("Workspace folder").fill(str(root))
             page.get_by_role("button", name="Open workspace", exact=True).click()
             expect(
-                page.get_by_role("button", name="Open workspace", exact=True)
-            ).to_be_enabled(timeout=30000)
+                page.get_by_role("button", name="Workspace", exact=True)
+            ).to_have_text(root.name, timeout=30000)
             page.get_by_text("Basics", exact=True).click()
             page.get_by_text("Precalculus", exact=True).click()
             expect(page.get_by_text("Unsynced", exact=True).first).to_be_visible()
@@ -59,14 +61,14 @@ def main() -> None:
             back_math = page.locator(".side-editor.back .cm-content mjx-container")
             expect(front_math).to_contain_text("π/6", timeout=30000)
             expect(back_math.first).to_be_visible()
-            expect(page.get_by_text("Unsaved changes", exact=True)).not_to_be_visible()
+            expect(status).not_to_have_text("Unsaved changes")
             page.screenshot(path=str(artifacts / "rendered.png"))
             front_math.click()
             expect(front_math).to_have_count(0)
             expect(page.locator(".side-editor.front .cm-content")).to_have_text(
                 r"$\sin(\pi/6) = \cdots$"
             )
-            expect(page.get_by_text("Unsaved changes", exact=True)).not_to_be_visible()
+            expect(status).not_to_have_text("Unsaved changes")
             page.screenshot(path=str(artifacts / "source.png"))
             page.get_by_role("button", name="Add card", exact=True).click()
             front_editor = page.locator(".side-editor.front .cm-content")
@@ -85,12 +87,16 @@ def main() -> None:
             page.get_by_role("combobox", name="Tags", exact=True).press("Enter")
             expect(front_editor).to_contain_text("Second question paragraph")
             expect(back_editor).to_contain_text("Second fact")
-            expect(page.get_by_text("Unsaved changes", exact=True)).to_be_visible()
+            expect(status).to_have_text("Unsaved changes")
             page.screenshot(path=str(artifacts / "editing.png"))
+            page.keyboard.press("Control+k")
+            expect(page.get_by_placeholder("Search")).to_be_visible()
+            page.keyboard.type("Added")
+            page.screenshot(path=str(artifacts / "command-menu.png"))
+            page.keyboard.press("Escape")
+            expect(page.get_by_placeholder("Search")).not_to_be_visible()
             page.get_by_role("button", name="Save deck", exact=True).click()
-            expect(page.get_by_text("Saved", exact=True).first).to_be_visible(
-                timeout=30000
-            )
+            expect(status).to_have_text("Unsynced", timeout=30000)
             assert (
                 "Added question"
                 in (root / "decks" / "Basics" / "Precalculus.md").read_text()
@@ -125,23 +131,21 @@ def main() -> None:
             page.get_by_role("button", name="Delete card", exact=True).click()
             page.get_by_role("button", name="Delete", exact=True).click()
             page.get_by_role("button", name="Save deck", exact=True).click()
-            expect(page.get_by_text("Saved", exact=True).first).to_be_visible(
-                timeout=30000
-            )
+            expect(status).to_have_text("Unsynced", timeout=30000)
             page.screenshot(path=str(artifacts / "deleted.png"))
             expect(page.get_by_text("Unsynced", exact=True).first).to_be_visible()
             assert (
                 "Added question"
-                not in (
-                    root / "decks" / "Basics" / "Precalculus.md"
-                ).read_text()
+                not in (root / "decks" / "Basics" / "Precalculus.md").read_text()
             )
             page.get_by_role("button", name="Generate Anki deck", exact=True).click()
             expect(page.get_by_text("Up to date", exact=True).first).to_be_visible(
                 timeout=60000
             )
             package.write_bytes(b"changed package")
+            page.get_by_role("button", name="Workspace", exact=True).click()
             page.get_by_role("button", name="Refresh workspace", exact=True).click()
+            page.keyboard.press("Escape")
             expect(page.get_by_text("Unsynced", exact=True).first).to_be_visible()
             page.screenshot(path=str(artifacts / "changed-package.png"))
             page.get_by_role("button", name="Generate Anki deck", exact=True).click()
@@ -170,9 +174,7 @@ def main() -> None:
             page.screenshot(path=str(artifacts / "save-conflict.png"), full_page=True)
             page.get_by_role("button", name="Reload deck", exact=True).click()
             page.get_by_role("button", name="Discard changes", exact=True).click()
-            expect(page.get_by_text("Saved", exact=True).first).to_be_visible(
-                timeout=30000
-            )
+            expect(status).to_have_text("Unsynced", timeout=30000)
             for side in ("front", "back"):
                 deck_path.write_text(
                     f'---\ntitle: "Unpaired deck"\n---\n\n::: {{.{side} card-id="unpaired"}}\nContent\n:::\n'

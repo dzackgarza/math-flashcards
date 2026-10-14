@@ -32,23 +32,17 @@ and each one sets the quality bar for one part of the editor.
 - [Mobbin](https://mobbin.com): screenshot library of production iOS and web
   apps. Search "flashcards" and "notes" to find flows.
 
-## Changes from the current editor
+## How the editor applies the references
 
-The current editor stacks bordered Mantine cards: a workspace bar, a deck header,
-a card list, and an edit form. Each pane has the same weight. The references
-show these changes:
-
-1. Remove the panel borders. Make the deck tree a full-height sidebar with a
-   tinted background. Make the card list and the editor plain columns separated
-   by one hairline.
-2. Move the workspace path into a menu or a settings sheet.
-3. Show rendered math in the card list, with the front on the first line and
-   the back in muted text on the second line. Raw `$\sin(\pi/6)$` source in the
-   list is the largest gap to the references.
-4. Show the selected card as a card: a fixed aspect ratio, rendered front and
-   back, and a flip transition. Source editing opens in place on click, as in
-   Bear.
-5. Combine **Saved** and **Unsynced** into one status in the toolbar. Make
-   **Generate Anki deck** the single primary action.
-6. Add a command menu for deck and card search, new card, and generate.
-7. Use one type scale with no more than four sizes. Use system UI fonts on Linux.
+1. The deck tree is a full-height sidebar with a tinted background. The card
+   list and the editor are plain columns separated by one hairline.
+2. The workspace path is in a menu under the workspace name in the sidebar.
+3. The card list shows rendered math: the front on the first line and the back
+   in muted text on the second line.
+4. The selected card shows its Front and Back as two raised card faces with
+   math rendered in place. Click an equation to edit its source.
+5. The toolbar shows one status: unsaved changes first, then the package
+   state. **Generate Anki deck** is the single primary action.
+6. A command menu (Ctrl-K) finds decks, cards, and actions. Ctrl-S saves the
+   deck.
+7. The type scale has four sizes: 12, 14, 16, and 20 px, set in Inter.

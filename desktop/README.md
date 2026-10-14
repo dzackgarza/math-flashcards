@@ -37,8 +37,9 @@ refreshes the installation from an existing build.
 The app opens the saved workspace on startup. On first launch it opens the
 repository used to build the app. Preferences use the standard Tauri store in
 the XDG configuration directory.
-Select **Browse** or enter a workspace path to change it, then select a deck in
-the tree. The card list shows its cards; select a card to edit its sides.
+Select the workspace name in the sidebar to open the workspace menu. Select
+**Browse** or enter a workspace path to change it, then select a deck in the
+tree. A dot after a deck name marks an unsynced package. The card list shows its cards; select a card to edit its sides.
 
 Drag a card in the list to reorder it, or drop it on a deck in the tree to move it.
 Ctrl-click toggles a card in the selection and Shift-click selects a range; dragging
@@ -49,7 +50,8 @@ operation. These changes save immediately; save or reload a deck with unsaved
 edits before moving its cards. See [card organization](../docs/card-organization.md)
 for the design sources and file operations. Relative media links follow their
 original files across moves.
-Search the deck tree or card list to find a card. Edit **Front** and **Back** in
+Ctrl-K opens a command menu that finds decks, cards, and actions. **Find a
+card** filters the card list by front and back text. Ctrl-S saves the deck. Edit **Front** and **Back** in
 side-by-side CodeMirror fields. Both fields accept Markdown and LaTeX, with
 Pandoc syntax and TeX highlighting from Zettlr's parser. Set tags with **Tags**.
 The app creates the card ID and stores the sides as paired fenced divs.
@@ -72,6 +74,9 @@ made after the document was loaded. Reload the deck to read that external edit.
 Select **Generate Anki deck** after saving. It builds the entire selected deck
 and publishes the package after the exporter succeeds. Generation output shows
 the exporter result or error. An empty answer is an export error.
+
+The toolbar shows **Unsaved changes** while the deck has unsaved edits, and
+otherwise the package state:
 
 | State | Meaning |
 | --- | --- |

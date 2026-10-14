@@ -104,6 +104,7 @@ export function CardRow({
   id,
   path,
   label,
+  preview,
   active,
   selected,
   group,
@@ -113,6 +114,7 @@ export function CardRow({
   id: string;
   path: string;
   label: string;
+  preview: { front: string; back: string } | null;
   active: boolean;
   selected: boolean;
   group: string[];
@@ -167,7 +169,20 @@ export function CardRow({
         aria-pressed={selected}
         onClick={choose}
       >
-        {label}
+        {preview ? (
+          <>
+            <span
+              className="card-row-front"
+              dangerouslySetInnerHTML={{ __html: preview.front }}
+            />
+            <span
+              className="card-row-back"
+              dangerouslySetInnerHTML={{ __html: preview.back }}
+            />
+          </>
+        ) : (
+          <span className="card-row-front">{label}</span>
+        )}
       </UnstyledButton>
       {edge && <DropIndicator edge={edge} gap="4px" />}
     </div>

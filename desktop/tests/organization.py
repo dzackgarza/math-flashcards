@@ -62,14 +62,15 @@ def scenario(root: Path) -> None:
         errors: list[str] = []
         page.on("pageerror", lambda error: errors.append(str(error)))
         page.goto("http://127.0.0.1:1421")
+        page.get_by_role("button", name="Workspace", exact=True).click()
         expect(
             page.get_by_role("button", name="Refresh workspace", exact=True)
         ).to_be_enabled(timeout=30000)
         page.get_by_label("Workspace folder").fill(str(root))
         page.get_by_role("button", name="Open workspace", exact=True).click()
-        expect(
-            page.get_by_role("button", name="Open workspace", exact=True)
-        ).to_be_enabled(timeout=30000)
+        expect(page.get_by_role("button", name="Workspace", exact=True)).to_have_text(
+            root.name, timeout=30000
+        )
         page.get_by_text("Algebra", exact=True).click()
         page.get_by_text("Analysis", exact=True).click()
         page.get_by_text("Original", exact=True).click()

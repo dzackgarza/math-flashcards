@@ -98,8 +98,17 @@ def main(*, entry: Path | None = None) -> None:
                         "mousemove",
                         "--window",
                         window,
-                        "220",
-                        "156",
+                        "127",
+                        "60",
+                        "click",
+                        "1",
+                        "sleep",
+                        "0.5",
+                        "mousemove",
+                        "--window",
+                        window,
+                        "230",
+                        "140",
                         "click",
                         "1",
                         "key",
@@ -113,19 +122,7 @@ def main(*, entry: Path | None = None) -> None:
                     check=True,
                 )
                 time.sleep(0.5)
-                subprocess.run(
-                    [
-                        "xdotool",
-                        "mousemove",
-                        "--window",
-                        window,
-                        "1170",
-                        "156",
-                        "click",
-                        "1",
-                    ],
-                    check=True,
-                )
+                subprocess.run(["xdotool", "key", "Return"], check=True)
                 time.sleep(3)
                 with mss.mss() as screen:
                     shot = screen.grab(
@@ -142,8 +139,8 @@ def main(*, entry: Path | None = None) -> None:
                         "mousemove",
                         "--window",
                         window,
-                        "105",
-                        "323",
+                        "59",
+                        "147",
                         "click",
                         "1",
                     ],
@@ -155,8 +152,8 @@ def main(*, entry: Path | None = None) -> None:
                         "mousemove",
                         "--window",
                         window,
-                        "120",
-                        "354",
+                        "80",
+                        "177",
                         "click",
                         "1",
                     ],
@@ -176,8 +173,8 @@ def main(*, entry: Path | None = None) -> None:
                         "mousemove",
                         "--window",
                         window,
-                        "658",
-                        "304",
+                        "1334",
+                        "28",
                         "click",
                         "1",
                     ],
@@ -259,8 +256,8 @@ def main(*, entry: Path | None = None) -> None:
                         "mousemove",
                         "--window",
                         window,
-                        "430",
-                        "505",
+                        "423",
+                        "153",
                         "mousedown",
                         "1",
                     ],
@@ -268,17 +265,17 @@ def main(*, entry: Path | None = None) -> None:
                 )
                 time.sleep(0.2)
                 subprocess.run(
-                    ["xdotool", "mousemove", "--window", window, "450", "520"],
+                    ["xdotool", "mousemove", "--window", window, "440", "170"],
                     check=True,
                 )
                 time.sleep(0.2)
                 subprocess.run(
-                    ["xdotool", "mousemove", "--window", window, "105", "320"],
+                    ["xdotool", "mousemove", "--window", window, "105", "204"],
                     check=True,
                 )
                 time.sleep(0.5)
                 subprocess.run(
-                    ["xdotool", "mousemove", "--window", window, "100", "324"],
+                    ["xdotool", "mousemove", "--window", window, "100", "208"],
                     check=True,
                 )
                 time.sleep(0.5)
@@ -299,9 +296,7 @@ def main(*, entry: Path | None = None) -> None:
                 ).read_text()
                 assert (
                     r"$\sin(\pi/6) = \cdots$"
-                    not in (
-                        root / "decks" / "Basics" / "Precalculus.md"
-                    ).read_text()
+                    not in (root / "decks" / "Basics" / "Precalculus.md").read_text()
                 )
                 time.sleep(2)
                 with mss.mss() as screen:

@@ -14,6 +14,7 @@
         "@codemirror/language": "^6.13.1",
         "@codemirror/legacy-modes": "^6.5.5",
         "@codemirror/state": "^6.7.6",
+        "@fontsource-variable/inter": "^5.3.0",
         "@lezer/common": "^1.5.3",
         "@lezer/highlight": "^1.2.5",
         "@lezer/markdown": "file:vendor/lezer-markdown-pandoc.tgz",
@@ -21,6 +22,7 @@
         "@mantine/form": "^9.7.2",
         "@mantine/hooks": "^9.7.2",
         "@mantine/modals": "^9.7.2",
+        "@mantine/spotlight": "9.7.2",
         "@tabler/icons-react": "^3.49.0",
         "@tauri-apps/api": "^2",
         "@tauri-apps/plugin-dialog": "^2.8.2",
@@ -132,6 +134,8 @@
 
     "@floating-ui/utils": ["@floating-ui/utils@0.2.12", "", {}, "sha512-HpCo8tmWzLVad5s2d19EhAz5zqrrQ6s69qd6moPMQvkOuSwDT1YgRfWSVuc4ennqrgv3OHppiOGMQ7oC13yIww=="],
 
+    "@fontsource-variable/inter": ["@fontsource-variable/inter@5.3.0", "", {}, "sha512-OupL48va4JNofb97w6NYeF9S7W/kHNKM0Er8Dem5nqi4jeOLrVJDoE8tZEpnMJmtkvNbB1EIPPwHcdkF6b1oUA=="],
+
     "@hapi/address": ["@hapi/address@5.1.1", "", { "dependencies": { "@hapi/hoek": "^11.0.2" } }, "sha512-A+po2d/dVoY7cYajycYI43ZbYMXukuopIsqCjh5QzsBCipDtdofHntljDlpccMjIfTy6UOkg+5KPriwYch2bXA=="],
 
     "@hapi/formula": ["@hapi/formula@3.0.2", "", {}, "sha512-hY5YPNXzw1He7s0iqkRQi+uMGh383CGdyyIGYtB+W5N3KHPXoqychklvHhKCC9M3Xtv0OCs/IHw+r4dcHtBYWw=="],
@@ -173,6 +177,10 @@
     "@mantine/hooks": ["@mantine/hooks@9.7.2", "", { "peerDependencies": { "react": "^19.2.0" } }, "sha512-11emsRp/Mg+vfaKVyoMwiMdCHmO/15XOL6JG9fACkclVZnLPBVvRIaDdRBudsR3ALGZ5iTzrArPJDjjoeO6X4w=="],
 
     "@mantine/modals": ["@mantine/modals@9.7.2", "", { "peerDependencies": { "@mantine/core": "9.7.2", "@mantine/hooks": "9.7.2", "react": "^19.2.0", "react-dom": "^19.2.0" } }, "sha512-punZaWfh+nkGItIKtRF3TawjBoa241Ek8YTnOJrllXtheYyN4kgtoxgNd6B+9KwsT6UnfgYTEFfY9Jr9WsW/Ew=="],
+
+    "@mantine/spotlight": ["@mantine/spotlight@9.7.2", "", { "dependencies": { "@mantine/store": "9.7.2" }, "peerDependencies": { "@mantine/core": "9.7.2", "@mantine/hooks": "9.7.2", "react": "^19.2.0", "react-dom": "^19.2.0" } }, "sha512-QvpxQ0Axy1Pa3pWuAMyNK8mhzR0/PqhSsz9tA7iTpi5zUgVAqODFP36FyPk6ajRL9hvlF094Pjj5b/UKHLKk+w=="],
+
+    "@mantine/store": ["@mantine/store@9.7.2", "", { "peerDependencies": { "react": "^19.2.0" } }, "sha512-ERjk46CbQeSqytWTq5cAzT4o9MBAzzvVXpPlD36B5NwB5hmbjQfdUKcr0PlZfG04a/PDPdLPvAiVp7Eeh0tk8A=="],
 
     "@marijn/find-cluster-break": ["@marijn/find-cluster-break@1.0.4", "", {}, "sha512-Wy0V7+SGUjnF9/TkiM1hKVDPj7jKXduPNboMVtHTA8dySMURWqfg/JZ9E2Sq8JgSJmkl7k7Qe9FLeMSrSraWmQ=="],
 
