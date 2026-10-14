@@ -211,7 +211,7 @@ Write $\mathsf{pro}{\mathbf{Z}}$ as a product.
 :::
 
 ::: {.back card-id="card-1f3689519ae590a6"}
-$$\mathsf{pro}{\mathbf{Z}}= \cocolim C_n = \cocolim \prod_{p\in \operatorname{Spec}{\mathbf{Z}}} C_{p_i^{k_i}} = \prod_{p\in \operatorname{Spec}{\mathbf{Z}}} \cocolim C_{p_i^{k_i}} = \prod_{p\in \operatorname{Spec}{\mathbf{Z}}} { {\mathbf{Z}}_{\widehat{p}} }$$
+$$\mathsf{pro}{\mathbf{Z}}= \varprojlim C_n = \varprojlim \prod_{p\in \operatorname{Spec}{\mathbf{Z}}} C_{p_i^{k_i}} = \prod_{p\in \operatorname{Spec}{\mathbf{Z}}} \varprojlim C_{p_i^{k_i}} = \prod_{p\in \operatorname{Spec}{\mathbf{Z}}} { {\mathbf{Z}}_{\widehat{p}} }$$
 :::
 
 ::: {.front card-id="card-65cd3d53082ae059"}
@@ -253,7 +253,7 @@ What is the inflation/restriction sequence for Brauer groups?
 :::
 
 ::: {.back card-id="card-9533eaca3452aa02"}
-$\mathrm{Br}(L/K)\xhookrightarrow{\mathrm{inflation}} \mathrm{Br}(K) \xrightarrow{\mathrm{restriction}} \mathrm{Br}(L)^{{ \mathsf{Gal}}(L/K)}$.
+$\mathrm{Br}(L/K)\overset{\mathrm{inflation}}{\hookrightarrow} \mathrm{Br}(K) \xrightarrow{\mathrm{restriction}} \mathrm{Br}(L)^{{ \mathsf{Gal}}(L/K)}$.
 :::
 
 ::: {.front card-id="card-cc76cd508bd43e53"}
@@ -375,9 +375,9 @@ Discuss limits of $C_n$.
 :::
 
 ::: {.back card-id="card-766c454787487177"}
-$\colim C_n = {\mathbf{Q}}/{\mathbf{Z}}$
+$\operatorname*{colim} C_n = {\mathbf{Q}}/{\mathbf{Z}}$
 
-$\cocolim C_n = \mathsf{pro}{\mathbf{Z}}$.
+$\varprojlim C_n = \mathsf{pro}{\mathbf{Z}}$.
 :::
 
 ::: {.front card-id="card-10d1272606dd6f30"}
@@ -393,7 +393,7 @@ For a decreasing filtration $M_1 \supseteq M_2\supseteq\cdots$, what does it mea
 :::
 
 ::: {.back card-id="card-8fd920f18e320d3c"}
-$M_1\to \cocolim M_1/M_n$ is an isomorphism, realizing $M_1$ as an adic completion wrt the quotients.
+$M_1\to \varprojlim M_1/M_n$ is an isomorphism, realizing $M_1$ as an adic completion wrt the quotients.
 :::
 
 ::: {.front card-id="card-ecbf81a3501e47c7"}
@@ -617,7 +617,7 @@ Discuss the significance of $\omega$.
 ::: {.back card-id="card-6153b701f329a586"}
 Isomorphisms of $\omega_{L/K}$ assemble into a compatible inverse system.
 
-Yields $\omega: K^{\times}\to\cocolim_{L/K \text{ fin. ab}}K^{\times}/NL^{\times} { \, \xrightarrow{\sim}\, }G_K^{\operatorname{ab}}$, so is this injective? Is it the profinite completion of $K^{\times}$?
+Yields $\omega: K^{\times}\to\varprojlim_{L/K \text{ fin. ab}}K^{\times}/NL^{\times} { \, \xrightarrow{\sim}\, }G_K^{\operatorname{ab}}$, so is this injective? Is it the profinite completion of $K^{\times}$?
 
 Equivalently, are there enough finite abelian extensions to be cofinal in the system of all finite index subgroups of $K^{\times}$?
 
@@ -749,7 +749,7 @@ What is explicit class field theory?
 :::
 
 ::: {.back card-id="card-2594d9e0a9390842"}
-Since $K^{\operatorname{ab}}/K$ is a countably infinite degree algebraic extension, produce a sequence of algebraic numbers $a_n$ such that $K^{\operatorname{ab}}= \colim(K[a_1]\hookrightarrow K[a_1, a_2]\hookrightarrow\cdots)$.
+Since $K^{\operatorname{ab}}/K$ is a countably infinite degree algebraic extension, produce a sequence of algebraic numbers $a_n$ such that $K^{\operatorname{ab}}= \operatorname*{colim}(K[a_1]\hookrightarrow K[a_1, a_2]\hookrightarrow\cdots)$.
 :::
 
 ::: {.front card-id="card-ee8cd8706a6bd8a0"}
@@ -801,7 +801,7 @@ What does $f = g + { \mathsf{O}}(k)$ mean?
 :::
 
 ::: {.back card-id="card-30d9359488c1df16"}
-$f\equiv g \in k{\llbracket x_1,\cdots, x_n \rrbracket  }/\left\langle{x_1,\cdots,x_n}\right\rangle^k$, so equal up to terms of order $k$.
+$f\equiv g \in k{[\![  x_1,\cdots, x_n ]\!]  }/\left\langle{x_1,\cdots,x_n}\right\rangle^k$, so equal up to terms of order $k$.
 :::
 
 ::: {.front card-id="card-f33d6daf6119c6ba"}
@@ -821,7 +821,7 @@ Associativity: $F(F(x,y), z) = F(x, F(y,z))$
 
 Identities: $F(x, 0) = x$ and $F(0, y) = y$.
 
-Inverses: $\exists !\iota \in R{\llbracket t \rrbracket  }$ such that $F(x, \iota(x)) = 0$.
+Inverses: $\exists !\iota \in R{[\![  t ]\!]  }$ such that $F(x, \iota(x)) = 0$.
 :::
 
 ::: {.front card-id="card-6ab20a703009190d"}
@@ -829,7 +829,7 @@ How does one get an honest group from a FGL?
 :::
 
 ::: {.back card-id="card-6ab20a703009190d"}
-Take $(R, {\mathfrak{m}})$ complete local, then $R { \, \xrightarrow{\sim}\, }\cocolim_n R/{\mathfrak{m}}^n$ so $x+y \coloneqq F(x,y)$ converges in the ${\mathfrak{m}}{\hbox{-}}$adic topology.
+Take $(R, {\mathfrak{m}})$ complete local, then $R { \, \xrightarrow{\sim}\, }\varprojlim_n R/{\mathfrak{m}}^n$ so $x+y \coloneqq F(x,y)$ converges in the ${\mathfrak{m}}{\hbox{-}}$adic topology.
 :::
 
 ::: {.front card-id="card-37578c7420249421"}
@@ -845,11 +845,11 @@ What is a formal $R{\hbox{-}}$module?
 :::
 
 ::: {.back card-id="card-054429efc3a37b22"}
-A ring morphism $R\to { \operatorname{End} }_{\fgl}(F)$ for $F$ a formal group.
+A ring morphism $R\to { \operatorname{End} }_{{\mathsf{FGL}}}(F)$ for $F$ a formal group.
 :::
 
 ::: {.front card-id="card-ad2d11d11ca5cd23"}
-What is $[n](T)$ for ${\mathbf{G}}_a$ and ${\mathbf{G}}_m$, where $[n] \in { \operatorname{End} }_{\fgl}(F)$ is $1 \oplus_F 1\oplus_F \cdots \oplus_F 1$?
+What is $[n](T)$ for ${\mathbf{G}}_a$ and ${\mathbf{G}}_m$, where $[n] \in { \operatorname{End} }_{{\mathsf{FGL}}}(F)$ is $1 \oplus_F 1\oplus_F \cdots \oplus_F 1$?
 :::
 
 ::: {.back card-id="card-ad2d11d11ca5cd23"}
@@ -887,7 +887,7 @@ What is $F_\pi$? Give an example of $f\in F_\pi$.
 :::
 
 ::: {.back card-id="card-5496190b1d9e0cc4"}
-$F_\pi \coloneqq\left\{{ f\in R{\llbracket T \rrbracket  } {~\mathrel{\Big\vert}~}f(T) = \pi T + { \mathsf{O}}(T^2) ,\,\, f\equiv T^q \operatorname{mod}\pi}\right\}$.
+$F_\pi \coloneqq\left\{{ f\in R{[\![  T ]\!]  } {~\mathrel{\Big\vert}~}f(T) = \pi T + { \mathsf{O}}(T^2) ,\,\, f\equiv T^q \operatorname{mod}\pi}\right\}$.
 
 For $K = { {\mathbf{Q}}_p }$, take $f(T) = (1+T)^p - 1 = T^p + {p\choose p-1}T^{p-1} + \cdots + pT$, so $f = [p]$ on ${\mathbf{G}}_m$.
 :::
@@ -897,7 +897,7 @@ What are the key properties of $F_\pi$?
 :::
 
 ::: {.back card-id="card-1b6f81d13cff9302"}
-For $f,g\in F_\pi$ and $\phi_1 \in R{\llbracket x_1,\cdots, x_n \rrbracket  }$, $\exists ! \phi \in R{\llbracket x_1,\cdots, x_n \rrbracket  }$ st $\phi = \phi_1 + { \mathsf{O}}(x^2)$ and $f\circ \phi = \phi \circ \Delta_g$, i.e.$f(\phi(x_1,\cdots, x_n)) = \phi(g(x_1), \cdots, g(x_n))$.
+For $f,g\in F_\pi$ and $\phi_1 \in R{[\![  x_1,\cdots, x_n ]\!]  }$, $\exists ! \phi \in R{[\![  x_1,\cdots, x_n ]\!]  }$ st $\phi = \phi_1 + { \mathsf{O}}(x^2)$ and $f\circ \phi = \phi \circ \Delta_g$, i.e.$f(\phi(x_1,\cdots, x_n)) = \phi(g(x_1), \cdots, g(x_n))$.
 :::
 
 ::: {.front card-id="card-9065d30f1cc7ba3c"}
@@ -905,7 +905,7 @@ What is the Lubin-Tate FGL attached to $f\in F_\pi$?
 :::
 
 ::: {.back card-id="card-9065d30f1cc7ba3c"}
-The unique FGL $F_f\in R{\llbracket x,y \rrbracket  }$ st $f\in { \operatorname{End} }_{\fgl} F_f$ canonically, so $f(F_f(x,y)) = F_f(f(x), f(y))$.
+The unique FGL $F_f\in R{[\![  x,y ]\!]  }$ st $f\in { \operatorname{End} }_{{\mathsf{FGL}}} F_f$ canonically, so $f(F_f(x,y)) = F_f(f(x), f(y))$.
 :::
 
 ::: {.front card-id="card-f8c7dd23d0446e5a"}

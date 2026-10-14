@@ -73,7 +73,7 @@ What is the augmentation on ${\mathbf{Z}}[G]$? Describe the augmentation ideal.
 ::: {.back card-id="card-456ddebfbbaa64a2"}
 $\alpha: {\mathbf{Z}}[G]\to {\mathbf{Z}}$ where $\sum n_g[g] \mapsto \sum n_g$, "evaluate each $g\in G$ at the point 1".
 
-$I\coloneqq\ker \alpha$ fits into a SES $I\hookrightarrow{\mathbf{Z}}[G]\twoheadrightarrow{\mathbf{Z}}\in \zgmod$ where ${\mathbf{Z}}$ has the trivial action.
+$I\coloneqq\ker \alpha$ fits into a SES $I\hookrightarrow{\mathbf{Z}}[G]\twoheadrightarrow{\mathbf{Z}}\in {}_{{\mathbf{Z}}[G]}{\mathsf{Mod}}$ where ${\mathbf{Z}}$ has the trivial action.
 
 $I\in   {}_{{\mathbf{Z}}}{\mathsf{Mod}}^{\mathrm{free}}$ has basis $\left\{{[g] - [e] {~\mathrel{\Big\vert}~}g\in G}\right\}$.
 :::
@@ -85,7 +85,7 @@ When does the augmentation SES split? Why care?
 ::: {.back card-id="card-5eab3dfa10f32541"}
 Only if $G$ is trivial: a section has to send 1 to a $G{\hbox{-}}$invariant element, which is either zero or a multiple of $N$.
 
-If $G$ is nontrivial, ${\mathbf{Z}}$ is not projective in $\zgmod$.
+If $G$ is nontrivial, ${\mathbf{Z}}$ is not projective in ${}_{{\mathbf{Z}}[G]}{\mathsf{Mod}}$.
 :::
 
 ::: {.front card-id="card-d79ac55113f033ef"}
@@ -97,7 +97,7 @@ For $k$ a field and $G$ finite, TFAE:
 
 $\operatorname{ch}k \nmid {\sharp}G$
 
-$k[G]$ is a semisimple module, so every $M\in \kgmod$ is projective and injective, thus all higher cohomology vanishes.
+$k[G]$ is a semisimple module, so every $M\in {}_{k[G]}{\mathsf{Mod}}$ is projective and injective, thus all higher cohomology vanishes.
 :::
 
 ::: {.front card-id="card-95736ac32ec10e2f"}
@@ -105,7 +105,7 @@ Describe group (co)homology in terms of Tor and Ext.
 :::
 
 ::: {.back card-id="card-95736ac32ec10e2f"}
-$M^G = \zgmod({\mathbf{Z}}\to M)$
+$M^G = {}_{{\mathbf{Z}}[G]}{\mathsf{Mod}}({\mathbf{Z}}\to M)$
 
 $M_G = {\mathbf{Z}}\otimes_{{\mathbf{Z}}[G]} M$.
 :::
@@ -133,7 +133,7 @@ Describe ${\mathbf{Z}}[{\mathbf{Z}}]$.
 :::
 
 ::: {.back card-id="card-5dfb91fdb8faed3e"}
-${\mathbf{Z}}[{\mathbf{Z}}] = {\mathbf{Z}}[t, t^{-1}]$ the Laurent polynomial ring with $I = \left\langle{e-1}\right\rangle$ principal corresponding to $\left\langle{t-1}\right\rangle$, so a free rank 1 $\zgmod$.
+${\mathbf{Z}}[{\mathbf{Z}}] = {\mathbf{Z}}[t, t^{-1}]$ the Laurent polynomial ring with $I = \left\langle{e-1}\right\rangle$ principal corresponding to $\left\langle{t-1}\right\rangle$, so a free rank 1 ${}_{{\mathbf{Z}}[G]}{\mathsf{Mod}}$.
 
 UFD of Krull dimension 2.
 :::
@@ -159,7 +159,7 @@ $I = \left\langle{\sigma - 1}\right\rangle$ where $C_n = \left\langle{\sigma}\ri
 :::
 
 ::: {.front card-id="card-655dc1269608105b"}
-What is a free resolution of ${\mathbf{Z}}$ in $\zgmod$ for $G = C_n$?
+What is a free resolution of ${\mathbf{Z}}$ in ${}_{{\mathbf{Z}}[G]}{\mathsf{Mod}}$ for $G = C_n$?
 :::
 
 ::: {.back card-id="card-655dc1269608105b"}
@@ -222,7 +222,7 @@ Trivial stabilizers.
 :::
 
 ::: {.front card-id="card-0959803a2d48e016"}
-What is the standard resolution of ${\mathbf{Z}}$ as a $\zgmod$?
+What is the standard resolution of ${\mathbf{Z}}$ as a ${}_{{\mathbf{Z}}[G]}{\mathsf{Mod}}$?
 :::
 
 ::: {.back card-id="card-0959803a2d48e016"}
@@ -231,11 +231,11 @@ $${\left[ {g_0,\cdots, g_n} \right]}\xrightarrow{{\partial}_n} \sum_{i=0}^n (-1)
 :::
 
 ::: {.front card-id="card-bc1a1f1752512b0b"}
-Describe $\zgmod(P_n, M)$ for $P_\bullet \rightrightarrows{\mathbf{Z}}$ the standard resolution.
+Describe ${}_{{\mathbf{Z}}[G]}{\mathsf{Mod}}(P_n, M)$ for $P_\bullet \rightrightarrows{\mathbf{Z}}$ the standard resolution.
 :::
 
 ::: {.back card-id="card-bc1a1f1752512b0b"}
-$\zgmod(P_n\to M) =   {}_{{\mathbf{Z}}}{\mathsf{Mod}}(P_n \to M)^G$, so $f(g.g_0,\cdots, g.g_n) = gf(g_0,\cdots, g_n)$ for $f: G{ {}^{ \scriptscriptstyle\times^{n+1} }  }\to M$.
+${}_{{\mathbf{Z}}[G]}{\mathsf{Mod}}(P_n\to M) =   {}_{{\mathbf{Z}}}{\mathsf{Mod}}(P_n \to M)^G$, so $f(g.g_0,\cdots, g.g_n) = gf(g_0,\cdots, g_n)$ for $f: G{ {}^{ \scriptscriptstyle\times^{n+1} }  }\to M$.
 :::
 
 ::: {.front card-id="card-2867e12caed8a73c"}
@@ -287,7 +287,7 @@ Define $\mathrm{Ind}^{H}_{G} M$ for $M\in {}_{H}{\mathsf{Mod}}$.
 :::
 
 ::: {.back card-id="card-25a58edd3c607c88"}
-$\mathrm{Ind}^{H}_{G}({-}) \coloneqq{\mathbf{Z}}[G]\otimes_{{\mathbf{Z}}[H]} ({-}) \in \zgmod$ acting diagonally.
+$\mathrm{Ind}^{H}_{G}({-}) \coloneqq{\mathbf{Z}}[G]\otimes_{{\mathbf{Z}}[H]} ({-}) \in {}_{{\mathbf{Z}}[G]}{\mathsf{Mod}}$ acting diagonally.
 :::
 
 ::: {.front card-id="card-4ae12f9179709702"}
@@ -295,7 +295,7 @@ Define $\mathrm{coInd}^{H}_{G} M$ for $M\in {}_{H}{\mathsf{Mod}}$.
 :::
 
 ::: {.back card-id="card-4ae12f9179709702"}
-$\mathrm{coInd}^{H}_{G}({-}) =   {}_{{\mathbf{Z}}[H]}{\mathsf{Mod}}({\mathbf{Z}}[G], {-}) \in \zgmod$ with a funny action $(g.f)(x) \coloneqq f(xg)$.
+$\mathrm{coInd}^{H}_{G}({-}) =   {}_{{\mathbf{Z}}[H]}{\mathsf{Mod}}({\mathbf{Z}}[G], {-}) \in {}_{{\mathbf{Z}}[G]}{\mathsf{Mod}}$ with a funny action $(g.f)(x) \coloneqq f(xg)$.
 :::
 
 ::: {.front card-id="card-22f2f2a4ffc1708d"}
@@ -359,7 +359,7 @@ Describe how any $M\in {}_{G}{\mathsf{Mod}}$ is surjected onto by an induced mod
 :::
 
 ::: {.back card-id="card-933022ad9dd315c4"}
-$\mathrm{Ind}^{{\operatorname{pt}}}_{G}M^\mathop{\mathrm{triv}}\twoheadrightarrow M$ and $M\hookrightarrow\mathrm{coInd}^{{\operatorname{pt}}}_{G} M^\mathop{\mathrm{triv}}$.
+$\mathrm{Ind}^{{\operatorname{pt}}}_{G}M^{\mathrm{triv}}\twoheadrightarrow M$ and $M\hookrightarrow\mathrm{coInd}^{{\operatorname{pt}}}_{G} M^{\mathrm{triv}}$.
 
 The maps are $g\otimes m\mapsto gm$ and $x\mapsto (\cdot x)$.
 :::
@@ -417,7 +417,7 @@ Discuss commuting limits with (co)homology.
 :::
 
 ::: {.back card-id="card-f9380b8776e53be6"}
-$\colim_i H^n(G; A_i)  { \, \xrightarrow{\sim}\, }H^n(G; \colim_i A_i)$.
+$\operatorname*{colim}_i H^n(G; A_i)  { \, \xrightarrow{\sim}\, }H^n(G; \operatorname*{colim}_i A_i)$.
 :::
 
 ::: {.front card-id="card-3a3c93240965db25"}
@@ -463,7 +463,7 @@ What is the inflation-restriction exact sequence?
 :::
 
 ::: {.back card-id="card-25f59b8a0a87a778"}
-$$H^1(G/H; A^H) \xhookrightarrow{\mathrm{Inf}} H^1(G; A) \xrightarrow{\mathrm{Res}} H^1(H; A)^{G/H} \longrightarrow H^2(G/H; A^H) \xrightarrow{\mathrm{Inf}} H^2(G/H; A^H) \to H^2(G; A)$$
+$$H^1(G/H; A^H) \overset{\mathrm{Inf}}{\hookrightarrow} H^1(G; A) \xrightarrow{\mathrm{Res}} H^1(H; A)^{G/H} \longrightarrow H^2(G/H; A^H) \xrightarrow{\mathrm{Inf}} H^2(G/H; A^H) \to H^2(G; A)$$
 :::
 
 ::: {.front card-id="card-919d2fe8b2dce362"}
@@ -742,7 +742,7 @@ Write a profinite group as a limit.
 :::
 
 ::: {.back card-id="card-24034aab968ea04a"}
-$G = \cocolim_{U\leq G \text{ open}, [G:U] < \infty} G/U$.
+$G = \varprojlim_{U\leq G \text{ open}, [G:U] < \infty} G/U$.
 :::
 
 ::: {.front card-id="card-5eb386e405e9386c"}
@@ -815,7 +815,7 @@ Discuss commuting limits for profinite groups.
 
 ::: {.back card-id="card-e8df8f7e71d5095e"}
 If $G$ is profinite and $Y$ is discrete, $f:G\to Y$ factors through a finite quotient $\tilde f: G/U\to Y$ and so
-$${\mathsf{Top}}(G, Y) = {\mathsf{Top}}(\lim G/N, Y) = \colim {\mathsf{Top}}(G/N, Y)$$
+$${\mathsf{Top}}(G, Y) = {\mathsf{Top}}(\lim G/N, Y) = \operatorname*{colim} {\mathsf{Top}}(G/N, Y)$$
 :::
 
 ::: {.front card-id="card-daafc2582fc47c4e"}
@@ -831,9 +831,9 @@ Discuss continuity for profinite group cohomology.
 :::
 
 ::: {.back card-id="card-e23d5e0a1a45b10f"}
-$H^n(\cocolim G_i; \colim M_i) \cong \colim H^n(G_i; M_i)$.
+$H^n(\varprojlim G_i; \operatorname*{colim} M_i) \cong \operatorname*{colim} H^n(G_i; M_i)$.
 
-In particular $H^n(G; A)=\colim_U H^n(G/U; A^U)$ using that $U_2\hookrightarrow U_1 \implies G/U_1 \twoheadrightarrow G/U_2$ (inflation).
+In particular $H^n(G; A)=\operatorname*{colim}_U H^n(G/U; A^U)$ using that $U_2\hookrightarrow U_1 \implies G/U_1 \twoheadrightarrow G/U_2$ (inflation).
 :::
 
 ::: {.front card-id="card-a0e7561b884f9ba2"}
@@ -842,7 +842,7 @@ Discuss limits for Galois cohomology.
 
 ::: {.back card-id="card-a0e7561b884f9ba2"}
 For $g_K \coloneqq{ \mathsf{Gal}}(k^{ {}^{ \operatorname{sep} } }/k)$ and $A\in   {}_{g_K}{\mathsf{Mod}}$ write $A(L) \coloneqq A^{g_L}$, then
-$$H^1(g_U; A) = \colim_{L/K} H^n({ \mathsf{Gal}}(L/K); A(L))$$
+$$H^1(g_U; A) = \operatorname*{colim}_{L/K} H^n({ \mathsf{Gal}}(L/K); A(L))$$
 :::
 
 ::: {.front card-id="card-3e262f5d983331a0"}
@@ -850,7 +850,7 @@ Write a module as a limit.
 :::
 
 ::: {.back card-id="card-3e262f5d983331a0"}
-$A =\colim_{B\leq A \text{ f.g.}} B$; i.e. every module is a colimit of its finitely generated submodules.
+$A =\operatorname*{colim}_{B\leq A \text{ f.g.}} B$; i.e. every module is a colimit of its finitely generated submodules.
 :::
 
 ::: {.front card-id="card-4a35203ca016760c"}
@@ -860,7 +860,7 @@ Discuss higher profinite cohomology.
 ::: {.back card-id="card-4a35203ca016760c"}
 $H^{\geq 1}(G; A)\in   {}_{{\mathbf{Z}}}{\mathsf{Mod}}^{\operatorname{tors}}$ is always torsion.
 
-Proof: $H^q(G; A) = \colim H^q(G/U; A^U) = \colim H^q(G/U; A^u)[n]$ for $n \coloneqq[G: U]$ by restriction-corestriction, and ${}_{{\mathbf{Z}}}{\mathsf{Mod}}^{\operatorname{tors}}$ is closed under colimits.
+Proof: $H^q(G; A) = \operatorname*{colim} H^q(G/U; A^U) = \operatorname*{colim} H^q(G/U; A^u)[n]$ for $n \coloneqq[G: U]$ by restriction-corestriction, and ${}_{{\mathbf{Z}}}{\mathsf{Mod}}^{\operatorname{tors}}$ is closed under colimits.
 :::
 
 ::: {.front card-id="card-6966b7db2a0f8235"}

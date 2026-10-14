@@ -27,6 +27,43 @@ export interface MathJaxRuntime {
     document: { clear(): void; updateDocument(): void };
   };
   tex2chtml(math: string, options: { display: boolean }): HTMLElement;
+  tex2mml(math: string, options: { display: boolean }): string;
+}
+
+let texErrors: string[] = [];
+
+// TeX input options shared by the editor and the deck check. Without the
+// noundefined package an unknown macro is an error, as in LaTeX. MathJax
+// reports every TeX error through formatError:
+// https://docs.mathjax.org/en/v3.2/options/input/tex.html#tex-options
+export function texOptions(macros: Macros) {
+  return {
+    macros,
+    packages: { "[-]": ["noundefined"] },
+    formatError(jax: { formatError(error: Error): unknown }, error: Error) {
+      texErrors.push(error.message);
+      return jax.formatError(error);
+    },
+    inlineMath: [
+      ["$", "$"],
+      ["\\(", "\\)"],
+    ],
+    displayMath: [
+      ["$$", "$$"],
+      ["\\[", "\\]"],
+    ],
+  };
+}
+
+// The TeX error in one equation, or null.
+export function texError(
+  mathjax: Pick<MathJaxRuntime, "tex2mml">,
+  equation: string,
+  display: boolean,
+): string | null {
+  texErrors = [];
+  mathjax.tex2mml(equation, { display });
+  return texErrors[0] ?? null;
 }
 
 declare global {
@@ -43,17 +80,7 @@ export function loadMathJax(macros: Macros): Promise<MathJaxRuntime> {
     Object.assign(window, {
       MathJax: {
         startup: { typeset: false },
-        tex: {
-          macros,
-          inlineMath: [
-            ["$", "$"],
-            ["\\(", "\\)"],
-          ],
-          displayMath: [
-            ["$$", "$$"],
-            ["\\[", "\\]"],
-          ],
-        },
+        tex: texOptions(macros),
       },
     });
     const script = document.createElement("script");
@@ -123,7 +150,7 @@ class MathWidget extends WidgetType {
 }
 
 // `text` is the source of `node`.
-function equation(
+export function equation(
   text: string,
   node: SyntaxNodeRef,
 ): { equation: string; display: boolean } | null {

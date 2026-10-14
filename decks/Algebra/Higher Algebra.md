@@ -125,7 +125,7 @@ ${\mathsf{St}}\to \mathsf{dSt}$: closure under taking fiber products and other l
 
 ${\mathsf{Sch}}\to \mathsf{dSt}:$ closure under "imposing equations".
 
-Think of $X\in \dSt$ as a functor $F_X: \mathsf{dCRing}\to {\mathsf{Top}}$.
+Think of $X\in {\mathsf{dSt}}$ as a functor $F_X: \mathsf{dCRing}\to {\mathsf{Top}}$.
 
 Think of source as connective cdgas, more generally connective ${\mathbb{E}}_\infty{\hbox{-}}$ring spectra.
 :::

@@ -137,7 +137,7 @@ What is the cyclotomic trace?
 :::
 
 ::: {.back card-id="card-f9d6a7ea61c43f9f"}
-${\mathsf{K}}(A) \to {\operatorname{TC}}(A)$ where ${\operatorname{TC}}(A; p) = \mathrm{ho}\cocolim_{R, F} {\operatorname{THH}}(A)^{C_{p^n}}$ as the homotopy limit of a tower:
+${\mathsf{K}}(A) \to {\operatorname{TC}}(A)$ where ${\operatorname{TC}}(A; p) = \mathrm{ho}\varprojlim_{R, F} {\operatorname{THH}}(A)^{C_{p^n}}$ as the homotopy limit of a tower:
 :::
 
 ::: {.front card-id="card-d23a52bc13865247"}
@@ -153,7 +153,7 @@ What is an orthogonal space?
 :::
 
 ::: {.back card-id="card-b333191a2c80a9ab"}
-$X\in {\mathsf{Fun}}(L, \CGWH)^\text{cts}$ where $L$ is the (topological) linear isometry category (objects = inner product spaces, homs are $\mathop{\mathrm{Isom}}(V, W)$ with the Stiefel manifold topology)
+$X\in {\mathsf{Fun}}(L, {\mathsf{CGWH}})^\text{cts}$ where $L$ is the (topological) linear isometry category (objects = inner product spaces, homs are $\mathop{\mathrm{Isom}}(V, W)$ with the Stiefel manifold topology)
 :::
 
 ::: {.front card-id="card-ca2c8b3bdfb28736"}
@@ -221,7 +221,7 @@ How are $G{\hbox{-}}$equivariant homotopy groups defined?
 :::
 
 ::: {.back card-id="card-33c72c8164c3b52f"}
-$\pi_0^G(X) \coloneqq\colim_{V\in s(U_G)}[S^V\to X(V)]^G_*$ which are $G{\hbox{-}}$equivariant homotopy classes of based maps, and $U_G$ a complete universe of $G{\hbox{-}}$subrepresentations of $U_G$.
+$\pi_0^G(X) \coloneqq\operatorname*{colim}_{V\in s(U_G)}[S^V\to X(V)]^G_*$ which are $G{\hbox{-}}$equivariant homotopy classes of based maps, and $U_G$ a complete universe of $G{\hbox{-}}$subrepresentations of $U_G$.
 
-$\pi_k^G(X) = \colim_{\cdots}[S^{V\oplus {\mathbf{R}}^k}\to X(V)]^G_*$ for $k > 0$ and $\pi_k^G(X) = \colim_{\cdots}[S^{V}\to X(V\oplus {\mathbf{R}}^{-k})]^G_*$ for $k < 0$.
+$\pi_k^G(X) = \operatorname*{colim}_{\cdots}[S^{V\oplus {\mathbf{R}}^k}\to X(V)]^G_*$ for $k > 0$ and $\pi_k^G(X) = \operatorname*{colim}_{\cdots}[S^{V}\to X(V\oplus {\mathbf{R}}^{-k})]^G_*$ for $k < 0$.
 :::

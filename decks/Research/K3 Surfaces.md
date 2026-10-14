@@ -1860,9 +1860,9 @@ Discuss bijections for Hodge structures of weight one.
 ::: {.back card-id="card-41bbe9b420b7f0c1"}
 All of geometric origin, using that projective tori are abelian varieties:
 $$\begin{align}
-\left{{T/{\mathbf{C}}\text{ tori}}\right} &\rightleftharpoons{\mathbf{Z}}\operatorname{HS}^1 \
-\left{{T/{\mathbf{C}}\text{ abelian varieties}}\right} &\rightleftharpoons\left{{V\in {\mathbf{Z}}\operatorname{HS}^1 \text{ polarizable}}\right} \
-\left{{T/{\mathbf{C}}\text{ polarized abelian varieties}}\right} &\rightleftharpoons\left{{V\in {\mathbf{Z}}\operatorname{HS}^1 \text{ polarized}}\right}
+\left\{{T/{\mathbf{C}}\text{ tori}}\right\} &\rightleftharpoons{\mathbf{Z}}\operatorname{HS}^1 \\
+\left\{{T/{\mathbf{C}}\text{ abelian varieties}}\right\} &\rightleftharpoons\left\{{V\in {\mathbf{Z}}\operatorname{HS}^1 \text{ polarizable}}\right\} \\
+\left\{{T/{\mathbf{C}}\text{ polarized abelian varieties}}\right\} &\rightleftharpoons\left\{{V\in {\mathbf{Z}}\operatorname{HS}^1 \text{ polarized}}\right\}
 .\end{align}$$
 :::
 

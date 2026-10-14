@@ -693,7 +693,7 @@ What is the Eisenstein series $G_k$?
 :::
 
 ::: {.back card-id="card-5b9d09114ff677aa"}
-$$G_k(z)=\sum_{\substack{(m, n) \in \mathbb{Z}^2 \\\(m, n) \neq(0,0)}} \frac{1}{(m z+n)^k}$$
+$$G_k(z)=\sum_{\substack{(m, n) \in \mathbb{Z}^2 \\ (m, n) \neq (0,0)}} \frac{1}{(m z+n)^k}$$
 Modular form of weight $k$ for any even $k\geq 4$.
 :::
 
