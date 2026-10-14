@@ -60,10 +60,13 @@ $$
 :::
 
 ::: {.back card-id="card-0f91ecfaf2d85f3e"}
-A function $f:X\to\bar\RR$ is **measurable** iff for all $\alpha \in \RR$, the following set is Lebesgue measurable:
+Let $E$ be measurable. A function $f:E\to\bar\RR$ is Lebesgue (resp. Borel) **measurable** iff for all $\alpha \in \RR$,
 $$
-S_\alpha \definedas \theset{ x\in X \suchthat f(x) > \alpha}
-.$$
+S_\alpha \definedas \theset{ x\in E \suchthat f(x) > \alpha} = f\inv((\alpha, \infty]) \in \mathcal{M}_L \text{ (resp. } \mathcal{M}_B\text{)},
+$$
+the collection of Lebesgue (resp. Borel) measurable *sets*.
+
+> Mnemonic: preimage of a ray should be a measurable set.
 :::
 
 ::: {.front card-id="card-df7529951c584be6" tags="definition"}
@@ -71,8 +74,11 @@ Equivalent Characterizations of Completeness
 :::
 
 ::: {.back card-id="card-df7529951c584be6"}
-- Every Cauchy sequence converges
-- Every absolutely convergent series converges
+For a metric space $X$, *complete* means: every Cauchy sequence converges.
+For a normed space $X$, the following are equivalent:
+
+- $X$ is complete: every Cauchy sequence converges.
+- Every absolutely convergent series converges: $\sum \norm{x_n} < \infty \implies \sum x_n$ converges in $X$.
 :::
 
 ::: {.front card-id="card-68b12d35f383fd87" tags="formula"}
@@ -83,8 +89,9 @@ Bernoulli's Inequality
 $$
 (1+x)^n \geq 1 + nx
 $$
-for all $n\in \RR$ and $x\geq -1$. If $n\in 2\ZZ$, then this is valid for all $x\in \RR$.
+for all integers $n\geq 0$ and $x\geq -1$. If $n\geq 0$ is even, then this is valid for all $x\in \RR$.
 Prove by induction.
+More generally, $(1+x)^r \geq 1 + rx$ for real $r\geq 1$ and $x\geq -1$; for $0 < r < 1$ the inequality reverses.
 :::
 
 ::: {.front card-id="card-ab45f41f8a332938" tags="definition"}
@@ -119,8 +126,8 @@ Baire Space
 $X$ is a Baire space iff whenever $\theset{U_n}$ is a *countable* collection of open dense subsets of $X$, then their intersection $\intersect U_n$ is again dense.
 :::
 
-::: {.front card-id="card-aa794acc7033d93a" tags="definition, important"}
-Limsup/Liminf of Sets
+::: {.front card-id="card-aa794acc7033d93a" tags="definition, important, analysis"}
+Define $\limsup, \liminf$ for sequences of sets. What are their containments?
 :::
 
 ::: {.back card-id="card-aa794acc7033d93a"}
@@ -128,6 +135,10 @@ $$\begin{align*}
 \limsup_n A_n \definedas \intersect_n \union_{j\geq n} A_j&= \theset{x \suchthat x\in A_n \text{ for inf. many $n$}}  \\
 \liminf_n A_n \definedas \union_n \intersect_{j\geq n} A_j &= \theset{x \suchthat x\in A_n \text{ for all except fin. many $n$}}  \\
 \end{align*}$$
+
+- Supremum: Union, $\limsup = \inf\sup$, in infinitely many
+- Infimum: Intersection, $\liminf = \sup\inf$, eventually in
+- $\liminf_n A_n \subseteq \limsup_n A_n$ since "all but finitely many" implies "infinitely often".
 :::
 
 ::: {.front card-id="card-32521960d78ab719" tags="theorem"}
@@ -135,7 +146,11 @@ Arzela-Ascoli Theorem
 :::
 
 ::: {.back card-id="card-32521960d78ab719"}
-A sequence of functions $\theset{f_n}$ has a uniformly convergent subsequence $\iff \theset{f_n}$ is uniformly bounded and uniformly equicontinuous.
+Let $K$ be a compact metric space and $\theset{f_n} \subset C(K)$.
+If $\theset{f_n}$ is uniformly bounded and equicontinuous, then it has a uniformly convergent subsequence.
+
+More generally, a family $\mcf \subset C(K)$ is relatively compact in $\qty{C(K), \norm{\wait}_\infty}$ iff $\mcf$ is uniformly bounded and equicontinuous.
+On a compact $K$, equicontinuity is equivalent to uniform equicontinuity.
 :::
 
 ::: {.front card-id="card-e1e89b54ee468a15" tags="formula"}
@@ -150,12 +165,12 @@ $$
 with equality iff $f \in \spanof_\CC(g)$.
 :::
 
-::: {.front card-id="card-d7de25ce0a616c70"}
+::: {.front card-id="card-d7de25ce0a616c70" tags="theorem"}
 Minkowski's Inequality
 :::
 
 ::: {.back card-id="card-d7de25ce0a616c70"}
-For $1 \leq p < \infty$,
+For $1 \leq p \leq \infty$,
 $$
 \norm{f + g}_p \leq \norm{f}_p + \norm{g}_p
 .$$
@@ -174,13 +189,15 @@ Young's Inequality
 :::
 
 ::: {.back card-id="card-237c11192101d406"}
-For $1\leq p, q\leq r \leq \infty$ with ${1\over p} + {1\over q} - {1\over r} = 1$, then  $\norm{f\ast g}_r \leq \norm{f}_p \norm{g}_q$
-
+For $1\leq p, q\leq r \leq \infty$ with ${1\over p} + {1\over q} - {1\over r} = 1$,
+$$
+\norm{f\ast g}_r \leq \norm{f}_p \norm{g}_q
+.$$
 Useful cases:
 $$\begin{align*}
 \norm{f\ast g}_1 & \leq \norm{f}_1 \norm{g}_1 \\
 \norm{f\ast g}_p & \leq \norm{f}_1 \norm{g}_p \\
-\norm{f\ast g}_\infty & \leq \norm{f}_p \norm{g}_q \\
+\norm{f\ast g}_\infty & \leq \norm{f}_p \norm{g}_q \quad \text{for } {1\over p} + {1\over q} = 1 \\
 \norm{f\ast g}_\infty & \leq \norm{f}_2 \norm{g}_2
 \end{align*}$$
 :::
@@ -199,21 +216,25 @@ Nowhere Dense
 :::
 
 ::: {.back card-id="card-b8b6899686be1b8a"}
-A set is $A$ **nowhere dense** if its closure has empty interior $\qty{\bar A}^\circ$, equivalently it is not dense in *any* nonempty open set.
+A set $A$ is **nowhere dense** iff its closure has empty interior, $\qty{\bar A}^\circ = \emptyset$, equivalently it is not dense in *any* nonempty open set.
 For $\RR$, every interval $I$ contains a subinterval $S\subset I$ with $S\intersect A = \emptyset$, i.e. its closure contains no intervals.
 
 Intuition: elements are not tightly clustered, set is full of holes.
 
-Counterexample: $\theset{1 \over n}, \ZZ$ are nowhere dense, $\QQ, \ZZ\union \qty{(a, b)\intersect \QQ}$ is *not* nowhere dense
+Examples: $\theset{1 \over n}, \ZZ$ are nowhere dense; $\QQ, \ZZ\union \qty{(a, b)\intersect \QQ}$ are *not* nowhere dense.
 :::
 
 ::: {.front card-id="card-489e4e9afe49de75" tags="definition"}
-Equicontinuous
+What is equicontinuity? Uniform equicontinuity?
 :::
 
 ::: {.back card-id="card-489e4e9afe49de75"}
-For $X, Y$ metric spaces and $\mcf$ a family of functions, $F$ is *equicontinuous at $x_0$* iff for every $\varepsilon > 0$ there exists a $\delta(\varepsilon, x_0)>0$ such that $x\in B_\delta(x_0) \implies f_i(x) \in B_\varepsilon(f_i(x_0))$ for all $f_i \in \mcf$.
-The family $F$ is *uniformly equicontinuous* iff $\delta(\varepsilon)$ only depends on $\varepsilon$ and holds for any pair $x_1, x_2$ with $x_1 \in B_\delta(x_2)$.
+For $X, Y$ metric spaces and $\mcf$ a family of functions $X\to Y$, $\mcf$ is *equicontinuous at $x_0$* iff for every $\varepsilon > 0$ there exists a $\delta(\varepsilon, x_0)>0$ such that
+$$x\in B_\delta(x_0) \implies f(x) \in B_\varepsilon(f(x_0))$$
+for all $f \in \mcf$.
+
+The family $\mcf$ is *uniformly equicontinuous* iff $\delta(\varepsilon)$ can be chosen depending only on $\varepsilon$, so that for every pair $x_1, x_2 \in X$ and every $f \in \mcf$,
+$$x_1 \in B_\delta(x_2) \implies f(x_1) \in B_\varepsilon(f(x_2)).$$
 :::
 
 ::: {.front card-id="card-3c94bfc64ec5d9c9" tags="formula"}
@@ -305,10 +326,10 @@ Characterizations of $D_f$, the set of discontinuities of functions
 :::
 
 ::: {.back card-id="card-034794991fef7f7d"}
-- Always $F_\sigma$, closed, positive oscillation.
-- $f_n\to f$ with $f_n$ continuous $\implies D_f$ is meager.
-- (Lebesgue criterion) $f \in \mathcal{R}(a, b)$ and bounded $\implies D_f$ is null.
-- $f$ monotone $\implies D_f$ is countable, and additionally $f$ differentiable on $(a, b) \implies D_f$ is null.
+- Always $F_\sigma$: $D_f = \union_{n\geq 1} \theset{x \suchthat \omega_f(x) \geq {1\over n}}$ is a countable union of closed sets, where $\omega_f(x)$ is the oscillation of $f$ at $x$. $D_f$ need not be closed: $D_f = \QQ$ for Thomae's function.
+- $f_n\to f$ pointwise with $f_n$ continuous $\implies D_f$ is meager.
+- (Lebesgue criterion) For $f$ bounded on $[a, b]$: $f \in \mathcal{R}(a, b) \iff D_f$ is null.
+- $f$ monotone $\implies D_f$ is countable, and $f$ is differentiable almost everywhere (Lebesgue).
 :::
 
 ::: {.front card-id="card-83d99f66ed993726" tags="technique"}
@@ -327,7 +348,9 @@ Showing uniform convergence of a *series* of functions
 :::
 
 ::: {.back card-id="card-2a78e0bb1101dd0a"}
-$M\dash$test: find $M_n$ independent of $x$ such that $\norm{f_n}_\infty < M_n$ where $\sum M_n < \infty$.
+Weierstrass $M\dash$test: if there are $M_n$ independent of $x$ with $\abs{f_n(x)} \leq M_n$ for all $x\in A$ and $\sum M_n < \infty$, then $\sum f_n$ converges absolutely and uniformly on $A$.
+
+Equivalently, $\sum_{n\geq 0} \norm{f_n}_{\infty, A} < \infty \implies \sum f_n$ converges absolutely and uniformly on $A$, where $\norm{f_n}_{\infty, A}\definedas\sup_{x\in A}\abs{f_n(x)}$.
 :::
 
 ::: {.front card-id="card-33d4bf2bf6fce3b5" tags="definition"}
@@ -335,8 +358,11 @@ Uniform Convergence of a sequence of functions
 :::
 
 ::: {.back card-id="card-33d4bf2bf6fce3b5"}
-$\theset{f_n} \converges{u}\to f$ on $E$ iff for every $\varepsilon>0$ that exists an $N(\varepsilon)$ such that for all $n\geq N$ and for all $x\in E$, $\abs{f_n(x) - f(x)} < \varepsilon$.
-Equivalently, $\norm{f_n - f}_\infty \definedas \sup_{x\in E}\abs{f_n(x) - f(x)} < \varepsilon$.
+$\theset{f_n} \converges{u}\to f$ on $E$ iff for every $\varepsilon>0$ there exists an $N(\varepsilon)$ such that for all $n\geq N$ and for all $x\in E$, $\abs{f_n(x) - f(x)} < \varepsilon$.
+Equivalently,
+$$
+\norm{f_n - f}_\infty \definedas \sup_{x\in E}\abs{f_n(x) - f(x)} \converges{n\to\infty}\to 0
+.$$
 :::
 
 ::: {.front card-id="card-c217814191c65e12" tags="counterexample"}
@@ -404,7 +430,7 @@ Equivalent characterizations of measurability of a set
 $E\subset \RR^n$ is measurable iff any of these conditions hold
 
 - There exist closed $F\subseteq E$ with $m_*(E\setminus F) < \varepsilon \to 0$.
-- There exist *compact* $K\subseteq E$ with $m_*(E\setminus K) < \varepsilon \to 0$.
+- (When $m_*(E) < \infty$) There exist *compact* $K\subseteq E$ with $m_*(E\setminus K) < \varepsilon \to 0$.
 - There exist open $G\supset E$ with $m_*(G\setminus E)<\varepsilon \to 0$ (outer regular)
 - $E = H \union Z$ with $H\in F_\sigma$ and $Z$ null
 - $E = V\setminus Z$ with $V\in G_\delta$ and $Z$ null
@@ -448,25 +474,11 @@ $$
 :::
 
 ::: {.front card-id="card-07dbaa846de1e8bb" tags="definition"}
-Definition: Almost Disjoint
+What are almost disjoint sets?
 :::
 
 ::: {.back card-id="card-07dbaa846de1e8bb"}
-$A^\circ \intersect B^\circ = \emptyset$
-:::
-
-::: {.front card-id="card-13226ca2f0b595cf" tags="definition"}
-Definition: Measurable Function
-:::
-
-::: {.back card-id="card-13226ca2f0b595cf"}
-$f:\RR \to \bar \RR$ is Lebesgue/Borel measurable iff
-$$
-\{x \in E \mid f(x)>a\}=f^{-1}((a, \infty]) \in \mathcal{M}_L, \mathcal{M}_B
-,$$
-the collection of Lebesgue/Borel measurable *sets* respectively.
-
-> Mnemonic: preimage of a ray should be a measurable set.
+Sets $A, B$ are *almost disjoint* iff their interiors are disjoint: $A^\circ \intersect B^\circ = \emptyset$.
 :::
 
 ::: {.front card-id="card-9cf17fa0c19ae4ef" tags="theorem"}
@@ -482,8 +494,9 @@ Convergence in Measure
 :::
 
 ::: {.back card-id="card-7bce719707650024"}
+$f_k \to f$ *in measure* on $E$ iff for every $\alpha > 0$,
 $$
-\lim _{k \rightarrow \infty} m\left(\left\{x \in E|| f_{k}(x)-f(x) |>\alpha\right\}\right)=0
+\lim _{k \rightarrow \infty} m\qty{\theset{x \in E \suchthat \abs{f_k(x)-f(x)} >\alpha}}=0
 .$$
 :::
 
@@ -525,6 +538,9 @@ Proposition: If $f\geq 0$ and $\int f=0$, then $f=0$ almost everywhere.
 
 ::: {.back card-id="card-217b54f71199df11"}
 For each $n\geq1$, let $E_n=\{x:f(x)\geq 1/n\}$. Then $0=\int f\geq\mu(E_n)/n$, so $\mu(E_n)=0$. Since $\{f>0\}=\bigcup_{n\geq1}E_n$, it has measure zero.
+
+The hypothesis $f \geq 0$ is needed: $f = \chi_{[0, 1]} - \chi_{[1, 2]}$ has $\int f = 0$.
+The converse ($f = 0$ a.e. $\implies \int f = 0$) holds for simple functions and passes to the supremum.
 :::
 
 ::: {.front card-id="card-1541c4af4bbc91b2" tags="technique"}
@@ -545,7 +561,7 @@ Proposition: $\sum \abs{f_n} \in L^1 \implies \sum \abs{f_n(x)} < \infty$ a.e.
 Tonelli's theorem gives $\int\sum_n|f_n(x)|\,d\mu=\sum_n\int|f_n|\,d\mu<\infty$. A nonnegative function with finite integral is finite almost everywhere. Therefore $\sum_n|f_n(x)|<\infty$ almost everywhere.
 :::
 
-::: {.front card-id="card-5dc4f130ff994760" tags="counterexamples"}
+::: {.front card-id="card-5dc4f130ff994760" tags="counterexamples, example"}
 A sequence of functions that converges uniformly, pointwise, a.e., but not in $L^1$.
 :::
 
@@ -553,6 +569,7 @@ A sequence of functions that converges uniformly, pointwise, a.e., but not in $L
 $$
 f_n \definedas {1\over n} \chi_{[0, n]}
 $$
+The box of height $1\over n$ and width $n$ converges uniformly to zero since $\norm{f_n}_\infty = {1\over n}$, but $\int f_n = 1$ for every $n$.
 :::
 
 ::: {.front card-id="card-252cfae832aaaf4b" tags="fact"}
@@ -563,32 +580,44 @@ Relative strengths of convergence
 Uniform $\implies$ pointwise $\implies$ a.e. Convergence in norm is incomparable (but generally weaker).
 :::
 
-::: {.front card-id="card-4e8d526fd74155d0" tags="counterexamples"}
+::: {.front card-id="card-4e8d526fd74155d0" tags="counterexamples, example"}
 A sequence of functions that converges pointwise and a.e. but not uniformly or in $L^1$.
 :::
 
 ::: {.back card-id="card-4e8d526fd74155d0"}
+Skateboard to infinity:
 $$
 f_n \definedas \chi_{(n, n+1)}
 $$
+converges to $0$ pointwise, but $\norm{f_n}_\infty = 1$ and $\norm{f_n}_1 = 1$ for every $n$.
 :::
 
-::: {.front card-id="card-6c046c9461489c2f" tags="counterexamples"}
-A sequence of functions that a.e. but not in $L^1$, uniformly, or pointwise
+::: {.front card-id="card-6c046c9461489c2f" tags="counterexamples, example"}
+A sequence of functions that converges a.e. but not in $L^1$, uniformly, or pointwise
 :::
 
 ::: {.back card-id="card-6c046c9461489c2f"}
 $$
-f_n \definedas n \chi_{(0, {1\over n} )}
+f_n \definedas n \chi_{[0, {1\over n}]}
 $$
+converges to $0$ at every $x \neq 0$, but $f_n(0) = n \to \infty$.
+It does not converge uniformly ($\norm{f_n}_\infty = n$) or in $L^1$ ($\int f_n = 1$).
 :::
 
-::: {.front card-id="card-572b3fa8dfb90c89" tags="counterexamples"}
+::: {.front card-id="card-572b3fa8dfb90c89" tags="counterexamples, example"}
 A sequence of functions that converges in $L^1$ but not uniformly, pointwise, or a.e.
 :::
 
 ::: {.back card-id="card-572b3fa8dfb90c89"}
+The typewriter sequence ("cathode ray"): for $n = 2^k + j$ with $0 \leq j < 2^k$,
+$$
+f_n \definedas \chi_{\left[{j\over 2^k}, {j+1\over 2^k}\right]}
+.$$
+Then $\norm{f_n}_1 = 2^{-k} \to 0$, but for every $x\in [0, 1]$, $f_n(x) = 1$ for infinitely many $n$ and $f_n(x) = 0$ for infinitely many $n$, so $f_n(x)$ converges at no point of $[0, 1]$.
+
 ![](https://i.imgur.com/ryl536M.png)
+
+![](https://i.imgur.com/a4MatmT.png)
 :::
 
 ::: {.front card-id="card-38cdaad0b3abafe3" tags="theorem, important"}
@@ -596,13 +625,13 @@ Small Tails and Absolute Continuity
 :::
 
 ::: {.back card-id="card-38cdaad0b3abafe3"}
-Let $f\in L^1$ and $\varepsilon> 0$.
+Let $f\in L^1(\RR^n)$ and $\varepsilon> 0$.
 
-1. Small Tails: there exists an $N$ such that $\int_{B_N^c} f < \varepsilon$.
+1. Small Tails: there exists an $N$ such that $\int_{B_N^c} \abs{f} < \varepsilon$, where $B_N$ is the ball of radius $N$ about $0$.
 2. Absolute Continuity: there exists a $\delta$ such that $m(E) < \delta \implies \int_E \abs{f} < \varepsilon$.
 :::
 
-::: {.front card-id="card-1d31f17fcfe7faaa" tags="theorem"}
+::: {.front card-id="card-1d31f17fcfe7faaa" tags="theorem, proof"}
 Continuity in $L^1$
 :::
 
@@ -610,15 +639,7 @@ Continuity in $L^1$
 $$
 f \in L^{1} \Longrightarrow \lim _{h \rightarrow 0} \int|f(x+h)-f(x)|=0
 .$$
-Proof idea: $\varepsilon/3$ argument, approximate by compactly supported functions.
-:::
-
-::: {.front card-id="card-57d4031259327606" tags="proof"}
-Proposition: Continuity in $L^1$
-:::
-
-::: {.back card-id="card-57d4031259327606"}
-Proof: approximate with compactly supported functions, use uniform continuity to bound integrand.
+Proof idea: $\varepsilon/3$ argument. Approximate $f$ in $L^1$ by a compactly supported continuous $g$. Then $g$ is uniformly continuous, which bounds the integrand of $\int \abs{g(x+h) - g(x)}$ uniformly on a fixed compact set for small $h$.
 :::
 
 ::: {.front card-id="card-7f36885297a42358" tags="proof"}
@@ -674,48 +695,6 @@ If $f$
 then Tonelli on $\abs{f}$ yields $f\in L^1$ and $\int f$ is equal to any iterated integral.
 :::
 
-::: {.front card-id="card-afdbbe9c68c8e566" tags="definition"}
-Definition: separable
-:::
-
-::: {.back card-id="card-afdbbe9c68c8e566"}
-Has a countable dense subset
-:::
-
-::: {.front card-id="card-6ea0b842f079b9ba" tags="example"}
-Give an example of a sequence of functions that converge uniformly but not in $L^1$.
-:::
-
-::: {.back card-id="card-6ea0b842f079b9ba"}
-The box of height $1\over n$ and width $n$ uniformly converges to zero but integrates to 1.
-:::
-
-::: {.front card-id="card-60cb5a8417ef0ed6" tags="example"}
-Give an example of a sequence of functions that converge pointwise but not uniformly or in $L^1$.
-:::
-
-::: {.back card-id="card-60cb5a8417ef0ed6"}
-Skateboard to infinity: $\chi_{[n, n+1]}$.
-:::
-
-::: {.front card-id="card-9f0e00e44308e2f3" tags="example"}
-Give an example of a function that converge almost everywhere but not pointwise or in $L^1$.
-:::
-
-::: {.back card-id="card-9f0e00e44308e2f3"}
-$f_n = n\chi_{(0, {1\over n})}$
-:::
-
-::: {.front card-id="card-8d9055f416edba25" tags="example"}
-Give an example of a function that converges in $L^1$ but not pointwise.
-:::
-
-::: {.back card-id="card-8d9055f416edba25"}
-The Cathode Ray:
-
-![](https://i.imgur.com/a4MatmT.png)
-:::
-
 ::: {.front card-id="card-39c1c449cf93b1dd" tags="definition, theorem"}
 Four Properties of Outer Measure
 :::
@@ -744,22 +723,31 @@ No:
 
 - Take $f: [0, 1]\to [0, 1]$ the Cantor-Lebesgue function (monotonic and cts) and $C$ the Cantor set
 - $f(C) = [0, 1]$, so define $g(x) = f(x) +x$ so $g:[0, 1] \to [0, 2]$ (strictly monotonic and cts, so a homeomorphism), so $g\inv$ is cts and thus measurable.
-- $\mu(g(C)) = 1>0$ (because $f$ is constant on every interval in $C^c$) so $g(C) \supseteq A$ a non-measurable subset
+- $\mu(g(C)) = 1>0$: $f$ is constant on every interval in $C^c$, so $g$ maps $[0, 1]\setminus C$ to intervals of the same total length $1$, leaving measure $2 - 1 = 1$ for $g(C)$. So $g(C) \supseteq A$ a non-measurable subset
 - $g\inv(A) \subset C$ with $\mu(C) = 0$ implies $g\inv(A)$ is a measurable set, so $\chi_{g\inv(A)}$ is a measurable function
 - Then $k\definedas \chi_{g\inv(A)} \circ g\inv$ isn't measurable since
   $$
-  k\inv(1) = \qty{ (g\inv)\inv \circ \chi_{g\inv(A)} }(1) = g(g\inv(A)) = A
+  k\inv(\theset{1}) = (g\inv)\inv\qty{\chi_{g\inv(A)}\inv(\theset{1})} = (g\inv)\inv(g\inv(A)) = g(g\inv(A)) = A
   $$
   is not a measurable set.
+
+So even (measurable) $\circ$ (continuous) need not be measurable.
 :::
 
-::: {.front card-id="card-9a3b19434994dc9c" tags="facts"}
+::: {.front card-id="card-9a3b19434994dc9c" tags="facts, fact"}
 Where is $x^p$ integrable in $\RR$? (Depending on $p$)
 :::
 
 ::: {.back card-id="card-9a3b19434994dc9c"}
 - $p > -1 \iff x^p \in L^1((0, 1))$
 - $p < -1 \iff x^p \in L^1((1, \infty))$
+
+Equivalently, the $p\dash$test:
+$$\begin{align*}
+\int_0^1 {1\over x^p} \, dx < \infty &\iff p < 1 \\
+\int_1^\infty {1\over x^p} \, dx < \infty &\iff p > 1
+\end{align*}$$
+In particular, $x^p \notin L^1((0, \infty))$ for every $p$.
 :::
 
 ::: {.front card-id="card-7fbb153b16955112" tags="facts"}
@@ -774,21 +762,13 @@ n! > c^n > n^{c} > n\log(n) >  n > \log(n) > \log(\log(n)) > \cdots > 1
 ![](https://i.imgur.com/M9u3lOr.png)
 :::
 
-::: {.front card-id="card-f0e4ec5f2e312a6b" tags="definitions"}
-Dense
-:::
-
-::: {.back card-id="card-f0e4ec5f2e312a6b"}
-A subset $A\subseteq X$ is *dense* in $X$ iff $\mathrm{cl}_X(A) = X$.
-:::
-
 ::: {.front card-id="card-27af25bad6da8349" tags="definition"}
 Diameter
 :::
 
 ::: {.back card-id="card-27af25bad6da8349"}
 $$
-\mathrm{diam}(A) = \sup_{x, y\in  A} \abs d(x, y)
+\mathrm{diam}(A) = \sup_{x, y\in A} d(x, y)
 .$$
 :::
 
@@ -869,58 +849,13 @@ Inclusions among $L^p$ spaces.
 
 ::: {.back card-id="card-517ca482ac2d256a"}
 $$\begin{align*}
-m(X) = \infty \implies
-&\text{No inclusions (use $p\dash$test)} \\
 m(X) < \infty \implies
 &L^\infty(X) \subset L^2(X) \subset L^1(X) \\
-&\ell^1(\ZZ) \subset \ell^2(\ZZ) \subset \ell^\infty(\ZZ)
+\text{counting measure on } \ZZ \implies
+&\ell^1(\ZZ) \subset \ell^2(\ZZ) \subset \ell^\infty(\ZZ) \\
+X = \RR^n \text{ with Lebesgue measure} \implies
+&\text{No inclusions (use $p\dash$test)}
 \end{align*}$$
-:::
-
-::: {.front card-id="card-98fb3d619b5be368" tags="example"}
-Give an example of a function that converges almost everywhere but not pointwise or in $L^1$.
-:::
-
-::: {.back card-id="card-98fb3d619b5be368"}
-$$f_n = n\chi_{(0, {1\over n})}$$
-:::
-
-::: {.front card-id="card-1295502068504f9e" tags="definition"}
-Definition: Uniform convergence of a sequence of functions
-:::
-
-::: {.back card-id="card-1295502068504f9e"}
-$\theset{f_n} \converges{u}\to f$ on $E$ iff for every $\varepsilon>0$ that exists an $N(\varepsilon)$ such that for all $n\geq N$ and for all $x\in E$, $\abs{f_n(x) - f(x)} < \varepsilon.$
-
-Equivalently, $$\norm{f_n - f}_\infty \definedas \sup_{x\in E}\abs{f_n(x) - f(x)} < \varepsilon.$$
-:::
-
-::: {.front card-id="card-089ebcd5cb6d5361" tags="proof"}
-Proposition: $\int f = 0 \implies f = 0$ a.e.
-:::
-
-::: {.back card-id="card-089ebcd5cb6d5361"}
-- Show for simple functions
-- One direction hard: take sets $\theset{f(x) \geq {1 \over n}}$ and derive contrapositive
-:::
-
-::: {.front card-id="card-9547d009594686cf" tags="counterexamples"}
-A sequence of functions that converges a.e. but not in $L^1$, uniformly, or pointwise
-:::
-
-::: {.back card-id="card-9547d009594686cf"}
-$$
-f_n \definedas n \chi_{(0, {1\over n} )}
-$$
-:::
-
-::: {.front card-id="card-b29fc21da6b86fc1" tags="facts"}
-Where is ${1\over x^p}$ integrable in $\RR$? (Depending on $p$)
-:::
-
-::: {.back card-id="card-b29fc21da6b86fc1"}
-- $p < 1 \iff {1\over x^p} \in L^1((0, 1))$
-- $p > 1 \iff {1\over x^p} \in L^1((1, \infty))$
 :::
 
 ::: {.front card-id="card-9c9fb23847567b63" tags="definition"}
@@ -934,17 +869,6 @@ $$
 .$$
 :::
 
-::: {.front card-id="card-600efdfec40c9369" tags="fact"}
-$p\dash$test for integrals.
-:::
-
-::: {.back card-id="card-600efdfec40c9369"}
-$$
-\int_0^1 {1\over x^p} < \infty \iff  p < 1 \\
-\int_1^\infty {1\over x^p} < \infty \iff  p > 1
-.$$
-:::
-
 ::: {.front card-id="card-7fcd186e8b0c1d0c" tags="theorem"}
 Weierstrass Approximation Theorem
 :::
@@ -955,127 +879,6 @@ If $f: I\to \RR$ is continuous, then for every $\varepsilon$ there exists a poly
 > Slogan: polynomials are dense in $C([0, 1], \norm{\wait}_\infty)$.
 :::
 
-::: {.front card-id="card-951bf4ff7a51114b" tags="theorem"}
-Minkowski's Inequality
-:::
-
-::: {.back card-id="card-951bf4ff7a51114b"}
-For $1 \leq p < \infty$,
-$$
-\norm{f + g}_p \leq \norm{f}_p + \norm{g}_p
-.$$
-:::
-
-::: {.front card-id="card-633e0bf4eea3325b" tags="definition"}
-Equicontinuous
-:::
-
-::: {.back card-id="card-633e0bf4eea3325b"}
-For $X, Y$ metric spaces and $\mathcal{F}$ a family of functions, $F$ is *equicontinuous at $x_0$* iff for every $\varepsilon > 0$ there exists a $\delta(\varepsilon, x_0)>0$ such that $$x\in B_\delta(x_0) \implies f_i(x) \in B_\varepsilon(f_i(x_0))$$ for all $f_i \in \mathcal{F}$.
-The family $F$ is *uniformly equicontinuous* iff $\delta(\varepsilon)$ only depends on $\varepsilon$ and holds for any pair $x_1, x_2$ with $x_1 \in B_\delta(x_2)$.
-:::
-
-::: {.front card-id="card-3776d6c8eb6eaf78" tags="formula"}
-Young's Inequality
-:::
-
-::: {.back card-id="card-3776d6c8eb6eaf78"}
-For $1\leq p, q\leq r \leq \infty$ with ${1\over p} + {1\over q} - {1\over r} = 1$, then $\norm{f\ast g}_r \leq \norm{f}_p \norm{g}_q$.
-
-Useful cases:
-$$\begin{align*}
-\norm{f\ast g}_1 & \leq \norm{f}_1 \norm{g}_1 \\
-\norm{f\ast g}_p & \leq \norm{f}_1 \norm{g}_p \\
-\norm{f\ast g}_\infty & \leq \norm{f}_p \norm{g}_q \\
-\norm{f\ast g}_\infty & \leq \norm{f}_2 \norm{g}_2
-\end{align*}$$
-:::
-
-::: {.front card-id="card-9f04d6d2c71a3b6c" tags="analysis"}
-Interpretation of $\sup, \inf$ and $\limsup, \liminf$ as set operations
-:::
-
-::: {.back card-id="card-9f04d6d2c71a3b6c"}
-- Supremum: Union, $\limsup = \inf\sup$, in infinitely many
-- Infimum: Intersection, $\liminf = \sup\inf$, eventually in
-:::
-
-::: {.front card-id="card-2a577d56671cf6e0"}
-What is the $M{\hbox{-}}$test?
-:::
-
-::: {.back card-id="card-2a577d56671cf6e0"}
-$\sum_{n\geq 0} {\left\lVert {f_n} \right\rVert}_{\infty, A} < \infty \implies \sum f_n$ converges absolutely and uniformly on $A$.
-
-Here ${\left\lVert {f_n} \right\rVert}_{\infty, A}\coloneqq\sup_{x\in A}{\left\lvert {f_n(x)} \right\rvert}$.
-
-Equivalently, if there is a sequence $\left\{{M_n}\right\}$ where ${\left\lvert {f_n(x)} \right\rvert} \leq M_n$ for all $x\in A$ and $\sum M_n < \infty$.
-:::
-
-::: {.front card-id="card-ec57333f99b1f193"}
-Give several equivalent characterizations of completeness.
-:::
-
-::: {.back card-id="card-ec57333f99b1f193"}
-$X$ is complete $\iff$ $X$ is Cauchy complete $\iff$ absolutely convergent implies convergent for series.
-:::
-
-::: {.front card-id="card-5d62ff4e2881f209"}
-What is the Arzela-Ascoli theorem?
-:::
-
-::: {.back card-id="card-5d62ff4e2881f209"}
-A sequence $f_i$ has a uniformly convergent subsequence $\iff$ the sequence is uniformly bounded and uniformly equicontinuous.
-:::
-
-::: {.front card-id="card-b06159f3fcf0f68b"}
-What is Minkowski's inequality?
-:::
-
-::: {.back card-id="card-b06159f3fcf0f68b"}
-For $1 \leq p < \infty$,
-$${\left\lVert {f + g} \right\rVert}_p \leq {\left\lVert {f} \right\rVert}_p + {\left\lVert {g} \right\rVert}_p$$
-:::
-
-::: {.front card-id="card-db9e5672e58a93c7"}
-What is Young's inequality?
-:::
-
-::: {.back card-id="card-db9e5672e58a93c7"}
-For $1\leq p, q\leq r \leq \infty$ with ${1\over p} + {1\over q} - {1\over r} = 1$, then
-$${\left\lVert {f\ast g} \right\rVert}_r \leq {\left\lVert {f} \right\rVert}_p {\left\lVert {g} \right\rVert}_q$$
-Useful cases:
-$$\begin{aligned} \|f * g\|_1 & \leq\|f\|_1\|g\|_1 \\ \|f * g\|_p & \leq\|f\|_1\|g\|_p \\ \|f * g\|_{\infty} & \leq\|f\|_p\|g\|_q \\ \|f * g\|_{\infty} & \leq\|f\|_2\|g\|_2\end{aligned}$$
-:::
-
-::: {.front card-id="card-88ae1316ea60ef13"}
-What is a Baire space?
-:::
-
-::: {.back card-id="card-88ae1316ea60ef13"}
-$X$ is a Baire space $\iff$ whenever $\left\{{U_n}\right\}$ is a *countable* collection of open dense subsets of $X$, then their intersection $\cap U_n$ is again dense.
-:::
-
-::: {.front card-id="card-15f43c2c593e1aa9"}
-What is a first category set? A second category?
-:::
-
-::: {.back card-id="card-15f43c2c593e1aa9"}
-A subset is *first category* $\iff$ it is countable union of nowhere dense sets, *second category* otherwise.
-:::
-
-::: {.front card-id="card-b592c88d5f99eddc"}
-What does it mean for a set to be nowhere dense?
-:::
-
-::: {.back card-id="card-b592c88d5f99eddc"}
-A set is $A$ **nowhere dense** if its closure has empty interior $\qty{\overline{A}}^\circ$, equivalently it is not dense in *any* nonempty open set.
-
-For ${\mathbf{R}}$, every interval $I$ contains a subinterval $S\subset I$ with $S\cap A = \emptyset$, i.e. its closure contains no intervals.
-
-Intuition: elements are not tightly clustered, set is full of holes.
-:::
-
 ::: {.front card-id="card-eb276d425f8e2a7c"}
 Give an example of a set that is not nowhere dense.
 :::
@@ -1084,171 +887,12 @@ Give an example of a set that is not nowhere dense.
 Counterexample: $\left\{{1 \over n}\right\}, {\mathbf{Z}}$ are nowhere dense, ${\mathbf{Q}}, {\mathbf{Z}}\cup\qty{(a, b)\cap{\mathbf{Q}}}$ is *not* nowhere dense
 :::
 
-::: {.front card-id="card-4a67647d55675c08"}
-What is equicontinuity? Uniform equicontinuity?
-:::
-
-::: {.back card-id="card-4a67647d55675c08"}
-For $X, Y$ metric spaces and $\mathcal{F}$ a family of functions, $F$ is *equicontinuous at $x_0$* $\iff$ for every $\varepsilon > 0$ there exists a $\delta(\varepsilon, x_0)>0$ such that
-$$x\in B_\delta(x_0) \implies f_i(x) \in B_\varepsilon(f_i(x_0))$$
-for all $f_i \in \mathcal{F}$.
-
-The family $F$ is *uniformly equicontinuous* $\iff$ $\delta(\varepsilon)$ only depends on $\varepsilon$ and holds for any pair $x_1, x_2$ with $x_1 \in B_\delta(x_2)$.
-:::
-
-::: {.front card-id="card-003d9dc1a7872cf0"}
-What is the reverse triangle inequality?
-:::
-
-::: {.back card-id="card-003d9dc1a7872cf0"}
-$${\left\lvert {\, {\left\lVert {x_{}} \right\rVert} - {\left\lVert {y} \right\rVert} \,} \right\rvert} \leq {\left\lVert {x-y} \right\rVert}$$
-:::
-
-::: {.front card-id="card-b60b1f8c6208abf9"}
-What is a meagre set?
-:::
-
-::: {.back card-id="card-b60b1f8c6208abf9"}
-A set is *meagre* $\iff$ it is a countable union of nowhere dense sets.
-:::
-
-::: {.front card-id="card-cac150611ba1d5db"}
-Characterize the set $D_f$ of discontinuities of a function.
-:::
-
-::: {.back card-id="card-cac150611ba1d5db"}
-Always $F_\sigma$, closed, positive oscillation.
-
-$f_n\to f$ with $f_n$ continuous $\implies D_f$ is meager.
-
-(Lebesgue criterion) $f \in \mathcal{R}(a, b)$ and bounded $\implies D_f$ is null.
-
-$f$ monotone $\implies D_f$ is countable, and additionally $f$ d$\iff$erentiable on $(a, b) \implies D_f$ is null.
-:::
-
-::: {.front card-id="card-ca8a8f1c974ec6e5"}
-What is the Baire category theorem?
-:::
-
-::: {.back card-id="card-ca8a8f1c974ec6e5"}
-If $X$ is a complete metric space or a locally compact Hausdorff space, then $X$ is a Baire space.
-
-A (non-empty) complete metric space is *not* the countable union of nowhere dense sets.
-:::
-
-::: {.front card-id="card-54eb01fbfeb9c100"}
-What is the Caratheodory characterization of outer measure?
-:::
-
-::: {.back card-id="card-54eb01fbfeb9c100"}
-$E\subseteq {\mathbf{R}}^n$ is measurable $\iff$ for all $A\subset {\mathbf{R}}^n$,
-$$m_*(A) = m_*(E\cap A) + m_*(E\cap A^c)$$
-:::
-
-::: {.front card-id="card-c9f47f0bf11b9c8b"}
-What are almost disjoint sets?
-:::
-
-::: {.back card-id="card-c9f47f0bf11b9c8b"}
-$A^\circ \cap B^\circ = \emptyset$
-:::
-
-::: {.front card-id="card-56a80311947e75d8"}
-What is convergence in measure?
-:::
-
-::: {.back card-id="card-56a80311947e75d8"}
-$$\lim _{k \rightarrow \infty} m\left(\left\{x \in E|| f_{k}(x)-f(x) |>\alpha\right\}\right)=0$$
-:::
-
-::: {.front card-id="card-964eca48e0deed6c"}
-What is a separable space?
-:::
-
-::: {.back card-id="card-964eca48e0deed6c"}
-Contains a countable dense subset.
-:::
-
-::: {.front card-id="card-f934cf5abb9bbe43"}
-Is the composition of Lebesgue measurable functions again Lebesgue measurable?
-:::
-
-::: {.back card-id="card-f934cf5abb9bbe43"}
-**No:** Take $f: [0, 1]\to [0, 1]$ the Cantor-Lebesgue function (monotonic and cts) and $C$ the Cantor set
-
-$f(C) = [0, 1]$, so define $g(x) = f(x) +x$ so $g:[0, 1] \to [0, 2]$ (strictly monotonic and cts, so a homeomorphism), so $g^{-1}$ is cts and thus measurable.
-
-$\mu(g(C)) = 1>0$ (because $f$ is constant on every interval in $C^c$) so $g(C) \supseteq A$ a non-measurable subset
-
-$g^{-1}(A) \subset C$ with $\mu(C) = 0$ implies $g^{-1}(A)$ is a measurable set, so $\chi_{g^{-1}(A)}$ is a measurable function
-
-Then $k\coloneqq\chi_{g^{-1}(A)} \circ g^{-1}$ isn't measurable since
-$$k^{-1}(1) = \qty{ (g^{-1})^{-1}\circ \chi_{g^{-1}(A)} }(1) = g(g^{-1}(A)) = A.$$
-is not a measurable set.
-:::
-
-::: {.front card-id="card-a8ab05152235b77b"}
-What is a dense subset?
-:::
-
-::: {.back card-id="card-a8ab05152235b77b"}
-A subset $A\subseteq X$ is *dense* in $X$ $\iff$ $\mathrm{cl}_X(A) = X$.
-:::
-
-::: {.front card-id="card-018a3a1f68d39e33"}
-What is the diameter of set?
-:::
-
-::: {.back card-id="card-018a3a1f68d39e33"}
-$\mathrm{diam}(A) = \sup_{x, y\in A} {\left\lvert {d} \right\rvert}(x, y)$
-:::
-
-::: {.front card-id="card-afd11594850b897d"}
-What is the Bolzano-Weierstrass Property
-:::
-
-::: {.back card-id="card-afd11594850b897d"}
-Every sequence has a convergent subsequence
-:::
-
-::: {.front card-id="card-7c34fd923f6f78d9"}
-What is a complete measure?
-:::
-
-::: {.back card-id="card-7c34fd923f6f78d9"}
-A measure whose domain includes all subsets of null sets.
-:::
-
-::: {.front card-id="card-a39170950c82c2ea"}
-Define $\limsup, \liminf$ for sequences of sets. What are their containments?
-:::
-
-::: {.back card-id="card-a39170950c82c2ea"}
-$$\liminf _{n \rightarrow \infty} A_n=\bigcup_{n \geq 1} \bigcap_{j \geq n} A_j, \qquad \limsup _{n \rightarrow \infty} A_n=\bigcap_{n \geq 1} \bigcup_{j \geq n} A_j$$
-
-- Supremum: Union, $\limsup = \inf\sup$, in infinitely many
-- Infimum: Intersection, $\liminf = \sup\inf$, eventually in
-- $\liminf _{n \rightarrow \infty} A_n \subseteq \limsup _{n \rightarrow \infty} A_n$ since "all but finitely many" implies "infinitely often".
-:::
-
 ::: {.front card-id="card-c2f05c220c261c17"}
 What is the Borel-Cantelli lemma?
 :::
 
 ::: {.back card-id="card-c2f05c220c261c17"}
-$\sum P(E_n) < \infty \implies P(\limsup_n E_n) == 0$
+$\sum P(E_n) < \infty \implies P(\limsup_n E_n) = 0$
 
-If $E_n$ are independent events and $\sum P(E_n) = \infty$< then $P(\limsup_n E_n) = 1$.
-:::
-
-::: {.front card-id="card-495aa6676e1b151c"}
-What does small tails mean? Absolute continuity?
-:::
-
-::: {.back card-id="card-495aa6676e1b151c"}
-Let $f\in L^1$ and $\varepsilon> 0$.
-
-**Small Tails**: there exists an $N$ such that $\int_{B_N^c} f < \varepsilon$.
-
-**Absolute Continuity**: there exists a $\delta$ such that $m(E) < \delta \implies \int_E {\left\lvert {f} \right\rvert} < \varepsilon$.
+If $E_n$ are independent events and $\sum P(E_n) = \infty$, then $P(\limsup_n E_n) = 1$.
 :::

@@ -38,11 +38,11 @@ Urysohn's Lemma
 :::
 
 ::: {.back card-id="card-dcac4601570e9b53"}
-A space $X$ is normal iff for every closed $U, V \subset X$ there exists a continuous function $f: X\to [0, 1]$ with $f(U) = 0, f(V) = 1$.
+A space $X$ is normal iff for every pair of disjoint closed sets $U, V \subset X$ there exists a continuous function $f: X\to [0, 1]$ with $f(U) = 0, f(V) = 1$.
 
-Equivalently $\chi_U \leq f \leq \chi_V$.
+Equivalently $\chi_V \leq f \leq \chi_{X\setminus U}$.
 
-Equivalently, a topological space is separable and metrizable $\iff$ it is regular, Hausdorff, and second-countable.
+Related (Urysohn metrization theorem): a topological space is separable and metrizable $\iff$ it is regular, Hausdorff, and second-countable.
 :::
 
 ::: {.front card-id="card-33f04bfb88b19535" tags="definition"}
@@ -74,7 +74,7 @@ $X$ is *locally homeomorphic* to $Y$ iff every $x\in X$ admits a neighborhood $U
 
 Note that $X$ being locally homeomorphic to $Y$ does *not* imply that there exists a local homeomorphism, which needs to be a single map.
 
-Counterexample: $S^2$ locally homeomorphic to $\RR^2$, but there is no single local homeomorphism $f:S^2 \to \RR$.
+Counterexample: $S^2$ locally homeomorphic to $\RR^2$, but there is no single local homeomorphism $f:S^2 \to \RR^2$: its image would be open and compact in $\RR^2$.
 :::
 
 ::: {.front card-id="card-c0177f68763dc8b7" tags="definition"}
@@ -90,7 +90,7 @@ Neighborhood Basis
 :::
 
 ::: {.back card-id="card-fcb3764c80ce9fad"}
-A neighborhood basis about a point $x$ is a collection of open sets $\theset{B_k}_{k\in J}$ such that for every neighborhood $U_x$ of $x$, there exists some $j$ such that $B_j \subseteq U_x$.
+A neighborhood basis about a point $x$ is a collection of open sets $\theset{B_k}_{k\in J}$ containing $x$ such that for every neighborhood $U_x$ of $x$, there exists some $j\in J$ such that $B_j \subseteq U_x$.
 :::
 
 ::: {.front card-id="card-4ded1dbb972567f6" tags="theorem, proof"}
@@ -124,7 +124,7 @@ Definition: separable
 :::
 
 ::: {.back card-id="card-b80f7435b6f5dde9"}
-Contains a countable dense subset
+A space is *separable* iff it contains a countable dense subset.
 :::
 
 ::: {.front card-id="card-bef9f615b9f3bb0c" tags="definition"}
@@ -156,6 +156,7 @@ f(x, y) =
 0 & \text{else}
 \end{cases}
 .$$
+Each slice $x\mapsto f(x, y_0)$ and $y\mapsto f(x_0, y)$ is continuous, but $f(x, x) = {1\over 2}$ for $x\neq 0$ while $f(x, 0) = 0$, so $f$ is not continuous at $\vector 0$.
 :::
 
 ::: {.front card-id="card-355d255cd65af97d" tags="definition"}
@@ -180,65 +181,4 @@ Definition: Totally Bounded
 
 ::: {.back card-id="card-42173ddd8e85dad2"}
 A metric space $(M, d)$ is totally bounded iff $\forall \varepsilon$ there exists a *finite* collection of open balls of radius $\varepsilon$ whose union contains $M$.
-:::
-
-::: {.front card-id="card-e8afc902c0df3d86" tags="definition, counterexample"}
-Locally Compact
-:::
-
-::: {.back card-id="card-e8afc902c0df3d86"}
-A space $X$ is *locally compact* iff for every $x\in X$ there exists an open $U$ and compact $K$ such that $x\in U \subseteq K$.
-
-Compact implies locally compact but not conversely: $\RR^n$.
-
-Non locally-compact spaces: $\QQ, \theset{\vector 0} \union \theset{(x, y) \suchthat x>0} \subset\RR^2$ (since the origin admits no compact neighborhood).
-:::
-
-::: {.front card-id="card-5acd656b9c28e873" tags="theorem"}
-Urysohn's Lemma
-:::
-
-::: {.back card-id="card-5acd656b9c28e873"}
-A space $X$ is normal iff for every closed $U, V \subset X$ there exists a continuous function $f: X\to [0, 1]$ with $f(U) = 0, f(V) = 1$, or equivalently $\chi_U \leq f \leq \chi_V$.
-:::
-
-::: {.front card-id="card-7a1354eee12f05ea" tags="definition"}
-Locally homeomorphic
-:::
-
-::: {.back card-id="card-7a1354eee12f05ea"}
-$X$ is *locally homeomorphic* to $Y$ iff every $x\in X$ admits a neighborhood $U_x$ that is homeomorphic to an open subset of $Y$.
-
-Note that $X$ being locally homeomorphic to $Y$ does *not* imply that there exists a local homeomorphism, which needs to be a single map. Counterexample: $S^2$ locally homeomorphic to $\RR^2$, but there is no single local homeomorphism $f:S^2 \to \RR$.
-:::
-
-::: {.front card-id="card-547950e7ba2aaa04" tags="definition"}
-Neighborhood Basis
-:::
-
-::: {.back card-id="card-547950e7ba2aaa04"}
-A neighborhood basis about a point $x$ is a collection of open sets $\theset{B_k}_{k\in J}$ such that for every neighborhood $U_x$ of $x$, there exists some $j$ such that $B_k \subseteq U_x$
-:::
-
-::: {.front card-id="card-e835aebf5b70f977" tags="definition"}
-Definition: the discrete topology
-:::
-
-::: {.back card-id="card-e835aebf5b70f977"}
-For $X$ a space, the discrete topology is given by $\tau = \mcp(X)$, i.e. every subset is open.
-:::
-
-::: {.front card-id="card-87d70af608f74523" tags="example"}
-Give an example of a function $f: \RR^n \to \RR$ that is continuous in each variable but not continuous.
-:::
-
-::: {.back card-id="card-87d70af608f74523"}
-Take limit along $y=x$ and compare to $y=0$:
-\begin{align*}
-f(x, y) =
-\begin{dcases}
-{xy \over x^2 +y^2} & (x, y) \neq \vector 0 \\
-0 & \text{else}
-\end{dcases}
-.\end{align*}
 :::
