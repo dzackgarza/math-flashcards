@@ -32,14 +32,15 @@ export interface MathJaxRuntime {
 
 let texErrors: string[] = [];
 
-// TeX input options shared by the editor and the deck check. Without the
+// TeX input options shared by the editor and the deck check, with the packages
+// of the Anki card template. The macros use mathtools. Without the
 // noundefined package an unknown macro is an error, as in LaTeX. MathJax
 // reports every TeX error through formatError:
 // https://docs.mathjax.org/en/v3.2/options/input/tex.html#tex-options
 export function texOptions(macros: Macros) {
   return {
     macros,
-    packages: { "[-]": ["noundefined"] },
+    packages: { "[+]": ["mathtools"], "[-]": ["noundefined"] },
     formatError(jax: { formatError(error: Error): unknown }, error: Error) {
       texErrors.push(error.message);
       return jax.formatError(error);
@@ -80,6 +81,7 @@ export function loadMathJax(macros: Macros): Promise<MathJaxRuntime> {
     Object.assign(window, {
       MathJax: {
         startup: { typeset: false },
+        loader: { load: ["[tex]/mathtools"] },
         tex: texOptions(macros),
       },
     });

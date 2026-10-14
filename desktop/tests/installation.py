@@ -32,7 +32,7 @@ def main() -> None:
         entry.read(entry_path)
         assert entry["Desktop Entry"]["Name"] == "Math Flashcards"
         subprocess.run(["desktop-file-validate", str(entry_path)], check=True)
-        for name in ("backend.py", "backend.py.lock", "paired-cards.lua"):
+        for name in ("backend.py", "paired-cards.lua"):
             assert (
                 data / "math-flashcards" / "lib" / "Math Flashcards" / name
             ).read_bytes() == (

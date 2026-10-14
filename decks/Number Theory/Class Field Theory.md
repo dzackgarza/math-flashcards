@@ -51,7 +51,7 @@ For $L/K$ finite Galois, $\exists \alpha\in L$ such that $G_{L/K}.\alpha$ genera
 
 For $G\coloneqq G_{L/K}$, iff ${\mathbf{G}}_a(L) = L \cong K[G] \in   {}_{K[G]}{\mathsf{Mod}}$, so rank 1 with generator $\alpha$.
 
-Iff $L\cong {\mathbf{Z}}[G]\otimes_{\mathbf{Z}}K \in   {}_{{\mathbf{Z}}[G]}{\mathsf{Mod}}$, so $L$ is induced.
+Iff $L\cong {\mathbf{Z}}[G]\otimes_{\mathbf{Z}}K \in   \mods{\ZZ[G]}$, so $L$ is induced.
 :::
 
 ::: {.front card-id="card-2fc69737d44e07a9"}
@@ -211,7 +211,7 @@ Write $\mathsf{pro}{\mathbf{Z}}$ as a product.
 :::
 
 ::: {.back card-id="card-1f3689519ae590a6"}
-$$\mathsf{pro}{\mathbf{Z}}= \varprojlim C_n = \varprojlim \prod_{p\in \operatorname{Spec}{\mathbf{Z}}} C_{p_i^{k_i}} = \prod_{p\in \operatorname{Spec}{\mathbf{Z}}} \varprojlim C_{p_i^{k_i}} = \prod_{p\in \operatorname{Spec}{\mathbf{Z}}} { {\mathbf{Z}}_{\widehat{p}} }$$
+$$\mathsf{pro}{\mathbf{Z}}= \projectivelim C_n = \projectivelim \prod_{p\in \operatorname{Spec}{\mathbf{Z}}} C_{p_i^{k_i}} = \prod_{p\in \operatorname{Spec}{\mathbf{Z}}} \projectivelim C_{p_i^{k_i}} = \prod_{p\in \operatorname{Spec}{\mathbf{Z}}} { {\mathbf{Z}}_{\widehat{p}} }$$
 :::
 
 ::: {.front card-id="card-65cd3d53082ae059"}
@@ -253,7 +253,7 @@ What is the inflation/restriction sequence for Brauer groups?
 :::
 
 ::: {.back card-id="card-9533eaca3452aa02"}
-$\mathrm{Br}(L/K)\overset{\mathrm{inflation}}{\hookrightarrow} \mathrm{Br}(K) \xrightarrow{\mathrm{restriction}} \mathrm{Br}(L)^{{ \mathsf{Gal}}(L/K)}$.
+$\mathrm{Br}(L/K)\xhookrightarrow{\mathrm{inflation}} \mathrm{Br}(K) \xrightarrow{\mathrm{restriction}} \mathrm{Br}(L)^{{ \mathsf{Gal}}(L/K)}$.
 :::
 
 ::: {.front card-id="card-cc76cd508bd43e53"}
@@ -375,9 +375,9 @@ Discuss limits of $C_n$.
 :::
 
 ::: {.back card-id="card-766c454787487177"}
-$\operatorname*{colim} C_n = {\mathbf{Q}}/{\mathbf{Z}}$
+$\colim C_n = {\mathbf{Q}}/{\mathbf{Z}}$
 
-$\varprojlim C_n = \mathsf{pro}{\mathbf{Z}}$.
+$\projectivelim C_n = \mathsf{pro}{\mathbf{Z}}$.
 :::
 
 ::: {.front card-id="card-10d1272606dd6f30"}
@@ -393,7 +393,7 @@ For a decreasing filtration $M_1 \supseteq M_2\supseteq\cdots$, what does it mea
 :::
 
 ::: {.back card-id="card-8fd920f18e320d3c"}
-$M_1\to \varprojlim M_1/M_n$ is an isomorphism, realizing $M_1$ as an adic completion wrt the quotients.
+$M_1\to \projectivelim M_1/M_n$ is an isomorphism, realizing $M_1$ as an adic completion wrt the quotients.
 :::
 
 ::: {.front card-id="card-ecbf81a3501e47c7"}
@@ -617,7 +617,7 @@ Discuss the significance of $\omega$.
 ::: {.back card-id="card-6153b701f329a586"}
 Isomorphisms of $\omega_{L/K}$ assemble into a compatible inverse system.
 
-Yields $\omega: K^{\times}\to\varprojlim_{L/K \text{ fin. ab}}K^{\times}/NL^{\times} { \, \xrightarrow{\sim}\, }G_K^{\operatorname{ab}}$, so is this injective? Is it the profinite completion of $K^{\times}$?
+Yields $\omega: K^{\times}\to\projectivelim_{L/K \text{ fin. ab}}K^{\times}/NL^{\times} { \, \xrightarrow{\sim}\, }G_K^{\operatorname{ab}}$, so is this injective? Is it the profinite completion of $K^{\times}$?
 
 Equivalently, are there enough finite abelian extensions to be cofinal in the system of all finite index subgroups of $K^{\times}$?
 
@@ -749,7 +749,7 @@ What is explicit class field theory?
 :::
 
 ::: {.back card-id="card-2594d9e0a9390842"}
-Since $K^{\operatorname{ab}}/K$ is a countably infinite degree algebraic extension, produce a sequence of algebraic numbers $a_n$ such that $K^{\operatorname{ab}}= \operatorname*{colim}(K[a_1]\hookrightarrow K[a_1, a_2]\hookrightarrow\cdots)$.
+Since $K^{\operatorname{ab}}/K$ is a countably infinite degree algebraic extension, produce a sequence of algebraic numbers $a_n$ such that $K^{\operatorname{ab}}= \colim(K[a_1]\hookrightarrow K[a_1, a_2]\hookrightarrow\cdots)$.
 :::
 
 ::: {.front card-id="card-ee8cd8706a6bd8a0"}
@@ -829,7 +829,7 @@ How does one get an honest group from a FGL?
 :::
 
 ::: {.back card-id="card-6ab20a703009190d"}
-Take $(R, {\mathfrak{m}})$ complete local, then $R { \, \xrightarrow{\sim}\, }\varprojlim_n R/{\mathfrak{m}}^n$ so $x+y \coloneqq F(x,y)$ converges in the ${\mathfrak{m}}{\hbox{-}}$adic topology.
+Take $(R, {\mathfrak{m}})$ complete local, then $R { \, \xrightarrow{\sim}\, }\projectivelim_n R/{\mathfrak{m}}^n$ so $x+y \coloneqq F(x,y)$ converges in the ${\mathfrak{m}}{\hbox{-}}$adic topology.
 :::
 
 ::: {.front card-id="card-37578c7420249421"}
@@ -845,11 +845,11 @@ What is a formal $R{\hbox{-}}$module?
 :::
 
 ::: {.back card-id="card-054429efc3a37b22"}
-A ring morphism $R\to { \operatorname{End} }_{{\mathsf{FGL}}}(F)$ for $F$ a formal group.
+A ring morphism $R\to { \operatorname{End} }_{\FGL}(F)$ for $F$ a formal group.
 :::
 
 ::: {.front card-id="card-ad2d11d11ca5cd23"}
-What is $[n](T)$ for ${\mathbf{G}}_a$ and ${\mathbf{G}}_m$, where $[n] \in { \operatorname{End} }_{{\mathsf{FGL}}}(F)$ is $1 \oplus_F 1\oplus_F \cdots \oplus_F 1$?
+What is $[n](T)$ for ${\mathbf{G}}_a$ and ${\mathbf{G}}_m$, where $[n] \in { \operatorname{End} }_{\FGL}(F)$ is $1 \oplus_F 1\oplus_F \cdots \oplus_F 1$?
 :::
 
 ::: {.back card-id="card-ad2d11d11ca5cd23"}
@@ -905,7 +905,7 @@ What is the Lubin-Tate FGL attached to $f\in F_\pi$?
 :::
 
 ::: {.back card-id="card-9065d30f1cc7ba3c"}
-The unique FGL $F_f\in R{[\![  x,y ]\!]  }$ st $f\in { \operatorname{End} }_{{\mathsf{FGL}}} F_f$ canonically, so $f(F_f(x,y)) = F_f(f(x), f(y))$.
+The unique FGL $F_f\in R{[\![  x,y ]\!]  }$ st $f\in { \operatorname{End} }_{\FGL} F_f$ canonically, so $f(F_f(x,y)) = F_f(f(x), f(y))$.
 :::
 
 ::: {.front card-id="card-f8c7dd23d0446e5a"}

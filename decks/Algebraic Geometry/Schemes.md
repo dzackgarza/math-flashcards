@@ -308,7 +308,7 @@ What is a **formal scheme**?
 :::
 
 ::: {.back card-id="card-57df6bd719dcbcca"}
-A locally ringed space locally isomorphic to $(\operatorname{Spf}A, {\mathcal{O}}_{\operatorname{Spf}A})$ where $\operatorname{Spf}A$ is the formal spectrum of a ring -- roughly the completion of a Noetherian scheme $X_i$ along a closed subscheme $Y_i$, where one takes $Y$ as the space and $\varprojlim_n {\mathcal{O}}_X/{\mathcal{I}}_Y^n$.
+A locally ringed space locally isomorphic to $(\operatorname{Spf}A, {\mathcal{O}}_{\operatorname{Spf}A})$ where $\operatorname{Spf}A$ is the formal spectrum of a ring -- roughly the completion of a Noetherian scheme $X_i$ along a closed subscheme $Y_i$, where one takes $Y$ as the space and $\projectivelim_n {\mathcal{O}}_X/{\mathcal{I}}_Y^n$.
 :::
 
 ::: {.front card-id="card-289455ed6aa37e98"}
@@ -438,7 +438,7 @@ How is ${\mathbf{P}}^n/S$ defined for $S$ a scheme?
 :::
 
 ::: {.back card-id="card-acdb021d5d026890"}
-Define $\PP^n/\ZZ \da \Proj \ZZ[x_0, \cdots, x_n]$ and $\PP^n/S \da \PP^n/\ZZ \fiberprod{\ZZ} S$.
+Define $\PP^n/\ZZ \definedas \Proj \ZZ[x_0, \cdots, x_n]$ and $\PP^n/S \definedas \fiberprod{\PP^n/\ZZ}{\ZZ}{S}$.
 :::
 
 ::: {.front card-id="card-98c1f9a1ecd625ba"}

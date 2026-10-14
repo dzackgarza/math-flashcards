@@ -7,12 +7,12 @@ Riesz Representation Theorem
 :::
 
 ::: {.back card-id="card-25240e0a1cfbb60a"}
-Hilbert spaces: for $H$ a Hilbert space and $\varphi \in H\dual$, there exists a unique $f\in H$ such that $\varphi(x) = \inner{f}{x}$ for all $x\in H$ (inner product linear in the second slot), and $\norm{f}_H = \norm{\varphi}_{H\dual}$.
+Hilbert spaces: for $H$ a Hilbert space and $\varphi \in \dualof{H}$, there exists a unique $f\in H$ such that $\varphi(x) = \inner{f}{x}$ for all $x\in H$ (inner product linear in the second slot), and $\norm{f}_H = \norm{\varphi}_{\dualof{H}}$.
 
-$L^p$ spaces: for $1\leq p <\infty$ with ${1\over p} + {1\over q} = 1$, $X \subset \RR^n$ measurable, and $\Lambda \in L^p(X)\dual$, there exists a unique $g\in L^q(X)$ such that
+$L^p$ spaces: for $1\leq p <\infty$ with ${1\over p} + {1\over q} = 1$, $X \subset \RR^n$ measurable, and $\Lambda \in \dualof{L^p(X)}$, there exists a unique $g\in L^q(X)$ such that
 $$\begin{align*}
 \forall f\in L^p(X), \quad \Lambda(f) &= \int_X fg \\
-\norm{\Lambda}_{L^p(X)\dual} &= \norm{g}_{L^q(X)}
+\norm{\Lambda}_{\dualof{L^p(X)}} &= \norm{g}_{L^q(X)}
 \end{align*}$$
 :::
 

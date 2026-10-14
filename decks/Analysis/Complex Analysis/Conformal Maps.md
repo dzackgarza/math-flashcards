@@ -43,7 +43,7 @@ The principal logarithm $z\mapsto\Log z$ maps the slit plane $\CC\sm(-\infty,0]$
 :::
 
 ::: {.front card-id="card-b6ff03aaf0820e35" tags="definition"}
-Conformal map: what does $z+a\inv$ do?
+Conformal map: what does $z+\inverseof{a}$ do?
 :::
 
 ::: {.back card-id="card-b6ff03aaf0820e35"}

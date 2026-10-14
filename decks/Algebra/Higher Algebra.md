@@ -83,7 +83,7 @@ Give a precise definition of factorization homology.
 :::
 
 ::: {.back card-id="card-873bcf13f5dd4208"}
-For a framed $n$-manifold $M$ and a $\operatorname{Disk}_n^{\mathrm{fr}}$-algebra $A$ in a symmetric monoidal $\infty$-category admitting the relevant colimits, factorization homology is $\int_M A=\operatorname*{colim}_{(U\hookrightarrow M)\in\operatorname{Disk}_n^{\mathrm{fr}}/M}A(U)$. Here $U$ ranges over finite disjoint unions of framed $n$-disks, and $A(U)$ is the tensor product of one copy of $A$ for each component.
+For a framed $n$-manifold $M$ and a $\operatorname{Disk}_n^{\mathrm{fr}}$-algebra $A$ in a symmetric monoidal $\infty$-category admitting the relevant colimits, factorization homology is $\int_M A=\colim_{(U\hookrightarrow M)\in\operatorname{Disk}_n^{\mathrm{fr}}/M}A(U)$. Here $U$ ranges over finite disjoint unions of framed $n$-disks, and $A(U)$ is the tensor product of one copy of $A$ for each component.
 :::
 
 ::: {.front card-id="card-5c678f8b5d731b50"}

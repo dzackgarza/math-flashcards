@@ -110,7 +110,7 @@ then $f,g\neq 0$ on $\bd D$ (a zero of either would violate the strict inequalit
 :::
 
 ::: {.front card-id="card-bf3b3326661ef644" tags="fact"}
-General form of maps in $\aut(\DD)$.
+General form of maps in $\Aut(\DD)$.
 :::
 
 ::: {.back card-id="card-bf3b3326661ef644"}

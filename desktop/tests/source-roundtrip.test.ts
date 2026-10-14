@@ -19,7 +19,6 @@ test("repository card ranges preserve source and agree with Pandoc export", asyn
       [
         "uv",
         "run",
-        "--locked",
         "--script",
         resolve(import.meta.dir, "../backend.py"),
       ],

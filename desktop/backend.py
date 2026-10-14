@@ -1,7 +1,7 @@
 # /// script
 # requires-python = ">=3.12"
 # dependencies = [
-#   "ankdown @ git+https://github.com/dzackgarza/ankdown-for-math@5878dff3082334d33609b0999eb849d8c6db6812",
+#   "ankdown @ git+https://github.com/dzackgarza/ankdown-for-math",
 #   "cyclopts==4.15.0",
 #   "filelock==3.20.3",
 #   "platformdirs==4.5.1",
@@ -33,7 +33,6 @@ from send2trash import send2trash
 
 EXPORTER = Path(ankdown.cli.__file__).parent
 PAIR_FILTER = Path(__file__).with_name("paired-cards.lua")
-REVISION = "5878dff3082334d33609b0999eb849d8c6db6812"
 type MacroDefinition = str | list[str | int]
 
 
@@ -200,7 +199,30 @@ def database() -> Iterator[sqlite3.Connection]:
         connection.execute(
             "CREATE TABLE IF NOT EXISTS deck_builds (path TEXT PRIMARY KEY, record TEXT NOT NULL)"
         )
+        connection.execute(
+            "CREATE TABLE IF NOT EXISTS macros (id INTEGER PRIMARY KEY CHECK (id = 0), digest TEXT NOT NULL)"
+        )
         yield connection
+
+
+def refresh_macros() -> str:
+    """Fetch the macro set from pandoc-config main and record its digest."""
+    text = ankdown.cli.fetch_macros()
+    with database() as connection:
+        connection.execute(
+            "INSERT OR REPLACE INTO macros VALUES (0, ?)", (digest(text.encode()),)
+        )
+    return text
+
+
+# Listing a workspace and generating a package read pandoc-config main; status
+# checks compare with the set read last, so saving needs no network.
+def macros_digest() -> str:
+    with database() as connection:
+        row = connection.execute("SELECT digest FROM macros").fetchone()
+    if row is None:
+        raise ValueError("Open the workspace to read the macros from pandoc-config.")
+    return row[0]
 
 
 def input_hashes(path: Path, media: list[Path]) -> dict[str, str]:
@@ -214,13 +236,12 @@ def input_hashes(path: Path, media: list[Path]) -> dict[str, str]:
                 "ankdown.lua",
                 "cli.py",
                 "mathjax.html",
-                "mathjax-macros.json",
                 "card.css",
             )
         ),
     ]
     hashes = {str(file): digest(file.read_bytes()) for file in files}
-    hashes["exporter"] = REVISION
+    hashes["macros"] = macros_digest()
     hashes["pandoc"] = digest(
         subprocess.run(["pandoc", "--version"], check=True, capture_output=True).stdout
     )
@@ -263,7 +284,11 @@ def sync(path: Path, output: Path) -> Sync:
             if current[name] == expected:
                 continue
             reason = (
-                "The deck changed." if name == str(path) else "The exporter changed."
+                "The deck changed."
+                if name == str(path)
+                else "The pandoc-config macros changed."
+                if name == "macros"
+                else "The exporter changed."
             )
         else:
             file = Path(name)
@@ -366,6 +391,7 @@ def generate(root: Path, path: Path) -> Generated:
                     for file in media_paths(deck, root, scratch).values()
                     if not file.is_relative_to(scratch)
                 ]
+                refresh_macros()
                 inputs = input_hashes(path, media)
                 if inputs[str(path)] != digest(source.encode()):
                     raise ValueError(
@@ -514,6 +540,7 @@ def dispatch(
                 )
         return Review(decks=pending)
     if isinstance(request, ListInput):
+        macros = refresh_macros()
         summaries: list[Summary] = []
         for path in paths:
             state = sync(path, package_path(root, path))
@@ -528,9 +555,7 @@ def dispatch(
         return Workspace(
             root=str(root),
             decks=summaries,
-            macros=TypeAdapter(dict[str, MacroDefinition]).validate_json(
-                (EXPORTER / "mathjax-macros.json").read_text()
-            ),
+            macros=TypeAdapter(dict[str, MacroDefinition]).validate_json(macros),
         )
     path = deck_path(root, request.path)
     output = package_path(root, path)

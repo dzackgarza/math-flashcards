@@ -62,7 +62,7 @@ $$
 ::: {.back card-id="card-0f91ecfaf2d85f3e"}
 Let $E$ be measurable. A function $f:E\to\bar\RR$ is Lebesgue (resp. Borel) **measurable** iff for all $\alpha \in \RR$,
 $$
-S_\alpha \definedas \theset{ x\in E \suchthat f(x) > \alpha} = f\inv((\alpha, \infty]) \in \mathcal{M}_L \text{ (resp. } \mathcal{M}_B\text{)},
+S_\alpha \definedas \theset{ x\in E \suchthat f(x) > \alpha} = \inverseof{f}((\alpha, \infty]) \in \mathcal{M}_L \text{ (resp. } \mathcal{M}_B\text{)},
 $$
 the collection of Lebesgue (resp. Borel) measurable *sets*.
 
@@ -722,12 +722,12 @@ Is a composition of Lebesgue measurable functions measurable?
 No:
 
 - Take $f: [0, 1]\to [0, 1]$ the Cantor-Lebesgue function (monotonic and cts) and $C$ the Cantor set
-- $f(C) = [0, 1]$, so define $g(x) = f(x) +x$ so $g:[0, 1] \to [0, 2]$ (strictly monotonic and cts, so a homeomorphism), so $g\inv$ is cts and thus measurable.
+- $f(C) = [0, 1]$, so define $g(x) = f(x) +x$ so $g:[0, 1] \to [0, 2]$ (strictly monotonic and cts, so a homeomorphism), so $\inverseof{g}$ is cts and thus measurable.
 - $\mu(g(C)) = 1>0$: $f$ is constant on every interval in $C^c$, so $g$ maps $[0, 1]\setminus C$ to intervals of the same total length $1$, leaving measure $2 - 1 = 1$ for $g(C)$. So $g(C) \supseteq A$ a non-measurable subset
-- $g\inv(A) \subset C$ with $\mu(C) = 0$ implies $g\inv(A)$ is a measurable set, so $\chi_{g\inv(A)}$ is a measurable function
-- Then $k\definedas \chi_{g\inv(A)} \circ g\inv$ isn't measurable since
+- $\inverseof{g}(A) \subset C$ with $\mu(C) = 0$ implies $\inverseof{g}(A)$ is a measurable set, so $\chi_{\inverseof{g}(A)}$ is a measurable function
+- Then $k\definedas \chi_{\inverseof{g}(A)} \circ \inverseof{g}$ isn't measurable since
   $$
-  k\inv(\theset{1}) = (g\inv)\inv\qty{\chi_{g\inv(A)}\inv(\theset{1})} = (g\inv)\inv(g\inv(A)) = g(g\inv(A)) = A
+  \inverseof{k}(\theset{1}) = \inverseof{(\inverseof{g})}\qty{\inverseof{\chi_{\inverseof{g}(A)}}(\theset{1})} = \inverseof{(\inverseof{g})}(\inverseof{g}(A)) = g(\inverseof{g}(A)) = A
   $$
   is not a measurable set.
 

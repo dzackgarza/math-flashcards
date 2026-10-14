@@ -1,4 +1,8 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.12"
+# dependencies = []
+# ///
 """Reconcile apkg-only cards into decks/ as nested-list Markdown (issue #1).
 
 For every note in apkg/*.apkg whose normalized front is NOT already present in
@@ -11,8 +15,8 @@ skipped, so this adds exactly the missing set the diff reports.
 Media is unrecoverable (no apkg bundles any; all <img src="attachments/..."> are
 dangling), so <img> tags are dropped, keeping surrounding text.
 
-Run:  python3 .agents/apkg_to_decks.py
-Then: python3 .agents/apkg_diff.py   (expect 0 missing)  &&  just build
+Run:  uv run .agents/apkg_to_decks.py
+Then: uv run .agents/apkg_diff.py   (expect 0 missing)  &&  just build
 """
 import html
 import json

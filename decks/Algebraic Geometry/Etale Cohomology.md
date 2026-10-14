@@ -387,7 +387,7 @@ What is the (etale) skyscraper sheaf for ${\mathcal{F}}\in {\mathsf{Sh}}(\operat
 :::
 
 ::: {.back card-id="card-bc16d6c1d8576f57"}
-For $\overline{x} = \operatorname{Spec}k \overset{\iota_{\overline{x}}}{\hookrightarrow} X$, take $(\iota_{\overline{x}})_* {\mathcal{F}}(U\to X) {\mathcal{F}}(U \underset{\scriptscriptstyle {X} }{\times}\overline{x}) = {\mathcal{F}}({\textstyle\coprod}_i \operatorname{Spec}k) = \prod_i {\mathcal{F}}(\operatorname{Spec}k)$ where $i\in I$ with ${\sharp}I$ the number of preimages of $\overline{x}$.
+For $\overline{x} = \operatorname{Spec}k \xhookrightarrow{\iota_{\overline{x}}} X$, take $(\iota_{\overline{x}})_* {\mathcal{F}}(U\to X) {\mathcal{F}}(U \underset{\scriptscriptstyle {X} }{\times}\overline{x}) = {\mathcal{F}}({\textstyle\coprod}_i \operatorname{Spec}k) = \prod_i {\mathcal{F}}(\operatorname{Spec}k)$ where $i\in I$ with ${\sharp}I$ the number of preimages of $\overline{x}$.
 :::
 
 ::: {.front card-id="card-3bc2c8cd6c8b9e12"}
@@ -395,7 +395,7 @@ What is the stalk (pullback to a geometric point $\overline{x}$) of ${\mathcal{F
 :::
 
 ::: {.back card-id="card-3bc2c8cd6c8b9e12"}
-${\mathcal{F}}_{\overline{x}} \coloneqq\iota_{\overline{x}}^*{\mathcal{F}}=\operatorname*{colim}_{(U, \overline{u})} {\mathcal{F}}(U)$, a colimit over etale neighborhoods: $U\to X$ is etale and $\overline{u}\to U$ is a lift of $\overline{x}\to X$.
+${\mathcal{F}}_{\overline{x}} \coloneqq\iota_{\overline{x}}^*{\mathcal{F}}=\colim_{(U, \overline{u})} {\mathcal{F}}(U)$, a colimit over etale neighborhoods: $U\to X$ is etale and $\overline{u}\to U$ is a lift of $\overline{x}\to X$.
 :::
 
 ::: {.front card-id="card-188c59bcb8252ddf"}
@@ -786,7 +786,7 @@ For $X$ integral and $\iota:\eta \hookrightarrow X$ a generic point, what are th
 
 ::: {.back card-id="card-9f4ecc81ca613738"}
 Write $K_X \coloneqq\operatorname{ff}({\mathcal{O}}_X)$, use that stalks agree on sheaves vs presheaves to get
-$$\operatorname*{colim}_{u\hookrightarrow U} H^i(U_\eta; { \left.{{{\mathcal{F}}}} \right|_{{U_\eta}} }) = H^i(K_{X, \overline{x}}; { \left.{{{\mathcal{F}}}} \right|_{{K_{X, \overline{x}}}} })$$
+$$\colim_{u\hookrightarrow U} H^i(U_\eta; { \left.{{{\mathcal{F}}}} \right|_{{U_\eta}} }) = H^i(K_{X, \overline{x}}; { \left.{{{\mathcal{F}}}} \right|_{{K_{X, \overline{x}}}} })$$
 at $\overline{x}\hookrightarrow X$ a geometric point.
 :::
 
@@ -811,13 +811,13 @@ $A = \bigcap_{p\in \operatorname{Spec}(A)^{\operatorname{ht}= 1}} A_p$.
 :::
 
 ::: {.front card-id="card-11edab857d7d6bd6"}
-Define the cohomological Brauer group $\operatorname{Br}^{\mathrm{coh}}(X)$.
+Define the cohomological Brauer group $\Brauer^{\mathrm{coh}}(X)$.
 :::
 
 ::: {.back card-id="card-11edab857d7d6bd6"}
-$\operatorname{Br}^{\mathrm{coh}}(X) \coloneqq H^2_\text{ét}(X; {\mathbf{G}}_m)_{\operatorname{tors}}$.
+$\Brauer^{\mathrm{coh}}(X) \coloneqq H^2_\text{ét}(X; {\mathbf{G}}_m)_{\operatorname{tors}}$.
 
-Compare: the Brauer group $\operatorname{Br}(X)$ is $\operatorname{im}\qty{\bigcup_n {\mathcal{P}}_n \xrightarrow{\delta} H^2_\text{ét}(X; {\mathbf{G}}_m)}$ where ${\mathcal{P}}_n$ is the set of all etale locally trivial $\operatorname{PGL}_n{\hbox{-}}$torsors over $X$, which is the boundary map coming from ${\mathbf{G}}_m\hookrightarrow\operatorname{GL}_n\twoheadrightarrow\operatorname{PGL}_n$. It is contained in $\operatorname{Br}^{\mathrm{coh}}(X)$, with equality e.g. for $X$ quasi-projective over a field (Gabber).
+Compare: the Brauer group $\Brauer(X)$ is $\operatorname{im}\qty{\bigcup_n {\mathcal{P}}_n \xrightarrow{\delta} H^2_\text{ét}(X; {\mathbf{G}}_m)}$ where ${\mathcal{P}}_n$ is the set of all etale locally trivial $\operatorname{PGL}_n{\hbox{-}}$torsors over $X$, which is the boundary map coming from ${\mathbf{G}}_m\hookrightarrow\operatorname{GL}_n\twoheadrightarrow\operatorname{PGL}_n$. It is contained in $\Brauer^{\mathrm{coh}}(X)$, with equality e.g. for $X$ quasi-projective over a field (Gabber).
 :::
 
 ::: {.front card-id="card-a58311cd6c6d2d24"}
@@ -897,13 +897,13 @@ Discuss when a 2-cocycle $[\alpha]$ for ${\mathbf{G}}_m$ relates to Brauer class
 :::
 
 ::: {.back card-id="card-83d3a99ae264e33d"}
-$[\alpha]\in \operatorname{Br}(X) \iff \exists {\mathcal{E}}$ and $\alpha{\hbox{-}}$twisted vector bundle.
+$[\alpha]\in \Brauer(X) \iff \exists {\mathcal{E}}$ and $\alpha{\hbox{-}}$twisted vector bundle.
 
 The forward direction corresponds to $\delta([\alpha])$, the reverse is projectivizing a bundle to get a form of ${\mathbf{P}}^n$.
 :::
 
 ::: {.front card-id="card-c9ac4e103c3026eb"}
-Why is $\operatorname{Br}(X)$ a group?
+Why is $\Brauer(X)$ a group?
 :::
 
 ::: {.back card-id="card-c9ac4e103c3026eb"}
@@ -923,7 +923,7 @@ Forward: take ${\mathcal{L}}= {\mathcal{O}}_X$, reverse: use descent data to get
 :::
 
 ::: {.front card-id="card-342c02b96e33dd3b"}
-What does ${\mathcal{E}}$ an $\alpha{\hbox{-}}$twisted vector bundle of rank $n$ correspond to in $\operatorname{Br}(X)$?
+What does ${\mathcal{E}}$ an $\alpha{\hbox{-}}$twisted vector bundle of rank $n$ correspond to in $\Brauer(X)$?
 :::
 
 ::: {.back card-id="card-342c02b96e33dd3b"}
@@ -943,7 +943,7 @@ $x^2+y^2+z^2 = 0$ over ${\mathbf{R}}$, a smooth conic with no rational points. B
 :::
 
 ::: {.front card-id="card-27bb4a89f446569b"}
-What is the generator of $\operatorname{Br}({\mathbf{R}})$?
+What is the generator of $\Brauer({\mathbf{R}})$?
 :::
 
 ::: {.back card-id="card-27bb4a89f446569b"}
@@ -961,19 +961,19 @@ ${ \operatorname{End} }({\mathcal{E}})$ is Azumaya.
 :::
 
 ::: {.front card-id="card-be9b047c3ed3af5f"}
-What is $\operatorname{Br}({ {\mathbf{Q}}_p })$?
+What is $\Brauer({ {\mathbf{Q}}_p })$?
 :::
 
 ::: {.back card-id="card-be9b047c3ed3af5f"}
-$\operatorname{Br}({ {\mathbf{Q}}_p }) = {\mathbf{Q}}/{\mathbf{Z}}$.
+$\Brauer({ {\mathbf{Q}}_p }) = {\mathbf{Q}}/{\mathbf{Z}}$.
 :::
 
 ::: {.front card-id="card-5eff17526136d40b"}
-What is the SES involving $\operatorname{Br}({\mathbf{Q}})$?
+What is the SES involving $\Brauer({\mathbf{Q}})$?
 :::
 
 ::: {.back card-id="card-5eff17526136d40b"}
-$$\operatorname{Br}({\mathbf{Q}}) \hookrightarrow\bigoplus_{p\in {\operatorname{Places}}{{\mathbf{Q}}}} \operatorname{Br}({ {\mathbf{Q}}_p }) \twoheadrightarrow{\mathbf{Q}}/{\mathbf{Z}}$$
+$$\Brauer({\mathbf{Q}}) \hookrightarrow\bigoplus_{p\in {\operatorname{Places}}{{\mathbf{Q}}}} \Brauer({ {\mathbf{Q}}_p }) \twoheadrightarrow{\mathbf{Q}}/{\mathbf{Z}}$$
 :::
 
 ::: {.front card-id="card-43ff4cf1d119ff4f"}
@@ -981,7 +981,7 @@ What is the period-index question?
 :::
 
 ::: {.back card-id="card-43ff4cf1d119ff4f"}
-Given $\alpha\in \operatorname{Br}(X)$, what is the minimal rank of an $\alpha{\hbox{-}}$twisted vector bundle?
+Given $\alpha\in \Brauer(X)$, what is the minimal rank of an $\alpha{\hbox{-}}$twisted vector bundle?
 
 Over a field, for 2-torsion one can always find $\operatorname{rank}{\mathcal{E}}= 2$.
 :::

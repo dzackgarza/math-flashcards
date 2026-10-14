@@ -74,7 +74,7 @@ Exponential expansions of $\sin(z)$
 
 ::: {.back card-id="card-b6b2adc676e612d5"}
 $$\begin{align*}
-\sin(\theta) &= \frac{e^{i\theta} - e^{-i\theta}}{2i} = \frac{z - z\inv}{2i} \\
+\sin(\theta) &= \frac{e^{i\theta} - e^{-i\theta}}{2i} = \frac{z - \inverseof{z}}{2i} \\
 d\theta &= \frac{dz}{iz}
 \end{align*}$$
 where $z = e^{i\theta}$.
@@ -134,7 +134,7 @@ Cross-ratio map
 
 ::: {.back card-id="card-4f8f6033cc85f2ce"}
 $$
-R(z) \da (z, z_2, z_3, z_4) \da {z - z_3\over z-z_4}{z_2 - z_4 \over z_2 - z_3} \\
+R(z) \definedas (z, z_2, z_3, z_4) \definedas {z - z_3\over z-z_4}{z_2 - z_4 \over z_2 - z_3} \\
 .$$
 Sends
 

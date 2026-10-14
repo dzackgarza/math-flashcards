@@ -1,12 +1,16 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.12"
+# dependencies = []
+# ///
 """Extract every note from apkg/*.apkg, normalize fronts, and diff against decks/.
 
 Acceptance-criterion tool for issue #1: proves whether every note in every committed
 .apkg has a corresponding card in decks/ (normalized-front match).
 
 Usage:
-    python3 .agents/apkg_diff.py            # summary + missing-card report
-    python3 .agents/apkg_diff.py --dump-missing PATH   # write missing cards as JSON
+    uv run .agents/apkg_diff.py            # summary + missing-card report
+    uv run .agents/apkg_diff.py --dump-missing PATH   # write missing cards as JSON
 """
 import argparse
 import html

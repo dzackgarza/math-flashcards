@@ -9,7 +9,13 @@ import { deckProblems } from "../src/problems";
 const root = process.argv[2];
 if (!root) throw new Error("Usage: bun scripts/check-math.ts <workspace>");
 const backend = Bun.spawnSync(
-  ["uv", "run", "--locked", join(import.meta.dir, "..", "backend.py")],
+  [
+    "uv",
+    "run",
+    "--refresh-package",
+    "ankdown",
+    join(import.meta.dir, "..", "backend.py"),
+  ],
   {
     stdin: new TextEncoder().encode(
       JSON.stringify({ action: "list", workspace: root }) + "\n",
@@ -21,7 +27,7 @@ const workspace = workspaceSchema.parse(JSON.parse(backend.stdout.toString()));
 // MathJax's Node entry point loads the same TeX input component as the editor:
 // https://docs.mathjax.org/en/v3.2/server/components.html
 const mathjax = await createRequire(import.meta.url)("mathjax").init({
-  loader: { load: ["input/tex"] },
+  loader: { load: ["input/tex", "[tex]/mathtools"] },
   tex: texOptions(workspace.macros),
 });
 const problems = workspace.decks.flatMap((deck) =>

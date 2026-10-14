@@ -6,8 +6,8 @@ Date: 2026-10-14. Selected architecture: separate CodeMirror Front and Back fiel
 
 Use Tauri 2, React, TypeScript, Vite, Mantine, and CodeMirror 6.
 Keep Markdown files as the authored source. Use the existing ankdown Pandoc
-filter for deck validation and ankdown for package generation. Package dependencies
-must be locked to tested releases during implementation.
+filter for deck validation and ankdown for package generation. The exporter and
+the macro set track the main branches of ankdown-for-math and pandoc-config.
 
 ## Dependency owners
 
@@ -43,7 +43,6 @@ must be locked to tested releases during implementation.
 
 Local evidence: `README.md`, `justfile`, and the sibling checkout's
 `ankdown/ankdown.lua`, `ankdown/cli.py`, and `ankdown/mathjax.html`.
-The sibling checkout must be compared with the pinned exporter revision before wiring.
 
 The paired-card filter validates `.front` and `.back` divs linked by `card-id`.
 It supplies each complete side to Ankdown's filter as a block container.
@@ -67,7 +66,7 @@ Show separate indicators for an unsaved draft and the saved deck's package state
 Package states are Up to date, Unsynced, Generating and Failed.
 
 A successful generation record contains hashes of the source, resolved media,
-exporter revision, filter/model/macro assets, and resulting APKG bytes.
+exporter assets, the macro set, and resulting APKG bytes.
 Use a standard SHA-256 implementation. Up to date requires the current inputs
 and package to match the successful record. An existing package with no verified
 record starts as Unsynced. Modification times alone cannot prove equivalence.
@@ -97,5 +96,5 @@ Alternative: a rich text editor using Tiptap, with additional extensions and
 Markdown round-trip verification for the mathematical source corpus.
 
 The desktop editor stores paired fenced divs linked by card ID. A native command
-runs the pinned Python exporter bridge. The filesystem plugin watches the
+runs the Python exporter bridge. The filesystem plugin watches the
 selected workspace; the bridge owns file reads, saves and generation.

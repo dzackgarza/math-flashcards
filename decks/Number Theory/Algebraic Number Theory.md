@@ -116,7 +116,7 @@ Explicitly describe elements in ${ {\mathbf{Z}}_{\widehat{p}} }$.
 ::: {.back card-id="card-748d1c56cf6a74c5"}
 ${ {\mathbf{Z}}_{\widehat{p}} }= \left\{{\sum a_i p^i {~\mathrel{\Big\vert}~}0 \leq a_i \leq p-1}\right\}$
 
-Equivalently ${ {\mathbf{Z}}_{\widehat{p}} }= \varprojlim_n {\mathbf{Z}}/\left\langle{p^n}\right\rangle$ which contains sequences $\mathbf{a} = {\left[ {a_0, a_0 + a_1 p, a_0 + a_1 p + a_2 p^2, \cdots} \right]}$ of partial sums so that $\mathbf{a}_n \operatorname{mod}p^n \cong \mathbf{a}_{n-1}$.
+Equivalently ${ {\mathbf{Z}}_{\widehat{p}} }= \projectivelim_n {\mathbf{Z}}/\left\langle{p^n}\right\rangle$ which contains sequences $\mathbf{a} = {\left[ {a_0, a_0 + a_1 p, a_0 + a_1 p + a_2 p^2, \cdots} \right]}$ of partial sums so that $\mathbf{a}_n \operatorname{mod}p^n \cong \mathbf{a}_{n-1}$.
 :::
 
 ::: {.front card-id="card-4fe3dcc31ba40502"}

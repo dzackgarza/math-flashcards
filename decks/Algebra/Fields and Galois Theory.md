@@ -107,8 +107,8 @@ Four Characterizations of Galois extensions $K/F$.
 
 ::: {.back card-id="card-e4835fa59a54b2db"}
 1. $K$ is a splitting field of a separable polynomial in $F[x]$.
-2. $K$ such that the fixed field of $\aut(K/F)$ is exactly $K$.
-3. $K$ such that $[K:F] = \abs{\aut(K/F)}$.
+2. $K$ such that the fixed field of $\Aut(K/F)$ is exactly $K$.
+3. $K$ such that $[K:F] = \abs{\Aut(K/F)}$.
 4. $K$ such that $K/F$ is finite, normal, and separable.
 :::
 
@@ -125,7 +125,7 @@ Example of a field extension that is not Galois.
 :::
 
 ::: {.back card-id="card-153c2779e0922b8f"}
-$K = \QQ(2^{1\over 3})/\QQ$, since $\abs{\aut(K/\QQ)} = 1$ but this is a degree 3 extension.
+$K = \QQ(2^{1\over 3})/\QQ$, since $\abs{\Aut(K/\QQ)} = 1$ but this is a degree 3 extension.
 :::
 
 ::: {.front card-id="card-c08cbd80bcd7183a" tags="definition"}
@@ -154,7 +154,7 @@ such that
 3. $K/E$ is always Galois with $G(K/E) = H$.
 4. $E/F$ is Galois $\iff$ $H\normal G$, in which case $G(E/F) \cong G/H$.
 5. Compositum correspondences:
-  - $E_1\intersect E_2$ corresponds to $\gens{H_1, H_2}$.
+  - $E_1\intersect E_2$ corresponds to $\generators{H_1, H_2}$.
   - $E_1 E_2$ corresponds to $H_1\intersect H_2$.
 :::
 

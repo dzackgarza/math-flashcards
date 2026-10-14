@@ -45,9 +45,14 @@ function workbenchBackend(): Plugin {
             .end("Use the editor to access this endpoint.");
           return;
         }
+        const body = await text(request);
+        // Listing and generation install the latest exporter from GitHub main.
+        const { action } = JSON.parse(body) as { action: string };
         const child = spawn("uv", [
           "run",
-          "--locked",
+          ...(action === "list" || action === "generate"
+            ? ["--refresh-package", "ankdown"]
+            : []),
           "--script",
           fileURLToPath(new URL("./backend.py", import.meta.url)),
         ]);
@@ -67,7 +72,7 @@ function workbenchBackend(): Plugin {
             .writeHead(code === 0 ? 200 : 422)
             .end(code === 0 ? result : diagnostics);
         });
-        child.stdin.end((await text(request)) + "\n");
+        child.stdin.end(body + "\n");
       });
     },
   };

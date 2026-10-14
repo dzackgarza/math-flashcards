@@ -53,11 +53,11 @@ If $N \subseteq M$ is nonempty and $r\in R,\, m,n \in N \implies rm + n \in N$, 
 :::
 
 ::: {.front card-id="card-69e87f20c01c0c7d" tags="definition"}
-$\gens{p}\dash$primary
+$\generators{p}\dash$primary
 :::
 
 ::: {.back card-id="card-69e87f20c01c0c7d"}
-For every $m\in M$ and $t\in R$ with $t\not\in \gens{p}$, there exists a $a\in R$ such that $atm = m$.
+For every $m\in M$ and $t\in R$ with $t\not\in \generators{p}$, there exists a $a\in R$ such that $atm = m$.
 :::
 
 ::: {.front card-id="card-812bbb249aa65dc0" tags="definition"}
@@ -73,7 +73,7 @@ Definition: Torsion element
 :::
 
 ::: {.back card-id="card-99a0471b7b951a66"}
-$m\in M$ is torsion iff $\tor(m)\neq 0$.
+$m\in M$ is torsion iff $\Tor(m)\neq 0$.
 :::
 
 ::: {.front card-id="card-159277c02da4e274" tags="definition"}
@@ -82,7 +82,7 @@ Definition: Torsion submodule.
 
 ::: {.back card-id="card-159277c02da4e274"}
 $$
-\tor(M) = \{m \in M \suchthat \exists r \in R, ~r \neq 0, ~rm = 0\}
+\Tor(M) = \{m \in M \suchthat \exists r \in R, ~r \neq 0, ~rm = 0\}
 .$$
 :::
 
@@ -99,7 +99,7 @@ Definition: torsionfree
 :::
 
 ::: {.back card-id="card-a273d57c858616ae"}
-$\tor(M) = \theset{0}$
+$\Tor(M) = \theset{0}$
 :::
 
 ::: {.front card-id="card-42bbc5e5051f6542" tags="definition"}
@@ -166,7 +166,7 @@ Cyclic Module
 :::
 
 ::: {.back card-id="card-98cf185a9f1888ee"}
-For $M$ an $R\dash$module, $M$ is cyclic iff $M = \gens{m}$ iff $M \cong R/I$ for some ideal $I\normal R$.
+For $M$ an $R\dash$module, $M$ is cyclic iff $M = \generators{m}$ iff $M \cong R/I$ for some ideal $I\normal R$.
 :::
 
 ::: {.front card-id="card-c802213c7fcfdf63" tags="theorem"}

@@ -138,7 +138,7 @@ Class Equation
 $$
 \abs{G} = \abs{Z(G)} + \sum_{i} [G: C_G(x_i)]
 $$
-where the $x_i$ are representatives of the conjugacy classes not contained in $Z(G)$, and $C_G(x) \da \ts{ g\in G \st gxg\inv = x }$ is the centralizer of $x$.
+where the $x_i$ are representatives of the conjugacy classes not contained in $Z(G)$, and $C_G(x) \definedas \theset{ g\in G \st gx\inverseof{g} = x }$ is the centralizer of $x$.
 :::
 
 ::: {.front card-id="card-5aa5a4e54b29a608" tags="definition"}
@@ -245,7 +245,7 @@ Groups of Order 12
 2. $(\ZZ/2\ZZ)^2 \times \ZZ/3\ZZ$
 3. $A_4$
 4. $D_6$
-5. $\gens{a,b,c\suchthat a^2, b^2, c^2, abc}$
+5. $\generators{a,b,c\suchthat a^2, b^2, c^2, abc}$
 :::
 
 ::: {.front card-id="card-993f4b0747a17bfe" tags="fact"}
@@ -285,8 +285,8 @@ Groups of Order 16
 9. $D_8$
 10. $D_4\cross \ZZ/2\ZZ$
 11. $Q_8 \cross \ZZ/2\ZZ$
-12. $Q_{16} = \gens{a,b,c \suchthat a^4=b^2=c^2=abc}$
-13. $QD_{16} = \gens{r,s\suchthat r^8, s^2, srs\inv s^{-3}}$
+12. $Q_{16} = \generators{a,b,c \suchthat a^4=b^2=c^2=abc}$
+13. $QD_{16} = \generators{r,s\suchthat r^8, s^2, sr\inverseof{s} s^{-3}}$
 14. $(\ZZ/4\ZZ\cross \ZZ/2\ZZ)\semidirect \ZZ/2\ZZ$ (Pauli matrices)
 :::
 
@@ -314,7 +314,7 @@ Groups of Order 20
 2. $(\ZZ/2\ZZ)^2\times \ZZ/5\ZZ$
 3. $D_{10}$
 4. $\ZZ/5\ZZ \semidirect \ZZ/4\ZZ$
-5. $\gens{a,b,c \suchthat a^5, b^2,c^2}$
+5. $\generators{a,b,c \suchthat a^5, b^2,c^2}$
 :::
 
 ::: {.front card-id="card-f92cc6898a6b1ed6" tags="fact"}
@@ -355,7 +355,7 @@ Centralizer
 
 ::: {.back card-id="card-892b21c1809e1616"}
 $$
-Z_G(S) = \ts{g\in G \st gsg\inv = s\, \forall s\in S}
+Z_G(S) = \theset{g\in G \st gs\inverseof{g} = s\, \forall s\in S}
 .$$
 :::
 
@@ -365,7 +365,7 @@ Normalizer
 
 ::: {.back card-id="card-edbf73faf92e1c26"}
 $$
-N_G(S) \da \ts{g\in G \st gSg\inv = S}
+N_G(S) \definedas \theset{g\in G \st gS\inverseof{g} = S}
 .$$
 :::
 

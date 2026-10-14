@@ -25,11 +25,11 @@ What is tilting?
 :::
 
 ::: {.back card-id="card-e1df0dc2c8cac23f"}
-For $A\in {}_{{\mathbf{Z}}}  \mathsf{Alg}$ $\pi{\hbox{-}}$adically complete for some $\pi\mathrel{\Big|}p$, the tilt is $A^\flat \coloneqq\varprojlim_{\operatorname{Frob}} A/pA$ where $\operatorname{Frob}: A/pA \to A/pA$.
+For $A\in {}_{{\mathbf{Z}}}  \mathsf{Alg}$ $\pi{\hbox{-}}$adically complete for some $\pi\mathrel{\Big|}p$, the tilt is $A^\flat \coloneqq\projectivelim_{\operatorname{Frob}} A/pA$ where $\operatorname{Frob}: A/pA \to A/pA$.
 
 Always have $A^\flat \in { {}_{{ \mathbf{F} }_p}  \mathsf{Alg}}^{\mathrm{perf}}$.
 
-Think of $\mathbf{x}\in A^\flat \cong \varprojlim_{x\mapsto x^p} A$ as $x_{i+1}^p =x_i$.
+Think of $\mathbf{x}\in A^\flat \cong \projectivelim_{x\mapsto x^p} A$ as $x_{i+1}^p =x_i$.
 :::
 
 ::: {.front card-id="card-54f12bcb8d79c20f"}

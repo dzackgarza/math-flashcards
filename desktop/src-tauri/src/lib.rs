@@ -38,8 +38,14 @@ async fn request(
         let _permit = permit;
         let scope: Scope = serde_json::from_str(&payload).map_err(|e| e.to_string())?;
         eprintln!("Backend request: {}", scope.action);
-        let mut child = Command::new("uv")
-            .args(["run", "--locked", "--script"])
+        // Listing and generation install the latest exporter from GitHub main.
+        let mut command = Command::new("uv");
+        command.arg("run");
+        if scope.action == "list" || scope.action == "generate" {
+            command.args(["--refresh-package", "ankdown"]);
+        }
+        let mut child = command
+            .arg("--script")
             .arg(script)
             .stdin(Stdio::piped())
             .stdout(Stdio::piped())

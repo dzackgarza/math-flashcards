@@ -4,11 +4,11 @@ default:
 
 # Compile every deck under decks/ into apkg/
 build:
-    uv run --locked desktop/backend.py build .
+    uv run --refresh-package ankdown desktop/backend.py build .
 
 # Sanity-check that every deck is well-formed new-format Markdown
 test: check-math
-    python3 .agents/check-decks.py
+    uv run .agents/check-decks.py
 
 # Reject TeX that MathJax cannot render, such as an undefined macro
 check-math: desktop-dependencies

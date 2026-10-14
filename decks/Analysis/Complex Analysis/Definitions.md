@@ -58,7 +58,7 @@ Normal family
 :::
 
 ::: {.back card-id="card-281605aabeb43de5"}
-A family of functions $\mcf \da \ts{f_j}_{j\in J}$ is **normal** iff every sequence $\ts{f_k}$ has a subsequence that converges locally uniformly, i.e. $\ts{f_{k_i}}$ converges uniformly on every compact subset.
+A family of functions $\mcf \definedas \theset{f_j}_{j\in J}$ is **normal** iff every sequence $\theset{f_k}$ has a subsequence that converges locally uniformly, i.e. $\theset{f_{k_i}}$ converges uniformly on every compact subset.
 :::
 
 ::: {.front card-id="card-50336b73cd2145a3" tags="definition"}

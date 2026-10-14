@@ -167,7 +167,7 @@ When is a toric variety proper/complete?
 :::
 
 ::: {.back card-id="card-6c26e20c90275fc8"}
-A separated variety is **complete** iff universally closed, or equivalently its structure morphism $X\to \spec k$ is proper.
+A separated variety is **complete** iff universally closed, or equivalently its structure morphism $X\to \Spec k$ is proper.
 
 $X_\Sigma$ is complete iff ${\left\lvert {\Sigma} \right\rvert} = N_{\mathbf{R}}$, i.e. full support. Why: each $n\in N$ determines a one-parameter subgroup $\lambda^n$, and $\lim_{t\to 0}\lambda^n(t)$ exists in $X_\Sigma$ iff $n$ lies in a cone of $\Sigma$. E.g. for ${\mathbf{P}}^2$ with torus points $[1:s:t]$, $\lambda^n(t) = [1: t^{n_1}: t^{n_2}]$, and the limits as $n$ ranges over the cones are the distinguished points.
 :::

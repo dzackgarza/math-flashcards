@@ -68,7 +68,7 @@ What is the **stalk** of a sheaf?
 :::
 
 ::: {.back card-id="card-903e35430d43d1de"}
-${\mathcal{F}}_p \coloneqq\operatorname*{colim}_{U\ni p} {\mathcal{F}}(U)$.
+${\mathcal{F}}_p \coloneqq\colim_{U\ni p} {\mathcal{F}}(U)$.
 :::
 
 ::: {.front card-id="card-29db92d857211565"}
@@ -119,7 +119,7 @@ What is the **pullback/pushforward** (inverse/direct images) of a sheaf?
 For $f:X\to Y$, ${\mathcal{F}}\in {\mathsf{Sh}}(X), {\mathcal{G}}\in {\mathsf{Sh}}(Y)$. Pushforward/direct image: already a sheaf
 $$f_*{\mathcal{F}}(U) ={\mathcal{F}}(f^{-1}(U)),\qquad f_*{\mathcal{F}}\in {\mathsf{Sh}}(Y)$$
 Pullback/inverse image: **sheafify**
-$$f^{-1}{\mathcal{G}}(U) \coloneqq\operatorname*{colim}_{V\supseteq f(U)} {\mathcal{G}}(V)$$
+$$f^{-1}{\mathcal{G}}(U) \coloneqq\colim_{V\supseteq f(U)} {\mathcal{G}}(V)$$
 For $f: X\hookrightarrow Y$ the inclusion of an open subset, $f^{-1}{\mathcal{G}}(U) = {\mathcal{G}}(U)$, so denote $f^{-1}{\mathcal{G}}\coloneqq{ \left.{{{\mathcal{G}}}} \right|_{{X}} }$.
 
 For modules on ringed spaces, $f^*{\mathcal{G}}\coloneqq f^{-1}{\mathcal{G}}\otimes_{f^{-1}{\mathcal{O}}_Y}{\mathcal{O}}_X$.
@@ -240,7 +240,7 @@ How is the **inverse image sheaf** defined? What are its stalks?
 :::
 
 ::: {.back card-id="card-5fb0674e6ef318ad"}
-$f^{-1}{\mathcal{G}}(U) \coloneqq\operatorname*{colim}_{V\supseteq f(U)} {\mathcal{G}}(V)$. Stalks: ${\mathcal{G}}_p  { \, \xrightarrow{\sim}\, }(f^{-1}{\mathcal{G}})_p$.
+$f^{-1}{\mathcal{G}}(U) \coloneqq\colim_{V\supseteq f(U)} {\mathcal{G}}(V)$. Stalks: ${\mathcal{G}}_p  { \, \xrightarrow{\sim}\, }(f^{-1}{\mathcal{G}})_p$.
 :::
 
 ::: {.front card-id="card-7253757c78a0c001"}
