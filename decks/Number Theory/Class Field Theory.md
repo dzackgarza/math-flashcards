@@ -47,9 +47,9 @@ What is the normal basis theorem?
 :::
 
 ::: {.back card-id="card-228e5547c91384fb"}
-For $L/K$ Galois, $\exists \alpha\in L$ such that $G_{L/K}.\alpha$ generates $L\in   {}_{K}{\mathsf{Mod}}$.
+For $L/K$ finite Galois, $\exists \alpha\in L$ such that $G_{L/K}.\alpha$ generates $L\in   {}_{K}{\mathsf{Mod}}$, i.e. $L = \left\langle{G_{L/K}.\alpha}\right\rangle_K$. Since ${\sharp}G_{L/K} = [L: K]$, the conjugates of $\alpha$ are a $K$-basis of $L$.
 
-For $G\coloneqq G_{L/K}$, iff $L \cong K[G] \in   {}_{K[G]}{\mathsf{Mod}}$, so rank 1 with generator $\alpha$.
+For $G\coloneqq G_{L/K}$, iff ${\mathbf{G}}_a(L) = L \cong K[G] \in   {}_{K[G]}{\mathsf{Mod}}$, so rank 1 with generator $\alpha$.
 
 Iff $L\cong {\mathbf{Z}}[G]\otimes_{\mathbf{Z}}K \in   {}_{{\mathbf{Z}}[G]}{\mathsf{Mod}}$, so $L$ is induced.
 :::
@@ -85,9 +85,9 @@ For $\alpha\in L$, $\operatorname{Trace}_{L/K}(\alpha) = 0 \iff \exists \lambda\
 
 Why: $0 = H^1(G;L) = \widehat{H}^{-1}(G; L) = \widehat{H}_0(G; L) = \ker(N: L\to K)/(\sigma - 1)L$ but here $N$ is the sum of Galois conjugates, hence the trace
 
-$\operatorname{Trace}_{L/K}(\alpha) = 1 \iff \exists \lambda \in L$ such that $\alpha = \lambda/\sigma(\lambda)$.
+$\operatorname{Nm}_{L/K}(\alpha) = 1 \iff \exists \lambda \in L$ such that $\alpha = \lambda/\sigma(\lambda)$.
 
-Why: $0 = H^1(G; L^{\times}) = \widehat{H}^0(G; L^{\times})=\ker(N)/ (\sigma-1)L$ multiplicatively.
+Why: $0 = H^1(G; L^{\times}) = \widehat{H}^{-1}(G; L^{\times})=\ker(N)/ (\sigma-1)L^{\times}$ multiplicatively.
 :::
 
 ::: {.front card-id="card-19dda55760e13c46"}
@@ -409,9 +409,11 @@ What are the higher unit groups of a local field $L$?
 :::
 
 ::: {.back card-id="card-9b48c86ec18ac71d"}
-$U^n(L) \coloneqq\left\{{x\in R(L) {~\mathrel{\Big\vert}~}v(x-1)\geq n}\right\}$ where $R(L)$ is the valuation ring.
+$U^n(L) \coloneqq\left\{{x\in R(L) {~\mathrel{\Big\vert}~}v(x-1)\geq n}\right\}$ for $n\geq 1$, where $R(L)$ is the valuation ring with maximal ideal ${\mathfrak{m}}$.
 
-Can write as $1 + {\mathfrak{m}}^n$.
+Can write as $1 + {\mathfrak{m}}^n$: for $r_n: R\twoheadrightarrow R/{\mathfrak{m}}^n$, the induced map $r_n^{\times}: R^{\times}\to (R/{\mathfrak{m}}^n)^{\times}$ is surjective since $R$ is local, and $U^n = \ker r_n^{\times}= 1 + {\mathfrak{m}}^n$, the units that are trivial modulo ${\mathfrak{m}}^n$.
+
+In characteristic zero, the $p{\hbox{-}}$adic logarithm gives an isomorphism $U^n { \, \xrightarrow{\sim}\, }{\mathfrak{m}}^n$ for $n > e/(p-1)$, where $e \coloneqq v(p)$.
 :::
 
 ::: {.front card-id="card-fce84017162b3b45"}
@@ -482,14 +484,6 @@ Define a local field.
 Complete DVR, a field, with finite residue field.
 :::
 
-::: {.front card-id="card-521ced20606cb4e1"}
-What is the valuation ring of a DVF $K$?
-:::
-
-::: {.back card-id="card-521ced20606cb4e1"}
-$R(K) = v^{-1}([0, \infty])$
-:::
-
 ::: {.front card-id="card-aa139882c510b936"}
 Give equivalent conditions for a field $K$ to be a DVF
 :::
@@ -540,36 +534,16 @@ $I \coloneqq\mathop{\mathrm{Aut}}(k^{ {}^{ \operatorname{sep} } }/k^{\scriptscri
 $I_p$ is the wild ramification, the Sylow $p{\hbox{-}}$subgroup of $I$.
 :::
 
-::: {.front card-id="card-1db1d625e8452bf6"}
-Define the higher unit groups.
-:::
-
-::: {.back card-id="card-1db1d625e8452bf6"}
-For $R$ the valuation ring, define $r_n: R\twoheadrightarrow R/{\mathfrak{m}}^n$.
-
-In this special case, the induced map $r_n^{\times}: R^{\times}\to (R/{\mathfrak{m}}^n)^{\times}$ is surjective
-
-Define $U_n \coloneqq\ker r_n^{\times}= 1 + {\mathfrak{m}}^n$, so units that are trivial modulo ${\mathfrak{m}}^n$.
-
-Can use $p{\hbox{-}}$adic logarithm to get an isomorphism $U_n { \, \xrightarrow{\sim}\, }{\mathfrak{m}}^n$.
-:::
-
 ::: {.front card-id="card-1f124014b7ebda6c"}
 What does local class field theory say about the maximal abelian extension of a local field $K$?
 :::
 
 ::: {.back card-id="card-1f124014b7ebda6c"}
-Isomorphic to $\mathsf{pro}{\mathbf{G}}_m(K) \cong \mathsf{pro}{\mathbf{Z}}\times U(K)$, so the unit group gives most of the information.
-:::
+The reciprocity map $\omega: {\mathbf{G}}_m(K) \to G_K^{\operatorname{ab}}$ becomes an isomorphism after passing to the profinite completion:
+$$\widehat{\omega}: \mathsf{pro}K^{\times} { \, \xrightarrow{\sim}\, }g_K^{\operatorname{ab}} = { \mathsf{Gal}}(K^{\operatorname{ab}}/K)$$
+So ${ \mathsf{Gal}}(K^{\operatorname{ab}}/K) \cong \mathsf{pro}{\mathbf{G}}_m(K) \cong \mathsf{pro}{\mathbf{Z}}\times U(K)$, and the unit group gives most of the information.
 
-::: {.front card-id="card-402c1ba1d41cc1ca"}
-What is the normal basis theorem?
-:::
-
-::: {.back card-id="card-402c1ba1d41cc1ca"}
-For $L/K$ Galois, ${\exists}\alpha\in L$ such that $L = \left\langle{G_{L/K}.\alpha}\right\rangle_K \in   {}_{K}{\mathsf{Mod}}$.
-
-Equivalently, ${\mathbf{G}}_a(K) \cong K[G] \in   {}_{K[G]}{\mathsf{Mod}}$ for $G\coloneqq{ \mathsf{Gal}}(L/K)$.
+$\omega$ restricts to $U_K { \, \xrightarrow{\sim}\, }I_K^{\operatorname{ab}}= { \mathsf{Gal}}(K^{\operatorname{ab}}/K^{\scriptscriptstyle\mathrm{un}})$, so we understand the totally ramified piece of $K^{\operatorname{ab}}/K$.
 :::
 
 ::: {.front card-id="card-54368a00e14742d7"}
@@ -619,7 +593,7 @@ What is $\mathrm{Br}(L/K)$ for $L/K$ a finite extension?
 :::
 
 ::: {.back card-id="card-523977123bb2324a"}
-$\mathrm{Br}(L/K) = \mathrm{Br}(K)[n]$ for $n\coloneqq[L: K]$.
+For $K$ a local field, $\mathrm{Br}(L/K) = \mathrm{Br}(K)[n]$ for $n\coloneqq[L: K]$, since restriction $\mathrm{Br}(K)\to \mathrm{Br}(L)$ is multiplication by $n$ on ${\mathbf{Q}}/{\mathbf{Z}}$.
 :::
 
 ::: {.front card-id="card-153e8ee23c511946"}
@@ -752,16 +726,6 @@ What is the existence theorem for $p{\hbox{-}}$adic fields?
 If $U\leq K^{\times}$ is finite index then $\exists ! L$ a subextension of $\overline{K}/K$ such that $U = \operatorname{Nm}_{L/K} L^{\times}$.
 :::
 
-::: {.front card-id="card-55df79fb6dddfb6f"}
-What is the main result concerning LCFT for $p{\hbox{-}}$adic fields?
-:::
-
-::: {.back card-id="card-55df79fb6dddfb6f"}
-$\widehat{\omega}: \mathsf{pro}K^{\times} { \, \xrightarrow{\sim}\, }g_K^{\operatorname{ab}}$ is an isomorphism
-
-$\omega: U_K { \, \xrightarrow{\sim}\, }I_K^{\operatorname{ab}}= { \mathsf{Gal}}(K^{\operatorname{ab}}/K^{\scriptscriptstyle\mathrm{un}})$, so we understand the totally ramified piece of $K^{ {}^{ \operatorname{sep} } }/K$.
-:::
-
 ::: {.front card-id="card-dce455f2aa934948"}
 Discuss Lubin-Tate theory.
 :::
@@ -777,15 +741,7 @@ What is CFT?
 :::
 
 ::: {.back card-id="card-4502c07a8c557b29"}
-Given a field $K$, find a topological group $G$ and an isomorphism $\mathsf{pro}G\to G_K$.
-:::
-
-::: {.front card-id="card-b5d2319946186416"}
-What is local CFT?
-:::
-
-::: {.back card-id="card-b5d2319946186416"}
-The reciprocity map $\omega: {\mathbf{G}}_m(K) \to G_K^{\operatorname{ab}}$ becomes an isomorphism after passing to the profinite completion.
+Given a field $K$, find a topological group $G$ and an isomorphism $\mathsf{pro}G\to G_K^{\operatorname{ab}}$.
 :::
 
 ::: {.front card-id="card-2594d9e0a9390842"}

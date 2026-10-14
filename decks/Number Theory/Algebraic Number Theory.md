@@ -36,15 +36,15 @@ $R = k{\llbracket x^2, x^3 \rrbracket  }$ is local with ${\mathfrak{m}}_R = \lef
 :::
 
 ::: {.front card-id="card-bb3f3bb4b22f2656"}
-Discuss valuation rings for $K$ a DVR.
+What is the valuation ring of a DVF $K$?
 :::
 
 ::: {.back card-id="card-bb3f3bb4b22f2656"}
-$R = \left\{{x\in K {~\mathrel{\Big\vert}~}v(x) \geq 0}\right\}$
+$R = R(K) = \left\{{x\in K {~\mathrel{\Big\vert}~}v(x) \geq 0}\right\} = v^{-1}([0, \infty])$
 
-Has unique maximal ideal ${\mathfrak{m}}_R = \left\{{\in K {~\mathrel{\Big\vert}~}v(x) > 0}\right\} = \left\langle{\pi}\right\rangle$ for $\pi$ a uniformizer with $v(\pi) = 1$.
+Has unique maximal ideal ${\mathfrak{m}}_R = \left\{{x\in K {~\mathrel{\Big\vert}~}v(x) > 0}\right\} = \left\langle{\pi}\right\rangle$ for $\pi$ a uniformizer with $v(\pi) = 1$.
 
-Always a PID and $\operatorname{Spec}R = \left\{{{\mathfrak{m}}_R}\right\}$.
+Always a DVR, in particular a PID, and $\operatorname{Spec}R = \left\{{0, {\mathfrak{m}}_R}\right\}$.
 :::
 
 ::: {.front card-id="card-08ec6e5ee4856726"}

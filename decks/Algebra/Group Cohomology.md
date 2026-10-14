@@ -174,6 +174,15 @@ What are $H^*(C_n; M)$ and $H_*(C_n; M)$?
 ::: {.back card-id="card-3eff1b0c0da30d10"}
 $$H_*(C_n; M) = M_G \cdot t^0 + \bigoplus_{i}M^G/NM \cdot t^{2i+1} + \bigoplus_{i} \ker N/IM \cdot t^{2i}$$
 $$H^*(C_n; M) = M^G\cdot t^0 + \bigoplus_{i} \ker N/IM \cdot t^{2i+1} + \bigoplus_{i} M^G/NM\cdot t^{2i}$$
+Here $G \coloneqq C_n$, $N$ is the norm, $I$ is the augmentation ideal, and the sums over even degrees start at $i = 1$. So for $k\geq 1$:
+
+$H^{2k}(G; M) \cong H_{2k+1}(G; M) = M^G / NM$.
+
+$H^{2k+1}(G; M) \cong H_{2k}(G; M) = (\ker N)/IM$.
+
+Except in degree 0: $H^0(G; M) = M^G$ and $H_0(G; M) = M_G = M/IM$.
+
+So the even $H^n$ and odd $H_n$ are quotients of $H^0$, and the odd $H^n$ and even $H_n$ ($n\geq 2$) are subgroups of $H_0$.
 :::
 
 ::: {.front card-id="card-bc1dcb9e5085b9c2"}
@@ -458,7 +467,7 @@ $$H^1(G/H; A^H) \xhookrightarrow{\mathrm{Inf}} H^1(G; A) \xrightarrow{\mathrm{Re
 :::
 
 ::: {.front card-id="card-919d2fe8b2dce362"}
-What is restriction? What is its important property?
+What is corestriction? What is its important property?
 :::
 
 ::: {.back card-id="card-919d2fe8b2dce362"}
@@ -475,20 +484,6 @@ What is the explicit map for corestriction in degree $n=0$?
 Sometimes called trace or norm
 
 $\mathop{\mathrm{coRes}}: M^H \to M^G$ where $x\mapsto \qty{ \sum_{g\in G/H}[g]}x$.
-:::
-
-::: {.front card-id="card-4a38f58feea75535"}
-Discuss $H^*(G; M)$ and $H_*(G; M)$ for $G$ finite cycle.
-:::
-
-::: {.back card-id="card-4a38f58feea75535"}
-$H^{2n}(G; M) \cong H_{2n+1}(G; M) = M^G / NM$ for $N$ the norm
-
-$H^{2n+1}(G; M) \cong H_{2n}(G; M) = (\ker N)/IM$ for $I$ the augmentation ideal.
-
-Except at $n=0$, there $H^0(G; M) = M^G$ and $H_0(G; M) = M/IM$.
-
-So higher $H^n$ are quotients of $H^0$ and higher $H_n$ are subs of $H_0$.
 :::
 
 ::: {.front card-id="card-3ac1b1a541a620af"}
@@ -577,14 +572,8 @@ What is the Herbrand quotient?
 :::
 
 ::: {.back card-id="card-a0319417af0eb6b8"}
-$h(A) \coloneqq h^0(A)/ h^1(A) \in {\mathbf{Z}}_{\geq 0}$ where $h^i(A) \coloneqq{\sharp}\widehat{H}^i(G; A)$.
-:::
+For $G$ finite cyclic, $h(A) \coloneqq h^0(A)/ h^1(A) \in {\mathbf{Q}}_{> 0}$ where $h^i(A) \coloneqq{\sharp}\widehat{H}^i(G; A)$, defined when both are finite.
 
-::: {.front card-id="card-99b40936cb7a50de"}
-Discuss the Herbrand quotient.
-:::
-
-::: {.back card-id="card-99b40936cb7a50de"}
 For $A\hookrightarrow B\twoheadrightarrow C$ a SES, if any two $h({-})$ are defined then it is also defined for the third, and $h(B) = h(A) h(C)$.
 
 If $A$ is finite then $h(A) = 1$ since $h^1 = h^0$.
@@ -723,9 +712,13 @@ Discuss open subgroups of compact topological groups
 ::: {.back card-id="card-26a569c2e2ae65ea"}
 A subgroup is open iff closed and finite index.
 
-Note that open iff closed always holds, so compactness is giving finite index.
+Open $\implies$ closed holds in every topological group, since the complement is a union of open cosets; the converse fails. Compactness gives finite index, since the open cosets cover $G$.
 
-NOT true that every finite index subgroup is closed!
+So open $\implies$ finite index, but not conversely: NOT true that every finite index subgroup is closed! E.g. $V\coloneqq\prod_{i\in {\mathbf{N}}} { \mathbf{F} }_2$ has $\aleph_0$ open subgroups but $2^{2^{\aleph_0}}$ index 2 subgroups.
+
+The converse is true if $G$ is profinite and topologically finitely generated.
+
+$\iff$ holds when $G$ is strongly complete.
 :::
 
 ::: {.front card-id="card-5689c73b27f7cdd4"}
@@ -742,14 +735,6 @@ What is $\aleph_0$?
 
 ::: {.back card-id="card-d2550c00c7687b84"}
 Countable cardinality.
-:::
-
-::: {.front card-id="card-6f09c31e889f6770"}
-Is a finite index subgroup of a topological group open?
-:::
-
-::: {.back card-id="card-6f09c31e889f6770"}
-No! $V\coloneqq\prod { \mathbf{F} }_2$ has $\aleph_0$ open subgroups but $2^{2^{\aleph_0}}$ index 2 subgroups.
 :::
 
 ::: {.front card-id="card-24034aab968ea04a"}
@@ -806,18 +791,6 @@ What does it mean to be topologically finitely generated?
 
 ::: {.back card-id="card-2ffce7da1f1ee84f"}
 There is a generating set $S$ such that the smallest closed subgroup of $G$ containing $S$ is $G$ itself.
-:::
-
-::: {.front card-id="card-84753f6c4a8ee634"}
-Is $H\leq G$ finite index iff open?
-:::
-
-::: {.back card-id="card-84753f6c4a8ee634"}
-Open $\implies$ finite index, but not conversely.
-
-Converse is true if $G$ is topologically finitely generated.
-
-$\iff$ holds when $G$ is strongly complete.
 :::
 
 ::: {.front card-id="card-ae7e6fa40cd013a1"}
@@ -895,7 +868,9 @@ What is the profinite completion?
 :::
 
 ::: {.back card-id="card-6966b7db2a0f8235"}
-Regard objects $X$ in $\mathsf{pro}\mathsf{C}$ as sequences $X = \left\{{X_\alpha}\right\}_{\alpha\in I}$ where $X_\alpha\in \mathsf{C}$.
+For a group $G$: take the poset $N\geq M \iff N \subseteq M$ for $N, M {~\trianglelefteq~}G$ of finite index and the directed system of quotients $G/N$; the profinite completion is $\widehat{G} \coloneqq \varprojlim_N G/N$.
+
+For spaces: regard objects $X$ in $\mathsf{pro}\mathsf{C}$ as sequences $X = \left\{{X_\alpha}\right\}_{\alpha\in I}$ where $X_\alpha\in \mathsf{C}$.
 
 Let ${\mathsf{Spaces}}_{{\mathsf{Fin}}{\mathsf{Grp}}}$ be the full subcategory of spaces with $\pi_i \in {\mathsf{Fin}}{\mathsf{Grp}}$.
 
@@ -916,14 +891,6 @@ Discuss topological properties of profinite groups.
 
 ::: {.back card-id="card-8a49e729201758aa"}
 Always compact and totally disconnected; conversely every compact totally disconnected topological group is profinite.
-:::
-
-::: {.front card-id="card-f01439b30d2e4dda"}
-What is the profinite completion of a group?
-:::
-
-::: {.back card-id="card-f01439b30d2e4dda"}
-Take the poset $N\geq M \iff N \subseteq M$ for $N, M {~\trianglelefteq~}G$ of finite index and the directed system of quotients $G/N$.
 :::
 
 ::: {.front card-id="card-9518c9f55fe23645"}

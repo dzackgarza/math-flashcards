@@ -143,7 +143,7 @@ What is the derived version of the center of an algebra $Z(A)$?
 :::
 
 ::: {.back card-id="card-bd021a74625d7f56"}
-${\operatorname{HH}}(A)$, computes$\mathop{\mathrm{\mathbb{R}Hom}}_{({A}, {A}){\hbox{-}}\mathsf{biMod}}(A, A)$ (the derived $(A,A){\hbox{-}}$bimodule endomorphism algebra).
+${\operatorname{HH}}^*(A)$, which computes $\mathop{\mathrm{\mathbb{R}Hom}}_{({A}, {A}){\hbox{-}}\mathsf{biMod}}(A, A)$ (the derived $(A,A){\hbox{-}}$bimodule endomorphism algebra).
 :::
 
 ::: {.front card-id="card-87669b93022e2e74"}

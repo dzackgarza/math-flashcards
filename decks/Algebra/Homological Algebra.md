@@ -37,7 +37,7 @@ What is a formula for the pushout of module morphisms $\alpha: Y\to A$ and $\bet
 
 ::: {.back card-id="card-e0d7794924e1b89c"}
 A quotient module:
-$$A\oplus B\twoheadrightarrow A{ \amalg_{Y} } B \cong { X\oplus B  \over  \left\langle{ (\,-\alpha(y)\,, \beta(y)\, ) {~\mathrel{\Big\vert}~}y\in Y}\right\rangle }$$
+$$A\oplus B\twoheadrightarrow A{ \amalg_{Y} } B \cong { A\oplus B  \over  \left\langle{ (\,-\alpha(y)\,, \beta(y)\, ) {~\mathrel{\Big\vert}~}y\in Y}\right\rangle }$$
 :::
 
 ::: {.front card-id="card-f0b59e92a8661d8f"}
@@ -106,22 +106,26 @@ How do you compute $\operatorname{Tor}^R_*(M, N)$?
 $H_*(M\otimes_R P_N)$ where $P_N\rightrightarrows N$ is a projective resolution.
 :::
 
-::: {.front card-id="card-5f25fa26b584c6bc"}
+::: {.front card-id="card-5f25fa26b584c6bc" tags="math"}
 What is the Kunneth theorem?
 :::
 
 ::: {.back card-id="card-5f25fa26b584c6bc"}
-Theorem A.5.2 (Kunneth Theorem). Let $C$. and $D$. be complexes of right and left $R$-modules, respectively, for which $C_n$ and $d\left(C_n\right)$ are flat $R$-modules for all $n \in \mathbb{Z}$. Then for all $n \in \mathbb{Z}$, there is a short exact sequence:
+Theorem A.5.2 (Kunneth Theorem). Let $C_\bullet$ and $D_\bullet$ be complexes of right and left $R$-modules, respectively, for which $C_n$ and $d\left(C_n\right)$ are flat $R$-modules for all $n \in \mathbb{Z}$. Then for all $n \in \mathbb{Z}$, there is a short exact sequence:
 $$\begin{aligned} 0 \longrightarrow \bigoplus_{i+j=n} \mathrm{H}_i(C) \otimes_R \mathrm{H}_j(D) \longrightarrow & \mathrm{H}_n\left(C \otimes_R D\right) \longrightarrow \\ & \bigoplus_{i+j=n-1} \operatorname{Tor}_1^R\left(\mathrm{H}_i(C), \mathrm{H}_j(D)\right) \longrightarrow 0 \end{aligned}$$
+Topological case: for $R$ a PID, singular chains $C_n(X;R)$ and their boundaries are free, and $C_*(X\times Y;R)\simeq C_*(X;R)\otimes_R C_*(Y;R)$ by Eilenberg-Zilber, so
+$$0\to \bigoplus_{i+j=k}H_{i}(X;R)\otimes _{R}H_{j}(Y;R)\to H_{k}(X\times Y;R)\to \bigoplus_{i+j=k-1}{\mathrm  {Tor}}_{R}^{1}(H_{i}(X;R),H_{j}(Y;R))\to 0$$
 :::
 
-::: {.front card-id="card-e77e1d0a0faf351c"}
-What is the UCT?
+::: {.front card-id="card-e77e1d0a0faf351c" tags="math"}
+UCT: Change of Coefficients SES
 :::
 
 ::: {.back card-id="card-e77e1d0a0faf351c"}
 Theorem A.5.4 (Universal Coefficients Theorem). Let $C$ be a complex of right $R$-modules in which all $C_n, d\left(C_n\right)$ are flat, and let $M$ be a left $R$ module. There is a short exact sequence
 $$0 \longrightarrow \mathrm{H}_n(C) \otimes_R M \longrightarrow \mathrm{H}_n\left(C \otimes_R M\right) \longrightarrow \operatorname{Tor}_1^R\left(\mathrm{H}_{n-1}(C), M\right) \longrightarrow 0 .$$
+Topological case: take $C = C_*(X;\mathbb{Z})$ and $M = A$ an abelian group:
+$${\displaystyle 0\to \mathrm{Tor}_\mathbb{Z}^0 (H_{i}(X;\mathbb{Z}), A)\,{\to }\,H_{i}(X;A)\to \mathrm{Tor}_\mathbb{Z}^1 (H_{i-1}(X;\mathbb{Z} ),A)\to 0}$$
 :::
 
 ::: {.front card-id="card-81fb53c268cdadd4"}
@@ -193,6 +197,8 @@ How is ${\operatorname{HH}}_*(A)$ defined?
 
 ::: {.back card-id="card-b8ba88be9708d92f"}
 Regard $A\in  {}_{A^e}{\mathsf{Mod}}$ and take ${\operatorname{HH}}_*(A; A)$.
+
+Equivalently, ${\operatorname{HH}}_n(A)$ is the homology of the cyclic bar complex, $H_n(C_\bullet(A))$, or by Dold-Kan, $\pi_n { {\left\lvert {B_\bullet^{\mathrm{cyc}}(A)} \right\rvert} }$, the geometric realization of a simplicial object.
 :::
 
 ::: {.front card-id="card-df010058af0a8f40"}
@@ -294,7 +300,7 @@ What is the cup product on ${\operatorname{HH}}^*$?
 :::
 
 ::: {.back card-id="card-d1c0c39d3e10012e"}
-$$\begin{align} \smile: \mathop{\mathrm{Hom}}_k(A{ {}^{ \scriptscriptstyle\otimes_{k}^{m} }  }\to A) \otimes_k \mathop{\mathrm{Hom}}_k(A{ {}^{ \scriptscriptstyle\otimes_{k}^{m} }  }\to A) &\to \mathop{\mathrm{Hom}}_k(A{ {}^{ \scriptscriptstyle\otimes_{k}^{m+n} }  }\to A) \\ (f \smile g)\left(a_1 \otimes \cdots \otimes a_{m+n}\right)&=(-1)^{m n} f\left(a_1 \otimes \cdots \otimes a_m\right) g\left(a_{m+1} \otimes \cdots \otimes a_{m+n}\right)\end{align}$$
+$$\begin{align} \smile: \mathop{\mathrm{Hom}}_k(A{ {}^{ \scriptscriptstyle\otimes_{k}^{m} }  }\to A) \otimes_k \mathop{\mathrm{Hom}}_k(A{ {}^{ \scriptscriptstyle\otimes_{k}^{n} }  }\to A) &\to \mathop{\mathrm{Hom}}_k(A{ {}^{ \scriptscriptstyle\otimes_{k}^{m+n} }  }\to A) \\ (f \smile g)\left(a_1 \otimes \cdots \otimes a_{m+n}\right)&=(-1)^{m n} f\left(a_1 \otimes \cdots \otimes a_m\right) g\left(a_{m+1} \otimes \cdots \otimes a_{m+n}\right)\end{align}$$
 This makes $C^*(A, A)$ into a dga.
 :::
 

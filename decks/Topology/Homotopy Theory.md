@@ -94,14 +94,6 @@ Degeneracy maps $s_i$ insert the unit into the $i$th coordinate.
 $n$th level carries an action of $C_{n+1}$ where the generator acts by $\mathbf{a} \mapsto a_n \otimes a_0 \otimes\cdots \otimes a_{n-1}$.
 :::
 
-::: {.front card-id="card-534078a51e642917"}
-Define ${\operatorname{HH}}_n(A)$.
-:::
-
-::: {.back card-id="card-534078a51e642917"}
-The homology of the cyclic bar complex, $H_n(C_\bullet(A))$, or by Dold-Kan, $\pi_n { {\left\lvert {B_\bullet^{\mathrm{cyc}}(A)} \right\rvert} }$, the geometric realization of a simplicial object.
-:::
-
 ::: {.front card-id="card-7eeb7c9a13adaa9c"}
 Why are cyclic objects $X$ important?
 :::
@@ -129,13 +121,15 @@ For $I{~\trianglelefteq~}A$ nilpotent, ${\mathsf{K}}_q(A, I) \otimes{\mathbf{Q}}
 :::
 
 ::: {.front card-id="card-b4259e9bf938b1eb"}
-What does ${\operatorname{THH}}(A)$ mean?
+How is ${\operatorname{THH}}(A)$ defined?
 :::
 
 ::: {.back card-id="card-b4259e9bf938b1eb"}
-${\operatorname{THH}}(HA)$ for $HA$ the Eilenberg-MacLane spectrum.
+${\operatorname{THH}}(A) \coloneqq A \wedge_{A^e} A$ where $A^e \coloneqq A\wedge A^{\operatorname{op}}$, defined for $A\in { {}_{{\mathbb{E}}_1}  \mathsf{Alg}}$.
 
-Idea of construction: replace ${\mathbf{Z}}$ with ${\mathbf{S}}$ and $\otimes_{\mathbf{Z}}$ with $\wedge$ to form acyclic bar complex.
+For a discrete ring $A$, ${\operatorname{THH}}(A)$ means ${\operatorname{THH}}(HA)$ for $HA$ the Eilenberg-MacLane spectrum.
+
+Idea of construction: replace ${\mathbf{Z}}$ with ${\mathbf{S}}$ and $\otimes_{\mathbf{Z}}$ with $\wedge$ to form a cyclic bar complex.
 :::
 
 ::: {.front card-id="card-f9d6a7ea61c43f9f"}
@@ -152,14 +146,6 @@ Why is ${\operatorname{TC}}(A)$ a good approximation of ${\mathsf{K}}(A)$?
 
 ::: {.back card-id="card-d23a52bc13865247"}
 For $I{~\trianglelefteq~}A$ nilpotent, ${\mathsf{K}}_q(A; I)  { \, \xrightarrow{\sim}\, }{\operatorname{TC}}_q(A; I)$.
-:::
-
-::: {.front card-id="card-ae09d315ac9447c7"}
-How is ${\operatorname{THH}}(A)$ defined?
-:::
-
-::: {.back card-id="card-ae09d315ac9447c7"}
-${\operatorname{THH}}(A) \coloneqq A \wedge_{A^e} A$ where $A^e \coloneqq A\wedge A$, defined for $A\in { {}_{{\mathbb{E}}_1}  \mathsf{Alg}}$.
 :::
 
 ::: {.front card-id="card-b333191a2c80a9ab"}
