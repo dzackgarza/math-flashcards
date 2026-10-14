@@ -20,7 +20,7 @@ Markdown and compiled to `.apkg` with
   Research, and Vocabulary. Each file is one deck, and its path matches its Anki
   deck name (`decks/Analysis/Complex Analysis/Theorems.md` is
   `Analysis::Complex Analysis::Theorems`).
-- `apkg/` — compiled Anki packages, importable directly into Anki.
+- `apkg/` — generated Anki packages, importable directly into Anki. Git ignores them.
 - `desktop/` — the Tauri deck editor. See its [guide](desktop/README.md).
 
 ## Desktop editor
