@@ -14,8 +14,8 @@ test: check-math
 check-math: desktop-dependencies
     cd desktop && bun scripts/check-math.ts ..
 
-# CI entry point (used by the pre-push hook)
-test-ci: test
+# Push gate entry point
+test-push: test
 
 # Commit gate entry point; installs the verified build so the menu app matches the commit
 test-commit: test desktop-frontend desktop-source-test desktop-test desktop-organization-test desktop-update
