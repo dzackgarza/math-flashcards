@@ -79,7 +79,7 @@ What is the toric variety $X_P$ associated to a polytope $P$?
 ::: {.back card-id="card-54e681a283e0a7dc"}
 A full-dimensional lattice polytope $P\subset M_{\mathbb R}$ defines a projective toric variety $X_P$ from its normal fan in $N_{\mathbf{R}}$. The lattice points $m\in P\cap M$ index monomial sections $\chi^m$ of the associated ample line bundle.
 
-Alternatively: take the cone over $P\times\left\{{1}\right\} \subseteq M_{\mathbf{R}}\times {\mathbf{R}}$ and the fan whose cones are cones over proper faces of $P$ (with $0$ in the interior of $P$). Note $F\leq P$ is proper iff $F = P \cap(H_n + r)$ for some supporting affine hyperplane, so $F = \left\{{p\in P {~\mathrel{\Big\vert}~}{\left\langle {p},~{n} \right\rangle} = r}\right\}$. How these are related: the normal fan of $P$ is the face fan of the polar $P^\circ$.
+Alternatively: $X_P = \operatorname{Proj}{\mathbf{C}}[C(P)\cap (M\times{\mathbf{Z}})]$, where $C(P)$ is the cone over $P\times\left\{{1}\right\} \subseteq M_{\mathbf{R}}\times {\mathbf{R}}$, graded by the last coordinate. The fan of cones over the proper faces of $P$ (with $0$ in the interior of $P$) is the normal fan of $P^\circ$, so it defines $X_{P^\circ}$. Note $F\leq P$ is proper iff $F = P \cap(H_n + r)$ for some supporting affine hyperplane, so $F = \left\{{p\in P {~\mathrel{\Big\vert}~}{\left\langle {p},~{n} \right\rangle} = r}\right\}$. How these are related: the normal fan of $P$ is the face fan of the polar $P^\circ$.
 
 Alternatively: $X_P \coloneqq\bigcup_{m\text{ a vertex of } P} \operatorname{Spec}{\mathbf{C}}[\sigma_{\widehat{m}} \cap M]$ where $\sigma_{\widehat{m}}\coloneqq{ \mathrm{Cone} }(P\cap M-m)$ (for $P$ normal).
 

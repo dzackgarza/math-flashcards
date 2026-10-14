@@ -182,7 +182,7 @@ What is a polarization of a (pure) Hodge structure?
 ::: {.back card-id="card-fc3f20e8b96f267b"}
 For a pure HS of weight $m$, $Q:V{ {}^{ \scriptstyle\otimes_{}^{2} }  }\to {\mathbf{Z}}(-m)$ defined over ${\mathbf{Q}}$, $(-1)^m$-symmetric, such that the form $(v,w)\mapsto (2\pi i)^m Q(Cv, \overline{w})$ is Hermitian and positive-definite, where $C$ is the Weil element ($C = i^{p-q}$ on $V^{p, q}$).
 
-Equivalently, on $V_{\mathbf{C}} = \bigoplus V^{p, q}$: the $V^{p, q}$ are mutually orthogonal for the Hermitian form $Q(v, \overline{w})$, and $i^{p-q} Q(v, \overline{v}) > 0$ for $0\neq v\in V^{p, q}$. Since $i^{p-q} = (-1)^p i^{-m}$, up to a sign that depends only on the weight this says $(-1)^p Q$ is positive definite on $V^{p, q}$, giving a positive definite Hermitian product ${\left\langle {v},~{w} \right\rangle} \coloneqq\sum_{p, q} (-1)^p Q(v^{p, q}, \overline{w^{p, q}})$.
+Equivalently, on $V_{\mathbf{C}} = \bigoplus V^{p, q}$: the $V^{p, q}$ are mutually orthogonal for the sesquilinear form $Q(v, \overline{w})$, and $i^{p-q} Q(v, \overline{v}) > 0$ for $0\neq v\in V^{p, q}$. Since $i^{p-q} = (-1)^p i^{-m}$, this says $i^{-m}(-1)^p Q(v, \overline{v}) > 0$ on $V^{p, q}$ (for even $m$, $i^{-m} = \pm 1$ is a sign), giving a positive definite Hermitian product ${\left\langle {v},~{w} \right\rangle} \coloneqq i^{-m}\sum_{p, q} (-1)^p Q(v^{p, q}, \overline{w^{p, q}})$.
 
 Alternatively a morphism $V\to V {}^{ \vee }(-m)$, motivated by Poincare duality.
 :::
