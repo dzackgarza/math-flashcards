@@ -13,8 +13,8 @@ test:
 # CI entry point (used by the pre-push hook)
 test-ci: test
 
-# Commit gate entry point
-test-commit: test desktop-frontend desktop-source-test desktop-test desktop-organization-test
+# Commit gate entry point; installs the verified build so the menu app matches the commit
+test-commit: test desktop-frontend desktop-source-test desktop-test desktop-organization-test desktop-update
 
 # Install the desktop build dependencies
 desktop-dependencies:

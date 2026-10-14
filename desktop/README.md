@@ -16,8 +16,9 @@ Runtime dependencies: `uv` and Pandoc on `PATH`. The first backend call fetches
 the locked Python dependencies, including the pinned Ankdown exporter.
 The native build includes the bridge, its dependency lock, and local MathJax assets.
 Installation adds **Math Flashcards** to the application menu and installs the
-`math-flashcards` command. Run `just desktop-update` from this checkout to rebuild
-and update the app, icon, launcher, and desktop entry.
+`math-flashcards` command. The commit gate ends with `just desktop-update`, which
+rebuilds and installs the app, icon, launcher, and desktop entry. Each commit
+that passes the gate therefore updates the app in the menu.
 
 | Installed item | Location |
 | --- | --- |

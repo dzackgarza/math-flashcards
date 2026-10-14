@@ -30,7 +30,7 @@ just desktop-install
 ```
 
 Launch **Math Flashcards** from the application menu or run `math-flashcards`.
-Use `just desktop-update` to rebuild and update the installed app and desktop entry.
+Each commit that passes the commit gate rebuilds and installs the app.
 Open a workspace folder that contains `decks/` from the workspace menu in the
 sidebar. Select a deck in the tree. Ctrl-K opens a command menu that finds decks,
 cards, and actions; Ctrl-S saves the deck.
