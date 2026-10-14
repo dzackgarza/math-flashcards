@@ -4,7 +4,6 @@ import { z } from "zod";
 export type Request =
   | { action: "list"; workspace: string }
   | { action: "load" | "generate"; workspace: string; path: string }
-  | { action: "preview"; workspace: string; path: string; source: string }
   | { action: "organize"; workspace: string; changes: Change[] }
   | {
       action: "save";
@@ -28,22 +27,6 @@ export const statusSchema = z.enum(["Up to date", "Unsynced"]);
 export const workspaceSchema = z.object({
   root: z.string(),
   decks: z.array(z.object({ path: z.string(), status: statusSchema })),
-});
-export const documentSchema = z.object({
-  source: z.string(),
-  hash: z.string(),
-  status: statusSchema,
-  package: z.string(),
-});
-export const previewSchema = z.object({
-  title: z.string(),
-  cards: z.array(
-    z.object({
-      front: z.string(),
-      back: z.string(),
-      tags: z.array(z.string()),
-    }),
-  ),
   macros: z.record(
     z.string(),
     z.union([
@@ -52,7 +35,13 @@ export const previewSchema = z.object({
       z.tuple([z.string(), z.number(), z.string()]),
     ]),
   ),
-  css: z.string(),
+});
+export const documentSchema = z.object({
+  source: z.string(),
+  hash: z.string(),
+  cards: z.number(),
+  status: statusSchema,
+  package: z.string(),
 });
 export const generatedSchema = z.object({
   status: statusSchema,
@@ -64,7 +53,7 @@ export type Document = z.infer<typeof documentSchema> & {
   path: string;
   saved: string;
 };
-export type Preview = z.infer<typeof previewSchema>;
+export type Macros = z.infer<typeof workspaceSchema>["macros"];
 
 export async function request<Schema extends z.ZodType>(
   payload: Request,

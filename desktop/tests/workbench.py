@@ -55,24 +55,19 @@ def main() -> None:
             expect(page.get_by_text("Unsynced", exact=True).first).to_be_visible()
             expect(page.locator(".side-editor.front .cm-editor")).to_be_visible()
             expect(page.locator(".side-editor.back .cm-editor")).to_be_visible()
+            front_math = page.locator(".side-editor.front .cm-content mjx-container")
+            back_math = page.locator(".side-editor.back .cm-content mjx-container")
+            expect(front_math).to_contain_text("π/6", timeout=30000)
+            expect(back_math.first).to_be_visible()
+            expect(page.get_by_text("Unsaved changes", exact=True)).not_to_be_visible()
+            page.screenshot(path=str(artifacts / "rendered.png"))
+            front_math.click()
+            expect(front_math).to_have_count(0)
             expect(page.locator(".side-editor.front .cm-content")).to_have_text(
                 r"$\sin(\pi/6) = \cdots$"
             )
-            expect(page.locator(".side-editor.back .cm-content")).to_contain_text(
-                r"\sin(\pi/6) = {1\over 2}"
-            )
-            expect(page.get_by_role("button", name="Flip card")).to_be_visible(
-                timeout=30000
-            )
-            expect(page.locator(".card-preview mjx-container")).to_be_visible(
-                timeout=30000
-            )
             expect(page.get_by_text("Unsaved changes", exact=True)).not_to_be_visible()
-            page.screenshot(path=str(artifacts / "front.png"))
-            page.get_by_role("button", name="Flip card").click()
-            expect(page.get_by_role("radio", name="Back", exact=True)).to_be_checked()
-            expect(page.locator(".card-preview mjx-container")).to_be_visible()
-            page.screenshot(path=str(artifacts / "back.png"))
+            page.screenshot(path=str(artifacts / "source.png"))
             page.get_by_role("button", name="Add card", exact=True).click()
             front_editor = page.locator(".side-editor.front .cm-content")
             back_editor = page.locator(".side-editor.back .cm-content")
@@ -96,7 +91,7 @@ def main() -> None:
             )
             assert deck_path.read_bytes().startswith(authored_source)
             page.get_by_role("button", name="Reload deck", exact=True).click()
-            expect(front_editor).to_have_text(r"$\sin(\pi/6) = \cdots$", timeout=30000)
+            expect(front_math).to_contain_text("π/6", timeout=30000)
             expect(
                 page.get_by_role("button", name="Added question", exact=True)
             ).to_be_visible(timeout=30000)
@@ -127,6 +122,7 @@ def main() -> None:
             expect(page.get_by_text("Saved", exact=True).first).to_be_visible(
                 timeout=30000
             )
+            page.screenshot(path=str(artifacts / "deleted.png"))
             expect(page.get_by_text("Unsynced", exact=True).first).to_be_visible()
             assert (
                 "Added question"
@@ -134,7 +130,6 @@ def main() -> None:
                     root / "decks" / "Qual Basics" / "Special Angles.md"
                 ).read_text()
             )
-            page.screenshot(path=str(artifacts / "deleted.png"))
             page.get_by_role("button", name="Generate Anki deck", exact=True).click()
             expect(page.get_by_text("Up to date", exact=True).first).to_be_visible(
                 timeout=60000

@@ -19,58 +19,31 @@ body {
 .editor-panel {
   min-width: 0;
 }
-.editor-panel {
+.side-editors {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--mantine-spacing-md);
   align-items: start;
 }
 @media (max-width: 80em) {
-  .editor-panel {
+  .side-editors {
     grid-template-columns: 1fr;
   }
 }
-.card-preview {
-  min-height: 12rem;
-  cursor: pointer;
-  border-top: 3px solid var(--mantine-color-indigo-5);
-}
 .side-editor {
+  min-width: 0;
   border-left: 3px solid var(--mantine-color-indigo-5);
   padding-left: var(--mantine-spacing-sm);
 }
 .side-editor.back {
   border-left-color: var(--mantine-color-teal-5);
 }
-.card-preview.back {
-  border-top-color: var(--mantine-color-teal-5);
-  background: var(--mantine-color-teal-0);
+.rendered-math {
+  cursor: pointer;
 }
-.card-preview:focus-visible {
-  outline: 2px solid var(--mantine-color-indigo-5);
-  outline-offset: 3px;
-}
-.math-content {
-  font-size: 1.1rem;
-  line-height: 1.7;
-  overflow-wrap: anywhere;
-}
-.math-content img {
-  max-width: 100%;
-  height: auto;
-}
-.math-content mjx-container[display="true"] {
+div.rendered-math {
   overflow-x: auto;
   overflow-y: hidden;
-  max-width: 100%;
-}
-.math-content table {
-  border-collapse: collapse;
-  max-width: 100%;
-}
-.math-content td,
-.math-content th {
-  border: 1px solid var(--mantine-color-gray-3);
-  padding: 0.4rem;
 }
 @media (max-width: 64em) {
   .card-workbench {

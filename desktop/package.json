@@ -32,8 +32,6 @@
     "@tauri-apps/plugin-fs": "^2.7.0",
     "@tauri-apps/plugin-store": "^2.5.0",
     "@uiw/react-codemirror": "^4.25.12",
-    "better-react-mathjax": "^3.0.2",
-    "dompurify": "^3.4.17",
     "mathjax": "3.2.2",
     "pathe": "^2.0.3",
     "react": "^19.1.0",

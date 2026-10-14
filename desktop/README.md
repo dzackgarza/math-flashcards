@@ -50,7 +50,7 @@ edits before moving its cards. See [card organization](../docs/card-organization
 for the design sources and file operations. Relative media links follow their
 original files across moves.
 Search the deck tree or card list to find a card. Edit **Front** and **Back** in
-their separate CodeMirror fields. Both fields accept Markdown and LaTeX, with
+side-by-side CodeMirror fields. Both fields accept Markdown and LaTeX, with
 Pandoc syntax and TeX highlighting from Zettlr's parser. Set tags with **Tags**.
 The app creates the card ID and stores the sides as paired fenced divs.
 Each side can contain paragraphs, lists, math, and nested divs.
@@ -59,9 +59,10 @@ A deck contains `.front` and `.back` divs with a shared `card-id` attribute.
 Pairs can appear in any order; fronts set the card order. Missing sides,
 duplicate sides, and missing IDs are errors. See the [format](../README.md#card-format).
 
-The preview uses the exporter's Pandoc filter and math macros. Select Front or
-Back, click the preview, or focus it and press Space or Enter to flip. The side
-control, Question/Answer badge, and border colour show the current side.
+Math renders in place with MathJax and the exporter's macros, using a renderer
+adapted from Zettlr. Click an equation, or move the cursor into it, to edit its
+source. Saves and organization changes check each deck with the exporter's
+Pandoc filter and media resolution.
 
 Use **Add card** or **Delete card** to change the deck. **Save deck** writes the
 complete source file. Switching decks, reopening the workspace, reloading, and
@@ -112,7 +113,7 @@ browser scenario. Browser checks require Playwright Chromium; provision it with
 Native capture requires Xvfb and xdotool. Screenshots, the browser trace, and
 diagnostic logs are generated in `desktop/test-artifacts/`.
 
-The browser scenario checks card typing, source preservation, save, flip,
+The browser scenario checks card typing, inline math, source preservation, save,
 delete, package contents, package status, external save conflicts, and failed
 export preservation. The native scenario runs the built executable with
 disposable deck copies and isolated app data.

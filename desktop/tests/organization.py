@@ -73,7 +73,9 @@ def scenario(root: Path) -> None:
         page.get_by_text("Algebra", exact=True).click()
         page.get_by_text("Analysis", exact=True).click()
         page.get_by_text("Original", exact=True).click()
-        expect(page.locator(".card-preview mjx-container")).to_be_visible(timeout=30000)
+        expect(
+            page.locator(".side-editor .cm-content mjx-container").first
+        ).to_be_visible(timeout=30000)
         page.screenshot(path=str(ARTIFACTS / "organization-tree.png"))
 
         def deck_row(path: str):

@@ -6,7 +6,7 @@ Date: 2026-10-14. Selected architecture: separate CodeMirror Front and Back fiel
 
 Use Tauri 2, React, TypeScript, Vite, Mantine, and CodeMirror 6.
 Keep Markdown files as the authored source. Use the existing ankdown Pandoc
-filter for preview HTML and ankdown for package generation. Package dependencies
+filter for deck validation and ankdown for package generation. Package dependencies
 must be locked to tested releases during implementation.
 
 ## Dependency owners
@@ -15,7 +15,7 @@ must be locked to tested releases during implementation.
 | --- | --- | --- |
 | Desktop window and frontend build | [Tauri with Vite](https://v2.tauri.app/start/frontend/vite/) | Official React/TypeScript scaffold |
 | Deck navigation | [Mantine Tree](https://mantine.dev/core/tree/) | Folder hierarchy and selectable deck nodes |
-| App layout | [Mantine AppShell](https://mantine.dev/core/app-shell/), [Splitter](https://mantine.dev/core/splitter/) | Deck tree, card list, editor, preview |
+| App layout | [Mantine AppShell](https://mantine.dev/core/app-shell/), [Splitter](https://mantine.dev/core/splitter/) | Deck tree, card list, Front and Back editors |
 | Editing | [React CodeMirror](https://github.com/uiwjs/react-codemirror), `@codemirror/lang-markdown` | Separate Front and Back fields, history, selection and keyboard commands |
 | Source ranges and syntax | Zettlr-Pandoc's Lezer fork | Pandoc fenced divs, attributes, math, and source positions; shared parser for both editors and deck pairing |
 | External changes | [Tauri filesystem plugin](https://v2.tauri.app/plugin/file-system/) | Watch the selected workspace |
@@ -24,19 +24,19 @@ must be locked to tested releases during implementation.
 | Preferences | [Tauri store plugin](https://v2.tauri.app/plugin/store/) | Workspace path |
 | Generation records | Python SQLite and [platformdirs](https://platformdirs.readthedocs.io/) | Successful build fingerprints in the platform cache |
 | Card HTML and APKG | [ankdown-for-math](https://github.com/dzackgarza/ankdown-for-math), [Pandoc Lua filters](https://pandoc.org/lua-filters.html) | Reuse the filter's front/back JSON and exporter CLI |
-| Math rendering | [MathJax](https://docs.mathjax.org/en/v3.2/web/typeset.html) | Match the exporter's MathJax 3 configuration and macro asset |
-| Flip and status controls | Mantine Card, Badge, SegmentedControl, Button, Alert, Loader | Explicit Front/Back state; clickable preview; visible build state |
+| Math rendering | [MathJax](https://docs.mathjax.org/en/v3.2/web/typeset.html) | Equations render inside each editor with widgets adapted from Zettlr's `render-math.ts`, using the exporter's macro asset |
+| Status controls | Mantine Badge, Button, Alert, Loader | Visible build state |
 
 ## Alternatives
 
 | Choice | Fit | Recommendation |
 | --- | --- | --- |
-| Mantine | Supplies the tree, layout, forms, dialogs, status and preview containers together | Use |
+| Mantine | Supplies the tree, layout, forms, dialogs, and status containers together | Use |
 | Individually assembled headless components | Requires additional styling and composition for the same surface | Prefer the complete component library |
 | CodeMirror source editing | Retains LaTeX and Markdown as text; exposes source positions | Use |
 | [Tiptap Markdown](https://tiptap.dev/docs/editor/markdown) | Converts Markdown through an editor document model; its documented Markdown extension is beta and has preservation limits | Use only if rich text authoring is chosen |
 | [remark/mdast](https://github.com/remarkjs/remark) | Mature parsing and transformation ecosystem; useful for source ranges | Zettlr's Lezer fork supplies Pandoc syntax and ranges in CodeMirror |
-| Browser Markdown renderer plus KaTeX | Adds a second rendering interpretation and macro configuration | Reuse Pandoc card HTML and exporter MathJax |
+| Browser Markdown renderer plus KaTeX | Adds a second rendering interpretation and macro configuration | Reuse exporter MathJax and macros |
 | New Rust APKG implementation | Duplicates package generation, media and model ownership | Reuse ankdown |
 
 ## Source and export contracts
@@ -48,7 +48,7 @@ The sibling checkout must be compared with the pinned exporter revision before w
 The paired-card filter validates `.front` and `.back` divs linked by `card-id`.
 It supplies each complete side to Ankdown's filter as a block container.
 Ankdown handles math, images, generated media, and card HTML.
-Preview uses the same filter chain and math macros as export.
+The editor renders math with the same macros as export.
 
 The CLI accepts an individual Markdown file with an explicit output path.
 Directory builds map relative deck paths to filenames by replacing separators
@@ -59,7 +59,7 @@ CLI provides completion output rather than a percentage progress stream.
 Each CodeMirror field edits only one div body. Keep the authored document around
 that body. Zettlr's Lezer fork owns Pandoc syntax recognition and attribute
 parsing. The app pairs sides by ID. Pandoc validates the same pairs for loading,
-saving, preview, and export. Saves compare disk content to detect external edits.
+saving, and export. Saves compare disk content to detect external edits.
 
 ## Generation state
 
@@ -89,7 +89,7 @@ collection require a separate identity/import design if requested.
 
 ## Architecture decision
 
-Selected: separate Front and Back editors with a card preview, built under `desktop/` in this
+Selected: side-by-side Front and Back editors with math rendered in place, built under `desktop/` in this
 repository. The current request establishes a new desktop surface here; the
 existing archive notice concerns the content maintenance location.
 

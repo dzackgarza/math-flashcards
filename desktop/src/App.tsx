@@ -5,12 +5,10 @@ import {
   Badge,
   Box,
   Button,
-  Card,
   Divider,
   Group,
   Loader,
   Paper,
-  SegmentedControl,
   Stack,
   Text,
   TextInput,
@@ -20,7 +18,7 @@ import {
   useTree,
   type TreeNodeData,
 } from "@mantine/core";
-import { useDebouncedCallback, useDebouncedValue } from "@mantine/hooks";
+import { useDebouncedCallback } from "@mantine/hooks";
 import { IconArrowBackUp, IconPlus } from "@tabler/icons-react";
 import {
   monitorForElements,
@@ -42,8 +40,6 @@ import { appConfigDir, join } from "@tauri-apps/api/path";
 import { open } from "@tauri-apps/plugin-dialog";
 import { load } from "@tauri-apps/plugin-store";
 import { watch } from "@tauri-apps/plugin-fs";
-import { MathJax, MathJaxContext } from "better-react-mathjax";
-import DOMPurify from "dompurify";
 import {
   cards,
   replaceField,
@@ -55,6 +51,7 @@ import {
   type CardRange,
 } from "./cards";
 import { cardLanguage } from "./editor";
+import { loadMathJax, type MathJaxRuntime, renderedMath } from "./math";
 import {
   CardRow,
   NewDeckForm,
@@ -67,17 +64,14 @@ import {
   request,
   workspaceSchema,
   documentSchema,
-  previewSchema,
   generatedSchema,
   organizedSchema,
   type Change,
   type Document,
-  type Preview,
   type Summary,
 } from "./bridge";
 
 type Task = "Idle" | "Loading" | "Saving" | "Generating" | "Organizing";
-type Side = "Front" | "Back";
 type Notice = { label: string; undo: Change[] | null };
 
 function preferences() {
@@ -125,9 +119,7 @@ export default function App() {
   const [workspace, setWorkspace] = useState("");
   const [decks, setDecks] = useState<Summary[]>([]);
   const [document, setDocument] = useState<Document | null>(null);
-  const [preview, setPreview] = useState<Preview | null>(null);
-  const [previewError, setPreviewError] = useState("");
-  const [previewLoading, setPreviewLoading] = useState(false);
+  const [mathjax, setMathjax] = useState<MathJaxRuntime | null>(null);
   const [index, setIndex] = useState(0);
   const [draft, setDraft] = useState<{
     source: string;
@@ -135,8 +127,6 @@ export default function App() {
     front: string;
     back: string;
   } | null>(null);
-  const [loadRevision, setLoadRevision] = useState(0);
-  const [side, setSide] = useState<Side>("Front");
   const [task, setTask] = useState<Task>("Idle");
   const [buildResult, setBuildResult] = useState<"Ready" | "Failed">("Ready");
   const [error, setError] = useState("");
@@ -145,7 +135,6 @@ export default function App() {
   const [cardFilter, setCardFilter] = useState("");
   const [selection, setSelection] = useState<string[]>([]);
   const [notice, setNotice] = useState<Notice | null>(null);
-  const [debouncedSource] = useDebouncedValue(document?.source, 400);
   const navigation = useRef(0);
   const anchor = useRef<string | null>(null);
   const deckViewport = useRef<HTMLDivElement>(null);
@@ -162,12 +151,16 @@ export default function App() {
   const dirty = document !== null && document.source !== document.saved;
   const busy = task !== "Idle";
   const selected = ranges[index];
-  const rendered = preview?.cards[index];
   const data = useMemo(() => treeData(decks, filter), [decks, filter]);
-  const mismatch =
-    preview !== null &&
-    !previewLoading &&
-    preview.cards.length !== ranges.length;
+  // Pandoc counts the saved deck's cards; the editor parser must agree.
+  const mismatch = useMemo(
+    () => document !== null && document.cards !== cards(document.saved).length,
+    [document?.cards, document?.saved],
+  );
+  const extensions = useMemo(
+    () => (mathjax ? [cardLanguage, renderedMath(mathjax)] : [cardLanguage]),
+    [mathjax],
+  );
 
   async function refresh(root = workspace) {
     if (!root) return;
@@ -203,8 +196,10 @@ export default function App() {
       setSelection([]);
       setNotice(null);
       setDraft(null);
-      setPreview(null);
       setLog("");
+      loadMathJax(result.macros).then(setMathjax, (failure) =>
+        setError(String(failure)),
+      );
       setBuildResult("Ready");
       if (isTauri()) {
         const store = await preferences();
@@ -250,7 +245,6 @@ export default function App() {
       folders.forEach((_, depth) =>
         tree.expand("/" + folders.slice(0, depth + 1).join("/")),
       );
-      setLoadRevision((revision) => revision + 1);
       selectCard(
         Math.max(
           0,
@@ -258,9 +252,6 @@ export default function App() {
         ),
         result.source,
       );
-      setSide("Front");
-      setPreview(null);
-      setPreviewError("");
       setLog("");
       setBuildResult("Ready");
       setCardFilter("");
@@ -270,43 +261,6 @@ export default function App() {
       if (token === navigation.current) setTask("Idle");
     }
   }
-
-  useEffect(() => {
-    if (!document || debouncedSource !== document.source) return;
-    let active = true;
-    setPreviewLoading(true);
-    setPreviewError("");
-    request(
-      {
-        action: "preview",
-        workspace,
-        path: document.path,
-        source: debouncedSource,
-      },
-      previewSchema,
-    )
-      .then((value) => {
-        if (active) setPreview(value);
-      })
-      .catch((failure) => {
-        if (active) {
-          setPreview(null);
-          setPreviewError(String(failure));
-        }
-      })
-      .finally(() => {
-        if (active) setPreviewLoading(false);
-      });
-    return () => {
-      active = false;
-    };
-  }, [
-    workspace,
-    document?.path,
-    document?.source,
-    loadRevision,
-    debouncedSource,
-  ]);
 
   useEffect(() => {
     if (!isTauri()) {
@@ -396,12 +350,10 @@ export default function App() {
   function edit(source: string) {
     if (!document || document.source === source) return;
     setDocument((current) => (current ? { ...current, source } : current));
-    setPreviewLoading(true);
   }
 
   function selectCard(cardIndex: number, source: string) {
     setIndex(cardIndex);
-    setSide("Front");
     const card = cards(source)[cardIndex];
     setDraft(
       card
@@ -446,6 +398,7 @@ export default function App() {
               ...current,
               saved: saving.source,
               hash: result.hash,
+              cards: result.cards,
               status: result.status,
             }
           : current,
@@ -537,7 +490,6 @@ export default function App() {
       navigation.current++;
       setDocument(null);
       setDraft(null);
-      setPreview(null);
       setSelection([]);
     }
     setNotice({
@@ -942,7 +894,7 @@ export default function App() {
                   <Group justify="space-between" align="start">
                     <Box>
                       <Title order={2} size="h4">
-                        {preview?.title ?? document.path.replace(/\.md$/, "")}
+                        {document.path.replace(/\.md$/, "")}
                       </Title>
                       <Text size="sm" c="dimmed">
                         {document.path}
@@ -1076,40 +1028,45 @@ export default function App() {
                       </Group>
                       {draft ? (
                         <Stack gap="md">
-                          {(["front", "back"] as const).map((field) => (
-                            <Box key={field} className={"side-editor " + field}>
-                              <Title
-                                order={4}
-                                size="h6"
-                                mb="xs"
-                                id={field + "-label"}
+                          <div className="side-editors">
+                            {(["front", "back"] as const).map((field) => (
+                              <Box
+                                key={field}
+                                className={"side-editor " + field}
                               >
-                                {field === "front" ? "Front" : "Back"}
-                              </Title>
-                              <CodeMirror
-                                key={
-                                  document.path +
-                                  ":" +
-                                  draft.card.id +
-                                  ":" +
-                                  field
-                                }
-                                value={draft[field]}
-                                minHeight="100px"
-                                maxHeight="220px"
-                                extensions={[cardLanguage]}
-                                basicSetup={{
-                                  lineNumbers: false,
-                                  foldGutter: false,
-                                }}
-                                editable={!busy}
-                                onChange={(value) => editCard(field, value)}
-                                aria-label={
-                                  field === "front" ? "Front" : "Back"
-                                }
-                              />
-                            </Box>
-                          ))}
+                                <Title
+                                  order={4}
+                                  size="h6"
+                                  mb="xs"
+                                  id={field + "-label"}
+                                >
+                                  {field === "front" ? "Front" : "Back"}
+                                </Title>
+                                <CodeMirror
+                                  key={
+                                    document.path +
+                                    ":" +
+                                    draft.card.id +
+                                    ":" +
+                                    field
+                                  }
+                                  value={draft[field]}
+                                  minHeight="100px"
+                                  maxHeight="60vh"
+                                  extensions={extensions}
+                                  basicSetup={{
+                                    lineNumbers: false,
+                                    foldGutter: false,
+                                  }}
+                                  editable={!busy}
+                                  onChange={(value) => editCard(field, value)}
+                                  aria-label={
+                                    field === "front" ? "Front" : "Back"
+                                  }
+                                />
+                              </Box>
+                            ))}
+                          </div>
                           <TagsInput
                             label="Tags"
                             value={(selected?.tags ?? draft.card.tags)
@@ -1141,109 +1098,11 @@ export default function App() {
                           {parsed.error}
                         </Alert>
                       )}
-                    </Paper>
-                    <Paper withBorder p="md">
-                      <Group justify="space-between" mb="md">
-                        <Title order={3} size="h5">
-                          Preview
-                        </Title>
-                        <SegmentedControl
-                          aria-label="Card side"
-                          value={side}
-                          onChange={(value) => setSide(value as Side)}
-                          data={["Front", "Back"]}
-                        />
-                      </Group>
-                      {previewLoading ? (
-                        <Group justify="center" mih={180}>
-                          <Loader size="sm" />
-                          <Text c="dimmed">Rendering preview…</Text>
-                        </Group>
-                      ) : previewError ? (
-                        <Alert color="red" title="Preview failed">
-                          <Text size="sm" style={{ whiteSpace: "pre-wrap" }}>
-                            {previewError}
-                          </Text>
-                        </Alert>
-                      ) : mismatch ? (
+                      {mismatch && (
                         <Alert color="red" title="Card structure differs">
                           The editor and exporter found different card pairs.
                           Reload the deck before saving.
                         </Alert>
-                      ) : preview && rendered ? (
-                        <MathJaxContext
-                          version={3}
-                          src="/mathjax/tex-chtml.js"
-                          config={{
-                            startup: { typeset: false },
-                            tex: {
-                              macros: preview.macros,
-                              inlineMath: [
-                                ["$", "$"],
-                                ["\\(", "\\)"],
-                              ],
-                              displayMath: [
-                                ["$$", "$$"],
-                                ["\\[", "\\]"],
-                              ],
-                              processEscapes: true,
-                              packages: { "[+]": ["ams", "color"] },
-                            },
-                            loader: { load: ["[tex]/ams", "[tex]/color"] },
-                          }}
-                        >
-                          <Card
-                            withBorder
-                            padding="lg"
-                            radius="md"
-                            className={"card-preview " + side.toLowerCase()}
-                            role="button"
-                            tabIndex={0}
-                            aria-label="Flip card"
-                            onClick={() =>
-                              setSide(side === "Front" ? "Back" : "Front")
-                            }
-                            onKeyDown={(event) => {
-                              if (event.key === "Enter" || event.key === " ") {
-                                event.preventDefault();
-                                setSide(side === "Front" ? "Back" : "Front");
-                              }
-                            }}
-                          >
-                            <Group justify="space-between" mb="md">
-                              <Badge
-                                variant="light"
-                                color={side === "Front" ? "indigo" : "teal"}
-                              >
-                                {side === "Front" ? "Question" : "Answer"}
-                              </Badge>
-                              <Text size="xs" c="dimmed">
-                                Click or press Space to flip
-                              </Text>
-                            </Group>
-                            <MathJax dynamic hideUntilTypeset="every">
-                              <div
-                                className="math-content"
-                                dangerouslySetInnerHTML={{
-                                  __html: DOMPurify.sanitize(
-                                    side === "Front"
-                                      ? rendered.front
-                                      : rendered.back,
-                                  ),
-                                }}
-                              />
-                            </MathJax>
-                          </Card>
-                          <Group mt="sm" gap="xs">
-                            {rendered.tags.map((tag) => (
-                              <Badge key={tag} variant="outline" color="gray">
-                                {tag}
-                              </Badge>
-                            ))}
-                          </Group>
-                        </MathJaxContext>
-                      ) : (
-                        <Text c="dimmed">Select a card to preview.</Text>
                       )}
                     </Paper>
                     {log && (

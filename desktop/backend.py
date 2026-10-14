@@ -2,7 +2,6 @@
 # requires-python = ">=3.12"
 # dependencies = [
 #   "ankdown @ git+https://github.com/dzackgarza/ankdown-for-math@5878dff3082334d33609b0999eb849d8c6db6812",
-#   "beautifulsoup4==4.14.3",
 #   "cyclopts==4.15.0",
 #   "filelock==3.20.3",
 #   "platformdirs==4.5.1",
@@ -14,9 +13,7 @@
 
 from __future__ import annotations
 
-import base64
 import hashlib
-import mimetypes
 import os
 import sqlite3
 import subprocess
@@ -29,7 +26,6 @@ from typing import Annotated, Literal
 
 import ankdown.cli
 import cyclopts
-from bs4 import BeautifulSoup
 from filelock import FileLock
 from platformdirs import user_cache_path
 from pydantic import BaseModel, ConfigDict, Field, TypeAdapter
@@ -56,11 +52,6 @@ class DeckInput(Input):
 
 class LoadInput(DeckInput):
     action: Literal["load"]
-
-
-class PreviewInput(DeckInput):
-    action: Literal["preview"]
-    source: str
 
 
 class SaveInput(DeckInput):
@@ -94,7 +85,7 @@ class Organized(BaseModel):
 
 
 type Request = Annotated[
-    ListInput | LoadInput | PreviewInput | SaveInput | GenerateInput | OrganizeInput,
+    ListInput | LoadInput | SaveInput | GenerateInput | OrganizeInput,
     Field(discriminator="action"),
 ]
 
@@ -117,13 +108,6 @@ class RenderedDeck(BaseModel):
     media: list[str] = Field(default_factory=list)
 
 
-class Preview(BaseModel):
-    title: str
-    cards: list[Card]
-    macros: dict[str, MacroDefinition]
-    css: str
-
-
 class BuildRecord(BaseModel):
     inputs: dict[str, str]
     package: str
@@ -137,11 +121,13 @@ class Summary(BaseModel):
 class Workspace(BaseModel):
     root: str
     decks: list[Summary]
+    macros: dict[str, MacroDefinition]
 
 
 class Document(BaseModel):
     source: str
     hash: str
+    cards: int
     status: Literal["Up to date", "Unsynced"]
     package: str
 
@@ -283,37 +269,13 @@ def media_paths(deck: RenderedDeck, root: Path, scratch: Path) -> dict[str, Path
     return mapping
 
 
-def preview(root: Path, path: Path, source: str) -> Preview:
-    with tempfile.TemporaryDirectory(prefix="flashcards-preview-") as directory:
+def validate(root: Path, path: Path, source: str) -> int:
+    """Render a deck through the exporter's filters, check its media, and count its cards."""
+    with tempfile.TemporaryDirectory(prefix="flashcards-check-") as directory:
         scratch = Path(directory)
         with render(path, source, scratch) as deck:
-            mapping = media_paths(deck, root, scratch)
-            for card in deck.cards:
-                for field in ("front", "back"):
-                    soup = BeautifulSoup(getattr(card, field), "html.parser")
-                    for image in soup.find_all("img"):
-                        name = str(image["src"])
-                        if name in mapping:
-                            image_path = mapping[name]
-                            mime = mimetypes.guess_type(image_path.name)[0]
-                            if mime is None:
-                                raise ValueError(
-                                    f"Unknown image type: {image_path.name}"
-                                )
-                            image["src"] = (
-                                f"data:{mime};base64,"
-                                + base64.b64encode(image_path.read_bytes()).decode()
-                            )
-                    setattr(card, field, str(soup))
-            macros = TypeAdapter(dict[str, MacroDefinition]).validate_json(
-                (EXPORTER / "mathjax-macros.json").read_text()
-            )
-            return Preview(
-                title=deck.meta.title,
-                cards=deck.cards,
-                macros=macros,
-                css=(EXPORTER / "card.css").read_text(),
-            )
+            media_paths(deck, root, scratch)
+            return len(deck.cards)
 
 
 def generate(root: Path, path: Path) -> Generated:
@@ -391,7 +353,7 @@ def publish_changes(root: Path, changes: list[Change]) -> Organized:
                 raise ValueError("The deck to absorb is missing.")
             if change.source is not None:
                 path.parent.mkdir(parents=True, exist_ok=True)
-                preview(root, path, change.source)
+                validate(root, path, change.source)
             originals[path] = original
         # Stage every file before publishing; restore published files on failure.
         # tempfile + atomic replace: https://docs.python.org/3/library/tempfile.html
@@ -450,7 +412,7 @@ def publish_changes(root: Path, changes: list[Change]) -> Organized:
 
 def dispatch(
     request: Request,
-) -> Workspace | Document | Preview | Generated | Organized:
+) -> Workspace | Document | Generated | Organized:
     root = workspace_path(request.workspace)
     if isinstance(request, OrganizeInput):
         return publish_changes(root, request.changes)
@@ -465,12 +427,13 @@ def dispatch(
                 for path in sorted((root / "decks").rglob("*.md"))
                 if path.resolve().is_relative_to(root / "decks")
             ],
+            macros=TypeAdapter(dict[str, MacroDefinition]).validate_json(
+                (EXPORTER / "mathjax-macros.json").read_text()
+            ),
         )
     path = deck_path(root, request.path)
     output = package_path(root, path)
     match request:
-        case PreviewInput():
-            return preview(root, path, request.source)
         case GenerateInput():
             return generate(root, path)
         case SaveInput():
@@ -484,12 +447,11 @@ def dispatch(
                     )
                 ],
             )
-        case LoadInput():
-            preview(root, path, path.read_text())
     source = path.read_bytes().decode("utf-8")
     return Document(
         source=source,
         hash=digest(source.encode()),
+        cards=validate(root, path, source),
         status=status(path, output),
         package=str(output),
     )

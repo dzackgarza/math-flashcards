@@ -2,7 +2,7 @@ import { expect, test } from "bun:test";
 import { Glob } from "bun";
 import { resolve } from "node:path";
 import { cards, replaceField } from "../src/cards";
-import { previewSchema } from "../src/bridge";
+import { documentSchema } from "../src/bridge";
 
 test("repository card ranges preserve source and agree with Pandoc export", async () => {
   const workspace = resolve(import.meta.dir, "../..");
@@ -25,7 +25,7 @@ test("repository card ranges preserve source and agree with Pandoc export", asyn
       ],
       {
         stdin: new Blob([
-          JSON.stringify({ action: "preview", workspace, path, source }) + "\n",
+          JSON.stringify({ action: "load", workspace, path }) + "\n",
         ]),
         stdout: "pipe",
         stderr: "pipe",
@@ -34,7 +34,7 @@ test("repository card ranges preserve source and agree with Pandoc export", asyn
     const output = await new Response(process.stdout).text();
     const diagnostics = await new Response(process.stderr).text();
     expect(await process.exited, path + ": " + diagnostics).toBe(0);
-    const deck = previewSchema.parse(JSON.parse(output));
-    expect(ranges.length, path).toBe(deck.cards.length);
+    const deck = documentSchema.parse(JSON.parse(output));
+    expect(ranges.length, path).toBe(deck.cards);
   }
 }, 120000);

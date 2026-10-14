@@ -29,8 +29,8 @@ just desktop-install
 Launch **Math Flashcards** from the application menu or run `math-flashcards`.
 Use `just desktop-update` to rebuild and update the installed app and desktop entry.
 Open a workspace folder that contains `decks/`. Select a deck in the tree.
-The editor supports card search, separate Front and Back editing, adding and deleting cards,
-math preview, and a front/back flip control. Save the deck, then select
+The editor supports card search, side-by-side Front and Back editing with math
+rendered in place, and adding and deleting cards. Save the deck, then select
 **Generate Anki deck** to regenerate its package in `apkg/`.
 
 Drag a card in the card list to reorder it, or onto a deck in the tree to move it.

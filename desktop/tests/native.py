@@ -176,27 +176,6 @@ def main(*, entry: Path | None = None) -> None:
                         "mousemove",
                         "--window",
                         window,
-                        "1200",
-                        "550",
-                        "click",
-                        "1",
-                    ],
-                    check=True,
-                )
-                time.sleep(1)
-                with mss.mss() as screen:
-                    shot = screen.grab(
-                        {"left": 0, "top": 0, "width": 1440, "height": 1000}
-                    )
-                    mss.tools.to_png(
-                        shot.rgb, shot.size, output=str(artifacts / "native-back.png")
-                    )
-                subprocess.run(
-                    [
-                        "xdotool",
-                        "mousemove",
-                        "--window",
-                        window,
                         "658",
                         "304",
                         "click",
