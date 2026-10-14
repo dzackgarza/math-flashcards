@@ -147,6 +147,9 @@ class Workspace(BaseModel):
     root: str
     decks: list[Summary]
     macros: dict[str, MacroDefinition]
+    # The script that defines registerStmaryrd, MathJax's TeX package for
+    # stmaryrd's \llbracket and \rrbracket.
+    stmaryrd: str
 
 
 class Document(BaseModel):
@@ -205,14 +208,17 @@ def database() -> Iterator[sqlite3.Connection]:
         yield connection
 
 
-def refresh_macros() -> str:
-    """Fetch the macro set from pandoc-config main and record its digest."""
-    text = ankdown.cli.fetch_macros()
+def refresh_macros() -> tuple[str, str]:
+    """Fetch the macro set and the stmaryrd package from pandoc-config main and
+    record their digest."""
+    macros = ankdown.cli.fetch_macros()
+    stmaryrd = ankdown.cli.fetch_stmaryrd()
     with database() as connection:
         connection.execute(
-            "INSERT OR REPLACE INTO macros VALUES (0, ?)", (digest(text.encode()),)
+            "INSERT OR REPLACE INTO macros VALUES (0, ?)",
+            (digest((macros + stmaryrd).encode()),),
         )
-    return text
+    return macros, stmaryrd
 
 
 # Listing a workspace and generating a package read pandoc-config main; status
@@ -540,7 +546,7 @@ def dispatch(
                 )
         return Review(decks=pending)
     if isinstance(request, ListInput):
-        macros = refresh_macros()
+        macros, stmaryrd = refresh_macros()
         summaries: list[Summary] = []
         for path in paths:
             state = sync(path, package_path(root, path))
@@ -556,6 +562,7 @@ def dispatch(
             root=str(root),
             decks=summaries,
             macros=TypeAdapter(dict[str, MacroDefinition]).validate_json(macros),
+            stmaryrd=stmaryrd,
         )
     path = deck_path(root, request.path)
     output = package_path(root, path)

@@ -24,7 +24,7 @@ the macro set track the main branches of ankdown-for-math and pandoc-config.
 | Preferences | [Tauri store plugin](https://v2.tauri.app/plugin/store/) | Workspace path |
 | Generation records | Python SQLite and [platformdirs](https://platformdirs.readthedocs.io/) | Successful build fingerprints in the platform cache |
 | Card HTML and APKG | [ankdown-for-math](https://github.com/dzackgarza/ankdown-for-math), [Pandoc Lua filters](https://pandoc.org/lua-filters.html) | Reuse the filter's front/back JSON and exporter CLI |
-| Math rendering | [MathJax](https://docs.mathjax.org/en/v3.2/web/typeset.html) | Equations render inside each editor with widgets adapted from Zettlr's `render-math.ts`, using the exporter's macro asset |
+| Math rendering | [MathJax 4](https://docs.mathjax.org/en/v4.0/web/typeset.html) | Equations render inside each editor with widgets adapted from Zettlr's `render-math.ts`, using the exporter's macro asset |
 | Status controls | Mantine Badge, Button, Alert, Loader | Visible build state |
 
 ## Alternatives

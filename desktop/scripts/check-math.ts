@@ -1,9 +1,9 @@
 // Reports the problems that the editor's Problems drawer shows, for every deck
 // in a workspace, and fails when there is one.
-import { createRequire } from "node:module";
 import { join } from "node:path";
+import MathJax from "mathjax";
 import { workspaceSchema } from "../src/bridge";
-import { texOptions } from "../src/math";
+import { defineStmaryrd, texOptions } from "../src/math";
 import { deckProblems } from "../src/problems";
 
 const root = process.argv[2];
@@ -25,9 +25,16 @@ const backend = Bun.spawnSync(
 if (backend.exitCode !== 0) throw new Error(backend.stderr.toString());
 const workspace = workspaceSchema.parse(JSON.parse(backend.stdout.toString()));
 // MathJax's Node entry point loads the same TeX input component as the editor:
-// https://docs.mathjax.org/en/v3.2/server/components.html
-const mathjax = await createRequire(import.meta.url)("mathjax").init({
+// https://docs.mathjax.org/en/v4.0/server/components.html
+defineStmaryrd(workspace.stmaryrd);
+const mathjax = await MathJax.init({
   loader: { load: ["input/tex", "[tex]/mathtools"] },
+  startup: {
+    ready() {
+      registerStmaryrd(globalThis.MathJax);
+      globalThis.MathJax.startup.defaultReady();
+    },
+  },
   tex: texOptions(workspace.macros),
 });
 const problems = workspace.decks.flatMap((deck) =>

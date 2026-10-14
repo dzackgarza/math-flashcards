@@ -99,14 +99,17 @@ just build          # compile every deck in decks/ into apkg/
 ```
 
 The Python bridge installs Ankdown from its GitHub main branch through `uv`.
-Each build and each workspace listing installs the latest commit.
+Each build and each workspace listing installs the latest commit. Other
+requests run the installed script environment and do not read the network.
 Pandoc reads and validates the paired divs. The bridge uses Ankdown's existing
 math and media filter and package writer to generate `.apkg` files.
 Pandoc and `uv` must be on `PATH`.
 
-Math renders via MathJax using the macro set that
+Math renders via MathJax 4 using the macro set that
 [pandoc-config](https://github.com/dzackgarza/pandoc-config) main generates from its
 LaTeX sources (`templates/css/mathjax-macros.json`), the same macros as the website.
 Each build fetches the current set and bundles it in the package, so `\theset`,
-`\abs`, `\normal`, and the rest resolve in Anki. Cards use the current macro names;
+`\abs`, `\normal`, and the rest resolve in Anki. The package also bundles
+pandoc-config's MathJax `stmaryrd` package (`templates/js/mathjax-stmaryrd.js`),
+which gives `\fps{x}` and `\llbracket x \rrbracket` sized double brackets. Cards use the current macro names;
 `just test` rejects a macro that the current set does not define.

@@ -801,7 +801,7 @@ What does $f = g + { \mathsf{O}}(k)$ mean?
 :::
 
 ::: {.back card-id="card-30d9359488c1df16"}
-$f\equiv g \in k{[\![  x_1,\cdots, x_n ]\!]  }/\left\langle{x_1,\cdots,x_n}\right\rangle^k$, so equal up to terms of order $k$.
+$f\equiv g \in k\fps{x_1,\cdots, x_n}/\left\langle{x_1,\cdots,x_n}\right\rangle^k$, so equal up to terms of order $k$.
 :::
 
 ::: {.front card-id="card-f33d6daf6119c6ba"}
@@ -821,7 +821,7 @@ Associativity: $F(F(x,y), z) = F(x, F(y,z))$
 
 Identities: $F(x, 0) = x$ and $F(0, y) = y$.
 
-Inverses: $\exists !\iota \in R{[\![  t ]\!]  }$ such that $F(x, \iota(x)) = 0$.
+Inverses: $\exists !\iota \in R\fps{t}$ such that $F(x, \iota(x)) = 0$.
 :::
 
 ::: {.front card-id="card-6ab20a703009190d"}
@@ -887,7 +887,7 @@ What is $F_\pi$? Give an example of $f\in F_\pi$.
 :::
 
 ::: {.back card-id="card-5496190b1d9e0cc4"}
-$F_\pi \coloneqq\left\{{ f\in R{[\![  T ]\!]  } {~\mathrel{\Big\vert}~}f(T) = \pi T + { \mathsf{O}}(T^2) ,\,\, f\equiv T^q \operatorname{mod}\pi}\right\}$.
+$F_\pi \coloneqq\left\{{ f\in R\fps{T} {~\mathrel{\Big\vert}~}f(T) = \pi T + { \mathsf{O}}(T^2) ,\,\, f\equiv T^q \operatorname{mod}\pi}\right\}$.
 
 For $K = { {\mathbf{Q}}_p }$, take $f(T) = (1+T)^p - 1 = T^p + {p\choose p-1}T^{p-1} + \cdots + pT$, so $f = [p]$ on ${\mathbf{G}}_m$.
 :::
@@ -897,7 +897,7 @@ What are the key properties of $F_\pi$?
 :::
 
 ::: {.back card-id="card-1b6f81d13cff9302"}
-For $f,g\in F_\pi$ and $\phi_1 \in R{[\![  x_1,\cdots, x_n ]\!]  }$, $\exists ! \phi \in R{[\![  x_1,\cdots, x_n ]\!]  }$ st $\phi = \phi_1 + { \mathsf{O}}(x^2)$ and $f\circ \phi = \phi \circ \Delta_g$, i.e.$f(\phi(x_1,\cdots, x_n)) = \phi(g(x_1), \cdots, g(x_n))$.
+For $f,g\in F_\pi$ and $\phi_1 \in R\fps{x_1,\cdots, x_n}$, $\exists ! \phi \in R\fps{x_1,\cdots, x_n}$ st $\phi = \phi_1 + { \mathsf{O}}(x^2)$ and $f\circ \phi = \phi \circ \Delta_g$, i.e.$f(\phi(x_1,\cdots, x_n)) = \phi(g(x_1), \cdots, g(x_n))$.
 :::
 
 ::: {.front card-id="card-9065d30f1cc7ba3c"}
@@ -905,7 +905,7 @@ What is the Lubin-Tate FGL attached to $f\in F_\pi$?
 :::
 
 ::: {.back card-id="card-9065d30f1cc7ba3c"}
-The unique FGL $F_f\in R{[\![  x,y ]\!]  }$ st $f\in { \operatorname{End} }_{\FGL} F_f$ canonically, so $f(F_f(x,y)) = F_f(f(x), f(y))$.
+The unique FGL $F_f\in R\fps{x,y}$ st $f\in { \operatorname{End} }_{\FGL} F_f$ canonically, so $f(F_f(x,y)) = F_f(f(x), f(y))$.
 :::
 
 ::: {.front card-id="card-f8c7dd23d0446e5a"}

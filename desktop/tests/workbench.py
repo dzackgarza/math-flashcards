@@ -59,7 +59,8 @@ def main() -> None:
             expect(page.locator(".side-editor.back .cm-editor")).to_be_visible()
             front_math = page.locator(".side-editor.front .cm-content mjx-container")
             back_math = page.locator(".side-editor.back .cm-content mjx-container")
-            expect(front_math).to_contain_text("π/6", timeout=30000)
+            # MathJax 4 sets \pi as the mathematical italic letter U+1D70B.
+            expect(front_math).to_contain_text("\U0001d70b/6", timeout=30000)
             expect(back_math.first).to_be_visible()
             page.screenshot(path=str(artifacts / "rendered.png"))
             front_math.click()
@@ -85,7 +86,9 @@ def main() -> None:
             page.get_by_role("button", name="Add card", exact=True).click()
             front_editor = page.locator(".side-editor.front .cm-content")
             back_editor = page.locator(".side-editor.back .cm-content")
-            front_editor.fill("Added question\n\nSecond question paragraph with $x^2$")
+            front_editor.fill(
+                "Added question\n\nSecond question paragraph with $x^2$ in $k\\fps{t}$"
+            )
             back_editor.fill(
                 "Added answer"
                 + " that runs well past the width of the editor" * 6
@@ -98,6 +101,9 @@ def main() -> None:
             page.get_by_role("combobox", name="Tags", exact=True).fill("edited")
             page.get_by_role("combobox", name="Tags", exact=True).press("Enter")
             expect(front_editor).to_contain_text("Second question paragraph")
+            # \fps sets t in the stmaryrd double brackets of pandoc-config.
+            expect(front_editor.locator("mjx-container")).to_have_count(2)
+            expect(front_editor.locator("mjx-merror")).to_have_count(0)
             expect(back_editor).to_contain_text("Second fact")
             saved(lambda text: "Added question" in text and "edited" in text)
             assert deck_path.read_bytes().startswith(authored_source)

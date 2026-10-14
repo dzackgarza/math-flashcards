@@ -14,9 +14,9 @@ just desktop-install
 Build dependencies: Bun, Rust, Cargo, `just`, and the [Tauri Linux prerequisites](https://v2.tauri.app/start/prerequisites/).
 Runtime dependencies: `uv` and Pandoc on `PATH`, and network access to GitHub.
 Opening or refreshing a workspace and updating a package install the latest
-Ankdown exporter from its main branch and fetch the current macros from
-pandoc-config main. Saving needs no network. The native build includes the
-bridge and local MathJax assets.
+Ankdown exporter from its main branch and fetch the current macros and the
+MathJax `stmaryrd` package from pandoc-config main. Saving needs no network. The native build includes the
+bridge and local MathJax 4 assets, with the New Computer Modern font.
 Installation adds **Math Flashcards** to the application menu and installs the
 `math-flashcards` command. The commit gate ends with `just desktop-update`, which
 rebuilds and installs the app, icon, launcher, and desktop entry. Each commit

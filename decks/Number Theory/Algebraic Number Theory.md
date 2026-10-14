@@ -32,7 +32,7 @@ Give an example of a local ring which is not a DVR.
 :::
 
 ::: {.back card-id="card-8827e1fd9b908673"}
-$R = k{[\![  x^2, x^3 ]\!]  }$ is local with ${\mathfrak{m}}_R = \left\langle{x^2, x^3}\right\rangle$, so not a PID.
+$R = k\fps{x^2, x^3}$ is local with ${\mathfrak{m}}_R = \left\langle{x^2, x^3}\right\rangle$, so not a PID.
 :::
 
 ::: {.front card-id="card-bb3f3bb4b22f2656"}

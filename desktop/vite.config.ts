@@ -1,7 +1,8 @@
 import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
 import { viteStaticCopy } from "vite-plugin-static-copy";
-import { spawn } from "node:child_process";
+import { execFile, spawn } from "node:child_process";
+import { promisify } from "node:util";
 import { text } from "node:stream/consumers";
 import { fileURLToPath } from "node:url";
 
@@ -46,16 +47,26 @@ function workbenchBackend(): Plugin {
           return;
         }
         const body = await text(request);
-        // Listing and generation install the latest exporter from GitHub main.
+        // Listing and generation install the latest exporter from GitHub main
+        // into the script environment; every request runs its interpreter, so
+        // no other request reads the network.
+        // https://docs.astral.sh/uv/guides/scripts/
+        const script = fileURLToPath(new URL("./backend.py", import.meta.url));
         const { action } = JSON.parse(body) as { action: string };
-        const child = spawn("uv", [
-          "run",
-          ...(action === "list" || action === "generate"
-            ? ["--refresh-package", "ankdown"]
-            : []),
-          "--script",
-          fileURLToPath(new URL("./backend.py", import.meta.url)),
-        ]);
+        const uv = async (args: string[]) =>
+          (
+            await promisify(execFile)("uv", [...args, "--script", script])
+          ).stdout.trim();
+        let python: string;
+        try {
+          if (action === "list" || action === "generate")
+            await uv(["sync", "--refresh-package", "ankdown"]);
+          python = await uv(["python", "find"]);
+        } catch (error) {
+          response.writeHead(500).end((error as Error).message);
+          return;
+        }
+        const child = spawn(python, [script]);
         const stdout = text(child.stdout);
         const stderr = text(child.stderr);
         child.on("error", (error) =>
@@ -90,9 +101,14 @@ export default defineConfig({
     viteStaticCopy({
       targets: [
         {
-          src: "node_modules/mathjax/es5/**/*",
+          src: "node_modules/mathjax/**/*",
           dest: "mathjax",
-          rename: { stripBase: 3 },
+          rename: { stripBase: 2 },
+        },
+        {
+          src: "node_modules/@mathjax/mathjax-newcm-font/chtml/**/*",
+          dest: "fonts/mathjax-newcm-font/chtml",
+          rename: { stripBase: 4 },
         },
       ],
     }),

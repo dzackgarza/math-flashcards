@@ -20,11 +20,16 @@ import type { Macros } from "./bridge";
 // source/common/modules/markdown-editor/renderers/render-math.ts,
 // base-renderer.ts, click-and-select.ts, and util/math-delimiters.ts.
 
-// MathJax 3 component API: https://docs.mathjax.org/en/v3.2/web/typeset.html#converting-a-math-string-to-other-formats
+// MathJax 4 component API: https://docs.mathjax.org/en/v4.0/web/typeset.html#converting-a-math-string-to-other-formats
 export interface MathJaxRuntime {
   startup: {
     promise: Promise<void>;
-    document: { clear(): void; updateDocument(): void };
+    defaultReady(): void;
+    document: {
+      clear(): void;
+      updateDocument(): void;
+      outputJax: { font: { loadDynamicFiles(): Promise<void> } };
+    };
   };
   tex2chtml(math: string, options: { display: boolean }): HTMLElement;
   tex2mml(math: string, options: { display: boolean }): string;
@@ -33,14 +38,14 @@ export interface MathJaxRuntime {
 let texErrors: string[] = [];
 
 // TeX input options shared by the editor and the deck check, with the packages
-// of the Anki card template. The macros use mathtools. Without the
+// of the Anki card template. The macros use mathtools and stmaryrd. Without the
 // noundefined package an unknown macro is an error, as in LaTeX. MathJax
 // reports every TeX error through formatError:
-// https://docs.mathjax.org/en/v3.2/options/input/tex.html#tex-options
+// https://docs.mathjax.org/en/v4.0/options/input/tex.html#tex-options
 export function texOptions(macros: Macros) {
   return {
     macros,
-    packages: { "[+]": ["mathtools"], "[-]": ["noundefined"] },
+    packages: { "[+]": ["mathtools", "stmaryrd"], "[-]": ["noundefined"] },
     formatError(jax: { formatError(error: Error): unknown }, error: Error) {
       texErrors.push(error.message);
       return jax.formatError(error);
@@ -71,17 +76,38 @@ declare global {
   interface Window {
     MathJax: MathJaxRuntime;
   }
+  // Defined by pandoc-config's templates/js/mathjax-stmaryrd.js.
+  function registerStmaryrd(mathjax: MathJaxRuntime): void;
+}
+
+// Runs pandoc-config's stmaryrd script, which defines registerStmaryrd. Call
+// registerStmaryrd in startup.ready, before MathJax builds the TeX input.
+export function defineStmaryrd(script: string) {
+  new Function(script)();
 }
 
 let runtime: Promise<MathJaxRuntime> | undefined;
 
-// MathJax reads its configuration once, when the component script loads.
-export function loadMathJax(macros: Macros): Promise<MathJaxRuntime> {
+// MathJax reads its configuration once, when the component script loads. The
+// editor converts equations synchronously, so the font data that MathJax 4
+// loads on demand is loaded first:
+// https://docs.mathjax.org/en/v4.0/upgrading/whats-new-4.0/promises.html
+export function loadMathJax(
+  macros: Macros,
+  stmaryrd: string,
+): Promise<MathJaxRuntime> {
   runtime ??= new Promise((resolve, reject) => {
+    defineStmaryrd(stmaryrd);
     Object.assign(window, {
       MathJax: {
-        startup: { typeset: false },
-        loader: { load: ["[tex]/mathtools"] },
+        startup: {
+          typeset: false,
+          ready() {
+            registerStmaryrd(window.MathJax);
+            window.MathJax.startup.defaultReady();
+          },
+        },
+        loader: { load: ["[tex]/mathtools"], paths: { fonts: "/fonts" } },
         tex: texOptions(macros),
       },
     });
@@ -89,10 +115,11 @@ export function loadMathJax(macros: Macros): Promise<MathJaxRuntime> {
     script.src = "/mathjax/tex-chtml.js";
     script.onerror = () => reject(new Error("MathJax failed to load."));
     script.onload = () => {
-      window.MathJax.startup.promise.then(
-        () => resolve(window.MathJax),
-        reject,
-      );
+      window.MathJax.startup.promise
+        .then(() =>
+          window.MathJax.startup.document.outputJax.font.loadDynamicFiles(),
+        )
+        .then(() => resolve(window.MathJax), reject);
     };
     document.head.append(script);
   });

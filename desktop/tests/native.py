@@ -232,7 +232,8 @@ def main(*, entry: Path | None = None) -> None:
                     backend_children = [
                         line
                         for line in processes.splitlines()
-                        if line.split() == [app_pid, "uv"]
+                        if line.split()[0] == app_pid
+                        and line.split()[1].startswith(("uv", "python"))
                     ]
                     assert len(backend_children) <= 2
                     time.sleep(0.05)

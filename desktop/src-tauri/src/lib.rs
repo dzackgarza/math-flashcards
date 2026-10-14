@@ -38,20 +38,35 @@ async fn request(
         let _permit = permit;
         let scope: Scope = serde_json::from_str(&payload).map_err(|e| e.to_string())?;
         eprintln!("Backend request: {}", scope.action);
-        // Listing and generation install the latest exporter from GitHub main.
-        let mut command = Command::new("uv");
-        command.arg("run");
+        // Listing and generation install the latest exporter from GitHub main
+        // into the script environment; every request runs its interpreter, so
+        // no other request reads the network.
+        // https://docs.astral.sh/uv/guides/scripts/
+        let uv = |args: &[&str]| -> Result<String, String> {
+            let output = Command::new("uv")
+                .args(args)
+                .arg("--script")
+                .arg(&script)
+                .output()
+                .map_err(|e| format!("Could not start uv: {e}"))?;
+            if !output.status.success() {
+                return Err(String::from_utf8_lossy(&output.stderr).into_owned());
+            }
+            String::from_utf8(output.stdout)
+                .map(|path| path.trim().to_owned())
+                .map_err(|e| e.to_string())
+        };
         if scope.action == "list" || scope.action == "generate" {
-            command.args(["--refresh-package", "ankdown"]);
+            uv(&["sync", "--refresh-package", "ankdown"])?;
         }
-        let mut child = command
-            .arg("--script")
-            .arg(script)
+        let python = uv(&["python", "find"])?;
+        let mut child = Command::new(python)
+            .arg(&script)
             .stdin(Stdio::piped())
             .stdout(Stdio::piped())
             .stderr(Stdio::piped())
             .spawn()
-            .map_err(|e| format!("Could not start uv: {e}"))?;
+            .map_err(|e| format!("Could not start the backend: {e}"))?;
         child
             .stdin
             .take()

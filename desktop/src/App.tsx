@@ -346,7 +346,7 @@ export default function App() {
       setDraft(null);
       setLog("");
       setConflict(false);
-      loadMathJax(result.macros).then(setMathjax, (failure) =>
+      loadMathJax(result.macros, result.stmaryrd).then(setMathjax, (failure) =>
         setError(String(failure)),
       );
       setBuildResult("Ready");

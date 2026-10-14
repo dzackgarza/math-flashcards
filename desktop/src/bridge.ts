@@ -42,6 +42,7 @@ export const workspaceSchema = z.object({
       z.tuple([z.string(), z.number(), z.string()]),
     ]),
   ),
+  stmaryrd: z.string(),
 });
 export const documentSchema = z.object({
   source: z.string(),
