@@ -73,8 +73,14 @@ def main() -> None:
             back_editor = page.locator(".side-editor.back .cm-content")
             front_editor.fill("Added question\n\nSecond question paragraph with $x^2$")
             back_editor.fill(
-                "Added answer\n\n$$\\frac{1}{2}$$\n\n- First fact\n- Second fact"
+                "Added answer"
+                + " that runs well past the width of the editor" * 6
+                + "\n\n$$\\frac{1}{2}$$\n\n- First fact\n- Second fact"
             )
+            for side in ("front", "back"):
+                assert page.locator(f".side-editor.{side} .cm-scroller").evaluate(
+                    "scroller => scroller.scrollWidth <= scroller.clientWidth"
+                ), f"{side} editor scrolls horizontally"
             page.get_by_role("combobox", name="Tags", exact=True).fill("edited")
             page.get_by_role("combobox", name="Tags", exact=True).press("Enter")
             expect(front_editor).to_contain_text("Second question paragraph")

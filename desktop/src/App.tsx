@@ -33,7 +33,6 @@ import {
 import { announce } from "@atlaskit/pragmatic-drag-and-drop-live-region";
 import { modals } from "@mantine/modals";
 import { useForm } from "@mantine/form";
-import CodeMirror from "@uiw/react-codemirror";
 import { isTauri } from "@tauri-apps/api/core";
 import { getCurrentWindow } from "@tauri-apps/api/window";
 import { appConfigDir, join } from "@tauri-apps/api/path";
@@ -50,8 +49,8 @@ import {
   transferCards,
   type CardRange,
 } from "./cards";
-import { cardLanguage } from "./editor";
-import { loadMathJax, type MathJaxRuntime, renderedMath } from "./math";
+import { type Side, SideEditor } from "./editor";
+import { loadMathJax, type MathJaxRuntime } from "./math";
 import {
   CardRow,
   NewDeckForm,
@@ -156,10 +155,6 @@ export default function App() {
   const mismatch = useMemo(
     () => document !== null && document.cards !== cards(document.saved).length,
     [document?.cards, document?.saved],
-  );
-  const extensions = useMemo(
-    () => (mathjax ? [cardLanguage, renderedMath(mathjax)] : [cardLanguage]),
-    [mathjax],
   );
 
   async function refresh(root = workspace) {
@@ -362,11 +357,11 @@ export default function App() {
     );
   }
 
-  function editCard(field: "front" | "back", value: string) {
+  function editCard(field: Side, value: string) {
     if (!document || !draft) return;
     const next = { ...draft, [field]: value };
     let source = draft.source;
-    const sides: ("front" | "back")[] = ["front", "back"];
+    const sides: Side[] = ["front", "back"];
     for (const side of sides.sort(
       (a, b) => draft.card[b].from - draft.card[a].from,
     )) {
@@ -1029,42 +1024,21 @@ export default function App() {
                       {draft ? (
                         <Stack gap="md">
                           <div className="side-editors">
-                            {(["front", "back"] as const).map((field) => (
-                              <Box
-                                key={field}
-                                className={"side-editor " + field}
-                              >
-                                <Title
-                                  order={4}
-                                  size="h6"
-                                  mb="xs"
-                                  id={field + "-label"}
-                                >
-                                  {field === "front" ? "Front" : "Back"}
-                                </Title>
-                                <CodeMirror
-                                  key={
-                                    document.path +
-                                    ":" +
-                                    draft.card.id +
-                                    ":" +
-                                    field
-                                  }
-                                  value={draft[field]}
-                                  minHeight="100px"
-                                  maxHeight="60vh"
-                                  extensions={extensions}
-                                  basicSetup={{
-                                    lineNumbers: false,
-                                    foldGutter: false,
-                                  }}
-                                  editable={!busy}
-                                  onChange={(value) => editCard(field, value)}
-                                  aria-label={
-                                    field === "front" ? "Front" : "Back"
-                                  }
-                                />
-                              </Box>
+                            {(["front", "back"] as const).map((side) => (
+                              <SideEditor
+                                key={
+                                  document.path +
+                                  ":" +
+                                  draft.card.id +
+                                  ":" +
+                                  side
+                                }
+                                side={side}
+                                value={draft[side]}
+                                mathjax={mathjax}
+                                editable={!busy}
+                                onChange={(value) => editCard(side, value)}
+                              />
                             ))}
                           </div>
                           <TagsInput
