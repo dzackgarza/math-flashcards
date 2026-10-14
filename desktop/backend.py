@@ -133,10 +133,10 @@ class Summary(BaseModel):
     path: str
     status: Status
     reasons: list[str]
+    source: str
 
 
 class Pending(Summary):
-    source: str
     built: str | None
 
 
@@ -522,6 +522,7 @@ def dispatch(
                     path=str(path.relative_to(root / "decks")),
                     status=state.status,
                     reasons=state.reasons,
+                    source=path.read_text(encoding="utf-8"),
                 )
             )
         return Workspace(

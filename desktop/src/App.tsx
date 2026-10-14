@@ -29,6 +29,7 @@ import {
   type SpotlightActionGroupData,
 } from "@mantine/spotlight";
 import {
+  IconAlertTriangle,
   IconArrowBackUp,
   IconCards,
   IconChevronDown,
@@ -86,6 +87,7 @@ import {
   targetSchema,
 } from "./organize";
 import { ReviewChanges } from "./review";
+import { ProblemDrawer, useProblems } from "./problem-drawer";
 import {
   request,
   watchWorkspace,
@@ -173,6 +175,7 @@ export default function App() {
   const [selection, setSelection] = useState<string[]>([]);
   const [notice, setNotice] = useState<Notice | null>(null);
   const [review, setReview] = useState<Review | null>(null);
+  const [problemsOpen, setProblemsOpen] = useState(false);
   // The latest document for asynchronous saves and disk events.
   const current = useRef<Document | null>(null);
   const saving = useRef<Promise<void>>(Promise.resolve());
@@ -209,6 +212,30 @@ export default function App() {
   const changed = useMemo(
     () => new Map(changes.map((change) => [change.id, change.kind])),
     [changes],
+  );
+  // The open deck is checked as saved; the others as listed.
+  const sources = useMemo(
+    () =>
+      decks.map((deck) =>
+        deck.path === document?.path
+          ? { path: deck.path, source: document.saved }
+          : deck,
+      ),
+    [decks, document?.path, document?.saved],
+  );
+  const problems = useProblems(mathjax, sources);
+  const problemDecks = useMemo(
+    () => new Set((problems ?? []).map((problem) => problem.path)),
+    [problems],
+  );
+  const problemCards = useMemo(
+    () =>
+      new Set(
+        (problems ?? [])
+          .filter((problem) => problem.path === document?.path)
+          .map((problem) => problem.card),
+      ),
+    [problems, document?.path],
   );
 
   function updateDocument(
@@ -1032,6 +1059,11 @@ export default function App() {
                 onClick: () => void openReview(null),
               },
               {
+                id: "problems",
+                label: "Show problems",
+                onClick: () => setProblemsOpen(true),
+              },
+              {
                 id: "generate-all",
                 label: "Update all Anki packages",
                 disabled: busy || pendingDecks.length === 0,
@@ -1233,6 +1265,12 @@ export default function App() {
                         />
                       )}
                       <span className="tree-label">{node.label}</span>
+                      {!hasChildren && problemDecks.has(path) && (
+                        <span
+                          className="tree-dot problem"
+                          title="The deck has problems"
+                        />
+                      )}
                       {!hasChildren && statuses.get(path) === "Unsynced" && (
                         <span
                           className="tree-dot"
@@ -1265,6 +1303,26 @@ export default function App() {
           )}
         </div>
         <Stack gap={4}>
+          {workspace && (
+            <Button
+              variant="subtle"
+              color={problems?.length ? "red" : "gray"}
+              justify="space-between"
+              aria-label="Show problems"
+              styles={{ label: { flex: 1 } }}
+              leftSection={<IconAlertTriangle size={16} />}
+              rightSection={
+                problems?.length ? (
+                  <Badge size="sm" variant="filled" color="red">
+                    {problems.length}
+                  </Badge>
+                ) : null
+              }
+              onClick={() => setProblemsOpen(true)}
+            >
+              Problems
+            </Button>
+          )}
           {pendingDecks.length > 0 && (
             <Button
               variant="light"
@@ -1406,6 +1464,7 @@ export default function App() {
                         label={range.label}
                         preview={previews?.[cardIndex] ?? null}
                         change={changed.get(range.id) ?? null}
+                        problem={problemCards.has(range.id)}
                         active={index === cardIndex}
                         selected={selection.includes(range.id)}
                         group={ranges
@@ -1589,6 +1648,17 @@ export default function App() {
         update={(paths) => {
           setReview(null);
           guard(() => generate(paths));
+        }}
+      />
+      <ProblemDrawer
+        problems={problems}
+        decks={decks.length}
+        mathjax={mathjax}
+        opened={problemsOpen}
+        close={() => setProblemsOpen(false)}
+        open={(problem) => {
+          setProblemsOpen(false);
+          guard(() => chooseDeck(problem.path, problem.card ?? undefined));
         }}
       />
       <Spotlight

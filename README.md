@@ -51,6 +51,10 @@ select it to review the new, edited, and removed cards and to go to each one.
 **Update Anki packages** in the sidebar reviews and updates every out-of-date
 package at once. A failed update keeps the previous package.
 
+**Problems** in the sidebar lists every equation that does not render, every
+card without an answer, and every deck with invalid card structure. Select a
+problem to open its card.
+
 Use `just desktop-dev` for native development. The [desktop guide](desktop/README.md)
 lists dependencies, verification commands, and the Anki import boundary.
 
@@ -62,7 +66,8 @@ card order. Each side accepts normal Pandoc Markdown and LaTeX. Math uses `$…$
 (inline) and `$$…$$` (display), with no space just inside a delimiter. Display
 math continues its paragraph, so no blank line separates it from adjacent text.
 `just test` rejects a `$` that Pandoc does not read as math, a blank line beside
-display math, and trailing whitespace. The front div's optional `tags` attribute
+display math, trailing whitespace, and an equation that MathJax cannot render
+with the exporter's macros, such as one with an undefined macro. The front div's optional `tags` attribute
 sets Anki tags. The frontmatter `title` is the Anki deck name, with `::` denoting sub-decks.
 
 ```markdown

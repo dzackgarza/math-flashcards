@@ -29,6 +29,7 @@ const summarySchema = z.object({
   path: z.string(),
   status: statusSchema,
   reasons: z.array(z.string()),
+  source: z.string(),
 });
 export const workspaceSchema = z.object({
   root: z.string(),
@@ -52,9 +53,7 @@ export const documentSchema = z.object({
   package: z.string(),
 });
 export const reviewSchema = z.object({
-  decks: z.array(
-    summarySchema.extend({ source: z.string(), built: z.string().nullable() }),
-  ),
+  decks: z.array(summarySchema.extend({ built: z.string().nullable() })),
 });
 export const generatedSchema = z.object({
   status: statusSchema,

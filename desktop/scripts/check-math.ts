@@ -1,6 +1,5 @@
 // Reports the problems that the editor's Problems drawer shows, for every deck
 // in a workspace, and fails when there is one.
-import { readFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { join } from "node:path";
 import { workspaceSchema } from "../src/bridge";
@@ -26,11 +25,7 @@ const mathjax = await createRequire(import.meta.url)("mathjax").init({
   tex: texOptions(workspace.macros),
 });
 const problems = workspace.decks.flatMap((deck) =>
-  deckProblems(
-    mathjax,
-    deck.path,
-    readFileSync(join(workspace.root, "decks", deck.path), "utf-8"),
-  ),
+  deckProblems(mathjax, deck.path, deck.source),
 );
 for (const problem of problems)
   console.log(

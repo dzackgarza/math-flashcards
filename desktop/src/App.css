@@ -136,6 +136,15 @@ body {
   border-radius: 50%;
   background: var(--mantine-color-orange-5);
 }
+/* MathJax draws a TeX error in red on yellow; the error takes the problem
+   colors instead. MathJax measures the error text, so its font stays. */
+mjx-merror {
+  color: var(--mantine-color-red-8) !important;
+  background-color: var(--mantine-color-red-0) !important;
+}
+.tree-dot.problem {
+  background: var(--mantine-color-red-6);
+}
 
 /* Content */
 .content {
@@ -238,10 +247,15 @@ body {
 .card-row-label {
   position: relative;
 }
-.card-row-change {
+.card-row-marks {
   position: absolute;
   top: 10px;
   right: 10px;
+  display: flex;
+  gap: 4px;
+}
+.card-row-change,
+.card-row-problem {
   padding: 0 6px;
   border-radius: 6px;
   font-size: 12px;
@@ -250,10 +264,17 @@ body {
   color: var(--mantine-color-orange-8);
   background: var(--mantine-color-orange-0);
 }
-.card-row[data-change] .card-row-front {
-  padding-right: 48px;
+.card-row-problem {
+  color: var(--mantine-color-red-8);
+  background: var(--mantine-color-red-0);
 }
-.card-row.active .card-row-change {
+.card-row:is([data-change], [data-problem]) .card-row-front {
+  padding-right: 64px;
+}
+.card-row[data-change][data-problem] .card-row-front {
+  padding-right: 120px;
+}
+.card-row.active :is(.card-row-change, .card-row-problem) {
   color: var(--mantine-color-white);
   background: rgba(255, 255, 255, 0.18);
 }
@@ -438,6 +459,27 @@ div.rendered-math {
 }
 button.change-row:hover {
   background: var(--hover);
+}
+.problem-row {
+  display: grid;
+  gap: 4px;
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 8px;
+}
+.problem-row:hover {
+  background: var(--hover);
+}
+.problem-side {
+  flex: none;
+  margin-left: auto;
+}
+.problem-message {
+  color: var(--mantine-color-red-8);
+}
+.problem-source {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 .change-kind {
   flex: none;

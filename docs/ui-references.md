@@ -47,4 +47,6 @@ and each one sets the quality bar for one part of the editor.
    context menu in the tree.
 6. A command menu (Ctrl-K) finds decks, cards, and actions. Edits save
    automatically.
-7. The type scale has four sizes: 12, 14, 16, and 20 px, set in Inter.
+7. Problems in all decks are in a drawer at the right, opened from the sidebar
+   footer. Dots in the tree and labels in the card list mark where they are.
+8. The type scale has four sizes: 12, 14, 16, and 20 px, set in Inter.

@@ -106,6 +106,7 @@ export function CardRow({
   label,
   preview,
   change,
+  problem,
   active,
   selected,
   group,
@@ -117,6 +118,7 @@ export function CardRow({
   label: string;
   preview: { front: string; back: string } | null;
   change: "added" | "edited" | "removed" | null;
+  problem: boolean;
   active: boolean;
   selected: boolean;
   group: string[];
@@ -159,6 +161,7 @@ export function CardRow({
       ref={element}
       data-card={id}
       data-change={change ?? undefined}
+      data-problem={problem || undefined}
       className={
         "card-row" +
         (active ? " active" : "") +
@@ -186,9 +189,18 @@ export function CardRow({
         ) : (
           <span className="card-row-front">{label}</span>
         )}
-        {change && (
-          <span className="card-row-change">
-            {change === "added" ? "New" : "Edited"}
+        {(change || problem) && (
+          <span className="card-row-marks">
+            {problem && (
+              <span className="card-row-problem" title="The card has problems">
+                Problem
+              </span>
+            )}
+            {change && (
+              <span className="card-row-change">
+                {change === "added" ? "New" : "Edited"}
+              </span>
+            )}
           </span>
         )}
       </UnstyledButton>

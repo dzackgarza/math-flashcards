@@ -226,6 +226,43 @@ def main() -> None:
             page.screenshot(
                 path=str(artifacts / "generation-failed.png"), full_page=True
             )
+
+            # The Problems drawer lists every equation that does not render and
+            # every card without an answer, in all decks.
+            (root / "decks" / "Basics" / "Broken.md").write_text(
+                '---\ntitle: "Broken"\n---\n\n::: {.front card-id="macro"}\nUnknown $\\undefinedmacro x$\n:::\n\n::: {.back card-id="macro"}\n$$\\left{ x \\right}$$\n:::\n'
+            )
+            problems_button = page.get_by_role(
+                "button", name="Show problems", exact=True
+            )
+            expect(problems_button).to_contain_text("3", timeout=30000)
+            expect(page.locator(".tree-dot.problem")).to_have_count(2)
+            problem_row = page.locator(".card-row[data-problem]")
+            expect(problem_row).to_contain_text("Missing answer")
+            expect(problem_row).to_contain_text("Problem")
+            problems_button.click()
+            drawer = page.get_by_role("dialog", name="3 problems", exact=True)
+            expect(drawer).to_contain_text(
+                "Undefined control sequence \\undefinedmacro"
+            )
+            expect(drawer).to_contain_text(
+                "Missing or unrecognized delimiter for \\left"
+            )
+            expect(drawer).to_contain_text(
+                "The exporter rejects a card without an answer."
+            )
+            page.wait_for_timeout(300)
+            page.screenshot(path=str(artifacts / "problems.png"))
+            drawer.locator(
+                ".problem-message", has_text="Undefined control sequence"
+            ).click()
+            expect(drawer).not_to_be_visible()
+            expect(page.locator(".deck-title")).to_have_text("Broken", timeout=30000)
+            expect(page.locator(".card-row.active[data-problem]")).to_be_visible()
+            expect(
+                page.locator(".side-editor.front .cm-content mjx-merror")
+            ).to_be_visible(timeout=30000)
+            page.screenshot(path=str(artifacts / "problem-card.png"))
             for width in (768, 1024):
                 page.set_viewport_size({"width": width, "height": 1000})
                 page.screenshot(

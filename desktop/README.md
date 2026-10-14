@@ -71,6 +71,20 @@ adapted from Zettlr. Click an equation, or move the cursor into it, to edit its
 source. Saves and organization changes check each deck with the exporter's
 Pandoc filter and media resolution.
 
+An equation that MathJax cannot render shows the TeX error in red. An undefined
+macro is an error, as in LaTeX. **Problems** at the bottom of the sidebar shows
+the number of problems in all decks and opens a list of them, grouped by deck:
+
+| Problem | Meaning |
+| --- | --- |
+| LaTeX | An equation does not render; the list shows the TeX error and the equation source |
+| Card structure | The deck has an unpaired side, a duplicate side, or a missing ID |
+| Empty answer | A card has no back; the exporter rejects it |
+
+Select a problem to open its card. A red dot in the deck tree marks a deck with
+problems, and **Problem** marks each card with problems in the card list. The
+list follows the saved decks.
+
 Use **Add card** or **Delete card** to change the deck. Edits save to the deck
 file shortly after typing stops. Ctrl-S, switching decks, organization changes,
 package updates, and closing the window save at once. A deck with invalid card
@@ -91,8 +105,7 @@ The menu button at the right of the toolbar holds the deck actions:
 | Delete deck… | Sends the deck file and its package to the trash |
 | Update all Anki packages | Updates every out-of-date package in the workspace |
 
-**Generation output** shows the exporter result or error. An empty answer is an
-export error.
+**Generation output** shows the exporter result or error.
 
 The toolbar shows one status:
 
@@ -140,8 +153,9 @@ See [Anki's packaged deck documentation](https://docs.ankiweb.net/manual/importi
 | `just desktop-organization-test` | Tree drag, grouped moves, reorder, merge, new decks, rename, delete, Undo, and updating all packages |
 | `just desktop-native-test` | Built native window and export on an isolated X11 display |
 | `just desktop-format` | Canonical Python, TypeScript, CSS, and Rust formatting |
+| `just check-math` | The Problems list for every deck in the repository; fails when it is not empty |
 
-The commit gate runs the deck check, frontend build, source corpus check, and
+The commit gate runs the deck check, the math check, frontend build, source corpus check, and
 browser scenario. Browser checks require Playwright Chromium; provision it with
 `uvx --from playwright==1.58.0 playwright install chromium`.
 Native capture requires Xvfb and xdotool. Screenshots, the browser trace, and
@@ -149,5 +163,6 @@ diagnostic logs are generated in `desktop/test-artifacts/`.
 
 The browser scenario checks card typing, inline math, source preservation,
 automatic saves, the change review, delete, package contents, package status,
-disk changes to the open deck, save conflicts, and failed export preservation. The native scenario runs the built executable with
+disk changes to the open deck, save conflicts, failed export preservation, and
+the Problems list. The native scenario runs the built executable with
 disposable deck copies and isolated app data.
