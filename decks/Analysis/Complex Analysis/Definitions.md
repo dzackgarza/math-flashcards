@@ -3,7 +3,7 @@ title: "Analysis::Complex Analysis::Definitions"
 ---
 
 ::: {.front card-id="card-cad38830857677f5"}
-Define $\log(z)$ for $z\in {\mathbf{C}}$.
+Define $\log(z)$ for $z\in \CC$.
 :::
 
 ::: {.back card-id="card-cad38830857677f5"}

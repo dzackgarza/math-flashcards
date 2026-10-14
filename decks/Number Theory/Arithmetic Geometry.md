@@ -7,9 +7,9 @@ What are Witt vectors?
 :::
 
 ::: {.back card-id="card-cba9b3434509cac6"}
-For a $K\in { {}_{{ \mathbf{F} }_p}  \mathsf{Alg}}^{\mathrm{perf}}$, the unique lift $W(K)\in { {}_{{ {\mathbf{Z}}_{\widehat{p}} }}  \mathsf{Alg}}$ which is $p{\hbox{-}}$adically complete and $p{\hbox{-}}$torsionfree.
+For a $K\in { {}_{{ \mathbf{F} }_p}  \mathsf{Alg}}^\perf$, the unique lift $W(K)\in { {}_{{ \ZZ_{\widehat{p}} }}  \mathsf{Alg}}$ which is $p\dash$adically complete and $p\dash$torsionfree.
 
-$W({ \mathbf{F} }_p) = { {\mathbf{Z}}_{\widehat{p}} }$.
+$W({ \mathbf{F} }_p) = { \ZZ_{\widehat{p}} }$.
 :::
 
 ::: {.front card-id="card-3e5dc56ada4e1e06"}
@@ -25,9 +25,9 @@ What is tilting?
 :::
 
 ::: {.back card-id="card-e1df0dc2c8cac23f"}
-For $A\in {}_{{\mathbf{Z}}}  \mathsf{Alg}$ $\pi{\hbox{-}}$adically complete for some $\pi\mathrel{\Big|}p$, the tilt is $A^\flat \coloneqq\projectivelim_{\operatorname{Frob}} A/pA$ where $\operatorname{Frob}: A/pA \to A/pA$.
+For $A\in {}_{\ZZ}  \mathsf{Alg}$ $\pi\dash$adically complete for some $\pi\mathrel{\Big|}p$, the tilt is $A^\flat \coloneqq\projectivelim_{\operatorname{Frob}} A/pA$ where $\operatorname{Frob}: A/pA \to A/pA$.
 
-Always have $A^\flat \in { {}_{{ \mathbf{F} }_p}  \mathsf{Alg}}^{\mathrm{perf}}$.
+Always have $A^\flat \in { {}_{{ \mathbf{F} }_p}  \mathsf{Alg}}^\perf$.
 
 Think of $\mathbf{x}\in A^\flat \cong \projectivelim_{x\mapsto x^p} A$ as $x_{i+1}^p =x_i$.
 :::
@@ -49,7 +49,7 @@ What is a perfectoid ring $S$?
 :::
 
 ::: {.back card-id="card-676f75baf8ef9695"}
-$S$ is $\pi{\hbox{-}}$adically complete for some $\pi\in S$ with $\pi^p \mathrel{\Big|}p$
+$S$ is $\pi\dash$adically complete for some $\pi\in S$ with $\pi^p \mathrel{\Big|}p$
 
 $\operatorname{Frob}: S/pS \to S/pS$ is surjective.
 
@@ -61,27 +61,27 @@ If $S$ is characteristic $p$, then $S$ is perfect iff perfectoid.
 :::
 
 ::: {.front card-id="card-905e3693341d235d"}
-What is $A_{{\mathrm{crys}}}$?
+What is $A_{\crys}$?
 :::
 
 ::: {.back card-id="card-905e3693341d235d"}
-Setup: $K = { {\mathbf{C}}_p }, S\coloneqq{\mathcal{O}}_K, A_\inf \coloneqq{\mathbf{A}}_\inf({\mathcal{O}}_K)$.
+Setup: $K = { \CC_p }, S\coloneqq{\mathcal{O}}_K, A_\inf \coloneqq{\mathbf{A}}_\inf({\mathcal{O}}_K)$.
 
-$A_{\mathrm{crys}}$ is the $p{\hbox{-}}$adic completion of the subalgebra $\left\langle{\xi^m/m!}\right\rangle \leq A_\inf{ \left[ { \scriptstyle \frac{1}{p} } \right] }$ .
+$A_\crys$ is the $p\dash$adic completion of the subalgebra $\left\langle{\xi^m/m!}\right\rangle \leq A_\inf{ \left[ { \scriptstyle \frac{1}{p} } \right] }$ .
 
-Universal $p{\hbox{-}}$adically complete divided power thickening of ${\mathcal{O}}_K$ over ${ {\mathbf{Z}}_{\widehat{p}} }$.
+Universal $p\dash$adically complete divided power thickening of ${\mathcal{O}}_K$ over ${ \ZZ_{\widehat{p}} }$.
 :::
 
 ::: {.front card-id="card-ae412126be38c441"}
-What is $B_{\mathrm{crys}}$ and $B_{\mathrm{crys}}^+$? $B_\mathrm{dR}$?
+What is $B_\crys$ and $B_\crys^+$? $B_\mathrm{dR}$?
 :::
 
 ::: {.back card-id="card-ae412126be38c441"}
-$B^+_{\mathrm{crys}}\coloneqq A_{\mathrm{crys}}{ \left[ { \scriptstyle \frac{1}{p} } \right] }$ and $B_{\mathrm{crys}}= B_{\mathrm{crys}}^+{ \left[ { \scriptstyle \frac{1}{\mu} } \right] }$
+$B^+_\crys\coloneqq A_\crys{ \left[ { \scriptstyle \frac{1}{p} } \right] }$ and $B_\crys= B_\crys^+{ \left[ { \scriptstyle \frac{1}{\mu} } \right] }$
 
-$B_\mathrm{dR}^+$ is the $\xi{\hbox{-}}$adic completion of $B^+_{\mathrm{crys}}$ and $B_\mathrm{dR}= \operatorname{ff}B^+_\mathrm{dR}$.
+$B_\mathrm{dR}^+$ is the $\xi\dash$adic completion of $B^+_\crys$ and $B_\mathrm{dR}= \operatorname{ff}B^+_\mathrm{dR}$.
 
-$B^+_\mathrm{dR}$ is a DVR with residue field ${ {\mathbf{C}}_p }$.
+$B^+_\mathrm{dR}$ is a DVR with residue field ${ \CC_p }$.
 :::
 
 ::: {.front card-id="card-91c27264b0ed0ce1"}
@@ -89,11 +89,11 @@ What is the etale homotopy type of a scheme $X$?
 :::
 
 ::: {.back card-id="card-91c27264b0ed0ce1"}
-For $X$ quasiprojective, ${\mathsf{ho}}\text{Ét}(X) \coloneqq\left\{{\pi_0 { {\left\lvert {{ \mathcal{N}({{\mathcal{U}}}) }} \right\rvert} }}\right\}_{{\mathcal{U}}\in X_\text{ét}} \in \mathsf{pro}{\mathsf{Spaces}}$
+For $X$ quasiprojective, ${\mathsf{ho}}\text{Ét}(X) \coloneqq\left\{{\pi_0 { {\left\lvert {{ \mathcal{N}({\mcu}) }} \right\rvert} }}\right\}_{\mcu\in X_\text{ét}} \in \mathsf{pro}\Spaces$
 
-For general $X$, replace ${ \mathcal{N}({{\mathcal{U}}}) }$ by hypercovers, and $X_\text{ét}$ only provides a left-filtering category up to homotopy, so generally in ${\mathsf{ho}}\mathsf{pro}{\mathsf{Spaces}}$.
+For general $X$, replace ${ \mathcal{N}({\mcu}) }$ by hypercovers, and $X_\text{ét}$ only provides a left-filtering category up to homotopy, so generally in ${\mathsf{ho}}\mathsf{pro}\Spaces$.
 
-Since $\left\{{{ {\left\lvert {{ \mathcal{N}({{\mathcal{U}}}) }} \right\rvert} }}\right\}_{{\mathcal{U}}\in X_\text{ét}}$ is a cofibrant replacement, ${\mathsf{ho}}\text{Ét}({-}) = {\mathbf{L}}\pi_0({-})$ is a derived functor.
+Since $\left\{{{ {\left\lvert {{ \mathcal{N}({\mcu}) }} \right\rvert} }}\right\}_{\mcu\in X_\text{ét}}$ is a cofibrant replacement, ${\mathsf{ho}}\text{Ét}({-}) = {\mathbf{L}}\pi_0({-})$ is a derived functor.
 :::
 
 ::: {.front card-id="card-c0543af4c9aff8b5"}
@@ -102,7 +102,7 @@ What is the section conjecture?
 
 ::: {.back card-id="card-c0543af4c9aff8b5"}
 For $X$ smooth hyperbolic and proper over $k$, there is a set bijection
-$$X(k)  { \, \xrightarrow{\sim}\, }\pi_0 \mathsf{pro}{\mathsf{Spaces}}_{/ {\operatorname{Spec}k}}(\text{Ét}(\operatorname{Spec}k) \to \text{Ét}(X))  { \, \xrightarrow{\sim}\, }\text{Ét}(X_{\overline{k}})^{h G_k},$$
+$$X(k)  { \, \xrightarrow{\sim}\, }\pi_0 \mathsf{pro}\Spaces_{/ {\operatorname{Spec}k}}(\text{Ét}(\operatorname{Spec}k) \to \text{Ét}(X))  { \, \xrightarrow{\sim}\, }\text{Ét}(X_{\overline{k}})^{h G_k},$$
 regarding the RHS as homotopy classes of morphisms.
 
 Thus conjecturally $X(k) { \, \xrightarrow{\sim}\, }\text{Ét}(X_{\overline{k}})^{h G_k}$ can be recovered from homotopy fixed points.
@@ -115,11 +115,11 @@ What inspires the anabelian conjectures?
 :::
 
 ::: {.back card-id="card-4ade8c1c7594ae11"}
-For $K\coloneqq{\mathbf{Q}}(\sqrt a), L\coloneqq{\mathbf{Q}}(\sqrt b)$,
-$${ \mathsf{Gal}}(K) \cong { \mathsf{Gal}}(L) \iff K\cong L \iff a=b\in {\mathbf{Q}}^{\times}/{ {{\mathbf{Q}}^{\times}}_{\scriptscriptstyle \square} }$$
-so ${\mathsf{Sch}}(\operatorname{Spec}L  { \, \xrightarrow{\sim}\, }\operatorname{Spec}K) \cong {\mathsf{ho}}\mathsf{pro}{\mathsf{Spaces}}(\text{Ét}(L) { \, \xrightarrow{\sim}\, }\text{Ét}(K))$.
+For $K\coloneqq\QQ(\sqrt a), L\coloneqq\QQ(\sqrt b)$,
+$$\Gal(K) \cong \Gal(L) \iff K\cong L \iff a=b\in \QQ^{\times}/{ {\QQ^{\times}}_{\scriptscriptstyle \square} }$$
+so $\Sch(\operatorname{Spec}L  { \, \xrightarrow{\sim}\, }\operatorname{Spec}K) \cong {\mathsf{ho}}\mathsf{pro}\Spaces(\text{Ét}(L) { \, \xrightarrow{\sim}\, }\text{Ét}(K))$.
 
-For $K, L\in \mathsf{Field}_{/ {{\mathbf{Q}}}}$, $\mathsf{Field}_{/ {{\mathbf{Q}}}}(K  { \, \xrightarrow{\sim}\, }L) \cong {\mathsf{Top}}{\mathsf{Grp}}(G_K { \, \xrightarrow{\sim}\, }_{\mathop{\mathrm{Out}}} G_L)$.
+For $K, L\in \mathsf{Field}_{/ {\QQ}}$, $\mathsf{Field}_{/ {\QQ}}(K  { \, \xrightarrow{\sim}\, }L) \cong \Top\Grp(G_K { \, \xrightarrow{\sim}\, }_{\mathop{\mathrm{Out}}} G_L)$.
 :::
 
 ::: {.front card-id="card-978ea3e5e7123eb1"}
@@ -127,8 +127,8 @@ What are the anabelian conjectures?
 :::
 
 ::: {.back card-id="card-978ea3e5e7123eb1"}
-Existence of $\mathsf{An}_k \leq {\mathsf{Sch}}_{/ {k}}$ a full subcategory including smooth hyperbolic curves, closed under taking fibrations with base and fiber in $\mathsf{An}_k$, and
-$${\mathsf{Sch}}(X_1\to X_2 {~\mathrel{\Big\vert}~}\text{open image}) \cong {\mathsf{Top}}{\mathsf{Grp}}_{/ {G_k}}(\pi_1 X_1 \to \pi_1 X_2 {~\mathrel{\Big\vert}~}\text{open morphisms})$$
+Existence of $\mathsf{An}_k \leq \Sch_{/ {k}}$ a full subcategory including smooth hyperbolic curves, closed under taking fibrations with base and fiber in $\mathsf{An}_k$, and
+$$\Sch(X_1\to X_2 \st\text{open image}) \cong \Top\Grp_{/ {G_k}}(\pi_1 X_1 \to \pi_1 X_2 \st\text{open morphisms})$$
 :::
 
 ::: {.front card-id="card-71b306da0e579252"}

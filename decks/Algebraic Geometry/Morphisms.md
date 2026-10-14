@@ -7,7 +7,7 @@ How does a morphism of rings induce an algebra structure?
 :::
 
 ::: {.back card-id="card-63efc03dbb2b7a94"}
-$f:R\to S$ induces $S\in   {}_{R}{\mathsf{Mod}}$ via $r.s \coloneqq f(r)s$.
+$f:R\to S$ induces $S\in   {}_{R}\Mod$ via $r.s \coloneqq f(r)s$.
 :::
 
 ::: {.front card-id="card-7f48b0ac525a085c"}
@@ -25,7 +25,7 @@ What is a **closed immersion** of schemes?
 ::: {.back card-id="card-86f3fc66ea0fc489"}
 $f:X\to Y$ inducing a homeomorphism $\tilde f: {\left\lvert {X} \right\rvert} \to {\left\lvert {V} \right\rvert}$ for ${\left\lvert {V} \right\rvert} \subseteq {\left\lvert {Y} \right\rvert}$ a closed subspace of the underlying topological spaces, such that $f^\sharp: {\mathcal{O}}_Y \twoheadrightarrow f_* {\mathcal{O}}_X$ is a surjective map of sheaves.
 
-Equivalently, separates points and tangent vectors, i.e. $p\neq q$ closed points in $X \implies \exists s\in {\mathfrak{m}}_p {\mathcal{L}}_p \setminus{\mathfrak{m}}_q {\mathcal{L}}_q$, and $\left\{{s\in V {~\mathrel{\Big\vert}~}s_p\in {\mathfrak{m}}_p {\mathcal{L}}_p}\right\}$ spans ${\mathfrak{m}}_p {\mathcal{L}}_p/{\mathfrak{m}}_p^2 {\mathcal{L}}_p$, where $\phi: X\to {\mathbf{P}}^n_{/ {k}}$ corresponds to ${\mathcal{L}}$ and $\left\{{s_0, \cdots, s_n}\right\}\in H^0(X; {\mathcal{L}})$.
+Equivalently, separates points and tangent vectors, i.e. $p\neq q$ closed points in $X \implies \exists s\in \mfm_p \mcl_p \setminus\mfm_q \mcl_q$, and $\left\{{s\in V \st s_p\in \mfm_p \mcl_p}\right\}$ spans $\mfm_p \mcl_p/\mfm_p^2 \mcl_p$, where $\phi: X\to {\mathbf{P}}^n_{/ {k}}$ corresponds to $\mcl$ and $\left\{{s_0, \cdots, s_n}\right\}\in H^0(X; \mcl)$.
 :::
 
 ::: {.front card-id="card-fa8d17dce5d4f805"}
@@ -53,7 +53,7 @@ Locally of finite presentation, flat, and regular geometric fibers. (LFP: open c
 
 Smooth implies regular.
 
-For ring maps: $f:R\to A$ of finite presentation with $\tau_{\leq 1}{\mathbb{L}}_{A/R} \cong M[0]$ with $M\in   {}_{A}{\mathsf{Mod}}$ some finite projective (i.e. the naive cotangent complex is quasi-isomorphic to a projective module in degree zero). For schemes: smooth at $x \iff \exists U = \operatorname{Spec}A \ni x$ and $V = \operatorname{Spec}R \supseteq f(U)$ such that the induced ring map $R\to A$ is a smooth ring map.
+For ring maps: $f:R\to A$ of finite presentation with $\tau_{\leq 1}{\mathbb{L}}_{A/R} \cong M[0]$ with $M\in   {}_{A}\Mod$ some finite projective (i.e. the naive cotangent complex is quasi-isomorphic to a projective module in degree zero). For schemes: smooth at $x \iff \exists U = \operatorname{Spec}A \ni x$ and $V = \operatorname{Spec}R \supseteq f(U)$ such that the induced ring map $R\to A$ is a smooth ring map.
 
 Sufficient condition: flat, locally of finite presentation, smooth fibers (i.e. for all $a\in A$, the fiber $R \underset{\scriptscriptstyle {A} }{\times}\kappa(a)$ is a smooth scheme over $\kappa(a)$).
 
@@ -83,7 +83,7 @@ How is smoothness related to regularity?
 :::
 
 ::: {.back card-id="card-c018f8b2b38ac42f"}
-Over $k = { \overline{k} }$, $X$ is smooth of relative dimension $n$ over $\operatorname{Spec}k$ $\iff X$ is regular of dimension $n$.
+Over $k = \kbar$, $X$ is smooth of relative dimension $n$ over $\operatorname{Spec}k$ $\iff X$ is regular of dimension $n$.
 :::
 
 ::: {.front card-id="card-4956b7d16253f682"}
@@ -91,7 +91,7 @@ What is generic smoothness?
 :::
 
 ::: {.back card-id="card-4956b7d16253f682"}
-For $f:X\to Y\in {\mathsf{Var}}_{/ {k}}, \operatorname{ch}k = 0$ with $X$ smooth, then there is a nonempty open $V\subseteq Y$ such that ${ \left.{{f}} \right|_{{f^{-1}(V)}} }$ is a smooth morphism.
+For $f:X\to Y\in \Var_{/ {k}}, \operatorname{ch}k = 0$ with $X$ smooth, then there is a nonempty open $V\subseteq Y$ such that ${ \left.{{f}} \right|_{{f^{-1}(V)}} }$ is a smooth morphism.
 :::
 
 ::: {.front card-id="card-5706d972b05f5073"}
@@ -99,7 +99,7 @@ Give an example a morphism that is not smooth.
 :::
 
 ::: {.back card-id="card-5706d972b05f5073"}
-Let $\operatorname{ch}k = p, k={ \overline{k} }$ and take the Frobenius morphism $f:X\to Y$ to $X=Y={\mathbf{P}}^n_{/ {k}}$.
+Let $\operatorname{ch}k = p, k=\kbar$ and take the Frobenius morphism $f:X\to Y$ to $X=Y={\mathbf{P}}^n_{/ {k}}$.
 
 Since $d(t^p)=0$, the map $f^*\Omega_{Y/k}\to \Omega_{X/k}$ is zero and $\Omega_{X/Y} \cong \Omega_{X/k}$ is locally free of rank 1 but $\operatorname{reldim}f = 0$, so $f$ is nowhere smooth.
 :::
@@ -142,11 +142,11 @@ How is this related to Hausdorff + compactness properties?
 :::
 
 ::: {.back card-id="card-40289dd013dd96ec"}
-$X/{\mathbf{C}}$ is complete iff $X$ is compact in the analytic topology
+$X/\CC$ is complete iff $X$ is compact in the analytic topology
 :::
 
 ::: {.front card-id="card-a484edc8e6016938"}
-What is an **etale** morphism $f:X\to Y\in {\mathsf{Sch}}_{/ {k}}$?
+What is an **etale** morphism $f:X\to Y\in \Sch_{/ {k}}$?
 :::
 
 ::: {.back card-id="card-a484edc8e6016938"}
@@ -164,13 +164,13 @@ What is an **unramified** morphism?
 :::
 
 ::: {.back card-id="card-e9ced257a3fb0b70"}
-For every $x\in X$, $f^\sharp({\mathfrak{m}}_{f(x)}) \cdot {\mathcal{O}}_{X, x} \cong{\mathfrak{m}}_x$ where $f^\sharp: {\mathcal{O}}_{Y, f(x)}\to {\mathcal{O}}_{X, x}$, and $\kappa(x)/\kappa(y)$ is a separable algebraic extension.
+For every $x\in X$, $f^\sharp(\mfm_{f(x)}) \cdot {\mathcal{O}}_{X, x} \cong\mfm_x$ where $f^\sharp: {\mathcal{O}}_{Y, f(x)}\to {\mathcal{O}}_{X, x}$, and $\kappa(x)/\kappa(y)$ is a separable algebraic extension.
 
 Equivalently, $f:X\to Y$ with $\Omega_{X/Y} = 0$.
 
 Equivalently, $f$ locally of finite presentation and the diagonal is an open immersion.
 
-For curves: $\exists e_p\in {\mathbf{Z}}_{\geq 0}$ such that $f^\sharp({\mathfrak{m}}_{f(p)}) {\mathcal{O}}_{X, x} = {\mathfrak{m}}_{x}^{e_p}$, and unramified iff $e_p = 1$ for all $p\in X$.
+For curves: $\exists e_p\in \ZZ_{\geq 0}$ such that $f^\sharp(\mfm_{f(p)}) {\mathcal{O}}_{X, x} = \mfm_{x}^{e_p}$, and unramified iff $e_p = 1$ for all $p\in X$.
 
 Flat + unramified = etale.
 :::
@@ -182,11 +182,11 @@ What is a **flat** morphism?
 ::: {.back card-id="card-b00d12404bc086fb"}
 For projective varieties: the induced maps on stalks are flat ring maps.
 
-$f: X\to S$ is flat at $x$ iff ${\mathcal{O}}_{X, x} \in   {}_{{\mathcal{O}}_{S, f(x) } }{\mathsf{Mod}}^\flat$ (i.e. the module structure induced by $f$ yields a flat module.)
+$f: X\to S$ is flat at $x$ iff ${\mathcal{O}}_{X, x} \in   {}_{{\mathcal{O}}_{S, f(x) } }\Mod^\flat$ (i.e. the module structure induced by $f$ yields a flat module.)
 
-Hartshorne's definition: for $f:X\to Y$ and ${\mathcal{F}}\in  {}_{{\mathcal{O}}_X}{\mathsf{Mod}}$, ${\mathcal{F}}$ is flat over $Y$ at $x\in X$ if ${\mathcal{F}}_x \in   {}_{{\mathcal{O}}_{Y, f(x)}}{\mathsf{Mod}}^\flat$; flat if flat at every $x\in S$, and $X$ is flat over $Y$ if ${\mathcal{F}}\coloneqq{\mathcal{O}}_X$ is flat.
+Hartshorne's definition: for $f:X\to Y$ and $\mcf\in  {}_{{\mathcal{O}}_X}\Mod$, $\mcf$ is flat over $Y$ at $x\in X$ if $\mcf_x \in   {}_{{\mathcal{O}}_{Y, f(x)}}\Mod^\flat$; flat if flat at every $x\in S$, and $X$ is flat over $Y$ if $\mcf\coloneqq{\mathcal{O}}_X$ is flat.
 
-$f\in \mathsf{CRing}(A, B)$ is a flat map iff $B\in   {}_{A}{\mathsf{Mod}}^\flat$, and a morphism $f\in {\mathsf{Sch}}(X, Y)$ is flat iff flat on local rings, i.e. $f_x: {\mathcal{O}}_{Y, f(x)}\to {\mathcal{O}}_{X, x}$ is flat.
+$f\in \mathsf{CRing}(A, B)$ is a flat map iff $B\in   {}_{A}\Mod^\flat$, and a morphism $f\in \Sch(X, Y)$ is flat iff flat on local rings, i.e. $f_x: {\mathcal{O}}_{Y, f(x)}\to {\mathcal{O}}_{X, x}$ is flat.
 :::
 
 ::: {.front card-id="card-da88a614473cf4db"}
@@ -208,7 +208,7 @@ Given an example of a non-flat morphism.
 ::: {.back card-id="card-7eb3cab7d1016342"}
 $\operatorname{Bl}_0 {\mathbf{A}}^2 \xrightarrow{\pi} {\mathbf{A}}^2$, since ${\sharp}\pi^{-1}(p) = 1$ for all $p\neq 0$ and $\pi^{-1}(0)\cong {\mathbf{P}}^1$, contradicting equidimensionality.
 
-Take a nodal curve $X$ and $f:\tilde X\to X$ its normalization -- if this were flat, $f_* {\mathcal{O}}_{\tilde X}$ would be a flat sheaf of ${\mathcal{O}}_X{\hbox{-}}$modules, which is coherent and thus locally free, and rank 1 and thus invertible; however the node $q$ has two preimages $p_1, p_2$, so $(f_* {\mathcal{O}}_{\tilde X})_q$ needs two generators as an ${\mathcal{O}}_X{\hbox{-}}$module.
+Take a nodal curve $X$ and $f:\tilde X\to X$ its normalization -- if this were flat, $f_* {\mathcal{O}}_{\tilde X}$ would be a flat sheaf of ${\mathcal{O}}_X\dash$modules, which is coherent and thus locally free, and rank 1 and thus invertible; however the node $q$ has two preimages $p_1, p_2$, so $(f_* {\mathcal{O}}_{\tilde X})_q$ needs two generators as an ${\mathcal{O}}_X\dash$module.
 
 Any nontrivial normalization.
 
@@ -230,7 +230,7 @@ What is a **finite ring morphism**?
 :::
 
 ::: {.back card-id="card-872922cda061b5c3"}
-A finite ring morphism $f:R\to A$ is one that makes $A\in   {}_{R}{\mathsf{Mod}}^{\mathrm{fg}}$.
+A finite ring morphism $f:R\to A$ is one that makes $A\in   {}_{R}\Mod^\fg$.
 :::
 
 ::: {.front card-id="card-50c3a5b5a43dbd56" tags="definition"}
@@ -238,9 +238,9 @@ What is a **finite morphism**?
 :::
 
 ::: {.back card-id="card-50c3a5b5a43dbd56"}
-Hartshorne: $f:X\to Y$ where $\operatorname{Spec}B_i\rightrightarrows Y$ is an open affine cover with each $f^{-1}(\operatorname{Spec}B_i) = \operatorname{Spec}A_i$ affine and $A_i \in   {}_{B_i}{\mathsf{Mod}}^{\mathrm{fg}}$. Equivalently, for every affine open $V=\operatorname{Spec}A\subseteq Y$, $f^{-1}(V)=\operatorname{Spec}B$ with $B$ a finite $A$-module, i.e. $f$ is affine and locally given by finite ring morphisms.
+Hartshorne: $f:X\to Y$ where $\operatorname{Spec}B_i\rightrightarrows Y$ is an open affine cover with each $f^{-1}(\operatorname{Spec}B_i) = \operatorname{Spec}A_i$ affine and $A_i \in   {}_{B_i}\Mod^\fg$. Equivalently, for every affine open $V=\operatorname{Spec}A\subseteq Y$, $f^{-1}(V)=\operatorname{Spec}B$ with $B$ a finite $A$-module, i.e. $f$ is affine and locally given by finite ring morphisms.
 
-Note that being fg as a **module** is **stronger** than being fg as an **algebra**: $k[x] \in  {}_{k}  \mathsf{Alg}$ has one algebra generator but infinite rank in ${}_{k}{\mathsf{Mod}}$.
+Note that being fg as a **module** is **stronger** than being fg as an **algebra**: $k[x] \in  {}_{k}  \mathsf{Alg}$ has one algebra generator but infinite rank in ${}_{k}\Mod$.
 
 Thus **finite** implies **finite type** but not conversely.
 
@@ -280,7 +280,7 @@ What is a **quasifinite ring morphism**?
 :::
 
 ::: {.back card-id="card-80a1e9e416914d0f"}
-**Discrete finite fibers**: for $R\to S$ *finite type* and ${\mathfrak{q}}\in \operatorname{Spec}S$, the point in the fiber $\overline{{\mathfrak{q}}}\in F \coloneqq\operatorname{Spec}(S\otimes_R \kappa({\mathfrak{p}}))$ is isolated, i.e. the fiber above that point is zero-dimensional.
+**Discrete finite fibers**: for $R\to S$ *finite type* and $\mfq\in \operatorname{Spec}S$, the point in the fiber $\overline{\mfq}\in F \coloneqq\operatorname{Spec}(S\otimes_R \kappa(\mfp))$ is isolated, i.e. the fiber above that point is zero-dimensional.
 :::
 
 ::: {.front card-id="card-63642f240775d774"}
@@ -288,7 +288,7 @@ What is a **quasifinite** morphism?
 :::
 
 ::: {.back card-id="card-63642f240775d774"}
-Locally quasifinite and quasicompact. Equivalently, covered my opens where the induced ring maps are finite type and quasifinite at the prime ${\mathfrak{q}}$ associated to $x\in X$.
+Locally quasifinite and quasicompact. Equivalently, covered my opens where the induced ring maps are finite type and quasifinite at the prime $\mfq$ associated to $x\in X$.
 :::
 
 ::: {.front card-id="card-deaa6d5ac072e40a"}
@@ -308,9 +308,9 @@ Locally of finite type and quasicompact.
 
 Locally of finite type: every point of $X$ has an affine neighborhood $\operatorname{Spec}A\subseteq f^{-1}(\operatorname{Spec}B)$, with $\operatorname{Spec}B\subseteq Y$ affine open, such that $A$ is a finitely generated $B$-algebra.
 
-Equivalently, there is an open affine cover $\operatorname{Spec}B_i\rightrightarrows Y$ such that each $f^{-1}(\operatorname{Spec}B_i)$ is covered by finitely many $\operatorname{Spec}A_{ij}$ with each $A_{ij}\in { {}_{B_i}  \mathsf{Alg}}^{\mathrm{fg}}$.
+Equivalently, there is an open affine cover $\operatorname{Spec}B_i\rightrightarrows Y$ such that each $f^{-1}(\operatorname{Spec}B_i)$ is covered by finitely many $\operatorname{Spec}A_{ij}$ with each $A_{ij}\in { {}_{B_i}  \mathsf{Alg}}^\fg$.
 
-Note that being fg as a module is **stronger** than being fg as an algebra: $k[x] \in  {}_{k}  \mathsf{Alg}$ has one algebra generator but infinite rank in ${}_{k}{\mathsf{Mod}}$. Thus finite implies finite type but not conversely.
+Note that being fg as a module is **stronger** than being fg as an algebra: $k[x] \in  {}_{k}  \mathsf{Alg}$ has one algebra generator but infinite rank in ${}_{k}\Mod$. Thus finite implies finite type but not conversely.
 :::
 
 ::: {.front card-id="card-50d5401e86f0de21"}
@@ -318,11 +318,11 @@ What is a morphism locally of finite type?
 :::
 
 ::: {.back card-id="card-50d5401e86f0de21"}
-$f:X\to Y$ with open covers $\operatorname{Spec}B_i, U_i\coloneqq f^{-1}(\operatorname{Spec}B_i)$ where $\operatorname{Spec}A_{ij}\rightrightarrows U_i$ making $A_{ij}\in { {}_{B_i}  \mathsf{Alg}}^{\mathrm{fg}}$.
+$f:X\to Y$ with open covers $\operatorname{Spec}B_i, U_i\coloneqq f^{-1}(\operatorname{Spec}B_i)$ where $\operatorname{Spec}A_{ij}\rightrightarrows U_i$ making $A_{ij}\in { {}_{B_i}  \mathsf{Alg}}^\fg$.
 
 Additionally **is of finite type** if each $U_i$ can be covered by finitely many $A_{ij}$.
 
-A ring map $R\to A$ is of finite type $A$ admits a surjection from $R[x_1, \cdots, x_n]$ for some $n$. Equivalently, $A\in  {}_{R}  \mathsf{Alg}^{\mathrm{fg}}$. Being **locally of finite type** means every $x$ admitting a neighborhood $\operatorname{Spec}A_i\ni x$ where $f(\operatorname{Spec}A_i) \subseteq \operatorname{Spec}R_i\ni f(x)$ so that the induced ring map $R\to A$ is finite type.
+A ring map $R\to A$ is of finite type $A$ admits a surjection from $R[x_1, \cdots, x_n]$ for some $n$. Equivalently, $A\in  {}_{R}  \mathsf{Alg}^\fg$. Being **locally of finite type** means every $x$ admitting a neighborhood $\operatorname{Spec}A_i\ni x$ where $f(\operatorname{Spec}A_i) \subseteq \operatorname{Spec}R_i\ni f(x)$ so that the induced ring map $R\to A$ is finite type.
 :::
 
 ::: {.front card-id="card-c35dccf24f080a71"}
@@ -370,7 +370,7 @@ What is a **projective morphism**?
 :::
 
 ::: {.back card-id="card-31a64a619e91d37a"}
-$f:X\to Y$ which factors as $X\hookrightarrow{\mathbf{P}}^N_{/ {Y}} \twoheadrightarrow Y$, a closed immersion followed by the natural projection, where ${\mathbf{P}}^N_{/ {Y}} \coloneqq{\mathbf{P}}^N_{/ {{\mathbf{Z}}}} \underset{\scriptscriptstyle {\operatorname{Spec}{\mathbf{Z}}} }{\times} Y$.
+$f:X\to Y$ which factors as $X\hookrightarrow{\mathbf{P}}^N_{/ {Y}} \twoheadrightarrow Y$, a closed immersion followed by the natural projection, where ${\mathbf{P}}^N_{/ {Y}} \coloneqq{\mathbf{P}}^N_{/ {\ZZ}} \underset{\scriptscriptstyle {\operatorname{Spec}\ZZ} }{\times} Y$.
 :::
 
 ::: {.front card-id="card-9f9cd83a2a11e95a"}
@@ -418,7 +418,7 @@ What is the degree of a morphism?
 :::
 
 ::: {.back card-id="card-588fc4423bcb3277"}
-$f:X\to S$ with $f_*{\mathcal{O}}_X\in   {}_{{\mathcal{O}}_s}{\mathsf{Mod}}$ finite and locally free, take its degree as a Coherent sheaf, where $\deg {\mathcal{F}}\coloneqq\deg \operatorname{det}{\mathcal{F}}$ since $\operatorname{det}{\mathcal{F}}\in \operatorname{Pic}(X)$, where the degree is the degree of the associated divisor.
+$f:X\to S$ with $f_*{\mathcal{O}}_X\in   {}_{{\mathcal{O}}_s}\Mod$ finite and locally free, take its degree as a Coherent sheaf, where $\deg \mcf\coloneqq\deg \operatorname{det}\mcf$ since $\operatorname{det}\mcf\in \operatorname{Pic}(X)$, where the degree is the degree of the associated divisor.
 :::
 
 ::: {.front card-id="card-2fc77d27d9c19b46"}
@@ -434,7 +434,7 @@ How is this separatedness related to Hausdorffness?
 :::
 
 ::: {.back card-id="card-16d44af59a623c18"}
-$X\in {\mathsf{Top}}$ is **Hausdorff** iff the diagonal $\Delta \subseteq X\times X$ is a closed subset.
+$X\in \Top$ is **Hausdorff** iff the diagonal $\Delta \subseteq X\times X$ is a closed subset.
 :::
 
 ::: {.front card-id="card-e1412ba6beca8d61"}
@@ -514,7 +514,7 @@ What is the cotangent complex?
 :::
 
 ::: {.back card-id="card-b18d26174d2423d1"}
-The nonabelian left-derived functor ${\mathbb{L}}_{{-}/A}: \mathsf{CRing}_A\to \mathbf{D}{  {}_{A}{\mathsf{Mod}}}$ of the functor $\Omega^1_{{-}/A}[0]$
+The nonabelian left-derived functor ${\mathbb{L}}_{{-}/A}: \mathsf{CRing}_A\to \mathbf{D}{  {}_{A}\Mod}$ of the functor $\Omega^1_{{-}/A}[0]$
 :::
 
 ::: {.front card-id="card-c79260140f5f0dbd"}
@@ -590,7 +590,7 @@ What is the **scheme-theoretic image**?
 ::: {.back card-id="card-18782c5a0371defb"}
 For $f:X\to Y$, the smallest closed subscheme $Z$ of $Y$ through which $f$ factors.
 
-If $f$ is quasi-compact, $Z$ is cut out by the quasi-coherent ideal ${\mathcal{I}}\coloneqq\ker\qty{{\mathcal{O}}_Y\to f_* {\mathcal{O}}_X}$, and its underlying set is $\overline{f(X)}$. If $X$ is reduced, $Z$ is $\overline{f(X)}$ with its reduced induced structure.
+If $f$ is quasi-compact, $Z$ is cut out by the quasi-coherent ideal $\mci\coloneqq\ker\qty{{\mathcal{O}}_Y\to f_* {\mathcal{O}}_X}$, and its underlying set is $\overline{f(X)}$. If $X$ is reduced, $Z$ is $\overline{f(X)}$ with its reduced induced structure.
 
 E.g. for a ring map $\phi: A\to B$ inducing $\operatorname{Spec}B\to \operatorname{Spec}A$, $Z = \operatorname{Spec}(A/\ker\phi)$.
 :::

@@ -17,7 +17,7 @@ What is the Lefschetz decomposition?
 :::
 
 ::: {.back card-id="card-1473584e4048a634"}
-$$H^k(X; {\mathbf{C}}) = \bigoplus_{2r\leq k}L^r H^{k-2r}_{\operatorname{prim}}(X)$$
+$$H^k(X; \CC) = \bigoplus_{2r\leq k}L^r H^{k-2r}_\prim(X)$$
 :::
 
 ::: {.front card-id="card-6c5784cabdbc59b9"}
@@ -37,9 +37,9 @@ For $X$ compact Kahler, for $k\leq n\coloneqq\dim X$,
 
 $L^{n-k}: H^k(X; {\mathbf{R}}) { \, \xrightarrow{\sim}\, }H^{2n-k}(X; {\mathbf{R}})$
 
-$H^k(X; {\mathbf{R}}) = \bigoplus_{i\geq 0} L^i H^{k-2i}(X; {\mathbf{R}})_{\operatorname{prim}}$
+$H^k(X; {\mathbf{R}}) = \bigoplus_{i\geq 0} L^i H^{k-2i}(X; {\mathbf{R}})_\prim$
 
-$H^k(X; {\mathbf{R}})_{\operatorname{prim}}\otimes_{\mathbf{R}}{\mathbf{C}}=\bigoplus_{p+q=k} H^{p, q}(X)_{\operatorname{prim}}$.
+$H^k(X; {\mathbf{R}})_\prim\otimes_{\mathbf{R}}\CC=\bigoplus_{p+q=k} H^{p, q}(X)_\prim$.
 :::
 
 ::: {.front card-id="card-e035601038997a30"}
@@ -48,12 +48,12 @@ What is the Hodge index theorem?
 
 ::: {.back card-id="card-e035601038997a30"}
 For $X$ a compact Kahler surface, the intersection form satisfies
-$$\operatorname{sgn}H^2(X; {\mathbf{Z}}) = (2h^{2, 0} + 1,\, h^{1,1} -1), \qquad \operatorname{sgn}H^{1,1}(X) = (1,\, h^{1,1}-1)$$
-Equivalently, if $L\in {\operatorname{NS}}(X)^{\mathrm{amp}}$ (or even $L^2 \gt 0$) then the intersection form is negative definite on $L^\perp$.
+$$\operatorname{sgn}H^2(X; \ZZ) = (2h^{2, 0} + 1,\, h^{1,1} -1), \qquad \operatorname{sgn}H^{1,1}(X) = (1,\, h^{1,1}-1)$$
+Equivalently, if $L\in \NS(X)^\amp$ (or even $L^2 \gt 0$) then the intersection form is negative definite on $L^\perp$.
 :::
 
 ::: {.front card-id="card-94bd03bf46f7461f"}
-What is the Lefschetz $(1, 1){\hbox{-}}$theorem?
+What is the Lefschetz $(1, 1)\dash$theorem?
 :::
 
 ::: {.back card-id="card-94bd03bf46f7461f"}
@@ -65,7 +65,7 @@ What is nonabelian Hodge theory?
 :::
 
 ::: {.back card-id="card-32d30066fccb982b"}
-${\mathcal{M}}_B$ is the moduli of irreducible reps of $\pi_1(X)$, ${\mathcal{M}}_{\mathrm{Dol}}$ of stable Higgs bundles, and ${\mathcal{M}}_{\mathrm{dR}}$ of stable flat connections:
+$\mcm_B$ is the moduli of irreducible reps of $\pi_1(X)$, $\mcm_{\mathrm{Dol}}$ of stable Higgs bundles, and $\mcm_{\mathrm{dR}}$ of stable flat connections:
 :::
 
 ::: {.front card-id="card-af845a3fa43df735"}
@@ -79,7 +79,7 @@ Conjecture: rigid representations are "motivic", of geometric origin.
 
 E.g. irreducible rigid flat connections are subquotients of the Gauss-Manin connection on a family of smooth projective varieties over an open dense subvariety of $X$.
 
-The underlying local system is a summand of ${\mathbf{R}}^if_* \underline{{\mathbf{C}}}$ for $f:Y\to U$ a smooth projective morphism to a dense subvariety.
+The underlying local system is a summand of ${\mathbf{R}}^if_* \underline{\CC}$ for $f:Y\to U$ a smooth projective morphism to a dense subvariety.
 :::
 
 ::: {.front card-id="card-8de617f146e6c753"}
@@ -87,7 +87,7 @@ What is a QHS?
 :::
 
 ::: {.back card-id="card-8de617f146e6c753"}
-For $V\in  {}_{{\mathbf{Q}}}{\mathsf{Mod}}^{\mathrm{fd}}$, a decomposition $V = \bigoplus_{p, q} V^{p, q}$ with $\overline{V^{p, q}} = V^{q, p}$ where $V_m \coloneqq\bigoplus_{p+q=m} V^{p, q}$ is defined over ${\mathbf{Q}}$.
+For $V\in  {}_{\QQ}\Mod^\fd$, a decomposition $V = \bigoplus_{p, q} V^{p, q}$ with $\overline{V^{p, q}} = V^{q, p}$ where $V_m \coloneqq\bigoplus_{p+q=m} V^{p, q}$ is defined over $\QQ$.
 :::
 
 ::: {.front card-id="card-1d9900cc275457c7"}
@@ -95,7 +95,7 @@ What is a ZHS?
 :::
 
 ::: {.back card-id="card-1d9900cc275457c7"}
-A QHS $V$ with a lattice $V({\mathbf{Z}}) \subset V({\mathbf{Q}})$.
+A QHS $V$ with a lattice $V(\ZZ) \subset V(\QQ)$.
 :::
 
 ::: {.front card-id="card-44dd1b29350dfaaf"}
@@ -119,7 +119,7 @@ What is the colevel of a HS?
 :::
 
 ::: {.back card-id="card-50d0923ee164ff53"}
-$\min\left\{{p{~\mathrel{\Big\vert}~}h^{p, m-p} \neq 0}\right\}$.
+$\min\left\{{p\st h^{p, m-p} \neq 0}\right\}$.
 :::
 
 ::: {.front card-id="card-5ee6faf8e21ba056"}
@@ -148,11 +148,11 @@ What is the Serre-Deligne torus $S$? Why is it important?
 :::
 
 ::: {.back card-id="card-a19566b1c063201e"}
-$S({\mathbf{R}}) ={\mathbf{C}}^{\times}$, so $S = \mathrm{Res}^{{\mathbf{C}}}_{{\mathbf{R}}} {\mathbf{G}}_m$.
+$S({\mathbf{R}}) =\CC^{\times}$, so $S = \mathrm{Res}^{\CC}_{{\mathbf{R}}} {\mathbf{G}}_m$.
 
 Alternatively ${ \begin{bmatrix} {a} & {-b}  \\ {b} & {a} \end{bmatrix} } \in \operatorname{GL}_2({\mathbf{R}})$.
 
-There is a cocharacter $w: {\mathbf{G}}_m\to S$ which on real points is ${\mathbf{R}}^{\times}\hookrightarrow{\mathbf{C}}^{\times}$, a QHS on $V$ is the same as an action $S\curvearrowright V$ defined over ${\mathbf{R}}$ with $w$ defined over ${\mathbf{Q}}$, so $V^{p, q}$ are eigenspaces with characters $z^p\overline{z}^q$.
+There is a cocharacter $w: {\mathbf{G}}_m\to S$ which on real points is ${\mathbf{R}}^{\times}\hookrightarrow\CC^{\times}$, a QHS on $V$ is the same as an action $S\curvearrowright V$ defined over ${\mathbf{R}}$ with $w$ defined over $\QQ$, so $V^{p, q}$ are eigenspaces with characters $z^p\overline{z}^q$.
 :::
 
 ::: {.front card-id="card-02d774db69c8282f"}
@@ -160,19 +160,19 @@ What is the Tate HS? Where does it come from?
 :::
 
 ::: {.back card-id="card-02d774db69c8282f"}
-${\mathbf{Z}}(1)$ the ZHS on ${\mathbf{C}}$ of bidegree $(-1, -1)$ with lattice $2\pi i {\mathbf{Z}}$.
+$\ZZ(1)$ the ZHS on $\CC$ of bidegree $(-1, -1)$ with lattice $2\pi i \ZZ$.
 
-Natural HS on $H^1({\mathbf{G}}_m(k))$ for $k={ \overline{k} }\subseteq {\mathbf{C}}$, regard as $H^2({\mathbf{CP}}^1; {\mathbf{Z}})$.
+Natural HS on $H^1({\mathbf{G}}_m(k))$ for $k=\kbar\subseteq \CC$, regard as $H^2(\CP^1; \ZZ)$.
 :::
 
 ::: {.front card-id="card-890de6962a64c40d"}
-What is ${\mathbf{Z}}(m)$? $V(m)$?
+What is $\ZZ(m)$? $V(m)$?
 :::
 
 ::: {.back card-id="card-890de6962a64c40d"}
-${\mathbf{Z}}(m) = {\mathbf{Z}}(1){ {}^{ \scriptstyle\otimes_{}^{m} }  }$ with lattice $(2\pi i)^m {\mathbf{Z}}$
+$\ZZ(m) = \ZZ(1){ {}^{ \scriptstyle\otimes_{}^{m} }  }$ with lattice $(2\pi i)^m \ZZ$
 
-$V(m) = V\otimes_{\mathbf{Z}}{\mathbf{Z}}(m)$.
+$V(m) = V\otimes_\ZZ\ZZ(m)$.
 :::
 
 ::: {.front card-id="card-fc3f20e8b96f267b"}
@@ -180,9 +180,9 @@ What is a polarization of a (pure) Hodge structure?
 :::
 
 ::: {.back card-id="card-fc3f20e8b96f267b"}
-For a pure HS of weight $m$, $Q:V{ {}^{ \scriptstyle\otimes_{}^{2} }  }\to {\mathbf{Z}}(-m)$ defined over ${\mathbf{Q}}$, $(-1)^m$-symmetric, such that the form $(v,w)\mapsto (2\pi i)^m Q(Cv, \overline{w})$ is Hermitian and positive-definite, where $C$ is the Weil element ($C = i^{p-q}$ on $V^{p, q}$).
+For a pure HS of weight $m$, $Q:V{ {}^{ \scriptstyle\otimes_{}^{2} }  }\to \ZZ(-m)$ defined over $\QQ$, $(-1)^m$-symmetric, such that the form $(v,w)\mapsto (2\pi i)^m Q(Cv, \overline{w})$ is Hermitian and positive-definite, where $C$ is the Weil element ($C = i^{p-q}$ on $V^{p, q}$).
 
-Equivalently, on $V_{\mathbf{C}} = \bigoplus V^{p, q}$: the $V^{p, q}$ are mutually orthogonal for the sesquilinear form $Q(v, \overline{w})$, and $i^{p-q} Q(v, \overline{v}) > 0$ for $0\neq v\in V^{p, q}$. Since $i^{p-q} = (-1)^p i^{-m}$, this says $i^{-m}(-1)^p Q(v, \overline{v}) > 0$ on $V^{p, q}$ (for even $m$, $i^{-m} = \pm 1$ is a sign), giving a positive definite Hermitian product ${\left\langle {v},~{w} \right\rangle} \coloneqq i^{-m}\sum_{p, q} (-1)^p Q(v^{p, q}, \overline{w^{p, q}})$.
+Equivalently, on $V_\CC = \bigoplus V^{p, q}$: the $V^{p, q}$ are mutually orthogonal for the sesquilinear form $Q(v, \overline{w})$, and $i^{p-q} Q(v, \overline{v}) > 0$ for $0\neq v\in V^{p, q}$. Since $i^{p-q} = (-1)^p i^{-m}$, this says $i^{-m}(-1)^p Q(v, \overline{v}) > 0$ on $V^{p, q}$ (for even $m$, $i^{-m} = \pm 1$ is a sign), giving a positive definite Hermitian product ${\left\langle {v},~{w} \right\rangle} \coloneqq i^{-m}\sum_{p, q} (-1)^p Q(v^{p, q}, \overline{w^{p, q}})$.
 
 Alternatively a morphism $V\to V {}^{ \vee }(-m)$, motivated by Poincare duality.
 :::
@@ -192,7 +192,7 @@ What is the Hodge spectral sequence?
 :::
 
 ::: {.back card-id="card-8c6c5dcc6ef06e82"}
-$E_1^{p, q} = H^q(M; \Omega_M^p) \Rightarrow H^{p+q}(M; {\mathbf{C}})$.
+$E_1^{p, q} = H^q(M; \Omega_M^p) \Rightarrow H^{p+q}(M; \CC)$.
 :::
 
 ::: {.front card-id="card-f1aac53fbedc8116"}
@@ -201,12 +201,12 @@ What is primitive cohomology?
 
 ::: {.back card-id="card-f1aac53fbedc8116"}
 Let $(X, g)$ be a compact Kahler manifold of complex dimension $n$ with Lefschetz operator $L$ (cup product with the Kahler class) and its adjoint $\Lambda$. Then
-$$H_{\operatorname{prim}}^{n-k}(X) \coloneqq\ker\qty{H^{n-k} \xrightarrow{L^{k+1}} H^{n+k+2} },$$
+$$H_\prim^{n-k}(X) \coloneqq\ker\qty{H^{n-k} \xrightarrow{L^{k+1}} H^{n+k+2} },$$
 equivalently
-$$H^m(X, \mathbb{R})_{{\operatorname{prim}}}:=\operatorname{Ker}\left(\Lambda: H^m(X, \mathbb{R}) \longrightarrow H^{m-2}(X, \mathbb{R})\right)$$
+$$H^m(X, \mathbb{R})_{\prim}:=\operatorname{Ker}\left(\Lambda: H^m(X, \mathbb{R}) \longrightarrow H^{m-2}(X, \mathbb{R})\right)$$
 and
-$$H^{p, q}(X)_{{\operatorname{prim}}}:=\operatorname{Ker}\left(\Lambda: H^{p, q}(X) \longrightarrow H^{p-1, q-1}(X)\right)$$
-The Kahler class induces a representation of ${\mathfrak{sl}}_2({\mathbf{C}})$ on $H^*(X; {\mathbf{R}})$ via $L, \Lambda$, and primitive classes are its lowest weight vectors.
+$$H^{p, q}(X)_{\prim}:=\operatorname{Ker}\left(\Lambda: H^{p, q}(X) \longrightarrow H^{p-1, q-1}(X)\right)$$
+The Kahler class induces a representation of ${\mathfrak{sl}}_2(\CC)$ on $H^*(X; {\mathbf{R}})$ via $L, \Lambda$, and primitive classes are its lowest weight vectors.
 :::
 
 ::: {.front card-id="card-e405e246f75e260c"}
@@ -214,18 +214,18 @@ Discuss the Hodge spectral sequence for $M$ connected and projective (or more ge
 :::
 
 ::: {.back card-id="card-e405e246f75e260c"}
-Degenerates at $E_1$, yielding a decreasing filtration $\operatorname{Fil}^* H^d(M;{\mathbf{C}})$ with ${\mathsf{gr}\,}^p H^d(M; {\mathbf{C}}) \cong H^{d-p}(M; \Omega_M^p)$.
+Degenerates at $E_1$, yielding a decreasing filtration $\operatorname{Fil}^* H^d(M;\CC)$ with ${\mathsf{gr}\,}^p H^d(M; \CC) \cong H^{d-p}(M; \Omega_M^p)$.
 
-Puts a HS of pure weight $d$ on $H^d(M; {\mathbf{C}})$ with Hodge filtration $\operatorname{Fil}^*$.
+Puts a HS of pure weight $d$ on $H^d(M; \CC)$ with Hodge filtration $\operatorname{Fil}^*$.
 
-$H^{2n}(M; {\mathbf{C}})= {\mathbf{Z}}(-n)$.
+$H^{2n}(M; \CC)= \ZZ(-n)$.
 
-For $\eta\in H^2(M; {\mathbf{Q}})$ a hyperplane class, $\eta$ is type $(1,1)$ and defines a Lefschetz operator $L({-}) \coloneqq\eta\cup({-})$.
+For $\eta\in H^2(M; \QQ)$ a hyperplane class, $\eta$ is type $(1,1)$ and defines a Lefschetz operator $L({-}) \coloneqq\eta\cup({-})$.
 
-Hard Lefschetz holds: $L^k: H^{n-k}(M; {\mathbf{Q}}) { \, \xrightarrow{\sim}\, }H^{n+k}(M; {\mathbf{Q}})$ for all $n$.
-$$\bigoplus_{k=0}^n H_{\operatorname{prim}}^{n-k}(M; {\mathbf{Q}})\otimes_{\mathbf{R}}{{\mathbf{C}}[L] \over \left\langle{L^{k+1}}\right\rangle} { \, \xrightarrow{\sim}\, }H^*(M; {\mathbf{C}})$$
+Hard Lefschetz holds: $L^k: H^{n-k}(M; \QQ) { \, \xrightarrow{\sim}\, }H^{n+k}(M; \QQ)$ for all $n$.
+$$\bigoplus_{k=0}^n H_\prim^{n-k}(M; \QQ)\otimes_{\mathbf{R}}{\CC[L] \over \left\langle{L^{k+1}}\right\rangle} { \, \xrightarrow{\sim}\, }H^*(M; \CC)$$
 There is a polarization
-$$\begin{align}I: H_{\operatorname{prim}}^{n-k}(M; {\mathbf{Q}}){ {}^{ \scriptstyle\otimes_{}^{2} }  } &\to {\mathbf{Q}}\\ a\otimes b &\mapsto(-1)^{(n-k)(n-k-1)\over 2} \int_M L^k(a\wedge b)\end{align}$$
+$$\begin{align}I: H_\prim^{n-k}(M; \QQ){ {}^{ \scriptstyle\otimes_{}^{2} }  } &\to \QQ\\ a\otimes b &\mapsto(-1)^{(n-k)(n-k-1)\over 2} \int_M L^k(a\wedge b)\end{align}$$
 :::
 
 ::: {.front card-id="card-a85d85454b4f4984"}
@@ -233,7 +233,7 @@ Discuss relative differentials?
 :::
 
 ::: {.back card-id="card-a85d85454b4f4984"}
-For $f: M\to S$, $\Omega^*_M / \left\langle{f^* \Omega^1_S}\right\rangle$, a quotient of a sheaf of dg ${\mathcal{O}}_M{\hbox{-}}$algebras.
+For $f: M\to S$, $\Omega^*_M / \left\langle{f^* \Omega^1_S}\right\rangle$, a quotient of a sheaf of dg ${\mathcal{O}}_M\dash$algebras.
 
 Fiber over $s\in S$ is the de Rham sheaf complex of the fiber $M_s$.
 
@@ -245,15 +245,15 @@ What is a VHS?
 :::
 
 ::: {.back card-id="card-37366038babffe54"}
-Over a smooth variety $S$, a local system $V$ on $S$ of ${}_{ {\mathbf{C}}}{\mathsf{Mod}}^{\mathrm{fd}}$ defined over ${\mathbf{Q}}$
+Over a smooth variety $S$, a local system $V$ on $S$ of ${}_{ \CC}\Mod^\fd$ defined over $\QQ$
 
 With an increasing weight filtration by sub-local systems
 
-With a decreasing Hodge filtration on the underlying vector bundle ${\mathcal{V}}\coloneqq{\mathcal{O}}_S \otimes{{\mathbf{C}}_S} V$ by sub-bundles satisfying
+With a decreasing Hodge filtration on the underlying vector bundle $\mcv\coloneqq{\mathcal{O}}_S \otimes{\CC_S} V$ by sub-bundles satisfying
 
 Having a HS on every fiber
 
-The covariant derivative maps $\operatorname{Fil}^p {\mathcal{V}}\to \operatorname{Fil}^{p-1}{\mathcal{V}}$.
+The covariant derivative maps $\operatorname{Fil}^p \mcv\to \operatorname{Fil}^{p-1}\mcv$.
 :::
 
 ::: {.front card-id="card-c07bc2f98b5d8923"}
@@ -261,7 +261,7 @@ What is a PVHS over $S$?
 :::
 
 ::: {.back card-id="card-c07bc2f98b5d8923"}
-For a VHS of pure weight $m$, a polarization $V\otimes_{{\mathbf{C}}_S}V\to {\mathbf{Z}}_S(-m)$.
+For a VHS of pure weight $m$, a polarization $V\otimes_{\CC_S}V\to \ZZ_S(-m)$.
 :::
 
 ::: {.front card-id="card-e6544d5bd9f4a789"}
@@ -285,13 +285,13 @@ Discuss MHSs.
 :::
 
 ::: {.back card-id="card-374386fcc6e36a35"}
-For $X\in {\mathsf{Sch}}_{/ {{\mathbf{C}}}}^\mathrm{ft}$ a variety, $H^d(X)$ carries a MHS with weights in $\left\{{0,1,\cdots, 2d}\right\}$.
+For $X\in \Sch_{/ {\CC}}^\mathrm{ft}$ a variety, $H^d(X)$ carries a MHS with weights in $\left\{{0,1,\cdots, 2d}\right\}$.
 
 If $X$ is smooth, the weights are $\geq d$.
 
 If $X$ is complete, the weights are $\leq d$.
 
-This extends the functor ${\mathsf{Mfd}}_{\mathbf{C}}\to \mathsf{HS}$ to ${\mathsf{Var}}_{/ {{\mathbf{C}}}}^\mathrm{ft}\to \mathsf{MHS}$.
+This extends the functor $\Mfd_\CC\to \mathsf{HS}$ to $\Var_{/ {\CC}}^\mathrm{ft}\to \mathsf{MHS}$.
 :::
 
 ::: {.front card-id="card-cd4f095b6e904394"}
@@ -301,7 +301,7 @@ What is a primitively polarized K3 of genus $g$?
 ::: {.back card-id="card-cd4f095b6e904394"}
 $(X, \eta)$ where $\eta\in H^{1,1}(X; {\mathbf{R}})$ is a Kahler class.
 
-Torelli: iso type of $(X, \eta)$ completely determined by $(H^2(X;{\mathbf{Z}}), \cap)$, $\eta$, and the HS on $H^2(X;{\mathbf{C}})$.
+Torelli: iso type of $(X, \eta)$ completely determined by $(H^2(X;\ZZ), \cap)$, $\eta$, and the HS on $H^2(X;\CC)$.
 
 Primitive: not a proper multiple of an integral class.
 
@@ -321,13 +321,13 @@ Where do MHSs appear?
 :::
 
 ::: {.back card-id="card-e8e75131312213a6"}
-Cohomology of noncompact ${\mathbf{C}}{\hbox{-}}$varieties.
+Cohomology of noncompact $\CC\dash$varieties.
 
 Limits of PVHS
 
-$\pi_1(X) \otimes{\mathbf{R}}$ for $X\in \mathsf{Alg}{\mathsf{Var}}_{/ {{\mathbf{C}}}}$.
+$\pi_1(X) \otimes{\mathbf{R}}$ for $X\in \mathsf{Alg}\Var_{/ {\CC}}$.
 
-$\pi_*(X)\otimes{\mathbf{R}}$ for $X\in  \mathsf{Alg}{\mathsf{Var}}_{/ {{\mathbf{C}}}}$ with $\pi_1(X) = 1$.
+$\pi_*(X)\otimes{\mathbf{R}}$ for $X\in  \mathsf{Alg}\Var_{/ {\CC}}$ with $\pi_1(X) = 1$.
 :::
 
 ::: {.front card-id="card-079445b64b54e7dd"}
@@ -351,7 +351,7 @@ What is Griffiths transversality?
 :::
 
 ::: {.back card-id="card-d4a5c94c94971cbf"}
-$$\nabla({\mathcal{F}}^p)\subseteq {\mathcal{F}}^{p-1} \otimes\Omega^1$$
+$$\nabla(\mcf^p)\subseteq \mcf^{p-1} \otimes\Omega^1$$
 Needed since the Hodge filtration on the fibers are not necessarily preserved by differentiation.
 :::
 
@@ -377,7 +377,7 @@ What is a connection?
 :::
 
 ::: {.back card-id="card-749702f361b7071a"}
-For $L$ a local system on $Y$,parallel transport induces $\nabla_\eta: V_y\to V_y$ for $\eta\in T_y Y$ and $V\coloneqq{\mathcal{O}}_Y\otimes_{\mathbf{C}}L$ the associated vector bundle.
+For $L$ a local system on $Y$,parallel transport induces $\nabla_\eta: V_y\to V_y$ for $\eta\in T_y Y$ and $V\coloneqq{\mathcal{O}}_Y\otimes_\CC L$ the associated vector bundle.
 
 Satisfies $\nabla_\eta(fv) = \eta(f)v + f\nabla_\eta(v)$.
 
@@ -397,7 +397,7 @@ What is the Gauss-Manin connection?
 :::
 
 ::: {.back card-id="card-13b2ac619d704015"}
-For $f:X\to Y$, the integrable connection on $V \coloneqq{\mathcal{O}}_Y \otimes_{\mathbf{C}}{\mathbf{R}}^i f_* \underline{{\mathbf{C}}}$, the vector bundle associated to the local system $L\coloneqq{\mathbf{R}}^1 f_* \underline{{\mathbf{C}}}$.
+For $f:X\to Y$, the integrable connection on $V \coloneqq{\mathcal{O}}_Y \otimes_\CC{\mathbf{R}}^i f_* \underline{\CC}$, the vector bundle associated to the local system $L\coloneqq{\mathbf{R}}^1 f_* \underline{\CC}$.
 
 Sections $L$ are precisely solutions to $\nabla v = 0$.
 :::
@@ -407,15 +407,15 @@ Motivate perverse sheaves.
 :::
 
 ::: {.back card-id="card-7ed36435cd4087ee"}
-The Leray spectral sequence doesn't degenerate for arbitrary morphisms $f:X\to Y$, nor is there a decomposition ${\mathbf{R}}f_* {\mathbf{Q}}= \bigoplus {\mathbf{R}}^q f_* {\mathbf{Q}}[-q]$.
+The Leray spectral sequence doesn't degenerate for arbitrary morphisms $f:X\to Y$, nor is there a decomposition ${\mathbf{R}}f_* \QQ= \bigoplus {\mathbf{R}}^q f_* \QQ[-q]$.
 
-Instead ${\mathbf{R}}f_* {\mathbf{Q}}$ decomposes (in a weaker sense) into perverse sheaves.
+Instead ${\mathbf{R}}f_* \QQ$ decomposes (in a weaker sense) into perverse sheaves.
 
 Decomposition theorem: Let $f: X \rightarrow Y$ be a projective map of complex algebraic varieties, with $X$ smooth, then $\mathbb{R} f_* \mathbb{Q}$ decomposes into a sum of translates of simple perverse sheaves.
 :::
 
 ::: {.front card-id="card-48e8cb4d83d5162d"}
-Motivate ${}_{\mathcal{D}}{\mathsf{Mod}}$.
+Motivate ${}_\mcd\Mod$.
 :::
 
 ::: {.back card-id="card-48e8cb4d83d5162d"}
@@ -423,11 +423,11 @@ Generalize integrable connections.
 
 Coherent such correspond to a system of PDEs.
 
-A PVHS gives a regular holonomic ${}_{\mathcal{D}}{\mathsf{Mod}}$.
+A PVHS gives a regular holonomic ${}_\mcd\Mod$.
 :::
 
 ::: {.front card-id="card-62ce6f1165580cfb"}
-Define ${}_{\mathcal{D}}{\mathsf{Mod}}$.
+Define ${}_\mcd\Mod$.
 :::
 
 ::: {.back card-id="card-62ce6f1165580cfb"}
@@ -435,11 +435,11 @@ For $X$, let $D_X$ be the sheaf of algebras of holomorphic differential operator
 
 For $X = {\mathbf{A}}^n$, $H^0(D_X) = W^n$ the Weyl algebra: $\left\langle{x_1,\cdots, x_n, {\partial}_1,\cdots, {\partial}_n}\right\rangle/\left\langle{\left[x_i, x_j\right]=\left[\partial_i, \partial_j\right]=0,\left[\partial_i, x_j\right]=\delta_{i j}}\right\rangle$.
 
-$M\in   {}_{\mathcal D_X}{\mathsf{Mod}} \subset   {}_{{\mathcal{O}}_X}{\mathsf{Mod}}$ if $M\in {\mathsf{Sh}}(X; {\mathsf{Ab}}{\mathsf{Grp}})$ where $D_X\curvearrowright M$ from the left.
+$M\in   {}_{\mathcal D_X}\Mod \subset   {}_{{\mathcal{O}}_X}\Mod$ if $M\in \Sh(X; \Ab\Grp)$ where $D_X\curvearrowright M$ from the left.
 :::
 
 ::: {.front card-id="card-c1fe4aa5951fa4cd"}
-Give an example of $M\in {}_{\mathcal{D}}{\mathsf{Mod}}$.
+Give an example of $M\in {}_\mcd\Mod$.
 :::
 
 ::: {.back card-id="card-c1fe4aa5951fa4cd"}
@@ -453,7 +453,7 @@ What is a perverse sheaf?
 :::
 
 ::: {.back card-id="card-bd8193568fce0868"}
-An object of $D_{{\operatorname{const.}}}^b(X,   {}_{ {\mathbf{C}}}{\mathsf{Mod}})$ (complexes of sheaves of vector spaces with bounded constructible cohomology) isomorphic to $\mathrm{RH}(M)$ for some $M\in    {}_{\mathcal{D}}{\mathsf{Mod}} ^{\text{hol}}$ and $\mathrm{RH}({-}) \coloneqq\mathop{\mathrm{\mathbb{R}Hom}}({-}, {\mathcal{O}}_X)$ is the functor inducing the Riemann-Hilbert equivalence.
+An object of $D_{{\operatorname{const.}}}^b(X,   {}_{ \CC}\Mod)$ (complexes of sheaves of vector spaces with bounded constructible cohomology) isomorphic to $\mathrm{RH}(M)$ for some $M\in    {}_\mcd\Mod ^{\text{hol}}$ and $\mathrm{RH}({-}) \coloneqq\mathop{\mathrm{\mathbb{R}Hom}}({-}, {\mathcal{O}}_X)$ is the functor inducing the Riemann-Hilbert equivalence.
 :::
 
 ::: {.front card-id="card-1ac89899346723e1"}
@@ -471,7 +471,7 @@ What is Saito's theorem?
 :::
 
 ::: {.back card-id="card-fd276d037dd8cb3f"}
-For $f:X\to Y$ projective, ${\mathbf{R}}f_* K$ decomposes into a sum of IC complexes associated to PVHS when $K$ is in a certain subcategory of regular holonomic ${}_{\mathcal{D}}{\mathsf{Mod}}$.
+For $f:X\to Y$ projective, ${\mathbf{R}}f_* K$ decomposes into a sum of IC complexes associated to PVHS when $K$ is in a certain subcategory of regular holonomic ${}_\mcd\Mod$.
 :::
 
 ::: {.front card-id="card-9fb9b11c6c6eb0ba"}
@@ -487,9 +487,9 @@ Discuss VHSs.
 :::
 
 ::: {.back card-id="card-37c7477ed34e32d2"}
-For $f:X\to Y$, suppose $H^k(X_y; {\mathbf{C}})$ carries a filtration
+For $f:X\to Y$, suppose $H^k(X_y; \CC)$ carries a filtration
 
-Organize $\left\{{H^k(X_y; {\mathbf{C}})}\right\}_{y\in Y}$ into a local system.
+Organize $\left\{{H^k(X_y; \CC)}\right\}_{y\in Y}$ into a local system.
 
 Tensor with functions on the base to get a flat bundle $(V, \nabla)$/
 
@@ -505,7 +505,7 @@ For $V$ a PVHS over $\mathbb{D}^\circ$, lift via $\pi: {\mathbb{H}}\to \mathbb{D
 
 Theorem: the eigenvalues of $T\coloneqq\rho(1)$ are of the form $\zeta_n$ for some $n$, and in particular ${\left\lvert {\lambda} \right\rvert} = 1$.
 
-$T$ has Jordan blocks of size at most $d\coloneqq\max\left\{{{\left\lvert {p-q} \right\rvert}{~\mathrel{\Big\vert}~}h^{p, q}\neq 0}\right\}$.
+$T$ has Jordan blocks of size at most $d\coloneqq\max\left\{{{\left\lvert {p-q} \right\rvert}\st h^{p, q}\neq 0}\right\}$.
 :::
 
 ::: {.front card-id="card-f71cc370724c36c7"}
@@ -513,6 +513,6 @@ What is the Jacobian of a complex manifold?
 :::
 
 ::: {.back card-id="card-f71cc370724c36c7"}
-$$\operatorname{Jac}(X) \coloneqq H^1({\mathcal{O}}_X)/H^1(X; {\mathbf{Z}})\cong \ker(\operatorname{Pic}(X) \to H^2(X; {\mathbf{Z}})) \cong \operatorname{Pic}^0(X)$$
+$$\operatorname{Jac}(X) \coloneqq H^1({\mathcal{O}}_X)/H^1(X; \ZZ)\cong \ker(\operatorname{Pic}(X) \to H^2(X; \ZZ)) \cong \operatorname{Pic}^0(X)$$
 The continuous part of $\operatorname{Pic}(X)$.
 :::

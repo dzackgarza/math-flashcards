@@ -8,13 +8,13 @@ What are the implications for fields, UFDs, PIDs, etc?
 
 ::: {.back card-id="card-4108e89ad5ce521e"}
 $$\begin{aligned}\text { field } & \Longrightarrow \text { Euclidean Domain } \Longrightarrow \text { PID } \\ & \Longrightarrow \text { UFD } \Longrightarrow \text { integral domain }\end{aligned}$$
-ED not a field: ${\mathbf{C}}[x]$.
+ED not a field: $\CC[x]$.
 
-PID not an ED: ${\mathbf{Z}} { \left[ \scriptstyle { 1 + \sqrt{-19} \over 2} \right] }$.
+PID not an ED: $\ZZ { \left[ \scriptstyle { 1 + \sqrt{-19} \over 2} \right] }$.
 
-UFD not a PID: ${\mathbf{Z}}[x]$; take $\left\langle{x, 2}\right\rangle$.
+UFD not a PID: $\ZZ[x]$; take $\left\langle{x, 2}\right\rangle$.
 
-ID not a UFD: ${\mathbf{Z}} { \left[ \scriptstyle {\sqrt{-5}} \right] }$.
+ID not a UFD: $\ZZ { \left[ \scriptstyle {\sqrt{-5}} \right] }$.
 :::
 
 ::: {.front card-id="card-88343a401eaff1ce" tags="definition"}

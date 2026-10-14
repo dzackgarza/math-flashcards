@@ -51,7 +51,7 @@ $\sum c_n < \infty \implies c_n\overset{n\to\infty}\longrightarrow 0$.
 :::
 
 ::: {.front card-id="card-ecab06dc74aa507e"}
-What is the $p{\hbox{-}}$test?
+What is the $p\dash$test?
 :::
 
 ::: {.back card-id="card-ecab06dc74aa507e"}

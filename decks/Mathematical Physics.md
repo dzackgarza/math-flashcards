@@ -7,9 +7,9 @@ Describe geometric Langlands.
 :::
 
 ::: {.back card-id="card-8edb2235ecd7bad5"}
-$\rho \in {\mathcal{X}}(\pi_1\Sigma_g, G)\leadsto$ a flat connection $\nabla_\rho$ on a principal $G{\hbox{-}}$bundle over $C$
+$\rho \in \mcx(\pi_1\Sigma_g, G)\leadsto$ a flat connection $\nabla_\rho$ on a principal $G\dash$bundle over $C$
 
-Irreducible such connections $\rightleftharpoons$ $R\in    {}_{\mathcal{D}}{\mathsf{Mod}} ({\mathsf{Bun}}_{{}^L G})$.
+Irreducible such connections $\rightleftharpoons$ $R\in    {}_\mcd\Mod (\Bun_{{}^L G})$.
 :::
 
 ::: {.front card-id="card-e0267814e9c4ee2e"}
@@ -27,15 +27,15 @@ Semistable SNC model.
 :::
 
 ::: {.front card-id="card-a62507d3e1e915e7"}
-What is ${\mathsf{Bun}}_G$?
+What is $\Bun_G$?
 :::
 
 ::: {.back card-id="card-a62507d3e1e915e7"}
-${\mathsf{Bun}}_G(k)$ is the maximal subgroupoid of ${\mathsf{G}{\hbox{-}}\mathsf{Torsors}}_{/ {X}}$.
+$\Bun_G(k)$ is the maximal subgroupoid of ${\mathsf{G}\dash\mathsf{Torsors}}_{/ {X}}$.
 
 Forms an algebraic stack.
 
-Observation due to Weil: $\dcoset{G(F)}{G({\mathbf{A}}_F)}{\prod_{x\in {\left\lvert {X} \right\rvert}}' G({\mathcal{O}}_x)}  { \, \xrightarrow{\sim}\, }{\mathsf{Bun}}_G$ where $F= k(X)$, $F_x$ is the completion at $x$, and ${\mathcal{O}}_x$ is its valuation ring. Supposed to resemble
+Observation due to Weil: $\dcoset{G(F)}{G({\mathbf{A}}_F)}{\prod_{x\in {\left\lvert {X} \right\rvert}}' G({\mathcal{O}}_x)}  { \, \xrightarrow{\sim}\, }\Bun_G$ where $F= k(X)$, $F_x$ is the completion at $x$, and ${\mathcal{O}}_x$ is its valuation ring. Supposed to resemble
 $$\dcoset{G(F)}{G({\mathbf{A}}_F)}{K }$$
 :::
 
@@ -68,7 +68,7 @@ What is EM duality in Maxwell theory?
 :::
 
 ::: {.back card-id="card-6b4152564621a373"}
-Setup: $\nabla$ a connection on a principal ${\operatorname{U}}_1{\hbox{-}}$bundle over $X\in {\mathsf{Mfd}}^4$.
+Setup: $\nabla$ a connection on a principal ${\operatorname{U}}_1\dash$bundle over $X\in \Mfd^4$.
 
 Equations of motion: $d\star d\nabla = 0$.
 
@@ -100,11 +100,11 @@ What is mirror symmetry for the Hitchin moduli space?
 :::
 
 ::: {.back card-id="card-8668e3c5ffaa389d"}
-SYZ: ${\mathcal{M}}_H(G, C) \rightleftharpoons{\mathcal{M}}_H({}^L G, C)$ are SYZ mirrors
+SYZ: $\mcm_H(G, C) \rightleftharpoons\mcm_H({}^L G, C)$ are SYZ mirrors
 
-HMS: A-branes on ${\mathcal{M}}_H(G, C)$ is derived equivalent to $\mathbf{D}{{\mathsf{Coh}}}({\mathcal{M}}_{\flat}({}^L G, C))$.
+HMS: A-branes on $\mcm_H(G, C)$ is derived equivalent to $\mathbf{D}{\Coh}(\mcm_{\flat}({}^L G, C))$.
 
-GL: $\mathbf{D}{{\mathsf{Coh}}}({\mathcal{M}}_{\flat}({}^L G, C))  { \, \xrightarrow{\sim}\, }   {}_{\mathcal{D}}{\mathsf{Mod}} ({\mathsf{Bun}}_G(C))$ sending points to Hecke eigensheaves.
+GL: $\mathbf{D}{\Coh}(\mcm_{\flat}({}^L G, C))  { \, \xrightarrow{\sim}\, }   {}_\mcd\Mod (\Bun_G(C))$ sending points to Hecke eigensheaves.
 :::
 
 ::: {.front card-id="card-7285b57d6a08451f"}
@@ -112,7 +112,7 @@ Motivate the affine Grassmannian.
 :::
 
 ::: {.back card-id="card-7285b57d6a08451f"}
-Hecke transformations modify a $G{\hbox{-}}$bundle at a point, such modifications are parameterized by ${\operatorname{Gr}}_G$, transformations from 't Hooft operators $T_\mu$ correspond to Schubert cells $\mu$.
+Hecke transformations modify a $G\dash$bundle at a point, such modifications are parameterized by $\Gr_G$, transformations from 't Hooft operators $T_\mu$ correspond to Schubert cells $\mu$.
 :::
 
 ::: {.front card-id="card-bdf64736043c43b5"}
@@ -120,7 +120,7 @@ What is geometric Satake?
 :::
 
 ::: {.back card-id="card-bdf64736043c43b5"}
-Equivariant perverse sheaves on ${\operatorname{Gr}}_G$ is equivalent to ${\mathsf{Rep}}({}^L G)^{\mathrm{fd}}$.
+Equivariant perverse sheaves on $\Gr_G$ is equivalent to $\Rep({}^L G)^\fd$.
 :::
 
 ::: {.front card-id="card-c4ac7649a95611d6"}
@@ -138,11 +138,11 @@ What is the standard model?
 :::
 
 ::: {.back card-id="card-40e26ae9de203073"}
-Yang Mills for the gauge group ${\operatorname{SU}}_3 \times {\operatorname{SU}}_2 \times {\operatorname{U}}_1$.
+Yang Mills for the gauge group $\SU_3 \times \SU_2 \times {\operatorname{U}}_1$.
 :::
 
 ::: {.front card-id="card-7d9882a64aabff25"}
-What is the defining property of a $D{\hbox{-}}$brane?
+What is the defining property of a $D\dash$brane?
 :::
 
 ::: {.back card-id="card-7d9882a64aabff25"}

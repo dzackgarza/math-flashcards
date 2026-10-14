@@ -7,7 +7,7 @@ What is $H^q(K; M)$ for $K\in \mathsf{Field}$?
 :::
 
 ::: {.back card-id="card-095230d6aa734d77"}
-$H^q({ \mathsf{Gal}}(k^{ {}^{ \operatorname{sep} } }/k); M)$ the profinite group cohomology.
+$H^q(\Gal(k^{ {}^{ \operatorname{sep} } }/k); M)$ the profinite group cohomology.
 :::
 
 ::: {.front card-id="card-63e5e2b2fef8dfc0"}
@@ -15,7 +15,7 @@ What is the Weil-Chatelet group $\mathrm{WC}(A/K)$?
 :::
 
 ::: {.back card-id="card-63e5e2b2fef8dfc0"}
-For $A\in{\mathsf{Grp}}{\mathsf{Sch}}$ commutative, or $A$ any commutative group, $H^1(K; A)\coloneqq H^1({ \mathsf{Gal}}(k^{ {}^{ \operatorname{sep} } }/k); A(k^{ {}^{ \operatorname{sep} } }))$.
+For $A\in\Grp\Sch$ commutative, or $A$ any commutative group, $H^1(K; A)\coloneqq H^1(\Gal(k^{ {}^{ \operatorname{sep} } }/k); A(k^{ {}^{ \operatorname{sep} } }))$.
 :::
 
 ::: {.front card-id="card-6ed7fecddc2418ed"}
@@ -35,7 +35,7 @@ Algebraic, normal, separable.
 :::
 
 ::: {.front card-id="card-570ae19fe569a383"}
-What is $H^n({ \mathsf{Gal}}(L/K); L)$?
+What is $H^n(\Gal(L/K); L)$?
 :::
 
 ::: {.back card-id="card-570ae19fe569a383"}
@@ -47,11 +47,11 @@ What is the normal basis theorem?
 :::
 
 ::: {.back card-id="card-228e5547c91384fb"}
-For $L/K$ finite Galois, $\exists \alpha\in L$ such that $G_{L/K}.\alpha$ generates $L\in   {}_{K}{\mathsf{Mod}}$, i.e. $L = \left\langle{G_{L/K}.\alpha}\right\rangle_K$. Since ${\sharp}G_{L/K} = [L: K]$, the conjugates of $\alpha$ are a $K$-basis of $L$.
+For $L/K$ finite Galois, $\exists \alpha\in L$ such that $G_{L/K}.\alpha$ generates $L\in   {}_{K}\Mod$, i.e. $L = \left\langle{G_{L/K}.\alpha}\right\rangle_K$. Since ${\sharp}G_{L/K} = [L: K]$, the conjugates of $\alpha$ are a $K$-basis of $L$.
 
-For $G\coloneqq G_{L/K}$, iff ${\mathbf{G}}_a(L) = L \cong K[G] \in   {}_{K[G]}{\mathsf{Mod}}$, so rank 1 with generator $\alpha$.
+For $G\coloneqq G_{L/K}$, iff ${\mathbf{G}}_a(L) = L \cong K[G] \in   {}_{K[G]}\Mod$, so rank 1 with generator $\alpha$.
 
-Iff $L\cong {\mathbf{Z}}[G]\otimes_{\mathbf{Z}}K \in   \mods{\ZZ[G]}$, so $L$ is induced.
+Iff $L\cong \ZZ[G]\otimes_\ZZ K \in   \mods{\ZZ[G]}$, so $L$ is induced.
 :::
 
 ::: {.front card-id="card-2fc69737d44e07a9"}
@@ -59,7 +59,7 @@ What is Hilbert 90?
 :::
 
 ::: {.back card-id="card-2fc69737d44e07a9"}
-For $L/K$ Galois, $G = { \mathsf{Gal}}(L/K)$,
+For $L/K$ Galois, $G = \Gal(L/K)$,
 $$H^1(G; L^{\times}) = 0$$
 This is false for $q\gt 1$!
 
@@ -99,7 +99,7 @@ Set $\mu_n = (k^{ {}^{ \operatorname{sep} } })^{\times}[n]$, then $H^1(k; \mu_n)
 
 Proof: LES for $\mu_n\hookrightarrow(k^{ {}^{ \operatorname{sep} } })^{\times}\twoheadrightarrow(k^{ {}^{ \operatorname{sep} } })^{\times}$ and apply Hilbert 90.
 
-If $K$ contains an $n$th root of unity, $\mu_n = C_n$ has trivial $G_K{\hbox{-}}$ action and $H^1(K; \mu_n) = \mathop{\mathrm{Hom}}(g_K, C_n)$.
+If $K$ contains an $n$th root of unity, $\mu_n = C_n$ has trivial $G_K\dash$ action and $H^1(K; \mu_n) = \mathop{\mathrm{Hom}}(g_K, C_n)$.
 :::
 
 ::: {.front card-id="card-53eab47f7ef628ba"}
@@ -107,7 +107,7 @@ What is the Pontryagin dual?
 :::
 
 ::: {.back card-id="card-53eab47f7ef628ba"}
-$G {}^{ \vee }\coloneqq{\mathsf{Top}}(G, {\operatorname{U}}_1)$ with the compact-open topology, for $G$ a locally compact abelian topological group.
+$G {}^{ \vee }\coloneqq\Top(G, {\operatorname{U}}_1)$ with the compact-open topology, for $G$ a locally compact abelian topological group.
 
 Duality: profinite abelian groups $\rightleftharpoons$ discrete torsion abelian groups (
 
@@ -117,11 +117,11 @@ Generalizes $G$ isomorphic to its character group
 :::
 
 ::: {.front card-id="card-af6028d38b5cb858"}
-What is $({\operatorname{U}}_1)_{\operatorname{tors}}$?
+What is $({\operatorname{U}}_1)_\tors$?
 :::
 
 ::: {.back card-id="card-af6028d38b5cb858"}
-${\mathbf{Q}}/{\mathbf{Z}}$, the group of all roots of unity.
+$\QQ/\ZZ$, the group of all roots of unity.
 :::
 
 ::: {.front card-id="card-a5d289a805257b70"}
@@ -129,7 +129,7 @@ How does one interpret $K^{\times}/(K^{\times})^n$.
 :::
 
 ::: {.back card-id="card-a5d289a805257b70"}
-$K^{\times}/(K^{\times})^n \cong g_K^{{\operatorname{ab}}, n}$ the Galois group of the maximal abelian extension of $K$ with exponent $n$.
+$K^{\times}/(K^{\times})^n \cong g_K^{\ab, n}$ the Galois group of the maximal abelian extension of $K$ with exponent $n$.
 :::
 
 ::: {.front card-id="card-3b96ac4266574cb6"}
@@ -161,9 +161,9 @@ Take $\phi \coloneqq\operatorname{Frob}- 1$ so $\phi(x) = x^p-x$, this is an iso
 
 Take LES, use additive Hilbert 90 to get $\mathop{\mathrm{Hom}}(g_k, { \mathbf{F} }_p) \cong k/\phi(k)$.
 
-This says $(g_k^{{\operatorname{ab}}, p}) {}^{ \vee }= k/\phi(k)$.
+This says $(g_k^{\ab, p}) {}^{ \vee }= k/\phi(k)$.
 
-Generalizes to $(g_k^{{\operatorname{ab}}, p^n}) = W_n(k)/ \phi(W_n(k))$ for $W_n$ the length $n$ Witt vectors.
+Generalizes to $(g_k^{\ab, p^n}) = W_n(k)/ \phi(W_n(k))$ for $W_n$ the length $n$ Witt vectors.
 :::
 
 ::: {.front card-id="card-c9837b1d36c43ff6"}
@@ -179,7 +179,7 @@ What is the relative Brauer group?
 :::
 
 ::: {.back card-id="card-56812a42bf98ef46"}
-$\mathrm{Br}(L/K) \coloneqq H^2({ \mathsf{Gal}}(L/K); L^{\times})$.
+$\mathrm{Br}(L/K) \coloneqq H^2(\Gal(L/K); L^{\times})$.
 :::
 
 ::: {.front card-id="card-8961c453a837af89"}
@@ -187,7 +187,7 @@ What is $\operatorname{cohdim}G$?
 :::
 
 ::: {.back card-id="card-8961c453a837af89"}
-$\sup_{p \in \operatorname{Spec}{\mathbf{Z}}} \operatorname{cohdim}_p G$ where $\operatorname{cohdim}_p G$ is the least $d$ such that for all $n\geq d$ and for all discrete torsion $A\in   {}_{G}{\mathsf{Mod}}$, one has $H^n(G; A[p^\infty]) = 0$.
+$\sup_{p \in \operatorname{Spec}\ZZ} \operatorname{cohdim}_p G$ where $\operatorname{cohdim}_p G$ is the least $d$ such that for all $n\geq d$ and for all discrete torsion $A\in   {}_{G}\Mod$, one has $H^n(G; A[p^\infty]) = 0$.
 :::
 
 ::: {.front card-id="card-3886538b2e514584"}
@@ -199,7 +199,7 @@ $\operatorname{cohdim}_\ell C_p =0$ if $p\neq \ell$ and $\infty$ if $p=\ell$, so
 :::
 
 ::: {.front card-id="card-0bd0a971ed2aeda5"}
-Discuss $\operatorname{cohdim}G$ for $G$ a pro${\hbox{-}}p$ group.
+Discuss $\operatorname{cohdim}G$ for $G$ a pro$\dash p$ group.
 :::
 
 ::: {.back card-id="card-0bd0a971ed2aeda5"}
@@ -207,37 +207,37 @@ $\operatorname{cohdim}_p G \leq n \iff H^{n+1}(G; C_p) = 0$.
 :::
 
 ::: {.front card-id="card-1f3689519ae590a6"}
-Write $\mathsf{pro}{\mathbf{Z}}$ as a product.
+Write $\mathsf{pro}\ZZ$ as a product.
 :::
 
 ::: {.back card-id="card-1f3689519ae590a6"}
-$$\mathsf{pro}{\mathbf{Z}}= \projectivelim C_n = \projectivelim \prod_{p\in \operatorname{Spec}{\mathbf{Z}}} C_{p_i^{k_i}} = \prod_{p\in \operatorname{Spec}{\mathbf{Z}}} \projectivelim C_{p_i^{k_i}} = \prod_{p\in \operatorname{Spec}{\mathbf{Z}}} { {\mathbf{Z}}_{\widehat{p}} }$$
+$$\mathsf{pro}\ZZ= \projectivelim C_n = \projectivelim \prod_{p\in \operatorname{Spec}\ZZ} C_{p_i^{k_i}} = \prod_{p\in \operatorname{Spec}\ZZ} \projectivelim C_{p_i^{k_i}} = \prod_{p\in \operatorname{Spec}\ZZ} { \ZZ_{\widehat{p}} }$$
 :::
 
 ::: {.front card-id="card-65cd3d53082ae059"}
-What is ${\operatorname{Syl}}_p (\mathsf{pro}{\mathbf{Z}})$?
+What is $\Syl_p (\mathsf{pro}\ZZ)$?
 :::
 
 ::: {.back card-id="card-65cd3d53082ae059"}
-Uniquely ${ {\mathbf{Z}}_{\widehat{p}} }$.
+Uniquely ${ \ZZ_{\widehat{p}} }$.
 :::
 
 ::: {.front card-id="card-b06e08a3e7103026"}
-What is $\operatorname{cohdim}{ {\mathbf{Z}}_{\widehat{p}} }$?
+What is $\operatorname{cohdim}{ \ZZ_{\widehat{p}} }$?
 :::
 
 ::: {.back card-id="card-b06e08a3e7103026"}
-$\operatorname{cohdim}{ {\mathbf{Z}}_{\widehat{p}} }= 1$.
+$\operatorname{cohdim}{ \ZZ_{\widehat{p}} }= 1$.
 
-Why: $H^2({ {\mathbf{Z}}_{\widehat{p}} }; C_p) = 0$ and $H^1({ {\mathbf{Z}}_{\widehat{p}} }; C_p) = \mathop{\mathrm{Hom}}({ {\mathbf{Z}}_{\widehat{p}} }, C_p) = C_p$.
+Why: $H^2({ \ZZ_{\widehat{p}} }; C_p) = 0$ and $H^1({ \ZZ_{\widehat{p}} }; C_p) = \mathop{\mathrm{Hom}}({ \ZZ_{\widehat{p}} }, C_p) = C_p$.
 :::
 
 ::: {.front card-id="card-e3b30a624c45bf53"}
-What is $\operatorname{cohdim}(\mathsf{pro}{\mathbf{Z}})$?
+What is $\operatorname{cohdim}(\mathsf{pro}\ZZ)$?
 :::
 
 ::: {.back card-id="card-e3b30a624c45bf53"}
-$\operatorname{cohdim}(\mathsf{pro}{\mathbf{Z}}) = 1$ since $\operatorname{cohdim}_p({ {\mathbf{Z}}_{\widehat{p}} }) = 1$ for all primes $p$ and $\operatorname{cohdim}_p G = \operatorname{cohdim}_p G_p$ for $G_p$ a Sylow $p{\hbox{-}}$subgroup.
+$\operatorname{cohdim}(\mathsf{pro}\ZZ) = 1$ since $\operatorname{cohdim}_p({ \ZZ_{\widehat{p}} }) = 1$ for all primes $p$ and $\operatorname{cohdim}_p G = \operatorname{cohdim}_p G_p$ for $G_p$ a Sylow $p\dash$subgroup.
 :::
 
 ::: {.front card-id="card-388130dd5c67f1b1"}
@@ -253,7 +253,7 @@ What is the inflation/restriction sequence for Brauer groups?
 :::
 
 ::: {.back card-id="card-9533eaca3452aa02"}
-$\mathrm{Br}(L/K)\xhookrightarrow{\mathrm{inflation}} \mathrm{Br}(K) \xrightarrow{\mathrm{restriction}} \mathrm{Br}(L)^{{ \mathsf{Gal}}(L/K)}$.
+$\mathrm{Br}(L/K)\xhookrightarrow{\mathrm{inflation}} \mathrm{Br}(K) \xrightarrow{\mathrm{restriction}} \mathrm{Br}(L)^{\Gal(L/K)}$.
 :::
 
 ::: {.front card-id="card-cc76cd508bd43e53"}
@@ -277,7 +277,7 @@ What is an etale group scheme?
 :::
 
 ::: {.back card-id="card-07975ce6c91081cd"}
-Idea: for $G$, lose no information by considering $G(k^{ {}^{ \operatorname{sep} } })\in   {}_{G_k}{\mathsf{Mod}}$.
+Idea: for $G$, lose no information by considering $G(k^{ {}^{ \operatorname{sep} } })\in   {}_{G_k}\Mod$.
 :::
 
 ::: {.front card-id="card-0fa66696121a93e0"}
@@ -289,7 +289,7 @@ Classified finite dimensional central simple division algebras.
 
 $\mathrm{Br}({\mathbf{R}}) \cong C_2 \left\langle{{\mathbf{R}}, {\mathbb{H}}}\right\rangle$ where $\dim_{\mathbf{R}}{\mathbb{H}}= 4$ is the Hamilton quaternions.
 
-Proof: $\mathrm{Br}({\mathbf{R}}) = \widehat{H}^0(\mathop{\mathrm{Aut}}({\mathbf{C}}/{\mathbf{R}}); {\mathbf{C}}^{\times}) = {\mathbf{R}}^{\times}/N{\mathbf{C}}^{\times}= {\mathbf{R}}^{\times}/{\mathbf{R}}_{\gt 0} = C_2$.
+Proof: $\mathrm{Br}({\mathbf{R}}) = \widehat{H}^0(\mathop{\mathrm{Aut}}(\CC/{\mathbf{R}}); \CC^{\times}) = {\mathbf{R}}^{\times}/N\CC^{\times}= {\mathbf{R}}^{\times}/{\mathbf{R}}_{\gt 0} = C_2$.
 :::
 
 ::: {.front card-id="card-d7379378881c9532"}
@@ -307,7 +307,7 @@ What is $\mathrm{Br}({ \mathbf{F} }_q)$? What is the interpretation?
 ::: {.back card-id="card-ed6fc5f2467c56da"}
 $\mathrm{Br}({ \mathbf{F} }_q) = 0$; every finite division algebra is a field.
 
-True because inflations are injective, ${ \mathsf{Gal}}({ \mathbf{F} }_{q^n}/{ \mathbf{F} }_q) = \left\langle{\operatorname{Frob}_q}\right\rangle$, and $\widehat{H}^0(\left\langle{\operatorname{Frob}_q}\right\rangle; { \mathbf{F} }_{q^n}^{\times}) = { \mathbf{F} }_q^{\times}/N{ \mathbf{F} }_{q^n}^{\times}= 0$ since the norm is surjective on finite fields.
+True because inflations are injective, $\Gal({ \mathbf{F} }_{q^n}/{ \mathbf{F} }_q) = \left\langle{\operatorname{Frob}_q}\right\rangle$, and $\widehat{H}^0(\left\langle{\operatorname{Frob}_q}\right\rangle; { \mathbf{F} }_{q^n}^{\times}) = { \mathbf{F} }_q^{\times}/N{ \mathbf{F} }_{q^n}^{\times}= 0$ since the norm is surjective on finite fields.
 :::
 
 ::: {.front card-id="card-ff081ebce96f915a"}
@@ -315,7 +315,7 @@ Characterize procyclic groups.
 :::
 
 ::: {.back card-id="card-ff081ebce96f915a"}
-Quotients of $\mathsf{pro}{\mathbf{Z}}$ by closed subgroups.
+Quotients of $\mathsf{pro}\ZZ$ by closed subgroups.
 :::
 
 ::: {.front card-id="card-692232f75a34b981"}
@@ -339,9 +339,9 @@ What is Tsen's theorem?
 :::
 
 ::: {.back card-id="card-af37691e18301572"}
-If $k ={ \overline{k} }$ and ${\mathrm{trdeg}}(L/k)=1$ then $L$ is a $C_1$ field.
+If $k =\kbar$ and $\trdeg(L/k)=1$ then $L$ is a $C_1$ field.
 
-In particular, $k(C)$ the function field of a curve over $k={ \overline{k} }$ is $C_1$.
+In particular, $k(C)$ the function field of a curve over $k=\kbar$ is $C_1$.
 :::
 
 ::: {.front card-id="card-6c6248f50912e197"}
@@ -365,9 +365,9 @@ Discuss the decomposition of $\mathrm{Br}(K)$ for $K$ a CDVR with perfect residu
 :::
 
 ::: {.back card-id="card-8e2cb08e735bc212"}
-$\mathrm{Br}(K) = \mathrm{Br}(k) \oplus \mathop{\mathrm{Hom}}(g_k, {\mathbf{Q}}/{\mathbf{Z}})$.
+$\mathrm{Br}(K) = \mathrm{Br}(k) \oplus \mathop{\mathrm{Hom}}(g_k, \QQ/\ZZ)$.
 
-If $k$ is finite, $\mathrm{Br}(K) = {\mathbf{Q}}/{\mathbf{Z}}$.
+If $k$ is finite, $\mathrm{Br}(K) = \QQ/\ZZ$.
 :::
 
 ::: {.front card-id="card-766c454787487177"}
@@ -375,9 +375,9 @@ Discuss limits of $C_n$.
 :::
 
 ::: {.back card-id="card-766c454787487177"}
-$\colim C_n = {\mathbf{Q}}/{\mathbf{Z}}$
+$\colim C_n = \QQ/\ZZ$
 
-$\projectivelim C_n = \mathsf{pro}{\mathbf{Z}}$.
+$\projectivelim C_n = \mathsf{pro}\ZZ$.
 :::
 
 ::: {.front card-id="card-10d1272606dd6f30"}
@@ -385,11 +385,11 @@ What is the characteristic property of unramified extensions?
 :::
 
 ::: {.back card-id="card-10d1272606dd6f30"}
-For $L/K$ with residue fields $l/k$, ${ \mathsf{Gal}}(L/K)\twoheadrightarrow{ \mathsf{Gal}}(l/k)$ is an isomorphism.
+For $L/K$ with residue fields $l/k$, $\Gal(L/K)\twoheadrightarrow\Gal(l/k)$ is an isomorphism.
 :::
 
 ::: {.front card-id="card-8fd920f18e320d3c"}
-For a decreasing filtration $M_1 \supseteq M_2\supseteq\cdots$, what does it mean for $M_1$ to be complete and separated for the $M_i{\hbox{-}}$adic topology?
+For a decreasing filtration $M_1 \supseteq M_2\supseteq\cdots$, what does it mean for $M_1$ to be complete and separated for the $M_i\dash$adic topology?
 :::
 
 ::: {.back card-id="card-8fd920f18e320d3c"}
@@ -409,11 +409,11 @@ What are the higher unit groups of a local field $L$?
 :::
 
 ::: {.back card-id="card-9b48c86ec18ac71d"}
-$U^n(L) \coloneqq\left\{{x\in R(L) {~\mathrel{\Big\vert}~}v(x-1)\geq n}\right\}$ for $n\geq 1$, where $R(L)$ is the valuation ring with maximal ideal ${\mathfrak{m}}$.
+$U^n(L) \coloneqq\left\{{x\in R(L) \st v(x-1)\geq n}\right\}$ for $n\geq 1$, where $R(L)$ is the valuation ring with maximal ideal $\mfm$.
 
-Can write as $1 + {\mathfrak{m}}^n$: for $r_n: R\twoheadrightarrow R/{\mathfrak{m}}^n$, the induced map $r_n^{\times}: R^{\times}\to (R/{\mathfrak{m}}^n)^{\times}$ is surjective since $R$ is local, and $U^n = \ker r_n^{\times}= 1 + {\mathfrak{m}}^n$, the units that are trivial modulo ${\mathfrak{m}}^n$.
+Can write as $1 + \mfm^n$: for $r_n: R\twoheadrightarrow R/\mfm^n$, the induced map $r_n^{\times}: R^{\times}\to (R/\mfm^n)^{\times}$ is surjective since $R$ is local, and $U^n = \ker r_n^{\times}= 1 + \mfm^n$, the units that are trivial modulo $\mfm^n$.
 
-In characteristic zero, the $p{\hbox{-}}$adic logarithm gives an isomorphism $U^n { \, \xrightarrow{\sim}\, }{\mathfrak{m}}^n$ for $n > e/(p-1)$, where $e \coloneqq v(p)$.
+In characteristic zero, the $p\dash$adic logarithm gives an isomorphism $U^n { \, \xrightarrow{\sim}\, }\mfm^n$ for $n > e/(p-1)$, where $e \coloneqq v(p)$.
 :::
 
 ::: {.front card-id="card-fce84017162b3b45"}
@@ -459,7 +459,7 @@ Admitting some finite index subgroup which has property $P$.
 :::
 
 ::: {.front card-id="card-5f4e3322c228111a"}
-When is $M\in {\mathsf{Fin}} {}_{{\mathbf{Z}}}{\mathsf{Mod}}$ a product of its Sylow subgroups?
+When is $M\in \Fin {}_{\ZZ}\Mod$ a product of its Sylow subgroups?
 :::
 
 ::: {.back card-id="card-5f4e3322c228111a"}
@@ -467,13 +467,13 @@ Iff nilpotent.
 :::
 
 ::: {.front card-id="card-58c10e687053fd85"}
-What is the structure theory of $\mathsf{pro}{\mathsf{Ab}}{\mathsf{Grp}}^{{\mathsf{Top}}{\hbox{-}}{\mathrm{fg}}}$?
+What is the structure theory of $\mathsf{pro}\Ab\Grp^{\Top\dash\fg}$?
 :::
 
 ::: {.back card-id="card-58c10e687053fd85"}
-$G = \prod G_p$ is a product of Sylow $p{\hbox{-}}$subgroups.
+$G = \prod G_p$ is a product of Sylow $p\dash$subgroups.
 
-If $G$ is pro${\hbox{-}}p$, then $G\cong { {\mathbf{Z}}_{\widehat{p}} }{ {}^{ \scriptscriptstyle\oplus^{\mathrm{v}\operatorname{cohdim}(G)} }  } \oplus G_{\operatorname{tors}}$ where ${\sharp}G_{{\operatorname{tors}}} < \infty$.
+If $G$ is pro$\dash p$, then $G\cong { \ZZ_{\widehat{p}} }{ {}^{ \scriptscriptstyle\oplus^{\mathrm{v}\operatorname{cohdim}(G)} }  } \oplus G_\tors$ where ${\sharp}G_{\tors} < \infty$.
 :::
 
 ::: {.front card-id="card-eb8e491195492d06"}
@@ -495,7 +495,7 @@ The valuation ring $R(K)$ is compact.
 
 ${\mathbf{G}}_a(R(K))$ is a profinite group (since compact and totally disconnected).
 
-$K$ is complete and the residue field $\kappa(K) \coloneqq R(K)/{\mathfrak{m}}$ is a finite field.
+$K$ is complete and the residue field $\kappa(K) \coloneqq R(K)/\mfm$ is a finite field.
 :::
 
 ::: {.front card-id="card-1109d37fbb1e4a7b"}
@@ -503,13 +503,13 @@ Discuss characteristic zero local fields $K$.
 :::
 
 ::: {.back card-id="card-1109d37fbb1e4a7b"}
-$K \in   {}_{{ {\mathbf{Q}}_p }}{\mathsf{Mod}}^{\mathrm{fd}}$ canonically
+$K \in   {}_{{ \QQ_p }}\Mod^\fd$ canonically
 
-${\mathbf{Q}}\hookrightarrow K$ with ${ \operatorname{cl}}^{\mathsf{Top}}_K({\mathbf{Q}}) ={ {\mathbf{Q}}_p }$ and $[K: { {\mathbf{Q}}_p }] = e\cdot f$ where...
+$\QQ\hookrightarrow K$ with $\cl^\Top_K(\QQ) ={ \QQ_p }$ and $[K: { \QQ_p }] = e\cdot f$ where...
 
 $\kappa = { \mathbf{F} }_{p^f}$ is the residual degree
 
-$e = e(K/{ {\mathbf{Q}}_p }) = v(p)$ where $p\coloneqq\operatorname{ch}\kappa$.
+$e = e(K/{ \QQ_p }) = v(p)$ where $p\coloneqq\operatorname{ch}\kappa$.
 :::
 
 ::: {.front card-id="card-aa39b93824571d7c"}
@@ -521,17 +521,17 @@ ${ \mathbf{F} }_q(\hspace{-0.25em}( t^{1\over n} )\hspace{-0.22em})$ over ${ \ma
 :::
 
 ::: {.front card-id="card-8bb26ae43d3b8576"}
-Discuss the Galois theory of ${ \mathsf{Gal}}(k^{ {}^{ \operatorname{sep} } }/k)$ for $k$ local of positive characteristic $p$.
+Discuss the Galois theory of $\Gal(k^{ {}^{ \operatorname{sep} } }/k)$ for $k$ local of positive characteristic $p$.
 :::
 
 ::: {.back card-id="card-8bb26ae43d3b8576"}
-$k^{\scriptscriptstyle\mathrm{un}}/k$ has ramification index 1, so unramified extensions correspond to extensions of the residue field, and so ${ \mathsf{Gal}}(k^{\scriptscriptstyle\mathrm{un}}/k) \cong { \mathsf{Gal}}(\overline{{ \mathbf{F} }}_q/{ \mathbf{F} }_q) \cong \mathsf{pro}{\mathbf{Z}}$.
+$k^{\scriptscriptstyle\mathrm{un}}/k$ has ramification index 1, so unramified extensions correspond to extensions of the residue field, and so $\Gal(k^{\scriptscriptstyle\mathrm{un}}/k) \cong \Gal(\overline{{ \mathbf{F} }}_q/{ \mathbf{F} }_q) \cong \mathsf{pro}\ZZ$.
 
-$k^{\mathrm{tame}}$ has ramification indices all prime to $p$, $k^{\mathrm{tame}}/k^{\scriptscriptstyle\mathrm{un}}$ corresponds to taking $\pi^{1\over n}$.
+$k^\tame$ has ramification indices all prime to $p$, $k^\tame/k^{\scriptscriptstyle\mathrm{un}}$ corresponds to taking $\pi^{1\over n}$.
 
 $I \coloneqq\mathop{\mathrm{Aut}}(k^{ {}^{ \operatorname{sep} } }/k^{\scriptscriptstyle\mathrm{un}}) = \ker(g_k \twoheadrightarrow g_{{ \mathbf{F} }_q})$ is the inertia group
 
-$I_p$ is the wild ramification, the Sylow $p{\hbox{-}}$subgroup of $I$.
+$I_p$ is the wild ramification, the Sylow $p\dash$subgroup of $I$.
 :::
 
 ::: {.front card-id="card-1f124014b7ebda6c"}
@@ -539,15 +539,15 @@ What does local class field theory say about the maximal abelian extension of a 
 :::
 
 ::: {.back card-id="card-1f124014b7ebda6c"}
-The reciprocity map $\omega: {\mathbf{G}}_m(K) \to G_K^{\operatorname{ab}}$ becomes an isomorphism after passing to the profinite completion:
-$$\widehat{\omega}: \mathsf{pro}K^{\times} { \, \xrightarrow{\sim}\, }g_K^{\operatorname{ab}} = { \mathsf{Gal}}(K^{\operatorname{ab}}/K)$$
-So ${ \mathsf{Gal}}(K^{\operatorname{ab}}/K) \cong \mathsf{pro}{\mathbf{G}}_m(K) \cong \mathsf{pro}{\mathbf{Z}}\times U(K)$, and the unit group gives most of the information.
+The reciprocity map $\omega: {\mathbf{G}}_m(K) \to G_K^\ab$ becomes an isomorphism after passing to the profinite completion:
+$$\widehat{\omega}: \mathsf{pro}K^{\times} { \, \xrightarrow{\sim}\, }g_K^\ab = \Gal(K^\ab/K)$$
+So $\Gal(K^\ab/K) \cong \mathsf{pro}{\mathbf{G}}_m(K) \cong \mathsf{pro}\ZZ\times U(K)$, and the unit group gives most of the information.
 
-$\omega$ restricts to $U_K { \, \xrightarrow{\sim}\, }I_K^{\operatorname{ab}}= { \mathsf{Gal}}(K^{\operatorname{ab}}/K^{\scriptscriptstyle\mathrm{un}})$, so we understand the totally ramified piece of $K^{\operatorname{ab}}/K$.
+$\omega$ restricts to $U_K { \, \xrightarrow{\sim}\, }I_K^\ab= \Gal(K^\ab/K^{\scriptscriptstyle\mathrm{un}})$, so we understand the totally ramified piece of $K^\ab/K$.
 :::
 
 ::: {.front card-id="card-54368a00e14742d7"}
-For $G = \mathop{\mathrm{Aut}}(L/K)\in{\mathsf{Fin}}{\mathsf{Grp}}$ cyclic, what is $K^{\times}/N L^{\times}$?
+For $G = \mathop{\mathrm{Aut}}(L/K)\in\Fin\Grp$ cyclic, what is $K^{\times}/N L^{\times}$?
 :::
 
 ::: {.back card-id="card-54368a00e14742d7"}
@@ -555,11 +555,11 @@ ${\sharp}K^{\times}/N L^{\times}= [L: K]$.
 :::
 
 ::: {.front card-id="card-66baf534cd2f7009"}
-What is ${ \mathsf{Gal}}(K^{\scriptscriptstyle\mathrm{un}}/K)$?
+What is $\Gal(K^{\scriptscriptstyle\mathrm{un}}/K)$?
 :::
 
 ::: {.back card-id="card-66baf534cd2f7009"}
-${ \mathsf{Gal}}(K^{\scriptscriptstyle\mathrm{un}}/K)\cong { \mathsf{Gal}}(\overline{\kappa}/\kappa) = \mathsf{pro}{\mathbf{Z}}$.
+$\Gal(K^{\scriptscriptstyle\mathrm{un}}/K)\cong \Gal(\overline{\kappa}/\kappa) = \mathsf{pro}\ZZ$.
 :::
 
 ::: {.front card-id="card-14239b3b335fdb91"}
@@ -567,7 +567,7 @@ What is the unit group SES?
 :::
 
 ::: {.back card-id="card-14239b3b335fdb91"}
-$U\hookrightarrow K^{\times} \xrightarrow[]{v} { \mathrel{\mkern-16mu}\rightarrow }\,  {\mathbf{Z}}$.
+$U\hookrightarrow K^{\times} \xrightarrow[]{v} { \mathrel{\mkern-16mu}\rightarrow }\,  \ZZ$.
 :::
 
 ::: {.front card-id="card-3db412aa9ca534fb"}
@@ -575,7 +575,7 @@ What is the invariant map?
 :::
 
 ::: {.back card-id="card-3db412aa9ca534fb"}
-$\mathrm{inv}_K: \mathrm{Br}(K)  { \, \xrightarrow{\sim}\, }{\mathbf{Q}}/{\mathbf{Z}}$ for $K$ a local field.
+$\mathrm{inv}_K: \mathrm{Br}(K)  { \, \xrightarrow{\sim}\, }\QQ/\ZZ$ for $K$ a local field.
 :::
 
 ::: {.front card-id="card-63d9dec15c450fea"}
@@ -583,7 +583,7 @@ For $L/K$, what is the induced restriction map on Brauer groups? Corestriction?
 :::
 
 ::: {.back card-id="card-63d9dec15c450fea"}
-$\mathrm{Res}^{K}_{L}: \mathrm{Br}(K) \to \mathrm{Br}(L)$ is $\cdot n: {\mathbf{Q}}/{\mathbf{Z}}\to {\mathbf{Q}}/{\mathbf{Z}}$ where $n \coloneqq[L: K]$.
+$\mathrm{Res}^{K}_{L}: \mathrm{Br}(K) \to \mathrm{Br}(L)$ is $\cdot n: \QQ/\ZZ\to \QQ/\ZZ$ where $n \coloneqq[L: K]$.
 
 Corestriction is the identity.
 :::
@@ -593,7 +593,7 @@ What is $\mathrm{Br}(L/K)$ for $L/K$ a finite extension?
 :::
 
 ::: {.back card-id="card-523977123bb2324a"}
-For $K$ a local field, $\mathrm{Br}(L/K) = \mathrm{Br}(K)[n]$ for $n\coloneqq[L: K]$, since restriction $\mathrm{Br}(K)\to \mathrm{Br}(L)$ is multiplication by $n$ on ${\mathbf{Q}}/{\mathbf{Z}}$.
+For $K$ a local field, $\mathrm{Br}(L/K) = \mathrm{Br}(K)[n]$ for $n\coloneqq[L: K]$, since restriction $\mathrm{Br}(K)\to \mathrm{Br}(L)$ is multiplication by $n$ on $\QQ/\ZZ$.
 :::
 
 ::: {.front card-id="card-153e8ee23c511946"}
@@ -602,12 +602,12 @@ What is the fundamental class? What is its significance?
 
 ::: {.back card-id="card-153e8ee23c511946"}
 $v_{L/K}\in \mathrm{Br}(L/K) = H^2(G_{L/K}; {\mathbf{G}}_m(L))$ the unique class where
-$$\mathrm{inv}_K(v_{L/K}) = {1\over n} + {\mathbf{Z}}\in \qty{{1\over n} {\mathbf{Z}}}/{\mathbf{Z}}\subseteq {\mathbf{Q}}/{\mathbf{Z}}$$
+$$\mathrm{inv}_K(v_{L/K}) = {1\over n} + \ZZ\in \qty{{1\over n} \ZZ}/\ZZ\subseteq \QQ/\ZZ$$
 Apply Tate-Nakayama to get
-$$G^{\operatorname{ab}}= \widehat{H}^{-2}(G; {\mathbf{Z}}) \underset{{-}\smile v_{L/K}}{ { \, \xrightarrow{\sim}\, }} \widehat{H}^0(G; {\mathbf{G}}_m(L)) =K^{\times}/N L^{\times}$$
-Yields $\omega_{L/K}: K^{\times}/NL^{\times} { \, \xrightarrow{\sim}\, }G^{\operatorname{ab}}$, so e.g. the norm map is surjective iff $G = G^{\operatorname{ab}}$ is abelian.
+$$G^\ab= \widehat{H}^{-2}(G; \ZZ) \underset{{-}\smile v_{L/K}}{ { \, \xrightarrow{\sim}\, }} \widehat{H}^0(G; {\mathbf{G}}_m(L)) =K^{\times}/N L^{\times}$$
+Yields $\omega_{L/K}: K^{\times}/NL^{\times} { \, \xrightarrow{\sim}\, }G^\ab$, so e.g. the norm map is surjective iff $G = G^\ab$ is abelian.
 
-Alternatively, for abelian extensions, ${ \mathsf{Gal}}(L/K)  { \, \xrightarrow{\sim}\, }\operatorname{coker}N$.
+Alternatively, for abelian extensions, $\Gal(L/K)  { \, \xrightarrow{\sim}\, }\operatorname{coker}N$.
 :::
 
 ::: {.front card-id="card-6153b701f329a586"}
@@ -617,19 +617,19 @@ Discuss the significance of $\omega$.
 ::: {.back card-id="card-6153b701f329a586"}
 Isomorphisms of $\omega_{L/K}$ assemble into a compatible inverse system.
 
-Yields $\omega: K^{\times}\to\projectivelim_{L/K \text{ fin. ab}}K^{\times}/NL^{\times} { \, \xrightarrow{\sim}\, }G_K^{\operatorname{ab}}$, so is this injective? Is it the profinite completion of $K^{\times}$?
+Yields $\omega: K^{\times}\to\projectivelim_{L/K \text{ fin. ab}}K^{\times}/NL^{\times} { \, \xrightarrow{\sim}\, }G_K^\ab$, so is this injective? Is it the profinite completion of $K^{\times}$?
 
 Equivalently, are there enough finite abelian extensions to be cofinal in the system of all finite index subgroups of $K^{\times}$?
 
-$\omega(K^{\times}) \subseteq G_K^{\operatorname{ab}}$ is dense.
+$\omega(K^{\times}) \subseteq G_K^\ab$ is dense.
 :::
 
 ::: {.front card-id="card-d2c81ce19310d677"}
-What is $I_K^{\operatorname{ab}}$?
+What is $I_K^\ab$?
 :::
 
 ::: {.back card-id="card-d2c81ce19310d677"}
-$I_K^{\operatorname{ab}}= \mathop{\mathrm{Aut}}(K^{\operatorname{ab}}/K^{\scriptscriptstyle\mathrm{un}})\subseteq \mathop{\mathrm{Aut}}(K^{\operatorname{ab}}/K)$.
+$I_K^\ab= \mathop{\mathrm{Aut}}(K^\ab/K^{\scriptscriptstyle\mathrm{un}})\subseteq \mathop{\mathrm{Aut}}(K^\ab/K)$.
 :::
 
 ::: {.front card-id="card-5f3ac63317a6e4d6"}
@@ -641,7 +641,7 @@ $P$ is projective iff $\forall \pi: G\twoheadrightarrow P$ there is a section $\
 
 $\iff \operatorname{cohdim}P \leq 1$.
 
-$\iff G_p$ is a free pro $p{\hbox{-}}$group.
+$\iff G_p$ is a free pro $p\dash$group.
 :::
 
 ::: {.front card-id="card-79a859109812a9d2"}
@@ -649,9 +649,9 @@ Describe $\mathsf{pro}K^{\times}$.
 :::
 
 ::: {.back card-id="card-79a859109812a9d2"}
-$K^{\times}= U_K \times {\mathbf{Z}}$ since everything is a unit times a uniformizer, so
+$K^{\times}= U_K \times \ZZ$ since everything is a unit times a uniformizer, so
 
-$\mathsf{pro}K^{\times}= U_K \times \mathsf{pro}{\mathbf{Z}}$.
+$\mathsf{pro}K^{\times}= U_K \times \mathsf{pro}\ZZ$.
 :::
 
 ::: {.front card-id="card-365de60e896eb42f"}
@@ -659,7 +659,7 @@ What is the reciprocity map?
 :::
 
 ::: {.back card-id="card-365de60e896eb42f"}
-$\omega:\mathsf{pro}(K^{\times})\to G_K^{\operatorname{ab}}$; restricts to $U_K { \, \xrightarrow{\sim}\, }I_K^{\operatorname{ab}}$.
+$\omega:\mathsf{pro}(K^{\times})\to G_K^\ab$; restricts to $U_K { \, \xrightarrow{\sim}\, }I_K^\ab$.
 :::
 
 ::: {.front card-id="card-d0d01d2c0a99e93f"}
@@ -667,7 +667,7 @@ What is $N L^{\times}$ for $L/K$ unramified?
 :::
 
 ::: {.back card-id="card-d0d01d2c0a99e93f"}
-$U_K \subseteq NL^{\times}= \left\{{x\in K^{\times}{~\mathrel{\Big\vert}~}n\mathrel{\Big|}v(x)}\right\}$.
+$U_K \subseteq NL^{\times}= \left\{{x\in K^{\times}\st n\mathrel{\Big|}v(x)}\right\}$.
 :::
 
 ::: {.front card-id="card-e565bc3ee54ccd7a"}
@@ -695,7 +695,7 @@ Interpret $\mathop{\mathrm{Hom}}(G, C_n)$.
 :::
 
 ::: {.back card-id="card-8ee9b56e0afe4adb"}
-The character group $\chi(\tilde G)$ where $\tilde G = G^{\operatorname{ab}}/(G^{\operatorname{ab}})^n$ is the maximal abelian quotient of exponent $n$.
+The character group $\chi(\tilde G)$ where $\tilde G = G^\ab/(G^\ab)^n$ is the maximal abelian quotient of exponent $n$.
 :::
 
 ::: {.front card-id="card-94b46fb9af7d6bf3"}
@@ -707,7 +707,7 @@ $(a, b)_n \coloneqq b \smile\delta(\chi_a)\in H^2(K; {\mathbf{G}}_m) = \mathrm{B
 
 Here $\delta: K^{\times}/(K^{\times})^n  { \, \xrightarrow{\sim}\, }H^1(K; \mu_n)$ is the coboundary, which is an isomorphism by Kummer theory.
 
-Yields a perfect pairing $({-}, {-})_n: (K^{\times}/ (K^{\times})^n){ {}^{ \scriptstyle\otimes_{}^{2} }  } \to {\mathbf{Q}}/{\mathbf{Z}}$.
+Yields a perfect pairing $({-}, {-})_n: (K^{\times}/ (K^{\times})^n){ {}^{ \scriptstyle\otimes_{}^{2} }  } \to \QQ/\ZZ$.
 :::
 
 ::: {.front card-id="card-0989d534d9332209"}
@@ -719,7 +719,7 @@ $(a, 1-a)_n = 0$.
 :::
 
 ::: {.front card-id="card-e5a0051674920341"}
-What is the existence theorem for $p{\hbox{-}}$adic fields?
+What is the existence theorem for $p\dash$adic fields?
 :::
 
 ::: {.back card-id="card-e5a0051674920341"}
@@ -733,7 +733,7 @@ Discuss Lubin-Tate theory.
 ::: {.back card-id="card-dce455f2aa934948"}
 A generalization of complex multiplication to local fields.
 
-Constructs $K^{\operatorname{ab}}= K^{\scriptscriptstyle\mathrm{un}}(\cdots)$ where one adjoins torsion points of FGLs.
+Constructs $K^\ab= K^{\scriptscriptstyle\mathrm{un}}(\cdots)$ where one adjoins torsion points of FGLs.
 :::
 
 ::: {.front card-id="card-4502c07a8c557b29"}
@@ -741,7 +741,7 @@ What is CFT?
 :::
 
 ::: {.back card-id="card-4502c07a8c557b29"}
-Given a field $K$, find a topological group $G$ and an isomorphism $\mathsf{pro}G\to G_K^{\operatorname{ab}}$.
+Given a field $K$, find a topological group $G$ and an isomorphism $\mathsf{pro}G\to G_K^\ab$.
 :::
 
 ::: {.front card-id="card-2594d9e0a9390842"}
@@ -749,7 +749,7 @@ What is explicit class field theory?
 :::
 
 ::: {.back card-id="card-2594d9e0a9390842"}
-Since $K^{\operatorname{ab}}/K$ is a countably infinite degree algebraic extension, produce a sequence of algebraic numbers $a_n$ such that $K^{\operatorname{ab}}= \colim(K[a_1]\hookrightarrow K[a_1, a_2]\hookrightarrow\cdots)$.
+Since $K^\ab/K$ is a countably infinite degree algebraic extension, produce a sequence of algebraic numbers $a_n$ such that $K^\ab= \colim(K[a_1]\hookrightarrow K[a_1, a_2]\hookrightarrow\cdots)$.
 :::
 
 ::: {.front card-id="card-ee8cd8706a6bd8a0"}
@@ -757,7 +757,7 @@ State Kronecker-Weber.
 :::
 
 ::: {.back card-id="card-ee8cd8706a6bd8a0"}
-${\mathbf{Q}}^{\operatorname{ab}}= {\mathbf{Q}}(\zeta_n {~\mathrel{\Big\vert}~}n\in {\mathbf{Z}}_{\geq 0})$.
+$\QQ^\ab= \QQ(\zeta_n \st n\in \ZZ_{\geq 0})$.
 :::
 
 ::: {.front card-id="card-259f06e97092cb5e"}
@@ -765,7 +765,7 @@ What is the mod $n$ cyclotomic character?
 :::
 
 ::: {.back card-id="card-259f06e97092cb5e"}
-$\chi_n: G_K\to C_n^{\times}$ induced by $G_K\curvearrowright K(\zeta_n)$, take inverse limit to obtain $\chi: G_K \to (\mathsf{pro}{\mathbf{Z}})^{\times}$.
+$\chi_n: G_K\to C_n^{\times}$ induced by $G_K\curvearrowright K(\zeta_n)$, take inverse limit to obtain $\chi: G_K \to (\mathsf{pro}\ZZ)^{\times}$.
 
 The kernel always yields an abelian extension of $K$, the maximal cyclotomic extension (obtained by adjoining all roots of unity)
 :::
@@ -775,25 +775,25 @@ Discuss explicit CFT for imaginary quadratics.
 :::
 
 ::: {.back card-id="card-f6cdbc638824fec6"}
-For $E/k$ with ${\mathcal{O}}_K{\hbox{-}}$CM, get $\rho_N: G_K \to \mathop{\mathrm{Aut}}E[N] \cong \operatorname{GL}_1(C_N)$.
+For $E/k$ with ${\mathcal{O}}_K\dash$CM, get $\rho_N: G_K \to \mathop{\mathrm{Aut}}E[N] \cong \operatorname{GL}_1(C_N)$.
 
-Completes to $\rho: G_K \to \operatorname{GL}_1(\mathsf{pro}{\mathbf{Z}})$.
+Completes to $\rho: G_K \to \operatorname{GL}_1(\mathsf{pro}\ZZ)$.
 
 Check $E[N]$ is a rank 2 $C_N$ module but a rank 1 ${\mathcal{O}}_K/N$ module.
 
 Get $\rho_N: G_K \to \operatorname{GL}_1({\mathcal{O}}_K/N)$ which completes to $\rho: G_K \to \operatorname{GL}_1(\mathsf{pro}{\mathcal{O}}_K)$.
 
-Take $\psi: G_K \to \mathsf{pro}{\mathcal{O}}_K^{\times}\to \mathsf{pro}{\mathcal{O}}_K^{\times}/{\mathcal{O}}_K^{\times}$ to get $K^{\ker \psi} = K^{\operatorname{ab}}$.
+Take $\psi: G_K \to \mathsf{pro}{\mathcal{O}}_K^{\times}\to \mathsf{pro}{\mathcal{O}}_K^{\times}/{\mathcal{O}}_K^{\times}$ to get $K^{\ker \psi} = K^\ab$.
 
-So for $K$, write down $E/K$ with CM by ${\mathcal{O}}_K$ and get $K^{\operatorname{ab}}= K(x(p) {~\mathrel{\Big\vert}~}p\in E[{\operatorname{tors}}])$, the $x{\hbox{-}}$coordinates of torsion points.
+So for $K$, write down $E/K$ with CM by ${\mathcal{O}}_K$ and get $K^\ab= K(x(p) \st p\in E[\tors])$, the $x\dash$coordinates of torsion points.
 :::
 
 ::: {.front card-id="card-8c5d2b136e0764af"}
-For $R$ the valuation ring of $K$, $U$ doesn't give $K^{\operatorname{ab}}$. Why? What does?
+For $R$ the valuation ring of $K$, $U$ doesn't give $K^\ab$. Why? What does?
 :::
 
 ::: {.back card-id="card-8c5d2b136e0764af"}
-$\mathop{\mathrm{Aut}}(K^{\operatorname{ab}}/K) = U \times\mathsf{pro}{\mathbf{Z}}$, so $U$ only gives the totally ramified part.
+$\mathop{\mathrm{Aut}}(K^\ab/K) = U \times\mathsf{pro}\ZZ$, so $U$ only gives the totally ramified part.
 :::
 
 ::: {.front card-id="card-30d9359488c1df16"}
@@ -829,7 +829,7 @@ How does one get an honest group from a FGL?
 :::
 
 ::: {.back card-id="card-6ab20a703009190d"}
-Take $(R, {\mathfrak{m}})$ complete local, then $R { \, \xrightarrow{\sim}\, }\projectivelim_n R/{\mathfrak{m}}^n$ so $x+y \coloneqq F(x,y)$ converges in the ${\mathfrak{m}}{\hbox{-}}$adic topology.
+Take $(R, \mfm)$ complete local, then $R { \, \xrightarrow{\sim}\, }\projectivelim_n R/\mfm^n$ so $x+y \coloneqq F(x,y)$ converges in the $\mfm\dash$adic topology.
 :::
 
 ::: {.front card-id="card-37578c7420249421"}
@@ -841,7 +841,7 @@ $F(x,y) = x + y + xy = (x+1)(y+1) - 1$.
 :::
 
 ::: {.front card-id="card-054429efc3a37b22"}
-What is a formal $R{\hbox{-}}$module?
+What is a formal $R\dash$module?
 :::
 
 ::: {.back card-id="card-054429efc3a37b22"}
@@ -887,9 +887,9 @@ What is $F_\pi$? Give an example of $f\in F_\pi$.
 :::
 
 ::: {.back card-id="card-5496190b1d9e0cc4"}
-$F_\pi \coloneqq\left\{{ f\in R\fps{T} {~\mathrel{\Big\vert}~}f(T) = \pi T + { \mathsf{O}}(T^2) ,\,\, f\equiv T^q \operatorname{mod}\pi}\right\}$.
+$F_\pi \coloneqq\left\{{ f\in R\fps{T} \st f(T) = \pi T + { \mathsf{O}}(T^2) ,\,\, f\equiv T^q \operatorname{mod}\pi}\right\}$.
 
-For $K = { {\mathbf{Q}}_p }$, take $f(T) = (1+T)^p - 1 = T^p + {p\choose p-1}T^{p-1} + \cdots + pT$, so $f = [p]$ on ${\mathbf{G}}_m$.
+For $K = { \QQ_p }$, take $f(T) = (1+T)^p - 1 = T^p + {p\choose p-1}T^{p-1} + \cdots + pT$, so $f = [p]$ on ${\mathbf{G}}_m$.
 :::
 
 ::: {.front card-id="card-1b6f81d13cff9302"}

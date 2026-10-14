@@ -35,7 +35,7 @@ ${\mathbf{A}}^1$ with a doubled origin (not separated)
 
 The quadric surface $V(xy-zw) \subseteq {\mathbf{P}}^3$
 
-$V(x^2+y^2-z^2)$ the double cone along the $z{\hbox{-}}$axis.
+$V(x^2+y^2-z^2)$ the double cone along the $z\dash$axis.
 
 $\operatorname{Spec}R$ for any ring (obviously!)
 
@@ -73,7 +73,7 @@ What is a ringed space? Locally ringed spaces?
 :::
 
 ::: {.back card-id="card-680201bc520b8457"}
-$(X, {\mathcal{O}}_X)$ where $X\in {\mathsf{Top}}$ and a **structure sheaf** ${\mathcal{O}}_X\in {\mathsf{Sh}}(X, \mathsf{CRing})$. This is locally ringed if all stalks ${\mathcal{O}}_{X, x}$ have unique maximal ideals.
+$(X, {\mathcal{O}}_X)$ where $X\in \Top$ and a **structure sheaf** ${\mathcal{O}}_X\in \Sh(X, \mathsf{CRing})$. This is locally ringed if all stalks ${\mathcal{O}}_{X, x}$ have unique maximal ideals.
 :::
 
 ::: {.front card-id="card-645aa342d2f0ce7b"}
@@ -81,9 +81,9 @@ What is a morphism of ringed spaces? Locally ringed spaces?
 :::
 
 ::: {.back card-id="card-645aa342d2f0ce7b"}
-Pairs $(f, f^\sharp)$ where $f\in {\mathsf{Top}}(X, Y)$ and $f^\sharp: {\mathcal{O}}_{Y} \to f_* {\mathcal{O}}_X$ is a map of sheaves of rings on $Y$. This is a morphism of locally ringed spaces iff for each $x\in X$ the induced stalk map $f^\sharp_x: {\mathcal{O}}_{Y, f(x)} \to {\mathcal{O}}_{X, x}$ is a local homomorphism, i.e. $f^\sharp_x( {\mathfrak{m}}_{f(x)} ) \subseteq {\mathfrak{m}}_x$.
+Pairs $(f, f^\sharp)$ where $f\in \Top(X, Y)$ and $f^\sharp: {\mathcal{O}}_{Y} \to f_* {\mathcal{O}}_X$ is a map of sheaves of rings on $Y$. This is a morphism of locally ringed spaces iff for each $x\in X$ the induced stalk map $f^\sharp_x: {\mathcal{O}}_{Y, f(x)} \to {\mathcal{O}}_{X, x}$ is a local homomorphism, i.e. $f^\sharp_x( \mfm_{f(x)} ) \subseteq \mfm_x$.
 
-Here a local homomorphism $\phi: (A, {\mathfrak{m}}_A)\to (B, {\mathfrak{m}}_B)$ is a ring map with $\phi({\mathfrak{m}}_A) \subseteq {\mathfrak{m}}_B$; these are the morphisms of $\mathsf{Loc}\mathsf{Ring}$.
+Here a local homomorphism $\phi: (A, \mfm_A)\to (B, \mfm_B)$ is a ring map with $\phi(\mfm_A) \subseteq \mfm_B$; these are the morphisms of $\mathsf{Loc}\mathsf{Ring}$.
 :::
 
 ::: {.front card-id="card-f5a08ee1e016720b"}
@@ -91,7 +91,7 @@ What is the definition of a scheme?
 :::
 
 ::: {.back card-id="card-f5a08ee1e016720b"}
-A locally ringed space $(X, {\mathcal{O}}_X)$ locally isomorphic to an affine scheme: every point $x$ admits an open neighborhood $U\ni x$ with $(U, { \left.{{{\mathcal{O}}_X}} \right|_{{U}} }) \cong (\operatorname{Spec}A, {\mathcal{O}}_{\operatorname{Spec}A})$ as locally ringed spaces for some ring $A$. Equivalently, $\exists {\mathcal{U}}\rightrightarrows X$ an open cover by such $U$.
+A locally ringed space $(X, {\mathcal{O}}_X)$ locally isomorphic to an affine scheme: every point $x$ admits an open neighborhood $U\ni x$ with $(U, { \left.{{{\mathcal{O}}_X}} \right|_{{U}} }) \cong (\operatorname{Spec}A, {\mathcal{O}}_{\operatorname{Spec}A})$ as locally ringed spaces for some ring $A$. Equivalently, $\exists \mcu\rightrightarrows X$ an open cover by such $U$.
 :::
 
 ::: {.front card-id="card-93ee15a42cf7782e" tags="definition"}
@@ -123,9 +123,9 @@ How is ${\mathcal{O}}_X$ defined for an *affine scheme* $\operatorname{Spec}A$?
 :::
 
 ::: {.back card-id="card-3c2e2b84953088f7"}
-Sections: ${\mathcal{O}}(U)$ is the set of functions $s: U\to {\textstyle\coprod}_{{\mathfrak{p}}\in U} A_{\mathfrak{p}}$ with $s({\mathfrak{p}}) \in A_{\mathfrak{p}}$ which are locally fractions: $\forall {\mathfrak{p}}\in U, \exists V$ open with ${\mathfrak{p}}\in V \subseteq U$ and $\exists a, f\in A$ such that for each ${\mathfrak{q}}\in V$, $f\not\in {\mathfrak{q}}$ and $s({\mathfrak{q}}) = a/f$ in $A_{\mathfrak{q}}$.
+Sections: ${\mathcal{O}}(U)$ is the set of functions $s: U\to {\textstyle\coprod}_{\mfp\in U} A_\mfp$ with $s(\mfp) \in A_\mfp$ which are locally fractions: $\forall \mfp\in U, \exists V$ open with $\mfp\in V \subseteq U$ and $\exists a, f\in A$ such that for each $\mfq\in V$, $f\not\in \mfq$ and $s(\mfq) = a/f$ in $A_\mfq$.
 
-Stalks: ${\mathcal{O}}_{\operatorname{Spec}A, {\mathfrak{p}}} = A_{\mathfrak{p}}\coloneqq S^{-1}A, S\coloneqq A\setminus{\mathfrak{p}}$.
+Stalks: ${\mathcal{O}}_{\operatorname{Spec}A, \mfp} = A_\mfp\coloneqq S^{-1}A, S\coloneqq A\setminus\mfp$.
 
 Global sections: $A$.
 :::
@@ -193,7 +193,7 @@ What is the **reduced induced scheme structure** on a closed subset of a scheme?
 ::: {.back card-id="card-1a4004ebf4e453ee"}
 For a closed subset $Z\subseteq X$, there is a unique reduced closed subscheme $Z_{\mathrm{red}}\hookrightarrow X$ with underlying space $Z$.
 
-For $X = \operatorname{Spec}A$: set ${\mathfrak{a}}\coloneqq\bigcap_{{\mathfrak{p}}\in Z}{\mathfrak{p}}$, the intersection of all prime ideals in $Z$ (the radical ideal of functions vanishing on $Z$). Then $V({\mathfrak{a}}) = Z$, and $A/{\mathfrak{a}}$ is reduced since ${\mathfrak{a}}$ is radical, so $\operatorname{Spec}(A/{\mathfrak{a}})$ is the reduced closed subscheme on $Z$. Intersecting only the maximal ideals in $Z$ is wrong in general: for $A$ a DVR and $Z = \operatorname{Spec}A$ it gives the closed point.
+For $X = \operatorname{Spec}A$: set $\mfa\coloneqq\bigcap_{\mfp\in Z}\mfp$, the intersection of all prime ideals in $Z$ (the radical ideal of functions vanishing on $Z$). Then $V(\mfa) = Z$, and $A/\mfa$ is reduced since $\mfa$ is radical, so $\operatorname{Spec}(A/\mfa)$ is the reduced closed subscheme on $Z$. Intersecting only the maximal ideals in $Z$ is wrong in general: for $A$ a DVR and $Z = \operatorname{Spec}A$ it gives the closed point.
 
 For arbitrary schemes, cover $X$ by affines $U_i$ and put the above structure on $Z\cap U_i$. By uniqueness these agree on overlaps, so they glue to a closed subscheme of $X$ with underlying space $Z$.
 :::
@@ -224,7 +224,7 @@ What is a **regular scheme**?
 
 ::: {.back card-id="card-3e5a7802b44048bf"}
 For $X$ locally Noetherian, the rings ${\mathcal{O}}_{X, x}$ at closed points are all regular rings.
-$$\dim_{\kappa(x)} {\mathbf{T}}_{X, x} = \operatorname{krulldim}R, R\coloneqq{\mathcal{O}}_{X, x} \qquad\forall x\in X, k \coloneqq R/{\mathfrak{m}}_R$$
+$$\dim_{\kappa(x)} {\mathbf{T}}_{X, x} = \operatorname{krulldim}R, R\coloneqq{\mathcal{O}}_{X, x} \qquad\forall x\in X, k \coloneqq R/\mfm_R$$
 :::
 
 ::: {.front card-id="card-3a870899611e5f04"}
@@ -234,7 +234,7 @@ What does it mean to be **regular in codimension 1**?
 ::: {.back card-id="card-3a870899611e5f04"}
 Every local ring ${\mathcal{O}}_{X, x}$ of dimension 1 is regular, hence a DVR.
 
-For rings: for every prime ideal ${\mathfrak{p}}\in \operatorname{Spec}A$ of height 1, the localization $A_{\mathfrak{p}}$ is regular, hence a DVR.
+For rings: for every prime ideal $\mfp\in \operatorname{Spec}A$ of height 1, the localization $A_\mfp$ is regular, hence a DVR.
 :::
 
 ::: {.front card-id="card-5e3188dbef9fc5a0"}
@@ -260,7 +260,7 @@ What is a **quasicompact morphism**? A quasicompact scheme?
 :::
 
 ::: {.back card-id="card-17e3b6dd4ac0258d"}
-$f:Y\to X$ is quasicompact iff $\exists {\mathcal{V}}\rightrightarrows Y$ by open affine subschemes such that each $f^{-1}(V_i)$ is quasicompact as a space (i.e. every open cover admits a finite subcover).
+$f:Y\to X$ is quasicompact iff $\exists \mcv\rightrightarrows Y$ by open affine subschemes such that each $f^{-1}(V_i)$ is quasicompact as a space (i.e. every open cover admits a finite subcover).
 :::
 
 ::: {.front card-id="card-041ea23b72922e69"}
@@ -284,7 +284,7 @@ What is a **separated scheme**?
 :::
 
 ::: {.back card-id="card-eeddc4ca51429133"}
-$X$ is separated iff its structure morphism $X\to \operatorname{Spec}{\mathbf{Z}}$ is a separated morphism, i.e. the diagonal $\Delta_{X/\operatorname{Spec}{\mathbf{Z}}}: X\to X \underset{\scriptscriptstyle {{\mathbf{Z}}} }{\times} X$ is a **closed immersion**.
+$X$ is separated iff its structure morphism $X\to \operatorname{Spec}\ZZ$ is a separated morphism, i.e. the diagonal $\Delta_{X/\operatorname{Spec}\ZZ}: X\to X \underset{\scriptscriptstyle {\ZZ} }{\times} X$ is a **closed immersion**.
 :::
 
 ::: {.front card-id="card-d5feac6218f5093e"}
@@ -292,7 +292,7 @@ What is a **quasiseparated** scheme?
 :::
 
 ::: {.back card-id="card-d5feac6218f5093e"}
-$X$ is quasiseparated iff $X\to \operatorname{Spec}{\mathbf{Z}}$ is a quasiseparated morphisms, where $f:X\to Y$ is quasiseparated iff $\Delta_{X/Y}: X\to X \underset{\scriptscriptstyle {Y} }{\times} X$ is a quasicompact morphism.
+$X$ is quasiseparated iff $X\to \operatorname{Spec}\ZZ$ is a quasiseparated morphisms, where $f:X\to Y$ is quasiseparated iff $\Delta_{X/Y}: X\to X \underset{\scriptscriptstyle {Y} }{\times} X$ is a quasicompact morphism.
 :::
 
 ::: {.front card-id="card-314acbfef34305d8"}
@@ -308,7 +308,7 @@ What is a **formal scheme**?
 :::
 
 ::: {.back card-id="card-57df6bd719dcbcca"}
-A locally ringed space locally isomorphic to $(\operatorname{Spf}A, {\mathcal{O}}_{\operatorname{Spf}A})$ where $\operatorname{Spf}A$ is the formal spectrum of a ring -- roughly the completion of a Noetherian scheme $X_i$ along a closed subscheme $Y_i$, where one takes $Y$ as the space and $\projectivelim_n {\mathcal{O}}_X/{\mathcal{I}}_Y^n$.
+A locally ringed space locally isomorphic to $(\operatorname{Spf}A, {\mathcal{O}}_{\operatorname{Spf}A})$ where $\operatorname{Spf}A$ is the formal spectrum of a ring -- roughly the completion of a Noetherian scheme $X_i$ along a closed subscheme $Y_i$, where one takes $Y$ as the space and $\projectivelim_n {\mathcal{O}}_X/\mci_Y^n$.
 :::
 
 ::: {.front card-id="card-289455ed6aa37e98"}
@@ -318,9 +318,9 @@ What are some examples of smooth schemes?
 ::: {.back card-id="card-289455ed6aa37e98"}
 ${\mathbf{A}}^n/S, {\mathbf{P}}^n/S$ are smooth of relative dimension $n$.
 
-Over a field $k={ \overline{k} }$, smooth iff regular of dimension $n$.
+Over a field $k=\kbar$, smooth iff regular of dimension $n$.
 
-For an irreducible separated scheme over a field $k ={ \overline{k} }$, smooth iff nonsingular as a variety.
+For an irreducible separated scheme over a field $k =\kbar$, smooth iff nonsingular as a variety.
 :::
 
 ::: {.front card-id="card-8c4813bcb8326a81"}
@@ -340,7 +340,7 @@ What is a **Gorenstein** scheme?
 :::
 
 ::: {.back card-id="card-fb0795cc9324cabf"}
-Locally Noetherian whose local rings are Gorenstein ($R$ such that $R$ has finite injective dimension in ${}_{R}{\mathsf{Mod}}$).
+Locally Noetherian whose local rings are Gorenstein ($R$ such that $R$ has finite injective dimension in ${}_{R}\Mod$).
 :::
 
 ::: {.front card-id="card-1259f228e463095e"}
@@ -356,9 +356,9 @@ What is a **local complete intersection**?
 :::
 
 ::: {.back card-id="card-08f6008be740f673"}
-For a closed subscheme $Y$ of ${\mathbf{P}}^n/k$: the ideal $I$ of $Y$ in $k[x_0,\cdots, x_n]$ can be generated by $r\coloneqq\operatorname{codim}_{{\mathbf{P}}^n}(Y)$ elements. Equivalent to $Y = \bigcap_{i=1}^r H_i$ for some hypersurfaces $H_i$ and thus ${\mathcal{I}}_Y = \sum_{i=1}^r {\mathcal{I}}_{H_i}$.
+For a closed subscheme $Y$ of ${\mathbf{P}}^n/k$: the ideal $I$ of $Y$ in $k[x_0,\cdots, x_n]$ can be generated by $r\coloneqq\operatorname{codim}_{{\mathbf{P}}^n}(Y)$ elements. Equivalent to $Y = \bigcap_{i=1}^r H_i$ for some hypersurfaces $H_i$ and thus $\mci_Y = \sum_{i=1}^r \mci_{H_i}$.
 
-For an arbitrary closed subscheme $Y\leq X$ of a smooth variety: $Y$ is lci in $X$ iff ${\mathcal{I}}_Y$ can be locally generated by $r\coloneqq\operatorname{codim}_{X}(Y)$ elements at every point $y\in Y$.
+For an arbitrary closed subscheme $Y\leq X$ of a smooth variety: $Y$ is lci in $X$ iff $\mci_Y$ can be locally generated by $r\coloneqq\operatorname{codim}_{X}(Y)$ elements at every point $y\in Y$.
 :::
 
 ::: {.front card-id="card-063a8348047c4935"}
@@ -366,7 +366,7 @@ What is a **Cohen-Macaulay** scheme?
 :::
 
 ::: {.back card-id="card-063a8348047c4935"}
-All local rings are Cohen-Macaulay: $A$ where $\mathrm{depth} A = \dim A$, where the depth is the maximal length of a regular sequence whose generates are in ${\mathfrak{m}}_A$, and $\left\{{x_1,\cdots, x_n}\right\}$ is a regular sequence for $M\in   {}_{A}{\mathsf{Mod}}$ is $x_1$ is not a zero divisor in $M$ and $x_{i+1}$ is not a zero divisor in $M/I_iM$ where $I_i \coloneqq\left\langle{x_1,\cdots, x_i}\right\rangle$.
+All local rings are Cohen-Macaulay: $A$ where $\mathrm{depth} A = \dim A$, where the depth is the maximal length of a regular sequence whose generates are in $\mfm_A$, and $\left\{{x_1,\cdots, x_n}\right\}$ is a regular sequence for $M\in   {}_{A}\Mod$ is $x_1$ is not a zero divisor in $M$ and $x_{i+1}$ is not a zero divisor in $M/I_iM$ where $I_i \coloneqq\left\langle{x_1,\cdots, x_i}\right\rangle$.
 :::
 
 ::: {.front card-id="card-b1773b17df4126bf"}
@@ -392,7 +392,7 @@ What is the **residue field** at a point $x\in X$?
 :::
 
 ::: {.back card-id="card-4c3df89f2859bc57"}
-$\kappa(x) \coloneqq{\mathcal{O}}_{X, x}/{\mathfrak{m}}_x$. If $U = \operatorname{Spec}A \ni x$ and ${\mathfrak{p}}\in \operatorname{Spec}A$ corresponds to $x$, then $\kappa(x) = A_{\mathfrak{p}}/ {\mathfrak{p}}A_{\mathfrak{p}}$, the fraction field of $A/{\mathfrak{p}}$.
+$\kappa(x) \coloneqq{\mathcal{O}}_{X, x}/\mfm_x$. If $U = \operatorname{Spec}A \ni x$ and $\mfp\in \operatorname{Spec}A$ corresponds to $x$, then $\kappa(x) = A_\mfp/ \mfp A_\mfp$, the fraction field of $A/\mfp$.
 :::
 
 ::: {.front card-id="card-d78d46215a60b1cb"}
@@ -400,7 +400,7 @@ What is the **scheme associated to a variety**?
 :::
 
 ::: {.back card-id="card-d78d46215a60b1cb"}
-Use the functor $t: {\mathsf{Var}}_{/ {k}}\to {\mathsf{Sch}}_{/ {k}}$, then $V$ is homeomorphic to the closed points in ${\left\lvert {t(V)} \right\rvert}$ and ${\mathcal{O}}_V \cong { \left.{{ {\mathcal{O}}_{t(V)}}} \right|_{{t(V)^{ \operatorname{cl}}}} }$, i.e. the regular functions on $V$ are restrictions to closed points of the structure sheaf of $t(V)$.
+Use the functor $t: \Var_{/ {k}}\to \Sch_{/ {k}}$, then $V$ is homeomorphic to the closed points in ${\left\lvert {t(V)} \right\rvert}$ and ${\mathcal{O}}_V \cong { \left.{{ {\mathcal{O}}_{t(V)}}} \right|_{{t(V)^\cl}} }$, i.e. the regular functions on $V$ are restrictions to closed points of the structure sheaf of $t(V)$.
 
 Generally $t(V)$ is the set of nonempty irreducible closed subsets of $V$, define the images of such sets to be closed sets to form a topology.
 :::
@@ -410,7 +410,7 @@ What is the **Proj construction**?
 :::
 
 ::: {.back card-id="card-93365011b44724e2"}
-For $S = \bigoplus_{d\geq 0} S_d$ a graded ring, write $S_+ \coloneqq\bigoplus_{d\geq 1} S_d$ and let $\mathop{\mathrm{Proj}}S$ be the set of homogeneous prime ideals of $S$ which do not contain $S_+$. The closed sets are $V({\mathfrak{a}}) \coloneqq\left\{{P\in \mathop{\mathrm{Proj}}S {~\mathrel{\Big\vert}~}P \supseteq{\mathfrak{a}}}\right\}$ for ${\mathfrak{a}}$ a homogeneous ideal.
+For $S = \bigoplus_{d\geq 0} S_d$ a graded ring, write $S_+ \coloneqq\bigoplus_{d\geq 1} S_d$ and let $\mathop{\mathrm{Proj}}S$ be the set of homogeneous prime ideals of $S$ which do not contain $S_+$. The closed sets are $V(\mfa) \coloneqq\left\{{P\in \mathop{\mathrm{Proj}}S \st P \supseteq\mfa}\right\}$ for $\mfa$ a homogeneous ideal.
 
 For the structure sheaf, for each $p\in \mathop{\mathrm{Proj}}S$ define $S_{(p)}$ to be the elements of degree zero in the localization $S[T^{-1}]$ where $T$ is the set of all homogeneous elements of $S$ which are not in $p$, and define ${\mathcal{O}}(U)$ to be functions $s: U\to \amalg_{p\in U} S_{(p)}$ with $s(p) \in S_{(p)}$ and $s$ locally a fraction: $s(q) = a/f$ with $a,f\in S$ homogeneous of the same degree and $f\not\in q$.
 
@@ -422,7 +422,7 @@ What is ${\mathbf{A}}^n_{/ {R}}$ as a scheme?
 :::
 
 ::: {.back card-id="card-6cdb91f28276b7cc"}
-$\operatorname{Spec}R[x_1,\cdots, x_n]$ or ${\mathbf{A}}^n_{/ {{\mathbf{Z}}}} \underset{\scriptscriptstyle {{\mathbf{Z}}} }{\times} \operatorname{Spec}R$.
+$\operatorname{Spec}R[x_1,\cdots, x_n]$ or ${\mathbf{A}}^n_{/ {\ZZ}} \underset{\scriptscriptstyle {\ZZ} }{\times} \operatorname{Spec}R$.
 :::
 
 ::: {.front card-id="card-0fa32d3a60ede40b"}
@@ -446,7 +446,7 @@ What is the **reduced scheme** associated to a scheme?
 :::
 
 ::: {.back card-id="card-98c1f9a1ecd625ba"}
-For $(X, {\mathcal{O}}_X)\in {\mathsf{Sch}}$, sheafify $U\mapsto {\mathcal{O}}_X(U)^{ \text{red} }$ where $R^{ \text{red} }\coloneqq R/{\sqrt{0_{R}} }$ is the quotient by the ideal of nilpotent elements to get ${\mathcal{O}}_{X}^{ \text{red} }$.
+For $(X, {\mathcal{O}}_X)\in \Sch$, sheafify $U\mapsto {\mathcal{O}}_X(U)^{ \text{red} }$ where $R^{ \text{red} }\coloneqq R/{\sqrt{0_{R}} }$ is the quotient by the ideal of nilpotent elements to get ${\mathcal{O}}_{X}^{ \text{red} }$.
 :::
 
 ::: {.front card-id="card-a193384cad51473e" tags="definition"}
@@ -458,11 +458,11 @@ Irreducible as a topological space: nonempty and not the union of two proper clo
 :::
 
 ::: {.front card-id="card-1f9ebf5ac271403c"}
-What is an $n{\hbox{-}}$fold point over $k$?
+What is an $n\dash$fold point over $k$?
 :::
 
 ::: {.back card-id="card-1f9ebf5ac271403c"}
-A scheme $\operatorname{Spec}R\to \operatorname{Spec}k$ with one point such that $R$ is a $k{\hbox{-}}$algebra of dimension $n$.
+A scheme $\operatorname{Spec}R\to \operatorname{Spec}k$ with one point such that $R$ is a $k\dash$algebra of dimension $n$.
 :::
 
 ::: {.front card-id="card-6067745a47634f5c"}
@@ -471,7 +471,7 @@ What is the **Riemann-Roch theorem**?
 
 ::: {.back card-id="card-6067745a47634f5c"}
 For $C$ a curve,
-$$\chi(C; {\mathcal{L}}) = \deg({\mathcal{L}}) + (1-g)$$
+$$\chi(C; \mcl) = \deg(\mcl) + (1-g)$$
 :::
 
 ::: {.front card-id="card-6ca7d0c76fa6a201"}
@@ -521,7 +521,7 @@ What is **Serre vanishing**?
 :::
 
 ::: {.back card-id="card-7a13c1f152bea481"}
-For $X$ a Noetherian scheme, $X$ is affine $\iff H^{i>0}(X; {\mathcal{F}}) = 0$ for all ${\mathcal{F}}\in {\mathsf{QCoh}}(X) \iff H^1(X; {\mathcal{I}}) = 0$ for all coherent sheaves of ideals on $X$.
+For $X$ a Noetherian scheme, $X$ is affine $\iff H^{i>0}(X; \mcf) = 0$ for all $\mcf\in \QCoh(X) \iff H^1(X; \mci) = 0$ for all coherent sheaves of ideals on $X$.
 :::
 
 ::: {.front card-id="card-a2844b113bfce411"}
@@ -541,11 +541,11 @@ For maps $X\to S$ and $Y\to S$, the fiber product $X\times_S Y$ represents pairs
 :::
 
 ::: {.front card-id="card-8291e7f9a2f63d07"}
-What does it mean to *evaluate* a prime ideal ${\mathfrak{p}}{~\trianglelefteq~}R$ at an element $f\in R$?
+What does it mean to *evaluate* a prime ideal $\mfp\normal R$ at an element $f\in R$?
 :::
 
 ::: {.back card-id="card-8291e7f9a2f63d07"}
-Take the image of $f$ under the natural map $R \to R/{\mathfrak{p}}\to \kappa({\mathfrak{p}})$ where $\kappa({\mathfrak{p}}) \coloneqq\operatorname{ff}(R/{\mathfrak{p}}) \cong R_{\mathfrak{p}}/{\mathfrak{p}}R_{\mathfrak{p}}$ is the residue field of the local ring $R_{\mathfrak{p}}$.
+Take the image of $f$ under the natural map $R \to R/\mfp\to \kappa(\mfp)$ where $\kappa(\mfp) \coloneqq\operatorname{ff}(R/\mfp) \cong R_\mfp/\mfp R_\mfp$ is the residue field of the local ring $R_\mfp$.
 :::
 
 ::: {.front card-id="card-0f8f55d06116c7b8"}
@@ -561,11 +561,11 @@ Characterize maps $\operatorname{Spec}k[{\varepsilon}]/{\varepsilon}^2\to X$.
 :::
 
 ::: {.back card-id="card-eb9cd3c92698f1bf"}
-Giving a rational point $x\in X$, so $\kappa(x) = k$, and an element of ${\mathbf{T}}_x \coloneqq({\mathfrak{m}}_x/{\mathfrak{m}}_x)^2$.
+Giving a rational point $x\in X$, so $\kappa(x) = k$, and an element of ${\mathbf{T}}_x \coloneqq(\mfm_x/\mfm_x)^2$.
 :::
 
 ::: {.front card-id="card-618a12ae0264b25f"}
-For $X\to S$ a scheme, what is a $T{\hbox{-}}$valued point of $X$ for $T$ a scheme?
+For $X\to S$ a scheme, what is a $T\dash$valued point of $X$ for $T$ a scheme?
 :::
 
 ::: {.back card-id="card-618a12ae0264b25f"}
@@ -577,7 +577,7 @@ What is a **generic point**?
 :::
 
 ::: {.back card-id="card-fdb0e1a6a993fc2f"}
-A point $\eta \in X$ such that ${ \operatorname{cl}}_X \eta = X$.
+A point $\eta \in X$ such that $\cl_X \eta = X$.
 :::
 
 ::: {.front card-id="card-1e31ab8314d3ee54"}
@@ -609,7 +609,7 @@ What are the **singular points** of the scheme?
 :::
 
 ::: {.back card-id="card-dd6a17b3b5ccabe1"}
-Points $x$ at which ${\mathcal{O}}_{X, x}$ is not a regular local ring, where $(A, {\mathfrak{m}}_A)$ is regular iff $\dim_{\kappa(A)} {\mathfrak{m}}_A/{\mathfrak{m}}_A^2 = \dim A$ where $\kappa(A)$ is the residue field of $A$.
+Points $x$ at which ${\mathcal{O}}_{X, x}$ is not a regular local ring, where $(A, \mfm_A)$ is regular iff $\dim_{\kappa(A)} \mfm_A/\mfm_A^2 = \dim A$ where $\kappa(A)$ is the residue field of $A$.
 :::
 
 ::: {.front card-id="card-dc477b6237cb1cc7"}
@@ -617,7 +617,7 @@ What is **base change**?
 :::
 
 ::: {.back card-id="card-dc477b6237cb1cc7"}
-For $X\in{\mathsf{Sch}}_{/ {S}}$ and $T\to S$ a morphism of schemes, the pullback $X  \underset{\scriptscriptstyle {S} }{\times} T$.
+For $X\in\Sch_{/ {S}}$ and $T\to S$ a morphism of schemes, the pullback $X  \underset{\scriptscriptstyle {S} }{\times} T$.
 :::
 
 ::: {.front card-id="card-fa0b786697fe09b6"}
@@ -641,7 +641,7 @@ What is **smooth base change**?
 :::
 
 ::: {.back card-id="card-39d50a1666910f3f"}
-For $f: X\to S$ smooth and $g: T\to S$ qc and ${\mathcal{F}}\in {\mathsf{Sh}}(T)$ of $C_n{\hbox{-}}$modules (torsion), there is an isomorphism $f^* {\mathbf{R}}^q g_* {\mathcal{F}} { \, \xrightarrow{\sim}\, }{\mathbf{R}}^q \tilde g_* (f')^*{\mathcal{F}}$ where $\tilde g: X \underset{\scriptscriptstyle {S} }{\times} T \to X$ and $\tilde f: X \underset{\scriptscriptstyle {S} }{\times} T\to T$.
+For $f: X\to S$ smooth and $g: T\to S$ qc and $\mcf\in \Sh(T)$ of $C_n\dash$modules (torsion), there is an isomorphism $f^* {\mathbf{R}}^q g_* \mcf { \, \xrightarrow{\sim}\, }{\mathbf{R}}^q \tilde g_* (f')^*\mcf$ where $\tilde g: X \underset{\scriptscriptstyle {S} }{\times} T \to X$ and $\tilde f: X \underset{\scriptscriptstyle {S} }{\times} T\to T$.
 :::
 
 ::: {.front card-id="card-5e0bccfad0df15c7"}
@@ -649,7 +649,7 @@ What is **proper base change**?
 :::
 
 ::: {.back card-id="card-5e0bccfad0df15c7"}
-If $\pi: X\to S$ is proper and ${\mathcal{F}}$ is a torsion sheaf on $X$ with $f: T\to S$, the base change morphism $f^{-1}{\mathbf{R}}^i \pi_* {\mathcal{F}} { \, \xrightarrow{\sim}\, }{\mathbf{R}}^i \tilde\pi_* \tilde f^{-1}{\mathcal{F}}$.
+If $\pi: X\to S$ is proper and $\mcf$ is a torsion sheaf on $X$ with $f: T\to S$, the base change morphism $f^{-1}{\mathbf{R}}^i \pi_* \mcf { \, \xrightarrow{\sim}\, }{\mathbf{R}}^i \tilde\pi_* \tilde f^{-1}\mcf$.
 :::
 
 ::: {.front card-id="card-c568a40234fbb420"}
@@ -665,8 +665,8 @@ What are the exact sequences associated with relative differentials?
 :::
 
 ::: {.back card-id="card-de688f4ab8bf69dd"}
-For $f:X\to Y$ and $Z \leq X$ closed with ideal sheaf ${\mathcal{I}}_Z$, the sequence
-$${\mathcal{I}}_Z/{\mathcal{I}}_Z^2\to \Omega_{X/Y}\otimes{\mathcal{O}}_Z \twoheadrightarrow\Omega_{Z/Y}$$
+For $f:X\to Y$ and $Z \leq X$ closed with ideal sheaf $\mci_Z$, the sequence
+$$\mci_Z/\mci_Z^2\to \Omega_{X/Y}\otimes{\mathcal{O}}_Z \twoheadrightarrow\Omega_{Z/Y}$$
 If $Y=k$, this is exact iff $Z$ is smooth.
 
 For $X\xrightarrow{f} Y \xrightarrow{g} Z$,
@@ -701,7 +701,7 @@ What are the **normal** and **conormal sheaves**?
 :::
 
 ::: {.back card-id="card-d5e412cd78235f30"}
-For $Y\hookrightarrow X$ a smooth subvariety of a smooth variety, $\mathbf{N}_{Y/X} {}^{ \vee }= {\mathcal{I}}_Y/{\mathcal{I}}_Y^2$ is the conormal sheaf and $\mathbf{N}_{Y/X}\coloneqq\mathop{\mathcal{H}\! \mathit{om}}_{{\mathcal{O}}_Y}({\mathcal{I}}_Y/{\mathcal{I}}_Y^2, {\mathcal{O}}_Y)$ is the normal sheaf.
+For $Y\hookrightarrow X$ a smooth subvariety of a smooth variety, $\mathbf{N}_{Y/X} {}^{ \vee }= \mci_Y/\mci_Y^2$ is the conormal sheaf and $\mathbf{N}_{Y/X}\coloneqq\mathop{\mathcal{H}\! \mathit{om}}_{{\mathcal{O}}_Y}(\mci_Y/\mci_Y^2, {\mathcal{O}}_Y)$ is the normal sheaf.
 :::
 
 ::: {.front card-id="card-48c0d3ff41bea326"}
@@ -735,11 +735,11 @@ This has not sections if $n\geq 1$ so $p_g = 0$.
 :::
 
 ::: {.front card-id="card-12cc1c6c9aa5697e"}
-What does it mean for ${\mathcal{L}}\in \operatorname{Pic}(X)$ to be **ample**?
+What does it mean for $\mcl\in \operatorname{Pic}(X)$ to be **ample**?
 :::
 
 ::: {.back card-id="card-12cc1c6c9aa5697e"}
-For all ${\mathcal{F}}\in {\mathsf{Coh}}(X)$, the twist ${\mathcal{F}}\otimes{\mathcal{L}}^n$ is globally generated for $n\gg 0$.
+For all $\mcf\in \Coh(X)$, the twist $\mcf\otimes\mcl^n$ is globally generated for $n\gg 0$.
 :::
 
 ::: {.front card-id="card-600a9b022ee0b85d"}
@@ -747,17 +747,17 @@ Discuss ampleness of sheaves of affine schemes.
 :::
 
 ::: {.back card-id="card-600a9b022ee0b85d"}
-Every $X\in {\mathsf{Coh}}(\operatorname{Spec}A)$ is globally generated, so if ${\mathcal{F}}$ is invertible then it is necessarily ample.
+Every $X\in \Coh(\operatorname{Spec}A)$ is globally generated, so if $\mcf$ is invertible then it is necessarily ample.
 :::
 
 ::: {.front card-id="card-2629a4068afdc432"}
-Discuss $H^0({\mathbf{P}}^m; {\mathcal{O}}(n))$ for $n\in {\mathbf{Z}}$.
+Discuss $H^0({\mathbf{P}}^m; {\mathcal{O}}(n))$ for $n\in \ZZ$.
 :::
 
 ::: {.back card-id="card-2629a4068afdc432"}
 The section ring is given by $\bigoplus_{n\geq 0} H^0({\mathbf{P}}^m; {\mathcal{O}}(n)) \cong k[x_0,\cdots, x_m]$ as graded rings. Thus $H^0({\mathcal{O}}) = k$ and $H^0({\mathcal{O}}(n))$ are degree $n$ polynomials, so is generated by the monomials of total degree $n$ -- this is a stars and bars argument; the number of monomials in $R[x_1,\cdots, x_N]$ of degree $D$ is ${N+D-1\choose D}$. Here $N = m+1$ and $D = n$, so we get ${m+d\choose d}$.
 
-How this count goes: represent as $a^3b^2d^2e \leadsto \bullet \bullet \bullet \mathrel{\Big|}\bullet \bullet \mathrel{\Big|}\mathrel{\Big|}\bullet \bullet \mathrel{\Big|}\bullet$. Note that there are no sections for $n < 0$. In general, ${\mathcal{O}}(n)$ corresponds to the $n{\hbox{-}}$uple/Veronese embedding ${\mathbf{P}}^n \to {\mathbf{P}}^N$.
+How this count goes: represent as $a^3b^2d^2e \leadsto \bullet \bullet \bullet \mathrel{\Big|}\bullet \bullet \mathrel{\Big|}\mathrel{\Big|}\bullet \bullet \mathrel{\Big|}\bullet$. Note that there are no sections for $n < 0$. In general, ${\mathcal{O}}(n)$ corresponds to the $n\dash$uple/Veronese embedding ${\mathbf{P}}^n \to {\mathbf{P}}^N$.
 :::
 
 ::: {.front card-id="card-979041d2022161e4"}
@@ -797,11 +797,11 @@ What is the **blowup** of a variety?
 :::
 
 ::: {.back card-id="card-9db7a801cc266d51"}
-For $\operatorname{Bl}_0 {\mathbf{A}}^n$: take ${\mathbf{A}}^n\times {\mathbf{P}}^{n-1}$ with coordinates ${\left[ {x_0, \cdots, x_{n-1}} \right]}, {\left[ {y_0:\cdots : y_{n-1}} \right]}$, so the closed subsets are $V(f)$ where $f$ is a polynomial in $x_i, y_i$ which is homogeneous in the $y_i$. Take the blowup to be the subset $\left\{{x_iy_j = x_j y_i {~\mathrel{\Big\vert}~}1\leq i,j\leq n-1}\right\} = \left\{{2\times 2\text{ minors of} \begin{bmatrix}x_0 & x_1 & \cdots & x_n \\ y_0 & y_1 & \cdots & y_n \end{bmatrix}}\right\}$.
+For $\operatorname{Bl}_0 {\mathbf{A}}^n$: take ${\mathbf{A}}^n\times {\mathbf{P}}^{n-1}$ with coordinates ${\left[ {x_0, \cdots, x_{n-1}} \right]}, {\left[ {y_0:\cdots : y_{n-1}} \right]}$, so the closed subsets are $V(f)$ where $f$ is a polynomial in $x_i, y_i$ which is homogeneous in the $y_i$. Take the blowup to be the subset $\left\{{x_iy_j = x_j y_i \st1\leq i,j\leq n-1}\right\} = \left\{{2\times 2\text{ minors of} \begin{bmatrix}x_0 & x_1 & \cdots & x_n \\ y_0 & y_1 & \cdots & y_n \end{bmatrix}}\right\}$.
 
 Then $\exists \pi: \operatorname{Bl}_0 {\mathbf{A}}^n \to {\mathbf{A}}^n$ where ${\sharp}\pi^{-1}(p) = 1$ for $p\neq 0$ and $\pi^{-1}(0)\cong {\mathbf{P}}^{n-1}$ corresponding to all lines through $0$.
 
-For $\operatorname{Bl}_Y {\mathbf{A}}^n$ with $Y \subseteq {\mathbf{A}}^n$ a closed subvariety: take ${ \operatorname{cl}}_{\operatorname{Bl}_0 {\mathbf{A}}^n}\qty{\pi^{-1}(Y\setminus\left\{{0}\right\})}$.
+For $\operatorname{Bl}_Y {\mathbf{A}}^n$ with $Y \subseteq {\mathbf{A}}^n$ a closed subvariety: take $\cl_{\operatorname{Bl}_0 {\mathbf{A}}^n}\qty{\pi^{-1}(Y\setminus\left\{{0}\right\})}$.
 :::
 
 ::: {.front card-id="card-77f1ef48e07e3dc0"}
@@ -809,17 +809,17 @@ What is the **blowup of a scheme along a subscheme**? How does this recover blow
 :::
 
 ::: {.back card-id="card-77f1ef48e07e3dc0"}
-Can generally blowup along a coherent sheaf of ideals ${\mathcal{I}}$ on $X$: take the sheaf of graded algebras $\tilde {\mathcal{I}}\coloneqq\bigoplus_{d\geq 0}{\mathcal{I}}^d$ where ${\mathcal{I}}^0 \coloneqq{\mathcal{O}}_X$ and set $\tilde X \coloneqq\mathop{\mathrm{Proj}}\tilde {\mathcal{I}}$. Can do this with the ideal of sheaf of $Y\hookrightarrow X$ a closed subscheme.
+Can generally blowup along a coherent sheaf of ideals $\mci$ on $X$: take the sheaf of graded algebras $\tilde \mci\coloneqq\bigoplus_{d\geq 0}\mci^d$ where $\mci^0 \coloneqq{\mathcal{O}}_X$ and set $\tilde X \coloneqq\mathop{\mathrm{Proj}}\tilde \mci$. Can do this with the ideal of sheaf of $Y\hookrightarrow X$ a closed subscheme.
 
 For $X={\mathbf{A}}^n_{/ {k}}$, $p=0$ corresponds to $I = \left\langle{x_0,\cdots,x_n}\right\rangle$ and $\tilde X \coloneqq\mathop{\mathrm{Proj}}S$ where $S\coloneqq\bigoplus_{d\geq 0} I^d$; then setting $X \coloneqq\operatorname{Spec}A, A\coloneqq k[x_1, \cdots, x_{n}]$ there is a surjection $A[y_1,\cdots, y_n]$ where $y_i\mapsto x_i, {\left\lvert {x_i} \right\rvert} = 1$, making $\tilde X$ isomorphic to a closed subscheme of $\mathop{\mathrm{Proj}}A[y_1,\cdots, y_n] \cong {\mathbf{P}}^{n-1}_{/ {A}}$, and the ideal of definition is generated by $\left\{{x_iy_j - x_jy_i}\right\}$.
 :::
 
 ::: {.front card-id="card-f99d3b6a576c782a"}
-Discuss ampleness of ${\mathcal{L}}\in \operatorname{Pic}(C)$ for $C$ a smooth complete curve.
+Discuss ampleness of $\mcl\in \operatorname{Pic}(C)$ for $C$ a smooth complete curve.
 :::
 
 ::: {.back card-id="card-f99d3b6a576c782a"}
-${\mathcal{L}}= {\mathcal{O}}(D)$ is ample iff $\deg D > 0$, using RR.
+$\mcl= {\mathcal{O}}(D)$ is ample iff $\deg D > 0$, using RR.
 :::
 
 ::: {.front card-id="card-a4380c8c6119e01f"}
@@ -835,7 +835,7 @@ What is a **strict transform**?
 :::
 
 ::: {.back card-id="card-95da29f9068355c0"}
-For $\pi: \tilde X\to X$ a blowup with center $Z$ and $Y\leq X$ a closed subscheme, the closure ${ \operatorname{cl}}_{\tilde X} \pi^{-1}(Y\setminus Z$).
+For $\pi: \tilde X\to X$ a blowup with center $Z$ and $Y\leq X$ a closed subscheme, the closure $\cl_{\tilde X} \pi^{-1}(Y\setminus Z$).
 :::
 
 ::: {.front card-id="card-93938d5c9783d630"}
@@ -867,7 +867,7 @@ What is a **geometrically connected** scheme?
 :::
 
 ::: {.back card-id="card-319a35d07535844b"}
-A scheme that is connected and does not become disconnected after base change: for $X\in {\mathsf{Sch}}_{/ {k}}$, for every extension $L$ of $k$, require that $X \underset{\scriptscriptstyle {k} }{\times} L$ is connected.
+A scheme that is connected and does not become disconnected after base change: for $X\in \Sch_{/ {k}}$, for every extension $L$ of $k$, require that $X \underset{\scriptscriptstyle {k} }{\times} L$ is connected.
 :::
 
 ::: {.front card-id="card-cf5815d5a2806ef1"}

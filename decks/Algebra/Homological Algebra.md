@@ -7,7 +7,7 @@ What is a dga?
 :::
 
 ::: {.back card-id="card-887eb293af765b9b"}
-$C$ a dg ${}_{k}{\mathsf{Mod}}$ where for $x \in C_i, y\in C_j$,
+$C$ a dg ${}_{k}\Mod$ where for $x \in C_i, y\in C_j$,
 $$d(xy) = d(x)y + (-1)^i x d(y)$$
 :::
 
@@ -16,7 +16,7 @@ What is a dgla?
 :::
 
 ::: {.back card-id="card-d5255a76032d4622"}
-$C$ a dg ${\mathsf{Lie}{\hbox{-}} \mathsf{Alg}}$ where for $x\in C_i, y\in C_j$,
+$C$ a dg ${\mathsf{Lie}\dash \mathsf{Alg}}$ where for $x\in C_i, y\in C_j$,
 $$d([xy]) = [d(x) y] + (-1)^i[x d(y)]$$
 :::
 
@@ -37,7 +37,7 @@ What is a formula for the pushout of module morphisms $\alpha: Y\to A$ and $\bet
 
 ::: {.back card-id="card-e0d7794924e1b89c"}
 A quotient module:
-$$A\oplus B\twoheadrightarrow A{ \amalg_{Y} } B \cong { A\oplus B  \over  \left\langle{ (\,-\alpha(y)\,, \beta(y)\, ) {~\mathrel{\Big\vert}~}y\in Y}\right\rangle }$$
+$$A\oplus B\twoheadrightarrow A{ \amalg_{Y} } B \cong { A\oplus B  \over  \left\langle{ (\,-\alpha(y)\,, \beta(y)\, ) \st y\in Y}\right\rangle }$$
 :::
 
 ::: {.front card-id="card-f0b59e92a8661d8f"}
@@ -46,7 +46,7 @@ What is a formula for the pullback of module morphisms $\phi: A\to X$ and $\psi:
 
 ::: {.back card-id="card-f0b59e92a8661d8f"}
 A submodule:
-$$A \underset{\scriptscriptstyle {X} }{\times} B = \left\langle{(a,b) \in A\oplus B {~\mathrel{\Big\vert}~}\phi(a) = \psi(b)}\right\rangle \subseteq A\oplus B$$
+$$A \underset{\scriptscriptstyle {X} }{\times} B = \left\langle{(a,b) \in A\oplus B \st\phi(a) = \psi(b)}\right\rangle \subseteq A\oplus B$$
 :::
 
 ::: {.front card-id="card-122cfadc82a23528"}
@@ -74,7 +74,7 @@ What is the left global dimension of a ring?
 :::
 
 ::: {.back card-id="card-7f29b2e7218b076a"}
-$$\mathrm{gldim}_{\mathrm{left}} R \coloneqq\sup_{M\in   {}_{R}{\mathsf{Mod}}} \mathrm{projdim}_R M$$
+$$\mathrm{gldim}_{\mathrm{left}} R \coloneqq\sup_{M\in   {}_{R}\Mod} \mathrm{projdim}_R M$$
 where the projective dimension is the smallest length of a projective resolution.
 :::
 
@@ -141,11 +141,11 @@ How are enveloping algebras related to bimodules?
 :::
 
 ::: {.back card-id="card-556641b0ddf5827b"}
-$({A}, {A}){\hbox{-}}\mathsf{biMod}  { \, \xrightarrow{\sim}\, }  {}_{A^e}{\mathsf{Mod}}$ where if $M\in ({A}, {A}){\hbox{-}}\mathsf{biMod}$ is sent to $M$ with $(a\otimes b).m = amb$.
+$({A}, {A})\dash\mathsf{biMod}  { \, \xrightarrow{\sim}\, }  {}_{A^e}\Mod$ where if $M\in ({A}, {A})\dash\mathsf{biMod}$ is sent to $M$ with $(a\otimes b).m = amb$.
 :::
 
 ::: {.front card-id="card-dfa7b43cbe30fede"}
-What is the ${}_{A^e}{\mathsf{Mod}}$ structure on $A{ {}^{ \scriptscriptstyle\otimes_{k}^{n} } }$?
+What is the ${}_{A^e}\Mod$ structure on $A{ {}^{ \scriptscriptstyle\otimes_{k}^{n} } }$?
 :::
 
 ::: {.back card-id="card-dfa7b43cbe30fede"}
@@ -154,13 +154,13 @@ $$(a \otimes b) \cdot\left(c_1 \otimes c_2 \otimes \cdots \otimes c_{n-1} \otime
 :::
 
 ::: {.front card-id="card-068c74b6ed822f99"}
-How is the bar complex of $A\in {}_{A^e}{\mathsf{Mod}}$ defined?
+How is the bar complex of $A\in {}_{A^e}\Mod$ defined?
 :::
 
 ::: {.back card-id="card-068c74b6ed822f99"}
 $B(A): A^{\otimes\bullet}  \xrightarrow[]{\pi} { \mathrel{\mkern-16mu}\rightarrow }\,  A$ where $\pi(a\otimes b) = ab$, $d_1(a\otimes b\otimes c) = ab\otimes c - a\otimes bc$ and the general differential is a sum over collapses:
 $$d_n\left(a_0 \otimes a_1 \otimes \cdots \otimes a_{n+1}\right)=\sum_{i=0}^n(-1)^i a_0 \otimes a_1 \otimes \cdots \otimes a_i a_{i+1} \otimes \cdots \otimes a_{n+1}$$
-If $A\in   {}_{k}{\mathsf{Mod}}^{\mathrm{free}}$ then $B(A)$ is an exact free resolution of $A$ with $H^*(B(A)) = A \cdot t^0$.
+If $A\in   {}_{k}\Mod^\free$ then $B(A)$ is an exact free resolution of $A$ with $H^*(B(A)) = A \cdot t^0$.
 :::
 
 ::: {.front card-id="card-46e9248eadcfe408"}
@@ -168,7 +168,7 @@ How are Hochschild chains and homology defined?
 :::
 
 ::: {.back card-id="card-46e9248eadcfe408"}
-For $M\in   {}_{A^e}{\mathsf{Mod}}$, write
+For $M\in   {}_{A^e}\Mod$, write
 $$C_*(A; M) = \bigoplus_{n\geq 0} M\otimes_{A^e} B_n(A) \cong \bigoplus_{n\geq 0} M\otimes_k A{ {}^{ \scriptscriptstyle\otimes_{k}^{n} }  }$$
 I.e. apply ${-}\otimes_{A^e} M$ to $B(A)$ levelwise, with differential $\operatorname{id}_M \otimes d_n$.
 
@@ -188,7 +188,7 @@ How are Hochschild cochains and cohomology defined?
 :::
 
 ::: {.back card-id="card-32367aae38d053c3"}
-Apply ${}_{A^e}{\mathsf{Mod}}({-}, M)$ to $B(A)$, has differentials $d_n^*(f) \coloneqq fd_n$ for $f\in   {}_{A^e}{\mathsf{Mod}}(A{ {}^{ \scriptscriptstyle\otimes_{k}^{n+1} }  }\to M )$, ${\operatorname{HH}}^*(A; M)$ is its homology.
+Apply ${}_{A^e}\Mod({-}, M)$ to $B(A)$, has differentials $d_n^*(f) \coloneqq fd_n$ for $f\in   {}_{A^e}\Mod(A{ {}^{ \scriptscriptstyle\otimes_{k}^{n+1} }  }\to M )$, ${\operatorname{HH}}^*(A; M)$ is its homology.
 :::
 
 ::: {.front card-id="card-b8ba88be9708d92f"}
@@ -196,7 +196,7 @@ How is ${\operatorname{HH}}_*(A)$ defined?
 :::
 
 ::: {.back card-id="card-b8ba88be9708d92f"}
-Regard $A\in  {}_{A^e}{\mathsf{Mod}}$ and take ${\operatorname{HH}}_*(A; A)$.
+Regard $A\in  {}_{A^e}\Mod$ and take ${\operatorname{HH}}_*(A; A)$.
 
 Equivalently, ${\operatorname{HH}}_n(A)$ is the homology of the cyclic bar complex, $H_n(C_\bullet(A))$, or by Dold-Kan, $\pi_n { {\left\lvert {B_\bullet^{\mathrm{cyc}}(A)} \right\rvert} }$, the geometric realization of a simplicial object.
 :::
@@ -216,7 +216,7 @@ How are ${\operatorname{HH}}_*$ and ${\operatorname{HH}}^*$ related to ext and t
 ::: {.back card-id="card-012e4b7d9a0fdc26"}
 $\operatorname{HH}_n(A, M) \cong \operatorname{Tor}_n^{A^e}(M, A) \text { and } \operatorname{HH}^n(A, M) \cong \operatorname{Ext}_{A^e}^n(A, M)$
 
-First iso holds when $A\in  {}_{k}{\mathsf{Mod}}^\flat$ and second when $A\in   {}_{k}{\mathsf{Mod}}^{\mathop{\mathrm{proj}}}$.
+First iso holds when $A\in  {}_{k}\Mod^\flat$ and second when $A\in   {}_{k}\Mod^{\mathop{\mathrm{proj}}}$.
 :::
 
 ::: {.front card-id="card-811a973fb1984bb5"}
@@ -266,7 +266,7 @@ What are the interpretations of ${\operatorname{HH}}^n(A; M)$ for small $n$?
 :::
 
 ::: {.back card-id="card-754fc11281da8118"}
-$n=0$: $Z_M(A) \coloneqq\left\{{m\in M{~\mathrel{\Big\vert}~}am=ma \, \forall a\in A}\right\}$.
+$n=0$: $Z_M(A) \coloneqq\left\{{m\in M\st am=ma \, \forall a\in A}\right\}$.
 
 $n=1$: $\mathop{\mathrm{Out}}\mathop{\mathrm{Der}}_k(A\to M) \coloneqq\mathop{\mathrm{Der}}_k(A\to M)/\mathop{\mathrm{Inn}}\mathop{\mathrm{Der}}_k(A\to M)$.
 
@@ -405,7 +405,7 @@ What is the "base ring" action on Ext?
 :::
 
 ::: {.back card-id="card-f4cf8157c4893998"}
-${\operatorname{HH}}^*(A) \curvearrowright \operatorname{Ext}_A^*(M, N)$ for any $M, N \in   {}_{A}{\mathsf{Mod}}$, making it a graded ${\operatorname{HH}}^*(A){\hbox{-}}$module.
+${\operatorname{HH}}^*(A) \curvearrowright \operatorname{Ext}_A^*(M, N)$ for any $M, N \in   {}_{A}\Mod$, making it a graded ${\operatorname{HH}}^*(A)\dash$module.
 :::
 
 ::: {.front card-id="card-f124527da918b109"}
@@ -413,7 +413,7 @@ What is the graded center of a graded algebra?
 :::
 
 ::: {.back card-id="card-f124527da918b109"}
-$Z_{\mathsf{gr}\,}(B) = \left\{{a\in B^ { \mathrm{homog} }{~\mathrel{\Big\vert}~}ab = (-1)^{{\left\lvert {a} \right\rvert}{\left\lvert {b} \right\rvert}} ba \,\,\forall b\in B^ { \mathrm{homog} }}\right\}$.
+$Z_{\mathsf{gr}\,}(B) = \left\{{a\in B^ \homog\st ab = (-1)^{{\left\lvert {a} \right\rvert}{\left\lvert {b} \right\rvert}} ba \,\,\forall b\in B^ \homog}\right\}$.
 :::
 
 ::: {.front card-id="card-7194c45516cb5d48"}
@@ -427,7 +427,7 @@ where $f\mapsto f\otimes\operatorname{id}_M$ is a ring morphism with image conta
 :::
 
 ::: {.front card-id="card-2323068b9bef2e60"}
-Give a free resolution of $k\in {}_{A}{\mathsf{Mod}}$ using ${\varepsilon}: A\to k$ where $A = k[x]/x^n$.
+Give a free resolution of $k\in {}_{A}\Mod$ using ${\varepsilon}: A\to k$ where $A = k[x]/x^n$.
 :::
 
 ::: {.back card-id="card-2323068b9bef2e60"}

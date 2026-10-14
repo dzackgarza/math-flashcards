@@ -884,7 +884,7 @@ Give an example of a set that is not nowhere dense.
 :::
 
 ::: {.back card-id="card-eb276d425f8e2a7c"}
-Counterexample: $\left\{{1 \over n}\right\}, {\mathbf{Z}}$ are nowhere dense, ${\mathbf{Q}}, {\mathbf{Z}}\cup\qty{(a, b)\cap{\mathbf{Q}}}$ is *not* nowhere dense
+Counterexample: $\left\{{1 \over n}\right\}, \ZZ$ are nowhere dense, $\QQ, \ZZ\cup\qty{(a, b)\cap\QQ}$ is *not* nowhere dense
 :::
 
 ::: {.front card-id="card-c2f05c220c261c17"}

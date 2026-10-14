@@ -33,7 +33,7 @@ What are full and faithful functors?
 
 ::: {.back card-id="card-469bd94605accb19"}
 Explicitly, let $C$ and $D$ be (locally small) categories and let $F: C \rightarrow D$ be a functor from $C$ to $D$. The functor $F$ induces a function
-$$F_{X, Y}: \operatorname{Hom}_{\mathcal{C}}(X, Y) \rightarrow \operatorname{Hom}_{\mathcal{D}}(F(X), F(Y))$$
+$$F_{X, Y}: \operatorname{Hom}_\mcc(X, Y) \rightarrow \operatorname{Hom}_\mcd(F(X), F(Y))$$
 for every pair of objects $X$ and $Y$ in $C$. The functor $F$ is said to be - faithful if $F_{X, Y}$ is injective ${ }^{[1][2]}$ - full if $F_{X, Y}$ is surjective ${ }^{[2][3]}$ - fully faithful (= full and faithful) if $F_{X, Y}$ is bijective for each $X$ and $Y$ in $C$. A mnemonic for remembering the term "full" is that the image of the function fills the codomain; a mnemonic for remembering the term "faithful" is that you can trust (have faith) that $F(X)=F(Y)$ implies $X=Y$.
 
 Warning: faithful need not imply injective on objects or morphisms!

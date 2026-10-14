@@ -11,21 +11,21 @@ Iff $G$ is commutative.
 :::
 
 ::: {.front card-id="card-e8ca5054254bf3da"}
-What is ${}_{G}{\mathsf{Mod}}$?
+What is ${}_{G}\Mod$?
 :::
 
 ::: {.back card-id="card-e8ca5054254bf3da"}
-$M\in   {}_{{\mathbf{Z}}}{\mathsf{Mod}}$ with an action $\psi\in   {}_{{\mathbf{Z}}}{\mathsf{Mod}}(G, \mathop{\mathrm{Aut}}({\mathbf{G}}_a M))$, so $g(x+y) = gx+gy$ and $(gh)x = g(hx)$.
+$M\in   {}_{\ZZ}\Mod$ with an action $\psi\in   {}_{\ZZ}\Mod(G, \mathop{\mathrm{Aut}}({\mathbf{G}}_a M))$, so $g(x+y) = gx+gy$ and $(gh)x = g(hx)$.
 
-$G{\hbox{-}}$equivariant morphisms, $gf(x) = f(gx)$.
+$G\dash$equivariant morphisms, $gf(x) = f(gx)$.
 :::
 
 ::: {.front card-id="card-d57881484e0bb6ef"}
-How can you determine if a SES $\xi\in {}_{G}{\mathsf{Mod}}$ is exact?
+How can you determine if a SES $\xi\in {}_{G}\Mod$ is exact?
 :::
 
 ::: {.back card-id="card-d57881484e0bb6ef"}
-Exact iff exact in ${}_{{\mathbf{Z}}}{\mathsf{Mod}}$
+Exact iff exact in ${}_{\ZZ}\Mod$
 :::
 
 ::: {.front card-id="card-6183f61d2a02d4b2"}
@@ -33,9 +33,9 @@ Define $M^G$ and $M_G$ and discuss their exactness.
 :::
 
 ::: {.back card-id="card-6183f61d2a02d4b2"}
-$M^G \coloneqq\left\{{m\in M{~\mathrel{\Big\vert}~}gm=m\,\,\forall G}\right\}$: invariants, largest $G{\hbox{-}}$trivial **submodule**. Left exact as a functor ${}_{G}{\mathsf{Mod}}\to  {}_{{\mathbf{Z}}}{\mathsf{Mod}}$, so preserves injections.
+$M^G \coloneqq\left\{{m\in M\st gm=m\,\,\forall G}\right\}$: invariants, largest $G\dash$trivial **submodule**. Left exact as a functor ${}_{G}\Mod\to  {}_{\ZZ}\Mod$, so preserves injections.
 
-$M_G \coloneqq M/\left\langle{gm-m{~\mathrel{\Big\vert}~}m\in M, g\in G}\right\rangle_{\mathbf{Z}}$: coinvariants, largest $G{\hbox{-}}$trivial **quotient**. Right exact as a functor, so preserves surjections.
+$M_G \coloneqq M/\left\langle{gm-m\st m\in M, g\in G}\right\rangle_\ZZ$: coinvariants, largest $G\dash$trivial **quotient**. Right exact as a functor, so preserves surjections.
 :::
 
 ::: {.front card-id="card-306aeaa89da6a68e"}
@@ -43,7 +43,7 @@ Interpret $H^*(G; M)$ topologically.
 :::
 
 ::: {.back card-id="card-306aeaa89da6a68e"}
-$H^*(G; {\mathbf{Z}}) = H^*(K(G, 1); {\mathbf{Z}})$ and $H^*(G; M) = H^*(K(G, 1); \underline{M})$ where $\underline{M}$ is a the corresponding local system.
+$H^*(G; \ZZ) = H^*(K(G, 1); \ZZ)$ and $H^*(G; M) = H^*(K(G, 1); \underline{M})$ where $\underline{M}$ is a the corresponding local system.
 :::
 
 ::: {.front card-id="card-71e719597b9254b5"}
@@ -51,7 +51,7 @@ Describe the monoid ring $R[M]$ for $R$ a ring and $M$ a monoid. What is its uni
 :::
 
 ::: {.back card-id="card-71e719597b9254b5"}
-Free ${}_{R}{\mathsf{Mod}}$ with basis $\left\{{m\in M}\right\}$ with $[m_1]\cdot [m_2] \coloneqq[m_1 m_2]$ using the monoid operation, extended bilinearly.
+Free ${}_{R}\Mod$ with basis $\left\{{m\in M}\right\}$ with $[m_1]\cdot [m_2] \coloneqq[m_1 m_2]$ using the monoid operation, extended bilinearly.
 
 ${}_{R}  \mathsf{Alg}(R[M], B) \cong \mathsf{Mon}(M, {\mathbf{G}}_m B)$.
 :::
@@ -61,21 +61,21 @@ What is the norm element of a finite group? Why is it important?
 :::
 
 ::: {.back card-id="card-318066493d5f7eeb"}
-$N\coloneqq\sum_{g\in G} g\in {\mathbf{Z}}[G]$, which is $G{\hbox{-}}$invariant.
+$N\coloneqq\sum_{g\in G} g\in \ZZ[G]$, which is $G\dash$invariant.
 
-${\mathbf{Z}}[G]^G = \left\langle{N}\right\rangle_{\mathbf{Z}}$.
+$\ZZ[G]^G = \left\langle{N}\right\rangle_\ZZ$.
 :::
 
 ::: {.front card-id="card-456ddebfbbaa64a2"}
-What is the augmentation on ${\mathbf{Z}}[G]$? Describe the augmentation ideal.
+What is the augmentation on $\ZZ[G]$? Describe the augmentation ideal.
 :::
 
 ::: {.back card-id="card-456ddebfbbaa64a2"}
-$\alpha: {\mathbf{Z}}[G]\to {\mathbf{Z}}$ where $\sum n_g[g] \mapsto \sum n_g$, "evaluate each $g\in G$ at the point 1".
+$\alpha: \ZZ[G]\to \ZZ$ where $\sum n_g[g] \mapsto \sum n_g$, "evaluate each $g\in G$ at the point 1".
 
-$I\coloneqq\ker \alpha$ fits into a SES $I\hookrightarrow{\mathbf{Z}}[G]\twoheadrightarrow{\mathbf{Z}}\in \mods{\ZZ[G]}$ where ${\mathbf{Z}}$ has the trivial action.
+$I\coloneqq\ker \alpha$ fits into a SES $I\hookrightarrow\ZZ[G]\twoheadrightarrow\ZZ\in \mods{\ZZ[G]}$ where $\ZZ$ has the trivial action.
 
-$I\in   {}_{{\mathbf{Z}}}{\mathsf{Mod}}^{\mathrm{free}}$ has basis $\left\{{[g] - [e] {~\mathrel{\Big\vert}~}g\in G}\right\}$.
+$I\in   {}_{\ZZ}\Mod^\free$ has basis $\left\{{[g] - [e] \st g\in G}\right\}$.
 :::
 
 ::: {.front card-id="card-5eab3dfa10f32541"}
@@ -83,9 +83,9 @@ When does the augmentation SES split? Why care?
 :::
 
 ::: {.back card-id="card-5eab3dfa10f32541"}
-Only if $G$ is trivial: a section has to send 1 to a $G{\hbox{-}}$invariant element, which is either zero or a multiple of $N$.
+Only if $G$ is trivial: a section has to send 1 to a $G\dash$invariant element, which is either zero or a multiple of $N$.
 
-If $G$ is nontrivial, ${\mathbf{Z}}$ is not projective in $\mods{\ZZ[G]}$.
+If $G$ is nontrivial, $\ZZ$ is not projective in $\mods{\ZZ[G]}$.
 :::
 
 ::: {.front card-id="card-d79ac55113f033ef"}
@@ -105,9 +105,9 @@ Describe group (co)homology in terms of Tor and Ext.
 :::
 
 ::: {.back card-id="card-95736ac32ec10e2f"}
-$M^G = \mods{\ZZ[G]}({\mathbf{Z}}\to M)$
+$M^G = \mods{\ZZ[G]}(\ZZ\to M)$
 
-$M_G = {\mathbf{Z}}\otimes_{{\mathbf{Z}}[G]} M$.
+$M_G = \ZZ\otimes_{\ZZ[G]} M$.
 :::
 
 ::: {.front card-id="card-a44f627c5535dc10"}
@@ -121,29 +121,29 @@ $\operatorname{Ext}(A, B)$: a projective resolution of $A$ or an injective resol
 :::
 
 ::: {.front card-id="card-d7e6762dbf20fb8c"}
-Interpret $H_1(G; {\mathbf{Z}})$.
+Interpret $H_1(G; \ZZ)$.
 :::
 
 ::: {.back card-id="card-d7e6762dbf20fb8c"}
-$I/I^2 = G^{\operatorname{ab}}$.
+$I/I^2 = G^\ab$.
 :::
 
 ::: {.front card-id="card-5dfb91fdb8faed3e"}
-Describe ${\mathbf{Z}}[{\mathbf{Z}}]$.
+Describe $\ZZ[\ZZ]$.
 :::
 
 ::: {.back card-id="card-5dfb91fdb8faed3e"}
-${\mathbf{Z}}[{\mathbf{Z}}] = {\mathbf{Z}}[t, t^{-1}]$ the Laurent polynomial ring with $I = \left\langle{e-1}\right\rangle$ principal corresponding to $\left\langle{t-1}\right\rangle$, so a free rank 1 $\mods{\ZZ[G]}$.
+$\ZZ[\ZZ] = \ZZ[t, t^{-1}]$ the Laurent polynomial ring with $I = \left\langle{e-1}\right\rangle$ principal corresponding to $\left\langle{t-1}\right\rangle$, so a free rank 1 $\mods{\ZZ[G]}$.
 
 UFD of Krull dimension 2.
 :::
 
 ::: {.front card-id="card-5dac57b1420308dd"}
-Describe $H^*({\mathbf{Z}}; M)$ and $H_*({\mathbf{Z}}; M)$.
+Describe $H^*(\ZZ; M)$ and $H_*(\ZZ; M)$.
 :::
 
 ::: {.back card-id="card-5dac57b1420308dd"}
-Use the free resolution ${\mathbf{Z}}[G] \hookrightarrow{\mathbf{Z}}[G] \twoheadrightarrow{\mathbf{Z}}$ using $x\mapsto x\cdot([e] - [1])$ and the augmentation and that $I =\left\langle{e-1}\right\rangle \cong {\mathbf{Z}}[{\mathbf{Z}}]$.
+Use the free resolution $\ZZ[G] \hookrightarrow\ZZ[G] \twoheadrightarrow\ZZ$ using $x\mapsto x\cdot([e] - [1])$ and the augmentation and that $I =\left\langle{e-1}\right\rangle \cong \ZZ[\ZZ]$.
 
 $H_*(G; M) = M_G + M^G t$.
 
@@ -155,16 +155,16 @@ What is $I$ for $G = C_n$?
 :::
 
 ::: {.back card-id="card-88b54dbab46175fc"}
-$I = \left\langle{\sigma - 1}\right\rangle$ where $C_n = \left\langle{\sigma}\right\rangle_{\mathbf{Z}}$.
+$I = \left\langle{\sigma - 1}\right\rangle$ where $C_n = \left\langle{\sigma}\right\rangle_\ZZ$.
 :::
 
 ::: {.front card-id="card-655dc1269608105b"}
-What is a free resolution of ${\mathbf{Z}}$ in $\mods{\ZZ[G]}$ for $G = C_n$?
+What is a free resolution of $\ZZ$ in $\mods{\ZZ[G]}$ for $G = C_n$?
 :::
 
 ::: {.back card-id="card-655dc1269608105b"}
 Periodic:
-$$\cdots \xrightarrow{\sigma-1}{\mathbf{Z}}[G]\xrightarrow{\cdot N} {\mathbf{Z}}[G]\xrightarrow{\sigma-1}{\mathbf{Z}}[G]\xrightarrow{{\varepsilon}}{\mathbf{Z}}\to 0$$
+$$\cdots \xrightarrow{\sigma-1}\ZZ[G]\xrightarrow{\cdot N} \ZZ[G]\xrightarrow{\sigma-1}\ZZ[G]\xrightarrow{{\varepsilon}}\ZZ\to 0$$
 :::
 
 ::: {.front card-id="card-3eff1b0c0da30d10"}
@@ -186,17 +186,17 @@ So the even $H^n$ and odd $H_n$ are quotients of $H^0$, and the odd $H^n$ and ev
 :::
 
 ::: {.front card-id="card-bc1dcb9e5085b9c2"}
-What are $K({\mathbf{Z}}, 1)$ and $K(C_2, 1)$?
+What are $K(\ZZ, 1)$ and $K(C_2, 1)$?
 :::
 
 ::: {.back card-id="card-bc1dcb9e5085b9c2"}
-$K({\mathbf{Z}}, 1)\simeq S^1$.
+$K(\ZZ, 1)\simeq S^1$.
 
-$K(C_2, 1)\simeq{\mathbf{RP}}^\infty$
+$K(C_2, 1)\simeq\RP^\infty$
 :::
 
 ::: {.front card-id="card-e4afb7b4e593536b"}
-What are the ${}_{G}{\mathsf{Mod}}$ structures on ${}_{{\mathbf{Z}}}{\mathsf{Mod}}(A, B)$ and $A\otimes_{\mathbf{Z}}B$?
+What are the ${}_{G}\Mod$ structures on ${}_{\ZZ}\Mod(A, B)$ and $A\otimes_\ZZ B$?
 :::
 
 ::: {.back card-id="card-e4afb7b4e593536b"}
@@ -206,15 +206,15 @@ $(g\curvearrowright f)(x) \coloneqq g.f(g^{-1}x)$ the adjoint action.
 :::
 
 ::: {.front card-id="card-de338f6a3408eca9"}
-Describe $f\in {}_{{\mathbf{Z}}}{\mathsf{Mod}}(A, B)^G$.
+Describe $f\in {}_{\ZZ}\Mod(A, B)^G$.
 :::
 
 ::: {.back card-id="card-de338f6a3408eca9"}
-$gf(g^{-1}x) = f(x) \implies gf(x) = f(gx)$, so $G{\hbox{-}}$equivariance.
+$gf(g^{-1}x) = f(x) \implies gf(x) = f(gx)$, so $G\dash$equivariance.
 :::
 
 ::: {.front card-id="card-d7b196454f24f6e4"}
-Define a free $G{\hbox{-}}$action.
+Define a free $G\dash$action.
 :::
 
 ::: {.back card-id="card-d7b196454f24f6e4"}
@@ -222,20 +222,20 @@ Trivial stabilizers.
 :::
 
 ::: {.front card-id="card-0959803a2d48e016"}
-What is the standard resolution of ${\mathbf{Z}}$ as a $\mods{\ZZ[G]}$?
+What is the standard resolution of $\ZZ$ as a $\mods{\ZZ[G]}$?
 :::
 
 ::: {.back card-id="card-0959803a2d48e016"}
-$P_n \coloneqq\mathsf{Free}_{  {}_{{\mathbf{Z}}}{\mathsf{Mod}}}(G{ {}^{ \scriptscriptstyle\times^{n+1} }  })$, so $P_0 \cong {\mathbf{Z}}[G]$ and $\operatorname{rank}_{\mathbf{Z}}P_n = {\sharp}(G)^n$ whose differential is
+$P_n \coloneqq\mathsf{Free}_{  {}_{\ZZ}\Mod}(G{ {}^{ \scriptscriptstyle\times^{n+1} }  })$, so $P_0 \cong \ZZ[G]$ and $\operatorname{rank}_\ZZ P_n = {\sharp}(G)^n$ whose differential is
 $${\left[ {g_0,\cdots, g_n} \right]}\xrightarrow{{\partial}_n} \sum_{i=0}^n (-1)^i {\left[ {g_0, \cdots, \widehat{g}_i, \cdots, g_n} \right]}$$
 :::
 
 ::: {.front card-id="card-bc1a1f1752512b0b"}
-Describe $\mods{\ZZ[G]}(P_n, M)$ for $P_\bullet \rightrightarrows{\mathbf{Z}}$ the standard resolution.
+Describe $\mods{\ZZ[G]}(P_n, M)$ for $P_\bullet \rightrightarrows\ZZ$ the standard resolution.
 :::
 
 ::: {.back card-id="card-bc1a1f1752512b0b"}
-$\mods{\ZZ[G]}(P_n\to M) =   {}_{{\mathbf{Z}}}{\mathsf{Mod}}(P_n \to M)^G$, so $f(g.g_0,\cdots, g.g_n) = gf(g_0,\cdots, g_n)$ for $f: G{ {}^{ \scriptscriptstyle\times^{n+1} }  }\to M$.
+$\mods{\ZZ[G]}(P_n\to M) =   {}_{\ZZ}\Mod(P_n \to M)^G$, so $f(g.g_0,\cdots, g.g_n) = gf(g_0,\cdots, g_n)$ for $f: G{ {}^{ \scriptscriptstyle\times^{n+1} }  }\to M$.
 :::
 
 ::: {.front card-id="card-2867e12caed8a73c"}
@@ -257,7 +257,7 @@ $g_1 f(g_2, g_3) - f(g_1g_2, g_3) + f(g_1, g_2 g_3) - f(g_1, g_2) = 0$.
 :::
 
 ::: {.front card-id="card-e3e52f477a2a52bf"}
-Explain how an extension $E$ of $G$ by $M\in {}_{{\mathbf{Z}}}{\mathsf{Mod}}$ puts a ${}_{G}{\mathsf{Mod}}$ structure on $M$
+Explain how an extension $E$ of $G$ by $M\in {}_{\ZZ}\Mod$ puts a ${}_{G}\Mod$ structure on $M$
 :::
 
 ::: {.back card-id="card-e3e52f477a2a52bf"}
@@ -271,7 +271,7 @@ How is $H^2(G; M)$ interpreted?
 ::: {.back card-id="card-6cba8e3d7af69c56"}
 Equivalence classes of extensions $M\hookrightarrow E \twoheadrightarrow G$.
 
-The trivial element is $M \rtimes G$ where $M{~\trianglelefteq~}E$.
+The trivial element is $M \rtimes G$ where $M\normal E$.
 :::
 
 ::: {.front card-id="card-2b6f54fd8f0fdc89"}
@@ -283,19 +283,19 @@ ${\sharp}Z^n(G; M) \leq ({\sharp}M)^{{\sharp}G} < \infty$.
 :::
 
 ::: {.front card-id="card-25a58edd3c607c88"}
-Define $\mathrm{Ind}^{H}_{G} M$ for $M\in {}_{H}{\mathsf{Mod}}$.
+Define $\mathrm{Ind}^{H}_{G} M$ for $M\in {}_{H}\Mod$.
 :::
 
 ::: {.back card-id="card-25a58edd3c607c88"}
-$\mathrm{Ind}^{H}_{G}({-}) \coloneqq{\mathbf{Z}}[G]\otimes_{{\mathbf{Z}}[H]} ({-}) \in \mods{\ZZ[G]}$ acting diagonally.
+$\mathrm{Ind}^{H}_{G}({-}) \coloneqq\ZZ[G]\otimes_{\ZZ[H]} ({-}) \in \mods{\ZZ[G]}$ acting diagonally.
 :::
 
 ::: {.front card-id="card-4ae12f9179709702"}
-Define $\mathrm{coInd}^{H}_{G} M$ for $M\in {}_{H}{\mathsf{Mod}}$.
+Define $\mathrm{coInd}^{H}_{G} M$ for $M\in {}_{H}\Mod$.
 :::
 
 ::: {.back card-id="card-4ae12f9179709702"}
-$\mathrm{coInd}^{H}_{G}({-}) =   {}_{{\mathbf{Z}}[H]}{\mathsf{Mod}}({\mathbf{Z}}[G], {-}) \in \mods{\ZZ[G]}$ with a funny action $(g.f)(x) \coloneqq f(xg)$.
+$\mathrm{coInd}^{H}_{G}({-}) =   {}_{\ZZ[H]}\Mod(\ZZ[G], {-}) \in \mods{\ZZ[G]}$ with a funny action $(g.f)(x) \coloneqq f(xg)$.
 :::
 
 ::: {.front card-id="card-22f2f2a4ffc1708d"}
@@ -303,7 +303,7 @@ What is Artin's theorem on representations of finite groups?
 :::
 
 ::: {.back card-id="card-22f2f2a4ffc1708d"}
-For $G\in {\mathsf{Fin}}{\mathsf{Grp}}$, any $V\in {\mathsf{Rep}}(G)^{\mathrm{fd}}_{/ {{\mathbf{C}}}}$ is a ${\mathbf{Q}}{\hbox{-}}$linear combinations of $\mathrm{Ind}^{H}_{G} W$ where $H\leq G$ is cyclic and $W$ is a character.
+For $G\in \Fin\Grp$, any $V\in \Rep(G)^\fd_{/ {\CC}}$ is a $\QQ\dash$linear combinations of $\mathrm{Ind}^{H}_{G} W$ where $H\leq G$ is cyclic and $W$ is a character.
 :::
 
 ::: {.front card-id="card-5a798c1532df1e68"}
@@ -311,7 +311,7 @@ What is Brauer's theorem on representations of finite groups?
 :::
 
 ::: {.back card-id="card-5a798c1532df1e68"}
-For $G\in {\mathsf{Fin}}{\mathsf{Grp}}$, any $V\in {\mathsf{Rep}}(G)^{\mathrm{fd}}_{/ {{\mathbf{C}}}}$ is a ${\mathbf{Z}}{\hbox{-}}$linear combinations of $\mathrm{Ind}^{H}_{G} W$ where $H\leq G$ is an elementary subgroup, so $H\cong C\times P$ with $C$ cyclic and $P$ a $p{\hbox{-}}$group, and $W$ is a character.
+For $G\in \Fin\Grp$, any $V\in \Rep(G)^\fd_{/ {\CC}}$ is a $\ZZ\dash$linear combinations of $\mathrm{Ind}^{H}_{G} W$ where $H\leq G$ is an elementary subgroup, so $H\cong C\times P$ with $C$ cyclic and $P$ a $p\dash$group, and $W$ is a character.
 :::
 
 ::: {.front card-id="card-c6daf2e47c2b6cf7"}
@@ -319,7 +319,7 @@ What is Artin's holomorphy conjecture?
 :::
 
 ::: {.back card-id="card-c6daf2e47c2b6cf7"}
-Every Artin $L{\hbox{-}}$function attached to a nontrivial representation of a finite group has a holomorphic continuation to ${\mathbf{C}}$.
+Every Artin $L\dash$function attached to a nontrivial representation of a finite group has a holomorphic continuation to $\CC$.
 
 Shown recently for $A_5$ using Langlands.
 
@@ -331,17 +331,17 @@ What is Shapiro's lemma?
 :::
 
 ::: {.back card-id="card-4647169caa41a3e2"}
-For $H\leq G$ and $N\in   {}_{H}{\mathsf{Mod}}$,
+For $H\leq G$ and $N\in   {}_{H}\Mod$,
 $$H_n(G; \mathrm{Ind}^{H}_{G} N)  { \, \xrightarrow{\sim}\, }H_n(H; N)$$
 $$H^n(G; \mathrm{coInd}^{H}_{G} N)  { \, \xrightarrow{\sim}\, }H_n(H; N)$$
 :::
 
 ::: {.front card-id="card-1e52d15fd1f67abd"}
-What are $\mathrm{Ind}^{{\operatorname{pt}}}_{G} A$ and $\mathrm{coInd}^{{\operatorname{pt}}}_{G} A$?
+What are $\mathrm{Ind}^{\pt}_{G} A$ and $\mathrm{coInd}^{\pt}_{G} A$?
 :::
 
 ::: {.back card-id="card-1e52d15fd1f67abd"}
-$\mathrm{Ind}^{{\operatorname{pt}}}_{G} A = {\mathbf{Z}}[G]\otimes_{\mathbf{Z}}A$ and $\mathrm{coInd}^{{\operatorname{pt}}}_{G} A =   {}_{{\mathbf{Z}}}{\mathsf{Mod}}({\mathbf{Z}}[G] \to A)$.
+$\mathrm{Ind}^{\pt}_{G} A = \ZZ[G]\otimes_\ZZ A$ and $\mathrm{coInd}^{\pt}_{G} A =   {}_{\ZZ}\Mod(\ZZ[G] \to A)$.
 :::
 
 ::: {.front card-id="card-2a2bbbb6b39f28ca"}
@@ -351,15 +351,15 @@ What are acyclic modules for group homology?
 ::: {.back card-id="card-2a2bbbb6b39f28ca"}
 Induced modules: any module isomorphic to $\mathrm{Ind}^{H}_{G} A$ for some $H$ and $A$.
 
-E.g. $H_n(G; \mathrm{Ind}^{{\operatorname{pt}}}_{G} A) = 0$.
+E.g. $H_n(G; \mathrm{Ind}^{\pt}_{G} A) = 0$.
 :::
 
 ::: {.front card-id="card-933022ad9dd315c4"}
-Describe how any $M\in {}_{G}{\mathsf{Mod}}$ is surjected onto by an induced module and injects into a coinduced module.
+Describe how any $M\in {}_{G}\Mod$ is surjected onto by an induced module and injects into a coinduced module.
 :::
 
 ::: {.back card-id="card-933022ad9dd315c4"}
-$\mathrm{Ind}^{{\operatorname{pt}}}_{G}M^{\mathrm{triv}}\twoheadrightarrow M$ and $M\hookrightarrow\mathrm{coInd}^{{\operatorname{pt}}}_{G} M^{\mathrm{triv}}$.
+$\mathrm{Ind}^{\pt}_{G}M^{\mathrm{triv}}\twoheadrightarrow M$ and $M\hookrightarrow\mathrm{coInd}^{\pt}_{G} M^{\mathrm{triv}}$.
 
 The maps are $g\otimes m\mapsto gm$ and $x\mapsto (\cdot x)$.
 :::
@@ -379,9 +379,9 @@ What are the homological versions of Shapiro's lemma?
 :::
 
 ::: {.back card-id="card-8f0637a73510cc02"}
-$$\operatorname{Tor}_n^{{\mathbf{Z}}[H]}(M, N)  { \, \xrightarrow{\sim}\, }\operatorname{Tor}_n^{{\mathbf{Z}}[G]}(M, \mathrm{Ind}^{H}_{G} N)$$
-$$ \operatorname{Ext}^n_{{\mathbf{Z}}[H]}(M, N)  { \, \xrightarrow{\sim}\, } \operatorname{Ext}^n_{{\mathbf{Z}}[G]}(M, \mathrm{coInd}^{H}_{G} N)$$
-$$ \operatorname{Ext}^n_{{\mathbf{Z}}[H]}(N, M)  { \, \xrightarrow{\sim}\, } \operatorname{Ext}^n_{{\mathbf{Z}}[G]}(\mathrm{Ind}^{H}_{G} N, M)$$
+$$\operatorname{Tor}_n^{\ZZ[H]}(M, N)  { \, \xrightarrow{\sim}\, }\operatorname{Tor}_n^{\ZZ[G]}(M, \mathrm{Ind}^{H}_{G} N)$$
+$$ \operatorname{Ext}^n_{\ZZ[H]}(M, N)  { \, \xrightarrow{\sim}\, } \operatorname{Ext}^n_{\ZZ[G]}(M, \mathrm{coInd}^{H}_{G} N)$$
+$$ \operatorname{Ext}^n_{\ZZ[H]}(N, M)  { \, \xrightarrow{\sim}\, } \operatorname{Ext}^n_{\ZZ[G]}(\mathrm{Ind}^{H}_{G} N, M)$$
 :::
 
 ::: {.front card-id="card-cf3e8b4760093ce1"}
@@ -435,7 +435,7 @@ Discuss restriction and inflation.
 ::: {.back card-id="card-f7cca75927695f65"}
 $f: H\hookrightarrow G$ yields restriction $H^n(G; M) \to H^n(H; M)$.
 
-$N{~\trianglelefteq~}G$ and $M\in   {}_{G}{\mathsf{Mod}}$ yields $M^N\in   {}_{G/N}{\mathsf{Mod}}$ and inflation $H^n(G/N; M^N) \to H^n(G; M)$.
+$N\normal G$ and $M\in   {}_{G}\Mod$ yields $M^N\in   {}_{G/N}\Mod$ and inflation $H^n(G/N; M^N) \to H^n(G; M)$.
 :::
 
 ::: {.front card-id="card-83626d3f3af8c6cd"}
@@ -512,7 +512,7 @@ $$\cdots \to\widehat{H}^i(G; C) \to \widehat{H}^i(G; B) \to \widehat{H}^i(G; A)\
 :::
 
 ::: {.front card-id="card-5a8a7e7f468f0f0d"}
-Discuss vanishing of $\widehat{H}(G; M)$ for $G\in{\mathsf{Fin}}{\mathsf{Grp}}$.
+Discuss vanishing of $\widehat{H}(G; M)$ for $G\in\Fin\Grp$.
 :::
 
 ::: {.back card-id="card-5a8a7e7f468f0f0d"}
@@ -524,7 +524,7 @@ Describe how to compute $\widehat{H}^*(G; M)$ at the cochain level.
 :::
 
 ::: {.back card-id="card-ca23e4bdbace6f6c"}
-Take the "resolution $X_\bullet$ where $X_n = X_{-1-n} = {\mathbf{Z}}[G{ {}^{ \scriptscriptstyle\times^{n+1} }  }]$ with the usual ${\partial}_n$, then $\widehat{H}^n(G; M) =H^n(\mathop{\mathrm{Hom}}(X_n, M)^G)$.
+Take the "resolution $X_\bullet$ where $X_n = X_{-1-n} = \ZZ[G{ {}^{ \scriptscriptstyle\times^{n+1} }  }]$ with the usual ${\partial}_n$, then $\widehat{H}^n(G; M) =H^n(\mathop{\mathrm{Hom}}(X_n, M)^G)$.
 :::
 
 ::: {.front card-id="card-8931a01268da4819"}
@@ -532,7 +532,7 @@ What is dimension shifting for $\widehat{H}$?
 :::
 
 ::: {.back card-id="card-8931a01268da4819"}
-For $A\hookrightarrow I \twoheadrightarrow B\in   {}_{G}{\mathsf{Mod}}$ with $I$ coinduced, then $\widehat{H}(G; B)\cong \widehat{H}^{n+1}(G; A)$.
+For $A\hookrightarrow I \twoheadrightarrow B\in   {}_{G}\Mod$ with $I$ coinduced, then $\widehat{H}(G; B)\cong \widehat{H}^{n+1}(G; A)$.
 :::
 
 ::: {.front card-id="card-6b17205179edc5b6"}
@@ -540,7 +540,7 @@ Describe (co)restriction for $L/K$ a Galois extension
 :::
 
 ::: {.back card-id="card-6b17205179edc5b6"}
-Noting ${\mathbf{G}}_a(L)^G = K$ for $G\coloneqq{ \mathsf{Gal}}(L/K)$,
+Noting ${\mathbf{G}}_a(L)^G = K$ for $G\coloneqq\Gal(L/K)$,
 
 $\mathrm{Res}^{H}_{G}: M^G\to M^H$ corresponds to $K\hookrightarrow L$.
 
@@ -552,9 +552,9 @@ Discuss finiteness for Tate cohomology.
 :::
 
 ::: {.back card-id="card-381db49f4793df13"}
-$\widehat{H}^n(G; M) = \widehat{H}^n(G; M)[m]$ is always a torsion ${}_{{\mathbf{Z}}}{\mathsf{Mod}}$, where $m = {\sharp}G$.
+$\widehat{H}^n(G; M) = \widehat{H}^n(G; M)[m]$ is always a torsion ${}_{\ZZ}\Mod$, where $m = {\sharp}G$.
 
-If $M\in   {}_{{\mathbf{Z}}}{\mathsf{Mod}}^{\mathrm{fg}}$ then every $\widehat{H}^n(G; M)\in{\mathsf{Fin}}{\mathsf{Grp}}$.
+If $M\in   {}_{\ZZ}\Mod^\fg$ then every $\widehat{H}^n(G; M)\in\Fin\Grp$.
 
 Use that a group is finite iff finitely generated and torsion.
 :::
@@ -564,7 +564,7 @@ What is the transfer?
 :::
 
 ::: {.back card-id="card-ff80a060563c9016"}
-For $H\leq G$ there is an obvious map $H^{\operatorname{ab}}\to G^{\operatorname{ab}}$, but there is also a wrong-way transfer map $G^{\operatorname{ab}}\to H^{\operatorname{ab}}$.
+For $H\leq G$ there is an obvious map $H^\ab\to G^\ab$, but there is also a wrong-way transfer map $G^\ab\to H^\ab$.
 :::
 
 ::: {.front card-id="card-a0319417af0eb6b8"}
@@ -572,17 +572,17 @@ What is the Herbrand quotient?
 :::
 
 ::: {.back card-id="card-a0319417af0eb6b8"}
-For $G$ finite cyclic, $h(A) \coloneqq h^0(A)/ h^1(A) \in {\mathbf{Q}}_{> 0}$ where $h^i(A) \coloneqq{\sharp}\widehat{H}^i(G; A)$, defined when both are finite.
+For $G$ finite cyclic, $h(A) \coloneqq h^0(A)/ h^1(A) \in \QQ_{> 0}$ where $h^i(A) \coloneqq{\sharp}\widehat{H}^i(G; A)$, defined when both are finite.
 
 For $A\hookrightarrow B\twoheadrightarrow C$ a SES, if any two $h({-})$ are defined then it is also defined for the third, and $h(B) = h(A) h(C)$.
 
 If $A$ is finite then $h(A) = 1$ since $h^1 = h^0$.
 
-If $f\in   {}_{G}{\mathsf{Mod}}(A\to B)$ with finite kernel and cokernel then $h(A) = h(B)$.
+If $f\in   {}_{G}\Mod(A\to B)$ with finite kernel and cokernel then $h(A) = h(B)$.
 :::
 
 ::: {.front card-id="card-cc0436ecd1b5cc0b"}
-What is $\sum (-1)^i {\sharp}A_i$ for $A_i$ in a LES in ${}_{{\mathbf{Z}}}{\mathsf{Mod}}^{\mathrm{fin}}$? For vector spaces?
+What is $\sum (-1)^i {\sharp}A_i$ for $A_i$ in a LES in ${}_{\ZZ}\Mod^\fin$? For vector spaces?
 :::
 
 ::: {.back card-id="card-cc0436ecd1b5cc0b"}
@@ -598,11 +598,11 @@ What is a cohomologically trivial group?
 ::: {.back card-id="card-5772f627c442bf54"}
 Acyclic for group cohomology, not just for $G$ itself but for all $H\leq G$.
 
-So $H\leq G \implies H^n(H; M) = 0$ for all $M\in   {}_{G}{\mathsf{Mod}}$.
+So $H\leq G \implies H^n(H; M) = 0$ for all $M\in   {}_{G}\Mod$.
 :::
 
 ::: {.front card-id="card-a28d9eaa9c55722b"}
-Discuss $p{\hbox{-}}$groups $G$ acting on $p{\hbox{-}}$primary $G{\hbox{-}}$modules $M$.
+Discuss $p\dash$groups $G$ acting on $p\dash$primary $G\dash$modules $M$.
 :::
 
 ::: {.back card-id="card-a28d9eaa9c55722b"}
@@ -614,7 +614,7 @@ Discuss duality in group (co)homology.
 :::
 
 ::: {.back card-id="card-9c49955d526039c7"}
-For $A {}^{ \vee }\coloneqq\mathop{\mathrm{Hom}}(A, {\mathbf{Q}}/{\mathbf{Z}})$, $H^n(G; A) {}^{ \vee }\cong H_n(G; A {}^{ \vee })$ for $G$ finite.
+For $A {}^{ \vee }\coloneqq\mathop{\mathrm{Hom}}(A, \QQ/\ZZ)$, $H^n(G; A) {}^{ \vee }\cong H_n(G; A {}^{ \vee })$ for $G$ finite.
 :::
 
 ::: {.front card-id="card-e8cd3f416cfb75b7"}
@@ -630,7 +630,7 @@ How can cohomological triviality be checked locally?
 :::
 
 ::: {.back card-id="card-758a5cbac10a9b22"}
-$A$ is $G{\hbox{-}}$cohomologically trivial $\iff A$ is $G_p{\hbox{-}}$cohomologically trivial for every sylow $p{\hbox{-}}$subgroup $G_p$ for every $p\mathrel{\Big|}{\sharp}G$.
+$A$ is $G\dash$cohomologically trivial $\iff A$ is $G_p\dash$cohomologically trivial for every sylow $p\dash$subgroup $G_p$ for every $p\mathrel{\Big|}{\sharp}G$.
 :::
 
 ::: {.front card-id="card-c7e254871b94cd3c"}
@@ -646,7 +646,7 @@ What is the cup product on cochains?
 :::
 
 ::: {.back card-id="card-70a4f711e884a8b2"}
-$$\begin{align}K^p(G; A) \otimes_{\mathbf{Z}}K^q(G; B) &\to K^{p+q}(G; A\otimes_{\mathbf{Z}}B)\\ a\otimes b &\mapsto \mathbf{g} \mapsto a(g_0,\cdots, g_p)\otimes b(g_{p-1}, \cdots g_{p+q}) \end{align}$$
+$$\begin{align}K^p(G; A) \otimes_\ZZ K^q(G; B) &\to K^{p+q}(G; A\otimes_\ZZ B)\\ a\otimes b &\mapsto \mathbf{g} \mapsto a(g_0,\cdots, g_p)\otimes b(g_{p-1}, \cdots g_{p+q}) \end{align}$$
 :::
 
 ::: {.front card-id="card-4a8c41cd2c2b1ce0"}
@@ -662,11 +662,11 @@ What is the Tate-Nakayama theorem?
 :::
 
 ::: {.back card-id="card-9eea7abfb9816052"}
-For $A\in   {}_{G}{\mathsf{Mod}}$ and $a\in H^2(G; A)$ satisfying for all primes $p$ that $H^1(G_p; A) = 0$ and ${\sharp}H^2(G_p; A) = {\sharp}G_p$ and is generated by $a_p \coloneqq\mathrm{Res}^{G_p}_{G} a$, for $G_p$ the Sylow $p{\hbox{-}}$subgroups, then
+For $A\in   {}_{G}\Mod$ and $a\in H^2(G; A)$ satisfying for all primes $p$ that $H^1(G_p; A) = 0$ and ${\sharp}H^2(G_p; A) = {\sharp}G_p$ and is generated by $a_p \coloneqq\mathrm{Res}^{G_p}_{G} a$, for $G_p$ the Sylow $p\dash$subgroups, then
 
-For all $D\in   {}_{G}{\mathsf{Mod}}$ torsionfree and all $H\leq G$, there are isomorphism $\widehat{H}^n(H; D) \underset{ {{-}\smile a} }{ { \, \xrightarrow{\sim}\, }}\widehat{H}^{n+2}(H; A\otimes_{\mathbf{Z}}D)$.
+For all $D\in   {}_{G}\Mod$ torsionfree and all $H\leq G$, there are isomorphism $\widehat{H}^n(H; D) \underset{ {{-}\smile a} }{ { \, \xrightarrow{\sim}\, }}\widehat{H}^{n+2}(H; A\otimes_\ZZ D)$.
 
-Taking $D = {\mathbf{Z}}$ yields $\widehat{H}^n(H; {\mathbf{Z}}) { \, \xrightarrow{\sim}\, }\widehat{H}^{n+2}(H; D)$, so $D$ cohomology is just a shift of ${\mathbf{Z}}$ cohomology.
+Taking $D = \ZZ$ yields $\widehat{H}^n(H; \ZZ) { \, \xrightarrow{\sim}\, }\widehat{H}^{n+2}(H; D)$, so $D$ cohomology is just a shift of $\ZZ$ cohomology.
 :::
 
 ::: {.front card-id="card-df98d4dc6835b4d2"}
@@ -674,13 +674,13 @@ What is the significance of Tate-Nakayama?
 :::
 
 ::: {.back card-id="card-df98d4dc6835b4d2"}
-For $K\in \mathsf{Local}\mathsf{Field}$ and $L/K$ finite Galois, set $G\coloneqq{ \mathsf{Gal}}(L/K)$ and $A\coloneqq L^{\times}$
+For $K\in \mathsf{Local}\mathsf{Field}$ and $L/K$ finite Galois, set $G\coloneqq\Gal(L/K)$ and $A\coloneqq L^{\times}$
 
 The hypotheses of Tate-Nakayama apply and yields
-$$G^{\operatorname{ab}}= \widehat{H}^{-2}(G; {\mathbf{Z}})  { \, \xrightarrow{\sim}\, }\widehat{H}^0(G; L^{\times}) = K^{\times}/NL^{\times}$$
+$$G^\ab= \widehat{H}^{-2}(G; \ZZ)  { \, \xrightarrow{\sim}\, }\widehat{H}^0(G; L^{\times}) = K^{\times}/NL^{\times}$$
 Thus if $L/K$ is abelian then $G \cong \operatorname{coker}\operatorname{Nm}_{L/K}$.
 
-Suggests target group for CFT should be $K^{\times}$, so there should be an isomorphism between ${ \mathsf{Gal}}^{\operatorname{ab}}(\overline{K}/K)$ and $\mathsf{pro}K^{\times}$.
+Suggests target group for CFT should be $K^{\times}$, so there should be an isomorphism between $\Gal^\ab(\overline{K}/K)$ and $\mathsf{pro}K^{\times}$.
 :::
 
 ::: {.front card-id="card-d1667afc3614c99b"}
@@ -762,7 +762,7 @@ What is a residually finite group? Why care?
 ::: {.back card-id="card-5c50810c3d981267"}
 $G\hookrightarrow\mathsf{pro}G$ is an injection, so any $g\neq e$ admits a finite index subgroup not containing $g$.
 
-Useful since $\pi_1^\text{ét}(X) = \mathsf{pro}\pi_1(X({\mathbf{C}}))$, so not residually finite means losing information from $\pi_1$.
+Useful since $\pi_1^\text{ét}(X) = \mathsf{pro}\pi_1(X(\CC))$, so not residually finite means losing information from $\pi_1$.
 :::
 
 ::: {.front card-id="card-fc6ad817c2e32bcd"}
@@ -770,7 +770,7 @@ What is the Galois correspondence for infinite extensions?
 :::
 
 ::: {.back card-id="card-fc6ad817c2e32bcd"}
-Subextensions of $k^{ {}^{ \operatorname{sep} } }/k$ correspond to **closed** subgroups of ${ \mathsf{Gal}}(k^{ {}^{ \operatorname{sep} } }/k)$ with the Krull topology.
+Subextensions of $k^{ {}^{ \operatorname{sep} } }/k$ correspond to **closed** subgroups of $\Gal(k^{ {}^{ \operatorname{sep} } }/k)$ with the Krull topology.
 :::
 
 ::: {.front card-id="card-fc790016b53e422d"}
@@ -778,7 +778,7 @@ Characterize topological groups acting on discrete modules.
 :::
 
 ::: {.back card-id="card-fc790016b53e422d"}
-The action is cts iff ${\operatorname{Stab}}_G(x)$ is open for every $x$.
+The action is cts iff $\Stab_G(x)$ is open for every $x$.
 
 If $G$ is profinite, the actions is cts iff $G = \bigcup_{U\leq G \text{ open}}M^U$, the union of its (open) invariants.
 
@@ -815,7 +815,7 @@ Discuss commuting limits for profinite groups.
 
 ::: {.back card-id="card-e8df8f7e71d5095e"}
 If $G$ is profinite and $Y$ is discrete, $f:G\to Y$ factors through a finite quotient $\tilde f: G/U\to Y$ and so
-$${\mathsf{Top}}(G, Y) = {\mathsf{Top}}(\lim G/N, Y) = \colim {\mathsf{Top}}(G/N, Y)$$
+$$\Top(G, Y) = \Top(\lim G/N, Y) = \colim \Top(G/N, Y)$$
 :::
 
 ::: {.front card-id="card-daafc2582fc47c4e"}
@@ -823,7 +823,7 @@ What are continuous cochains?
 :::
 
 ::: {.back card-id="card-daafc2582fc47c4e"}
-$K_\text{cts}^n(G; M) \coloneqq{\mathsf{Top}}(G{ {}^{ \scriptscriptstyle\times^{n} }  }, M)$.
+$K_\text{cts}^n(G; M) \coloneqq\Top(G{ {}^{ \scriptscriptstyle\times^{n} }  }, M)$.
 :::
 
 ::: {.front card-id="card-e23d5e0a1a45b10f"}
@@ -841,8 +841,8 @@ Discuss limits for Galois cohomology.
 :::
 
 ::: {.back card-id="card-a0e7561b884f9ba2"}
-For $g_K \coloneqq{ \mathsf{Gal}}(k^{ {}^{ \operatorname{sep} } }/k)$ and $A\in   {}_{g_K}{\mathsf{Mod}}$ write $A(L) \coloneqq A^{g_L}$, then
-$$H^1(g_U; A) = \colim_{L/K} H^n({ \mathsf{Gal}}(L/K); A(L))$$
+For $g_K \coloneqq\Gal(k^{ {}^{ \operatorname{sep} } }/k)$ and $A\in   {}_{g_K}\Mod$ write $A(L) \coloneqq A^{g_L}$, then
+$$H^1(g_U; A) = \colim_{L/K} H^n(\Gal(L/K); A(L))$$
 :::
 
 ::: {.front card-id="card-3e262f5d983331a0"}
@@ -858,9 +858,9 @@ Discuss higher profinite cohomology.
 :::
 
 ::: {.back card-id="card-4a35203ca016760c"}
-$H^{\geq 1}(G; A)\in   {}_{{\mathbf{Z}}}{\mathsf{Mod}}^{\operatorname{tors}}$ is always torsion.
+$H^{\geq 1}(G; A)\in   {}_{\ZZ}\Mod^\tors$ is always torsion.
 
-Proof: $H^q(G; A) = \colim H^q(G/U; A^U) = \colim H^q(G/U; A^u)[n]$ for $n \coloneqq[G: U]$ by restriction-corestriction, and ${}_{{\mathbf{Z}}}{\mathsf{Mod}}^{\operatorname{tors}}$ is closed under colimits.
+Proof: $H^q(G; A) = \colim H^q(G/U; A^U) = \colim H^q(G/U; A^u)[n]$ for $n \coloneqq[G: U]$ by restriction-corestriction, and ${}_{\ZZ}\Mod^\tors$ is closed under colimits.
 :::
 
 ::: {.front card-id="card-6966b7db2a0f8235"}
@@ -868,13 +868,13 @@ What is the profinite completion?
 :::
 
 ::: {.back card-id="card-6966b7db2a0f8235"}
-For a group $G$: take the poset $N\geq M \iff N \subseteq M$ for $N, M {~\trianglelefteq~}G$ of finite index and the directed system of quotients $G/N$; the profinite completion is $\widehat{G} \coloneqq \projectivelim_N G/N$.
+For a group $G$: take the poset $N\geq M \iff N \subseteq M$ for $N, M \normal G$ of finite index and the directed system of quotients $G/N$; the profinite completion is $\widehat{G} \coloneqq \projectivelim_N G/N$.
 
 For spaces: regard objects $X$ in $\mathsf{pro}\mathsf{C}$ as sequences $X = \left\{{X_\alpha}\right\}_{\alpha\in I}$ where $X_\alpha\in \mathsf{C}$.
 
-Let ${\mathsf{Spaces}}_{{\mathsf{Fin}}{\mathsf{Grp}}}$ be the full subcategory of spaces with $\pi_i \in {\mathsf{Fin}}{\mathsf{Grp}}$.
+Let $\Spaces_{\Fin\Grp}$ be the full subcategory of spaces with $\pi_i \in \Fin\Grp$.
 
-The profinite completion of $X\in{\mathsf{Spaces}}$ is the left-adjoint to the inclusion $\mathsf{pro}{\mathsf{Spaces}}_{{\mathsf{Fin}}{\mathsf{Grp}}} \to \mathsf{pro}{\mathsf{Spaces}}$.
+The profinite completion of $X\in\Spaces$ is the left-adjoint to the inclusion $\mathsf{pro}\Spaces_{\Fin\Grp} \to \mathsf{pro}\Spaces$.
 :::
 
 ::: {.front card-id="card-e28fa3a138b69aea"}
@@ -882,7 +882,7 @@ How is the projective limit as a set?
 :::
 
 ::: {.back card-id="card-e28fa3a138b69aea"}
-$$\projectivelim S_i=\left\{\left(x_i\right)_{i \in I} \in \prod_{i \in I} S_i {~\mathrel{\Big\vert}~}f_{i j}\left(x_i\right)=x_j \text { for all } i, j \in I \text { with } i \geq j\right\} \text {. }$$
+$$\projectivelim S_i=\left\{\left(x_i\right)_{i \in I} \in \prod_{i \in I} S_i \st f_{i j}\left(x_i\right)=x_j \text { for all } i, j \in I \text { with } i \geq j\right\} \text {. }$$
 :::
 
 ::: {.front card-id="card-8a49e729201758aa"}
@@ -898,7 +898,7 @@ Give examples of profinite groups.
 :::
 
 ::: {.back card-id="card-9518c9f55fe23645"}
-$\widehat{{\mathbf{Z}}}= \projectivelim_{n>0} {\mathbf{Z}}/n{\mathbf{Z}}$ the profinite completion of ${\mathbf{Z}}$
+$\widehat{\ZZ}= \projectivelim_{n>0} \ZZ/n\ZZ$ the profinite completion of $\ZZ$
 
-${ {\mathbf{Z}}_{\widehat{p}} }\coloneqq\projectivelim {\mathbf{Z}}/p^n{\mathbf{Z}}$ the $p{\hbox{-}}$completion
+${ \ZZ_{\widehat{p}} }\coloneqq\projectivelim \ZZ/p^n\ZZ$ the $p\dash$completion
 :::

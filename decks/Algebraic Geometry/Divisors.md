@@ -17,7 +17,7 @@ What is a **rational section** of a line bundle?
 :::
 
 ::: {.back card-id="card-96215ab0361f9245"}
-A pair $(s, U)$ with $U\subseteq X$ open containing all associated points of $X$, $s\in H^0(U; {\mathcal{L}})$, and $(s_1, U_1) \sim (s_2, U_2) \iff$ $s_1=s_2$ on $U_{12}$.
+A pair $(s, U)$ with $U\subseteq X$ open containing all associated points of $X$, $s\in H^0(U; \mcl)$, and $(s_1, U_1) \sim (s_2, U_2) \iff$ $s_1=s_2$ on $U_{12}$.
 :::
 
 ::: {.front card-id="card-4ee8f97372f5a928" tags="definition"}
@@ -35,9 +35,9 @@ What is the Cartier divisor associated to a (rational) section of an invertible 
 :::
 
 ::: {.back card-id="card-4693c6587767ae37"}
-Rational section: $s: X\to {\mathcal{L}}$ defined on an open dense subset. A nonzero rational section $s$ of an invertible sheaf ${\mathcal{L}}$ defines a Cartier divisor: write $s=f_i e_i$ in each local frame $e_i$ and use the rational functions $f_i$ as local equations. With the convention ${\mathcal{L}}\cong\mathcal O_X(D)$, the canonical rational section of $\mathcal O_X(D)$ has divisor $D$.
+Rational section: $s: X\to \mcl$ defined on an open dense subset. A nonzero rational section $s$ of an invertible sheaf $\mcl$ defines a Cartier divisor: write $s=f_i e_i$ in each local frame $e_i$ and use the rational functions $f_i$ as local equations. With the convention $\mcl\cong\mathcal O_X(D)$, the canonical rational section of $\mathcal O_X(D)$ has divisor $D$.
 
-As a Weil divisor: for any $Y\in \operatorname{Div}(X)$ define $(s) \coloneqq\sum_{Y\in \operatorname{Div}(X)} v_Y(s) Y$, where $v_Y(s) \coloneqq v_Y(\sigma(s))$ for a trivialization $\sigma: {\mathcal{L}}_{X, Y} { \, \xrightarrow{\sim}\, }{\mathcal{O}}_{X, Y}$ of the stalk at the generic point of $Y$. This is a valuation ring when $X$ is integral (and regular in codimension one). For $s\in H^0({\mathcal{L}})\setminus\left\{{0}\right\}$, $(s)$ is effective.
+As a Weil divisor: for any $Y\in \operatorname{Div}(X)$ define $(s) \coloneqq\sum_{Y\in \operatorname{Div}(X)} v_Y(s) Y$, where $v_Y(s) \coloneqq v_Y(\sigma(s))$ for a trivialization $\sigma: \mcl_{X, Y} { \, \xrightarrow{\sim}\, }{\mathcal{O}}_{X, Y}$ of the stalk at the generic point of $Y$. This is a valuation ring when $X$ is integral (and regular in codimension one). For $s\in H^0(\mcl)\setminus\left\{{0}\right\}$, $(s)$ is effective.
 :::
 
 ::: {.front card-id="card-20c128cfdff9a4d9"}
@@ -45,7 +45,7 @@ For $D$ a divisor, what is ${\mathcal{O}}_X(D)$?
 :::
 
 ::: {.back card-id="card-20c128cfdff9a4d9"}
-${\mathcal{O}}_X(D)(U) \coloneqq\left\{{f\in K(X)^{\times}{~\mathrel{\Big\vert}~}(f) + D \geq 0 \text{ on } U}\right\} \cup \left\{{0}\right\}$, a subsheaf of the constant sheaf $K(X)$. Global sections: $H^0({\mathcal{O}}_X(D)) = \left\{{f\in K(X)^{\times}{~\mathrel{\Big\vert}~}(f) + D \geq 0}\right\} \cup \left\{{0}\right\}$.
+${\mathcal{O}}_X(D)(U) \coloneqq\left\{{f\in K(X)^{\times}\st(f) + D \geq 0 \text{ on } U}\right\} \cup \left\{{0}\right\}$, a subsheaf of the constant sheaf $K(X)$. Global sections: $H^0({\mathcal{O}}_X(D)) = \left\{{f\in K(X)^{\times}\st(f) + D \geq 0}\right\} \cup \left\{{0}\right\}$.
 :::
 
 ::: {.front card-id="card-971d2e611559217c"}
@@ -61,11 +61,11 @@ Show that not every degree zero divisor on an elliptic curve is principal. What 
 :::
 
 ::: {.back card-id="card-15a0017a811c7b24"}
-Take $p_1\neq p_2$, then if $p_1-p_2 = (f)$ for some $f: E\to {\mathbf{P}}^1$ this produces an injective holomorphic map and forces $E\cong {\mathbf{P}}^1$; however e.g. $g(E) = 1\neq 0 = g({\mathbf{P}}^1)$. In general $\operatorname{Pic}(E) \cong \operatorname{Pic}^0(E) \oplus {\mathbf{Z}}\cong E\oplus {\mathbf{Z}}$.
+Take $p_1\neq p_2$, then if $p_1-p_2 = (f)$ for some $f: E\to {\mathbf{P}}^1$ this produces an injective holomorphic map and forces $E\cong {\mathbf{P}}^1$; however e.g. $g(E) = 1\neq 0 = g({\mathbf{P}}^1)$. In general $\operatorname{Pic}(E) \cong \operatorname{Pic}^0(E) \oplus \ZZ\cong E\oplus \ZZ$.
 :::
 
 ::: {.front card-id="card-5f35d5826acfaa91"}
-Show that if $D = V(f)$ is a hypersurface in ${\mathbf{P}}^n$ then $D\sim \deg(f) H$, so $\operatorname{Pic}({\mathbf{P}}^n) = \left\langle{H}\right\rangle_{\mathbf{Z}}$.
+Show that if $D = V(f)$ is a hypersurface in ${\mathbf{P}}^n$ then $D\sim \deg(f) H$, so $\operatorname{Pic}({\mathbf{P}}^n) = \left\langle{H}\right\rangle_\ZZ$.
 :::
 
 ::: {.back card-id="card-5f35d5826acfaa91"}
@@ -93,7 +93,7 @@ What is a **Weil** divisor?
 :::
 
 ::: {.back card-id="card-4229cc42c6837e32"}
-The free ${\mathbf{Z}}{\hbox{-}}$module on prime divisors, so $D = \sum_{i\in I} n_i Y_i$ where $I$ indexes prime divisors.
+The free $\ZZ\dash$module on prime divisors, so $D = \sum_{i\in I} n_i Y_i$ where $I$ indexes prime divisors.
 :::
 
 ::: {.front card-id="card-5f848017f4ff3d8a"}
@@ -147,7 +147,7 @@ This follows from the equivalence $A$ is a UFD iff every prime ideal of height 1
 
 $\operatorname{Cl}({\mathbf{A}}^n)$ is zero since $k[x_1, \cdots, x_{n}]$ is a UFD, $\operatorname{Cl}({\mathbf{P}}^n_{/ {k}}) \cong k$ generated by a hyperplane, induced by the degree morphism.
 
-For $Z\leq X$ proper closed and $U\coloneqq X\setminus Z$, $\operatorname{Cl}(X) \twoheadrightarrow \operatorname{Cl}(U)$ by taking $\sum n_i Y_i \mapsto \sum n_i (Y_i \cap Z)$ and is injective if $\operatorname{codim}_X(Z) \geq 2$. If $Z$ is irreducible of codimension 1, then one gets a right-SES ${\mathbf{Z}}\to  \operatorname{Cl}(X) \twoheadrightarrow \operatorname{Cl}(U)$.
+For $Z\leq X$ proper closed and $U\coloneqq X\setminus Z$, $\operatorname{Cl}(X) \twoheadrightarrow \operatorname{Cl}(U)$ by taking $\sum n_i Y_i \mapsto \sum n_i (Y_i \cap Z)$ and is injective if $\operatorname{codim}_X(Z) \geq 2$. If $Z$ is irreducible of codimension 1, then one gets a right-SES $\ZZ\to  \operatorname{Cl}(X) \twoheadrightarrow \operatorname{Cl}(U)$.
 :::
 
 ::: {.front card-id="card-c8a4fd5da4688a38"}
@@ -155,7 +155,7 @@ Is $\operatorname{Cl}(X)$ always free?
 :::
 
 ::: {.back card-id="card-c8a4fd5da4688a38"}
-No, it can contain torsion: let $Y\subseteq {\mathbf{P}}^2$ be an irreducible curve of degree $d$ and let $X\coloneqq{\mathbf{P}}^2\setminus Y$, then ${\mathbf{Z}}\xrightarrow{\times d}  \operatorname{Cl}({\mathbf{P}}^2)\cong {\mathbf{Z}}\twoheadrightarrow \operatorname{Cl}({\mathbf{P}}^2\setminus Y) \implies  \operatorname{Cl}(X) \cong C_d$
+No, it can contain torsion: let $Y\subseteq {\mathbf{P}}^2$ be an irreducible curve of degree $d$ and let $X\coloneqq{\mathbf{P}}^2\setminus Y$, then $\ZZ\xrightarrow{\times d}  \operatorname{Cl}({\mathbf{P}}^2)\cong \ZZ\twoheadrightarrow \operatorname{Cl}({\mathbf{P}}^2\setminus Y) \implies  \operatorname{Cl}(X) \cong C_d$
 :::
 
 ::: {.front card-id="card-9437c471081d18e9"}
@@ -207,7 +207,7 @@ What is a **Cartier** divisor?
 :::
 
 ::: {.back card-id="card-3412fb386a2efba5"}
-A global section $s\in H^0(X; {\mathcal{K}}^{\times}/{\mathcal{O}}^{\times})$, described by an open cover $U_i\rightrightarrows X$, $f_i \in H^0(U_i; {\mathcal{K}}^{\times})$, and ${f_i\over f_j}\in H^0(U_{ij}; {\mathcal{O}}^{\times})$.
+A global section $s\in H^0(X; \mck^{\times}/{\mathcal{O}}^{\times})$, described by an open cover $U_i\rightrightarrows X$, $f_i \in H^0(U_i; \mck^{\times})$, and ${f_i\over f_j}\in H^0(U_{ij}; {\mathcal{O}}^{\times})$.
 
 Equivalently, a locally principal Weil divisor.
 :::
@@ -217,7 +217,7 @@ What is a **principal** Cartier divisor?
 :::
 
 ::: {.back card-id="card-765642427aa86626"}
-Anything in the image of $H^0({\mathcal{K}}^{\times}) \to H^0({\mathcal{K}}^{\times}/{\mathcal{O}}^{\times})$.
+Anything in the image of $H^0(\mck^{\times}) \to H^0(\mck^{\times}/{\mathcal{O}}^{\times})$.
 :::
 
 ::: {.front card-id="card-b39fa8bac52d9231"}
@@ -225,7 +225,7 @@ Give an example of a Weil divisor that is not Cartier.
 :::
 
 ::: {.back card-id="card-b39fa8bac52d9231"}
-Take $X = V(xy-z^2) \subseteq {\mathbf{A}}^3$ and let $Y$ be its ruling $\left\{{ p\in Y{~\mathrel{\Big\vert}~}y=z=0}\right\}$. Then $Y$ can not be locally principal in a neighborhood of the cone point. However, $2Y$ is locally principal and in fact principal. The divisor $D=V(x,z)$ is not of the form $V = (f)$ for any $f\in K(X)$ near the origin.
+Take $X = V(xy-z^2) \subseteq {\mathbf{A}}^3$ and let $Y$ be its ruling $\left\{{ p\in Y\st y=z=0}\right\}$. Then $Y$ can not be locally principal in a neighborhood of the cone point. However, $2Y$ is locally principal and in fact principal. The divisor $D=V(x,z)$ is not of the form $V = (f)$ for any $f\in K(X)$ near the origin.
 :::
 
 ::: {.front card-id="card-15ea337ffea63d93" tags="definition"}
@@ -233,13 +233,13 @@ What are **ample** and **very ample** invertible sheaves (divisors)?
 :::
 
 ::: {.back card-id="card-15ea337ffea63d93"}
-Very ample: ${\mathcal{L}}$ invertible is very ample relative to $f:X\to Y$ if $\exists {\mathcal{E}}\in {\mathsf{QCoh}}(Y)$ and an immersion $\iota: X\to {\mathbf{P}}({\mathcal{E}})$ such that ${\mathcal{L}}\cong \iota^* {\mathcal{O}}_{{\mathbf{P}}({\mathcal{E}})}(1)$. Over $S$: an immersion $X\hookrightarrow\mathbb P_S^n$ with ${\mathcal{L}}\cong i^*\mathcal O(1)$. Over a field: ${\mathcal{L}}$ is bpf/gg and $\phi_{{\left\lvert {{\mathcal{L}}} \right\rvert}}: X\to {\mathbf{P}}^{h^0({\mathcal{L}}) - 1}$ is a closed immersion.
+Very ample: $\mcl$ invertible is very ample relative to $f:X\to Y$ if $\exists \mce\in \QCoh(Y)$ and an immersion $\iota: X\to {\mathbf{P}}(\mce)$ such that $\mcl\cong \iota^* {\mathcal{O}}_{{\mathbf{P}}(\mce)}(1)$. Over $S$: an immersion $X\hookrightarrow\mathbb P_S^n$ with $\mcl\cong i^*\mathcal O(1)$. Over a field: $\mcl$ is bpf/gg and $\phi_{{\left\lvert {\mcl} \right\rvert}}: X\to {\mathbf{P}}^{h^0(\mcl) - 1}$ is a closed immersion.
 
 Ample: equivalent conditions (for $X$ of finite type over a Noetherian ring):
 
-- ${\mathcal{L}}^n$ is very ample for some $n > 0$, so defines an embedding $\phi_{{\left\lvert {{\mathcal{L}}^n} \right\rvert}}: X\to {\mathbf{P}}^N$ where ${\mathbf{P}}^N \cong {\mathbf{P}}H^0(X; {\mathcal{L}}^n) {}^{ \vee }$.
-- (Serre) For any ${\mathcal{F}}\in {\mathsf{QCoh}}(X)^\mathrm{ft}$, the twist ${\mathcal{F}}(n) \coloneqq{\mathcal{F}}\otimes{\mathcal{L}}{ {}^{ \scriptstyle\otimes_{}^{n} }  }$ is globally generated for all $n> N_0 \gg 0$: tensoring high powers with a coherent sheaf gives many global sections.
-- Every point has an affine neighborhood of the form $X_s=\{s\ne0\}$ for some global section $s$ of some positive power ${\mathcal{L}}^{\otimes n}$.
+- $\mcl^n$ is very ample for some $n > 0$, so defines an embedding $\phi_{{\left\lvert {\mcl^n} \right\rvert}}: X\to {\mathbf{P}}^N$ where ${\mathbf{P}}^N \cong {\mathbf{P}}H^0(X; \mcl^n) {}^{ \vee }$.
+- (Serre) For any $\mcf\in \QCoh(X)^\mathrm{ft}$, the twist $\mcf(n) \coloneqq\mcf\otimes\mcl{ {}^{ \scriptstyle\otimes_{}^{n} }  }$ is globally generated for all $n> N_0 \gg 0$: tensoring high powers with a coherent sheaf gives many global sections.
+- Every point has an affine neighborhood of the form $X_s=\{s\ne0\}$ for some global section $s$ of some positive power $\mcl^{\otimes n}$.
 :::
 
 ::: {.front card-id="card-f8c8b2968ad6e404"}
@@ -249,7 +249,7 @@ What is a **simple normal crossings (SNC)** divisor?
 ::: {.back card-id="card-f8c8b2968ad6e404"}
 Normal crossings: A Weil divisor $D = \sum D_i$ is NC iff for every $x\in X$ a local equation for $D$ is $\prod_{i=1}^r x_i$ for independent local parameters $x_i\in {\mathcal{O}}_{X, x}$. SNC is if every $D_i$ is smooth and $r\leq n$.
 
-Equivalently, $D$ is SNC if there exists a finite family of sections $\left\{{f_i}\right\} \subseteq H^0({\mathcal{O}}_X)$ such that $D = \sum (f_i)$ and for each $x\in \mathop{\mathrm{supp}}D$, the restrictions $(f_i)_x \in {\mathfrak{m}}_x$ land in the maximal ideal and form part of a regular system of parameters for ${\mathcal{O}}_{X, x}$.\
+Equivalently, $D$ is SNC if there exists a finite family of sections $\left\{{f_i}\right\} \subseteq H^0({\mathcal{O}}_X)$ such that $D = \sum (f_i)$ and for each $x\in \mathop{\mathrm{supp}}D$, the restrictions $(f_i)_x \in \mfm_x$ land in the maximal ideal and form part of a regular system of parameters for ${\mathcal{O}}_{X, x}$.\
 :::
 
 ::: {.front card-id="card-836a20db1f7c129c"}
@@ -273,7 +273,7 @@ What is the **invertible sheaf** associated to a Cartier divisor?
 :::
 
 ::: {.back card-id="card-fa6361e0b3eb64cd"}
-On an integral scheme, a Cartier divisor $D$ is given by local nonzero rational functions $\left\{{(U_i, f_i)}\right\}$ with $f_i/f_j\in\mathcal O_X^\times$ on overlaps. Then ${\mathcal{O}}_X(D) = {\mathcal{L}}(D) \leq {\mathcal{K}}$ is the sub-${\mathcal{O}}_X$-module of the sheaf of rational functions generated by $\left\{{f_i^{-1}}\right\}$, i.e. locally $f_i^{-1}\mathcal O_X$. There is a bijection between Cartier divisors and invertible subsheaves of ${\mathcal{K}}$.
+On an integral scheme, a Cartier divisor $D$ is given by local nonzero rational functions $\left\{{(U_i, f_i)}\right\}$ with $f_i/f_j\in\mathcal O_X^\times$ on overlaps. Then ${\mathcal{O}}_X(D) = \mcl(D) \leq \mck$ is the sub-${\mathcal{O}}_X$-module of the sheaf of rational functions generated by $\left\{{f_i^{-1}}\right\}$, i.e. locally $f_i^{-1}\mathcal O_X$. There is a bijection between Cartier divisors and invertible subsheaves of $\mck$.
 :::
 
 ::: {.front card-id="card-4c5b6d6b7feab01a"}
@@ -281,7 +281,7 @@ What is the relationship between the Cartier class group and $\operatorname{Pic}
 :::
 
 ::: {.back card-id="card-4c5b6d6b7feab01a"}
-In general, $\mathop{\mathrm{Cart}} \operatorname{Cl}(X) \hookrightarrow\operatorname{Pic}(X)$ by $D\mapsto {\mathcal{L}}(D)$; this is surjective when $X$ is integral.
+In general, $\mathop{\mathrm{Cart}} \operatorname{Cl}(X) \hookrightarrow\operatorname{Pic}(X)$ by $D\mapsto \mcl(D)$; this is surjective when $X$ is integral.
 :::
 
 ::: {.front card-id="card-bd0d8d0f314b34c2"}
@@ -305,7 +305,7 @@ What is the subscheme associated to a Cartier divisor?
 :::
 
 ::: {.back card-id="card-f974099d7333a060"}
-For $D$ effective, the subscheme $Y$ of codimension 1 defined by the sheaf of ideals ${\mathcal{I}}_Y$ which is locally generated by the $f_i$. In fact ${\mathcal{I}}_Y \cong {\mathcal{L}}(-D)$ in this case.
+For $D$ effective, the subscheme $Y$ of codimension 1 defined by the sheaf of ideals $\mci_Y$ which is locally generated by the $f_i$. In fact $\mci_Y \cong \mcl(-D)$ in this case.
 :::
 
 ::: {.front card-id="card-a6344b3c32690757"}
@@ -321,7 +321,7 @@ What is the **degree** of a divisor?
 :::
 
 ::: {.back card-id="card-f2807a7963334d91"}
-For a divisor $D=\sum_P n_P[P]$ on a proper curve over $k$, $\deg D=\sum_P n_P[\kappa(P):k] \in {\mathbf{Z}}$. Over an algebraically closed field, this is $\deg(D) = \sum_P n_P$.
+For a divisor $D=\sum_P n_P[P]$ on a proper curve over $k$, $\deg D=\sum_P n_P[\kappa(P):k] \in \ZZ$. Over an algebraically closed field, this is $\deg(D) = \sum_P n_P$.
 :::
 
 ::: {.front card-id="card-e8e202eb43c56fe4"}
@@ -329,7 +329,7 @@ For $D$ a prime divisor and $Y\in \mathop{\mathrm{supp}}D$, what is the **multip
 :::
 
 ::: {.back card-id="card-e8e202eb43c56fe4"}
-$D = \sum n_{Y_i} Y_i$ and $Y= Y_j$ for some $j$ since $Y\in \mathop{\mathrm{supp}}D$, so ${\operatorname{mult}}_D(Y) = n_Y$.
+$D = \sum n_{Y_i} Y_i$ and $Y= Y_j$ for some $j$ since $Y\in \mathop{\mathrm{supp}}D$, so $\mult_D(Y) = n_Y$.
 :::
 
 ::: {.front card-id="card-f8d3ad922064fbf7" tags="definition"}
@@ -339,7 +339,7 @@ What are the **multiplicity** and the **support** of a Cartier divisor?
 ::: {.back card-id="card-f8d3ad922064fbf7"}
 Coefficient along a prime divisor: for a Cartier divisor $D$ on a regular (or normal) integral scheme, its coefficient at a codimension-one point $\eta$ (prime divisor $Y$) is the valuation $v_Y(f_i) = \operatorname{ord}_\eta(f_i)$ of a local equation $f_i$ on any $U_i$ with $U_i \cap Y\neq \emptyset$.
 
-Multiplicity at a point: for $D$ an effective Cartier divisor on $X$, let $f$ be a local equation at $p$ and define $\mu_p(D)$ to be the largest $N$ such that $f\in {\mathfrak{m}}_p^N \subseteq {\mathcal{O}}_{X, p}$. Note $\mu_p \geq 1 \iff p\in \mathop{\mathrm{supp}}D$, and for $X$ smooth at $p$, $\mu_p = 1 \iff D$ is smooth at $p$.
+Multiplicity at a point: for $D$ an effective Cartier divisor on $X$, let $f$ be a local equation at $p$ and define $\mu_p(D)$ to be the largest $N$ such that $f\in \mfm_p^N \subseteq {\mathcal{O}}_{X, p}$. Note $\mu_p \geq 1 \iff p\in \mathop{\mathrm{supp}}D$, and for $X$ smooth at $p$, $\mu_p = 1 \iff D$ is smooth at $p$.
 
 Support: $\mathop{\mathrm{supp}}D = {\left\lvert {D} \right\rvert}$ is the union of poles and zeros of $D$, i.e. the set of points where a local equation is not a unit. On a regular integral scheme this is the union of the prime divisors $Y$ with $v_Y(f_i) \neq 0$.
 
@@ -359,7 +359,7 @@ What is a **complete linear system**?
 :::
 
 ::: {.back card-id="card-67f0df55debb4328"}
-${\left\lvert {D} \right\rvert} = \left\{{ D' {~\mathrel{\Big\vert}~}D'\sim D}\right\}$
+${\left\lvert {D} \right\rvert} = \left\{{ D' \st D'\sim D}\right\}$
 :::
 
 ::: {.front card-id="card-a59770df8f80107c"}
@@ -377,7 +377,7 @@ What does it mean for a linear system to be **base point free**?
 ::: {.back card-id="card-ae8d56478c62b8d7"}
 A point $p\in X$ is a base point of a linear system $S$ iff $p$ is contained in the support of every divisor $D\in S$. $S$ is bpf iff it contains no basepoints.
 
-Equivalently, the corresponding line bundle ${\mathcal{L}}$ is generated by global sections, where $S$ corresponds to $V \subseteq H^0(X; {\mathcal{L}})$ for some ${\mathcal{L}}\in \operatorname{Pic}(X)$, since $p$ is a base point iff $s_p\in {\mathfrak{m}}_p {\mathcal{L}}_p$ for all $s\in V$.
+Equivalently, the corresponding line bundle $\mcl$ is generated by global sections, where $S$ corresponds to $V \subseteq H^0(X; \mcl)$ for some $\mcl\in \operatorname{Pic}(X)$, since $p$ is a base point iff $s_p\in \mfm_p \mcl_p$ for all $s\in V$.
 :::
 
 ::: {.front card-id="card-7dfe2d5e36a21bf9"}
@@ -385,7 +385,7 @@ When is the morphism defined by a linear system a closed immersion?
 :::
 
 ::: {.back card-id="card-7dfe2d5e36a21bf9"}
-Separates points and separates tangents: $\forall p, q\in X$ there exists $D\in S$ with $p\in D$ and $q\not\in D$; given $p\in X, t\in {\mathbf{T}}_p X$, there is a $D\in S$ with $p\in D$ but $t\not \in {\mathbf{T}}_p(D) \coloneqq\qty{{\mathfrak{m}}_{P, D}/{\mathfrak{m}}_{P, D} } {}^{ \vee }$
+Separates points and separates tangents: $\forall p, q\in X$ there exists $D\in S$ with $p\in D$ and $q\not\in D$; given $p\in X, t\in {\mathbf{T}}_p X$, there is a $D\in S$ with $p\in D$ but $t\not \in {\mathbf{T}}_p(D) \coloneqq\qty{\mfm_{P, D}/\mfm_{P, D} } {}^{ \vee }$
 :::
 
 ::: {.front card-id="card-a7508a5971d896ab"}
@@ -409,7 +409,7 @@ What is a **polarization**? What is a principal polarization?
 :::
 
 ::: {.back card-id="card-2a3c393c9009915d"}
-A choice of ${\mathcal{L}}\in {\operatorname{NS}}(X)^\mathrm{amp}$, where ${\operatorname{NS}}(X) \coloneqq\operatorname{Pic}(X)/\operatorname{Pic}^0(X)$. Principal if $\deg {\mathcal{L}}= 1$.
+A choice of $\mcl\in \NS(X)^\mathrm{amp}$, where $\NS(X) \coloneqq\operatorname{Pic}(X)/\operatorname{Pic}^0(X)$. Principal if $\deg \mcl= 1$.
 :::
 
 ::: {.front card-id="card-317a749884b346c7"}
@@ -431,8 +431,8 @@ tensor by $\Omega_{X/k} {}^{ \vee }$ to get
 $$f^* \Omega_{Y/k}\otimes\Omega_{X/k} {}^{ \vee }\hookrightarrow{\mathcal{O}}_X \twoheadrightarrow\Omega_{X/Y} \otimes\Omega_{X/k} {}^{ \vee }$$
 Use that $\Omega_{X/Y}$ has finite support, so $\Omega_{X/Y} \cong \Omega_{X/Y} \otimes\Omega_{X/k} {}^{ \vee }$ and
 $$f^* \Omega_{Y/k}\otimes\Omega_{X/k} {}^{ \vee }\hookrightarrow{\mathcal{O}}_X \twoheadrightarrow{\mathcal{O}}_R$$
-but $\ker({\mathcal{O}}_X \twoheadrightarrow{\mathcal{O}}_R) \cong {\mathcal{L}}(-R)$, so
-$$f^* \Omega_{Y/k} \otimes\Omega_{X/k} {}^{ \vee }\cong {\mathcal{L}}(-R)$$
+but $\ker({\mathcal{O}}_X \twoheadrightarrow{\mathcal{O}}_R) \cong \mcl(-R)$, so
+$$f^* \Omega_{Y/k} \otimes\Omega_{X/k} {}^{ \vee }\cong \mcl(-R)$$
 and taking associated divisors yields $f^*K_Y, -K_X, -R$ respectively, so $f^* K_Y - K_X \sim -R \implies K_X \sim f^* K_Y + R$.
 :::
 
@@ -465,7 +465,7 @@ What is the result of taking determinants in an exact sequence?
 :::
 
 ::: {.back card-id="card-8fa02aa33202f47b"}
-$A\to B \to C$ a SES in ${}_{{\mathcal{O}}_X}{\mathsf{Mod}}$ yields $\operatorname{det}(A) \otimes_{{\mathcal{O}}_X} \operatorname{det}(C) \cong \operatorname{det}(B)$.
+$A\to B \to C$ a SES in ${}_{{\mathcal{O}}_X}\Mod$ yields $\operatorname{det}(A) \otimes_{{\mathcal{O}}_X} \operatorname{det}(C) \cong \operatorname{det}(B)$.
 :::
 
 ::: {.front card-id="card-8d85a1b7ab49e41b"}

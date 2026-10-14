@@ -39,7 +39,7 @@ What are the **Zariski closed** subsets of ${\mathbb{A}}^n$?
 :::
 
 ::: {.back card-id="card-227d4c4c1f0a7f98"}
-For ${\mathbf{A}}^1$ (and any irreducible curve), the Zariski topology on the closed points is the cofinite topology. For ${\mathbf{A}}^n$, not cofinite, just take the usual basis $V(I)$ for $I{~\trianglelefteq~}k[x_1, \cdots, x_{n}]$.
+For ${\mathbf{A}}^1$ (and any irreducible curve), the Zariski topology on the closed points is the cofinite topology. For ${\mathbf{A}}^n$, not cofinite, just take the usual basis $V(I)$ for $I\normal k[x_1, \cdots, x_{n}]$.
 :::
 
 ::: {.front card-id="card-b03c437dbfefd2df"}
@@ -138,7 +138,7 @@ What is a Calabi-Yau variety?
 :::
 
 ::: {.back card-id="card-c3dc4c2d611a350b"}
-$K_X \sim_{\mathbf{Q}}0$. Sometimes require $\omega_X\cong {\mathcal{O}}_X$ instead, with $h^j({\mathcal{O}}_X) = 0$ for $1\leq j\leq n-1$.
+$K_X \sim_\QQ0$. Sometimes require $\omega_X\cong {\mathcal{O}}_X$ instead, with $h^j({\mathcal{O}}_X) = 0$ for $1\leq j\leq n-1$.
 :::
 
 ::: {.front card-id="card-2957b6e954c7da3c"}
@@ -174,9 +174,9 @@ What is a **smooth point** of a variety? A **singular point**?
 ::: {.back card-id="card-7892e4e293c4f44e"}
 $X$ is nonsingular (smooth) at $x$ if its local ring $\mathcal O_{X,x}$ is regular: the minimal number of generators of its maximal ideal equals $\dim\mathcal O_{X,x}$. Otherwise $x$ is a singular point. $X$ is nonsingular if this holds at every point.
 
-Jacobian criterion: for $Y\subseteq{\mathbf{A}}^n$ an affine variety of dimension $d$, let $I(Y) = \left\langle{f_1,\cdots, f_r}\right\rangle {~\trianglelefteq~}k[x_1, \cdots, x_{n}]$ and $J_Y \coloneqq\left[ {\frac{\partial f_i}{\partial x_j}\,} \right]$ the corresponding Jacobian matrix, then $Y$ is smooth at $p$ iff $\operatorname{rank}J_Y(p) = n-d$ (maximal rank), otherwise if $\operatorname{rank}J_Y(p) < n-d$ it is a singular point.
+Jacobian criterion: for $Y\subseteq{\mathbf{A}}^n$ an affine variety of dimension $d$, let $I(Y) = \left\langle{f_1,\cdots, f_r}\right\rangle \normal k[x_1, \cdots, x_{n}]$ and $J_Y \coloneqq\left[ {\frac{\partial f_i}{\partial x_j}\,} \right]$ the corresponding Jacobian matrix, then $Y$ is smooth at $p$ iff $\operatorname{rank}J_Y(p) = n-d$ (maximal rank), otherwise if $\operatorname{rank}J_Y(p) < n-d$ it is a singular point.
 
-Alternatively, at a closed point $p$, $\dim {\mathbf{T}}_p X = \dim X$ if smooth and $\dim {\mathbf{T}}_p X > \dim X$ if singular, where ${\mathbf{T}}_p X \coloneqq({\mathfrak{m}}_p /{\mathfrak{m}}_p^2) {}^{ \vee }\coloneqq\mathop{\mathrm{Hom}}_{  {}_{k}{\mathsf{Mod}}}({\mathfrak{m}}_p/{\mathfrak{m}}_p^2, k)$.
+Alternatively, at a closed point $p$, $\dim {\mathbf{T}}_p X = \dim X$ if smooth and $\dim {\mathbf{T}}_p X > \dim X$ if singular, where ${\mathbf{T}}_p X \coloneqq(\mfm_p /\mfm_p^2) {}^{ \vee }\coloneqq\mathop{\mathrm{Hom}}_{  {}_{k}\Mod}(\mfm_p/\mfm_p^2, k)$.
 :::
 
 ::: {.front card-id="card-5d527bea8b6d3b5f"}

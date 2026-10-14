@@ -144,20 +144,20 @@ Z   & 0  & 0 & 0 \\\hline
 Q   & 0  & 0 & 0
 \end{array}
 $$
-The full complex $\operatorname{Tor}_*^{\mathbf{Z}}(V, H) = (V\otimes_{\mathbf{Z}}H) + \operatorname{Tor}_1^{\mathbf{Z}}(V, H)\, t$, e.g. the top-left entry is $\operatorname{Tor}_*^{\mathbf{Z}}(C_n, C_m)$:
+The full complex $\operatorname{Tor}_*^\ZZ(V, H) = (V\otimes_\ZZ H) + \operatorname{Tor}_1^\ZZ(V, H)\, t$, e.g. the top-left entry is $\operatorname{Tor}_*^\ZZ(C_n, C_m)$:
 $$
 \begin{array}{c|c|c|c}
-\operatorname{Tor}_*^{\mathbf{Z}} & C_m & {\mathbf{Z}} & {\mathbf{Q}} \\\hline
-C_n & C_m/nC_m \oplus C_m[n]t = C_d \oplus C_d t & {\mathbf{Z}}/n{\mathbf{Z}}\oplus {\mathbf{Z}}[n]t = C_n \oplus 0t & {\mathbf{Q}}/n{\mathbf{Q}}\oplus {\mathbf{Q}}[n]t = 0\oplus 0t \\\hline
-{\mathbf{Z}} & C_m + 0t & {\mathbf{Z}}+ 0t & {\mathbf{Q}}+ 0t \\\hline
-{\mathbf{Q}} & 0 + 0t & {\mathbf{Q}}+ 0t & {\mathbf{Q}} + 0t
+\operatorname{Tor}_*^\ZZ & C_m & \ZZ & \QQ \\\hline
+C_n & C_m/nC_m \oplus C_m[n]t = C_d \oplus C_d t & \ZZ/n\ZZ\oplus \ZZ[n]t = C_n \oplus 0t & \QQ/n\QQ\oplus \QQ[n]t = 0\oplus 0t \\\hline
+\ZZ & C_m + 0t & \ZZ+ 0t & \QQ+ 0t \\\hline
+\QQ & 0 + 0t & \QQ+ 0t & \QQ + 0t
 \end{array}
 $$
-First row: $C_n\otimes_{\mathbf{Z}}A = A/nA$ and $\operatorname{Tor}_1^{\mathbf{Z}}(C_n, A) = A[n]$.
+First row: $C_n\otimes_\ZZ A = A/nA$ and $\operatorname{Tor}_1^\ZZ(C_n, A) = A[n]$.
 
-Second row: ${\mathbf{Z}}\otimes_{\mathbf{Z}}A = A$ and $\operatorname{Tor}_1^{\mathbf{Z}}({\mathbf{Z}}, A) = 0$ since ${\mathbf{Z}}$ is projective.
+Second row: $\ZZ\otimes_\ZZ A = A$ and $\operatorname{Tor}_1^\ZZ(\ZZ, A) = 0$ since $\ZZ$ is projective.
 
-Third row: $G\otimes_{\mathbf{Z}}{\mathbf{Q}}= {\mathbf{Q}}\otimes_{\mathbf{Z}}G = 0$ for $G$ a torsion group, ${\mathbf{Q}}\otimes_{\mathbf{Z}}{\mathbf{Q}} = {\mathbf{Q}}$, and $\operatorname{Tor}_1^{\mathbf{Z}}({\mathbf{Q}}, A) = 0$ since ${\mathbf{Q}}$ is torsionfree, hence flat.
+Third row: $G\otimes_\ZZ\QQ= \QQ\otimes_\ZZ G = 0$ for $G$ a torsion group, $\QQ\otimes_\ZZ\QQ = \QQ$, and $\operatorname{Tor}_1^\ZZ(\QQ, A) = 0$ since $\QQ$ is torsionfree, hence flat.
 :::
 
 ::: {.front card-id="card-c935c4621c362acc" tags="math"}
@@ -176,12 +176,12 @@ $$
 :::
 
 ::: {.front card-id="card-d624fd05eb724e0e" tags="definition, math"}
-Homology of real projective space, $H_* {\mathbf{RP}}^2$
+Homology of real projective space, $H_* \RP^2$
 :::
 
 ::: {.back card-id="card-d624fd05eb724e0e"}
 $$
-H_* \RP^2 = [\mathbb{Z}, \mathbb{Z}_2, 0, 0, 0, 0\rightarrow ] = {\mathbf{Z}}\cdot t^0 + C_2 \cdot t^1
+H_* \RP^2 = [\mathbb{Z}, \mathbb{Z}_2, 0, 0, 0, 0\rightarrow ] = \ZZ\cdot t^0 + C_2 \cdot t^1
 .$$
 :::
 
@@ -260,7 +260,7 @@ $K$ the Klein bottle (no boundary, nonorientable), or
 
 $M$ the Mobius band (1 boundary, nonorientable), or
 
-$S^2\setminus\left\{{ {\operatorname{pt}}_1, {\operatorname{pt}}_2 }\right\} \simeq S^1\times I$ an annulus (2 boundaries).
+$S^2\setminus\left\{{ \pt_1, \pt_2 }\right\} \simeq S^1\times I$ an annulus (2 boundaries).
 :::
 
 ::: {.front card-id="card-f63353ec9a4bff1f" tags="math"}
@@ -272,7 +272,7 @@ $g=2$ so $\Sigma\cong \Sigma_2$ is a 2-holed torus (no boundary, orientable), or
 
 $\RP^2 \# \RP^2 \# \RP^2 \# \RP^2$ (no boundary, nonorientable, since $\chi(M_g) = 2-g$), or
 
-$S^2\setminus\left\{{ {\operatorname{pt}}_1,\cdots, {\operatorname{pt}}_4 }\right\}$.
+$S^2\setminus\left\{{ \pt_1,\cdots, \pt_4 }\right\}$.
 :::
 
 ::: {.front card-id="card-0cdd58ef6d4b9e92" tags="math"}
@@ -298,7 +298,7 @@ The tor complex between $C_n$ and $A$.
 :::
 
 ::: {.back card-id="card-455916a5a5f17b7d"}
-$$\operatorname{Tor}^{\mathbf{Z}}_*(C_n, A) = (A/nA)\cdot t^0 \oplus A[n]\cdot t^1 \oplus \cdots$$
+$$\operatorname{Tor}^\ZZ_*(C_n, A) = (A/nA)\cdot t^0 \oplus A[n]\cdot t^1 \oplus \cdots$$
 :::
 
 ::: {.front card-id="card-9bf5130224135f26"}
@@ -306,6 +306,6 @@ The ext complex between $C_n$ and $A$.
 :::
 
 ::: {.back card-id="card-9bf5130224135f26"}
-$$ \operatorname{Ext}^*_{\mathbf{Z}}(C_n, A) = A[n]\cdot t^0 \oplus (A/nA) \cdot t^1 \oplus \cdots$$
+$$ \operatorname{Ext}^*_\ZZ(C_n, A) = A[n]\cdot t^0 \oplus (A/nA) \cdot t^1 \oplus \cdots$$
 :::
 

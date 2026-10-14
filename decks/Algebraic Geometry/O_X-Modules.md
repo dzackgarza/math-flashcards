@@ -3,27 +3,27 @@ title: "Algebraic Geometry::O_X-Modules"
 ---
 
 ::: {.front card-id="card-8df45a95ad038e48" tags="definition"}
-What is an ${\mathcal{O}}_X{\hbox{-}}$module?
+What is an ${\mathcal{O}}_X\dash$module?
 :::
 
 ::: {.back card-id="card-8df45a95ad038e48"}
-A sheaf ${\mathcal{F}}$ of abelian groups on $X$ where each ${\mathcal{F}}(U)\in   {}_{{\mathcal{O}}_X(U)}{\mathsf{Mod}}$ and the restriction maps respect scalar multiplication: $(rm)\mathrel{\Big|}_V = { \left.{{r}} \right|_{{V}} } { \left.{{m}} \right|_{{V}} }$.
+A sheaf $\mcf$ of abelian groups on $X$ where each $\mcf(U)\in   {}_{{\mathcal{O}}_X(U)}\Mod$ and the restriction maps respect scalar multiplication: $(rm)\mathrel{\Big|}_V = { \left.{{r}} \right|_{{V}} } { \left.{{m}} \right|_{{V}} }$.
 :::
 
 ::: {.front card-id="card-ba56128ca287831c"}
-What is the **tensor product** of two ${\mathcal{O}}_X{\hbox{-}}$modules?
+What is the **tensor product** of two ${\mathcal{O}}_X\dash$modules?
 :::
 
 ::: {.back card-id="card-ba56128ca287831c"}
-Sheafify $U\mapsto {\mathcal{F}}(U) \otimes_{{\mathcal{O}}_X(U)} {\mathcal{G}}(U)$.
+Sheafify $U\mapsto \mcf(U) \otimes_{{\mathcal{O}}_X(U)} \mcg(U)$.
 :::
 
 ::: {.front card-id="card-7e9dc536db4d8267"}
-What is a **free** ${\mathcal{O}}_X{\hbox{-}}$module?
+What is a **free** ${\mathcal{O}}_X\dash$module?
 :::
 
 ::: {.back card-id="card-7e9dc536db4d8267"}
-Isomorphic to a direct sum $\bigoplus_{i\in I}{\mathcal{O}}_X$ of copies of ${\mathcal{O}}_X$; it has rank $n$ if ${\sharp}I = n < \infty$, i.e. ${\mathcal{F}}\cong{\mathcal{O}}_X{ {}^{ \scriptscriptstyle\oplus^{n} }  }$.
+Isomorphic to a direct sum $\bigoplus_{i\in I}{\mathcal{O}}_X$ of copies of ${\mathcal{O}}_X$; it has rank $n$ if ${\sharp}I = n < \infty$, i.e. $\mcf\cong{\mathcal{O}}_X{ {}^{ \scriptscriptstyle\oplus^{n} }  }$.
 :::
 
 ::: {.front card-id="card-f5daaf777e5093e5"}
@@ -31,17 +31,17 @@ What is a **locally free** ${\mathcal{O}}_X$ module?
 :::
 
 ::: {.back card-id="card-f5daaf777e5093e5"}
-Admits an open cover $\left\{{U_i}\right\}$ of $X$ where each ${ \left.{{{\mathcal{F}}}} \right|_{{U_i}} }$ is a free ${\mathcal{O}}_{U_i}{\hbox{-}}$module. It is locally free of rank $n$ if there are ${\mathcal{O}}_{U_i}$-module isomorphisms $\rho_i: { \left.{{{\mathcal{F}}}} \right|_{{U_i}} } \cong {\mathcal{O}}_{U_i}{ {}^{ \scriptscriptstyle\oplus^{n} }  }$.
+Admits an open cover $\left\{{U_i}\right\}$ of $X$ where each ${ \left.{{\mcf}} \right|_{{U_i}} }$ is a free ${\mathcal{O}}_{U_i}\dash$module. It is locally free of rank $n$ if there are ${\mathcal{O}}_{U_i}$-module isomorphisms $\rho_i: { \left.{{\mcf}} \right|_{{U_i}} } \cong {\mathcal{O}}_{U_i}{ {}^{ \scriptscriptstyle\oplus^{n} }  }$.
 
-Then each stalk ${\mathcal{F}}_x$ is a free ${\mathcal{O}}_{X, x}{\hbox{-}}$module. The converse holds for ${\mathcal{F}}$ of finite presentation (e.g. coherent on a locally Noetherian scheme), but not in general.
+Then each stalk $\mcf_x$ is a free ${\mathcal{O}}_{X, x}\dash$module. The converse holds for $\mcf$ of finite presentation (e.g. coherent on a locally Noetherian scheme), but not in general.
 :::
 
 ::: {.front card-id="card-7ea20bc415140836"}
-What is the **rank** of an ${\mathcal{O}}_X{\hbox{-}}$module?
+What is the **rank** of an ${\mathcal{O}}_X\dash$module?
 :::
 
 ::: {.back card-id="card-7ea20bc415140836"}
-If locally free, on some open set, the $n$ appearing in ${ \left.{{{\mathcal{F}}}} \right|_{{U}} }_i \cong {\mathcal{O}}_X{ {}^{ \scriptscriptstyle\oplus^{n} }  }$.
+If locally free, on some open set, the $n$ appearing in ${ \left.{{\mcf}} \right|_{{U}} }_i \cong {\mathcal{O}}_X{ {}^{ \scriptscriptstyle\oplus^{n} }  }$.
 :::
 
 ::: {.front card-id="card-041465065808b2ca"}
@@ -49,9 +49,9 @@ What is an **ideal sheaf** (sheaf of ideals) on $X$?
 :::
 
 ::: {.back card-id="card-041465065808b2ca"}
-An ${\mathcal{O}}_X{\hbox{-}}$submodule ${\mathcal{I}}\leq {\mathcal{O}}_X$, so each ${\mathcal{I}}(U) {~\trianglelefteq~}{\mathcal{O}}_X(U)$.
+An ${\mathcal{O}}_X\dash$submodule $\mci\leq {\mathcal{O}}_X$, so each $\mci(U) \normal{\mathcal{O}}_X(U)$.
 
-For $\iota: Y\hookrightarrow X$ the inclusion of a closed subscheme, its ideal sheaf is ${\mathcal{I}}_Y \coloneqq\ker\qty{{\mathcal{O}}_X \xrightarrow{\iota^\sharp}\iota_* {\mathcal{O}}_Y}$. It is always a quasi-coherent sheaf of ideals on $X$, and every quasi-coherent sheaf of ideals is ${\mathcal{I}}_Y$ for a unique closed subscheme $Y$.
+For $\iota: Y\hookrightarrow X$ the inclusion of a closed subscheme, its ideal sheaf is $\mci_Y \coloneqq\ker\qty{{\mathcal{O}}_X \xrightarrow{\iota^\sharp}\iota_* {\mathcal{O}}_Y}$. It is always a quasi-coherent sheaf of ideals on $X$, and every quasi-coherent sheaf of ideals is $\mci_Y$ for a unique closed subscheme $Y$.
 :::
 
 ::: {.front card-id="card-a0b5fb9f7c4c63c9" tags="definition"}
@@ -59,55 +59,55 @@ What is the **sheaf hom**?
 :::
 
 ::: {.back card-id="card-a0b5fb9f7c4c63c9"}
-For ${\mathcal{O}}_X{\hbox{-}}$modules ${\mathcal{F}}, {\mathcal{G}}$, the sheaf $\mathop{\mathcal{H}\! \mathit{om}}_{{\mathcal{O}}_X}({\mathcal{F}}, {\mathcal{G}})$ given by $U\mapsto \mathop{\mathrm{Hom}}_{{ \left.{{{\mathcal{O}}_X}} \right|_{{U}} }}({ \left.{{{\mathcal{F}}}} \right|_{{U}} }, { \left.{{{\mathcal{G}}}} \right|_{{U}} })$ (no need to sheafify). It is again an ${\mathcal{O}}_X{\hbox{-}}$module.
+For ${\mathcal{O}}_X\dash$modules $\mcf, \mcg$, the sheaf $\mathop{\mathcal{H}\! \mathit{om}}_{{\mathcal{O}}_X}(\mcf, \mcg)$ given by $U\mapsto \mathop{\mathrm{Hom}}_{{ \left.{{{\mathcal{O}}_X}} \right|_{{U}} }}({ \left.{{\mcf}} \right|_{{U}} }, { \left.{{\mcg}} \right|_{{U}} })$ (no need to sheafify). It is again an ${\mathcal{O}}_X\dash$module.
 :::
 
 ::: {.front card-id="card-1c0674319a19d9fa"}
-What is the **direct image** in ${}_{{\mathcal{O}}_X}{\mathsf{Mod}}$?
+What is the **direct image** in ${}_{{\mathcal{O}}_X}\Mod$?
 :::
 
 ::: {.back card-id="card-1c0674319a19d9fa"}
-For $f: X\to Y$ in ringed spaces and ${\mathcal{F}}\in   {}_{{\mathcal{O}}_X}{\mathsf{Mod}}$, take $f_* {\mathcal{F}}\in   {}_{{\mathcal{O}}_Y}{\mathsf{Mod}}$
+For $f: X\to Y$ in ringed spaces and $\mcf\in   {}_{{\mathcal{O}}_X}\Mod$, take $f_* \mcf\in   {}_{{\mathcal{O}}_Y}\Mod$
 :::
 
 ::: {.front card-id="card-26737bcb87ae4726"}
-What is the **inverse image** in ${}_{{\mathcal{O}}_X}{\mathsf{Mod}}$?
+What is the **inverse image** in ${}_{{\mathcal{O}}_X}\Mod$?
 :::
 
 ::: {.back card-id="card-26737bcb87ae4726"}
-For $f:X\to Y$ and ${\mathcal{G}}\in   {}_{{\mathcal{O}}_Y}{\mathsf{Mod}}$, $f^* {\mathcal{G}}\coloneqq f^{-1}{\mathcal{G}}\otimes_{f^{-1}{\mathcal{O}}_Y}{\mathcal{O}}_X$. I.e. base change $f^{-1}G$ from $f^{-1}{\mathcal{O}}_Y$ to ${\mathcal{O}}_X$.
+For $f:X\to Y$ and $\mcg\in   {}_{{\mathcal{O}}_Y}\Mod$, $f^* \mcg\coloneqq f^{-1}\mcg\otimes_{f^{-1}{\mathcal{O}}_Y}{\mathcal{O}}_X$. I.e. base change $f^{-1}G$ from $f^{-1}{\mathcal{O}}_Y$ to ${\mathcal{O}}_X$.
 :::
 
 ::: {.front card-id="card-2f0923dae6d93520"}
-What is the ${\mathcal{O}}_X{\hbox{-}}$module associated to $M\in {}_{A}{\mathsf{Mod}}$?
+What is the ${\mathcal{O}}_X\dash$module associated to $M\in {}_{A}\Mod$?
 :::
 
 ::: {.back card-id="card-2f0923dae6d93520"}
-$\tilde M \in {\mathsf{Sh}}(\operatorname{Spec}A)$ where $\tilde M(U)$ is the set of functions $s: U\to \amalg_{p\in U} M_p$ such that $s(p)\in M_p$ and $s$ is locally a fraction $m/f$ with $m\in M, f\in A$. The stalks are the localizations, $\tilde M_p = M_p$, and the global sections are $M$.
+$\tilde M \in \Sh(\operatorname{Spec}A)$ where $\tilde M(U)$ is the set of functions $s: U\to \amalg_{p\in U} M_p$ such that $s(p)\in M_p$ and $s$ is locally a fraction $m/f$ with $m\in M, f\in A$. The stalks are the localizations, $\tilde M_p = M_p$, and the global sections are $M$.
 
 More precisely: for each $p\in U$ there exists $p\in V \subset U$ and $m\in M, f\in A$ such that for each $q\in V$, $f\not \in q$ and $s(q) = m/f$ in $M_q$.
 :::
 
 ::: {.front card-id="card-70da298d7eaf3e5c"}
-What is a **quasicoherent sheaf**/${\mathcal{O}}_X{\hbox{-}}$module? :
+What is a **quasicoherent sheaf**/${\mathcal{O}}_X\dash$module? :
 :::
 
 ::: {.back card-id="card-70da298d7eaf3e5c"}
-An ${\mathcal{O}}_X{\hbox{-}}$module which is locally of the form $\tilde M$, where $\tilde M$ is the sheaf associated to $M$.
+An ${\mathcal{O}}_X\dash$module which is locally of the form $\tilde M$, where $\tilde M$ is the sheaf associated to $M$.
 
-Admits an affine open cover $\operatorname{Spec}A_i\rightrightarrows X$ where $\exists M_i\in  {}_{A_i}{\mathsf{Mod}}$ with ${ \left.{{{\mathcal{F}}}} \right|_{{\tilde M_i}} }$.
+Admits an affine open cover $\operatorname{Spec}A_i\rightrightarrows X$ where $\exists M_i\in  {}_{A_i}\Mod$ with ${ \left.{{\mcf}} \right|_{{\tilde M_i}} }$.
 
-Equivalently, by a theorem of Serre, **locally** $\exists {\mathcal{O}}_X{ {}^{ \scriptscriptstyle\oplus^{J} }  } \to {\mathcal{O}}_X{ {}^{ \scriptscriptstyle\oplus^{I} }  }\twoheadrightarrow{\mathcal{F}}$.
+Equivalently, by a theorem of Serre, **locally** $\exists {\mathcal{O}}_X{ {}^{ \scriptscriptstyle\oplus^{J} }  } \to {\mathcal{O}}_X{ {}^{ \scriptscriptstyle\oplus^{I} }  }\twoheadrightarrow\mcf$.
 :::
 
 ::: {.front card-id="card-d64ff182851952ed"}
-What is a **coherent sheaf**/ ${\mathcal{O}}_X{\hbox{-}}$module? :
+What is a **coherent sheaf**/ ${\mathcal{O}}_X\dash$module? :
 :::
 
 ::: {.back card-id="card-d64ff182851952ed"}
-Quasicoherent where $\operatorname{Spec}A_i\rightrightarrows X$ and each $M_i \in   {}_{A_i}{\mathsf{Mod}}^{\mathrm{fg}}$.
+Quasicoherent where $\operatorname{Spec}A_i\rightrightarrows X$ and each $M_i \in   {}_{A_i}\Mod^\fg$.
 
-Equivalently, by a theorem of Serre, $\exists {\mathcal{O}}_X{ {}^{ \scriptscriptstyle\oplus^{J} }  } \to {\mathcal{O}}_X{ {}^{ \scriptscriptstyle\oplus^{I} }  }\twoheadrightarrow{\mathcal{F}}$ with ${\sharp}I, {\sharp}J < \infty$.
+Equivalently, by a theorem of Serre, $\exists {\mathcal{O}}_X{ {}^{ \scriptscriptstyle\oplus^{J} }  } \to {\mathcal{O}}_X{ {}^{ \scriptscriptstyle\oplus^{I} }  }\twoheadrightarrow\mcf$ with ${\sharp}I, {\sharp}J < \infty$.
 :::
 
 ::: {.front card-id="card-01c0cd5b5e6565ed"}
@@ -123,23 +123,23 @@ Give an example of a sheaf that is not coherent.
 :::
 
 ::: {.back card-id="card-7b0a991f2503ff89"}
-Take $f:{\mathbf{A}}^1_{/ {k}}\to \operatorname{Spec}k$ and $f_* {\mathcal{O}}_{{\mathbf{A}}^1_{/ {k}}}$ has global sections $k[t]\not\in   {}_{k}{\mathsf{Mod}}^{\mathrm{fg}}$.
+Take $f:{\mathbf{A}}^1_{/ {k}}\to \operatorname{Spec}k$ and $f_* {\mathcal{O}}_{{\mathbf{A}}^1_{/ {k}}}$ has global sections $k[t]\not\in   {}_{k}\Mod^\fg$.
 :::
 
 ::: {.front card-id="card-d1af342442df2ccd"}
-Give an example of a quasicoherent but not coherent ${\mathcal{O}}_X{\hbox{-}}$module.
+Give an example of a quasicoherent but not coherent ${\mathcal{O}}_X\dash$module.
 :::
 
 ::: {.back card-id="card-d1af342442df2ccd"}
-The constant sheaf $\underline{{\mathcal{K}}}$ where $U\mapsto K(X)$, the rational function field of $X$.
+The constant sheaf $\underline{\mck}$ where $U\mapsto K(X)$, the rational function field of $X$.
 :::
 
 ::: {.front card-id="card-c07a818203520df1"}
-What is a consequence of an ${\mathcal{O}}_X{\hbox{-}}$module being quasicoherent?
+What is a consequence of an ${\mathcal{O}}_X\dash$module being quasicoherent?
 :::
 
 ::: {.back card-id="card-c07a818203520df1"}
-For $X$ affine, global sections is exact on sequences ${\mathcal{F}}\hookrightarrow\bullet\twoheadrightarrow\bullet$ when ${\mathcal{F}}\in {\mathsf{QCoh}}(X)$.
+For $X$ affine, global sections is exact on sequences $\mcf\hookrightarrow\bullet\twoheadrightarrow\bullet$ when $\mcf\in \QCoh(X)$.
 
 Kernels, cokernels, images, extensions, pullbacks, and pushforwards along qcs are again quasicoherent.
 :::
@@ -151,15 +151,15 @@ What is ${\mathcal{O}}_X(n)$?
 ::: {.back card-id="card-dab506d58c11eaf9"}
 For $S$ a graded ring and $X \coloneqq\mathop{\mathrm{Proj}}S$, ${\mathcal{O}}_X(n)\coloneqq S(n)\tilde{}$ (the sheaf associated to a module), where $S(n)$ (also written $S[n]$) is the shifted graded module with $S(n)_d = S_{n+d}$.
 
-${\mathcal{O}}_X(1)$ is Serre's twisting sheaf, and if ${\mathcal{F}}\in   {}_{{\mathcal{O}}_X}{\mathsf{Mod}}$ then ${\mathcal{F}}(n) \coloneqq{\mathcal{F}}\otimes_{{\mathcal{O}}_X} {\mathcal{O}}_X(n)$.
+${\mathcal{O}}_X(1)$ is Serre's twisting sheaf, and if $\mcf\in   {}_{{\mathcal{O}}_X}\Mod$ then $\mcf(n) \coloneqq\mcf\otimes_{{\mathcal{O}}_X} {\mathcal{O}}_X(n)$.
 :::
 
 ::: {.front card-id="card-c5f79fa6fffa2efc"}
-For $S$ a graded ring, $X = \mathop{\mathrm{Proj}}S$, and ${\mathcal{F}}\in {}_{{\mathcal{O}}_X}{\mathsf{Mod}}$, what is the graded $S{\hbox{-}}$module associated to ${\mathcal{F}}$?
+For $S$ a graded ring, $X = \mathop{\mathrm{Proj}}S$, and $\mcf\in {}_{{\mathcal{O}}_X}\Mod$, what is the graded $S\dash$module associated to $\mcf$?
 :::
 
 ::: {.back card-id="card-c5f79fa6fffa2efc"}
-${{\Gamma}\qty{X; {\mathcal{F}}} } \coloneqq\bigoplus_{n\in {\mathbf{Z}}} {{\Gamma}\qty{X; {\mathcal{F}}(n)} }$.
+${{\Gamma}\qty{X; \mcf} } \coloneqq\bigoplus_{n\in \ZZ} {{\Gamma}\qty{X; \mcf(n)} }$.
 :::
 
 ::: {.front card-id="card-0993d61182a2d5f4"}
@@ -167,7 +167,7 @@ What is the **twisting sheaf** ${\mathcal{O}}(1)$ on ${\mathbf{P}}^n_{/ {Y}}$?
 :::
 
 ::: {.back card-id="card-0993d61182a2d5f4"}
-${\mathcal{O}}_{{\mathbf{P}}^n_{/ {Y}}}(1) \coloneqq g^* {\mathcal{O}}_{{\mathbf{P}}^n_{/ {{\mathbf{Z}}}}}(1)$ where $g:{\mathbf{P}}^n_{/ {Y}} \to {\mathbf{P}}^n_{/ {{\mathbf{Z}}}}$ is the projection.
+${\mathcal{O}}_{{\mathbf{P}}^n_{/ {Y}}}(1) \coloneqq g^* {\mathcal{O}}_{{\mathbf{P}}^n_{/ {\ZZ}}}(1)$ where $g:{\mathbf{P}}^n_{/ {Y}} \to {\mathbf{P}}^n_{/ {\ZZ}}$ is the projection.
 :::
 
 ::: {.front card-id="card-996db5f3b6601367"}
@@ -175,7 +175,7 @@ What is a **very ample** invertible sheaf?
 :::
 
 ::: {.back card-id="card-996db5f3b6601367"}
-For $X$ over $Y$, ${\mathcal{L}}\in \operatorname{Pic}(X)$ is very ample relative to $Y$ iff there is an immersion $\iota: X\to {\mathbf{P}}^n_{/ {Y}}$ over $Y$ for some $n$ such that $\iota^* {\mathcal{O}}(1) \cong {\mathcal{L}}$. For $Y = \operatorname{Spec}A$, this is equivalent to the existence of sections $\left\{{s_0,\cdots, s_n}\right\}\subseteq H^0(X; {\mathcal{L}})$ generating ${\mathcal{L}}$ such that $x\mapsto {\left[ {s_0(x): \cdots : s_n(x)} \right]}$ is an immersion.
+For $X$ over $Y$, $\mcl\in \operatorname{Pic}(X)$ is very ample relative to $Y$ iff there is an immersion $\iota: X\to {\mathbf{P}}^n_{/ {Y}}$ over $Y$ for some $n$ such that $\iota^* {\mathcal{O}}(1) \cong \mcl$. For $Y = \operatorname{Spec}A$, this is equivalent to the existence of sections $\left\{{s_0,\cdots, s_n}\right\}\subseteq H^0(X; \mcl)$ generating $\mcl$ such that $x\mapsto {\left[ {s_0(x): \cdots : s_n(x)} \right]}$ is an immersion.
 :::
 
 ::: {.front card-id="card-6434f1ec713aa932"}
@@ -185,9 +185,9 @@ Why is a scheme $X$ over a Noetherian scheme $Y$ projective iff it is proper and
 ::: {.back card-id="card-6434f1ec713aa932"}
 Projective implies proper since ${\mathbf{P}}^n_{/ {Y}}\to Y$ is proper and closed immersions are proper; a closed immersion $\iota: X\to {\mathbf{P}}^n_{/ {Y}}$ gives $\iota^* {\mathcal{O}}(1)\in \operatorname{Pic}(X)^\mathrm{va}$.
 
-Conversely if proper, take ${\mathcal{L}}\in \operatorname{Pic}(X)^{\mathrm{va}}$ to get ${\mathcal{L}}\cong \iota^* {\mathcal{O}}(1)$ for some immersion $\iota: X\to {\mathbf{P}}^n_{/ {Y}}$ for some $n$ -- but $\iota(X)$ is closed, so $\iota$ is a *closed* immersion, making $X$ projective.
+Conversely if proper, take $\mcl\in \operatorname{Pic}(X)^{\mathrm{va}}$ to get $\mcl\cong \iota^* {\mathcal{O}}(1)$ for some immersion $\iota: X\to {\mathbf{P}}^n_{/ {Y}}$ for some $n$ -- but $\iota(X)$ is closed, so $\iota$ is a *closed* immersion, making $X$ projective.
 
-Proper alone does not imply projective: Hironaka constructed smooth proper threefolds over ${\mathbf{C}}$ that are not projective.
+Proper alone does not imply projective: Hironaka constructed smooth proper threefolds over $\CC$ that are not projective.
 :::
 
 ::: {.front card-id="card-5c26a4c9e18c5228"}
@@ -195,11 +195,11 @@ What does it mean for an ${\mathcal{O}}_X$ module to be **globally generated** (
 :::
 
 ::: {.back card-id="card-5c26a4c9e18c5228"}
-There exists a family of sections $\left\{{s_i}\right\}_{i\in I} \subseteq {{\Gamma}\qty{X; {\mathcal{F}}} }$ where for each $x\in X$ the images of $s_i$ in ${\mathcal{F}}_x$ generate that stalk as an ${\mathcal{O}}_{X, x}{\hbox{-}}$module.
+There exists a family of sections $\left\{{s_i}\right\}_{i\in I} \subseteq {{\Gamma}\qty{X; \mcf} }$ where for each $x\in X$ the images of $s_i$ in $\mcf_x$ generate that stalk as an ${\mathcal{O}}_{X, x}\dash$module.
 
-Equivalently, ${\mathcal{F}}$ is the quotient of a free sheaf: $\exists \bigoplus_{i\in I}{\mathcal{O}}_X\twoheadrightarrow{\mathcal{F}}$.
+Equivalently, $\mcf$ is the quotient of a free sheaf: $\exists \bigoplus_{i\in I}{\mathcal{O}}_X\twoheadrightarrow\mcf$.
 
-For ${\mathcal{L}}\in \operatorname{Pic}(X)$: for every $x\in X$ there is a section $s\in H^0(X; {\mathcal{L}})$ not vanishing at $x$, i.e. ${\mathcal{L}}$ is base-point free.
+For $\mcl\in \operatorname{Pic}(X)$: for every $x\in X$ there is a section $s\in H^0(X; \mcl)$ not vanishing at $x$, i.e. $\mcl$ is base-point free.
 :::
 
 ::: {.front card-id="card-6078c0a2248b7c1b"}
@@ -207,7 +207,7 @@ Give examples of globally generated sheaves.
 :::
 
 ::: {.back card-id="card-6078c0a2248b7c1b"}
-Example: any ${\mathcal{F}}\in {\mathsf{QCoh}}(\operatorname{Spec}A)$ -- write ${\mathcal{F}}\cong M\tilde{}$ and take any set of generators for $M\in  {}_{A}{\mathsf{Mod}}$.
+Example: any $\mcf\in \QCoh(\operatorname{Spec}A)$ -- write $\mcf\cong M\tilde{}$ and take any set of generators for $M\in  {}_{A}\Mod$.
 :::
 
 ::: {.front card-id="card-36e874ed79b4bec1"}
@@ -215,7 +215,7 @@ What is a major result regarding global generation?
 :::
 
 ::: {.back card-id="card-36e874ed79b4bec1"}
-For $X$ projective over a Noetherian scheme $A$, ${\mathcal{O}}(1)$ a very ample invertible sheaf on $X$, ${\mathcal{F}}\in {\mathsf{Coh}}(X)$, there exists some $N_0$ such that ${\mathcal{F}}(n)$ is globally generated by a finite number of sections for all $n\geq N_0$.
+For $X$ projective over a Noetherian scheme $A$, ${\mathcal{O}}(1)$ a very ample invertible sheaf on $X$, $\mcf\in \Coh(X)$, there exists some $N_0$ such that $\mcf(n)$ is globally generated by a finite number of sections for all $n\geq N_0$.
 :::
 
 ::: {.front card-id="card-a335a1700d07eb09"}
@@ -223,7 +223,7 @@ What is the **Euler characteristic** of an ${\mathcal{O}}_X$ module?
 :::
 
 ::: {.back card-id="card-a335a1700d07eb09"}
-$\chi(X; {\mathcal{F}}) \coloneqq\sum_i (-1)^i h^i(X; {\mathcal{F}})$.
+$\chi(X; \mcf) \coloneqq\sum_i (-1)^i h^i(X; \mcf)$.
 :::
 
 ::: {.front card-id="card-c1ffa65f50144241"}
@@ -231,7 +231,7 @@ What is the **Hilbert polynomial** of an ${\mathcal{O}}_X$ module?
 :::
 
 ::: {.back card-id="card-c1ffa65f50144241"}
-Using that $\chi(X; {\mathcal{F}}(n))$ is some polynomial $p(n)$ in $n$, take $p$ to be the Hilbert polynomial.
+Using that $\chi(X; \mcf(n))$ is some polynomial $p(n)$ in $n$, take $p$ to be the Hilbert polynomial.
 :::
 
 ::: {.front card-id="card-37be5dabde736ed0" tags="definition"}
@@ -311,9 +311,9 @@ What is a geometric vector bundle over a scheme?
 :::
 
 ::: {.back card-id="card-c5cef00e4330d7da"}
-A geometric vector bundle of rank $n$ over $X$ is a scheme $f: Z \rightarrow X$ together with an open cover $\left\{U_i\right\}$ of $X$ and isomorphisms $\psi_i: f^{-1}\left(U_i\right) \rightarrow \mathbf{A}_{U_i}^n \coloneqq U_i\times_{\mathbf{Z}} {\mathbf{A}}^n_{\mathbf{Z}}$ over $U_i$ such that, for any $i, j$ and any open affine $V=\operatorname{Spec}(R) \subseteq U_i \cap U_j$, the automorphism $\psi=\psi_j \circ \psi_i^{-1}$ of $\mathbf{A}_V^n = \operatorname{Spec}R[x_1,\cdots,x_n]$ is linear: it is given by an $R$-algebra automorphism $\theta$ with $\theta(x_i) = \sum_j a_{ij} x_j$ and $(a_{ij})\in\operatorname{GL}_n(R)$.
+A geometric vector bundle of rank $n$ over $X$ is a scheme $f: Z \rightarrow X$ together with an open cover $\left\{U_i\right\}$ of $X$ and isomorphisms $\psi_i: f^{-1}\left(U_i\right) \rightarrow \mathbf{A}_{U_i}^n \coloneqq U_i\times_\ZZ {\mathbf{A}}^n_\ZZ$ over $U_i$ such that, for any $i, j$ and any open affine $V=\operatorname{Spec}(R) \subseteq U_i \cap U_j$, the automorphism $\psi=\psi_j \circ \psi_i^{-1}$ of $\mathbf{A}_V^n = \operatorname{Spec}R[x_1,\cdots,x_n]$ is linear: it is given by an $R$-algebra automorphism $\theta$ with $\theta(x_i) = \sum_j a_{ij} x_j$ and $(a_{ij})\in\operatorname{GL}_n(R)$.
 
-For ${\mathcal{E}}$ a locally free sheaf of rank $n$ on $X$, $\mathbf{V}({\mathcal{E}})\coloneqq\operatorname{Spec}\operatorname{Sym}({\mathcal{E}})$ is a geometric vector bundle of rank $n$ whose sheaf of sections is ${\mathcal{E}}^{\vee}$.
+For $\mce$ a locally free sheaf of rank $n$ on $X$, $\mathbf{V}(\mce)\coloneqq\operatorname{Spec}\operatorname{Sym}(\mce)$ is a geometric vector bundle of rank $n$ whose sheaf of sections is $\mce^{\vee}$.
 :::
 
 ::: {.front card-id="card-013129f0821e1e9e"}
@@ -321,5 +321,5 @@ What is the geometric vector bundle associated to a locally free sheaf?
 :::
 
 ::: {.back card-id="card-013129f0821e1e9e"}
-$V({\mathcal{E}}) \coloneqq\operatorname{Spec}\operatorname{Sym}{\mathcal{E}}$, where $\operatorname{Sym}{\mathcal{E}}$ is the sheafy symmetric algebra so ${ \left.{{\qty{\operatorname{Sym}{\mathcal{E}}}}} \right|_{{U_i}} } \cong \operatorname{Sym}\qty{{ \left.{{{\mathcal{E}}}} \right|_{{U_i}} }}$ over ${\mathcal{O}}_{U_i}$, and where one takes the sheaf-theoretic spectrum.
+$V(\mce) \coloneqq\operatorname{Spec}\operatorname{Sym}\mce$, where $\operatorname{Sym}\mce$ is the sheafy symmetric algebra so ${ \left.{{\qty{\operatorname{Sym}\mce}}} \right|_{{U_i}} } \cong \operatorname{Sym}\qty{{ \left.{{\mce}} \right|_{{U_i}} }}$ over ${\mathcal{O}}_{U_i}$, and where one takes the sheaf-theoretic spectrum.
 :::

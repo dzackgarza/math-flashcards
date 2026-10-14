@@ -17,7 +17,7 @@ $e_C(\ell z) = C_\ell(e_C(z))$ where $C_\ell$ is an additive polynomial: analog 
 ::: {.back card-id="card-01e3480a67dce5a8"}
 - The map $\ell \mapsto C_\ell(z)$ is the Carlitz module.
 - Yields a theory of $n!$ (i.e. $\Gamma(n)$) and Bernoulli functions.
-- "Division values" of $e_C(z)$ generate abelian cyclotomic extensions of ${\mathbf{Q}}$, analogous to division values of $e^{2\pi i z}$.
+- "Division values" of $e_C(z)$ generate abelian cyclotomic extensions of $\QQ$, analogous to division values of $e^{2\pi i z}$.
 - Has "rank" 1.
 :::
 
@@ -31,18 +31,18 @@ Drinfeld generalizes in 74: general exponentials of higher rank, for arbitrary f
 - Uniformize the moduli using Tate's rigid analytic geometry.
 - His goal: prove Langlands-esque reciprocity laws.
 - Yields class fields.
-- Generalize elliptic curves and higher so-called $T{\hbox{-}}$modules which generalize abelian varieties.
+- Generalize elliptic curves and higher so-called $T\dash$modules which generalize abelian varieties.
 - Generalize *to* shtukas: Drinfeld modules with a vector bundle.
 :::
 
 ::: {.front card-id="card-27040a809f277e7f"}
-Toward analogs of $L{\hbox{-}}$functions for abelian varieties and analogs of RH for them: fix $K$ a function field,
+Toward analogs of $L\dash$functions for abelian varieties and analogs of RH for them: fix $K$ a function field,
 :::
 
 ::: {.back card-id="card-27040a809f277e7f"}
 - $A \coloneqq$ functions in $K$ which are regular away from $\infty$, generalizes ${ \mathbf{F} }_q[T]$, is a Dedekind domain with finite unit group and class number.
-- Given a Drinfeld module $\psi$ over a field $L$, this gives $L$ a new $A{\hbox{-}}$module structure. Use this to define an analog of the Tate module of $\psi$.
-- The charpoly of $\operatorname{Frob}_L$ has coefficients in $A$ (instead of ${\mathbf{Z}}$), assemble these into an Euler product and thus an $L{\hbox{-}}$function.
+- Given a Drinfeld module $\psi$ over a field $L$, this gives $L$ a new $A\dash$module structure. Use this to define an analog of the Tate module of $\psi$.
+- The charpoly of $\operatorname{Frob}_L$ has coefficients in $A$ (instead of $\ZZ$), assemble these into an Euler product and thus an $L\dash$function.
 :::
 
 ::: {.front card-id="card-6ce63f23672491e6"}
@@ -50,9 +50,9 @@ Three themes:
 :::
 
 ::: {.back card-id="card-6ce63f23672491e6"}
-- Function fields are "bigger" than number fields: over ${\mathbf{Q}}$, analytically complete and then take a degree 2 field extension to close algebraically to get ${\mathbf{C}}$, but for function fields, completing yields a local field which may have infinitely many extensions of a fixed degree. Things identified in the number field case split up in the function field case.
+- Function fields are "bigger" than number fields: over $\QQ$, analytically complete and then take a degree 2 field extension to close algebraically to get $\CC$, but for function fields, completing yields a local field which may have infinitely many extensions of a fixed degree. Things identified in the number field case split up in the function field case.
 - Arithmetic/geometric dichotomy: function fields have two types of cyclotomic extensions, adjoining $\zeta_n$ (everywhere unramified, related to extensions of constant field) or ramified "geometric" extensions (by division values of Drinfeld modules).
-- Two $T$'s, as an operator (gives rise to $L{\hbox{-}}$functions and a scalar (gives rise to $\Gamma{\hbox{-}}$functions).
+- Two $T$'s, as an operator (gives rise to $L\dash$functions and a scalar (gives rise to $\Gamma\dash$functions).
 :::
 
 ::: {.front card-id="card-c660fc641e641fdb"}
@@ -97,7 +97,7 @@ Facts:
 :::
 
 ::: {.front card-id="card-6cc1394c5c90ca55"}
-Prop 4.1.1: for $I \subseteq k$ a nontrivial $A{\hbox{-}}$fractional ideal, $I\subset K$ is discrete and cocompact.
+Prop 4.1.1: for $I \subseteq k$ a nontrivial $A\dash$fractional ideal, $I\subset K$ is discrete and cocompact.
 :::
 
 ::: {.back card-id="card-6cc1394c5c90ca55"}
@@ -110,8 +110,8 @@ Analogies:
 :::
 
 ::: {.back card-id="card-15b76f738e1bec0f"}
-- ${\mathbf{Z}}\leadsto A$
-- ${\mathbf{Q}}\leadsto k$
+- $\ZZ\leadsto A$
+- $\QQ\leadsto k$
 - ${\mathbf{R}}\leadsto K$\
 :::
 
@@ -120,11 +120,11 @@ Motto: function field theory decomposes classical number-theoretic objects into 
 :::
 
 ::: {.back card-id="card-71f738e7fc96b2c4"}
-- Example: will need many Hilbert class fields to play the role of ${\mathbf{Q}}$,
+- Example: will need many Hilbert class fields to play the role of $\QQ$,
 :::
 
 ::: {.front card-id="card-9d15d0cc12f3a90f"}
-Definition 4.2.1 ($M{\hbox{-}}$lattices)
+Definition 4.2.1 ($M\dash$lattices)
 :::
 
 ::: {.back card-id="card-9d15d0cc12f3a90f"}
@@ -136,7 +136,7 @@ Prop 4.2.4: $e_L(x)$ is entire on $C_\infty$ which has a Taylor expansion at $x=
 :::
 
 ::: {.back card-id="card-a47a773808d252c6"}
-- Proof: convergence is due to discreteness of $L$, the Taylor expansion is from $G_M \coloneqq { \mathsf{Gal}}(M^{ {}^{ \operatorname{sep} } }/M)$ which fixes $L$ and the nature of the continuous action $G_M\curvearrowright M^{ {}^{ \operatorname{sep} } }$. So $e_L$ is a non-constant entire function and thus surjective.
+- Proof: convergence is due to discreteness of $L$, the Taylor expansion is from $G_M \coloneqq \Gal(M^{ {}^{ \operatorname{sep} } }/M)$ which fixes $L$ and the nature of the continuous action $G_M\curvearrowright M^{ {}^{ \operatorname{sep} } }$. So $e_L$ is a non-constant entire function and thus surjective.
 :::
 
 ::: {.front card-id="card-8f2e3bd06d6b417a"}
@@ -157,7 +157,7 @@ Prop 4.3.2: define
 $$\begin{align} A &\to M\left\{{\tau}\right\} \\ a&\mapsto \phi_a\end{align}$$
 satisfies:
 
-- ${ \mathbf{F} }_r{\hbox{-}}$linear,
+- ${ \mathbf{F} }_r\dash$linear,
 - $a\in { \mathbf{F} }_r \subset A\implies \phi_a = a \tau^0$,
 - $\phi_{ab}(\tau) = \phi_a(\tau)\phi_b(\tau) = \phi_b(\tau)\phi_a(\tau) = \phi_{ba}(\tau)$.
 :::
@@ -172,7 +172,7 @@ which has rank $d = \operatorname{rank}_A(L)$.
 :::
 
 ::: {.front card-id="card-0d5faf71b98a4979"}
-Def 4.4.1: an $A{\hbox{-}}$field $F$ is a field with a morphism $i:A\to F$; $\ker i ={\mathfrak{p}}$ is prime and $\operatorname{ch}F \coloneqq{\mathfrak{p}}$; $F$ has "generic characteristic" (char zero) if ${\mathfrak{p}}= \left\langle{0}\right\rangle$, otherwise $F$ has finite characteristic.
+Def 4.4.1: an $A\dash$field $F$ is a field with a morphism $i:A\to F$; $\ker i =\mfp$ is prime and $\operatorname{ch}F \coloneqq\mfp$; $F$ has "generic characteristic" (char zero) if $\mfp= \left\langle{0}\right\rangle$, otherwise $F$ has finite characteristic.
 :::
 
 ::: {.back card-id="card-0d5faf71b98a4979"}
@@ -186,26 +186,26 @@ There is a theory of morphisms of Drinfeld modules, parallels elliptic curves
 ::: {.back card-id="card-4373490afd563e55"}
 - isomorphism iff degree zero,
 - if $G/F$ is any algebraically closed extension then $\hom_{\overline{F}}(\psi,\psi) \hookrightarrow\mathop{\mathrm{Hom}}_G(\phi, \psi)$,
-- ${ \operatorname{End} }_F(\psi)$ is commutative and torsionfree projective $A{\hbox{-}}$module of rank $\leq d^2$
+- ${ \operatorname{End} }_F(\psi)$ is commutative and torsionfree projective $A\dash$module of rank $\leq d^2$
 - Characterization of when certain group schemes are kernels of isogenies
 :::
 
 ::: {.front card-id="card-fddae515b7c5749f"}
-Let $E/k \subseteq C_\infty$ be a finite extension, then $E$ is a ${\mathrm{CM}}_\infty{\hbox{-}}$field iff it contains exactly one prime above $\infty$.
+Let $E/k \subseteq C_\infty$ be a finite extension, then $E$ is a $\CM_\infty\dash$field iff it contains exactly one prime above $\infty$.
 :::
 
 ::: {.back card-id="card-fddae515b7c5749f"}
-- Can constructed Drinfeld modules with CM by the maximal order ${\mathcal{O}}\coloneqq A_E$, the $A{\hbox{-}}$integers in $E$ where ${\mathcal{O}}\hookrightarrow{ \operatorname{End} }(\psi)$
-- For $L\subset C_\infty$ a lattice for ${\mathcal{O}}$ of rank $d_1$, it induces an $A{\hbox{-}}$lattice of rank $d\coloneqq d_1\cdot [E:k]$ which induces a Drinfeld module $\psi$; say $\psi$ has sufficiently many CMs iff $d_1 = 1$ iff $L\cong I$ where $I$ is an ${\mathcal{O}}{\hbox{-}}$ideal.
-- Can define conductors: letting $\tilde {\mathcal{O}}$ be the maximal order (the $A{\hbox{-}}$integers), the conductor is the largest ideal $\mathfrak c{~\trianglelefteq~}\tilde {\mathcal{O}}$ which is also an ideal in ${\mathcal{O}}$.
+- Can constructed Drinfeld modules with CM by the maximal order ${\mathcal{O}}\coloneqq A_E$, the $A\dash$integers in $E$ where ${\mathcal{O}}\hookrightarrow{ \operatorname{End} }(\psi)$
+- For $L\subset C_\infty$ a lattice for ${\mathcal{O}}$ of rank $d_1$, it induces an $A\dash$lattice of rank $d\coloneqq d_1\cdot [E:k]$ which induces a Drinfeld module $\psi$; say $\psi$ has sufficiently many CMs iff $d_1 = 1$ iff $L\cong I$ where $I$ is an ${\mathcal{O}}\dash$ideal.
+- Can define conductors: letting $\tilde {\mathcal{O}}$ be the maximal order (the $A\dash$integers), the conductor is the largest ideal $\mathfrak c\normal\tilde {\mathcal{O}}$ which is also an ideal in ${\mathcal{O}}$.
 :::
 
 ::: {.front card-id="card-2f5aae3903cdd2cd"}
-For $X\in {\mathsf{Sch}}$, define an Euler product
+For $X\in \Sch$, define an Euler product
 :::
 
 ::: {.back card-id="card-2f5aae3903cdd2cd"}
-$$\zeta_X(s) \coloneqq\prod_{x\in {\left\lvert {X} \right\rvert}} {1\over 1 - {\left\lVert {x} \right\rVert}^{-s} },\qquad {\left\lVert {x} \right\rVert} \coloneqq{\sharp}\kappa(x) \coloneqq{\sharp}({\mathcal{O}}_{X, x}/{\mathfrak{m}}_x)$$
+$$\zeta_X(s) \coloneqq\prod_{x\in {\left\lvert {X} \right\rvert}} {1\over 1 - {\left\lVert {x} \right\rVert}^{-s} },\qquad {\left\lVert {x} \right\rVert} \coloneqq{\sharp}\kappa(x) \coloneqq{\sharp}({\mathcal{O}}_{X, x}/\mfm_x)$$
 
 - Can expand in a sum
 $$\zeta_X(s) = \sum_{D\in \operatorname{Div}_{>0}(X)} {1\over {\left\lVert {D} \right\rVert}^{-s} },\qquad {\left\lVert {D} \right\rVert} \coloneqq r^{\deg D}$$
@@ -227,18 +227,18 @@ $$\xi_X(s) = \xi_X(1-s)$$
 :::
 
 ::: {.front card-id="card-3676abd814105539"}
-$L{\hbox{-}}$series: $X$ a curve over ${ \mathbf{F} }_r$ where $r= p^{m_0}$, fixed closed point $\infty$, function field $k$ with completion $K$ at $\infty$, $\operatorname{Spec}A = X\setminus\left\{{ \infty }\right\}$, $C_\infty =$ complete $k$, take algebraic closure, take completion. $G = { \mathsf{Gal}}(k{ {}^{ \operatorname{sep} } }/k)$, $\ell\neq p\in {\mathbf{Z}}$ a prime, $\rho: G\to \operatorname{GL}(V)$ a continuous finite dimensional $\ell{\hbox{-}}$adic representation.
+$L\dash$series: $X$ a curve over ${ \mathbf{F} }_r$ where $r= p^{m_0}$, fixed closed point $\infty$, function field $k$ with completion $K$ at $\infty$, $\operatorname{Spec}A = X\setminus\left\{{ \infty }\right\}$, $C_\infty =$ complete $k$, take algebraic closure, take completion. $G = \Gal(k{ {}^{ \operatorname{sep} } }/k)$, $\ell\neq p\in \ZZ$ a prime, $\rho: G\to \operatorname{GL}(V)$ a continuous finite dimensional $\ell\dash$adic representation.
 :::
 
 ::: {.back card-id="card-3676abd814105539"}
-- E.g. for $Z$ an abelian variety over $k,$ define $\ell{\hbox{-}}$adic Tate module $T_\ell(Z)$ and set
+- E.g. for $Z$ an abelian variety over $k,$ define $\ell\dash$adic Tate module $T_\ell(Z)$ and set
 
-$$V \coloneqq\mathop{\mathrm{Hom}}_{{ {\mathbf{Z}}_{\widehat{\ell}} }}(T_\ell(Z), { {\mathbf{Q}}_\ell }) \cong H^1_\text{ét}(Z; { {\mathbf{Q}}_\ell }) \in   {}_{G}{\mathsf{Mod}}$$
+$$V \coloneqq\mathop{\mathrm{Hom}}_{{ \ZZ_{\widehat{\ell}} }}(T_\ell(Z), { \QQ_\ell }) \cong H^1_\text{ét}(Z; { \QQ_\ell }) \in   {}_{G}\Mod$$
 
 - For $w\in {\left\lvert {X} \right\rvert}$, define
 
-$$f_w(u) \coloneqq f_{\overline{w}}(u) \coloneqq\operatorname{det}\qty{1 - \operatorname{Frob}_{\overline{w}}u {~\mathrel{\Big\vert}~}V^{I_{\overline{w}}}}$$
-where $\overline{w}$ is an point over $w$ in ${ \overline{k} }$ and $I_{\overline{w}}$ is its inertia group and $V^{I_{\overline{w}}}$ is the fixed subspaces with $\operatorname{Frob}_{\overline{w}}(u) \in D_{\overline{w}}/I_{\overline{w}}$ the geometric Frobenius (inverse of usual).
+$$f_w(u) \coloneqq f_{\overline{w}}(u) \coloneqq\operatorname{det}\qty{1 - \operatorname{Frob}_{\overline{w}}u \st V^{I_{\overline{w}}}}$$
+where $\overline{w}$ is an point over $w$ in $\kbar$ and $I_{\overline{w}}$ is its inertia group and $V^{I_{\overline{w}}}$ is the fixed subspaces with $\operatorname{Frob}_{\overline{w}}(u) \in D_{\overline{w}}/I_{\overline{w}}$ the geometric Frobenius (inverse of usual).
 
 - Define
 $$L_V(s) \coloneqq\prod_{w\in {\left\lvert {X} \right\rvert}} f_w({\left\lVert {w} \right\rVert}^{-s})^{-1},\qquad {\left\lVert {w} \right\rVert} \coloneqq{\sharp}\kappa(w)$$
@@ -263,6 +263,6 @@ $$\widehat{\xi}(s) \coloneqq s(1-s)\xi(s)$$
 to get an entire function with $\widehat{\xi}(s) = \widehat{\xi}(1-s)$.
 
 - RH: the zeroes of $\widehat{\xi}$ are of the form ${1\over 2} + i\beta$ for $\beta\in {\mathbf{R}}$; can shift and rotate to get a function $\theta(u)$ and equivalently ask that the zeros of $\theta$ are real.
-- Relate to a theorem of Wan 8.24.5: Let $y\in { {\mathbf{Z}}_{\widehat{p}} }$ where each $r{\hbox{-}}$adic digit of $-y$ is less than $p$ or equal to $r-1$. Then the zeros of $\zeta_A(x, y)$ are in $K$ and simple.
-- ${\mathbf{R}}$ is a "small" local field and the zeros of $\theta(u)$ are either in ${\mathbf{R}}$ or ${\mathbf{C}}$, a degree 2 extension. Compare to zeros of $\zeta_A(s)$ which could be in an extension of $K$ of arbitrary (even infinite) degree but are in $K$ itself.
+- Relate to a theorem of Wan 8.24.5: Let $y\in { \ZZ_{\widehat{p}} }$ where each $r\dash$adic digit of $-y$ is less than $p$ or equal to $r-1$. Then the zeros of $\zeta_A(x, y)$ are in $K$ and simple.
+- ${\mathbf{R}}$ is a "small" local field and the zeros of $\theta(u)$ are either in ${\mathbf{R}}$ or $\CC$, a degree 2 extension. Compare to zeros of $\zeta_A(s)$ which could be in an extension of $K$ of arbitrary (even infinite) degree but are in $K$ itself.
 :::

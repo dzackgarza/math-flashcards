@@ -15,11 +15,11 @@ What is **Kodaira dimension**?
 :::
 
 ::: {.back card-id="card-21139fdf3f221644"}
-For$X$ normal projective and $D\in {\mathbf{Q}}{\hbox{-}}\operatorname{Div}(X)$,
-$$\kappa(X, D)\coloneqq\limsup _{m \in {\mathbf{Z}}_{\geq 0}} \frac{\log \left(h^0\left(\mathcal{O}_X(m D)\right)\right)}{\log m}$$
+For$X$ normal projective and $D\in \QQ\dash\operatorname{Div}(X)$,
+$$\kappa(X, D)\coloneqq\limsup _{m \in \ZZ_{\geq 0}} \frac{\log \left(h^0\left(\mathcal{O}_X(m D)\right)\right)}{\log m}$$
 Equivalently, the Iitaka dimension of the canonical
 $$\kappa(X) \coloneqq\kappa(X; \omega_X)$$
-Concretely: $\kappa(X) \coloneqq-\infty$ if $P_d(X) = 0$ for all $d>0$, otherwise $\kappa(X) = \min \left\{{k \in {\mathbf{Z}}{~\mathrel{\Big\vert}~}{P_d\over d^k} \leq { \mathsf{O}}(1) }\right\}$ (i.e. the minimal $k$ so that $P_d(X) \in { \mathsf{O}}(d^k)$). Interpret as $P_m(X) \sim m^{\kappa(x)}$ (bounded above and below by constant multiples, for $m$ sufficiently divisible). Generally $\kappa(X) \in \left\{{-\infty}\right\}\cup\left\{{0, 1, \cdots, \dim X}\right\}$.
+Concretely: $\kappa(X) \coloneqq-\infty$ if $P_d(X) = 0$ for all $d>0$, otherwise $\kappa(X) = \min \left\{{k \in \ZZ\st{P_d\over d^k} \leq { \mathsf{O}}(1) }\right\}$ (i.e. the minimal $k$ so that $P_d(X) \in { \mathsf{O}}(d^k)$). Interpret as $P_m(X) \sim m^{\kappa(x)}$ (bounded above and below by constant multiples, for $m$ sufficiently divisible). Generally $\kappa(X) \in \left\{{-\infty}\right\}\cup\left\{{0, 1, \cdots, \dim X}\right\}$.
 :::
 
 ::: {.front card-id="card-0996fd4a0ee4d958"}
@@ -35,7 +35,7 @@ What is a big line bundle (big divisor)?
 :::
 
 ::: {.back card-id="card-67f625f64dc3c847"}
-${\mathcal{L}}\in \operatorname{Pic}(X)$ is big iff $\kappa(X; {\mathcal{L}}) = \dim(X)$ is maximal, i.e. $\dim \operatorname{im}\phi_{{\left\lvert {m{\mathcal{L}}} \right\rvert}} = \dim(X)$ for some $m\gg 0$.
+$\mcl\in \operatorname{Pic}(X)$ is big iff $\kappa(X; \mcl) = \dim(X)$ is maximal, i.e. $\dim \operatorname{im}\phi_{{\left\lvert {m\mcl} \right\rvert}} = \dim(X)$ for some $m\gg 0$.
 
 Equivalently, sections grow maximally: there is $c > 0$ with $h^0({\mathcal{O}}(mD)) \geq c\cdot m^{\dim X}$ for all sufficiently large and divisible $m$.
 :::
@@ -45,14 +45,14 @@ What is Iitaka dimension?
 :::
 
 ::: {.back card-id="card-a54e2a90c7831a3d"}
-For ${\mathcal{L}}\in \operatorname{Pic}(X)$, define the *Iitaka dimension* of ${\mathcal{L}}\in \operatorname{Pic}(X)$ as the maximal embedding dimension:
-$$\kappa(X; {\mathcal{L}}) \coloneqq\sup_{m\in {\mathbf{Z}}_{\geq 0}} \left\{{\dim \phi_{{\left\lvert {m{\mathcal{L}}} \right\rvert}}(X)}\right\},\qquad \phi_{{\left\lvert {m{\mathcal{L}}} \right\rvert}}:X\to {\mathbf{P}}^n$$
-Always have $\kappa(X; {\mathcal{L}}) \in \left\{{-\infty, 0, 1,\cdots, \dim(X)}\right\}$.
+For $\mcl\in \operatorname{Pic}(X)$, define the *Iitaka dimension* of $\mcl\in \operatorname{Pic}(X)$ as the maximal embedding dimension:
+$$\kappa(X; \mcl) \coloneqq\sup_{m\in \ZZ_{\geq 0}} \left\{{\dim \phi_{{\left\lvert {m\mcl} \right\rvert}}(X)}\right\},\qquad \phi_{{\left\lvert {m\mcl} \right\rvert}}:X\to {\mathbf{P}}^n$$
+Always have $\kappa(X; \mcl) \in \left\{{-\infty, 0, 1,\cdots, \dim(X)}\right\}$.
 
-If ${\mathcal{L}}$ is not effective, define $\kappa(X; {\mathcal{L}})= -\infty$.
+If $\mcl$ is not effective, define $\kappa(X; \mcl)= -\infty$.
 
 Fact:
-$$\kappa(X; {\mathcal{L}}) + 1 = {\mathrm{trdeg}}_k \operatorname{ff}(R(X; L))$$
+$$\kappa(X; \mcl) + 1 = \trdeg_k \operatorname{ff}(R(X; L))$$
 where $R(X; L)$ is the section ring.
 :::
 
@@ -61,7 +61,7 @@ What is the section ring?
 :::
 
 ::: {.back card-id="card-e9e007319ee4649c"}
-$$R(X, L) \coloneqq\bigoplus_{n\geq 0} H^0(X; {\mathcal{L}}{ {}^{ \scriptstyle\otimes_{{\mathcal{O}}_X}^{n} }  })$$
+$$R(X, L) \coloneqq\bigoplus_{n\geq 0} H^0(X; \mcl{ {}^{ \scriptstyle\otimes_{{\mathcal{O}}_X}^{n} }  })$$
 :::
 
 ::: {.front card-id="card-e5cda52b3ce32ece"}
@@ -182,7 +182,7 @@ What is a terminal singularity? Canonical singularity? Log-terminal singularity?
 :::
 
 ::: {.back card-id="card-704cc7c711f84485"}
-For a resolution $\pi: \tilde X\to X$, write $K_{\tilde X} \equiv_{\mathbf{Q}}\pi^* K_{X} + \sum a_i E_i$ with $a_i\in {\mathbf{Q}}$, then
+For a resolution $\pi: \tilde X\to X$, write $K_{\tilde X} \equiv_\QQ\pi^* K_{X} + \sum a_i E_i$ with $a_i\in \QQ$, then
 
 Terminal: $a_i > 0$.
 
@@ -216,11 +216,11 @@ Any pair $p,q\in X$ can be connected by a chain of rational curves, or equivalen
 :::
 
 ::: {.front card-id="card-70053316f342a559"}
-What is a ${\mathbf{Q}}{\hbox{-}}$Gorenstein variety?
+What is a $\QQ\dash$Gorenstein variety?
 :::
 
 ::: {.back card-id="card-70053316f342a559"}
-$K_X \in {\mathbf{Q}}{\hbox{-}}\operatorname{CDiv}(X)$.
+$K_X \in \QQ\dash\operatorname{CDiv}(X)$.
 :::
 
 ::: {.front card-id="card-0f10ef5a77d3c549"}
@@ -228,7 +228,7 @@ What is the Mori cone?
 :::
 
 ::: {.back card-id="card-0f10ef5a77d3c549"}
-The Mori cone $\overline{\operatorname{NE}}(X)\subset N_1(X)_{\mathbb R}$ is the closure of the convex cone generated by numerical classes of effective curves on a projective variety $X$. Its dual cone in $N^1(X)_{\mathbb R}$ is the nef cone.
+The Mori cone $\overline\NE(X)\subset N_1(X)_{\mathbb R}$ is the closure of the convex cone generated by numerical classes of effective curves on a projective variety $X$. Its dual cone in $N^1(X)_{\mathbb R}$ is the nef cone.
 :::
 
 ::: {.front card-id="card-ee210ddebc16c66b"}
@@ -272,7 +272,7 @@ $d < n + 1 \implies P_{\geq 1}(X) = 0$
 
 $d = n +1 \implies \omega_X \cong {\mathcal{O}}_X \implies P_{\geq 1}(X) = 1$
 
-$d > n+1 \implies \omega_X \in \operatorname{Pic}(X)^{{\mathrm{v.amp}}} \implies \cdots$
+$d > n+1 \implies \omega_X \in \operatorname{Pic}(X)^{\vamp} \implies \cdots$
 $$P_{m \gg 0}(X) = {d(d-n-1)^{n-1} \over(n-1)! }\cdot m^{n-1} + { \mathsf{O}}(m^{n-2})$$
 :::
 
@@ -297,7 +297,7 @@ What is a (strong) CY?
 :::
 
 ::: {.back card-id="card-a75e698385fb2a5e"}
-A weak CY with $H^i({\mathcal{O}}_X) = 0$ for $0 \lt i \lt \dim(X)$ and $\pi_1(X({\mathbf{C}})) = 1$.
+A weak CY with $H^i({\mathcal{O}}_X) = 0$ for $0 \lt i \lt \dim(X)$ and $\pi_1(X(\CC)) = 1$.
 :::
 
 ::: {.front card-id="card-185cc0d094d576b5"}
@@ -345,7 +345,7 @@ $D$ is nef iff $D\cdot C \geq 0$ for all irreducible curves $C$ iff $L\coloneqq{
 
 Degree: $\deg \operatorname{div}(s)$ for $s$ any rational section of $L|_C$.
 
-For $D\in {\mathbf{Q}}{\hbox{-}}\operatorname{CDiv}(X)$ and $Z\leq X$ a proper subvariety, $D$ is nef along $Z$ iff $D.C \coloneqq\deg_{\tilde C}(f^* D) \geq 0$ where $f: \tilde C\to C$ is the normalization, for all effective curves $C\subseteq Z$.
+For $D\in \QQ\dash\operatorname{CDiv}(X)$ and $Z\leq X$ a proper subvariety, $D$ is nef along $Z$ iff $D.C \coloneqq\deg_{\tilde C}(f^* D) \geq 0$ where $f: \tilde C\to C$ is the normalization, for all effective curves $C\subseteq Z$.
 :::
 
 ::: {.front card-id="card-ea9654ae52152e47"}
