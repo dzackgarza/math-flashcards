@@ -3,12 +3,14 @@ title: "Algebra::Modules and Linear Algebra"
 ---
 
 ::: {.front card-id="card-093f9a272e38ffe6" tags="counterexample"}
-Does $A^n=B^n$ imply $A=B$?
+For matrices, does $A^n=B^n$ imply $A=B$?
 :::
 
 ::: {.back card-id="card-093f9a272e38ffe6"}
-No, counterexample: $M = \matt 0 1 1 0$ satisfies
-$$ M^2 = I .$$
+No, counterexample with $n=2$: $M = \matt 0 1 1 0$ satisfies
+$$M^2 = I = I^2$$
+but $M \neq I$.
+Similarly $A = \matt 0 1 {-1} 0$ satisfies $A^2 = -I$, so $A^4 = I = I^4$.
 :::
 
 ::: {.front card-id="card-3d439f796f8b6ed5" tags="theorem"}
@@ -43,11 +45,11 @@ Equivalently, for $R\dash$modules, $M$ is projective $\iff$ $M$ is a direct summ
 :::
 
 ::: {.front card-id="card-ec459ce58f2c31a5" tags="fact"}
-Submodule test
+One-step submodule test
 :::
 
 ::: {.back card-id="card-ec459ce58f2c31a5"}
-If $r\in R,\, m,n \in M \implies rm + n \in M$ then $M$ is a submodule.
+If $N \subseteq M$ is nonempty and $r\in R,\, m,n \in N \implies rm + n \in N$, then $N$ is a submodule of $M$.
 :::
 
 ::: {.front card-id="card-69e87f20c01c0c7d" tags="definition"}
@@ -183,27 +185,3 @@ Proposition: Every free module is projective.
 ![](https://i.imgur.com/qZiRxvR.png)
 :::
 
-::: {.front card-id="card-c7fa1c316fae5d1d" tags="counterexample"}
-Does $A^n=B^\n$ imply $A=B$?
-:::
-
-::: {.back card-id="card-c7fa1c316fae5d1d"}
-No, counterexample: $M^2 = [0, 1; 1, 0]^2 = I_2$.
-:::
-
-::: {.front card-id="card-ce4e6c0c68155a6e"}
-What is the one-step submodule test?
-:::
-
-::: {.back card-id="card-ce4e6c0c68155a6e"}
-If $r\in R,\, m,n \in M \implies rm + n \in M$ then $M$ is a submodule.
-:::
-
-::: {.front card-id="card-fbd781aeb37bb486"}
-For matrices, does $A^n=B^n\implies A=B$?
-:::
-
-::: {.back card-id="card-fbd781aeb37bb486"}
-No:
-$$A=\left[\begin{array}{cc} 0 & 1 \\ -1 & 0 \end{array}\right] \Longrightarrow A^2=\left[\begin{array}{ll}1 & 0 \\0 & 1\end{array}\right]$$
-:::

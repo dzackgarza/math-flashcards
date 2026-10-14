@@ -43,7 +43,7 @@ Recognizing Direct Products
 ::: {.back card-id="card-a18d602866d2f5e7"}
 When there exist two subgroups $H, K \leq G$ such that
 
-1. $H\intersect K = \emptyset$
+1. $H\intersect K = \theset{e}$
 2. $G = HK$
 3. $H$ and $K$ are both normal.
 :::
@@ -90,11 +90,11 @@ How to determine sign of a permutation
 :::
 
 ::: {.back card-id="card-459d6ef8cf6969e1"}
-A cycle is odd iff it has an odd number of odd cycles (i.e. *even* number of elements in cycle).
+A permutation is odd iff it has an odd number of odd cycles (i.e. *even* number of elements in cycle).
 :::
 
 ::: {.front card-id="card-e49ce84d5f6805f6" tags="problem"}
-What is the sign of the cycle $\sigma=(123456)(789)(10~11)(12~13~14~15)(16~17~18)$?
+What is the sign of the permutation $\sigma=(123456)(789)(10~11)(12~13~14~15)(16~17~18)$?
 :::
 
 ::: {.back card-id="card-e49ce84d5f6805f6"}
@@ -115,19 +115,11 @@ where
 :::
 
 ::: {.front card-id="card-fd5acb683e622ef6" tags="definition, notation"}
-Stabilizer
+Stabilizer $G_x$
 :::
 
 ::: {.back card-id="card-fd5acb683e622ef6"}
-A subgroup: $G_x = \theset{g\in G \suchthat g.x = x}$.
-:::
-
-::: {.front card-id="card-9ade9596bf26774c" tags="definition, notation"}
-$G_x$
-:::
-
-::: {.back card-id="card-9ade9596bf26774c"}
-The Stabilizer subgroup: $G_x = \theset{g\in G \suchthat g.x = x} \leq G$.
+The stabilizer subgroup of $x\in X$: $G_x = \theset{g\in G \suchthat g.x = x} \leq G$.
 :::
 
 ::: {.front card-id="card-f11068e768c2ff54" tags="definition, notation"}
@@ -146,7 +138,7 @@ Class Equation
 $$
 \abs{G} = \abs{Z(G)} + \sum_{i} [G: C_G(x_i)]
 $$
-where $C_G(x) \da \ts{ g\in G \st gxg\inv = x }$ is the centralizer of $x$.
+where the $x_i$ are representatives of the conjugacy classes not contained in $Z(G)$, and $C_G(x) \da \ts{ g\in G \st gxg\inv = x }$ is the centralizer of $x$.
 :::
 
 ::: {.front card-id="card-5aa5a4e54b29a608" tags="definition"}
@@ -377,10 +369,3 @@ N_G(S) \da \ts{g\in G \st gSg\inv = S}
 .$$
 :::
 
-::: {.front card-id="card-38aee82ba60b253e" tags="definition, notation"}
-$X^n$
-:::
-
-::: {.back card-id="card-38aee82ba60b253e"}
-$X^g = \theset{x\in X \suchthat g.x = x} \subseteq X$
-:::

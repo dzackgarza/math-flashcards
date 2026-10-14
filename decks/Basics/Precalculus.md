@@ -117,78 +117,39 @@ Descartes' Rule of Signs
 :::
 
 ::: {.back card-id="card-9c83862120c41169"}
-The number $r^+$ of positive real roots (counted with multiplicity) of a polynomial $p(x)$ are at most the number $n$ of sign changes in the coefficients.
-Moreover, $r^+$ is *exactly* $n-2k$ for some $k\in \ZZ^{\geq 0}$.
+Let $p(x)$ be a real polynomial and let $n$ be the number of sign changes in its sequence of nonzero coefficients.
+The number $r^+$ of positive real roots (counted with multiplicity) of $p(x)$ is at most $n$.
+Moreover, $r^+$ is *exactly* $n-2k$ for some $k\in \ZZ^{\geq 0}$; in particular $r^+ \equiv n \mod 2$.
 Similarly, the number $r^-$ of negative real roots is the same idea applied to $p(-x)$.
-The minimal number of nonreal roots is thus $n - (r^+ + r^-)$.
+If $p(0) \neq 0$ and $n^+, n^-$ are the numbers of sign changes of $p(x)$ and $p(-x)$, then at least $\deg p - (n^+ + n^-)$ roots of $p$ are nonreal.
 
 *Examples:*
 
 - $f(x) = x^3 + x^2 - x - 1$ has exactly 1 positive real root.
 - $f(-x) = -x^3 + x^2 + x - 1$ has either 2 or 0 positive real roots, so $f$ has 2 or 0 negative real roots.
-- $g(x) = x^3 - 1$ has exactly 1 positive real root, $g(-x) = -x^3 - 1$ has 0 positive roots, so $g$ has 2 complex roots.
+- $g(x) = x^3 - 1$ has exactly 1 positive real root, $g(-x) = -x^3 - 1$ has 0 positive roots, so $g$ has 2 nonreal roots.
+- $x^3 + x^2 - x - 2$ has exactly 1 positive real root.
+- $x^5+4 x^4-3 x^2+x-6$ has 3 sign changes, so it has 3 or 1 positive real roots.
 :::
 
 ::: {.front card-id="card-0bc178fa054568ae" tags="formula"}
-Factor $x^n - a^n$
+Factor $x^n - y^n$.
 :::
 
 ::: {.back card-id="card-0bc178fa054568ae"}
-$$
-(x-a)\sum_{k=0}^{n-1} a^k x^{n-k}
-$$
+$$x^n-y^n=(x-y)\left(x^{n-1}+x^{n-2} y+\cdots+x y^{n-2}+y^{n-1}\right) = (x-y)\sum_{k=0}^{n-1}x^{n-1-k}y^k.$$
+How to prove: long division gives $x^n-y^n = x^{n-1}(x-y) + y\qty{x^{n-1}-y^{n-1}}$, so ${x^n-y^n\over x-y} = x^{n-1} + y\qty{x^{n-1}-y^{n-1}\over x-y}$; induct on $n$.
+How to remember: $t^n-1 = (t-1)(t^{n-1} + t^{n-2} + \cdots + t + 1)$; set $t=x/y$ and multiply by $y^n$.
 :::
 
 ::: {.front card-id="card-39cd778ed0f32a27" tags="formula"}
-Factor $x^n + a^n$
+Factor $x^n + y^n$ for $n$ odd.
 :::
 
 ::: {.back card-id="card-39cd778ed0f32a27"}
-$$
-(x+a) \sum _{k=0}^{n-1} (-a)^k x^{n-k}
-$$
-:::
-
-::: {.front card-id="card-b294a9fbcf87653a" tags="formula"}
-Factor $x^n - y^n$
-:::
-
-::: {.back card-id="card-b294a9fbcf87653a"}
-$$
-(x-y)(x^{n-1} + x^{n-2} y + \cdots + y^{n-1})
-$$
-:::
-
-::: {.front card-id="card-5f42b26733c7f9e1" tags="formula"}
-Factor $x^n + y^n$
-:::
-
-::: {.back card-id="card-5f42b26733c7f9e1"}
-$$
-(x+y)(x^{n-1} + x^{n-2}(-y) + \cdots + (-y)^{n+1})
-$$
-:::
-
-::: {.front card-id="card-61d6eb294244344e" tags="fact"}
-Descartes' Rule of Signs
-:::
-
-::: {.back card-id="card-61d6eb294244344e"}
-The number $r^+$ of positive real roots of a polynomial $p(x)$ are at most the number $n$ of sign changes in the coefficients.
-Moreover, $r$ is *exactly* $n-2k$ for some $k\in \ZZ^{\geq 0}$.
-Similarly, the number $r^-$ of negative real roots is the same idea applied to $p(-x)$.
-
-Examples: $x^3 + x^2 - x - 2$ has at most one real root.
-:::
-
-::: {.front card-id="card-7d6d264132ec25e5" tags="formula"}
-Factor $x^n + a^n$
-:::
-
-::: {.back card-id="card-7d6d264132ec25e5"}
-$$
-(x+a)\sum_{k=0}^{n-1} (-a)_^k x^{n-k}
-$$
+For $n$ odd, replace $y$ by $-y$ in the factorization of $x^n - y^n$:
+$$x^n+y^n=(x+y)\left(x^{n-1}-x^{n-2} y+\cdots-x y^{n-2}+y^{n-1}\right) = (x+y)\sum_{k=0}^{n-1}(-y)^k x^{n-1-k}.$$
+For $n$ even, $x+y$ does not divide $x^n+y^n$, since $(-y)^n + y^n = 2y^n$.
 :::
 
 ::: {.front card-id="card-fc7980ff12c7ffbf" tags="formula"}
@@ -204,15 +165,7 @@ $\arctan\qty{1\over \sqrt 3} = \cdots$
 :::
 
 ::: {.back card-id="card-2d305cad87c6c59b"}
-$\arctan\qty{1\over \sqrt 3} = {\pi\over 6}$
-:::
-
-::: {.front card-id="card-04057a39257444a7" tags="formula"}
-$\arctan\qty{\sqrt{3} \over 3} = \cdots$
-:::
-
-::: {.back card-id="card-04057a39257444a7"}
-$\arctan\qty{\sqrt{3} \over 3} = {\pi\over 6}$
+$\arctan\qty{1\over \sqrt 3} = \arctan\qty{\sqrt{3} \over 3} = {\pi\over 6}$
 :::
 
 ::: {.front card-id="card-87ca1c324a0e7fe6" tags="formula"}
@@ -236,7 +189,7 @@ $\arctan(\infty) = \cdots$
 :::
 
 ::: {.back card-id="card-1c1427a24bc7dc54"}
-$\arctan(\infty) = {\pi \over 2}$
+$\arctan(\infty) = \lim_{x\to+\infty}\arctan x = {\pi \over 2}$
 :::
 
 ::: {.front card-id="card-c6801344324a2f26" tags="formula"}
@@ -268,140 +221,20 @@ True or false: $\log(a+b) = \log(a) \log(b)$
 :::
 
 ::: {.back card-id="card-3a469b2ce4fc9251"}
-False
+False: $\log_2(4+4) = \log_2(8) = 3 \neq 4 = 2 \cdot 2 = \log_2(4) \cdot \log_2(4)$.
 :::
 
 ::: {.front card-id="card-0fd9e0a82ce28c1b" tags="unsorted"}
-Write $\log$ as a group homomorphism. What are the domain and codomain?
+Write $\log$ and $\exp$ as group homomorphisms. What are the domains and codomains?
 :::
 
 ::: {.back card-id="card-0fd9e0a82ce28c1b"}
 $$
-\log: \GG_m(\RR) \to \GG_a(\RR)
+\log: (\RR_{>0}, \cdot) \to (\RR, +), \qquad \exp: (\RR, +) \to (\RR_{>0}, \cdot)
 .$$
-:::
-
-::: {.front card-id="card-ff56ab1fbdbb17c2" tags="unsorted"}
-Write $\exp$  as a group homomorphism.
-:::
-
-::: {.back card-id="card-ff56ab1fbdbb17c2"}
-$$
-\exp: \GG_a(\RR) \to \GG_m(\RR)
-.$$
-:::
-
-::: {.front card-id="card-7068a7cff51dec1f"}
-What is Descartes' rule of signs?
-:::
-
-::: {.back card-id="card-7068a7cff51dec1f"}
-The number of positive real roots of $f$ is equivalent $\operatorname{mod}2$ to the number of sign changes in the coefficients of $f(x)$. The number of *negative* real roots is the same process but for $f(-x)$. E.g. $f(x)=x^5+4 x^4-3 x^2+x-6$ has 3 changes of sign, so an odd number of real roots.
-:::
-
-::: {.front card-id="card-16810d0968425f2a"}
-Factor $x^n-y^n$.
-:::
-
-::: {.back card-id="card-16810d0968425f2a"}
-$$x^n-y^n=(x-y)\left(x^{n-1}+x^{n-2} y+\ldots+x y^{n-2}+y^{n-1}\right) = (x-y)\sum_{k=0}^{n-1}x^{n-k-1}y^k$$
-How to prove: long division to obtain ${x^n-y^n\over x-y} = x^n + y\qty{x^{n-1}-y^{n-1}\over x-y}$ and induct. How to remember: $x^n-1 = (x-1)(x^{n-1} + x^{n-2} + \cdot + x + 1)$ and set $x=b/a$.
-:::
-
-::: {.front card-id="card-8b0dd744cd1a2ea2"}
-Factor $x^n + y^n$ for $n$ an odd prime.
-:::
-
-::: {.back card-id="card-8b0dd744cd1a2ea2"}
-$$x^n+y^n=(x+y)\left(x^{n-1}-x^{n-2} y+\cdots-x y^{n-2}+y^{n-1}\right)$$
-:::
-
-::: {.front card-id="card-88d4f809c71073af"}
-Write $\log$ and $\exp$ as group homomorphisms; i.e. what are the domains and codomains?
-:::
-
-::: {.back card-id="card-88d4f809c71073af"}
-$${\mathbf{G}}_m \underset{\exp}{\overset{\log}{\rightleftharpoons}} {\mathbf{G}}_a$$
-:::
-
-::: {.front card-id="card-a3277cea83efd7d1"}
-True or false: $\log(a+b) = \log(a)\cdot \log(b)$.
-:::
-
-::: {.back card-id="card-a3277cea83efd7d1"}
-False: $\log_2(4+4) = \log_2(8) = 3 \neq 4 = 2 \cdot 2 = \log_2(4) \cdot \log_2(4)$.
-:::
-
-::: {.front card-id="card-842c1d995d6f9c86"}
-$\sin(\pi/6)$
-:::
-
-::: {.back card-id="card-842c1d995d6f9c86"}
-$1/2$
-:::
-
-::: {.front card-id="card-b917cdce2f310989"}
-$\cos(\pi/6)$
-:::
-
-::: {.back card-id="card-b917cdce2f310989"}
-$\sqrt 3 /2$.
-:::
-
-::: {.front card-id="card-e4e1ce20bb7532be"}
-$\sin(\pi/3)$
-:::
-
-::: {.back card-id="card-e4e1ce20bb7532be"}
-$\sqrt 3/2$
-:::
-
-::: {.front card-id="card-ffa0d62869bcbe86"}
-$\cos(\pi/3)$
-:::
-
-::: {.back card-id="card-ffa0d62869bcbe86"}
-$1/2$.
-:::
-
-::: {.front card-id="card-e4bf5a5d2b3c3632"}
-$\arctan(0)$
-:::
-
-::: {.back card-id="card-e4bf5a5d2b3c3632"}
-$0$
-:::
-
-::: {.front card-id="card-738a7317b424e2bd"}
-$\arctan(1)$
-:::
-
-::: {.back card-id="card-738a7317b424e2bd"}
-$\pi/4$.
-:::
-
-::: {.front card-id="card-88161d095761b37c"}
-$\arctan(\infty)$
-:::
-
-::: {.back card-id="card-88161d095761b37c"}
-$\pi/2$
-:::
-
-::: {.front card-id="card-1ac22c248a09ac1b"}
-$\arctan\qty{\sqrt 3\over 3}$
-:::
-
-::: {.back card-id="card-1ac22c248a09ac1b"}
-$\pi/6$
-:::
-
-::: {.front card-id="card-8469cca47b6c6be7"}
-$\arctan\qty{\sqrt 3}$
-:::
-
-::: {.back card-id="card-8469cca47b6c6be7"}
-$\pi/3$
+These are inverse isomorphisms.
+Here $(\RR, +) = \GG_a(\RR)$ and $\RR_{>0}$ is the identity component of $\GG_m(\RR) = \RR^\times$, so $\exp: \GG_a(\RR) \to \GG_m(\RR)$ is injective with image $\RR_{>0}$.
+Over $\CC$, $\exp: \GG_a(\CC) \to \GG_m(\CC)$ is surjective with kernel $2\pi i \ZZ$, so $\log$ is defined only modulo $2\pi i\ZZ$.
 :::
 
 ::: {.front card-id="card-7735b0a37c146f61"}
@@ -425,15 +258,15 @@ $\tan(a+b) = \cdots$
 :::
 
 ::: {.back card-id="card-17a29c822d6de20a"}
-${\tan(a)\tan(b) \over 1-\tan(a)\tan(b)}$.
+${\tan(a)+\tan(b) \over 1-\tan(a)\tan(b)}$.
 :::
 
-::: {.front card-id="card-ea216c0db40e8656"}
+::: {.front card-id="card-ea216c0db40e8656" tags="formula"}
 Double angle formulas converting $f(2t)$ into $\tan$ for $f=\sin,\cos$.
 :::
 
 ::: {.back card-id="card-ea216c0db40e8656"}
-$$\begin{align}\sin(2t) &= {2\tan(t) \over 1+\tan^2(t)} \\ \cos(2t) &= {1-\tan^2(2t) \over 1+\tan^2(t)}\end{align}.$$
+$$\begin{align}\sin(2t) &= {2\tan(t) \over 1+\tan^2(t)} \\ \cos(2t) &= {1-\tan^2(t) \over 1+\tan^2(t)}\end{align}.$$
 :::
 
 ::: {.front card-id="card-6cd5f936b8576c92"}
@@ -452,14 +285,3 @@ $\cos ^2 \theta=\cdots$
 $\cos ^2 \theta=\frac{1+\cos (2 \theta)}{2}$
 :::
 
-::: {.front card-id="card-df28c7619c664624" tags="formula"}
-Double angle formulas involving $\tan$
-:::
-
-::: {.back card-id="card-df28c7619c664624"}
-The double angle formulas:
-$$
-\sin(2t) = {2\tan(t) \over 1+\tan^2(t)} \\
-\cos(2t) = {1-\tan^2(2t) \over 1+\tan^2(t)}
-.$$
-:::
