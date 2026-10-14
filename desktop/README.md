@@ -37,17 +37,18 @@ refreshes the installation from an existing build.
 The app opens the saved workspace on startup. On first launch it opens the
 repository used to build the app. Preferences use the standard Tauri store in
 the XDG configuration directory.
-Select **Browse** or enter a workspace path to change it, then select a deck.
-**Organize** opens the deck gallery. Open a deck for rendered card tiles, then
-open a card to edit its sides. **Edit** provides the card editor and deck tree.
+Select **Browse** or enter a workspace path to change it, then select a deck in
+the tree. The card list shows its cards; select a card to edit its sides.
 
-Use a card's drag handle to reorder it or move it onto a deck. Checkboxes select
-a group; Shift selects a range. The toolbar can move a selection, change its
-order, or split it into a new deck. Drag a deck onto another deck to absorb it,
-then confirm the destination. Deck menus provide the same absorption action.
-**Undo** reverses the last organization operation. These changes save immediately.
-See [card organization](../docs/card-organization.md) for the design sources and
-file operations. Relative media links follow their original files across moves.
+Drag a card in the list to reorder it, or drop it on a deck in the tree to move it.
+Ctrl-click toggles a card in the selection and Shift-click selects a range; dragging
+a selected card moves the whole selection. A folder opens while a drag hovers over it.
+Drag a deck onto another deck and confirm to merge them. **New deck** creates an
+empty deck that can receive cards. **Undo** reverses the last organization
+operation. These changes save immediately; save or reload a deck with unsaved
+edits before moving its cards. See [card organization](../docs/card-organization.md)
+for the design sources and file operations. Relative media links follow their
+original files across moves.
 Search the deck tree or card list to find a card. Edit **Front** and **Back** in
 their separate CodeMirror fields. Both fields accept Markdown and LaTeX, with
 Pandoc syntax and TeX highlighting from Zettlr's parser. Set tags with **Tags**.
@@ -101,7 +102,7 @@ See [Anki's packaged deck documentation](https://docs.ankiweb.net/manual/importi
 | `just desktop-frontend` | TypeScript check and frontend build |
 | `just desktop-source-test` | Side preservation, pair validation, and agreement with Pandoc |
 | `just desktop-test` | Managed browser scenario with real filesystem edits and real APKG generation |
-| `just desktop-organization-test` | Visual drag, grouped moves, reorder, absorption, split, Undo, and conflicts |
+| `just desktop-organization-test` | Tree drag, grouped moves, reorder, merge, new decks, Undo, and conflicts |
 | `just desktop-native-test` | Built native window and export on an isolated X11 display |
 | `just desktop-format` | Canonical Python, TypeScript, CSS, and Rust formatting |
 

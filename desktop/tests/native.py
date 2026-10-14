@@ -38,7 +38,10 @@ def main(*, entry: Path | None = None) -> None:
             command = [str(desktop / "src-tauri" / "target" / "release" / "desktop")]
             if entry is not None:
                 command = ["gio", "launch", str(entry.resolve(strict=True))]
+            # GTK prefers WAYLAND_DISPLAY over Xvfb's DISPLAY; GDK_BACKEND selects X11:
+            # https://docs.gtk.org/gtk3/running.html#gdk_backend
             runtime_environment = os.environ | {
+                "GDK_BACKEND": "x11",
                 "XDG_CONFIG_HOME": str(environment / "config"),
                 "XDG_CACHE_HOME": str(environment / "cache"),
                 "XDG_DATA_HOME": str(environment / "data"),
@@ -133,20 +136,6 @@ def main(*, entry: Path | None = None) -> None:
                         shot.size,
                         output=str(artifacts / "native-workspace.png"),
                     )
-                subprocess.run(
-                    [
-                        "xdotool",
-                        "mousemove",
-                        "--window",
-                        window,
-                        "1380",
-                        "38",
-                        "click",
-                        "1",
-                    ],
-                    check=True,
-                )
-                time.sleep(0.5)
                 subprocess.run(
                     [
                         "xdotool",
@@ -275,19 +264,6 @@ def main(*, entry: Path | None = None) -> None:
                 target = root / "decks" / "Native Target.md"
                 target.write_text('---\ntitle: "Native::Target"\n---\n\n')
                 time.sleep(2)
-                subprocess.run(
-                    [
-                        "xdotool",
-                        "mousemove",
-                        "--window",
-                        window,
-                        "1325",
-                        "38",
-                        "click",
-                        "1",
-                    ],
-                    check=True,
-                )
                 time.sleep(4)
                 with mss.mss() as screen:
                     shot = screen.grab(
@@ -304,8 +280,8 @@ def main(*, entry: Path | None = None) -> None:
                         "mousemove",
                         "--window",
                         window,
-                        "525",
-                        "543",
+                        "430",
+                        "505",
                         "mousedown",
                         "1",
                     ],
@@ -313,17 +289,17 @@ def main(*, entry: Path | None = None) -> None:
                 )
                 time.sleep(0.2)
                 subprocess.run(
-                    ["xdotool", "mousemove", "--window", window, "550", "565"],
+                    ["xdotool", "mousemove", "--window", window, "450", "520"],
                     check=True,
                 )
                 time.sleep(0.2)
                 subprocess.run(
-                    ["xdotool", "mousemove", "--window", window, "145", "430"],
+                    ["xdotool", "mousemove", "--window", window, "105", "320"],
                     check=True,
                 )
                 time.sleep(0.5)
                 subprocess.run(
-                    ["xdotool", "mousemove", "--window", window, "140", "435"],
+                    ["xdotool", "mousemove", "--window", window, "100", "324"],
                     check=True,
                 )
                 time.sleep(0.5)

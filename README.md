@@ -33,10 +33,10 @@ The editor supports card search, separate Front and Back editing, adding and del
 math preview, and a front/back flip control. Save the deck, then select
 **Generate Anki deck** to regenerate its package in `apkg/`.
 
-**Organize** displays deck and card tiles. Drag card handles to reorder or move
-cards between decks. Checkboxes select groups. Use the toolbar to move or split
-a selection. Drag a deck onto another to absorb it. Menus provide the same
-operations without dragging, and **Undo** restores the last organization change.
+Drag a card in the card list to reorder it, or onto a deck in the tree to move it.
+Ctrl-click or Shift-click selects several cards to drag together. Drag a deck onto
+another deck to merge them. **New deck** creates an empty deck, and **Undo**
+restores the last organization change.
 
 The package badge shows **Up to date**, **Unsynced**, **Generating**, or **Failed**.
 Source and media changes, exporter changes, and changes to the generated package

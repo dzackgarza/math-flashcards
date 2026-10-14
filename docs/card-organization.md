@@ -1,46 +1,44 @@
 # Card organization
 
-## Survey and selection
+## Design
 
-Use rendered card tiles and deck tiles. Open a deck to see its cards; open a card
-to edit its separate sides. Selected cards form a group during a move.
+Organization happens in the editor's deck tree and card list. Decks in the tree
+and cards in the list are drag sources; decks are drop targets for cards and other
+decks, and cards are drop targets for reordering.
 
 [Atlassian's drag-and-drop design guidelines](https://atlassian.design/components/pragmatic-drag-and-drop/design-guidelines/)
-recommend visible handles, hover feedback, a lifted drag preview, and an indicator
-of the destination. Interactive tiles use a separate handle. Deck targets show
-a highlighted border; card targets show a before/after insertion marker.
-
-[Atlassian's accessibility guidelines](https://atlassian.design/components/pragmatic-drag-and-drop/accessibility-guidelines/)
-recommend action menus and announcements for the same operations.
-[WCAG dragging guidance](https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements)
-requires an alternative that does not require dragging. Selection controls,
-Move, earlier/later buttons, Absorb, and Split provide those alternatives.
+recommend hover feedback, a lifted drag preview, and an indicator of the destination.
+Deck targets show a highlighted outline; card targets show a before/after
+insertion line. Folders expand while a drag hovers over them, and the tree and
+card list scroll near their edges. Announcements report each completed change.
 
 | Dependency | Fit |
 | --- | --- |
-| Atlassian Pragmatic drag and drop | Native drag preview, drop targets, insertion markers, auto-scroll, and live announcements; works with Mantine controls |
+| Atlassian Pragmatic drag and drop | Native drag preview, drop targets, insertion markers, auto-scroll, and live announcements; works with Mantine's tree |
 | dnd kit | React sortable collections and keyboard sensors; its multiple-container guide supplies the same board pattern |
 
 Selected: Atlassian Pragmatic drag and drop, its hitbox and indicator packages,
-and existing Mantine components. This adds organization to the existing editor.
+and Mantine's `Tree`.
 
-The window sets `dragDropEnabled: false` so the webview handles the board's
-HTML drag events. [Tauri's window configuration](https://v2.tauri.app/reference/config/#dragdropenabled)
+The window sets `dragDropEnabled: false` so the webview handles HTML drag events.
+[Tauri's window configuration](https://v2.tauri.app/reference/config/#dragdropenabled)
 documents the native handler switch.
 
 ## Operations
 
-Drag a card handle to reorder it. Drag selected cards onto a deck to move the
-group. Checkboxes support selection; Shift selects a range. The toolbar provides
-the same move and reorder operations. Clear selection keeps the card contents.
+Drag a card in the list to reorder it. Drop it on a deck in the tree to move it to
+the end of that deck. Ctrl-click toggles a card in the selection; Shift-click
+selects a range. Dragging a selected card moves the whole selection.
 
-Drag a deck handle onto another deck, or use **Absorb into**. Confirmation names
-the source and destination. Absorption moves its cards and sends the source file
-to the desktop trash. **Split into new deck** creates a deck from selected cards.
-**New deck** creates an empty deck. Empty decks remain valid and can receive cards.
+Drag a deck onto another deck to merge them. Confirmation names the source and
+destination. The merge moves every card and sends the source file to the desktop
+trash. **New deck** creates an empty deck; empty decks remain valid and can
+receive cards. Splitting a deck is a new deck followed by a move.
 
-Organization saves immediately. **Undo** reverses the last operation. Both sides,
-card IDs, tags, and deck metadata remain authored Markdown. File hashes reject
-external edits before publication. Every destination is validated before writes;
-files are staged, destinations precede sources, and write errors restore published
-files. A generated Anki package becomes Unsynced when its source changes.
+Organization saves immediately. **Undo** reverses the last operation. The open
+deck must have no unsaved edits. Both sides, card IDs, tags, and deck metadata
+remain authored Markdown. The open deck contributes the hash it was loaded with,
+so a disk edit after loading rejects the change, as it does for a save. Every
+destination is validated before writes; files are staged, destinations precede
+sources, and write errors restore published files. A generated Anki package
+becomes Unsynced when its source changes.
