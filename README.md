@@ -15,8 +15,11 @@ Markdown and compiled to `.apkg` with
 
 ## Layout
 
-- `decks/` — paired Front and Back divs, grouped by subject
-  (`decks/<Subject>/<Deck>.md`). Each file is one deck.
+- `decks/` — paired Front and Back divs in a subject tree: Basics, Algebra,
+  Number Theory, Analysis, Topology, Algebraic Geometry, Mathematical Physics,
+  Research, and Vocabulary. Each file is one deck, and its path matches its Anki
+  deck name (`decks/Analysis/Complex Analysis/Theorems.md` is
+  `Analysis::Complex Analysis::Theorems`).
 - `apkg/` — compiled Anki packages, importable directly into Anki.
 - `desktop/` — the Tauri deck editor. See its [guide](desktop/README.md).
 
@@ -59,7 +62,7 @@ sets Anki tags. The frontmatter `title` is the Anki deck name, with `::` denotin
 
 ```markdown
 ---
-title: "Qual Algebra::QualAlgebraGroups"
+title: "Algebra::Groups"
 ---
 
 ::: {.front card-id="simple-group" tags="definition"}

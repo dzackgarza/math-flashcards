@@ -20,12 +20,12 @@ def main() -> None:
     artifacts.mkdir(exist_ok=True)
     with tempfile.TemporaryDirectory(prefix="flashcards-test-") as directory:
         root = Path(directory)
-        (root / "decks" / "Qual Basics").mkdir(parents=True)
+        (root / "decks" / "Basics").mkdir(parents=True)
         shutil.copyfile(
-            repo.parent / "decks" / "Qual Basics" / "Special Angles.md",
-            root / "decks" / "Qual Basics" / "Special Angles.md",
+            repo.parent / "decks" / "Basics" / "Precalculus.md",
+            root / "decks" / "Basics" / "Precalculus.md",
         )
-        deck_path = root / "decks" / "Qual Basics" / "Special Angles.md"
+        deck_path = root / "decks" / "Basics" / "Precalculus.md"
         authored_source = deck_path.read_bytes()
         with sync_playwright() as playwright:
             browser = playwright.chromium.launch()
@@ -50,8 +50,8 @@ def main() -> None:
             expect(
                 page.get_by_role("button", name="Open workspace", exact=True)
             ).to_be_enabled(timeout=30000)
-            page.get_by_text("Qual Basics", exact=True).click()
-            page.get_by_text("Special Angles", exact=True).click()
+            page.get_by_text("Basics", exact=True).click()
+            page.get_by_text("Precalculus", exact=True).click()
             expect(page.get_by_text("Unsynced", exact=True).first).to_be_visible()
             expect(page.locator(".side-editor.front .cm-editor")).to_be_visible()
             expect(page.locator(".side-editor.back .cm-editor")).to_be_visible()
@@ -93,7 +93,7 @@ def main() -> None:
             )
             assert (
                 "Added question"
-                in (root / "decks" / "Qual Basics" / "Special Angles.md").read_text()
+                in (root / "decks" / "Basics" / "Precalculus.md").read_text()
             )
             assert deck_path.read_bytes().startswith(authored_source)
             page.get_by_role("button", name="Reload deck", exact=True).click()
@@ -109,7 +109,7 @@ def main() -> None:
                 timeout=60000
             )
             page.screenshot(path=str(artifacts / "generated.png"))
-            package = root / "apkg" / "Qual Basics__Special Angles.apkg"
+            package = root / "apkg" / "Basics__Precalculus.apkg"
             with zipfile.ZipFile(package) as archive:
                 archive.extract("collection.anki2", root)
             with sqlite3.connect(root / "collection.anki2") as database:
@@ -133,7 +133,7 @@ def main() -> None:
             assert (
                 "Added question"
                 not in (
-                    root / "decks" / "Qual Basics" / "Special Angles.md"
+                    root / "decks" / "Basics" / "Precalculus.md"
                 ).read_text()
             )
             page.get_by_role("button", name="Generate Anki deck", exact=True).click()

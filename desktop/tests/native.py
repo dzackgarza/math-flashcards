@@ -26,10 +26,10 @@ def main(*, entry: Path | None = None) -> None:
     with tempfile.TemporaryDirectory(prefix="flashcards-native-") as directory:
         environment = Path(directory)
         root = environment / "workspace"
-        (root / "decks" / "Qual Basics").mkdir(parents=True)
+        (root / "decks" / "Basics").mkdir(parents=True)
         shutil.copyfile(
-            desktop.parent / "decks" / "Qual Basics" / "Special Angles.md",
-            root / "decks" / "Qual Basics" / "Special Angles.md",
+            desktop.parent / "decks" / "Basics" / "Precalculus.md",
+            root / "decks" / "Basics" / "Precalculus.md",
         )
         with (artifacts / "native.log").open("w") as log:
             uv_cache = subprocess.check_output(
@@ -183,7 +183,7 @@ def main(*, entry: Path | None = None) -> None:
                     ],
                     check=True,
                 )
-                package = root / "apkg" / "Qual Basics__Special Angles.apkg"
+                package = root / "apkg" / "Basics__Precalculus.apkg"
                 for _ in range(120):
                     if package.is_file():
                         break
@@ -300,7 +300,7 @@ def main(*, entry: Path | None = None) -> None:
                 assert (
                     r"$\sin(\pi/6) = \cdots$"
                     not in (
-                        root / "decks" / "Qual Basics" / "Special Angles.md"
+                        root / "decks" / "Basics" / "Precalculus.md"
                     ).read_text()
                 )
                 time.sleep(2)
