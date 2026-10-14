@@ -17,8 +17,9 @@ Definition: A pole $a$ of order $m$
 ::: {.back card-id="card-1772fa06172bf1d1"}
 The smallest $m$ such that
 $$
-\lim_{z\to a}(z-a)^{m+1}f(z) < \infty \text{ but } \lim_{z\to a}(z-a)^{k\leq m} f(z) = \infty
+\lim_{z\to a}(z-a)^{m+1}f(z) = 0
 .$$
+Equivalently, $\lim_{z\to a}(z-a)^{m}f(z)$ is finite and nonzero, while $\lim_{z\to a}\abs{(z-a)^{k}f(z)} = \infty$ for every $k < m$.
 :::
 
 ::: {.front card-id="card-8cdacf40fc69f9b6" tags="definition"}
@@ -28,9 +29,9 @@ Definition: A removable singularity
 ::: {.back card-id="card-8cdacf40fc69f9b6"}
 A pole of order zero, so
 $$
-\lim_{z\to z_0}f(z) < \infty
-$$
-and $f$ is bounded on some neighborhood of $z_0$.
+\lim_{z\to z_0}(z-z_0)f(z) = 0
+.$$
+Equivalently, $\lim_{z\to z_0}f(z)$ exists and is finite, and $f$ is bounded on some punctured neighborhood of $z_0$.
 :::
 
 ::: {.front card-id="card-42fcb708069d4ac4" tags="definition"}
@@ -38,9 +39,9 @@ Definition: An essential singularity
 :::
 
 ::: {.back card-id="card-42fcb708069d4ac4"}
-An isolated singularity that is not a pole (or removable).
+An isolated singularity that is not a pole (or removable). Equivalently,
 $$
-\lim_{z\to z_0 } f(z) \text{ DNE }
+\lim_{z\to z_0 } f(z) \text{ DNE in } \CC\cup\theset{\infty}
 .$$
 :::
 
@@ -77,43 +78,6 @@ Types of isolated singularities
 :::
 
 ::: {.back card-id="card-563af3ac08990f07"}
-- Removable: $\abs{f(z)}$ is bounded in a punctured disc.
-- Poles: $\lim_{z\to p} \abs{f(z)} = \infty$.
-- Essential: neither removable nor a pole.
-:::
-
-::: {.front card-id="card-4da52bef893255f0" tags="definition"}
-Definition: A pole $a$ of order $m$
-:::
-
-::: {.back card-id="card-4da52bef893255f0"}
-The smallest $m$ such that
-$$
-\lim_{z\to a}(z-a)^{m+1}f(z) = 0
-.$$
-:::
-
-::: {.front card-id="card-e3a32d81f79b9b3d" tags="definition"}
-Definition: A removable singularity
-:::
-
-::: {.back card-id="card-e3a32d81f79b9b3d"}
-A pole of order zero.
-:::
-
-::: {.front card-id="card-4a33b738ee8e674f" tags="definition"}
-Definition: An essential singularity
-:::
-
-::: {.back card-id="card-4a33b738ee8e674f"}
-An isolated singularity that is not a pole (or removable).
-:::
-
-::: {.front card-id="card-67a9dbe9f796ffae" tags="complex, fact"}
-Types of singularities
-:::
-
-::: {.back card-id="card-67a9dbe9f796ffae"}
 - Removable: $\abs{f(z)}$ is bounded in a punctured disc.
 - Poles: $\lim_{z\to p} \abs{f(z)} = \infty$.
 - Essential: neither removable nor a pole.

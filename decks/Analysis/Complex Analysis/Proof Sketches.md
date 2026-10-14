@@ -35,7 +35,7 @@ If $f,g$ are holomorphic inside and on a simple closed contour $\gamma$ and $|g|
 :::
 
 ::: {.front card-id="card-90c2f93c024fe386" tags="definition"}
-The Schwarz lemma
+Prove the Schwarz lemma.
 :::
 
 ::: {.back card-id="card-90c2f93c024fe386"}
@@ -44,9 +44,9 @@ In parts:
 - $f(z) = \sum_{k\geq 1}c_k z^k$ since $f(0) = 0$ implies $c_0 = 0$.
 - $g(z) \da f(z)/z = \sum_{k\geq 1}c_k z^{k-1}$ and $g(0) = c_1 = f'(0)$.
 - $\abs{f}\leq 1\implies \abs{g} \leq r\inv$ on $\abs{z} = r$, thus on $\abs{z} \leq r$ by MMP.
-- Take the limit $r\to 1$.
-- Part 2: extremum in interior implies $g(z) \equiv c$ is constant.
-- $\abs{f'(0)} = 1$ or $f(z) = z$ for some $z\neq 0$ implies $\abs{c} = 1$.
+- Take the limit $r\to 1$: $\abs{g} \leq 1$, so $\abs{f(z)} \leq \abs{z}$ and $\abs{f'(0)} \leq 1$.
+- Part 2: $\abs{f'(0)} = 1$ or $\abs{f(z)} = \abs{z}$ for some $z\neq 0$ means $\abs{g}$ attains its maximum $1$ at an interior point.
+- By MMP, $g(z) \equiv c$ is constant with $\abs{c} = 1$, so $f(z) = cz$ is a rotation.
 :::
 
 ::: {.front card-id="card-15dc7afe22da0cc8" tags="definition"}
@@ -71,19 +71,4 @@ The Riemann mapping theorem
 
 ::: {.back card-id="card-462d71a1697301ad"}
 Every nonempty simply connected proper domain $\Omega\subsetneq\mathbb C$ is biholomorphic to $\mathbb D$. Sketch: construct a bounded injective holomorphic map $\Omega\to\mathbb D$ using a square root of $z-a$ for $a\notin\Omega$. Among normalized injective maps, choose one maximizing the derivative at a base point; normal families give an extremizer. If its image omits a point of $\mathbb D$, a disc automorphism and square root produce a larger derivative, a contradiction.
-:::
-
-::: {.front card-id="card-1e75a9c041f944fe"}
-Prove the Schwarz lemma.
-:::
-
-::: {.back card-id="card-1e75a9c041f944fe"}
-- In parts:
-- $f(z) = \sum_{k\geq 1}c_k z^k$ since $f(0) = 0$ implies $c_0 = 0$.
-- $g(z) \coloneqq f(z)/z = \sum_{k\geq 1}c_k z^{k-1}$ and $g(0) = c_1 = f'(0)$.
-- ${\left\lvert {f} \right\rvert}\leq 1\implies {\left\lvert {g} \right\rvert} \leq r^{-1}$ on ${\left\lvert {z} \right\rvert} = r$, thus on ${\left\lvert {z} \right\rvert} \leq r$ by MMP.
-- Take the limit $r\to 1$.
-- Part 2: extremum in interior implies $g(z) \equiv c$ is constant.
-- ${\left\lvert {f'(0)} \right\rvert} = 1$ or $f(z) = z$ for some $z\neq 0$ implies ${\left\lvert {c} \right\rvert} = 1$.
-- The actual source:
 :::
