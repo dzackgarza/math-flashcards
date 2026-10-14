@@ -3,11 +3,11 @@ title: "Algebraic Geometry::Varieties"
 ---
 
 ::: {.front card-id="card-155c7a1001d2816c" tags="algebraic-geometry"}
-Scheme definition of a variety
+What is a variety in scheme-theoretic terms?
 :::
 
 ::: {.back card-id="card-155c7a1001d2816c"}
-A variety is a finite type separated schemes over a field
+A separated integral scheme of finite type over a field $k$ (Hartshorne's convention). Some authors drop integrality and call any separated scheme of finite type over $k$ a variety.
 :::
 
 ::: {.front card-id="card-73187788340331e8"}
@@ -32,14 +32,6 @@ What is ${\mathcal{O}}_X$ for an affine variety?
 
 ::: {.back card-id="card-7a231e87b8e29bea"}
 The sheaf of regular functions: sections over $U$ are functions $\phi: U\to k$ where for every $p\in U$ there exists an open neighborhood $U_p\ni p$ and polynomials $f, g\in k[X]$ with ${ \left.{{\phi(x)}} \right|_{{U_p}} } = {f(x)\over g(x)}$.
-:::
-
-::: {.front card-id="card-da01e580ec10b17b"}
-How is ${\mathcal{O}}_X$ defined for an *affine scheme* $\operatorname{Spec}A$?
-:::
-
-::: {.back card-id="card-da01e580ec10b17b"}
-For $X = \operatorname{Spec}A$, define ${\mathcal{O}}(U)$ to be functions $\phi: U\to \coprod_{p\in U} A_p$ such that $\phi(p) \in A_p$ for every $p$ and $s$ is locally a quotient, i.e. for every $p$ there is a $V_p\ni p$ and elements $f, g\in A$ such that for each $q\in V_p$, with $f\not\in q$ and $\phi(q) = {f\over g}$.
 :::
 
 ::: {.front card-id="card-227d4c4c1f0a7f98"}
@@ -175,14 +167,16 @@ What is the **degree** of a variety?
 For $\dim X = n$, the number of points in $X$ intersected with $n$ general hyperplanes.
 :::
 
-::: {.front card-id="card-7892e4e293c4f44e"}
+::: {.front card-id="card-7892e4e293c4f44e" tags="definition"}
 What is a **smooth point** of a variety? A **singular point**?
 :::
 
 ::: {.back card-id="card-7892e4e293c4f44e"}
-Jacobian criterion: let $I(Y) = \left\langle{f_1,\cdots, f_r}\right\rangle {~\trianglelefteq~}k[x_1, \cdots, x_{n}]$ and $J_Y \coloneqq\left[ {\frac{\partial f_i}{\partial x_j}\,} \right]$ the corresponding Jacobian matrix, then $Y$ is smooth at $p$ iff $\operatorname{rank}J_Y(p) = n-r$ (maximal rank), otherwise if $\operatorname{rank}J_Y(p) < n-r$ it is a singular point.
+$X$ is nonsingular (smooth) at $x$ if its local ring $\mathcal O_{X,x}$ is regular: the minimal number of generators of its maximal ideal equals $\dim\mathcal O_{X,x}$. Otherwise $x$ is a singular point. $X$ is nonsingular if this holds at every point.
 
-Alternatively, $\dim {\mathbf{T}}_p X = \dim X$ if smooth and $\dim {\mathbf{T}}_p X > \dim X$ if singular, where ${\mathbf{T}}_p X \coloneqq({\mathfrak{m}}_p /{\mathfrak{m}}_p^2) {}^{ \vee }\coloneqq\mathop{\mathrm{Hom}}_{  {}_{k}{\mathsf{Mod}}}({\mathfrak{m}}_p/{\mathfrak{m}}_p^2, k)$.
+Jacobian criterion: for $Y\subseteq{\mathbf{A}}^n$ an affine variety of dimension $d$, let $I(Y) = \left\langle{f_1,\cdots, f_r}\right\rangle {~\trianglelefteq~}k[x_1, \cdots, x_{n}]$ and $J_Y \coloneqq\left[ {\frac{\partial f_i}{\partial x_j}\,} \right]$ the corresponding Jacobian matrix, then $Y$ is smooth at $p$ iff $\operatorname{rank}J_Y(p) = n-d$ (maximal rank), otherwise if $\operatorname{rank}J_Y(p) < n-d$ it is a singular point.
+
+Alternatively, at a closed point $p$, $\dim {\mathbf{T}}_p X = \dim X$ if smooth and $\dim {\mathbf{T}}_p X > \dim X$ if singular, where ${\mathbf{T}}_p X \coloneqq({\mathfrak{m}}_p /{\mathfrak{m}}_p^2) {}^{ \vee }\coloneqq\mathop{\mathrm{Hom}}_{  {}_{k}{\mathsf{Mod}}}({\mathfrak{m}}_p/{\mathfrak{m}}_p^2, k)$.
 :::
 
 ::: {.front card-id="card-5d527bea8b6d3b5f"}
@@ -246,11 +240,11 @@ For $\pi: \tilde X\to X$, $K_{\tilde X} = \pi^* K_X + E$.
 :::
 
 ::: {.front card-id="card-d88dc079b7f19264" tags="definition"}
-What is: Affine varieties
+What is the scheme-theoretic definition of an **affine variety**?
 :::
 
 ::: {.back card-id="card-d88dc079b7f19264"}
-An affine variety over $k$ is an integral separated scheme of finite type isomorphic to $\operatorname{Spec}A$ for a finitely generated $k$-domain $A$. Over an algebraically closed field, it can be realized as the common zero locus of polynomials in $\mathbb A_k^n$.
+An affine variety over $k$ is an integral separated scheme of finite type over $k$ which is affine, i.e. isomorphic to $\operatorname{Spec}A$ for a finitely generated $k$-domain $A$. Such a scheme is automatically Noetherian, and every affine scheme is separated. Over an algebraically closed field, writing $A = k[x_1,\cdots,x_n]/\mathfrak p$, its closed points form the common zero locus $V(\mathfrak p)\subseteq\mathbb A_k^n$.
 :::
 
 ::: {.front card-id="card-1d238038a4983580" tags="definition"}
@@ -270,11 +264,11 @@ A morphism of schemes $f:X\to Y$ consists of a continuous map and a map of sheav
 :::
 
 ::: {.front card-id="card-3b757b5adf06e626" tags="definition"}
-What is: Rational maps
+What is a rational map?
 :::
 
 ::: {.back card-id="card-3b757b5adf06e626"}
-For integral varieties $X,Y$, a rational map $X\dashrightarrow Y$ is an equivalence class of morphisms $U\to Y$ on nonempty open subsets $U\subseteq X$. Two agree when they agree on a common dense open subset. It is dominant if its image is dense in $Y$.
+For varieties $X,Y$ with $X$ irreducible, a rational map $f: X\dashrightarrow Y$ is an equivalence class of pairs $(U, f_U)$ in which $U\subseteq X$ is a nonempty (hence dense) open subset and $f_U: U\to Y$ is a morphism. Two pairs $(U, f_U)$ and $(U', f'_{U'})$ are equivalent if $f_U$ and $f'_{U'}$ coincide on $U\cap U'$; since $X$ is reduced and $Y$ is separated, agreement on any nonempty open subset of $U\cap U'$ already forces this. It is dominant if the image of some (equivalently every) representative is dense in $Y$.
 :::
 
 ::: {.front card-id="card-b7fee6cc99998ad4" tags="definition"}
@@ -286,19 +280,11 @@ A variety $X$ is nonsingular at $x$ if its local ring $\mathcal O_{X,x}$ is regu
 :::
 
 ::: {.front card-id="card-aeb31f26f04430b2" tags="definition"}
-What is: Nonsingular curves
+What is the scheme-theoretic definition of a (smooth) **curve**?
 :::
 
 ::: {.back card-id="card-aeb31f26f04430b2"}
-A nonsingular curve is a one-dimensional variety whose local rings are regular. At every closed point of an integral nonsingular curve, the local ring is a discrete valuation ring; divisors there are sums of closed points.
-:::
-
-::: {.front card-id="card-9d8b2fab7bf814ba"}
-What is a rational map?
-:::
-
-::: {.back card-id="card-9d8b2fab7bf814ba"}
-A rational map $f: V \rightarrow W$ between two varieties with $V$ irreducible is an equivalence class of pairs $\left(f_U, U\right)$ in which $f_U$ is a morphism of varieties from a non-empty open set $U \subset V$ to $W$, and two such pairs $\left(f_U, U\right)$ and $\left(f_{U^{\prime}}^{\prime}, U^{\prime}\right)$ are considered equivalent if $f_U$ and $f_{U^{\prime}}^{\prime}$ coincide on the intersection $U \cap U^{\prime}$.
+A curve over a field $k$ is an integral separated scheme of finite type over $k$ of dimension 1. It is nonsingular iff all its local rings are regular; over a perfect field (e.g. $k=\overline{k}$) this is equivalent to $C$ being smooth over $k$. At every closed point of a nonsingular curve, the local ring is a discrete valuation ring; Weil divisors are then formal sums of closed points.
 :::
 
 ::: {.front card-id="card-693a53dc1f51c51e"}

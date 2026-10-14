@@ -2,12 +2,14 @@
 title: "Algebraic Geometry::Sheaves"
 ---
 
-::: {.front card-id="card-14008e56d2fec738"}
+::: {.front card-id="card-14008e56d2fec738" tags="definition"}
 What is a **presheaf**?
 :::
 
 ::: {.back card-id="card-14008e56d2fec738"}
-A functor $F: {\mathsf{Open}}(X)^{\operatorname{op}}\to \mathsf{CRing}$ (say) preserving terminal objects, i.e. for each open $U \subseteq X$ a ring $F(U)$ where $F(\emptyset) = 0$, for every $U\hookrightarrow V$ a restriction $\mathop{\mathrm{Res}}_{V< U}: F(V)\to F(U)$, where $\mathop{\mathrm{Res}}_{U, U} = \operatorname{id}_U$ and $U\hookrightarrow V\hookrightarrow W \leadsto \mathop{\mathrm{Res}}_{VU} \circ \mathop{\mathrm{Res}}_{WV} = \mathop{\mathrm{Res}}_{WU}$.
+A functor $F: {\mathsf{Open}}(X)^{\operatorname{op}}\to \mathsf{CRing}$ (say; or sets, abelian groups, ...) preserving terminal objects, i.e. for each open $U \subseteq X$ a ring $F(U)$ where $F(\emptyset) = 0$, for every $U\hookrightarrow V$ a restriction $\mathop{\mathrm{Res}}_{V< U}: F(V)\to F(U)$, where $\mathop{\mathrm{Res}}_{U, U} = \operatorname{id}_{F(U)}$ and $U\hookrightarrow V\hookrightarrow W \leadsto \mathop{\mathrm{Res}}_{VU} \circ \mathop{\mathrm{Res}}_{WV} = \mathop{\mathrm{Res}}_{WU}$.
+
+A sheaf also satisfies gluing and uniqueness for compatible local sections.
 :::
 
 ::: {.front card-id="card-c59fe5bb7a144af8"}
@@ -35,20 +37,22 @@ $$F(U) \rightarrow \prod_{i} F(U_i) {{{} \atop \longrightarrow}\atop{\longrighta
 where the maps are the restrictions $U_i \to U_{ij}$ and $U_j\to U_{ij}$.
 :::
 
-::: {.front card-id="card-82b98ea9b3cb0231"}
+::: {.front card-id="card-82b98ea9b3cb0231" tags="definition"}
 What is the **sheafification** of a presheaf?
 :::
 
 ::: {.back card-id="card-82b98ea9b3cb0231"}
-For ${\mathcal{F}}$ a presheaf, define ${\mathcal{F}}^+(U) \coloneqq{\mathsf{Top}}(U, \amalg_{x\in X} {\mathcal{F}}_x)$ as the functions $s$ where $s(p) \in {\mathcal{F}}_p$ and for each $p\in U$ there is a neighborhood $V$ and $t\in {\mathcal{F}}(V)$ such that $\forall q\in V,\,\, t\mathrel{\Big|}_q = s(q)$.
+For ${\mathcal{F}}$ a presheaf, define ${\mathcal{F}}^+(U)$ as the functions $s: U\to \amalg_{x\in U} {\mathcal{F}}_x$ where $s(p) \in {\mathcal{F}}_p$ and for each $p\in U$ there is a neighborhood $V\subseteq U$ of $p$ and $t\in {\mathcal{F}}(V)$ such that $\forall q\in V,\,\, t_q = s(q)$ (equivalently, continuous sections of the étalé space of ${\mathcal{F}}$).
+
+There is a map ${\mathcal{F}}\to{\mathcal{F}}^+$ inducing isomorphisms on all stalks, and every map from ${\mathcal{F}}$ to a sheaf factors uniquely through ${\mathcal{F}}^+$.
 :::
 
-::: {.front card-id="card-ea14df10f5014961"}
+::: {.front card-id="card-ea14df10f5014961" tags="definition"}
 What is a **morphism of presheaves**? Of sheaves?
 :::
 
 ::: {.back card-id="card-ea14df10f5014961"}
-$\phi: {\mathcal{F}}\to {\mathcal{G}}$ is a collection $\phi_U: {\mathcal{F}}(U) \to {\mathcal{G}}(U)$ fitting into commuting squares with restrictions.
+A morphism $\phi: {\mathcal{F}}\to {\mathcal{G}}$ of presheaves is a collection $\phi_U: {\mathcal{F}}(U) \to {\mathcal{G}}(U)$ fitting into commuting squares with restrictions, i.e. commuting with every restriction map. A morphism of sheaves is a morphism of the underlying presheaves.
 :::
 
 ::: {.front card-id="card-a8dbd6c1552876cc"}
@@ -107,7 +111,7 @@ Give an example to show that the cokernel presheaf is not a sheaf.
 Problem: may fail uniqueness. Let ${\mathcal{G}}\leq \mathop{\mathrm{Hol}}({\mathbf{C}}, {\mathbf{C}})$ be the sheaf of nonvanishing holomorphic functions and take $\exp: \mathop{\mathrm{Hol}}({\mathbf{C}}, {\mathbf{C}})\to {\mathcal{G}}$ and $U = {\mathbf{C}}\setminus\left\{{0}\right\}$. Set $f(z) = z$, then $f\in {\mathcal{G}}(U)$ since it's nonvanishing. Cover $U$ by sectors $U_i$, then $f\in \operatorname{im}{ \left.{{\exp}} \right|_{{U_i}} }$ for all $i$ since $\log f$ exists and $\exp(\log f) = f$, so $f = 0$ in $\operatorname{coker}{ \left.{{\exp}} \right|_{{U_i}} }$ for all $i$. But $f\not\in \operatorname{im}\exp$ since there is no global logarithm, so $f\neq 0\in \operatorname{coker}\exp$ as a morphism of presheaves.
 :::
 
-::: {.front card-id="card-79c3642c37f8ed12"}
+::: {.front card-id="card-79c3642c37f8ed12" tags="definition"}
 What is the **pullback/pushforward** (inverse/direct images) of a sheaf?
 :::
 
@@ -116,31 +120,25 @@ For $f:X\to Y$, ${\mathcal{F}}\in {\mathsf{Sh}}(X), {\mathcal{G}}\in {\mathsf{Sh
 $$f_*{\mathcal{F}}(U) ={\mathcal{F}}(f^{-1}(U)),\qquad f_*{\mathcal{F}}\in {\mathsf{Sh}}(Y)$$
 Pullback/inverse image: **sheafify**
 $$f^{-1}{\mathcal{G}}(U) \coloneqq\colim_{V\supseteq f(U)} {\mathcal{G}}(V)$$
-For $f: X\to Y$ an inclusion, $f^{-1}{\mathcal{G}}(U) = { \left.{{{\mathcal{G}}}} \right|_{{\operatorname{im}(f)}} }(U) = {\mathcal{G}}(U)$, so denote $f^{-1}{\mathcal{G}}\coloneqq{ \left.{{{\mathcal{F}}}} \right|_{{X}} }$
+For $f: X\hookrightarrow Y$ the inclusion of an open subset, $f^{-1}{\mathcal{G}}(U) = {\mathcal{G}}(U)$, so denote $f^{-1}{\mathcal{G}}\coloneqq{ \left.{{{\mathcal{G}}}} \right|_{{X}} }$.
+
+For modules on ringed spaces, $f^*{\mathcal{G}}\coloneqq f^{-1}{\mathcal{G}}\otimes_{f^{-1}{\mathcal{O}}_Y}{\mathcal{O}}_X$.
 :::
 
-::: {.front card-id="card-f4fd6dc768bd8b4e"}
-What is the **structure sheaf** of a scheme?
-:::
-
-::: {.back card-id="card-f4fd6dc768bd8b4e"}
-Part of the definition of a scheme as a locally ringed space $(X, {\mathcal{O}}_X)$; ${\mathcal{O}}_X$ is the structure sheaf.
-:::
-
-::: {.front card-id="card-e8e12fcc8b9e24a2"}
+::: {.front card-id="card-e8e12fcc8b9e24a2" tags="definition"}
 What is a **constant sheaf**?
 :::
 
 ::: {.back card-id="card-e8e12fcc8b9e24a2"}
-For $A\in {\mathsf{Ab}}{\mathsf{Grp}}$, $\underline{A} \coloneqq C^0({-}, A^{{\operatorname{disc}}})$. On connected sets $U$, $\underline{A}(U) = A$. This is the sheaf of locally constant functions, i.e. constant on every connected component. Stalks are all $A$.
+For $A\in {\mathsf{Ab}}{\mathsf{Grp}}$, $\underline{A}$ is the sheafification of the constant presheaf $U\mapsto A$. Equivalently, $\underline{A} \coloneqq C^0({-}, A^{{\operatorname{disc}}})$, the sheaf of locally constant functions to $A$. On nonempty connected sets $U$, $\underline{A}(U) = A$; on locally connected $U$, sections are the functions constant on every connected component. Stalks are all $A$.
 :::
 
-::: {.front card-id="card-0ccf704bc953a261"}
+::: {.front card-id="card-0ccf704bc953a261" tags="definition"}
 What is the **skyscraper sheaf**? Its stalks? Its adjoint characterization?
 :::
 
 ::: {.back card-id="card-0ccf704bc953a261"}
-For the inclusion $\iota: \left\{{p}\right\} \hookrightarrow X$, and $\underline{A}$ the constant sheaf on $\left\{{p}\right\}$, the direct image $\iota_*\underline{A}$. Assigns $U\mapsto \underline{A}(U) \chi_{p\in U}$, stalks are $A$ at each point in ${ \operatorname{cl}}_X(p)$ and 0 elsewhere. Adjoint to taking stalks: ${\mathsf{Set}}({\mathcal{F}}_x, A)  { \, \xrightarrow{\sim}\, }{\mathsf{Sh}}(X)({\mathcal{F}}, (\iota_x)_* A)$.
+For a point $p\in X$, the inclusion $\iota_p: \left\{{p}\right\} \hookrightarrow X$, and an abelian group $A$ (the constant sheaf $\underline{A}$ on $\left\{{p}\right\}$), the skyscraper sheaf is the direct image $(\iota_p)_*\underline{A}$. It assigns $U\mapsto A$ if $p\in U$ and $U\mapsto 0$ otherwise, with restrictions the identity or zero maps. Stalks are $A$ at each point in ${ \operatorname{cl}}_X(p)$ and 0 elsewhere. Adjoint to taking stalks: ${\mathsf{Ab}}({\mathcal{F}}_p, A)  { \, \xrightarrow{\sim}\, }{\mathsf{Sh}}(X)({\mathcal{F}}, (\iota_p)_* A)$.
 :::
 
 ::: {.front card-id="card-0859e1c888527f03"}
@@ -148,7 +146,7 @@ What is the **canonical sheaf**?
 :::
 
 ::: {.back card-id="card-0859e1c888527f03"}
-$\omega_{X/S} \coloneqq\operatorname{det}\Omega_{X/k} \coloneqq\bigwedge\nolimits^n \Omega_{X/S}$ where $n\coloneqq\dim X$.
+For $X$ smooth over $S$ of relative dimension $n$, $\omega_{X/S} \coloneqq\operatorname{det}\Omega_{X/S} \coloneqq\bigwedge\nolimits^n \Omega_{X/S}$, a line bundle. Over a field $k$, $\omega_X \coloneqq\operatorname{det}\Omega_{X/k}$ with $n\coloneqq\dim X$.
 :::
 
 ::: {.front card-id="card-9535c31c3ca2f51d"}
@@ -159,14 +157,6 @@ What is the **dualizing sheaf**?
 For $X$ proper over a field, $\omega_X^\circ\in {\mathsf{Coh}}(X)$ together with a trace $\operatorname{tr}: H^n(X; \omega_X^\circ)\to k$ such that $\forall {\mathcal{F}}\in {\mathsf{Coh}}(X)$, the composition
 $$H^n(X; {\mathcal{F}}) \times \mathop{\mathrm{Hom}}({\mathcal{F}}, \omega_X^\circ) \to H^n(X, \omega_X^\circ) \xrightarrow{{\mathrm{tr}}}k$$
 yields an isomorphism $\mathop{\mathrm{Hom}}({\mathcal{F}}, \omega_X^\circ)  { \, \xrightarrow{\sim}\, }H^n(X; {\mathcal{F}}) {}^{ \vee }$ and more generally $\operatorname{Ext}^i({\mathcal{F}}, \omega_X^\circ) \cong H^{n-i}(X; {\mathcal{F}}) {}^{ \vee }$. Exists for any projective scheme, not always equal to $\operatorname{det}\Omega_{X/k}$.
-:::
-
-::: {.front card-id="card-0702561e37702c75"}
-What is an **ideal sheaf**?
-:::
-
-::: {.back card-id="card-0702561e37702c75"}
-For $\iota:Y\to X$ the inclusion of a closed subscheme, ${\mathcal{I}}_Y \coloneqq\ker({\mathcal{O}}_X \xrightarrow{\iota^\sharp} {\mathcal{O}}_{Y})$.
 :::
 
 ::: {.front card-id="card-0c6c3a54e08bf4fb"}
@@ -197,38 +187,12 @@ Discuss invertible sheaves on affine schemes.
 ${\mathcal{F}}\in \operatorname{Pic}(\operatorname{Spec}A)\implies {\mathcal{F}}$ corresponds to $M\in  {}_{A}{\mathsf{Mod}}$ which is finite projective locally free of rank 1 and thus flat and finitely presented. Every invertible sheaf on ${\mathbf{A}}^2_{/ {k}}$ is trivial.
 :::
 
-::: {.front card-id="card-e6b2c382b671f285"}
-What is a **vector bundle** over a scheme?
-:::
-
-::: {.back card-id="card-e6b2c382b671f285"}
-For ${\mathcal{E}}$ a locally free sheaf on $Y$, the associated geometric vector bundle is $\mathbf{V}({\mathcal{E}})\coloneqq\operatorname{Spec}\operatorname{Sym}({\mathcal{E}})$.
-
-More plainly: for $Y\in{\mathsf{Sch}}$, a geometric vector bundle of rank $n$ over $Y$ is a scheme $X$ with a morphism $f:X\to Y$ along with the data of ${\mathcal{U}}\rightrightarrows Y$ and isomorphism $\psi_i: f^{-1}(U_i)\to{\mathbf{A}}^n_{/ {U_i}}$ such that for any $\operatorname{Spec}A \subseteq U_{ij}$ each $\psi_{ij} \coloneqq\psi_j\circ \psi_i^{-1}\in \mathop{\mathrm{Aut}}({\mathbf{A}}^n_{/ {\operatorname{Spec}A}})$ is given by a linear automorphism $\theta \in \mathop{\mathrm{Aut}}_{  {}_{A}{\mathsf{Mod}}}(A[x_1,\cdots ,x_n])$, so $\theta(a) = a$ for $a\in A$ and $\theta(x_i) = \sum a_{ij} x_j$.
-:::
-
 ::: {.front card-id="card-e8e690603a360318"}
 What is a **constructible sheaf**?
 :::
 
 ::: {.back card-id="card-e8e690603a360318"}
 ${\mathcal{F}}\in {\mathsf{Sh}}(X)$ is constructible iff $\exists \left\{{i_{Y_i}: Y_i\hookrightarrow X}\right\}_{i\leq N}$ with $X = \bigcup_{i\leq N}Y_i$, i.e. $Y$ is a finite union of locally closed subschemes, such that ${ \left.{{{\mathcal{F}}}} \right|_{{Y_i}} } \coloneqq\iota_{Y_i}^* {\mathcal{F}}$ is a finite locally constant sheaf.
-:::
-
-::: {.front card-id="card-c3b63ed1c4a800f8"}
-What is a **free sheaf**?
-:::
-
-::: {.back card-id="card-c3b63ed1c4a800f8"}
-${\mathcal{F}}\cong {\mathcal{O}}_X{ {}^{ \scriptscriptstyle\oplus^{n} }  }$ for some $n$.
-:::
-
-::: {.front card-id="card-9af4bee08cc10999"}
-What is a **locally free sheaf**?
-:::
-
-::: {.back card-id="card-9af4bee08cc10999"}
-Each stalk ${\mathcal{F}}_x$ is a free ${\mathcal{O}}_{X, x}{\hbox{-}}$module. Equivalently, $\exists {\mathcal{U}}\rightrightarrows X$ such that each ${ \left.{{{\mathcal{F}}}} \right|_{{U_i}} }$ is a free ${ \left.{{{\mathcal{O}}_X}} \right|_{{U}} }{\hbox{-}}$module.
 :::
 
 ::: {.front card-id="card-45174c1167af9df9"}
@@ -245,22 +209,6 @@ What is the fundamental exact sequence involving the tangent sheaf for ${\mathbf
 
 ::: {.back card-id="card-0b18a6dfa59ccde0"}
 $0\to {\mathcal{O}}_X \to {\mathcal{O}}_X(1){ {}^{ \scriptscriptstyle\oplus^{n+1} }  }\to {\mathcal{T}}_X\to 0$.
-:::
-
-::: {.front card-id="card-25a646261e5d9e66"}
-Define the **twisting sheaf** on ${\mathbf{P}}^n_{/ {Y}}$.
-:::
-
-::: {.back card-id="card-25a646261e5d9e66"}
-${\mathcal{O}}_{{\mathbf{P}}^n_{/ {Y}}}(1) \coloneqq g^* {\mathcal{O}}_{{\mathbf{P}}^n_{/ {{\mathbf{Z}}}}}(1)$ where $g: {\mathbf{P}}^n_{/ {Y}}\to {\mathbf{P}}^n_{/ {{\mathbf{Z}}}}$.
-:::
-
-::: {.front card-id="card-a0516bda9144a2f9"}
-Define the **twisting sheaf** on $\mathop{\mathrm{Proj}}S$ for $S$ a graded ring.
-:::
-
-::: {.back card-id="card-a0516bda9144a2f9"}
-${\mathcal{O}}_X(n) \coloneqq S[n]\tilde{}$, and the twisting sheaf is ${\mathcal{O}}_X(1)$.
 :::
 
 ::: {.front card-id="card-aac019483de7ed9e"}
@@ -353,62 +301,6 @@ Is a morphism of sheaves injective if injective on sections? Surjective?
 
 ::: {.back card-id="card-51fc917eb022892e"}
 Injective: yes, surjective: no.
-:::
-
-::: {.front card-id="card-6740aaf8254f55aa" tags="definition"}
-What is: Presheaves
-:::
-
-::: {.back card-id="card-6740aaf8254f55aa"}
-A presheaf $F$ on $X$ assigns an object $F(U)$ to each open $U\subseteq X$ and a restriction map $F(U)\to F(V)$ for $V\subseteq U$, with identity restrictions and compatibility under composition. A sheaf also satisfies gluing and uniqueness for compatible local sections.
-:::
-
-::: {.front card-id="card-957476fd59afd34c" tags="definition"}
-What is: sheafification
-:::
-
-::: {.back card-id="card-957476fd59afd34c"}
-The sheafification $F^+$ of a presheaf $F$ is a sheaf with a map $F\to F^+$ that induces isomorphisms on all stalks. Every map from $F$ to a sheaf factors uniquely through $F^+$.
-:::
-
-::: {.front card-id="card-fef610387edab7ba" tags="definition"}
-What is: morphisms of (pre)sheaves
-:::
-
-::: {.back card-id="card-fef610387edab7ba"}
-A morphism $\varphi:F\to G$ of presheaves is a family of maps $\varphi_U:F(U)\to G(U)$ commuting with every restriction map. A morphism of sheaves is the same kind of compatible family between sheaves.
-:::
-
-::: {.front card-id="card-9f13fac2ccdb8843" tags="definition"}
-What is: pullback and pushforward
-:::
-
-::: {.back card-id="card-9f13fac2ccdb8843"}
-For $f:X\to Y$ and a sheaf $F$ on $X$, $(f_*F)(V)=F(f^{-1}V)$. For a sheaf $G$ on $Y$, $f^{-1}G$ is the sheafification of $U\mapsto\varinjlim_{U\subseteq f^{-1}V}G(V)$. For modules on ringed spaces, $f^*G=f^{-1}G\otimes_{f^{-1}\mathcal O_Y}\mathcal O_X$.
-:::
-
-::: {.front card-id="card-fddda97ba09ecea5" tags="definition"}
-What is: Skyscraper sheaves
-:::
-
-::: {.back card-id="card-fddda97ba09ecea5"}
-For a point $x\in X$ and an abelian group $A$, the skyscraper sheaf $i_*A$ for $i:\{x\}\hookrightarrow X$ has sections $A$ on opens containing $x$ and $0$ on other opens. Restrictions are the evident identity or zero maps.
-:::
-
-::: {.front card-id="card-b218c782bf9abe54" tags="definition"}
-What is: constant sheaves
-:::
-
-::: {.back card-id="card-b218c782bf9abe54"}
-The constant sheaf $\underline A$ is the sheafification of the constant presheaf $U\mapsto A$. Its sections on $U$ are locally constant functions $U\to A$ when $A$ has the discrete topology.
-:::
-
-::: {.front card-id="card-513951922e04ccb4" tags="definition"}
-What is: sheaf hom
-:::
-
-::: {.back card-id="card-513951922e04ccb4"}
-For $\mathcal O_X$-modules $F,G$, the sheaf $\mathcal Hom_{\mathcal O_X}(F,G)$ has sections $\operatorname{Hom}_{\mathcal O_U}(F|_U,G|_U)$ on each open $U\subseteq X$.
 :::
 
 ::: {.front card-id="card-b5dfbf872b61db5b" tags="definition"}

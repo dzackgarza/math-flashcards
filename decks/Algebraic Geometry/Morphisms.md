@@ -61,15 +61,19 @@ Equivalently, $\Omega_{R/A}$ is locally free of finite rank equal to $\operatorn
 :::
 
 ::: {.front card-id="card-e504a4da2d4624f3"}
-What is a smooth morphism of relative dimension $n$?
+What is a **smooth morphism** of relative dimension $n$?
 :::
 
 ::: {.back card-id="card-e504a4da2d4624f3"}
-$f: X\to Y$ flat with $\dim C_X = \dim C_Y + n$ for any irreducible components $C_Y \subseteq f(C_X)$, and $\dim_{\kappa(x)}(\Omega_{X/k}\otimes\kappa(x)) = n$.
+(Hartshorne, for schemes of finite type over $k$) $f: X\to Y$ such that
 
-Condition 2 means every irreducible component of every fiber $X_y$ of $f$ has dimension $n$.
+1. $f$ is flat;
+2. $\dim X' = \dim Y' + n$ for all irreducible components $X'\subseteq X$ and $Y'\subseteq Y$ with $f(X')\subseteq Y'$;
+3. $\dim_{\kappa(x)}(\Omega_{X/Y}\otimes\kappa(x)) = n$ for each point $x\in X$ (closed or not).
 
-For $X$ integral, flat + irreducible component dimension condition + $\Omega_{X/Y}$ is locally free of rank $n$.
+For $Y$ irreducible and $f$ flat, condition 2 is equivalent to: every irreducible component of every fiber $X_y$ of $f$ has dimension $n$.
+
+For $X$ integral, condition 3 can be replaced with: $\Omega_{X/Y}$ is locally free of rank $n$.
 
 Closed under base change, composition, fiber products.
 :::
@@ -108,14 +112,21 @@ What is a consequence of smoothness?
 Smooth morphisms are flat, and smooth fibers implies this is a flat family of smooth schemes.
 :::
 
-::: {.front card-id="card-525d10c2757e41de"}
-What is a **proper morphism**?
+::: {.front card-id="card-525d10c2757e41de" tags="unsorted"}
+What is a proper morphism? What are some consequences?
 :::
 
 ::: {.back card-id="card-525d10c2757e41de"}
-Separated, finite type, and universally closed.
+A morphism of schemes is proper if it is separated, of finite type, and universally closed. For a morphism of varieties $\phi: X \rightarrow Y$, separated and finite type are automatic, so $\phi$ is proper iff it is universally closed: for all $\psi: Z \rightarrow Y$, the base change $\phi^{\prime}: X \times_Y Z \rightarrow Z$ is a closed map in the Zariski topology.
 
-Equivalently, use the valuative criterion ($=1$ lift).
+Equivalently, for $f$ of finite type and quasi-separated, use the valuative criterion ($=1$ lift).
+
+Consequences:
+
+- $X$ is complete iff the structure morphism to a point is proper.
+- Fibers of a proper morphism are complete.
+- Inverse images of complete subvarieties of $Y$ are complete.
+- Any morphism obtained by base change from a proper morphism is proper.
 :::
 
 ::: {.front card-id="card-07e3a111761ae76e"}
@@ -222,20 +233,18 @@ What is a **finite ring morphism**?
 A finite ring morphism $f:R\to A$ is one that makes $A\in   {}_{R}{\mathsf{Mod}}^{\mathrm{fg}}$.
 :::
 
-::: {.front card-id="card-50c3a5b5a43dbd56"}
+::: {.front card-id="card-50c3a5b5a43dbd56" tags="definition"}
 What is a **finite morphism**?
 :::
 
 ::: {.back card-id="card-50c3a5b5a43dbd56"}
-Hartshorne: $f:X\to Y$ where $\operatorname{Spec}B_i\rightrightarrows Y$ with $\operatorname{Spec}A_i \coloneqq f^{-1}(B_i)$ with each $A_i\in { {}_{B_i}  \mathsf{Alg}}$ such that $A_i \in   {}_{B_i}{\mathsf{Mod}}^{\mathrm{fg}}$.
+Hartshorne: $f:X\to Y$ where $\operatorname{Spec}B_i\rightrightarrows Y$ is an open affine cover with each $f^{-1}(\operatorname{Spec}B_i) = \operatorname{Spec}A_i$ affine and $A_i \in   {}_{B_i}{\mathsf{Mod}}^{\mathrm{fg}}$. Equivalently, for every affine open $V=\operatorname{Spec}A\subseteq Y$, $f^{-1}(V)=\operatorname{Spec}B$ with $B$ a finite $A$-module, i.e. $f$ is affine and locally given by finite ring morphisms.
 
 Note that being fg as a **module** is **stronger** than being fg as an **algebra**: $k[x] \in  {}_{k}  \mathsf{Alg}$ has one algebra generator but infinite rank in ${}_{k}{\mathsf{Mod}}$.
 
 Thus **finite** implies **finite type** but not conversely.
 
-Proper and locally quasifinite.
-
-Equivalently, admits an open cover where it restricts to finite ring morphisms.
+Equivalently, proper and locally quasifinite.
 :::
 
 ::: {.front card-id="card-a33f381a0acf3855"}
@@ -290,14 +299,16 @@ What is a consequence of a morphism of affine schemes being finite?
 If $R\to A$ is finite the $\operatorname{Spec}A\to \operatorname{Spec}R$ has finite fibers.
 :::
 
-::: {.front card-id="card-08935d3d51a49bc7"}
+::: {.front card-id="card-08935d3d51a49bc7" tags="definition"}
 What is a **finite type morphism**?
 :::
 
 ::: {.back card-id="card-08935d3d51a49bc7"}
 Locally of finite type and quasicompact.
 
-Equivalently, on an open cover, inducing finitely generated *algebras* and covered by finitely many: $f:X\to Y$ where $\operatorname{Spec}B_i\rightrightarrows Y$ with $\operatorname{Spec}A_i \coloneqq f^{-1}(B_i)$ with each $A_i\in { {}_{B_i}  \mathsf{Alg}}^{\mathrm{fg}}$.
+Locally of finite type: every point of $X$ has an affine neighborhood $\operatorname{Spec}A\subseteq f^{-1}(\operatorname{Spec}B)$, with $\operatorname{Spec}B\subseteq Y$ affine open, such that $A$ is a finitely generated $B$-algebra.
+
+Equivalently, there is an open affine cover $\operatorname{Spec}B_i\rightrightarrows Y$ such that each $f^{-1}(\operatorname{Spec}B_i)$ is covered by finitely many $\operatorname{Spec}A_{ij}$ with each $A_{ij}\in { {}_{B_i}  \mathsf{Alg}}^{\mathrm{fg}}$.
 
 Note that being fg as a module is **stronger** than being fg as an algebra: $k[x] \in  {}_{k}  \mathsf{Alg}$ has one algebra generator but infinite rank in ${}_{k}{\mathsf{Mod}}$. Thus finite implies finite type but not conversely.
 :::
@@ -354,7 +365,7 @@ What is an example of a non-closed morphism?
 Use that ${\mathbf{A}}^n$ is not proper: $X \underset{\scriptscriptstyle {k} }{\times} X \to X$ is not closed for $X\coloneqq{\mathbf{A}}^1$ since it is the coordinate projection, and $V(xy-c) \mapsto {\mathbf{G}}_m$ which is not closed.
 :::
 
-::: {.front card-id="card-31a64a619e91d37a"}
+::: {.front card-id="card-31a64a619e91d37a" tags="definition"}
 What is a **projective morphism**?
 :::
 
@@ -367,7 +378,7 @@ What is a quasiprojective morphism?
 :::
 
 ::: {.back card-id="card-9f9cd83a2a11e95a"}
-$f:X\to Y$ which factors as $X\hookrightarrow X'\to Y'$, a closed immersion followed by a projective morphism.
+$f:X\to Y$ which factors as $X\hookrightarrow X'\to Y$, an open immersion followed by a projective morphism.
 :::
 
 ::: {.front card-id="card-0defb0831c46c847"}
@@ -392,14 +403,6 @@ What is a faithfully flat morphism?
 
 ::: {.back card-id="card-1663965932adfa0b"}
 Flat and surjective.
-:::
-
-::: {.front card-id="card-3bc057f937ac3fbd"}
-What is a rational morphism?
-:::
-
-::: {.back card-id="card-3bc057f937ac3fbd"}
-An equivalence class of pairs $(U, { \left.{{f}} \right|_{{U}} })$ where $U\subseteq X$ is open dense and ${ \left.{{f}} \right|_{{U}} }: U\to Y$ is a morphism, which are identified if they coincide on intersections.
 :::
 
 ::: {.front card-id="card-2672951a3cb0357e"}
@@ -538,22 +541,6 @@ Show that $\PP^n$ is proper.
 For a valuation ring $R$ with fraction field $K$, a map $\operatorname{Spec}K\to\mathbb P_R^n$ is given by homogeneous coordinates $[a_0:\cdots:a_n]$ in $K$. Scale them so all $a_i\in R$ and at least one is a unit. They then define an extension $\operatorname{Spec}R\to\mathbb P_R^n$. Separatedness gives uniqueness. The valuative criterion proves $\mathbb P_R^n\to\operatorname{Spec}R$ is proper; hence $\mathbb P_k^n$ is proper over $k$.
 :::
 
-::: {.front card-id="card-67c4242b2b221ce9" tags="definition"}
-What is: Morphisms of finite type
-:::
-
-::: {.back card-id="card-67c4242b2b221ce9"}
-A morphism $f:X\to Y$ is locally of finite type if every point of $X$ has affine neighborhoods $\operatorname{Spec}B\subseteq f^{-1}(\operatorname{Spec}A)$ with $B$ a finitely generated $A$-algebra. It is of finite type if it is also quasi-compact.
-:::
-
-::: {.front card-id="card-8545991b9f8fb473" tags="definition"}
-What is: finite morphisms
-:::
-
-::: {.back card-id="card-8545991b9f8fb473"}
-A morphism $f:X\to Y$ is finite if locally on affine opens $V=\operatorname{Spec}A\subseteq Y$, $f^{-1}(V)=\operatorname{Spec}B$ with $B$ a finite $A$-module.
-:::
-
 ::: {.front card-id="card-f8d31bfb2abb0b49" tags="definition"}
 What is: open/closed immersions
 :::
@@ -570,81 +557,40 @@ What is: Affine and projective morphisms
 A morphism $f:X\to Y$ is affine if the inverse image of every affine open in $Y$ is affine. It is projective if it factors as a closed immersion $X\hookrightarrow\mathbb P_Y^n$ followed by projection, for some $n$.
 :::
 
-::: {.front card-id="card-552891e2f1bf17c8" tags="definition"}
-What is: finite morphisms,
-:::
-
-::: {.back card-id="card-552891e2f1bf17c8"}
-A morphism $f:X\to Y$ is finite if locally on affine opens $V=\operatorname{Spec}A\subseteq Y$, $f^{-1}(V)=\operatorname{Spec}B$ with $B$ a finite $A$-module.
-:::
-
-::: {.front card-id="card-55457ee56839959d" tags="definition"}
-What is: Open/closed immersions
-:::
-
-::: {.back card-id="card-55457ee56839959d"}
-An open immersion identifies $X$ with an open subscheme of $Y$. A closed immersion identifies $X$ with a closed subscheme of $Y$; locally it comes from a surjection of rings $A\twoheadrightarrow A/I$.
-:::
-
 ::: {.front card-id="card-24e6d1c8282799dd" tags="definition"}
 What is: Definition of separated and proper morphisms,
 :::
 
 ::: {.back card-id="card-24e6d1c8282799dd"}
+A morphism of schemes $f: X\to S$ is **separated** if the diagonal $\Delta_{X/S}: X\to X\times_S X$ is a closed immersion, and **proper** if it is separated, of finite type, and universally closed: every base change $X\times_S T\to T$ is a closed map.
+
 We say a variety $X$ is separated if the image of the diagonal map $\Delta: X \rightarrow X \times X$ is Zariski closed in $X \times X$.
 
 For instance, $\mathbb{C}^n$ is separated because the image of the diagonal in $\mathbb{C}^n \times \mathbb{C}^n=$ $\operatorname{Spec}\left(\mathbb{C}\left[x_1, \ldots, x_n, y_1, \ldots, y_n\right]\right)$ is the affine variety $\mathbf{V}\left(x_1-y_1, \ldots, x_n-y_n\right)$. Similarly, any affine variety is separated.
 :::
 
-::: {.front card-id="card-7e03d8abaf3d84b6" tags="unsorted"}
-What is a proper morphism? What are some consequences?
-:::
-
-::: {.back card-id="card-7e03d8abaf3d84b6"}
-Definitions:
-
-- A morphism of schemes is proper if it is universally closed, separated, of finite type.
-
-- A morphism of algebraic varieties $\phi: X \rightarrow Y$ is proper if it is universally closed, i.e., if for all $\psi: Z \rightarrow Y$, the mapping $\phi^{\prime}: X \times \times_Y Z \rightarrow Z$ is a closed mapping in the Zariski topology.
-
-Important things to note about properness:
-
-(a) $X$ complete iff the structure morphism to a point is proper.
-(b) Fibers of a proper morphism are complete.
-(c) Inverse images of complete subvarieties of $Y$ are complete.
-(d) Any morphism obtained from base change from a proper morphism is automatically proper
-:::
-
-::: {.front card-id="card-e1b36c9f1c246df3" tags="definition"}
-What is: Valuative criteria for properness
-:::
-
-::: {.back card-id="card-e1b36c9f1c246df3"}
-For $f:X\to Y$ of finite type, consider every valuation ring $R$ with fraction field $K$ and every commutative square $\operatorname{Spec}K\to X$, $\operatorname{Spec}R\to Y$. The map $f$ is proper exactly when a unique lift $\operatorname{Spec}R\to X$ exists for every such square. Existence tests universal closedness; uniqueness tests separatedness.
-:::
-
-::: {.front card-id="card-1147ea91c75c2c87" tags="unsorted"}
+::: {.front card-id="card-e1b36c9f1c246df3" tags="definition, unsorted"}
 What are the three valuative criteria?
 :::
 
-::: {.back card-id="card-1147ea91c75c2c87"}
-- Separated: $\leq 1$ way to fill.
-- Universally closed: $\geq 1$ way to fill.
-- Proper: $=1$ way to fill.
-:::
+::: {.back card-id="card-e1b36c9f1c246df3"}
+For $f:X\to Y$, consider every valuation ring $R$ with fraction field $K$ and every commutative square $\operatorname{Spec}K\to X$, $\operatorname{Spec}R\to Y$, and count the lifts $\operatorname{Spec}R\to X$ making both triangles commute.
 
-::: {.front card-id="card-b8b844b9ac724909" tags="definition"}
-What is: Projective morphisms,
-:::
+- Separated ($f$ quasi-separated): $\leq 1$ way to fill.
+- Universally closed ($f$ quasi-compact): $\geq 1$ way to fill.
+- Proper ($f$ of finite type and quasi-separated): $=1$ way to fill.
 
-::: {.back card-id="card-b8b844b9ac724909"}
-A morphism of schemes $f: X \longrightarrow Y$ is projective if it factors as $X \stackrel{f^{\prime}}{\longrightarrow} \mathbf{P}_Y^n \stackrel{\pi}{\longrightarrow} Y$ for some $n$ where $f^{\prime}$ is a closed immersion.
+Existence tests universal closedness; uniqueness tests separatedness. Hartshorne states these for $X$ Noetherian, where the quasi-separatedness hypothesis is automatic.
 :::
 
 ::: {.front card-id="card-18782c5a0371defb" tags="definition"}
-What is: Scheme-theoretic image,
+What is the **scheme-theoretic image**?
 :::
 
 ::: {.back card-id="card-18782c5a0371defb"}
-For a quasi-compact morphism $f:X\to Y$, the scheme-theoretic image is the smallest closed subscheme of $Y$ through which $f$ factors. It is defined by $\ker(\mathcal O_Y\to f_*\mathcal O_X)$ when this kernel is quasi-coherent, as for a quasi-compact quasi-separated morphism.
+For $f:X\to Y$, the smallest closed subscheme $Z$ of $Y$ through which $f$ factors.
+
+If $f$ is quasi-compact, $Z$ is cut out by the quasi-coherent ideal ${\mathcal{I}}\coloneqq\ker\qty{{\mathcal{O}}_Y\to f_* {\mathcal{O}}_X}$, and its underlying set is $\overline{f(X)}$. If $X$ is reduced, $Z$ is $\overline{f(X)}$ with its reduced induced structure.
+
+E.g. for a ring map $\phi: A\to B$ inducing $\operatorname{Spec}B\to \operatorname{Spec}A$, $Z = \operatorname{Spec}(A/\ker\phi)$.
 :::
