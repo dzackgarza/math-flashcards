@@ -11,6 +11,30 @@ function workbenchBackend(): Plugin {
   return {
     name: "workbench-backend",
     configureServer(server) {
+      const watched = new Set<string>();
+      server.middlewares.use("/api/watch", async (request, response) => {
+        if (
+          request.method !== "POST" ||
+          request.headers["x-flashcards"] !== "1"
+        ) {
+          response
+            .writeHead(403)
+            .end("Use the editor to access this endpoint.");
+          return;
+        }
+        const root = await text(request);
+        if (!watched.has(root)) {
+          watched.add(root);
+          server.watcher.add(root);
+        }
+        response.writeHead(204).end();
+      });
+      for (const event of ["add", "change", "unlink"] as const)
+        server.watcher.on(event, (path) => {
+          for (const root of watched)
+            if (path.startsWith(root + "/"))
+              server.ws.send("flashcards:changed", { root, path });
+        });
       server.middlewares.use("/api/request", async (request, response) => {
         if (
           request.method !== "POST" ||

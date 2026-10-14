@@ -41,8 +41,10 @@ and each one sets the quality bar for one part of the editor.
    in muted text on the second line.
 4. The selected card shows its Front and Back as two raised card faces with
    math rendered in place. Click an equation to edit its source.
-5. The toolbar shows one status: unsaved changes first, then the package
-   state. **Generate Anki deck** is the single primary action.
-6. A command menu (Ctrl-K) finds decks, cards, and actions. Ctrl-S saves the
-   deck.
+5. The toolbar shows one status: the save state first, then how the package
+   differs from the deck. The status opens a review of the changed cards. Deck
+   actions are in one menu at the right of the toolbar and in the deck's
+   context menu in the tree.
+6. A command menu (Ctrl-K) finds decks, cards, and actions. Edits save
+   automatically.
 7. The type scale has four sizes: 12, 14, 16, and 20 px, set in Inter.

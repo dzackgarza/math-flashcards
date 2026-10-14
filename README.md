@@ -33,20 +33,23 @@ Launch **Math Flashcards** from the application menu or run `math-flashcards`.
 Each commit that passes the commit gate rebuilds and installs the app.
 Open a workspace folder that contains `decks/` from the workspace menu in the
 sidebar. Select a deck in the tree. Ctrl-K opens a command menu that finds decks,
-cards, and actions; Ctrl-S saves the deck.
+cards, and actions.
 The editor supports card search, side-by-side Front and Back editing with math
-rendered in place, and adding and deleting cards. Save the deck, then select
-**Generate Anki deck** to regenerate its package in `apkg/`.
+rendered in place, and adding and deleting cards. Edits save automatically, and
+the open deck follows changes that other programs make to its file.
 
 Drag a card in the card list to reorder it, or onto a deck in the tree to move it.
 Ctrl-click or Shift-click selects several cards to drag together. Drag a deck onto
-another deck to merge them. **New deck** creates an empty deck, and **Undo**
-restores the last organization change.
+another deck to merge them. Right-click a deck to update its package, rename it,
+or delete it. **New deck** creates an empty deck, and **Undo** restores the last
+organization change.
 
-The toolbar status shows **Unsaved changes**, or else the package state:
-**Up to date**, **Unsynced**, **Generating**, or **Failed**. Source and media
-changes, exporter changes, and changes to the generated package make it
-unsynced. Failed exports retain the previous package. Disk changes are checked before a save.
+Each deck has a generated Anki package in `apkg/`. A package is out of date when
+its deck, media, or the exporter changed after generation, or when the package
+file changed. The toolbar status tells how the package differs from the deck;
+select it to review the new, edited, and removed cards and to go to each one.
+**Update Anki packages** in the sidebar reviews and updates every out-of-date
+package at once. A failed update keeps the previous package.
 
 Use `just desktop-dev` for native development. The [desktop guide](desktop/README.md)
 lists dependencies, verification commands, and the Anki import boundary.

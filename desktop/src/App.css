@@ -89,6 +89,8 @@ body {
   gap: 6px;
   min-height: 30px;
   padding: 4px 8px;
+  /* Mantine Tree passes the nesting depth as --label-offset. */
+  padding-inline-start: calc(8px + var(--label-offset, 0px));
   border-radius: 7px;
   font-size: 14px;
   cursor: pointer;
@@ -233,6 +235,28 @@ body {
 .card-row-back:empty {
   display: none;
 }
+.card-row-label {
+  position: relative;
+}
+.card-row-change {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 0 6px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  color: var(--mantine-color-orange-8);
+  background: var(--mantine-color-orange-0);
+}
+.card-row[data-change] .card-row-front {
+  padding-right: 48px;
+}
+.card-row.active .card-row-change {
+  color: var(--mantine-color-white);
+  background: rgba(255, 255, 255, 0.18);
+}
 .card-row.active .card-row-label {
   background: var(--mantine-color-indigo-6);
 }
@@ -273,13 +297,33 @@ body {
   padding: 8px 20px;
   border-bottom: 1px solid var(--hairline);
 }
+.status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  min-height: 32px;
+  padding-inline: 8px;
+  margin-inline-start: -8px;
+  border-radius: 8px;
+}
+.status:not(:disabled):hover {
+  background: var(--hover);
+}
+.status:disabled {
+  cursor: default;
+}
 .status-dot {
+  flex: none;
   width: 8px;
   height: 8px;
   border-radius: 50%;
 }
 .status-dot.synced {
   background: var(--mantine-color-teal-6);
+}
+.status-dot.empty {
+  background: var(--mantine-color-gray-4);
 }
 .status-dot.pending {
   background: var(--mantine-color-orange-5);
@@ -379,6 +423,66 @@ div.rendered-math {
   box-shadow: 0 0 0 1px var(--hairline);
   white-space: pre-wrap;
   overflow-wrap: anywhere;
+}
+
+/* Review of changes not in the Anki packages */
+.review-deck + .review-deck {
+  padding-top: 16px;
+  border-top: 1px solid var(--hairline);
+}
+.change-row {
+  display: block;
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 8px;
+}
+button.change-row:hover {
+  background: var(--hover);
+}
+.change-kind {
+  flex: none;
+}
+.change-front {
+  min-width: 0;
+  font-size: 14px;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+.change-diff {
+  display: grid;
+  grid-template-columns: 7rem minmax(0, 1fr);
+  gap: 4px 12px;
+  padding-left: 12px;
+  font-size: 14px;
+}
+.change-diff .eyebrow {
+  margin: 0;
+}
+.change-before,
+.change-after {
+  min-width: 0;
+  padding: 2px 8px;
+  border-radius: 6px;
+  overflow-wrap: anywhere;
+}
+.change-before {
+  background: var(--mantine-color-red-0);
+  text-decoration: line-through;
+  text-decoration-color: var(--mantine-color-red-3);
+}
+.change-after {
+  background: var(--mantine-color-teal-0);
+}
+
+/* The actions stay visible while a long review scrolls. */
+.review-actions {
+  position: sticky;
+  bottom: 0;
+  margin: 16px calc(-1 * var(--mantine-spacing-md))
+    calc(-1 * var(--mantine-spacing-md));
+  padding: 12px var(--mantine-spacing-md);
+  background: var(--surface);
+  border-top: 1px solid var(--hairline);
 }
 
 /* Organization notice */

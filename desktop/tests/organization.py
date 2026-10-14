@@ -87,16 +87,18 @@ def scenario(root: Path) -> None:
 
         def undo() -> None:
             page.get_by_role("button", name="Undo", exact=True).click()
-            expect(page.get_by_text("Undo complete.", exact=True)).to_be_visible(
-                timeout=30000
-            )
+            expect(
+                page.locator(".snackbar").get_by_text("Undo complete.", exact=True)
+            ).to_be_visible(timeout=30000)
 
         card_row("Identity element").click()
         card_row("Inverse").click(modifiers=["Control"])
         card_row("Identity element").drag_to(deck_row(TARGET))
-        expect(page.get_by_text("2 cards moved to Target.", exact=True)).to_be_visible(
-            timeout=30000
-        )
+        expect(
+            page.locator(".snackbar").get_by_text(
+                "2 cards moved to Target.", exact=True
+            )
+        ).to_be_visible(timeout=30000)
         assert identifiers(source) == ["three"]
         assert identifiers(target) == ["four", "one", "two"]
         assert "../Algebra/assets/plot.png" in target.read_text()
@@ -124,9 +126,9 @@ def scenario(root: Path) -> None:
         page.wait_for_timeout(300)
         page.screenshot(path=str(ARTIFACTS / "organization-drag-indicator.png"))
         page.mouse.up()
-        expect(page.get_by_text("Card order saved.", exact=True)).to_be_visible(
-            timeout=30000
-        )
+        expect(
+            page.locator(".snackbar").get_by_text("Card order saved.", exact=True)
+        ).to_be_visible(timeout=30000)
         assert identifiers(source) == ["two", "three", "one"]
 
         deck_row(ABSORBED).drag_to(deck_row(TARGET))
@@ -135,7 +137,9 @@ def scenario(root: Path) -> None:
         ).to_be_visible()
         page.get_by_role("button", name="Merge decks", exact=True).click()
         expect(
-            page.get_by_text("Absorb merged into Target.", exact=True)
+            page.locator(".snackbar").get_by_text(
+                "Absorb merged into Target.", exact=True
+            )
         ).to_be_visible(timeout=30000)
         assert not absorbed.exists()
         assert identifiers(target) == ["four", "five"]
@@ -150,9 +154,9 @@ def scenario(root: Path) -> None:
         page.get_by_label("Deck name", exact=True).fill("Selected")
         page.get_by_label("Folder", exact=True).fill("Geometry")
         page.get_by_role("button", name="Create deck", exact=True).click()
-        expect(page.get_by_text("Selected created.", exact=True)).to_be_visible(
-            timeout=30000
-        )
+        expect(
+            page.locator(".snackbar").get_by_text("Selected created.", exact=True)
+        ).to_be_visible(timeout=30000)
         split = root / "decks" / "Geometry" / "Selected.md"
         assert identifiers(split) == []
         expect(page.get_by_text("Add a card to begin.", exact=True)).to_be_visible()
@@ -161,7 +165,9 @@ def scenario(root: Path) -> None:
         card_row("Identity element").click(modifiers=["Shift"])
         card_row("Closure").drag_to(deck_row("Geometry/Selected.md"))
         expect(
-            page.get_by_text("2 cards moved to Selected.", exact=True)
+            page.locator(".snackbar").get_by_text(
+                "2 cards moved to Selected.", exact=True
+            )
         ).to_be_visible(timeout=30000)
         assert identifiers(split) == ["three", "one"]
         assert identifiers(source) == ["two"]
@@ -169,59 +175,108 @@ def scenario(root: Path) -> None:
         undo()
         assert identifiers(source) == ["two", "three", "one"]
 
-        deck_row(TARGET).click()
-        expect(card_row("Continuity")).to_be_visible(timeout=30000)
-        page.get_by_role("button", name="Generate Anki deck", exact=True).click()
-        expect(page.get_by_text("Up to date", exact=True).first).to_be_visible(
-            timeout=60000
-        )
-        deck_row(SOURCE).click()
-        card_row("Closure").drag_to(deck_row(TARGET))
-        expect(page.get_by_text("Card moved to Target.", exact=True)).to_be_visible(
-            timeout=30000
-        )
-        deck_row(TARGET).click()
-        expect(page.get_by_text("Unsynced", exact=True).first).to_be_visible(
-            timeout=30000
-        )
-        page.get_by_role("button", name="Generate Anki deck", exact=True).click()
-        expect(page.get_by_text("Up to date", exact=True).first).to_be_visible(
-            timeout=60000
-        )
-        package = root / "apkg" / "Analysis__Target.apkg"
-        with zipfile.ZipFile(package) as archive:
-            archive.extract("collection.anki2", root)
-        with sqlite3.connect(root / "collection.anki2") as database:
-            fields = [row[0] for row in database.execute("SELECT flds FROM notes")]
-        assert any("Closure" in field and "product stays" in field for field in fields)
+        def deck_action(path: str, name: str) -> None:
+            deck_row(path).click(button="right")
+            page.get_by_role("menuitem", name=name, exact=True).click()
 
-        deck_row(SOURCE).click()
-        expect(card_row("Inverse")).to_be_visible(timeout=30000)
-        page.locator(".side-editor.front .cm-content").fill("Edited inverse")
+        def contents(path: Path) -> list[str]:
+            with zipfile.ZipFile(path) as archive:
+                archive.extract("collection.anki2", root)
+            with sqlite3.connect(root / "collection.anki2") as database:
+                return [row[0] for row in database.execute("SELECT flds FROM notes")]
+
+        packages = root / "apkg"
+        page.get_by_role(
+            "button", name="Review and update Anki packages", exact=True
+        ).click()
+        review = page.get_by_role(
+            "dialog", name="Changes not in the Anki packages", exact=True
+        )
+        expect(review.get_by_text("Associativity")).to_be_visible(timeout=30000)
+        review.get_by_role("button", name="Update 3 Anki packages", exact=True).click()
         expect(
-            page.get_by_text("Save the deck to move its cards.", exact=True)
-        ).to_be_visible()
-        before = source.read_bytes()
-        card_row("Edited inverse").drag_to(deck_row(TARGET))
-        assert source.read_bytes() == before
-        page.get_by_role("button", name="Reload deck", exact=True).click()
-        page.get_by_role("button", name="Discard changes", exact=True).click()
-        expect(card_row("Inverse")).to_be_visible(timeout=30000)
+            page.get_by_role("button", name="Review and update Anki packages")
+        ).to_have_count(0, timeout=120000)
+        assert {path.name for path in packages.iterdir()} == {
+            "Algebra__Original.apkg",
+            "Algebra__Absorb.apkg",
+            "Analysis__Target.apkg",
+        }
 
+        card_row("Closure").drag_to(deck_row(TARGET))
+        expect(
+            page.locator(".snackbar").get_by_text("Card moved to Target.", exact=True)
+        ).to_be_visible(timeout=30000)
+        deck_row(TARGET).click()
+        status = page.locator(".toolbar .status")
+        expect(status).to_have_text("1 change not in the Anki package", timeout=30000)
+        expect(page.locator('.card-row[data-change="added"]')).to_contain_text(
+            "Closure"
+        )
+        page.screenshot(path=str(ARTIFACTS / "organization-pending.png"))
+        deck_action(TARGET, "Update Anki package")
+        expect(status).to_have_text("Anki package up to date", timeout=60000)
+        assert any(
+            "Closure" in field and "product stays" in field
+            for field in contents(packages / "Analysis__Target.apkg")
+        )
+
+        # An edited card saves before it moves.
+        deck_row(SOURCE).click()
+        expect(card_row("Inverse")).to_be_visible(timeout=30000)
+        card_row("Inverse").click()
+        page.locator(".side-editor.front .cm-content").fill("Edited inverse")
+        page.get_by_role("button", name="Dismiss", exact=True).click()
+        card_row("Edited inverse").drag_to(deck_row(TARGET))
+        expect(
+            page.locator(".snackbar").get_by_text("Card moved to Target.", exact=True)
+        ).to_be_visible(timeout=30000)
+        assert "Edited inverse" in target.read_text()
+        assert "Edited inverse" not in source.read_text()
+        undo()
+        assert "Edited inverse" in source.read_text()
+
+        # The open deck follows its file.
         external = (
             source.read_text() + "\n" + card("six", "External card", "External answer")
         )
         source.write_text(external)
-        target_before = target.read_bytes()
-        page.mouse.move(0, 0)
-        card_row("Inverse").drag_to(deck_row(TARGET))
-        expect(page.get_by_text("Action failed", exact=True)).to_be_visible(
-            timeout=30000
-        )
-        assert source.read_text() == external
-        assert target.read_bytes() == target_before
-        page.get_by_role("button", name="Reload deck", exact=True).click()
         expect(card_row("External card")).to_be_visible(timeout=30000)
+
+        deck_row(ABSORBED).click(button="right")
+        expect(
+            page.get_by_role("menuitem", name="Delete deck…", exact=True)
+        ).to_be_visible()
+        page.wait_for_timeout(300)
+        page.screenshot(path=str(ARTIFACTS / "organization-context-menu.png"))
+        page.get_by_role("menuitem", name="Rename deck…", exact=True).click()
+        page.get_by_label("Deck name", exact=True).fill("Associative")
+        page.get_by_role("button", name="Rename deck", exact=True).click()
+        expect(
+            page.locator(".snackbar").get_by_text(
+                "Absorb renamed to Associative.", exact=True
+            )
+        ).to_be_visible(timeout=30000)
+        renamed = root / "decks" / "Algebra" / "Associative.md"
+        assert not absorbed.exists()
+        assert renamed.read_text().startswith('---\ntitle: "Algebra::Associative"\n---')
+        assert identifiers(renamed) == ["five"]
+        assert not (packages / "Algebra__Absorb.apkg").exists()
+        undo()
+        assert absorbed.read_bytes() == original_absorbed
+        assert not renamed.exists()
+
+        deck_action(ABSORBED, "Delete deck…")
+        page.get_by_role("button", name="Delete deck", exact=True).click()
+        expect(
+            page.locator(".snackbar").get_by_text(
+                "Absorb sent to the trash.", exact=True
+            )
+        ).to_be_visible(timeout=30000)
+        assert not absorbed.exists()
+        expect(deck_row(ABSORBED)).to_have_count(0)
+        undo()
+        assert absorbed.read_bytes() == original_absorbed
         for width in (768, 1024):
             page.set_viewport_size({"width": width, "height": 1000})
             page.screenshot(
@@ -230,7 +285,7 @@ def scenario(root: Path) -> None:
         assert not errors, errors
         browser.close()
     print(
-        "Tree drag merges decks, moves and reorders cards, splits through a new deck, rejects stale and unsaved sources, and exports moved cards."
+        "Tree drag merges decks, moves and reorders cards, and splits through a new deck; the context menu renames and deletes decks; every out-of-date package updates at once."
     )
 
 

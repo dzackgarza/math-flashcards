@@ -105,6 +105,7 @@ export function CardRow({
   path,
   label,
   preview,
+  change,
   active,
   selected,
   group,
@@ -115,6 +116,7 @@ export function CardRow({
   path: string;
   label: string;
   preview: { front: string; back: string } | null;
+  change: "added" | "edited" | "removed" | null;
   active: boolean;
   selected: boolean;
   group: string[];
@@ -156,6 +158,7 @@ export function CardRow({
     <div
       ref={element}
       data-card={id}
+      data-change={change ?? undefined}
       className={
         "card-row" +
         (active ? " active" : "") +
@@ -183,6 +186,11 @@ export function CardRow({
         ) : (
           <span className="card-row-front">{label}</span>
         )}
+        {change && (
+          <span className="card-row-change">
+            {change === "added" ? "New" : "Edited"}
+          </span>
+        )}
       </UnstyledButton>
       {edge && <DropIndicator edge={edge} gap="4px" />}
     </div>
@@ -199,12 +207,7 @@ export function NewDeckForm({
   const form = useForm({
     initialValues: { name: "", folder },
     validate: {
-      name: (value) =>
-        !value.trim()
-          ? "Enter a deck name."
-          : /[\\/]/.test(value)
-            ? "Enter a deck name without path separators."
-            : null,
+      name: nameError,
     },
   });
   return (
@@ -229,6 +232,46 @@ export function NewDeckForm({
           {...form.getInputProps("folder")}
         />
         <Button type="submit">Create deck</Button>
+      </Stack>
+    </form>
+  );
+}
+
+const nameError = (value: string) =>
+  !value.trim()
+    ? "Enter a deck name."
+    : /[\\/]/.test(value)
+      ? "Enter a deck name without path separators."
+      : null;
+
+export function DeckNameForm({
+  name,
+  taken,
+  submit,
+}: {
+  name: string;
+  taken: (name: string) => boolean;
+  submit: (name: string) => void;
+}) {
+  const form = useForm({
+    initialValues: { name },
+    validate: {
+      name: (value) =>
+        nameError(value) ??
+        (value.trim() !== name && taken(value.trim())
+          ? "A deck with this name exists in the folder."
+          : null),
+    },
+  });
+  return (
+    <form onSubmit={form.onSubmit((values) => submit(values.name.trim()))}>
+      <Stack>
+        <TextInput
+          label="Deck name"
+          data-autofocus
+          {...form.getInputProps("name")}
+        />
+        <Button type="submit">Rename deck</Button>
       </Stack>
     </form>
   );

@@ -250,3 +250,36 @@ export function transferCards(
     destination: deckSource(destination, segments),
   };
 }
+
+export interface CardChange {
+  id: string;
+  kind: "added" | "edited" | "removed";
+  before: CardRange | null;
+  after: CardRange | null;
+}
+
+// Cards keep their IDs across edits, so the deck source of the last build
+// pairs with the current source by ID.
+export function cardChanges(
+  built: string | null,
+  source: string,
+): CardChange[] {
+  const before = new Map(cards(built ?? "").map((card) => [card.id, card]));
+  const after = cards(source);
+  const changes: CardChange[] = [];
+  for (const card of after) {
+    const old = before.get(card.id);
+    if (!old)
+      changes.push({ id: card.id, kind: "added", before: null, after: card });
+    else if (
+      old.front.value !== card.front.value ||
+      old.back.value !== card.back.value ||
+      old.tags !== card.tags
+    )
+      changes.push({ id: card.id, kind: "edited", before: old, after: card });
+    before.delete(card.id);
+  }
+  for (const old of before.values())
+    changes.push({ id: old.id, kind: "removed", before: old, after: null });
+  return changes;
+}

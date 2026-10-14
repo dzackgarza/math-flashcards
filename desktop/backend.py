@@ -64,6 +64,10 @@ class GenerateInput(DeckInput):
     action: Literal["generate"]
 
 
+class ReviewInput(Input):
+    action: Literal["review"]
+
+
 class Change(BaseModel):
     path: str
     source: str | None
@@ -85,7 +89,7 @@ class Organized(BaseModel):
 
 
 type Request = Annotated[
-    ListInput | LoadInput | SaveInput | GenerateInput | OrganizeInput,
+    ListInput | LoadInput | SaveInput | GenerateInput | OrganizeInput | ReviewInput,
     Field(discriminator="action"),
 ]
 
@@ -111,11 +115,33 @@ class RenderedDeck(BaseModel):
 class BuildRecord(BaseModel):
     inputs: dict[str, str]
     package: str
+    source: str
+
+
+type Status = Literal["Up to date", "Unsynced", "Empty"]
+
+
+class Sync(BaseModel):
+    """Package state, the reasons it is unsynced, and the deck source it was built from."""
+
+    status: Status
+    reasons: list[str]
+    built: str | None
 
 
 class Summary(BaseModel):
     path: str
-    status: Literal["Up to date", "Unsynced"]
+    status: Status
+    reasons: list[str]
+
+
+class Pending(Summary):
+    source: str
+    built: str | None
+
+
+class Review(BaseModel):
+    decks: list[Pending]
 
 
 class Workspace(BaseModel):
@@ -128,12 +154,14 @@ class Document(BaseModel):
     source: str
     hash: str
     cards: int
-    status: Literal["Up to date", "Unsynced"]
+    status: Status
+    reasons: list[str]
+    built: str | None
     package: str
 
 
 class Generated(BaseModel):
-    status: Literal["Up to date", "Unsynced"]
+    status: Status
     package: str
     log: str
 
@@ -170,7 +198,7 @@ def database() -> Iterator[sqlite3.Connection]:
     cache.mkdir(parents=True, exist_ok=True)
     with sqlite3.connect(cache / "builds.sqlite3") as connection:
         connection.execute(
-            "CREATE TABLE IF NOT EXISTS builds (path TEXT PRIMARY KEY, record TEXT NOT NULL)"
+            "CREATE TABLE IF NOT EXISTS deck_builds (path TEXT PRIMARY KEY, record TEXT NOT NULL)"
         )
         yield connection
 
@@ -199,26 +227,58 @@ def input_hashes(path: Path, media: list[Path]) -> dict[str, str]:
     return hashes
 
 
-def status(path: Path, output: Path) -> Literal["Up to date", "Unsynced"]:
+def has_cards(path: Path) -> bool:
+    # A card side is a `.front` or `.back` div, so a deck without either class
+    # has no cards; a lone side goes to the exporter, which rejects it. Listing
+    # runs this per deck, so it reads text instead of running Pandoc.
+    source = path.read_text(encoding="utf-8")
+    return ".front" in source or ".back" in source
+
+
+EMPTY = "The deck has no cards, so it has no Anki package."
+
+
+def sync(path: Path, output: Path) -> Sync:
     with database() as connection:
         row = connection.execute(
-            "SELECT record FROM builds WHERE path = ?", (str(path),)
+            "SELECT record FROM deck_builds WHERE path = ?", (str(path),)
         ).fetchone()
-    if row is None or not output.is_file():
-        return "Unsynced"
+    if row is None:
+        if not has_cards(path):
+            return Sync(status="Empty", reasons=[EMPTY], built=None)
+        return Sync(
+            status="Unsynced",
+            reasons=["No Anki package has been generated from this deck."],
+            built=None,
+        )
     record = BuildRecord.model_validate_json(row[0])
-    for name, expected in record.inputs.items():
-        if name in ("exporter", "pandoc"):
-            continue
-        file = Path(name)
-        if not file.is_file() or digest(file.read_bytes()) != expected:
-            return "Unsynced"
+    reasons: list[str] = []
+    if not output.is_file():
+        reasons.append("The Anki package file is missing.")
+    elif digest(output.read_bytes()) != record.package:
+        reasons.append("The Anki package file changed after generation.")
     current = input_hashes(path, [])
-    if any(record.inputs.get(key) != value for key, value in current.items()):
-        return "Unsynced"
-    if digest(output.read_bytes()) != record.package:
-        return "Unsynced"
-    return "Up to date"
+    for name, expected in record.inputs.items():
+        if name in current:
+            if current[name] == expected:
+                continue
+            reason = (
+                "The deck changed." if name == str(path) else "The exporter changed."
+            )
+        else:
+            file = Path(name)
+            if file.is_file() and digest(file.read_bytes()) == expected:
+                continue
+            reason = "Media changed: " + file.name
+        if reason not in reasons:
+            reasons.append(reason)
+    if "The deck changed." in reasons and not has_cards(path):
+        reasons.append("The deck has no cards. An update removes its Anki package.")
+    return Sync(
+        status="Unsynced" if reasons else "Up to date",
+        reasons=reasons,
+        built=record.source,
+    )
 
 
 @contextmanager
@@ -278,8 +338,19 @@ def validate(root: Path, path: Path, source: str) -> int:
             return len(deck.cards)
 
 
+def remove_package(root: Path, path: Path) -> None:
+    package = package_path(root, path)
+    if package.is_file():
+        send2trash(package)
+    with database() as connection:
+        connection.execute("DELETE FROM deck_builds WHERE path = ?", (str(path),))
+
+
 def generate(root: Path, path: Path) -> Generated:
     output = package_path(root, path)
+    if not has_cards(path):
+        remove_package(root, path)
+        return Generated(status="Empty", package=str(output), log=EMPTY)
     output.parent.mkdir(parents=True, exist_ok=True)
     cache = user_cache_path("math-flashcards")
     cache.mkdir(parents=True, exist_ok=True)
@@ -317,16 +388,18 @@ def generate(root: Path, path: Path) -> Generated:
                     check=True,
                 )
                 record = BuildRecord(
-                    inputs=inputs, package=digest(temporary.read_bytes())
+                    inputs=inputs,
+                    package=digest(temporary.read_bytes()),
+                    source=source,
                 )
                 temporary.replace(output)
                 with database() as connection:
                     connection.execute(
-                        "INSERT OR REPLACE INTO builds VALUES (?, ?)",
+                        "INSERT OR REPLACE INTO deck_builds VALUES (?, ?)",
                         (str(path), record.model_dump_json()),
                     )
                 return Generated(
-                    status=status(path, output),
+                    status=sync(path, output).status,
                     package=str(output),
                     log=process.stdout + process.stderr,
                 )
@@ -397,6 +470,10 @@ def publish_changes(root: Path, changes: list[Change]) -> Organized:
                     else:
                         send2trash(path)
                 raise
+        # A removed deck's package and build record describe a deck that no longer exists.
+        for change, path in zip(changes, paths, strict=True):
+            if change.source is None:
+                remove_package(root, path)
         return Organized(
             changed=[
                 ChangedDeck(
@@ -412,21 +489,44 @@ def publish_changes(root: Path, changes: list[Change]) -> Organized:
 
 def dispatch(
     request: Request,
-) -> Workspace | Document | Generated | Organized:
+) -> Workspace | Document | Generated | Organized | Review:
     root = workspace_path(request.workspace)
     if isinstance(request, OrganizeInput):
         return publish_changes(root, request.changes)
+    paths = [
+        path
+        for path in sorted((root / "decks").rglob("*.md"))
+        if path.resolve().is_relative_to(root / "decks")
+    ]
+    if isinstance(request, ReviewInput):
+        pending: list[Pending] = []
+        for path in paths:
+            state = sync(path, package_path(root, path))
+            if state.status == "Unsynced":
+                pending.append(
+                    Pending(
+                        path=str(path.relative_to(root / "decks")),
+                        status=state.status,
+                        reasons=state.reasons,
+                        source=path.read_text(encoding="utf-8"),
+                        built=state.built,
+                    )
+                )
+        return Review(decks=pending)
     if isinstance(request, ListInput):
-        return Workspace(
-            root=str(root),
-            decks=[
+        summaries: list[Summary] = []
+        for path in paths:
+            state = sync(path, package_path(root, path))
+            summaries.append(
                 Summary(
                     path=str(path.relative_to(root / "decks")),
-                    status=status(path, package_path(root, path)),
+                    status=state.status,
+                    reasons=state.reasons,
                 )
-                for path in sorted((root / "decks").rglob("*.md"))
-                if path.resolve().is_relative_to(root / "decks")
-            ],
+            )
+        return Workspace(
+            root=str(root),
+            decks=summaries,
             macros=TypeAdapter(dict[str, MacroDefinition]).validate_json(
                 (EXPORTER / "mathjax-macros.json").read_text()
             ),
@@ -448,11 +548,14 @@ def dispatch(
                 ],
             )
     source = path.read_bytes().decode("utf-8")
+    state = sync(path, output)
     return Document(
         source=source,
         hash=digest(source.encode()),
         cards=validate(root, path, source),
-        status=status(path, output),
+        status=state.status,
+        reasons=state.reasons,
+        built=state.built,
         package=str(output),
     )
 

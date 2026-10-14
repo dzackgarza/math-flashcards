@@ -40,19 +40,23 @@ repository used to build the app. Preferences use the standard Tauri store in
 the XDG configuration directory.
 Select the workspace name in the sidebar to open the workspace menu. Select
 **Browse** or enter a workspace path to change it, then select a deck in the
-tree. A dot after a deck name marks an unsynced package. The card list shows its cards; select a card to edit its sides.
+tree. A dot after a deck name marks a deck whose Anki package is out of date.
+The card list shows its cards; select a card to edit its sides. **New** and
+**Edited** mark the cards that the package does not contain yet.
 
 Drag a card in the list to reorder it, or drop it on a deck in the tree to move it.
 Ctrl-click toggles a card in the selection and Shift-click selects a range; dragging
 a selected card moves the whole selection. A folder opens while a drag hovers over it.
 Drag a deck onto another deck and confirm to merge them. **New deck** creates an
 empty deck that can receive cards. **Undo** reverses the last organization
-operation. These changes save immediately; save or reload a deck with unsaved
-edits before moving its cards. See [card organization](../docs/card-organization.md)
+operation. Right-click a deck to update its package, review its changes, rename
+it, or delete it; a folder offers a new deck in that folder. Renaming a deck
+whose title comes from its path changes the title too. Deleting a deck sends the
+deck file and its package to the trash. See [card organization](../docs/card-organization.md)
 for the design sources and file operations. Relative media links follow their
 original files across moves.
 Ctrl-K opens a command menu that finds decks, cards, and actions. **Find a
-card** filters the card list by front and back text. Ctrl-S saves the deck. Edit **Front** and **Back** in
+card** filters the card list by front and back text. Edit **Front** and **Back** in
 side-by-side CodeMirror fields. Both fields accept Markdown and LaTeX, with
 Pandoc syntax and TeX highlighting from Zettlr's parser. Set tags with **Tags**.
 The app creates the card ID and stores the sides as paired fenced divs.
@@ -67,29 +71,53 @@ adapted from Zettlr. Click an equation, or move the cursor into it, to edit its
 source. Saves and organization changes check each deck with the exporter's
 Pandoc filter and media resolution.
 
-Use **Add card** or **Delete card** to change the deck. **Save deck** writes the
-complete source file. Switching decks, reopening the workspace, reloading, and
-closing the native window ask about unsaved changes. A save rejects a disk edit
-made after the document was loaded. Reload the deck to read that external edit.
+Use **Add card** or **Delete card** to change the deck. Edits save to the deck
+file shortly after typing stops. Ctrl-S, switching decks, organization changes,
+package updates, and closing the window save at once. A deck with invalid card
+structure stays unsaved until it is corrected.
 
-Select **Generate Anki deck** after saving. It builds the entire selected deck
-and publishes the package after the exporter succeeds. Generation output shows
-the exporter result or error. An empty answer is an export error.
+The app owns the deck files but does not lock them. When another program changes
+the open deck, the editor shows the file. When the file changes while edits are
+waiting to save, the save stops and a banner offers **Use the disk version** or
+**Keep my version**.
 
-The toolbar shows **Unsaved changes** while the deck has unsaved edits, and
-otherwise the package state:
+The menu button at the right of the toolbar holds the deck actions:
 
-| State | Meaning |
+| Action | Operation |
 | --- | --- |
-| Up to date | Source, referenced local media, exporter assets, and package bytes match the successful build |
-| Unsynced | The draft or saved inputs differ, the package differs, or there is no verified build record |
-| Generating | The exporter is running |
-| Failed | The last export attempt failed; the previous package remains |
+| Update Anki package | Builds the whole deck and replaces its package after the exporter succeeds; disabled when the package is up to date |
+| Review changes | Lists the cards that the package lacks |
+| Rename deck… | Renames the deck file and its path-derived title |
+| Delete deck… | Sends the deck file and its package to the trash |
+| Update all Anki packages | Updates every out-of-date package in the workspace |
 
-Preferences use Tauri's app configuration directory. Build records use the platform cache
-directory under `math-flashcards/builds.sqlite3`. Existing packages start as
-Unsynced until the app generates a verified package. Native filesystem watches
-refresh saved package status after workspace changes.
+**Generation output** shows the exporter result or error. An empty answer is an
+export error.
+
+The toolbar shows one status:
+
+| Status | Meaning |
+| --- | --- |
+| Saving… | Edits are waiting to be written to the deck file |
+| Not saved: … | The edits cannot be saved; the text gives the cause |
+| N changes not in the Anki package | Cards were added, edited, or removed after the package was generated |
+| A reason, such as "The Anki package file changed after generation." | The package is out of date for a reason other than card changes: no package, missing or changed package file, card order, media, or exporter |
+| Anki package up to date | Deck, referenced local media, exporter assets, and package bytes match the last successful build |
+| No cards to export | The deck has no cards, so it has no package |
+| Updating the Anki package… | The exporter is running |
+| Generation failed | The last update failed; the previous package remains |
+
+Select the status to review the changes. The review compares the deck with the
+deck source that produced the package. It pairs cards by `card-id` and shows the
+old and new text of each changed side. Select a card in the review to open it.
+**Update Anki packages** at the bottom of the sidebar shows the number of
+out-of-date decks and opens the same review for all of them.
+
+Preferences use Tauri's app configuration directory. Build records, including
+the deck source of each build, use the platform cache directory under
+`math-flashcards/builds.sqlite3`. A deck without a build record is out of date
+until the app generates its package. Filesystem watches refresh the status and
+the open deck after workspace changes.
 
 ## Anki import
 
@@ -109,7 +137,7 @@ See [Anki's packaged deck documentation](https://docs.ankiweb.net/manual/importi
 | `just desktop-frontend` | TypeScript check and frontend build |
 | `just desktop-source-test` | Side preservation, pair validation, and agreement with Pandoc |
 | `just desktop-test` | Managed browser scenario with real filesystem edits and real APKG generation |
-| `just desktop-organization-test` | Tree drag, grouped moves, reorder, merge, new decks, Undo, and conflicts |
+| `just desktop-organization-test` | Tree drag, grouped moves, reorder, merge, new decks, rename, delete, Undo, and updating all packages |
 | `just desktop-native-test` | Built native window and export on an isolated X11 display |
 | `just desktop-format` | Canonical Python, TypeScript, CSS, and Rust formatting |
 
@@ -119,7 +147,7 @@ browser scenario. Browser checks require Playwright Chromium; provision it with
 Native capture requires Xvfb and xdotool. Screenshots, the browser trace, and
 diagnostic logs are generated in `desktop/test-artifacts/`.
 
-The browser scenario checks card typing, inline math, source preservation, save,
-delete, package contents, package status, external save conflicts, and failed
-export preservation. The native scenario runs the built executable with
+The browser scenario checks card typing, inline math, source preservation,
+automatic saves, the change review, delete, package contents, package status,
+disk changes to the open deck, save conflicts, and failed export preservation. The native scenario runs the built executable with
 disposable deck copies and isolated app data.

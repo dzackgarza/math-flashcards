@@ -35,10 +35,12 @@ destination. The merge moves every card and sends the source file to the desktop
 trash. **New deck** creates an empty deck; empty decks remain valid and can
 receive cards. Splitting a deck is a new deck followed by a move.
 
-Organization saves immediately. **Undo** reverses the last operation. The open
-deck must have no unsaved edits. Both sides, card IDs, tags, and deck metadata
+Organization saves immediately. **Undo** reverses the last operation. Pending
+edits to the open deck save before the operation reads it. Renaming a deck
+writes the new file and removes the old one; deleting a deck sends the file and
+its package to the trash. Both sides, card IDs, tags, and deck metadata
 remain authored Markdown. The open deck contributes the hash it was loaded with,
 so a disk edit after loading rejects the change, as it does for a save. Every
 destination is validated before writes; files are staged, destinations precede
 sources, and write errors restore published files. A generated Anki package
-becomes Unsynced when its source changes.
+becomes out of date when its deck changes.

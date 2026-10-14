@@ -2,12 +2,14 @@ import { useEffect, useMemo, useRef, useState, type MouseEvent } from "react";
 import {
   ActionIcon,
   Alert,
+  Badge,
   Box,
   Button,
   CloseButton,
   Group,
   Kbd,
   Loader,
+  Menu,
   Popover,
   Stack,
   Text,
@@ -33,6 +35,9 @@ import {
   IconChevronRight,
   IconFolder,
   IconFolderOpen,
+  IconListDetails,
+  IconMenu2,
+  IconPencil,
   IconPlus,
   IconRefresh,
   IconSearch,
@@ -57,8 +62,8 @@ import { getCurrentWindow } from "@tauri-apps/api/window";
 import { appConfigDir, join } from "@tauri-apps/api/path";
 import { open } from "@tauri-apps/plugin-dialog";
 import { load } from "@tauri-apps/plugin-store";
-import { watch } from "@tauri-apps/plugin-fs";
 import {
+  cardChanges,
   cards,
   replaceField,
   replaceTags,
@@ -66,31 +71,41 @@ import {
   newCard,
   reorderCards,
   transferCards,
+  type CardChange,
   type CardRange,
 } from "./cards";
 import { type Side, SideEditor } from "./editor";
 import { loadMathJax, previewHtml, type MathJaxRuntime } from "./math";
 import {
   CardRow,
+  DeckNameForm,
   NewDeckForm,
   TreeRow,
   deckName,
   dragSchema,
   targetSchema,
 } from "./organize";
+import { ReviewChanges } from "./review";
 import {
   request,
+  watchWorkspace,
   workspaceSchema,
   documentSchema,
   generatedSchema,
   organizedSchema,
+  reviewSchema,
   type Change,
   type Document,
+  type Pending,
   type Summary,
 } from "./bridge";
 
-type Task = "Idle" | "Loading" | "Saving" | "Generating" | "Organizing";
+type Task = "Idle" | "Loading" | "Generating" | "Organizing";
 type Notice = { label: string; undo: Change[] | null };
+// `scope` is one deck path, or null for every deck.
+type Review = { scope: string | null; decks: Pending[] | null };
+
+const STALE = /changed on disk|changed during|changed before/;
 
 function preferences() {
   return appConfigDir()
@@ -123,6 +138,10 @@ function treeData(decks: Summary[]): TreeNodeData[] {
   return roots;
 }
 
+// The Anki deck name a new deck receives from its path.
+const deckTitle = (path: string) =>
+  JSON.stringify(path.replace(/\.md$/, "").replace(/\//g, "::"));
+
 export default function App() {
   const workspaceForm = useForm({
     mode: "uncontrolled",
@@ -144,13 +163,19 @@ export default function App() {
     back: string;
   } | null>(null);
   const [task, setTask] = useState<Task>("Idle");
+  const [progress, setProgress] = useState("");
   const [buildResult, setBuildResult] = useState<"Ready" | "Failed">("Ready");
   const [error, setError] = useState("");
+  const [conflict, setConflict] = useState(false);
   const [log, setLog] = useState("");
   const [workspaceMenu, setWorkspaceMenu] = useState(false);
   const [cardFilter, setCardFilter] = useState("");
   const [selection, setSelection] = useState<string[]>([]);
   const [notice, setNotice] = useState<Notice | null>(null);
+  const [review, setReview] = useState<Review | null>(null);
+  // The latest document for asynchronous saves and disk events.
+  const current = useRef<Document | null>(null);
+  const saving = useRef<Promise<void>>(Promise.resolve());
   const navigation = useRef(0);
   const anchor = useRef<string | null>(null);
   const deckViewport = useRef<HTMLDivElement>(null);
@@ -173,6 +198,25 @@ export default function App() {
     () => document !== null && document.cards !== cards(document.saved).length,
     [document?.cards, document?.saved],
   );
+  const changes = useMemo<CardChange[]>(() => {
+    if (!document || parsed.error) return [];
+    try {
+      return cardChanges(document.built, document.source);
+    } catch {
+      return [];
+    }
+  }, [document?.built, document?.source, parsed.error]);
+  const changed = useMemo(
+    () => new Map(changes.map((change) => [change.id, change.kind])),
+    [changes],
+  );
+
+  function updateDocument(
+    next: (document: Document | null) => Document | null,
+  ) {
+    current.current = next(current.current);
+    setDocument(current.current);
+  }
 
   async function refresh(root = workspace) {
     if (!root) return;
@@ -181,16 +225,81 @@ export default function App() {
       workspaceSchema,
     );
     setDecks(result.decks);
-    setDocument((current) => {
-      if (!current) return current;
-      const summary = result.decks.find((item) => item.path === current.path);
-      return summary ? { ...current, status: summary.status } : current;
+    updateDocument((open) => {
+      if (!open) return open;
+      const summary = result.decks.find((item) => item.path === open.path);
+      return summary
+        ? { ...open, status: summary.status, reasons: summary.reasons }
+        : open;
     });
   }
 
   const refreshOnChange = useDebouncedCallback(() => {
     refresh().catch((failure) => setError(String(failure)));
-  }, 700);
+  }, 500);
+
+  // Saves queue behind each other, so each one sends the hash the previous
+  // save returned. A deck with invalid card structure stays unsaved.
+  function persist(): Promise<void> {
+    saving.current = saving.current.then(async () => {
+      const open = current.current;
+      if (!open || open.source === open.saved) return;
+      try {
+        cards(open.source);
+      } catch {
+        return;
+      }
+      try {
+        const result = await request(
+          {
+            action: "save",
+            workspace,
+            path: open.path,
+            source: open.source,
+            expected: open.hash,
+          },
+          documentSchema,
+        );
+        updateDocument((document) =>
+          document?.path === open.path
+            ? {
+                ...document,
+                saved: open.source,
+                hash: result.hash,
+                cards: result.cards,
+                status: result.status,
+                reasons: result.reasons,
+                built: result.built,
+              }
+            : document,
+        );
+        setConflict(false);
+      } catch (failure) {
+        if (STALE.test(String(failure))) setConflict(true);
+        else setError(String(failure));
+      }
+    });
+    return saving.current;
+  }
+
+  const autosave = useDebouncedCallback(() => void persist(), 600);
+
+  // Every operation that reads the deck from disk first writes pending edits.
+  async function flush() {
+    autosave.cancel();
+    await persist();
+    const open = current.current;
+    if (open && open.source !== open.saved)
+      throw new Error(
+        "The open deck has edits that are not saved. Resolve them first.",
+      );
+  }
+
+  function guard(action: () => void | Promise<void>) {
+    flush()
+      .then(action)
+      .catch((failure) => setError(String(failure)));
+  }
 
   async function chooseWorkspace(root: string) {
     setTask("Loading");
@@ -204,11 +313,12 @@ export default function App() {
       setWorkspace(result.root);
       workspaceForm.setFieldValue("workspace", result.root);
       setDecks(result.decks);
-      setDocument(null);
+      updateDocument(() => null);
       setSelection([]);
       setNotice(null);
       setDraft(null);
       setLog("");
+      setConflict(false);
       loadMathJax(result.macros).then(setMathjax, (failure) =>
         setError(String(failure)),
       );
@@ -225,19 +335,25 @@ export default function App() {
     }
   }
 
-  function confirmNavigation(action: () => void) {
-    if (!dirty) {
-      action();
-      return;
-    }
-    modals.openConfirmModal({
-      title: "Unsaved changes",
-      children: (
-        <Text>Discard the unsaved changes before leaving this deck?</Text>
+  function showDocument(
+    path: string,
+    result: Omit<Document, "path" | "saved">,
+    cardId?: string,
+  ) {
+    cards(result.source);
+    updateDocument(() => ({ ...result, path, saved: result.source }));
+    const folders = path.split("/").slice(0, -1);
+    folders.forEach((_, depth) =>
+      tree.expand("/" + folders.slice(0, depth + 1).join("/")),
+    );
+    selectCard(
+      Math.max(
+        0,
+        cards(result.source).findIndex((card) => card.id === cardId),
       ),
-      labels: { confirm: "Discard changes", cancel: "Keep editing" },
-      onConfirm: action,
-    });
+      result.source,
+    );
+    setConflict(false);
   }
 
   async function chooseDeck(path: string, cardId?: string) {
@@ -250,20 +366,8 @@ export default function App() {
         documentSchema,
       );
       if (token !== navigation.current) return;
-      cards(result.source);
-      setDocument({ ...result, path, saved: result.source });
+      showDocument(path, result, cardId);
       setSelection([]);
-      const folders = path.split("/").slice(0, -1);
-      folders.forEach((_, depth) =>
-        tree.expand("/" + folders.slice(0, depth + 1).join("/")),
-      );
-      selectCard(
-        Math.max(
-          0,
-          cards(result.source).findIndex((card) => card.id === cardId),
-        ),
-        result.source,
-      );
       setLog("");
       setBuildResult("Ready");
       setCardFilter("");
@@ -273,6 +377,51 @@ export default function App() {
       if (token === navigation.current) setTask("Idle");
     }
   }
+
+  // The open deck follows its file. Pending edits keep priority; their save
+  // reports the conflict.
+  async function followDisk() {
+    await saving.current;
+    const open = current.current;
+    if (!open || open.source !== open.saved) return;
+    const token = navigation.current;
+    const result = await request(
+      { action: "load", workspace, path: open.path },
+      documentSchema,
+    );
+    const latest = current.current;
+    if (
+      token !== navigation.current ||
+      latest?.path !== open.path ||
+      latest.source !== latest.saved
+    )
+      return;
+    if (result.hash === latest.hash) {
+      updateDocument(
+        (document) =>
+          document && {
+            ...document,
+            status: result.status,
+            reasons: result.reasons,
+            built: result.built,
+          },
+      );
+      return;
+    }
+    showDocument(open.path, result, ranges[index]?.id);
+  }
+
+  const followOnChange = useDebouncedCallback(() => {
+    followDisk().catch((failure) => {
+      // A deck removed outside the app closes.
+      if (/No such file|does not exist/.test(String(failure))) {
+        updateDocument(() => null);
+        setDraft(null);
+        return;
+      }
+      setError(String(failure));
+    });
+  }, 300);
 
   useEffect(() => {
     if (!isTauri()) {
@@ -291,7 +440,10 @@ export default function App() {
 
   useEffect(() => {
     const handler = (event: BeforeUnloadEvent) => {
-      if (dirty) event.preventDefault();
+      if (dirty) {
+        void persist();
+        event.preventDefault();
+      }
     };
     window.addEventListener("beforeunload", handler);
     return () => window.removeEventListener("beforeunload", handler);
@@ -306,9 +458,9 @@ export default function App() {
       .onCloseRequested((event) => {
         if (!dirty) return;
         event.preventDefault();
-        confirmNavigation(() => {
-          window.destroy().catch((failure) => setError(String(failure)));
-        });
+        guard(() =>
+          window.destroy().catch((failure) => setError(String(failure))),
+        );
       })
       .then((unlisten) => {
         if (disposed) unlisten();
@@ -322,32 +474,24 @@ export default function App() {
   }, [dirty]);
 
   useEffect(() => {
-    if (!workspace || !isTauri()) return;
+    if (!workspace) return;
     let disposed = false;
     let stop: (() => void) | undefined;
-    watch(
-      workspace,
-      (event) => {
-        // Access events describe reads, not changed inputs: https://v2.tauri.app/reference/javascript/fs/#watcheventkind
-        if (
-          event.type !== "any" &&
-          event.type !== "other" &&
-          "access" in event.type
-        )
-          return;
-        if (
-          !event.paths.some(
-            (path) =>
-              !/(?:^|\/)(?:\.git|node_modules|src-tauri|test-artifacts)(?:\/|$)/.test(
-                path.replace(/\\/g, "/"),
-              ) && !path.includes(".flashcards-"),
-          )
-        )
-          return;
-        refreshOnChange();
-      },
-      { recursive: true, delayMs: 700 },
-    )
+    watchWorkspace(workspace, (paths) => {
+      const relevant = paths
+        .map((path) => path.replace(/\\/g, "/"))
+        .filter(
+          (path) =>
+            !/(?:^|\/)(?:\.git|node_modules|src-tauri|test-artifacts)(?:\/|$)/.test(
+              path,
+            ) && !path.includes(".flashcards-"),
+        );
+      if (!relevant.length) return;
+      refreshOnChange();
+      const open = current.current;
+      if (open && relevant.includes(workspace + "/decks/" + open.path))
+        followOnChange();
+    })
       .then((unwatch) => {
         if (disposed) unwatch();
         else stop = unwatch;
@@ -357,11 +501,12 @@ export default function App() {
       disposed = true;
       stop?.();
     };
-  }, [workspace, refreshOnChange]);
+  }, [workspace, refreshOnChange, followOnChange]);
 
   function edit(source: string) {
     if (!document || document.source === source) return;
-    setDocument((current) => (current ? { ...current, source } : current));
+    updateDocument((open) => (open ? { ...open, source } : open));
+    autosave();
   }
 
   function selectCard(cardIndex: number, source: string) {
@@ -388,60 +533,82 @@ export default function App() {
     edit(source);
   }
 
-  async function save() {
-    if (!document) return;
-    const saving = document;
-    setTask("Saving");
-    setError("");
-    try {
-      const result = await request(
-        {
-          action: "save",
-          workspace,
-          path: saving.path,
-          source: saving.source,
-          expected: saving.hash,
-        },
-        documentSchema,
-      );
-      setDocument((current) =>
-        current?.path === saving.path
-          ? {
-              ...current,
-              saved: saving.source,
-              hash: result.hash,
-              cards: result.cards,
-              status: result.status,
-            }
-          : current,
-      );
-      await refresh();
-    } catch (failure) {
-      setError(String(failure));
-    } finally {
-      setTask("Idle");
-    }
+  // The disk version replaces the edits that could not be saved.
+  function useDiskVersion() {
+    const open = current.current;
+    if (!open) return;
+    updateDocument(
+      (document) => document && { ...document, source: document.saved },
+    );
+    setConflict(false);
+    void chooseDeck(open.path, selected?.id);
   }
 
-  async function generate() {
-    if (!document || dirty) return;
+  // The edits replace the disk version.
+  async function keepMyVersion() {
+    const open = current.current;
+    if (!open) return;
+    const disk = await request(
+      { action: "load", workspace, path: open.path },
+      documentSchema,
+    );
+    updateDocument((document) => document && { ...document, hash: disk.hash });
+    await persist();
+  }
+
+  async function generate(paths: string[]) {
+    await flush();
     setTask("Generating");
     setBuildResult("Ready");
     setError("");
-    setLog("Generating the saved deck…");
-    try {
-      const result = await request(
-        { action: "generate", workspace, path: document.path },
-        generatedSchema,
+    const logs: string[] = [];
+    const failures: string[] = [];
+    for (const [position, path] of paths.entries()) {
+      setProgress(
+        paths.length === 1
+          ? "Updating the Anki package…"
+          : `Updating Anki package ${position + 1} of ${paths.length}…`,
       );
-      setLog(result.log);
-      await refresh();
+      try {
+        const result = await request(
+          { action: "generate", workspace, path },
+          generatedSchema,
+        );
+        logs.push(deckName(path) + "\n" + result.log);
+      } catch (failure) {
+        failures.push(deckName(path) + ": " + String(failure));
+        if (path === current.current?.path) setBuildResult("Failed");
+      }
+    }
+    setLog([...logs, ...failures].join("\n\n"));
+    if (failures.length) setError(failures.join("\n\n"));
+    setProgress("");
+    setTask("Idle");
+    await refresh();
+    await followDisk();
+  }
+
+  async function openReview(scope: string | null) {
+    setReview({ scope, decks: null });
+    try {
+      await flush();
+      const result = await request(
+        { action: "review", workspace },
+        reviewSchema,
+      );
+      setReview((open) =>
+        open && open.scope === scope
+          ? {
+              scope,
+              decks: result.decks.filter(
+                (deck) => scope === null || deck.path === scope,
+              ),
+            }
+          : open,
+      );
     } catch (failure) {
+      setReview(null);
       setError(String(failure));
-      setLog(String(failure));
-      setBuildResult("Failed");
-    } finally {
-      setTask("Idle");
     }
   }
 
@@ -470,7 +637,8 @@ export default function App() {
   // The open deck supplies the hash it was loaded with, so a disk edit after
   // loading rejects the change, as it does for a save.
   async function loadDeck(path: string) {
-    if (document?.path === path) return document;
+    const open = current.current;
+    if (open?.path === path) return open;
     return request({ action: "load", workspace, path }, documentSchema);
   }
 
@@ -482,10 +650,8 @@ export default function App() {
     label: string,
     focus?: string,
   ) {
-    const open = document?.path;
+    const open = current.current?.path;
     const touched = changes.some((change) => change.path === open);
-    if (dirty && touched)
-      throw new Error("Save or reload " + deckName(open!) + " first.");
     setTask("Organizing");
     setError("");
     const result = await request(
@@ -500,7 +666,7 @@ export default function App() {
     if (next && !removed.includes(next)) await chooseDeck(next, selected?.id);
     else if (touched) {
       navigation.current++;
-      setDocument(null);
+      updateDocument(() => null);
       setDraft(null);
       setSelection([]);
     }
@@ -523,6 +689,7 @@ export default function App() {
     target: string,
     before?: string,
   ) {
+    await flush();
     const origin = await loadDeck(path);
     if (path === target) {
       const order = cards(origin.source).map((card) => card.id);
@@ -564,6 +731,7 @@ export default function App() {
   }
 
   async function mergeDecks(path: string, target: string) {
+    await flush();
     const origin = await loadDeck(path);
     const receiver = await loadDeck(target);
     const ids = cards(origin.source).map((card) => card.id);
@@ -583,34 +751,102 @@ export default function App() {
       ],
       { [path]: origin.source, [target]: receiver.source },
       deckName(path) + " merged into " + deckName(target) + ".",
-      document?.path === path ? target : undefined,
+      current.current?.path === path ? target : undefined,
     );
   }
 
-  function createDeck() {
-    const folder = document?.path.split("/").slice(0, -1).join("/") ?? "";
+  function createDeck(folder?: string) {
     const id = modals.open({
       title: "New deck",
       children: (
         <NewDeckForm
-          folder={folder}
+          folder={
+            folder ?? document?.path.split("/").slice(0, -1).join("/") ?? ""
+          }
           submit={(path) => {
             modals.close(id);
-            const source =
-              "---\ntitle: " +
-              JSON.stringify(path.replace(/\.md$/, "").replace(/\//g, "::")) +
-              "\n---\n\n";
-            confirmNavigation(() => {
+            guard(() =>
               organize(
-                [{ path, source, expected: null }],
+                [
+                  {
+                    path,
+                    source: "---\ntitle: " + deckTitle(path) + "\n---\n\n",
+                    expected: null,
+                  },
+                ],
                 { [path]: null },
                 deckName(path) + " created.",
                 path,
-              ).catch((failure) => setError(String(failure)));
+              ),
+            );
+          }}
+        />
+      ),
+    });
+  }
+
+  function renameDeck(path: string) {
+    const id = modals.open({
+      title: "Rename deck",
+      children: (
+        <DeckNameForm
+          name={deckName(path)}
+          taken={(name) =>
+            decks.some(
+              (deck) =>
+                deck.path ===
+                [...path.split("/").slice(0, -1), name + ".md"].join("/"),
+            )
+          }
+          submit={(name) => {
+            modals.close(id);
+            const next = [...path.split("/").slice(0, -1), name + ".md"].join(
+              "/",
+            );
+            if (next === path) return;
+            guard(async () => {
+              const origin = await loadDeck(path);
+              // A title derived from the old path follows the new path.
+              const header =
+                /^---\n[\s\S]*?\n---\n/.exec(origin.source)?.[0] ?? "";
+              const source =
+                header.replace(
+                  "title: " + deckTitle(path) + "\n",
+                  "title: " + deckTitle(next) + "\n",
+                ) + origin.source.slice(header.length);
+              await organize(
+                [
+                  { path: next, source, expected: null },
+                  { path, source: null, expected: origin.hash },
+                ],
+                { [path]: origin.source, [next]: null },
+                deckName(path) + " renamed to " + name + ".",
+                current.current?.path === path ? next : undefined,
+              );
             });
           }}
         />
       ),
+    });
+  }
+
+  function deleteDeck(path: string) {
+    modals.openConfirmModal({
+      title: "Delete deck",
+      children: (
+        <Text>Send {deckName(path)} and its Anki package to the trash?</Text>
+      ),
+      labels: { confirm: "Delete deck", cancel: "Cancel" },
+      confirmProps: { color: "red" },
+      onConfirm: () =>
+        guard(async () => {
+          const origin = await loadDeck(path);
+          await organize(
+            [{ path, source: null, expected: origin.hash }],
+            { [path]: origin.source },
+            deckName(path) + " sent to the trash.",
+          );
+        }),
     });
   }
 
@@ -702,27 +938,45 @@ export default function App() {
     [document !== null],
   );
 
-  const packageState =
+  const pendingDecks = decks.filter((deck) => deck.status === "Unsynced");
+  // One status: the editor's save state first, then the package.
+  const status =
     task === "Generating"
-      ? "Generating"
+      ? progress
       : buildResult === "Failed"
-        ? "Failed"
-        : dirty
-          ? "Unsynced"
-          : document?.status;
-  // One status: unsaved source first, then the package.
-  const status = dirty ? "Unsaved changes" : packageState;
+        ? "Generation failed"
+        : parsed.error
+          ? "Not saved: the card structure is invalid"
+          : conflict
+            ? "Not saved: the deck changed on disk"
+            : dirty
+              ? "Saving…"
+              : document?.status === "Up to date"
+                ? "Anki package up to date"
+                : document?.status === "Empty"
+                  ? "No cards to export"
+                  : changes.length
+                    ? changes.length +
+                      (changes.length === 1 ? " change" : " changes") +
+                      " not in the Anki package"
+                    : (document?.reasons[0] ?? "");
   const tone =
-    status === "Up to date"
-      ? "synced"
-      : status === "Failed"
-        ? "failed"
-        : status === "Generating"
-          ? "working"
-          : "pending";
+    buildResult === "Failed" || parsed.error || conflict
+      ? "failed"
+      : task === "Generating" || dirty
+        ? "working"
+        : document?.status === "Up to date"
+          ? "synced"
+          : document?.status === "Empty"
+            ? "empty"
+            : "pending";
   const blocked = busy || mismatch || !!parsed.error;
-  const canSave = dirty && !blocked;
-  const canGenerate = document !== null && !dirty && !blocked;
+  const canGenerate =
+    document !== null &&
+    document.status === "Unsynced" &&
+    !dirty &&
+    !blocked &&
+    !conflict;
   const previews = useMemo(
     () =>
       mathjax
@@ -738,25 +992,12 @@ export default function App() {
     [decks],
   );
 
-  useHotkeys(
-    [
-      [
-        "mod+S",
-        () => {
-          if (canSave) void save();
-        },
-      ],
-    ],
-    [],
-    true,
-  );
+  useHotkeys([["mod+S", () => guard(() => {})]], [], true);
 
   function openWorkspace() {
     if (workspaceForm.validate().hasErrors) return;
     setWorkspaceMenu(false);
-    confirmNavigation(() => {
-      void chooseWorkspace(workspaceForm.getValues().workspace);
-    });
+    guard(() => chooseWorkspace(workspaceForm.getValues().workspace));
   }
 
   function refreshWorkspace() {
@@ -776,26 +1017,32 @@ export default function App() {
                 onClick: addCard,
               },
               {
-                id: "save",
-                label: "Save deck",
-                disabled: !canSave,
-                onClick: () => void save(),
-              },
-              {
                 id: "generate",
-                label: "Generate Anki deck",
+                label: "Update this Anki package",
                 disabled: !canGenerate,
-                onClick: () => void generate(),
+                onClick: () => guard(() => generate([document.path])),
               },
             ]
           : []),
         ...(workspace
           ? [
               {
+                id: "review",
+                label: "Review changes not in Anki packages",
+                onClick: () => void openReview(null),
+              },
+              {
+                id: "generate-all",
+                label: "Update all Anki packages",
+                disabled: busy || pendingDecks.length === 0,
+                onClick: () =>
+                  guard(() => generate(pendingDecks.map((deck) => deck.path))),
+              },
+              {
                 id: "new-deck",
                 label: "New deck",
                 disabled: busy,
-                onClick: createDeck,
+                onClick: () => createDeck(),
               },
               {
                 id: "refresh",
@@ -813,10 +1060,7 @@ export default function App() {
         id: "deck:" + deck.path,
         label: deckName(deck.path),
         description: deck.path.split("/").slice(0, -1).join(" / "),
-        onClick: () =>
-          confirmNavigation(() => {
-            void chooseDeck(deck.path);
-          }),
+        onClick: () => guard(() => chooseDeck(deck.path)),
       })),
     },
     {
@@ -833,6 +1077,44 @@ export default function App() {
         : [],
     },
   ];
+
+  function deckMenuItems(path: string) {
+    const unsynced = statuses.get(path) === "Unsynced";
+    return (
+      <>
+        <Menu.Item
+          leftSection={<IconRefresh size={16} />}
+          disabled={!unsynced || busy}
+          onClick={() => guard(() => generate([path]))}
+        >
+          Update Anki package
+        </Menu.Item>
+        <Menu.Item
+          leftSection={<IconListDetails size={16} />}
+          disabled={!unsynced}
+          onClick={() => void openReview(path)}
+        >
+          Review changes
+        </Menu.Item>
+        <Menu.Divider />
+        <Menu.Item
+          leftSection={<IconPencil size={16} />}
+          disabled={busy}
+          onClick={() => renameDeck(path)}
+        >
+          Rename deck…
+        </Menu.Item>
+        <Menu.Item
+          color="red"
+          leftSection={<IconTrash size={16} />}
+          disabled={busy}
+          onClick={() => deleteDeck(path)}
+        >
+          Delete deck…
+        </Menu.Item>
+      </>
+    );
+  }
 
   return (
     <div className="app">
@@ -887,9 +1169,7 @@ export default function App() {
                       });
                       if (!selectedFolder) return;
                       setWorkspaceMenu(false);
-                      confirmNavigation(() => {
-                        void chooseWorkspace(selectedFolder);
-                      });
+                      guard(() => chooseWorkspace(selectedFolder));
                     }}
                   >
                     Browse
@@ -921,40 +1201,62 @@ export default function App() {
           <Tree
             data={data}
             tree={tree}
-            levelOffset={14}
-            renderNode={({ node, expanded, hasChildren, elementProps }) => (
-              <TreeRow
-                {...elementProps}
-                path={node.value.slice(1)}
-                folder={hasChildren}
-                disabled={busy}
-                expand={() => tree.expand(node.value)}
-                data-active={
-                  document?.path === node.value.slice(1) || undefined
-                }
-                onClick={(event) => {
-                  elementProps.onClick?.(event);
-                  if (!hasChildren && !busy)
-                    confirmNavigation(() => {
-                      void chooseDeck(node.value.slice(1));
-                    });
-                }}
-              >
-                {hasChildren ? (
-                  <IconChevronRight
-                    size={14}
-                    className={"tree-chevron" + (expanded ? " open" : "")}
-                  />
-                ) : (
-                  <IconCards size={15} stroke={1.75} className="tree-icon" />
-                )}
-                <span className="tree-label">{node.label}</span>
-                {!hasChildren &&
-                  statuses.get(node.value.slice(1)) === "Unsynced" && (
-                    <span className="tree-dot" aria-hidden />
-                  )}
-              </TreeRow>
-            )}
+            levelOffset={16}
+            renderNode={({ node, expanded, hasChildren, elementProps }) => {
+              const path = node.value.slice(1);
+              return (
+                <Menu position="bottom-start" shadow="md" width={220}>
+                  <Menu.ContextMenu>
+                    <TreeRow
+                      {...elementProps}
+                      path={path}
+                      folder={hasChildren}
+                      disabled={busy}
+                      expand={() => tree.expand(node.value)}
+                      data-active={document?.path === path || undefined}
+                      onClick={(event) => {
+                        elementProps.onClick?.(event);
+                        if (!hasChildren && !busy)
+                          guard(() => chooseDeck(path));
+                      }}
+                    >
+                      {hasChildren ? (
+                        <IconChevronRight
+                          size={14}
+                          className={"tree-chevron" + (expanded ? " open" : "")}
+                        />
+                      ) : (
+                        <IconCards
+                          size={15}
+                          stroke={1.75}
+                          className="tree-icon"
+                        />
+                      )}
+                      <span className="tree-label">{node.label}</span>
+                      {!hasChildren && statuses.get(path) === "Unsynced" && (
+                        <span
+                          className="tree-dot"
+                          title="The Anki package is out of date"
+                        />
+                      )}
+                    </TreeRow>
+                  </Menu.ContextMenu>
+                  <Menu.Dropdown>
+                    {hasChildren ? (
+                      <Menu.Item
+                        leftSection={<IconPlus size={16} />}
+                        disabled={busy}
+                        onClick={() => createDeck(path)}
+                      >
+                        New deck in this folder…
+                      </Menu.Item>
+                    ) : (
+                      deckMenuItems(path)
+                    )}
+                  </Menu.Dropdown>
+                </Menu>
+              );
+            }}
           />
           {workspace && decks.length === 0 && (
             <Text c="dimmed" size="sm" px="xs">
@@ -962,16 +1264,33 @@ export default function App() {
             </Text>
           )}
         </div>
-        <Button
-          variant="subtle"
-          color="gray"
-          justify="flex-start"
-          leftSection={<IconPlus size={16} />}
-          disabled={!workspace || busy}
-          onClick={createDeck}
-        >
-          New deck
-        </Button>
+        <Stack gap={4}>
+          {pendingDecks.length > 0 && (
+            <Button
+              variant="light"
+              justify="space-between"
+              aria-label="Review and update Anki packages"
+              rightSection={
+                <Badge size="sm" variant="filled" color="orange">
+                  {pendingDecks.length}
+                </Badge>
+              }
+              onClick={() => void openReview(null)}
+            >
+              Update Anki packages
+            </Button>
+          )}
+          <Button
+            variant="subtle"
+            color="gray"
+            justify="flex-start"
+            leftSection={<IconPlus size={16} />}
+            disabled={!workspace || busy}
+            onClick={() => createDeck()}
+          >
+            New deck
+          </Button>
+        </Stack>
       </aside>
       <div className="content">
         {error && (
@@ -980,6 +1299,7 @@ export default function App() {
             color="red"
             title="Action failed"
             withCloseButton
+            closeButtonLabel="Dismiss error"
             onClose={() => setError("")}
           >
             <Text
@@ -988,6 +1308,32 @@ export default function App() {
             >
               {error}
             </Text>
+          </Alert>
+        )}
+        {conflict && (
+          <Alert
+            className="banner"
+            color="orange"
+            title="The deck changed on disk while you edited it"
+          >
+            <Text size="sm">
+              Another program changed this deck file, so your latest edits are
+              not saved yet.
+            </Text>
+            <Group gap="xs" mt="sm">
+              <Button size="xs" variant="default" onClick={useDiskVersion}>
+                Use the disk version
+              </Button>
+              <Button
+                size="xs"
+                color="orange"
+                onClick={() =>
+                  keepMyVersion().catch((failure) => setError(String(failure)))
+                }
+              >
+                Keep my version
+              </Button>
+            </Group>
           </Alert>
         )}
         {!document ? (
@@ -1059,66 +1405,63 @@ export default function App() {
                         path={document.path}
                         label={range.label}
                         preview={previews?.[cardIndex] ?? null}
+                        change={changed.get(range.id) ?? null}
                         active={index === cardIndex}
                         selected={selection.includes(range.id)}
                         group={ranges
                           .map((card) => card.id)
                           .filter((id) => selection.includes(id))}
-                        disabled={busy || dirty || !!parsed.error}
+                        disabled={busy || !!parsed.error || conflict}
                         choose={(event) => chooseRow(range.id, event)}
                       />
                     ),
                 )}
               </div>
               <Text className="column-foot" size="sm" c="dimmed">
-                {dirty
-                  ? "Save the deck to move its cards."
-                  : "Drag cards to reorder them, or onto a deck to move them. Ctrl-click or Shift-click selects several."}
+                Drag cards to reorder them, or onto a deck to move them.
+                Ctrl-click or Shift-click selects several.
               </Text>
             </section>
             <main className="editor-column">
               <header className="toolbar">
-                <Group
-                  gap={8}
-                  wrap="nowrap"
+                <UnstyledButton
                   className="status"
-                  title={document.package}
+                  title={document.reasons.join("\n") || document.package}
+                  disabled={document.status !== "Unsynced" || busy}
+                  onClick={() => void openReview(document.path)}
                 >
                   <span className={"status-dot " + tone} aria-hidden />
-                  <Text size="sm" fw={500}>
+                  <Text size="sm" fw={500} component="span">
                     {status}
                   </Text>
-                </Group>
-                <Group gap="xs" wrap="nowrap">
-                  <Button
-                    variant="subtle"
-                    color="gray"
-                    leftSection={<IconRefresh size={16} />}
-                    disabled={busy}
-                    onClick={() =>
-                      confirmNavigation(() => {
-                        void chooseDeck(document.path);
-                      })
-                    }
-                  >
-                    Reload deck
-                  </Button>
-                  <Button
-                    variant="default"
-                    onClick={save}
-                    disabled={!canSave}
-                    loading={task === "Saving"}
-                  >
-                    Save deck
-                  </Button>
-                  <Button
-                    onClick={generate}
-                    disabled={!canGenerate}
-                    loading={task === "Generating"}
-                  >
-                    Generate Anki deck
-                  </Button>
-                </Group>
+                </UnstyledButton>
+                <Menu position="bottom-end" shadow="md" width={240}>
+                  <Menu.Target>
+                    <ActionIcon
+                      variant="subtle"
+                      color="gray"
+                      size="lg"
+                      aria-label="Deck actions"
+                    >
+                      <IconMenu2 size={18} />
+                    </ActionIcon>
+                  </Menu.Target>
+                  <Menu.Dropdown>
+                    {deckMenuItems(document.path)}
+                    <Menu.Divider />
+                    <Menu.Item
+                      leftSection={<IconRefresh size={16} />}
+                      disabled={busy || pendingDecks.length === 0}
+                      onClick={() =>
+                        guard(() =>
+                          generate(pendingDecks.map((deck) => deck.path)),
+                        )
+                      }
+                    >
+                      Update all Anki packages
+                    </Menu.Item>
+                  </Menu.Dropdown>
+                </Menu>
               </header>
               <div className="editor-scroll">
                 <div className="card-stage">
@@ -1129,8 +1472,8 @@ export default function App() {
                   )}
                   {mismatch && (
                     <Alert color="red" title="Card structure differs">
-                      The editor and exporter found different card pairs. Reload
-                      the deck before saving.
+                      The editor and exporter found different card pairs.
+                      Correct the deck file outside the app.
                     </Alert>
                   )}
                   {draft ? (
@@ -1218,9 +1561,7 @@ export default function App() {
               leftSection={<IconArrowBackUp size={16} />}
               disabled={busy}
               onClick={() =>
-                organize(notice.undo!, null, "Undo complete.").catch(
-                  (failure) => setError(String(failure)),
-                )
+                guard(() => organize(notice.undo!, null, "Undo complete."))
               }
             >
               Undo
@@ -1235,6 +1576,21 @@ export default function App() {
           />
         </div>
       )}
+      <ReviewChanges
+        decks={review?.decks ?? null}
+        mathjax={mathjax}
+        opened={review !== null}
+        busy={busy}
+        close={() => setReview(null)}
+        openCard={(path, id) => {
+          setReview(null);
+          guard(() => chooseDeck(path, id));
+        }}
+        update={(paths) => {
+          setReview(null);
+          guard(() => generate(paths));
+        }}
+      />
       <Spotlight
         actions={commands}
         limit={40}
