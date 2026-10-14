@@ -186,7 +186,7 @@ What is the **geometric genus** in full generality?
 :::
 
 ::: {.back card-id="card-2578e6e4881e953d"}
-$p_g(X) \coloneqq h^{n, 0}(X) \coloneqq H^0(\omega_X)$, the number of linearly-independent top forms.
+$p_g(X) \coloneqq h^{n, 0}(X) \coloneqq h^0(\omega_X)$, the number of linearly-independent top forms.
 :::
 
 ::: {.front card-id="card-037ffa2cb5372691"}
@@ -222,22 +222,18 @@ For $f:X\to Y$, embed $X$ as a locally closed subscheme $X\hookrightarrow W \col
 :::
 
 ::: {.front card-id="card-8c48673ca22f6b18"}
-What are the two SESs for sheaves of differentials?
+What are the two exact sequences for sheaves (modules) of differentials?
 :::
 
 ::: {.back card-id="card-8c48673ca22f6b18"}
-For $X \xrightarrow{f} Y \xrightarrow{g} Z$,
-$$f^* \Omega_{Y / Z} \rightarrow \Omega_{X / Z} \rightarrow \Omega_{X / Y} \rightarrow 0$$
-. For $f:X\to Y$ and $Z\leq X$ a closed subscheme with ideal sheaf ${\mathcal{I}}$,
-$$\mathscr{I} / \mathscr{I}^2 \stackrel{\delta}{\rightarrow} \Omega_{X / Y} \otimes \mathcal{O}_Z \rightarrow \Omega_{Z / Y} \rightarrow 0$$
-:::
-
-::: {.front card-id="card-5f3e42595989e5b5"}
-What is the **geometric genus** and the **arithmetic genus** for curves and for general schemes?
-:::
-
-::: {.back card-id="card-5f3e42595989e5b5"}
-For a smooth projective curve, $p_a(X) = h^1({\mathcal{O}}_X)$ and $p_g(X) =h^0(\omega_X)$. More generally, $p_a(X) \coloneqq(-1)^{\dim X} (\chi({\mathcal{O}}_X)-1)$ and $p_g(X) = h^0(\Omega_{X/k})$
+The composition exact sequence: for $X \xrightarrow{f} Y \xrightarrow{g} Z$,
+$$f^* \Omega_{Y / Z} \rightarrow \Omega_{X / Z} \rightarrow \Omega_{X / Y} \rightarrow 0.$$
+For modules: for $A\to B\to C$,
+$$\Omega_{B / A} \otimes_B C \rightarrow \Omega_{C / A} \rightarrow \Omega_{C / B} \rightarrow 0 \in   {}_{C}{\mathsf{Mod}}$$
+The "conormal" exact sequence: for $X\to Y$ and $Z\leq X$ a closed subscheme with ideal sheaf ${\mathcal{I}}$,
+$$\mathscr{I} / \mathscr{I}^2 \stackrel{\delta}{\rightarrow} \Omega_{X / Y} \otimes \mathcal{O}_Z \rightarrow \Omega_{Z / Y} \rightarrow 0.$$
+For modules: for $B\in  \mathsf{Alg}_{A}, I{~\trianglelefteq~}B, C\coloneqq B/I$,
+$$I / I^2 \stackrel{\delta}{\rightarrow} \Omega_{B / A} \otimes_B C \rightarrow \Omega_{C / A} \rightarrow 0\in   {}_{C}{\mathsf{Mod}}$$
 :::
 
 ::: {.front card-id="card-213db50f27de0ed0"}
@@ -384,19 +380,23 @@ When is an invertible sheaf ample?
 :::
 
 ::: {.back card-id="card-847e440e17d15caf"}
-For $A$ Noetherian and $X\in {\mathsf{Sch}}_{/ {A}}$ proper, ${\mathcal{L}}$ is ample $\iff \forall {\mathcal{F}}\in {\mathsf{Coh}}(X)$ one has $H^i({\mathcal{L}}\otimes{\mathcal{F}}^n) = 0$ for $n\gg 0$ and every $i$.
+For $A$ Noetherian and $X\in {\mathsf{Sch}}_{/ {A}}$ proper, ${\mathcal{L}}$ is ample $\iff \forall {\mathcal{F}}\in {\mathsf{Coh}}(X)$ one has $H^i({\mathcal{F}}\otimes{\mathcal{L}}^n) = 0$ for $n\gg 0$ and every $i > 0$.
 :::
 
-::: {.front card-id="card-24f0f5d5999e4fbf"}
-What is **Serre duality**?
+::: {.front card-id="card-24f0f5d5999e4fbf" tags="definition"}
+What is **Serre duality**? What is the dualizing sheaf?
 :::
 
 ::: {.back card-id="card-24f0f5d5999e4fbf"}
-For $X$ smooth proper of dimension $n$ and ${\mathcal{L}}\in {\mathsf{Coh}}(X)$ there is a perfect pairing
-$$ H^i(X;{\mathcal{L}}) \otimes H^{n-i}(X; {\mathcal{K}}\otimes{\mathcal{L}} {}^{ \vee }) \to H^n(X;{\mathcal{K}}) \cong {\mathbf{C}}\implies H^i(X;{\mathcal{L}}) \cong H^{n-i}(X; {\mathcal{K}}\otimes{\mathcal{L}} {}^{ \vee }) {}^{ \vee }$$
-For curves
-$$H^0(C; {\mathcal{L}}) \cong H^1(C; {\mathcal{K}}\otimes{\mathcal{L}} {}^{ \vee }) {}^{ \vee }$$
-Consequence for Hodge numbers:
+For a smooth proper connected curve $X/k$, the dualizing sheaf is $\omega_X=\Omega^1_{X/k}$; for $X$ smooth proper of dimension $n$ it is ${\mathcal{K}} = \omega_X = \Omega^n_{X/k}$.
+
+For $X$ smooth proper of dimension $n$ and ${\mathcal{L}}$ locally free there is a perfect pairing
+$$ H^i(X;{\mathcal{L}}) \otimes H^{n-i}(X; {\mathcal{K}}\otimes{\mathcal{L}} {}^{ \vee }) \to H^n(X;{\mathcal{K}}) \cong k\implies H^i(X;{\mathcal{L}}) \cong H^{n-i}(X; {\mathcal{K}}\otimes{\mathcal{L}} {}^{ \vee }) {}^{ \vee }$$
+For ${\mathcal{F}}\in {\mathsf{Coh}}(X)$ in general, it pairs $H^i(X,{\mathcal{F}})$ with $\operatorname{Ext}^{n-i}({\mathcal{F}},\omega_X)$.
+
+For curves and every invertible sheaf $L$,
+$$H^0(C; {\mathcal{L}}) \cong H^1(C; {\mathcal{K}}\otimes{\mathcal{L}} {}^{ \vee }) {}^{ \vee }, \qquad H^1(C,L)^\vee\cong H^0(C,\omega_C\otimes L^{-1}).$$
+Consequence for dimensions:
 $$h^i(X; {\mathcal{L}}) = h^{n-i}(X; {\mathcal{K}}\otimes{\mathcal{L}} {}^{ \vee }),\qquad \chi(X; {\mathcal{L}}) = (-1)^n \chi(X; {\mathcal{K}}\otimes{\mathcal{L}} {}^{ \vee })$$
 :::
 
@@ -414,16 +414,22 @@ What is the **exponential exact sequence**?
 
 ::: {.back card-id="card-822818bff1088759"}
 $$2\pi i {\mathbf{Z}}\hookrightarrow{\mathcal{O}}_X \twoheadrightarrow{\mathcal{O}}_X^{\times}$$
-Since $H^1({\mathcal{O}}_X) = \operatorname{Pic}(X)$, $\delta^1 = c_1({-}) \in H^2(2\pi i {\mathbf{Z}})$ is the first Chern class.
+Since $H^1({\mathcal{O}}_X^{\times}) = \operatorname{Pic}(X)$, $\delta^1 = c_1({-}) \in H^2(2\pi i {\mathbf{Z}})$ is the first Chern class.
 :::
 
 ::: {.front card-id="card-1f21f65d8810cd17"}
-What is the **conormal exact sequence**?
+What is the **conormal exact sequence**, e.g. for an immersion $C\hookrightarrow S$?
 :::
 
 ::: {.back card-id="card-1f21f65d8810cd17"}
-How to derive:
-$${\mathbf{T}}_X \hookrightarrow{\mathbf{T}}_Y \twoheadrightarrow N_{X/Y} \quad\underset{\text{dualize}}{\leadsto}\quad N_{X/Y} {}^{ \vee }\to j^*\Omega_{Y/Z} \twoheadrightarrow\Omega_{X/Z}.$$
+How to derive: for a closed immersion $j: X\hookrightarrow Y$ of smooth varieties,
+$${\mathbf{T}}_X \hookrightarrow j^*{\mathbf{T}}_Y \twoheadrightarrow N_{X/Y} \quad\underset{\text{dualize}}{\leadsto}\quad N_{X/Y} {}^{ \vee }\to j^*\Omega_{Y/Z} \twoheadrightarrow\Omega_{X/Z}\to 0.$$
+At the level of sheaves on $C$, for $\iota: C\hookrightarrow S$,
+$$N_{C/S} {}^{ \vee }\to \iota^*\Omega_{S/k} \twoheadrightarrow\Omega_{C/k}\to 0 \qquad \in {\mathsf{Sh}}(C)$$
+where $N_{C/S} {}^{ \vee }\coloneqq I_C/I_C^2$ (the first map is injective when $C$ and $S$ are smooth). This is a sheaf version of: if $B\in  \mathsf{Alg}_{R}$ and $I {~\trianglelefteq~}B$,
+$$I/I^2 \to \Omega_{B/R}\otimes_B B/I \twoheadrightarrow\Omega_{(B/I)/R}\to 0 \qquad\in  {}_{B/I}{\mathsf{Mod}}$$
+For $C \subseteq S$ a closed subscheme and $f:S\to T$, can rewrite this as
+$$ {\mathcal{I}}_C / {\mathcal{I}}_C^2 \to \Omega_{S/T} \otimes{\mathcal{O}}_C \twoheadrightarrow\Omega_{C/T}\to 0 \qquad \in {\mathsf{Sh}}_C$$
 :::
 
 ::: {.front card-id="card-25c14144c18e5ef3"}
@@ -443,17 +449,6 @@ What is $\omega_X$ for $X = {\mathbf{P}}^n_{/ {A}}$? Derive it.
 Take determinants in the Euler exact sequence $\Omega^1_{X}\hookrightarrow{\mathcal{O}}_X(-1){ {}^{ \scriptscriptstyle\oplus^{n+1} }  }\twoheadrightarrow{\mathcal{O}}_X$ to get $\operatorname{det}{\mathcal{O}}_X(-1){ {}^{ \scriptscriptstyle\oplus^{n+1} }  } = \omega_X \otimes{\mathcal{O}}_X = \omega_X$ and so $\omega_X = {\mathcal{O}}_X(-(n+1))$.
 :::
 
-::: {.front card-id="card-37dc6345919da7f9"}
-What are the two main exact sequences for modules of algebraic differentials?
-:::
-
-::: {.back card-id="card-37dc6345919da7f9"}
-The composition exact sequence: for $A\to B\to C$,
-$$\Omega_{B / A} \otimes_B C \rightarrow \Omega_{C / A} \rightarrow \Omega_{C / B} \rightarrow 0 \in   {}_{C}{\mathsf{Mod}}$$
-The "conormal" exact sequence: for $B\in  \mathsf{Alg}_{A}, I{~\trianglelefteq~}B, C\coloneqq B/I$,
-$$I / I^2 \stackrel{\delta}{\rightarrow} \Omega_{B / A} \otimes_B C \rightarrow \Omega_{C / A} \rightarrow 0\in   {}_{C}{\mathsf{Mod}}$$
-:::
-
 ::: {.front card-id="card-884b60a5d4ee268a"}
 What is the composition exact sequence for $X\to Y\to Z$?
 :::
@@ -462,19 +457,6 @@ What is the composition exact sequence for $X\to Y\to Z$?
 At the level of sheaves,
 $$f^* \Omega_{Y/Z} \to \Omega_{X/Z} \to \Omega_{X/Y} \to 0 \qquad \in {\mathsf{Sh}}_X$$
 How to remember:
-:::
-
-::: {.front card-id="card-80827d05561a93ed"}
-What is the conormal exact sequence for an immersion $C\hookrightarrow S$?
-:::
-
-::: {.back card-id="card-80827d05561a93ed"}
-At the level of sheaves on $C$, for $\iota: C\hookrightarrow S$,
-$$N_{C/S} {}^{ \vee }\to \iota^*\Omega_{S/k} \twoheadrightarrow\Omega_{C/k}\to 0 \qquad \in {\mathsf{Sh}}(C)$$
-where $N_{C/S} {}^{ \vee }\coloneqq I_C/I_C^2$ which is a sheaf version of: if $C,S\in   {}_{R}{\mathsf{Mod}}$ with $\iota: C\twoheadrightarrow S$ a surjection with kernel $I$
-$$I/I^2 \to \Omega_{C/R}\otimes_R S \twoheadrightarrow\Omega_{S/R}\to 0 \qquad\in  {}_{S}{\mathsf{Mod}}$$
-For $C \subseteq S$ a closed subscheme and $f:S\to T$, can rewrite this as
-$$ {\mathcal{I}}_C / {\mathcal{I}}_C^2 \to \Omega_{S/T} \otimes{\mathcal{O}}_C \twoheadrightarrow\Omega_{C/T}\to 0 \qquad \in {\mathsf{Sh}}_C$$
 :::
 
 ::: {.front card-id="card-00941d78f8260900"}
@@ -500,14 +482,6 @@ Show that a smooth plane curve of degree $d\geq 4$ is not rational.
 
 ::: {.back card-id="card-a167931134065e17"}
 $\omega_X = {\mathcal{O}}_X(d-3)$ and $d-3>0$ so $p_g(X) > 0$, and a curve is rational iff $p_g(X) = 0$.
-:::
-
-::: {.front card-id="card-594fc45f771e7003" tags="definition"}
-What is: Dualizing sheaf and Serre duality
-:::
-
-::: {.back card-id="card-594fc45f771e7003"}
-For a smooth proper connected curve $X/k$, the dualizing sheaf is $\omega_X=\Omega^1_{X/k}$. Serre duality gives $H^1(X,L)^\vee\cong H^0(X,\omega_X\otimes L^{-1})$ for every invertible sheaf $L$. In dimension $n$, it pairs $H^i(X,F)$ with $\operatorname{Ext}^{n-i}(F,\omega_X)$.
 :::
 
 ::: {.front card-id="card-65cfb8efb1626b1d" tags="definition"}

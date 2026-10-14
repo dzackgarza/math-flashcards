@@ -19,23 +19,25 @@ For$X$ normal projective and $D\in {\mathbf{Q}}{\hbox{-}}\operatorname{Div}(X)$,
 $$\kappa(X, D)\coloneqq\limsup _{m \in {\mathbf{Z}}_{\geq 0}} \frac{\log \left(h^0\left(\mathcal{O}_X(m D)\right)\right)}{\log m}$$
 Equivalently, the Iitaka dimension of the canonical
 $$\kappa(X) \coloneqq\kappa(X; \omega_X)$$
-Interpret as $P_m(X) \sim m^{\kappa(x)}$ (bounded above and below by constant multiples).
+Concretely: $\kappa(X) \coloneqq-\infty$ if $P_d(X) = 0$ for all $d>0$, otherwise $\kappa(X) = \min \left\{{k \in {\mathbf{Z}}{~\mathrel{\Big\vert}~}{P_d\over d^k} \leq { \mathsf{O}}(1) }\right\}$ (i.e. the minimal $k$ so that $P_d(X) \in { \mathsf{O}}(d^k)$). Interpret as $P_m(X) \sim m^{\kappa(x)}$ (bounded above and below by constant multiples, for $m$ sufficiently divisible). Generally $\kappa(X) \in \left\{{-\infty}\right\}\cup\left\{{0, 1, \cdots, \dim X}\right\}$.
 :::
 
 ::: {.front card-id="card-0996fd4a0ee4d958"}
-What is a general type variety?
+What is a variety of general type?
 :::
 
 ::: {.back card-id="card-0996fd4a0ee4d958"}
-$\kappa(X) = \dim(X)$ is maximal, i.e. $\omega_X$ is big.
+Maximal possible Kodaira dimension: $\kappa(X) = \dim(X)$, i.e. $\omega_X$ is big. E.g. any variety with ample canonical.
 :::
 
 ::: {.front card-id="card-67f625f64dc3c847"}
-What is a big line bundle?
+What is a big line bundle (big divisor)?
 :::
 
 ::: {.back card-id="card-67f625f64dc3c847"}
-${\mathcal{L}}\in \operatorname{Pic}(X)$ is big iff $\kappa(X; {\mathcal{L}}) = \dim(X)$ is maximal, i.e. $\dim \operatorname{im}\phi_{{\left\lvert {m} \right\rvert} {\mathcal{L}}} = \dim(X)$ for $n\gg 1$.
+${\mathcal{L}}\in \operatorname{Pic}(X)$ is big iff $\kappa(X; {\mathcal{L}}) = \dim(X)$ is maximal, i.e. $\dim \operatorname{im}\phi_{{\left\lvert {m{\mathcal{L}}} \right\rvert}} = \dim(X)$ for some $m\gg 0$.
+
+Equivalently, sections grow maximally: there is $c > 0$ with $h^0({\mathcal{O}}(mD)) \geq c\cdot m^{\dim X}$ for all sufficiently large and divisible $m$.
 :::
 
 ::: {.front card-id="card-a54e2a90c7831a3d"}
@@ -89,7 +91,7 @@ Classify surfaces by Kodaira dimension.
 :::
 
 ::: {.back card-id="card-b361751d37669bf3"}
-For a minimal smooth projective surface $X$,
+Define $\kappa(X) \coloneqq\operatorname{trdeg}_k \left( \bigoplus_{n\geq 0} H^0({\mathcal{O}}_X(nK_X)) \right) - 1$, or $-\infty$ if all $H^0(nK_X) = 0$ for $n > 0$. For a minimal smooth projective surface $X$,
 
 $\kappa(X) = -\infty \iff$Ruled, rational.
 
@@ -107,33 +109,26 @@ $\kappa(X) = 2 \iff$ general type.
 :::
 
 ::: {.front card-id="card-edd9ac6f0fa2d3e8"}
-What is **plurigenera**?
+What are the **plurigenera** of a smooth projective variety?
 :::
 
 ::: {.back card-id="card-edd9ac6f0fa2d3e8"}
-$$P_m(X)= h^0(\omega_X^m) = h^0(\mathcal{O}_X(m K_X))$$
-Measures the size of a canonical model of $X$, $\mathop{\mathrm{Proj}}(\bigoplus_{m\geq 0} H^0(K_X^m))$.
+$$P_m(X)= h^0(\omega_X^m) = h^0(\mathcal{O}_X(m K_X)) = h^0( (\operatorname{det}\Omega_{X/k})^{\otimes m} )$$
+This is a birational invariant. Measures the size of a canonical model of $X$, $\mathop{\mathrm{Proj}}(\bigoplus_{m\geq 0} H^0(K_X^m))$.
 
 Can prove a variety is not rational by showing $P_m(X) > 0$ for some $m>0$.
 :::
 
-::: {.front card-id="card-241e5ed95b035be5"}
-What is a variety of general type?
-:::
-
-::: {.back card-id="card-241e5ed95b035be5"}
-Maximal possible Kodaira dimension: $\kappa(X) = \dim(X)$, e.g. any variety with ample canonical.
-:::
-
 ::: {.front card-id="card-cd129aadf37058b3"}
-What is **irregularity**?
+What is the **irregularity** of a smooth projective variety?
 :::
 
 ::: {.back card-id="card-cd129aadf37058b3"}
+The Hodge number
 $$q(X) \coloneqq h^{0, 1} = h^1({\mathcal{O}}_X)$$
-For a smooth complex projective surface, $q(X)=h^0(\Omega_X^1)$.
+For a smooth complex projective variety, $q(X)=h^0(\Omega_X^1)$ by Hodge symmetry.
 
-Measures the difference $p_g(X) - p_a(X)$ between geometric and arithmetic genus.
+For a surface, it measures the difference $q = p_g(X) - p_a(X)$ between geometric and arithmetic genus.
 :::
 
 ::: {.front card-id="card-66ce9a474b7f4659"}
@@ -273,12 +268,12 @@ What is $P_m(X)$ for $X \subseteq {\mathbf{P}}^n$ a smooth hypersurface of degre
 ::: {.back card-id="card-fa113b1d45d9bca3"}
 Write ${\mathcal{O}}_X(1) = { \left.{{{\mathcal{O}}_{{\mathbf{P}}^n}(1)}} \right|_{{X}} }$, then $\omega_X \cong {\mathcal{O}}_X(d - (n+1) )$.
 
-$d < n + 1 \implies P_{\geq 0}(X) = 0$
+$d < n + 1 \implies P_{\geq 1}(X) = 0$
 
 $d = n +1 \implies \omega_X \cong {\mathcal{O}}_X \implies P_{\geq 1}(X) = 1$
 
 $d > n+1 \implies \omega_X \in \operatorname{Pic}(X)^{{\mathrm{v.amp}}} \implies \cdots$
-$$P_{m \gg 0}(X) = {d(d-n-1) \over(n-1)! }\cdot m^{n-1} + { \mathsf{O}}(m^{n-2})$$
+$$P_{m \gg 0}(X) = {d(d-n-1)^{n-1} \over(n-1)! }\cdot m^{n-1} + { \mathsf{O}}(m^{n-2})$$
 :::
 
 ::: {.front card-id="card-bff7d57e6cbbd0e0"}
@@ -330,33 +325,27 @@ Hypersurfaces of degree $n+1$ in ${\mathbf{P}}^n$.
 :::
 
 ::: {.front card-id="card-72941d8b176edf02"}
-Classify hypersurfaces $X\subseteq {\mathbf{P}}^n$ by Kodaira dimension.
+Classify smooth hypersurfaces $X\subseteq {\mathbf{P}}^n$ of degree $d$ by Kodaira dimension.
 :::
 
 ::: {.back card-id="card-72941d8b176edf02"}
 $\kappa(X) = -\infty \iff d\leq n$.
 
-$\kappa(X) = 0 \iff d= n$.
+$\kappa(X) = 0 \iff d= n+1$.
 
 $\kappa(X) = \dim(X) \iff d\geq n+2$.
 :::
 
-::: {.front card-id="card-70ffac49f824101f"}
-What is a big bundle?
-:::
-
-::: {.back card-id="card-70ffac49f824101f"}
-Sections grow maximally: $h^0(L^k)\geq { \mathsf{O}}( k^{\dim X} )$.
-:::
-
 ::: {.front card-id="card-79afba969c884033"}
-What is a nef bundle?
+What is a nef line bundle (nef divisor)?
 :::
 
 ::: {.back card-id="card-79afba969c884033"}
-$L$ has non-negative degree on every irreducible curve $C$
+$D$ is nef iff $D\cdot C \geq 0$ for all irreducible curves $C$ iff $L\coloneqq{\mathcal{O}}(D)$ has non-negative degree on every irreducible curve $C$.
 
-Degree: $\deg \operatorname{div}(s)$ for $s$ any rational section of $L$.
+Degree: $\deg \operatorname{div}(s)$ for $s$ any rational section of $L|_C$.
+
+For $D\in {\mathbf{Q}}{\hbox{-}}\operatorname{CDiv}(X)$ and $Z\leq X$ a proper subvariety, $D$ is nef along $Z$ iff $D.C \coloneqq\deg_{\tilde C}(f^* D) \geq 0$ where $f: \tilde C\to C$ is the normalization, for all effective curves $C\subseteq Z$.
 :::
 
 ::: {.front card-id="card-ea9654ae52152e47"}

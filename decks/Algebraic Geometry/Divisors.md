@@ -3,11 +3,13 @@ title: "Algebraic Geometry::Divisors"
 ---
 
 ::: {.front card-id="card-bcba6e654f0b5155" tags="definition"}
-Definition: Picard Group
+What is the **Picard group**?
 :::
 
 ::: {.back card-id="card-bcba6e654f0b5155"}
-The group of invertible sheaves (or line bundles) on $X$ up to isomorphism equipped with $\tensor$
+The group of isomorphism classes of invertible sheaves (or line bundles) on $X$, with group operation $\otimes$.
+
+Equivalently, $H^1(X; {\mathcal{O}}_X^{\times})$.
 :::
 
 ::: {.front card-id="card-96215ab0361f9245"}
@@ -18,28 +20,32 @@ What is a **rational section** of a line bundle?
 A pair $(s, U)$ with $U\subseteq X$ open containing all associated points of $X$, $s\in H^0(U; {\mathcal{L}})$, and $(s_1, U_1) \sim (s_2, U_2) \iff$ $s_1=s_2$ on $U_{12}$.
 :::
 
-::: {.front card-id="card-4ee8f97372f5a928"}
-How are Weil divisors related to Cartier divisors?
+::: {.front card-id="card-4ee8f97372f5a928" tags="definition"}
+How are Weil divisors related to Cartier divisors? When do they coincide?
 :::
 
 ::: {.back card-id="card-4ee8f97372f5a928"}
-Coincide when $X$ is integral, separated, Noetherian, locally factorial (local rings are UFDs), and principal divisors coincide as well. In general one has a map $\operatorname{CDiv}(X) \to \operatorname{Div}(X)$ where $D$ defined by $\left\{{(U_i, f_i)}\right\}$ is mapped to $\sum_{Y\in \operatorname{Div}(X)} v_Y(f_i) Y$ where $i$ is any index where $U_i \cap Y$ is nonempty. The inverse construction: given $D\in \operatorname{Div}(X)$, it induces $D_x \in \operatorname{Spec}{\mathcal{O}}_{X, x}$, which is a UFD so $D_x$ is a principal divisor $D_x = (f_x)$ where $f_x \in K(X)$. Lift to a principal divisor $(f_x)$ on $X$; its restriction to $\operatorname{Spec}{\mathcal{O}}_{X, x}$ coincides with $D$ so they differ only by prime divisors that don't pass through $x$. Only finitely many such primes have nonzero coefficients in $D$ or $(f_x)$, so there is an open $U_x \ni x$ such that $D$ and $(f_x)$ restrict to the same divisor. Now cover $X$ by the $U_x$ and use the $f_x$ to defined a Cartier divisor.
+A Weil divisor on a Noetherian integral scheme is a finite integral sum of codimension-one integral closed subschemes.
+
+They coincide when $X$ is integral, separated, Noetherian, locally factorial (local rings are UFDs), and principal divisors coincide as well. In general one has a map $\operatorname{CDiv}(X) \to \operatorname{Div}(X)$ where $D$ defined by $\left\{{(U_i, f_i)}\right\}$ is mapped to $\sum_{Y\in \operatorname{Div}(X)} v_Y(f_i) Y$ where $i$ is any index where $U_i \cap Y$ is nonempty. The inverse construction: given $D\in \operatorname{Div}(X)$, it induces $D_x \in \operatorname{Spec}{\mathcal{O}}_{X, x}$, which is a UFD so $D_x$ is a principal divisor $D_x = (f_x)$ where $f_x \in K(X)$. Lift to a principal divisor $(f_x)$ on $X$; its restriction to $\operatorname{Spec}{\mathcal{O}}_{X, x}$ coincides with $D$ so they differ only by prime divisors that don't pass through $x$. Only finitely many such primes have nonzero coefficients in $D$ or $(f_x)$, so there is an open $U_x \ni x$ such that $D$ and $(f_x)$ restrict to the same divisor. Now cover $X$ by the $U_x$ and use the $f_x$ to define a Cartier divisor.
 :::
 
-::: {.front card-id="card-4693c6587767ae37"}
-What is the Cartier divisor associated to a rational section of an invertible sheaf?
+::: {.front card-id="card-4693c6587767ae37" tags="definition"}
+What is the Cartier divisor associated to a (rational) section of an invertible sheaf?
 :::
 
 ::: {.back card-id="card-4693c6587767ae37"}
-Rational section: $s: X\to {\mathcal{L}}$ defined on an open dense subset. For any $Y\in \operatorname{Div}(X)$ one can define $v_Y(s)$ for a section, so define $(s) \coloneqq\sum_{Y\in \operatorname{Div}(X)} v_Y(s) Y$. The valuation is defined using ${\mathcal{L}}_{X, Y} \to {\mathcal{O}}_{X, Y}$ which is a valuation ring when $X$ is integral.
+Rational section: $s: X\to {\mathcal{L}}$ defined on an open dense subset. A nonzero rational section $s$ of an invertible sheaf ${\mathcal{L}}$ defines a Cartier divisor: write $s=f_i e_i$ in each local frame $e_i$ and use the rational functions $f_i$ as local equations. With the convention ${\mathcal{L}}\cong\mathcal O_X(D)$, the canonical rational section of $\mathcal O_X(D)$ has divisor $D$.
+
+As a Weil divisor: for any $Y\in \operatorname{Div}(X)$ define $(s) \coloneqq\sum_{Y\in \operatorname{Div}(X)} v_Y(s) Y$, where $v_Y(s) \coloneqq v_Y(\sigma(s))$ for a trivialization $\sigma: {\mathcal{L}}_{X, Y} { \, \xrightarrow{\sim}\, }{\mathcal{O}}_{X, Y}$ of the stalk at the generic point of $Y$. This is a valuation ring when $X$ is integral (and regular in codimension one). For $s\in H^0({\mathcal{L}})\setminus\left\{{0}\right\}$, $(s)$ is effective.
 :::
 
 ::: {.front card-id="card-20c128cfdff9a4d9"}
-What is ${\mathcal{O}}(D)$?
+For $D$ a divisor, what is ${\mathcal{O}}_X(D)$?
 :::
 
 ::: {.back card-id="card-20c128cfdff9a4d9"}
-${\mathcal{O}}(D) \coloneqq\left\{{f\in K(X)^{\times}{~\mathrel{\Big\vert}~}(f) + D \geq 0}\right\}$.
+${\mathcal{O}}_X(D)(U) \coloneqq\left\{{f\in K(X)^{\times}{~\mathrel{\Big\vert}~}(f) + D \geq 0 \text{ on } U}\right\} \cup \left\{{0}\right\}$, a subsheaf of the constant sheaf $K(X)$. Global sections: $H^0({\mathcal{O}}_X(D)) = \left\{{f\in K(X)^{\times}{~\mathrel{\Big\vert}~}(f) + D \geq 0}\right\} \cup \left\{{0}\right\}$.
 :::
 
 ::: {.front card-id="card-971d2e611559217c"}
@@ -214,14 +220,6 @@ What is a **principal** Cartier divisor?
 Anything in the image of $H^0({\mathcal{K}}^{\times}) \to H^0({\mathcal{K}}^{\times}/{\mathcal{O}}^{\times})$.
 :::
 
-::: {.front card-id="card-c27dc13c5754671f"}
-When do Weil and Cartier divisors coincide?
-:::
-
-::: {.back card-id="card-c27dc13c5754671f"}
-$X$ integral, separated, Noetherian, locally factorial (all local rings are UFDs). In this case, principal Weil divisors coincide with principal Cartier divisors.
-:::
-
 ::: {.front card-id="card-b39fa8bac52d9231"}
 Give an example of a Weil divisor that is not Cartier.
 :::
@@ -230,30 +228,18 @@ Give an example of a Weil divisor that is not Cartier.
 Take $X = V(xy-z^2) \subseteq {\mathbf{A}}^3$ and let $Y$ be its ruling $\left\{{ p\in Y{~\mathrel{\Big\vert}~}y=z=0}\right\}$. Then $Y$ can not be locally principal in a neighborhood of the cone point. However, $2Y$ is locally principal and in fact principal. The divisor $D=V(x,z)$ is not of the form $V = (f)$ for any $f\in K(X)$ near the origin.
 :::
 
-::: {.front card-id="card-15ea337ffea63d93"}
-What is an **ample divisor**?
+::: {.front card-id="card-15ea337ffea63d93" tags="definition"}
+What are **ample** and **very ample** invertible sheaves (divisors)?
 :::
 
 ::: {.back card-id="card-15ea337ffea63d93"}
-${\mathcal{L}}$ is ample iff ${\mathcal{L}}^n$ is very ample for some $n$, so defines an embedding $\phi_{{\left\lvert {{\mathcal{L}}} \right\rvert}}: X\to {\mathbf{P}}^N$ where ${\mathbf{P}}^N \cong {\mathbf{P}}H^0(X; {\mathcal{L}}^n) {}^{ \vee }$.
-:::
+Very ample: ${\mathcal{L}}$ invertible is very ample relative to $f:X\to Y$ if $\exists {\mathcal{E}}\in {\mathsf{QCoh}}(Y)$ and an immersion $\iota: X\to {\mathbf{P}}({\mathcal{E}})$ such that ${\mathcal{L}}\cong \iota^* {\mathcal{O}}_{{\mathbf{P}}({\mathcal{E}})}(1)$. Over $S$: an immersion $X\hookrightarrow\mathbb P_S^n$ with ${\mathcal{L}}\cong i^*\mathcal O(1)$. Over a field: ${\mathcal{L}}$ is bpf/gg and $\phi_{{\left\lvert {{\mathcal{L}}} \right\rvert}}: X\to {\mathbf{P}}^{h^0({\mathcal{L}}) - 1}$ is a closed immersion.
 
-::: {.front card-id="card-ad4c7a0ef69c2537"}
-What is a **nef divisor**?
-:::
+Ample: equivalent conditions (for $X$ of finite type over a Noetherian ring):
 
-::: {.back card-id="card-ad4c7a0ef69c2537"}
-$D$ is nef iff $D\cdot C \geq 0$ for all curves iff ${\mathcal{O}}(D)$ is nef iff ${\mathcal{L}}\coloneqq{\mathcal{O}}(D)$ has positive degree over every curve.
-
-For $D\in {\mathbf{Q}}{\hbox{-}}\operatorname{CDiv}(X)$ and $Z\leq X$ a proper subvariety, $D$ is nef along $Z$ iff $D.C \coloneqq\deg_{\tilde C}(f^* D) \geq 0$ where $f: \tilde C\to C$ is the normalization, for all effective curves $C\subseteq Z$.
-:::
-
-::: {.front card-id="card-7e3b8409d8752996"}
-What is a **big divisor**?
-:::
-
-::: {.back card-id="card-7e3b8409d8752996"}
-$D$ is big iff $h^0({\mathcal{O}}(mD)) \geq { \mathsf{O}}(m^{\dim X})$.
+- ${\mathcal{L}}^n$ is very ample for some $n > 0$, so defines an embedding $\phi_{{\left\lvert {{\mathcal{L}}^n} \right\rvert}}: X\to {\mathbf{P}}^N$ where ${\mathbf{P}}^N \cong {\mathbf{P}}H^0(X; {\mathcal{L}}^n) {}^{ \vee }$.
+- (Serre) For any ${\mathcal{F}}\in {\mathsf{QCoh}}(X)^\mathrm{ft}$, the twist ${\mathcal{F}}(n) \coloneqq{\mathcal{F}}\otimes{\mathcal{L}}{ {}^{ \scriptstyle\otimes_{}^{n} }  }$ is globally generated for all $n> N_0 \gg 0$: tensoring high powers with a coherent sheaf gives many global sections.
+- Every point has an affine neighborhood of the form $X_s=\{s\ne0\}$ for some global section $s$ of some positive power ${\mathcal{L}}^{\otimes n}$.
 :::
 
 ::: {.front card-id="card-f8c8b2968ad6e404"}
@@ -282,22 +268,12 @@ What is the **divisor of zeros and poles** of $f \in k(X)^{\times}$?
 Writing $Z_f, P_f$ for the sets of zeros and poles, $(f) = \sum n_i Z_i - \sum m_i P_i$ where $n_i$ is the multiplicity of the zero $Z_i$ (and similarly $m_i$ for $P_i$ the order of the pole).
 :::
 
-::: {.front card-id="card-be6f8599e30fbbae"}
-What is the **Picard group**?
-:::
-
-::: {.back card-id="card-be6f8599e30fbbae"}
-Isomorphism classes of invertible sheaves under $\otimes$.
-
-Equivalently, $H^1(X; {\mathcal{O}}_X^{\times})$.
-:::
-
-::: {.front card-id="card-fa6361e0b3eb64cd"}
+::: {.front card-id="card-fa6361e0b3eb64cd" tags="definition"}
 What is the **invertible sheaf** associated to a Cartier divisor?
 :::
 
 ::: {.back card-id="card-fa6361e0b3eb64cd"}
-Representing $D$ as $\left\{{(U_i, f_i)}\right\}$, ${\mathcal{L}}(D) \leq {\mathcal{K}}$ is the submodule generated by $\left\{{f_i^{-1}}\right\}$. There is a bijection between Cartier divisors and invertible subsheaves of ${\mathcal{K}}$.
+On an integral scheme, a Cartier divisor $D$ is given by local nonzero rational functions $\left\{{(U_i, f_i)}\right\}$ with $f_i/f_j\in\mathcal O_X^\times$ on overlaps. Then ${\mathcal{O}}_X(D) = {\mathcal{L}}(D) \leq {\mathcal{K}}$ is the sub-${\mathcal{O}}_X$-module of the sheaf of rational functions generated by $\left\{{f_i^{-1}}\right\}$, i.e. locally $f_i^{-1}\mathcal O_X$. There is a bijection between Cartier divisors and invertible subsheaves of ${\mathcal{K}}$.
 :::
 
 ::: {.front card-id="card-4c5b6d6b7feab01a"}
@@ -332,14 +308,6 @@ What is the subscheme associated to a Cartier divisor?
 For $D$ effective, the subscheme $Y$ of codimension 1 defined by the sheaf of ideals ${\mathcal{I}}_Y$ which is locally generated by the $f_i$. In fact ${\mathcal{I}}_Y \cong {\mathcal{L}}(-D)$ in this case.
 :::
 
-::: {.front card-id="card-b6b3eb892b6934d7"}
-What does it mean for divisors to be **linearly equivalent**?
-:::
-
-::: {.back card-id="card-b6b3eb892b6934d7"}
-$D_1 - D_2 = (f)$ for some $f$.
-:::
-
 ::: {.front card-id="card-a6344b3c32690757"}
 What does it mean for two divisors to be **numerically equivalent**?
 :::
@@ -348,20 +316,12 @@ What does it mean for two divisors to be **numerically equivalent**?
 $D\sim 0$ iff $D\cdot C = 0$ for every curve $C\subseteq X$, and $D_1\sim D_2 \iff D_1- D_2\sim 0$.
 :::
 
-::: {.front card-id="card-f2807a7963334d91"}
-What is the **degree** of a Weil divisor?
+::: {.front card-id="card-f2807a7963334d91" tags="definition"}
+What is the **degree** of a divisor?
 :::
 
 ::: {.back card-id="card-f2807a7963334d91"}
-$D = \sum_{Y} n_Y Y \implies \deg(D) = \sum_Y n_Y \in {\mathbf{Z}}$.
-:::
-
-::: {.front card-id="card-be88045a8c78ded9"}
-What is the **Cartier divisor associated to a section** of an invertible sheaf?
-:::
-
-::: {.back card-id="card-be88045a8c78ded9"}
-For ${\mathcal{L}}\in \operatorname{Pic}(X)$ and $s\in H^0({\mathcal{L}})\setminus\left\{{0}\right\}$, define $(s) = \sum_Y v_Y(s) Y$ where $v_Y$ is defined using $\sigma: {\mathcal{L}}_{X, V} { \, \xrightarrow{\sim}\, }{\mathcal{O}}_{X, V}$ and $v_Y(s) \coloneqq v_Y(\sigma(s))$ where ${\mathcal{F}}_V \coloneqq{\mathcal{F}}_{\nu_V}$, the stalk at the generic point of $V$.
+For a divisor $D=\sum_P n_P[P]$ on a proper curve over $k$, $\deg D=\sum_P n_P[\kappa(P):k] \in {\mathbf{Z}}$. Over an algebraically closed field, this is $\deg(D) = \sum_P n_P$.
 :::
 
 ::: {.front card-id="card-e8e202eb43c56fe4"}
@@ -372,30 +332,18 @@ For $D$ a prime divisor and $Y\in \mathop{\mathrm{supp}}D$, what is the **multip
 $D = \sum n_{Y_i} Y_i$ and $Y= Y_j$ for some $j$ since $Y\in \mathop{\mathrm{supp}}D$, so ${\operatorname{mult}}_D(Y) = n_Y$.
 :::
 
-::: {.front card-id="card-f8d3ad922064fbf7"}
-What is the **multiplicity of a Cartier divisor**?
+::: {.front card-id="card-f8d3ad922064fbf7" tags="definition"}
+What are the **multiplicity** and the **support** of a Cartier divisor?
 :::
 
 ::: {.back card-id="card-f8d3ad922064fbf7"}
-For $D$ an effective Cartier divisor on $C$, let $f$ be a local equation at $p$ and define $\mu_p$ to be the largest $N$ such that $f\in {\mathfrak{m}}_p^N \subseteq {\mathcal{O}}_{X, x}$. Note $\mu_p \geq 1 \iff p\in C$ and $\mu_p = 1 \iff C$ is smooth at $p$.
-:::
+Coefficient along a prime divisor: for a Cartier divisor $D$ on a regular (or normal) integral scheme, its coefficient at a codimension-one point $\eta$ (prime divisor $Y$) is the valuation $v_Y(f_i) = \operatorname{ord}_\eta(f_i)$ of a local equation $f_i$ on any $U_i$ with $U_i \cap Y\neq \emptyset$.
 
-::: {.front card-id="card-717ad5eae2938137"}
-What is the **support of a Cartier divisor**?
-:::
+Multiplicity at a point: for $D$ an effective Cartier divisor on $X$, let $f$ be a local equation at $p$ and define $\mu_p(D)$ to be the largest $N$ such that $f\in {\mathfrak{m}}_p^N \subseteq {\mathcal{O}}_{X, p}$. Note $\mu_p \geq 1 \iff p\in \mathop{\mathrm{supp}}D$, and for $X$ smooth at $p$, $\mu_p = 1 \iff D$ is smooth at $p$.
 
-::: {.back card-id="card-717ad5eae2938137"}
-$\mathop{\mathrm{supp}}D = {\left\lvert {D} \right\rvert}$ is the union of poles and zeros of $D$, i.e. if $D = \left\{{(U_i, f_i)}\right\}$ and $D\mapsto \sum_{Y\in \operatorname{Div}(X)} v_Y(f_i) Y$ where $i$ is any index with $U_i \cap Y\neq \emptyset$, then $\mathop{\mathrm{supp}}D = \left\{{Y\in\operatorname{Div}(X) {~\mathrel{\Big\vert}~}v_Y(f_i) \neq 0}\right\}$.
+Support: $\mathop{\mathrm{supp}}D = {\left\lvert {D} \right\rvert}$ is the union of poles and zeros of $D$, i.e. the set of points where a local equation is not a unit. On a regular integral scheme this is the union of the prime divisors $Y$ with $v_Y(f_i) \neq 0$.
 
 Equivalently, define $D$ as a line bundle ${\mathcal{O}}_X(D)$ with a rational section $s_D$, set $U \subseteq X$ to be the maximal open set on which $s_D$ is defined and nonzero, and define ${\left\lvert {D} \right\rvert} \coloneqq X\setminus U$.
-:::
-
-::: {.front card-id="card-0dcf14509cffa4c1"}
-For $D$ a divisor, what is ${\mathcal{O}}_X(D)$?
-:::
-
-::: {.back card-id="card-0dcf14509cffa4c1"}
-$\left\{{f\in {\mathcal{O}}_X {~\mathrel{\Big\vert}~}(f) + D \geq 0}\right\}$.
 :::
 
 ::: {.front card-id="card-6ba72069d5f9a4b6"}
@@ -448,38 +396,6 @@ What is the **base locus** of a linear system?
 The union of all base points in $S$.
 :::
 
-::: {.front card-id="card-bb5418459ae93344"}
-What is the **plurigenus** of a smooth projective variety?
-:::
-
-::: {.back card-id="card-bb5418459ae93344"}
-$P_d(X) \coloneqq h^0( (\operatorname{det}\Omega_{X/k})^d ) \coloneqq h^0(K_X^d)$. This is a birational invariant, and e.g. $X$ is not rational if $P_d(X) > 0$.
-:::
-
-::: {.front card-id="card-cf01e103ab0d60eb"}
-What is the **irregularity** of a smooth projective variety?
-:::
-
-::: {.back card-id="card-cf01e103ab0d60eb"}
-The hodge number $q\coloneqq h^{0, 1} = h^1({\mathcal{O}}_X)$.
-:::
-
-::: {.front card-id="card-9cd5ced913471a81"}
-What is the Kodaira dimension?
-:::
-
-::: {.back card-id="card-9cd5ced913471a81"}
-$\kappa(X) \coloneqq-\infty$ if $P_d(X) = 0$ for all $d>0$, otherwise $\kappa(X) = \min \left\{{k \in {\mathbf{Z}}{~\mathrel{\Big\vert}~}{P_d\over d^k} \leq { \mathsf{O}}(1) }\right\}$ (i.e. the smallest $k$ for which this is bounded, or the minimal $k$ so that $P_d(X) \in { \mathsf{O}}(d^k)$). Generally $\kappa(X) \in \left\{{-\infty}\right\}\cup[0, \dim X]$.
-:::
-
-::: {.front card-id="card-a2260019cf753f8c"}
-What is the **arithmetic genus**? The **geometric genus**?
-:::
-
-::: {.back card-id="card-a2260019cf753f8c"}
-$p_a(X) \coloneqq(-1)^r \qty{\chi({\mathcal{O}}_X) - 1}$ and $p_g(X) = h^{n, 0} = h^0(\Omega_{X/k}^n)$.
-:::
-
 ::: {.front card-id="card-d83459b52d448c66"}
 What is a **hyperplane section**?
 :::
@@ -504,14 +420,6 @@ What is the **ramification divisor** of a finite morphism $f:X\to Y$ of smooth p
 $R \coloneqq\sum_{p\in X} \mathop{\mathrm{length}}(\Omega_{X/Y})_p \cdot p$.
 :::
 
-::: {.front card-id="card-fec35bc397e22466"}
-What is the **ramification formula** for a finite morphism of curves?
-:::
-
-::: {.back card-id="card-fec35bc397e22466"}
-$K_X \sim f^* K_Y + R$.
-:::
-
 ::: {.front card-id="card-a565549a3fed53d5"}
 Prove the ramification formula for canonical divisors.
 :::
@@ -528,28 +436,12 @@ $$f^* \Omega_{Y/k} \otimes\Omega_{X/k} {}^{ \vee }\cong {\mathcal{L}}(-R)$$
 and taking associated divisors yields $f^*K_Y, -K_X, -R$ respectively, so $f^* K_Y - K_X \sim -R \implies K_X \sim f^* K_Y + R$.
 :::
 
-::: {.front card-id="card-b6163b64b584bc12"}
-What is the Riemann-Hurwitz formula for $f:X\to Y$?
-:::
-
-::: {.back card-id="card-b6163b64b584bc12"}
-$\chi(X) = \deg(f)\cdot \chi(Y) + \deg R \implies 2g_X - 2 = \deg(f)\cdot(2g_Y - 2) + \sum_{p\in X} (e_p - 1)$.
-:::
-
 ::: {.front card-id="card-6b377b686ddf940e"}
 Can ${\mathbf{P}}^1$ admit an unramified cover by a curve?
 :::
 
 ::: {.back card-id="card-6b377b686ddf940e"}
-No: if $f: X\to {\mathbf{P}}^1$ is a finite etale cover of degree $n \geq 1$ then $\deg R = 0$, so by Riemann-Hurwitz $\chi(X) = n\chi({\mathbf{P}}^1) \implies 2g_X - 2 = n(-2) \leq -2 \implies g_X \leq 0$, so this forces $g_X = 0$ and $n=1$, so $f$ must be the identity.
-:::
-
-::: {.front card-id="card-250830784be89df3"}
-What is the **ramification index**?
-:::
-
-::: {.back card-id="card-250830784be89df3"}
-For $f:X\to Y$ a morphism of curves and $p\in X$, letting $q\coloneqq f(p)$ and $t\in {\mathcal{O}}_{Y, q}$ be a local coordinate, define $e_p \coloneqq v_p (f^\sharp(t))$ where $f^\sharp: {\mathcal{O}}_{Y, q} \to {\mathcal{O}}_{X, p}$.
+No: if $f: X\to {\mathbf{P}}^1$ is a finite etale cover of degree $n \geq 1$ then $\deg R = 0$, so by Riemann-Hurwitz $\chi(X) = n\chi({\mathbf{P}}^1) \implies 2g_X - 2 = n(-2) \leq -2 \implies g_X \leq 0$, so this forces $g_X = 0$ and $n=1$, so $f$ must be an isomorphism.
 :::
 
 ::: {.front card-id="card-bdcb54fbf9a23367"}
@@ -558,18 +450,6 @@ What is a **branch point**? A **ramification point**?
 
 ::: {.back card-id="card-bdcb54fbf9a23367"}
 $e_p = 1\implies$ unramified, $e_p > 1 \implies p$ is ramified and $q\coloneqq f(p)$ is a branch point.
-:::
-
-::: {.front card-id="card-99f23fe7b7a89328"}
-What is an **etale morphism**?
-:::
-
-::: {.back card-id="card-99f23fe7b7a89328"}
-For varieties: locally finite and unramified.
-
-Flat and unramified
-
-Formally etale and of finite presentation, where $f\in \mathsf{CRing}(A, B)$ is formally etale iff ${\mathbb{L}}_{B/A} \simeq 0$.
 :::
 
 ::: {.front card-id="card-56d81b8301f8afa2"}
@@ -588,14 +468,6 @@ What is the result of taking determinants in an exact sequence?
 $A\to B \to C$ a SES in ${}_{{\mathcal{O}}_X}{\mathsf{Mod}}$ yields $\operatorname{det}(A) \otimes_{{\mathcal{O}}_X} \operatorname{det}(C) \cong \operatorname{det}(B)$.
 :::
 
-::: {.front card-id="card-a16bd62a60986efd"}
-Discuss ampleness of divisors on curves.
-:::
-
-::: {.back card-id="card-a16bd62a60986efd"}
-If $\deg D \geq 2g$, $D$ is bpf, and if $\deg D \geq 2g+1$ then $D$ is very ample.
-:::
-
 ::: {.front card-id="card-8d85a1b7ab49e41b"}
 What is a **canonical divisor**?
 :::
@@ -604,104 +476,12 @@ What is a **canonical divisor**?
 A divisor $K_X$ defined by any meromorphic section of $\omega_{X/k}$.
 :::
 
-::: {.front card-id="card-cecb42640a56ed2e"}
-What is the statement of **Riemann-Roch**?
-:::
-
-::: {.back card-id="card-cecb42640a56ed2e"}
-$h^0({\mathcal{L}}(D)) - h^0({\mathcal{L}}(K-D)) = \deg(D) + (1-g)$.
-:::
-
-::: {.front card-id="card-cec1bc7631c4da91"}
-What is $\deg(K_X)$ for $X$ a curve?
-:::
-
-::: {.back card-id="card-cec1bc7631c4da91"}
-$\deg K_X = 2g-2$; Take $D\coloneqq K_X$ in RR and use that $h^0({\mathcal{L}}(K)) = g$ and $h^0({\mathcal{L}}(0)) = 1$ to get $g-1$ on the LHS and $\deg(K_X) + (1-g)$.
-:::
-
-::: {.front card-id="card-092f39554ef5f902"}
-What is a **very ample sheaf**?
-:::
-
-::: {.back card-id="card-092f39554ef5f902"}
-${\mathcal{L}}\in   {}_{{\mathcal{O}}_X}{\mathsf{Mod}}$ invertible is very ample relative to $f:X\to Y$ if $\exists {\mathcal{E}}\in {\mathsf{QCoh}}(Y)$ and an immersion $\iota: X\to {\mathbf{P}}({\mathcal{E}})$ such that ${\mathcal{L}}\cong \iota^* {\mathcal{O}}_{{\mathbf{P}}({\mathcal{E}})}(1)$.
-:::
-
-::: {.front card-id="card-054399f4c1e62181"}
-What is an **ample sheaf**?
-:::
-
-::: {.back card-id="card-054399f4c1e62181"}
-For any ${\mathcal{F}}\in {\mathsf{QCoh}}(X)^\mathrm{ft}$, the twist ${\mathcal{F}}(n) \coloneqq{\mathcal{F}}\otimes{\mathcal{L}}{ {}^{ \scriptstyle\otimes_{}^{n} }  }$ is globally generated for all $n> N_0 \gg 0$.
-:::
-
-::: {.front card-id="card-a42a3a6b58b697f2" tags="definition"}
-What is: Cartier divisors and their associated invertible sheaves;
-:::
-
-::: {.back card-id="card-a42a3a6b58b697f2"}
-On an integral scheme, a Cartier divisor is given by local nonzero rational functions $f_i$ with $f_i/f_j\in\mathcal O_X^\times$ on overlaps. The associated invertible subsheaf of the rational function sheaf is locally $f_i^{-1}\mathcal O_X$, denoted $\mathcal O_X(D)$.
-:::
-
-::: {.front card-id="card-7267264567570244" tags="definition"}
-What is: Multiplicity and support of Cartier divisors;
-:::
-
-::: {.back card-id="card-7267264567570244"}
-For a Cartier divisor $D$ on a regular integral scheme, its coefficient at a codimension-one point $\eta$ is the valuation $\operatorname{ord}_\eta(f)$ of a local equation $f$. Its support is the union of codimension-one subvarieties with nonzero coefficient. More generally, the support is where a local equation is not a unit.
-:::
-
-::: {.front card-id="card-2762c1507cb47d71" tags="definition"}
-What is: Cartier divisors of rational sections of invertible sheaves;
-:::
-
-::: {.back card-id="card-2762c1507cb47d71"}
-A nonzero rational section $s$ of an invertible sheaf $L$ defines a Cartier divisor: write $s=f_i e_i$ in each local frame $e_i$ and use the rational functions $f_i$ as local equations. With the convention $L\cong\mathcal O_X(D)$, the canonical rational section of $\mathcal O_X(D)$ has divisor $D$.
-:::
-
-::: {.front card-id="card-e15cea224fd5fb22" tags="definition"}
-What is: Weil divisors and relation with Cartier (equivalence for locally factorial schemes)
-:::
-
-::: {.back card-id="card-e15cea224fd5fb22"}
-A Weil divisor on a Noetherian integral scheme is a finite integral sum of codimension-one integral closed subschemes. A Cartier divisor determines a Weil divisor by its orders at codimension-one points. On a locally factorial scheme this map is an isomorphism of divisor groups.
-:::
-
 ::: {.front card-id="card-6f854b0e887f821f" tags="definition"}
 What is: The Picard group and class group
 :::
 
 ::: {.back card-id="card-6f854b0e887f821f"}
 $\operatorname{Pic}(X)$ is the group of invertible sheaves up to isomorphism under tensor product. For a normal integral Noetherian scheme, $\operatorname{Cl}(X)$ is the group of Weil divisors modulo principal divisors. Cartier divisors modulo principal divisors give $\operatorname{Pic}(X)$; on a locally factorial scheme, $\operatorname{Pic}(X)\cong\operatorname{Cl}(X)$.
-:::
-
-::: {.front card-id="card-60e9dfcc9184fa85" tags="definition"}
-What is: Degree of a divisor
-:::
-
-::: {.back card-id="card-60e9dfcc9184fa85"}
-For a divisor $D=\sum_P n_P[P]$ on a proper curve over $k$, $\deg D=\sum_P n_P[\kappa(P):k]$. Over an algebraically closed field, this is $\sum_P n_P$.
-:::
-
-::: {.front card-id="card-1a2f4f4d5b245d5a" tags="definition"}
-What is: Ample and very ample sheaves,
-:::
-
-::: {.back card-id="card-1a2f4f4d5b245d5a"}
-An invertible sheaf $L$ is very ample over $S$ if it gives an immersion $X\hookrightarrow\mathbb P_S^n$ with $L\cong i^*\mathcal O(1)$. It is ample if every point has an affine neighborhood of the form $X_s=\{s\ne0\}$ for some global section of some positive power $L^{\otimes n}$.
-:::
-
-::: {.front card-id="card-6e3dcdd9b9d82af7"}
-What is an ample bundle?
-:::
-
-::: {.back card-id="card-6e3dcdd9b9d82af7"}
-Some power is very ample
-
-Very ample: bpf/gg and $\phi_{{\left\lvert {L} \right\rvert}}: X\to {\mathbf{P}}^{h^0(L) - 1}$ is a closed immersion.
-
-Tensoring high powers with a coherent sheaf gives many global sections.
 :::
 
 ::: {.front card-id="card-80fa03cc214825fe"}

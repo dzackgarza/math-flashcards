@@ -28,22 +28,6 @@ Need a surface have finitely many **exceptional curves of the first kind**?
 No: $\operatorname{Bl}_n {\mathbf{P}}^2$ for $n\geq 9$ has infinitely many.
 :::
 
-::: {.front card-id="card-b58b7091074e4e2c"}
-Discuss **classification of surfaces**.
-:::
-
-::: {.back card-id="card-b58b7091074e4e2c"}
-Define $\kappa(X) \coloneqq[\bigoplus_{n\geq 0} H^0({\mathcal{O}}_X(nK_X)):\, k]_{\mathrm{trdeg}}$.
-
-$\kappa = -1$: Rational or ruled surfaces
-
-$\kappa = 0$: K3, Enriques, AV, or hyperelliptic surfaces
-
-$\kappa=1$: Elliptic surfaces
-
-$\kappa=2$: Surfaces of general type
-:::
-
 ::: {.front card-id="card-66cb22cf43d182c6"}
 Show that a line bundle is globally generated iff basepoint free.
 :::
@@ -89,7 +73,7 @@ When is $K_C$ very ample?
 :::
 
 ::: {.back card-id="card-60706a9d58d419f5"}
-For $g\geq 2$, $K_C$ is very ample iff $C$ is not hyperelliptic (admits a finite morphism $C\to {\mathbf{P}}^2$ of degree 2).
+For $g\geq 2$, $K_C$ is very ample iff $C$ is not hyperelliptic (admits a finite morphism $C\to {\mathbf{P}}^1$ of degree 2).
 :::
 
 ::: {.front card-id="card-0485ef0d45dc80dd"}
@@ -105,15 +89,19 @@ What is the **canonical embedding**? What is its degree?
 :::
 
 ::: {.back card-id="card-9c252a2d4483a84f"}
-For $C$ hyperelliptic with $g\geq 3$, the embedding determined by $K_C$ which is very ample. Is degree $2g-2$.
+For $C$ non-hyperelliptic with $g\geq 3$, the embedding determined by $K_C$ which is very ample. Is degree $2g-2$.
 :::
 
-::: {.front card-id="card-3d4f6a5acf4e6233"}
+::: {.front card-id="card-3d4f6a5acf4e6233" tags="formula, definition"}
 What is the **Riemann-Roch** theorem for curves?
 :::
 
 ::: {.back card-id="card-3d4f6a5acf4e6233"}
-$\chi({\mathcal{O}}_C(D)) = \deg D + (1-g)$. How to remember: $D= 0$ yields $h^0({\mathcal{O}}) - h^1({\mathcal{O}}) = 1-g$ and $h^1({\mathcal{O}}) = h^{0, 1} = h^{1,0} = h^0(\Omega) = p_g(C)$, the geometric genus, and $H^0({\mathcal{O}}) = k$ for a proper curve. More generally, $h^0(D) - h^0(K-D) = \deg(D) + (1-g)$.
+Let $C$ be a smooth, projective, geometrically integral curve of genus $g$ over $k$, with canonical divisor $K$. For every divisor $D$ on $C$,
+$$h^0(C,\mathcal O_C(D))-h^0(C,\mathcal O_C(K-D))=\deg D+1-g,$$
+i.e. $\operatorname{dim}_k L(C, D)-\operatorname{dim}_k L(C, K-D)=1-g+\operatorname{deg} D$, or $l(D)-l(K-D)=\operatorname{deg}(D)-g+1$.
+
+Equivalently, $\chi({\mathcal{O}}_C(D)) = \deg D + (1-g)$, using Serre duality $h^1(D) = h^0(K-D)$. How to remember: $D= 0$ yields $h^0({\mathcal{O}}) - h^1({\mathcal{O}}) = 1-g$ and $h^1({\mathcal{O}}) = h^{0, 1} = h^{1,0} = h^0(\Omega) = p_g(C)$, the geometric genus, and $H^0({\mathcal{O}}) = k$ for a proper curve.
 :::
 
 ::: {.front card-id="card-02e012a192cd9702"}
@@ -130,12 +118,16 @@ For $D+P$: take ${\mathcal{L}}(-p)\hookrightarrow{\mathcal{O}}_X \twoheadrightar
 Twist by ${\mathcal{L}}(D+p)$ to get ${\mathcal{L}}(D) \hookrightarrow{\mathcal{L}}(D+p) \twoheadrightarrow\iota^p_* k$ and $\chi({\mathcal{L}}(D+p)) = \chi({\mathcal{L}}(D)) + \chi(\iota^p_* k) = \chi({\mathcal{L}}(D)) + 1$ and conclude using $\deg(D+p) = \deg D + 1$.
 :::
 
-::: {.front card-id="card-19de812341c2379c"}
+::: {.front card-id="card-19de812341c2379c" tags="definition"}
 What is the **Riemann-Hurwitz** theorem for curves?
 :::
 
 ::: {.back card-id="card-19de812341c2379c"}
-$$\chi(X) = \deg(f)\cdot\chi(Y) + \deg R,\qquad \deg R = \sum_{p\in X} (e_p-1)$$
+Consider a finite morphism of smooth projective curves $f: X \longrightarrow Y$ of degree $n=[K(X): K(Y)]$. If $f$ is separable,
+$$2 g(X)-2=n(2 g(Y)-2)+\operatorname{deg} R, \qquad \text{equivalently} \qquad \chi(X) = n\cdot\chi(Y) - \deg R,$$
+where $R=\sum_P \operatorname{length}(\Omega_{X / Y})_P\,[P]$ is the ramification divisor. Then $\deg R \geq \sum_{p\in X} (e_p-1)$, with equality iff $f$ is tamely ramified (e.g. in characteristic zero), so
+$$2g_X - 2 = \deg(f)\cdot(2g_Y - 2) + \sum_{p\in X} (e_p - 1) \qquad \text{(tame case)}.$$
+If $f$ is purely inseparable, then $g(X)=g(Y)$.
 :::
 
 ::: {.front card-id="card-698d5032f513e86a"}
@@ -143,7 +135,7 @@ What is the **ramification index** $e_p$?
 :::
 
 ::: {.back card-id="card-698d5032f513e86a"}
-For a finite morphism $f:X\to Y$ of curves and $p\in X, q=f(p)\in Y$, let $t\in {\mathcal{O}}_{f(x), Y}$ be a local parameter, push to ${\mathcal{O}}_{p X}$ via $f^\sharp: {\mathcal{O}}_{f(x), Y} \to {\mathcal{O}}_{p, X}$ and define $e_p \coloneqq v_p(t)$ where $v_p$ is the valuation in the DVR ${\mathcal{O}}_{p, X}$. If $e_p > 1$ then $f$ is ramified at $p$ and $f(p)$ is a branch point; if $e_p = 1$ then $f$ is unramified at $p$.
+For a finite morphism $f:X\to Y$ of curves and $p\in X, q=f(p)\in Y$, let $t\in {\mathcal{O}}_{Y, q}$ be a local parameter, push to ${\mathcal{O}}_{X, p}$ via $f^\sharp: {\mathcal{O}}_{Y, q} \to {\mathcal{O}}_{X, p}$ and define $e_p \coloneqq v_p(f^\sharp(t))$ where $v_p$ is the valuation in the DVR ${\mathcal{O}}_{X, p}$. If $e_p > 1$ then $f$ is ramified at $p$ and $f(p)$ is a branch point; if $e_p = 1$ then $f$ is unramified at $p$.
 :::
 
 ::: {.front card-id="card-c82084f33fcd2fe7"}
@@ -167,7 +159,7 @@ What is $\deg K_C$ for $C$ a curve?
 :::
 
 ::: {.back card-id="card-c75bc53b976644b0"}
-Set $D=K$ to get $h^0(K) - h^0(0) = \deg K + 1-g$, note $h^0(K) = p_g(C) = g$ and $h^0(0) = 1$ to get $g-1 = \deg K + 1-g \implies \deg K = 2g-2$.
+$\deg K_C = 2g-2$. Set $D=K$ in RR to get $h^0(K) - h^0(0) = \deg K + 1-g$, note $h^0(K) = p_g(C) = g$ and $h^0(0) = 1$ to get $g-1 = \deg K + 1-g \implies \deg K = 2g-2$.
 :::
 
 ::: {.front card-id="card-d2c51dfd6f6600da"}
@@ -195,11 +187,11 @@ $\deg K_C = 2g-2 = 0$.
 :::
 
 ::: {.front card-id="card-ee688fb261c7f260"}
-How is the canonical divisor changed under a morphism of curves?
+What is the **ramification formula**: how is the canonical divisor changed under a finite morphism of curves?
 :::
 
 ::: {.back card-id="card-ee688fb261c7f260"}
-For $f: X\to Y$ finite separable, $K_X \sim f^* K_Y + R$ the ramification divisor.
+For $f: X\to Y$ finite separable, $K_X \sim f^* K_Y + R$, where $R$ is the ramification divisor.
 :::
 
 ::: {.front card-id="card-ea052d6b36a47066"}
@@ -222,7 +214,7 @@ When is $D\in\operatorname{Div}(C)$ **very ample**?
 :::
 
 ::: {.back card-id="card-7f19313dfba0540b"}
-Iff $\forall p, q\in C$ (including $p=q$), $\dim {\left\lvert {D-p-q} \right\rvert} = {\left\lvert {D} \right\rvert} - 2$.
+Iff $\forall p, q\in C$ (including $p=q$), $\dim {\left\lvert {D-p-q} \right\rvert} = \dim {\left\lvert {D} \right\rvert} - 2$.
 
 Holds if $\deg D \geq 2g+1$: Check that $D$ and $D-p-q$ are nonspecial since
 $$\deg(K-D) \leq 2g-2-(2g+1) \leq -3$$
@@ -233,11 +225,13 @@ $$\begin{align*}h^0(D) &= \deg(D) + 1-g \\h^0(D-p-q) &= \deg(D-p-q) + 1-g = \deg
 :::
 
 ::: {.front card-id="card-46b3298138b0a408"}
-When is $D\in \operatorname{Div}(C)$ **ample**?
+When is $D\in \operatorname{Div}(C)$ **ample**? Discuss ampleness of divisors on curves.
 :::
 
 ::: {.back card-id="card-46b3298138b0a408"}
-Iff $\deg (D) > 0$. $\implies$: $D$ ample $\implies nD$ very ample $\implies nD\sim H$ for $H$ a hyperplane section of the embedding and $\deg H > 0\implies \deg(D) > 0$. $\impliedby$: $\deg(D) > 0\implies nD \geq 2g+1$ for $n\gg 0$ $\implies nD$ is very ample (by the RR criterion).
+$D$ is ample iff $\deg (D) > 0$. $\implies$: $D$ ample $\implies nD$ very ample $\implies nD\sim H$ for $H$ a hyperplane section of the embedding and $\deg H > 0\implies \deg(D) > 0$. $\impliedby$: $\deg(D) > 0\implies \deg(nD) \geq 2g+1$ for $n\gg 0$ $\implies nD$ is very ample (by the RR criterion).
+
+RR criterion: if $\deg D \geq 2g$, $D$ is bpf, and if $\deg D \geq 2g+1$ then $D$ is very ample.
 :::
 
 ::: {.front card-id="card-66dac9ea038ea151"}
@@ -265,19 +259,21 @@ There is a point $O\in {\mathbf{P}}^3\setminus X$ such that projection away from
 :::
 
 ::: {.front card-id="card-bc176f8b334c8888"}
-What is the **adjunction formula** for smooth curves on surfaces?
+What is the **adjunction formula** (genus formula) for curves on a smooth surface?
 :::
 
 ::: {.back card-id="card-bc176f8b334c8888"}
-$$2g-2 = C.(C+K_X).$$
+For $C$ a smooth curve on a smooth projective surface $X$,
+$$\omega_C \simeq { \left.{{\qty{\omega_X \otimes \mathcal{O}_X(C)}}} \right|_{{ C}} } \underset{\deg}\implies 2g-2=\left(C+K_X\right) \cdot C.$$
+For any irreducible curve $C \subseteq X$, $2p_a(C)-2 = C.(C+K_X)$.
 :::
 
-::: {.front card-id="card-ed2454525c6b8c81"}
+::: {.front card-id="card-ed2454525c6b8c81" tags="definition"}
 What is the **adjunction formula** for divisors?
 :::
 
 ::: {.back card-id="card-ed2454525c6b8c81"}
-For $X$ smooth projective and $D$ a smooth prime divisor,
+For a regular immersion $i:Z\hookrightarrow X$ of codimension $c$ between smooth varieties, $\omega_Z\cong i^*\omega_X\otimes\det(N_{Z/X})$. For $X$ smooth projective and $D$ a smooth prime divisor, $N_{D/X} = {\mathcal{O}}_X(D)|_D$, so
 $$K_D = (K_X +D)\mathrel{\Big|}_D.$$
 :::
 
@@ -356,20 +352,14 @@ When are $C, C'$ transverse?
 $m_x(C \cap C') = 1 \iff \left\langle{f, g}\right\rangle = {\mathfrak{m}}_x$, so $f,g$ form a local coordinate system at $x$.
 :::
 
-::: {.front card-id="card-24a6a9b949e03010"}
-What is the ideal sheaf of $C$?
-:::
-
-::: {.back card-id="card-24a6a9b949e03010"}
-${\mathcal{O}}_X(-C)$.
-:::
-
 ::: {.front card-id="card-ac6794481a78b2c6"}
-How is $C . C'$ defined?
+How is $C . C'$ defined for curves on a surface?
 :::
 
 ::: {.back card-id="card-ac6794481a78b2c6"}
-$C.C' = \sum_{x\in C\cap C'} {\mathfrak{m}}_x(C \cap C') = h^0(X; {\mathcal{O}}_{C\cap C'})$.
+For curves $C, C'$ on a smooth surface $X$ with no common component and local equations $f, g$ at $p$:
+$$C.C' = \sum_{p\in C\cap C'}(C.C')_p, \quad (C.C')_p \coloneqq\dim_k {\mathcal{O}}_{X, p}/\left\langle{f, g}\right\rangle,$$
+so $C.C' = h^0(X; {\mathcal{O}}_{C\cap C'})$. The curves meet transversally at $p$ iff ${\mathfrak{m}}_p = \left\langle{f, g}\right\rangle$, iff $(C.C')_p = 1$.
 :::
 
 ::: {.front card-id="card-80f7d9a0ef117cb4"}
@@ -404,44 +394,14 @@ For $f:X\to Y$ a generically degree $d$ morphism, what is $f^* D_1 . f^* D_2$?
 $f^* D_1 . f^* D_2 = \deg(f) (D_1.D_2)$.
 :::
 
-::: {.front card-id="card-5820e63f4da89a58" tags="formula"}
-Riemann-Roch Formula
-:::
-
-::: {.back card-id="card-5820e63f4da89a58"}
-$$ l(D)-l(K-D)=\operatorname{deg}(D)-p+1 $$
-:::
-
-::: {.front card-id="card-c02b908a88e673d4" tags="definition"}
-What is: the adjunction formula
-:::
-
-::: {.back card-id="card-c02b908a88e673d4"}
-For a regular immersion $i:Z\hookrightarrow X$ of codimension $c$ between smooth varieties, $\omega_Z\cong i^*\omega_X\otimes\det(N_{Z/X})$. For a smooth divisor $D\subset X$, this is $K_D=(K_X+D)|_D$.
-:::
-
 ::: {.front card-id="card-69338eadccabdac7" tags="definition"}
-What is: Geometric and arithmetic genus
+What are the **geometric genus** and the **arithmetic genus**, for curves and for general schemes?
 :::
 
 ::: {.back card-id="card-69338eadccabdac7"}
-For a proper integral curve $C$ over an algebraically closed field, the arithmetic genus is $p_a(C)=1-\chi(\mathcal O_C)=h^1(C,\mathcal O_C)$. The geometric genus is $g(C)=h^1(\widetilde C,\mathcal O_{\widetilde C})$ for the normalization $\widetilde C$; they agree when $C$ is smooth.
-:::
+For a proper integral curve $C$ over an algebraically closed field, the arithmetic genus is $p_a(C)=1-\chi(\mathcal O_C)=h^1(C,\mathcal O_C)$. The geometric genus is $g(C)=h^1(\widetilde C,\mathcal O_{\widetilde C})$ for the normalization $\widetilde C$; they agree when $C$ is smooth, and then $p_g(C) = h^0(\omega_C) = h^1({\mathcal{O}}_C)$.
 
-::: {.front card-id="card-8c987eee74af2624" tags="definition"}
-What is: Riemann-Roch
-:::
-
-::: {.back card-id="card-8c987eee74af2624"}
-For a divisor $D$ on a smooth projective curve $C$ of genus $g$, Riemann–Roch says $h^0(C,\mathcal O_C(D))-h^0(C,\mathcal O_C(K_C-D))=\deg D+1-g$.
-:::
-
-::: {.front card-id="card-b6a6951f917ad2a7" tags="definition"}
-What is: Riemann-Hurwitz
-:::
-
-::: {.back card-id="card-b6a6951f917ad2a7"}
-Consider a finite morphism of curves $f: X \longrightarrow Y$ of degree $n=[K(X): K(Y)]$. If $f$ is separable, we have $2 g(X)-2=n(2 g(Y)-2)+\operatorname{deg} R$ where $R=$ $\sum_P$ (length $\left.\Omega_{X / Y}\right)_P[P]$ is the ramification divisor. If $f$ is purely inseparable, then $g(X)=g(Y)$.
+More generally, for $X$ projective of dimension $n$: $p_a(X) \coloneqq(-1)^{n} \qty{\chi({\mathcal{O}}_X) - 1}$ and $p_g(X) = h^{n, 0} = h^0(\Omega_{X/k}^n) = h^0(\omega_X)$ for $X$ smooth.
 :::
 
 ::: {.front card-id="card-2a84e95c52e5f1c9"}
@@ -478,15 +438,6 @@ Describe the canonical sheaf of a curve explicitly.
 $$\Omega_{X / k}(U)= \begin{cases}\left\{\omega \in \Omega_{K(X) / k} \mathrel{\Big|}\operatorname{ord}_x(\omega) \geq 0 \text { for all closed points } x \in U\right\} & \text { if } U \neq \emptyset, \\ 0 & \text { if } U=\emptyset\end{cases}$$
 :::
 
-::: {.front card-id="card-5dfcf94c23a1dd43"}
-What is RR for a curve?
-:::
-
-::: {.back card-id="card-5dfcf94c23a1dd43"}
-Theorem $2.3$ (Riemann-Roch). Let $X$ be a smooth, projective, geometrically integral curve of genus $g$ over $k$, and let $\mathcal{K}$ be a canonical divisor on $X$. For every divisor $D$ on $X$, we have
-$$\operatorname{dim}_k L(X, D)-\operatorname{dim}_k L(X, \mathcal{K}-D)=1-g+\operatorname{deg} D$$
-:::
-
 ::: {.front card-id="card-62fefa7cee201023"}
 Show $\dim {\mathcal{M}}_g = 3g-3$.
 :::
@@ -507,15 +458,6 @@ What is the fundamental SES for a divisor $D$ on a surface $X$?
 
 ::: {.back card-id="card-a04854f8fc86df07"}
 ${\mathcal{O}}_X(-D) \hookrightarrow{\mathcal{O}}_X \twoheadrightarrow{\mathcal{O}}_D$.
-:::
-
-::: {.front card-id="card-4dcbe0afdb38b38d"}
-How is $C.D$ defined for curves on a surface?
-:::
-
-::: {.back card-id="card-4dcbe0afdb38b38d"}
-$$C.D = \sum_{p\in C\cap D}(C.D)_p, \quad (C.D)_p \coloneqq\dim_k {\mathcal{O}}_{X, p}/\left\langle{f, g}\right\rangle$$
-where $C \pitchfork D \iff {\mathfrak{m}}_x = \left\langle{f, g}\right\rangle$ for $f,g$ their local equations.
 :::
 
 ::: {.front card-id="card-092509a94bf42014"}
@@ -548,14 +490,6 @@ $${
 {1} & {0}
 \end{bmatrix}
 },\qquad \text{i.e. }f_1 . f_2 = 1,\quad f_1^2 = f_2^2 = 0$$
-:::
-
-::: {.front card-id="card-c1f058f6cd2095c9"}
-What is the genus formula for a curve on a smooth surface?
-:::
-
-::: {.back card-id="card-c1f058f6cd2095c9"}
-$$\omega_C \simeq { \left.{{\qty{\omega_X \otimes \mathcal{O}_X(C)}}} \right|_{{ C}} } \underset{\deg}\implies 2g-2=\left(C+K_X\right) \cdot C$$
 :::
 
 ::: {.front card-id="card-58f42a16f8d57796"}

@@ -27,7 +27,7 @@ Schemes $Y\to X$ with a fiberwise $G{\hbox{-}}$action which etale-locally looks 
 :::
 
 ::: {.front card-id="card-e02f999b03b66a35"}
-What is an etale morphism in $\mathsf{CAlg}_{/ {{\mathbf{Z}}}}$?
+What is an **etale morphism**?
 :::
 
 ::: {.back card-id="card-e02f999b03b66a35"}
@@ -35,9 +35,15 @@ $\pi: R\to S\in \mathsf{CAlg}_{/ {{\mathbf{Z}}}}$ is etale iff
 
 $\pi$ is flat
 
-${\partial}_2: S{ {}^{ \scriptstyle\otimes_{R}^{2} }  }\to S$ is flat.
+${\partial}_2: S{ {}^{ \scriptstyle\otimes_{R}^{2} }  }\to S$ is flat (i.e. $\pi$ is unramified, given finite presentation).
 
 $S$ is finitely presented over $R$
+
+Equivalently: flat and unramified (and locally of finite presentation).
+
+Formally etale and of finite presentation, where $f\in \mathsf{CRing}(A, B)$ is formally etale iff ${\mathbb{L}}_{B/A} \simeq 0$.
+
+For varieties over $k = { \overline{k} }$: a local isomorphism on completed local rings, $\widehat{{\mathcal{O}}}_{Y, f(x)} { \, \xrightarrow{\sim}\, }\widehat{{\mathcal{O}}}_{X, x}$ for all closed points $x$.
 :::
 
 ::: {.front card-id="card-bee224ddfaf88c1f"}
@@ -275,11 +281,11 @@ The pullback $f^*$ induces an equivalence of categories.
 :::
 
 ::: {.front card-id="card-3e96d99ed7dd0190"}
-What is descent for ${\mathsf{QCoh}}(X)$?
+What is (fppf) descent for ${\mathsf{QCoh}}(X)$?
 :::
 
 ::: {.back card-id="card-3e96d99ed7dd0190"}
-If $U\to X$ is fppf, there is an equivalence of categories between ${\mathsf{QCoh}}(X)$ and descent data on $U_{/ {X}}$ induced by $f^*$, where ${\mathcal{F}}\in {\mathsf{QCoh}}(X)$ is sent to $f^* {\mathcal{F}}\in {\mathsf{QCoh}}(U)$ with descent data $(f\circ \mathop{\mathrm{proj}}_1)^* {\mathcal{F}} { \, \xrightarrow{\sim}\, }(f\circ \mathop{\mathrm{proj}}_2)^*{\mathcal{F}}$ an isomorphism on $U \underset{\scriptscriptstyle {X} }{\times} U$ induced by pulling back the identity.
+If $f: U\to X$ is an fppf cover, then $f^*: {\mathsf{QCoh}}(X)  { \, \xrightarrow{\sim}\, }\mathsf{Descent}(U_{/ {X}})$ is an equivalence of categories, where ${\mathcal{F}}\in {\mathsf{QCoh}}(X)$ is sent to $f^* {\mathcal{F}}\in {\mathsf{QCoh}}(U)$ with descent data $(f\circ \mathop{\mathrm{proj}}_1)^* {\mathcal{F}} { \, \xrightarrow{\sim}\, }(f\circ \mathop{\mathrm{proj}}_2)^*{\mathcal{F}}$ an isomorphism on $U \underset{\scriptscriptstyle {X} }{\times} U$ induced by pulling back the identity.
 :::
 
 ::: {.front card-id="card-5bdf53cb5c2d7bbe"}
@@ -299,11 +305,13 @@ A sheaf on the Zariski site which is locally representable.
 :::
 
 ::: {.front card-id="card-d5613e3208f138cd"}
-What is the sheaf-theoretic definition of an algebraic space?
+What is an algebraic space (sheaf-theoretic definition)?
 :::
 
 ::: {.back card-id="card-d5613e3208f138cd"}
-A sheaf on the Zariski site which are is not representable by schemes but are locally representable in the etale topology.
+A sheaf on the big etale site of schemes (over $S$) which need not be representable by a scheme but is locally representable in the etale topology: its diagonal is representable by schemes and there is a scheme $U$ with an etale surjection $U\to X$.
+
+Equivalently, descent data relative to an etale cover $U_{/ {X}}$: $X$ is the quotient sheaf $U/R$ of an etale equivalence relation $R = U \underset{\scriptscriptstyle {X} }{\times} U \rightrightarrows U$.
 :::
 
 ::: {.front card-id="card-1f48ca5c2b65cddc"}
@@ -312,14 +320,6 @@ Give a sufficient condition for the Amitsur complex to be exact.
 
 ::: {.back card-id="card-1f48ca5c2b65cddc"}
 $R\to S$ faithfully flat, $N\in   {}_{R}{\mathsf{Mod}}$, and forming the complex from $({-})\otimes_R S$.
-:::
-
-::: {.front card-id="card-35e11b40eb20cb10"}
-What is fppf descent for ${\mathsf{QCoh}}(X)$?
-:::
-
-::: {.back card-id="card-35e11b40eb20cb10"}
-If $f: U\to X$ is an fppf cover, then $f^*: {\mathsf{QCoh}}(X)  { \, \xrightarrow{\sim}\, }\mathsf{Descent}(U_{/ {X}})$ is an equivalence of categories.
 :::
 
 ::: {.front card-id="card-55f0d671f2cf8cde"}
@@ -356,14 +356,6 @@ Describe faithfully flat descent along $\operatorname{Frob}: X\to X^{(p)}$ over 
 Vector bundles on $X^{(p)}$ are equivalent to descent data for vector bundles on $X^{(p)}$, described as vector bundles ${\mathcal{E}}$ on $X$ with a flat connection $\nabla:{\mathcal{E}}\to {\mathcal{E}}\otimes\Omega^1_{X}$ with $p{\hbox{-}}$curvature zero.
 :::
 
-::: {.front card-id="card-fdf2e0f1cede4446"}
-What is an algebraic space?
-:::
-
-::: {.back card-id="card-fdf2e0f1cede4446"}
-Descent data relative to an etale cover $U_{/ {X}}$.
-:::
-
 ::: {.front card-id="card-c024cb955d1ceca5"}
 What is a polarized scheme?
 :::
@@ -373,11 +365,13 @@ $(X, {\mathcal{L}})$ a scheme with an ample line bundle.
 :::
 
 ::: {.front card-id="card-510b87a25a0f3ea1"}
-What is an etale cover of $\operatorname{Spec}k$?
+What is an etale cover of $\operatorname{Spec}k$? Give an example.
 :::
 
 ::: {.back card-id="card-510b87a25a0f3ea1"}
-$Y \coloneqq{\textstyle\coprod}_{i\in I} \operatorname{Spec}k$, corresponding to an etale $k{\hbox{-}}$algebra.
+$Y \coloneqq{\textstyle\coprod}_{i\in I} \operatorname{Spec}L_i$ with each $L_i/k$ a finite separable extension; for $I$ finite, $Y = \operatorname{Spec}A$ for $A = \prod_i L_i$ an etale $k{\hbox{-}}$algebra.
+
+Example: $\operatorname{Spec}L$ where $L/k$ is a finite separable extension.
 :::
 
 ::: {.front card-id="card-42277796b15d7f27"}
@@ -397,19 +391,11 @@ For $\overline{x} = \operatorname{Spec}k \xhookrightarrow{\iota_{\overline{x}}} 
 :::
 
 ::: {.front card-id="card-3bc2c8cd6c8b9e12"}
-What is the pullback of ${\mathcal{F}}\in {\mathsf{Sh}}(X_\text{ét})$ to a geometric point $\overline{x}$?
+What is the stalk (pullback to a geometric point $\overline{x}$) of ${\mathcal{F}}\in {\mathsf{Sh}}(X_\text{ét})$?
 :::
 
 ::: {.back card-id="card-3bc2c8cd6c8b9e12"}
-${\mathcal{F}}_{\overline{x}} = \iota_{\overline{x}}^*{\mathcal{F}}=\colim_{(U, \overline{u})} {\mathcal{F}}(U)$ where $\overline{u}\to U$ is a cartesian over $\overline{x}\to X$ and $U\to X$ is etale.
-:::
-
-::: {.front card-id="card-b722f8d3c9fc4dd1"}
-What is the stalk of an etale sheaf ${\mathcal{F}}$?
-:::
-
-::: {.back card-id="card-b722f8d3c9fc4dd1"}
-${\mathcal{F}}_{\overline{x}} \coloneqq(\iota_{\overline{x}})^* {\mathcal{F}}$, described as a colimit over pointed etale covers of $\overline{x}\to X$.
+${\mathcal{F}}_{\overline{x}} \coloneqq\iota_{\overline{x}}^*{\mathcal{F}}=\colim_{(U, \overline{u})} {\mathcal{F}}(U)$, a colimit over etale neighborhoods: $U\to X$ is etale and $\overline{u}\to U$ is a lift of $\overline{x}\to X$.
 :::
 
 ::: {.front card-id="card-188c59bcb8252ddf"}
@@ -567,14 +553,6 @@ Why is $H_\text{ét}(X; { \mathbf{F} }_p)$ poorly behaved?
 
 ::: {.back card-id="card-9a0ac67ff3514017"}
 Expect a functorial assignment to ${}_{{\mathbf{Z}}}{\mathsf{Mod}}^{\mathrm{fg}}$, but e.g. even on affines on gets $H^0(X;{ \mathbf{F} }_p)\hookrightarrow{\mathcal{O}}_X(X) \xrightarrow{\mathrm{AS}: t^p-t} {\mathcal{O}}_X(X)\twoheadrightarrow H^1(X; { \mathbf{F} }_p)$ where $\operatorname{coker}\mathrm{AS}$ is not finitely generated.
-:::
-
-::: {.front card-id="card-6049c34eb3790dc4"}
-Give an example of an etale cover of $\operatorname{Spec}k$.
-:::
-
-::: {.back card-id="card-6049c34eb3790dc4"}
-$\operatorname{Spec}L$ where $L/k$ is a separable extension.
 :::
 
 ::: {.front card-id="card-53abacdf4c2019ba"}
@@ -737,11 +715,11 @@ Needs $\operatorname{Pic}(X) = 0$.
 :::
 
 ::: {.front card-id="card-9e06c52c835ebde1"}
-Describe $H_\text{ét}(X; {\mathbf{G}}_m)$ for $X$ a smooth curve over $k={ \overline{k} }$.
+Describe $H^*_\text{ét}(X; {\mathbf{G}}_m)$ for $X$ a smooth curve over $k={ \overline{k} }$.
 :::
 
 ::: {.back card-id="card-9e06c52c835ebde1"}
-${\mathcal{O}}_X^{\times}+ \operatorname{Pic}(X) t$.
+$H^0 = {\mathcal{O}}_X(X)^{\times}$, $H^1 = \operatorname{Pic}(X)$, and $H^i = 0$ for $i\geq 2$. As a Poincare series: ${\mathcal{O}}_X(X)^{\times}t^0+ \operatorname{Pic}(X) t$.
 :::
 
 ::: {.front card-id="card-85f90d33b9543c8d"}
@@ -833,19 +811,13 @@ $A = \bigcap_{p\in \operatorname{Spec}(A)^{\operatorname{ht}= 1}} A_p$.
 :::
 
 ::: {.front card-id="card-11edab857d7d6bd6"}
-Define the cohomological Brauer group.
+Define the cohomological Brauer group $\Br^\mathop{\mathrm{coh}}(X)$.
 :::
 
 ::: {.back card-id="card-11edab857d7d6bd6"}
-$\Br(X_\text{ét}; {\mathbf{G}}_m)_{\operatorname{tors}}$.
-:::
+$\Br^\mathop{\mathrm{coh}}(X) \coloneqq H^2_\text{ét}(X; {\mathbf{G}}_m)_{\operatorname{tors}}$.
 
-::: {.front card-id="card-08cc505bb14454f0"}
-What is $H^i(C; {\mathbf{C}}_m)$?
-:::
-
-::: {.back card-id="card-08cc505bb14454f0"}
-${\mathcal{O}}_C(C)^{\times}t^0 + \operatorname{Pic}(C) t$.
+Compare: the Brauer group $\Br(X)$ is $\operatorname{im}\qty{\bigcup_n {\mathcal{P}}_n \xrightarrow{\delta} H^2_\text{ét}(X; {\mathbf{G}}_m)}$ where ${\mathcal{P}}_n$ is the set of all etale locally trivial $\operatorname{PGL}_n{\hbox{-}}$torsors over $X$, which is the boundary map coming from ${\mathbf{G}}_m\hookrightarrow\operatorname{GL}_n\twoheadrightarrow\operatorname{PGL}_n$. It is contained in $\Br^\mathop{\mathrm{coh}}(X)$, with equality e.g. for $X$ quasi-projective over a field (Gabber).
 :::
 
 ::: {.front card-id="card-a58311cd6c6d2d24"}
@@ -854,16 +826,6 @@ What does $H^1$ classify? $H^2$?
 
 ::: {.back card-id="card-a58311cd6c6d2d24"}
 $H^1$: torsors. $H^2$: gerbes.
-:::
-
-::: {.front card-id="card-db0718daa434464e"}
-What is $\Br^\mathop{\mathrm{coh}}(X)$?
-:::
-
-::: {.back card-id="card-db0718daa434464e"}
-$H^i_\text{ét}(X; {\mathbf{G}}_m)_{\operatorname{tors}}$.
-
-Equivalently, $\operatorname{im}\qty{\bigcup_n {\mathcal{P}}_n \xrightarrow{\delta} H^2_\text{ét}(X; {\mathbf{G}}_m)}$ where ${\mathcal{P}}_n$ is the set of all etale locally trivial $\operatorname{PGL}_n{\hbox{-}}$torsors over $X$, which is the boundary map coming from ${\mathbf{G}}_m\hookrightarrow\operatorname{GL}_n\twoheadrightarrow\operatorname{PGL}_n$.
 :::
 
 ::: {.front card-id="card-c175b0a96cd47db3"}

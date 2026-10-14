@@ -127,9 +127,9 @@ What are the filtrations on a HS?
 :::
 
 ::: {.back card-id="card-5ee6faf8e21ba056"}
-Increasing Hodge filtration: $\operatorname{Fil}^n V \coloneqq\sum_{p > n, q} V^{p, q}$
+Decreasing Hodge filtration: $\operatorname{Fil}^n V \coloneqq\sum_{p \geq n, q} V^{p, q}$
 
-Decreasing weight filtration: $\operatorname{Fil}_n V \coloneqq\sum_{p+q \leq n} V^{p, q}$.
+Increasing weight filtration: $\operatorname{Fil}_n V \coloneqq\sum_{p+q \leq n} V^{p, q}$.
 :::
 
 ::: {.front card-id="card-b5b2ef0bd90811ea"}
@@ -176,11 +176,13 @@ $V(m) = V\otimes_{\mathbf{Z}}{\mathbf{Z}}(m)$.
 :::
 
 ::: {.front card-id="card-fc3f20e8b96f267b"}
-What is a polarization of a QHS?
+What is a polarization of a (pure) Hodge structure?
 :::
 
 ::: {.back card-id="card-fc3f20e8b96f267b"}
-For a pure HS of weight $m$, $Q:V{ {}^{ \scriptstyle\otimes_{}^{2} }  }\to {\mathbf{Z}}(-m)$ defined over ${\mathbf{Q}}$ such that the form $(v,w)\mapsto (2\pi i)^m Q(Cv, w)$ is Hermitian and positive-definite, where $C$ is the Weil element.
+For a pure HS of weight $m$, $Q:V{ {}^{ \scriptstyle\otimes_{}^{2} }  }\to {\mathbf{Z}}(-m)$ defined over ${\mathbf{Q}}$, $(-1)^m$-symmetric, such that the form $(v,w)\mapsto (2\pi i)^m Q(Cv, \overline{w})$ is Hermitian and positive-definite, where $C$ is the Weil element ($C = i^{p-q}$ on $V^{p, q}$).
+
+Equivalently, on $V_{\mathbf{C}} = \bigoplus V^{p, q}$: the $V^{p, q}$ are mutually orthogonal for the Hermitian form $Q(v, \overline{w})$, and $i^{p-q} Q(v, \overline{v}) > 0$ for $0\neq v\in V^{p, q}$. Since $i^{p-q} = (-1)^p i^{-m}$, up to a sign that depends only on the weight this says $(-1)^p Q$ is positive definite on $V^{p, q}$, giving a positive definite Hermitian product ${\left\langle {v},~{w} \right\rangle} \coloneqq\sum_{p, q} (-1)^p Q(v^{p, q}, \overline{w^{p, q}})$.
 
 Alternatively a morphism $V\to V {}^{ \vee }(-m)$, motivated by Poincare duality.
 :::
@@ -194,11 +196,17 @@ $E_1^{p, q} = H^q(M; \Omega_M^p) \Rightarrow H^{p+q}(M; {\mathbf{C}})$.
 :::
 
 ::: {.front card-id="card-f1aac53fbedc8116"}
-What is the primitive part of cohomology?
+What is primitive cohomology?
 :::
 
 ::: {.back card-id="card-f1aac53fbedc8116"}
-$H_{\operatorname{prim}}^{n-k}(M) \coloneqq\ker\qty{H^{n-k} \xrightarrow{L^{k+1}} H^{n+k+2} }$.
+Let $(X, g)$ be a compact Kahler manifold of complex dimension $n$ with Lefschetz operator $L$ (cup product with the Kahler class) and its adjoint $\Lambda$. Then
+$$H_{\operatorname{prim}}^{n-k}(X) \coloneqq\ker\qty{H^{n-k} \xrightarrow{L^{k+1}} H^{n+k+2} },$$
+equivalently
+$$H^m(X, \mathbb{R})_{{\operatorname{prim}}}:=\operatorname{Ker}\left(\Lambda: H^m(X, \mathbb{R}) \longrightarrow H^{m-2}(X, \mathbb{R})\right)$$
+and
+$$H^{p, q}(X)_{{\operatorname{prim}}}:=\operatorname{Ker}\left(\Lambda: H^{p, q}(X) \longrightarrow H^{p-1, q-1}(X)\right)$$
+The Kahler class induces a representation of ${\mathfrak{sl}}_2({\mathbf{C}})$ on $H^*(X; {\mathbf{R}})$ via $L, \Lambda$, and primitive classes are its lowest weight vectors.
 :::
 
 ::: {.front card-id="card-e405e246f75e260c"}
@@ -320,18 +328,6 @@ Limits of PVHS
 $\pi_1(X) \otimes{\mathbf{R}}$ for $X\in \mathsf{Alg}{\mathsf{Var}}_{/ {{\mathbf{C}}}}$.
 
 $\pi_*(X)\otimes{\mathbf{R}}$ for $X\in  \mathsf{Alg}{\mathsf{Var}}_{/ {{\mathbf{C}}}}$ with $\pi_1(X) = 1$.
-:::
-
-::: {.front card-id="card-e5d481d603c58355"}
-What is a polarized Hodge structure on $V\in {}_{{\mathbf{C}}}{\mathsf{Mod}}$?
-:::
-
-::: {.back card-id="card-e5d481d603c58355"}
-$V = \bigoplus V^{p, q}$ with $Q:V\otimes_{\mathbf{C}}\overline{V} \to {\mathbf{C}}$ such that
-
-the decomposition is orthogonal with respect to $Q$ and
-
-$(-1)^p Q$ is positive definite on $V^{p, q}$, so there is a positive definite Hermitian product ${\left\langle {v},~{w} \right\rangle} \coloneqq\sum_{p, q} (-1)^p Q(v^{p, q}, w^{p, q})$.
 :::
 
 ::: {.front card-id="card-079445b64b54e7dd"}
@@ -519,16 +515,4 @@ What is the Jacobian of a complex manifold?
 ::: {.back card-id="card-f71cc370724c36c7"}
 $$\operatorname{Jac}(X) \coloneqq H^1({\mathcal{O}}_X)/H^1(X; {\mathbf{Z}})\cong \ker(\operatorname{Pic}(X) \to H^2(X; {\mathbf{Z}})) \cong \operatorname{Pic}^0(X)$$
 The continuous part of $\operatorname{Pic}(X)$.
-:::
-
-::: {.front card-id="card-3f7ebd9d7613ea25"}
-What is primitive cohomology?
-:::
-
-::: {.back card-id="card-3f7ebd9d7613ea25"}
-Let $(X, g)$ be a compact Kahler manifold. Then the primitive cohomology is defined as
-$$H^k(X, \mathbb{R})_{{\operatorname{prim}}}:=\operatorname{Ker}\left(\Lambda: H^k(X, \mathbb{R}) \longrightarrow H^{k-2}(X, \mathbb{R})\right)$$
-and
-$$H^{p, q}(X)_{{\operatorname{prim}}}:=\operatorname{Ker}\left(\Lambda: H^{p, q}(X) \longrightarrow H^{p-1, q-1}(X)\right)$$
-I.e. any Kahler class induces a representation of ${\mathfrak{sl}}_2({\mathbf{C}})$ on $H^*(X; {\mathbf{R}})$.
 :::
