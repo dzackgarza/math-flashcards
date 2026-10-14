@@ -338,7 +338,7 @@ One step subgroup test
 :::
 
 ::: {.back card-id="card-0e162a922273d1f9"}
-$ a, b\in H \implies ab^{-1} \in H  $ implies that $H$ is a subgroup.
+$a, b\in H \implies ab^{-1} \in H$ implies that $H$ is a subgroup.
 :::
 
 ::: {.front card-id="card-6eec437405b93857" tags="definition"}
@@ -354,7 +354,7 @@ Invariant Factors
 :::
 
 ::: {.back card-id="card-265c167b145b9341"}
-$ r_1 \divides r_2 \divides \cdots $
+$r_1 \divides r_2 \divides \cdots$
 :::
 
 ::: {.front card-id="card-892b21c1809e1616" tags="definition"}

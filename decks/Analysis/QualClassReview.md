@@ -35,14 +35,14 @@ Young's Inequality
 :::
 
 ::: {.back card-id="card-5e69d956767fc9c7"}
-For $1\leq p, q\leq r \leq \infty  $ with ${1\over p} + {1\over q} - {1\over r} = 1  $, then  $\norm{f\ast g}_r \leq \norm{f}_p \norm{g}_q $ 
+For $1\leq p, q\leq r \leq \infty$ with ${1\over p} + {1\over q} - {1\over r} = 1$, then  $\norm{f\ast g}_r \leq \norm{f}_p \norm{g}_q$
 
 Useful cases:
 $$\begin{align*}
 \norm{f\ast g}_1 & \leq \norm{f}_1 \norm{g}_1 \\
 \norm{f\ast g}_p & \leq \norm{f}_1 \norm{g}_p \\
 \norm{f\ast g}_\infty & \leq \norm{f}_p \norm{g}_q \\
-\norm{f\ast g}_\infty & \leq \norm{f}_2 \norm{g}_2 
+\norm{f\ast g}_\infty & \leq \norm{f}_2 \norm{g}_2
 \end{align*}$$
 :::
 
@@ -51,7 +51,7 @@ Baire Space
 :::
 
 ::: {.back card-id="card-9ff87b8743249324"}
-$X$ is a Baire space iff whenever $ \theset{U_n}$ is a *countable* collection of open dense subsets of $X$, then their intersection $\intersect U_n$ is again dense.
+$X$ is a Baire space iff whenever $\theset{U_n}$ is a *countable* collection of open dense subsets of $X$, then their intersection $\intersect U_n$ is again dense.
 :::
 
 ::: {.front card-id="card-84b79cab675f8b50" tags="definition"}
@@ -126,10 +126,8 @@ Caratheodory Characterization
 :::
 
 ::: {.back card-id="card-02ae8d65d6e00185"}
-$E\subseteq \RR^n$ is measurable $\iff$ for all $A\subset \RR^n$, 
-$ 
-m_*(A) = m_*(E\intersect A) + m_*(E\intersect A^c)
-$
+$E\subseteq \RR^n$ is measurable $\iff$ for all $A\subset \RR^n$,
+$m_*(A) = m_*(E\intersect A) + m_*(E\intersect A^c)$
 :::
 
 ::: {.front card-id="card-2ea1124805fcec39" tags="definition"}
@@ -185,8 +183,8 @@ No:
 - $f(C) = [0, 1]$, so define $g(x) = f(x) +x$ so $g:[0, 1] \to [0, 2]$ (strictly monotonic and cts, so a homeomorphism), so $g\inv$ is cts and thus measurable.
 - $\mu(g(C)) = 1>0$ (because $f$ is constant on every interval in $C^c$) so $g(C) \supseteq A$ a non-measurable subset
 - $g\inv(A) \subset C$ with $\mu(C) = 0$ implies $g\inv(A)$ is a measurable set, so $\chi_{g\inv(A)}$ is a measurable function
-- Then $k\definedas \chi_{g\inv(A)} \circ g\inv$ isn't measurable since 
-  $$ 
+- Then $k\definedas \chi_{g\inv(A)} \circ g\inv$ isn't measurable since
+  $$
   k\inv(1) = \qty{ (g\inv)\inv \circ \chi_{g\inv(A)} }(1) = g(g\inv(A)) = A
   $$
   is not a measurable set.
@@ -231,8 +229,8 @@ Uniform Boundedness Principle
 :::
 
 ::: {.back card-id="card-dfdbcbd02a009d68"}
-If $\mathcal{F}$ is a family of bounded operators $T_n:X\to Y$ between Banach spaces with 
-$$  
+If $\mathcal{F}$ is a family of bounded operators $T_n:X\to Y$ between Banach spaces with
+$$
 \forall x\in X, \qquad \sup_{T_n \in \mathcal{F}} \norm{T_n(x)}_Y < \infty
 ,$$
 then $\sup_{T_n\in \mathcal{F}} \norm{T_n}_X < \infty$.

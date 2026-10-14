@@ -51,7 +51,7 @@ Baire Space
 :::
 
 ::: {.back card-id="card-6e717d5ff527add5"}
-$X$ is a Baire space iff whenever $ \theset{U_n}$ is a *countable* collection of open dense subsets of $X$, then their intersection $\intersect U_n$ is again dense.
+$X$ is a Baire space iff whenever $\theset{U_n}$ is a *countable* collection of open dense subsets of $X$, then their intersection $\intersect U_n$ is again dense.
 :::
 
 ::: {.front card-id="card-b663a348a163aeb6" tags="definition"}
@@ -126,10 +126,8 @@ Caratheodory Characterization
 :::
 
 ::: {.back card-id="card-8d198a602aa12799"}
-$E\subseteq \RR^n$ is measurable $\iff$ for all $A\subset \RR^n$, 
-$ 
-m_*(A) = m_*(E\intersect A) + m_*(E\intersect A^c)
-$
+$E\subseteq \RR^n$ is measurable $\iff$ for all $A\subset \RR^n$,
+$m_*(A) = m_*(E\intersect A) + m_*(E\intersect A^c)$
 :::
 
 ::: {.front card-id="card-a208266c1307ee0e" tags="definition"}
@@ -185,8 +183,8 @@ No:
 - $f(C) = [0, 1]$, so define $g(x) = f(x) +x$ so $g:[0, 1] \to [0, 2]$ (strictly monotonic and cts, so a homeomorphism), so $g\inv$ is cts and thus measurable.
 - $\mu(g(C)) = 1>0$ (because $f$ is constant on every interval in $C^c$) so $g(C) \supseteq A$ a non-measurable subset
 - $g\inv(A) \subset C$ with $\mu(C) = 0$ implies $g\inv(A)$ is a measurable set, so $\chi_{g\inv(A)}$ is a measurable function
-- Then $k\definedas \chi_{g\inv(A)} \circ g\inv$ isn't measurable since 
-  $$ 
+- Then $k\definedas \chi_{g\inv(A)} \circ g\inv$ isn't measurable since
+  $$
   k\inv(1) = \qty{ (g\inv)\inv \circ \chi_{g\inv(A)} }(1) = g(g\inv(A)) = A
   $$
   is not a measurable set.
@@ -231,8 +229,8 @@ Uniform Boundedness Principle
 :::
 
 ::: {.back card-id="card-533088ad53a70f23"}
-If $\mathcal{F}$ is a family of bounded operators $T_n:X\to Y$ between Banach spaces with 
-$$  
+If $\mathcal{F}$ is a family of bounded operators $T_n:X\to Y$ between Banach spaces with
+$$
 \forall x\in X, \qquad \sup_{T_n \in \mathcal{F}} \norm{T_n(x)}_Y < \infty
 ,$$
 then $\sup_{T_n\in \mathcal{F}} \norm{T_n}_X < \infty$.

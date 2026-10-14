@@ -63,7 +63,7 @@ Double angle formulas involving $\tan$
 ::: {.back card-id="card-df28c7619c664624"}
 The double angle formulas:
 $$
-\sin(2t) = {2\tan(t) \over 1+\tan^2(t)} \\ 
+\sin(2t) = {2\tan(t) \over 1+\tan^2(t)} \\
 \cos(2t) = {1-\tan^2(2t) \over 1+\tan^2(t)}
 .$$
 :::
@@ -86,8 +86,7 @@ Cross-ratio map
 $$
 R(z) \da (z, z_2, z_3, z_4) \da {z - z_3\over z-z_4}{z_2 - z_4 \over z_2 - z_3} \\
 .$$
-
-Sends 
+Sends
 
 - $z_2 \to 1$
 - $z_3\to 0$

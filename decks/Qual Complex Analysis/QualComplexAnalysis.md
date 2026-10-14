@@ -175,10 +175,10 @@ Rouché's Theorem
 :::
 
 ::: {.back card-id="card-9cda9ad59c4e4475"}
-If $f, g$ are holomorphic on $\bar{D}(z_0)$ and 
+If $f, g$ are holomorphic on $\bar{D}(z_0)$ and
 $$
 \abs{f - g} < \abs{f} + \abs{g} \quad\text{on}\quad \bd D
-,$$ 
+,$$
 then $f,g\neq 0$ on $\bd D$ and have the same number of zeros.
 :::
 
@@ -215,7 +215,6 @@ Example of a conformal map that is not injective.
 
 ::: {.back card-id="card-9cf6c389465d65d4"}
 $$z\mapsto e^z$$
-
 Not injective because it is periodic, not surjective because it's never zero.
 :::
 

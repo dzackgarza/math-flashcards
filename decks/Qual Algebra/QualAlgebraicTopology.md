@@ -103,8 +103,7 @@ Deformation Retract
 :::
 
 ::: {.back card-id="card-185e273a2e55c6e1"}
-Deformation Retract: A subspace $A \subset X$ is a *deformation retract* of $X$ iff there exists a deformation retraction: a continuous map $F:X\cross I$ to $X$ such that 
-
+Deformation Retract: A subspace $A \subset X$ is a *deformation retract* of $X$ iff there exists a deformation retraction: a continuous map $F:X\cross I$ to $X$ such that
 $$
 \begin{align*}
 F(x, 0) &= x  \iff F_0 = \id_X \\

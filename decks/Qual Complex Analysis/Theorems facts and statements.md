@@ -9,8 +9,8 @@ Dirichlet's Test
 ::: {.back card-id="card-eb4244d2003b0e64"}
 If $\theset{a_n}, \theset{b_n}$ satisfy
 
-- $  a_n \searrow 0$ 
-- For every $N$, there exists an $M_N$ such that $  \abs{\sum_{n=1}^N b_n} \leq M_N$
+- $a_n \searrow 0$
+- For every $N$, there exists an $M_N$ such that $\abs{\sum_{n=1}^N b_n} \leq M_N$
 
 Then $$ \sum_{n=1}^\infty a_n b_n < \infty .$$
 :::
@@ -20,8 +20,8 @@ Morera's Theorem
 :::
 
 ::: {.back card-id="card-db278e9d3b9f3414"}
-If $f$ is continuous in an open disc $\DD$ and 
-$$  
+If $f$ is continuous in an open disc $\DD$ and
+$$
 \text{For all triangles } T\subset \DD, \qquad \int_T f = 0
 ,$$
 then $f$ is holomorphic.
@@ -32,7 +32,7 @@ Riemann's Removable Singularity Theorem
 :::
 
 ::: {.back card-id="card-80b0ce10c15510b0"}
-Let $U\subset \CC$ be open, $a\in U$, and $f$ holomorphic on $U\setminus\theset{a}$. 
+Let $U\subset \CC$ be open, $a\in U$, and $f$ holomorphic on $U\setminus\theset{a}$.
 Then TFAE
 
 - $f$ extends holomorphically to all of $U$

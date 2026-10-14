@@ -44,7 +44,7 @@ Functional characterization of injective functions.
 :::
 
 ::: {.back card-id="card-44cb3f71b3da138c"}
-$$  
+$$
 f(x) = f(y) \implies x=y \iff f \text{ has a left inverse.}
 .$$
 :::
@@ -54,7 +54,7 @@ Functional characterization of surjective functions.
 :::
 
 ::: {.back card-id="card-0e941ec5ea10f983"}
-$$  
+$$
 \forall y, \exists X \text{ such that } f(x) = y \iff f\text{ has a right inverse, } \exists g \text{ such that } f(g(y)) = y\, \forall y
 .$$
 :::

@@ -27,7 +27,7 @@ Zero Divisor
 :::
 
 ::: {.back card-id="card-569223be8caa3985"}
-An element $r\in R$ is a *zero divisor* if there exists an $ x\in X $ such that $ rx=0$.
+An element $r\in R$ is a *zero divisor* if there exists an $x\in X$ such that $rx=0$.
 
 Equivalently, the map $x\mapsto rx$ is *not* injective.
 :::

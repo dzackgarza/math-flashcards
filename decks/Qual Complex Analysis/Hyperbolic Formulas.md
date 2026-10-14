@@ -14,7 +14,7 @@ $$
 :::
 
 ::: {.front card-id="card-d97139d4344d2372" tags="formula"}
-Relating hyperbolic functions to usual ones: $ \cos(z) = \cosh(?)\\ .$
+Relating hyperbolic functions to usual ones: $\cos(z) = \cosh(?)\\ .$
 :::
 
 ::: {.back card-id="card-d97139d4344d2372"}
@@ -24,7 +24,7 @@ $$
 :::
 
 ::: {.front card-id="card-5cd2a73d5a9468af" tags="formula"}
-Relating hyperbolic functions to usual ones: $ \sin(z) = \sinh(?) .$
+Relating hyperbolic functions to usual ones: $\sin(z) = \sinh(?) .$
 :::
 
 ::: {.back card-id="card-5cd2a73d5a9468af"}
@@ -54,17 +54,17 @@ $$
 :::
 
 ::: {.front card-id="card-35b13a0efffb3cb4" tags="formulas"}
-Angle addition formulas: $ \cosh(x+iy) = \cdots .$
+Angle addition formulas: $\cosh(x+iy) = \cdots .$
 :::
 
 ::: {.back card-id="card-35b13a0efffb3cb4"}
 $$
-\cosh (x+i y) =\cosh (x) \cos (y)+i \sinh (x) \sin (y) 
+\cosh (x+i y) =\cosh (x) \cos (y)+i \sinh (x) \sin (y)
 .$$
 :::
 
 ::: {.front card-id="card-7c7fbda8f367558e" tags="formulas"}
-Angle addition formulas: $ \sinh(x+iy) = \cdots .$
+Angle addition formulas: $\sinh(x+iy) = \cdots .$
 :::
 
 ::: {.back card-id="card-7c7fbda8f367558e"}

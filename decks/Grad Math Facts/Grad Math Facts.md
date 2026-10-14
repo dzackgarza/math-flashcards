@@ -27,23 +27,23 @@ Yes
 :::
 
 ::: {.front card-id="card-f24d683913c1e5a1" tags="misc"}
-True or false: $ X =_? (f^{-1} \circ f)(X) $
+True or false: $X =_? (f^{-1} \circ f)(X)$
 :::
 
 ::: {.back card-id="card-f24d683913c1e5a1"}
-Only when $f$ is injective, otherwise just $ \subseteq $.
+Only when $f$ is injective, otherwise just $\subseteq$.
 :::
 
 ::: {.front card-id="card-f0af314ba0599d9d" tags="misc"}
-True or false: $ X =_? (f\circ f^{-1})(X) $
+True or false: $X =_? (f\circ f^{-1})(X)$
 :::
 
 ::: {.back card-id="card-f0af314ba0599d9d"}
-Only when $f$ is surjective, otherwise just $ \subseteq $.
+Only when $f$ is surjective, otherwise just $\subseteq$.
 :::
 
 ::: {.front card-id="card-8b225a8506b564ad" tags="misc"}
-True or false: $ f^{-1}(A) \setminus f^{-1}(B) =_? f^{-1}(A\setminus B) $
+True or false: $f^{-1}(A) \setminus f^{-1}(B) =_? f^{-1}(A\setminus B)$
 :::
 
 ::: {.back card-id="card-8b225a8506b564ad"}
@@ -52,7 +52,7 @@ For forward direction, only an inclusion.
 :::
 
 ::: {.front card-id="card-efc49202ba80c5d4" tags="unsorted"}
-True or false: $ \log(a-b) = \log(a) / \log(b) $
+True or false: $\log(a-b) = \log(a) / \log(b)$
 :::
 
 ::: {.back card-id="card-efc49202ba80c5d4"}
@@ -60,7 +60,7 @@ False: take $b=1$, this would force dividing by zero.
 :::
 
 ::: {.front card-id="card-c34ff24d2266b166" tags="unsorted"}
-True or false: $ \log(a+b) = \log(a) + \log(b) $
+True or false: $\log(a+b) = \log(a) + \log(b)$
 :::
 
 ::: {.back card-id="card-c34ff24d2266b166"}
@@ -68,7 +68,7 @@ False
 :::
 
 ::: {.front card-id="card-3a469b2ce4fc9251" tags="unsorted"}
-True or false: $ \log(a+b) = \log(a) \log(b) $
+True or false: $\log(a+b) = \log(a) \log(b)$
 :::
 
 ::: {.back card-id="card-3a469b2ce4fc9251"}
@@ -76,22 +76,22 @@ False
 :::
 
 ::: {.front card-id="card-0fd9e0a82ce28c1b" tags="unsorted"}
-Write $ \log $ as a group homomorphism. What are the domain and codomain?
+Write $\log$ as a group homomorphism. What are the domain and codomain?
 :::
 
 ::: {.back card-id="card-0fd9e0a82ce28c1b"}
 $$
-\log: \GG_m(\RR) \to \GG_a(\RR) 
+\log: \GG_m(\RR) \to \GG_a(\RR)
 .$$
 :::
 
 ::: {.front card-id="card-ff56ab1fbdbb17c2" tags="unsorted"}
-Write $ \exp $  as a group homomorphism.
+Write $\exp$  as a group homomorphism.
 :::
 
 ::: {.back card-id="card-ff56ab1fbdbb17c2"}
 $$
-\exp: \GG_a(\RR) \to \GG_m(\RR) 
+\exp: \GG_a(\RR) \to \GG_m(\RR)
 .$$
 :::
 

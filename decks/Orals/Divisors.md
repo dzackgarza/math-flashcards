@@ -7,7 +7,7 @@ What is a **rational section** of a line bundle?
 :::
 
 ::: {.back card-id="card-96215ab0361f9245"}
-A pair $ (s, U) $ with $ U\subseteq X $ open containing all associated points of $ X $, $ s\in H^0(U; {\mathcal{L}}) $, and $ (s_1, U_1) \sim (s_2, U_2) \iff $ $ s_1=s_2 $ on $ U_{12} $.
+A pair $(s, U)$ with $U\subseteq X$ open containing all associated points of $X$, $s\in H^0(U; {\mathcal{L}})$, and $(s_1, U_1) \sim (s_2, U_2) \iff$ $s_1=s_2$ on $U_{12}$.
 :::
 
 ::: {.front card-id="card-4ee8f97372f5a928"}
@@ -15,7 +15,7 @@ How are Weil divisors related to Cartier divisors?
 :::
 
 ::: {.back card-id="card-4ee8f97372f5a928"}
-Coincide when $ X $ is integral, separated, Noetherian, locally factorial (local rings are UFDs), and principal divisors coincide as well. In general one has a map $ \operatorname{CDiv}(X) \to \operatorname{Div}(X) $ where $ D $ defined by $ \left\{{(U_i, f_i)}\right\} $ is mapped to $ \sum_{Y\in \operatorname{Div}(X)} v_Y(f_i) Y $ where $ i $ is any index where $ U_i \cap Y $ is nonempty. The inverse construction: given $ D\in \operatorname{Div}(X) $, it induces $ D_x \in \operatorname{Spec}{\mathcal{O}}_{X, x} $, which is a UFD so $ D_x $ is a principal divisor $ D_x = (f_x) $ where $ f_x \in K(X) $. Lift to a principal divisor $ (f_x) $ on $ X $; its restriction to $ \operatorname{Spec}{\mathcal{O}}_{X, x} $ coincides with $ D $ so they differ only by prime divisors that don't pass through $ x $. Only finitely many such primes have nonzero coefficients in $ D $ or $ (f_x) $, so there is an open $ U_x \ni x $ such that $ D $ and $ (f_x) $ restrict to the same divisor. Now cover $ X $ by the $ U_x $ and use the $ f_x $ to defined a Cartier divisor.
+Coincide when $X$ is integral, separated, Noetherian, locally factorial (local rings are UFDs), and principal divisors coincide as well. In general one has a map $\operatorname{CDiv}(X) \to \operatorname{Div}(X)$ where $D$ defined by $\left\{{(U_i, f_i)}\right\}$ is mapped to $\sum_{Y\in \operatorname{Div}(X)} v_Y(f_i) Y$ where $i$ is any index where $U_i \cap Y$ is nonempty. The inverse construction: given $D\in \operatorname{Div}(X)$, it induces $D_x \in \operatorname{Spec}{\mathcal{O}}_{X, x}$, which is a UFD so $D_x$ is a principal divisor $D_x = (f_x)$ where $f_x \in K(X)$. Lift to a principal divisor $(f_x)$ on $X$; its restriction to $\operatorname{Spec}{\mathcal{O}}_{X, x}$ coincides with $D$ so they differ only by prime divisors that don't pass through $x$. Only finitely many such primes have nonzero coefficients in $D$ or $(f_x)$, so there is an open $U_x \ni x$ such that $D$ and $(f_x)$ restrict to the same divisor. Now cover $X$ by the $U_x$ and use the $f_x$ to defined a Cartier divisor.
 :::
 
 ::: {.front card-id="card-4693c6587767ae37"}
@@ -23,39 +23,39 @@ What is the Cartier divisor associated to a rational section of an invertible sh
 :::
 
 ::: {.back card-id="card-4693c6587767ae37"}
-Rational section: $ s: X\to {\mathcal{L}} $ defined on an open dense subset. For any $ Y\in \operatorname{Div}(X) $ one can define $ v_Y(s) $ for a section, so define $ (s) \coloneqq\sum_{Y\in \operatorname{Div}(X)} v_Y(s) Y $. The valuation is defined using $ {\mathcal{L}}_{X, Y} \to {\mathcal{O}}_{X, Y} $ which is a valuation ring when $ X $ is integral.
+Rational section: $s: X\to {\mathcal{L}}$ defined on an open dense subset. For any $Y\in \operatorname{Div}(X)$ one can define $v_Y(s)$ for a section, so define $(s) \coloneqq\sum_{Y\in \operatorname{Div}(X)} v_Y(s) Y$. The valuation is defined using ${\mathcal{L}}_{X, Y} \to {\mathcal{O}}_{X, Y}$ which is a valuation ring when $X$ is integral.
 :::
 
 ::: {.front card-id="card-20c128cfdff9a4d9"}
-What is $ {\mathcal{O}}(D) $?
+What is ${\mathcal{O}}(D)$?
 :::
 
 ::: {.back card-id="card-20c128cfdff9a4d9"}
-$ {\mathcal{O}}(D) \coloneqq\left\{{f\in K(X)^{\times}{~\mathrel{\Big\vert}~}(f) + D \geq 0}\right\} $.
+${\mathcal{O}}(D) \coloneqq\left\{{f\in K(X)^{\times}{~\mathrel{\Big\vert}~}(f) + D \geq 0}\right\}$.
 :::
 
 ::: {.front card-id="card-971d2e611559217c"}
-Show that every degree zero divisor on $ {\mathbf{P}}^1 $ is principal.
+Show that every degree zero divisor on ${\mathbf{P}}^1$ is principal.
 :::
 
 ::: {.back card-id="card-971d2e611559217c"}
-Any $ p_1, p_2 $ are linearly equivalent by taking $ f(z) = {z-a\over z-b} $.
+Any $p_1, p_2$ are linearly equivalent by taking $f(z) = {z-a\over z-b}$.
 :::
 
 ::: {.front card-id="card-15a0017a811c7b24"}
-Show that not every degree zero divisor on an elliptic curve is principal. What is $ \operatorname{Pic}(E) $?
+Show that not every degree zero divisor on an elliptic curve is principal. What is $\operatorname{Pic}(E)$?
 :::
 
 ::: {.back card-id="card-15a0017a811c7b24"}
-Take $ p_1\neq p_2 $, then if $ p_1-p_2 = (f) $ for some $ f: E\to {\mathbf{P}}^1 $ this produces an injective holomorphic map and forces $ E\cong {\mathbf{P}}^1 $; however e.g. $ g(E) = 1\neq 0 = g({\mathbf{P}}^1) $. In general $ \operatorname{Pic}(E) \cong \operatorname{Pic}^0(E) \oplus {\mathbf{Z}}\cong E\oplus {\mathbf{Z}} $.
+Take $p_1\neq p_2$, then if $p_1-p_2 = (f)$ for some $f: E\to {\mathbf{P}}^1$ this produces an injective holomorphic map and forces $E\cong {\mathbf{P}}^1$; however e.g. $g(E) = 1\neq 0 = g({\mathbf{P}}^1)$. In general $\operatorname{Pic}(E) \cong \operatorname{Pic}^0(E) \oplus {\mathbf{Z}}\cong E\oplus {\mathbf{Z}}$.
 :::
 
 ::: {.front card-id="card-5f35d5826acfaa91"}
-Show that if $ D = V(f) $ is a hypersurface in $ {\mathbf{P}}^n $ then $ D\sim \deg(f) H $, so $ \operatorname{Pic}({\mathbf{P}}^n) = \left\langle{H}\right\rangle_{\mathbf{Z}} $.
+Show that if $D = V(f)$ is a hypersurface in ${\mathbf{P}}^n$ then $D\sim \deg(f) H$, so $\operatorname{Pic}({\mathbf{P}}^n) = \left\langle{H}\right\rangle_{\mathbf{Z}}$.
 :::
 
 ::: {.back card-id="card-5f35d5826acfaa91"}
-Let $ d\coloneqq\deg f $ and $ H = V(x_0) $, then $ D - dH = (g) $ where $ g(x_0,\cdots, x_n) = {f(x_0,\cdots, x_n) \over x_0^d} $.
+Let $d\coloneqq\deg f$ and $H = V(x_0)$, then $D - dH = (g)$ where $g(x_0,\cdots, x_n) = {f(x_0,\cdots, x_n) \over x_0^d}$.
 :::
 
 ::: {.front card-id="card-fb3d8547bc4d2498"}
@@ -63,7 +63,7 @@ Give a definition of **very ample divisors** in terms of hyperplane sections.
 :::
 
 ::: {.back card-id="card-fb3d8547bc4d2498"}
-$ D\in \operatorname{Div}(X) $ is very ample iff $ D \sim D' $ where $ D' $ is the divisor of a hyperplane section under an embedding $ X\hookrightarrow{\mathbf{P}}^n $.
+$D\in \operatorname{Div}(X)$ is very ample iff $D \sim D'$ where $D'$ is the divisor of a hyperplane section under an embedding $X\hookrightarrow{\mathbf{P}}^n$.
 :::
 
 ::: {.front card-id="card-b593bed2e5b71670"}
@@ -71,7 +71,7 @@ What is a **prime** divisor?
 :::
 
 ::: {.back card-id="card-b593bed2e5b71670"}
-A closed integral subscheme $ Y\leq X $ of dimension 1.
+A closed integral subscheme $Y\leq X$ of dimension 1.
 :::
 
 ::: {.front card-id="card-4229cc42c6837e32"}
@@ -79,7 +79,7 @@ What is a **Weil** divisor?
 :::
 
 ::: {.back card-id="card-4229cc42c6837e32"}
-The free $ {\mathbf{Z}}{\hbox{-}} $module on prime divisors, so $ D = \sum_{i\in I} n_i Y_i $ where $ I $ indexes prime divisors.
+The free ${\mathbf{Z}}{\hbox{-}}$module on prime divisors, so $D = \sum_{i\in I} n_i Y_i$ where $I$ indexes prime divisors.
 :::
 
 ::: {.front card-id="card-5f848017f4ff3d8a"}
@@ -87,15 +87,15 @@ What is an **effective** divisor?
 :::
 
 ::: {.back card-id="card-5f848017f4ff3d8a"}
-$ n_i\geq 0 $ for all $ i $.
+$n_i\geq 0$ for all $i$.
 :::
 
 ::: {.front card-id="card-07970e097309b8ad"}
-What is the **divisor of a rational function** $ f\in K(X) $?
+What is the **divisor of a rational function** $f\in K(X)$?
 :::
 
 ::: {.back card-id="card-07970e097309b8ad"}
-$ (f) \coloneqq\sum_{i\in I} v_{Y_i}(f) Y_i $ where $ v_Y $ is a valuation: for $ Y $ prime, let $ \eta $ be its generic point, then $ {\mathcal{O}}_{Y, \eta} $ is a DVR $ R $ with $ \operatorname{ff}(R) = K(X) $ and discrete valuation $ v_Y $. It's a theorem that $ v_Y(f) = 0 $ for almost all $ Y $.
+$(f) \coloneqq\sum_{i\in I} v_{Y_i}(f) Y_i$ where $v_Y$ is a valuation: for $Y$ prime, let $\eta$ be its generic point, then ${\mathcal{O}}_{Y, \eta}$ is a DVR $R$ with $\operatorname{ff}(R) = K(X)$ and discrete valuation $v_Y$. It's a theorem that $v_Y(f) = 0$ for almost all $Y$.
 :::
 
 ::: {.front card-id="card-d0f2478c9024ff61"}
@@ -103,7 +103,7 @@ What is a **principal** divisor?
 :::
 
 ::: {.back card-id="card-d0f2478c9024ff61"}
-Any $ D $ of the form $ D = (f) $ for $ f\in K(X) $.
+Any $D$ of the form $D = (f)$ for $f\in K(X)$.
 :::
 
 ::: {.front card-id="card-9c3a89a72680196c"}
@@ -111,37 +111,37 @@ What is **linear equivalence** of divisors?
 :::
 
 ::: {.back card-id="card-9c3a89a72680196c"}
-$ D \sim D' $ iff $ D-D' = (f) $ for some $ f\in K(X)^{\times} $.
+$D \sim D'$ iff $D-D' = (f)$ for some $f\in K(X)^{\times}$.
 :::
 
 ::: {.front card-id="card-5536323d59151c69"}
-What is the **divisor class group** $ \operatorname{Cl}(X) $?
+What is the **divisor class group** $\operatorname{Cl}(X)$?
 :::
 
 ::: {.back card-id="card-5536323d59151c69"}
-$  \operatorname{Cl}(X) = \operatorname{coker}(K(X)^{\times}\xrightarrow{ ({-})} \operatorname{Div}(X)) $, i.e. Weil divisors modulo linear equivalence.
+$\operatorname{Cl}(X) = \operatorname{coker}(K(X)^{\times}\xrightarrow{ ({-})} \operatorname{Div}(X))$, i.e. Weil divisors modulo linear equivalence.
 :::
 
 ::: {.front card-id="card-fa7b1a663d3791dd"}
-Discuss $ \operatorname{Cl}(X) $.
+Discuss $\operatorname{Cl}(X)$.
 :::
 
 ::: {.back card-id="card-fa7b1a663d3791dd"}
-For $ A $ a Noetherian domain, $ A $ is a UFD iff $ \operatorname{Spec}A $ is normal and $  \operatorname{Cl}(\operatorname{Spec}A) = 0 $.
+For $A$ a Noetherian domain, $A$ is a UFD iff $\operatorname{Spec}A$ is normal and $\operatorname{Cl}(\operatorname{Spec}A) = 0$.
 
-This follows from the equivalence $ A $ is a UFD iff every prime ideal of height 1 is principal.
+This follows from the equivalence $A$ is a UFD iff every prime ideal of height 1 is principal.
 
-$  \operatorname{Cl}({\mathbf{A}}^n) $ is zero since $ k[x_1, \cdots, x_{n}] $ is a UFD, $  \operatorname{Cl}({\mathbf{P}}^n_{/ {k}}) \cong k $ generated by a hyperplane, induced by the degree morphism.
+$\operatorname{Cl}({\mathbf{A}}^n)$ is zero since $k[x_1, \cdots, x_{n}]$ is a UFD, $\operatorname{Cl}({\mathbf{P}}^n_{/ {k}}) \cong k$ generated by a hyperplane, induced by the degree morphism.
 
-For $ Z\leq X $ proper closed and $ U\coloneqq X\setminus Z $, $  \operatorname{Cl}(X) \twoheadrightarrow \operatorname{Cl}(U) $ by taking $ \sum n_i Y_i \mapsto \sum n_i (Y_i \cap Z) $ and is injective if $ \operatorname{codim}_X(Z) \geq 2 $. If $ Z $ is irreducible of codimension 1, then one gets a right-SES $ {\mathbf{Z}}\to  \operatorname{Cl}(X) \twoheadrightarrow \operatorname{Cl}(U) $.
+For $Z\leq X$ proper closed and $U\coloneqq X\setminus Z$, $\operatorname{Cl}(X) \twoheadrightarrow \operatorname{Cl}(U)$ by taking $\sum n_i Y_i \mapsto \sum n_i (Y_i \cap Z)$ and is injective if $\operatorname{codim}_X(Z) \geq 2$. If $Z$ is irreducible of codimension 1, then one gets a right-SES ${\mathbf{Z}}\to  \operatorname{Cl}(X) \twoheadrightarrow \operatorname{Cl}(U)$.
 :::
 
 ::: {.front card-id="card-c8a4fd5da4688a38"}
-Is $ \operatorname{Cl}(X) $ always free?
+Is $\operatorname{Cl}(X)$ always free?
 :::
 
 ::: {.back card-id="card-c8a4fd5da4688a38"}
-No, it can contain torsion: let $ Y\subseteq {\mathbf{P}}^2 $ be an irreducible curve of degree $ d $ and let $ X\coloneqq{\mathbf{P}}^2\setminus Y $, then $ {\mathbf{Z}}\xrightarrow{\times d}  \operatorname{Cl}({\mathbf{P}}^2)\cong {\mathbf{Z}}\twoheadrightarrow \operatorname{Cl}({\mathbf{P}}^2\setminus Y) \implies  \operatorname{Cl}(X) \cong C_d $
+No, it can contain torsion: let $Y\subseteq {\mathbf{P}}^2$ be an irreducible curve of degree $d$ and let $X\coloneqq{\mathbf{P}}^2\setminus Y$, then ${\mathbf{Z}}\xrightarrow{\times d}  \operatorname{Cl}({\mathbf{P}}^2)\cong {\mathbf{Z}}\twoheadrightarrow \operatorname{Cl}({\mathbf{P}}^2\setminus Y) \implies  \operatorname{Cl}(X) \cong C_d$
 :::
 
 ::: {.front card-id="card-9437c471081d18e9"}
@@ -149,7 +149,7 @@ What are minimal conditions for which it makes sense to discuss Weil divisors?
 :::
 
 ::: {.back card-id="card-9437c471081d18e9"}
-Hartshorne's condition $ (*) $: Noetherian, integral, separated, regular in codimension 1.
+Hartshorne's condition $(*)$: Noetherian, integral, separated, regular in codimension 1.
 :::
 
 ::: {.front card-id="card-5a7dc879dfd7ff8c"}
@@ -157,11 +157,11 @@ Discuss **complete divisors** on a smooth complete curve.
 :::
 
 ::: {.back card-id="card-5a7dc879dfd7ff8c"}
-Every principal divisor has degree zero: use the general result that if $ \Phi: X\to Y $ is a finite morphism of curves, $ \deg(\Phi^* D) = \deg(\Phi) \deg D $ for any $ D\in \operatorname{Div}(Y) $.
+Every principal divisor has degree zero: use the general result that if $\Phi: X\to Y$ is a finite morphism of curves, $\deg(\Phi^* D) = \deg(\Phi) \deg D$ for any $D\in \operatorname{Div}(Y)$.
 
-If $ f\in k $ then $ (f) = 0 $, otherwise $ f\not\in k $ so consider the extension $ L \coloneqq k(f) $. The inclusion $ L \hookrightarrow K(X) $ induces a finite morphism $ \phi: X\to {\mathbf{P}}^1 $ and $ (f) = \phi^{-1}(D) $ where $ D\coloneqq 1[0] - 1[\infty] $, and $ \deg D = 0 $ on $ {\mathbf{P}}^1 $.
+If $f\in k$ then $(f) = 0$, otherwise $f\not\in k$ so consider the extension $L \coloneqq k(f)$. The inclusion $L \hookrightarrow K(X)$ induces a finite morphism $\phi: X\to {\mathbf{P}}^1$ and $(f) = \phi^{-1}(D)$ where $D\coloneqq 1[0] - 1[\infty]$, and $\deg D = 0$ on ${\mathbf{P}}^1$.
 
-Since $ \phi $ is a finite morphism of curves, we have $ \deg (f) = \deg(\phi^* D) = \deg(\phi)\cdot 0 = 0 $.
+Since $\phi$ is a finite morphism of curves, we have $\deg (f) = \deg(\phi^* D) = \deg(\phi)\cdot 0 = 0$.
 :::
 
 ::: {.front card-id="card-823f5b1aae28c159"}
@@ -169,7 +169,7 @@ What is a **rational curve**?
 :::
 
 ::: {.back card-id="card-823f5b1aae28c159"}
-Birational to $ {\mathbf{P}}^1 $, equivalently admits distinct points $ p, q $ with $ p\sim q $.
+Birational to ${\mathbf{P}}^1$, equivalently admits distinct points $p, q$ with $p\sim q$.
 :::
 
 ::: {.front card-id="card-c82773a251b250bd"}
@@ -177,7 +177,7 @@ Give an example of a curve that is not rational.
 :::
 
 ::: {.back card-id="card-c82773a251b250bd"}
-Take $ y^2 = x^3-x $ and homogenize to $ y^2z = x^3-xz^2 $.
+Take $y^2 = x^3-x$ and homogenize to $y^2z = x^3-xz^2$.
 :::
 
 ::: {.front card-id="card-200a691d7831622a"}
@@ -185,7 +185,7 @@ What is a **reduced** divisor? An irreducible divisor?
 :::
 
 ::: {.back card-id="card-200a691d7831622a"}
-Reduced: $ n_i = 1 $ for all $ i $. Irreducible: $ n_i = 1 $ for exactly one $ i $.
+Reduced: $n_i = 1$ for all $i$. Irreducible: $n_i = 1$ for exactly one $i$.
 :::
 
 ::: {.front card-id="card-3412fb386a2efba5"}
@@ -193,7 +193,7 @@ What is a **Cartier** divisor?
 :::
 
 ::: {.back card-id="card-3412fb386a2efba5"}
-A global section $ s\in H^0(X; {\mathcal{K}}^{\times}/{\mathcal{O}}^{\times}) $, described by an open cover $ U_i\rightrightarrows X $, $ f_i \in H^0(U_i; {\mathcal{K}}^{\times}) $, and $ {f_i\over f_j}\in H^0(U_{ij}; {\mathcal{O}}^{\times}) $.
+A global section $s\in H^0(X; {\mathcal{K}}^{\times}/{\mathcal{O}}^{\times})$, described by an open cover $U_i\rightrightarrows X$, $f_i \in H^0(U_i; {\mathcal{K}}^{\times})$, and ${f_i\over f_j}\in H^0(U_{ij}; {\mathcal{O}}^{\times})$.
 
 Equivalently, a locally principal Weil divisor.
 :::
@@ -203,7 +203,7 @@ What is a **principal** Cartier divisor?
 :::
 
 ::: {.back card-id="card-765642427aa86626"}
-Anything in the image of $ H^0({\mathcal{K}}^{\times}) \to H^0({\mathcal{K}}^{\times}/{\mathcal{O}}^{\times}) $.
+Anything in the image of $H^0({\mathcal{K}}^{\times}) \to H^0({\mathcal{K}}^{\times}/{\mathcal{O}}^{\times})$.
 :::
 
 ::: {.front card-id="card-c27dc13c5754671f"}
@@ -211,7 +211,7 @@ When do Weil and Cartier divisors coincide?
 :::
 
 ::: {.back card-id="card-c27dc13c5754671f"}
-$ X $ integral, separated, Noetherian, locally factorial (all local rings are UFDs). In this case, principal Weil divisors coincide with principal Cartier divisors.
+$X$ integral, separated, Noetherian, locally factorial (all local rings are UFDs). In this case, principal Weil divisors coincide with principal Cartier divisors.
 :::
 
 ::: {.front card-id="card-b39fa8bac52d9231"}
@@ -219,7 +219,7 @@ Give an example of a Weil divisor that is not Cartier.
 :::
 
 ::: {.back card-id="card-b39fa8bac52d9231"}
-Take $ X = V(xy-z^2) \subseteq {\mathbf{A}}^3 $ and let $ Y $ be its ruling $ \left\{{ p\in Y{~\mathrel{\Big\vert}~}y=z=0}\right\} $. Then $ Y $ can not be locally principal in a neighborhood of the cone point. However, $ 2Y $ is locally principal and in fact principal. The divisor $ D=V(x,z) $ is not of the form $ V = (f) $ for any $ f\in K(X) $ near the origin.
+Take $X = V(xy-z^2) \subseteq {\mathbf{A}}^3$ and let $Y$ be its ruling $\left\{{ p\in Y{~\mathrel{\Big\vert}~}y=z=0}\right\}$. Then $Y$ can not be locally principal in a neighborhood of the cone point. However, $2Y$ is locally principal and in fact principal. The divisor $D=V(x,z)$ is not of the form $V = (f)$ for any $f\in K(X)$ near the origin.
 :::
 
 ::: {.front card-id="card-15ea337ffea63d93"}
@@ -227,7 +227,7 @@ What is an **ample divisor**?
 :::
 
 ::: {.back card-id="card-15ea337ffea63d93"}
-$ {\mathcal{L}} $ is ample iff $ {\mathcal{L}}^n $ is very ample for some $ n $, so defines an embedding $ \phi_{{\left\lvert {{\mathcal{L}}} \right\rvert}}: X\to {\mathbf{P}}^N $ where $ {\mathbf{P}}^N \cong {\mathbf{P}}H^0(X; {\mathcal{L}}^n) {}^{ \vee } $.
+${\mathcal{L}}$ is ample iff ${\mathcal{L}}^n$ is very ample for some $n$, so defines an embedding $\phi_{{\left\lvert {{\mathcal{L}}} \right\rvert}}: X\to {\mathbf{P}}^N$ where ${\mathbf{P}}^N \cong {\mathbf{P}}H^0(X; {\mathcal{L}}^n) {}^{ \vee }$.
 :::
 
 ::: {.front card-id="card-ad4c7a0ef69c2537"}
@@ -235,9 +235,9 @@ What is a **nef divisor**?
 :::
 
 ::: {.back card-id="card-ad4c7a0ef69c2537"}
-$ D $ is nef iff $ D\cdot C \geq 0 $ for all curves iff $ {\mathcal{O}}(D) $ is nef iff $ {\mathcal{L}}\coloneqq{\mathcal{O}}(D) $ has positive degree over every curve.
+$D$ is nef iff $D\cdot C \geq 0$ for all curves iff ${\mathcal{O}}(D)$ is nef iff ${\mathcal{L}}\coloneqq{\mathcal{O}}(D)$ has positive degree over every curve.
 
-For $ D\in {\mathbf{Q}}{\hbox{-}}\operatorname{CDiv}(X) $ and $ Z\leq X $ a proper subvariety, $ D $ is nef along $ Z $ iff $ D.C \coloneqq\deg_{\tilde C}(f^* D) \geq 0 $ where $ f: \tilde C\to C $ is the normalization, for all effective curves $ C\subseteq Z $.
+For $D\in {\mathbf{Q}}{\hbox{-}}\operatorname{CDiv}(X)$ and $Z\leq X$ a proper subvariety, $D$ is nef along $Z$ iff $D.C \coloneqq\deg_{\tilde C}(f^* D) \geq 0$ where $f: \tilde C\to C$ is the normalization, for all effective curves $C\subseteq Z$.
 :::
 
 ::: {.front card-id="card-7e3b8409d8752996"}
@@ -245,7 +245,7 @@ What is a **big divisor**?
 :::
 
 ::: {.back card-id="card-7e3b8409d8752996"}
-$ D $ is big iff $ h^0({\mathcal{O}}(mD)) \geq { \mathsf{O}}(m^{\dim X}) $.
+$D$ is big iff $h^0({\mathcal{O}}(mD)) \geq { \mathsf{O}}(m^{\dim X})$.
 :::
 
 ::: {.front card-id="card-f8c8b2968ad6e404"}
@@ -253,9 +253,9 @@ What is a **simple normal crossings (SNC)** divisor?
 :::
 
 ::: {.back card-id="card-f8c8b2968ad6e404"}
-Normal crossings: A Weil divisor $ D = \sum D_i $ is NC iff for every $ x\in X $ a local equation for $ D $ is $ \prod_{i=1}^r x_i $ for independent local parameters $ x_i\in {\mathcal{O}}_{X, x} $. SNC is if every $ D_i $ is smooth and $ r\leq n $.
+Normal crossings: A Weil divisor $D = \sum D_i$ is NC iff for every $x\in X$ a local equation for $D$ is $\prod_{i=1}^r x_i$ for independent local parameters $x_i\in {\mathcal{O}}_{X, x}$. SNC is if every $D_i$ is smooth and $r\leq n$.
 
-Equivalently, $ D $ is SNC if there exists a finite family of sections $ \left\{{f_i}\right\} \subseteq H^0({\mathcal{O}}_X) $ such that $ D = \sum (f_i) $ and for each $ x\in \mathop{\mathrm{supp}}D $, the restrictions $ (f_i)_x \in {\mathfrak{m}}_x $ land in the maximal ideal and form part of a regular system of parameters for $ {\mathcal{O}}_{X, x} $.\
+Equivalently, $D$ is SNC if there exists a finite family of sections $\left\{{f_i}\right\} \subseteq H^0({\mathcal{O}}_X)$ such that $D = \sum (f_i)$ and for each $x\in \mathop{\mathrm{supp}}D$, the restrictions $(f_i)_x \in {\mathfrak{m}}_x$ land in the maximal ideal and form part of a regular system of parameters for ${\mathcal{O}}_{X, x}$.\
 :::
 
 ::: {.front card-id="card-836a20db1f7c129c"}
@@ -267,11 +267,11 @@ A nodal curve is NC but not SNC (NC need not have smooth components).
 :::
 
 ::: {.front card-id="card-44a22971b30133e2"}
-What is the **divisor of zeros and poles** of $ f \in k(X)^{\times} $?
+What is the **divisor of zeros and poles** of $f \in k(X)^{\times}$?
 :::
 
 ::: {.back card-id="card-44a22971b30133e2"}
-Writing $ Z_f, P_f $ for the sets of zeros and poles, $ (f) = \sum n_i Z_i - \sum m_i P_i $ where $ n_i $ is the multiplicity of the zero $ Z_i $ (and similarly $ m_i $ for $ P_i $ the order of the pole).
+Writing $Z_f, P_f$ for the sets of zeros and poles, $(f) = \sum n_i Z_i - \sum m_i P_i$ where $n_i$ is the multiplicity of the zero $Z_i$ (and similarly $m_i$ for $P_i$ the order of the pole).
 :::
 
 ::: {.front card-id="card-be6f8599e30fbbae"}
@@ -279,9 +279,9 @@ What is the **Picard group**?
 :::
 
 ::: {.back card-id="card-be6f8599e30fbbae"}
-Isomorphism classes of invertible sheaves under $ \otimes $.
+Isomorphism classes of invertible sheaves under $\otimes$.
 
-Equivalently, $ H^1(X; {\mathcal{O}}_X^{\times}) $.
+Equivalently, $H^1(X; {\mathcal{O}}_X^{\times})$.
 :::
 
 ::: {.front card-id="card-fa6361e0b3eb64cd"}
@@ -289,23 +289,23 @@ What is the **invertible sheaf** associated to a Cartier divisor?
 :::
 
 ::: {.back card-id="card-fa6361e0b3eb64cd"}
-Representing $ D $ as $ \left\{{(U_i, f_i)}\right\} $, $ {\mathcal{L}}(D) \leq {\mathcal{K}} $ is the submodule generated by $ \left\{{f_i^{-1}}\right\} $. There is a bijection between Cartier divisors and invertible subsheaves of $ {\mathcal{K}} $.
+Representing $D$ as $\left\{{(U_i, f_i)}\right\}$, ${\mathcal{L}}(D) \leq {\mathcal{K}}$ is the submodule generated by $\left\{{f_i^{-1}}\right\}$. There is a bijection between Cartier divisors and invertible subsheaves of ${\mathcal{K}}$.
 :::
 
 ::: {.front card-id="card-4c5b6d6b7feab01a"}
-What is the relationship between the Cartier class group and $ \operatorname{Pic}(X) $?
+What is the relationship between the Cartier class group and $\operatorname{Pic}(X)$?
 :::
 
 ::: {.back card-id="card-4c5b6d6b7feab01a"}
-In general, $ \mathop{\mathrm{Cart}} \operatorname{Cl}(X) \hookrightarrow\operatorname{Pic}(X) $ by $ D\mapsto {\mathcal{L}}(D) $; this is surjective when $ X $ is integral.
+In general, $\mathop{\mathrm{Cart}} \operatorname{Cl}(X) \hookrightarrow\operatorname{Pic}(X)$ by $D\mapsto {\mathcal{L}}(D)$; this is surjective when $X$ is integral.
 :::
 
 ::: {.front card-id="card-bd0d8d0f314b34c2"}
-What is the relationship between $ \operatorname{Cl}(X) $ and $ \operatorname{Pic}(X) $?
+What is the relationship between $\operatorname{Cl}(X)$ and $\operatorname{Pic}(X)$?
 :::
 
 ::: {.back card-id="card-bd0d8d0f314b34c2"}
-Isomorphic when $ X $ is integral, separated, locally factorial.
+Isomorphic when $X$ is integral, separated, locally factorial.
 :::
 
 ::: {.front card-id="card-f17b84b7f14023ed"}
@@ -313,7 +313,7 @@ What is an **effective** Cartier divisor?
 :::
 
 ::: {.back card-id="card-f17b84b7f14023ed"}
-Represented by $ \left\{{(U_i, f_i)}\right\} $ where each $ f_i\in H^0(U_i, {\mathcal{O}}_{U_i}) $.
+Represented by $\left\{{(U_i, f_i)}\right\}$ where each $f_i\in H^0(U_i, {\mathcal{O}}_{U_i})$.
 :::
 
 ::: {.front card-id="card-f974099d7333a060"}
@@ -321,7 +321,7 @@ What is the subscheme associated to a Cartier divisor?
 :::
 
 ::: {.back card-id="card-f974099d7333a060"}
-For $ D $ effective, the subscheme $ Y $ of codimension 1 defined by the sheaf of ideals $ {\mathcal{I}}_Y $ which is locally generated by the $ f_i $. In fact $ {\mathcal{I}}_Y \cong {\mathcal{L}}(-D) $ in this case.
+For $D$ effective, the subscheme $Y$ of codimension 1 defined by the sheaf of ideals ${\mathcal{I}}_Y$ which is locally generated by the $f_i$. In fact ${\mathcal{I}}_Y \cong {\mathcal{L}}(-D)$ in this case.
 :::
 
 ::: {.front card-id="card-b6b3eb892b6934d7"}
@@ -329,7 +329,7 @@ What does it mean for divisors to be **linearly equivalent**?
 :::
 
 ::: {.back card-id="card-b6b3eb892b6934d7"}
-$ D_1 - D_2 = (f) $ for some $ f $.
+$D_1 - D_2 = (f)$ for some $f$.
 :::
 
 ::: {.front card-id="card-a6344b3c32690757"}
@@ -337,7 +337,7 @@ What does it mean for two divisors to be **numerically equivalent**?
 :::
 
 ::: {.back card-id="card-a6344b3c32690757"}
-$ D\sim 0 $ iff $ D\cdot C = 0 $ for every curve $ C\subseteq X $, and $ D_1\sim D_2 \iff D_1- D_2\sim 0 $.
+$D\sim 0$ iff $D\cdot C = 0$ for every curve $C\subseteq X$, and $D_1\sim D_2 \iff D_1- D_2\sim 0$.
 :::
 
 ::: {.front card-id="card-f2807a7963334d91"}
@@ -345,7 +345,7 @@ What is the **degree** of a Weil divisor?
 :::
 
 ::: {.back card-id="card-f2807a7963334d91"}
-$ D = \sum_{Y} n_Y Y \implies \deg(D) = \sum_Y n_Y \in {\mathbf{Z}} $.
+$D = \sum_{Y} n_Y Y \implies \deg(D) = \sum_Y n_Y \in {\mathbf{Z}}$.
 :::
 
 ::: {.front card-id="card-be88045a8c78ded9"}
@@ -353,15 +353,15 @@ What is the **Cartier divisor associated to a section** of an invertible sheaf?
 :::
 
 ::: {.back card-id="card-be88045a8c78ded9"}
-For $ {\mathcal{L}}\in \operatorname{Pic}(X) $ and $ s\in H^0({\mathcal{L}})\setminus\left\{{0}\right\} $, define $ (s) = \sum_Y v_Y(s) Y $ where $ v_Y $ is defined using $ \sigma: {\mathcal{L}}_{X, V} { \, \xrightarrow{\sim}\, }{\mathcal{O}}_{X, V} $ and $ v_Y(s) \coloneqq v_Y(\sigma(s)) $ where $ {\mathcal{F}}_V \coloneqq{\mathcal{F}}_{\nu_V} $, the stalk at the generic point of $ V $.
+For ${\mathcal{L}}\in \operatorname{Pic}(X)$ and $s\in H^0({\mathcal{L}})\setminus\left\{{0}\right\}$, define $(s) = \sum_Y v_Y(s) Y$ where $v_Y$ is defined using $\sigma: {\mathcal{L}}_{X, V} { \, \xrightarrow{\sim}\, }{\mathcal{O}}_{X, V}$ and $v_Y(s) \coloneqq v_Y(\sigma(s))$ where ${\mathcal{F}}_V \coloneqq{\mathcal{F}}_{\nu_V}$, the stalk at the generic point of $V$.
 :::
 
 ::: {.front card-id="card-e8e202eb43c56fe4"}
-For $ D $ a prime divisor and $ Y\in \mathop{\mathrm{supp}}D $, what is the **multiplicity** of $ Y $ in $ D $?
+For $D$ a prime divisor and $Y\in \mathop{\mathrm{supp}}D$, what is the **multiplicity** of $Y$ in $D$?
 :::
 
 ::: {.back card-id="card-e8e202eb43c56fe4"}
-$ D = \sum n_{Y_i} Y_i $ and $ Y= Y_j $ for some $ j $ since $ Y\in \mathop{\mathrm{supp}}D $, so $ {\operatorname{mult}}_D(Y) = n_Y $.
+$D = \sum n_{Y_i} Y_i$ and $Y= Y_j$ for some $j$ since $Y\in \mathop{\mathrm{supp}}D$, so ${\operatorname{mult}}_D(Y) = n_Y$.
 :::
 
 ::: {.front card-id="card-f8d3ad922064fbf7"}
@@ -369,7 +369,7 @@ What is the **multiplicity of a Cartier divisor**?
 :::
 
 ::: {.back card-id="card-f8d3ad922064fbf7"}
-For $ D $ an effective Cartier divisor on $ C $, let $ f $ be a local equation at $ p $ and define $ \mu_p $ to be the largest $ N $ such that $ f\in {\mathfrak{m}}_p^N \subseteq {\mathcal{O}}_{X, x} $. Note $ \mu_p \geq 1 \iff p\in C $ and $ \mu_p = 1 \iff C $ is smooth at $ p $.
+For $D$ an effective Cartier divisor on $C$, let $f$ be a local equation at $p$ and define $\mu_p$ to be the largest $N$ such that $f\in {\mathfrak{m}}_p^N \subseteq {\mathcal{O}}_{X, x}$. Note $\mu_p \geq 1 \iff p\in C$ and $\mu_p = 1 \iff C$ is smooth at $p$.
 :::
 
 ::: {.front card-id="card-717ad5eae2938137"}
@@ -377,17 +377,17 @@ What is the **support of a Cartier divisor**?
 :::
 
 ::: {.back card-id="card-717ad5eae2938137"}
-$ \mathop{\mathrm{supp}}D = {\left\lvert {D} \right\rvert} $ is the union of poles and zeros of $ D $, i.e. if $ D = \left\{{(U_i, f_i)}\right\} $ and $ D\mapsto \sum_{Y\in \operatorname{Div}(X)} v_Y(f_i) Y $ where $ i $ is any index with $ U_i \cap Y\neq \emptyset $, then $ \mathop{\mathrm{supp}}D = \left\{{Y\in\operatorname{Div}(X) {~\mathrel{\Big\vert}~}v_Y(f_i) \neq 0}\right\} $.
+$\mathop{\mathrm{supp}}D = {\left\lvert {D} \right\rvert}$ is the union of poles and zeros of $D$, i.e. if $D = \left\{{(U_i, f_i)}\right\}$ and $D\mapsto \sum_{Y\in \operatorname{Div}(X)} v_Y(f_i) Y$ where $i$ is any index with $U_i \cap Y\neq \emptyset$, then $\mathop{\mathrm{supp}}D = \left\{{Y\in\operatorname{Div}(X) {~\mathrel{\Big\vert}~}v_Y(f_i) \neq 0}\right\}$.
 
-Equivalently, define $ D $ as a line bundle $ {\mathcal{O}}_X(D) $ with a rational section $ s_D $, set $ U \subseteq X $ to be the maximal open set on which $ s_D $ is defined and nonzero, and define $ {\left\lvert {D} \right\rvert} \coloneqq X\setminus U $.
+Equivalently, define $D$ as a line bundle ${\mathcal{O}}_X(D)$ with a rational section $s_D$, set $U \subseteq X$ to be the maximal open set on which $s_D$ is defined and nonzero, and define ${\left\lvert {D} \right\rvert} \coloneqq X\setminus U$.
 :::
 
 ::: {.front card-id="card-0dcf14509cffa4c1"}
-For $ D $ a divisor, what is $ {\mathcal{O}}_X(D) $?
+For $D$ a divisor, what is ${\mathcal{O}}_X(D)$?
 :::
 
 ::: {.back card-id="card-0dcf14509cffa4c1"}
-$ \left\{{f\in {\mathcal{O}}_X {~\mathrel{\Big\vert}~}(f) + D \geq 0}\right\} $.
+$\left\{{f\in {\mathcal{O}}_X {~\mathrel{\Big\vert}~}(f) + D \geq 0}\right\}$.
 :::
 
 ::: {.front card-id="card-6ba72069d5f9a4b6"}
@@ -403,15 +403,15 @@ What is a **complete linear system**?
 :::
 
 ::: {.back card-id="card-67f0df55debb4328"}
-$ {\left\lvert {D} \right\rvert} = \left\{{ D' {~\mathrel{\Big\vert}~}D'\sim D}\right\} $
+${\left\lvert {D} \right\rvert} = \left\{{ D' {~\mathrel{\Big\vert}~}D'\sim D}\right\}$
 :::
 
 ::: {.front card-id="card-a59770df8f80107c"}
-What is the linear system associated to the canonical divisor $ K_X $?
+What is the linear system associated to the canonical divisor $K_X$?
 :::
 
 ::: {.back card-id="card-a59770df8f80107c"}
-$ {\left\lvert {K_X} \right\rvert} = {\mathbf{P}}H^0(X; \omega_X) $.
+${\left\lvert {K_X} \right\rvert} = {\mathbf{P}}H^0(X; \omega_X)$.
 :::
 
 ::: {.front card-id="card-ae8d56478c62b8d7"}
@@ -419,9 +419,9 @@ What does it mean for a linear system to be **base point free**?
 :::
 
 ::: {.back card-id="card-ae8d56478c62b8d7"}
-A point $ p\in X $ is a base point of a linear system $ S $ iff $ p $ is contained in the support of every divisor $ D\in S $. $ S $ is bpf iff it contains no basepoints.
+A point $p\in X$ is a base point of a linear system $S$ iff $p$ is contained in the support of every divisor $D\in S$. $S$ is bpf iff it contains no basepoints.
 
-Equivalently, the corresponding line bundle $ {\mathcal{L}} $ is generated by global sections, where $ S $ corresponds to $ V \subseteq H^0(X; {\mathcal{L}}) $ for some $ {\mathcal{L}}\in \operatorname{Pic}(X) $, since $ p $ is a base point iff $ s_p\in {\mathfrak{m}}_p {\mathcal{L}}_p $ for all $ s\in V $.
+Equivalently, the corresponding line bundle ${\mathcal{L}}$ is generated by global sections, where $S$ corresponds to $V \subseteq H^0(X; {\mathcal{L}})$ for some ${\mathcal{L}}\in \operatorname{Pic}(X)$, since $p$ is a base point iff $s_p\in {\mathfrak{m}}_p {\mathcal{L}}_p$ for all $s\in V$.
 :::
 
 ::: {.front card-id="card-7dfe2d5e36a21bf9"}
@@ -429,7 +429,7 @@ When is the morphism defined by a linear system a closed immersion?
 :::
 
 ::: {.back card-id="card-7dfe2d5e36a21bf9"}
-Separates points and separates tangents: $ \forall p, q\in X $ there exists $ D\in S $ with $ p\in D $ and $ q\not\in D $; given $ p\in X, t\in {\mathbf{T}}_p X $, there is a $ D\in S $ with $ p\in D $ but $ t\not \in {\mathbf{T}}_p(D) \coloneqq\qty{{\mathfrak{m}}_{P, D}/{\mathfrak{m}}_{P, D} } {}^{ \vee } $
+Separates points and separates tangents: $\forall p, q\in X$ there exists $D\in S$ with $p\in D$ and $q\not\in D$; given $p\in X, t\in {\mathbf{T}}_p X$, there is a $D\in S$ with $p\in D$ but $t\not \in {\mathbf{T}}_p(D) \coloneqq\qty{{\mathfrak{m}}_{P, D}/{\mathfrak{m}}_{P, D} } {}^{ \vee }$
 :::
 
 ::: {.front card-id="card-a7508a5971d896ab"}
@@ -437,7 +437,7 @@ What is the **base locus** of a linear system?
 :::
 
 ::: {.back card-id="card-a7508a5971d896ab"}
-The union of all base points in $ S $.
+The union of all base points in $S$.
 :::
 
 ::: {.front card-id="card-bb5418459ae93344"}
@@ -445,7 +445,7 @@ What is the **plurigenus** of a smooth projective variety?
 :::
 
 ::: {.back card-id="card-bb5418459ae93344"}
-$ P_d(X) \coloneqq h^0( (\operatorname{det}\Omega_{X/k})^d ) \coloneqq h^0(K_X^d) $. This is a birational invariant, and e.g. $ X $ is not rational if $ P_d(X) > 0 $.
+$P_d(X) \coloneqq h^0( (\operatorname{det}\Omega_{X/k})^d ) \coloneqq h^0(K_X^d)$. This is a birational invariant, and e.g. $X$ is not rational if $P_d(X) > 0$.
 :::
 
 ::: {.front card-id="card-cf01e103ab0d60eb"}
@@ -453,7 +453,7 @@ What is the **irregularity** of a smooth projective variety?
 :::
 
 ::: {.back card-id="card-cf01e103ab0d60eb"}
-The hodge number $ q\coloneqq h^{0, 1} = h^1({\mathcal{O}}_X) $.
+The hodge number $q\coloneqq h^{0, 1} = h^1({\mathcal{O}}_X)$.
 :::
 
 ::: {.front card-id="card-9cd5ced913471a81"}
@@ -461,7 +461,7 @@ What is the Kodaira dimension?
 :::
 
 ::: {.back card-id="card-9cd5ced913471a81"}
-$ \kappa(X) \coloneqq-\infty $ if $ P_d(X) = 0 $ for all $ d>0 $, otherwise $ \kappa(X) = \min \left\{{k \in {\mathbf{Z}}{~\mathrel{\Big\vert}~}{P_d\over d^k} \leq { \mathsf{O}}(1) }\right\} $ (i.e. the smallest $ k $ for which this is bounded, or the minimal $ k $ so that $ P_d(X) \in { \mathsf{O}}(d^k) $). Generally $ \kappa(X) \in \left\{{-\infty}\right\}\cup[0, \dim X] $.
+$\kappa(X) \coloneqq-\infty$ if $P_d(X) = 0$ for all $d>0$, otherwise $\kappa(X) = \min \left\{{k \in {\mathbf{Z}}{~\mathrel{\Big\vert}~}{P_d\over d^k} \leq { \mathsf{O}}(1) }\right\}$ (i.e. the smallest $k$ for which this is bounded, or the minimal $k$ so that $P_d(X) \in { \mathsf{O}}(d^k)$). Generally $\kappa(X) \in \left\{{-\infty}\right\}\cup[0, \dim X]$.
 :::
 
 ::: {.front card-id="card-a2260019cf753f8c"}
@@ -469,7 +469,7 @@ What is the **arithmetic genus**? The **geometric genus**?
 :::
 
 ::: {.back card-id="card-a2260019cf753f8c"}
-$ p_a(X) \coloneqq(-1)^r \qty{\chi({\mathcal{O}}_X) - 1} $ and $ p_g(X) = h^{n, 0} = h^0(\Omega_{X/k}^n) $.
+$p_a(X) \coloneqq(-1)^r \qty{\chi({\mathcal{O}}_X) - 1}$ and $p_g(X) = h^{n, 0} = h^0(\Omega_{X/k}^n)$.
 :::
 
 ::: {.front card-id="card-d83459b52d448c66"}
@@ -477,7 +477,7 @@ What is a **hyperplane section**?
 :::
 
 ::: {.back card-id="card-d83459b52d448c66"}
-For $ X \subseteq {\mathbf{P}}^n $ projective, the intersection $ X \cap H $ for some hyperplane $ X = V(f) $.
+For $X \subseteq {\mathbf{P}}^n$ projective, the intersection $X \cap H$ for some hyperplane $X = V(f)$.
 :::
 
 ::: {.front card-id="card-2a3c393c9009915d"}
@@ -485,15 +485,15 @@ What is a **polarization**? What is a principal polarization?
 :::
 
 ::: {.back card-id="card-2a3c393c9009915d"}
-A choice of $ {\mathcal{L}}\in {\operatorname{NS}}(X)^\mathrm{amp} $, where $ {\operatorname{NS}}(X) \coloneqq\operatorname{Pic}(X)/\operatorname{Pic}^0(X) $. Principal if $ \deg {\mathcal{L}}= 1 $.
+A choice of ${\mathcal{L}}\in {\operatorname{NS}}(X)^\mathrm{amp}$, where ${\operatorname{NS}}(X) \coloneqq\operatorname{Pic}(X)/\operatorname{Pic}^0(X)$. Principal if $\deg {\mathcal{L}}= 1$.
 :::
 
 ::: {.front card-id="card-317a749884b346c7"}
-What is the **ramification divisor** of a finite morphism $ f:X\to Y $ of smooth projective curves?
+What is the **ramification divisor** of a finite morphism $f:X\to Y$ of smooth projective curves?
 :::
 
 ::: {.back card-id="card-317a749884b346c7"}
-$ R \coloneqq\sum_{p\in X} \mathop{\mathrm{length}}(\Omega_{X/Y})_p \cdot p $.
+$R \coloneqq\sum_{p\in X} \mathop{\mathrm{length}}(\Omega_{X/Y})_p \cdot p$.
 :::
 
 ::: {.front card-id="card-fec35bc397e22466"}
@@ -501,7 +501,7 @@ What is the **ramification formula** for a finite morphism of curves?
 :::
 
 ::: {.back card-id="card-fec35bc397e22466"}
-$ K_X \sim f^* K_Y + R $.
+$K_X \sim f^* K_Y + R$.
 :::
 
 ::: {.front card-id="card-a565549a3fed53d5"}
@@ -509,39 +509,31 @@ Prove the ramification formula for canonical divisors.
 :::
 
 ::: {.back card-id="card-a565549a3fed53d5"}
-For $ f: X\to Y $ take the cotangent exact sequence
-
+For $f: X\to Y$ take the cotangent exact sequence
 $$f^* \Omega_{Y/k} \hookrightarrow\Omega_{X/k} \twoheadrightarrow\Omega_{X/Y}$$
-
-tensor by $ \Omega_{X/k} {}^{ \vee } $ to get
-
+tensor by $\Omega_{X/k} {}^{ \vee }$ to get
 $$f^* \Omega_{Y/k}\otimes\Omega_{X/k} {}^{ \vee }\hookrightarrow{\mathcal{O}}_X \twoheadrightarrow\Omega_{X/Y} \otimes\Omega_{X/k} {}^{ \vee }$$
-
-Use that $ \Omega_{X/Y} $ has finite support, so $ \Omega_{X/Y} \cong \Omega_{X/Y} \otimes\Omega_{X/k} {}^{ \vee } $ and
-
+Use that $\Omega_{X/Y}$ has finite support, so $\Omega_{X/Y} \cong \Omega_{X/Y} \otimes\Omega_{X/k} {}^{ \vee }$ and
 $$f^* \Omega_{Y/k}\otimes\Omega_{X/k} {}^{ \vee }\hookrightarrow{\mathcal{O}}_X \twoheadrightarrow{\mathcal{O}}_R$$
-
-but $ \ker({\mathcal{O}}_X \twoheadrightarrow{\mathcal{O}}_R) \cong {\mathcal{L}}(-R) $, so
-
+but $\ker({\mathcal{O}}_X \twoheadrightarrow{\mathcal{O}}_R) \cong {\mathcal{L}}(-R)$, so
 $$f^* \Omega_{Y/k} \otimes\Omega_{X/k} {}^{ \vee }\cong {\mathcal{L}}(-R)$$
-
-and taking associated divisors yields $ f^*K_Y, -K_X, -R $ respectively, so $ f^* K_Y - K_X \sim -R \implies K_X \sim f^* K_Y + R $.
+and taking associated divisors yields $f^*K_Y, -K_X, -R$ respectively, so $f^* K_Y - K_X \sim -R \implies K_X \sim f^* K_Y + R$.
 :::
 
 ::: {.front card-id="card-b6163b64b584bc12"}
-What is the Riemann-Hurwitz formula for $ f:X\to Y $?
+What is the Riemann-Hurwitz formula for $f:X\to Y$?
 :::
 
 ::: {.back card-id="card-b6163b64b584bc12"}
-$ \chi(X) = \deg(f)\cdot \chi(Y) + \deg R \implies 2g_X - 2 = \deg(f)\cdot(2g_Y - 2) + \sum_{p\in X} (e_p - 1) $.
+$\chi(X) = \deg(f)\cdot \chi(Y) + \deg R \implies 2g_X - 2 = \deg(f)\cdot(2g_Y - 2) + \sum_{p\in X} (e_p - 1)$.
 :::
 
 ::: {.front card-id="card-6b377b686ddf940e"}
-Can $ {\mathbf{P}}^1 $ admit an unramified cover by a curve?
+Can ${\mathbf{P}}^1$ admit an unramified cover by a curve?
 :::
 
 ::: {.back card-id="card-6b377b686ddf940e"}
-No: if $ f: X\to {\mathbf{P}}^1 $ is a finite etale cover of degree $ n \geq 1 $ then $ \deg R = 0 $, so by Riemann-Hurwitz $ \chi(X) = n\chi({\mathbf{P}}^1) \implies 2g_X - 2 = n(-2) \leq -2 \implies g_X \leq 0 $, so this forces $ g_X = 0 $ and $ n=1 $, so $ f $ must be the identity.
+No: if $f: X\to {\mathbf{P}}^1$ is a finite etale cover of degree $n \geq 1$ then $\deg R = 0$, so by Riemann-Hurwitz $\chi(X) = n\chi({\mathbf{P}}^1) \implies 2g_X - 2 = n(-2) \leq -2 \implies g_X \leq 0$, so this forces $g_X = 0$ and $n=1$, so $f$ must be the identity.
 :::
 
 ::: {.front card-id="card-250830784be89df3"}
@@ -549,7 +541,7 @@ What is the **ramification index**?
 :::
 
 ::: {.back card-id="card-250830784be89df3"}
-For $ f:X\to Y $ a morphism of curves and $ p\in X $, letting $ q\coloneqq f(p) $ and $ t\in {\mathcal{O}}_{Y, q} $ be a local coordinate, define $ e_p \coloneqq v_p (f^\sharp(t)) $ where $ f^\sharp: {\mathcal{O}}_{Y, q} \to {\mathcal{O}}_{X, p} $.
+For $f:X\to Y$ a morphism of curves and $p\in X$, letting $q\coloneqq f(p)$ and $t\in {\mathcal{O}}_{Y, q}$ be a local coordinate, define $e_p \coloneqq v_p (f^\sharp(t))$ where $f^\sharp: {\mathcal{O}}_{Y, q} \to {\mathcal{O}}_{X, p}$.
 :::
 
 ::: {.front card-id="card-bdcb54fbf9a23367"}
@@ -557,7 +549,7 @@ What is a **branch point**? A **ramification point**?
 :::
 
 ::: {.back card-id="card-bdcb54fbf9a23367"}
-$ e_p = 1\implies $ unramified, $ e_p > 1 \implies p $ is ramified and $ q\coloneqq f(p) $ is a branch point.
+$e_p = 1\implies$ unramified, $e_p > 1 \implies p$ is ramified and $q\coloneqq f(p)$ is a branch point.
 :::
 
 ::: {.front card-id="card-99f23fe7b7a89328"}
@@ -569,7 +561,7 @@ For varieties: locally finite and unramified.
 
 Flat and unramified
 
-Formally etale and of finite presentation, where $ f\in \mathsf{CRing}(A, B) $ is formally etale iff $ {\mathbb{L}}_{B/A} \simeq 0 $.
+Formally etale and of finite presentation, where $f\in \mathsf{CRing}(A, B)$ is formally etale iff ${\mathbb{L}}_{B/A} \simeq 0$.
 :::
 
 ::: {.front card-id="card-56d81b8301f8afa2"}
@@ -577,7 +569,7 @@ What is the **branch locus**?
 :::
 
 ::: {.back card-id="card-56d81b8301f8afa2"}
-For $ f:X\to Y $, the set of critical values in $ Y $. Compare to the ramification locus in $ X $, which is its preimage.
+For $f:X\to Y$, the set of critical values in $Y$. Compare to the ramification locus in $X$, which is its preimage.
 :::
 
 ::: {.front card-id="card-8fa02aa33202f47b"}
@@ -585,7 +577,7 @@ What is the result of taking determinants in an exact sequence?
 :::
 
 ::: {.back card-id="card-8fa02aa33202f47b"}
-$ A\to B \to C $ a SES in $   {}_{{\mathcal{O}}_X}{\mathsf{Mod}} $ yields $ \operatorname{det}(A) \otimes_{{\mathcal{O}}_X} \operatorname{det}(C) \cong \operatorname{det}(B) $.
+$A\to B \to C$ a SES in ${}_{{\mathcal{O}}_X}{\mathsf{Mod}}$ yields $\operatorname{det}(A) \otimes_{{\mathcal{O}}_X} \operatorname{det}(C) \cong \operatorname{det}(B)$.
 :::
 
 ::: {.front card-id="card-a16bd62a60986efd"}
@@ -593,7 +585,7 @@ Discuss ampleness of divisors on curves.
 :::
 
 ::: {.back card-id="card-a16bd62a60986efd"}
-If $ \deg D \geq 2g $, $ D $ is bpf, and if $ \deg D \geq 2g+1 $ then $ D $ is very ample.
+If $\deg D \geq 2g$, $D$ is bpf, and if $\deg D \geq 2g+1$ then $D$ is very ample.
 :::
 
 ::: {.front card-id="card-8d85a1b7ab49e41b"}
@@ -601,7 +593,7 @@ What is a **canonical divisor**?
 :::
 
 ::: {.back card-id="card-8d85a1b7ab49e41b"}
-A divisor $ K_X $ defined by any meromorphic section of $ \omega_{X/k} $.
+A divisor $K_X$ defined by any meromorphic section of $\omega_{X/k}$.
 :::
 
 ::: {.front card-id="card-cecb42640a56ed2e"}
@@ -609,15 +601,15 @@ What is the statement of **Riemann-Roch**?
 :::
 
 ::: {.back card-id="card-cecb42640a56ed2e"}
-$ h^0({\mathcal{L}}(D)) - h^0({\mathcal{L}}(K-D)) = \deg(D) + (1-g) $.
+$h^0({\mathcal{L}}(D)) - h^0({\mathcal{L}}(K-D)) = \deg(D) + (1-g)$.
 :::
 
 ::: {.front card-id="card-cec1bc7631c4da91"}
-What is $ \deg(K_X) $ for $ X $ a curve?
+What is $\deg(K_X)$ for $X$ a curve?
 :::
 
 ::: {.back card-id="card-cec1bc7631c4da91"}
-$ \deg K_X = 2g-2 $; Take $ D\coloneqq K_X $ in RR and use that $ h^0({\mathcal{L}}(K)) = g $ and $ h^0({\mathcal{L}}(0)) = 1 $ to get $ g-1 $ on the LHS and $ \deg(K_X) + (1-g) $.
+$\deg K_X = 2g-2$; Take $D\coloneqq K_X$ in RR and use that $h^0({\mathcal{L}}(K)) = g$ and $h^0({\mathcal{L}}(0)) = 1$ to get $g-1$ on the LHS and $\deg(K_X) + (1-g)$.
 :::
 
 ::: {.front card-id="card-092f39554ef5f902"}
@@ -625,7 +617,7 @@ What is a **very ample sheaf**?
 :::
 
 ::: {.back card-id="card-092f39554ef5f902"}
-$ {\mathcal{L}}\in   {}_{{\mathcal{O}}_X}{\mathsf{Mod}} $ invertible is very ample relative to $ f:X\to Y $ if $ \exists {\mathcal{E}}\in {\mathsf{QCoh}}(Y) $ and an immersion $ \iota: X\to {\mathbf{P}}({\mathcal{E}}) $ such that $ {\mathcal{L}}\cong \iota^* {\mathcal{O}}_{{\mathbf{P}}({\mathcal{E}})}(1) $.
+${\mathcal{L}}\in   {}_{{\mathcal{O}}_X}{\mathsf{Mod}}$ invertible is very ample relative to $f:X\to Y$ if $\exists {\mathcal{E}}\in {\mathsf{QCoh}}(Y)$ and an immersion $\iota: X\to {\mathbf{P}}({\mathcal{E}})$ such that ${\mathcal{L}}\cong \iota^* {\mathcal{O}}_{{\mathbf{P}}({\mathcal{E}})}(1)$.
 :::
 
 ::: {.front card-id="card-054399f4c1e62181"}
@@ -633,5 +625,5 @@ What is an **ample sheaf**?
 :::
 
 ::: {.back card-id="card-054399f4c1e62181"}
-For any $ {\mathcal{F}}\in {\mathsf{QCoh}}(X)^\mathrm{ft} $, the twist $ {\mathcal{F}}(n) \coloneqq{\mathcal{F}}\otimes{\mathcal{L}}{ {}^{ \scriptstyle\otimes_{}^{n} }  } $ is globally generated for all $ n> N_0 \gg 0 $.
+For any ${\mathcal{F}}\in {\mathsf{QCoh}}(X)^\mathrm{ft}$, the twist ${\mathcal{F}}(n) \coloneqq{\mathcal{F}}\otimes{\mathcal{L}}{ {}^{ \scriptstyle\otimes_{}^{n} }  }$ is globally generated for all $n> N_0 \gg 0$.
 :::

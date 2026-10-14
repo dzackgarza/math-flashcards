@@ -7,7 +7,7 @@ Definition: A pole $a$ of order $m$
 :::
 
 ::: {.back card-id="card-1772fa06172bf1d1"}
-The smallest $m$ such that 
+The smallest $m$ such that
 $$
 \lim_{z\to a}(z-a)^{m+1}f(z) < \infty \text{ but } \lim_{z\to a}(z-a)^{k\leq m} f(z) = \infty
 .$$
@@ -18,7 +18,7 @@ Definition: A removable singularity
 :::
 
 ::: {.back card-id="card-8cdacf40fc69f9b6"}
-A pole of order zero, so 
+A pole of order zero, so
 $$
 \lim_{z\to z_0}f(z) < \infty
 $$

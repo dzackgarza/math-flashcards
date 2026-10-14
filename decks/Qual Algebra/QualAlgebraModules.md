@@ -47,7 +47,7 @@ Submodule test
 :::
 
 ::: {.back card-id="card-ec459ce58f2c31a5"}
-If $ r\in R,\, m,n \in M \implies rm + n \in M  $ then $M$ is a submodule.
+If $r\in R,\, m,n \in M \implies rm + n \in M$ then $M$ is a submodule.
 :::
 
 ::: {.front card-id="card-69e87f20c01c0c7d" tags="definition"}
@@ -63,7 +63,7 @@ Noetherian Module
 :::
 
 ::: {.back card-id="card-812bbb249aa65dc0"}
-Any strictly increasing chain of submodules $M_1 \subsetneq M_2 \cdots $ is finite.
+Any strictly increasing chain of submodules $M_1 \subsetneq M_2 \cdots$ is finite.
 :::
 
 ::: {.front card-id="card-99a0471b7b951a66"}
@@ -71,7 +71,7 @@ Definition: Torsion element
 :::
 
 ::: {.back card-id="card-99a0471b7b951a66"}
-$m\in M$ is torsion iff $ \tor(m)\neq 0 $.
+$m\in M$ is torsion iff $\tor(m)\neq 0$.
 :::
 
 ::: {.front card-id="card-159277c02da4e274" tags="definition"}
@@ -79,7 +79,7 @@ Definition: Torsion submodule.
 :::
 
 ::: {.back card-id="card-159277c02da4e274"}
-$$  
+$$
 \tor(M) = \{m \in M \suchthat \exists r \in R, ~r \neq 0, ~rm = 0\}
 .$$
 :::
@@ -89,7 +89,7 @@ Rank of a Free module
 :::
 
 ::: {.back card-id="card-1493db086eeb6fa8"}
-Maximal number of $R\dash$linearly independent elements of $ M$.
+Maximal number of $R\dash$linearly independent elements of $M$.
 :::
 
 ::: {.front card-id="card-a273d57c858616ae" tags="definition"}
@@ -97,7 +97,7 @@ Definition: torsionfree
 :::
 
 ::: {.back card-id="card-a273d57c858616ae"}
-$ \tor(M) = \theset{0} $
+$\tor(M) = \theset{0}$
 :::
 
 ::: {.front card-id="card-42bbc5e5051f6542" tags="definition"}
@@ -106,7 +106,7 @@ Annihilator of a module
 
 ::: {.back card-id="card-42bbc5e5051f6542"}
 For $M$ an $R\dash$module,
-$$  
+$$
 \mathrm{ann}_R(M) = \theset{r\in R\suchthat \forall m\in M,\, rm=0} \normal R
 .$$
 :::
@@ -132,11 +132,10 @@ Definition: Rational Canonical Form
 :::
 
 ::: {.back card-id="card-4cf0741a85880ea1"}
-For $\phi:V\to V$, corresponds to invariant factor decomposition of $V$ as a $k[x]\dash$module, 
-$$  
+For $\phi:V\to V$, corresponds to invariant factor decomposition of $V$ as a $k[x]\dash$module,
+$$
 V \cong \bigoplus k[x]/ (r_i) \qquad r_1 \divides r_2 \divides \cdots
 .$$
-
 The $r_i$ are the minimal polynomials of $\phi$ restricted to $V_i$.
 The matrix of $\phi$ consists of blocks of companion matrices for the $\phi_i$.
 :::
@@ -146,7 +145,7 @@ Definition: Characteristic polynomial
 :::
 
 ::: {.back card-id="card-eb8f4e6c80b4ed10"}
-$$  
+$$
 p_A(x) = \mathrm{det}(xI - A)
 .$$
 :::

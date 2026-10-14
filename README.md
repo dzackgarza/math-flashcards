@@ -51,8 +51,11 @@ lists dependencies, verification commands, and the Anki import boundary.
 Each card has a `.front` div and a `.back` div with the same `card-id` attribute.
 Each ID needs exactly one side of each type. Pairing uses the ID; fronts set the
 card order. Each side accepts normal Pandoc Markdown and LaTeX. Math uses `$…$`
-(inline) and `$$…$$` (display). The front div's optional `tags` attribute sets Anki
-tags. The frontmatter `title` is the Anki deck name, with `::` denoting sub-decks.
+(inline) and `$$…$$` (display), with no space just inside a delimiter. Display
+math continues its paragraph, so no blank line separates it from adjacent text.
+`just test` rejects a `$` that Pandoc does not read as math, a blank line beside
+display math, and trailing whitespace. The front div's optional `tags` attribute
+sets Anki tags. The frontmatter `title` is the Anki deck name, with `::` denoting sub-decks.
 
 ```markdown
 ---

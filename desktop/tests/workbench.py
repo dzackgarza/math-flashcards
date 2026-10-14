@@ -75,7 +75,7 @@ def main() -> None:
             back_editor.fill(
                 "Added answer"
                 + " that runs well past the width of the editor" * 6
-                + "\n\n$$\\frac{1}{2}$$\n\n- First fact\n- Second fact"
+                + "\n$$\\frac{1}{2}$$\n\n- First fact\n- Second fact"
             )
             for side in ("front", "back"):
                 assert page.locator(f".side-editor.{side} .cm-scroller").evaluate(

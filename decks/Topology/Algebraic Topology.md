@@ -108,11 +108,11 @@ $$
 :::
 
 ::: {.front card-id="card-d624fd05eb724e0e" tags="definition"}
-$ H_* \mathbb{RP}^2 $
+$H_* \mathbb{RP}^2$
 :::
 
 ::: {.back card-id="card-d624fd05eb724e0e"}
-$$  
+$$
 \RP^2 = [\mathbb{Z}, \mathbb{Z}_2, 0, 0, 0, 0\rightarrow ]
 .$$
 :::

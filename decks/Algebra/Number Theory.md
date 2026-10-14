@@ -15,7 +15,7 @@ Definition: Ideal Class Group of an algebraic number field $K$
 :::
 
 ::: {.back card-id="card-b54646603b961630"}
-The group of fractional ideals of the ring of integers of $K$ mod the subgroup of principal ideals. 
+The group of fractional ideals of the ring of integers of $K$ mod the subgroup of principal ideals.
 Trivial iff all ideals are principal.
 :::
 

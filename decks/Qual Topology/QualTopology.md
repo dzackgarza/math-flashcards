@@ -7,7 +7,7 @@ Retract
 :::
 
 ::: {.back card-id="card-8e1068b00b1b80c0"}
-Retract: A subspace $A \subset X$ is a *retract* of $X$ iff there exists a continuous map $f: X\to A$ such that $f\mid_{A} = \id_A$. 
+Retract: A subspace $A \subset X$ is a *retract* of $X$ iff there exists a continuous map $f: X\to A$ such that $f\mid_{A} = \id_A$.
 Equivalently it is a *left* inverse to the inclusion.
 :::
 
@@ -199,9 +199,9 @@ Give an example of a function $f: \RR^n \to \RR$ that is continuous in each vari
 ::: {.back card-id="card-87d70af608f74523"}
 Take limit along $y=x$ and compare to $y=0$:
 \begin{align*}
-f(x, y) = 
-{\begin{dcases}
-xy \over x^2 +y^2} & (x, y) \neq \vector 0 \\
+f(x, y) =
+\begin{dcases}
+{xy \over x^2 +y^2} & (x, y) \neq \vector 0 \\
 0 & \text{else}
 \end{dcases}
 .\end{align*}

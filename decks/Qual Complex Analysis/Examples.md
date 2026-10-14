@@ -8,7 +8,6 @@ Example of a conformal map that is not injective.
 
 ::: {.back card-id="card-139cc02a4c38399e"}
 $$z\mapsto e^z$$
-
 Not injective because it is periodic, not surjective because it's never zero.
 :::
 
@@ -17,7 +16,7 @@ An analytic function with convergence radius 1 which fails to converge at any po
 :::
 
 ::: {.back card-id="card-045d776a905345e1"}
-$ \sum_{n=1}^\infty nz^n $
+$\sum_{n=1}^\infty nz^n$
 :::
 
 ::: {.front card-id="card-aae12754fed7610e" tags="example"}

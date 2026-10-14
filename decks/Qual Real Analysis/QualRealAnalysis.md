@@ -186,14 +186,14 @@ Young's Inequality
 :::
 
 ::: {.back card-id="card-237c11192101d406"}
-For $1\leq p, q\leq r \leq \infty  $ with ${1\over p} + {1\over q} - {1\over r} = 1  $, then  $\norm{f\ast g}_r \leq \norm{f}_p \norm{g}_q $ 
+For $1\leq p, q\leq r \leq \infty$ with ${1\over p} + {1\over q} - {1\over r} = 1$, then  $\norm{f\ast g}_r \leq \norm{f}_p \norm{g}_q$
 
 Useful cases:
 $$\begin{align*}
 \norm{f\ast g}_1 & \leq \norm{f}_1 \norm{g}_1 \\
 \norm{f\ast g}_p & \leq \norm{f}_1 \norm{g}_p \\
 \norm{f\ast g}_\infty & \leq \norm{f}_p \norm{g}_q \\
-\norm{f\ast g}_\infty & \leq \norm{f}_2 \norm{g}_2 
+\norm{f\ast g}_\infty & \leq \norm{f}_2 \norm{g}_2
 \end{align*}$$
 :::
 
@@ -255,7 +255,6 @@ For $x\in H$ a Hilbert space and $\theset{e_k}$ an orthonormal sequence,
 $$
 \sum \abs{\inner{x}{e_k}}^2 \leq \norm{x}^2
 $$
-
 Proof idea:
 $$
 \left\|x-\sum_{n=1}^{N}\left\langle x, u_{n}\right\rangle u_{n}\right\|^{2}=\cdots
@@ -329,7 +328,7 @@ Showing uniform convergence of a *sequence* of functions
 :::
 
 ::: {.back card-id="card-83d99f66ed993726"}
-Find $M_n$ independent of $x$ such that 
+Find $M_n$ independent of $x$ such that
 $$
 \abs{f_n(x) - f(x)} \leq M_n \to 0
 $$
@@ -405,10 +404,8 @@ Caratheodory Characterization
 :::
 
 ::: {.back card-id="card-e26c09cee5e1bad5"}
-$E\subseteq \RR^n$ is measurable $\iff$ for all $A\subset \RR^n$, 
-$ 
-m_*(A) = m_*(E\intersect A) + m_*(E\intersect A^c)
-$
+$E\subseteq \RR^n$ is measurable $\iff$ for all $A\subset \RR^n$,
+$m_*(A) = m_*(E\intersect A) + m_*(E\intersect A^c)$
 :::
 
 ::: {.front card-id="card-c46294406e171642" tags="theorem"}
@@ -457,7 +454,7 @@ Definition of Outer Measure
 :::
 
 ::: {.back card-id="card-f54476c71ef69001"}
-$$ 
+$$
 m_*(E) = \inf \theset{ \sum \abs{Q_i} \suchthat \theset{Q_i}\covers E \text { closed cubes}}
 $$
 :::
@@ -625,7 +622,6 @@ Continuity in $L^1$
 $$
 f \in L^{1} \Longrightarrow \lim _{h \rightarrow 0} \int|f(x+h)-f(x)|=0
 .$$
-
 Proof idea: $\varepsilon/3$ argument, approximate by compactly supported functions.
 :::
 
@@ -762,8 +758,8 @@ No:
 - $f(C) = [0, 1]$, so define $g(x) = f(x) +x$ so $g:[0, 1] \to [0, 2]$ (strictly monotonic and cts, so a homeomorphism), so $g\inv$ is cts and thus measurable.
 - $\mu(g(C)) = 1>0$ (because $f$ is constant on every interval in $C^c$) so $g(C) \supseteq A$ a non-measurable subset
 - $g\inv(A) \subset C$ with $\mu(C) = 0$ implies $g\inv(A)$ is a measurable set, so $\chi_{g\inv(A)}$ is a measurable function
-- Then $k\definedas \chi_{g\inv(A)} \circ g\inv$ isn't measurable since 
-  $$ 
+- Then $k\definedas \chi_{g\inv(A)} \circ g\inv$ isn't measurable since
+  $$
   k\inv(1) = \qty{ (g\inv)\inv \circ \chi_{g\inv(A)} }(1) = g(g\inv(A)) = A
   $$
   is not a measurable set.
@@ -787,7 +783,6 @@ For $c>1$,
 $$
 n! > c^n > n^{c} > n\log(n) >  n > \log(n) > \log(\log(n)) > \cdots > 1
 .$$
-
 ![](https://i.imgur.com/M9u3lOr.png)
 :::
 
@@ -958,7 +953,7 @@ $p\dash$test for integrals.
 ::: {.back card-id="card-600efdfec40c9369"}
 $$
 \int_0^1 {1\over x^p} < \infty \iff  p < 1 \\
-\int_1^\infty {1\over x^p} < \infty \iff  p > 1 
+\int_1^\infty {1\over x^p} < \infty \iff  p > 1
 .$$
 :::
 
