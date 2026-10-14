@@ -8,6 +8,10 @@ What is the Torelli theorem for K3s?
 
 ::: {.back card-id="card-34fab36bd27bc9e8"}
 Isomorphisms $\sigma: X^{\prime} \rightarrow X$ are in bijection with the isometries $\sigma^*: H^2(X, \mathbb{Z}) \rightarrow H^2\left(X^{\prime}, \mathbb{Z}\right)$ satisfying $\sigma^*\left(H^{2,0}(X)\right)=H^{2,0}\left(X^{\prime}\right)$ and $\sigma^*\left(\mathcal{K}_X\right)=\mathcal{K}_{X^{\prime}}$.
+
+So a Hodge isometry is induced by an isomorphism exactly when it is effective, i.e. maps the Kahler cone to the Kahler cone; e.g. $-\operatorname{id}$ is a Hodge isometry that is not induced by an automorphism.
+
+Strong Torelli for polarized K3s: if $(X, L)$ and $(X', L')$ are polarized K3s and $\varphi: H^2(X;{\mathbf{Z}}) { \, \xrightarrow{\sim}\, }H^2(X';{\mathbf{Z}})$ is a Hodge isometry with $\varphi(c_1(L)) = c_1(L')$, then $\varphi = f^*$ for a unique isomorphism $f:X' { \, \xrightarrow{\sim}\, }X$.
 :::
 
 ::: {.front card-id="card-5bb9c6a0085b74b6"}
@@ -15,7 +19,17 @@ Discuss the number of fixed points of a symplectic automorphism with finite orde
 :::
 
 ::: {.back card-id="card-5bb9c6a0085b74b6"}
-Computed by Mukai using the Lefschetz fixed point formula:
+Computed by Mukai using the Lefschetz fixed point formula: $n\leq 8$, and ${\sharp} \mathrm{Fix}(\sigma) = 8, 6, 4, 4, 2, 3, 2$ for $n = 2, 3, 4, 5, 6, 7, 8$.
+
+Sketch for $n = p$ prime: take $X\twoheadrightarrow X/\sigma$ and resolve its $A_{p-1}$ singularities to get $Y$.
+
+Write $X' \coloneqq X\setminus \mathrm{Fix}(\sigma)$ and $Y' \coloneqq Y\setminus\widetilde{ \mathrm{Fix}}(\sigma)$, where $\widetilde{ \mathrm{Fix}}(\sigma)$ are the corresponding rational curves. Then $X'\to Y'$ is an unramified $p{\hbox{-}}$to-$1$ cover, so $\chi(X') = p\chi(Y')$.
+
+Each fixed point gives a chain of $p-1$ copies of ${\mathbf{P}}^1$ meeting at $p-2$ points, with $\chi = 2(p-1) - (p-2) = p$.
+
+Combine these to get
+$$\chi(X) - {\sharp} \mathrm{Fix}(\sigma) = p\cdot \chi(Y)- p^2\cdot {\sharp} \mathrm{Fix}(\sigma) \implies {\sharp} \mathrm{Fix}(\sigma) = {24\over p+1}$$
+since $Y$ is also a K3 and thus $\chi(X) = \chi(Y) = 24$.
 :::
 
 ::: {.front card-id="card-ae6984def8dbe005"}
@@ -23,6 +37,20 @@ Discuss the classification of symplectic actions.
 :::
 
 ::: {.back card-id="card-ae6984def8dbe005"}
+Abelian $G\curvearrowright X$ symplectically (Nikulin), 14 possibilities:
+
+$C_n$ where $n=2,\cdots, 8$.
+
+$C_n^2$ where $n=2,3,4$.
+
+$C_2\times C_n$ where $n=4,6$.
+
+$C_2^3$
+
+$C_2^4$.
+
+Arbitrary finite $G\curvearrowright X$ symplectically (Mukai): $G$ is a subgroup of the Mathieu group $M_{23}$ with at least 5 orbits on $\left\{{1, \cdots, 24}\right\}$, so ${\sharp}G \leq 960$, with equality if $G = M_{20}$.
+
 Xiao: 80 possible groups, maximal size of 960.
 :::
 
@@ -71,13 +99,13 @@ $\widetilde{T/\iota}$ where $T = {\mathbf{C}}^2/\Lambda$ is a torus and $\iota$ 
 :::
 
 ::: {.front card-id="card-2eef1a10735a855d"}
-What are the dimensions of moduli of all and just algebraic K3s?
+What is the moduli space of all K3s vs projective K3s?
 :::
 
 ::: {.back card-id="card-2eef1a10735a855d"}
-All K3s: 20-dimensional
+All K3s, including non-projective: $\dcosetr{\Omega}{{\operatorname{O}}(\Lambda_{\mathrm{K3}})}$, 20-dimensional. Its points are the isomorphism classes of K3s, but the quotient is not Hausdorff, since ${\operatorname{O}}(\Lambda_{\mathrm{K3}})$ does not act properly discontinuously on $\Omega$.
 
-Algebraic K3s: 19-dimensional
+Algebraic (projective) K3s: 19-dimensional, since one has to vary periods in the orthogonal complement of an ample class.
 :::
 
 ::: {.front card-id="card-a3226206edbadebd"}
@@ -237,15 +265,17 @@ Show $q(S) = 0$, e.g. using Lefschetz, and show $K_S \sim 0$ e.g. using adjunc
 :::
 
 ::: {.front card-id="card-d4ca0d9726924b5c"}
-Give examples of K3s
+Give several examples of K3s.
 :::
 
 ::: {.back card-id="card-d4ca0d9726924b5c"}
-Any smooth quartic in ${\mathbf{P}}^3$.
+Any smooth quartic in ${\mathbf{P}}^3$, e.g. $x_0^4 + \cdots + x_3^4\subset {\mathbf{P}}^3$ when $\operatorname{ch}k \neq 2$.
 
-Complete intersections of type (2,3) or (2,2,2)
+A smooth complete intersection of type $(d_1,\cdots, d_n) \subset {\mathbf{P}}^{n+2}$ with all $d_i\geq 2$ and $\sum d_i = n+3$: the quartic and the types $(2,3)$ and $(2,2,2)$.
 
-$S\to {\mathbf{P}}^2$ 2x ramified over a sextic curve.
+Kummer surfaces: the quotient of an abelian surface by the involution $x\mapsto -x$ after resolving 16 singular points.
+
+A double plane: a double cover $X\to {\mathbf{P}}^2$ branched along a smooth curve $C$ of degree 6, using $\pi_* {\mathcal{O}}_X \cong {\mathcal{O}}_{{\mathbf{P}}^2} \oplus {\mathcal{O}}(-3) \implies H^1({\mathcal{O}}_X) = 0$ and $\omega_X \cong \pi^*(\omega_{{\mathbf{P}}^2} \otimes{\mathcal{O}}(3)) \cong {\mathcal{O}}_X$.
 :::
 
 ::: {.front card-id="card-c9537c6e8b69fd2a"}
@@ -269,7 +299,9 @@ What is the Noether formula?
 :::
 
 ::: {.back card-id="card-f1472e5407f22cc4"}
-$\chi({\mathcal{O}}_X) = {1\over 12}(K_X^2 + \chi(X))$.
+HRR for ${\mathcal{O}}_X$ on a surface $X$:
+$$\chi({\mathcal{O}}_X) = {1\over 12}(K_X^2 + \chi(X)) = {1\over 12}(c_1^2 + c_2)$$
+where $\chi(X) = c_2$ is the topological Euler characteristic.
 :::
 
 ::: {.front card-id="card-87f15ed99f31bbce"}
@@ -321,19 +353,23 @@ $\chi({\mathsf{K}}3) = 24$, all diffeomorphic to the Fermat quartic.
 :::
 
 ::: {.front card-id="card-941b89a280b25084"}
-Describe $\Lambda_{{\mathsf{K}}3}$.
+Describe the lattice $\Lambda_{{\mathsf{K}}3}$.
 :::
 
 ::: {.back card-id="card-941b89a280b25084"}
-Lattice structure on (all of) $H^2({\mathsf{K}}3; {\mathbf{Z}})$.
+The lattice associated to a K3 $X$ is $H^2(X; {\mathbf{Z}})$ with the intersection pairing
+$$\begin{align*}H^2(X; {\mathbf{Z}}){ {}^{ \scriptstyle\otimes_{{\mathbf{Z}}}^{2} }  } &\to {\mathbf{Z}}\\ \alpha\otimes\beta &\mapsto \int_X \alpha\wedge \beta\end{align*}$$
+which is nondegenerate and unimodular by Poincare duality. $\Lambda_{{\mathsf{K}}3}$ denotes this lattice structure on (all of) $H^2({\mathsf{K}}3; {\mathbf{Z}})$:
 
 Rank $22$
 
 Signature $(3, 19)$
 
+Even, unimodular
+
 Isometric to $U{ {}^{ \scriptscriptstyle\oplus^{3} }  } \oplus E_8(-1){ {}^{ \scriptscriptstyle\oplus^{2} }  }$ where
 
-$U = \qty{{\mathbf{Z}}^2, \left(\begin{array}{ll}0 & 1 \\1 & 0\end{array}\right)}$
+$U = H = \qty{{\mathbf{Z}}^2, \left(\begin{array}{ll}0 & 1 \\1 & 0\end{array}\right)}$ is the hyperbolic plane,
 
 $E_8(-1) =$ unique even unimodular negative-definite lattice of rank 8.
 :::
@@ -360,28 +396,18 @@ Noether formula: $\chi({\mathcal{O}}_{\tilde S}) = {1\over 12} (K_{\tilde S}^2 +
 The LHS is $2-h^1({\mathcal{O}}_{\tilde S}) \leq 2$, the RHS is $\geq 2$, so $m=1$.
 :::
 
-::: {.front card-id="card-dda11fe3bc6d6ce4"}
-What is the lattice associated to a K3?
-:::
-
-::: {.back card-id="card-dda11fe3bc6d6ce4"}
-The intersection pairing:
-$$\begin{align*}H^2(X; {\mathbf{Z}}){ {}^{ \scriptstyle\otimes_{{\mathbf{Z}}}^{2} }  } &\to {\mathbf{Z}}\\ \alpha\otimes\beta \mapsto \int_X \alpha\wedge \beta\end{align*}$$
-Nondegenerate and unimodular by Poincare duality.
-:::
-
 ::: {.front card-id="card-f64f587ee4649484"}
 What is $\operatorname{sgn}\Lambda_{\mathrm{K3}}$?
 :::
 
 ::: {.back card-id="card-f64f587ee4649484"}
-Have $\operatorname{sgn}\Lambda_{{\mathsf{K}}3} = (s_+, s_-)$ where $s_+ + s_- = 22$, can take topological trace to get
-$$\operatorname{Trace}(\beta) = s_+- s_- = {1\over 3}(c_1^2  -2c_2) = {1\over 3}(0-2\cdot24)= -16$$
-$c_1 = c_1({\mathbf{T}}X) = -K_X$
+$\operatorname{sgn}\Lambda_{\mathrm{K3}} = \operatorname{sgn}H^2(X; {\mathbf{Z}}) = (3, 19)$.
 
-$c_2 = \chi(X) = 24$.
+Proof: write $\operatorname{sgn}\Lambda_{{\mathsf{K}}3} = (s_+, s_-)$, where $s_+ + s_- = b_2(X) = 22$. By the Thom-Hirzebruch index theorem,
+$$s_+- s_- = {1\over 3}p_1(X) = {1\over 3}(c_1^2  -2c_2) = {1\over 3}(0-2\cdot24)= -16$$
+where $c_1 = c_1({\mathbf{T}}X) = -K_X = 0$ and $c_2 = \chi(X) = 24$.
 
-Combine $s_+ + s_- = 22$ and $s_+ - s_- = -16$ to solve for $\operatorname{sgn}\Lambda_{\mathrm{K3}}= (3, 19)$,
+Combine $s_+ + s_- = 22$ and $s_+ - s_- = -16$ to solve for $(s_+, s_-) = (3, 19)$.
 :::
 
 ::: {.front card-id="card-6098bf6e2115e6a2"}
@@ -405,22 +431,6 @@ If $\Lambda$ is odd the $\Lambda \cong (1){ {}^{ \scriptscriptstyle\oplus^{n} } 
 If $\Lambda$ is even then $\Lambda \cong U{ {}^{ \scriptscriptstyle\oplus^{h} }  } \oplus E_8{ {}^{ \scriptscriptstyle\oplus^{k} }  }$ where $h > 0$ and $k\geq 0$.
 :::
 
-::: {.front card-id="card-1494d39215771706"}
-What is $\operatorname{sgn}U$?
-:::
-
-::: {.back card-id="card-1494d39215771706"}
-$(1, 1)$
-:::
-
-::: {.front card-id="card-043eabc32498591d"}
-What is $\operatorname{sgn}E_8$?
-:::
-
-::: {.back card-id="card-043eabc32498591d"}
-$(8, 0)$
-:::
-
 ::: {.front card-id="card-2dce7321f873d95b"}
 Discuss positivity of $\beta_{{\mathsf{K}}3}({-}, {-})$ on $\omega_X$.
 :::
@@ -433,29 +443,28 @@ If $\beta(\omega_X, H^{1, 1}) = 0$ so $H^{1, 1} \perp_\beta (H^{2, 0} \oplus H^{
 :::
 
 ::: {.front card-id="card-e5204c524e5af7fb"}
-Discuss the period domain.
+Define the period domain $\mathbb{D}$. What is its dimension?
 :::
 
 ::: {.back card-id="card-e5204c524e5af7fb"}
-${\mathbf{C}}\omega_X \in {\mathbf{P}}H^2(X;{\mathbf{C}})$.
+$$\mathbb{D} = \Omega \coloneqq\left\{{[\omega]\in {\mathbf{P}}(\Lambda_{{\mathsf{K}}3}\otimes_{\mathbf{Z}}{\mathbf{C}}) {~\mathrel{\Big\vert}~}\omega^2 = 0,\,\, \omega.\overline{\omega }> 0}\right\}$$
+In coordinates that diagonalize the form on $\Lambda_{\mathrm{K3}}\otimes{\mathbf{R}}$ with signature $(3, 19)$,
+$$\Omega \cong \left\{{{\left[ {z_0:\cdots:z_{21}} \right]}\in {\mathbf{P}}^{21}{~\mathrel{\Big\vert}~}z_0^2+z_1^2 + z_2^2 - z_3^2 -\cdots - z_{21}^2 = 0,\, {\left\lvert {z_0} \right\rvert}^2 + {\left\lvert {z_1} \right\rvert}^2 + {\left\lvert {z_2} \right\rvert}^2 - {\left\lvert {z_3} \right\rvert}^2 - \cdots - {\left\lvert {z_{21}} \right\rvert}^2 > 0}\right\}$$
+which is an open subset of a quadric in ${\mathbf{P}}^{21}$ and thus a 20-dimensional ${\mathbf{C}}{\hbox{-}}$manifold.
 
-Take a marking $\Phi: H^2(X;{\mathbf{Z}})\to \Lambda_{\mathrm{K3}}$ and define
-$$\Omega = \left\{{[\omega]\in {\mathbf{P}}(\Lambda_{\mathrm{K3}}\otimes{\mathbf{C}}) {~\mathrel{\Big\vert}~}\omega^2 = 0, {\left\lvert {\omega} \right\rvert} > 0}\right\}, \quad {\left\lvert {\omega} \right\rvert} \coloneqq\omega.\overline{\omega}$$
-Can write as
-$$\Omega \cong \left\{{{\left[ {z_0:\cdots:z_{21}} \right]}\in {\mathbf{P}}^{21}{~\mathrel{\Big\vert}~}z_0^2+z_1^2 + z_2^2 - z_3^2 -\cdots - z_{21}^2 = 0,\, \sum_{i=0}^{21} {\left\lvert {z_i} \right\rvert}^2 > 0}\right\}$$
-which is an open subset of a quadric in ${\mathbf{P}}^{21}$ and thus 20-dimensional.
+For a marking $\Phi: H^2(X;{\mathbf{Z}})\to \Lambda_{\mathrm{K3}}$, the period of $(X, \Phi)$ is $\Phi({\mathbf{C}}\omega_X) \in \Omega$, where ${\mathbf{C}}\omega_X = H^{2,0}(X) \in {\mathbf{P}}H^2(X;{\mathbf{C}})$. Surjectivity of the period map (Todorov, Looijenga, Siu): every point of $\Omega$ is the period of some marked K3.
 
-One has $\Phi({\mathbf{C}}\omega_X) \subseteq \Omega$; define this as the period domain of a marked K3.
-
-Torelli gives surjectivity.
+For a marked polarized K3 $(X, \phi)$, drops 1 dimension:
+$$\mathbb{D}_{2k} \coloneqq\left\{{[\omega]\in \mathbb{D}{~\mathrel{\Big\vert}~}\omega.h = 0}\right\}$$
+where $h\in \Lambda_{{\mathsf{K}}3}$ is a fixed primitive class with $h^2 = 2k$ and $\phi^{-1}(h)\in {\operatorname{NS}}(X)^{\mathrm{amp}}$. It is 19-dimensional, with two connected components, each a bounded symmetric domain of type IV.
 :::
 
 ::: {.front card-id="card-a7590df0a74c3577"}
-What is a marking?
+What is a marking of a K3?
 :::
 
 ::: {.back card-id="card-a7590df0a74c3577"}
-$\Phi: H^2(X; {\mathbf{Z}}) { \, \xrightarrow{\sim}\, }\Lambda_{\mathrm{K3}}$ an isometry.
+Let $X$ be a K3 surface. A marking is an isometry $\phi: H^2(X; {\mathbf{Z}}) { \, \xrightarrow{\sim}\, }\Lambda_{{\mathsf{K}}3}$, where $\Lambda_{{\mathsf{K}}3}$ (also written $L$) is the K3 lattice $U{ {}^{ \scriptscriptstyle\oplus^{3} }  } \oplus E_8(-1){ {}^{ \scriptscriptstyle\oplus^{2} }  }$.
 :::
 
 ::: {.front card-id="card-2f94dbd7c0c5c56e"}
@@ -464,16 +473,6 @@ What is $\dim {\mathbf{P}}^n$.
 
 ::: {.back card-id="card-2f94dbd7c0c5c56e"}
 $\dim {\mathbf{P}}^n = n$, locally $n$ degrees of freedom: $p \sim {\left[ {1: x_1/x_0:\cdots :x_n/x_0} \right]}$.
-:::
-
-::: {.front card-id="card-bb2d702b1f93a766"}
-What is the moduli space of all K3s vs projective K3s?
-:::
-
-::: {.back card-id="card-bb2d702b1f93a766"}
-All K3s: $\dcosetr{\Omega}{{\operatorname{O}}(\Lambda_{\mathrm{K3}})}$, 20-dimensional.
-
-Projective: 19-dimensional, since one has to vary periods in the orthogonal complement of an ample class.
 :::
 
 ::: {.front card-id="card-4bf015e09e65996f"}
@@ -510,14 +509,6 @@ What are the dimensions of moduli for $S_{2,3}, S_{2,2,2}$, and the double plane
 
 ::: {.back card-id="card-feb6d5dd0d9fef49"}
 All 19.
-:::
-
-::: {.front card-id="card-3ba7e70ec9b5d25d"}
-What does $\Omega/{\operatorname{O}}(\Lambda_{\mathrm{K3}})$ parameterize?
-:::
-
-::: {.back card-id="card-3ba7e70ec9b5d25d"}
-All K3s, including non-projective.
 :::
 
 ::: {.front card-id="card-fed03351b6881aaa"}
@@ -578,9 +569,13 @@ Discuss ${\operatorname{NS}}(X)$ for $X$ a K3.
 :::
 
 ::: {.back card-id="card-8a1535e682e731af"}
-$\operatorname{Pic}^0(X) = 0$ so $\operatorname{Pic}(X) \cong {\operatorname{NS}}(X)$.
+$\operatorname{Pic}^0(X) = 0$ so $\operatorname{Pic}(X) \cong {\operatorname{NS}}(X)$, the sublattice of $H^{2}(X; {\mathbf{Z}})$ generated by algebraic cycles. By Lefschetz $(1, 1)$,
+$$\operatorname{Pic}(X) = {\operatorname{NS}}(X) = H^{2, 0}(X)^\perp \cap H^2(X; {\mathbf{Z}}) \subseteq H^2(X; {\mathbf{C}})$$
+${\operatorname{NS}}(X)\hookrightarrow H^2(X; {\mathbf{Z}})$ is an even primitive sublattice of $\Lambda_{\mathrm{K3}}$, of rank $\rho(X)$, the Picard number.
 
-The sublattice of $H^{2}(X; {\mathbf{Z}})$ generated by algebraic cycles.
+If $X$ is projective, ${\operatorname{NS}}(X)$ is nondegenerate of signature $(1, \rho(X) - 1)$.
+
+$T_X \coloneqq{\operatorname{NS}}(X)^\perp$ is also a lattice (transcendental).
 :::
 
 ::: {.front card-id="card-e8ee05a2704a0cc0"}
@@ -593,16 +588,6 @@ ${\operatorname{NS}}(X) = \operatorname{CDiv}(X)/\sim$ modulo algebraic equivale
 $\operatorname{Pic}(X) = \operatorname{CDiv}(X)/\sim$ modulo linear equivalence.
 
 ${\operatorname{CH}}_k(X) = Z_k(X)/\sim$ modulo rational equivalence
-:::
-
-::: {.front card-id="card-4f558f2e1e998597"}
-What is the lattice structure on ${\operatorname{NS}}(X)$?
-:::
-
-::: {.back card-id="card-4f558f2e1e998597"}
-$\operatorname{Pic}(X) = {\operatorname{NS}}(X)\hookrightarrow H^2(X; {\mathbf{Z}})$ so it is an even primitive sublattice of $\Lambda_{\mathrm{K3}}$.
-
-$T_X \coloneqq{\operatorname{NS}}(X)^\perp$ is also a lattice (transcendental)
 :::
 
 ::: {.front card-id="card-e21fb5304f2bb38b"}
@@ -622,21 +607,17 @@ ${\operatorname{NS}}(X) = \operatorname{Pic}(X) = H^{1, 1}(X) \cap H^2(X; {\math
 :::
 
 ::: {.front card-id="card-8ea4c5bc81520a4a"}
-What is $\rho(X)$?
+What is the Picard number $\rho(X)$?
 :::
 
 ::: {.back card-id="card-8ea4c5bc81520a4a"}
-$\operatorname{rank}_{\mathbf{Z}}\operatorname{Pic}(X) = \operatorname{rank}_{\mathbf{Z}}{\operatorname{NS}}(X)$.
+$\rho(X) \coloneqq\operatorname{rank}_{\mathbf{Z}}{\operatorname{NS}}(X)$, where ${\operatorname{NS}}(X) \coloneqq\operatorname{coker}(\operatorname{Pic}^0(X) \hookrightarrow\operatorname{Pic}(X))$; also written $p(X)$.
 
-Since ${\operatorname{NS}}(X) \leq H^{1, 1}(X)$, there is a bound $\rho(X) \leq 20$.
-:::
+For $X$ compact complex,
+$$\rho(X) = \operatorname{rank}_{\mathbf{Z}}\operatorname{im}(c_1: \operatorname{Pic}(X) \to H^2(X; {\mathbf{Z}}))$$
+If $X$ is Kahler, Lefschetz $(1,1)$ gives $\rho(X) = \operatorname{rank}_{\mathbf{Z}}(H^{1,1}(X) \cap H^2(X; {\mathbf{Z}}))$, so $\rho(X)\leq h^{1,1}(X)$.
 
-::: {.front card-id="card-6528a9136359c846"}
-What is $\operatorname{sgn}H^2(X; {\mathbf{Z}})$?
-:::
-
-::: {.back card-id="card-6528a9136359c846"}
-$(3, 19)$
+For a K3, $\rho(X) = \operatorname{rank}_{\mathbf{Z}}\operatorname{Pic}(X) = \operatorname{rank}_{\mathbf{Z}}{\operatorname{NS}}(X)$. Since ${\operatorname{NS}}(X) \leq H^{1, 1}(X)$, there is a bound $\rho(X) \leq 20$ over ${\mathbf{C}}$.
 :::
 
 ::: {.front card-id="card-4179669dbcacc189"}
@@ -644,23 +625,31 @@ Discuss $\operatorname{sgn}{\operatorname{NS}}(X)$ and $\operatorname{sgn}T_X$.
 :::
 
 ::: {.back card-id="card-4179669dbcacc189"}
-$(a, b)$ where $a\leq 1$ since $\operatorname{sgn}H^2(X;{\mathbf{Z}}) = (3, 19)$ and if $H^{0, 1} \oplus H^{1,0} = {\mathbf{C}}\omega_X \oplus {\mathbf{C}}\overline{\omega_X}$ one can form a 2-dimensional space $V = \left\langle{\omega_X + \overline{\omega}_X, i(\omega_X - \overline{\omega}_X)}\right\rangle$ where both generators have positive square. and $V\subseteq (H^{1,1})^\perp$.
+$\operatorname{sgn}{\operatorname{NS}}(X) = (a, b)$ where $a\leq 1$: $\operatorname{sgn}H^2(X;{\mathbf{Z}}) = (3, 19)$, and $H^{2, 0} \oplus H^{0, 2} = {\mathbf{C}}\omega_X \oplus {\mathbf{C}}\overline{\omega_X}$ gives a real 2-dimensional space $V = \left\langle{\omega_X + \overline{\omega}_X, i(\omega_X - \overline{\omega}_X)}\right\rangle$ where both generators have positive square, and $V\subseteq (H^{1,1})^\perp$.
 
-For $X$ projective, $L$ an ample class with $L^2 > 0$ yields
-$$\operatorname{sgn}{\operatorname{NS}}(X) = (1, \rho(X) - 1) \implies \operatorname{sgn}T_X = (2, 20-\rho(X))$$
+For $X$ projective, an ample class $L$ with $L^2 > 0$ yields
+$$\operatorname{sgn}S_X = \operatorname{sgn}{\operatorname{NS}}(X) = (1, \rho(X) - 1) \implies \operatorname{sgn}T_X = (2, 20-\rho(X))$$
 since they must add up to $(3, 19)$.
 :::
 
 ::: {.front card-id="card-c4ebdb920576685f"}
-Discuss the transcendental lattice $T_X$.
+What is the transcendental lattice? Its signature?
 :::
 
 ::: {.back card-id="card-c4ebdb920576685f"}
-$T_X \coloneqq{\operatorname{NS}}(X)^\perp \subseteq H^2(X; {\mathbf{Z}})$.
+$T(X) = T_X \coloneqq{\operatorname{NS}}(X)^\perp \subseteq H^2(X; {\mathbf{Z}})$, the orthogonal complement of Neron-Severi, where ${\operatorname{NS}}(X) \simeq \operatorname{Pic}(X) \simeq H^{1,1}(X) \cap H^2(X, \mathbf{Z})$. It is usually considered as an integral Hodge structure.
 
-$T_X \otimes{\mathbf{C}}\supseteq H^{2, 0} \oplus H^{0, 2}$, so the periods move in $T_X$.
+$T_X \otimes{\mathbf{C}}\supseteq H^{2, 0} \oplus H^{0, 2}$, so the periods move in $T_X$: for a polarization $L$, $[\omega_X] \in \left\{{ {\mathbf{P}}(T_X^L\otimes{\mathbf{C}}) {~\mathrel{\Big\vert}~}\omega^2 = 0, \omega.\overline{\omega} > 0}\right\}$ where $T_X^L = L^\perp$.
 
-$[\omega_X] \in \left\{{ {\mathbf{P}}(T_X^L\otimes{\mathbf{C}}) {~\mathrel{\Big\vert}~}\omega^2 = 0, {\left\lvert {\omega} \right\rvert} > 0}\right\}$ where $T_X^L = L^\perp$.
+If $X$ is projective:
+
+${\operatorname{NS}}(X)$ is nondegenerate, and $T(X)$ is the smallest primitive sublattice of $H^2(X; {\mathbf{Z}})$ whose complexification contains $H^{2, 0}(X)$.
+
+Signature $(2, 20-\rho(X))$.
+
+$T(X)$ is a polarizable irreducible Hodge structure.
+
+For nonprojective K3s, $T(X) + {\operatorname{NS}}(X) \subseteq H^2(X; {\mathbf{Z}})$ need not be direct and $T(X)$ need not be irreducible nor polarizable.
 :::
 
 ::: {.front card-id="card-9bab5774b88b5564"}
@@ -714,7 +703,7 @@ What is a symplectic automorphism?
 ::: {.back card-id="card-9689dd1d644fe056"}
 $\sigma^* \omega_X = \omega_X$, i.e. preserves the symplectic form.
 
-Possibly forces $\operatorname{rank}_{\mathbf{Z}}\operatorname{Pic}(X) \geq 8$.
+If $\sigma$ has finite order $n > 1$, the coinvariant lattice $(H^2(X;\mathbf{Z})^{\sigma})^\perp$ is negative definite of rank at least $8$ and lies in $\operatorname{NS}(X)$ (Nikulin). For an involution it is $E_8(-2)$. So $\rho(X) \geq 8$, and $\rho(X) \geq 9$ if $X$ is projective, since an invariant ample class is orthogonal to it.
 :::
 
 ::: {.front card-id="card-bdae5781e53151dc"}
@@ -722,9 +711,11 @@ What is the SES involving the symplectic automorphisms of $G\leq \mathop{\mathrm
 :::
 
 ::: {.back card-id="card-bdae5781e53151dc"}
-Take $\alpha: G\to {\mathbf{C}}^{\times}$ where $f\mapsto \alpha(f)$ where $f^* \omega_X = \alpha(f)\omega_X$.
+$G\curvearrowright H^{2, 0}(X) = {\mathbf{C}}\omega_X$ gives $\alpha: G\to {\mathbf{C}}^{\times}$, $f\mapsto \alpha(f)$, where $f^* \omega_X = \alpha(f)\omega_X$.
 
-Restrict to its image $\mu_m$ to get a SES defining $G_0 \hookrightarrow G\twoheadrightarrow\mu_m$ where $G_0 \coloneqq\left\{{f\in G{~\mathrel{\Big\vert}~}f^*\omega_X = \omega_X}\right\}$ .
+Restrict to its image $\mu_m \subseteq {{\mathbf{C}}^{\times}}$ to get a SES
+$$G_0 \hookrightarrow G\twoheadrightarrow\mu_m, \qquad G_0 \coloneqq\left\{{f\in G{~\mathrel{\Big\vert}~}f^*\omega_X = \omega_X}\right\}$$
+and $G$ is nonsymplectic if $G\ne G_0$.
 :::
 
 ::: {.front card-id="card-536dcb7d2a4f75ae"}
@@ -732,11 +723,13 @@ What are symplectic, non-symplectic, and purely non-symplectic automorphisms?
 :::
 
 ::: {.back card-id="card-536dcb7d2a4f75ae"}
+Let $\omega_X \in H^{2, 0}(X)$ be a nonzero 2-form. An automorphism $g$ of finite order acts by $g^*\omega_X = \alpha(g)\omega_X$ for a root of unity $\alpha(g)$.
+
 Symplectic: $g^*\omega_X = \omega_X$
 
-Non-symplectic: $g^*\omega_X = \alpha(g)\omega_X$ where $\alpha\neq 0,1$.
+Non-symplectic: $g^*\omega_X = \alpha(g)\omega_X$ where $\alpha(g)\neq 1$.
 
-Purely non-symplectic: $g^* \omega_X = \alpha(g)\omega_X$ where $\alpha(g) = \zeta_m$ a *primitive* root of unity $m={\left\lvert {g} \right\rvert}$.
+Purely non-symplectic: $g^* \omega_X = \alpha(g)\omega_X$ where $\alpha(g) = \zeta_m$ is a *primitive* root of unity of order $m={\left\lvert {g} \right\rvert}$. Some authors call such $\sigma$ of order $n > 1$, with $\sigma^*(\omega_X) = \zeta_n \omega_X$ for a primitive root of unity $\zeta_n$, a non-symplectic automorphism of order $n$.
 :::
 
 ::: {.front card-id="card-1d14a89c5a2ec472"}
@@ -807,22 +800,6 @@ Quotients are again K3.
 Not the case for non-symplectic automorphisms!
 :::
 
-::: {.front card-id="card-4ff82167f8ba686c"}
-For $\sigma$ symplectic on $X$ of order $p$, sketch how to compute ${\sharp} \mathrm{Fix}(\sigma)$.
-:::
-
-::: {.back card-id="card-4ff82167f8ba686c"}
-Take $X\twoheadrightarrow X/\sigma$ and resolve to $Y$ to get $X\to Y$ a $p{\hbox{-}}$to-$1$ map; resolving $A_{p-1}$ singularities.
-
-Write $X' \coloneqq X\setminus \mathrm{Fix}(\sigma)$ and $Y' \coloneqq Y\setminus\widetilde{ \mathrm{Fix}(\sigma)}$ where $\widetilde{ \mathrm{Fix}}(\sigma)$ are the corresponding rational curves to get $\chi(X') = p\chi(Y')$.
-
-Check $\widetilde{ \mathrm{Fix}}(\sigma)$ is a chain of $p-1$ copies of ${\mathbf{P}}^1$ meeting at $p-2$ points, so $\chi\widetilde{ \mathrm{Fix}}(\sigma) = 2(p-1) - (p-2) = p$.
-
-Combine these to get
-$$\chi(X) - {\sharp} \mathrm{Fix}(\sigma) = p\cdot \chi(Y)- p\cdot {\sharp} \mathrm{Fix}(\sigma) \implies {\sharp} \mathrm{Fix}(\sigma) = {24\over p-1}$$
-since $Y$ is also a K3 and thus $\chi(X) = \chi(Y) = 24$.
-:::
-
 ::: {.front card-id="card-3c62ffad76035cd6"}
 What is the Kodaira embedding theorem?
 :::
@@ -857,32 +834,6 @@ Proper morphism, connected fibers are smooth genus 1 algebraic curves.
 Equivalently, by proper base change, the generic fiber is a smooth genus 1 curve.
 
 E.g. any product of elliptic curves, surfaces with $\kappa(X) = 1$, Enriques surfaces
-:::
-
-::: {.front card-id="card-0800308b2b55a981"}
-What is the classification of $G\in {}_{{\mathbf{Z}}}{\mathsf{Mod}}^{\mathrm{fin}}\curvearrowright X$ symplectically?
-:::
-
-::: {.back card-id="card-0800308b2b55a981"}
-By Nikulin, 14 possibilities:
-
-$C_n$ where $n=2,\cdots, 8$.
-
-$C_n^2$ where $n=2,3,4$.
-
-$C_2\times C_n$ where $n=4,6$.
-
-$C_2^3$
-
-$C_2^4$.
-:::
-
-::: {.front card-id="card-ab8884650b329620"}
-What is the classification of $G\in{\mathsf{Fin}}{\mathsf{Grp}}\curvearrowright X$ symplectically?
-:::
-
-::: {.back card-id="card-ab8884650b329620"}
-Mukai: maximal order ${\sharp}G \leq 360$, with equality if $G = M_{20}$.
 :::
 
 ::: {.front card-id="card-d03dc5ca2d69bd48"}
@@ -1041,7 +992,9 @@ What is an **algebraic** K3 surface?
 :::
 
 ::: {.back card-id="card-dec2dfa1d9efa061"}
-Smooth complete variety $X$ over a field $k$, $\dim X = 2$, where $\omega_{X} \cong {\mathcal{O}}_X$ and $H^1({\mathcal{O}}_X) = 0$.
+Smooth complete variety $X$ over a field $k$, $\dim X = 2$, where $\omega_{X/k}\cong {\mathcal{O}}_X$ and $H^1({\mathcal{O}}_X) = 0$.
+
+Interpret $q(X) \coloneqq h^{0, 1}(X) = h^1({\mathcal{O}}_X)$ as the irregularity, so the last condition is $q(X) = 0$.
 :::
 
 ::: {.front card-id="card-b314c9e25a945fe6"}
@@ -1070,20 +1023,6 @@ Why is a smooth quartic a K3?
 If $X \subseteq {\mathbf{P}}^3$ then take the LES for ${\mathcal{O}}_{{\mathbf{P}}^3}(-4) \hookrightarrow{\mathcal{O}}_{{\mathbf{P}}^3} \twoheadrightarrow{\mathcal{O}}_X$ and use that $H^1({\mathcal{O}}_{{\mathbf{P}}^3}) = H^2({\mathcal{O}}_{{\mathbf{P}}^3}(-4)) = 0$ to conclude $H^1({\mathcal{O}}_X) = 0$.
 
 The adjunction formula yields $\omega_X = \omega_{{\mathbf{P}}^3}\otimes{\mathcal{O}}(4)\mathrel{\Big|}_X \cong {\mathcal{O}}_X$.
-:::
-
-::: {.front card-id="card-95e53a4cda79633a"}
-Give several examples of K3s.
-:::
-
-::: {.back card-id="card-95e53a4cda79633a"}
-A smooth quartic, e.g. $x_0^4 + \cdots + x_3^4\subset {\mathbf{P}}^3$ when $\operatorname{ch}k \neq 2$.
-
-A smooth complete intersection of type $(d_1,\cdots, d_n) \subset {\mathbf{P}}^{n+2}$ when $\sum d_i = n+3$.
-
-Kummer surfaces: the quotient of an abelian surface by the involution $x\mapsto -x$ after resolving 16 singular points.
-
-A branched double cover $X\to {\mathbf{P}}^2$ branched along a smooth curve $C$ of degree 6, using $\pi_* {\mathcal{O}}_X \cong {\mathcal{O}}_{{\mathbf{P}}^2} \oplus {\mathcal{O}}(-3) \implies H^1({\mathcal{O}}_X) = 0$ and $\omega_X \cong \pi^*(\omega_{{\mathbf{P}}^2} \otimes{\mathcal{O}}(3)) \cong {\mathcal{O}}_X$.
 :::
 
 ::: {.front card-id="card-23af48fd70c389b1"}
@@ -1131,7 +1070,10 @@ Define the Neron-Severi group.
 :::
 
 ::: {.back card-id="card-aa5478294141e3a4"}
-${\operatorname{NS}}(X) \coloneqq\operatorname{Pic}(X) / \operatorname{Pic}^0(X)$, line bundles algebraically equivalent to zero.
+$S_X \coloneqq{\operatorname{NS}}(X) \coloneqq\operatorname{Pic}(X) / \operatorname{Pic}^0(X) = \operatorname{coker}(\operatorname{Pic}^0(X) \hookrightarrow\operatorname{Pic}(X))$: line bundles modulo those algebraically equivalent to zero.
+
+For $X$ compact Kahler, $c_1$ identifies ${\operatorname{NS}}(X)$ with $\operatorname{im}c_1 \subseteq H^2(X; {\mathbf{Z}})$, and by Lefschetz $(1,1)$ this image is the set of integral classes of type $(1,1)$. For a K3, $H^2(X;{\mathbf{Z}})$ is torsionfree, so
+$${\operatorname{NS}}(X) = H^{1, 1}(X) \cap H^{2}(X; {\mathbf{Z}})\subseteq H^2(X; {\mathbf{C}})$$
 :::
 
 ::: {.front card-id="card-4f556cf6edfaace8"}
@@ -1150,14 +1092,6 @@ What is $\mathrm{Num}(X)$?
 $\operatorname{Pic}(X)/\operatorname{Pic}(X)^\tau$. quotienting by the subgroup of numerically trivial line bundles.
 
 A ${}_{{\mathbf{Z}}}{\mathsf{Mod}}$ with a nondegenerate symmetric integral pairing.
-:::
-
-::: {.front card-id="card-ed4332040612803c"}
-What is the Picard number?
-:::
-
-::: {.back card-id="card-ed4332040612803c"}
-$p(X) = \operatorname{rank}_{\mathbf{Z}}{\operatorname{NS}}(X)$ where ${\operatorname{NS}}(X) \coloneqq\operatorname{coker}(\operatorname{Pic}^0(X) \hookrightarrow\operatorname{Pic}(X))$.
 :::
 
 ::: {.front card-id="card-3036ebb4d8e6a374"}
@@ -1221,13 +1155,18 @@ What is $c_2(X)$ for a K3?
 :::
 
 ::: {.front card-id="card-dca3b01c137d5f80"}
-What is the Hodge diamond for a K3?
+What is the Hodge diamond of a K3?
 :::
 
 ::: {.back card-id="card-dca3b01c137d5f80"}
-Use that $h^{p, q}(X) = 1$ for the corners by definition, $h^{0, 1}(X) = 0$, and
+For a complex K3 surface, $q=0$, $p_g=1$, and $h^{1,1}=20$.
+
+$h^{p, q}(X) = 1$ for the corners: $h^{0,0} = h^{2,2} = 1$ and $h^{2,0} = h^{0,2} = 1$ since $\Omega^2_X\cong{\mathcal{O}}_X$. $h^{0, 1}(X) = h^{1,0}(X) = 0$, and $h^{2,1} = h^{1,2} = 0$ by Serre duality.
+
+By HRR, Serre duality, and $\Omega_X \cong {\mathbf{T}}_X$,
 $$2 h^0\left(\Omega_X\right)-h^1\left(\Omega_X\right)=\operatorname{ch}_2\left(\Omega_X\right)+4=4-\mathrm{c}_2\left(\Omega_X\right)=-20$$
-so $h^1(\Omega_X) = 20$ since $h^0(\Omega_X) = 0$ by HRR.
+so $h^1(\Omega_X) = 20$ since $h^0(\Omega_X) = h^{1,0}(X) = 0$. The Hodge diamond is
+$$\begin{matrix}&&1&&\\&0&&0&\\1&&20&&1\\&0&&0&\\&&1&&\end{matrix}.$$
 :::
 
 ::: {.front card-id="card-758927d12fcaa059"}
@@ -1312,14 +1251,6 @@ Give a bundle-theoretic condition for projectivity of surfaces.
 
 ::: {.back card-id="card-4878049257d25b28"}
 If $X$ is a smooth compact complex surface, $X$ is projective iff $\exists L\in \operatorname{Pic}(X)$ with $L^2 > 0$.
-:::
-
-::: {.front card-id="card-ee348b617759672a"}
-What is the signature of the intersection form on $H^2$?
-:::
-
-::: {.back card-id="card-ee348b617759672a"}
-By the Thom-Hirzebruch index theorem, ${1\over 3}p_1(X) = {1\over 3}(c_1^2(X) - 2c_2(X)) = -16$, use that $b_2(X) = 22$ to get $(3, 19)$.
 :::
 
 ::: {.front card-id="card-e9df1180e0586b98"}
@@ -1572,13 +1503,17 @@ Consequence of a general result of Mumford, see 439.Thm.3.
 :::
 
 ::: {.front card-id="card-b2f808dcef295d55"}
-Discuss big and nef line bundles on K3s.
+Discuss big and nef line bundles $L$ on a K3.
 :::
 
 ::: {.back card-id="card-b2f808dcef295d55"}
 $H^1(L) = 0$ by the Kodaira-Ramanujam vanishing theorem.
 
 If $C$ is an irreducible curve with $C^2 > 0$, then ${\mathcal{O}}(C)$ is big and nef.
+
+Decompose $L = M + F$ into its mobile and fixed parts. If $M$ is big, then $L$ is bpf and $F$ is trivial.
+
+If $L$ is not bpf then $L = {\mathcal{O}}(mE + C)$ with $E$ smooth elliptic, $C\cong{\mathbf{P}}^1$, $E.C = 1$, and $m\geq 2$.
 :::
 
 ::: {.front card-id="card-7eed0c440c3acc28"}
@@ -1677,24 +1612,12 @@ Discuss base points of complete linear systems on a K3.
 $\operatorname{Bs}{\left\lvert {L} \right\rvert} = F$, i.e. ${\left\lvert {L} \right\rvert}$ has no base points outside of its fixed part.
 :::
 
-::: {.front card-id="card-b11591865e890f0a"}
-Discuss big and nef line bundles $L$ on a K3.
-:::
-
-::: {.back card-id="card-b11591865e890f0a"}
-Decompose $L = M + F$ its fixed and mobile parts.
-
-If $M$ is big, then $L$ is bpf and $F$ is trivial.
-
-If $L$ is not bpf then $L = {\mathcal{O}}(mE + C)$ with $E$ smooth elliptic, $C\cong{\mathbf{P}}^1$, and $m\geq 2$.
-:::
-
 ::: {.front card-id="card-7a25c38d96ac8312"}
 What is a polarized K3 of degree $2d$?
 :::
 
 ::: {.back card-id="card-7a25c38d96ac8312"}
-A projective K3 $X$ with $L\in \operatorname{Pic}(X)^{\mathrm{amp}}$ which is primitive and satisfies $L^2 = 2d$.
+A pair $(X, L)$ with $X$ a projective K3 and $L\in \operatorname{Pic}(X)^{\mathrm{amp}} = {\operatorname{NS}}(X)^{\mathrm{amp}}$ primitive with $L^2 = 2d$.
 :::
 
 ::: {.front card-id="card-045aecc61162ab8a"}
@@ -1978,22 +1901,6 @@ $$\begin{align}T \subset V \text { with } V^{2,0}=T^{2,0} \subset T_{\mathbf{C}}
 The primitivity, i.e. the condition that $V / T$ is torsion free, has to be added for integral Hodge structures, as otherwise minimality cannot be achieved.
 :::
 
-::: {.front card-id="card-3374841995acb762"}
-What is the transcendental lattice of a K3 surface?
-:::
-
-::: {.back card-id="card-3374841995acb762"}
-If $V$ is the Hodge structure $H^2(X, \mathbf{Z})$ of a K3 surface $X$, then
-$$\begin{align}
-V^{1,1} \cap V=H^{1,1}(X) \cap H^2(X, \mathbf{Z}) \simeq \mathrm{NS}(X) \simeq \operatorname{Pic}(X),
-\end{align}$$
-see Section 1.3.3, and $T$ is called the transcendental lattice
-$$\begin{align}
-T(X) \subset H^2(X, \mathbf{Z})
-\end{align}$$
-of the K3 surface $X$. It is usually considered as an integral Hodge structure.
-:::
-
 ::: {.front card-id="card-14234c9dd775e812"}
 What is the lattice for $H^1({\mathbf{C}}^2/\Gamma; {\mathbf{Z}})$?
 :::
@@ -2008,16 +1915,6 @@ What is the Kummer lattice?
 
 ::: {.back card-id="card-7df71f32322ce16a"}
 The unique even negative definite rank 16 lattice of discriminant $2^{16}$.
-:::
-
-::: {.front card-id="card-42fe21851c84a159"}
-Discuss the transcendental lattice of a K3 surface.
-:::
-
-::: {.back card-id="card-42fe21851c84a159"}
-$T(X) = {\operatorname{NS}}(X)^\perp$, and if $X$ is projective then $T(X)$ is a polarizable irreducible Hodge structure.
-
-For nonprojective K3s, $T(X) + {\operatorname{NS}}(X) \subseteq H^2(X; {\mathbf{Z}})$ need not be direct and $T(X)$ need not be irreducible nor polarizable.
 :::
 
 ::: {.front card-id="card-5113f1d6f8452d78"}
@@ -2092,14 +1989,6 @@ Under the isomorphism $H^2_\text{ét}(X; { {\mathbf{Q}}_\ell }(1)) { \, \xrighta
 Proved for K3s over number fields.
 :::
 
-::: {.front card-id="card-9815d0ecd4fc2624"}
-What does HRR say for surfaces?
-:::
-
-::: {.back card-id="card-9815d0ecd4fc2624"}
-$\chi(X) = {1\over 12}(c_1^2 + c_2)$, i.e. Noether's formula.
-:::
-
 ::: {.front card-id="card-b895e365a3b35d5b"}
 What is the Hodge diamond for a surface?
 :::
@@ -2108,18 +1997,6 @@ What is the Hodge diamond for a surface?
 For a smooth projective complex surface, the Hodge diamond is
 $$\begin{matrix}&&1&&\\&q&&q&\\p_g&&h^{1,1}&&p_g\\&q&&q&\\&&1&&\end{matrix}$$
 where $q=h^{1,0}=h^1(\mathcal O_X)$ and $p_g=h^{2,0}=h^0(\omega_X)$.
-:::
-
-::: {.front card-id="card-0cd3beb8bbe51b60"}
-Discuss $F_g$.
-:::
-
-::: {.back card-id="card-0cd3beb8bbe51b60"}
-Irreducible coarse moduli space of polarized complex K3s of genus $g\geq 2$.
-
-An open subset of a Shimura variety for ${\operatorname{SO}}_{2, 19}({\mathbf{R}})$
-
-Quasiprojective, $\dim F_g = 19$ for each $g$.
 :::
 
 ::: {.front card-id="card-3b4ed3689f8e94d9"}
@@ -2142,15 +2019,6 @@ Flat: K3s (generally CYs and hyperkahlers)
 Negatively curved: general type.
 :::
 
-::: {.front card-id="card-21ac3decc987c016"}
-What is the Hodge diamond of a K3?
-:::
-
-::: {.back card-id="card-21ac3decc987c016"}
-For a complex K3 surface, $q=0$, $p_g=1$, and $h^{1,1}=20$. Its Hodge diamond is
-$$\begin{matrix}&&1&&\\&0&&0&\\1&&20&&1\\&0&&0&\\&&1&&\end{matrix}.$$
-:::
-
 ::: {.front card-id="card-8ace99975d2c209d"}
 What are $q(X), p_g(X), \beta^+(X), \chi(X), c_1^2(X), c_2(X)$ for a K3?
 :::
@@ -2167,54 +2035,6 @@ $\chi(X) = 2$
 $c_1^2(X) = 0$
 
 $c^2(X) =24$.
-:::
-
-::: {.front card-id="card-7b37b661e27706d8"}
-Describe the lattice $\Lambda_{{\mathsf{K}}3}$.
-:::
-
-::: {.back card-id="card-7b37b661e27706d8"}
-$\Lambda_{{\mathsf{K}}3} \coloneqq H{ {}^{ \scriptscriptstyle\oplus^{3} }  } \oplus E_8{ {}^{ \scriptscriptstyle\oplus^{2} }  }$, nondegenerate, even, rank 22, signature $(3, 19)$.
-:::
-
-::: {.front card-id="card-ad80dab3f3771c65"}
-Define ${\operatorname{NS}}(X)$.
-:::
-
-::: {.back card-id="card-ad80dab3f3771c65"}
-$${\operatorname{NS}}(X) \coloneqq H^{1, 1}(X) \cap H^{2}(X; {\mathbf{Z}})\subseteq H^2(X; {\mathbf{C}})$$
-.
-:::
-
-::: {.front card-id="card-f940d9a075915905"}
-What is the transcendental sublattice?
-:::
-
-::: {.back card-id="card-f940d9a075915905"}
-The smallest sublattice $T(X)$ of $H^2(X; {\mathbf{Z}})$ containing a generator of $H^{2, 0}(X)$.
-
-If $X$ is projective, ${\operatorname{NS}}(X)$ is nondegenerate, and $T(X) = {\operatorname{NS}}(X)^\perp$.
-:::
-
-::: {.front card-id="card-d4584eb80a2753e7"}
-What is a marking on a K3?
-:::
-
-::: {.back card-id="card-d4584eb80a2753e7"}
-$\phi: H^2(X; {\mathbf{Z}}) { \, \xrightarrow{\sim}\, }\Lambda_{{\mathsf{K}}3}$ an isometry.
-:::
-
-::: {.front card-id="card-74a77b2ba0adcf0d"}
-Define the period domain $\mathbb{D}$. What is its dimension?
-:::
-
-::: {.back card-id="card-74a77b2ba0adcf0d"}
-$$\mathbb{D}\coloneqq\left\{{[\omega]\in {\mathbf{P}}(\Lambda_{{\mathsf{K}}3}\otimes_{\mathbf{Z}}{\mathbf{C}}) {~\mathrel{\Big\vert}~}\omega^2 = 0,\,\, \omega.\overline{\omega }> 0}\right\}$$
-20 dimensional ${\mathbf{C}}{\hbox{-}}$manifold.
-
-For a polarized K3 $(X, \phi)$, drops 1 dimension:
-$$\mathbb{D}_{2k} \coloneqq\left\{{[\omega]\in \mathbb{D}{~\mathrel{\Big\vert}~}\omega.h = 0}\right\}$$
-where $h\in \Lambda_{{\mathsf{K}}3}$ is a fixed primitive class where $\phi^{-1}(h)\in {\operatorname{NS}}(X)^{\mathrm{amp}}$. This is a bounded symmetric domain of type IV.
 :::
 
 ::: {.front card-id="card-3669e4b341b8e820"}
@@ -2234,13 +2054,17 @@ Thus $\operatorname{im}\phi \in \mathbb{D}$.
 :::
 
 ::: {.front card-id="card-5123fd7566ad8ab0"}
-Why is the period domain used in moduli of K3s?
+How is $\mathbb{D}$ related to moduli of K3s?
 :::
 
 ::: {.back card-id="card-5123fd7566ad8ab0"}
-Two K3s are isomorphic iff they admit markings defining the same point in $\mathbb{D}$ by weak Torelli.
+Weak Torelli: $X { \, \xrightarrow{\sim}\, }X' \iff$ there is an isometry $H^2(X;{\mathbf{Z}}) { \, \xrightarrow{\sim}\, }H^2(X';{\mathbf{Z}})$ whose ${\mathbf{C}}{\hbox{-}}$linear extension preserves Hodge decompositions. So two K3s are isomorphic iff they admit markings defining the same point in $\mathbb{D}$.
 
-Weak Torelli: $X { \, \xrightarrow{\sim}\, }X' \iff$ there is an isometry $H^2(X;{\mathbf{Z}}) { \, \xrightarrow{\sim}\, }H^2(X';{\mathbf{Z}})$ whose ${\mathbf{C}}{\hbox{-}}$linear extension preserves Hodge decompositions on $H^2(X;{\mathbf{C}})$.
+Local Torelli: for a marked K3 $(X, \phi)$, the period map from the versal deformation space to $\mathbb{D}$ is a local isomorphism.
+
+Surjectivity: every $d\in \mathbb{D}$ is a period point for some marked K3.
+
+Thus almost a coarse moduli space: families ${\mathcal{X}}\to B$ yield $B\to \mathbb{D}$ and points correspond to iso classes, but quotienting by change-of-marking yields a non-Hausdorff quotient since it does not act properly discontinuously.
 :::
 
 ::: {.front card-id="card-95ea8d364c6151bd"}
@@ -2253,18 +2077,6 @@ Let $f:{\mathcal{X}}\to B$ be a flat family with fiber $X$.
 Choosing a marking $\phi: H^2(X;{\mathbf{Z}}) { \, \xrightarrow{\sim}\, }\Lambda_{{\mathsf{K}}3}$ extends to a sheaf morphism $\phi_B: {\mathbf{R}}^2 f_*\underline{{\mathbf{Z}}}\to\underline{\Lambda_{{\mathsf{K}}3}}$ where the latter is a constant sheaf.
 
 Yields a holomorphic map $B\to \mathbb{D}$.
-:::
-
-::: {.front card-id="card-991bd6be9f6b23b7"}
-How is $\mathbb{D}$ related to moduli of K3s?
-:::
-
-::: {.back card-id="card-991bd6be9f6b23b7"}
-Local Torelli: for a marked K3 $(X, \phi)$, the period map from the versal deformation space to $\mathbb{D}$ is a local isomorphism.
-
-Surjectivity: every $d\in \mathbb{D}$ is a period point for some marked K3.
-
-Thus almost a coarse moduli space: families ${\mathcal{X}}\to B$ yield $B\to \mathbb{D}$ and points correspond to iso classes, but quotienting by change-of-marking yields a non-Hausdorff quotient since it does not act properly discontinuously.
 :::
 
 ::: {.front card-id="card-b4c7696af026d814"}
@@ -2283,30 +2095,6 @@ $X\to {\mathbf{P}}^1 \times {\mathbf{P}}^1$ a double cover branched over a bideg
 $X\to C$ an elliptic fibration over the twisted cubic.
 :::
 
-::: {.front card-id="card-5170c4ec7a7a1c54"}
-What is a polarized K3 of degree $2k$?
-:::
-
-::: {.back card-id="card-5170c4ec7a7a1c54"}
-A pair $(X, h \in {\operatorname{NS}}(X)^{\mathrm{amp}})$ with $h$ primitive and $h^2 = 2k$.
-:::
-
-::: {.front card-id="card-a21329e2cb15bbfb"}
-What is the strong Torelli theorem for polarized K3s?
-:::
-
-::: {.back card-id="card-a21329e2cb15bbfb"}
-Every Hodge isometry $\varphi: H^2(X;{\mathbf{Z}}) { \, \xrightarrow{\sim}\, }H^2(X';{\mathbf{Z}})$ is induced by a unique isomorphism $f:X { \, \xrightarrow{\sim}\, }X'$ with $\phi = f^*$.
-:::
-
-::: {.front card-id="card-171ac6c764f695c7"}
-Discuss degenerations of K3 surfaces?
-:::
-
-::: {.back card-id="card-171ac6c764f695c7"}
-Any degeneration can be converted to a Kulikov model after a base change and birational modification.
-:::
-
 ::: {.front card-id="card-31b8cfe1587ec0da"}
 What is a semistable degeneration?
 :::
@@ -2323,50 +2111,12 @@ What is the dual graph of a degeneration?
 Let $S_0=\bigcup V_i$ be the central fibre in a semistable degeneration. Define the dual graph $\Gamma$ of $S_0$ as follows: $\Gamma$ is a simplicial complex whose vertices $P_1, \ldots, P_r$ correspond to the components $V_1, \ldots, V_r$ of $S_0$; the $k$-simplex $\left\langle P_{i_0}, \ldots, P_{i_k}\right\rangle$ belongs to $\Gamma$ if and only if $V_{i_0} \cap \cdots \cap V_{i_k} \neq \emptyset$.
 :::
 
-::: {.front card-id="card-7477aac20074c802"}
-What is the classification of Kulikov models?
-:::
-
-::: {.back card-id="card-7477aac20074c802"}
-Write $\pi: {\mathcal{X}}\to \Delta$ for a semistable degeneration with $\omega_{{\mathcal{X}}}\cong {\mathcal{O}}_{{\mathcal{X}}}$ where all components of ${\mathcal{X}}_0$ are Kahler.
-
-Type I: ${\mathcal{X}}_0$ is a smooth K3.
-
-No double curves, no triple points.
-
-Type II: ${\mathcal{X}}_0$ is a chain of elliptic ruled components with rational surfaces at each end where all double curves are smooth elliptic
-
-Double curves but no triple points
-
-Type III: ${\mathcal{X}}_0$ is rational surfaces meeting along rational curves forming cycles in each component and $\Gamma$ is a triangulation of $S^2$.
-
-Triple points.
-:::
-
-::: {.front card-id="card-010fa8a66f7ba372"}
-What is a K3 surface?
-:::
-
-::: {.back card-id="card-010fa8a66f7ba372"}
-Complete, smooth, $\dim_{\mathbf{C}}X = 2$, $\omega_{X/k}\cong {\mathcal{O}}_X$, and $H^1({\mathcal{O}}_X) = 0$.
-
-Interpret $q(X) \coloneqq h^{0, 1}(X)$ as the irregularity.
-:::
-
 ::: {.front card-id="card-4e90b1d8184c7c0a"}
 Why is lattice theory important in the study of K3s?
 :::
 
 ::: {.back card-id="card-4e90b1d8184c7c0a"}
 For $X$ a smooth K3, $H^2(X; {\mathbf{Z}}) \cong L_{{\mathsf{K}}3} \coloneqq H{ {}^{ \scriptscriptstyle\oplus^{3} }  } \oplus E_8{ {}^{ \scriptscriptstyle\oplus^{2} }  }$.
-:::
-
-::: {.front card-id="card-619cab7c1341025d"}
-What is the Neron-Severi lattice?
-:::
-
-::: {.back card-id="card-619cab7c1341025d"}
-Generally $S_X \coloneqq{\operatorname{NS}}(X) = \operatorname{coker}(\operatorname{Pic}^0(X) \hookrightarrow\operatorname{Pic}(X))$.
 :::
 
 ::: {.front card-id="card-cd0d75cdabdfde40"}
@@ -2377,55 +2127,10 @@ Discuss $H^{2, 0}(X)$ for $X$ a K3.
 $H^{2, 0}(X) = {\mathbf{C}}\omega_X$ for some nowhere vanishing holomorphic 2-form $\omega_X$
 :::
 
-::: {.front card-id="card-e21ca89277ec00a9"}
-Discuss ${\operatorname{NS}}(X)$ for $X$ a projective K3.
-:::
-
-::: {.back card-id="card-e21ca89277ec00a9"}
-$S_X$ is nondegenerate of signature $(1, r_X - 1)$ where $r_X \coloneqq\operatorname{rank}{\operatorname{NS}}(X)$ is the Picard number.
-
-For a K3, By Lefschetz $(1, 1)$,
-$$\operatorname{Pic}(X) = {\operatorname{NS}}(X) = H^{2, 0}(X)^\perp \cap H^2(X; {\mathbf{Z}}) \subseteq H^2(X; {\mathbf{C}})$$
-:::
-
-::: {.front card-id="card-3fbfa3b8be54148b"}
-What is the transcendental lattice? Its signature?
-:::
-
-::: {.back card-id="card-3fbfa3b8be54148b"}
-$T_X = (S_X)^\perp \subseteq H^2(X; {\mathbf{Z}})$ the orthogonal complement of Neron-Severi.
-
-Signature $(2, 20-r_X)$
-:::
-
 ::: {.front card-id="card-f366077ef99eafd5"}
 What is the Kahler cone ${\mathcal{K}}_X$?
 :::
 
 ::: {.back card-id="card-f366077ef99eafd5"}
 ${\mathcal{K}}_X \subseteq H^{1, 1}(X; {\mathbf{R}})$ the set of Kahler forms, forms an open convex cone.
-:::
-
-::: {.front card-id="card-12b864e271d1fc93"}
-What is a non-symplectic automorphism?
-:::
-
-::: {.back card-id="card-12b864e271d1fc93"}
-$\sigma: X\to X$ with finite order $n > 1$ where $\sigma^*(\omega_X) = \zeta_n \omega_X$ for some primitive root of unity $\zeta_n$, where $\omega_X \in H^{2, 0}(X)$ is a nonzero 2-form.
-:::
-
-::: {.front card-id="card-9dbceff46906d37f"}
-What is a marking of a K3?
-:::
-
-::: {.back card-id="card-9dbceff46906d37f"}
-Let $X$ be a K3 surface. A marking is an isometry $\phi: H^2(X, \mathbb{Z}) \rightarrow L$.
-:::
-
-::: {.front card-id="card-6c853299ef8f0a0a"}
-What is the period domain $\mathbb{D}$?
-:::
-
-::: {.back card-id="card-6c853299ef8f0a0a"}
-$$\mathbb{D}=\mathbb{P}\left\{x \in L_{\mathbb{C}} \mathrel{\Big|}x \cdot x=0, x \cdot \overline{x}>0\right\}, \quad \operatorname{dim} \mathbb{D}=20$$
 :::

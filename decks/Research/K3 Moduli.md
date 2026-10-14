@@ -17,11 +17,13 @@ $\pi_0 {\mathcal{M}}= \left\{{{\mathcal{M}}_-, {\mathcal{M}}_+}\right\}$ two iso
 :::
 
 ::: {.front card-id="card-f4d846ca75dbd06c"}
-For $\rho \in {\operatorname{O}}(L)$, what is a $\rho{\hbox{-}}$marking?
+For $\rho \in {\operatorname{O}}(L)$, what is a $\rho{\hbox{-}}$marking of $(X, \sigma)$? What is $\rho{\hbox{-}}$markable?
 :::
 
 ::: {.back card-id="card-f4d846ca75dbd06c"}
-A $\rho$-marking of $(X, \sigma)$ is an isometry $\phi: H^2(X, \mathbb{Z}) \rightarrow L$ such that $\sigma^*=\phi^{-1} \circ \rho \circ \phi$. We say that $(X, \sigma)$ is $\rho$-markable if it admits a $\rho$-marking.
+For $L = \Lambda_{\mathrm{K3}}$, a $\rho$-marking of $(X, \sigma)$ is an isometry $\phi: H^2(X, \mathbb{Z}) \rightarrow L$ such that $\sigma^*=\phi^{-1} \circ \rho \circ \phi$.
+
+We say that $(X, \sigma)$ is $\rho$-markable if it admits a $\rho$-marking.
 :::
 
 ::: {.front card-id="card-7432a08d3fb9ca0e"}
@@ -41,15 +43,9 @@ What are the moduli stacks ${\mathcal{M}}_\rho, F_\rho$?
 :::
 
 ::: {.back card-id="card-c5cd55f831d1f567"}
-Moduli of $\rho{\hbox{-}}$marked resp. $\rho{\hbox{-}}$markable K3 surfaces, where e.g. ${\mathcal{M}}_\rho(B)$ is the groupoid of $\rho{\hbox{-}}$marked families over $B$.
-:::
+${\mathcal{M}}_\rho$: moduli of $\rho{\hbox{-}}$marked K3 surfaces, e.g. ${\mathcal{M}}_\rho(B)$ is the groupoid of $\rho{\hbox{-}}$marked families over $B$.
 
-::: {.front card-id="card-258e4cde5f4ec632"}
-How are deformation classes of K3 surfaces with nonsymplectic automorphisms $(X, \sigma)$ classified?
-:::
-
-::: {.back card-id="card-258e4cde5f4ec632"}
-Primitive 2-elementary hyperbolic sublattices $S \subseteq L_{{\mathsf{K}}3}$.
+$F_\rho$: moduli of $\rho{\hbox{-}}$markable K3 surfaces.
 :::
 
 ::: {.front card-id="card-19661256489998b1"}
@@ -57,23 +53,17 @@ What is a stable pair $(S, {\varepsilon}D)$? Give an example.
 :::
 
 ::: {.back card-id="card-19661256489998b1"}
-slc singularities and ${\mathsf{K}}_S + {\varepsilon}D \in {\mathbf{Q}}{\hbox{-}}\operatorname{CDiv}(X)^{\mathrm{amp}}$.
+slc singularities and ${\mathsf{K}}_S + {\varepsilon}D$ an ample ${\mathbf{Q}}{\hbox{-}}$Cartier divisor.
 
-Any K3 $X$ with ADE singularities and any effective ample divisor $R$, since $\omega_X\cong {\mathcal{O}}_X \implies$ canonical singularities and there are no log centers.
-:::
-
-::: {.front card-id="card-11b89d75f2ba234f"}
-What is a stable slc surface pair?
-:::
-
-::: {.back card-id="card-11b89d75f2ba234f"}
 A stable slc surface pair is a pair $(S, \epsilon D)$, where
 
-$S$ is a connected, reduced, projective Gorenstein surface $S$ with $\omega_S \simeq \mathcal{O}_S$ which has semi log canonical singularities.
+$S$ is a connected, reduced, projective Gorenstein surface with $\omega_S \simeq \mathcal{O}_S$ which has semi log canonical singularities.
 
 $D$ is an effective ample Cartier divisor on $S$ that does not contain any log canonical centers of $S$.
 
-Thus $(S, \exp D)$ is stable for small ${\varepsilon}> 0 \in {\mathbf{Q}}$.
+Thus $(S, {\varepsilon}D)$ is stable for small ${\varepsilon}> 0 \in {\mathbf{Q}}$.
+
+Example: any K3 $X$ with ADE singularities and any effective ample divisor $R$. It is CY ($\omega_X\cong {\mathcal{O}}_X$), has canonical singularities (better than slc), and has no log canonical centers.
 :::
 
 ::: {.front card-id="card-c21ec1bb268a318e"}
@@ -99,15 +89,17 @@ $X_0$ has reduced normal crossings
 :::
 
 ::: {.front card-id="card-4b6f92d8bb327f64"}
-What are Types I, II, II of Kulikov models?
+What is the classification of Kulikov models?
 :::
 
 ::: {.back card-id="card-4b6f92d8bb327f64"}
-I: $X_0$ smooth,
+Write $\pi: {\mathcal{X}}\to \Delta$ for a semistable degeneration of K3s with $\omega_{{\mathcal{X}}}\cong {\mathcal{O}}_{{\mathcal{X}}}$ where all components of ${\mathcal{X}}_0$ are Kahler.
 
-II: $X_0$ has double curves but no triple points,
+Type I: ${\mathcal{X}}_0$ is a smooth K3. No double curves, no triple points.
 
-III: $X_0$ has triple points
+Type II: ${\mathcal{X}}_0$ is a chain of elliptic ruled components with rational surfaces at each end, where all double curves are smooth elliptic. Double curves but no triple points.
+
+Type III: ${\mathcal{X}}_0$ is rational surfaces meeting along rational curves, which form cycles in each component, and the dual complex $\Gamma$ is a triangulation of $S^2$. Triple points.
 :::
 
 ::: {.front card-id="card-83b6a861985d607a"}
@@ -123,7 +115,9 @@ What is Kulikov's key result on degenerations of K3s?
 :::
 
 ::: {.back card-id="card-34ee9fdbfea0ed5c"}
-For $Y^*\to C^*$ a family, there is a finite base change $(C', 0) \to (C, 0)$ and a birational modification of its pullback $Y'\dashrightarrow X$ such that $X$ has smooth total space, $K_X \sim_{C'} 0$, and $X_0$ is reduced normal crossings.
+Any degeneration of K3s can be converted to a Kulikov model after a base change and birational modification.
+
+For $Y^*\to C^*$ a family of algebraic K3s, there is a finite base change $(C', 0) \to (C, 0)$ and a birational modification of its pullback $Y'\dashrightarrow X$ such that $X$ has smooth total space, $K_X \sim_{C'} 0$, and $X_0$ is reduced normal crossings.
 :::
 
 ::: {.front card-id="card-000de75a6010754a"}
@@ -155,16 +149,6 @@ For every Kulikov surface $X_0$ of Type I, II, or III which smooths to some $\rh
 There is a divisor $R_0 \subset X_0$ such that on any smoothing into $\rho$-markable K3 surfaces $X \rightarrow(C, 0)$ with $C^* \subset U$,
 
 The divisor $R_0$ is, up to the action of$\mathop{\mathrm{Aut}}^0\left(X_0\right)$, the flat limit of $R_t$ for $t \neq 0 \in C^*$.
-:::
-
-::: {.front card-id="card-871e3f72e6855780"}
-When is $G\subseteq \mathop{\mathrm{Aut}}(X)$ nonsymplectic?
-:::
-
-::: {.back card-id="card-871e3f72e6855780"}
-$G\curvearrowright H^{2, 0}(X) = {\mathbf{C}}\omega_X$ gives a SES
-$$G_0 \hookrightarrow G \twoheadrightarrow\mu_n,\qquad \mu_n\in {{\mathbf{C}}^{\times}}$$
-and $G$ is non symplectic if $G\ne G_0$.
 :::
 
 ::: {.front card-id="card-73c1ede663f47ad5"}
@@ -206,19 +190,13 @@ What is $F_{2d}$?
 :::
 
 ::: {.back card-id="card-858f92b97e0db0b0"}
-Moduli of polarized K3s $(X, L)$,
+The irreducible coarse moduli space of polarized complex K3s $(X, L)$ with ADE singularities and $L\in \operatorname{Pic}(X)^{{\mathrm{amp}}, {\operatorname{prim}}}$ with $L^2 = 2d$.
 
-ADE singularities,
+Writing $2d = 2g-2$, this is $F_g$, the moduli of polarized K3s of genus $g\geq 2$.
 
-$L\in \operatorname{Pic}(X)^{{\mathrm{amp}}, {\operatorname{prim}}}$ with $L^2 = 2d$
-:::
+An arithmetic quotient of a type IV domain, i.e. a Shimura variety for ${\operatorname{SO}}_{2, 19}({\mathbf{R}})$; smooth K3s form an open subset.
 
-::: {.front card-id="card-581f4b720509da01"}
-What is $F_\rho$?
-:::
-
-::: {.back card-id="card-581f4b720509da01"}
-Moduli of $\rho{\hbox{-}}$markable K3s.
+Quasiprojective, $\dim F_{2d} = 19$ for each $d$.
 :::
 
 ::: {.front card-id="card-681a11bbc6a0be2c"}
@@ -241,16 +219,6 @@ What is $\overline{F_\rho}^\mathrm{slc}$?
 The geometrically meaningful compactification Valery constructs, stable pairs w/automorphisms
 
 Main theorem: is a semitoroidal compactification of $\mathbb{D}_\rho/\Gamma_\rho$.
-:::
-
-::: {.front card-id="card-4cc1f994590eae37"}
-What are the lattice signatures for $S_X, T_X$?
-:::
-
-::: {.back card-id="card-4cc1f994590eae37"}
-$S_X: (1, \rho - 1)$
-
-$T_X: (2, 20-\rho)$.
 :::
 
 ::: {.front card-id="card-ac88b51027b8331a"}
@@ -278,45 +246,11 @@ Fixes $S_X$ and acts by $\cdot(-1)$ on $T_X$.
 :::
 
 ::: {.front card-id="card-f6dea11f91a6b646"}
-Classify $(X, \sigma)$ with $\sigma$ an involution, up to deformation.
+Classify $(X, \sigma)$ with $\sigma$ a nonsymplectic involution, up to deformation.
 :::
 
 ::: {.back card-id="card-f6dea11f91a6b646"}
-Primitive 2-elementary sublattices $S \leq \Lambda_{\mathrm{K3}}$, classified by Nikulin using $(g, k, \delta)$, 75 cases.
-:::
-
-::: {.front card-id="card-c1eb89a76c7d96b3"}
-What is the Picard number $\rho(X)$?
-:::
-
-::: {.back card-id="card-c1eb89a76c7d96b3"}
-For $X$ compact complex,
-$$\rho(X) \coloneqq\operatorname{rank}_{\mathbf{Z}}\operatorname{im}(\operatorname{Pic}(X) \to H^{1, 1}(X))$$
-If $X$ is Kahler, $\rho(X) = \operatorname{rank}H^{1,1}(X) = \operatorname{rank}{\operatorname{NS}}(X)$.
-:::
-
-::: {.front card-id="card-124bcc550fa595fc"}
-For $\rho \in {\operatorname{O}}(L)$, what is a $\rho{\hbox{-}}$marking of $(X, \sigma)$? What is $\rho{\hbox{-}}$markable?
-:::
-
-::: {.back card-id="card-124bcc550fa595fc"}
-An isometry $\phi: H^2(X, \mathbb{Z}) \rightarrow \Lambda_{\mathrm{K3}}$ such that $\sigma^*=\phi^{-1} \circ \rho \circ \phi$.
-
-We say that $(X, \sigma)$ is $\rho$-markable if it admits a $\rho$-marking.
-:::
-
-::: {.front card-id="card-c2a5cc29eb61a8ad"}
-Give an example of a stable slc pair.
-:::
-
-::: {.back card-id="card-c2a5cc29eb61a8ad"}
-Any K3 $X$ with ADE singularities and any effective ample divisor $R$,
-
-CY: $\omega_X\cong {\mathcal{O}}_X$
-
-Has canonical singularities, better than slc
-
-No log centers.
+By the invariant lattice $S = H^2(X; {\mathbf{Z}})^\sigma$: a primitive 2-elementary hyperbolic sublattice $S \subseteq \Lambda_{\mathrm{K3}}$. Nikulin classified these using $(r, a, \delta)$, equivalently $(g, k, \delta)$: 75 cases.
 :::
 
 ::: {.front card-id="card-beee68f3907963f4"}

@@ -46,7 +46,9 @@ What are Higgs bundles? Why care?
 ::: {.back card-id="card-8e8acdcff9808d4b"}
 $(E, \theta)$ where $E$ is a holomorphic bundle and $\theta: E\to E\otimes\Omega^1_{X}$ is an endomorphism-valued 1-form satisfying $\theta\wedge \theta =0$.
 
-Stable Higgs bundles with $c_1(E) = 0$ biject with irreducible representations of $\pi_1(X)$.
+On a curve $C$, $\theta\wedge\theta = 0$ is automatic and $\theta$ is a holomorphic section of ${ \operatorname{ad}}(E)\otimes K_C$, so ${ \overline{{\partial}}}\theta = 0$.
+
+Stable Higgs bundles with vanishing Chern classes (on a curve: degree 0) biject with irreducible representations of $\pi_1(X)$.
 :::
 
 ::: {.front card-id="card-5ab68700993ee9f6"}
@@ -91,14 +93,6 @@ What is AB symmetry on a CY?
 A: path integral localized on holomorphic maps to $M$, computes GW, depends only on symplectic structure
 
 B: path integral localized on constant maps, deformation theory of $M$, depends only on complex structure
-:::
-
-::: {.front card-id="card-8f9d1910ec7deeb0"}
-What is a holomorphic Higgs bundle?
-:::
-
-::: {.back card-id="card-8f9d1910ec7deeb0"}
-Bundle $E\to C$ with a holomorphic section of ${ \operatorname{ad}}(E)$, so ${ \overline{{\partial}}}\phi = 0$.
 :::
 
 ::: {.front card-id="card-8668e3c5ffaa389d"}
