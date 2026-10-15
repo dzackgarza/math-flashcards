@@ -2,11 +2,11 @@
 # requires-python = ">=3.12"
 # dependencies = [
 #   "ankdown @ git+https://github.com/dzackgarza/ankdown-for-math",
-#   "cyclopts==4.15.0",
-#   "filelock==3.20.3",
-#   "platformdirs==4.5.1",
-#   "pydantic==2.12.5",
-#   "send2trash==1.8.3",
+#   "cyclopts",
+#   "filelock",
+#   "platformdirs",
+#   "pydantic",
+#   "send2trash",
 # ]
 # ///
 """Typed desktop bridge to the existing Pandoc and Ankdown pipeline."""

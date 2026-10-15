@@ -1,6 +1,6 @@
 # /// script
 # requires-python = ">=3.12"
-# dependencies = ["playwright==1.58.0", "cyclopts==4.15.0"]
+# dependencies = ["playwright", "cyclopts"]
 # ///
 """Exercise deck-tree organization with real files, trash, and Anki export."""
 
@@ -10,6 +10,7 @@ import shlex
 import shutil
 import sqlite3
 import subprocess
+import sys
 import tempfile
 import zipfile
 from pathlib import Path
@@ -294,6 +295,11 @@ app = cyclopts.App()
 
 @app.default
 def main(*, workspace: Path | None = None) -> None:
+    # The Chromium build that the resolved Playwright version drives:
+    # https://playwright.dev/python/docs/browsers#install-browsers
+    subprocess.run(
+        [sys.executable, "-m", "playwright", "install", "chromium"], check=True
+    )
     if workspace is not None:
         scenario(workspace)
         return

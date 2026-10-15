@@ -12,8 +12,7 @@ const backend = Bun.spawnSync(
   [
     "uv",
     "run",
-    "--refresh-package",
-    "ankdown",
+    "--upgrade",
     join(import.meta.dir, "..", "backend.py"),
   ],
   {

@@ -1,6 +1,6 @@
 # /// script
 # requires-python = ">=3.12"
-# dependencies = ["mss==10.1.0", "cyclopts==4.15.0"]
+# dependencies = ["mss", "cyclopts"]
 # ///
 """Capture the built native WebKit app in an isolated X11 display."""
 

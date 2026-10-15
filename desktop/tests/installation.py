@@ -18,7 +18,7 @@ def main() -> None:
         arguments = [
             "uv",
             "run",
-            "--locked",
+            "--upgrade",
             str(desktop / "linux" / "install.py"),
             str(desktop / "src-tauri" / "target" / "release"),
             "--data-dir",

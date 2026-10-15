@@ -47,8 +47,8 @@ function workbenchBackend(): Plugin {
           return;
         }
         const body = await text(request);
-        // Listing and generation install the latest exporter from GitHub main
-        // into the script environment; every request runs its interpreter, so
+        // Listing and generation upgrade the script environment to the latest
+        // versions; every request runs its interpreter, so
         // no other request reads the network.
         // https://docs.astral.sh/uv/guides/scripts/
         const script = fileURLToPath(new URL("./backend.py", import.meta.url));
@@ -60,7 +60,7 @@ function workbenchBackend(): Plugin {
         let python: string;
         try {
           if (action === "list" || action === "generate")
-            await uv(["sync", "--refresh-package", "ankdown"]);
+            await uv(["sync", "--upgrade"]);
           python = await uv(["python", "find"]);
         } catch (error) {
           response.writeHead(500).end((error as Error).message);

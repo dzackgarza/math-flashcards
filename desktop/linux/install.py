@@ -1,6 +1,6 @@
 # /// script
 # requires-python = ">=3.12"
-# dependencies = ["cyclopts==4.15.0", "pydantic==2.12.5"]
+# dependencies = ["cyclopts", "pydantic"]
 # ///
 """Install the native app and its desktop entry in user directories."""
 

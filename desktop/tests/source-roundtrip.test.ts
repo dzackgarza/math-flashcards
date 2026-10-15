@@ -8,9 +8,9 @@ test("repository card ranges preserve source and agree with Pandoc export", asyn
   const workspace = resolve(import.meta.dir, "../..");
   const backend = resolve(import.meta.dir, "../backend.py");
   // `uv run --script` fetches ankdown main from GitHub on every call. One sync
-  // brings the script environment to main; each load then runs its interpreter.
+  // upgrades the script environment to the latest versions; each load then runs its interpreter.
   // https://docs.astral.sh/uv/guides/scripts/#locking-dependencies
-  const sync = Bun.spawnSync(["uv", "sync", "--script", backend]);
+  const sync = Bun.spawnSync(["uv", "sync", "--upgrade", "--script", backend]);
   expect(sync.exitCode, sync.stderr.toString()).toBe(0);
   const find = Bun.spawnSync(["uv", "python", "find", "--script", backend]);
   expect(find.exitCode, find.stderr.toString()).toBe(0);

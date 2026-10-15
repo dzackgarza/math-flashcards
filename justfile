@@ -4,11 +4,11 @@ default:
 
 # Compile every deck under decks/ into apkg/
 build:
-    uv run --refresh-package ankdown desktop/backend.py build .
+    uv run --upgrade desktop/backend.py build .
 
 # Sanity-check that every deck is well-formed new-format Markdown
 test: check-math
-    uv run .agents/check-decks.py
+    uv run --upgrade .agents/check-decks.py
 
 # Reject TeX that MathJax cannot render, such as an undefined macro
 check-math: desktop-dependencies
@@ -22,7 +22,11 @@ test-commit: test desktop-frontend desktop-source-test desktop-test desktop-orga
 
 # Install the desktop build dependencies
 desktop-dependencies:
-    cd desktop && bun install --frozen-lockfile
+    [ -d desktop/.parser ] || git clone --quiet --filter=tree:0 --sparse --branch develop https://github.com/dzackgarza/Zettlr-pandoc-mathjax desktop/.parser
+    git -C desktop/.parser sparse-checkout set vendor/lezer-markdown-pandoc
+    git -C desktop/.parser pull --quiet --ff-only
+    cd desktop && bun update
+    cd desktop/src-tauri && cargo update --quiet
 
 # Build and install the app in XDG user directories
 desktop-install: desktop-dependencies desktop-build desktop-deploy
@@ -32,11 +36,11 @@ desktop-update: desktop-install
 
 # Install the current native build and refresh its desktop entry
 desktop-deploy:
-    uv run --locked desktop/linux/install.py desktop/src-tauri/target/release
+    uv run --upgrade desktop/linux/install.py desktop/src-tauri/target/release
 
 # Verify installation and update in temporary XDG directories
 desktop-install-test:
-    uv run desktop/tests/installation.py
+    uv run --upgrade desktop/tests/installation.py
 
 # Run the native desktop app
 desktop-dev:
@@ -62,11 +66,11 @@ desktop-frontend:
 
 # Exercise the editor against its real backend with an isolated server
 desktop-test:
-    cd desktop && bunx start-server-and-test 'just -f ../justfile desktop-web' http-get://127.0.0.1:1420 'uv run tests/workbench.py'
+    cd desktop && bunx start-server-and-test 'just -f ../justfile desktop-web' http-get://127.0.0.1:1420 'uv run --upgrade tests/workbench.py'
 
 # Exercise card organization and real multi-deck file changes
 desktop-organization-test:
-    uv run desktop/tests/organization.py
+    uv run --upgrade desktop/tests/organization.py
 
 # Verify source preservation and card boundaries against Pandoc
 desktop-source-test:
@@ -74,11 +78,11 @@ desktop-source-test:
 
 # Capture and exercise the built native window on an isolated display
 desktop-native-test:
-    xvfb-run -a -s '-screen 0 1600x1200x24' uv run desktop/tests/native.py
+    xvfb-run -a -s '-screen 0 1600x1200x24' uv run --upgrade desktop/tests/native.py
 
 # Launch the installed desktop entry and exercise its native export
 desktop-installed-test:
-    xvfb-run -a -s '-screen 0 1600x1200x24' uv run desktop/tests/native.py --entry '{{env_var_or_default("XDG_DATA_HOME", env_var("HOME") / ".local/share")}}/applications/dev.math.flashcards.desktop'
+    xvfb-run -a -s '-screen 0 1600x1200x24' uv run --upgrade desktop/tests/native.py --entry '{{env_var_or_default("XDG_DATA_HOME", env_var("HOME") / ".local/share")}}/applications/dev.math.flashcards.desktop'
 
 # Apply the canonical formatters to desktop sources
 desktop-format:

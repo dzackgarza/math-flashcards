@@ -1,12 +1,14 @@
 # /// script
 # requires-python = ">=3.12"
-# dependencies = ["playwright==1.58.0"]
+# dependencies = ["playwright"]
 # ///
 """Exercise the editor and real export pipeline in a disposable workspace."""
 
 import json
 import shutil
 import sqlite3
+import subprocess
+import sys
 import tempfile
 import zipfile
 from pathlib import Path
@@ -15,6 +17,11 @@ from playwright.sync_api import expect, sync_playwright
 
 
 def main() -> None:
+    # The Chromium build that the resolved Playwright version drives:
+    # https://playwright.dev/python/docs/browsers#install-browsers
+    subprocess.run(
+        [sys.executable, "-m", "playwright", "install", "chromium"], check=True
+    )
     repo = Path(__file__).resolve().parents[1]
     artifacts = repo / "test-artifacts"
     artifacts.mkdir(exist_ok=True)

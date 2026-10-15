@@ -38,8 +38,8 @@ async fn request(
         let _permit = permit;
         let scope: Scope = serde_json::from_str(&payload).map_err(|e| e.to_string())?;
         eprintln!("Backend request: {}", scope.action);
-        // Listing and generation install the latest exporter from GitHub main
-        // into the script environment; every request runs its interpreter, so
+        // Listing and generation upgrade the script environment to the latest
+        // versions; every request runs its interpreter, so
         // no other request reads the network.
         // https://docs.astral.sh/uv/guides/scripts/
         let uv = |args: &[&str]| -> Result<String, String> {
@@ -57,7 +57,7 @@ async fn request(
                 .map_err(|e| e.to_string())
         };
         if scope.action == "list" || scope.action == "generate" {
-            uv(&["sync", "--refresh-package", "ankdown"])?;
+            uv(&["sync", "--upgrade"])?;
         }
         let python = uv(&["python", "find"])?;
         let mut child = Command::new(python)

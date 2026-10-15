@@ -99,7 +99,8 @@ just build          # compile every deck in decks/ into apkg/
 ```
 
 The Python bridge installs Ankdown from its GitHub main branch through `uv`.
-Each build and each workspace listing installs the latest commit. Other
+Each build and each workspace listing upgrades the script environment to the
+latest Ankdown commit and the latest release of every other dependency. Other
 requests run the installed script environment and do not read the network.
 Pandoc reads and validates the paired divs. The bridge uses Ankdown's existing
 math and media filter and package writer to generate `.apkg` files.

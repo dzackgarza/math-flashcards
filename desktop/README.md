@@ -12,8 +12,15 @@ just desktop-install
 ```
 
 Build dependencies: Bun, Rust, Cargo, `just`, and the [Tauri Linux prerequisites](https://v2.tauri.app/start/prerequisites/).
+Every build resolves each dependency to its latest version; the repository keeps
+no lock files. `just desktop-dependencies` clones Zettlr-Pandoc's Pandoc parser
+package (`vendor/lezer-markdown-pandoc` in
+[Zettlr-pandoc-mathjax](https://github.com/dzackgarza/Zettlr-pandoc-mathjax)) from
+its `develop` branch into `desktop/.parser`, and the npm override makes CodeMirror
+use the same parser as card pairing.
 Runtime dependencies: `uv` and Pandoc on `PATH`, and network access to GitHub.
-Opening or refreshing a workspace and updating a package install the latest
+Opening or refreshing a workspace and updating a package upgrade the script
+environment to the latest
 Ankdown exporter from its main branch and fetch the current macros and the
 MathJax `stmaryrd` package from pandoc-config main. Saving needs no network. The native build includes the
 bridge and local MathJax 4 assets, with the New Computer Modern font.
@@ -158,8 +165,8 @@ See [Anki's packaged deck documentation](https://docs.ankiweb.net/manual/importi
 | `just check-math` | The Problems list for every deck in the repository; fails when it is not empty |
 
 The commit gate runs the deck check, the math check, frontend build, source corpus check, and
-browser scenario. Browser checks require Playwright Chromium; provision it with
-`uvx --from playwright==1.58.0 playwright install chromium`.
+browser scenario. The browser checks install the Chromium build of the
+Playwright version they resolve.
 Native capture requires Xvfb and xdotool. Screenshots, the browser trace, and
 diagnostic logs are generated in `desktop/test-artifacts/`.
 
