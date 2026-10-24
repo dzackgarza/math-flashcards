@@ -1077,11 +1077,11 @@ $$\chi(\mathcal O(a,b))=(a+1)(b+1),\qquad h^0(\mathcal O(a,b))=\max(a+1,0)\max(b
 :::
 
 ::: {.front card-id="formula-hirzebruch-intersection-canonical" tags="formula"}
-On the Hirzebruch surface $\mathbb F_e/\mathbb C$, $e\ge0$, use a section $S$ of square $-e$ and a fiber $F$. Compute $SF,F^2,K_{\mathbb F_e}$ and $K_{\mathbb F_e}^2$.
+On the Hirzebruch surface $\mathbb F_e/\mathbb C$, $e\ge0$, let $S$ be the standard minimal section and $F$ a fiber. Compute $S^2,SF,F^2,K_{\mathbb F_e}$ and $K_{\mathbb F_e}^2$.
 :::
 
 ::: {.back card-id="formula-hirzebruch-intersection-canonical"}
-$$SF=1,\qquad F^2=0,\qquad K_{\mathbb F_e}=-2S-(e+2)F,\qquad K_{\mathbb F_e}^2=8.$$
+$$S^2=-e,\qquad SF=1,\qquad F^2=0,\qquad K_{\mathbb F_e}=-2S-(e+2)F,\qquad K_{\mathbb F_e}^2=8.$$
 :::
 
 ::: {.front card-id="formula-hirzebruch-divisor-intersections" tags="formula"}
@@ -1301,7 +1301,7 @@ $$\deg\operatorname{div}(\Delta)=12\chi(\mathcal O_S),\qquad e(S)=\sum_{v\in B}e
 :::
 
 ::: {.front card-id="formula-shioda-tate-rank" tags="formula"}
-For a relatively minimal complex projective elliptic surface $f:S\to B$ with section and nonconstant $j$, let $m_v$ count irreducible components of $F_v$. Compute $\rho(S)$ from the Mordell–Weil rank.
+For a relatively minimal complex projective elliptic surface $f:S\to B$ with section and at least one singular fiber, let $m_v$ count irreducible components of $F_v$. Compute $\rho(S)$ from the Mordell–Weil rank.
 :::
 
 ::: {.back card-id="formula-shioda-tate-rank"}
@@ -1333,7 +1333,7 @@ $$\begin{array}{c|ccccccccc}F&I_0&I_n&II&III&IV&I_n^*&IV^*&III^*&II^*\\\hline e(
 :::
 
 ::: {.front card-id="formula-shioda-height-pairing" tags="formula"}
-For sections $P,Q$ of a relatively minimal complex projective elliptic surface with zero section $O$ and nonconstant $j$, express the Shioda pairing and its diagonal using the local correction terms $\operatorname{contr}_v$.
+For sections $P,Q$ of a relatively minimal complex projective elliptic surface with zero section $O$ and at least one singular fiber, express the Shioda pairing and its diagonal using the local correction terms $\operatorname{contr}_v$.
 :::
 
 ::: {.back card-id="formula-shioda-height-pairing"}
