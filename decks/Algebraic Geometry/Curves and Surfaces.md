@@ -1469,3 +1469,81 @@ For $g\ge2$, state the geometric properties and dimension of the complex moduli 
 ::: {.back card-id="theorem-stable-curve-moduli"}
 The stack $\overline{\mathcal M}_g$ is smooth, proper, irreducible, and Deligne–Mumford, with dimension $3g-3$. Its coarse moduli space $\overline M_g$ is projective. The boundary $\overline{\mathcal M}_g\setminus\mathcal M_g$ is a normal-crossings divisor on the stack.
 :::
+
+::: {.front card-id="application-brill-noether-general-genus-six" tags="application"}
+For a general smooth complex curve $C$ of genus six, determine whether $W^1_4(C)$ and $W^1_3(C)$ are empty. If nonempty, give the dimension. Which theorem applies?
+:::
+
+::: {.back card-id="application-brill-noether-general-genus-six"}
+Brill–Noether gives
+$$\rho(6,1,4)=6-2(6-4+1)=0,\qquad \rho(6,1,3)=6-2(6-3+1)=-2.$$
+Thus $W^1_4(C)$ is nonempty and zero-dimensional, while $W^1_3(C)$ is empty. The general-curve hypothesis is needed for the emptiness conclusion when $\rho<0$.
+:::
+
+::: {.front card-id="application-brill-noether-special-curve" tags="application"}
+Let $C$ be hyperelliptic of genus six and let $A$ be its degree-two pencil. For $p\in C$, is $W^1_3(C)$ empty? Reconcile the answer with the negative Brill–Noether number.
+:::
+
+::: {.back card-id="application-brill-noether-special-curve"}
+The line bundle $A(p)$ has degree three and at least two sections, so it lies in $W^1_3(C)$. The number $\rho(6,1,3)=-2$ forces emptiness only for a general curve. This hyperelliptic curve is special; a degree-three linear series here can have a base point.
+:::
+
+::: {.front card-id="application-clifford-equality-hyperelliptic" tags="application"}
+Let $C$ have genus $g\ge4$. Could a degree-four line bundle satisfy $h^0(L)=3$ and $h^1(L)\ge2$? Compare a hyperelliptic curve with a nonhyperelliptic curve and explain the deciding theorem.
+:::
+
+::: {.back card-id="application-clifford-equality-hyperelliptic"}
+These values give equality $h^0(L)-1=\deg L/2$ in Clifford's theorem. Under the stated specialness assumptions, equality is impossible on a nonhyperelliptic curve. On a hyperelliptic curve take $L=2A$, where $A$ is the hyperelliptic pencil. Then $h^0(L)=3$ and Riemann–Roch gives $h^1(L)=g-2\ge2$.
+:::
+
+::: {.front card-id="application-castelnuovo-severi-two-pencils" tags="application"}
+Can a smooth complex curve of genus seven admit two degree-three maps to $\mathbb P^1$ whose product map is birational onto its image? Choose a genus bound and compute it.
+:::
+
+::: {.back card-id="application-castelnuovo-severi-two-pencils"}
+Castelnuovo–Severi would give
+$$g(C)\le3\cdot0+3\cdot0+(3-1)(3-1)=4,$$
+contradicting genus seven. The conclusion uses birationality of the product map; merely having two degree-three maps is not enough.
+:::
+
+::: {.front card-id="application-castelnuovo-space-curve" tags="application"}
+An integral curve $C\subset\mathbb P^3_{\mathbb C}$ has degree seven and is not contained in a plane. Bound $p_a(C)$. Why does the bound not apply to a smooth plane curve of degree seven viewed inside $\mathbb P^3$?
+:::
+
+::: {.back card-id="application-castelnuovo-space-curve"}
+Writing $d-1=6=3(3-1)+0$, Castelnuovo's bound gives $p_a(C)\le\binom32\cdot2=6$. A smooth plane septic has genus $(7-1)(7-2)/2=15$, but it is degenerate as a curve in $\mathbb P^3$, so the nondegeneracy hypothesis fails.
+:::
+
+::: {.front card-id="application-stable-model-comparison" tags="application"}
+A smooth genus-$g$ curve over the fraction field of a complex DVR has $g\ge2$. After a finite field extension, two stable models over the same extended DVR are given, with the same identified generic fiber. Can their special fibers differ? Which existence and uniqueness statement applies?
+:::
+
+::: {.back card-id="application-stable-model-comparison"}
+Stable reduction supplies a stable model after a suitable finite field extension. For the two models over the same extended DVR, the identity on the identified generic fiber extends uniquely to an isomorphism of stable models. Their special fibers are therefore isomorphic. The fixed generic identification is part of this uniqueness statement.
+:::
+
+::: {.front card-id="application-hilbert-two-points-diagonal" tags="application"}
+For a smooth complex surface $S$, compare $\operatorname{Hilb}^2(S)$ and $\operatorname{Sym}^2(S)$ near the cycle $2p$. What replaces that cycle under the Hilbert–Chow resolution?
+:::
+
+::: {.back card-id="application-hilbert-two-points-diagonal"}
+Fogarty gives a smooth four-dimensional $\operatorname{Hilb}^2(S)$ resolving the singular symmetric square. Over $2p$, length-two subschemes supported at $p$ are determined by one-dimensional tangent directions in $T_pS$, so the fiber is $\mathbb P(T_pS)\cong\mathbb P^1$. Off the diagonal, the unordered pair of distinct points determines a unique subscheme.
+:::
+
+::: {.front card-id="application-shioda-tate-rational" tags="application"}
+A relatively minimal rational elliptic surface over $\mathbb P^1_{\mathbb C}$ has a section, Picard number ten, and singular fibers $I_9,I_1,I_1,I_1$. Compute its Mordell–Weil rank. Does this calculation alone determine its torsion subgroup?
+:::
+
+::: {.back card-id="application-shioda-tate-rational"}
+Shioda–Tate gives
+$$\operatorname{rank}\operatorname{MW}=10-2-(9-1)=0.$$
+The $I_1$ fibers are irreducible and contribute zero. The rank calculation alone does not determine torsion; torsion is detected by the saturation of the trivial lattice in the Néron–Severi group.
+:::
+
+::: {.front card-id="application-shioda-tate-k3" tags="application"}
+A relatively minimal elliptic K3 surface over $\mathbb P^1_{\mathbb C}$ has a section, Picard number twenty, two $II^*$ fibers, and four $I_1$ fibers. Each $II^*$ fiber has nine irreducible components. Compute the Mordell–Weil rank and check the Euler number.
+:::
+
+::: {.back card-id="application-shioda-tate-k3"}
+Shioda–Tate gives $\operatorname{rank}\operatorname{MW}=20-2-2(9-1)=2$. The fiber Euler numbers give $e(S)=2\cdot10+4\cdot1=24$, as required for a K3 surface.
+:::

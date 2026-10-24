@@ -1177,3 +1177,19 @@ For an ample line bundle $L$ on a complex K3 surface with $L^2=2g-2$, compute $h
 ::: {.back card-id="formula-polarized-k3-sections"}
 $$h^0(S,L)=g+1.$$
 :::
+
+::: {.front card-id="application-torelli-sign-isometry" tags="application"}
+For a complex K3 surface $X$, the map $-\operatorname{id}$ is an integral Hodge isometry of $H^2(X,\mathbb Z)$. Must it be induced by an automorphism? Which part of global Torelli decides?
+:::
+
+::: {.back card-id="application-torelli-sign-isometry"}
+No. It sends every Kähler class to its negative, so it does not preserve the Kähler cone. Global Torelli realizes a given Hodge isometry by an automorphism precisely when it preserves that cone. Existence of a Hodge isometry and realization of that particular isometry are different assertions.
+:::
+
+::: {.front card-id="application-torelli-polarization" tags="application"}
+Let $(X,L)$ and $(Y,M)$ be polarized complex K3 surfaces. An integral Hodge isometry $\varphi:H^2(X,\mathbb Z)\to H^2(Y,\mathbb Z)$ sends $c_1(L)$ to $c_1(M)$. Does it come from an isomorphism, and in which direction? Explain why the ample classes matter.
+:::
+
+::: {.back card-id="application-torelli-polarization"}
+Yes: polarized Torelli gives a unique isomorphism $f:Y\to X$ with $f^*=\varphi$. Sending an ample class to an ample class selects the corresponding Kähler chambers, so the cone condition is satisfied. The direction reverses because cohomology acts by pullback.
+:::

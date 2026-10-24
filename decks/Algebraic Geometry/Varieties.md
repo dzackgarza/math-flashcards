@@ -453,3 +453,19 @@ For $n\ge1,d\ge2$, compute the degree of the discriminant hypersurface of singul
 ::: {.back card-id="formula-hypersurface-discriminant-degree"}
 $$\deg\Delta_{n,d}=(n+1)(d-1)^n.$$
 :::
+
+::: {.front card-id="application-gaga-proper-bundles" tags="application"}
+Let $X/\mathbb C$ be projective. An analytic vector bundle on $X^{an}$ and a holomorphic morphism between two such bundles are given. Can both be recovered algebraically, and will analytic and algebraic cohomology agree? Identify the theorem.
+:::
+
+::: {.back card-id="application-gaga-proper-bundles"}
+GAGA is an equivalence of coherent-sheaf categories, so the bundle algebraizes and the morphism comes from a unique algebraic morphism. Local freeness is preserved under this correspondence. GAGA also identifies the analytic cohomology with the algebraic cohomology of the algebraized bundle.
+:::
+
+::: {.front card-id="application-gaga-nonproper-counterexample" tags="application"}
+Is the holomorphic map $\mathbb A^1_{\mathbb C}{}^{an}\to\mathbb A^1_{\mathbb C}{}^{an}$ given by $z\mapsto e^z$ algebraic? Why does GAGA not force an algebraic map in this case?
+:::
+
+::: {.back card-id="application-gaga-nonproper-counterexample"}
+An algebraic endomorphism of $\mathbb A^1_{\mathbb C}$ is a polynomial, whereas $e^z$ is not a polynomial. The affine line is not proper, so the properness hypothesis of GAGA is absent. Analytification need not preserve the algebraic space of global sections on a nonproper variety.
+:::

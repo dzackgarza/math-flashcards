@@ -443,3 +443,11 @@ For a nonempty moduli space $M_H(v)$ of stable sheaves on a complex projective K
 ::: {.back card-id="formula-k3-sheaf-moduli-dimension"}
 $$\dim M_H(v)=\langle v,v\rangle+2.$$
 :::
+
+::: {.front card-id="application-period-root-obstructs-ampleness" tags="application"}
+A K3 period $\omega$ is orthogonal to a primitive class $h$ with $h^2>0$ and to a class $\delta$ with $\delta^2=-2$ and $(h,\delta)=0$. Can a marked K3 with this period have $h$ as an ample polarization? Explain the obstruction, not just the period-domain exclusion.
+:::
+
+::: {.back card-id="application-period-root-obstructs-ampleness"}
+No. Orthogonality to $\omega$ makes $\delta$ an integral $(1,1)$ class, so it is the class of a line bundle by Lefschetz $(1,1)$. K3 Riemann–Roch gives $\chi(\mathcal O(\delta))=1$; Serre duality implies that either $\delta$ or $-\delta$ is effective. An ample class must intersect every nonzero effective divisor positively, contradicting $(h,\delta)=0$.
+:::

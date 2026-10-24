@@ -1110,3 +1110,27 @@ For a connected complex algebraic variety $X$, state Riemann existence and the r
 Analytification gives an equivalence between finite étale covers of $X$ and finite topological covers of $X^{\mathrm{an}}$. With compatible base points,
 $$\pi_1^{\mathrm{\acute et}}(X)\cong\widehat{\pi_1(X^{\mathrm{an}})}.$$
 :::
+
+::: {.front card-id="application-purity-simply-connected-plane" tags="application"}
+Let $f:X\to\mathbb A^2_{\mathbb C}$ be finite surjective, with $X$ normal and connected, and suppose it is étale away from the origin. Determine its degree. Which algebraic theorem and topological theorem must be combined?
+:::
+
+::: {.back card-id="application-purity-simply-connected-plane"}
+Purity of the branch locus makes $f$ étale everywhere, because the target is regular and the possible branch locus has codimension two. Riemann existence identifies it with a finite covering of $\mathbb C^2$, which is simply connected. A connected such cover has degree one, so $f$ is an isomorphism.
+:::
+
+::: {.front card-id="application-covers-punctured-line" tags="application"}
+For $n>1$, compare $z\mapsto z^n$ on $\mathbb G_{m,\mathbb C}$ with the same map on $\mathbb A^1_{\mathbb C}$. Which is a finite étale cover, and why does the topology of the bases predict the distinction?
+:::
+
+::: {.back card-id="application-covers-punctured-line"}
+On $\mathbb G_m$, the derivative $nz^{n-1}$ never vanishes, so the finite map is étale of degree $n$. Topologically $\pi_1(\mathbb C^\times)=\mathbb Z$ has an index-$n$ subgroup. On $\mathbb A^1$, the map ramifies at $0$ and is not étale. Riemann existence and simple connectedness of $\mathbb C$ rule out a connected finite étale cover of degree greater than one there.
+:::
+
+::: {.front card-id="application-proper-base-change-not-local-system" tags="application"}
+Let $f:\mathcal C\to B$ be a proper flat complex family with smooth elliptic fibers away from $0$ and an irreducible nodal cubic at $0$. For a prime $\ell$, compare the stalk dimensions of $R^1f_*\mathbb F_\ell$. Does proper base change imply that this sheaf is locally constant?
+:::
+
+::: {.back card-id="application-proper-base-change-not-local-system"}
+Proper base change identifies each geometric stalk with $H^1_{\mathrm{\acute et}}(C_b,\mathbb F_\ell)$. It has dimension two on smooth elliptic fibers. The nodal cubic has normalization $\mathbb P^1$ with two points identified, giving dimension one. Thus the sheaf is not locally constant. Smooth proper base change would give local constancy, but this family is not smooth at the node.
+:::

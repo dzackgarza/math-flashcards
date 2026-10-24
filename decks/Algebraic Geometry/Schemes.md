@@ -1551,7 +1551,7 @@ For a local homomorphism $R\to A$ of Noetherian local rings, state miracle flatn
 ::: {.back card-id="theorem-miracle-flatness"}
 If $R$ is regular, $A$ is Cohen–Macaulay, and
 $$\dim A=\dim R+\dim(A/\mathfrak m_RA),$$
-then $A$ is flat over $R$. In particular, an equidimensional morphism from a Cohen–Macaulay variety to a smooth variety is flat.
+then $A$ is flat over $R$. In particular, a dominant morphism from a Cohen–Macaulay variety $X$ to a smooth variety $Y$, with every nonempty fiber equidimensional of dimension $\dim X-\dim Y$, is flat.
 :::
 
 ::: {.front card-id="theorem-generic-smoothness" tags="theorem"}
@@ -1629,4 +1629,113 @@ State the Keel–Mori existence theorem for coarse moduli spaces and the resulti
 
 ::: {.back card-id="theorem-keel-mori"}
 An algebraic stack of finite type over a locally Noetherian base with finite inertia has a coarse moduli algebraic space. Thus a separated Deligne–Mumford stack of finite type over $\mathbb C$ has one. The coarse map is universal for maps to algebraic spaces and induces a bijection between geometric points of the coarse space and isomorphism classes over each algebraically closed field.
+:::
+
+::: {.front card-id="application-proper-birational-finite-fibers" tags="application"}
+Let $f:X\to Y$ be a projective birational morphism of integral complex varieties, with $Y$ smooth. Every fiber has finitely many points. Must $f$ be an isomorphism? Choose the results needed and explain their order.
+:::
+
+::: {.back card-id="application-proper-birational-finite-fibers"}
+1. Projectivity implies properness, so properness and finite fibers imply that $f$ is finite.
+2. Smoothness makes $Y$ normal. A finite birational morphism to an integral normal variety is an isomorphism.
+:::
+
+::: {.front card-id="application-blowup-connected-not-finite" tags="application"}
+For $\pi:\operatorname{Bl}_p\mathbb P^2_{\mathbb C}\to\mathbb P^2_{\mathbb C}$, determine whether the fibers are connected and whether $\pi$ is finite. Which theorem answers each question?
+:::
+
+::: {.back card-id="application-blowup-connected-not-finite"}
+1. All fibers are connected by Zariski connectedness, since $\pi$ is proper birational and the target is normal.
+2. The fiber over $p$ is $\mathbb P^1$, so $\pi$ is not quasi-finite and hence not finite. Connectedness does not require zero-dimensional fibers.
+:::
+
+::: {.front card-id="application-open-birational-missing-point" tags="application"}
+The inclusion $j:\mathbb A^1_{\mathbb C}\setminus\{0\}\hookrightarrow\mathbb A^1_{\mathbb C}$ is separated, quasi-finite, and birational, with normal target. Does this force an isomorphism? Identify the missing hypothesis and test properness.
+:::
+
+::: {.back card-id="application-open-birational-missing-point"}
+Zariski's Main Theorem gives an open immersion, not surjectivity. The origin is missing. The map is not proper: for $R=\mathbb C[[t]]$ and $K=\mathbb C((t))$, the point $x=t$ defines $\operatorname{Spec}K\to\mathbb G_m$ but its extension to $\mathbb A^1$ sends the closed point to $0$ and cannot land in $\mathbb G_m$.
+:::
+
+::: {.front card-id="application-normality-cone-versus-cusp" tags="application"}
+Over $\mathbb C$, decide whether $V(xy-z^2)\subset\mathbb A^3$ and $V(y^2-x^3)\subset\mathbb A^2$ are normal. Choose a criterion that uses the dimension of their singular loci.
+:::
+
+::: {.back card-id="application-normality-cone-versus-cusp"}
+Both are integral hypersurfaces, hence Cohen–Macaulay and $S_2$. Their Jacobian singular loci consist only of the origin. On the surface the origin has codimension two, so $R_1$ holds and Serre's criterion gives normality. On the curve the origin has codimension one and its local ring is not regular, so $R_1$ fails and the curve is not normal.
+:::
+
+::: {.front card-id="application-flat-nodal-family" tags="application"}
+For $f:\operatorname{Spec}\mathbb C[x,y,t]/(xy-t)\to\mathbb A^1_t$, decide where $f$ is flat and where it is smooth. Explain why these answers differ.
+:::
+
+::: {.back card-id="application-flat-nodal-family"}
+1. The total space is isomorphic to $\mathbb A^2_{x,y}$ and dominates the smooth curve $\mathbb A^1_t$, so $f$ is flat everywhere.
+2. The relative Jacobian is $(y,x)$. Thus $f$ is smooth away from $(x,y,t)=(0,0,0)$. The special fiber is the singular union of the coordinate axes, so flatness does not imply smoothness.
+:::
+
+::: {.front card-id="application-vertical-component-nonflat" tags="application"}
+For $f:\operatorname{Spec}\mathbb C[x,t]/(tx)\to\mathbb A^1_t$, determine whether $f$ is flat at the origin. Choose an algebraic test and describe the fiber change.
+:::
+
+::: {.back card-id="application-vertical-component-nonflat"}
+The nonzero element $x$ is killed by $t$, including in the local ring at the origin. Thus this local ring has torsion over the DVR $\mathbb C[t]_{(t)}$ and is not flat. For $t\ne0$ the fiber is a point; at $t=0$ it is $\mathbb A^1_x$. The component $t=0$ is vertical.
+:::
+
+::: {.front card-id="application-miracle-finite-flat" tags="application"}
+Let $f:X\to Y$ be a finite surjective morphism of integral complex varieties, with $X$ Cohen–Macaulay and $Y$ smooth. Is $f_*\mathcal O_X$ locally free? Choose a flatness theorem and check its hypotheses.
+:::
+
+::: {.back card-id="application-miracle-finite-flat"}
+At closed points $x\mapsto y$, the local rings have equal dimension, because the finite surjective map preserves dimension, and the fiber local ring has dimension zero. The target local ring is regular and the source local ring is Cohen–Macaulay. Miracle flatness makes $f$ flat at all closed points, hence everywhere by openness of the flat locus. A finite flat morphism of varieties is finite locally free, so $f_*\mathcal O_X$ is locally free.
+:::
+
+::: {.front card-id="application-blowup-not-flat" tags="application"}
+Is $\pi:\operatorname{Bl}_0\mathbb A^2_{\mathbb C}\to\mathbb A^2_{\mathbb C}$ flat along its exceptional curve? Both source and target are smooth. Give a local dimension obstruction.
+:::
+
+::: {.back card-id="application-blowup-not-flat"}
+At a closed point $x$ on the exceptional curve, both the source local ring and the target local ring have dimension two, while the fiber local ring has dimension one. Flatness would force $2=2+1$ by the local dimension formula. Thus $\pi$ is not flat there; smoothness of the two varieties alone does not imply flatness of the morphism.
+:::
+
+::: {.front card-id="application-constructible-not-closed" tags="application"}
+Find the image of $V(xy-1)\to\mathbb A^1_x$ under projection. Which image theorem applies, and why can properness not be used to conclude that the image is closed?
+:::
+
+::: {.back card-id="application-constructible-not-closed"}
+The image is $D(x)=\mathbb A^1\setminus\{0\}$: for $x\ne0$, take $y=x^{-1}$, and no point lies over $0$. This image is constructible, as Chevalley's theorem requires, but is not closed. The projection is not proper; its nonclosed image already rules out properness.
+:::
+
+::: {.front card-id="application-quotient-purity-hypothesis" tags="application"}
+The map $\mathbb A^2_{u,v}\to V(xy-z^2)$ given by $(u,v)\mapsto(u^2,v^2,uv)$ is finite of degree two and étale off the vertex. Does purity force it to be étale at the vertex? Explain.
+:::
+
+::: {.back card-id="application-quotient-purity-hypothesis"}
+No. The target is normal but not regular at the vertex, so the regular-target hypothesis of purity fails. Over the vertex the fiber has coordinate ring $\mathbb C[u,v]/(u^2,v^2,uv)$, which is nonreduced; thus the map is not étale there. A cover of a singular target can branch only in codimension two.
+:::
+
+::: {.front card-id="application-hilbert-family-conics" tags="application"}
+For the family $xy=t z^2$ in $\mathbb P^2_{\mathbb C}\times\mathbb A^1_t$, find its Hilbert polynomial and explain why it defines a morphism to a single projective Hilbert scheme, including at $t=0$.
+:::
+
+::: {.back card-id="application-hilbert-family-conics"}
+The total space is integral and dominates the smooth base curve, so the family is flat. Every fiber is a plane conic, with Hilbert polynomial
+$$P(m)=\binom{m+2}{2}-\binom m2=2m+1.$$
+Hilbert representability therefore gives a morphism $\mathbb A^1\to\operatorname{Hilb}^{2m+1}_{\mathbb P^2}$. The union of two lines at $t=0$ is a valid fiber of the same flat family.
+:::
+
+::: {.front card-id="application-obstruction-space-curves" tags="application"}
+For a smooth connected projective complex curve $C$ of genus $g\ge2$, determine whether its deformation functor is unobstructed and compute its tangent dimension. Which groups give the two answers?
+:::
+
+::: {.back card-id="application-obstruction-space-curves"}
+Obstructions lie in $H^2(C,T_C)=0$, since a curve has no coherent cohomology in degree two. Thus the functor is unobstructed. Its tangent space is $H^1(C,T_C)$, of dimension $3g-3$.
+:::
+
+::: {.front card-id="application-obstruction-space-not-obstructions" tags="application"}
+For a complex abelian surface $A$, use $T_A\cong\mathcal O_A^{\oplus2}$ to compute $h^1(T_A)$ and $h^2(T_A)$. Does the second number imply obstructed deformations? Choose the theorem that decides.
+:::
+
+::: {.back card-id="application-obstruction-space-not-obstructions"}
+Since $h^1(\mathcal O_A)=2$ and $h^2(\mathcal O_A)=1$, one has $h^1(T_A)=4$ and $h^2(T_A)=2$. Nevertheless, Bogomolov–Tian–Todorov applies because $A$ is compact Kähler with trivial canonical bundle. Its Kuranishi space is smooth of dimension four. A nonzero obstruction space need not contain a nonzero obstruction arising from a deformation.
 :::

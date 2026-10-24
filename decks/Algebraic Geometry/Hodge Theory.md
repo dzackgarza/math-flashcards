@@ -707,3 +707,57 @@ $$Rf_*\operatorname{IC}_X\simeq\bigoplus_{\alpha,i}\operatorname{IC}_{Z_\alpha}(
 Each $Z_\alpha$ is an irreducible closed subvariety of $Y$, and each $\mathcal L_{\alpha,i}$ is a semisimple local system on a smooth dense open subset of $Z_\alpha$. The perverse cohomology sheaves are semisimple. For a complex projective $n$-fold and an ample class $h$, intersection cohomology satisfies
 $$h^{n-k}:IH^k(X,\mathbb Q)\xrightarrow{\sim}IH^{2n-k}(X,\mathbb Q)\qquad(0\le k\le n).$$
 :::
+
+::: {.front card-id="application-lefschetz-threefold-picard" tags="application"}
+Let $X\subset\mathbb P^4_{\mathbb C}$ be a smooth hypersurface of positive degree. Determine $\operatorname{Pic}(X)$ without a very-general hypothesis. Which restriction theorem has the required dimension?
+:::
+
+::: {.back card-id="application-lefschetz-threefold-picard"}
+The ambient variety has dimension four, and $X$ is a smooth ample divisor. Grothendieck–Lefschetz gives
+$$\operatorname{Pic}(\mathbb P^4)\xrightarrow{\sim}\operatorname{Pic}(X).$$
+Thus $\operatorname{Pic}(X)=\mathbb Z[\mathcal O_X(1)]$ for every smooth such hypersurface.
+:::
+
+::: {.front card-id="application-noether-lefschetz-quartic-line" tags="application"}
+Compare the Picard rank of a very general smooth quartic surface $S\subset\mathbb P^3_{\mathbb C}$ with that of a smooth quartic containing a line $\ell$. Which theorem requires “very general,” and how does the line detect failure of rank one?
+:::
+
+::: {.back card-id="application-noether-lefschetz-quartic-line"}
+Noether–Lefschetz gives rank one for a very general quartic. If $H$ is the hyperplane class and $\ell\subset S$ is a line, then $H^2=4$, $H\ell=1$, and $\ell^2=-2$ by adjunction on the K3 surface. The intersection matrix has determinant $4(-2)-1=-9\ne0$, so $H$ and $\ell$ are independent and $\rho(S)\ge2$. In ambient dimension three, Grothendieck–Lefschetz gives injectivity, not surjectivity, of Picard restriction.
+:::
+
+::: {.front card-id="application-hodge-index-orthogonal-isotropic" tags="application"}
+Let $S$ be a smooth complex projective surface and $H$ ample. A divisor class $D\in N^1(S)_{\mathbb R}$ satisfies $HD=0$ and $D^2=0$. What can be concluded? Would the same argument prove that a line bundle representing $D$ is trivial?
+:::
+
+::: {.back card-id="application-hodge-index-orthogonal-isotropic"}
+Hodge index is negative definite on $H^\perp$, so $D=0$ in $N^1(S)_{\mathbb R}$. This proves numerical triviality, not triviality as a line bundle. A nontrivial member of $\operatorname{Pic}^0(S)$ can have zero numerical class.
+:::
+
+::: {.front card-id="application-hard-versus-weak-lefschetz" tags="application"}
+For a smooth cubic threefold $X\subset\mathbb P^4_{\mathbb C}$ with hyperplane class $h$, determine $H^2(X,\mathbb Q)$ and $H^4(X,\mathbb Q)$. Which theorem gives each, and does either identify $H^3(X,\mathbb Q)$ with that of $\mathbb P^4$?
+:::
+
+::: {.back card-id="application-hard-versus-weak-lefschetz"}
+Weak Lefschetz gives $H^2(X,\mathbb Q)=\mathbb Qh$. Hard Lefschetz gives the isomorphism $h\cup-:H^2(X,\mathbb Q)\to H^4(X,\mathbb Q)$, so $H^4(X,\mathbb Q)=\mathbb Qh^2$. Weak Lefschetz is only injective in degree three here; neither statement identifies the middle cohomology with the zero group $H^3(\mathbb P^4,\mathbb Q)$.
+:::
+
+::: {.front card-id="application-smooth-family-picard-jump" tags="application"}
+A smooth family of quartic surfaces has a very general fiber of Picard rank one and a special smooth fiber containing a line. Does the rank jump contradict local topological triviality or constancy of Betti numbers? Explain which structure changes.
+:::
+
+::: {.back card-id="application-smooth-family-picard-jump"}
+No. Ehresmann gives locally diffeomorphic fibers, so $b_2=22$ remains constant. The integral cohomology forms a local system, but its Hodge decomposition varies. By Lefschetz $(1,1)$, extra integral classes of type $(1,1)$ become algebraic on the special fiber. Picard rank can increase without changing the topological cohomology group.
+:::
+
+::: {.front card-id="application-picard-lefschetz-parity" tags="application"}
+Compare monodromy around one ordinary double point in a family of complex curves and in a family of complex surfaces. For a nonzero vanishing cycle $\delta$, determine $T(\delta)$ and the form of $T$ using the complex-orientation Picard–Lefschetz convention.
+:::
+
+::: {.back card-id="application-picard-lefschetz-parity"}
+For curves, the pairing is alternating and $\delta^2=0$, so
+$$T(x)=x-(x\cdot\delta)\delta,\qquad T(\delta)=\delta.$$
+This is a transvection. For surfaces, $\delta^2=-2$ and
+$$T(x)=x+(x\cdot\delta)\delta,\qquad T(\delta)=-\delta.$$
+This is the reflection in the vanishing class.
+:::

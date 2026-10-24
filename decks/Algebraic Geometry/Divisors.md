@@ -814,3 +814,53 @@ The expected codimension is $(e-r)(f-r)$. If it holds, then
 $$[D_r]=\det\left(c_{f-r+i-j}(F-E)\right)_{1\le i,j\le e-r}\cap[X],$$
 with $c(F-E)=c(F)c(E)^{-1}$, $c_0=1$, and $c_j=0$ for $j<0$.
 :::
+
+::: {.front card-id="application-ample-product-positive" tags="application"}
+On $\mathbb P^1_{\mathbb C}\times\mathbb P^1_{\mathbb C}$, prove that $D=(2,3)$ is ample using intersections with all curves. Which criterion applies?
+:::
+
+::: {.back card-id="application-ample-product-positive"}
+Every integral curve has class $(a,b)$ with $a,b\ge0$ and $(a,b)\ne(0,0)$. Thus $D\cdot C=2b+3a>0$, and $D^2=12>0$. The surface Nakai–Moishezon criterion gives ampleness.
+:::
+
+::: {.front card-id="application-nef-product-fiber" tags="application"}
+On $\mathbb P^1_{\mathbb C}\times\mathbb P^1_{\mathbb C}$, determine whether $D=(1,0)$ is nef, ample, big, and globally generated. Explain how a fiber separates these properties.
+:::
+
+::: {.back card-id="application-nef-product-fiber"}
+The bundle is pulled back from $\mathcal O_{\mathbb P^1}(1)$, so it is globally generated and nef. For $F=\{p\}\times\mathbb P^1$, one has $D\cdot F=0$, so it is not ample. Since $D^2=0$ and $D$ is nef, its volume is zero and it is not big.
+:::
+
+::: {.front card-id="application-bertini-pencil-disconnected" tags="application"}
+On $X=\mathbb P^1_{\mathbb C}\times\mathbb P^1_{\mathbb C}$, consider $|\mathcal O_X(2,0)|$. Is a general member smooth? Is it irreducible? Explain which two Bertini hypotheses lead to different answers.
+:::
+
+::: {.back card-id="application-bertini-pencil-disconnected"}
+The system is base-point-free on a smooth variety, so a general member is smooth. A general section on the first factor has two distinct zeros, so its divisor on $X$ is the disjoint union of two fibers. It is not irreducible. The associated morphism has one-dimensional image, so the image-dimension hypothesis of Bertini irreducibility fails.
+:::
+
+::: {.front card-id="application-bertini-base-point-singularity" tags="application"}
+Fix $p\in\mathbb P^2_{\mathbb C}$ and let $V$ be the system of conics vanishing to order at least two at $p$. Where can Bertini guarantee smoothness of a general member? Is the general member smooth at $p$?
+:::
+
+::: {.back card-id="application-bertini-base-point-singularity"}
+Bertini gives smoothness away from the base locus $\{p\}$. At $p$, every local equation belongs to $\mathfrak m_p^2$, so both first derivatives vanish and every member is singular there. A general such conic is two distinct lines through $p$, smooth away from their intersection.
+:::
+
+::: {.front card-id="application-seshadri-plane" tags="application"}
+For $L=\mathcal O_{\mathbb P^2_{\mathbb C}}(d)$ with $d>0$, compute $\varepsilon(L;p)$ at a point $p$. Show both bounds rather than merely invoking ampleness.
+:::
+
+::: {.back card-id="application-seshadri-plane"}
+For any integral curve $C$ through $p$, $\operatorname{mult}_p C\le\deg C$, so $L\cdot C/\operatorname{mult}_p C\ge d$. A line through $p$ has degree and multiplicity both one, giving the reverse bound. Hence $\varepsilon(L;p)=d$.
+:::
+
+::: {.front card-id="application-porteous-points-plane" tags="application"}
+A general morphism $\mathcal O_{\mathbb P^2}^{\oplus2}\to\mathcal O_{\mathbb P^2}(1)^{\oplus3}$ has a rank-at-most-one locus of the expected dimension. Compute its length. Choose a formula and verify the codimension before using it.
+:::
+
+::: {.back card-id="application-porteous-points-plane"}
+The expected codimension is $(2-1)(3-1)=2$, so the locus is zero-dimensional. Thom–Porteous gives its class as
+$$c_2\bigl(\mathcal O(1)^{\oplus3}-\mathcal O^{\oplus2}\bigr)=[(1+H)^3]_2=3H^2.$$
+Since $\int_{\mathbb P^2}H^2=1$, the scheme has length three.
+:::

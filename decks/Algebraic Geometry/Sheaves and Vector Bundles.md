@@ -833,3 +833,37 @@ State Krull–Schmidt for vector bundles on a proper complex variety.
 ::: {.back card-id="theorem-krull-schmidt-bundles"}
 Every vector bundle is a finite direct sum of indecomposable vector bundles. The indecomposable summands are unique up to isomorphism and permutation.
 :::
+
+::: {.front card-id="application-hartogs-punctured-plane" tags="application"}
+Let $U=\mathbb A^2_{\mathbb C}\setminus\{0\}$. Must every regular function on $U$ extend to $\mathbb A^2$? Must every morphism between restrictions of reflexive coherent sheaves extend? Identify the hypotheses that decide both questions.
+:::
+
+::: {.back card-id="application-hartogs-punctured-plane"}
+Yes, uniquely in both cases. The ambient plane is normal and the missing point has codimension two. Hartogs extension gives $\mathcal O_{\mathbb A^2}=j_*\mathcal O_U$, hence $\Gamma(U,\mathcal O_U)=\mathbb C[x,y]$. Reflexive extension gives $\mathcal F=j_*(\mathcal F|_U)$ and the corresponding equality of Hom groups for reflexive $\mathcal F,\mathcal G$.
+:::
+
+::: {.front card-id="application-hartogs-punctured-line" tags="application"}
+Does the function $x^{-1}$ on $\mathbb A^1_{\mathbb C}\setminus\{0\}$ extend regularly to $\mathbb A^1$? Which Hartogs hypothesis distinguishes this case from the punctured plane?
+:::
+
+::: {.back card-id="application-hartogs-punctured-line"}
+It does not extend: a polynomial $p(x)$ with $p(x)=x^{-1}$ on $D(x)$ would satisfy $xp(x)=1$ in $\mathbb C[x]$, impossible at $x=0$. The line is normal, but the missing point has codimension one. Hartogs extension requires codimension at least two.
+:::
+
+::: {.front card-id="application-formal-algebraization" tags="application"}
+Let $X$ be proper over $\mathbb C[[t]]$ and $X_n=X\times\operatorname{Spec}\mathbb C[t]/(t^{n+1})$. Given coherent sheaves $\mathcal F_n$ with compatible restriction isomorphisms on all $X_n$, can they come from a coherent sheaf on $X$? Which result gives existence rather than merely computing cohomology?
+:::
+
+::: {.back card-id="application-formal-algebraization"}
+Grothendieck existence algebraizes the compatible system to a coherent sheaf $\mathcal F$ on $X$. Completion is an equivalence of categories, so morphisms also algebraize uniquely and $\mathcal F$ is unique up to the isomorphism specified by the compatible system. Formal functions instead computes completed cohomology of a sheaf already given.
+:::
+
+::: {.front card-id="application-bundles-same-chern-different" tags="application"}
+On $\mathbb P^1_{\mathbb C}$, compare $E=\mathcal O\oplus\mathcal O(2)$ and $F=\mathcal O(1)^{\oplus2}$. They have the same rank and degree. Are they isomorphic? Give a cohomological test and explain the role of indecomposable summands.
+:::
+
+::: {.back card-id="application-bundles-same-chern-different"}
+They are not isomorphic:
+$$h^0(E(-2))=h^0(\mathcal O(-2))+h^0(\mathcal O)=1,\qquad h^0(F(-2))=2h^0(\mathcal O(-1))=0.$$
+Their line-bundle summands are indecomposable. Krull–Schmidt also distinguishes the multisets $\{\mathcal O,\mathcal O(2)\}$ and $\{\mathcal O(1),\mathcal O(1)\}$; rank and degree alone do not determine a bundle.
+:::

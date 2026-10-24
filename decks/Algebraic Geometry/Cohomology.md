@@ -477,3 +477,100 @@ For a proper morphism $f:X\to Y$ between smooth complex varieties and $E\in K_0(
 With $f_!$ the alternating sum of higher direct images,
 $$\operatorname{ch}(f_!E)\operatorname{td}(T_Y)=f_*\left(\operatorname{ch}(E)\operatorname{td}(T_X)\right).$$
 :::
+
+::: {.front card-id="application-curve-vanishing-boundary" tags="application"}
+Let $C$ be a smooth connected projective complex curve of genus $g\ge2$. Compare $H^1(C,L)$ for $\deg L=2g-1$ with $H^1(C,K_C)$. Choose a method that detects the boundary case.
+:::
+
+::: {.back card-id="application-curve-vanishing-boundary"}
+Serre duality gives $h^1(L)=h^0(K_C\otimes L^{-1})$. For $\deg L=2g-1$, the latter line bundle has degree $-1$, so $h^1(L)=0$. For $L=K_C$, it is $\mathcal O_C$, so $h^1(K_C)=1$. Positivity of $\deg K_C$ itself does not give vanishing for $K_C$.
+:::
+
+::: {.front card-id="application-kodaira-ample-twist" tags="application"}
+Let $X$ be a smooth projective complex variety and $A$ ample. Which theorem computes $H^i(X,K_X+2A)$ for $i>0$, and which positivity condition must be checked?
+:::
+
+::: {.back card-id="application-kodaira-ample-twist"}
+Kodaira vanishing gives $H^i(X,\mathcal O_X(K_X+2A))=0$ for $i>0$, since $2A$ is ample. The positive bundle is the twist $2A$ of the canonical bundle; no positivity of $K_X+2A$ itself is required.
+:::
+
+::: {.front card-id="application-vanishing-nef-big-blowup" tags="application"}
+On $S=\operatorname{Bl}_p\mathbb P^2_{\mathbb C}$ let $H$ be the pullback of a line and $E$ the exceptional curve. Determine $H^i(S,\mathcal O_S(-2H+E))$ for $i>0$. Choose a vanishing theorem and explain why Kodaira's ample-twist hypothesis does not apply directly.
+:::
+
+::: {.back card-id="application-vanishing-nef-big-blowup"}
+Here $K_S=-3H+E$, so $-2H+E=K_S+H$. The class $H$ is nef and big, since it is pulled back from an ample class by a birational map and $H^2=1$. It is not ample because $HE=0$. Kawamata–Viehweg vanishing, with boundary zero, therefore gives $H^i(S,\mathcal O_S(-2H+E))=0$ for $i>0$.
+:::
+
+::: {.front card-id="application-nadel-restriction-surjectivity" tags="application"}
+Let $X$ be smooth complex projective, $D$ an effective $\mathbb Q$-divisor, and $L$ an integral divisor with $L-D$ nef and big. Suppose $\mathcal J(X,D)=\mathcal I_Z$ for a zero-dimensional subscheme $Z$. Can every section of $\mathcal O_Z(K_X+L)$ be extended to $X$? Choose a theorem and the exact-sequence step needed.
+:::
+
+::: {.back card-id="application-nadel-restriction-surjectivity"}
+Nadel vanishing gives $H^1(X,\mathcal O_X(K_X+L)\otimes\mathcal I_Z)=0$. The long exact sequence of
+$$0\to\mathcal O_X(K_X+L)\otimes\mathcal I_Z\to\mathcal O_X(K_X+L)\to\mathcal O_Z(K_X+L)\to0$$
+therefore makes $H^0(X,\mathcal O_X(K_X+L))\to H^0(Z,\mathcal O_Z(K_X+L))$ surjective.
+:::
+
+::: {.front card-id="application-cohomology-jump-degree-zero" tags="application"}
+Fix an elliptic curve $E/\mathbb C$. As $L$ varies in $\operatorname{Pic}^0(E)$, compute $h^0(E,L)$ and $h^1(E,L)$. Does their variation violate semicontinuity or constancy of Euler characteristic?
+:::
+
+::: {.back card-id="application-cohomology-jump-degree-zero"}
+For $L\ne\mathcal O_E$, a nonzero section would give an effective divisor of degree zero and hence trivialize $L$, so $h^0(L)=0$. Serre duality and $K_E\cong\mathcal O_E$ give $h^1(L)=0$. At $\mathcal O_E$, both dimensions are one. They jump up on a closed subset, as upper semicontinuity permits; $\chi(L)=0$ throughout.
+:::
+
+::: {.front card-id="application-grauert-positive-degree" tags="application"}
+Let $f:\mathcal C\to S$ be a smooth projective family of connected genus-$g$ complex curves over a reduced locally Noetherian base. Let $\mathcal L$ have degree $d>2g-2$ on every fiber. Determine the rank of $f_*\mathcal L$ and whether its fibers are the spaces of sections.
+:::
+
+::: {.back card-id="application-grauert-positive-degree"}
+Fiberwise Serre duality gives $H^1(\mathcal C_s,\mathcal L_s)=0$, and Riemann–Roch gives $h^0(\mathcal L_s)=d+1-g$. Grauert's theorem makes $f_*\mathcal L$ locally free of rank $d+1-g$, with
+$$f_*\mathcal L\otimes\kappa(s)\cong H^0(\mathcal C_s,\mathcal L_s).$$
+Its formation commutes with base change.
+:::
+
+::: {.front card-id="application-relative-duality-curves" tags="application"}
+For a smooth projective family $f:\mathcal C\to S$ of connected complex curves of genus $g$, the sheaf $f_*\omega_{\mathcal C/S}$ is locally free. Identify the vector bundle dual to it and its rank. Which theorem supplies the pairing?
+:::
+
+::: {.back card-id="application-relative-duality-curves"}
+Relative Serre duality supplies the perfect pairing and gives
+$$R^1f_*\mathcal O_{\mathcal C}\cong(f_*\omega_{\mathcal C/S})^\vee.$$
+Both bundles have rank $g$, and the fiber pairing is $H^1(C_s,\mathcal O_{C_s})\times H^0(C_s,K_{C_s})\to\kappa(s)$.
+:::
+
+::: {.front card-id="application-kollar-leray-twist" tags="application"}
+Let $f:X\to Y$ be a surjective projective morphism of complex projective varieties, with $X$ smooth and $Y$ normal. If $A$ is ample on $Y$, express $H^k(X,\omega_X\otimes f^*A)$ using a single higher direct image on $Y$. Explain why the Leray spectral sequence has only one contributing term.
+:::
+
+::: {.back card-id="application-kollar-leray-twist"}
+The projection formula identifies $R^if_*(\omega_X\otimes f^*A)$ with $R^if_*\omega_X\otimes A$. Kollár vanishing kills $H^j(Y,R^if_*\omega_X\otimes A)$ for every $j>0$. Thus the Leray spectral sequence gives
+$$H^k(X,\omega_X\otimes f^*A)\cong H^0(Y,R^kf_*\omega_X\otimes A).$$
+:::
+
+::: {.front card-id="application-birational-canonical-direct-images" tags="application"}
+Let $f:X\to Y$ be projective birational over $\mathbb C$, with $X$ smooth and $Y$ normal. Must the sheaves $R^if_*\omega_X$ vanish for $i>0$, or are they only torsion-free? Choose the result that uses birationality.
+:::
+
+::: {.back card-id="application-birational-canonical-direct-images"}
+Grauert–Riemenschneider vanishing gives $R^if_*\omega_X=0$ for $i>0$. Kollár's theorem supplies torsion-freeness in the more general surjective projective setting. Birationality permits the stronger conclusion here.
+:::
+
+::: {.front card-id="application-formal-functions-vanishing" tags="application"}
+Let $f:X\to\operatorname{Spec}A$ be proper, with $(A,\mathfrak m)$ Noetherian local, and $\mathcal F$ coherent. Suppose $H^1(X,\mathcal F/\mathfrak m^n\mathcal F)=0$ for every $n\ge1$. Must $H^1(X,\mathcal F)$ vanish? Explain both the completion step and the finiteness step.
+:::
+
+::: {.back card-id="application-formal-functions-vanishing"}
+Formal functions identifies the $\mathfrak m$-adic completion of $H^1(X,\mathcal F)$ with the inverse limit of the zero groups, hence with zero. Proper coherence makes $H^1(X,\mathcal F)$ a finite $A$-module. A finite module over a Noetherian local ring with zero completion is zero, by Nakayama's lemma.
+:::
+
+::: {.front card-id="application-grr-finite-etale-curves" tags="application"}
+Let $f:C\to B$ be a finite étale map of degree $d$ between smooth connected projective complex curves. Use Grothendieck–Riemann–Roch for $f$ to compute $\operatorname{ch}(f_*\mathcal O_C)$ and then relate the genera.
+:::
+
+::: {.back card-id="application-grr-finite-etale-curves"}
+Since $f$ is finite, higher direct images vanish; since it is étale, $T_C=f^*T_B$. GRR and the projection formula give
+$$\operatorname{ch}(f_*\mathcal O_C)\operatorname{td}(T_B)=f_*f^*\operatorname{td}(T_B)=d\,\operatorname{td}(T_B).$$
+The Todd class is invertible, so $\operatorname{ch}(f_*\mathcal O_C)=d$: the bundle has rank $d$ and degree zero. Curve Riemann–Roch yields $1-g(C)=d(1-g(B))$.
+:::
