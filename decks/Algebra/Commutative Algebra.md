@@ -133,11 +133,13 @@ If $R\hookrightarrow S\in  {}_{\ZZ}  \mathsf{Alg}$ is an integral extension, the
 :::
 
 ::: {.front card-id="card-c3c4d762b57c058f" tags="theorem"}
-What is Noether normalization?
+State Noether normalization for a nonzero finitely generated algebra $A$ over a field $k$. What geometric conclusion follows for an affine integral variety of dimension $d$?
 :::
 
 ::: {.back card-id="card-c3c4d762b57c058f"}
-If $A$ is a finitely generated algebra over a field $k$, there are algebraically independent elements $x_1,\ldots,x_d\in A$ such that $A$ is finite as a module over $k[x_1,\ldots,x_d]$. Here $d=\dim A$.
+There are algebraically independent $t_1,\ldots,t_d\in A$, with $d=\dim A$, such that $A$ is finite as a module over $k[t_1,\ldots,t_d]$.
+
+Thus every affine integral $k$-variety of dimension $d$ admits a finite surjective morphism to $\mathbb A^d_k$.
 :::
 
 ::: {.front card-id="card-333bb97f5f81c327"}
@@ -218,4 +220,12 @@ Noncommutative case: $M\in { {}_{k}  \mathsf{Alg}}$ when $\exists f\in \mathsf{C
 Commutative case: $\exists f\in \mathsf{CRing}(k\to M)$ so $\operatorname{Spec}M\to \operatorname{Spec}k$.
 
 In particular, $M\in   {}_{k}\Mod$ so there should be an action by "scalars" $k\curvearrowright M$.
+:::
+
+::: {.front card-id="theorem-generic-freeness" tags="theorem"}
+Let $A$ be a Noetherian domain, $B$ a finite-type $A$-algebra, and $M$ a finite $B$-module. State generic freeness, specifying over which localized ring the module becomes free.
+:::
+
+::: {.back card-id="theorem-generic-freeness"}
+There exists $0\ne a\in A$ such that $M_a$ is a free $A_a$-module. Its rank over $A_a$ need not be finite.
 :::

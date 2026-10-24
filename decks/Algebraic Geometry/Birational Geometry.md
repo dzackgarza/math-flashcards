@@ -86,12 +86,12 @@ $\implies$ general type.
 $\implies K_X$ ample.
 :::
 
-::: {.front card-id="card-b361751d37669bf3"}
-Classify surfaces by Kodaira dimension.
+::: {.front card-id="card-b361751d37669bf3" tags="theorem"}
+Classify smooth minimal complex projective surfaces by Kodaira dimension.
 :::
 
 ::: {.back card-id="card-b361751d37669bf3"}
-Define $\kappa(X) \coloneqq\operatorname{trdeg}_k \left( \bigoplus_{n\geq 0} H^0({\mathcal{O}}_X(nK_X)) \right) - 1$, or $-\infty$ if all $H^0(nK_X) = 0$ for $n > 0$. For a minimal smooth projective surface $X$,
+Define $\kappa(X) \coloneqq\operatorname{trdeg}_k \left( \bigoplus_{n\geq 0} H^0({\mathcal{O}}_X(nK_X)) \right) - 1$, or $-\infty$ if all $H^0(nK_X) = 0$ for $n > 0$. For a minimal smooth complex projective surface $X$,
 
 $\kappa(X) = -\infty \iff$Ruled, rational.
 
@@ -99,11 +99,11 @@ $\implies X\cong {\mathbf{P}}^{2}$ or a minimal ruled surface.
 
 $\implies \left|12 K_{X}\right|=\emptyset$.
 
-$\kappa(X) = 0\iff$ abelian, hyperelliptic, K3s, Enriques.
+$\kappa(X)=0$ if and only if $X$ is abelian, bielliptic (also called hyperelliptic), K3, or Enriques.
 
 $\implies \left|12 K_{X}\right|=\{0\}$.
 
-$\kappa(X) = 1\iff$ elliptic
+$\kappa(X)=1$ implies that $X$ is elliptic; these are the properly elliptic surfaces.
 
 $\kappa(X) = 2 \iff$ general type.
 :::
@@ -199,12 +199,14 @@ What is Luroth's problem?
 Rational $\implies$ unirational, is the converse true? Equivalently, is every subfield of a purely transcendental field extension again purely transcendental? True in dimension 1 by Galois theory.
 :::
 
-::: {.front card-id="card-41bf32b10f9d0aae"}
-What is Castelnuovo's theorem on complex surfaces?
+::: {.front card-id="card-41bf32b10f9d0aae" tags="theorem"}
+State Castelnuovo's rationality criterion for a smooth complex projective surface $S$. Does vanishing of $q$ and $P_1$ suffice?
 :::
 
 ::: {.back card-id="card-41bf32b10f9d0aae"}
-If $q(X), P_2(X)$ vanish then $X$ is rational. This implies that unirational surfaces are rational. Note that $P_1(X)$ vanishing is not enough, viz. the Enriques surfaces.
+One has
+$$S\text{ rational}\iff q(S)=0\text{ and }P_2(S)=0.$$
+Vanishing of $q$ and $P_1$ does not suffice, as Enriques surfaces show. The criterion also implies that unirational complex surfaces are rational.
 :::
 
 ::: {.front card-id="card-a52d9643c2df5f41"}
@@ -456,22 +458,22 @@ Weaker than ample, but results for ample often still hold for just big and nef. 
 Big and nef on a K3 implies effective.
 :::
 
-::: {.front card-id="card-3cb9dc2bc3da922a"}
-What is the Base Point Free theorem?
+::: {.front card-id="card-3cb9dc2bc3da922a" tags="theorem"}
+Let $(X,\Delta)$ be a complex projective klt pair and $D$ a nef Cartier divisor. State the Kawamata–Shokurov base-point-free theorem.
 :::
 
 ::: {.back card-id="card-3cb9dc2bc3da922a"}
-If $L\in \operatorname{Pic}(X)$ is big and nef, then $L^n$ is globally generated for some $n$.
-
-Holds for smooth projective varieties over $\CC$ when $L\otimes\omega_X {}^{ \vee }$ is big and nef.
+If $aD-(K_X+\Delta)$ is nef and big for some $a>0$, then $\lvert mD\rvert$ is base-point-free for every sufficiently large integer $m$. In particular, for smooth projective $X$, a nef line bundle $L$ with $L\otimes\omega_X^{-1}$ nef and big is semiample.
 :::
 
-::: {.front card-id="card-719758760811ef26"}
-What is the Zariski decomposition of an effective divisor?
+::: {.front card-id="card-719758760811ef26" tags="theorem"}
+State the Zariski–Fujita decomposition of a pseudo-effective $\mathbb Q$-divisor $D$ on a smooth complex projective surface. Include uniqueness, sections, and the volume when $D$ is big.
 :::
 
 ::: {.back card-id="card-719758760811ef26"}
-$D = P + N$ where $P, N \in \NS(X)_\QQ$ with $P\in \operatorname{Nef}(X)$ the positive part and $N = \sum a_i C_i$ effective (with $a_i \in \QQ_{\gt 0})$ where $P.C_i = 0$ for all $i$ and the intersection matrix $(C_i . C_j)$ is negative definite.
+There is a unique decomposition $D=P+N$ with $P$ nef, $N=\sum_i a_iC_i$ effective, $PC_i=0$, and $(C_iC_j)$ negative definite when $N\ne0$; the nonzero coefficients $a_i$ are positive rational numbers. For all sufficiently divisible $m$, multiplication by the section of $mN$ gives
+$$H^0(S,\mathcal O_S(mP))\xrightarrow{\sim}H^0(S,\mathcal O_S(mD)).$$
+If $D$ is big, then $\operatorname{vol}(D)=P^2$.
 :::
 
 ::: {.front card-id="card-7ee99fa7712a9959"}
@@ -530,4 +532,164 @@ For a demi-normal complex $\mathbb Q$-Gorenstein surface $X$, with normalization
 
 ::: {.back card-id="formula-normalization-canonical-conductor"}
 $$\nu^*K_X=K_{X^\nu}+D^\nu.$$
+:::
+
+::: {.front card-id="theorem-iitaka-sections" tags="theorem"}
+Let $D$ be a Cartier divisor on a smooth complex projective variety with $\kappa(X,D)\ge0$. State the asymptotic growth of sections and the stabilization of the maps given by sufficiently divisible multiples.
+:::
+
+::: {.back card-id="theorem-iitaka-sections"}
+For all sufficiently large divisible $m$,
+$$h^0(X,mD)\asymp m^{\kappa(X,D)}.$$
+The maps $\varphi_{\lvert mD\rvert}$ have image of dimension $\kappa(X,D)$ and are birationally equivalent to a fixed Iitaka fibration.
+:::
+
+::: {.front card-id="theorem-iitaka-easy-addition" tags="theorem"}
+Let $f:X\to Y$ be a surjective morphism of smooth complex projective varieties with connected fibers and general fiber $F$. State Iitaka's easy addition inequality and its consequence when $\kappa(F)=-\infty$.
+:::
+
+::: {.back card-id="theorem-iitaka-easy-addition"}
+One has
+$$\kappa(X)\le\kappa(F)+\dim Y.$$
+In particular, $\kappa(F)=-\infty$ implies $\kappa(X)=-\infty$.
+:::
+
+::: {.front card-id="theorem-rational-singularities" tags="theorem"}
+Let $Y$ be a complex variety with rational singularities and $f:X\to Y$ a resolution. State the direct-image identities. What do klt singularities imply?
+:::
+
+::: {.back card-id="theorem-rational-singularities"}
+One has
+$$f_*\mathcal O_X=\mathcal O_Y,\qquad R^if_*\mathcal O_X=0\quad(i>0).$$
+A normal complex variety with klt singularities has rational singularities. Rational singularities are Cohen–Macaulay, so klt varieties are Cohen–Macaulay.
+:::
+
+::: {.front card-id="theorem-inversion-adjunction" tags="theorem"}
+Let $X$ be smooth over $\mathbb C$, $S\subset X$ a smooth divisor, and $\Delta\ge0$ an effective $\mathbb Q$-divisor not containing $S$. State adjunction and inversion of adjunction.
+:::
+
+::: {.back card-id="theorem-inversion-adjunction"}
+One has
+$$(K_X+S+\Delta)|_S=K_S+\Delta|_S,$$
+and
+$$(X,S+\Delta)\text{ is plt near }S\iff(S,\Delta|_S)\text{ is klt}.$$
+For a normal ambient pair with reduced boundary component $S$ and $K_X+S+\Delta$ $\mathbb Q$-Cartier, the normalized adjunction boundary is the different on $S^\nu$: the pullback of $(K_X+S+\Delta)|_S$ is $K_{S^\nu}+\operatorname{Diff}_{S^\nu}(\Delta)$.
+:::
+
+::: {.front card-id="theorem-hironaka-resolution" tags="theorem"}
+State resolution of singularities for a reduced variety over a field of characteristic zero, including the behavior over the regular locus and the exceptional divisor.
+:::
+
+::: {.back card-id="theorem-hironaka-resolution"}
+There is a proper birational morphism $\pi:\widetilde X\to X$ with $\widetilde X$ smooth, which is an isomorphism over the regular locus of $X$. It can be chosen so that the exceptional locus is a divisor with simple normal crossings.
+:::
+
+::: {.front card-id="theorem-eliminate-indeterminacy" tags="theorem"}
+For a rational map $f:X\dashrightarrow Y$ between smooth projective varieties in characteristic zero, state elimination of indeterminacies.
+:::
+
+::: {.back card-id="theorem-eliminate-indeterminacy"}
+There is a sequence of blowups along smooth centers
+$$X'=X_r\to X_{r-1}\to\cdots\to X_0=X$$
+such that the composite rational map $X'\dashrightarrow Y$ extends to a morphism $X'\to Y$. The centers can be chosen over the locus where $f$ is undefined.
+:::
+
+::: {.front card-id="theorem-weak-factorization" tags="theorem"}
+State weak factorization for a birational map between smooth complete varieties in characteristic zero, including the constraint on an open set where the map is an isomorphism.
+:::
+
+::: {.back card-id="theorem-weak-factorization"}
+The map factors through smooth complete varieties as a finite sequence of blowups and blowdowns along smooth centers. All centers can be chosen disjoint from a common open set on which the original map is an isomorphism.
+:::
+
+::: {.front card-id="theorem-surface-morphism-factorization" tags="theorem"}
+How does a proper birational morphism $f:S\to T$ between smooth complex projective surfaces factor?
+:::
+
+::: {.back card-id="theorem-surface-morphism-factorization"}
+It is a composite of point blowups:
+$$S=S_r\longrightarrow S_{r-1}\longrightarrow\cdots\longrightarrow S_0=T,$$
+where each $S_i\to S_{i-1}$ is the blowup of a smooth point.
+:::
+
+::: {.front card-id="theorem-castelnuovo-contraction" tags="theorem"}
+Let $E$ be a smooth rational curve with $E^2=-1$ on a smooth complex projective surface $S$. State Castelnuovo contraction, including the properties of the target and the inverse construction.
+:::
+
+::: {.back card-id="theorem-castelnuovo-contraction"}
+There is a birational morphism $S\to T$ to a smooth projective surface that contracts exactly $E$ to a smooth point $p$. The surface $S$ is the blowup $\operatorname{Bl}_pT$, and the contraction is the blowup morphism.
+:::
+
+::: {.front card-id="theorem-exceptional-negative-definite" tags="theorem"}
+Let $f:S\to T$ be a projective birational morphism of normal complex projective surfaces, with $S$ smooth. What can be said about the intersection matrix of the exceptional curves above a fixed point of $T$?
+:::
+
+::: {.back card-id="theorem-exceptional-negative-definite"}
+The matrix is negative definite:
+$$\sum_{i,j}a_i a_j(E_iE_j)<0\qquad\text{for every nonzero real vector }(a_i).$$
+:::
+
+::: {.front card-id="theorem-negativity-lemma" tags="theorem"}
+Let $f:Y\to X$ be projective and birational between normal varieties, and let $D$ be an $\mathbb R$-Cartier divisor with $-D$ relatively nef. What does $f_*D\ge0$ imply? State the exceptional-divisor case.
+:::
+
+::: {.back card-id="theorem-negativity-lemma"}
+One has $D\ge0$. In particular, if $E$ is $f$-exceptional and $-E$ is $f$-nef, then $E\ge0$.
+:::
+
+::: {.front card-id="theorem-cone-klt" tags="theorem"}
+For a complex projective klt pair $(X,\Delta)$, state the cone theorem, including the generators, length bound, and local finiteness.
+:::
+
+::: {.back card-id="theorem-cone-klt"}
+There are rational curves $C_i$ spanning $(K_X+\Delta)$-negative extremal rays such that
+$$\overline{\operatorname{NE}}(X)=\overline{\operatorname{NE}}(X)_{K_X+\Delta\ge0}+\sum_i\mathbb R_{\ge0}[C_i],\qquad 0<-(K_X+\Delta)C_i\le2\dim X.$$
+These rays are locally finite in the open half-space where $K_X+\Delta$ is negative.
+:::
+
+::: {.front card-id="theorem-extremal-contraction" tags="theorem"}
+Let $F$ be a $(K_X+\Delta)$-negative extremal face for a complex projective klt pair. State the contraction theorem.
+:::
+
+::: {.back card-id="theorem-extremal-contraction"}
+There is a projective morphism $\varphi_F:X\to Y$ to a normal projective variety with connected fibers such that, for every integral curve $C$,
+$$\varphi_F(C)\text{ is a point}\iff[C]\in F,\qquad(\varphi_F)_*\mathcal O_X=\mathcal O_Y.$$
+:::
+
+::: {.front card-id="theorem-surface-abundance" tags="theorem"}
+For a smooth minimal complex projective surface $S$ with $\kappa(S)\ge0$, what does abundance say about the canonical divisor?
+:::
+
+::: {.back card-id="theorem-surface-abundance"}
+The canonical divisor $K_S$ is semiample: $\lvert mK_S\rvert$ is base-point-free for every sufficiently large divisible positive integer $m$.
+:::
+
+::: {.front card-id="theorem-canonical-finite-generation" tags="theorem"}
+State finite generation of the canonical ring for a smooth projective variety in characteristic zero. What follows in general type?
+:::
+
+::: {.back card-id="theorem-canonical-finite-generation"}
+The graded ring
+$$R(X,K_X)=\bigoplus_{m\ge0}H^0(X,mK_X)$$
+is finitely generated. If $X$ is of general type, its canonical model
+$$X_{\mathrm{can}}=\operatorname{Proj}R(X,K_X)$$
+is projective and birational to $X$.
+:::
+
+::: {.front card-id="theorem-surface-minimal-uniqueness" tags="theorem"}
+What existence and uniqueness statement holds for the smooth minimal model of a smooth complex projective surface $S$ with $\kappa(S)\ge0$?
+:::
+
+::: {.back card-id="theorem-surface-minimal-uniqueness"}
+The surface has a smooth minimal model, and any two such models are isomorphic. More strongly, a birational map between smooth minimal projective surfaces of nonnegative Kodaira dimension is an isomorphism.
+:::
+
+::: {.front card-id="theorem-siu-plurigenera" tags="theorem"}
+Let $f:X\to\Delta$ be a smooth projective family of complex varieties over a connected disk. State invariance of plurigenera.
+:::
+
+::: {.back card-id="theorem-siu-plurigenera"}
+For every integer $m\ge0$,
+$$h^0(X_t,\omega_{X_t}^{\otimes m})$$
+is independent of $t\in\Delta$.
 :::

@@ -735,3 +735,82 @@ For a nef divisor $D$ on a smooth projective complex surface, compute its volume
 ::: {.back card-id="formula-nef-surface-volume"}
 $$\operatorname{vol}(D)=D^2\ge0.$$
 :::
+
+::: {.front card-id="theorem-bertini-smoothness" tags="theorem"}
+Let $X$ be a smooth complex variety and $V\subset H^0(X,L)$ a finite-dimensional linear system. State Bertini smoothness for a base-point-free system and for a system with base locus $B$.
+:::
+
+::: {.back card-id="theorem-bertini-smoothness"}
+If the system is base-point-free, a general member is smooth or empty. In general, a general member is smooth outside $B$.
+:::
+
+::: {.front card-id="theorem-nakai-moishezon" tags="theorem"}
+State the Nakai–Moishezon criterion for a Cartier divisor $D$ on a complex projective variety $X$.
+:::
+
+::: {.back card-id="theorem-nakai-moishezon"}
+The divisor $D$ is ample if and only if
+$$D^{\dim V}\cdot V>0$$
+for every positive-dimensional integral subvariety $V\subset X$.
+:::
+
+::: {.front card-id="theorem-kleiman-ampleness" tags="theorem"}
+State Kleiman's ampleness criterion for $D\in N^1(X)_{\mathbb R}$ on a complex projective variety. How are the ample and nef cones related?
+:::
+
+::: {.back card-id="theorem-kleiman-ampleness"}
+The class $D$ is ample if and only if
+$$D\cdot\gamma>0\qquad(0\ne\gamma\in\overline{\operatorname{NE}}(X)).$$
+Moreover,
+$$\operatorname{Amp}(X)=\operatorname{Int}\operatorname{Nef}(X).$$
+:::
+
+::: {.front card-id="theorem-seshadri-ampleness" tags="theorem"}
+State Seshadri's ampleness criterion for a line bundle $L$ on a complex projective variety. For $X$ smooth and $L$ nef, express the local Seshadri constant using the blowup at $x$.
+:::
+
+::: {.back card-id="theorem-seshadri-ampleness"}
+The line bundle is ample if and only if there is $\varepsilon>0$ such that
+$$L\cdot C\ge\varepsilon\,\operatorname{mult}_xC$$
+for every integral curve $C\subset X$ and every $x\in C$. For $\pi:\operatorname{Bl}_xX\to X$ with exceptional divisor $E$,
+$$\varepsilon(L;x)=\sup\{t\ge0:\pi^*L-tE\text{ is nef}\}.$$
+:::
+
+::: {.front card-id="theorem-grothendieck-lefschetz-picard" tags="theorem"}
+For a smooth ample divisor $H$ in a smooth complex projective variety $X$, state the Grothendieck–Lefschetz theorem for restriction of Picard groups in dimensions at least three.
+:::
+
+::: {.back card-id="theorem-grothendieck-lefschetz-picard"}
+The map
+$$\operatorname{Pic}(X)\longrightarrow\operatorname{Pic}(H)$$
+is an isomorphism if $\dim X\ge4$, and is injective if $\dim X=3$.
+:::
+
+::: {.front card-id="theorem-noether-lefschetz" tags="theorem"}
+What does the Noether–Lefschetz theorem say about the Picard group of a very general smooth degree-$d$ surface in $\mathbb P^3_{\mathbb C}$, for $d\ge4$?
+:::
+
+::: {.back card-id="theorem-noether-lefschetz"}
+For such a surface $S$,
+$$\operatorname{Pic}(S)=\mathbb Z[\mathcal O_S(1)].$$
+:::
+
+::: {.front card-id="theorem-khovanskii-teissier" tags="theorem"}
+Let $A,B$ be nef classes on a smooth complex projective $n$-fold. State log-concavity of their mixed intersections, the resulting end inequality, and the equality criterion when $A,B$ are ample.
+:::
+
+::: {.back card-id="theorem-khovanskii-teissier"}
+For $a_i=A^{n-i}B^i$,
+$$a_i^2\ge a_{i-1}a_{i+1}\quad(1\le i\le n-1),\qquad (A^{n-1}B)^n\ge(A^n)^{n-1}B^n.$$
+For ample $A,B$ and $n\ge2$, equality in a nondegenerate Teissier inequality holds exactly when $A$ and $B$ are numerically proportional.
+:::
+
+::: {.front card-id="theorem-thom-porteous" tags="theorem"}
+Let $E\to F$ be a map of vector bundles of ranks $e,f$ on a smooth complex variety $X$, and $0\le r<\min(e,f)$. State the expected codimension of $D_r$ and its Thom–Porteous class when that codimension holds.
+:::
+
+::: {.back card-id="theorem-thom-porteous"}
+The expected codimension is $(e-r)(f-r)$. If it holds, then
+$$[D_r]=\det\left(c_{f-r+i-j}(F-E)\right)_{1\le i,j\le e-r}\cap[X],$$
+with $c(F-E)=c(F)c(E)^{-1}$, $c_0=1$, and $c_j=0$ for $j<0$.
+:::

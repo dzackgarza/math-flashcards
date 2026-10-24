@@ -299,8 +299,8 @@ All: 4-dimensional
 Algebraic: 3-dimensional.
 :::
 
-::: {.front card-id="card-e5204c524e5af7fb"}
-Define the period domain $\mathbb{D}$. What is its dimension?
+::: {.front card-id="card-e5204c524e5af7fb" tags="theorem"}
+Describe the period domain for marked complex K3 surfaces and its dimension. Which of its points occur as periods? How does fixing a polarization change the domain?
 :::
 
 ::: {.back card-id="card-e5204c524e5af7fb"}
@@ -311,9 +311,11 @@ which is an open subset of a quadric in ${\mathbf{P}}^{21}$ and thus a 20-dimens
 
 For a marking $\Phi: H^2(X;\ZZ)\to \Lambda_{\mathrm{K3}}$, the period of $(X, \Phi)$ is $\Phi(\CC\omega_X) \in \Omega$, where $\CC\omega_X = H^{2,0}(X) \in {\mathbf{P}}H^2(X;\CC)$. Surjectivity of the period map (Todorov, Looijenga, Siu): every point of $\Omega$ is the period of some marked K3.
 
-For a marked polarized K3 $(X, \phi)$, drops 1 dimension:
-$$\mathbb{D}_{2k} \coloneqq\left\{{[\omega]\in \mathbb{D}\st\omega.h = 0}\right\}$$
-where $h\in \Lambda_{{\mathsf{K}}3}$ is a fixed primitive class with $h^2 = 2k$ and $\phi^{-1}(h)\in \NS(X)^\amp$. It is 19-dimensional, with two connected components, each a bounded symmetric domain of type IV.
+Fixing a primitive class $h\in\Lambda_{\mathrm{K3}}$ with $h^2=2k>0$ gives
+$$\mathbb D_{2k}=\{[\omega]\in\mathbb D:(\omega,h)=0\}.$$
+This domain is 19-dimensional, with two connected components, each a bounded symmetric domain of type IV. Periods for which $h$ is an ample polarization fill the open subset
+$$\mathbb D_{2k}^{\mathrm{amp}}=\mathbb D_{2k}\setminus\bigcup_{\substack{\delta\in\Lambda_{\mathrm{K3}}\\\delta^2=-2,\;(\delta,h)=0}}\delta^\perp.$$
+Here $\delta^\perp$ means the locus $(\omega,\delta)=0$.
 :::
 
 ::: {.front card-id="card-a7590df0a74c3577"}

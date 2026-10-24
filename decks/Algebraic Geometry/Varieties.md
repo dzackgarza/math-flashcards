@@ -347,12 +347,15 @@ If $\Omega_{X}$ is locally free of rank $\dim X$
 Equivalently, $X \underset{\scriptscriptstyle {k} }{\times}\kbar$ is a regular scheme.
 :::
 
-::: {.front card-id="card-10b63f4aeb034057"}
-Discuss GAGA
+::: {.front card-id="card-10b63f4aeb034057" tags="theorem"}
+For a proper complex scheme $X$, state GAGA for coherent sheaves, their cohomology, and the Picard group.
 :::
 
 ::: {.back card-id="card-10b63f4aeb034057"}
-To any $X\in\Sch^{\mathrm{ft}}_{/ {\CC}}$ there exist $X^\an\to X$ a morphism of ringed spaces from an analytic space where the points of $X^\an$ correspond to the closed points of $X$ and there is an induced equivalence $\Coh(X) { \, \xrightarrow{\sim}\, }\Coh(X^\an)$.
+Analytification gives an equivalence and natural cohomology isomorphisms
+$$\operatorname{Coh}(X)\simeq\operatorname{Coh}(X^{\mathrm{an}}),\qquad H^i(X,\mathcal F)\cong H^i(X^{\mathrm{an}},\mathcal F^{\mathrm{an}}).$$
+In particular,
+$$\operatorname{Pic}(X)\cong\operatorname{Pic}(X^{\mathrm{an}}).$$
 :::
 
 ::: {.front card-id="card-ded86dc8399712bb"}

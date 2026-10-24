@@ -16,8 +16,8 @@ Primitive: not a proper multiple of an integral class.
 $g\coloneqq 1+{1\over 2}(\eta.\eta)$; the linear system $\eta$ defines contains curves of arithmetic genus $g$.
 :::
 
-::: {.front card-id="card-34fab36bd27bc9e8"}
-What is the Torelli theorem for K3s?
+::: {.front card-id="card-34fab36bd27bc9e8" tags="theorem"}
+State global Torelli for complex K3 surfaces, its polarized form, and the resulting description of the automorphism group.
 :::
 
 ::: {.back card-id="card-34fab36bd27bc9e8"}
@@ -26,6 +26,10 @@ Isomorphisms $\sigma: X^{\prime} \rightarrow X$ are in bijection with the isomet
 So a Hodge isometry is induced by an isomorphism exactly when it is effective, i.e. maps the Kahler cone to the Kahler cone; e.g. $-\operatorname{id}$ is a Hodge isometry that is not induced by an automorphism.
 
 Strong Torelli for polarized K3s: if $(X, L)$ and $(X', L')$ are polarized K3s and $\varphi: H^2(X;\ZZ) { \, \xrightarrow{\sim}\, }H^2(X';\ZZ)$ is a Hodge isometry with $\varphi(c_1(L)) = c_1(L')$, then $\varphi = f^*$ for a unique isomorphism $f:X' { \, \xrightarrow{\sim}\, }X$.
+
+In particular, two complex K3 surfaces are isomorphic if and only if their integral second cohomology groups admit a Hodge isometry. For one surface,
+$$\operatorname{Aut}(X)\cong\{g\in O_{\mathrm{Hdg}}(H^2(X,\mathbb Z)):g(\mathcal K_X)=\mathcal K_X\},$$
+as groups via $f\mapsto(f^{-1})^*$.
 :::
 
 ::: {.front card-id="card-5bb9c6a0085b74b6"}

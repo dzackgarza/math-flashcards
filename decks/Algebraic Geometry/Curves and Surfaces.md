@@ -2,14 +2,16 @@
 title: "Algebraic Geometry::Curves and Surfaces"
 ---
 
-::: {.front card-id="card-f45bbd1cf89681a6"}
-What is **Zariski's main theorem**?
+::: {.front card-id="card-f45bbd1cf89681a6" tags="theorem"}
+For a proper birational morphism $f:X\to Y$ of integral complex varieties with normal target, state Zariski's connectedness theorem. What does it imply for the total transform of a point of indeterminacy of a birational map from a normal projective variety?
 :::
 
 ::: {.back card-id="card-f45bbd1cf89681a6"}
-For $f:X\overset{\sim}{\dashrightarrow}Y$ a birational projective morphism of Noetherian integral schemes with $Y$ normal, every fiber $f^{-1}(y)$ is connected.
+For the proper birational morphism,
+$$f_*\mathcal O_X=\mathcal O_Y,$$
+and every fiber is geometrically connected.
 
-For $T:X\to Y$ a birational morphism of projective varieties with $X$ normal and $p$ a *fundamental point* of $T$, then the total transform $T(p)$ is connected of dimension $d\geq 1$. ($T$ is defined on some largest open $U\subseteq X$, and $X\setminus U$ are the fundamental points. Here the total transform is $T(p) \coloneqq p_2 p_1^{-1}(p)$ where $\Gamma_\phi \subset U \times Y \xrightarrow{p_1, p_2} U, Y$ is the graph of a representative $\phi: U\to Y$.)
+For a birational map $T:X\dashrightarrow Y$ of projective varieties with $X$ normal, let $\Gamma\subset X\times Y$ be its graph closure, with projections $p_1,p_2$. At a point $x$ of indeterminacy, the total transform $p_2(p_1^{-1}(x))$ is connected and has positive dimension.
 :::
 
 ::: {.front card-id="card-6bfa90e1ac9bf990"}
@@ -772,12 +774,13 @@ Discuss $L.{\mathcal{O}}(C)$ when $L$ is ample.
 Always positive: $L_1.C = \deg L_1\mathrel{\Big|}_C > 0$.
 :::
 
-::: {.front card-id="card-3036ebb4d8e6a374"}
-What is the signature of the intersection form on $\operatorname{Num}(X)$?
+::: {.front card-id="card-3036ebb4d8e6a374" tags="theorem"}
+For a smooth complex projective surface $S$, state the signature of the intersection form on $N^1(S)_{\mathbb R}$ and its restriction orthogonal to an ample class $H$.
 :::
 
 ::: {.back card-id="card-3036ebb4d8e6a374"}
-$(1, p(X) - 1)$ for $p(X)$ the Picard number, so its real form diagonalizes to $(1, -1,\cdots, -1)$.
+The signature is $(1,\rho(S)-1)$. The form is negative definite on $H^\perp$. In particular, for a nonzero numerical class $D$,
+$$HD=0\ \Longrightarrow\ D^2<0.$$
 :::
 
 ::: {.front card-id="card-535af4290aac8dee"}
@@ -1364,12 +1367,14 @@ For a semistable genus-$g$ fibration $f:S\to B$ from a smooth projective complex
 $$\delta_f=\sum_{v\in B}\#\{\text{nodes of }F_v\}.$$
 :::
 
-::: {.front card-id="formula-surface-hilbert-points-dimension" tags="formula"}
-For a smooth complex surface $S$, compute the dimension of the Hilbert scheme of length-$n$ subschemes.
+::: {.front card-id="formula-surface-hilbert-points-dimension" tags="theorem"}
+For a smooth connected complex quasi-projective surface $S$, state Fogarty's theorem about $\operatorname{Hilb}^n(S)$ and the Hilbert–Chow morphism.
 :::
 
 ::: {.back card-id="formula-surface-hilbert-points-dimension"}
-$$\dim\operatorname{Hilb}^n(S)=2n.$$
+The scheme $\operatorname{Hilb}^n(S)$ is smooth and irreducible of dimension $2n$. The Hilbert–Chow morphism
+$$\operatorname{Hilb}^n(S)\longrightarrow\operatorname{Sym}^n(S)$$
+is a resolution of singularities.
 :::
 
 ::: {.front card-id="formula-severi-dimension" tags="formula"}
@@ -1394,4 +1399,73 @@ How many lines lie on a smooth cubic surface over $\mathbb C$?
 
 ::: {.back card-id="formula-cubic-surface-lines"}
 $$\#\{\text{lines}\}=27.$$
+:::
+
+::: {.front card-id="theorem-castelnuovo-genus-bound" tags="theorem"}
+For a nondegenerate integral curve $C\subset\mathbb P^r_{\mathbb C}$ of degree $d$, $r\ge2$, write $d-1=m(r-1)+\varepsilon$ with $0\le\varepsilon<r-1$. State Castelnuovo's genus bound.
+:::
+
+::: {.back card-id="theorem-castelnuovo-genus-bound"}
+One has
+$$p_a(C)\le\binom m2(r-1)+m\varepsilon.$$
+:::
+
+::: {.front card-id="theorem-brill-noether" tags="theorem"}
+For a general smooth connected complex projective curve $C$ of genus $g$, let $W_d^r(C)=\{L\in\operatorname{Pic}^d(C):h^0(L)\ge r+1\}$, with $r\ge0$. State the Brill–Noether number, nonemptiness criterion, and dimension.
+:::
+
+::: {.back card-id="theorem-brill-noether"}
+Set
+$$\rho(g,r,d)=g-(r+1)(g-d+r).$$
+Then
+$$W_d^r(C)=\varnothing\iff\rho<0,\qquad\dim W_d^r(C)=\min(\rho,g)\quad(\rho\ge0).$$
+For any smooth connected curve of genus $g$, the condition $\rho\ge0$ guarantees nonemptiness. If $\rho\ge g$, Riemann–Roch gives $W_d^r(C)=\operatorname{Pic}^d(C)$.
+:::
+
+::: {.front card-id="theorem-clifford" tags="theorem"}
+Let $D$ be a divisor on a smooth connected complex projective curve, with $h^0(D)\ge2$ and $h^1(D)\ge2$. State Clifford's inequality and what nonhyperellipticity implies about equality.
+:::
+
+::: {.back card-id="theorem-clifford"}
+One has
+$$h^0(D)-1\le\frac{\deg D}{2}.$$
+If the curve is nonhyperelliptic, the inequality is strict under these hypotheses.
+:::
+
+::: {.front card-id="theorem-castelnuovo-severi" tags="theorem"}
+Let $f_i:C\to C_i$ be finite morphisms of degrees $d_i$ between smooth connected complex projective curves. If $C\to C_1\times C_2$ is birational onto its image, bound $g(C)$.
+:::
+
+::: {.back card-id="theorem-castelnuovo-severi"}
+The Castelnuovo–Severi inequality is
+$$g(C)\le d_1g(C_1)+d_2g(C_2)+(d_1-1)(d_2-1).$$
+:::
+
+::: {.front card-id="theorem-stable-reduction" tags="theorem"}
+Let $C/K$ be smooth, projective, and geometrically connected of genus $g\ge2$, with $K$ the fraction field of a DVR $R$. State stable reduction and the precise uniqueness assertion.
+:::
+
+::: {.back card-id="theorem-stable-reduction"}
+After a finite extension $K'/K$ and passage to a DVR $R'$ extending $R$ with fraction field $K'$, there is a stable curve $\mathcal C\to\operatorname{Spec}R'$ with generic fiber $C_{K'}$. Given the identification of its generic fiber with $C_{K'}$, this stable model is unique up to a unique isomorphism extending that identification.
+:::
+
+::: {.front card-id="theorem-shioda-tate-quotient" tags="theorem"}
+For a relatively minimal complex projective elliptic surface $f:S\to B$ with zero section and at least one singular fiber, let $T\subset\operatorname{NS}(S)$ be generated by the zero section, a fiber, and the nonidentity components of reducible fibers. Relate $\operatorname{NS}(S)/T$ and its torsion to the Mordell–Weil group.
+:::
+
+::: {.back card-id="theorem-shioda-tate-quotient"}
+The section map induces
+$$\operatorname{NS}(S)/T\cong\operatorname{MW}(f).$$
+For the saturation $T^{\mathrm{sat}}$ in $\operatorname{NS}(S)$,
+$$T^{\mathrm{sat}}/T\cong\operatorname{MW}(f)_{\mathrm{tors}},\qquad\operatorname{NS}(S)/T^{\mathrm{sat}}\cong\operatorname{MW}(f)/\operatorname{MW}(f)_{\mathrm{tors}}.$$
+Taking ranks gives
+$$\rho(S)=2+\operatorname{rank}\operatorname{MW}(f)+\sum_v(m_v-1).$$
+:::
+
+::: {.front card-id="theorem-stable-curve-moduli" tags="theorem"}
+For $g\ge2$, state the geometric properties and dimension of the complex moduli stack $\overline{\mathcal M}_g$, the property of its coarse space, and the nature of its boundary.
+:::
+
+::: {.back card-id="theorem-stable-curve-moduli"}
+The stack $\overline{\mathcal M}_g$ is smooth, proper, irreducible, and Deligne–Mumford, with dimension $3g-3$. Its coarse moduli space $\overline M_g$ is projective. The boundary $\overline{\mathcal M}_g\setminus\mathcal M_g$ is a normal-crossings divisor on the stack.
 :::

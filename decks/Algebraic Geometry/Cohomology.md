@@ -138,12 +138,16 @@ $H^i(X; {\mathcal{O}}_X(n)) = 0$ for $0<i<r$ and every $n$.
 $H^r(X; {\mathcal{O}}_X(-(r+1))) = A$.
 :::
 
-::: {.front card-id="card-847e440e17d15caf"}
-When is an invertible sheaf ample?
+::: {.front card-id="card-847e440e17d15caf" tags="theorem"}
+For a line bundle $L$ on a proper scheme $X$ over a Noetherian affine base, state Serre's cohomological and global-generation criteria for ampleness.
 :::
 
 ::: {.back card-id="card-847e440e17d15caf"}
-For $A$ Noetherian and $X\in \Sch_{/ {A}}$ proper, $\mcl$ is ample $\iff \forall \mcf\in \Coh(X)$ one has $H^i(\mcf\otimes\mcl^n) = 0$ for $n\gg 0$ and every $i > 0$.
+The following are equivalent:
+
+- $L$ is ample.
+- For every coherent $\mathcal F$, $H^i(X,\mathcal F\otimes L^m)=0$ for $i>0$ and all sufficiently large $m$.
+- For every coherent $\mathcal F$, the sheaf $\mathcal F\otimes L^m$ is globally generated for all sufficiently large $m$.
 :::
 
 ::: {.front card-id="card-24f0f5d5999e4fbf" tags="definition"}
@@ -214,12 +218,13 @@ For $f:X\to Y$,
 $$H^p\left(Y, {\mathbf{R}}^q f_* \mathbb{Q}\right) \Rightarrow H^{p+q}(X, \mathbb{Q})$$
 :::
 
-::: {.front card-id="card-69f6f29eb7bd975c"}
-Give a sufficient condition for the Leray spectral sequence to degenerate.
+::: {.front card-id="card-69f6f29eb7bd975c" tags="theorem"}
+For a smooth projective morphism $f:X\to Y$ of complex varieties, at which page does the rational singular-cohomology Leray spectral sequence degenerate?
 :::
 
 ::: {.back card-id="card-69f6f29eb7bd975c"}
-$f:X\to Y$ smooth projective, by Deligne, as a consequence of Hard Lefschetz.
+Deligne's theorem gives degeneration at $E_2$ for
+$$E_2^{p,q}=H^p(Y,R^qf_*\mathbb Q)\Longrightarrow H^{p+q}(X,\mathbb Q).$$
 :::
 
 ::: {.front card-id="card-7a13c1f152bea481"}
@@ -336,4 +341,139 @@ For a divisor $D$ on a smooth projective complex threefold with $K_X\sim0$, comp
 
 ::: {.back card-id="formula-trivial-canonical-threefold-rr"}
 $$\chi(\mathcal O_X(D))=\frac{D^3}{6}+\frac{c_2(X)D}{12}.$$
+:::
+
+::: {.front card-id="theorem-proper-coherence" tags="theorem"}
+Let $f:X\to Y$ be proper between locally Noetherian schemes and $\mathcal F$ coherent on $X$. State Grothendieck's coherence theorem.
+:::
+
+::: {.back card-id="theorem-proper-coherence"}
+Every higher direct image $R^if_*\mathcal F$ is coherent, for $i\ge0$.
+:::
+
+::: {.front card-id="theorem-cohomology-semicontinuity" tags="theorem"}
+Let $f:X\to S$ be proper, with $S$ locally Noetherian, and let $\mathcal F$ be coherent and flat over $S$. State the variation of fiber cohomology dimensions and Euler characteristics.
+:::
+
+::: {.back card-id="theorem-cohomology-semicontinuity"}
+For each $i$, the function $s\mapsto h^i(X_s,\mathcal F_s)$ is upper semicontinuous, so
+$$\{s:h^i(X_s,\mathcal F_s)\ge r\}$$
+is closed for every $r$. The function $s\mapsto\chi(X_s,\mathcal F_s)$ is locally constant.
+:::
+
+::: {.front card-id="theorem-cohomology-base-change" tags="theorem"}
+Let $f:X\to S$ be proper, $S$ locally Noetherian, and $\mathcal F$ coherent and flat over $S$. What does surjectivity of the fiber base-change map $\beta_s^i$ imply?
+:::
+
+::: {.back card-id="theorem-cohomology-base-change"}
+For the canonical map
+$$\beta_s^i:(R^if_*\mathcal F)\otimes\kappa(s)\longrightarrow H^i(X_s,\mathcal F_s),$$
+surjectivity implies that $\beta_s^i$ is an isomorphism. After restricting to a neighborhood of $s$, formation of $R^if_*\mathcal F$ commutes with base change in degree $i$.
+:::
+
+::: {.front card-id="theorem-grauert-local-freeness" tags="theorem"}
+Let $f:X\to S$ be proper, $S$ reduced and locally Noetherian, and $\mathcal F$ coherent and flat over $S$. If $h^i(X_s,\mathcal F_s)$ is locally constant, what follows? Does fiber-dimension constancy alone suffice on a nonreduced base?
+:::
+
+::: {.back card-id="theorem-grauert-local-freeness"}
+The sheaf $R^if_*\mathcal F$ is locally free and its formation commutes with base change. On a nonreduced base, constancy of the dimensions on residue-field fibers alone does not imply these conclusions.
+:::
+
+::: {.front card-id="theorem-formal-functions" tags="theorem"}
+Let $A$ be Noetherian, $I\subset A$ an ideal, $X\to\operatorname{Spec}A$ proper, and $\mathcal F$ coherent. State the theorem on formal functions.
+:::
+
+::: {.back card-id="theorem-formal-functions"}
+There is a natural isomorphism
+$$H^i(X,\mathcal F)^\wedge_I\cong\varprojlim_n H^i(X,\mathcal F/I^n\mathcal F).$$
+Applied over a local base, this computes the completed stalk of $R^if_*\mathcal F$ from the infinitesimal neighborhoods of the fiber.
+:::
+
+::: {.front card-id="theorem-grothendieck-duality" tags="theorem"}
+For a proper morphism $f:X\to Y$ of Noetherian schemes in the Grothendieck-duality setting, state the adjunction and internal derived-Hom identity for $F\in D^b_{\mathrm{coh}}(X)$ and $G\in D^+_{\mathrm{qc}}(Y)$.
+:::
+
+::: {.back card-id="theorem-grothendieck-duality"}
+The functor $f^!$ is right adjoint to $Rf_*$. Under these duality hypotheses,
+$$R\mathcal Hom_Y(Rf_*F,G)\simeq Rf_*R\mathcal Hom_X(F,f^!G).$$
+:::
+
+::: {.front card-id="theorem-relative-serre-duality" tags="theorem"}
+For a smooth proper morphism $f:X\to Y$ of relative dimension $n$ between Noetherian schemes, compute $f^!\mathcal O_Y$. State relative Serre duality for a vector bundle $E$ when the relevant direct images are locally free and commute with base change.
+:::
+
+::: {.back card-id="theorem-relative-serre-duality"}
+One has
+$$f^!\mathcal O_Y\simeq\omega_{X/Y}[n],\qquad (R^if_*E)^\vee\cong R^{n-i}f_*(E^\vee\otimes\omega_{X/Y}).$$
+:::
+
+::: {.front card-id="theorem-kodaira-vanishing" tags="theorem"}
+Let $X$ be a smooth complex projective variety and $L$ an ample line bundle. State Kodaira vanishing.
+:::
+
+::: {.back card-id="theorem-kodaira-vanishing"}
+One has
+$$H^i(X,\omega_X\otimes L)=0\qquad(i>0).$$
+:::
+
+::: {.front card-id="theorem-kawamata-viehweg" tags="theorem"}
+Let $(X,\Delta)$ be a projective klt pair over $\mathbb C$ and $D$ an integral Cartier divisor with $D-(K_X+\Delta)$ nef and big. State Kawamata–Viehweg vanishing.
+:::
+
+::: {.back card-id="theorem-kawamata-viehweg"}
+One has
+$$H^i(X,\mathcal O_X(D))=0\qquad(i>0).$$
+:::
+
+::: {.front card-id="theorem-nadel-vanishing" tags="theorem"}
+Let $X$ be smooth complex projective, $L$ an integral divisor, and $D$ an effective $\mathbb Q$-divisor with $L-D$ nef and big. State Nadel vanishing using the multiplier ideal $\mathcal J(X,D)$.
+:::
+
+::: {.back card-id="theorem-nadel-vanishing"}
+One has
+$$H^i\left(X,\mathcal O_X(K_X+L)\otimes\mathcal J(X,D)\right)=0\qquad(i>0).$$
+:::
+
+::: {.front card-id="theorem-kollar-torsion-free" tags="theorem"}
+Let $f:X\to Y$ be a surjective projective morphism of complex varieties, with $X$ smooth projective and $Y$ normal. State Kollár's torsion-freeness theorem and its implication for sections supported on proper closed subsets.
+:::
+
+::: {.back card-id="theorem-kollar-torsion-free"}
+Each $R^if_*\omega_X$ is torsion-free. Thus a section of this sheaf that vanishes at the generic point is zero; a nonzero section cannot be supported on a proper closed subset.
+:::
+
+::: {.front card-id="theorem-kollar-vanishing" tags="theorem"}
+Let $f:X\to Y$ be surjective and projective over $\mathbb C$, with $X$ smooth projective and $Y$ normal. For an ample line bundle $A$ on $Y$, state Kollár vanishing.
+:::
+
+::: {.back card-id="theorem-kollar-vanishing"}
+For every $i\ge0$,
+$$H^j(Y,R^if_*\omega_X\otimes A)=0\qquad(j>0).$$
+:::
+
+::: {.front card-id="theorem-grauert-riemenschneider" tags="theorem"}
+For a projective birational morphism $f:X\to Y$ of complex varieties, with $X$ smooth and $Y$ normal, state Grauert–Riemenschneider vanishing.
+:::
+
+::: {.back card-id="theorem-grauert-riemenschneider"}
+One has
+$$R^if_*\omega_X=0\qquad(i>0).$$
+:::
+
+::: {.front card-id="theorem-derived-projection-formula" tags="theorem"}
+Let $f:X\to Y$ be proper between Noetherian schemes, $F\in D_{\mathrm{qc}}(X)$, and $G$ a perfect complex on $Y$. State the derived projection formula.
+:::
+
+::: {.back card-id="theorem-derived-projection-formula"}
+There is a natural isomorphism
+$$Rf_*(F\otimes^{\mathbf L}Lf^*G)\simeq Rf_*F\otimes^{\mathbf L}G.$$
+:::
+
+::: {.front card-id="theorem-grothendieck-riemann-roch" tags="theorem"}
+For a proper morphism $f:X\to Y$ between smooth complex varieties and $E\in K_0(X)$, state Grothendieck–Riemann–Roch in the rational Chow ring.
+:::
+
+::: {.back card-id="theorem-grothendieck-riemann-roch"}
+With $f_!$ the alternating sum of higher direct images,
+$$\operatorname{ch}(f_!E)\operatorname{td}(T_Y)=f_*\left(\operatorname{ch}(E)\operatorname{td}(T_X)\right).$$
 :::

@@ -28,18 +28,15 @@ Draw a picture of 3-dimensional vanishing cycles.
 For the smoothing $X_t=\{z_1^2+z_2^2+z_3^2+z_4^2=t\}\subset\mathbb C^4$ with $t>0$, the real locus $\{(x_1,\ldots,x_4)\in\mathbb R^4:\sum x_i^2=t\}$ is a three-sphere $S^3\subset X_t$. It shrinks to the node as $t\to0$; this is the vanishing cycle.
 :::
 
-::: {.front card-id="card-49cc848db9c8f1bf"}
-What is the hard Lefschetz theorem?
+::: {.front card-id="card-49cc848db9c8f1bf" tags="theorem"}
+State hard Lefschetz and the primitive decomposition for a compact Kähler $n$-fold. What coefficient refinement applies to an ample integral class on a smooth complex projective variety?
 :::
 
 ::: {.back card-id="card-49cc848db9c8f1bf"}
-For $X$ compact Kahler, for $k\leq n\coloneqq\dim X$,
-
-$L^{n-k}: H^k(X; {\mathbf{R}}) { \, \xrightarrow{\sim}\, }H^{2n-k}(X; {\mathbf{R}})$
-
-$H^k(X; {\mathbf{R}}) = \bigoplus_{i\geq 0} L^i H^{k-2i}(X; {\mathbf{R}})_\prim$
-
-$H^k(X; {\mathbf{R}})_\prim\otimes_{\mathbf{R}}\CC=\bigoplus_{p+q=k} H^{p, q}(X)_\prim$.
+For $L=h\cup-$ with $h$ a Kähler class and $0\le k\le n$,
+$$L^{n-k}:H^k(X,\mathbb R)\xrightarrow{\sim}H^{2n-k}(X,\mathbb R).$$
+If $h$ is an ample integral class, the same isomorphism holds over $\mathbb Q$. With $P^j=\ker L^{n-j+1}$,
+$$H^k(X,\mathbb R)=\bigoplus_{r\ge0}L^rP^{k-2r},\qquad P^j_{\mathbb C}=\bigoplus_{p+q=j}(P^j_{\mathbb C}\cap H^{p,q}(X)).$$
 :::
 
 ::: {.front card-id="card-e035601038997a30"}
@@ -551,13 +548,17 @@ What is a Hodge isometry?
 For polarized Hodge structures $(V_1,q_1)$ and $(V_2,q_2)$, a Hodge isometry is an isomorphism $f:V_1\xrightarrow{\sim}V_2$ of Hodge structures such that $q_2(fx,fy)=q_1(x,y)$ for all $x,y\in V_1$.
 :::
 
-::: {.front card-id="card-f684c22e4863facf"}
-What is the Hodge-Riemann pairing?
+::: {.front card-id="card-f684c22e4863facf" tags="theorem"}
+For a smooth complex projective $n$-fold with ample class $h$ and $0\le k\le n$, state the Hodge–Riemann pairing on primitive degree-$k$ cohomology and its positivity on each Hodge type.
 :::
 
 ::: {.back card-id="card-f684c22e4863facf"}
-Consider a rational (or integral) Kahler class $\omega \in H^2(X, \mathbf{Q})$ on a smooth projective manifold $X$. Then define on $H^n(X, \mathbf{Q})$ with $n \leq d=\operatorname{dim}_\CC X$ the following pairing:
-$$(v, w) \longmapsto(-1)^{n(n-1) / 2} \int_X v \wedge w \wedge \omega^{d-n}$$
+Set
+$$P^k(X)=\ker\left(h^{n-k+1}:H^k(X,\mathbb C)\to H^{2n-k+2}(X,\mathbb C)\right),$$
+and
+$$Q_k(\alpha,\beta)=(-1)^{k(k-1)/2}\int_X\alpha\wedge\beta\wedge h^{n-k}.$$
+For $0\ne\alpha\in P^k(X)\cap H^{p,q}(X)$, with $p+q=k$,
+$$i^{p-q}Q_k(\alpha,\overline\alpha)>0.$$
 :::
 
 ::: {.front card-id="card-6d7de03bbbdaa923"}
@@ -652,4 +653,57 @@ What is the Hodge diamond for a surface?
 For a smooth projective complex surface, the Hodge diamond is
 $$\begin{matrix}&&1&&\\&q&&q&\\p_g&&h^{1,1}&&p_g\\&q&&q&\\&&1&&\end{matrix}$$
 where $q=h^{1,0}=h^1(\mathcal O_X)$ and $p_g=h^{2,0}=h^0(\omega_X)$.
+:::
+
+::: {.front card-id="theorem-hodge-de-rham-degeneration" tags="theorem"}
+For a smooth proper complex variety $X$, state the degeneration of the Hodge–de Rham spectral sequence and its dimension consequence.
+:::
+
+::: {.back card-id="theorem-hodge-de-rham-degeneration"}
+The spectral sequence
+$$E_1^{p,q}=H^q(X,\Omega_X^p)\Longrightarrow H_{\mathrm{dR}}^{p+q}(X)$$
+degenerates at $E_1$. Consequently,
+$$\dim H_{\mathrm{dR}}^n(X)=\sum_{p+q=n}h^q(X,\Omega_X^p).$$
+:::
+
+::: {.front card-id="theorem-weak-lefschetz" tags="theorem"}
+Let $X$ be smooth complex projective of dimension $n\ge2$ and $H\subset X$ a smooth ample divisor. State weak Lefschetz for integral cohomology and homotopy groups.
+:::
+
+::: {.back card-id="theorem-weak-lefschetz"}
+Restriction
+$$H^i(X,\mathbb Z)\longrightarrow H^i(H,\mathbb Z)$$
+is an isomorphism for $i<n-1$ and injective for $i=n-1$. For compatible base points, the inclusion-induced map
+$$\pi_i(H)\longrightarrow\pi_i(X)$$
+is an isomorphism for $i<n-1$ and surjective for $i=n-1$.
+:::
+
+::: {.front card-id="theorem-ehresmann-monodromy" tags="theorem"}
+State Ehresmann's theorem for a proper smooth submersion. What does it imply for a smooth proper family of complex manifolds over a connected complex manifold $S$?
+:::
+
+::: {.back card-id="theorem-ehresmann-monodromy"}
+A proper smooth submersion is locally trivial as a differentiable fiber bundle. Its fibers are locally diffeomorphic, and the sheaves $R^if_*\mathbb Z$ are local systems. Choosing $s\in S$ gives monodromy representations
+$$\pi_1(S,s)\longrightarrow\operatorname{Aut}(H^i(X_s,\mathbb Z)).$$
+:::
+
+::: {.front card-id="theorem-picard-lefschetz" tags="theorem"}
+For a one-parameter degeneration of complex $n$-folds with a single ordinary double point and vanishing cycle $\delta\in H_n(X_t,\mathbb Z)$, state Picard–Lefschetz monodromy around a positive loop, using the complex-orientation intersection convention. How does parity affect its form?
+:::
+
+::: {.back card-id="theorem-picard-lefschetz"}
+The monodromy is
+$$T(x)=x+(-1)^{(n+1)(n+2)/2}(x\cdot\delta)\delta.$$
+For even $n$ it is a reflection. For odd $n$ it is a symplectic transvection, which is the identity if $\delta$ vanishes in global homology.
+:::
+
+::: {.front card-id="theorem-decomposition" tags="theorem"}
+For a projective morphism $f:X\to Y$ of complex algebraic varieties, state the decomposition theorem with rational coefficients. Describe the supports and local systems, and the Lefschetz consequence for projective varieties.
+:::
+
+::: {.back card-id="theorem-decomposition"}
+With intersection complexes normalized to be perverse, there is a generally noncanonical decomposition
+$$Rf_*\operatorname{IC}_X\simeq\bigoplus_{\alpha,i}\operatorname{IC}_{Z_\alpha}(\mathcal L_{\alpha,i})[-i].$$
+Each $Z_\alpha$ is an irreducible closed subvariety of $Y$, and each $\mathcal L_{\alpha,i}$ is a semisimple local system on a smooth dense open subset of $Z_\alpha$. The perverse cohomology sheaves are semisimple. For a complex projective $n$-fold and an ample class $h$, intersection cohomology satisfies
+$$h^{n-k}:IH^k(X,\mathbb Q)\xrightarrow{\sim}IH^{2n-k}(X,\mathbb Q)\qquad(0\le k\le n).$$
 :::

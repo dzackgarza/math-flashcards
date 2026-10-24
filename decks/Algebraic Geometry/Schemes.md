@@ -608,16 +608,12 @@ For singular curves, define $p_g(C) \coloneqq p_g(\tilde C)$ where $\tilde C$ is
 For an irreducible plane curve, $g = {1\over 2}(d-1)(d-2) - s$ where $s$ is a count of singularities with multiplicity.
 :::
 
-::: {.front card-id="card-48c0d3ff41bea326"}
-What is Bertini's theorem? Give a consequence.
+::: {.front card-id="card-48c0d3ff41bea326" tags="theorem"}
+Let $X$ be a smooth integral complex projective variety. State Bertini irreducibility for hyperplane sections and for a base-point-free linear system $V$.
 :::
 
 ::: {.back card-id="card-48c0d3ff41bea326"}
-Idea: a generic hyperplane section of a smooth projective variety is again smooth.
-
-For $k = \overline{k}$ and $X\subseteq {\mathbf{P}}^n_{/ {k}}$ a smooth projective variety (closed subvariety of ${\mathbf{P}}^n$), there is a hyperplane $H$ not containing $X$ such that the hyperplane section $H\cap X$ is regular at every point. The set of $H$ with this property is an open dense subset of the complete linear system ${\left\lvert {H} \right\rvert}$ (regarded as a projective space). If $\dim X \geq 2$ then $H\cap X$ is moreover connected, hence irreducible, so it is again a smooth projective variety.
-
-Consequence: iterating, every smooth projective variety of dimension $\geq 2$ contains smooth irreducible curves, cut out by general hyperplane sections.
+If $\dim X\ge2$, a general hyperplane section is smooth and irreducible. More generally, if the morphism defined by $V$ has image of dimension at least two, a general member of $V$ is smooth and irreducible. Successive general hyperplane sections therefore produce smooth irreducible curves inside every smooth projective variety of dimension at least two.
 :::
 
 ::: {.front card-id="card-f6e2da3ec9f4c267"}
@@ -734,12 +730,12 @@ What is a **flat family**?
 Any morphism $\mcx\to X$ of schemes to $X$ which is flat.
 :::
 
-::: {.front card-id="card-3c776a71df041421"}
-How can one check if a morphism is flat?
+::: {.front card-id="card-3c776a71df041421" tags="theorem"}
+Let $f:X\to C$ be a finite-type morphism of Noetherian schemes, with $C$ regular and integral of dimension one. Give the associated-point criterion for flatness and its consequence for dominant maps of integral varieties to smooth curves.
 :::
 
 ::: {.back card-id="card-3c776a71df041421"}
-For $f: X\to Y$ with $Y$ integral and regular of dimension 1, $f$ is flat iff every *associated point* maps to $\eta_Y$. For $X$ reduced, this says every irreducible component of $X$ dominates $Y$.
+The morphism is flat if and only if every associated point of $X$ maps to the generic point of $C$. If $X$ is reduced, this means that every irreducible component dominates $C$. In particular, a dominant morphism from an integral complex variety to a smooth integral curve is flat: its local rings are torsion-free, hence flat, over the local DVRs of the curve.
 :::
 
 ::: {.front card-id="card-16b1ac8dbea48ede"}
@@ -750,12 +746,12 @@ What are some properties not preserved in a flat family?
 Being irreducible or reduced, Picard numbers, generally most things that aren't related to Hilbert polynomials.
 :::
 
-::: {.front card-id="card-d09c4ef4014a45e1"}
-Discuss the image of a flat morphism.
+::: {.front card-id="card-d09c4ef4014a45e1" tags="theorem"}
+When does flatness imply that a morphism is open? What does this imply for smooth morphisms?
 :::
 
 ::: {.back card-id="card-d09c4ef4014a45e1"}
-Always open.
+A flat morphism locally of finite presentation is open: the image of every open subset of its source is open. Every smooth morphism has these properties, hence is open.
 :::
 
 ::: {.front card-id="card-63efc03dbb2b7a94"}
@@ -1013,14 +1009,13 @@ Closed with finite fibers.
 Finite implies projective, and finite fibers + projective implies proper (not conversely!)
 :::
 
-::: {.front card-id="card-b43d97bd1c06ebbc"}
-What is a sufficient criterion for a morphism to be finite?
+::: {.front card-id="card-b43d97bd1c06ebbc" tags="theorem"}
+What finiteness conclusion follows for a proper morphism of schemes with finite set-theoretic fibers?
 :::
 
 ::: {.back card-id="card-b43d97bd1c06ebbc"}
-Proper, locally of finite presentation, finite fibers.
-
-For locally Noetherian schemes, finite $\iff$ proper + finite fibers.
+It is finite. Equivalently,
+$$f\text{ proper and quasi-finite}\ \Longrightarrow\ f\text{ finite}.$$
 :::
 
 ::: {.front card-id="card-f6ad9d9bdd3e651a"}
@@ -1459,10 +1454,179 @@ For a smooth local complete intersection $Z$ in a smooth projective complex vari
 $$T_{[Z]}\operatorname{Hilb}(X)=H^0(Z,N_{Z/X}),\qquad \operatorname{ob}\in H^1(Z,N_{Z/X}).$$
 :::
 
-::: {.front card-id="formula-variety-deformations" tags="formula"}
-For a smooth proper complex variety $X$, give its first-order deformation space and a space containing all obstruction classes.
+::: {.front card-id="formula-variety-deformations" tags="theorem"}
+For a smooth proper complex variety $X$, identify the spaces controlling infinitesimal automorphisms, first-order deformations, and obstruction classes.
 :::
 
 ::: {.back card-id="formula-variety-deformations"}
-$$T\operatorname{Def}(X)=H^1(X,T_X),\qquad \operatorname{ob}\in H^2(X,T_X).$$
+They are respectively
+$$H^0(X,T_X),\qquad H^1(X,T_X),\qquad H^2(X,T_X).$$
+Obstruction classes lie in $H^2(X,T_X)$; its vanishing implies unobstructedness.
+:::
+
+::: {.front card-id="theorem-zariski-main-factorization" tags="theorem"}
+Let $f:X\to Y$ be separated and quasi-finite, with $Y$ quasi-compact and quasi-separated. State Grothendieck's Zariski Main Theorem and its quasi-affineness consequence.
+:::
+
+::: {.back card-id="theorem-zariski-main-factorization"}
+There is a factorization
+$$X\xhookrightarrow{j}\overline X\xrightarrow{\pi}Y,$$
+where $j$ is an open immersion and $\pi$ is finite. In particular, $f$ is quasi-affine.
+:::
+
+::: {.front card-id="theorem-quasifinite-birational-normal" tags="theorem"}
+Let $f:X\to Y$ be a separated, quasi-finite, birational morphism of integral complex varieties, with $Y$ normal. What can be concluded about $f$? What if it is surjective?
+:::
+
+::: {.back card-id="theorem-quasifinite-birational-normal"}
+The morphism $f$ is an open immersion. If it is surjective, it is an isomorphism.
+:::
+
+::: {.front card-id="theorem-integral-birational-normal" tags="theorem"}
+Let $f:X\to Y$ be an integral birational morphism of integral schemes, with $Y$ normal. What can be concluded?
+:::
+
+::: {.back card-id="theorem-integral-birational-normal"}
+The morphism $f$ is an isomorphism. This applies in particular to finite birational morphisms.
+:::
+
+::: {.front card-id="theorem-stein-factorization" tags="theorem"}
+For a proper morphism $f:X\to Y$ with $Y$ locally Noetherian, state Stein factorization, including the construction of the intermediate scheme and the fiber properties.
+:::
+
+::: {.back card-id="theorem-stein-factorization"}
+There is a canonical factorization
+$$X\xrightarrow{g}Y'\xrightarrow{h}Y,\qquad Y'=\underline{\operatorname{Spec}}_Y(f_*\mathcal O_X).$$
+The morphism $h$ is finite, $g$ is proper with geometrically connected fibers, and $g_*\mathcal O_X=\mathcal O_{Y'}$.
+:::
+
+::: {.front card-id="theorem-generically-finite" tags="theorem"}
+For a dominant morphism $f:X\to Y$ of integral complex varieties, give the dimension criterion for generic finiteness. If $f$ is also proper, what does it become over a suitable nonempty open subset of $Y$?
+:::
+
+::: {.back card-id="theorem-generically-finite"}
+One has
+$$f\text{ generically finite}\iff\dim X=\dim Y.$$
+If $f$ is proper and generically finite, some nonempty open $U\subset Y$ makes $f^{-1}(U)\to U$ finite. Over $\mathbb C$, $U$ can be chosen so that this map is finite étale.
+:::
+
+::: {.front card-id="theorem-chevalley-constructibility" tags="theorem"}
+Let $f:X\to Y$ be a morphism of finite presentation between Noetherian schemes. What does Chevalley's theorem say about images of constructible subsets?
+:::
+
+::: {.back card-id="theorem-chevalley-constructibility"}
+If $Z\subset X$ is constructible, then $f(Z)$ is constructible. In particular, the image of a morphism of complex varieties is constructible.
+:::
+
+::: {.front card-id="theorem-purity-branch-locus" tags="theorem"}
+Let $f:X\to Y$ be a finite dominant generically étale morphism of integral Noetherian schemes, with $X$ normal and $Y$ regular. If $f$ is étale at every codimension-one point of $X$, what follows from purity?
+:::
+
+::: {.back card-id="theorem-purity-branch-locus"}
+The morphism $f$ is étale everywhere. Equivalently, a nonempty branch locus of such a cover contains a divisor.
+:::
+
+::: {.front card-id="theorem-serre-normality" tags="theorem"}
+State Serre's criterion for normality of a Noetherian scheme. How does it simplify for an integral local complete intersection over $\mathbb C$?
+:::
+
+::: {.back card-id="theorem-serre-normality"}
+A Noetherian scheme is normal if and only if it satisfies $R_1$ and $S_2$. Here $R_1$ requires regular local rings at points of codimension at most one, and $S_2$ requires
+$$\operatorname{depth}\mathcal O_{X,x}\ge\min(2,\dim\mathcal O_{X,x}).$$
+A local complete intersection over $\mathbb C$ is Cohen–Macaulay, hence satisfies $S_2$. An integral such scheme, including a hypersurface, is normal exactly when it is regular in codimension one.
+:::
+
+::: {.front card-id="theorem-generic-flatness" tags="theorem"}
+Let $f:X\to S$ be of finite type, with $S$ integral, and let $\mathcal F$ be coherent on $X$. What simultaneous flatness conclusion holds after shrinking $S$?
+:::
+
+::: {.back card-id="theorem-generic-flatness"}
+There is a dense open $U\subset S$ such that $f^{-1}(U)\to U$ is flat and $\mathcal F|_{f^{-1}(U)}$ is flat over $U$.
+:::
+
+::: {.front card-id="theorem-miracle-flatness" tags="theorem"}
+For a local homomorphism $R\to A$ of Noetherian local rings, state miracle flatness in terms of regularity, Cohen–Macaulayness, and dimensions.
+:::
+
+::: {.back card-id="theorem-miracle-flatness"}
+If $R$ is regular, $A$ is Cohen–Macaulay, and
+$$\dim A=\dim R+\dim(A/\mathfrak m_RA),$$
+then $A$ is flat over $R$. In particular, an equidimensional morphism from a Cohen–Macaulay variety to a smooth variety is flat.
+:::
+
+::: {.front card-id="theorem-generic-smoothness" tags="theorem"}
+Let $f:X\to Y$ be a dominant morphism of smooth integral complex varieties. State generic smoothness over the target.
+:::
+
+::: {.back card-id="theorem-generic-smoothness"}
+There is a dense open $U\subset Y$ such that $f^{-1}(U)\to U$ is smooth. In particular, the generic fiber is smooth.
+:::
+
+::: {.front card-id="theorem-proper-fiber-dimension" tags="theorem"}
+For a proper morphism $f:X\to Y$, state upper semicontinuity of fiber dimension. What follows when $Y$ is integral?
+:::
+
+::: {.back card-id="theorem-proper-fiber-dimension"}
+For every integer $d$,
+$$\{y\in Y:\dim X_y\ge d\}$$
+is closed. If $Y$ is integral, the generic fiber has the smallest dimension, and this dimension occurs on a nonempty open subset.
+:::
+
+::: {.front card-id="theorem-flat-local-dimension" tags="theorem"}
+For a flat morphism $f:X\to Y$ locally of finite type between locally Noetherian schemes, state the local dimension formula at $x\in X$.
+:::
+
+::: {.back card-id="theorem-flat-local-dimension"}
+Writing $y=f(x)$,
+$$\dim\mathcal O_{X,x}=\dim\mathcal O_{Y,y}+\dim\mathcal O_{X_y,x}.$$
+:::
+
+::: {.front card-id="theorem-open-geometric-fiber-loci" tags="theorem"}
+Let $f:X\to S$ be flat and of finite presentation, with $S$ locally Noetherian. Which smoothness locus is open? If $f$ is proper, which geometric fiber loci are open in $S$?
+:::
+
+::: {.back card-id="theorem-open-geometric-fiber-loci"}
+The locus in $X$ where $f$ is smooth is open. If $f$ is proper, the loci in $S$ where the fibers are geometrically reduced, geometrically normal, or smooth are open.
+:::
+
+::: {.front card-id="theorem-chow-lemma" tags="theorem"}
+For a proper morphism $X\to S$ with $S$ Noetherian, state Chow's lemma. What does it give for a proper integral complex variety?
+:::
+
+::: {.back card-id="theorem-chow-lemma"}
+There is a proper surjective $S$-morphism $X'\to X$ with $X'$ projective over $S$, which is an isomorphism over a dense open subset of $X$. For integral $X$, it can be chosen birational with $X'$ integral. Thus every proper integral complex variety has a projective birational model.
+:::
+
+::: {.front card-id="theorem-cotangent-deformation-obstruction" tags="theorem"}
+For a finite-type scheme $X/k$, which cotangent-complex groups control infinitesimal automorphisms, first-order deformations, and obstructions? What vanishing is sufficient for unobstructedness?
+:::
+
+::: {.back card-id="theorem-cotangent-deformation-obstruction"}
+The respective groups are
+$$\operatorname{Ext}^i_X(L_{X/k},\mathcal O_X),\qquad i=0,1,2.$$
+If $\operatorname{Ext}^2_X(L_{X/k},\mathcal O_X)=0$, the infinitesimal deformation functor is unobstructed.
+:::
+
+::: {.front card-id="theorem-bogomolov-tian-todorov" tags="theorem"}
+For a compact Kähler manifold $X$ with trivial canonical bundle, state Bogomolov–Tian–Todorov and the dimension of its Kuranishi space. What extension holds for smooth proper varieties in characteristic zero?
+:::
+
+::: {.back card-id="theorem-bogomolov-tian-todorov"}
+The deformation functor is unobstructed, and the Kuranishi space is smooth of dimension $h^1(X,T_X)$. Smooth proper varieties in characteristic zero with torsion canonical bundle likewise have unobstructed deformations.
+:::
+
+::: {.front card-id="theorem-hilbert-representability" tags="theorem"}
+Let $X\to S$ be projective with $S$ locally Noetherian and fix a relative projective embedding and a Hilbert polynomial $P$. State representability of the Hilbert functor.
+:::
+
+::: {.back card-id="theorem-hilbert-representability"}
+The functor of flat families of closed subschemes of $X$ with fiber Hilbert polynomial $P$ is represented by a projective $S$-scheme $\operatorname{Hilb}_{X/S}^P$.
+:::
+
+::: {.front card-id="theorem-keel-mori" tags="theorem"}
+State the Keel–Mori existence theorem for coarse moduli spaces and the resulting assertion for separated Deligne–Mumford stacks of finite type over $\mathbb C$.
+:::
+
+::: {.back card-id="theorem-keel-mori"}
+An algebraic stack of finite type over a locally Noetherian base with finite inertia has a coarse moduli algebraic space. Thus a separated Deligne–Mumford stack of finite type over $\mathbb C$ has one. The coarse map is universal for maps to algebraic spaces and induces a bijection between geometric points of the coarse space and isomorphism classes over each algebraically closed field.
 :::

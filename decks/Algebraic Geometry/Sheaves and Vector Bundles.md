@@ -804,3 +804,32 @@ For a rank-$r$ vector bundle $E$ on a smooth projective complex surface $S$, com
 ::: {.back card-id="formula-surface-vector-bundle-rr"}
 $$\chi(E)=r\chi(\mathcal O_S)+\frac12c_1(E)(c_1(E)-K_S)-c_2(E).$$
 :::
+
+::: {.front card-id="theorem-reflexive-hartogs" tags="theorem"}
+Let $X$ be a normal integral Noetherian scheme and $j:U\hookrightarrow X$ have complement of codimension at least two. State Hartogs extension for functions, reflexive coherent sheaves, and their morphisms.
+:::
+
+::: {.back card-id="theorem-reflexive-hartogs"}
+There are natural isomorphisms
+$$\mathcal O_X\cong j_*\mathcal O_U,\qquad \mathcal F\cong j_*(\mathcal F|_U)$$
+for reflexive coherent $\mathcal F$. For reflexive coherent $\mathcal F,\mathcal G$, restriction gives
+$$\operatorname{Hom}_X(\mathcal F,\mathcal G)\cong\operatorname{Hom}_U(\mathcal F|_U,\mathcal G|_U).$$
+:::
+
+::: {.front card-id="theorem-grothendieck-existence" tags="theorem"}
+Let $A$ be Noetherian and $I$-adically complete, and $X\to\operatorname{Spec}A$ proper. With $X_n=X\times_A A/I^{n+1}$, state Grothendieck existence for coherent sheaves.
+:::
+
+::: {.back card-id="theorem-grothendieck-existence"}
+Completion induces an equivalence
+$$\operatorname{Coh}(X)\simeq\varprojlim_n\operatorname{Coh}(X_n).$$
+The right side consists of coherent sheaves with compatible restriction isomorphisms. Each such system algebraizes, uniquely up to a unique isomorphism compatible with the given formal identification; morphisms algebraize as well.
+:::
+
+::: {.front card-id="theorem-krull-schmidt-bundles" tags="theorem"}
+State Krull–Schmidt for vector bundles on a proper complex variety.
+:::
+
+::: {.back card-id="theorem-krull-schmidt-bundles"}
+Every vector bundle is a finite direct sum of indecomposable vector bundles. The indecomposable summands are unique up to isomorphism and permutation.
+:::

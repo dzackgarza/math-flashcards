@@ -1081,10 +1081,32 @@ What is **smooth base change**?
 For $f: X\to S$ smooth and $g: T\to S$ qc and $\mcf\in \Sh(T)$ of $C_n\dash$modules (torsion), there is an isomorphism $f^* {\mathbf{R}}^q g_* \mcf { \, \xrightarrow{\sim}\, }{\mathbf{R}}^q \tilde g_* (f')^*\mcf$ where $\tilde g: X \underset{\scriptscriptstyle {S} }{\times} T \to X$ and $\tilde f: X \underset{\scriptscriptstyle {S} }{\times} T\to T$.
 :::
 
-::: {.front card-id="card-5e0bccfad0df15c7"}
-What is **proper base change**?
+::: {.front card-id="card-5e0bccfad0df15c7" tags="theorem"}
+Let $f:X\to Y$ be proper, $g:Y'\to Y$ arbitrary, and $X'=X\times_Y Y'$ with projections $f':X'\to Y'$ and $g':X'\to X$. State proper base change for a torsion abelian étale sheaf $\mathcal F$, including the geometric-stalk formula.
 :::
 
 ::: {.back card-id="card-5e0bccfad0df15c7"}
-If $\pi: X\to S$ is proper and $\mcf$ is a torsion sheaf on $X$ with $f: T\to S$, the base change morphism $f^{-1}{\mathbf{R}}^i \pi_* \mcf { \, \xrightarrow{\sim}\, }{\mathbf{R}}^i \tilde\pi_* \tilde f^{-1}\mcf$.
+The canonical map is an isomorphism
+$$g^{-1}Rf_*\mathcal F\xrightarrow{\sim}Rf'_*g'^{-1}\mathcal F.$$
+For a geometric point $\bar y$ of $Y$,
+$$(R^if_*\mathcal F)_{\bar y}\cong H^i_{\mathrm{\acute et}}(X_{\bar y},\mathcal F|_{X_{\bar y}}).$$
+:::
+
+::: {.front card-id="theorem-smooth-proper-base-change" tags="theorem"}
+Let $f:X\to S$ be smooth and proper, with $S$ locally Noetherian and $\ell$ invertible on $S$. What does smooth proper base change imply for $R^if_*(\mathbb Z/\ell^n\mathbb Z)$ and fiber Betti numbers?
+:::
+
+::: {.back card-id="theorem-smooth-proper-base-change"}
+The sheaf $R^if_*(\mathbb Z/\ell^n\mathbb Z)$ is locally constant and constructible. Its geometric stalk at $\bar s$ is
+$$H^i_{\mathrm{\acute et}}(X_{\bar s},\mathbb Z/\ell^n\mathbb Z).$$
+The $\ell$-adic Betti numbers are constant on each connected component of $S$.
+:::
+
+::: {.front card-id="theorem-riemann-existence" tags="theorem"}
+For a connected complex algebraic variety $X$, state Riemann existence and the resulting comparison of fundamental groups.
+:::
+
+::: {.back card-id="theorem-riemann-existence"}
+Analytification gives an equivalence between finite étale covers of $X$ and finite topological covers of $X^{\mathrm{an}}$. With compatible base points,
+$$\pi_1^{\mathrm{\acute et}}(X)\cong\widehat{\pi_1(X^{\mathrm{an}})}.$$
 :::
