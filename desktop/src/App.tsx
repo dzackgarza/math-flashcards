@@ -180,6 +180,7 @@ export default function App() {
   const current = useRef<Document | null>(null);
   const saving = useRef<Promise<void>>(Promise.resolve());
   const navigation = useRef(0);
+  const workspaceNavigation = useRef(0);
   const anchor = useRef<string | null>(null);
   const deckViewport = useRef<HTMLDivElement>(null);
   const cardViewport = useRef<HTMLDivElement>(null);
@@ -329,6 +330,7 @@ export default function App() {
   }
 
   async function chooseWorkspace(root: string) {
+    const token = ++workspaceNavigation.current;
     setTask("Loading");
     setError("");
     try {
@@ -336,6 +338,7 @@ export default function App() {
         { action: "list", workspace: root },
         workspaceSchema,
       );
+      if (token !== workspaceNavigation.current) return;
       navigation.current++;
       setWorkspace(result.root);
       workspaceForm.setFieldValue("workspace", result.root);
@@ -346,8 +349,13 @@ export default function App() {
       setDraft(null);
       setLog("");
       setConflict(false);
-      loadMathJax(result.macros, result.stmaryrd).then(setMathjax, (failure) =>
-        setError(String(failure)),
+      loadMathJax(result.macros, result.stmaryrd).then(
+        (runtime) => {
+          if (token === workspaceNavigation.current) setMathjax(runtime);
+        },
+        (failure) => {
+          if (token === workspaceNavigation.current) setError(String(failure));
+        },
       );
       setBuildResult("Ready");
       if (isTauri()) {
@@ -356,9 +364,9 @@ export default function App() {
         await store.save();
       }
     } catch (failure) {
-      setError(String(failure));
+      if (token === workspaceNavigation.current) setError(String(failure));
     } finally {
-      setTask("Idle");
+      if (token === workspaceNavigation.current) setTask("Idle");
     }
   }
 
@@ -1023,8 +1031,9 @@ export default function App() {
 
   function openWorkspace() {
     if (workspaceForm.validate().hasErrors) return;
+    const root = workspaceForm.getValues().workspace;
     setWorkspaceMenu(false);
-    guard(() => chooseWorkspace(workspaceForm.getValues().workspace));
+    guard(() => chooseWorkspace(root));
   }
 
   function refreshWorkspace() {
