@@ -1,5 +1,5 @@
 ---
-title: "Research::K3 Moduli"
+title: "Algebraic Geometry::Moduli::K3 Moduli"
 ---
 
 ::: {.front card-id="card-b0772e9197fde462"}
@@ -277,4 +277,135 @@ Set $\overline{\mathbb{D}_\rho}$ the closure of the compact dual (dropping ${\le
 Define $\overline{\mathbb{D}_\rho}^\mathrm{BB} = \mathbb{D}_\rho \cup\bigcup_{J} B_J$ by adding *rational boundary components*, usually ${\mathbb{H}}{\textstyle\coprod}(-{\mathbb{H}})$ or points.
 
 BB compactification is $\overline{\mathbb{D}_\rho/\Gamma}\coloneqq\overline{\mathbb{D}_\rho}^{\mathrm{BB}}/\Gamma$.
+:::
+
+::: {.front card-id="card-2eef1a10735a855d"}
+What is the moduli space of all K3s vs projective K3s?
+:::
+
+::: {.back card-id="card-2eef1a10735a855d"}
+All K3s, including non-projective: $\dcosetr{\Omega}{{\operatorname{O}}(\Lambda_{\mathrm{K3}})}$, 20-dimensional. Its points are the isomorphism classes of K3s, but the quotient is not Hausdorff, since ${\operatorname{O}}(\Lambda_{\mathrm{K3}})$ does not act properly discontinuously on $\Omega$.
+
+Algebraic (projective) K3s: 19-dimensional, since one has to vary periods in the orthogonal complement of an ample class.
+:::
+
+::: {.front card-id="card-a3226206edbadebd"}
+What are the dimensions of moduli of all and just algebraic Kummer surfaces?
+:::
+
+::: {.back card-id="card-a3226206edbadebd"}
+All: 4-dimensional
+
+Algebraic: 3-dimensional.
+:::
+
+::: {.front card-id="card-e5204c524e5af7fb"}
+Define the period domain $\mathbb{D}$. What is its dimension?
+:::
+
+::: {.back card-id="card-e5204c524e5af7fb"}
+$$\mathbb{D} = \Omega \coloneqq\left\{{[\omega]\in {\mathbf{P}}(\Lambda_{{\mathsf{K}}3}\otimes_\ZZ\CC) \st\omega^2 = 0,\,\, \omega.\overline{\omega }> 0}\right\}$$
+In coordinates that diagonalize the form on $\Lambda_{\mathrm{K3}}\otimes{\mathbf{R}}$ with signature $(3, 19)$,
+$$\Omega \cong \left\{{{\left[ {z_0:\cdots:z_{21}} \right]}\in {\mathbf{P}}^{21}\st z_0^2+z_1^2 + z_2^2 - z_3^2 -\cdots - z_{21}^2 = 0,\, {\left\lvert {z_0} \right\rvert}^2 + {\left\lvert {z_1} \right\rvert}^2 + {\left\lvert {z_2} \right\rvert}^2 - {\left\lvert {z_3} \right\rvert}^2 - \cdots - {\left\lvert {z_{21}} \right\rvert}^2 > 0}\right\}$$
+which is an open subset of a quadric in ${\mathbf{P}}^{21}$ and thus a 20-dimensional $\CC\dash$manifold.
+
+For a marking $\Phi: H^2(X;\ZZ)\to \Lambda_{\mathrm{K3}}$, the period of $(X, \Phi)$ is $\Phi(\CC\omega_X) \in \Omega$, where $\CC\omega_X = H^{2,0}(X) \in {\mathbf{P}}H^2(X;\CC)$. Surjectivity of the period map (Todorov, Looijenga, Siu): every point of $\Omega$ is the period of some marked K3.
+
+For a marked polarized K3 $(X, \phi)$, drops 1 dimension:
+$$\mathbb{D}_{2k} \coloneqq\left\{{[\omega]\in \mathbb{D}\st\omega.h = 0}\right\}$$
+where $h\in \Lambda_{{\mathsf{K}}3}$ is a fixed primitive class with $h^2 = 2k$ and $\phi^{-1}(h)\in \NS(X)^\amp$. It is 19-dimensional, with two connected components, each a bounded symmetric domain of type IV.
+:::
+
+::: {.front card-id="card-a7590df0a74c3577"}
+What is a marking of a K3?
+:::
+
+::: {.back card-id="card-a7590df0a74c3577"}
+Let $X$ be a K3 surface. A marking is an isometry $\phi: H^2(X; \ZZ) { \, \xrightarrow{\sim}\, }\Lambda_{{\mathsf{K}}3}$, where $\Lambda_{{\mathsf{K}}3}$ (also written $L$) is the K3 lattice $U{ {}^{ \scriptscriptstyle\oplus^{3} }  } \oplus E_8(-1){ {}^{ \scriptscriptstyle\oplus^{2} }  }$.
+:::
+
+::: {.front card-id="card-4bf015e09e65996f"}
+What is the dimension of quartics in ${\mathbf{P}}^3$? Up to coordinate changes?
+:::
+
+::: {.back card-id="card-4bf015e09e65996f"}
+$h^0({\mathcal{O}}_{{\mathbf{P}}^3}(4)) = {4+3\choose 4} = 35$ and its projective dimension is 34.
+
+$\dim \operatorname{PGL}_4(\CC) = 16-1 = 15$
+
+So $34-15 = 19$ moduli.
+:::
+
+::: {.front card-id="card-feb6d5dd0d9fef49"}
+What are the dimensions of moduli for $S_{2,3}, S_{2,2,2}$, and the double plane $S\to {\mathbf{P}}^2$?
+:::
+
+::: {.back card-id="card-feb6d5dd0d9fef49"}
+All 19.
+:::
+
+::: {.front card-id="card-b5a57050c6bdb637"}
+Compute the dimension of moduli of K3s with an order 3 symplectic automorphism.
+:::
+
+::: {.back card-id="card-b5a57050c6bdb637"}
+For algebraic complex K3 surfaces, the dimension is $7$. An order-three symplectic automorphism has six fixed points. The Lefschetz formula gives $6=2+\operatorname{tr}(\sigma^*|H^2)$; with eigenvalue multiplicities $a$ for $1$ and $b$ for each primitive cube root, $a-b=4$ and $a+2b=22$. Thus $a=10$, $b=6$, and the coinvariant lattice has rank $12$ in $\operatorname{NS}(X)$. An invariant ample class raises the generic Picard rank to $13$, leaving $20-13=7$ moduli. Families attain this bound (Garbagnati–Sarti, *Symplectic automorphisms of prime order on K3 surfaces*, §5).
+:::
+
+::: {.front card-id="card-3669e4b341b8e820"}
+Describe the period map of a single K3.
+:::
+
+::: {.back card-id="card-3669e4b341b8e820"}
+Pick $\omega\in H^{2, 0}(X) \subseteq H^2(X;\CC)$ a nonvanishing holomorphic 2-form.
+
+Check the cup product satisfies $\omega^2 = 0$ and $\omega.\overline{\omega }> 0$.
+
+Extend a marking $\phi$ to $\phi_\CC: H^2(X;\CC)\to \Lambda_{{\mathsf{K}}3}\otimes_\ZZ\CC$.
+
+Check $\operatorname{im}\phi_\CC= \mathop{\mathrm{span}}_\CC\left\{{\phi_\CC(\omega)}\right\}$ is a line through the origin
+
+Thus $\operatorname{im}\phi \in \mathbb{D}$.
+:::
+
+::: {.front card-id="card-5123fd7566ad8ab0"}
+How is $\mathbb{D}$ related to moduli of K3s?
+:::
+
+::: {.back card-id="card-5123fd7566ad8ab0"}
+Weak Torelli: $X { \, \xrightarrow{\sim}\, }X' \iff$ there is an isometry $H^2(X;\ZZ) { \, \xrightarrow{\sim}\, }H^2(X';\ZZ)$ whose $\CC\dash$linear extension preserves Hodge decompositions. So two K3s are isomorphic iff they admit markings defining the same point in $\mathbb{D}$.
+
+Local Torelli: for a marked K3 $(X, \phi)$, the period map from the versal deformation space to $\mathbb{D}$ is a local isomorphism.
+
+Surjectivity: every $d\in \mathbb{D}$ is a period point for some marked K3.
+
+Thus almost a coarse moduli space: families $\mcx\to B$ yield $B\to \mathbb{D}$ and points correspond to iso classes, but quotienting by change-of-marking yields a non-Hausdorff quotient since it does not act properly discontinuously.
+:::
+
+::: {.front card-id="card-95ea8d364c6151bd"}
+Describe the period map of a family of K3s.
+:::
+
+::: {.back card-id="card-95ea8d364c6151bd"}
+Let $f:\mcx\to B$ be a flat family with fiber $X$.
+
+Choosing a marking $\phi: H^2(X;\ZZ) { \, \xrightarrow{\sim}\, }\Lambda_{{\mathsf{K}}3}$ extends to a sheaf morphism $\phi_B: {\mathbf{R}}^2 f_*\underline{\ZZ}\to\underline{\Lambda_{{\mathsf{K}}3}}$ where the latter is a constant sheaf.
+
+Yields a holomorphic map $B\to \mathbb{D}$.
+:::
+
+::: {.front card-id="card-31b8cfe1587ec0da"}
+What is a semistable degeneration?
+:::
+
+::: {.back card-id="card-31b8cfe1587ec0da"}
+$\pi:\mcx\to \Delta$ with $\mcx$ smooth and central fiber reduced normal crossings.
+:::
+
+::: {.front card-id="card-75f1921216084ec3"}
+What is the dual graph of a degeneration?
+:::
+
+::: {.back card-id="card-75f1921216084ec3"}
+Let $S_0=\bigcup V_i$ be the central fibre in a semistable degeneration. Define the dual graph $\Gamma$ of $S_0$ as follows: $\Gamma$ is a simplicial complex whose vertices $P_1, \ldots, P_r$ correspond to the components $V_1, \ldots, V_r$ of $S_0$; the $k$-simplex $\left\langle P_{i_0}, \ldots, P_{i_k}\right\rangle$ belongs to $\Gamma$ if and only if $V_{i_0} \cap \cdots \cap V_{i_k} \neq \emptyset$.
 :::

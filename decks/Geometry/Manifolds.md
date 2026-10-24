@@ -1,5 +1,5 @@
 ---
-title: "Topology::Manifolds"
+title: "Geometry::Manifolds"
 ---
 
 ::: {.front card-id="card-6ac0da19537d1bf9" tags="definition"}

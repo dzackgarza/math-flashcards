@@ -3,7 +3,7 @@
 # requires-python = ">=3.12"
 # dependencies = []
 # ///
-"""Extract every note from apkg/*.apkg, normalize fronts, and diff against decks/.
+"""Extract notes from decks/apkg/*.apkg and compare fronts with the deck sources.
 
 Acceptance-criterion tool for issue #1: proves whether every note in every committed
 .apkg has a corresponding card in decks/ (normalized-front match).
@@ -28,8 +28,8 @@ _PUNCT = {"’": "'", "‘": "'", "“": '"', "”": '"',
           "–": "-", "—": "-", "−": "-", " ": " "}
 
 ROOT = Path(__file__).resolve().parent.parent
-APKG = ROOT / "apkg"
 DECKS = ROOT / "decks"
+APKG = DECKS / "apkg"
 
 
 def strip_html(s: str) -> str:
@@ -79,6 +79,8 @@ def deck_fronts():
     """Return set of normalized fronts present in decks/ (top-level '- ' items)."""
     keys = set()
     for p in sorted(DECKS.rglob("*.md")):
+        if p.is_relative_to(APKG):
+            continue
         text = p.read_text(encoding="utf-8")
         body = re.sub(r"^---\n.*?\n---\n", "", text, count=1, flags=re.S)
         for ln in body.splitlines():

@@ -62,6 +62,8 @@ def check_math(node, rel):
 
 
 for p in sorted(DECKS.rglob("*.md")):
+    if p.is_relative_to(DECKS / "apkg"):
+        continue
     deck_count += 1
     rel = p.relative_to(ROOT)
     for number, line in enumerate(p.read_text().split("\n"), 1):

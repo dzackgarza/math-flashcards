@@ -50,7 +50,7 @@ A linear map $T: X\to Y$ between Banach spaces is *compact* iff the image of eve
 :::
 
 ::: {.front card-id="card-b71874f5765eec11" tags="theorem"}
-Open Mapping Theorem
+State the open mapping theorem for Banach spaces.
 :::
 
 ::: {.back card-id="card-b71874f5765eec11"}

@@ -1,5 +1,5 @@
 ---
-title: "Basics::Precalculus"
+title: "Analysis::Precalculus"
 ---
 
 ::: {.front card-id="card-3da969015f7a0ced" tags="formula"}
@@ -284,4 +284,3 @@ $\cos ^2 \theta=\cdots$
 ::: {.back card-id="card-1e5a093e1b6d71d9"}
 $\cos ^2 \theta=\frac{1+\cos (2 \theta)}{2}$
 :::
-

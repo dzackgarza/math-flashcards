@@ -30,6 +30,8 @@ Normal Extension
 ::: {.back card-id="card-4e2c2bf2bc80c298"}
 An algebraic field extension $L/K$ is **normal** $\iff$ every irreducible $p(x) \in K[x]$ either has no roots in $L$ or splits into linear factors in $L[x]$.
 Equivalently, $L$ is the splitting field over $K$ of a family of polynomials in $K[x]$.
+
+Equivalently, every element of $L$ has all its $K$-conjugates in $L$.
 :::
 
 ::: {.front card-id="card-dec5dda56d98bbd1" tags="definition"}
@@ -200,5 +202,13 @@ Every irreducible polynomial is separable.
 Equivalently, the characteristic is zero, or is $p$ where Frobenius is an automorphism.
 
 > All characteristic zero or finite fields are perfect.
+:::
+
+::: {.front card-id="card-fc6ad817c2e32bcd"}
+What is the Galois correspondence for infinite extensions?
+:::
+
+::: {.back card-id="card-fc6ad817c2e32bcd"}
+Subextensions of $k^{ {}^{ \operatorname{sep} } }/k$ correspond to **closed** subgroups of $\Gal(k^{ {}^{ \operatorname{sep} } }/k)$ with the Krull topology.
 :::
 

@@ -516,7 +516,7 @@ export default function App() {
       if (!relevant.length) return;
       refreshOnChange();
       const open = current.current;
-      if (open && relevant.includes(workspace + "/decks/" + open.path))
+      if (open && relevant.includes(workspace + "/" + open.path))
         followOnChange();
     })
       .then((unwatch) => {
@@ -1181,7 +1181,7 @@ export default function App() {
             <Stack gap="sm">
               <TextInput
                 label="Workspace folder"
-                placeholder="Folder containing decks/"
+                placeholder="Folder containing your Markdown decks"
                 key={workspaceForm.key("workspace")}
                 {...workspaceForm.getInputProps("workspace")}
                 onKeyDown={(event) => {
@@ -1403,7 +1403,7 @@ export default function App() {
             <Text c="dimmed" ta="center" maw={360}>
               {workspace
                 ? "Select a deck in the sidebar to edit its cards."
-                : "Choose the workspace folder that contains decks/."}
+                : "Choose the folder containing your Markdown decks."}
             </Text>
             {!workspace && (
               <Button onClick={() => setWorkspaceMenu(true)}>

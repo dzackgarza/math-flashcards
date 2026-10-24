@@ -1,6 +1,26 @@
 ---
-title: "Research::Lattices"
+title: "Number Theory::Lattices and Quadratic Forms"
 ---
+
+::: {.front card-id="card-a11f16d91f65c85e"}
+Discuss Milnor's classification.
+:::
+
+::: {.back card-id="card-a11f16d91f65c85e"}
+Let $\Lambda$ be an indefinite lattice of signature $(s_+, s_-)$ where $s_+,\, s_- > 0$.
+
+If $\Lambda$ is odd the $\Lambda \cong (1){ {}^{ \scriptscriptstyle\oplus^{n} }  } \oplus (-1){ {}^{ \scriptscriptstyle\oplus^{n} }  }$ where $n>0$.
+
+If $\Lambda$ is even then $\Lambda \cong U{ {}^{ \scriptscriptstyle\oplus^{h} }  } \oplus E_8{ {}^{ \scriptscriptstyle\oplus^{k} }  }$ where $h > 0$ and $k\geq 0$.
+:::
+
+::: {.front card-id="card-2d755f3e60381c7b"}
+What is $L^\perp$?
+:::
+
+::: {.back card-id="card-2d755f3e60381c7b"}
+$L^\perp \coloneqq\left\{{v\in \Lambda_{\mathrm{K3}}\st{\left\langle {v},~{x} \right\rangle} = 0 \, \forall x\in L}\right\}$.
+:::
 
 ::: {.front card-id="card-216712199a6ebf7f"}
 What is the signature of a lattice?
@@ -650,14 +670,6 @@ Why are 8 and 24 special?
 24 is the smallest dimension of an even unimodular lattice with no roots (check $\theta$ functions)
 
 $0^2 + 1^2 + \cdot + 24^2 = 70^2$ and this is the only $n$ for which the sum of the first $n$ squares is a square.
-:::
-
-::: {.front card-id="card-5742bfb73f112647"}
-What is a sporadic simple group?
-:::
-
-::: {.back card-id="card-5742bfb73f112647"}
-One of 26 exceptional groups: not cyclic, alternating, or of Lie type.
 :::
 
 ::: {.front card-id="card-afea05976ed45fa8"}

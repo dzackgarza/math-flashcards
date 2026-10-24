@@ -26,10 +26,10 @@ def main(*, entry: Path | None = None) -> None:
     with tempfile.TemporaryDirectory(prefix="flashcards-native-") as directory:
         environment = Path(directory)
         root = environment / "workspace"
-        (root / "decks" / "Basics").mkdir(parents=True)
+        (root / "Analysis").mkdir(parents=True)
         shutil.copyfile(
-            desktop.parent / "decks" / "Basics" / "Precalculus.md",
-            root / "decks" / "Basics" / "Precalculus.md",
+            desktop.parent / "decks" / "Analysis" / "Precalculus.md",
+            root / "Analysis" / "Precalculus.md",
         )
         with (artifacts / "native.log").open("w") as log:
             uv_cache = subprocess.check_output(
@@ -82,7 +82,7 @@ def main(*, entry: Path | None = None) -> None:
                         break
                     time.sleep(0.25)
                 assert json.loads(preferences_path.read_text())["workspace"] == str(
-                    desktop.parent
+                    desktop.parent / "decks"
                 )
                 with mss.mss() as screen:
                     shot = screen.grab(
@@ -189,7 +189,7 @@ def main(*, entry: Path | None = None) -> None:
                     ],
                     check=True,
                 )
-                package = root / "apkg" / "Basics__Precalculus.apkg"
+                package = root / "apkg" / "Analysis__Precalculus.apkg"
                 for _ in range(120):
                     if package.is_file():
                         break
@@ -247,7 +247,7 @@ def main(*, entry: Path | None = None) -> None:
                         shot.size,
                         output=str(artifacts / "native-unsynced.png"),
                     )
-                target = root / "decks" / "Native Target.md"
+                target = root / "Native Target.md"
                 target.write_text('---\ntitle: "Native::Target"\n---\n\n')
                 time.sleep(2)
                 time.sleep(4)
@@ -306,7 +306,7 @@ def main(*, entry: Path | None = None) -> None:
                 ).read_text()
                 assert (
                     r"$\sin(\pi/6) = \cdots$"
-                    not in (root / "decks" / "Basics" / "Precalculus.md").read_text()
+                    not in (root / "Analysis" / "Precalculus.md").read_text()
                 )
                 time.sleep(2)
                 with mss.mss() as screen:

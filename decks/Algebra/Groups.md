@@ -369,3 +369,19 @@ N_G(S) \definedas \theset{g\in G \st gS\inverseof{g} = S}
 .$$
 :::
 
+::: {.front card-id="card-6872241e3d971a34"}
+What is the Mathieu group?
+:::
+
+::: {.back card-id="card-6872241e3d971a34"}
+$M_{20} = A_5\rtimes C_2^4$, order 960.
+:::
+
+::: {.front card-id="card-5742bfb73f112647"}
+What is a sporadic simple group?
+:::
+
+::: {.back card-id="card-5742bfb73f112647"}
+One of 26 exceptional groups: not cyclic, alternating, or of Lie type.
+:::
+

@@ -164,3 +164,11 @@ What is the central charge?
 ::: {.back card-id="card-e205faa8a99ea77a"}
 *(Answer was a figure; image not recovered.)*
 :::
+
+::: {.front card-id="card-08bd9b5aba58c5e2"}
+What is Faraday's law?
+:::
+
+::: {.back card-id="card-08bd9b5aba58c5e2"}
+$$\nabla \times\mathbf{E} = -{\frac{\partial }{\partial t}\,} \mathbf{B}$$
+:::

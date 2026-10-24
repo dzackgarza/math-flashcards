@@ -266,6 +266,8 @@ What is the **adjunction formula** (genus formula) for curves on a smooth surfac
 For $C$ a smooth curve on a smooth projective surface $X$,
 $$\omega_C \simeq { \left.{{\qty{\omega_X \otimes \mathcal{O}_X(C)}}} \right|_{{ C}} } \underset{\deg}\implies 2g-2=\left(C+K_X\right) \cdot C.$$
 For any irreducible curve $C \subseteq X$, $2p_a(C)-2 = C.(C+K_X)$.
+
+The factor $\mathcal O_X(C)$ permits a simple pole along $C$ before taking the residue on $C$.
 :::
 
 ::: {.front card-id="card-ed2454525c6b8c81" tags="definition"}
@@ -299,14 +301,6 @@ Discuss formulas for blowups.
 
 ::: {.back card-id="card-acef3cb4dbb459ac"}
 For $\tilde X \xrightarrow{\pi} X$, $C.D = (\pi^* C).(\pi^* D)$, $(\pi^* C). E= 0$, $E^2 = -1$, and $(\pi^* C).D = C.(\pi_* D)$. For canonicals, $K_{\tilde X}^2 = K_X^2 - 1$ and $K_{\tilde X} = \pi^* K_X + E$, and $\operatorname{Pic}\tilde X = \left\langle{E}\right\rangle_\ZZ\oplus \operatorname{Pic}X$.
-:::
-
-::: {.front card-id="card-25b5396645bc9bae"}
-What is the **strict transform**?
-:::
-
-::: {.back card-id="card-25b5396645bc9bae"}
-For $\tilde X\to X$ a blowup at $p$ and $C\subset X$, the closure $\tilde C$ in $\tilde X$ of $\pi^{-1}(C\cap(X\setminus p))$. Informally: $\tilde C = \pi^* C \setminus E$.
 :::
 
 ::: {.front card-id="card-83a07a3fc879aec4"}
@@ -517,4 +511,333 @@ What is the scheme-theoretic definition of an elliptic curve over $R$?
 A smooth proper morphism $\pi: E\to \operatorname{Spec}R$ with a section $0: \operatorname{Spec}R\to E$ where the geometric fibers of $\pi$ are connected genus 1 curves.
 
 Implies $h^0(E; \Omega_{E/R}) =1$.
+:::
+
+::: {.front card-id="card-65a63ab68d3c91f4"}
+Compute the canonical sheaf of a smooth plane curve of degree $d$ and its degree.
+:::
+
+::: {.back card-id="card-65a63ab68d3c91f4"}
+For $X\subseteq {\mathbf{P}}^n$ a hypersurface one has $\omega_X = {\mathcal{O}}_X(d-n-1)$, here $n=2$ so $\omega_X = {\mathcal{O}}_X(d-3)$. Since $\deg {\mathcal{O}}_X(1) = d$, we have $\deg \omega_X = d(d-3)$.
+:::
+
+::: {.front card-id="card-a167931134065e17"}
+Show that a smooth plane curve of degree $d\geq 4$ is not rational.
+:::
+
+::: {.back card-id="card-a167931134065e17"}
+$\omega_X = {\mathcal{O}}_X(d-3)$ and $d-3>0$ so $p_g(X) > 0$, and a curve is rational iff $p_g(X) = 0$.
+:::
+
+::: {.front card-id="card-6067745a47634f5c"}
+What is the **Riemann-Roch theorem**?
+:::
+
+::: {.back card-id="card-6067745a47634f5c"}
+For $C$ a curve,
+$$\chi(C; \mcl) = \deg(\mcl) + (1-g)$$
+:::
+
+::: {.front card-id="card-6ca7d0c76fa6a201"}
+How is the **adjunction formula** derived?
+:::
+
+::: {.back card-id="card-6ca7d0c76fa6a201"}
+Start with $f: C\hookrightarrow S$ a curve in a surface over $\operatorname{Spec}k$ to get
+$$\begin{align*}{\mathbf{T}}_C \hookrightarrow f^* {\mathbf{T}}_S \twoheadrightarrow N_{C/S} \quad &\underset{\text{dualize}}\leadsto\quad N {}^{ \vee }_{C/S} \coloneqq I_C/I_C^2 \hookrightarrow f^* \Omega^1_{S/k} \twoheadrightarrow\Omega^{1}_{C/k} \\ &\implies \operatorname{det}f^* \Omega^1_{S/k} \cong \operatorname{det}\Omega^1_{C/k} \otimes\operatorname{det}N {}^{ \vee }_{C/S} \\&\implies f^* \omega_S \cong \omega_C \otimes\operatorname{det}N {}^{ \vee }_{C/S} \\ &\implies\omega_C = f^*\omega_S \otimes\operatorname{det}N_{C/S} \end{align*}$$
+Now use that $I_C = {\mathcal{O}}_S(C)^{-1}$ and $I_C/I_C^2 = {\mathcal{O}}_S(C)^{-1}\otimes{\mathcal{O}}_C$ to get
+$$N_{C/S} = (I_C/I_C^2) {}^{ \vee }= ({\mathcal{O}}_S(C)^{-1}\otimes{\mathcal{O}}_C) {}^{ \vee }= {\mathcal{O}}_S(C) \otimes{\mathcal{O}}_C$$
+and so
+$$\omega_C = f^* \omega_S \otimes{\mathcal{O}}_S(C) \otimes{\mathcal{O}}_C  \implies \omega_C = \qty{\omega_S \otimes{\mathcal{O}}_S(C) }\mathrel{\Big|}_C \implies K_C = (K_S + C)\mathrel{\Big|}_C$$
+:::
+
+::: {.front card-id="card-282fc0e81109dc6b"}
+For a smooth curve $C$ on a smooth surface $S$, use the adjunction formula to express the genus in terms of intersection numbers.
+:::
+
+::: {.back card-id="card-282fc0e81109dc6b"}
+$$2g-2 = C.(C+K_S)$$
+Use $\omega_C \cong \omega_S \otimes{\mathcal{O}}_S(C) \otimes{\mathcal{O}}_C$, take degrees, and use that $\deg(\omega_C) = 2g-2$ and $\deg_C({\mathcal{O}}_S(D)\otimes{\mathcal{O}}_C) = C.D$ (which is ${\sharp}(C\cap D)$ when $D$ is effective and meets $C$ transversally) to get
+$$\deg(\omega_S \otimes{\mathcal{O}}_S(C)\otimes{\mathcal{O}}_C) = \deg({\mathcal{O}}_S(C+K_S)\otimes{\mathcal{O}}_C) = C.(C+K_S).$$
+:::
+
+::: {.front card-id="card-f73cddec8b039beb"}
+What is the degree formula for a curve of degree $d$ in ${\mathbf{P}}^2$?
+:::
+
+::: {.back card-id="card-f73cddec8b039beb"}
+By adjunction,
+$$2g-2 = C.(C+K_{{\mathbf{P}}^2}) = dH.(d-3)H = d(d-3)\implies g ={1\over 2}(d-1)(d-2).$$
+:::
+
+::: {.front card-id="card-f99d3b6a576c782a"}
+Discuss ampleness of $\mcl\in \operatorname{Pic}(C)$ for $C$ a smooth complete curve.
+:::
+
+::: {.back card-id="card-f99d3b6a576c782a"}
+$\mcl= {\mathcal{O}}(D)$ is ample iff $\deg D > 0$, using RR.
+:::
+
+::: {.front card-id="card-cf5815d5a2806ef1"}
+What is the **degree** of a morphism of curves?
+:::
+
+::: {.back card-id="card-cf5815d5a2806ef1"}
+For $f:X\to Y$ finite, the degree of the field extension $[K(X): K(Y)]$.
+:::
+
+::: {.front card-id="card-baf0044bf7bc363a"}
+What is a **rational surface**?
+:::
+
+::: {.back card-id="card-baf0044bf7bc363a"}
+A 2-dimensional projective variety birationally equivalent to ${\mathbf{P}}^2$; simplest in the Enriques-Kodaira classification. Always a repeated blowup of a minimal rational surface, one of ${\mathbf{P}}^2$ or ${ \mathbf{F} }_n$ (the Hirzebruch surface). Suffices to show irregularity $q=0$ and plurigenus $p_2 = 0$.
+:::
+
+::: {.front card-id="card-39afa431b819ac1f"}
+What is an exceptional curve of the first kind?
+:::
+
+::: {.back card-id="card-39afa431b819ac1f"}
+Rational curves $C$ isomorphic to ${\mathbf{P}}^1$ with $C^2 = -1$.
+:::
+
+::: {.front card-id="card-57428c9f80e11c05"}
+What is a **nodal curve**?
+:::
+
+::: {.back card-id="card-57428c9f80e11c05"}
+A complete algebraic curve such that every point is either smooth or a node, where $p$ is a node iff it admits a neighborhood which is complex analytically isomorphic to $V(xy)$.
+:::
+
+::: {.front card-id="card-8ac3fbe77305abd9"}
+What is the dimension of moduli of Enriques surfaces?
+:::
+
+::: {.back card-id="card-8ac3fbe77305abd9"}
+10-dimensional.
+:::
+
+::: {.front card-id="card-d6c6e17a7277bdb7"}
+What is the exceptional curve of a blowup of a point in a surface?
+:::
+
+::: {.back card-id="card-d6c6e17a7277bdb7"}
+A rational $(-1)\dash$curve, so $E^2 = -1$ with $E\cong {\mathbf{P}}^1$.
+:::
+
+::: {.front card-id="card-552f2fab724f8aa8"}
+What is a minimal surface?
+:::
+
+::: {.back card-id="card-552f2fab724f8aa8"}
+No rational $(-1)\dash$curves
+:::
+
+::: {.front card-id="card-d5bebb5d7791f258"}
+What is a ruled surface?
+:::
+
+::: {.back card-id="card-d5bebb5d7791f258"}
+$\exists S\dashrightarrow C\times {\mathbf{P}}^1$ with $g(C) \geq 0$.
+:::
+
+::: {.front card-id="card-f6c1f8a6683ecb7a"}
+What is an abelian surface?
+:::
+
+::: {.back card-id="card-f6c1f8a6683ecb7a"}
+$\CC^2/\Lambda \hookrightarrow{\mathbf{P}}^N$ with $\Lambda$ a rank 4 lattice.
+:::
+
+::: {.front card-id="card-4ede286dfe44fe0c"}
+What is an Enriques surface?
+:::
+
+::: {.back card-id="card-4ede286dfe44fe0c"}
+Exactly quotients of K3s by fixed point free involutions.
+
+Smooth projective $Y$ with $2K_Y \sim 0$ and $h^1({\mathcal{O}}_Y) = h^2({\mathcal{O}}_Y) = 0$; the canonical induces an unramified 2-to-1 cover $X\to Y$ for $X$ a K3.
+:::
+
+::: {.front card-id="card-2983289eb3e5ba5b"}
+What are bielliptic surfaces?
+:::
+
+::: {.back card-id="card-2983289eb3e5ba5b"}
+Quotients of $E\times E'$ elliptic curves.
+:::
+
+::: {.front card-id="card-117b11cbf23727bc"}
+What is a special fact about proper elliptic surfaces?
+:::
+
+::: {.back card-id="card-117b11cbf23727bc"}
+Always have an elliptic fibration.
+:::
+
+::: {.front card-id="card-fffe378c18f2e57c"}
+What is the irregularity of $S$?
+:::
+
+::: {.back card-id="card-fffe378c18f2e57c"}
+$q(S) \coloneqq h^1({\mathcal{O}}_S)$ or $h^0(\Omega^1)$, so $h^{1, 0}$ or $h^{0, 1}$.
+:::
+
+::: {.front card-id="card-c4fe37e7e21f6d02"}
+What is the geometric genus of $S$?
+:::
+
+::: {.back card-id="card-c4fe37e7e21f6d02"}
+$h^{0}(\Omega^2)$, so $h^{2, 0}$.
+:::
+
+::: {.front card-id="card-f1472e5407f22cc4"}
+What is the Noether formula?
+:::
+
+::: {.back card-id="card-f1472e5407f22cc4"}
+HRR for ${\mathcal{O}}_X$ on a surface $X$:
+$$\chi({\mathcal{O}}_X) = {1\over 12}(K_X^2 + \chi(X)) = {1\over 12}(c_1^2 + c_2)$$
+where $\chi(X) = c_2$ is the topological Euler characteristic.
+:::
+
+::: {.front card-id="card-862154888a8bb22d"}
+What does an $A_1$ singularity look like?
+:::
+
+::: {.back card-id="card-862154888a8bb22d"}
+Locally the vertex of a cone, rational double points.
+:::
+
+::: {.front card-id="card-df4853bcf54d4927"}
+What type of curve is the resolution of an $A_1$ singularity?
+:::
+
+::: {.back card-id="card-df4853bcf54d4927"}
+$D\cong {\mathbf{P}}^1$ with $D^2 = -2$.
+:::
+
+::: {.front card-id="card-4afe15399d883416"}
+What is an elliptic fibration?
+:::
+
+::: {.back card-id="card-4afe15399d883416"}
+Proper morphism, connected fibers are smooth genus 1 algebraic curves.
+
+Equivalently, by proper base change, the generic fiber is a smooth genus 1 curve.
+
+E.g. any product of elliptic curves, surfaces with $\kappa(X) = 1$, Enriques surfaces
+:::
+
+::: {.front card-id="card-28e56ae7eceebe8f"}
+What are the possible orders of CM on an elliptic curve?
+:::
+
+::: {.back card-id="card-28e56ae7eceebe8f"}
+$2,3,4,6$.
+:::
+
+::: {.front card-id="card-74d6b0fc728a1f0c"}
+Give an example of an elliptic curve with CM.
+:::
+
+::: {.back card-id="card-74d6b0fc728a1f0c"}
+$y^2 = x^3 + x$ has CM by $\zeta_3$.
+:::
+
+::: {.front card-id="card-23af48fd70c389b1"}
+For $L_1, L_2\in \operatorname{Pic}X$, define $L_1.L_2$.
+:::
+
+::: {.back card-id="card-23af48fd70c389b1"}
+The coefficient of $ab$ in $\chi(L_1^1\otimes L_2^b)$.
+:::
+
+::: {.front card-id="card-19a2b52a40458ae7"}
+Compute $L_1.{\mathcal{O}}(C)$ for $C$ an integral curve.
+:::
+
+::: {.back card-id="card-19a2b52a40458ae7"}
+$\deg L_2 \mathrel{\Big|}_C$.
+:::
+
+::: {.front card-id="card-82d6364cd4704d94"}
+Compute ${\mathcal{O}}(C_1).{\mathcal{O}}(C_2)$ for $C_1, C_2$ integral curves intersecting at finitely many points.
+:::
+
+::: {.back card-id="card-82d6364cd4704d94"}
+$$\sum_{i=x \in C_1 \pitchfork C_2} \dim_k {{\mathcal{O}}_{X, x}\over \left\langle{f_{1, x}, f_{2, x}}\right\rangle }$$
+:::
+
+::: {.front card-id="card-1575109157d00592"}
+Discuss $L.{\mathcal{O}}(C)$ when $L$ is ample.
+:::
+
+::: {.back card-id="card-1575109157d00592"}
+Always positive: $L_1.C = \deg L_1\mathrel{\Big|}_C > 0$.
+:::
+
+::: {.front card-id="card-3036ebb4d8e6a374"}
+What is the signature of the intersection form on $\operatorname{Num}(X)$?
+:::
+
+::: {.back card-id="card-3036ebb4d8e6a374"}
+$(1, p(X) - 1)$ for $p(X)$ the Picard number, so its real form diagonalizes to $(1, -1,\cdots, -1)$.
+:::
+
+::: {.front card-id="card-535af4290aac8dee"}
+Discuss bounds on $p(X)$.
+:::
+
+::: {.back card-id="card-535af4290aac8dee"}
+By Lefschetz $(1,1)$ one has $\operatorname{Pic}(X) \cong H^2(X;\ZZ)\cap H^{1, 1}(X)$ and $(H^2(X;\ZZ)\cap H^{1, 1}(X))\otimes\CC\subseteq H^1(\Omega_X)$ which is a 20-dimensional space, so $p(X) \leq 20$. Each $0\leq i\leq 20$ is obtained.
+:::
+
+::: {.front card-id="card-4878049257d25b28"}
+Give a bundle-theoretic condition for projectivity of surfaces.
+:::
+
+::: {.back card-id="card-4878049257d25b28"}
+If $X$ is a smooth compact complex surface, $X$ is projective iff $\exists L\in \operatorname{Pic}(X)$ with $L^2 > 0$.
+:::
+
+::: {.front card-id="card-e1c263264e18ad22"}
+What is an elliptic surface?
+:::
+
+::: {.back card-id="card-e1c263264e18ad22"}
+$\pi:X\to {\mathbf{P}}^1$ surjective with generic fiber a smooth elliptic curve. Admit Weierstrass normal forms.
+:::
+
+::: {.front card-id="card-ddfdea50da4dc550"}
+Are there hyperelliptic curves $C$ with $g(C) > 2$?
+:::
+
+::: {.back card-id="card-ddfdea50da4dc550"}
+Yes, and $C$ is hyperelliptic iff $\omega_C$ is not hyperelliptic.
+:::
+
+::: {.front card-id="card-6123728edc5fc074"}
+What is the geometric genus of a reduced curve?
+:::
+
+::: {.back card-id="card-6123728edc5fc074"}
+$g(\tilde C)$ where $\nu:\tilde C\to C$ is the normalization.
+:::
+
+::: {.front card-id="card-0386f3f67ba2881f"}
+How are geometric and arithmetic genus related for a reduced curve?
+:::
+
+::: {.back card-id="card-0386f3f67ba2881f"}
+$p_a(C) = g(C) + h^0(\nu_* {\mathcal{O}}_{\tilde C}/{\mathcal{O}}_C)$ where the latter sheaf is concentrated on $C^\sing$.
+:::
+
+::: {.front card-id="card-09a7b9bdcd167808"}
+What is the global Torelli theorem for curves?
+:::
+
+::: {.back card-id="card-09a7b9bdcd167808"}
+Two smooth compact complex curves $C$ and $C^{\prime}$ are isomorphic if and only if there exists an isomorphism $H^1(C, \mathbf{Z}) \simeq H^1\left(C^{\prime}, \mathbf{Z}\right)$ of integral Hodge structures respecting the intersection pairing (i.e. the polarization).
 :::

@@ -115,66 +115,6 @@ For $R$ a PID, the same isomorphism holds with $R$ coefficients when the $\opera
 $$H_{k}(X\times Y;R) \cong \bigoplus_{i+j=k}H_{i}(X;R)\otimes_R H_{j}(Y;R)$$
 :::
 
-::: {.front card-id="card-6af26ae228ea633a" tags="math"}
-Hom Table
-:::
-
-::: {.back card-id="card-6af26ae228ea633a"}
-$$
-\begin{array}{c|c|c|c}
-Hom & Z_m & Z & Q \\\hline
-Z_n  & Z_d & 0 & 0 \\\hline
-Z   & Z_m & Z & Q \\\hline
-Q   & 0  & 0 & Q
-\end{array}
-$$
-:::
-
-::: {.front card-id="card-205ac8f4c3a11ce3" tags="math"}
-Tor Table
-:::
-
-::: {.back card-id="card-205ac8f4c3a11ce3"}
-Rows give the first argument and columns the second; $d \coloneqq \gcd(m, n)$ and $\operatorname{Tor}(A, B) = \operatorname{Tor}(B, A)$.
-$$
-\begin{array}{c|c|c|c}
-\operatorname{Tor}_1 & Z_m & Z & Q \\\hline
-Z_n  & Z_d & 0 & 0 \\\hline
-Z   & 0  & 0 & 0 \\\hline
-Q   & 0  & 0 & 0
-\end{array}
-$$
-The full complex $\operatorname{Tor}_*^\ZZ(V, H) = (V\otimes_\ZZ H) + \operatorname{Tor}_1^\ZZ(V, H)\, t$, e.g. the top-left entry is $\operatorname{Tor}_*^\ZZ(C_n, C_m)$:
-$$
-\begin{array}{c|c|c|c}
-\operatorname{Tor}_*^\ZZ & C_m & \ZZ & \QQ \\\hline
-C_n & C_m/nC_m \oplus C_m[n]t = C_d \oplus C_d t & \ZZ/n\ZZ\oplus \ZZ[n]t = C_n \oplus 0t & \QQ/n\QQ\oplus \QQ[n]t = 0\oplus 0t \\\hline
-\ZZ & C_m + 0t & \ZZ+ 0t & \QQ+ 0t \\\hline
-\QQ & 0 + 0t & \QQ+ 0t & \QQ + 0t
-\end{array}
-$$
-First row: $C_n\otimes_\ZZ A = A/nA$ and $\operatorname{Tor}_1^\ZZ(C_n, A) = A[n]$.
-
-Second row: $\ZZ\otimes_\ZZ A = A$ and $\operatorname{Tor}_1^\ZZ(\ZZ, A) = 0$ since $\ZZ$ is projective.
-
-Third row: $G\otimes_\ZZ\QQ= \QQ\otimes_\ZZ G = 0$ for $G$ a torsion group, $\QQ\otimes_\ZZ\QQ = \QQ$, and $\operatorname{Tor}_1^\ZZ(\QQ, A) = 0$ since $\QQ$ is torsionfree, hence flat.
-:::
-
-::: {.front card-id="card-c935c4621c362acc" tags="math"}
-Ext Table
-:::
-
-::: {.back card-id="card-c935c4621c362acc"}
-$$
-\begin{array}{c|c|c|c}
-Ext & Z_m & Z    & Q \\\hline
-Z_n  & Z_d & Z_n   & 0 \\\hline
-Z   & 0  & 0    & 0 \\\hline
-Q   & 0  & A_p/Q & 0
-\end{array}
-$$
-:::
-
 ::: {.front card-id="card-d624fd05eb724e0e" tags="definition, math"}
 Homology of real projective space, $H_* \RP^2$
 :::
@@ -291,21 +231,5 @@ What is $\chi(A\# B)$?
 
 ::: {.back card-id="card-e6106ff75ead6897"}
 $\chi(A) + \chi(B) - 2$
-:::
-
-::: {.front card-id="card-455916a5a5f17b7d"}
-The tor complex between $C_n$ and $A$.
-:::
-
-::: {.back card-id="card-455916a5a5f17b7d"}
-$$\operatorname{Tor}^\ZZ_*(C_n, A) = (A/nA)\cdot t^0 \oplus A[n]\cdot t^1 \oplus \cdots$$
-:::
-
-::: {.front card-id="card-9bf5130224135f26"}
-The ext complex between $C_n$ and $A$.
-:::
-
-::: {.back card-id="card-9bf5130224135f26"}
-$$ \operatorname{Ext}^*_\ZZ(C_n, A) = A[n]\cdot t^0 \oplus (A/nA) \cdot t^1 \oplus \cdots$$
 :::
 

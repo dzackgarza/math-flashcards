@@ -1,5 +1,5 @@
 ---
-title: "Basics::Calculus"
+title: "Analysis::Calculus"
 ---
 
 ::: {.front card-id="card-9a8542fb631eb8ea"}
@@ -18,7 +18,7 @@ Series expansion for $\log$
 $$-\log(1-z) = \sum_{n\geq 1} {z^n\over n}$$
 :::
 
-::: {.front card-id="card-7696e37fb762a073"}
+::: {.front card-id="card-7696e37fb762a073" tags="definition, formula"}
 What is the limit definition of the exponential function?
 :::
 
@@ -182,14 +182,6 @@ What is Stokes' theorem?
 
 ::: {.back card-id="card-c5b0d710266073a4"}
 $$\int_{{{\partial}}S} \mathbf{F} \cdot d\mathbf{r} = \iint_S (\nabla\times\mathbf{F}) \cdot d\mathbf{S} \coloneqq\iint_S (\nabla\times\mathbf{F}) \cdot \mathbf{N} \, dS$$
-:::
-
-::: {.front card-id="card-08bd9b5aba58c5e2"}
-What is Faraday's law?
-:::
-
-::: {.back card-id="card-08bd9b5aba58c5e2"}
-$$\nabla \times\mathbf{E} = -{\frac{\partial }{\partial t}\,} \mathbf{B}$$
 :::
 
 ::: {.front card-id="card-04736c7b73f6412c"}

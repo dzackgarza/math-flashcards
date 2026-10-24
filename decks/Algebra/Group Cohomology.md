@@ -110,16 +110,6 @@ $M^G = \mods{\ZZ[G]}(\ZZ\to M)$
 $M_G = \ZZ\otimes_{\ZZ[G]} M$.
 :::
 
-::: {.front card-id="card-a44f627c5535dc10"}
-Which resolutions can be used for $\operatorname{Tor}$ and $\operatorname{Ext}$?
-:::
-
-::: {.back card-id="card-a44f627c5535dc10"}
-$\operatorname{Tor}(A, B)$: a projective resolution of either argument
-
-$\operatorname{Ext}(A, B)$: a projective resolution of $A$ or an injective resolution of $B$.
-:::
-
 ::: {.front card-id="card-d7e6762dbf20fb8c"}
 Interpret $H_1(G; \ZZ)$.
 :::
@@ -438,26 +428,6 @@ $f: H\hookrightarrow G$ yields restriction $H^n(G; M) \to H^n(H; M)$.
 $N\normal G$ and $M\in   {}_{G}\Mod$ yields $M^N\in   {}_{G/N}\Mod$ and inflation $H^n(G/N; M^N) \to H^n(G; M)$.
 :::
 
-::: {.front card-id="card-83626d3f3af8c6cd"}
-When do functors preserve injectives/projectives?
-:::
-
-::: {.back card-id="card-83626d3f3af8c6cd"}
-Has an exact left adjoint $\implies$ preserves injectives.
-
-Has an exact right adjoint $\implies$ preserves projectives.
-:::
-
-::: {.front card-id="card-66cb45fc8793ff61"}
-Characterize projectives/injectives using Hom.
-:::
-
-::: {.back card-id="card-66cb45fc8793ff61"}
-$\mathop{\mathrm{Hom}}(P, {-})\iff$projective
-
-$\mathop{\mathrm{Hom}}({-}, I) \iff$injective
-:::
-
 ::: {.front card-id="card-25f59b8a0a87a778"}
 What is the inflation-restriction exact sequence?
 :::
@@ -617,28 +587,12 @@ Discuss duality in group (co)homology.
 For $A {}^{ \vee }\coloneqq\mathop{\mathrm{Hom}}(A, \QQ/\ZZ)$, $H^n(G; A) {}^{ \vee }\cong H_n(G; A {}^{ \vee })$ for $G$ finite.
 :::
 
-::: {.front card-id="card-e8cd3f416cfb75b7"}
-What is the universal property for $\mathop{\mathrm{Hom}}$ and products?
-:::
-
-::: {.back card-id="card-e8cd3f416cfb75b7"}
-$\mathop{\mathrm{Hom}}(A, \prod B_i) = \prod \mathop{\mathrm{Hom}}(A, B_i)$, i.e. homs **into** a product are determined by homs into coordinates.
-:::
-
 ::: {.front card-id="card-758a5cbac10a9b22"}
 How can cohomological triviality be checked locally?
 :::
 
 ::: {.back card-id="card-758a5cbac10a9b22"}
 $A$ is $G\dash$cohomologically trivial $\iff A$ is $G_p\dash$cohomologically trivial for every sylow $p\dash$subgroup $G_p$ for every $p\mathrel{\Big|}{\sharp}G$.
-:::
-
-::: {.front card-id="card-c7e254871b94cd3c"}
-When does flat coincide with torsionfree?
-:::
-
-::: {.back card-id="card-c7e254871b94cd3c"}
-Modules over a PID.
 :::
 
 ::: {.front card-id="card-70a4f711e884a8b2"}
@@ -683,18 +637,6 @@ Thus if $L/K$ is abelian then $G \cong \operatorname{coker}\operatorname{Nm}_{L/
 Suggests target group for CFT should be $K^{\times}$, so there should be an isomorphism between $\Gal^\ab(\overline{K}/K)$ and $\mathsf{pro}K^{\times}$.
 :::
 
-::: {.front card-id="card-d1667afc3614c99b"}
-Characterize compact totally disconnected spaces.
-:::
-
-::: {.back card-id="card-d1667afc3614c99b"}
-Inverse limits of finite discrete spaces.
-
-Also called profinite spaces, Stone spaces, boolean spaces.
-
-See Stone duality.
-:::
-
 ::: {.front card-id="card-754753be1bdb9fee"}
 What is a profinite group?
 :::
@@ -729,14 +671,6 @@ How do you extract a Hausdorff topological group from an non-Hausdorff one?
 Mod out by the closure of the identity.
 :::
 
-::: {.front card-id="card-d2550c00c7687b84"}
-What is $\aleph_0$?
-:::
-
-::: {.back card-id="card-d2550c00c7687b84"}
-Countable cardinality.
-:::
-
 ::: {.front card-id="card-24034aab968ea04a"}
 Write a profinite group as a limit.
 :::
@@ -765,14 +699,6 @@ $G\hookrightarrow\mathsf{pro}G$ is an injection, so any $g\neq e$ admits a finit
 Useful since $\pi_1^\text{ét}(X) = \mathsf{pro}\pi_1(X(\CC))$, so not residually finite means losing information from $\pi_1$.
 :::
 
-::: {.front card-id="card-fc6ad817c2e32bcd"}
-What is the Galois correspondence for infinite extensions?
-:::
-
-::: {.back card-id="card-fc6ad817c2e32bcd"}
-Subextensions of $k^{ {}^{ \operatorname{sep} } }/k$ correspond to **closed** subgroups of $\Gal(k^{ {}^{ \operatorname{sep} } }/k)$ with the Krull topology.
-:::
-
 ::: {.front card-id="card-fc790016b53e422d"}
 Characterize topological groups acting on discrete modules.
 :::
@@ -791,14 +717,6 @@ What does it mean to be topologically finitely generated?
 
 ::: {.back card-id="card-2ffce7da1f1ee84f"}
 There is a generating set $S$ such that the smallest closed subgroup of $G$ containing $S$ is $G$ itself.
-:::
-
-::: {.front card-id="card-ae7e6fa40cd013a1"}
-Show that functions into a discrete space are locally constant.
-:::
-
-::: {.back card-id="card-ae7e6fa40cd013a1"}
-The fibers must be open sets
 :::
 
 ::: {.front card-id="card-3fe02311cc766f48"}
@@ -875,14 +793,6 @@ For spaces: regard objects $X$ in $\mathsf{pro}\mathsf{C}$ as sequences $X = \le
 Let $\Spaces_{\Fin\Grp}$ be the full subcategory of spaces with $\pi_i \in \Fin\Grp$.
 
 The profinite completion of $X\in\Spaces$ is the left-adjoint to the inclusion $\mathsf{pro}\Spaces_{\Fin\Grp} \to \mathsf{pro}\Spaces$.
-:::
-
-::: {.front card-id="card-e28fa3a138b69aea"}
-How is the projective limit as a set?
-:::
-
-::: {.back card-id="card-e28fa3a138b69aea"}
-$$\projectivelim S_i=\left\{\left(x_i\right)_{i \in I} \in \prod_{i \in I} S_i \st f_{i j}\left(x_i\right)=x_j \text { for all } i, j \in I \text { with } i \geq j\right\} \text {. }$$
 :::
 
 ::: {.front card-id="card-8a49e729201758aa"}

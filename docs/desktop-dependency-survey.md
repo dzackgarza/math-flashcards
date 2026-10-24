@@ -88,9 +88,8 @@ collection require a separate identity/import design if requested.
 
 ## Architecture decision
 
-Selected: side-by-side Front and Back editors with math rendered in place, built under `desktop/` in this
-repository. The current request establishes a new desktop surface here; the
-existing archive notice concerns the content maintenance location.
+Selected: side-by-side Front and Back editors with math rendered in place, built
+under `desktop/` in this repository for the personal flashcard collection.
 
 Alternative: a rich text editor using Tiptap, with additional extensions and
 Markdown round-trip verification for the mathematical source corpus.

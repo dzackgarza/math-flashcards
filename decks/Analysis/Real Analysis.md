@@ -118,14 +118,6 @@ Proof of Borel-Cantelli Lemma
 - $$E \subset \union_{j=k}^\infty E_j \implies m(E) \leq \sum_{j=k}^\infty m(E_j) \converges{k\to\infty}\to 0.$$
 :::
 
-::: {.front card-id="card-b54c431f015536e6" tags="definition"}
-Baire Space
-:::
-
-::: {.back card-id="card-b54c431f015536e6"}
-$X$ is a Baire space iff whenever $\theset{U_n}$ is a *countable* collection of open dense subsets of $X$, then their intersection $\intersect U_n$ is again dense.
-:::
-
 ::: {.front card-id="card-aa794acc7033d93a" tags="definition, important, analysis"}
 Define $\limsup, \liminf$ for sequences of sets. What are their containments?
 :::
@@ -202,28 +194,6 @@ $$\begin{align*}
 \end{align*}$$
 :::
 
-::: {.front card-id="card-2f5935dcc6c01500" tags="definition"}
-First and Second Category
-:::
-
-::: {.back card-id="card-2f5935dcc6c01500"}
-- A subset is *first category* iff it is countable union of nowhere dense sets.
-- A subset is *second category* otherwise.
-:::
-
-::: {.front card-id="card-b8b6899686be1b8a" tags="definition, example, counterexample"}
-Nowhere Dense
-:::
-
-::: {.back card-id="card-b8b6899686be1b8a"}
-A set $A$ is **nowhere dense** iff its closure has empty interior, $\qty{\bar A}^\circ = \emptyset$, equivalently it is not dense in *any* nonempty open set.
-For $\RR$, every interval $I$ contains a subinterval $S\subset I$ with $S\intersect A = \emptyset$, i.e. its closure contains no intervals.
-
-Intuition: elements are not tightly clustered, set is full of holes.
-
-Examples: $\theset{1 \over n}, \ZZ$ are nowhere dense; $\QQ, \ZZ\union \qty{(a, b)\intersect \QQ}$ are *not* nowhere dense.
-:::
-
 ::: {.front card-id="card-489e4e9afe49de75" tags="definition"}
 What is equicontinuity? Uniform equicontinuity?
 :::
@@ -287,30 +257,6 @@ Riemann-Lebesgue Lemma
 
 ::: {.back card-id="card-50b2ca62122fdbcd"}
 If $f\in L^1$, then the Fourier transform satisfies $$\hat f(\xi) \converges{\abs{\xi}\to \infty}\to 0.$$
-:::
-
-::: {.front card-id="card-bc2dcb328a76e840" tags="definition"}
-$G_\delta$ sets
-:::
-
-::: {.back card-id="card-bc2dcb328a76e840"}
-$X$ is $G_\delta$ iff $X$ is a countable intersection of open sets.
-:::
-
-::: {.front card-id="card-a18eee49c8b958d0" tags="definition"}
-$F_\sigma$ sets
-:::
-
-::: {.back card-id="card-a18eee49c8b958d0"}
-$X$ is $F_\sigma$ iff $X$ is a countable union of closed sets.
-:::
-
-::: {.front card-id="card-1679ca82c2e3da70" tags="definition"}
-Meagre Set
-:::
-
-::: {.back card-id="card-1679ca82c2e3da70"}
-A set is *meagre* iff it is a countable union of nowhere dense sets.
 :::
 
 ::: {.front card-id="card-315b6dfa5041fdcf" tags="definition"}
@@ -381,15 +327,6 @@ Negating uniform convergence of a sequence of functions
 Fix $\varepsilon$, find $x(\varepsilon, n)$ with $\abs{f_n(x) - f(x)} > \varepsilon$.
 
 Example: ${1 \over 1 + nx}$, take $x={1\over n}$.
-:::
-
-::: {.front card-id="card-ad62580e24083461" tags="theorem"}
-Baire Category Theorem
-:::
-
-::: {.back card-id="card-ad62580e24083461"}
-If $X$ is a complete metric space or a locally compact Hausdorff space, then $X$ is a Baire space.
-A (non-empty) complete metric space is *not* the countable union of nowhere dense sets.
 :::
 
 ::: {.front card-id="card-f161e786abec12f3" tags="proof"}
@@ -706,14 +643,6 @@ Four Properties of Outer Measure
 4. Almost disjoint additivity
 :::
 
-::: {.front card-id="card-6ff33fd55197a1a5" tags="definition, formula"}
-Limit definition of exponential function
-:::
-
-::: {.back card-id="card-6ff33fd55197a1a5"}
-$e^x = \lim_{n \to \infty} \qty{1 + {x\over n}}^n$
-:::
-
 ::: {.front card-id="card-77bf558ca1184654" tags="example"}
 Is a composition of Lebesgue measurable functions measurable?
 :::
@@ -760,24 +689,6 @@ $$
 n! > c^n > n^{c} > n\log(n) >  n > \log(n) > \log(\log(n)) > \cdots > 1
 .$$
 ![](https://i.imgur.com/M9u3lOr.png)
-:::
-
-::: {.front card-id="card-27af25bad6da8349" tags="definition"}
-Diameter
-:::
-
-::: {.back card-id="card-27af25bad6da8349"}
-$$
-\mathrm{diam}(A) = \sup_{x, y\in A} d(x, y)
-.$$
-:::
-
-::: {.front card-id="card-92e9d8e8f064ebe4" tags="definition"}
-Bolzano Weierstrass Property
-:::
-
-::: {.back card-id="card-92e9d8e8f064ebe4"}
-Every sequence has a convergent subsequence
 :::
 
 ::: {.front card-id="card-f0b95cd961d0dcef" tags="technique"}
@@ -877,14 +788,6 @@ Weierstrass Approximation Theorem
 If $f: I\to \RR$ is continuous, then for every $\varepsilon$ there exists a polynomial $p_\varepsilon(x)$ such that $\norm{f - p_\varepsilon}_\infty < \varepsilon$.
 
 > Slogan: polynomials are dense in $C([0, 1], \norm{\wait}_\infty)$.
-:::
-
-::: {.front card-id="card-eb276d425f8e2a7c"}
-Give an example of a set that is not nowhere dense.
-:::
-
-::: {.back card-id="card-eb276d425f8e2a7c"}
-Counterexample: $\left\{{1 \over n}\right\}, \ZZ$ are nowhere dense, $\QQ, \ZZ\cup\qty{(a, b)\cap\QQ}$ is *not* nowhere dense
 :::
 
 ::: {.front card-id="card-c2f05c220c261c17"}

@@ -128,14 +128,6 @@ Uniqueness of lifts through nilpotent quotients: for $I$ nilpotent,
 Idea: tangent vectors lift
 :::
 
-::: {.front card-id="card-d09c4ef4014a45e1"}
-Discuss the image of a flat morphism.
-:::
-
-::: {.back card-id="card-d09c4ef4014a45e1"}
-Always open.
-:::
-
 ::: {.front card-id="card-638d8935335741a9"}
 What are the preservation properties of etale morphisms?
 :::
@@ -356,14 +348,6 @@ Describe faithfully flat descent along $\operatorname{Frob}: X\to X^{(p)}$ over 
 Vector bundles on $X^{(p)}$ are equivalent to descent data for vector bundles on $X^{(p)}$, described as vector bundles $\mce$ on $X$ with a flat connection $\nabla:\mce\to \mce\otimes\Omega^1_{X}$ with $p\dash$curvature zero.
 :::
 
-::: {.front card-id="card-c024cb955d1ceca5"}
-What is a polarized scheme?
-:::
-
-::: {.back card-id="card-c024cb955d1ceca5"}
-$(X, \mcl)$ a scheme with an ample line bundle.
-:::
-
 ::: {.front card-id="card-510b87a25a0f3ea1"}
 What is an etale cover of $\operatorname{Spec}k$? Give an example.
 :::
@@ -478,30 +462,6 @@ Limits: computed pointwise, over a complete category
 Cokernels: a colimit.
 
 $\operatorname{im}= \operatorname{coim}$ can be checked on stalks.
-:::
-
-::: {.front card-id="card-7a05add3225ee133"}
-Characterize injective objects in ${}_{\ZZ}\Mod$.
-:::
-
-::: {.back card-id="card-7a05add3225ee133"}
-Divisible groups. Generally need Baer's criterion.
-:::
-
-::: {.front card-id="card-88d001160cff1c9a"}
-How do you map into or out of a product?
-:::
-
-::: {.back card-id="card-88d001160cff1c9a"}
-Into: map into each component.
-:::
-
-::: {.front card-id="card-72ae81b6c3284eda"}
-Describe pullbacks in terms of homs for representable functors.
-:::
-
-::: {.back card-id="card-72ae81b6c3284eda"}
-If $\mcf= \mathop{\mathrm{Hom}}_X({-}, Z)$, then $f^* \mcf= \mathop{\mathrm{Hom}}_Y({-}, Y \underset{\scriptscriptstyle {X} }{\times} Z)$.
 :::
 
 ::: {.front card-id="card-d503f5dea206e3f0"}
@@ -1111,4 +1071,20 @@ What is $\pi_1^\text{ét}{\mathbf{P}}^1_{/ {k}}$ for $k$ a field?
 
 ::: {.back card-id="card-d9953327ca35f95c"}
 $\pi_1^\text{ét}\operatorname{Spec}k = \Gal(k^{ {}^{ \operatorname{sep} } }/k)$.
+:::
+
+::: {.front card-id="card-39d50a1666910f3f"}
+What is **smooth base change**?
+:::
+
+::: {.back card-id="card-39d50a1666910f3f"}
+For $f: X\to S$ smooth and $g: T\to S$ qc and $\mcf\in \Sh(T)$ of $C_n\dash$modules (torsion), there is an isomorphism $f^* {\mathbf{R}}^q g_* \mcf { \, \xrightarrow{\sim}\, }{\mathbf{R}}^q \tilde g_* (f')^*\mcf$ where $\tilde g: X \underset{\scriptscriptstyle {S} }{\times} T \to X$ and $\tilde f: X \underset{\scriptscriptstyle {S} }{\times} T\to T$.
+:::
+
+::: {.front card-id="card-5e0bccfad0df15c7"}
+What is **proper base change**?
+:::
+
+::: {.back card-id="card-5e0bccfad0df15c7"}
+If $\pi: X\to S$ is proper and $\mcf$ is a torsion sheaf on $X$ with $f: T\to S$, the base change morphism $f^{-1}{\mathbf{R}}^i \pi_* \mcf { \, \xrightarrow{\sim}\, }{\mathbf{R}}^i \tilde\pi_* \tilde f^{-1}\mcf$.
 :::

@@ -92,7 +92,7 @@ function workbenchBackend(): Plugin {
 export default defineConfig({
   define: {
     __DEFAULT_WORKSPACE__: JSON.stringify(
-      fileURLToPath(new URL("..", import.meta.url)),
+      fileURLToPath(new URL("../decks", import.meta.url)),
     ),
   },
   plugins: [

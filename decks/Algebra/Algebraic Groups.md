@@ -17,3 +17,11 @@ Definition: Algebraic Group
 ::: {.back card-id="card-d81d0c4e36265ee6"}
 An algebraic group over a field $k$ is a group object in the category of $k$-varieties: multiplication $G\times_kG\to G$, inverse $G\to G$, and identity $\operatorname{Spec}k\to G$ are morphisms satisfying the group axioms.
 :::
+
+::: {.front card-id="card-93c8159957201abb"}
+What is $\dim \operatorname{PGL}_n(\CC)$?
+:::
+
+::: {.back card-id="card-93c8159957201abb"}
+$n^2 - 1$.
+:::

@@ -8,6 +8,8 @@ What is a variety in scheme-theoretic terms?
 
 ::: {.back card-id="card-155c7a1001d2816c"}
 A separated integral scheme of finite type over a field $k$ (Hartshorne's convention). Some authors drop integrality and call any separated scheme of finite type over $k$ a variety.
+
+Another convention requires geometric integrality over $k$.
 :::
 
 ::: {.front card-id="card-73187788340331e8"}
@@ -303,4 +305,60 @@ What is Chow's theorem for complex projective varieties?
 
 ::: {.back card-id="card-5bd745bf9fb39e79"}
 Chow 1949: The functor $X \rightsquigarrow X(\mathbb{C})$ from nonsingular projective algebraic varieties to projective complex manifolds is an equivalence of categories. This remains true when singularities are allowed.
+:::
+
+::: {.front card-id="card-24176e569cb28a19"}
+Give $\dim {\mathbf{P}}(V)$ in terms of $\dim V$.
+:::
+
+::: {.back card-id="card-24176e569cb28a19"}
+$\dim {\mathbf{P}}(V) = \dim V - 1$.
+:::
+
+::: {.front card-id="card-2f94dbd7c0c5c56e"}
+What is $\dim {\mathbf{P}}^n$.
+:::
+
+::: {.back card-id="card-2f94dbd7c0c5c56e"}
+$\dim {\mathbf{P}}^n = n$, locally $n$ degrees of freedom: $p \sim {\left[ {1: x_1/x_0:\cdots :x_n/x_0} \right]}$.
+:::
+
+::: {.front card-id="card-3c62ffad76035cd6"}
+What is the Kodaira embedding theorem?
+:::
+
+::: {.back card-id="card-3c62ffad76035cd6"}
+If $X$ is compact Kahler and $\mcl\in \operatorname{Pic}(X)$ then $\mcl> 0 \iff \mcl\in \operatorname{Pic}(X)^\amp$.
+
+$\impliedby$: if $\mcl{ {}^{ \scriptstyle\otimes_{}^{n} }  } = {\mathcal{O}}_{{\mathbf{P}}^N}(1)\mathrel{\Big|}_X$, the hyperplane bundle is positive since its curvature is the Fubini-Study form.
+
+Positive: $\mcl> 0 \iff \mcl$ admits a metric $h$ such that the associated curvature $\sqrt{-1}\Theta(\mcl, h)$ is a positive 1-1 form.
+
+Comes from the Chern connection induced by ${ \overline{{\partial}}}:\mcl\to \mcl\otimes H^{0, 1}(M)$, namely $\nabla^{0, 1} = { \overline{{\partial}}}$.
+:::
+
+::: {.front card-id="card-26a43a92a834b431"}
+When is a variety smooth?
+:::
+
+::: {.back card-id="card-26a43a92a834b431"}
+If $\Omega_{X}$ is locally free of rank $\dim X$
+
+Equivalently, $X \underset{\scriptscriptstyle {k} }{\times}\kbar$ is a regular scheme.
+:::
+
+::: {.front card-id="card-10b63f4aeb034057"}
+Discuss GAGA
+:::
+
+::: {.back card-id="card-10b63f4aeb034057"}
+To any $X\in\Sch^{\mathrm{ft}}_{/ {\CC}}$ there exist $X^\an\to X$ a morphism of ringed spaces from an analytic space where the points of $X^\an$ correspond to the closed points of $X$ and there is an induced equivalence $\Coh(X) { \, \xrightarrow{\sim}\, }\Coh(X^\an)$.
+:::
+
+::: {.front card-id="card-ded86dc8399712bb"}
+What is a projectively normal morphism?
+:::
+
+::: {.back card-id="card-ded86dc8399712bb"}
+The restriction $H^0\left(\mathbf{P}^{g-1}, \mathcal{O}(k)\right) \longrightarrow H^0\left(C, \omega_C^k\right)$ is surjective for all $k$.
 :::

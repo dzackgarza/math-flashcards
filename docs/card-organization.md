@@ -1,5 +1,9 @@
 # Card organization
 
+The selected workspace folder contains deck Markdown files directly, including
+decks in subject subfolders. `apkg/` is reserved for generated packages.
+Deck paths in editor requests are relative to the selected folder.
+
 ## Design
 
 Organization happens in the editor's deck tree and card list. Decks in the tree

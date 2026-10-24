@@ -1,5 +1,5 @@
 ---
-title: "Research::Integral Affine Structures"
+title: "Algebraic Geometry::Mirror Symmetry::Integral Affine Structures"
 ---
 
 ::: {.front card-id="card-dcd1e437d41fbead"}
@@ -16,30 +16,6 @@ What does it mean for a singularity to be **smoothable**, i.e. what is a **smoot
 
 ::: {.back card-id="card-d5ec173bf75ab3ce"}
 For $X$ with isolated singularities, a flat family $\mcx\to \mathbb{D}$ with $\mcx_0 \cong X$ and all nearby fibers $\mcx_t$ smooth. E.g. most plane curves are smoothable, not automatic for surfaces. Hypersurface singularities are always smoothable. There is no general criterion. There exists non-smoothable varieties: e.g. a cone over a 2-dimensional abelian variety which can't be a limit of smooth projective varieties. Alternatively, quotient singularities in dimension $\geq 3$, since these are rigid. Du Val singularities are smoothable, since they are hypersurface type, replace $F(x,y,z)= 0$ with $F(x,y,z) = t$.
-:::
-
-::: {.front card-id="card-baf0044bf7bc363a"}
-What is a **rational surface**?
-:::
-
-::: {.back card-id="card-baf0044bf7bc363a"}
-A 2-dimensional projective variety birationally equivalent to ${\mathbf{P}}^2$; simplest in the Enriques-Kodaira classification. Always a repeated blowup of a minimal rational surface, one of ${\mathbf{P}}^2$ or ${ \mathbf{F} }_n$ (the Hirzebruch surface). Suffices to show irregularity $q=0$ and plurigenus $p_2 = 0$.
-:::
-
-::: {.front card-id="card-57d6edcbbc895cf2"}
-What is a **contraction**?
-:::
-
-::: {.back card-id="card-57d6edcbbc895cf2"}
-A surjective proper morphism $f:X\to Y$ between normal projective schemes where $f_* {\mathcal{O}}_X \cong {\mathcal{O}}_Y$, or equivalently the geometric fibers are connected.
-:::
-
-::: {.front card-id="card-cdc67f784e52a114"}
-What is a **contractible curve**?
-:::
-
-::: {.back card-id="card-cdc67f784e52a114"}
-E.g. if starting with a proper normal algebraic surface $X$ and a curve $C$ in $X$, a contraction morphism $\pi: X\to Y$ where $\pi(C)$ is a point.
 :::
 
 ::: {.front card-id="card-1e60c609baa1e7af"}
@@ -64,32 +40,6 @@ What is a **toric pair**?
 
 ::: {.back card-id="card-f64cc783f07e304d"}
 An ACP $(Y, D)$ where $Y$ is a toric variety and $D$ is its toric boundary.
-:::
-
-::: {.front card-id="card-39afa431b819ac1f"}
-What is an exceptional curve of the first kind?
-:::
-
-::: {.back card-id="card-39afa431b819ac1f"}
-Rational curves $C$ isomorphic to ${\mathbf{P}}^1$ with $C^2 = -1$.
-:::
-
-::: {.front card-id="card-28accb71191608ee"}
-What is a **resolution**?
-:::
-
-::: {.back card-id="card-28accb71191608ee"}
-For $X$ singular, a proper morphism $\pi: W\to X$ where $W$ is smooth, $\pi^{-1}(X^{\mathsf{sm}}) \subseteq W$ is dense and $\pi$ induces an isomorphism on the smooth locus.
-:::
-
-::: {.front card-id="card-63ead0b6b3f67ab5"}
-What is a **minimal resolution**?
-:::
-
-::: {.back card-id="card-63ead0b6b3f67ab5"}
-Minimal $W$ is minimal iff whenever $W'\to V$ is another resolution, it factors as $W'\to W\to V$.
-
-Exist uniquely in dimensions 1 and 2, but may not in higher dimensions. For a surface with an isolated singularity at 0: $\pi: W\to V$ is minimal iff $\pi^{-1}(0)$ does not contain any exceptional curves of the first kind. Any non-minimal resolution must contain a -1 curve.
 :::
 
 ::: {.front card-id="card-89fdc8b480c546ee"}
@@ -240,14 +190,6 @@ What is the **Friedman-Miranda criterion**?
 
 ::: {.back card-id="card-34641c38d14db4fa"}
 The cusp singularity associated to $\widehat{D}$ is smoothable iff there exists a type III ACP $(\mcx_0, D)$.
-:::
-
-::: {.front card-id="card-57428c9f80e11c05"}
-What is a **nodal curve**?
-:::
-
-::: {.back card-id="card-57428c9f80e11c05"}
-A complete algebraic curve such that every point is either smooth or a node, where $p$ is a node iff it admits a neighborhood which is complex analytically isomorphic to $V(xy)$.
 :::
 
 ::: {.front card-id="card-eeb1f10b7050ade0"}

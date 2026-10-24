@@ -27,12 +27,12 @@ def main() -> None:
     artifacts.mkdir(exist_ok=True)
     with tempfile.TemporaryDirectory(prefix="flashcards-test-") as directory:
         root = Path(directory)
-        (root / "decks" / "Basics").mkdir(parents=True)
+        (root / "Analysis").mkdir(parents=True)
         shutil.copyfile(
-            repo.parent / "decks" / "Basics" / "Precalculus.md",
-            root / "decks" / "Basics" / "Precalculus.md",
+            repo.parent / "decks" / "Analysis" / "Precalculus.md",
+            root / "Analysis" / "Precalculus.md",
         )
-        deck_path = root / "decks" / "Basics" / "Precalculus.md"
+        deck_path = root / "Analysis" / "Precalculus.md"
         authored_source = deck_path.read_bytes()
         with sync_playwright() as playwright:
             browser = playwright.chromium.launch()
@@ -48,7 +48,7 @@ def main() -> None:
             ).to_be_visible()
             page.get_by_role("button", name="Workspace", exact=True).click()
             expect(page.get_by_label("Workspace folder")).to_have_value(
-                str(repo.parent), timeout=30000
+                str(repo.parent / "decks"), timeout=30000
             )
             expect(
                 page.get_by_role("button", name="Refresh workspace", exact=True)
@@ -59,7 +59,7 @@ def main() -> None:
             expect(
                 page.get_by_role("button", name="Workspace", exact=True)
             ).to_have_text(root.name, timeout=30000)
-            page.get_by_text("Basics", exact=True).click()
+            page.get_by_text("Analysis", exact=True).click()
             page.get_by_text("Precalculus", exact=True).click()
             expect(status).to_contain_text("not in the Anki package")
             expect(page.locator(".side-editor.front .cm-editor")).to_be_visible()
@@ -143,7 +143,7 @@ def main() -> None:
             expect(status).to_have_text("Anki package up to date", timeout=60000)
             expect(page.locator(".card-row[data-change]")).to_have_count(0)
             page.screenshot(path=str(artifacts / "generated.png"))
-            package = root / "apkg" / "Basics__Precalculus.apkg"
+            package = root / "apkg" / "Analysis__Precalculus.apkg"
             with zipfile.ZipFile(package) as archive:
                 archive.extract("collection.anki2", root)
             with sqlite3.connect(root / "collection.anki2") as database:
@@ -242,7 +242,7 @@ def main() -> None:
 
             # The Problems drawer lists every equation that does not render and
             # every card without an answer, in all decks.
-            (root / "decks" / "Basics" / "Broken.md").write_text(
+            (root / "Analysis" / "Broken.md").write_text(
                 '---\ntitle: "Broken"\n---\n\n::: {.front card-id="macro"}\nUnknown $\\undefinedmacro x$\n:::\n\n::: {.back card-id="macro"}\n$$\\left{ x \\right}$$\n:::\n'
             )
             problems_button = page.get_by_role(

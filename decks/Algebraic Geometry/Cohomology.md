@@ -2,112 +2,6 @@
 title: "Algebraic Geometry::Cohomology"
 ---
 
-::: {.front card-id="card-d87ef906950bd548"}
-What is a **limit**? A **colimit**?
-:::
-
-::: {.back card-id="card-d87ef906950bd548"}
-How to remember: limits are like sequences and live above (sequences project), colimits are like gluing and live below (include into disjoint unions) <https://q.uiver.app/?q=WzAsMTUsWzAsNCwiQV97aS0xfSJdLFswLDMsIlxcdmRvdHMiXSxbMCwyLCJBX3tpKzF9Il0sWzQsMywiXFxjZG90cyJdLFs1LDMsIkYoQV97aS0xfSkiXSxbNiwzLCJcXGNkb3RzIl0sWzcsMywiRihBX3tpKzF9KSJdLFs4LDMsIlxcY2RvdHMiXSxbMCwxLCJcXHZkb3RzIl0sWzAsNSwiXFx2ZG90cyJdLFs2LDIsIlxcdW5kZXJzZXR7XFxsb25nbGVmdGFycm93fXtcXG1hdGhybXtsaW19fVxcLCBGICJdLFs2LDQsIlxcdW5kZXJzZXR7XFxsb25ncmlnaHRhcnJvd317XFxtYXRocm17Y29saW19fVxcLCBGIl0sWzYsMCwiXFxmb3JhbGwgTCJdLFs2LDYsIlxcZm9yYWxsIEMiXSxbMCwwXSxbMyw0XSxbNCw1XSxbNSw2XSxbMCwxXSxbMSwyXSxbMiw4XSxbOSwwXSxbMTAsNF0sWzEwLDZdLFs0LDExXSxbNiwxMV0sWzEyLDQsIiIsMix7ImN1cnZlIjoyfV0sWzEyLDEwLCJcXGV4aXN0cyAhIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzEyLDYsIiIsMix7ImN1cnZlIjotMn1dLFs0LDEzLCIiLDIseyJjdXJ2ZSI6Mn1dLFs2LDEzLCIiLDIseyJjdXJ2ZSI6LTJ9XSxbMTEsMTMsIlxcZXhpc3RzICEiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNiw3XSxbMTksMTUsIkYiLDAseyJjdXJ2ZSI6LTMsInNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH19XV0=>https://q.uiver.app/?q=WzAsMTUsWzAsNCwiQV97aS0xfSJdLFswLDMsIlxcdmRvdHMiXSxbMCwyLCJBX3tpKzF9Il0sWzQsMywiXFxjZG90cyJdLFs1LDMsIkYoQV97aS0xfSkiXSxbNiwzLCJcXGNkb3RzIl0sWzcsMywiRihBX3tpKzF9KSJdLFs4LDMsIlxcY2RvdHMiXSxbMCwxLCJcXHZkb3RzIl0sWzAsNSwiXFx2ZG90cyJdLFs2LDIsIlxcdW5kZXJzZXR7XFxsb25nbGVmdGFycm93fXtcXG1hdGhybXtsaW19fVxcLCBGICJdLFs2LDQsIlxcdW5kZXJzZXR7XFxsb25ncmlnaHRhcnJvd317XFxtYXRocm17Y29saW19fVxcLCBGIl0sWzYsMCwiXFxmb3JhbGwgTCJdLFs2LDYsIlxcZm9yYWxsIEMiXSxbMCwwXSxbMyw0XSxbNCw1XSxbNSw2XSxbMCwxXSxbMSwyXSxbMiw4XSxbOSwwXSxbMTAsNF0sWzEwLDZdLFs0LDExXSxbNiwxMV0sWzEyLDQsIiIsMix7ImN1cnZlIjoyfV0sWzEyLDEwLCJcXGV4aXN0cyAhIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzEyLDYsIiIsMix7ImN1cnZlIjotMn1dLFs0LDEzLCIiLDIseyJjdXJ2ZSI6Mn1dLFs2LDEzLCIiLDIseyJjdXJ2ZSI6LTJ9XSxbMTEsMTMsIlxcZXhpc3RzICEiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNiw3XSxbMTksMTUsIkYiLDAseyJjdXJ2ZSI6LTMsInNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH19XV0=
-:::
-
-::: {.front card-id="card-75b0cf56e062765b"}
-What is an **abelian category**?
-:::
-
-::: {.back card-id="card-75b0cf56e062765b"}
-$\mathsf{C}(A, B) \in \Ab\Grp$ and composition is a group morphism,
-
-All Finite direct sums
-
-All kernels and cokernels
-
-Mono = $\ker(\operatorname{coker})$.
-
-Epi $= \operatorname{coker}(\ker)$.
-
-Epi-mono factorization for all morphisms
-:::
-
-::: {.front card-id="card-089cfeaeedd8d036"}
-What is a **delta functor**?
-:::
-
-::: {.back card-id="card-089cfeaeedd8d036"}
-A collection $T^n$ ($T^{> 0}$ are *satellite functors*) and for each $A\hookrightarrow B\twoheadrightarrow C$ a collection of morphisms $\delta^n: T^n(C) \to T^n(A)$ fitting into a LES, and for each morphism of SESs $\xi_1\to \xi_1$ the $\delta^n$ fit into commuting squares.
-:::
-
-::: {.front card-id="card-f2225028df666042"}
-What is a **universal delta functor**?
-:::
-
-::: {.back card-id="card-f2225028df666042"}
-$\delta = (T^n)$ is universal iff for any other delta functor $(S^n)$ and any morphism $f^0: T^0\to S^0$ of functors there exist lifts $f^i: T^i \to S^i$ which commute with the $\delta^i$.
-:::
-
-::: {.front card-id="card-84dafb6fde17d894"}
-What is a **homotopy** between maps $f,g: A\to B$ of complexes?
-:::
-
-::: {.back card-id="card-84dafb6fde17d894"}
-A morphism $k: A \to B[1]$, so $k^i: A^i\to B^{i-1}$, with $f-g = dk + kd$.
-:::
-
-::: {.front card-id="card-6b282cf8ba9d9f58"}
-What is an **additive** functor?
-:::
-
-::: {.back card-id="card-6b282cf8ba9d9f58"}
-$F$ is additive iff $\mathsf{C}(A, B)\to \mathsf{D}(FA, FB)$ is a group morphism.
-:::
-
-::: {.front card-id="card-2c05ae67c19d8075"}
-What is a **left exact functor**?
-:::
-
-::: {.back card-id="card-2c05ae67c19d8075"}
-Additive and $A\hookrightarrow B\twoheadrightarrow C \leadsto FA \hookrightarrow FB \to FC \to \cdots$.
-:::
-
-::: {.front card-id="card-9a24470a30061150"}
-What are the variance and exactness of hom functors?
-:::
-
-::: {.back card-id="card-9a24470a30061150"}
-Both are left-exact (just remember $\mathop{\mathrm{\mathbb{R}Hom}}$), $\mathsf{C}(A, {-})$ is covariant and $\mathsf{C}({-}, A)$ is contravariant.
-:::
-
-::: {.front card-id="card-d4171256cc976c1e"}
-What is an **injective resolution** of $A$?
-:::
-
-::: {.back card-id="card-d4171256cc976c1e"}
-$A \xrightarrow{{\varepsilon}} I^0 \to I^1 \to \cdots$ an exact complex with $I^j$ injective objects
-:::
-
-::: {.front card-id="card-d51a653fa3481330"}
-What is an **injective object**?
-:::
-
-::: {.back card-id="card-d51a653fa3481330"}
-Remembering injectives and projectives: <https://q.uiver.app/?q=WzAsNSxbMCwyLCJBIl0sWzIsMiwiQiJdLFs0LDIsIkMiXSxbMCw0LCJJIl0sWzQsMCwiUCJdLFswLDEsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzEsMiwiIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzQsMl0sWzAsM10sWzQsMSwiXFxleGlzdHMgXFxpZmYgQyBcXHRleHR7IHByb2plY3RpdmV9IiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzEsMywiXFxleGlzdHMgXFxpZmYgQSBcXHRleHR7IGluamVjdGl2ZX0iLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=>
-:::
-
-::: {.front card-id="card-e37ad2148e34f1cb"}
-What is a **(co)effaceable functor**?
-:::
-
-::: {.back card-id="card-e37ad2148e34f1cb"}
-For each $A$ there is a mono $u: A\to I$ with $F(u) = 0$. Coeffaceable if there is an epi $u: P\to A$ with $F(u) = 0$.
-:::
-
-::: {.front card-id="card-6fd5f64c060e98bb"}
-Discuss **effaceable functors**.
-:::
-
-::: {.back card-id="card-6fd5f64c060e98bb"}
-If $T$ is a delta functor and each $T^i$ is effaceable then $T$ is universal. Derived functors computed via injective resolutions form a universal $\delta$ functor.
-:::
-
 ::: {.front card-id="card-dc50c39867acc702"}
 Why does ${}_{{\mathcal{O}}_X}\Mod$ have enough injectives?
 :::
@@ -143,14 +37,6 @@ Discuss higher direct images for morphisms $f:X\to \operatorname{Spec}A$.
 Let $M_i \coloneqq H^i(X; \mcf)$, then ${\mathbf{R}}^i f_* \mcf= \tilde M_i$.
 :::
 
-::: {.front card-id="card-c05f6f48457e723e"}
-What is a **flasque** or **flabby** sheaf?
-:::
-
-::: {.back card-id="card-c05f6f48457e723e"}
-$V\subseteq U \implies F(U) \twoheadrightarrow F(V)$. Any flasque is injective and thus $\Gamma\dash$acyclic.
-:::
-
 ::: {.front card-id="card-29097df5554a634a"}
 Give examples of flasque sheaves.
 :::
@@ -173,67 +59,12 @@ More generally, for all $\mcu\rightrightarrows X, \exists 1=\sum f_i$ subordinat
 Fine implies soft.
 :::
 
-::: {.front card-id="card-88283a5b704c6e21"}
-What is the **tangent sheaf**?
-:::
-
-::: {.back card-id="card-88283a5b704c6e21"}
-${\mathbf{T}}_X \coloneqq\Omega_{X/k} {}^{ \vee }\coloneqq \mch\kern-0.5pt{\operatorname{om}}_{{\mathcal{O}}_X}(\Omega_{X/k}, {\mathcal{O}}_X)$, locally free of rank $\dim X$.
-:::
-
 ::: {.front card-id="card-2578e6e4881e953d"}
 What is the **geometric genus** in full generality?
 :::
 
 ::: {.back card-id="card-2578e6e4881e953d"}
 $p_g(X) \coloneqq h^{n, 0}(X) \coloneqq h^0(\omega_X)$, the number of linearly-independent top forms.
-:::
-
-::: {.front card-id="card-037ffa2cb5372691"}
-What are the **conormal** sheaf and the **normal sheaf**?
-:::
-
-::: {.back card-id="card-037ffa2cb5372691"}
-For $Y\hookrightarrow X$ a closed embedding of smooth varieties, $N_{Y/X} {}^{ \vee }\coloneqq\mci_Y/\mci_Y^2$ is the conormal sheaf and $N_{Y/X} = (\mci_Y/\mci_Y^2) {}^{ \vee }$ is the normal sheaf, which is locally free of rank $\operatorname{codim}_X(Y)$.
-:::
-
-::: {.front card-id="card-c30e1b1de3ce90bd"}
-What is a **derivation**?
-:::
-
-::: {.back card-id="card-c30e1b1de3ce90bd"}
-$d\in \mathop{\mathrm{Der}}_A(B, M) \iff d$ is additive and $d(b_1b_2) = d(b_1)b_2 + b_1d(b_2)$ where $d(a) = 0$ for all $a\in A$.
-:::
-
-::: {.front card-id="card-30c6432017c0b3b9"}
-What is the module of relative differentials $\Omega_{B/A}$?
-:::
-
-::: {.back card-id="card-30c6432017c0b3b9"}
-$\Omega_{B/A}\in   {}_{B}\Mod$ with $d\in \mathop{\mathrm{Der}}_A(B, \Omega_{B/A})$ satisfying a universal property: for any $M\in   {}_{B}\Mod$ and $d'\in \mathop{\mathrm{Der}}_A(B, M)$, it factors through $d$. Can be constructed as $\mathsf{Free}_B(db \st b\in B)/R$ where $R$ are relations $d(b_1+b_2)-d(b_1)-d(b_2), da, d(b_1b_2)-d(b_1)b_2-b_1d(b_2)$.
-:::
-
-::: {.front card-id="card-9fcd3600930c58fb"}
-What is the **sheaf of differentials** or **relative differential forms**?
-:::
-
-::: {.back card-id="card-9fcd3600930c58fb"}
-For $f:X\to Y$, embed $X$ as a locally closed subscheme $X\hookrightarrow W \coloneqq\Delta_{X/Y}$ with sheaf of ideals $\mci$ and define $\Omega_{X/Y} \coloneqq\Delta^*(\mci/\mci^2) \in \QCoh(X)$. The local derivations glue to $d:{\mathcal{O}}_X\to \Omega_{X/Y}$.
-:::
-
-::: {.front card-id="card-8c48673ca22f6b18"}
-What are the two exact sequences for sheaves (modules) of differentials?
-:::
-
-::: {.back card-id="card-8c48673ca22f6b18"}
-The composition exact sequence: for $X \xrightarrow{f} Y \xrightarrow{g} Z$,
-$$f^* \Omega_{Y / Z} \rightarrow \Omega_{X / Z} \rightarrow \Omega_{X / Y} \rightarrow 0.$$
-For modules: for $A\to B\to C$,
-$$\Omega_{B / A} \otimes_B C \rightarrow \Omega_{C / A} \rightarrow \Omega_{C / B} \rightarrow 0 \in   {}_{C}\Mod$$
-The "conormal" exact sequence: for $X\to Y$ and $Z\leq X$ a closed subscheme with ideal sheaf $\mci$,
-$$\mathscr{I} / \mathscr{I}^2 \stackrel{\delta}{\rightarrow} \Omega_{X / Y} \otimes \mathcal{O}_Z \rightarrow \Omega_{Z / Y} \rightarrow 0.$$
-For modules: for $B\in  \mathsf{Alg}_{A}, I\normal B, C\coloneqq B/I$,
-$$I / I^2 \stackrel{\delta}{\rightarrow} \Omega_{B / A} \otimes_B C \rightarrow \Omega_{C / A} \rightarrow 0\in   {}_{C}\Mod$$
 :::
 
 ::: {.front card-id="card-213db50f27de0ed0"}
@@ -275,66 +106,6 @@ When does Cech cohomology compute sheaf cohomology?
 For $X$ a Noetherian separated scheme and $\mcf\in \QCoh(X)$. (Thm 4.5) Alternatively, whenever $\mcf$ has no cohomology on any open in a cover $\mcu$.
 :::
 
-::: {.front card-id="card-7b6fdb224bdd77f2"}
-What is a **regular immersion**?
-:::
-
-::: {.back card-id="card-7b6fdb224bdd77f2"}
-An immersion whose sheaf of ideals is regular, where $\mci\leq {\mathcal{O}}_X$ is regular iff for every $x\in \mathop{\mathrm{supp}}({\mathcal{O}}_X/\mci)$ admits an open neighborhood $U$ and a regular sequence $f_1,\cdots, f_r\in {\mathcal{O}}_X(U)$ generating ${ \left.{{\mci}} \right|_{{U}} }$.
-:::
-
-::: {.front card-id="card-f6ef6d64003c7e76"}
-What are consequences of a morphism being flat?
-:::
-
-::: {.back card-id="card-f6ef6d64003c7e76"}
-The Hilbert polynomials of all fibers are the same.
-
-If $f:X\to Y$ with $X,Y$ finite type over a field, $\dim_x X_y = \dim_x X - \dim_y Y$ where $\dim_x X \coloneqq\dim {\mathcal{O}}_{X, x}$.
-
-For $\mcx\to C^\circ$ a flat family of closed subschemes of ${\mathbf{P}}^n$ over a punctured curve $C^\circ$, one can "pass to the limit": given $Y$ regular integral of dimension 1 and $p\in Y$ a closed point, let $Y^\circ \coloneqq Y\setminus\left\{{ p }\right\}$ and $X\subseteq {\mathbf{P}}^n_{Y^\circ}$ be a closed subscheme which is flat over $Y^\circ$; then $\exists ! \tilde X \subseteq {\mathbf{P}}^n_{Y}$ a closed subscheme flat over $Y$ which restricts to $X$.
-:::
-
-::: {.front card-id="card-f29f14b3c651a2c2"}
-Give an example and a non-example of a flat morphism.
-:::
-
-::: {.back card-id="card-f29f14b3c651a2c2"}
-Example: any open immersion, $\tilde M$ over $A$ for any $M \in   {}_{A}\Mod^\flat$. Any smooth morphism by miracle flatness Non-example: any blowup, since the fibers jump in dimension.
-:::
-
-::: {.front card-id="card-069f1fe38915b1c4"}
-What is an **associated point**?
-:::
-
-::: {.back card-id="card-069f1fe38915b1c4"}
-$x\in X$ where every element of $\mfm_x$ is a zero divisor.
-:::
-
-::: {.front card-id="card-1f647ebbef5efd37"}
-What is a **flat family**?
-:::
-
-::: {.back card-id="card-1f647ebbef5efd37"}
-Any morphism $\mcx\to X$ of schemes to $X$ which is flat.
-:::
-
-::: {.front card-id="card-3c776a71df041421"}
-How can one check if a morphism is flat?
-:::
-
-::: {.back card-id="card-3c776a71df041421"}
-For $f: X\to Y$ with $Y$ integral and regular of dimension 1, $f$ is flat iff every *associated point* maps to $\eta_Y$. For $X$ reduced, this says every irreducible component of $X$ dominates $Y$.
-:::
-
-::: {.front card-id="card-16b1ac8dbea48ede"}
-What are some properties not preserved in a flat family?
-:::
-
-::: {.back card-id="card-16b1ac8dbea48ede"}
-Being irreducible or reduced, Picard numbers, generally most things that aren't related to Hilbert polynomials.
-:::
-
 ::: {.front card-id="card-7b0ae0c2f2899228"}
 What is **Serre's vanishing** characterization of affine schemes among Noetherian schemes?
 :::
@@ -365,14 +136,6 @@ Write $\Gamma^*(\mcf) \coloneqq\bigoplus_{n\geq 0} H^0(X; {\mathcal{O}}_X(n))$ f
 $H^i(X; {\mathcal{O}}_X(n)) = 0$ for $0<i<r$ and every $n$.
 
 $H^r(X; {\mathcal{O}}_X(-(r+1))) = A$.
-:::
-
-::: {.front card-id="card-c86c46b3d1c22faa"}
-What is the **Hilbert polynomial** of a sheaf?
-:::
-
-::: {.back card-id="card-c86c46b3d1c22faa"}
-A polynomial $p\in \QQ[z]$ such that $p(n) = \chi(\mcf(n))$ for every $n$.
 :::
 
 ::: {.front card-id="card-847e440e17d15caf"}
@@ -417,46 +180,12 @@ $$2\pi i \ZZ\hookrightarrow{\mathcal{O}}_X \twoheadrightarrow{\mathcal{O}}_X^{\t
 Since $H^1({\mathcal{O}}_X^{\times}) = \operatorname{Pic}(X)$, $\delta^1 = c_1({-}) \in H^2(2\pi i \ZZ)$ is the first Chern class.
 :::
 
-::: {.front card-id="card-1f21f65d8810cd17"}
-What is the **conormal exact sequence**, e.g. for an immersion $C\hookrightarrow S$?
-:::
-
-::: {.back card-id="card-1f21f65d8810cd17"}
-How to derive: for a closed immersion $j: X\hookrightarrow Y$ of smooth varieties,
-$${\mathbf{T}}_X \hookrightarrow j^*{\mathbf{T}}_Y \twoheadrightarrow N_{X/Y} \quad\underset{\text{dualize}}{\leadsto}\quad N_{X/Y} {}^{ \vee }\to j^*\Omega_{Y/Z} \twoheadrightarrow\Omega_{X/Z}\to 0.$$
-At the level of sheaves on $C$, for $\iota: C\hookrightarrow S$,
-$$N_{C/S} {}^{ \vee }\to \iota^*\Omega_{S/k} \twoheadrightarrow\Omega_{C/k}\to 0 \qquad \in \Sh(C)$$
-where $N_{C/S} {}^{ \vee }\coloneqq I_C/I_C^2$ (the first map is injective when $C$ and $S$ are smooth). This is a sheaf version of: if $B\in  \mathsf{Alg}_{R}$ and $I \normal B$,
-$$I/I^2 \to \Omega_{B/R}\otimes_B B/I \twoheadrightarrow\Omega_{(B/I)/R}\to 0 \qquad\in  {}_{B/I}\Mod$$
-For $C \subseteq S$ a closed subscheme and $f:S\to T$, can rewrite this as
-$$ \mci_C / \mci_C^2 \to \Omega_{S/T} \otimes{\mathcal{O}}_C \twoheadrightarrow\Omega_{C/T}\to 0 \qquad \in \Sh_C$$
-:::
-
-::: {.front card-id="card-25c14144c18e5ef3"}
-What is the **Euler exact sequence**?
-:::
-
-::: {.back card-id="card-25c14144c18e5ef3"}
-For $X \coloneqq{\mathbf{P}}^n _{/ {A}}$, dualize ${\mathcal{O}}_X\hookrightarrow{\mathcal{O}}_X(1){ {}^{ \scriptscriptstyle\oplus^{n+1} }  }\twoheadrightarrow{\mathbf{T}}_X$ to get the sequence
-$$\Omega^1_{X}\hookrightarrow{\mathcal{O}}_X(-1){ {}^{ \scriptscriptstyle\oplus^{n+1} }  }\twoheadrightarrow{\mathcal{O}}_X$$
-:::
-
 ::: {.front card-id="card-1ad7a8deaabeb009"}
 What is $\omega_X$ for $X = {\mathbf{P}}^n_{/ {A}}$? Derive it.
 :::
 
 ::: {.back card-id="card-1ad7a8deaabeb009"}
 Take determinants in the Euler exact sequence $\Omega^1_{X}\hookrightarrow{\mathcal{O}}_X(-1){ {}^{ \scriptscriptstyle\oplus^{n+1} }  }\twoheadrightarrow{\mathcal{O}}_X$ to get $\operatorname{det}{\mathcal{O}}_X(-1){ {}^{ \scriptscriptstyle\oplus^{n+1} }  } = \omega_X \otimes{\mathcal{O}}_X = \omega_X$ and so $\omega_X = {\mathcal{O}}_X(-(n+1))$.
-:::
-
-::: {.front card-id="card-884b60a5d4ee268a"}
-What is the composition exact sequence for $X\to Y\to Z$?
-:::
-
-::: {.back card-id="card-884b60a5d4ee268a"}
-At the level of sheaves,
-$$f^* \Omega_{Y/Z} \to \Omega_{X/Z} \to \Omega_{X/Y} \to 0 \qquad \in \Sh_X$$
-How to remember:
 :::
 
 ::: {.front card-id="card-00941d78f8260900"}
@@ -468,26 +197,107 @@ Use that for $Y\hookrightarrow X$ one has $\omega_Y = \omega_X \otimes\operatorn
 $$\omega_Y = {\mathcal{O}}_X(-n-1) \otimes{\mathcal{O}}_{{\mathbf{P}}^n}(Y) \otimes{\mathcal{O}}_Y = {\mathcal{O}}_Y(-n-1+d)$$
 :::
 
-::: {.front card-id="card-65a63ab68d3c91f4"}
-Compute the canonical sheaf of a smooth plane curve of degree $d$ and its degree.
-:::
-
-::: {.back card-id="card-65a63ab68d3c91f4"}
-For $X\subseteq {\mathbf{P}}^n$ a hypersurface one has $\omega_X = {\mathcal{O}}_X(d-n-1)$, here $n=2$ so $\omega_X = {\mathcal{O}}_X(d-3)$. Since $\deg {\mathcal{O}}_X(1) = d$, we have $\deg \omega_X = d(d-3)$.
-:::
-
-::: {.front card-id="card-a167931134065e17"}
-Show that a smooth plane curve of degree $d\geq 4$ is not rational.
-:::
-
-::: {.back card-id="card-a167931134065e17"}
-$\omega_X = {\mathcal{O}}_X(d-3)$ and $d-3>0$ so $p_g(X) > 0$, and a curve is rational iff $p_g(X) = 0$.
-:::
-
 ::: {.front card-id="card-65cfb8efb1626b1d" tags="definition"}
 What is: relation to the canonical sheaf
 :::
 
 ::: {.back card-id="card-65cfb8efb1626b1d"}
 On a smooth $n$-dimensional variety over a field, the canonical sheaf is $\omega_X=\bigwedge^n\Omega^1_{X/k}$, which is also the dualizing sheaf. On a singular scheme the dualizing object need not be an invertible sheaf.
+:::
+
+::: {.front card-id="card-66eb03a60b9bcd39"}
+What is the Leray spectral sequence?
+:::
+
+::: {.back card-id="card-66eb03a60b9bcd39"}
+For $f:X\to Y$,
+$$H^p\left(Y, {\mathbf{R}}^q f_* \mathbb{Q}\right) \Rightarrow H^{p+q}(X, \mathbb{Q})$$
+:::
+
+::: {.front card-id="card-69f6f29eb7bd975c"}
+Give a sufficient condition for the Leray spectral sequence to degenerate.
+:::
+
+::: {.back card-id="card-69f6f29eb7bd975c"}
+$f:X\to Y$ smooth projective, by Deligne, as a consequence of Hard Lefschetz.
+:::
+
+::: {.front card-id="card-7a13c1f152bea481"}
+What is **Serre vanishing**?
+:::
+
+::: {.back card-id="card-7a13c1f152bea481"}
+For $X$ a Noetherian scheme, $X$ is affine $\iff H^{i>0}(X; \mcf) = 0$ for all $\mcf\in \QCoh(X) \iff H^1(X; \mci) = 0$ for all coherent sheaves of ideals on $X$.
+:::
+
+::: {.front card-id="card-2629a4068afdc432"}
+Discuss $H^0({\mathbf{P}}^m; {\mathcal{O}}(n))$ for $n\in \ZZ$.
+:::
+
+::: {.back card-id="card-2629a4068afdc432"}
+The section ring is given by $\bigoplus_{n\geq 0} H^0({\mathbf{P}}^m; {\mathcal{O}}(n)) \cong k[x_0,\cdots, x_m]$ as graded rings. Thus $H^0({\mathcal{O}}) = k$ and $H^0({\mathcal{O}}(n))$ are degree $n$ polynomials, so is generated by the monomials of total degree $n$ -- this is a stars and bars argument; the number of monomials in $R[x_1,\cdots, x_N]$ of degree $D$ is ${N+D-1\choose D}$. Here $N = m+1$ and $D = n$, so we get ${m+d\choose d}$.
+
+How this count goes: represent as $a^3b^2d^2e \leadsto \bullet \bullet \bullet \mathrel{\Big|}\bullet \bullet \mathrel{\Big|}\mathrel{\Big|}\bullet \bullet \mathrel{\Big|}\bullet$. Note that there are no sections for $n < 0$. In general, ${\mathcal{O}}(n)$ corresponds to the $n\dash$uple/Veronese embedding ${\mathbf{P}}^n \to {\mathbf{P}}^N$.
+:::
+
+::: {.front card-id="card-938f2d52c80bd08e"}
+Prove that if $X$ is a projective variety, $H^0(X; {\mathcal{O}}_X) = k$
+:::
+
+::: {.back card-id="card-938f2d52c80bd08e"}
+Since ${\mathbf{P}}^n$ is proper, $X\subseteq {\mathbf{P}}^n$ is proper as a closed subvariety. So $s\in H^0(X; {\mathcal{O}}_X)$ is the same as a regular map $s: X\to {\mathbf{A}}^1$.
+
+By properness, $\operatorname{im}s \subseteq {\mathbf{A}}^1$ is closed and thus a finite set of points since ${\mathbf{A}}^1$ has the cofinite topology.
+
+By irreducibility, it must be one point, so $s$ is a constant map $s(x) = \lambda$ for some $\lambda \in k$, so sections biject with elements of $k$.
+:::
+
+::: {.front card-id="card-610ae6d59c072f6d"}
+Discuss $H^*({\mathbf{P}}^n; {\mathcal{O}}(d))$.
+:::
+
+::: {.back card-id="card-610ae6d59c072f6d"}
+$k[x_0,\cdots, x_n]_d$ for $*=0$,
+
+zero for $*=1,\cdots, n-1$, and
+
+$\qty{\prod_{i=1}^n x_i }^{-1}k[x_0^{-1}, \cdots, x_n^{-1}]$ for $*=n$.
+:::
+
+::: {.front card-id="card-096a65dfbddd6a03"}
+What is **Grothendieck vanishing**?
+:::
+
+::: {.back card-id="card-096a65dfbddd6a03"}
+For $X$ a noetherian topological space, for all $\mcf\in \Sh(X, \Ab\Grp)$, one has
+$$H^{i\geq \dim X+1}(X; \mcf) = 0.$$
+How to remember: $\mathrm{cd}(X) \leq \dim X$.
+:::
+
+::: {.front card-id="card-87f4808bdfeea791"}
+What is the Hirzebruch-Riemann-Roch theorem?
+:::
+
+::: {.back card-id="card-87f4808bdfeea791"}
+$\chi(\mcf) = \int {\mathrm{ch}}(\mcf)\operatorname{Td}(X) = {\mathrm{ch}}_2(\mcf) + 2\operatorname{rank}(\mcf)$.
+:::
+
+::: {.front card-id="card-6b6592219edcf96d"}
+What is the generalization of Kodaira vanishing for projective surfaces (Kodaira-Ramanujam vanishing theorem)?
+:::
+
+::: {.back card-id="card-6b6592219edcf96d"}
+For $X$ a smooth projective surface over $\operatorname{ch}k = 0$, if $L$ is big and nef then
+$$H^{> 0}(L\otimes\omega_X) = 0$$
+Since $H^1(\omega_X\otimes L) {}^{ \vee }\cong H^1(L {}^{ \vee })$ by Serre duality, this is a vanishing theorem for $L {}^{ \vee }$ with sufficient "positivity".
+:::
+
+::: {.front card-id="card-ff488447828ff571"}
+Does Kodaira vanishing hold in positive characteristic?
+:::
+
+::: {.back card-id="card-ff488447828ff571"}
+Generally no, see Mumford's normal projective surface as a counterexample, or Raynaud finds for any smooth projective surface $X$ over $k=\kbar$ an $L\in \operatorname{Pic}(X)$ with $H^1(L\otimes\omega_X) \neq 0$.
+
+However it *does* hold for K3s, using $H^1({\mathcal{O}}_X) = 0$ and any big and nef $L$ on a K3 is effective. This is explained by Deligne-Illusie for surfaces that lift to characteristic zero (which K3s do).
 :::

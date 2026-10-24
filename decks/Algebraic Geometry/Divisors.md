@@ -85,7 +85,7 @@ What is a **prime** divisor?
 :::
 
 ::: {.back card-id="card-b593bed2e5b71670"}
-A closed integral subscheme $Y\leq X$ of dimension 1.
+On an integral Noetherian scheme $X$, a prime divisor is an integral closed subscheme of codimension one.
 :::
 
 ::: {.front card-id="card-4229cc42c6837e32"}
@@ -359,7 +359,7 @@ What is a **complete linear system**?
 :::
 
 ::: {.back card-id="card-67f0df55debb4328"}
-${\left\lvert {D} \right\rvert} = \left\{{ D' \st D'\sim D}\right\}$
+For a Cartier divisor $D$ on an integral projective variety, the complete linear system $|D|$ consists of all effective divisors linearly equivalent to $D$. With $L=\mathcal O_X(D)$, it is the projective space of nonzero sections of $L$ modulo scalar multiplication, $\mathbf P H^0(X,L)$.
 :::
 
 ::: {.front card-id="card-a59770df8f80107c"}
@@ -389,11 +389,14 @@ Separates points and separates tangents: $\forall p, q\in X$ there exists $D\in 
 :::
 
 ::: {.front card-id="card-a7508a5971d896ab"}
-What is the **base locus** of a linear system?
+What is the base locus of a complete linear system $|L|$?
 :::
 
 ::: {.back card-id="card-a7508a5971d896ab"}
-The union of all base points in $S$.
+The maximal closed subscheme of $X$ contained in every $D\in {\left\lvert {L} \right\rvert}$.
+
+Equivalently
+$$\mathrm{Bs}{\left\lvert {L} \right\rvert} = \bigcap_{s\in H^0(L)} Z(s)$$
 :::
 
 ::: {.front card-id="card-d83459b52d448c66"}
@@ -492,4 +495,155 @@ When is ${\mathcal{O}}_{{\mathbf{P}}^n}(d)$ ample? Very ample?
 BPF iff $d\geq 0$
 
 Very ample iff ample iff $d\geq 1$.
+:::
+
+::: {.front card-id="card-c024cb955d1ceca5"}
+What is a polarized scheme?
+:::
+
+::: {.back card-id="card-c024cb955d1ceca5"}
+$(X, \mcl)$ a scheme with an ample line bundle.
+:::
+
+::: {.front card-id="card-12cc1c6c9aa5697e"}
+What does it mean for $\mcl\in \operatorname{Pic}(X)$ to be **ample**?
+:::
+
+::: {.back card-id="card-12cc1c6c9aa5697e"}
+For all $\mcf\in \Coh(X)$, the twist $\mcf\otimes\mcl^n$ is globally generated for $n\gg 0$.
+:::
+
+::: {.front card-id="card-600a9b022ee0b85d"}
+Discuss ampleness of sheaves of affine schemes.
+:::
+
+::: {.back card-id="card-600a9b022ee0b85d"}
+Every $X\in \Coh(\operatorname{Spec}A)$ is globally generated, so if $\mcf$ is invertible then it is necessarily ample.
+:::
+
+::: {.front card-id="card-979041d2022161e4"}
+Discuss ampleness of ${\mathcal{O}}_{{\mathbf{P}}^m}(n)$.
+:::
+
+::: {.back card-id="card-979041d2022161e4"}
+${\mathcal{O}}(1)$ is very ample: write ${\mathbf{P}}^n = \mathop{\mathrm{Proj}}k[x_0, \cdots, x_{n}]$, then $x_0,\cdots, x_n$ induce $n+1$ global sections . For $n\geq 1$, ${\mathcal{O}}(n)$ corresponds to the Veronese embedding into ${\mathbf{P}}^N$, and so is very ample.
+:::
+
+::: {.front card-id="card-a4380c8c6119e01f"}
+What is a **base point** of a linear system?
+:::
+
+::: {.back card-id="card-a4380c8c6119e01f"}
+For $p\in X$ and a linear system ${\left\lvert {D_0} \right\rvert}$, $p$ is a base point iff $p\in \mathop{\mathrm{supp}}D$ for all $D\in {\left\lvert {D_0} \right\rvert}$, where $\mathop{\mathrm{supp}}D$ is the union of all prime divisors in $D$.
+:::
+
+::: {.front card-id="card-fed03351b6881aaa"}
+What is the ample divisor associated to an embedding?
+:::
+
+::: {.back card-id="card-fed03351b6881aaa"}
+If $\phi: S\hookrightarrow{\mathbf{P}}^n$, take the hyperplane section $L = \phi(S) \cap H$ for $H$ any hyperplane.
+:::
+
+::: {.front card-id="card-e8ee05a2704a0cc0"}
+Describe $\NS(X)$ and $\operatorname{Pic}(X)$ in terms of divisors.
+:::
+
+::: {.back card-id="card-e8ee05a2704a0cc0"}
+$\NS(X) = \operatorname{CDiv}(X)/\sim$ modulo algebraic equivalence.
+
+$\operatorname{Pic}(X) = \operatorname{CDiv}(X)/\sim$ modulo linear equivalence.
+
+$\CH_k(X) = Z_k(X)/\sim$ modulo rational equivalence
+:::
+
+::: {.front card-id="card-8ea4c5bc81520a4a"}
+What is the Picard number $\rho(X)$?
+:::
+
+::: {.back card-id="card-8ea4c5bc81520a4a"}
+$\rho(X) \coloneqq\operatorname{rank}_\ZZ\NS(X)$, where $\NS(X) \coloneqq\operatorname{coker}(\operatorname{Pic}^0(X) \hookrightarrow\operatorname{Pic}(X))$; also written $p(X)$.
+
+For $X$ compact complex,
+$$\rho(X) = \operatorname{rank}_\ZZ\operatorname{im}(c_1: \operatorname{Pic}(X) \to H^2(X; \ZZ))$$
+If $X$ is Kahler, Lefschetz $(1,1)$ gives $\rho(X) = \operatorname{rank}_\ZZ(H^{1,1}(X) \cap H^2(X; \ZZ))$, so $\rho(X)\leq h^{1,1}(X)$.
+
+For a K3, $\rho(X) = \operatorname{rank}_\ZZ\operatorname{Pic}(X) = \operatorname{rank}_\ZZ\NS(X)$. Since $\NS(X) \leq H^{1, 1}(X)$, there is a bound $\rho(X) \leq 20$ over $\CC$.
+:::
+
+::: {.front card-id="card-aa5478294141e3a4"}
+Define the Neron-Severi group.
+:::
+
+::: {.back card-id="card-aa5478294141e3a4"}
+$S_X \coloneqq\NS(X) \coloneqq\operatorname{Pic}(X) / \operatorname{Pic}^0(X) = \operatorname{coker}(\operatorname{Pic}^0(X) \hookrightarrow\operatorname{Pic}(X))$: line bundles modulo those algebraically equivalent to zero.
+
+For $X$ compact Kahler, $c_1$ identifies $\NS(X)$ with $\operatorname{im}c_1 \subseteq H^2(X; \ZZ)$, and by Lefschetz $(1,1)$ this image is the set of integral classes of type $(1,1)$. For a K3, $H^2(X;\ZZ)$ is torsionfree, so
+$$\NS(X) = H^{1, 1}(X) \cap H^{2}(X; \ZZ)\subseteq H^2(X; \CC)$$
+:::
+
+::: {.front card-id="card-4f556cf6edfaace8"}
+What does it mean for a line bundle $L$ to be numerically trivial?
+:::
+
+::: {.back card-id="card-4f556cf6edfaace8"}
+$L. \mcl= 0$ for all $\mcl\in \operatorname{Pic}(X)$, e.g. any $L\in \operatorname{Pic}^0(X)$.
+:::
+
+::: {.front card-id="card-95620d7653e21270"}
+What is $\mathrm{Num}(X)$?
+:::
+
+::: {.back card-id="card-95620d7653e21270"}
+$\operatorname{Pic}(X)/\operatorname{Pic}(X)^\tau$. quotienting by the subgroup of numerically trivial line bundles.
+
+A ${}_{\ZZ}\Mod$ with a nondegenerate symmetric integral pairing.
+:::
+
+::: {.front card-id="card-97124755dd1c9baa"}
+Give an equivalent characterization of when a line bundle is trivial.
+:::
+
+::: {.back card-id="card-97124755dd1c9baa"}
+Both $H^0(L)$ and $H^0(L {}^{ \vee })$ are nontrivial.
+:::
+
+::: {.front card-id="card-bee54f0820921fff"}
+When does $L$ induce a rational map?
+:::
+
+::: {.back card-id="card-bee54f0820921fff"}
+If $h^0(L) > 1$, inducing $\phi_L: X\dashrightarrow{\mathbf{P}}H^0(L) {}^{ \vee }$ regular on $X\setminus\mathrm{Bs}{\left\lvert {L} \right\rvert}$.
+:::
+
+::: {.front card-id="card-8516e525f30da86c"}
+What is the fixed-mobile decomposition $L = M + F$ for $L\in \operatorname{Pic}(X)$?
+:::
+
+::: {.back card-id="card-8516e525f30da86c"}
+$F$ is the 1-dimensional part of $\mathrm{Bs}{\left\lvert {L} \right\rvert}$.
+
+$M\coloneqq L(-F)$ is the mobile part, is nef, satisfies $M^2 \geq 0$. Has a finite set of base points, contains the zero-dimensional locus of $\mathrm{Bs}{\left\lvert {L} \right\rvert}$.
+:::
+
+::: {.front card-id="card-3cc4412c0c60050d"}
+Discuss ampleness of line bundles on abelian varieties.
+:::
+
+::: {.back card-id="card-3cc4412c0c60050d"}
+If $L\in \operatorname{Pic}(A)$ is ample in any characteristic, $L^k$ is very ample for $k\geq 3$ independent of $\dim A$.
+:::
+
+::: {.front card-id="card-44659fa94f8ffffe"}
+What is Fujita's conjecture?
+:::
+
+::: {.back card-id="card-44659fa94f8ffffe"}
+For $L\in \operatorname{Pic}(X)^\amp$ for $X$ smooth projective over $\CC$, $L^k\otimes\omega_X$ is
+
+Globally generated for $k\geq \dim(X) + 1$ and
+
+Very ample for $k\geq \dim(X) + 2$.
+
+True for surfaces, a stronger version is true for K3s.
 :::

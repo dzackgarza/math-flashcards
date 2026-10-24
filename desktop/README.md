@@ -1,7 +1,9 @@
 # Math Flashcards desktop editor
 
-The editor opens a workspace with a `decks/` folder and writes generated Anki
-packages to its `apkg/` folder. Markdown files remain the authored source.
+The editor opens the folder containing the deck Markdown files directly.
+Subject subfolders contain decks; the workspace's `apkg/` subfolder holds
+generated Anki packages and is excluded from deck discovery.
+Markdown files remain the authored source.
 
 ## Run
 
@@ -45,7 +47,7 @@ refreshes the installation from an existing build.
 ## Use
 
 The app opens the saved workspace on startup. On first launch it opens the
-repository used to build the app. Preferences use the standard Tauri store in
+`decks/` folder in the repository used to build the app. Preferences use the standard Tauri store in
 the XDG configuration directory.
 Select the workspace name in the sidebar to open the workspace menu. Select
 **Browse** or enter a workspace path to change it, then select a deck in the

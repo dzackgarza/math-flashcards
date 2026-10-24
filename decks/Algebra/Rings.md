@@ -27,16 +27,6 @@ The smallest number $n$ such that $\sum_{j=1}^n 1_R = 0_R$.
 Equivalently, the kernel $n\ZZ$ of the unique map $\ZZ\to R$.
 :::
 
-::: {.front card-id="card-12631aeb3b722a12" tags="theorem"}
-Zorn's Lemma
-:::
-
-::: {.back card-id="card-12631aeb3b722a12"}
-If every chain in a poset $P$ has an upper bound in $P$, then $P$ contains a maximal element.
-
-Note: a *chain* is a totally ordered subset.
-:::
-
 ::: {.front card-id="card-569223be8caa3985" tags="definition"}
 Zero Divisor
 :::

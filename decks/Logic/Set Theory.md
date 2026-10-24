@@ -1,6 +1,24 @@
 ---
-title: "Basics::Functions and Sets"
+title: "Logic::Set Theory"
 ---
+
+::: {.front card-id="card-d2550c00c7687b84"}
+What is $\aleph_0$?
+:::
+
+::: {.back card-id="card-d2550c00c7687b84"}
+Countable cardinality.
+:::
+
+::: {.front card-id="card-12631aeb3b722a12" tags="theorem"}
+Zorn's Lemma
+:::
+
+::: {.back card-id="card-12631aeb3b722a12"}
+If every chain in a poset $P$ has an upper bound in $P$, then $P$ contains a maximal element.
+
+Note: a *chain* is a totally ordered subset.
+:::
 
 ::: {.front card-id="card-44cb3f71b3da138c" tags="definition"}
 Functional characterization of injective functions.
@@ -80,4 +98,3 @@ What inverses exist for injective (resp. surjective) functions?
 - Injections: left inverses, i.e. $f(x) = f(y) \implies x=y$
 - Surjections: right inverses
 :::
-

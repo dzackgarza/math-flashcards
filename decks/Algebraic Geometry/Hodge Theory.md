@@ -52,14 +52,6 @@ $$\operatorname{sgn}H^2(X; \ZZ) = (2h^{2, 0} + 1,\, h^{1,1} -1), \qquad \operato
 Equivalently, if $L\in \NS(X)^\amp$ (or even $L^2 \gt 0$) then the intersection form is negative definite on $L^\perp$.
 :::
 
-::: {.front card-id="card-94bd03bf46f7461f"}
-What is the Lefschetz $(1, 1)\dash$theorem?
-:::
-
-::: {.back card-id="card-94bd03bf46f7461f"}
-For $X$ compact Kahler, $\operatorname{Pic}(X) \twoheadrightarrow H^{1, 1}(X)$.
-:::
-
 ::: {.front card-id="card-32d30066fccb982b"}
 What is nonabelian Hodge theory?
 :::
@@ -107,11 +99,13 @@ $C\in \operatorname{GL}(V)$ which acts as $i^{p-q}$ in $V^{p, q}$.
 :::
 
 ::: {.front card-id="card-b9b109d2565bf9e1"}
-What is a pure QHS of weight $m$?
+What is a pure rational Hodge structure of weight $m$?
 :::
 
 ::: {.back card-id="card-b9b109d2565bf9e1"}
-$p+q\neq m\implies V^{p, q} = 0$
+A finite-dimensional rational vector space $V$ with a decomposition
+$$V_\CC=\bigoplus_{p+q=m}V^{p,q},\qquad \overline{V^{p,q}}=V^{q,p}.$$
+Thus $V^{p,q}=0$ when $p+q\ne m$.
 :::
 
 ::: {.front card-id="card-50d0923ee164ff53"}
@@ -153,26 +147,18 @@ $S({\mathbf{R}}) =\CC^{\times}$, so $S = \mathrm{Res}^{\CC}_{{\mathbf{R}}} {\mat
 Alternatively ${ \begin{bmatrix} {a} & {-b}  \\ {b} & {a} \end{bmatrix} } \in \operatorname{GL}_2({\mathbf{R}})$.
 
 There is a cocharacter $w: {\mathbf{G}}_m\to S$ which on real points is ${\mathbf{R}}^{\times}\hookrightarrow\CC^{\times}$, a QHS on $V$ is the same as an action $S\curvearrowright V$ defined over ${\mathbf{R}}$ with $w$ defined over $\QQ$, so $V^{p, q}$ are eigenspaces with characters $z^p\overline{z}^q$.
-:::
 
-::: {.front card-id="card-02d774db69c8282f"}
-What is the Tate HS? Where does it come from?
-:::
-
-::: {.back card-id="card-02d774db69c8282f"}
-$\ZZ(1)$ the ZHS on $\CC$ of bidegree $(-1, -1)$ with lattice $2\pi i \ZZ$.
-
-Natural HS on $H^1({\mathbf{G}}_m(k))$ for $k=\kbar\subseteq \CC$, regard as $H^2(\CP^1; \ZZ)$.
+For a real algebra $A$, $S(A)=(A\otimes_{\mathbf R}\CC)^{\times}$.
 :::
 
 ::: {.front card-id="card-890de6962a64c40d"}
-What is $\ZZ(m)$? $V(m)$?
+What are $\ZZ(m)$ and the Tate twist $V(m)$?
 :::
 
 ::: {.back card-id="card-890de6962a64c40d"}
-$\ZZ(m) = \ZZ(1){ {}^{ \scriptstyle\otimes_{}^{m} }  }$ with lattice $(2\pi i)^m \ZZ$
+The rank-one integral Hodge structure $\ZZ(m)$ has underlying lattice $(2\pi i)^m\ZZ$ and type $(-m,-m)$. In particular, $\ZZ(0)$ has weight zero and $\ZZ(-1)=\ZZ(1)^\vee$.
 
-$V(m) = V\otimes_\ZZ\ZZ(m)$.
+For an integral Hodge structure $V$, set $V(m)=V\otimes_\ZZ\ZZ(m)$; for a rational Hodge structure, use $V\otimes_\QQ\QQ(m)$. If $V$ has weight $n$, then $V(m)$ has weight $n-2m$ and $V(m)^{p,q}=V^{p+m,q+m}$.
 :::
 
 ::: {.front card-id="card-fc3f20e8b96f267b"}
@@ -188,7 +174,7 @@ Alternatively a morphism $V\to V {}^{ \vee }(-m)$, motivated by Poincare duality
 :::
 
 ::: {.front card-id="card-8c6c5dcc6ef06e82"}
-What is the Hodge spectral sequence?
+What is the Hodge–Frölicher spectral sequence?
 :::
 
 ::: {.back card-id="card-8c6c5dcc6ef06e82"}
@@ -207,6 +193,8 @@ $$H^m(X, \mathbb{R})_{\prim}:=\operatorname{Ker}\left(\Lambda: H^m(X, \mathbb{R}
 and
 $$H^{p, q}(X)_{\prim}:=\operatorname{Ker}\left(\Lambda: H^{p, q}(X) \longrightarrow H^{p-1, q-1}(X)\right)$$
 The Kahler class induces a representation of ${\mathfrak{sl}}_2(\CC)$ on $H^*(X; {\mathbf{R}})$ via $L, \Lambda$, and primitive classes are its lowest weight vectors.
+
+For a rational Kähler class, the Hodge–Riemann pairing polarizes the primitive rational cohomology of a smooth complex projective variety.
 :::
 
 ::: {.front card-id="card-e405e246f75e260c"}
@@ -226,18 +214,6 @@ Hard Lefschetz holds: $L^k: H^{n-k}(M; \QQ) { \, \xrightarrow{\sim}\, }H^{n+k}(M
 $$\bigoplus_{k=0}^n H_\prim^{n-k}(M; \QQ)\otimes_{\mathbf{R}}{\CC[L] \over \left\langle{L^{k+1}}\right\rangle} { \, \xrightarrow{\sim}\, }H^*(M; \CC)$$
 There is a polarization
 $$\begin{align}I: H_\prim^{n-k}(M; \QQ){ {}^{ \scriptstyle\otimes_{}^{2} }  } &\to \QQ\\ a\otimes b &\mapsto(-1)^{(n-k)(n-k-1)\over 2} \int_M L^k(a\wedge b)\end{align}$$
-:::
-
-::: {.front card-id="card-a85d85454b4f4984"}
-Discuss relative differentials?
-:::
-
-::: {.back card-id="card-a85d85454b4f4984"}
-For $f: M\to S$, $\Omega^*_M / \left\langle{f^* \Omega^1_S}\right\rangle$, a quotient of a sheaf of dg ${\mathcal{O}}_M\dash$algebras.
-
-Fiber over $s\in S$ is the de Rham sheaf complex of the fiber $M_s$.
-
-Resolves $f^{-1}{\mathcal{O}}_S$ by coherent ${\mathcal{O}}_M$ modules
 :::
 
 ::: {.front card-id="card-37366038babffe54"}
@@ -294,20 +270,6 @@ If $X$ is complete, the weights are $\leq d$.
 This extends the functor $\Mfd_\CC\to \mathsf{HS}$ to $\Var_{/ {\CC}}^\mathrm{ft}\to \mathsf{MHS}$.
 :::
 
-::: {.front card-id="card-cd4f095b6e904394"}
-What is a primitively polarized K3 of genus $g$?
-:::
-
-::: {.back card-id="card-cd4f095b6e904394"}
-$(X, \eta)$ where $\eta\in H^{1,1}(X; {\mathbf{R}})$ is a Kahler class.
-
-Torelli: iso type of $(X, \eta)$ completely determined by $(H^2(X;\ZZ), \cap)$, $\eta$, and the HS on $H^2(X;\CC)$.
-
-Primitive: not a proper multiple of an integral class.
-
-$g\coloneqq 1+{1\over 2}(\eta.\eta)$; the linear system $\eta$ defines contains curves of arithmetic genus $g$.
-:::
-
 ::: {.front card-id="card-7c05866113c85a06"}
 What is the polarization on $H^1(X)$ for $X$ smooth Kahler?
 :::
@@ -353,23 +315,6 @@ What is Griffiths transversality?
 ::: {.back card-id="card-d4a5c94c94971cbf"}
 $$\nabla(\mcf^p)\subseteq \mcf^{p-1} \otimes\Omega^1$$
 Needed since the Hodge filtration on the fibers are not necessarily preserved by differentiation.
-:::
-
-::: {.front card-id="card-66eb03a60b9bcd39"}
-What is the Leray spectral sequence?
-:::
-
-::: {.back card-id="card-66eb03a60b9bcd39"}
-For $f:X\to Y$,
-$$H^p\left(Y, {\mathbf{R}}^q f_* \mathbb{Q}\right) \Rightarrow H^{p+q}(X, \mathbb{Q})$$
-:::
-
-::: {.front card-id="card-69f6f29eb7bd975c"}
-Give a sufficient condition for the Leray spectral sequence to degenerate.
-:::
-
-::: {.back card-id="card-69f6f29eb7bd975c"}
-$f:X\to Y$ smooth projective, by Deligne, as a consequence of Hard Lefschetz.
 :::
 
 ::: {.front card-id="card-749702f361b7071a"}
@@ -515,4 +460,196 @@ What is the Jacobian of a complex manifold?
 ::: {.back card-id="card-f71cc370724c36c7"}
 $$\operatorname{Jac}(X) \coloneqq H^1({\mathcal{O}}_X)/H^1(X; \ZZ)\cong \ker(\operatorname{Pic}(X) \to H^2(X; \ZZ)) \cong \operatorname{Pic}^0(X)$$
 The continuous part of $\operatorname{Pic}(X)$.
+:::
+
+::: {.front card-id="card-e21fb5304f2bb38b"}
+What is the Lefschetz 1-1 theorem?
+:::
+
+::: {.back card-id="card-e21fb5304f2bb38b"}
+For a compact Kähler manifold $X$, the image of $c_1:\operatorname{Pic}(X)\to H^2(X;\ZZ)$ is the subgroup of integral classes whose images in $H^2(X;\CC)$ have type $(1,1)$.
+:::
+
+::: {.front card-id="card-3617dcb5de3156d3"}
+How is $c_1$ realized as a morphism:
+:::
+
+::: {.back card-id="card-3617dcb5de3156d3"}
+$c_1: \operatorname{Pic}(X) \to H^2_\text{ét}(X; { \ZZ_{\widehat{\ell}} }(1))$.
+:::
+
+::: {.front card-id="card-26e2d214ce1626dc"}
+What are isogenous Hodge structures?
+:::
+
+::: {.back card-id="card-26e2d214ce1626dc"}
+$V, W$ with integral Hodge structures are isogenous iff $V_\QQ\cong W_\QQ$.
+:::
+
+::: {.front card-id="card-49d969d85716f30f"}
+What are Hodge classes?
+:::
+
+::: {.back card-id="card-49d969d85716f30f"}
+For $V$ a Hodge structure of even weight $2k$, the intersection $V\cap V^{k, k}$.
+:::
+
+::: {.front card-id="card-caf733a4c2c79137"}
+What are $\ZZ(1), \QQ(1)$?
+:::
+
+::: {.back card-id="card-caf733a4c2c79137"}
+The Tate Hodge structure $\mathbf{Z}(1)$ is the Hodge structure of weight $-2$ given by the free $\mathbf{Z}$-module of rank one $(2 \pi i) \mathbf{Z}$ (as a submodule of $\mathbf{C}$ ) such that $\mathbf{Z}(1)^{-1,-1}$ is one-dimensional. Similarly, one defines the rational Tate Hodge structure $\mathbf{Q}(1)$.
+:::
+
+::: {.front card-id="card-3f0ae58e29b77281"}
+What is the Hodge filtration?
+:::
+
+::: {.back card-id="card-3f0ae58e29b77281"}
+$\Fil^i V_\CC\coloneqq\bigoplus_{p\geq i} V^{p, q}_\CC$, satisfies $\Fil^p V_\CC\oplus\overline{\Fil^q V_\CC} = V_\CC$ for all $p+q=n+1$.
+:::
+
+::: {.front card-id="card-9b71bf87ceb9944f"}
+What is the Hodge structure associated to an arbitrary Hodge filtration?
+:::
+
+::: {.back card-id="card-9b71bf87ceb9944f"}
+For $\Fil^* V$ a Hodge filtration, define $V^{p, n-p} \coloneqq\Fil^p V \cap\overline{\Fil^{n-p} V}$.
+:::
+
+::: {.front card-id="card-7157bd1d4cfece5d"}
+Discuss the Hodge conjecture.
+:::
+
+::: {.back card-id="card-7157bd1d4cfece5d"}
+The even part $\bigoplus H^{2 k}(X, \mathbf{Q})$ contains all algebraic classes, i.e. classes obtained as fundamental classes $[Z]$ of subvarieties $Z \subset X$. It is not difficult to see that $[Z]$ is an integral class, i.e. that it comes from an element in $H^{2 k}(X, \mathbf{Z})$, and that it is contained in $H^{k, k}(X)$.
+
+The Hodge conjecture asserts that the space spanned by those is determined entirely by the Hodge structure itself.
+
+(Hodge conjecture). For a smooth projective variety $X$ over $\mathbf{C}$ the subspace of $H^{2 k}(X, \mathbf{Q})$ spanned by all algebraic classes $[Z]$ coincides with the space of Hodge classes, i.e.
+$$H^{2 k}(X; \mathbf{Q}) \cap H^{k, k}(X)=\left\langle{[Z] \st Z \subset X}\right\rangle_\QQ$$
+:::
+
+::: {.front card-id="card-9274e5ea0d527d5d"}
+Discuss the status of the Hodge conjecture.
+:::
+
+::: {.back card-id="card-9274e5ea0d527d5d"}
+Can fail for nonprojective hyperkahlers, integral version known not to hold.
+
+Known for $(1, 1)\dash$classes and $(\dim X-1, \dim X - 1)\dash$classes.
+
+Known for K3s, but not for products of K3s.
+:::
+
+::: {.front card-id="card-875031744b580783"}
+What is a Hodge isometry?
+:::
+
+::: {.back card-id="card-875031744b580783"}
+For polarized Hodge structures $(V_1,q_1)$ and $(V_2,q_2)$, a Hodge isometry is an isomorphism $f:V_1\xrightarrow{\sim}V_2$ of Hodge structures such that $q_2(fx,fy)=q_1(x,y)$ for all $x,y\in V_1$.
+:::
+
+::: {.front card-id="card-f684c22e4863facf"}
+What is the Hodge-Riemann pairing?
+:::
+
+::: {.back card-id="card-f684c22e4863facf"}
+Consider a rational (or integral) Kahler class $\omega \in H^2(X, \mathbf{Q})$ on a smooth projective manifold $X$. Then define on $H^n(X, \mathbf{Q})$ with $n \leq d=\operatorname{dim}_\CC X$ the following pairing:
+$$(v, w) \longmapsto(-1)^{n(n-1) / 2} \int_X v \wedge w \wedge \omega^{d-n}$$
+:::
+
+::: {.front card-id="card-6d7de03bbbdaa923"}
+How can one interpret Hodge structures as representations of the Deligne torus?
+:::
+
+::: {.back card-id="card-6d7de03bbbdaa923"}
+Given $V$ a Hodge structure of weight $n$, define
+$$\begin{align}
+\rho: \CC^{\times}&\to \operatorname{GL}(V_{\mathbf{R}}) \quad \in \Grp\
+z &\mapsto (v\mapsto z^p \overline{z}^q\cdot v), \quad v\in V^{p, q}
+.\end{align}$$
+$\QQ\dash$Hodge structures of weight $n$ biject with algebraic representations $\rho$ with an ${\mathbf{R}}^{\times}$ action defined by $\rho(t).v\coloneqq t^n.v$.
+
+The inverse construction sends $\rho$ to $V^{p, q}:=\left\{v \in V_\CC \mathrel{\Big|}\rho_\CC(z)(v)=\left(z^p \overline{z}^q\right) \cdot v \text { for all } z \in \mathbf{C}^*\right\}$ where $\rho_\CC: \CC^{\times}\to \operatorname{GL}(V_\CC)$ is a $\CC\dash$linear extension.
+
+Then $\rho_\CC$ splits into a sum of characters and $V_\CC= \bigoplus V^{p, q}$.
+:::
+
+::: {.front card-id="card-dfcbd23d66336108"}
+Which representation of the Deligne torus corresponds to $\QQ(1)$?
+:::
+
+::: {.back card-id="card-dfcbd23d66336108"}
+- $\QQ(1)$ which corresponds to
+$$\begin{align}
+\CC^{\times}&\to {\mathbf{R}}^{\times}\
+z &\mapsto (z\overline{z})^{-1}
+.\end{align}$$
+:::
+
+::: {.front card-id="card-41bbe9b420b7f0c1"}
+Discuss bijections for Hodge structures of weight one.
+:::
+
+::: {.back card-id="card-41bbe9b420b7f0c1"}
+All of geometric origin, using that projective tori are abelian varieties:
+$$\begin{align}
+\left\{{T/\CC\text{ tori}}\right\} &\rightleftharpoons\ZZ\operatorname{HS}^1 \\
+\left\{{T/\CC\text{ abelian varieties}}\right\} &\rightleftharpoons\left\{{V\in \ZZ\operatorname{HS}^1 \text{ polarizable}}\right\} \\
+\left\{{T/\CC\text{ polarized abelian varieties}}\right\} &\rightleftharpoons\left\{{V\in \ZZ\operatorname{HS}^1 \text{ polarized}}\right\}
+.\end{align}$$
+:::
+
+::: {.front card-id="card-eb58491fe6b0d0bb"}
+What are the Hodge and Mumford-Tate groups of $V\in \mathbf{Q}\kern-0.5pt\operatorname{HS}$ polarizable?
+:::
+
+::: {.back card-id="card-eb58491fe6b0d0bb"}
+Identifying the Hodge structure with a representation $\rho: {\mathbb{S}}\to \operatorname{GL}(V_{\mathbf{R}})$, the smallest algebraic subgroups of $\operatorname{GL}(V)/\QQ$ with
+$$\begin{align}
+\rho(\mathbb{U}({\mathbf{R}})) \subseteq \Hodge(V)({\mathbf{R}}) \qquad \rho({\mathbb{S}}({\mathbf{R}})) \subseteq \operatorname{MT}(V)({\mathbf{R}})
+.\end{align}$$
+where $\mathbb{U}\coloneqq\ker\qty{{\mathbb{S}}\xrightarrow{\operatorname{Nm}} {\mathbf{G}}_m({\mathbf{R}})} = \left\{{z\in {\mathbb{S}}({\mathbf{R}}) \st z\overline{z} = 1}\right\}$.
+
+Related by a morphism
+$$\begin{align}
+\Hodge(V)\times {\mathbf{G}}_m &\to\operatorname{MT}(V) \
+(g, \mu) &\mapsto g\mu
+.\end{align}$$
+What does it mean for a K3 surface to have CM?
+
+$\Hodge(T)$ is commutative, equivalently $\dim_K(T) = 1$. Implies that $K$ is a CM field.
+:::
+
+::: {.front card-id="card-c4f19ff090c4318b"}
+What is the $\ell\dash$adic algebraic monodromy group?
+:::
+
+::: {.back card-id="card-c4f19ff090c4318b"}
+For $X\in {\mathsf{sm}}\Var^{\mathop{\mathrm{proj}}}_{/ {k}}$ with $k$ finitely-generated of characteristic zero, the Zariski closure of the image of the Galois representation
+$$\begin{align}
+\rho*\ell: G*k &\to \operatorname{GL}(V), \qquad V = H^2*\text{ét}(X; { \QQ*\ell }(1))
+.\end{align}$$
+:::
+
+::: {.front card-id="card-4137a8b3bad51d35"}
+What is the Mumford-Tate conjecture?
+:::
+
+::: {.back card-id="card-4137a8b3bad51d35"}
+Under the isomorphism $H^2_\text{ét}(X; { \QQ_\ell }(1)) { \, \xrightarrow{\sim}\, }H^2(X(\CC); \QQ) \otimes{ \QQ_\ell }(1)$, the identity component of the $\ell\dash$adic monodromy group, $\overline{\operatorname{im}\rho_\ell}^0$, bijects with the Mumford-Tate group $\operatorname{MT}(X)$.
+
+Proved for K3s over number fields.
+:::
+
+::: {.front card-id="card-b895e365a3b35d5b"}
+What is the Hodge diamond for a surface?
+:::
+
+::: {.back card-id="card-b895e365a3b35d5b"}
+For a smooth projective complex surface, the Hodge diamond is
+$$\begin{matrix}&&1&&\\&q&&q&\\p_g&&h^{1,1}&&p_g\\&q&&q&\\&&1&&\end{matrix}$$
+where $q=h^{1,0}=h^1(\mathcal O_X)$ and $p_g=h^{2,0}=h^0(\omega_X)$.
 :::

@@ -48,9 +48,9 @@ def identifiers(path: Path) -> list[str]:
 
 
 def scenario(root: Path) -> None:
-    source = root / "decks" / SOURCE
-    target = root / "decks" / TARGET
-    absorbed = root / "decks" / ABSORBED
+    source = root / SOURCE
+    target = root / TARGET
+    absorbed = root / ABSORBED
     original_source, original_target, original_absorbed = (
         source.read_bytes(),
         target.read_bytes(),
@@ -158,7 +158,7 @@ def scenario(root: Path) -> None:
         expect(
             page.locator(".snackbar").get_by_text("Selected created.", exact=True)
         ).to_be_visible(timeout=30000)
-        split = root / "decks" / "Geometry" / "Selected.md"
+        split = root / "Geometry" / "Selected.md"
         assert identifiers(split) == []
         expect(page.get_by_text("Add a card to begin.", exact=True)).to_be_visible()
         deck_row(SOURCE).click()
@@ -258,7 +258,7 @@ def scenario(root: Path) -> None:
                 "Absorb renamed to Associative.", exact=True
             )
         ).to_be_visible(timeout=30000)
-        renamed = root / "decks" / "Algebra" / "Associative.md"
+        renamed = root / "Algebra" / "Associative.md"
         assert not absorbed.exists()
         assert renamed.read_text().startswith('---\ntitle: "Algebra::Associative"\n---')
         assert identifiers(renamed) == ["five"]
@@ -305,13 +305,13 @@ def main(*, workspace: Path | None = None) -> None:
         return
     with tempfile.TemporaryDirectory(prefix="flashcards-organize-") as directory:
         root = Path(directory) / "workspace"
-        (root / "decks" / "Algebra" / "assets").mkdir(parents=True)
-        (root / "decks" / "Analysis").mkdir(parents=True)
+        (root / "Algebra" / "assets").mkdir(parents=True)
+        (root / "Analysis").mkdir(parents=True)
         shutil.copyfile(
             DESKTOP / "src-tauri" / "icons" / "32x32.png",
-            root / "decks" / "Algebra" / "assets" / "plot.png",
+            root / "Algebra" / "assets" / "plot.png",
         )
-        (root / "decks" / SOURCE).write_text(
+        (root / SOURCE).write_text(
             deck(
                 "Algebra::Original",
                 card(
@@ -325,13 +325,13 @@ def main(*, workspace: Path | None = None) -> None:
                 + card("three", "Closure", "The product stays in the group."),
             )
         )
-        (root / "decks" / TARGET).write_text(
+        (root / TARGET).write_text(
             deck(
                 "Analysis::Target",
                 card("four", "Continuity", "Nearby inputs give nearby outputs."),
             )
         )
-        (root / "decks" / ABSORBED).write_text(
+        (root / ABSORBED).write_text(
             deck("Algebra::Absorb", card("five", "Associativity", "$$a(bc)=(ab)c$$"))
         )
         environment = os.environ | {

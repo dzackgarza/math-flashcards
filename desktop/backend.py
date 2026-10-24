@@ -21,6 +21,7 @@ import sys
 import tempfile
 from collections.abc import Iterator
 from contextlib import contextmanager
+from functools import cache
 from pathlib import Path
 from typing import Annotated, Literal
 
@@ -174,20 +175,47 @@ def digest(data: bytes) -> str:
 
 def workspace_path(value: str) -> Path:
     root = Path(value).expanduser().resolve(strict=True)
-    if not (root / "decks").is_dir():
-        raise ValueError("Select a workspace that contains a decks folder.")
+    if not root.is_dir():
+        raise ValueError("Select the folder containing your Markdown decks.")
     return root
 
 
 def deck_path(root: Path, value: str) -> Path:
-    path = (root / "decks" / value).resolve(strict=True)
-    if not path.is_relative_to(root / "decks") or path.suffix != ".md":
-        raise ValueError("The deck must be a Markdown file inside the decks folder.")
+    candidate = root / value
+    path = candidate.resolve()
+    if (
+        not path.is_relative_to(root)
+        or candidate.is_relative_to(root / "apkg")
+        or path.is_relative_to(root / "apkg")
+        or path.suffix != ".md"
+    ):
+        raise ValueError(
+            "A deck must be a Markdown file in the workspace, outside apkg/."
+        )
     return path
 
 
+def deck_paths(root: Path) -> list[Path]:
+    paths: list[Path] = []
+    # Path.walk supports pruning generated output before descending into it.
+    # https://docs.python.org/3/library/pathlib.html#pathlib.Path.walk
+    for directory, folders, files in root.walk():
+        if directory == root:
+            folders[:] = [name for name in folders if name != "apkg"]
+        for name in files:
+            path = directory / name
+            resolved = path.resolve()
+            if (
+                path.suffix == ".md"
+                and resolved.is_relative_to(root)
+                and not resolved.is_relative_to(root / "apkg")
+            ):
+                paths.append(path)
+    return sorted(paths)
+
+
 def package_path(root: Path, path: Path) -> Path:
-    name = "__".join(path.relative_to(root / "decks").with_suffix("").parts)
+    name = "__".join(path.relative_to(root).with_suffix("").parts)
     output = root / "apkg" / (name + ".apkg")
     if not output.resolve().is_relative_to(root):
         raise ValueError("The package destination must stay inside the workspace.")
@@ -231,6 +259,15 @@ def macros_digest() -> str:
     return row[0]
 
 
+@cache
+def pandoc_digest() -> str:
+    # Each bridge process handles one request; its decks share the same Pandoc.
+    # https://docs.python.org/3/library/functools.html#functools.cache
+    return digest(
+        subprocess.run(["pandoc", "--version"], check=True, capture_output=True).stdout
+    )
+
+
 def input_hashes(path: Path, media: list[Path]) -> dict[str, str]:
     files = [
         path,
@@ -248,9 +285,7 @@ def input_hashes(path: Path, media: list[Path]) -> dict[str, str]:
     ]
     hashes = {str(file): digest(file.read_bytes()) for file in files}
     hashes["macros"] = macros_digest()
-    hashes["pandoc"] = digest(
-        subprocess.run(["pandoc", "--version"], check=True, capture_output=True).stdout
-    )
+    hashes["pandoc"] = pandoc_digest()
     return hashes
 
 
@@ -441,15 +476,11 @@ def publish_changes(root: Path, changes: list[Change]) -> Organized:
     cache = user_cache_path("math-flashcards")
     cache.mkdir(parents=True, exist_ok=True)
     with FileLock(cache / (digest(str(root).encode()) + ".workspace.lock")):
-        paths = [(root / "decks" / change.path).resolve() for change in changes]
+        paths = [deck_path(root, change.path) for change in changes]
         if len(set(paths)) != len(paths):
             raise ValueError("Each deck can change only once in an operation.")
         originals: dict[Path, bytes | None] = {}
         for change, path in zip(changes, paths, strict=True):
-            if not path.is_relative_to(root / "decks") or path.suffix != ".md":
-                raise ValueError(
-                    "The deck must stay inside the workspace decks folder."
-                )
             original = path.read_bytes() if path.is_file() else None
             actual = digest(original) if original is not None else None
             if actual != change.expected:
@@ -525,11 +556,7 @@ def dispatch(
     root = workspace_path(request.workspace)
     if isinstance(request, OrganizeInput):
         return publish_changes(root, request.changes)
-    paths = [
-        path
-        for path in sorted((root / "decks").rglob("*.md"))
-        if path.resolve().is_relative_to(root / "decks")
-    ]
+    paths = deck_paths(root)
     if isinstance(request, ReviewInput):
         pending: list[Pending] = []
         for path in paths:
@@ -537,7 +564,7 @@ def dispatch(
             if state.status == "Unsynced":
                 pending.append(
                     Pending(
-                        path=str(path.relative_to(root / "decks")),
+                        path=str(path.relative_to(root)),
                         status=state.status,
                         reasons=state.reasons,
                         source=path.read_text(encoding="utf-8"),
@@ -552,7 +579,7 @@ def dispatch(
             state = sync(path, package_path(root, path))
             summaries.append(
                 Summary(
-                    path=str(path.relative_to(root / "decks")),
+                    path=str(path.relative_to(root)),
                     status=state.status,
                     reasons=state.reasons,
                     source=path.read_text(encoding="utf-8"),
@@ -600,8 +627,8 @@ app = cyclopts.App()
 def build(workspace: Path) -> None:
     """Generate every paired-card deck in a workspace."""
     root = workspace_path(str(workspace))
-    for path in sorted((root / "decks").rglob("*.md")):
-        result = generate(root, deck_path(root, str(path.relative_to(root / "decks"))))
+    for path in deck_paths(root):
+        result = generate(root, deck_path(root, str(path.relative_to(root))))
         print(result.package)
 
 

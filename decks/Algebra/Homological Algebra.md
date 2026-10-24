@@ -453,3 +453,215 @@ Surjects by defining $f_a(1) \coloneqq a$ for any $a\in A$ and extending by $f_a
 
 Injects: if $f(1) = g(1) = a$ then $f(n) \coloneqq na$ and $g(n) \coloneqq na$ so $f\equiv g$.
 :::
+
+::: {.front card-id="card-a44f627c5535dc10"}
+Which resolutions can be used for $\operatorname{Tor}$ and $\operatorname{Ext}$?
+:::
+
+::: {.back card-id="card-a44f627c5535dc10"}
+$\operatorname{Tor}(A, B)$: a projective resolution of either argument
+
+$\operatorname{Ext}(A, B)$: a projective resolution of $A$ or an injective resolution of $B$.
+:::
+
+::: {.front card-id="card-83626d3f3af8c6cd"}
+When do functors preserve injectives/projectives?
+:::
+
+::: {.back card-id="card-83626d3f3af8c6cd"}
+Has an exact left adjoint $\implies$ preserves injectives.
+
+Has an exact right adjoint $\implies$ preserves projectives.
+:::
+
+::: {.front card-id="card-66cb45fc8793ff61"}
+Characterize projectives/injectives using Hom.
+:::
+
+::: {.back card-id="card-66cb45fc8793ff61"}
+$\mathop{\mathrm{Hom}}(P, {-})\iff$projective
+
+$\mathop{\mathrm{Hom}}({-}, I) \iff$injective
+:::
+
+::: {.front card-id="card-c7e254871b94cd3c"}
+When does flat coincide with torsionfree?
+:::
+
+::: {.back card-id="card-c7e254871b94cd3c"}
+Modules over a PID.
+:::
+
+::: {.front card-id="card-75b0cf56e062765b"}
+What is an **abelian category**?
+:::
+
+::: {.back card-id="card-75b0cf56e062765b"}
+$\mathsf{C}(A, B) \in \Ab\Grp$ and composition is a group morphism,
+
+All Finite direct sums
+
+All kernels and cokernels
+
+Mono = $\ker(\operatorname{coker})$.
+
+Epi $= \operatorname{coker}(\ker)$.
+
+Epi-mono factorization for all morphisms
+:::
+
+::: {.front card-id="card-089cfeaeedd8d036"}
+What is a **delta functor**?
+:::
+
+::: {.back card-id="card-089cfeaeedd8d036"}
+A collection $T^n$ ($T^{> 0}$ are *satellite functors*) and for each $A\hookrightarrow B\twoheadrightarrow C$ a collection of morphisms $\delta^n: T^n(C) \to T^n(A)$ fitting into a LES, and for each morphism of SESs $\xi_1\to \xi_1$ the $\delta^n$ fit into commuting squares.
+:::
+
+::: {.front card-id="card-f2225028df666042"}
+What is a **universal delta functor**?
+:::
+
+::: {.back card-id="card-f2225028df666042"}
+$\delta = (T^n)$ is universal iff for any other delta functor $(S^n)$ and any morphism $f^0: T^0\to S^0$ of functors there exist lifts $f^i: T^i \to S^i$ which commute with the $\delta^i$.
+:::
+
+::: {.front card-id="card-84dafb6fde17d894"}
+What is a **homotopy** between maps $f,g: A\to B$ of complexes?
+:::
+
+::: {.back card-id="card-84dafb6fde17d894"}
+A morphism $k: A \to B[1]$, so $k^i: A^i\to B^{i-1}$, with $f-g = dk + kd$.
+:::
+
+::: {.front card-id="card-2c05ae67c19d8075"}
+What is a **left exact functor**?
+:::
+
+::: {.back card-id="card-2c05ae67c19d8075"}
+Additive and $A\hookrightarrow B\twoheadrightarrow C \leadsto FA \hookrightarrow FB \to FC \to \cdots$.
+:::
+
+::: {.front card-id="card-9a24470a30061150"}
+What are the variance and exactness of hom functors?
+:::
+
+::: {.back card-id="card-9a24470a30061150"}
+Both are left-exact (just remember $\mathop{\mathrm{\mathbb{R}Hom}}$), $\mathsf{C}(A, {-})$ is covariant and $\mathsf{C}({-}, A)$ is contravariant.
+:::
+
+::: {.front card-id="card-d4171256cc976c1e"}
+What is an **injective resolution** of $A$?
+:::
+
+::: {.back card-id="card-d4171256cc976c1e"}
+$A \xrightarrow{{\varepsilon}} I^0 \to I^1 \to \cdots$ an exact complex with $I^j$ injective objects
+:::
+
+::: {.front card-id="card-d51a653fa3481330"}
+What is an **injective object**?
+:::
+
+::: {.back card-id="card-d51a653fa3481330"}
+Remembering injectives and projectives: <https://q.uiver.app/?q=WzAsNSxbMCwyLCJBIl0sWzIsMiwiQiJdLFs0LDIsIkMiXSxbMCw0LCJJIl0sWzQsMCwiUCJdLFswLDEsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzEsMiwiIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzQsMl0sWzAsM10sWzQsMSwiXFxleGlzdHMgXFxpZmYgQyBcXHRleHR7IHByb2plY3RpdmV9IiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzEsMywiXFxleGlzdHMgXFxpZmYgQSBcXHRleHR7IGluamVjdGl2ZX0iLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=>
+:::
+
+::: {.front card-id="card-e37ad2148e34f1cb"}
+What is a **(co)effaceable functor**?
+:::
+
+::: {.back card-id="card-e37ad2148e34f1cb"}
+For each $A$ there is a mono $u: A\to I$ with $F(u) = 0$. Coeffaceable if there is an epi $u: P\to A$ with $F(u) = 0$.
+:::
+
+::: {.front card-id="card-6fd5f64c060e98bb"}
+Discuss **effaceable functors**.
+:::
+
+::: {.back card-id="card-6fd5f64c060e98bb"}
+If $T$ is a delta functor and each $T^i$ is effaceable then $T$ is universal. Derived functors computed via injective resolutions form a universal $\delta$ functor.
+:::
+
+::: {.front card-id="card-7a05add3225ee133"}
+Characterize injective objects in ${}_{\ZZ}\Mod$.
+:::
+
+::: {.back card-id="card-7a05add3225ee133"}
+Divisible groups. Generally need Baer's criterion.
+:::
+
+::: {.front card-id="card-6af26ae228ea633a" tags="math"}
+Hom Table
+:::
+
+::: {.back card-id="card-6af26ae228ea633a"}
+$$
+\begin{array}{c|c|c|c}
+Hom & Z_m & Z & Q \\\hline
+Z_n  & Z_d & 0 & 0 \\\hline
+Z   & Z_m & Z & Q \\\hline
+Q   & 0  & 0 & Q
+\end{array}
+$$
+:::
+
+::: {.front card-id="card-205ac8f4c3a11ce3" tags="math"}
+Tor Table
+:::
+
+::: {.back card-id="card-205ac8f4c3a11ce3"}
+Rows give the first argument and columns the second; $d \coloneqq \gcd(m, n)$ and $\operatorname{Tor}(A, B) = \operatorname{Tor}(B, A)$.
+$$
+\begin{array}{c|c|c|c}
+\operatorname{Tor}_1 & Z_m & Z & Q \\\hline
+Z_n  & Z_d & 0 & 0 \\\hline
+Z   & 0  & 0 & 0 \\\hline
+Q   & 0  & 0 & 0
+\end{array}
+$$
+The full complex $\operatorname{Tor}_*^\ZZ(V, H) = (V\otimes_\ZZ H) + \operatorname{Tor}_1^\ZZ(V, H)\, t$, e.g. the top-left entry is $\operatorname{Tor}_*^\ZZ(C_n, C_m)$:
+$$
+\begin{array}{c|c|c|c}
+\operatorname{Tor}_*^\ZZ & C_m & \ZZ & \QQ \\\hline
+C_n & C_m/nC_m \oplus C_m[n]t = C_d \oplus C_d t & \ZZ/n\ZZ\oplus \ZZ[n]t = C_n \oplus 0t & \QQ/n\QQ\oplus \QQ[n]t = 0\oplus 0t \\\hline
+\ZZ & C_m + 0t & \ZZ+ 0t & \QQ+ 0t \\\hline
+\QQ & 0 + 0t & \QQ+ 0t & \QQ + 0t
+\end{array}
+$$
+First row: $C_n\otimes_\ZZ A = A/nA$ and $\operatorname{Tor}_1^\ZZ(C_n, A) = A[n]$.
+
+Second row: $\ZZ\otimes_\ZZ A = A$ and $\operatorname{Tor}_1^\ZZ(\ZZ, A) = 0$ since $\ZZ$ is projective.
+
+Third row: $G\otimes_\ZZ\QQ= \QQ\otimes_\ZZ G = 0$ for $G$ a torsion group, $\QQ\otimes_\ZZ\QQ = \QQ$, and $\operatorname{Tor}_1^\ZZ(\QQ, A) = 0$ since $\QQ$ is torsionfree, hence flat.
+:::
+
+::: {.front card-id="card-c935c4621c362acc" tags="math"}
+Ext Table
+:::
+
+::: {.back card-id="card-c935c4621c362acc"}
+$$
+\begin{array}{c|c|c|c}
+Ext & Z_m & Z    & Q \\\hline
+Z_n  & Z_d & Z_n   & 0 \\\hline
+Z   & 0  & 0    & 0 \\\hline
+Q   & 0  & A_p/Q & 0
+\end{array}
+$$
+:::
+
+::: {.front card-id="card-455916a5a5f17b7d"}
+The tor complex between $C_n$ and $A$.
+:::
+
+::: {.back card-id="card-455916a5a5f17b7d"}
+$$\operatorname{Tor}^\ZZ_*(C_n, A) = (A/nA)\cdot t^0 \oplus A[n]\cdot t^1 \oplus \cdots$$
+:::
+
+::: {.front card-id="card-9bf5130224135f26"}
+The ext complex between $C_n$ and $A$.
+:::
+
+::: {.back card-id="card-9bf5130224135f26"}
+$$ \operatorname{Ext}^*_\ZZ(C_n, A) = A[n]\cdot t^0 \oplus (A/nA) \cdot t^1 \oplus \cdots$$
+:::

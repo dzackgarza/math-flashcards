@@ -5,7 +5,7 @@
 # ///
 """Reconcile apkg-only cards into decks/ as nested-list Markdown (issue #1).
 
-For every note in apkg/*.apkg whose normalized front is NOT already present in
+For every note in decks/apkg/*.apkg whose normalized front is NOT already present in
 decks/, emit it into a Markdown deck under decks/, mirroring the note's Anki deck
 name (`A::B` -> decks/A/B.md, title "A::B"). Existing decks are never overwritten:
 if a target file already exists, only genuinely-new cards are appended (semantic
@@ -29,8 +29,8 @@ from collections import defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-APKG = ROOT / "apkg"
 DECKS = ROOT / "decks"
+APKG = DECKS / "apkg"
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from apkg_diff import normalize_front, deck_fronts  # noqa: E402
 

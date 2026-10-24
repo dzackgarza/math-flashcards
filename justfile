@@ -2,9 +2,9 @@
 default:
     @just --list
 
-# Compile every deck under decks/ into apkg/
+# Compile every deck under decks/ into decks/apkg/
 build:
-    uv run --upgrade desktop/backend.py build .
+    uv run --upgrade desktop/backend.py build decks
 
 # Sanity-check that every deck is well-formed new-format Markdown
 test: check-math
@@ -12,7 +12,7 @@ test: check-math
 
 # Reject TeX that MathJax cannot render, such as an undefined macro
 check-math: desktop-dependencies
-    cd desktop && bun scripts/check-math.ts ..
+    cd desktop && bun scripts/check-math.ts ../decks
 
 # Push gate entry point
 test-push: test
@@ -74,7 +74,7 @@ desktop-organization-test:
 
 # Verify source preservation and card boundaries against Pandoc
 desktop-source-test:
-    cd desktop && bun test tests/source-roundtrip.test.ts tests/paired-cards.test.ts tests/organization.test.ts
+    cd desktop && bun test tests/source-roundtrip.test.ts tests/paired-cards.test.ts tests/organization.test.ts tests/workspace.test.ts
 
 # Capture and exercise the built native window on an isolated display
 desktop-native-test:

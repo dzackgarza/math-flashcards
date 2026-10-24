@@ -177,14 +177,6 @@ Precisely the condition to induce a map on residue fields: $\sigma \in D\implies
 Also fixes $A$, so descends to the local Galois group, yielding a group morphism $D\twoheadrightarrow\mathop{\mathrm{Aut}}(\kappa_B / \kappa_A)$.
 :::
 
-::: {.front card-id="card-0ba81c7dd4f84621"}
-What is a **normal** extension $L/K$?
-:::
-
-::: {.back card-id="card-0ba81c7dd4f84621"}
-If $\alpha\in L$ then all Galois conjugates are again in $L$, so $L$ contains all roots of $\minpoly_K(\alpha)$.
-:::
-
 ::: {.front card-id="card-ff3d529b614a599f"}
 What is the inertia group?
 :::
@@ -411,4 +403,12 @@ Give an example of failure of unique factorization.
 
 ::: {.back card-id="card-8e90336120d7bd50"}
 $6 = (2)(3) = (1+\sqrt{-5})(1-\sqrt{-5})\in \ZZ { \left[ \scriptstyle {\sqrt{-5}} \right] }$, all factors are irreducible.
+:::
+
+::: {.front card-id="card-bf54130388c9cc35"}
+What is a CM field?
+:::
+
+::: {.back card-id="card-bf54130388c9cc35"}
+$K$ a purely imaginary quadratic extension of a totally real field, so $K = K_0(\sqrt\alpha)$ with $\sigma(\alpha)\in {\mathbf{R}}_{\gt 0}$ for every embedding $\sigma: K_0 \hookrightarrow\CC$.
 :::

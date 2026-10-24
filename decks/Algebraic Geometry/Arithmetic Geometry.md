@@ -1,5 +1,5 @@
 ---
-title: "Number Theory::Arithmetic Geometry"
+title: "Algebraic Geometry::Arithmetic Geometry"
 ---
 
 ::: {.front card-id="card-cba9b3434509cac6"}
