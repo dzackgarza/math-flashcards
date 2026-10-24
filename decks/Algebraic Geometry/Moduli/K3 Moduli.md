@@ -409,3 +409,35 @@ What is the dual graph of a degeneration?
 ::: {.back card-id="card-75f1921216084ec3"}
 Let $S_0=\bigcup V_i$ be the central fibre in a semistable degeneration. Define the dual graph $\Gamma$ of $S_0$ as follows: $\Gamma$ is a simplicial complex whose vertices $P_1, \ldots, P_r$ correspond to the components $V_1, \ldots, V_r$ of $S_0$; the $k$-simplex $\left\langle P_{i_0}, \ldots, P_{i_k}\right\rangle$ belongs to $\Gamma$ if and only if $V_{i_0} \cap \cdots \cap V_{i_k} \neq \emptyset$.
 :::
+
+::: {.front card-id="formula-mukai-vector-computation" tags="formula"}
+For a coherent sheaf $E$ on a complex projective K3 surface, compute its Mukai vector using $r=\operatorname{rk}E,c_1(E),c_2(E)$.
+:::
+
+::: {.back card-id="formula-mukai-vector-computation"}
+$$v(E)=\left(r,c_1(E),r+\frac12c_1(E)^2-c_2(E)\right).$$
+:::
+
+::: {.front card-id="formula-mukai-pairing-euler" tags="formula"}
+For coherent sheaves $E,F$ on a complex projective K3 surface with Mukai vectors $v=(r,c,s)$ and $v'=(r',c',s')$, compute their Mukai pairing and $\chi(E,F)=\sum_i(-1)^i\dim\operatorname{Ext}^i(E,F)$.
+:::
+
+::: {.back card-id="formula-mukai-pairing-euler"}
+$$\langle v,v'\rangle=cc'-rs'-r's,\qquad \chi(E,F)=-\langle v(E),v(F)\rangle.$$
+:::
+
+::: {.front card-id="formula-k3-stable-sheaf-tangent" tags="formula"}
+For an $H$-stable coherent sheaf $E$ on a complex projective K3 surface, compute $\dim\operatorname{Ext}^1(E,E)$ from its Mukai vector.
+:::
+
+::: {.back card-id="formula-k3-stable-sheaf-tangent"}
+$$\dim\operatorname{Ext}^1(E,E)=\langle v(E),v(E)\rangle+2.$$
+:::
+
+::: {.front card-id="formula-k3-sheaf-moduli-dimension" tags="formula"}
+For a nonempty moduli space $M_H(v)$ of stable sheaves on a complex projective K3 surface, with primitive Mukai vector $v$ and $v$-generic polarization $H$, compute its dimension.
+:::
+
+::: {.back card-id="formula-k3-sheaf-moduli-dimension"}
+$$\dim M_H(v)=\langle v,v\rangle+2.$$
+:::

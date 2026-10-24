@@ -483,3 +483,51 @@ If $X$ is a smooth surface and $L$ is big, then $R(X; L)$ is finitely generated 
 
 $R(; L)$ is finitely generated for any $L\in \operatorname{Pic}(X)$ whatsoever for a K3.
 :::
+
+::: {.front card-id="formula-smooth-center-blowup-euler" tags="formula"}
+For the blowup $\widetilde X\to X$ of a smooth projective complex variety along a smooth center $Z$ of codimension $c\ge2$, compute $e(\widetilde X)$.
+:::
+
+::: {.back card-id="formula-smooth-center-blowup-euler"}
+$$e(\widetilde X)=e(X)+(c-1)e(Z).$$
+:::
+
+::: {.front card-id="formula-point-blowup-exceptional-power" tags="formula"}
+For a point blowup of a smooth complex $n$-fold, $n\ge2$, compute the top intersection of the exceptional divisor $E$.
+:::
+
+::: {.back card-id="formula-point-blowup-exceptional-power"}
+$$E^n=(-1)^{n-1}.$$
+:::
+
+::: {.front card-id="formula-cyclic-quotient-resolution" tags="formula"}
+For the complex cyclic quotient singularity $\frac1r(1,a)$, with $0<a<r$ and $\gcd(r,a)=1$, write $r/a=[b_1,\ldots,b_s]^-$ with $b_i\ge2$. Compute the exceptional intersection matrix of its minimal resolution.
+:::
+
+::: {.back card-id="formula-cyclic-quotient-resolution"}
+$$E_i^2=-b_i,\qquad E_iE_{i+1}=1,\qquad E_iE_j=0\quad(|i-j|>1),\qquad \frac ra=b_1-\cfrac1{b_2-\cfrac1{\ddots-\cfrac1{b_s}}}.$$
+:::
+
+::: {.front card-id="formula-surface-discrepancy-equations" tags="formula"}
+For a resolution $\pi:\widetilde X\to X$ of a normal complex $\mathbb Q$-Gorenstein surface singularity with smooth rational exceptional curves $E_i$, give the canonical discrepancy formula and the linear system for its coefficients.
+:::
+
+::: {.back card-id="formula-surface-discrepancy-equations"}
+$$K_{\widetilde X}=\pi^*K_X+\sum_i a_iE_i,\qquad \sum_i a_i(E_iE_j)=-2-E_j^2.$$
+:::
+
+::: {.front card-id="formula-du-val-resolution-invariants" tags="formula"}
+For the minimal resolution $\pi:\widetilde X\to X$ of a complex Du Val surface singularity, compute the exceptional self-intersections, canonical discrepancy, and $R^1\pi_*\mathcal O_{\widetilde X}$.
+:::
+
+::: {.back card-id="formula-du-val-resolution-invariants"}
+$$E_i^2=-2,\qquad K_{\widetilde X}=\pi^*K_X,\qquad R^1\pi_*\mathcal O_{\widetilde X}=0.$$
+:::
+
+::: {.front card-id="formula-normalization-canonical-conductor" tags="formula"}
+For a demi-normal complex $\mathbb Q$-Gorenstein surface $X$, with normalization $\nu:X^\nu\to X$ and conductor divisor $D^\nu$, express $\nu^*K_X$.
+:::
+
+::: {.back card-id="formula-normalization-canonical-conductor"}
+$$\nu^*K_X=K_{X^\nu}+D^\nu.$$
+:::

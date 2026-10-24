@@ -1110,22 +1110,12 @@ Flat: K3s (generally CYs and hyperkahlers)
 Negatively curved: general type.
 :::
 
-::: {.front card-id="card-8ace99975d2c209d"}
-What are $q(X), p_g(X), \beta^+(X), \chi(X), c_1^2(X), c_2(X)$ for a K3?
+::: {.front card-id="card-8ace99975d2c209d" tags="formula"}
+For a complex K3 surface $S$, compute $q,p_g,\chi(\mathcal O_S),K_S^2,c_2(S),b_2,h^{1,1},b_2^+,b_2^-$.
 :::
 
 ::: {.back card-id="card-8ace99975d2c209d"}
-$q(X) = 0$
-
-$p_g(X) = 1$
-
-$\beta^+(X) = 3$
-
-$\chi(X) = 2$
-
-$c_1^2(X) = 0$
-
-$c^2(X) =24$.
+$$\begin{aligned}q&=0,&p_g&=1,&\chi(\mathcal O_S)&=2,\\K_S^2&=0,&c_2(S)&=24,&b_2&=22,\\h^{1,1}&=20,&b_2^+&=3,&b_2^-&=19.\end{aligned}$$
 :::
 
 ::: {.front card-id="card-b4c7696af026d814"}
@@ -1166,4 +1156,20 @@ What is the Kahler cone $\mck_X$?
 
 ::: {.back card-id="card-f366077ef99eafd5"}
 $\mck_X \subseteq H^{1, 1}(X; {\mathbf{R}})$ the set of Kahler forms, forms an open convex cone.
+:::
+
+::: {.front card-id="formula-k3-tangent-invariants" tags="formula"}
+For a complex K3 surface $S$, compute $\chi(T_S)$ and $h^1(T_S)$.
+:::
+
+::: {.back card-id="formula-k3-tangent-invariants"}
+$$\chi(T_S)=-20,\qquad h^1(T_S)=20.$$
+:::
+
+::: {.front card-id="formula-polarized-k3-sections" tags="formula"}
+For an ample line bundle $L$ on a complex K3 surface with $L^2=2g-2$, compute $h^0(S,L)$.
+:::
+
+::: {.back card-id="formula-polarized-k3-sections"}
+$$h^0(S,L)=g+1.$$
 :::

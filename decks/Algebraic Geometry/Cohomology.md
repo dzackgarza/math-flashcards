@@ -252,16 +252,12 @@ By properness, $\operatorname{im}s \subseteq {\mathbf{A}}^1$ is closed and thus 
 By irreducibility, it must be one point, so $s$ is a constant map $s(x) = \lambda$ for some $\lambda \in k$, so sections biject with elements of $k$.
 :::
 
-::: {.front card-id="card-610ae6d59c072f6d"}
-Discuss $H^*({\mathbf{P}}^n; {\mathcal{O}}(d))$.
+::: {.front card-id="card-610ae6d59c072f6d" tags="formula"}
+For $n\ge1$ and $d\in\mathbb Z$, compute every $h^i(\mathbb P^n_{\mathbb C},\mathcal O(d))$.
 :::
 
 ::: {.back card-id="card-610ae6d59c072f6d"}
-$k[x_0,\cdots, x_n]_d$ for $*=0$,
-
-zero for $*=1,\cdots, n-1$, and
-
-$\qty{\prod_{i=1}^n x_i }^{-1}k[x_0^{-1}, \cdots, x_n^{-1}]$ for $*=n$.
+$$h^i(\mathbb P^n,\mathcal O(d))=\begin{cases}\binom{n+d}{n}&i=0,\ d\ge0,\\\binom{-d-1}{n}&i=n,\ d\le-n-1,\\0&\text{otherwise}.\end{cases}$$
 :::
 
 ::: {.front card-id="card-096a65dfbddd6a03"}
@@ -274,12 +270,12 @@ $$H^{i\geq \dim X+1}(X; \mcf) = 0.$$
 How to remember: $\mathrm{cd}(X) \leq \dim X$.
 :::
 
-::: {.front card-id="card-87f4808bdfeea791"}
-What is the Hirzebruch-Riemann-Roch theorem?
+::: {.front card-id="card-87f4808bdfeea791" tags="formula"}
+For a vector bundle $E$ on a smooth projective complex variety $X$, compute $\chi(X,E)$ by Hirzebruch–Riemann–Roch.
 :::
 
 ::: {.back card-id="card-87f4808bdfeea791"}
-$\chi(\mcf) = \int {\mathrm{ch}}(\mcf)\operatorname{Td}(X) = {\mathrm{ch}}_2(\mcf) + 2\operatorname{rank}(\mcf)$.
+$$\chi(X,E)=\int_X\operatorname{ch}(E)\operatorname{td}(T_X).$$
 :::
 
 ::: {.front card-id="card-6b6592219edcf96d"}
@@ -300,4 +296,44 @@ Does Kodaira vanishing hold in positive characteristic?
 Generally no, see Mumford's normal projective surface as a counterexample, or Raynaud finds for any smooth projective surface $X$ over $k=\kbar$ an $L\in \operatorname{Pic}(X)$ with $H^1(L\otimes\omega_X) \neq 0$.
 
 However it *does* hold for K3s, using $H^1({\mathcal{O}}_X) = 0$ and any big and nef $L$ on a K3 is effective. This is explained by Deligne-Illusie for surfaces that lift to characteristic zero (which K3s do).
+:::
+
+::: {.front card-id="formula-projective-euler-polynomial" tags="formula"}
+For $d\in\mathbb Z$ and $n\ge1$, compute $\chi(\mathbb P^n_{\mathbb C},\mathcal O(d))$ using a polynomial binomial coefficient.
+:::
+
+::: {.back card-id="formula-projective-euler-polynomial"}
+$$\chi(\mathbb P^n,\mathcal O(d))=\binom{n+d}{n}.$$
+:::
+
+::: {.front card-id="formula-hilbert-leading-coefficients" tags="formula"}
+For a smooth projective complex $n$-fold, $n\ge2$, and an ample divisor $H$, compute the leading two terms of $\chi(\mathcal O_X(mH))$.
+:::
+
+::: {.back card-id="formula-hilbert-leading-coefficients"}
+$$\chi(\mathcal O_X(mH))=\frac{H^n}{n!}m^n-\frac{K_XH^{n-1}}{2(n-1)!}m^{n-1}+O(m^{n-2}).$$
+:::
+
+::: {.front card-id="formula-threefold-riemann-roch" tags="formula"}
+For a divisor $D$ on a smooth projective complex threefold $X$, compute $\chi(\mathcal O_X(D))$.
+:::
+
+::: {.back card-id="formula-threefold-riemann-roch"}
+$$\chi(\mathcal O_X(D))=\frac{D^3}{6}-\frac{K_XD^2}{4}+\frac{D(K_X^2+c_2(X))}{12}-\frac{K_Xc_2(X)}{24}.$$
+:::
+
+::: {.front card-id="formula-threefold-structure-euler" tags="formula"}
+For a smooth projective complex threefold $X$, compute $\chi(\mathcal O_X)$ from its characteristic numbers.
+:::
+
+::: {.back card-id="formula-threefold-structure-euler"}
+$$\chi(\mathcal O_X)=-\frac{K_Xc_2(X)}{24}.$$
+:::
+
+::: {.front card-id="formula-trivial-canonical-threefold-rr" tags="formula"}
+For a divisor $D$ on a smooth projective complex threefold with $K_X\sim0$, compute $\chi(\mathcal O_X(D))$.
+:::
+
+::: {.back card-id="formula-trivial-canonical-threefold-rr"}
+$$\chi(\mathcal O_X(D))=\frac{D^3}{6}+\frac{c_2(X)D}{12}.$$
 :::

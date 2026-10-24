@@ -647,3 +647,91 @@ Very ample for $k\geq \dim(X) + 2$.
 
 True for surfaces, a stronger version is true for K3s.
 :::
+
+::: {.front card-id="formula-chow-projective-space" tags="formula"}
+For complex projective space with hyperplane class $H$, give its Chow ring and degree map.
+:::
+
+::: {.back card-id="formula-chow-projective-space"}
+$$A^*(\mathbb P^n)=\mathbb Z[H]/(H^{n+1}),\qquad \int_{\mathbb P^n}H^n=1.$$
+:::
+
+::: {.front card-id="formula-chow-product-projective-spaces" tags="formula"}
+For $\mathbb P^m_{\mathbb C}\times\mathbb P^n_{\mathbb C}$ with the pulled-back hyperplane classes $H_1,H_2$, compute the Chow ring and its top monomial degree.
+:::
+
+::: {.back card-id="formula-chow-product-projective-spaces"}
+$$A^*(\mathbb P^m\times\mathbb P^n)=\frac{\mathbb Z[H_1,H_2]}{(H_1^{m+1},H_2^{n+1})},\qquad \int H_1^mH_2^n=1.$$
+:::
+
+::: {.front card-id="formula-diagonal-projective-space" tags="formula"}
+Compute the diagonal class in $A^n(\mathbb P^n_{\mathbb C}\times\mathbb P^n_{\mathbb C})$, using the hyperplane classes $H_1,H_2$.
+:::
+
+::: {.back card-id="formula-diagonal-projective-space"}
+$$[\Delta]=\sum_{i=0}^nH_1^iH_2^{n-i}.$$
+:::
+
+::: {.front card-id="formula-hyperplane-degree" tags="formula"}
+For a projective complex $n$-fold $X\subset\mathbb P^N$ with hyperplane class $H$, compute its top hyperplane intersection.
+:::
+
+::: {.back card-id="formula-hyperplane-degree"}
+$$\int_X H^n=\deg X.$$
+:::
+
+::: {.front card-id="formula-finite-pullback-intersections" tags="formula"}
+For a finite surjective map $f:X\to Y$ of smooth projective complex $n$-folds and divisors $D_1,\ldots,D_n$ on $Y$, compute the intersection of their pullbacks.
+:::
+
+::: {.back card-id="formula-finite-pullback-intersections"}
+$$(f^*D_1)\cdots(f^*D_n)=(\deg f)D_1\cdots D_n.$$
+:::
+
+::: {.front card-id="formula-projective-bundle-chow" tags="formula"}
+Let $X$ be smooth over $\mathbb C$ and $E$ have rank $r$. For the quotient bundle $\pi:\mathbb P(E)=\operatorname{Proj}(\operatorname{Sym}E)\to X$, set $\xi=c_1(\mathcal O(1))$. Compute the Chow ring.
+:::
+
+::: {.back card-id="formula-projective-bundle-chow"}
+$$A^*(\mathbb P(E))=\frac{A^*(X)[\xi]}{\left(\sum_{i=0}^r(-1)^ic_i(E)\xi^{r-i}\right)}.$$
+:::
+
+::: {.front card-id="formula-projective-bundle-pushforward" tags="formula"}
+For a rank-$r$ bundle $E$ on smooth $X/\mathbb C$, use the quotient convention for $\pi:\mathbb P(E)\to X$ and $\xi=c_1(\mathcal O(1))$. Compute $\pi_*\xi^{r-1+j}$ for $0\le j\le3$.
+:::
+
+::: {.back card-id="formula-projective-bundle-pushforward"}
+$$\begin{aligned}\pi_*\xi^{r-1}&=1,\\\pi_*\xi^r&=c_1(E),\\\pi_*\xi^{r+1}&=c_1(E)^2-c_2(E),\\\pi_*\xi^{r+2}&=c_1(E)^3-2c_1(E)c_2(E)+c_3(E).\end{aligned}$$
+:::
+
+::: {.front card-id="formula-projective-bundle-canonical" tags="formula"}
+For a rank-$r$ vector bundle $E$ on smooth $X/\mathbb C$, compute the canonical class of the quotient projective bundle $\pi:\mathbb P(E)\to X$, with $\xi=c_1(\mathcal O(1))$.
+:::
+
+::: {.back card-id="formula-projective-bundle-canonical"}
+$$K_{\mathbb P(E)}=-r\xi+\pi^*(K_X+c_1(E)).$$
+:::
+
+::: {.front card-id="formula-maximal-minors-class" tags="formula"}
+For a map $E\to F$ of vector bundles of ranks $e\le f$ on smooth $X/\mathbb C$, suppose the locus $D_{e-1}$ of rank at most $e-1$ has codimension $f-e+1$. Compute its cycle class.
+:::
+
+::: {.back card-id="formula-maximal-minors-class"}
+$$[D_{e-1}]=c_{f-e+1}(F-E)\cap[X],\qquad c(F-E)=c(F)c(E)^{-1}.$$
+:::
+
+::: {.front card-id="formula-hodge-index-inequality" tags="formula"}
+For an ample divisor $H$ and any divisor $D$ on a smooth projective complex surface, give the numerical Hodge index inequality.
+:::
+
+::: {.back card-id="formula-hodge-index-inequality"}
+$$(HD)^2\ge H^2D^2.$$
+:::
+
+::: {.front card-id="formula-nef-surface-volume" tags="formula"}
+For a nef divisor $D$ on a smooth projective complex surface, compute its volume and bound its self-intersection.
+:::
+
+::: {.back card-id="formula-nef-surface-volume"}
+$$\operatorname{vol}(D)=D^2\ge0.$$
+:::

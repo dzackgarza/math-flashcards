@@ -1378,3 +1378,91 @@ The structure morphism $f: X\to \operatorname{Spec}k$ is geometrically integral,
 
 Thm: geometrically integral iff geometrically reduced and geometrically irreducible.
 :::
+
+::: {.front card-id="formula-jacobian-tangent" tags="formula"}
+For $X=V(f_1,\ldots,f_r)\subset\mathbb A^n_{\mathbb C}$ and $p\in X$, compute the tangent-space dimension from the Jacobian $J(p)$.
+:::
+
+::: {.back card-id="formula-jacobian-tangent"}
+$$\dim_{\mathbb C}T_pX=n-\operatorname{rank}J(p).$$
+:::
+
+::: {.front card-id="formula-jacobian-singular-locus" tags="formula"}
+For an equidimensional local complete intersection $X\subset\mathbb A^n_{\mathbb C}$ of codimension $c$, express its singular locus using the Jacobian $J$ and its $c$-minor ideal $I_c(J)$.
+:::
+
+::: {.back card-id="formula-jacobian-singular-locus"}
+$$\operatorname{Sing}(X)=V(I_X+I_c(J)).$$
+:::
+
+::: {.front card-id="formula-scheme-union-intersection" tags="formula"}
+For closed subschemes $X,Y$ of an affine scheme, compute the ideals of their scheme-theoretic intersection and union.
+:::
+
+::: {.back card-id="formula-scheme-union-intersection"}
+$$I_{X\cap Y}=I_X+I_Y,\qquad I_{X\cup Y}=I_X\cap I_Y.$$
+:::
+
+::: {.front card-id="formula-hypersurface-multiplicity" tags="formula"}
+For a hypersurface $V(f)$ in a smooth complex variety, compute its multiplicity at $p$ using the maximal ideal $\mathfrak m_p$.
+:::
+
+::: {.back card-id="formula-hypersurface-multiplicity"}
+$$\operatorname{mult}_pV(f)=\operatorname{ord}_{\mathfrak m_p}(f).$$
+:::
+
+::: {.front card-id="formula-complete-intersection-hilbert-series" tags="formula"}
+Let $R=\mathbb C[x_0,\ldots,x_n]/(f_1,\ldots,f_r)$, with a homogeneous regular sequence of positive degrees $d_i$ and $r\le n$. Compute its Hilbert series.
+:::
+
+::: {.back card-id="formula-complete-intersection-hilbert-series"}
+$$\operatorname{Hilb}_R(t)=\frac{\prod_{i=1}^r(1-t^{d_i})}{(1-t)^{n+1}}.$$
+:::
+
+::: {.front card-id="formula-complete-intersection-dimension-degree" tags="formula"}
+For a projective complete intersection $X\subset\mathbb P^n_{\mathbb C}$ cut out by a regular sequence of degrees $d_1,\ldots,d_r$, compute dimension and degree.
+:::
+
+::: {.back card-id="formula-complete-intersection-dimension-degree"}
+$$\dim X=n-r,\qquad \deg X=\prod_{i=1}^r d_i.$$
+:::
+
+::: {.front card-id="formula-complete-intersection-hilbert-polynomial" tags="formula"}
+For a complete intersection $X\subset\mathbb P^n_{\mathbb C}$ of multidegree $(d_1,\ldots,d_r)$, compute $P_X(m)$ using polynomial binomial coefficients.
+:::
+
+::: {.back card-id="formula-complete-intersection-hilbert-polynomial"}
+$$P_X(m)=\sum_{J\subseteq\{1,\ldots,r\}}(-1)^{|J|}\binom{n+m-\sum_{j\in J}d_j}{n}.$$
+:::
+
+::: {.front card-id="formula-hypersurface-hilbert-polynomial" tags="formula"}
+For a degree-$d$ hypersurface $X\subset\mathbb P^n_{\mathbb C}$, compute $P_X(m)$ and $\chi(\mathcal O_X(m))$ for every integer $m$, using polynomial binomial coefficients.
+:::
+
+::: {.back card-id="formula-hypersurface-hilbert-polynomial"}
+$$P_X(m)=\chi(\mathcal O_X(m))=\binom{m+n}{n}-\binom{m+n-d}{n}.$$
+:::
+
+::: {.front card-id="formula-hilbert-scheme-tangent" tags="formula"}
+For a closed subscheme $Z$ of a projective complex scheme $X$, express the tangent space of $\operatorname{Hilb}(X)$ at $[Z]$.
+:::
+
+::: {.back card-id="formula-hilbert-scheme-tangent"}
+$$T_{[Z]}\operatorname{Hilb}(X)=\operatorname{Hom}_X(\mathcal I_Z,\mathcal O_Z).$$
+:::
+
+::: {.front card-id="formula-lci-embedded-deformations" tags="formula"}
+For a smooth local complete intersection $Z$ in a smooth projective complex variety $X$, give the embedded deformation tangent space and a space containing all obstruction classes.
+:::
+
+::: {.back card-id="formula-lci-embedded-deformations"}
+$$T_{[Z]}\operatorname{Hilb}(X)=H^0(Z,N_{Z/X}),\qquad \operatorname{ob}\in H^1(Z,N_{Z/X}).$$
+:::
+
+::: {.front card-id="formula-variety-deformations" tags="formula"}
+For a smooth proper complex variety $X$, give its first-order deformation space and a space containing all obstruction classes.
+:::
+
+::: {.back card-id="formula-variety-deformations"}
+$$T\operatorname{Def}(X)=H^1(X,T_X),\qquad \operatorname{ob}\in H^2(X,T_X).$$
+:::
