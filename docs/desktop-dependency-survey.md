@@ -16,7 +16,7 @@ the macro set track the main branches of ankdown-for-math and pandoc-config.
 | Desktop window and frontend build | [Tauri with Vite](https://v2.tauri.app/start/frontend/vite/) | Official React/TypeScript scaffold |
 | Deck navigation | [Mantine Tree](https://mantine.dev/core/tree/) | Folder hierarchy and selectable deck nodes |
 | App layout | [Mantine AppShell](https://mantine.dev/core/app-shell/), [Splitter](https://mantine.dev/core/splitter/) | Deck tree, card list, Front and Back editors |
-| Editing | [React CodeMirror](https://github.com/uiwjs/react-codemirror), `@codemirror/lang-markdown` | Separate Front and Back fields, history, selection and keyboard commands |
+| Editing | Zettlr's `@dzack/pandoc-editor`, mounted with [React CodeMirror](https://github.com/uiwjs/react-codemirror) | Shared Pandoc editing and live rendering in separate Front and Back fields |
 | Source ranges and syntax | Zettlr-Pandoc's Lezer fork | Pandoc fenced divs, attributes, math, and source positions; shared parser for both editors and deck pairing |
 | External changes | [Tauri filesystem plugin](https://v2.tauri.app/plugin/file-system/) | Watch the selected workspace |
 | Process execution and output | [Tauri commands](https://v2.tauri.app/develop/calling-rust/) and Python subprocess | A typed bridge request; exporter completion and diagnostics |
@@ -24,7 +24,7 @@ the macro set track the main branches of ankdown-for-math and pandoc-config.
 | Preferences | [Tauri store plugin](https://v2.tauri.app/plugin/store/) | Workspace path |
 | Generation records | Python SQLite and [platformdirs](https://platformdirs.readthedocs.io/) | Successful build fingerprints in the platform cache |
 | Card HTML and APKG | [ankdown-for-math](https://github.com/dzackgarza/ankdown-for-math), [Pandoc Lua filters](https://pandoc.org/lua-filters.html) | Reuse the filter's front/back JSON and exporter CLI |
-| Math rendering | [MathJax 4](https://docs.mathjax.org/en/v4.0/web/typeset.html) | Equations render inside each editor with widgets adapted from Zettlr's `render-math.ts`, using the exporter's macro asset |
+| Math rendering | Zettlr's shared equation renderer and [MathJax 4](https://docs.mathjax.org/en/v4.0/web/typeset.html) | The host supplies MathJax and the exporter's macros; the shared editor owns widgets and source selection |
 | Status controls | Mantine Badge, Button, Alert, Loader | Visible build state |
 
 ## Alternatives

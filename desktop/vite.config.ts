@@ -90,6 +90,17 @@ function workbenchBackend(): Plugin {
 }
 
 export default defineConfig({
+  resolve: {
+    preserveSymlinks: true,
+    dedupe: [
+      "@codemirror/state",
+      "@codemirror/view",
+      "@codemirror/language",
+      "@lezer/common",
+      "@lezer/highlight",
+      "@lezer/markdown",
+    ],
+  },
   define: {
     __DEFAULT_WORKSPACE__: JSON.stringify(
       fileURLToPath(new URL("../decks", import.meta.url)),

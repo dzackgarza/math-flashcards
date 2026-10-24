@@ -15,7 +15,10 @@ just desktop-install
 
 Build dependencies: Bun, Rust, Cargo, `just`, and the [Tauri Linux prerequisites](https://v2.tauri.app/start/prerequisites/).
 Every build resolves each dependency to its latest version; the repository keeps
-no lock files. `just desktop-dependencies` clones Zettlr-Pandoc's Pandoc parser
+no lock files. The editor uses `@dzack/pandoc-editor` from the sibling
+`Zettlr-pandoc-mathjax/packages/pandoc-editor` workspace package. Zettlr and
+the card fields share its source. Keep that checkout beside this repository.
+`just desktop-dependencies` clones Zettlr-Pandoc's Pandoc parser
 package (`vendor/lezer-markdown-pandoc` in
 [Zettlr-pandoc-mathjax](https://github.com/dzackgarza/Zettlr-pandoc-mathjax)) from
 its `develop` branch into `desktop/.parser`, and the npm override makes CodeMirror
@@ -68,8 +71,9 @@ for the design sources and file operations. Relative media links follow their
 original files across moves.
 Ctrl-K opens a command menu that finds decks, cards, and actions. **Find a
 card** filters the card list by front and back text. Edit **Front** and **Back** in
-side-by-side CodeMirror fields. Both fields accept Markdown and LaTeX, with
-Pandoc syntax and TeX highlighting from Zettlr's parser. Set tags with **Tags**.
+side-by-side CodeMirror fields. Both fields use Zettlr's shared Pandoc editor,
+including list indentation, emphasis, headings, blockquotes, code, and TeX.
+Set tags with **Tags**.
 The app creates the card ID and stores the sides as paired fenced divs.
 Each side can contain paragraphs, lists, math, and nested divs.
 
@@ -77,8 +81,8 @@ A deck contains `.front` and `.back` divs with a shared `card-id` attribute.
 Pairs can appear in any order; fronts set the card order. Missing sides,
 duplicate sides, and missing IDs are errors. See the [format](../README.md#card-format).
 
-Math renders in place with MathJax and the exporter's macros, using a renderer
-adapted from Zettlr. Click an equation, or move the cursor into it, to edit its
+Math renders in place with MathJax and the exporter's macros, using the shared
+editor's equation renderer. Click an equation, or move the cursor into it, to edit its
 source. Saves and organization changes check each deck with the exporter's
 Pandoc filter and media resolution.
 

@@ -414,17 +414,15 @@ mjx-merror {
 .card-face .cm-content {
   padding: 0;
 }
-.card-face .cm-line {
-  padding: 0;
-}
-.rendered-math {
+.preview-math {
   cursor: pointer;
   border-radius: 4px;
 }
-.rendered-math:hover {
+.preview-math:hover {
   background: var(--mantine-color-indigo-0);
 }
-div.rendered-math {
+.preview-math:has(mjx-container[display="true"]) {
+  display: block;
   overflow-x: auto;
   overflow-y: hidden;
 }

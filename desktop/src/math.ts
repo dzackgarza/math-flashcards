@@ -1,24 +1,7 @@
-import { syntaxTree } from "@codemirror/language";
-import {
-  type EditorState,
-  type Range,
-  StateEffect,
-  StateField,
-} from "@codemirror/state";
-import {
-  Decoration,
-  type DecorationSet,
-  EditorView,
-  WidgetType,
-} from "@codemirror/view";
 import { type SyntaxNode, type SyntaxNodeRef } from "@lezer/common";
 import { deckParser } from "./cards";
 import { pandocLatexMathEnvironmentAtStart } from "@lezer/markdown";
 import type { Macros } from "./bridge";
-
-// Adapted from Zettlr-pandoc-mathjax (GPL-3.0):
-// source/common/modules/markdown-editor/renderers/render-math.ts,
-// base-renderer.ts, click-and-select.ts, and util/math-delimiters.ts.
 
 // MathJax 4 component API: https://docs.mathjax.org/en/v4.0/web/typeset.html#converting-a-math-string-to-other-formats
 export interface MathJaxRuntime {
@@ -133,51 +116,6 @@ const delimiters = [
   { open: "$", close: "$", display: false },
 ];
 
-class MathWidget extends WidgetType {
-  constructor(
-    readonly mathjax: MathJaxRuntime,
-    readonly equation: string,
-    readonly display: boolean,
-    readonly sourceLength: number,
-  ) {
-    super();
-  }
-
-  eq(other: MathWidget) {
-    return (
-      other.equation === this.equation &&
-      other.display === this.display &&
-      other.sourceLength === this.sourceLength
-    );
-  }
-
-  toDOM(view: EditorView) {
-    const element = document.createElement(this.display ? "div" : "span");
-    element.className = "rendered-math";
-    element.append(
-      this.mathjax.tex2chtml(this.equation, { display: this.display }),
-    );
-    // CHTML adds the stylesheet for new characters on document update.
-    this.mathjax.startup.document.clear();
-    this.mathjax.startup.document.updateDocument();
-    // Clicking a rendered equation selects its source. The widget keeps no
-    // position; the view knows where it is after earlier edits.
-    element.addEventListener("mousedown", (event) => {
-      event.preventDefault();
-      const from = view.posAtDOM(element);
-      view.focus();
-      view.dispatch({
-        selection: { anchor: from, head: from + this.sourceLength },
-      });
-    });
-    return element;
-  }
-
-  ignoreEvent() {
-    return true;
-  }
-}
-
 // `text` is the source of `node`.
 export function equation(
   text: string,
@@ -204,88 +142,6 @@ export function equation(
       };
   }
   return null;
-}
-
-// While the editor has focus, the equation under a selection shows its source.
-function decorate(
-  state: EditorState,
-  mathjax: MathJaxRuntime,
-  focused: boolean,
-): DecorationSet {
-  const widgets: Range<Decoration>[] = [];
-  syntaxTree(state).iterate({
-    enter(node) {
-      if (!["InlineCode", "FencedCode", "RawInline"].includes(node.name))
-        return;
-      if (
-        focused &&
-        state.selection.ranges.some(
-          (range) => range.from <= node.to && range.to >= node.from,
-        )
-      )
-        return false;
-      const math = equation(state.sliceDoc(node.from, node.to), node);
-      if (!math) return;
-      widgets.push(
-        Decoration.replace({
-          widget: new MathWidget(
-            mathjax,
-            math.equation,
-            math.display,
-            node.to - node.from,
-          ),
-        }).range(node.from, node.to),
-      );
-      return false;
-    },
-  });
-  return Decoration.set(widgets);
-}
-
-const focusEffect = StateEffect.define<boolean>();
-
-// Replacements that span line breaks must come from a state field:
-// https://codemirror.net/docs/ref/#view.Decoration^replace
-const rendered = StateField.define<{
-  mathjax: MathJaxRuntime | null;
-  focused: boolean;
-  decorations: DecorationSet;
-}>({
-  create: () => ({
-    mathjax: null,
-    focused: false,
-    decorations: Decoration.none,
-  }),
-  update(value, transaction) {
-    let { focused } = value;
-    for (const effect of transaction.effects)
-      if (effect.is(focusEffect)) focused = effect.value;
-    if (
-      !value.mathjax ||
-      (focused === value.focused &&
-        !transaction.docChanged &&
-        !transaction.selection)
-    )
-      return value;
-    return {
-      mathjax: value.mathjax,
-      focused,
-      decorations: decorate(transaction.state, value.mathjax, focused),
-    };
-  },
-  provide: (field) =>
-    EditorView.decorations.from(field, (value) => value.decorations),
-});
-
-export function renderedMath(mathjax: MathJaxRuntime) {
-  return [
-    rendered.init((state) => ({
-      mathjax,
-      focused: false,
-      decorations: decorate(state, mathjax, false),
-    })),
-    EditorView.focusChangeEffect.of((_, focusing) => focusEffect.of(focusing)),
-  ];
 }
 
 const skipped = new Set([

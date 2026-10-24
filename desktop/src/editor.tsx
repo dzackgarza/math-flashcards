@@ -1,39 +1,17 @@
 import { useMemo } from "react";
 import { Box, Text } from "@mantine/core";
 import CodeMirror from "@uiw/react-codemirror";
-import { commonmarkLanguage, markdown } from "@codemirror/lang-markdown";
-import { StreamLanguage } from "@codemirror/language";
-import { stexMath } from "@codemirror/legacy-modes/mode/stex";
-import { parseMixed } from "@lezer/common";
-import { Pandoc } from "@lezer/markdown";
-import { EditorView } from "@codemirror/view";
-import { type MathJaxRuntime, renderedMath } from "./math";
+import {
+  markdownEditor,
+  markdownParser,
+  previewConfig,
+} from "@dzack/pandoc-editor";
+import "@dzack/pandoc-editor/editor.css";
+import { type MathJaxRuntime } from "./math";
 
-const tex = StreamLanguage.define(stexMath).parser;
-
-// Zettlr's markdown-parser.ts and math-parser.ts mount TeX on Pandoc math nodes.
-export const cardLanguage = markdown({
-  base: commonmarkLanguage,
-  extensions: [
-    Pandoc(),
-    {
-      wrap: parseMixed((node, input) => {
-        if (!["InlineCode", "FencedCode"].includes(node.name)) return null;
-        const mark = node.node.getChild("CodeMark");
-        if (
-          !mark ||
-          !["$", "$$", "\\(", "\\["].includes(input.read(mark.from, mark.to))
-        )
-          return null;
-        return { parser: tex, overlay: (child) => child.name === "CodeText" };
-      }),
-    },
-  ],
-});
-
+export const cardLanguage = markdownParser();
 export type Side = "front" | "back";
 
-// One card side: Markdown and TeX source with math rendered in place.
 export function SideEditor({
   side,
   value,
@@ -50,9 +28,20 @@ export function SideEditor({
   const label = side === "front" ? "Front" : "Back";
   const extensions = useMemo(
     () => [
-      cardLanguage,
-      EditorView.lineWrapping,
-      ...(mathjax ? [renderedMath(mathjax)] : []),
+      previewConfig.of({ previewModeShowSyntaxWhenCursorIsAdjacent: false }),
+      markdownEditor({
+        math: mathjax
+          ? {
+              render(equation, element, mode) {
+                element.replaceChildren(
+                  mathjax.tex2chtml(equation, { display: mode === "display" }),
+                );
+                mathjax.startup.document.clear();
+                mathjax.startup.document.updateDocument();
+              },
+            }
+          : undefined,
+      }),
     ],
     [mathjax],
   );
@@ -69,6 +58,7 @@ export function SideEditor({
           lineNumbers: false,
           foldGutter: false,
           highlightActiveLine: false,
+          syntaxHighlighting: false,
         }}
         editable={editable}
         onChange={onChange}

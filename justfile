@@ -18,7 +18,7 @@ check-math: desktop-dependencies
 test-push: test
 
 # Commit gate entry point; installs the verified build so the menu app matches the commit
-test-commit: test desktop-frontend desktop-source-test desktop-test desktop-organization-test desktop-update
+test-commit: test desktop-frontend desktop-source-test desktop-editor-test desktop-test desktop-organization-test desktop-update
 
 # Install the desktop build dependencies
 desktop-dependencies:
@@ -63,6 +63,10 @@ desktop-build:
 desktop-frontend:
     cd desktop && bunx tsc --noEmit
     cd desktop && bunx vite build
+
+# Verify the shared editor's rendering, wrapping, and source edits
+desktop-editor-test:
+    cd desktop && bunx start-server-and-test 'just -f ../justfile desktop-web' http-get://127.0.0.1:1420 'uv run --upgrade tests/editor.py'
 
 # Exercise the editor against its real backend with an isolated server
 desktop-test:

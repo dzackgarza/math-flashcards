@@ -38,7 +38,8 @@
     "pathe": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "zod": "latest"
+    "zod": "latest",
+    "@dzack/pandoc-editor": "file:../../Zettlr-pandoc-mathjax/packages/pandoc-editor"
   },
   "devDependencies": {
     "@tauri-apps/cli": "latest",

@@ -32,8 +32,8 @@ folder containing deck Markdown files and subject subfolders. Its `apkg/`
 subfolder holds exports and is excluded from deck discovery.
 Select a deck in the tree. Ctrl-K opens a command menu that finds decks,
 cards, and actions.
-The editor supports card search, side-by-side Front and Back editing with math
-rendered in place, and adding and deleting cards. Edits save automatically, and
+The editor supports card search, side-by-side Front and Back editing through
+Zettlr's shared Pandoc editor, and adding and deleting cards. Edits save automatically, and
 the open deck follows changes that other programs make to its file.
 
 Drag a card in the card list to reorder it, or onto a deck in the tree to move it.
