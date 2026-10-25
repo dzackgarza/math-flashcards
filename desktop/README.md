@@ -30,6 +30,10 @@ from pandoc-config main as one checked asset set. Opening, refreshing, loading,
 and saving use these local resources. Package generation uses prepared local
 renderer inputs through Ankdown. Missing runtime files produce an
 installation error; run `just desktop-install` to prepare them.
+Checks, review, and exports use the renderer assets loaded by the editor.
+Install/update retains earlier asset sets for running sessions. Refresh or
+return to the window after an update to see the restart notice. The next app
+launch uses the updated set.
 The native build includes the
 bridge and local MathJax 4 assets, with the New Computer Modern font.
 Installation adds **Math Flashcards** to the application menu and installs the

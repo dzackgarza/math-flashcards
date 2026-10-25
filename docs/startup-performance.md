@@ -126,3 +126,17 @@ Checker validity includes the card parser, problem checker, math adapter,
 bridge schema, resolved Pandoc parser code, and dependency lock data. The
 backend also keys records by their Pydantic storage schema. Source identity
 uses SHA-256 of file bytes, independently of filesystem timestamps.
+
+## Session renderer assets
+
+The offline generation case uses a copied bridge and real prepared resources.
+It publishes a second validated macro set while retaining the first archive.
+Exports requested with the first identity retain its exact macro and stmaryrd
+contents. Checks with the second identity detect the changed input; a new
+export includes the second set. An unavailable identity returns `InvalidAssets`.
+Every backend request in this case runs in a network namespace.
+
+The installation scenario also opens, saves, and exports through the installed
+interpreter with a fresh derived cache and networking disabled. It checks the
+installed archive and reads the exported package to compare both renderer inputs.
+These bridge checks do not establish native rendering or release timing budgets.

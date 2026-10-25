@@ -96,6 +96,7 @@ class SourcesInput(BatchInput):
 
 class ChecksInput(BatchInput):
     action: Literal["checks"]
+    assets: Digest
 
 
 class Problem(BaseModel):
@@ -166,10 +167,12 @@ class SaveInput(DeckInput):
 
 class GenerateInput(DeckInput):
     action: Literal["generate"]
+    assets: Digest
 
 
 class ReviewInput(Input):
     action: Literal["review"]
+    assets: Digest
 
 
 class Change(BaseModel):
@@ -310,6 +313,10 @@ class AssetSet(BaseModel):
         return self
 
 
+class InvalidAssetsError(ValueError):
+    """The requested installed renderer set cannot be used."""
+
+
 class MathJaxPackage(BaseModel):
     version: str
 
@@ -343,6 +350,7 @@ class PackageResult(Sync):
     state: Literal["ready"] = "ready"
     path: str
     revision: Digest
+    assets: Digest
 
 
 class Checks(BaseModel):
@@ -678,8 +686,20 @@ def installed_assets() -> AssetSet:
     return AssetSet.model_validate_json(path.read_bytes())
 
 
-def macros_digest() -> str:
-    return installed_assets().identity
+@cache
+def asset_set(identity: Digest) -> AssetSet:
+    path = Path(__file__).with_name("asset-sets") / (identity + ".json")
+    try:
+        result = AssetSet.model_validate_json(path.read_bytes())
+    except (OSError, ValidationError) as error:
+        raise InvalidAssetsError(
+            "The requested renderer assets are unavailable. Run just desktop-install."
+        ) from error
+    if result.identity != identity:
+        raise InvalidAssetsError(
+            "The renderer asset identity is damaged. Run just desktop-install."
+        )
+    return result
 
 
 @cache
@@ -691,7 +711,7 @@ def pandoc_digest() -> str:
     )
 
 
-def input_hashes(path: Path, media: list[Path]) -> dict[str, str]:
+def input_hashes(path: Path, media: list[Path], assets: AssetSet) -> dict[str, str]:
     files = [
         path,
         PAIR_FILTER,
@@ -707,7 +727,7 @@ def input_hashes(path: Path, media: list[Path]) -> dict[str, str]:
         ),
     ]
     hashes = {str(file): digest(file.read_bytes()) for file in files}
-    hashes["macros"] = macros_digest()
+    hashes["macros"] = assets.identity
     hashes["pandoc"] = pandoc_digest()
     return hashes
 
@@ -723,7 +743,7 @@ def has_cards(path: Path) -> bool:
 EMPTY = "The deck has no cards, so it has no Anki package."
 
 
-def sync(path: Path, output: Path) -> Sync:
+def sync(path: Path, output: Path, assets: AssetSet) -> Sync:
     with database() as connection:
         row = connection.execute(
             "SELECT record FROM deck_builds WHERE path = ?", (str(path),)
@@ -742,7 +762,7 @@ def sync(path: Path, output: Path) -> Sync:
         reasons.append("The Anki package file is missing.")
     elif digest(output.read_bytes()) != record.package:
         reasons.append("The Anki package file changed after generation.")
-    current = input_hashes(path, [])
+    current = input_hashes(path, [], assets)
     for name, expected in record.inputs.items():
         if name in current:
             if current[name] == expected:
@@ -750,7 +770,7 @@ def sync(path: Path, output: Path) -> Sync:
             reason = (
                 "The deck changed."
                 if name == str(path)
-                else "The pandoc-config macros changed."
+                else "The renderer assets changed."
                 if name == "macros"
                 else "The exporter changed."
             )
@@ -835,10 +855,9 @@ def remove_package(root: Path, path: Path) -> None:
         connection.execute("DELETE FROM deck_builds WHERE path = ?", (str(path),))
 
 
-def generate(root: Path, path: Path) -> Generated:
+def generate(root: Path, path: Path, assets: AssetSet) -> Generated:
     from ankdown.cli import RendererAssets
 
-    assets = installed_assets()
     output = package_path(root, path)
     if not has_cards(path):
         remove_package(root, path)
@@ -858,7 +877,7 @@ def generate(root: Path, path: Path) -> Generated:
                     for file in media_paths(deck, root, scratch).values()
                     if not file.is_relative_to(scratch)
                 ]
-                inputs = input_hashes(path, media)
+                inputs = input_hashes(path, media, assets)
                 if inputs[str(path)] != digest(source.encode()):
                     raise ValueError(
                         "The deck changed before generation. Generate it again."
@@ -899,7 +918,7 @@ def generate(root: Path, path: Path) -> Generated:
                         (str(path), record.model_dump_json()),
                     )
                 return Generated(
-                    status=sync(path, output).status,
+                    status=sync(path, output, assets).status,
                     package=str(output),
                     log=process.stdout + process.stderr,
                 )
@@ -1046,7 +1065,7 @@ def dispatch(
                         SourceResult(path=name, source=source, revision=revision)
                     )
                     continue
-                state = sync(path, package_path(root, path))
+                state = sync(path, package_path(root, path), asset_set(request.assets))
                 if digest(path.read_bytes()) != revision:
                     raise ValueError(
                         "The deck changed during verification. Check it again."
@@ -1055,10 +1074,15 @@ def dispatch(
                     PackageResult(
                         path=name,
                         revision=revision,
+                        assets=request.assets,
                         status=state.status,
                         reasons=state.reasons,
                         built=state.built,
                     )
+                )
+            except InvalidAssetsError as error:
+                checks.append(
+                    PathFailure(path=name, kind="InvalidAssets", message=str(error))
                 )
             except (OSError, UnicodeError) as error:
                 failure = PathFailure(
@@ -1077,9 +1101,10 @@ def dispatch(
     if isinstance(request, OrganizeInput):
         return publish_changes(root, request.changes)
     if isinstance(request, ReviewInput):
+        assets = asset_set(request.assets)
         pending: list[Pending] = []
         for path in deck_paths(root):
-            state = sync(path, package_path(root, path))
+            state = sync(path, package_path(root, path), assets)
             if state.status == "Unsynced":
                 pending.append(
                     Pending(
@@ -1095,7 +1120,7 @@ def dispatch(
         assets = installed_assets()
         summaries: list[Summary] = []
         for path in deck_paths(root):
-            state = sync(path, package_path(root, path))
+            state = sync(path, package_path(root, path), assets)
             summaries.append(
                 Summary(
                     path=str(path.relative_to(root)),
@@ -1114,7 +1139,7 @@ def dispatch(
     output = package_path(root, path)
     match request:
         case GenerateInput():
-            return generate(root, path)
+            return generate(root, path, asset_set(request.assets))
         case SaveInput():
             publish_changes(
                 root,
@@ -1162,6 +1187,16 @@ def prepare() -> None:
         staged = Path(temporary)
         (staged / "assets.json").write_text(assets.model_dump_json())
         (staged / "runtime.txt").write_text(sys.executable + "\n")
+        archive = directory / "asset-sets"
+        archive.mkdir(exist_ok=True)
+        archived = staged / (assets.identity + ".json")
+        archived.write_text(assets.model_dump_json())
+        destination = archive / archived.name
+        if (
+            not destination.is_file()
+            or destination.read_bytes() != archived.read_bytes()
+        ):
+            archived.replace(destination)
         for name in ("assets.json", "runtime.txt"):
             destination = directory / name
             if (
@@ -1176,8 +1211,9 @@ def prepare() -> None:
 def build(workspace: Path) -> None:
     """Generate every paired-card deck in a workspace."""
     root = workspace_path(str(workspace))
+    assets = installed_assets()
     for path in deck_paths(root):
-        result = generate(root, deck_path(root, str(path.relative_to(root))))
+        result = generate(root, deck_path(root, str(path.relative_to(root))), assets)
         print(result.package)
 
 

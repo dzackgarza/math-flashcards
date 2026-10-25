@@ -33,7 +33,7 @@ export const discoveryRequestSchema = z.discriminatedUnion("action", [
     generation: generationSchema,
   }),
   batchSchema.extend({ action: z.literal("sources") }),
-  batchSchema.extend({ action: z.literal("checks") }),
+  batchSchema.extend({ action: z.literal("checks"), assets: digestSchema }),
 ]);
 export const manifestSchema = z.object({
   session: sessionSchema,
@@ -82,14 +82,28 @@ export const sourcesSchema = z.object({
   ),
 });
 
+export const packageOperationRequestSchema = z.discriminatedUnion("action", [
+  z.object({
+    action: z.literal("generate"),
+    workspace: z.string(),
+    path: deckPathSchema,
+    assets: digestSchema,
+  }),
+  z.object({
+    action: z.literal("review"),
+    workspace: z.string(),
+    assets: digestSchema,
+  }),
+]);
+
 export type Request =
+  | z.infer<typeof packageOperationRequestSchema>
   | z.infer<typeof discoveryRequestSchema>
   | z.infer<typeof problemCacheRequestSchema>
   | z.infer<typeof manifestCacheRequestSchema>
   | { action: "assets" }
   | { action: "rebuild-cache"; workspace: string; generation: number }
-  | { action: "list" | "review"; workspace: string }
-  | { action: "generate"; workspace: string; path: string }
+  | { action: "list"; workspace: string }
   | {
       action: "load" | "validate";
       workspace: string;
@@ -119,6 +133,7 @@ export const organizedSchema = z.object({
 export const statusSchema = z.enum(["Up to date", "Unsynced", "Empty"]);
 export const packageResultSchema = z.object({
   path: deckPathSchema,
+  assets: digestSchema,
   revision: digestSchema,
   status: statusSchema,
   reasons: z.array(z.string()),

@@ -14,7 +14,7 @@ import tempfile
 from pathlib import Path
 
 import cyclopts
-from pydantic import BaseModel, field_validator
+from pydantic import BaseModel, Field, field_validator
 
 APP_ID = "dev.math.flashcards"
 SOURCES = Path(__file__).parent
@@ -35,6 +35,10 @@ class Installation(BaseModel):
 
 class TauriConfiguration(BaseModel):
     productName: str
+
+
+class RendererResource(BaseModel):
+    identity: str = Field(pattern="^[a-f0-9]{64}$")
 
 
 def data_home() -> Path:
@@ -71,6 +75,14 @@ def install(spec: Installation) -> Path:
         spec.build_dir / name
         for name in ("backend.py", "paired-cards.lua", "assets.json")
     ]
+    archive = spec.build_dir / "asset-sets"
+    assets = RendererResource.model_validate_json(
+        (spec.build_dir / "assets.json").read_bytes()
+    )
+    archived_assets = archive / (assets.identity + ".json")
+    if not archived_assets.is_file():
+        raise FileNotFoundError(f"Prepare renderer assets first: {archived_assets}")
+    resources = [*sorted(archive.glob("*.json")), *resources]
     for source in (binary, *resources):
         if not source.is_file():
             raise FileNotFoundError(f"Build the desktop app first: {source}")
@@ -90,7 +102,13 @@ def install(spec: Installation) -> Path:
     )
     publish(binary, installed_binary)
     for source in resources:
-        publish(source, application / "lib" / configuration.productName / source.name)
+        publish(
+            source,
+            application
+            / "lib"
+            / configuration.productName
+            / source.relative_to(spec.build_dir),
+        )
 
     # uv script environments depend on the installed script path, so prepare
     # that environment before publishing its launcher:

@@ -18,7 +18,7 @@ import mss
 import mss.tools
 
 
-def main(*, entry: Path | None = None) -> None:
+def main(*, entry: Path | None = None, offline: bool = False) -> None:
     """Exercise a built app, or launch an installed desktop entry through Gio."""
     desktop = Path(__file__).resolve().parents[1]
     artifacts = desktop / "test-artifacts"
@@ -38,6 +38,8 @@ def main(*, entry: Path | None = None) -> None:
             command = [str(desktop / "src-tauri" / "target" / "release" / "desktop")]
             if entry is not None:
                 command = ["gio", "launch", str(entry.resolve(strict=True))]
+            if offline:
+                command = ["unshare", "--user", "--map-root-user", "--net", *command]
             # GTK prefers WAYLAND_DISPLAY over Xvfb's DISPLAY; GDK_BACKEND selects X11:
             # https://docs.gtk.org/gtk3/running.html#gdk_backend
             runtime_environment = os.environ | {
@@ -167,6 +169,37 @@ def main(*, entry: Path | None = None) -> None:
                     mss.tools.to_png(
                         shot.rgb, shot.size, output=str(artifacts / "native-front.png")
                     )
+                subprocess.run(
+                    [
+                        "xdotool",
+                        "mousemove",
+                        "--window",
+                        window,
+                        "1110",
+                        "190",
+                        "click",
+                        "1",
+                        "key",
+                        "ctrl+End",
+                        "Return",
+                        "type",
+                        "--clearmodifiers",
+                        "--delay",
+                        "10",
+                        "Native input $x^2$",
+                        "key",
+                        "ctrl+s",
+                    ],
+                    check=True,
+                )
+                source_path = root / "Analysis" / "Precalculus.md"
+                for _ in range(120):
+                    if "Native input $x^2$" in source_path.read_text():
+                        break
+                    time.sleep(0.25)
+                assert "Native input $x^2$" in source_path.read_text(), (
+                    artifacts / "native.log"
+                ).read_text()
                 subprocess.run(
                     [
                         "xdotool",
@@ -344,10 +377,10 @@ def main(*, entry: Path | None = None) -> None:
                         .read_text()
                         .split("Workspace restart\n")[-1]
                     )
-                    if "Backend result: list exit status: 0" in restarted_log:
+                    if "Backend result: manifest exit status: 0" in restarted_log:
                         break
                     time.sleep(0.25)
-                assert "Backend result: list exit status: 0" in restarted_log
+                assert "Backend result: manifest exit status: 0" in restarted_log
                 time.sleep(1)
                 with mss.mss() as screen:
                     shot = screen.grab(

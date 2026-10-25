@@ -40,7 +40,8 @@
       "../backend.py": "backend.py",
       "../paired-cards.lua": "paired-cards.lua",
       "../assets.json": "assets.json",
-      "../runtime.txt": "runtime.txt"
+      "../runtime.txt": "runtime.txt",
+      "../asset-sets/": "asset-sets/"
     }
   }
 }

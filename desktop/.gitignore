@@ -32,4 +32,5 @@ Cargo.lock
 .parser/
 # Prepared during install/update.
 assets.json
+asset-sets/
 runtime.txt

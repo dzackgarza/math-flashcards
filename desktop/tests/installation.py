@@ -9,6 +9,7 @@ import json
 import os
 import subprocess
 import tempfile
+import zipfile
 from pathlib import Path
 
 
@@ -114,6 +115,37 @@ def main() -> None:
             env=environment,
         )
         assert deck.read_text() == edited
+        assets = json.loads((resources / "assets.json").read_text())
+        assert (
+            resources / "asset-sets" / (assets["identity"] + ".json")
+        ).read_bytes() == (resources / "assets.json").read_bytes()
+        generated = subprocess.run(
+            offline,
+            input=json.dumps(
+                {
+                    "action": "generate",
+                    "workspace": str(workspace),
+                    "path": "Study.md",
+                    "assets": assets["identity"],
+                }
+            ),
+            text=True,
+            capture_output=True,
+            check=True,
+            env=environment,
+        )
+        result = json.loads(generated.stdout)
+        assert result["status"] == "Up to date"
+        with zipfile.ZipFile(result["package"]) as package:
+            media = json.loads(package.read("media"))
+            macro_file = next(
+                name for name, value in media.items() if value == "_ankdown_macros.js"
+            )
+            stmaryrd, assignment = (
+                package.read(macro_file).decode().split("\nwindow.ANKDOWN_MACROS = ")
+            )
+            assert stmaryrd == assets["stmaryrd"]
+            assert json.loads(assignment.removesuffix(";")) == assets["macros"]
         command = commands / "math-flashcards"
         assert command.is_symlink()
         assert command.resolve() == data / "math-flashcards" / "launch"

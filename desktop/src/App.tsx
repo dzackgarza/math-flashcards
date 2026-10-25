@@ -95,6 +95,7 @@ import {
   cachedManifestSchema,
   sourcesSchema,
   checksSchema,
+  assetsSchema,
   cacheRebuiltSchema,
   documentSchema,
   generatedSchema,
@@ -193,6 +194,7 @@ export default function App() {
   const [progress, setProgress] = useState("");
   const [buildResult, setBuildResult] = useState<"Ready" | "Failed">("Ready");
   const [error, setError] = useState("");
+  const [restartRequired, setRestartRequired] = useState(false);
   const [conflict, setConflict] = useState(false);
   const [log, setLog] = useState("");
   const [workspaceMenu, setWorkspaceMenu] = useState(false);
@@ -312,6 +314,7 @@ export default function App() {
     if (!root) return;
     const token = workspaceNavigation.current;
     const generation = ++reconciliation.current;
+    void checkAssetUpdate();
     const result = await request(
       { action: "manifest", workspace: root, generation },
       manifestSchema,
@@ -325,6 +328,16 @@ export default function App() {
     updateDocument((open) => open && { ...open, status: null });
     void cacheManifest(result.session.root, generation, token);
     void fillWorkspace(result, token);
+  }
+
+  async function checkAssetUpdate() {
+    try {
+      const session = await loadMathJax();
+      const active = await request({ action: "assets" }, assetsSchema);
+      setRestartRequired(active.identity !== session.identity);
+    } catch (failure) {
+      setError(String(failure));
+    }
   }
 
   async function cacheManifest(
@@ -370,8 +383,14 @@ export default function App() {
     paths: string[],
     token: number,
   ) {
+    const assets = (await loadMathJax()).identity;
+    if (
+      token !== workspaceNavigation.current ||
+      generation !== reconciliation.current
+    )
+      return;
     const response = await request(
-      { action: "checks", workspace: root, generation, paths },
+      { action: "checks", workspace: root, generation, paths, assets },
       checksSchema,
     );
     if (
@@ -386,6 +405,12 @@ export default function App() {
       throw new Error(
         "The package response belongs to another workspace session.",
       );
+    if (
+      response.results.some(
+        (result) => result.state === "ready" && result.assets !== assets,
+      )
+    )
+      throw new Error("The package response uses another renderer asset set.");
     setPackageRecords((previous) => {
       const next = new Map(previous);
       for (const result of response.results) next.set(result.path, result);
@@ -653,23 +678,23 @@ export default function App() {
     result: Omit<Document, "path" | "saved">,
     cardId?: string,
   ) {
-    cards(result.source);
+    const parsed = cards(result.source);
+    const target =
+      cardId === undefined ? 0 : parsed.findIndex((card) => card.id === cardId);
     updateDocument(() => ({ ...result, path, saved: result.source }));
     const folders = path.split("/").slice(0, -1);
     folders.forEach((_, depth) =>
       tree.expand("/" + folders.slice(0, depth + 1).join("/")),
     );
-    selectCard(
-      Math.max(
-        0,
-        cards(result.source).findIndex((card) => card.id === cardId),
-      ),
-      result.source,
-    );
+    selectCard(Math.max(0, target), result.source);
     setConflict(false);
   }
 
-  async function chooseDeck(path: string, cardId?: string) {
+  async function chooseDeck(
+    path: string,
+    cardId?: string,
+    selection: "required" | "preferred" = "required",
+  ) {
     const token = ++navigation.current;
     const workspaceToken = workspaceNavigation.current;
     setTask("Loading");
@@ -686,6 +711,14 @@ export default function App() {
         return;
       if (result.session.root !== workspace)
         throw new Error("The document belongs to another workspace session.");
+      if (
+        selection === "required" &&
+        cardId !== undefined &&
+        !cards(result.source).some((card) => card.id === cardId)
+      )
+        throw new Error(
+          "This card changed on disk. Search again for its current version.",
+        );
       showDocument(path, result, cardId);
       void checkPaths(
         workspace,
@@ -811,6 +844,13 @@ export default function App() {
   useEffect(() => {
     if (!workspace) return;
     let disposed = false;
+    const token = workspaceNavigation.current;
+    const reconcileOnFocus = () => {
+      if (disposed || token !== workspaceNavigation.current) return;
+      refreshOnChange();
+      followOnChange();
+    };
+    window.addEventListener("focus", reconcileOnFocus);
     let stop: (() => void) | undefined;
     watchWorkspace(workspace, (paths) => {
       const relevant = paths
@@ -834,6 +874,7 @@ export default function App() {
       .catch((failure) => setError(String(failure)));
     return () => {
       disposed = true;
+      window.removeEventListener("focus", reconcileOnFocus);
       stop?.();
     };
   }, [workspace, refreshOnChange, followOnChange]);
@@ -876,7 +917,7 @@ export default function App() {
       (document) => document && { ...document, source: document.saved },
     );
     setConflict(false);
-    void chooseDeck(open.path, selected?.id);
+    void chooseDeck(open.path, selected?.id, "preferred");
   }
 
   // The edits replace the disk version.
@@ -898,6 +939,7 @@ export default function App() {
 
   async function generate(paths: string[]) {
     await flush();
+    const assets = (await loadMathJax()).identity;
     setTask("Generating");
     setBuildResult("Ready");
     setError("");
@@ -911,7 +953,7 @@ export default function App() {
       );
       try {
         const result = await request(
-          { action: "generate", workspace, path },
+          { action: "generate", workspace, path, assets },
           generatedSchema,
         );
         logs.push(deckName(path) + "\n" + result.log);
@@ -930,7 +972,11 @@ export default function App() {
 
   async function generateAll() {
     await flush();
-    const result = await request({ action: "review", workspace }, reviewSchema);
+    const assets = (await loadMathJax()).identity;
+    const result = await request(
+      { action: "review", workspace, assets },
+      reviewSchema,
+    );
     await generate(result.decks.map((deck) => deck.path));
   }
 
@@ -938,8 +984,9 @@ export default function App() {
     setReview({ scope, decks: null });
     try {
       await flush();
+      const assets = (await loadMathJax()).identity;
       const result = await request(
-        { action: "review", workspace },
+        { action: "review", workspace, assets },
         reviewSchema,
       );
       setReview((open) =>
@@ -1012,7 +1059,8 @@ export default function App() {
       .filter((change) => change.source === null)
       .map((change) => change.path);
     const next = focus ?? (touched ? open : undefined);
-    if (next && !removed.includes(next)) await chooseDeck(next, selected?.id);
+    if (next && !removed.includes(next))
+      await chooseDeck(next, selected?.id, "preferred");
     else if (touched) {
       navigation.current++;
       updateDocument(() => null);
@@ -1748,6 +1796,11 @@ export default function App() {
         </Stack>
       </aside>
       <div className="content">
+        {restartRequired && (
+          <Alert className="banner" color="blue" title="Renderer update ready">
+            Restart the app to use the updated renderer assets.
+          </Alert>
+        )}
         {error && (
           <Alert
             className="banner"

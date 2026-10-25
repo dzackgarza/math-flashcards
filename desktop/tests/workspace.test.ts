@@ -33,6 +33,20 @@ test("generation bundles the prepared renderer pair without network access", asy
   const backend = resolve(import.meta.dir, "../backend.py");
   const find = Bun.spawnSync(["uv", "python", "find", "--script", backend]);
   expect(find.exitCode).toBe(0);
+  const resources = join(workspace, "runtime");
+  await mkdir(join(resources, "asset-sets"), { recursive: true });
+  for (const name of ["backend.py", "paired-cards.lua", "assets.json"])
+    await Bun.write(
+      join(resources, name),
+      Bun.file(resolve(import.meta.dir, "..", name)),
+    );
+  const initialAssets = assetsSchema.parse(
+    await Bun.file(join(resources, "assets.json")).json(),
+  );
+  await Bun.write(
+    join(resources, "asset-sets", initialAssets.identity + ".json"),
+    Bun.file(join(resources, "assets.json")),
+  );
   const source = await Bun.file(
     resolve(import.meta.dir, "../../decks/Analysis/Precalculus.md"),
   ).text();
@@ -45,7 +59,7 @@ test("generation bundles the prepared renderer pair without network access", asy
         "--map-root-user",
         "--net",
         find.stdout.toString().trim(),
-        backend,
+        join(resources, "backend.py"),
       ],
       {
         stdin: new Blob([JSON.stringify(payload) + "\n"]),
@@ -60,8 +74,24 @@ test("generation bundles the prepared renderer pair without network access", asy
     return JSON.parse(output);
   };
   const assets = assetsSchema.parse(await call({ action: "assets" }));
+  const update = Bun.spawnSync(
+    [
+      find.stdout.toString().trim(),
+      "-c",
+      "from pathlib import Path; import backend; old=backend.installed_assets(); macros=old.macros | {'flashcardsAssetProof': r'\\mathrm{updated}'}; updated=backend.AssetSet(identity=backend.asset_identity(macros, old.stmaryrd, old.renderer), macros=macros, stmaryrd=old.stmaryrd, renderer=old.renderer); directory=Path('asset-sets'); (directory / (updated.identity + '.json')).write_text(updated.model_dump_json()); Path('assets.json').write_text(updated.model_dump_json())",
+    ],
+    { cwd: resources },
+  );
+  expect(update.exitCode, update.stderr.toString()).toBe(0);
+  const updated = assetsSchema.parse(await call({ action: "assets" }));
+  expect(updated.identity).not.toBe(assets.identity);
   const result = generatedSchema.parse(
-    await call({ action: "generate", workspace, path: "Study.md" }),
+    await call({
+      action: "generate",
+      workspace,
+      path: "Study.md",
+      assets: assets.identity,
+    }),
   );
   expect(result.status).toBe("Up to date");
   const mediaFile = Bun.spawnSync(["unzip", "-p", result.package, "media"]);
@@ -85,6 +115,70 @@ test("generation bundles the prepared renderer pair without network access", asy
   expect(
     assetsSchema.shape.macros.parse(JSON.parse(assignment.slice(0, -1))),
   ).toEqual(assets.macros);
+  const previous = checksSchema.parse(
+    await call({
+      action: "checks",
+      workspace,
+      generation: 1,
+      paths: ["Study.md"],
+      assets: assets.identity,
+    }),
+  );
+  expect(previous.results[0]).toMatchObject({
+    state: "ready",
+    assets: assets.identity,
+    status: "Up to date",
+  });
+  const current = checksSchema.parse(
+    await call({
+      action: "checks",
+      workspace,
+      generation: 2,
+      paths: ["Study.md"],
+      assets: updated.identity,
+    }),
+  );
+  expect(current.results[0]).toMatchObject({
+    state: "ready",
+    assets: updated.identity,
+    status: "Unsynced",
+    reasons: ["The renderer assets changed."],
+  });
+  const unavailable = checksSchema.parse(
+    await call({
+      action: "checks",
+      workspace,
+      generation: 3,
+      paths: ["Study.md"],
+      assets: "0".repeat(64),
+    }),
+  );
+  expect(unavailable.results[0]).toMatchObject({
+    state: "failed",
+    kind: "InvalidAssets",
+  });
+  const adopted = generatedSchema.parse(
+    await call({
+      action: "generate",
+      workspace,
+      path: "Study.md",
+      assets: updated.identity,
+    }),
+  );
+  expect(adopted.status).toBe("Up to date");
+  const adoptedScript = Bun.spawnSync([
+    "unzip",
+    "-p",
+    adopted.package,
+    macroFile[0],
+  ]);
+  expect(adoptedScript.exitCode).toBe(0);
+  const adoptedAssignment = adoptedScript.stdout
+    .toString()
+    .split("\nwindow.ANKDOWN_MACROS = ")[1];
+  expect(
+    assetsSchema.shape.macros.parse(JSON.parse(adoptedAssignment.slice(0, -1))),
+  ).toEqual(updated.macros);
 }, 30000);
 
 test("persisted problems require current file bytes, checker, and renderer identities", async () => {
@@ -298,6 +392,7 @@ test("local discovery and bounded reads isolate a damaged deck and retain revisi
   const checks = checksSchema.parse(
     await call({
       action: "checks",
+      assets: assetsSchema.parse(await call({ action: "assets" })).identity,
       workspace: directory,
       generation: 8,
       paths: ["Damaged.md", "Study.md"],
@@ -400,7 +495,13 @@ test("a deck folder supports discovery, editing, and organization beside its exp
     expect(await Bun.file(join(workspace, "Algebra/Groups.md")).exists()).toBe(
       false,
     );
-    const reviewed = await request({ action: "review", workspace });
+    const assets = await request({ action: "assets" });
+    expect(assets.code, assets.error).toBe(0);
+    const reviewed = await request({
+      action: "review",
+      workspace,
+      assets: assetsSchema.parse(JSON.parse(assets.output)).identity,
+    });
     expect(reviewed.code, reviewed.error).toBe(0);
     expect(
       reviewSchema
