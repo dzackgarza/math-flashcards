@@ -40,7 +40,11 @@ test("package history remains pending until exact inputs are rechecked", async (
   const source =
     '---\ntitle: "Study"\n---\n\n::: {.front card-id="proof"}\nA question\n:::\n\n::: {.back card-id="proof"}\nA proof\n:::\n';
   await Bun.write(join(workspace, "Study.md"), source);
-  function call<T>(payload: Request, schema: z.ZodType<T>): T {
+  function call<T>(
+    payload: Request,
+    schema: z.ZodType<T>,
+    script = backend,
+  ): T {
     const process = Bun.spawnSync(
       [
         "unshare",
@@ -48,7 +52,7 @@ test("package history remains pending until exact inputs are rechecked", async (
         "--map-root-user",
         "--net",
         find.stdout.toString().trim(),
-        backend,
+        script,
       ],
       {
         stdin: Buffer.from(JSON.stringify(payload) + "\n"),
@@ -125,6 +129,50 @@ test("package history remains pending until exact inputs are rechecked", async (
       cachedChecksSchema,
     ).results,
   ).toEqual([{ state: "pending", path: "Study.md", previous: changed }]);
+  const damaged = Bun.spawnSync([
+    find.stdout.toString().trim(),
+    "-c",
+    "import sqlite3, sys; connection=sqlite3.connect(sys.argv[1]); connection.execute(\"UPDATE package_checks SET record = 'damaged'\"); connection.commit()",
+    join(workspace, "cache/math-flashcards/derived.sqlite3"),
+  ]);
+  expect(damaged.exitCode, damaged.stderr.toString()).toBe(0);
+  expect(
+    call({ ...input, action: "cached-checks" }, cachedChecksSchema).results[0],
+  ).toMatchObject({
+    state: "failed",
+    path: "Study.md",
+    kind: "CacheFailure",
+    previous: null,
+  });
+  await Bun.write(generated.package, bytes);
+  const resources = join(workspace, "updated-runtime");
+  await mkdir(join(resources, "asset-sets"), { recursive: true });
+  for (const name of ["backend.py", "assets.json"])
+    await Bun.write(
+      join(resources, name),
+      Bun.file(resolve(import.meta.dir, "..", name)),
+    );
+  const filter = await Bun.file(
+    resolve(import.meta.dir, "../paired-cards.lua"),
+  ).text();
+  await Bun.write(
+    join(resources, "paired-cards.lua"),
+    filter + "\n-- Updated exporter resource.\n",
+  );
+  await Bun.write(
+    join(resources, "asset-sets", assets.identity + ".json"),
+    Bun.file(join(resources, "assets.json")),
+  );
+  const relocated = call(
+    { ...input, action: "checks" },
+    checksSchema,
+    join(resources, "backend.py"),
+  );
+  expect(relocated.results[0]).toMatchObject({
+    state: "ready",
+    status: "Unsynced",
+    reasons: ["The exporter changed."],
+  });
   expect(await Bun.file(join(workspace, "Study.md")).text()).toBe(source);
 }, 30000);
 

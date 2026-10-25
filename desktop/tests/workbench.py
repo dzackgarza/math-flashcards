@@ -559,6 +559,10 @@ def main() -> None:
                         "UPDATE problem_checks SET record = ? WHERE root = ? AND path = ?",
                         ("damaged record", str(root), "Analysis/Broken.md"),
                     )
+                    database.execute(
+                        "UPDATE package_checks SET record = ? WHERE root = ? AND path = ?",
+                        ("damaged record", str(root), "Analysis/Precalculus.md"),
+                    )
                 restore_workspace()
                 rebuild = page.get_by_role(
                     "button", name="Rebuild cached data", exact=True
