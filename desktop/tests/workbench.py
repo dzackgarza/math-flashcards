@@ -18,7 +18,7 @@ import time
 import zipfile
 from pathlib import Path
 
-from playwright.sync_api import expect, sync_playwright
+from playwright.sync_api import Request, expect, sync_playwright
 
 
 def startup() -> None:
@@ -641,6 +641,114 @@ def main() -> None:
                 )
                 assert distant.read_text() == current_source
                 page.screenshot(path=str(artifacts / "workspace-search.png"))
+                expect(page.locator(".workspace-progress")).to_have_text(
+                    "Workspace checks complete", timeout=30000
+                )
+                expect(page.locator(".toolbar .status")).to_contain_text(
+                    "not in the Anki package", timeout=30000
+                )
+                scopes: list[tuple[str, tuple[str, ...]]] = []
+
+                def record_scope(request: Request) -> None:
+                    if not request.url.endswith("/api/request"):
+                        return
+                    payload = request.post_data_json
+                    if payload.get("workspace") == str(root) and payload.get(
+                        "action"
+                    ) in {"sources", "checks"}:
+                        scopes.append((payload["action"], tuple(payload["paths"])))
+
+                page.on("request", record_scope)
+                with page.expect_response(
+                    lambda response: (
+                        response.url.endswith("/api/request")
+                        and response.request.post_data_json.get("action") == "checks"
+                        and response.request.post_data_json.get("workspace")
+                        == str(root)
+                        and "Elsewhere.md"
+                        in response.request.post_data_json.get("paths", [])
+                    )
+                ):
+                    distant.write_text(
+                        current_source.replace(
+                            "Current distant question", "Edited distant question"
+                        )
+                    )
+                expect(page.locator(".side-editor.front .cm-content")).to_contain_text(
+                    "Edited distant question", timeout=30000
+                )
+                expect(page.locator(".workspace-progress")).to_have_text(
+                    "Workspace checks complete", timeout=30000
+                )
+                assert {path for _, paths in scopes for path in paths} == {
+                    "Elsewhere.md"
+                }, scopes
+
+                shutil.copyfile(repo / "src-tauri/icons/32x32.png", root / "small.png")
+                shutil.copyfile(
+                    repo / "src-tauri/icons/128x128.png", root / "large.png"
+                )
+                diagram = root / "diagram.png"
+                diagram.symlink_to("small.png")
+                shared = {"Shared One.md", "Shared Two.md"}
+                for name in sorted(shared):
+                    identity = name.replace(".md", "").replace(" ", "-").lower()
+                    (root / name).write_text(
+                        f'---\ntitle: "{identity}"\n---\n\n::: {{.front card-id="{identity}"}}\nShared diagram\n:::\n\n::: {{.back card-id="{identity}"}}\n![Diagram](diagram.png)\n:::\n'
+                    )
+                headers = {"x-flashcards": "1", "content-type": "application/json"}
+                asset_response = page.request.post(
+                    "http://127.0.0.1:1420/api/request",
+                    headers=headers,
+                    data=json.dumps({"action": "assets"}),
+                )
+                assert asset_response.ok, asset_response.text()
+                active_assets = asset_response.json()["identity"]
+                for name in sorted(shared):
+                    generated = page.request.post(
+                        "http://127.0.0.1:1420/api/request",
+                        headers=headers,
+                        data=json.dumps(
+                            {
+                                "action": "generate",
+                                "workspace": str(root),
+                                "path": name,
+                                "assets": active_assets,
+                            }
+                        ),
+                    )
+                    assert generated.ok, generated.text()
+                    assert generated.json()["status"] == "Up to date"
+                    expect(
+                        page.locator(f'[data-deck="{name}"] .tree-dot')
+                    ).to_have_count(0, timeout=30000)
+                expect(page.locator(".workspace-progress")).to_have_text(
+                    "Workspace checks complete", timeout=30000
+                )
+                scopes.clear()
+                with page.expect_response(
+                    lambda response: (
+                        response.url.endswith("/api/request")
+                        and response.request.post_data_json.get("action") == "checks"
+                        and response.request.post_data_json.get("workspace")
+                        == str(root)
+                        and shared.issubset(
+                            response.request.post_data_json.get("paths", [])
+                        )
+                    )
+                ) as media_response:
+                    subprocess.run(["trash", str(diagram)], check=True)
+                    diagram.symlink_to("large.png")
+                changed_media = media_response.value.json()
+                assert {path for _, paths in scopes for path in paths} == shared, scopes
+                assert not any(action == "sources" for action, _ in scopes), scopes
+                for result in changed_media["results"]:
+                    assert result["state"] == "ready" and result["status"] == "Unsynced"
+                    assert "Media changed: diagram.png" in result["reasons"]
+                expect(page.locator(".workspace-progress")).to_have_text(
+                    "Workspace checks complete", timeout=30000
+                )
+                page.screenshot(path=str(artifacts / "media-invalidation.png"))
                 assert not console, console
             finally:
                 page.screenshot(path=str(artifacts / "cache-last.png"))
