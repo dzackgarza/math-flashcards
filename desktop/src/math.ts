@@ -1,7 +1,7 @@
 import { type SyntaxNode, type SyntaxNodeRef } from "@lezer/common";
 import { deckParser } from "./cards";
 import { pandocLatexMathEnvironmentAtStart } from "@lezer/markdown";
-import type { Macros } from "./bridge";
+import { request, assetsSchema, type Macros } from "./bridge";
 
 // MathJax 4 component API: https://docs.mathjax.org/en/v4.0/web/typeset.html#converting-a-math-string-to-other-formats
 export interface MathJaxRuntime {
@@ -69,43 +69,52 @@ export function defineStmaryrd(script: string) {
   new Function(script)();
 }
 
-let runtime: Promise<MathJaxRuntime> | undefined;
+interface LoadedMathJax {
+  mathjax: MathJaxRuntime;
+  identity: string;
+}
+
+let runtime: Promise<LoadedMathJax> | undefined;
 
 // MathJax reads its configuration once, when the component script loads. The
 // editor converts equations synchronously, so the font data that MathJax 4
 // loads on demand is loaded first:
 // https://docs.mathjax.org/en/v4.0/upgrading/whats-new-4.0/promises.html
-export function loadMathJax(
-  macros: Macros,
-  stmaryrd: string,
-): Promise<MathJaxRuntime> {
-  runtime ??= new Promise((resolve, reject) => {
-    defineStmaryrd(stmaryrd);
-    Object.assign(window, {
-      MathJax: {
-        startup: {
-          typeset: false,
-          ready() {
-            registerStmaryrd(window.MathJax);
-            window.MathJax.startup.defaultReady();
+export function loadMathJax(): Promise<LoadedMathJax> {
+  runtime ??= request({ action: "assets" }, assetsSchema).then(
+    (assets) =>
+      new Promise((resolve, reject) => {
+        defineStmaryrd(assets.stmaryrd);
+        Object.assign(window, {
+          MathJax: {
+            startup: {
+              typeset: false,
+              ready() {
+                registerStmaryrd(window.MathJax);
+                window.MathJax.startup.defaultReady();
+              },
+            },
+            loader: { load: ["[tex]/mathtools"], paths: { fonts: "/fonts" } },
+            tex: texOptions(assets.macros),
           },
-        },
-        loader: { load: ["[tex]/mathtools"], paths: { fonts: "/fonts" } },
-        tex: texOptions(macros),
-      },
-    });
-    const script = document.createElement("script");
-    script.src = "/mathjax/tex-chtml.js";
-    script.onerror = () => reject(new Error("MathJax failed to load."));
-    script.onload = () => {
-      window.MathJax.startup.promise
-        .then(() =>
-          window.MathJax.startup.document.outputJax.font.loadDynamicFiles(),
-        )
-        .then(() => resolve(window.MathJax), reject);
-    };
-    document.head.append(script);
-  });
+        });
+        const script = document.createElement("script");
+        script.src = "/mathjax/tex-chtml.js";
+        script.onerror = () => reject(new Error("MathJax failed to load."));
+        script.onload = () => {
+          window.MathJax.startup.promise
+            .then(() =>
+              window.MathJax.startup.document.outputJax.font.loadDynamicFiles(),
+            )
+            .then(
+              () =>
+                resolve({ mathjax: window.MathJax, identity: assets.identity }),
+              reject,
+            );
+        };
+        document.head.append(script);
+      }),
+  );
   return runtime;
 }
 

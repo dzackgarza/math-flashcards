@@ -78,6 +78,25 @@ An import profile of a manifest request is saved in
 622 ms cumulatively in that observation; its imports include Cyclopts, Pydantic,
 and Genanki. Foreground reads can avoid exporter and CLI imports.
 
+Foreground requests now import the lightweight Ankdown package rather than its
+export CLI. Maintenance loads Cyclopts and the exporter explicitly. Document
+reads obtain bytes and a digest; package checks own build-record access.
+The renderer loads one asset set per app session and starts independently of
+directory discovery.
+
+| After import separation | Seconds, single observation |
+| --- | ---: |
+| Direct manifest request under import profiling | 0.250 |
+| Direct selected-document request | 0.190 |
+| Browser workspace to tree | 0.361 |
+| Browser deck selection to editable fields | 1.806 |
+| Browser field fill and text assertion | 0.565 |
+| Browser complete background checks | 42.909 |
+
+The later import profile is `startup-imports-local.log`. The remaining editor
+and input timing observations still need release profiling and event-to-paint
+measurements before comparison with acceptance budgets.
+
 The native bridge uses independent Tokio semaphores for foreground requests and
 background batches. The browser adapter uses independent
 [p-limit queues](https://github.com/sindresorhus/p-limit#usage) with the same

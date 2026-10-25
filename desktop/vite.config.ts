@@ -64,6 +64,7 @@ function workbenchBackend(): Plugin {
         }
         const { action } = scope.data;
         const queue = [
+          "assets",
           "sources",
           "checks",
           "review",

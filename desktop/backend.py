@@ -26,8 +26,7 @@ from functools import cache
 from pathlib import Path
 from typing import Annotated, Literal
 
-import ankdown.cli
-import cyclopts
+import ankdown
 from filelock import FileLock
 from platformdirs import user_cache_path
 from pydantic import (
@@ -40,7 +39,7 @@ from pydantic import (
 )
 from send2trash import send2trash
 
-EXPORTER = Path(ankdown.cli.__file__).parent
+EXPORTER = Path(ankdown.__file__).parent
 PAIR_FILTER = Path(__file__).with_name("paired-cards.lua")
 type MacroDefinition = str | tuple[str, int] | tuple[str, int, str]
 type Digest = Annotated[str, Field(pattern=r"^[a-f0-9]{64}$")]
@@ -368,8 +367,10 @@ def database() -> Iterator[sqlite3.Connection]:
 
 def refresh_macros() -> tuple[str, str]:
     """Fetch both renderer inputs during software maintenance."""
-    macros = ankdown.cli.fetch_macros()
-    stmaryrd = ankdown.cli.fetch_stmaryrd()
+    from ankdown.cli import fetch_macros, fetch_stmaryrd
+
+    macros = fetch_macros()
+    stmaryrd = fetch_stmaryrd()
     return macros, stmaryrd
 
 
@@ -805,11 +806,6 @@ def dispatch(
                 ],
             )
     source = path.read_bytes().decode("utf-8")
-    with database() as connection:
-        row = connection.execute(
-            "SELECT record FROM deck_builds WHERE path = ?", (str(path),)
-        ).fetchone()
-    record = BuildRecord.model_validate_json(row[0]) if row is not None else None
     return Document(
         session=Session(root=str(root), generation=request.generation),
         path=request.path,
@@ -820,15 +816,11 @@ def dispatch(
         else None,
         status=None,
         reasons=[],
-        built=record.source if record is not None else None,
+        built=None,
         package=str(output),
     )
 
 
-app = cyclopts.App()
-
-
-@app.command
 def prepare() -> None:
     """Prepare local renderer assets and the interpreter before app launch."""
     directory = Path(__file__).resolve().parent
@@ -860,7 +852,6 @@ def prepare() -> None:
     print(assets.identity)
 
 
-@app.command
 def build(workspace: Path) -> None:
     """Generate every paired-card deck in a workspace."""
     root = workspace_path(str(workspace))
@@ -869,7 +860,6 @@ def build(workspace: Path) -> None:
         print(result.package)
 
 
-@app.default
 def main() -> None:
     """Read one typed request from stdin and write its result as JSON."""
     request = TypeAdapter(Request).validate_json(sys.stdin.readline())
@@ -885,4 +875,12 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    app()
+    if len(sys.argv) == 1:
+        main()
+    else:
+        import cyclopts
+
+        app = cyclopts.App()
+        app.command(prepare)
+        app.command(build)
+        app()

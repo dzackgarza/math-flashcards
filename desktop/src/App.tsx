@@ -94,7 +94,6 @@ import {
   manifestSchema,
   sourcesSchema,
   checksSchema,
-  assetsSchema,
   documentSchema,
   generatedSchema,
   organizedSchema,
@@ -226,13 +225,13 @@ export default function App() {
     [document?.cards, document?.saved],
   );
   const changes = useMemo<CardChange[]>(() => {
-    if (!document || parsed.error) return [];
+    if (!document || document.status === null || parsed.error) return [];
     try {
       return cardChanges(document.built, document.source);
     } catch {
       return [];
     }
-  }, [document?.built, document?.source, parsed.error]);
+  }, [document?.built, document?.source, document?.status, parsed.error]);
   const changed = useMemo(
     () => new Map(changes.map((change) => [change.id, change.kind])),
     [changes],
@@ -499,6 +498,16 @@ export default function App() {
     const generation = ++reconciliation.current;
     setTask("Loading");
     setError("");
+    loadMathJax().then(
+      (loaded) => {
+        if (token !== workspaceNavigation.current) return;
+        setAssetIdentity(loaded.identity);
+        setMathjax(loaded.mathjax);
+      },
+      (failure) => {
+        if (token === workspaceNavigation.current) setError(String(failure));
+      },
+    );
     try {
       const result = await request(
         { action: "manifest", workspace: root, generation },
@@ -517,22 +526,6 @@ export default function App() {
       setDraft(null);
       setLog("");
       setConflict(false);
-      request({ action: "assets" }, assetsSchema)
-        .then((assets) => {
-          if (token !== workspaceNavigation.current) return;
-          setAssetIdentity(assets.identity);
-          return loadMathJax(assets.macros, assets.stmaryrd);
-        })
-        .then(
-          (runtime) => {
-            if (runtime && token === workspaceNavigation.current)
-              setMathjax(runtime);
-          },
-          (failure) => {
-            if (token === workspaceNavigation.current)
-              setError(String(failure));
-          },
-        );
       void fillWorkspace(result, token);
       setBuildResult("Ready");
       if (isTauri()) {
