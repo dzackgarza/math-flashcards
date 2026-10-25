@@ -149,6 +149,10 @@ exports an APKG, moves a card, and restores the saved workspace after restart.
 `native-front.png` shows rendered mathematics; the `native-` screenshots record
 the remaining states. This scenario uses a fresh cache but does not measure the
 release timing distributions or prove input latency during full-corpus checks.
+Offline native runs also write `native-offline.trace` across the initial launch
+and restart. The scenario checks that the app starts the prepared interpreter,
+attempts neither `uv` nor Git, and makes no remote connection. The inspected
+trace contains local Python and Pandoc execution and no Internet socket family.
 
 ## Workspace search
 

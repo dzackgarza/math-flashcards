@@ -6,11 +6,13 @@
 
 import json
 import os
+import re
 import shutil
 import subprocess
 import tempfile
 import time
 import zipfile
+from contextlib import suppress
 from pathlib import Path
 
 import cyclopts
@@ -27,13 +29,16 @@ def close_native(window: str, launcher: subprocess.Popen[bytes]) -> None:
     # https://psutil.io/recipes/#controlling-processes
     children = native.children(recursive=True)
     subprocess.run(["xdotool", "windowclose", window], check=True)
-    launcher.wait(timeout=10)
     _, alive = psutil.wait_procs([native, *children], timeout=10)
     for child in alive:
-        if child.status() != psutil.STATUS_ZOMBIE:
-            child.terminate()
+        with suppress(psutil.NoSuchProcess):
+            if child.status() != psutil.STATUS_ZOMBIE:
+                child.terminate()
     _, alive = psutil.wait_procs(alive, timeout=10)
-    assert all(child.status() == psutil.STATUS_ZOMBIE for child in alive)
+    for child in alive:
+        with suppress(psutil.NoSuchProcess):
+            assert child.status() == psutil.STATUS_ZOMBIE
+    launcher.wait(timeout=10)
 
 
 def main(*, entry: Path | None = None, offline: bool = False) -> None:
@@ -41,6 +46,9 @@ def main(*, entry: Path | None = None, offline: bool = False) -> None:
     desktop = Path(__file__).resolve().parents[1]
     artifacts = desktop / "test-artifacts"
     artifacts.mkdir(exist_ok=True)
+    trace = artifacts / "native-offline.trace"
+    if offline:
+        trace.write_text("")
     with tempfile.TemporaryDirectory(prefix="flashcards-native-") as directory:
         environment = Path(directory)
         root = environment / "workspace"
@@ -57,7 +65,22 @@ def main(*, entry: Path | None = None, offline: bool = False) -> None:
             if entry is not None:
                 command = ["gio", "launch", str(entry.resolve(strict=True))]
             if offline:
-                command = ["unshare", "--user", "--map-root-user", "--net", *command]
+                command = [
+                    "unshare",
+                    "--user",
+                    "--map-root-user",
+                    "--net",
+                    "strace",
+                    "-f",
+                    "-A",
+                    "-s",
+                    "4096",
+                    "-e",
+                    "trace=process,network",
+                    "-o",
+                    str(trace),
+                    *command,
+                ]
             # GTK prefers WAYLAND_DISPLAY over Xvfb's DISPLAY; GDK_BACKEND selects X11:
             # https://docs.gtk.org/gtk3/running.html#gdk_backend
             runtime_environment = os.environ | {
@@ -417,6 +440,20 @@ def main(*, entry: Path | None = None, offline: bool = False) -> None:
                 else:
                     process.terminate()
                 process.wait(timeout=10)
+    if offline:
+        events = trace.read_text().splitlines()
+        attempted = [
+            match.group(1)
+            for event in events
+            if (match := re.search(r'execve\("([^"]+)"', event))
+        ]
+        assert any(Path(program).name == "desktop" for program in attempted)
+        assert any(Path(program).name == "python3" for program in attempted)
+        assert not any(Path(program).name in {"uv", "git"} for program in attempted)
+        assert not any(
+            "connect(" in event and ("AF_INET," in event or "AF_INET6," in event)
+            for event in events
+        )
 
 
 if __name__ == "__main__":
