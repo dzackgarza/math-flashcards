@@ -11,6 +11,16 @@ import pLimit from "p-limit";
 import { z } from "zod";
 
 const checkerIdentity = createHash("sha256");
+const parserIdentity = createHash("sha256");
+for (const source of [
+  "./src/cards.ts",
+  "./src/search.ts",
+  "./bun.lock",
+  import.meta.resolve("@lezer/markdown"),
+])
+  parserIdentity
+    .update(readFileSync(new URL(source, import.meta.url)))
+    .update("\0");
 for (const source of [
   "./src/cards.ts",
   "./src/math.ts",
@@ -83,6 +93,8 @@ function workbenchBackend(): Plugin {
           "assets",
           "problems",
           "store-problems",
+          "search",
+          "store-search",
           "cache-manifest",
           "sources",
           "checks",
@@ -152,6 +164,7 @@ export default defineConfig({
     ],
   },
   define: {
+    __PARSER_IDENTITY__: JSON.stringify(parserIdentity.digest("hex")),
     __CHECKER_IDENTITY__: JSON.stringify(checkerIdentity.digest("hex")),
     __DEFAULT_WORKSPACE__: JSON.stringify(
       fileURLToPath(new URL("../decks", import.meta.url)),

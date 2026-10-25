@@ -87,12 +87,37 @@ test("search summaries persist with exact source and parser identities", async (
   const reused = await call({ ...input, generation: 5, action: "search" });
   expect(reused.session).toEqual({ root: workspace, generation: 5 });
   expect(reused.results).toEqual(stored.results);
+  const damaged = Bun.spawnSync([
+    find.stdout.toString().trim(),
+    "-c",
+    "import sqlite3, sys; connection=sqlite3.connect(sys.argv[1]); connection.execute(\"UPDATE search_summaries SET record = 'damaged'\"); connection.commit()",
+    join(workspace, "cache/math-flashcards/derived.sqlite3"),
+  ]);
+  expect(damaged.exitCode, damaged.stderr.toString()).toBe(0);
+  expect((await call({ ...input, action: "search" })).results[0]).toMatchObject(
+    { state: "failed", path, kind: "CacheFailure" },
+  );
+  expect(
+    (
+      await call({
+        ...input,
+        action: "store-search",
+        entries: [{ path, revision, cards }],
+      })
+    ).results,
+  ).toEqual(stored.results);
   expect(
     (await call({ ...input, producer: "0".repeat(64), action: "search" }))
       .results,
   ).toEqual([{ state: "pending", path }]);
   const edited = source.replace("A proof", "B proof");
-  await Bun.write(join(workspace, path), edited);
+  const changed = Bun.spawnSync([
+    find.stdout.toString().trim(),
+    "-c",
+    "from pathlib import Path; import os, sys; path=Path(sys.argv[1]); before=path.stat(); path.write_text(path.read_text().replace('A proof', 'B proof')); os.utime(path, ns=(before.st_atime_ns, before.st_mtime_ns)); after=path.stat(); assert before.st_size == after.st_size and before.st_mtime_ns == after.st_mtime_ns",
+    join(workspace, path),
+  ]);
+  expect(changed.exitCode, changed.stderr.toString()).toBe(0);
   expect((await call({ ...input, action: "search" })).results).toEqual([
     { state: "superseded", path },
   ]);

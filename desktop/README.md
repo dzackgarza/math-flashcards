@@ -61,6 +61,9 @@ the workspace. Cards become searchable as background source reads finish.
 The search field shows incomplete coverage until the reads finish, and shows
 an error when a deck cannot be searched. Opening a card result reads the
 current file and checks that the requested card still exists.
+Search summaries and their exact source text are cached on disk by source digest
+and parser version. Warm sessions reuse them after a current-file byte check.
+The cache rebuild action also replaces these disposable records.
 
 The app opens the saved workspace on startup. On first launch it opens the
 `decks/` folder in the repository used to build the app. Preferences use the standard Tauri store in

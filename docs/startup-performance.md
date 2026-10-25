@@ -161,3 +161,13 @@ the search result opens the current card without modifying its file.
 The progressive startup scenario opens search before the corpus reads finish.
 An unmatched query reports incomplete search coverage. It then selects, edits,
 and saves a deck while workspace checks remain incomplete.
+
+Search summaries and their exact source text persist in the derived database.
+The parser key covers the card parser, search producer, resolved Pandoc parser,
+and dependency data; the backend also keys stored records by their schema.
+Reads and publication both compare current file bytes with the requested digest.
+The focused backend case verifies reuse in another process, changed producer
+keys, a damaged row, and a same-size source edit with preserved nanosecond mtime.
+The browser warm-start case verifies a `ready` search response for the stored
+source. The shared rebuild case regenerates search and Problems data while
+retaining authored files, package bytes, and successful build provenance.

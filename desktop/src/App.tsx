@@ -88,6 +88,7 @@ import {
 } from "./organize";
 import { ReviewChanges } from "./review";
 import { ProblemDrawer, useProblems } from "./problem-drawer";
+import { useSearch } from "./search";
 import {
   request,
   watchWorkspace,
@@ -214,9 +215,6 @@ export default function App() {
   const deckViewport = useRef<HTMLDivElement>(null);
   const cardViewport = useRef<HTMLDivElement>(null);
   const tree = useTree();
-  const searchRecords = useRef(
-    new Map<string, { source: string; cards: CardRange[]; error: string }>(),
-  );
   const parsed = useMemo(() => {
     try {
       return { cards: cards(document?.source ?? ""), error: "" };
@@ -274,38 +272,20 @@ export default function App() {
       }),
     [decks, sourceRecords, document?.path, document?.saved, document?.hash],
   );
-  const searchIndex = useMemo(() => {
-    const next = new Map<
-      string,
-      { source: string; cards: CardRange[]; error: string }
-    >();
-    for (const deck of sources) {
-      const cached = searchRecords.current.get(deck.path);
-      if (cached?.source === deck.source) {
-        next.set(deck.path, cached);
-        continue;
-      }
-      try {
-        next.set(deck.path, {
-          source: deck.source,
-          cards: cards(deck.source),
-          error: "",
-        });
-      } catch (failure) {
-        next.set(deck.path, {
-          source: deck.source,
-          cards: [],
-          error: String(failure),
-        });
-      }
-    }
-    searchRecords.current = next;
-    return next;
-  }, [sources]);
+  const {
+    index: searchIndex,
+    invalid: searchInvalid,
+    error: searchCacheError,
+    cacheFailure: searchCacheFailure,
+  } = useSearch(sources, workspace, reconciliation.current, cacheEpoch);
   const searchPending =
-    coverage.state === "discovering" || searchCoverage.size < decks.length;
+    coverage.state === "discovering" ||
+    searchCoverage.size < decks.length ||
+    sources.some(
+      (deck) => !searchIndex.has(deck.path) && !searchInvalid.has(deck.path),
+    );
   const searchFailed =
-    [...searchIndex.values()].some((record) => record.error) ||
+    searchInvalid.size > 0 ||
     decks.some((deck) => sourceRecords.get(deck.path)?.state === "failed");
   const {
     problems,
@@ -323,9 +303,11 @@ export default function App() {
   const derivedCacheError =
     navigationCacheFailure?.root === workspace
       ? navigationCacheFailure.message
-      : problemCacheError;
+      : problemCacheError || searchCacheError;
   const derivedCacheFailure =
-    navigationCacheFailure?.root === workspace || problemCacheFailure;
+    navigationCacheFailure?.root === workspace ||
+    problemCacheFailure ||
+    searchCacheFailure;
   const problemDecks = useMemo(
     () => new Set((problems ?? []).map((problem) => problem.path)),
     [problems],
@@ -1545,13 +1527,19 @@ export default function App() {
       actions: decks.flatMap((deck) => {
         const entries =
           deck.path === document?.path
-            ? ranges
-            : (searchIndex.get(deck.path)?.cards ?? []);
+            ? ranges.map((card) => ({
+                id: card.id,
+                label: card.label,
+                front: card.front.value,
+                back: card.back.value,
+                tags: card.tags,
+              }))
+            : (searchIndex.get(deck.path) ?? []);
         return entries.map((range, cardIndex) => ({
           id: "card:" + deck.path + ":" + range.id,
           label: range.label,
           description: deckName(deck.path),
-          keywords: [range.front.value, range.back.value, range.tags],
+          keywords: [range.front, range.back, range.tags],
           onClick: () => {
             if (document?.path === deck.path) {
               setSelection([range.id]);
@@ -1768,9 +1756,13 @@ export default function App() {
             >
               {coverage.state === "complete" &&
               !derivedCacheError &&
+              !searchPending &&
+              !searchFailed &&
               problemCoverage === decks.length
                 ? "Workspace checks complete"
-                : coverage.state === "failed" || derivedCacheError
+                : coverage.state === "failed" ||
+                    derivedCacheError ||
+                    searchFailed
                   ? "Workspace checks need attention"
                   : coverage.state === "discovering"
                     ? "Refreshing workspace membership…"

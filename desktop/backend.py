@@ -149,6 +149,49 @@ class RebuildCacheInput(DiscoveryInput):
     action: Literal["rebuild-cache"]
 
 
+class SearchCard(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    id: str = Field(min_length=1)
+    label: str
+    front: str
+    back: str
+    tags: str
+
+
+class SearchKey(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    path: str
+    revision: Digest
+
+    @field_validator("path")
+    @classmethod
+    def relative_path(cls, value: str) -> str:
+        return BatchInput.relative_decks([value])[0]
+
+
+class SearchEntry(SearchKey):
+    cards: list[SearchCard]
+
+    @field_validator("cards")
+    @classmethod
+    def distinct_cards(cls, cards: list[SearchCard]) -> list[SearchCard]:
+        if len({card.id for card in cards}) != len(cards):
+            raise ValueError("Search cards must have distinct IDs within a deck.")
+        return cards
+
+
+class ReadSearchInput(DiscoveryInput):
+    action: Literal["search"]
+    producer: Digest
+    entries: list[SearchKey] = Field(min_length=1, max_length=8)
+
+
+class StoreSearchInput(DiscoveryInput):
+    action: Literal["store-search"]
+    producer: Digest
+    entries: list[SearchEntry] = Field(min_length=1, max_length=8)
+
+
 class DeckInput(Input):
     path: str
 
@@ -209,6 +252,8 @@ type Request = Annotated[
     | ChecksInput
     | ReadProblemsInput
     | StoreProblemsInput
+    | ReadSearchInput
+    | StoreSearchInput
     | RebuildCacheInput,
     Field(discriminator="action"),
 ]
@@ -393,6 +438,32 @@ class CacheRebuilt(BaseModel):
     rebuilt: Literal[True] = True
 
 
+class CachedSearch(SearchEntry):
+    state: Literal["ready"] = "ready"
+    source: str
+    producer: Digest
+
+    @model_validator(mode="after")
+    def source_identity(self) -> CachedSearch:
+        if digest(self.source.encode()) != self.revision:
+            raise ValueError("The saved search source does not match its revision.")
+        return self
+
+
+class PendingSearch(BaseModel):
+    state: Literal["pending", "superseded"]
+    path: str
+
+
+class SearchCache(BaseModel):
+    session: Session
+    results: list[
+        Annotated[
+            CachedSearch | PendingSearch | PathFailure, Field(discriminator="state")
+        ]
+    ]
+
+
 class Summary(BaseModel):
     path: str
     status: Status
@@ -532,7 +603,88 @@ def derived_database() -> Iterator[sqlite3.Connection]:
         connection.execute(
             "CREATE TABLE IF NOT EXISTS manifests (root TEXT PRIMARY KEY, producer TEXT NOT NULL, record TEXT NOT NULL)"
         )
+        connection.execute(
+            "CREATE TABLE IF NOT EXISTS search_summaries (root TEXT NOT NULL, path TEXT NOT NULL, revision TEXT NOT NULL, producer TEXT NOT NULL, record TEXT NOT NULL, PRIMARY KEY (root, path))"
+        )
         yield connection
+
+
+def search_cache(
+    root: Path, request: ReadSearchInput | StoreSearchInput
+) -> SearchCache:
+    producer_key = digest(
+        (
+            request.producer
+            + json.dumps(CachedSearch.model_json_schema(), sort_keys=True)
+        ).encode()
+    )
+    paths = [deck_path(root, entry.path) for entry in request.entries]
+    results: list[CachedSearch | PendingSearch | PathFailure] = []
+    for entry, path in zip(request.entries, paths, strict=True):
+        try:
+            raw = path.read_bytes()
+            source = raw.decode("utf-8")
+        except (OSError, UnicodeError) as error:
+            results.append(
+                PathFailure(path=entry.path, kind="UnreadablePath", message=str(error))
+            )
+            continue
+        if digest(raw) != entry.revision:
+            results.append(PendingSearch(path=entry.path, state="superseded"))
+            continue
+        try:
+            if isinstance(entry, SearchEntry):
+                record = CachedSearch(
+                    path=entry.path,
+                    revision=entry.revision,
+                    source=source,
+                    producer=request.producer,
+                    cards=entry.cards,
+                )
+                with derived_database() as connection:
+                    connection.execute(
+                        "INSERT OR REPLACE INTO search_summaries VALUES (?, ?, ?, ?, ?)",
+                        (
+                            str(root),
+                            entry.path,
+                            entry.revision,
+                            producer_key,
+                            record.model_dump_json(),
+                        ),
+                    )
+                results.append(record)
+                continue
+            with derived_database() as connection:
+                row = connection.execute(
+                    "SELECT record FROM search_summaries WHERE root = ? AND path = ? AND revision = ? AND producer = ?",
+                    (str(root), entry.path, entry.revision, producer_key),
+                ).fetchone()
+            if row is None:
+                results.append(PendingSearch(path=entry.path, state="pending"))
+                continue
+            record = CachedSearch.model_validate_json(row[0])
+            if (
+                record.path != entry.path
+                or record.revision != entry.revision
+                or record.producer != request.producer
+            ):
+                raise ValueError(
+                    "The saved search identity is damaged. Rebuild cached data."
+                )
+            results.append(record)
+        except (sqlite3.Error, ValidationError, OSError, Timeout, ValueError) as error:
+            results.append(
+                PathFailure(
+                    path=entry.path,
+                    kind="CacheFailure",
+                    message="Saved search data is damaged. Rebuild cached data."
+                    if isinstance(error, ValidationError)
+                    else str(error),
+                )
+            )
+    return SearchCache(
+        session=Session(root=str(root), generation=request.generation), results=results
+    )
 
 
 def manifest_cache(root: Path, request: ManifestCacheInput) -> ManifestCache:
@@ -1018,6 +1170,7 @@ def dispatch(
     | ProblemStored
     | CacheRebuilt
     | ManifestCache
+    | SearchCache
 ):
     if isinstance(request, AssetsInput):
         return installed_assets()
@@ -1042,6 +1195,8 @@ def dispatch(
         )
     if isinstance(request, ReadProblemsInput | StoreProblemsInput):
         return problem_cache(root, request)
+    if isinstance(request, ReadSearchInput | StoreSearchInput):
+        return search_cache(root, request)
     if isinstance(request, ManifestInput):
         return Manifest(
             session=Session(root=str(root), generation=request.generation),

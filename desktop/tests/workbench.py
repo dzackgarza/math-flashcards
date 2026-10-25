@@ -445,16 +445,35 @@ def main() -> None:
 
                 page.close()
                 page = context.new_page()
-                with page.expect_response(
-                    lambda response: (
-                        response.url.endswith("/api/request")
-                        and response.request.post_data_json.get("action") == "problems"
-                        and response.request.post_data_json.get("workspace")
-                        == str(root)
-                    )
-                ) as cached_response:
+                with (
+                    page.expect_response(
+                        lambda response: (
+                            response.url.endswith("/api/request")
+                            and response.request.post_data_json.get("action")
+                            == "search"
+                            and response.request.post_data_json.get("workspace")
+                            == str(root)
+                        )
+                    ) as search_response,
+                    page.expect_response(
+                        lambda response: (
+                            response.url.endswith("/api/request")
+                            and response.request.post_data_json.get("action")
+                            == "problems"
+                            and response.request.post_data_json.get("workspace")
+                            == str(root)
+                        )
+                    ) as cached_response,
+                ):
                     restore_workspace()
                 cached = cached_response.value.json()
+                saved_search = search_response.value.json()
+                assert any(
+                    result["state"] == "ready"
+                    and result["path"] == "Analysis/Broken.md"
+                    and result["source"] == broken.read_text()
+                    for result in saved_search["results"]
+                )
                 assert any(
                     result["state"] == "ready"
                     and result["path"] == "Analysis/Broken.md"
