@@ -39,6 +39,21 @@ export const manifestSchema = z.object({
   session: sessionSchema,
   entries: z.array(z.object({ path: deckPathSchema })),
 });
+export const manifestCacheRequestSchema = z.object({
+  action: z.enum(["cached-manifest", "cache-manifest"]),
+  workspace: z.string(),
+  generation: generationSchema,
+});
+export const cachedManifestSchema = z.discriminatedUnion("state", [
+  manifestSchema.extend({ state: z.literal("cached") }),
+  z.object({ session: sessionSchema, state: z.literal("pending") }),
+  z.object({
+    session: sessionSchema,
+    state: z.literal("failed"),
+    kind: z.literal("CacheFailure"),
+    message: z.string(),
+  }),
+]);
 export const sourceSchema = z.object({
   path: deckPathSchema,
   source: z.string(),
@@ -70,6 +85,7 @@ export const sourcesSchema = z.object({
 export type Request =
   | z.infer<typeof discoveryRequestSchema>
   | z.infer<typeof problemCacheRequestSchema>
+  | z.infer<typeof manifestCacheRequestSchema>
   | { action: "assets" }
   | { action: "rebuild-cache"; workspace: string; generation: number }
   | { action: "list" | "review"; workspace: string }

@@ -2,15 +2,14 @@ import { afterEach, expect, test } from "bun:test";
 import { mkdtemp, mkdir } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
-import { z } from "zod";
 import {
   documentSchema,
   manifestSchema,
+  cachedManifestSchema,
   sourcesSchema,
   checksSchema,
   problemCacheSchema,
   problemStoredSchema,
-  discoveryRequestSchema,
   organizedSchema,
   reviewSchema,
   workspaceSchema,
@@ -131,7 +130,7 @@ test("local discovery and bounded reads isolate a damaged deck and retain revisi
     const error = await new Response(process.stderr).text();
     return { code: await process.exited, output, error };
   };
-  const call = async (payload: z.input<typeof discoveryRequestSchema>) => {
+  const call = async (payload: Request) => {
     const result = await execute(JSON.stringify(payload));
     expect(result.code, result.error).toBe(0);
     return JSON.parse(result.output);
@@ -164,6 +163,37 @@ test("local discovery and bounded reads isolate a damaged deck and retain revisi
   expect(manifest).toEqual({
     session: { root: directory, generation: 7 },
     entries: [{ path: "Damaged.md" }, { path: "Study.md" }],
+  });
+  const coldNavigation = cachedManifestSchema.parse(
+    await call({
+      action: "cached-manifest",
+      workspace: directory,
+      generation: 7,
+    }),
+  );
+  expect(coldNavigation).toEqual({
+    state: "pending",
+    session: manifest.session,
+  });
+  const savedNavigation = cachedManifestSchema.parse(
+    await call({
+      action: "cache-manifest",
+      workspace: directory,
+      generation: 7,
+    }),
+  );
+  expect(savedNavigation).toEqual({ state: "cached", ...manifest });
+  const cachedNavigation = cachedManifestSchema.parse(
+    await call({
+      action: "cached-manifest",
+      workspace: directory,
+      generation: 8,
+    }),
+  );
+  expect(cachedNavigation).toEqual({
+    state: "cached",
+    entries: manifest.entries,
+    session: { ...manifest.session, generation: 8 },
   });
   const response = sourcesSchema.parse(
     await call({
