@@ -1,4 +1,4 @@
-import { expect, test } from "bun:test";
+import { afterEach, expect, test } from "bun:test";
 import { mkdtemp, mkdir } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
@@ -8,6 +8,8 @@ import {
   manifestSchema,
   sourcesSchema,
   checksSchema,
+  problemCacheSchema,
+  problemStoredSchema,
   discoveryRequestSchema,
   organizedSchema,
   reviewSchema,
@@ -15,8 +17,95 @@ import {
   type Request,
 } from "../src/bridge";
 
+const temporaryWorkspaces: string[] = [];
+afterEach(() => {
+  for (const directory of temporaryWorkspaces.splice(0)) {
+    const cleanup = Bun.spawnSync(["trash", directory]);
+    expect(cleanup.exitCode, cleanup.stderr.toString()).toBe(0);
+  }
+});
+
+test("persisted problems require current file bytes, checker, and renderer identities", async () => {
+  const workspace = await mkdtemp(join(tmpdir(), "flashcards-cache-"));
+  temporaryWorkspaces.push(workspace);
+  const backend = resolve(import.meta.dir, "../backend.py");
+  const find = Bun.spawnSync(["uv", "python", "find", "--script", backend]);
+  expect(find.exitCode).toBe(0);
+  const source = await Bun.file(
+    resolve(import.meta.dir, "../../decks/Analysis/Precalculus.md"),
+  ).text();
+  const path = "Study.md";
+  await Bun.write(join(workspace, path), source);
+  const revision = new Bun.CryptoHasher("sha256").update(source).digest("hex");
+  const producer = new Bun.CryptoHasher("sha256")
+    .update("checker-v1")
+    .digest("hex");
+  const assets = new Bun.CryptoHasher("sha256")
+    .update("renderer-v1")
+    .digest("hex");
+  const call = async (payload: Request) => {
+    const process = Bun.spawn([find.stdout.toString().trim(), backend], {
+      stdin: new Blob([JSON.stringify(payload) + "\n"]),
+      stdout: "pipe",
+      stderr: "pipe",
+      env: { ...Bun.env, XDG_CACHE_HOME: join(workspace, "cache") },
+    });
+    const output = await new Response(process.stdout).text();
+    const error = await new Response(process.stderr).text();
+    expect(await process.exited, error).toBe(0);
+    return JSON.parse(output);
+  };
+  const input = { workspace, generation: 3, producer, assets };
+  const entry = { path, revision };
+  const cold = problemCacheSchema.parse(
+    await call({ ...input, action: "problems", entries: [entry] }),
+  );
+  expect(cold.results).toEqual([{ state: "pending", path }]);
+  const saved = problemStoredSchema.parse(
+    await call({
+      ...input,
+      action: "store-problems",
+      entries: [{ ...entry, problems: [] }],
+    }),
+  );
+  expect(saved.results).toEqual([{ state: "stored", path }]);
+  const warm = problemCacheSchema.parse(
+    await call({ ...input, action: "problems", entries: [entry] }),
+  );
+  expect(warm.results).toEqual([
+    { state: "ready", path, revision, producer, assets, problems: [] },
+  ]);
+  for (const changed of [{ producer: revision }, { assets: revision }]) {
+    const response = problemCacheSchema.parse(
+      await call({
+        ...input,
+        ...changed,
+        action: "problems",
+        entries: [entry],
+      }),
+    );
+    expect(response.results).toEqual([{ state: "pending", path }]);
+  }
+  const edited = source.replace("Precalculus", "Local study");
+  await Bun.write(join(workspace, path), edited);
+  const stale = problemCacheSchema.parse(
+    await call({ ...input, action: "problems", entries: [entry] }),
+  );
+  expect(stale.results).toEqual([{ state: "pending", path }]);
+  const superseded = problemStoredSchema.parse(
+    await call({
+      ...input,
+      action: "store-problems",
+      entries: [{ ...entry, problems: [] }],
+    }),
+  );
+  expect(superseded.results).toEqual([{ state: "superseded", path }]);
+  expect(await Bun.file(join(workspace, path)).text()).toBe(edited);
+}, 30000);
+
 test("local discovery and bounded reads isolate a damaged deck and retain revision identity", async () => {
   const directory = await mkdtemp(join(tmpdir(), "flashcards-discovery-"));
+  temporaryWorkspaces.push(directory);
   const backend = resolve(import.meta.dir, "../backend.py");
   const find = Bun.spawnSync(["uv", "python", "find", "--script", backend]);
   expect(find.exitCode).toBe(0);
@@ -132,7 +221,6 @@ test("local discovery and bounded reads isolate a damaged deck and retain revisi
     revision:
       next.results[0].state === "ready" ? next.results[0].revision : "invalid",
   });
-  expect(Bun.spawnSync(["trash", directory]).exitCode).toBe(0);
 }, 30000);
 
 test("a deck folder supports discovery, editing, and organization beside its export directory", async () => {

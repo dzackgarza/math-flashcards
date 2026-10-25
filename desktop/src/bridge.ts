@@ -68,6 +68,7 @@ export const sourcesSchema = z.object({
 
 export type Request =
   | z.infer<typeof discoveryRequestSchema>
+  | z.infer<typeof problemCacheRequestSchema>
   | { action: "assets" }
   | { action: "list" | "review"; workspace: string }
   | { action: "generate"; workspace: string; path: string }
@@ -114,6 +115,64 @@ export const checksSchema = z.object({
     ]),
   ),
 });
+export const problemSchema = z.object({
+  path: deckPathSchema,
+  card: z.string().nullable(),
+  label: z.string().nullable(),
+  side: z.enum(["front", "back"]).nullable(),
+  kind: z.enum(["LaTeX", "Card structure", "Empty answer"]),
+  message: z.string(),
+  source: z.string().nullable(),
+});
+const problemKeySchema = z.object({
+  path: deckPathSchema,
+  revision: digestSchema,
+});
+const problemCacheInputSchema = z.object({
+  workspace: z.string(),
+  generation: generationSchema,
+  producer: digestSchema,
+  assets: digestSchema,
+});
+export const problemCacheRequestSchema = z.discriminatedUnion("action", [
+  problemCacheInputSchema.extend({
+    action: z.literal("problems"),
+    entries: z.array(problemKeySchema).min(1).max(8),
+  }),
+  problemCacheInputSchema.extend({
+    action: z.literal("store-problems"),
+    entries: z
+      .array(problemKeySchema.extend({ problems: z.array(problemSchema) }))
+      .min(1)
+      .max(8),
+  }),
+]);
+export const problemCacheSchema = z.object({
+  session: sessionSchema,
+  results: z.array(
+    z.discriminatedUnion("state", [
+      problemKeySchema.extend({
+        state: z.literal("ready"),
+        producer: digestSchema,
+        assets: digestSchema,
+        problems: z.array(problemSchema),
+      }),
+      z.object({ state: z.literal("pending"), path: deckPathSchema }),
+      pathFailureSchema,
+    ]),
+  ),
+});
+export const problemStoredSchema = z.object({
+  session: sessionSchema,
+  results: z.array(
+    z.discriminatedUnion("state", [
+      z.object({ state: z.literal("stored"), path: deckPathSchema }),
+      z.object({ state: z.literal("superseded"), path: deckPathSchema }),
+      pathFailureSchema,
+    ]),
+  ),
+});
+export type Problem = z.infer<typeof problemSchema>;
 const summarySchema = z.object({
   path: z.string(),
   status: statusSchema,
