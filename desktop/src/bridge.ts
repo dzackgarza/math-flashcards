@@ -101,6 +101,7 @@ export type Request =
   | z.infer<typeof discoveryRequestSchema>
   | z.infer<typeof problemCacheRequestSchema>
   | z.infer<typeof manifestCacheRequestSchema>
+  | z.infer<typeof searchCacheRequestSchema>
   | { action: "assets" }
   | { action: "rebuild-cache"; workspace: string; generation: number }
   | { action: "list"; workspace: string }
@@ -206,6 +207,50 @@ export const problemStoredSchema = z.object({
     ]),
   ),
 });
+export const searchCardSchema = z.object({
+  id: z.string().min(1),
+  label: z.string(),
+  front: z.string(),
+  back: z.string(),
+  tags: z.string(),
+});
+const searchKeySchema = sourceSchema.pick({ path: true, revision: true });
+const searchCacheInputSchema = z.object({
+  workspace: z.string(),
+  generation: generationSchema,
+  producer: digestSchema,
+});
+export const searchCacheRequestSchema = z.discriminatedUnion("action", [
+  searchCacheInputSchema.extend({
+    action: z.literal("search"),
+    entries: z.array(searchKeySchema).min(1).max(8),
+  }),
+  searchCacheInputSchema.extend({
+    action: z.literal("store-search"),
+    entries: z
+      .array(searchKeySchema.extend({ cards: z.array(searchCardSchema) }))
+      .min(1)
+      .max(8),
+  }),
+]);
+export const searchCacheSchema = z.object({
+  session: sessionSchema,
+  results: z.array(
+    z.discriminatedUnion("state", [
+      sourceSchema.extend({
+        state: z.literal("ready"),
+        producer: digestSchema,
+        cards: z.array(searchCardSchema),
+      }),
+      z.object({
+        state: z.enum(["pending", "superseded"]),
+        path: deckPathSchema,
+      }),
+      pathFailureSchema,
+    ]),
+  ),
+});
+export type SearchCard = z.infer<typeof searchCardSchema>;
 export type Problem = z.infer<typeof problemSchema>;
 export const cacheRebuiltSchema = z.object({
   session: sessionSchema,

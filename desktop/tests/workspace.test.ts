@@ -13,6 +13,7 @@ import {
   checksSchema,
   problemCacheSchema,
   problemStoredSchema,
+  searchCacheSchema,
   organizedSchema,
   reviewSchema,
   workspaceSchema,
@@ -26,6 +27,96 @@ afterEach(() => {
     expect(cleanup.exitCode, cleanup.stderr.toString()).toBe(0);
   }
 });
+
+test("search summaries persist with exact source and parser identities", async () => {
+  const workspace = await mkdtemp(join(tmpdir(), "flashcards-search-cache-"));
+  temporaryWorkspaces.push(workspace);
+  const backend = resolve(import.meta.dir, "../backend.py");
+  const find = Bun.spawnSync(["uv", "python", "find", "--script", backend]);
+  expect(find.exitCode).toBe(0);
+  const path = "Study.md";
+  const source =
+    '---\ntitle: "Study"\n---\n\n::: {.front card-id="proof"}\nA question\n:::\n\n::: {.back card-id="proof"}\nA proof\n:::\n';
+  await Bun.write(join(workspace, path), source);
+  const revision = new Bun.CryptoHasher("sha256").update(source).digest("hex");
+  const producer = new Bun.CryptoHasher("sha256")
+    .update("parser fixture")
+    .digest("hex");
+  const call = async (payload: Request) => {
+    const process = Bun.spawn([find.stdout.toString().trim(), backend], {
+      stdin: new Blob([JSON.stringify(payload) + "\n"]),
+      stdout: "pipe",
+      stderr: "pipe",
+      env: {
+        ...Bun.env,
+        XDG_CACHE_HOME: join(workspace, "cache"),
+        UV_OFFLINE: "1",
+      },
+    });
+    const output = await new Response(process.stdout).text();
+    const error = await new Response(process.stderr).text();
+    expect(await process.exited, error).toBe(0);
+    return searchCacheSchema.parse(JSON.parse(output));
+  };
+  const input = {
+    workspace,
+    generation: 4,
+    producer,
+    entries: [{ path, revision }],
+  };
+  expect((await call({ ...input, action: "search" })).results).toEqual([
+    { state: "pending", path },
+  ]);
+  const cards = [
+    {
+      id: "proof",
+      label: "A question",
+      front: "A question",
+      back: "A proof",
+      tags: "",
+    },
+  ];
+  const stored = await call({
+    ...input,
+    action: "store-search",
+    entries: [{ path, revision, cards }],
+  });
+  expect(stored.results).toEqual([
+    { state: "ready", path, revision, producer, source, cards },
+  ]);
+  const reused = await call({ ...input, generation: 5, action: "search" });
+  expect(reused.session).toEqual({ root: workspace, generation: 5 });
+  expect(reused.results).toEqual(stored.results);
+  expect(
+    (await call({ ...input, producer: "0".repeat(64), action: "search" }))
+      .results,
+  ).toEqual([{ state: "pending", path }]);
+  const edited = source.replace("A proof", "B proof");
+  await Bun.write(join(workspace, path), edited);
+  expect((await call({ ...input, action: "search" })).results).toEqual([
+    { state: "superseded", path },
+  ]);
+  const current = new Bun.CryptoHasher("sha256").update(edited).digest("hex");
+  expect(
+    (
+      await call({
+        ...input,
+        entries: [{ path, revision: current }],
+        action: "search",
+      })
+    ).results,
+  ).toEqual([{ state: "pending", path }]);
+  expect(
+    (
+      await call({
+        ...input,
+        action: "store-search",
+        entries: [{ path, revision, cards }],
+      })
+    ).results,
+  ).toEqual([{ state: "superseded", path }]);
+  expect(await Bun.file(join(workspace, path)).text()).toBe(edited);
+}, 30000);
 
 test("generation bundles the prepared renderer pair without network access", async () => {
   const workspace = await mkdtemp(join(tmpdir(), "flashcards-offline-export-"));
