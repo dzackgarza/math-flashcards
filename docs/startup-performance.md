@@ -175,3 +175,6 @@ keys, a damaged row, and a same-size source edit with preserved nanosecond mtime
 The browser warm-start case verifies a `ready` search response for the stored
 source. The shared rebuild case regenerates search and Problems data while
 retaining authored files, package bytes, and successful build provenance.
+Manifest publication prunes search and Problems rows for paths that are no
+longer members of the workspace. A real organization-and-reconciliation case
+verifies removal of the old path from both tables after a deck rename.

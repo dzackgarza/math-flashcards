@@ -705,6 +705,19 @@ def manifest_cache(root: Path, request: ManifestCacheInput) -> ManifestCache:
                     "INSERT OR REPLACE INTO manifests VALUES (?, ?, ?)",
                     (str(root), producer, record.model_dump_json()),
                 )
+                members = {entry.path for entry in record.entries}
+                for table in ("problem_checks", "search_summaries"):
+                    previous = connection.execute(
+                        f"SELECT path FROM {table} WHERE root = ?", (str(root),)
+                    ).fetchall()
+                    connection.executemany(
+                        f"DELETE FROM {table} WHERE root = ? AND path = ?",
+                        [
+                            (str(root), path)
+                            for (path,) in previous
+                            if path not in members
+                        ],
+                    )
             return CachedManifest(session=session, entries=record.entries)
         with derived_database() as connection:
             row = connection.execute(
