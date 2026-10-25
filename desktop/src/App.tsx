@@ -92,6 +92,7 @@ import {
   request,
   watchWorkspace,
   manifestSchema,
+  cachedManifestSchema,
   sourcesSchema,
   checksSchema,
   cacheRebuiltSchema,
@@ -175,6 +176,10 @@ export default function App() {
   });
   const [assetIdentity, setAssetIdentity] = useState("");
   const [cacheEpoch, setCacheEpoch] = useState(0);
+  const [navigationCacheFailure, setNavigationCacheFailure] = useState<{
+    root: string;
+    message: string;
+  } | null>(null);
   const [document, setDocument] = useState<Document | null>(null);
   const [mathjax, setMathjax] = useState<MathJaxRuntime | null>(null);
   const [index, setIndex] = useState(0);
@@ -276,6 +281,12 @@ export default function App() {
     reconciliation.current,
     cacheEpoch,
   );
+  const derivedCacheError =
+    navigationCacheFailure?.root === workspace
+      ? navigationCacheFailure.message
+      : problemCacheError;
+  const derivedCacheFailure =
+    navigationCacheFailure?.root === workspace || problemCacheFailure;
   const problemDecks = useMemo(
     () => new Set((problems ?? []).map((problem) => problem.path)),
     [problems],
@@ -312,7 +323,45 @@ export default function App() {
       return;
     setDecks(result.entries);
     updateDocument((open) => open && { ...open, status: null });
+    void cacheManifest(result.session.root, generation, token);
     void fillWorkspace(result, token);
+  }
+
+  async function cacheManifest(
+    root: string,
+    generation: number,
+    token: number,
+  ) {
+    try {
+      const result = await request(
+        { action: "cache-manifest", workspace: root, generation },
+        cachedManifestSchema,
+      );
+      if (
+        token !== workspaceNavigation.current ||
+        generation !== reconciliation.current
+      )
+        return;
+      if (
+        result.session.root !== root ||
+        result.session.generation !== generation
+      )
+        throw new Error(
+          "The navigation cache belongs to another workspace session.",
+        );
+      if (result.state === "failed")
+        setNavigationCacheFailure({ root, message: result.message });
+      else
+        setNavigationCacheFailure((current) =>
+          current?.root === root ? null : current,
+        );
+    } catch (failure) {
+      if (
+        token === workspaceNavigation.current &&
+        generation === reconciliation.current
+      )
+        setNavigationCacheFailure({ root, message: String(failure) });
+    }
   }
 
   async function checkPaths(
@@ -516,7 +565,7 @@ export default function App() {
 
   async function chooseWorkspace(root: string) {
     const token = ++workspaceNavigation.current;
-    navigation.current++;
+    const navigationToken = ++navigation.current;
     const generation = ++reconciliation.current;
     setTask("Loading");
     setError("");
@@ -530,16 +579,13 @@ export default function App() {
         if (token === workspaceNavigation.current) setError(String(failure));
       },
     );
-    try {
-      const result = await request(
-        { action: "manifest", workspace: root, generation },
-        manifestSchema,
-      );
-      if (token !== workspaceNavigation.current) return;
-      navigation.current++;
+    let published = false;
+    const publish = (result: Manifest) => {
       setWorkspace(result.session.root);
       workspaceForm.setFieldValue("workspace", result.session.root);
       setDecks(result.entries);
+      if (published) return;
+      published = true;
       setSourceRecords(new Map());
       setPackageRecords(new Map());
       updateDocument(() => null);
@@ -548,8 +594,44 @@ export default function App() {
       setDraft(null);
       setLog("");
       setConflict(false);
-      void fillWorkspace(result, token);
       setBuildResult("Ready");
+    };
+    try {
+      const cached = await request(
+        { action: "cached-manifest", workspace: root, generation },
+        cachedManifestSchema,
+      );
+      if (token !== workspaceNavigation.current) return;
+      if (cached.session.generation !== generation)
+        throw new Error(
+          "The cached navigation belongs to another workspace session.",
+        );
+      if (cached.state === "cached") {
+        publish(cached);
+        setCoverage({ state: "discovering", checked: 0, total: 0, error: "" });
+        if (navigationToken === navigation.current) setTask("Idle");
+      }
+      if (cached.state === "failed")
+        setNavigationCacheFailure({
+          root: cached.session.root,
+          message: cached.message,
+        });
+      const result = await request(
+        { action: "manifest", workspace: root, generation },
+        manifestSchema,
+      );
+      if (token !== workspaceNavigation.current) return;
+      if (
+        result.session.root !== cached.session.root ||
+        result.session.generation !== generation
+      )
+        throw new Error(
+          "The discovered navigation belongs to another workspace session.",
+        );
+      publish(result);
+      if (cached.state !== "failed")
+        void cacheManifest(result.session.root, generation, token);
+      void fillWorkspace(result, token);
       if (isTauri()) {
         const store = await preferences();
         await store.set("workspace", result.session.root);
@@ -558,7 +640,11 @@ export default function App() {
     } catch (failure) {
       if (token === workspaceNavigation.current) setError(String(failure));
     } finally {
-      if (token === workspaceNavigation.current) setTask("Idle");
+      if (
+        token === workspaceNavigation.current &&
+        navigationToken === navigation.current
+      )
+        setTask("Idle");
     }
   }
 
@@ -1289,6 +1375,7 @@ export default function App() {
         cacheRebuiltSchema,
       );
       setCacheEpoch((epoch) => epoch + 1);
+      setNavigationCacheFailure(null);
       await refresh();
     } catch (failure) {
       setError(String(failure));
@@ -1559,11 +1646,13 @@ export default function App() {
               );
             }}
           />
-          {workspace && decks.length === 0 && (
-            <Text c="dimmed" size="sm" px="xs">
-              This workspace has no Markdown decks.
-            </Text>
-          )}
+          {workspace &&
+            decks.length === 0 &&
+            coverage.state !== "discovering" && (
+              <Text c="dimmed" size="sm" px="xs">
+                This workspace has no Markdown decks.
+              </Text>
+            )}
         </div>
         <Stack gap={4}>
           {workspace && (
@@ -1575,12 +1664,14 @@ export default function App() {
               role="status"
             >
               {coverage.state === "complete" &&
-              !problemCacheError &&
+              !derivedCacheError &&
               problemCoverage === decks.length
                 ? "Workspace checks complete"
-                : coverage.state === "failed" || problemCacheError
+                : coverage.state === "failed" || derivedCacheError
                   ? "Workspace checks need attention"
-                  : `Checking ${coverage.checked} of ${coverage.total} decks…`}
+                  : coverage.state === "discovering"
+                    ? "Refreshing workspace membership…"
+                    : `Checking ${coverage.checked} of ${coverage.total} decks…`}
             </Text>
           )}
           {coverage.error && (
@@ -1591,17 +1682,17 @@ export default function App() {
               </Button>
             </Text>
           )}
-          {problemCacheError && (
+          {derivedCacheError && (
             <Text size="xs" c="red" px="xs">
-              {problemCacheError}
+              {derivedCacheError}
               <Button
                 variant="subtle"
                 size="xs"
                 onClick={() =>
-                  problemCacheFailure ? void rebuildCache() : refreshWorkspace()
+                  derivedCacheFailure ? void rebuildCache() : refreshWorkspace()
                 }
               >
-                {problemCacheFailure ? "Rebuild cached data" : "Retry checks"}
+                {derivedCacheFailure ? "Rebuild cached data" : "Retry checks"}
               </Button>
             </Text>
           )}
@@ -1623,8 +1714,10 @@ export default function App() {
               onClick={() => setProblemsOpen(true)}
             >
               Problems
-              {problemCoverage < decks.length &&
-                ` (${problemCoverage}/${decks.length} checked)`}
+              {coverage.state === "discovering"
+                ? " (refreshing)"
+                : problemCoverage < decks.length &&
+                  ` (${problemCoverage}/${decks.length} checked)`}
             </Button>
           )}
           {pendingDecks.length > 0 && (
@@ -1954,6 +2047,7 @@ export default function App() {
         problems={problems}
         decks={decks.length}
         checked={problemCoverage}
+        manifestReady={coverage.state !== "discovering"}
         mathjax={mathjax}
         opened={problemsOpen}
         close={() => setProblemsOpen(false)}

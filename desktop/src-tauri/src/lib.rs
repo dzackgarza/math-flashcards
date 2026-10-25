@@ -37,7 +37,7 @@ async fn request(
     let scope: Scope = serde_json::from_str(&payload).map_err(|e| e.to_string())?;
     let queue = match scope.action.as_str() {
         "assets" | "sources" | "checks" | "review" | "generate" | "list" | "problems"
-        | "store-problems" => &slots.background,
+        | "store-problems" | "cache-manifest" => &slots.background,
         _ => &slots.foreground,
     };
     // Background batches cannot take the foreground permit.
@@ -84,7 +84,7 @@ async fn request(
                 .allow_directory(root.root, true)
                 .map_err(|e| e.to_string())?;
         }
-        if scope.action == "manifest" {
+        if scope.action == "manifest" || scope.action == "cached-manifest" {
             let manifest: ManifestScope =
                 serde_json::from_slice(&output.stdout).map_err(|e| e.to_string())?;
             app.fs_scope()

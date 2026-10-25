@@ -275,6 +275,7 @@ export function ProblemDrawer({
   problems,
   decks,
   checked,
+  manifestReady,
   mathjax,
   opened,
   close,
@@ -283,6 +284,7 @@ export function ProblemDrawer({
   problems: Problem[] | null;
   decks: number;
   checked: number;
+  manifestReady: boolean;
   mathjax: MathJaxRuntime | null;
   opened: boolean;
   close: () => void;
@@ -305,12 +307,14 @@ export function ProblemDrawer({
           : "Problems"
       }
     >
-      {checked < decks && (
+      {manifestReady && checked < decks && (
         <Text c="dimmed" mb="sm">
           Checking decks: {checked} of {decks}. Results are incomplete.
         </Text>
       )}
-      {problems === null || (checked < decks && problems.length === 0) ? (
+      {!manifestReady ? (
+        <Text c="dimmed">Refreshing workspace membership…</Text>
+      ) : problems === null || (checked < decks && problems.length === 0) ? (
         <Text c="dimmed">Checking the available decks…</Text>
       ) : problems.length === 0 ? (
         <Text c="dimmed">

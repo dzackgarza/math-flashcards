@@ -68,6 +68,10 @@ class ManifestInput(DiscoveryInput):
     action: Literal["manifest"]
 
 
+class ManifestCacheInput(DiscoveryInput):
+    action: Literal["cached-manifest", "cache-manifest"]
+
+
 class BatchInput(DiscoveryInput):
     paths: list[str] = Field(min_length=1, max_length=8)
 
@@ -197,6 +201,7 @@ type Request = Annotated[
     | OrganizeInput
     | ReviewInput
     | ManifestInput
+    | ManifestCacheInput
     | SourcesInput
     | ChecksInput
     | ReadProblemsInput
@@ -253,6 +258,41 @@ class Entry(BaseModel):
 class Manifest(BaseModel):
     session: Session
     entries: list[Entry]
+
+
+class ManifestRecord(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    entries: list[Entry]
+
+    @model_validator(mode="after")
+    def valid_membership(self) -> ManifestRecord:
+        paths = BatchInput.relative_decks([entry.path for entry in self.entries])
+        if paths != sorted(set(paths)):
+            raise ValueError(
+                "Saved navigation has invalid ordering or duplicate decks."
+            )
+        return self
+
+
+class CachedManifest(Manifest):
+    state: Literal["cached"] = "cached"
+
+
+class MissingManifest(BaseModel):
+    session: Session
+    state: Literal["pending"] = "pending"
+
+
+class FailedManifest(BaseModel):
+    session: Session
+    state: Literal["failed"] = "failed"
+    kind: Literal["CacheFailure"] = "CacheFailure"
+    message: str
+
+
+type ManifestCache = Annotated[
+    CachedManifest | MissingManifest | FailedManifest, Field(discriminator="state")
+]
 
 
 class AssetSet(BaseModel):
@@ -481,7 +521,47 @@ def derived_database() -> Iterator[sqlite3.Connection]:
             "producer TEXT NOT NULL, assets TEXT NOT NULL, record TEXT NOT NULL, "
             "PRIMARY KEY (root, path))"
         )
+        connection.execute(
+            "CREATE TABLE IF NOT EXISTS manifests (root TEXT PRIMARY KEY, producer TEXT NOT NULL, record TEXT NOT NULL)"
+        )
         yield connection
+
+
+def manifest_cache(root: Path, request: ManifestCacheInput) -> ManifestCache:
+    session = Session(root=str(root), generation=request.generation)
+    producer = digest(
+        Path(__file__).read_bytes()
+        + json.dumps(ManifestRecord.model_json_schema(), sort_keys=True).encode()
+    )
+    try:
+        if request.action == "cache-manifest":
+            record = ManifestRecord(
+                entries=[
+                    Entry(path=str(path.relative_to(root))) for path in deck_paths(root)
+                ]
+            )
+            with derived_database() as connection:
+                connection.execute(
+                    "INSERT OR REPLACE INTO manifests VALUES (?, ?, ?)",
+                    (str(root), producer, record.model_dump_json()),
+                )
+            return CachedManifest(session=session, entries=record.entries)
+        with derived_database() as connection:
+            row = connection.execute(
+                "SELECT record FROM manifests WHERE root = ? AND producer = ?",
+                (str(root), producer),
+            ).fetchone()
+        if row is None:
+            return MissingManifest(session=session)
+        record = ManifestRecord.model_validate_json(row[0])
+        return CachedManifest(session=session, entries=record.entries)
+    except (sqlite3.Error, ValidationError, OSError, Timeout) as error:
+        return FailedManifest(
+            session=session,
+            message="Saved navigation is damaged. Rebuild cached data."
+            if isinstance(error, ValidationError)
+            else str(error),
+        )
 
 
 def problem_cache(
@@ -907,10 +987,13 @@ def dispatch(
     | ProblemCache
     | ProblemStored
     | CacheRebuilt
+    | ManifestCache
 ):
     if isinstance(request, AssetsInput):
         return installed_assets()
     root = workspace_path(request.workspace)
+    if isinstance(request, ManifestCacheInput):
+        return manifest_cache(root, request)
     if isinstance(request, RebuildCacheInput):
         directory = user_cache_path("math-flashcards")
         directory.mkdir(parents=True, exist_ok=True)

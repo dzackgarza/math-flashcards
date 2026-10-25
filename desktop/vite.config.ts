@@ -83,6 +83,7 @@ function workbenchBackend(): Plugin {
           "assets",
           "problems",
           "store-problems",
+          "cache-manifest",
           "sources",
           "checks",
           "review",

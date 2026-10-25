@@ -58,6 +58,7 @@ the XDG configuration directory.
 Select the workspace name in the sidebar to open the workspace menu. Select
 **Browse** or enter a workspace path to change it, then select a deck in the
 tree. A dot after a deck name marks a deck whose Anki package is out of date.
+Saved navigation can appear while the app reconciles directory membership.
 The tree appears before workspace checks finish. A progress line shows the
 checked coverage. Deck selection reads current file bytes independently of
 package checks, and the package status shows **Checking Anki package…** until
@@ -156,7 +157,7 @@ the deck source of each build, use the platform cache directory under
 until the app generates its package. Filesystem watches refresh the status and
 the open deck after workspace changes.
 
-Reusable Problems results use `math-flashcards/derived.sqlite3` in the platform
+Saved navigation and reusable Problems results use `math-flashcards/derived.sqlite3` in the platform
 cache directory. Reuse requires the same source bytes, checker, parser, and
 renderer assets. A changed file is checked again even if its size and
 modification time stay the same. Cache damage shows **Rebuild cached data**.
