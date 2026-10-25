@@ -2,8 +2,11 @@ import { afterEach, expect, test } from "bun:test";
 import { mkdtemp, mkdir } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
+import { z } from "zod";
 import {
   documentSchema,
+  assetsSchema,
+  generatedSchema,
   manifestSchema,
   cachedManifestSchema,
   sourcesSchema,
@@ -23,6 +26,66 @@ afterEach(() => {
     expect(cleanup.exitCode, cleanup.stderr.toString()).toBe(0);
   }
 });
+
+test("generation bundles the prepared renderer pair without network access", async () => {
+  const workspace = await mkdtemp(join(tmpdir(), "flashcards-offline-export-"));
+  temporaryWorkspaces.push(workspace);
+  const backend = resolve(import.meta.dir, "../backend.py");
+  const find = Bun.spawnSync(["uv", "python", "find", "--script", backend]);
+  expect(find.exitCode).toBe(0);
+  const source = await Bun.file(
+    resolve(import.meta.dir, "../../decks/Analysis/Precalculus.md"),
+  ).text();
+  await Bun.write(join(workspace, "Study.md"), source);
+  const call = async (payload: Request) => {
+    const process = Bun.spawn(
+      [
+        "unshare",
+        "--user",
+        "--map-root-user",
+        "--net",
+        find.stdout.toString().trim(),
+        backend,
+      ],
+      {
+        stdin: new Blob([JSON.stringify(payload) + "\n"]),
+        stdout: "pipe",
+        stderr: "pipe",
+        env: { ...Bun.env, XDG_CACHE_HOME: join(workspace, "cache") },
+      },
+    );
+    const output = await new Response(process.stdout).text();
+    const error = await new Response(process.stderr).text();
+    expect(await process.exited, error).toBe(0);
+    return JSON.parse(output);
+  };
+  const assets = assetsSchema.parse(await call({ action: "assets" }));
+  const result = generatedSchema.parse(
+    await call({ action: "generate", workspace, path: "Study.md" }),
+  );
+  expect(result.status).toBe("Up to date");
+  const mediaFile = Bun.spawnSync(["unzip", "-p", result.package, "media"]);
+  expect(mediaFile.exitCode).toBe(0);
+  const media = z
+    .record(z.string(), z.string())
+    .parse(JSON.parse(mediaFile.stdout.toString()));
+  const macroFile = Object.entries(media).find(
+    ([, name]) => name === "_ankdown_macros.js",
+  );
+  if (!macroFile)
+    throw new Error("The package did not include its renderer script.");
+  const script = Bun.spawnSync(["unzip", "-p", result.package, macroFile[0]]);
+  expect(script.exitCode).toBe(0);
+  // The protected script assignment is the exporter's package-media contract.
+  const [stmaryrd, assignment] = z
+    .tuple([z.string(), z.string()])
+    .parse(script.stdout.toString().split("\nwindow.ANKDOWN_MACROS = "));
+  expect(stmaryrd).toBe(assets.stmaryrd);
+  expect(assignment.endsWith(";")).toBe(true);
+  expect(
+    assetsSchema.shape.macros.parse(JSON.parse(assignment.slice(0, -1))),
+  ).toEqual(assets.macros);
+}, 30000);
 
 test("persisted problems require current file bytes, checker, and renderer identities", async () => {
   const workspace = await mkdtemp(join(tmpdir(), "flashcards-cache-"));
