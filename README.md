@@ -97,10 +97,11 @@ $$\abs{G} = \abs{Z(G)} + \sum_i [G : C_G(x_i)]$$
 just build          # compile every deck in decks/ into decks/apkg/
 ```
 
-The Python bridge installs Ankdown from its GitHub main branch through `uv`.
-Each build and each workspace listing upgrades the script environment to the
-latest Ankdown commit and the latest release of every other dependency. Other
-requests run the installed script environment and do not read the network.
+Install/update prepares the Python bridge with Ankdown from its GitHub main
+branch and the latest dependencies through `uv`. It also prepares the renderer
+macros and stmaryrd together. Workspace listing, refresh, document loading, and
+saving use that local runtime and asset set. Run `just desktop-install` to
+update it. Each command-line build also prepares the current dependencies.
 Pandoc reads and validates the paired divs. The bridge uses Ankdown's existing
 math and media filter and package writer to generate `.apkg` files.
 Pandoc and `uv` must be on `PATH`.

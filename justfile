@@ -3,8 +3,8 @@ default:
     @just --list
 
 # Compile every deck under decks/ into decks/apkg/
-build:
-    uv run --upgrade desktop/backend.py build decks
+build: desktop-dependencies
+    "$(uv python find --script desktop/backend.py)" desktop/backend.py build decks
 
 # Sanity-check that every deck is well-formed new-format Markdown
 test: check-math
@@ -22,11 +22,13 @@ test-commit: test desktop-frontend desktop-source-test desktop-editor-test deskt
 
 # Install the desktop build dependencies
 desktop-dependencies:
-    [ -d desktop/.parser ] || git clone --quiet --filter=tree:0 --sparse --branch develop https://github.com/dzackgarza/Zettlr-pandoc-mathjax desktop/.parser
-    git -C desktop/.parser sparse-checkout set vendor/lezer-markdown-pandoc
-    git -C desktop/.parser pull --quiet --ff-only
+    [ -d desktop/.parser ] || env -u GIT_INDEX_FILE git clone --quiet --filter=tree:0 --sparse --branch develop https://github.com/dzackgarza/Zettlr-pandoc-mathjax desktop/.parser
+    env -u GIT_INDEX_FILE git -C desktop/.parser sparse-checkout set vendor/lezer-markdown-pandoc
+    env -u GIT_INDEX_FILE git -C desktop/.parser pull --quiet --ff-only
     cd desktop && bun update
     cd desktop/src-tauri && cargo update --quiet
+    uv sync --upgrade --script desktop/backend.py
+    "$(uv python find --script desktop/backend.py)" desktop/backend.py prepare
 
 # Build and install the app in XDG user directories
 desktop-install: desktop-dependencies desktop-build desktop-deploy

@@ -67,7 +67,10 @@ def publish(source: Path, destination: Path) -> None:
 
 def install(spec: Installation) -> Path:
     binary = spec.build_dir / "desktop"
-    resources = [spec.build_dir / name for name in ("backend.py", "paired-cards.lua")]
+    resources = [
+        spec.build_dir / name
+        for name in ("backend.py", "paired-cards.lua", "assets.json")
+    ]
     for source in (binary, *resources):
         if not source.is_file():
             raise FileNotFoundError(f"Build the desktop app first: {source}")
@@ -88,6 +91,24 @@ def install(spec: Installation) -> Path:
     publish(binary, installed_binary)
     for source in resources:
         publish(source, application / "lib" / configuration.productName / source.name)
+
+    # uv script environments depend on the installed script path, so prepare
+    # that environment before publishing its launcher:
+    # https://docs.astral.sh/uv/guides/scripts/
+    installed_script = application / "lib" / configuration.productName / "backend.py"
+    subprocess.run(
+        ["uv", "sync", "--upgrade", "--script", str(installed_script)], check=True
+    )
+    python = subprocess.check_output(
+        ["uv", "python", "find", "--script", str(installed_script)], text=True
+    ).strip()
+    resource_directory = installed_script.parent
+    with tempfile.TemporaryDirectory(
+        prefix=".runtime-", dir=resource_directory
+    ) as directory:
+        runtime = Path(directory) / "runtime.txt"
+        runtime.write_text(python + "\n")
+        publish(runtime, resource_directory / "runtime.txt")
 
     application.mkdir(parents=True, exist_ok=True)
     launcher = application / "launch"

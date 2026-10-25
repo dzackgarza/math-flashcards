@@ -4,12 +4,15 @@
 # ///
 """Exercise the editor and real export pipeline in a disposable workspace."""
 
+import hashlib
 import json
+import platform
 import shutil
 import sqlite3
 import subprocess
 import sys
 import tempfile
+import time
 import zipfile
 from pathlib import Path
 
@@ -39,6 +42,7 @@ def main() -> None:
             context = browser.new_context(viewport={"width": 1440, "height": 1000})
             context.tracing.start(screenshots=True, snapshots=True, sources=True)
             page = context.new_page()
+            launched = time.monotonic()
             console: list[str] = []
             page.on("pageerror", lambda error: console.append(str(error)))
             page.goto("http://127.0.0.1:1420")
@@ -53,22 +57,52 @@ def main() -> None:
             expect(
                 page.get_by_role("button", name="Refresh workspace", exact=True)
             ).to_be_enabled(timeout=30000)
+            initial_tree_seconds = time.monotonic() - launched
             page.screenshot(path=str(artifacts / "empty.png"))
             page.get_by_label("Workspace folder").fill(str(root))
+            workspace_started = time.monotonic()
             page.get_by_role("button", name="Open workspace", exact=True).click()
             expect(
                 page.get_by_role("button", name="Workspace", exact=True)
             ).to_have_text(root.name, timeout=30000)
+            tree_seconds = time.monotonic() - workspace_started
             page.get_by_text("Analysis", exact=True).click()
+            selected = time.monotonic()
             page.get_by_text("Precalculus", exact=True).click()
             expect(status).to_contain_text("not in the Anki package")
             expect(page.locator(".side-editor.front .cm-editor")).to_be_visible()
             expect(page.locator(".side-editor.back .cm-editor")).to_be_visible()
+            editable_seconds = time.monotonic() - selected
             front_math = page.locator(".side-editor.front .cm-content mjx-container")
             back_math = page.locator(".side-editor.back .cm-content mjx-container")
             # MathJax 4 sets \pi as the mathematical italic letter U+1D70B.
             expect(front_math).to_contain_text("\U0001d70b/6", timeout=30000)
             expect(back_math.first).to_be_visible()
+            renderer_seconds = time.monotonic() - selected
+            (artifacts / "startup.json").write_text(
+                json.dumps(
+                    {
+                        "revision": subprocess.check_output(
+                            ["git", "rev-parse", "HEAD"], cwd=repo, text=True
+                        ).strip(),
+                        "machine": platform.uname()._asdict(),
+                        "corpus": {
+                            "path": "Analysis/Precalculus.md",
+                            "sha256": hashlib.sha256(authored_source).hexdigest(),
+                            "bytes": len(authored_source),
+                            "package_bytes": 0,
+                        },
+                        "seconds": {
+                            "launch_to_default_tree": initial_tree_seconds,
+                            "workspace_to_tree": tree_seconds,
+                            "selection_to_editable": editable_seconds,
+                            "selection_to_rendered": renderer_seconds,
+                        },
+                    },
+                    indent=2,
+                )
+                + "\n"
+            )
             page.screenshot(path=str(artifacts / "rendered.png"))
             front_math.click()
             expect(front_math).to_have_count(0)

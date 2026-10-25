@@ -2,7 +2,72 @@ import { invoke, isTauri } from "@tauri-apps/api/core";
 import { watch } from "@tauri-apps/plugin-fs";
 import { z } from "zod";
 
+const generationSchema = z.number().int().nonnegative();
+export const digestSchema = z.string().regex(/^[a-f0-9]{64}$/);
+export const deckPathSchema = z
+  .string()
+  .refine(
+    (path) =>
+      path.endsWith(".md") &&
+      !path.startsWith("/") &&
+      !path.includes("\\") &&
+      path
+        .split("/")
+        .every((part) => part !== ".." && part !== "." && part !== "") &&
+      path.split("/")[0] !== "apkg",
+    "Use a relative Markdown deck path outside apkg/.",
+  );
+export const sessionSchema = z.object({
+  root: z.string().startsWith("/"),
+  generation: generationSchema,
+});
+const batchSchema = z.object({
+  workspace: z.string(),
+  generation: generationSchema,
+  paths: z.array(deckPathSchema).min(1).max(8),
+});
+export const discoveryRequestSchema = z.discriminatedUnion("action", [
+  z.object({
+    action: z.literal("manifest"),
+    workspace: z.string(),
+    generation: generationSchema,
+  }),
+  batchSchema.extend({ action: z.literal("sources") }),
+  batchSchema.extend({ action: z.literal("checks") }),
+]);
+export const manifestSchema = z.object({
+  session: sessionSchema,
+  entries: z.array(z.object({ path: deckPathSchema })),
+});
+export const sourceSchema = z.object({
+  path: deckPathSchema,
+  source: z.string(),
+  revision: digestSchema,
+});
+const pathFailureSchema = z.object({
+  state: z.literal("failed"),
+  path: deckPathSchema,
+  kind: z.enum([
+    "UnreadablePath",
+    "InvalidDeck",
+    "InvalidAssets",
+    "BackendFailure",
+    "CacheFailure",
+  ]),
+  message: z.string(),
+});
+export const sourcesSchema = z.object({
+  session: sessionSchema,
+  results: z.array(
+    z.discriminatedUnion("state", [
+      sourceSchema.extend({ state: z.literal("ready") }),
+      pathFailureSchema,
+    ]),
+  ),
+});
+
 export type Request =
+  | z.infer<typeof discoveryRequestSchema>
   | { action: "list" | "review"; workspace: string }
   | { action: "load" | "generate"; workspace: string; path: string }
   | { action: "organize"; workspace: string; changes: Change[] }
@@ -25,6 +90,22 @@ export const organizedSchema = z.object({
 });
 
 export const statusSchema = z.enum(["Up to date", "Unsynced", "Empty"]);
+export const packageResultSchema = z.object({
+  path: deckPathSchema,
+  revision: digestSchema,
+  status: statusSchema,
+  reasons: z.array(z.string()),
+  built: z.string().nullable(),
+});
+export const checksSchema = z.object({
+  session: sessionSchema,
+  results: z.array(
+    z.discriminatedUnion("state", [
+      packageResultSchema.extend({ state: z.literal("ready") }),
+      pathFailureSchema,
+    ]),
+  ),
+});
 const summarySchema = z.object({
   path: z.string(),
   status: statusSchema,

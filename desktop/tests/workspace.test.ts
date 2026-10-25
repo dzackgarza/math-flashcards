@@ -2,13 +2,138 @@ import { expect, test } from "bun:test";
 import { mkdtemp, mkdir } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
+import { z } from "zod";
 import {
   documentSchema,
+  manifestSchema,
+  sourcesSchema,
+  checksSchema,
+  discoveryRequestSchema,
   organizedSchema,
   reviewSchema,
   workspaceSchema,
   type Request,
 } from "../src/bridge";
+
+test("local discovery and bounded reads isolate a damaged deck and retain revision identity", async () => {
+  const directory = await mkdtemp(join(tmpdir(), "flashcards-discovery-"));
+  const backend = resolve(import.meta.dir, "../backend.py");
+  const find = Bun.spawnSync(["uv", "python", "find", "--script", backend]);
+  expect(find.exitCode).toBe(0);
+  const source = await Bun.file(
+    resolve(import.meta.dir, "../../decks/Analysis/Precalculus.md"),
+  ).text();
+  await Bun.write(join(directory, "Study.md"), source);
+  await Bun.write(join(directory, "Damaged.md"), new Uint8Array([0xff, 0xfe]));
+  await mkdir(join(directory, "apkg"));
+  await Bun.write(join(directory, "apkg/Notes.md"), "Package notes");
+  const execute = async (payload: string) => {
+    const process = Bun.spawn([find.stdout.toString().trim(), backend], {
+      stdin: new Blob([payload + "\n"]),
+      stdout: "pipe",
+      stderr: "pipe",
+      env: {
+        ...Bun.env,
+        XDG_CACHE_HOME: join(directory, "cache"),
+        UV_OFFLINE: "1",
+      },
+    });
+    const output = await new Response(process.stdout).text();
+    const error = await new Response(process.stderr).text();
+    return { code: await process.exited, output, error };
+  };
+  const call = async (payload: z.input<typeof discoveryRequestSchema>) => {
+    const result = await execute(JSON.stringify(payload));
+    expect(result.code, result.error).toBe(0);
+    return JSON.parse(result.output);
+  };
+  for (const invalid of [
+    { action: "manifest", workspace: directory },
+    { action: "manifest", workspace: directory, generation: -1 },
+    { action: "manifest", workspace: directory, generation: true },
+    {
+      action: "sources",
+      workspace: directory,
+      generation: 7,
+      paths: ["../Outside.md"],
+    },
+    {
+      action: "sources",
+      workspace: directory,
+      generation: 7,
+      paths: Array(9).fill("Study.md"),
+    },
+    { action: "unrecognized", workspace: directory, generation: 7 },
+  ]) {
+    const rejected = await execute(JSON.stringify(invalid));
+    expect(rejected.code).not.toBe(0);
+    expect(rejected.output).toBe("");
+  }
+  const manifest = manifestSchema.parse(
+    await call({ action: "manifest", workspace: directory, generation: 7 }),
+  );
+  expect(manifest).toEqual({
+    session: { root: directory, generation: 7 },
+    entries: [{ path: "Damaged.md" }, { path: "Study.md" }],
+  });
+  const response = sourcesSchema.parse(
+    await call({
+      action: "sources",
+      workspace: directory,
+      generation: 7,
+      paths: ["Damaged.md", "Study.md"],
+    }),
+  );
+  expect(response.session).toEqual(manifest.session);
+  expect(response.results[0]).toMatchObject({
+    state: "failed",
+    path: "Damaged.md",
+    kind: "UnreadablePath",
+  });
+  const study = response.results[1];
+  expect(study).toEqual({
+    state: "ready",
+    path: "Study.md",
+    source,
+    revision: new Bun.CryptoHasher("sha256").update(source).digest("hex"),
+  });
+  const edited = source.replace("Precalculus", "Local study");
+  await Bun.write(join(directory, "Study.md"), edited);
+  const next = sourcesSchema.parse(
+    await call({
+      action: "sources",
+      workspace: directory,
+      generation: 8,
+      paths: ["Study.md"],
+    }),
+  );
+  expect(next.results[0]).toEqual({
+    state: "ready",
+    path: "Study.md",
+    source: edited,
+    revision: new Bun.CryptoHasher("sha256").update(edited).digest("hex"),
+  });
+  const checks = checksSchema.parse(
+    await call({
+      action: "checks",
+      workspace: directory,
+      generation: 8,
+      paths: ["Damaged.md", "Study.md"],
+    }),
+  );
+  expect(checks.results[0]).toMatchObject({
+    state: "failed",
+    kind: "UnreadablePath",
+  });
+  expect(checks.results[1]).toMatchObject({
+    state: "ready",
+    path: "Study.md",
+    status: "Unsynced",
+    revision:
+      next.results[0].state === "ready" ? next.results[0].revision : "invalid",
+  });
+  expect(Bun.spawnSync(["trash", directory]).exitCode).toBe(0);
+}, 30000);
 
 test("a deck folder supports discovery, editing, and organization beside its export directory", async () => {
   const directory = await mkdtemp(join(tmpdir(), "flashcards-workspace-"));

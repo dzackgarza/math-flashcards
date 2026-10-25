@@ -4,6 +4,9 @@
 """Check installation and update with real build files and desktop tools."""
 
 import configparser
+import hashlib
+import json
+import os
 import subprocess
 import tempfile
 from pathlib import Path
@@ -32,12 +35,79 @@ def main() -> None:
         entry.read(entry_path)
         assert entry["Desktop Entry"]["Name"] == "Math Flashcards"
         subprocess.run(["desktop-file-validate", str(entry_path)], check=True)
-        for name in ("backend.py", "paired-cards.lua"):
+        for name in ("backend.py", "paired-cards.lua", "assets.json"):
             assert (
                 data / "math-flashcards" / "lib" / "Math Flashcards" / name
             ).read_bytes() == (
                 desktop / "src-tauri" / "target" / "release" / name
             ).read_bytes()
+        resources = data / "math-flashcards" / "lib" / "Math Flashcards"
+        python = (resources / "runtime.txt").read_text().strip()
+        workspace = root / "offline workspace"
+        workspace.mkdir()
+        source = (desktop.parent / "decks" / "Analysis" / "Precalculus.md").read_text()
+        deck = workspace / "Study.md"
+        deck.write_text(source)
+        # Linux network namespaces deny all remote access, including requests
+        # hidden inside dependencies: https://man7.org/linux/man-pages/man1/unshare.1.html
+        offline = [
+            "unshare",
+            "--user",
+            "--map-root-user",
+            "--net",
+            python,
+            str(resources / "backend.py"),
+        ]
+        environment = os.environ | {
+            "XDG_CACHE_HOME": str(root / "fresh cache"),
+            "UV_OFFLINE": "1",
+        }
+        listed = subprocess.run(
+            offline,
+            input=json.dumps({"action": "list", "workspace": str(workspace)}),
+            text=True,
+            capture_output=True,
+            check=True,
+            env=environment,
+        )
+        listing = json.loads(listed.stdout)
+        assert [item["path"] for item in listing["decks"]] == ["Study.md"]
+        assert listing["decks"][0]["source"] == source
+        assert (
+            listing["macros"]
+            == json.loads((resources / "assets.json").read_text())["macros"]
+        )
+        loaded = subprocess.run(
+            offline,
+            input=json.dumps(
+                {"action": "load", "workspace": str(workspace), "path": "Study.md"}
+            ),
+            text=True,
+            capture_output=True,
+            check=True,
+            env=environment,
+        )
+        document = json.loads(loaded.stdout)
+        assert document["source"] == source
+        assert document["hash"] == hashlib.sha256(source.encode()).hexdigest()
+        edited = source.replace("Precalculus", "Offline study")
+        subprocess.run(
+            offline,
+            input=json.dumps(
+                {
+                    "action": "save",
+                    "workspace": str(workspace),
+                    "path": "Study.md",
+                    "source": edited,
+                    "expected": document["hash"],
+                }
+            ),
+            text=True,
+            capture_output=True,
+            check=True,
+            env=environment,
+        )
+        assert deck.read_text() == edited
         command = commands / "math-flashcards"
         assert command.is_symlink()
         assert command.resolve() == data / "math-flashcards" / "launch"

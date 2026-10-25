@@ -30,3 +30,6 @@ Cargo.lock
 *.py.lock
 # Zettlr-pandoc-mathjax develop, cloned by `just desktop-dependencies`.
 .parser/
+# Prepared during install/update.
+assets.json
+runtime.txt

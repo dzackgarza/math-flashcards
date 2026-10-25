@@ -14,6 +14,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import os
 import sqlite3
 import subprocess
@@ -29,12 +30,19 @@ import ankdown.cli
 import cyclopts
 from filelock import FileLock
 from platformdirs import user_cache_path
-from pydantic import BaseModel, ConfigDict, Field, TypeAdapter
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    TypeAdapter,
+    field_validator,
+    model_validator,
+)
 from send2trash import send2trash
 
 EXPORTER = Path(ankdown.cli.__file__).parent
 PAIR_FILTER = Path(__file__).with_name("paired-cards.lua")
-type MacroDefinition = str | list[str | int]
+type MacroDefinition = str | tuple[str, int] | tuple[str, int, str]
 
 
 class Input(BaseModel):
@@ -44,6 +52,40 @@ class Input(BaseModel):
 
 class ListInput(Input):
     action: Literal["list"]
+
+
+class DiscoveryInput(Input):
+    generation: int = Field(ge=0, strict=True)
+
+
+class ManifestInput(DiscoveryInput):
+    action: Literal["manifest"]
+
+
+class BatchInput(DiscoveryInput):
+    paths: list[str] = Field(min_length=1, max_length=8)
+
+    @field_validator("paths")
+    @classmethod
+    def relative_decks(cls, values: list[str]) -> list[str]:
+        for value in values:
+            parts = value.split("/")
+            if (
+                not value.endswith(".md")
+                or "\\" in value
+                or parts[0] == "apkg"
+                or any(part in ("", ".", "..") for part in parts)
+            ):
+                raise ValueError("Use a relative Markdown deck path outside apkg/.")
+        return values
+
+
+class SourcesInput(BatchInput):
+    action: Literal["sources"]
+
+
+class ChecksInput(BatchInput):
+    action: Literal["checks"]
 
 
 class DeckInput(Input):
@@ -89,7 +131,15 @@ class Organized(BaseModel):
 
 
 type Request = Annotated[
-    ListInput | LoadInput | SaveInput | GenerateInput | OrganizeInput | ReviewInput,
+    ListInput
+    | LoadInput
+    | SaveInput
+    | GenerateInput
+    | OrganizeInput
+    | ReviewInput
+    | ManifestInput
+    | SourcesInput
+    | ChecksInput,
     Field(discriminator="action"),
 ]
 
@@ -127,6 +177,78 @@ class Sync(BaseModel):
     status: Status
     reasons: list[str]
     built: str | None
+
+
+class Session(BaseModel):
+    root: str
+    generation: int = Field(ge=0, strict=True)
+
+
+class Entry(BaseModel):
+    path: str
+
+
+class Manifest(BaseModel):
+    session: Session
+    entries: list[Entry]
+
+
+type Digest = Annotated[str, Field(pattern=r"^[a-f0-9]{64}$")]
+
+
+class AssetSet(BaseModel):
+    identity: Digest
+    macros: dict[str, MacroDefinition]
+    stmaryrd: str = Field(min_length=1)
+    renderer: str = Field(min_length=1)
+
+    @model_validator(mode="after")
+    def verify_identity(self) -> AssetSet:
+        if self.identity != asset_identity(self.macros, self.stmaryrd, self.renderer):
+            raise ValueError(
+                "The installed renderer assets are damaged. Run just desktop-install."
+            )
+        return self
+
+
+class MathJaxPackage(BaseModel):
+    version: str
+
+
+class SourceResult(BaseModel):
+    state: Literal["ready"] = "ready"
+    path: str
+    source: str
+    revision: Digest
+
+
+class PathFailure(BaseModel):
+    state: Literal["failed"] = "failed"
+    path: str
+    kind: Literal[
+        "UnreadablePath",
+        "InvalidDeck",
+        "InvalidAssets",
+        "BackendFailure",
+        "CacheFailure",
+    ]
+    message: str
+
+
+class Sources(BaseModel):
+    session: Session
+    results: list[Annotated[SourceResult | PathFailure, Field(discriminator="state")]]
+
+
+class PackageResult(Sync):
+    state: Literal["ready"] = "ready"
+    path: str
+    revision: Digest
+
+
+class Checks(BaseModel):
+    session: Session
+    results: list[Annotated[PackageResult | PathFailure, Field(discriminator="state")]]
 
 
 class Summary(BaseModel):
@@ -237,26 +359,32 @@ def database() -> Iterator[sqlite3.Connection]:
 
 
 def refresh_macros() -> tuple[str, str]:
-    """Fetch the macro set and the stmaryrd package from pandoc-config main and
-    record their digest."""
+    """Fetch both renderer inputs during software maintenance."""
     macros = ankdown.cli.fetch_macros()
     stmaryrd = ankdown.cli.fetch_stmaryrd()
-    with database() as connection:
-        connection.execute(
-            "INSERT OR REPLACE INTO macros VALUES (0, ?)",
-            (digest((macros + stmaryrd).encode()),),
-        )
     return macros, stmaryrd
 
 
-# Listing a workspace and generating a package read pandoc-config main; status
-# checks compare with the set read last, so saving needs no network.
+def asset_identity(
+    macros: dict[str, MacroDefinition], stmaryrd: str, renderer: str
+) -> str:
+    return digest(
+        json.dumps(
+            [macros, stmaryrd, renderer], sort_keys=True, separators=(",", ":")
+        ).encode()
+    )
+
+
+@cache
+def installed_assets() -> AssetSet:
+    path = Path(__file__).with_name("assets.json")
+    if not path.is_file():
+        raise ValueError("The renderer assets are missing. Run just desktop-install.")
+    return AssetSet.model_validate_json(path.read_bytes())
+
+
 def macros_digest() -> str:
-    with database() as connection:
-        row = connection.execute("SELECT digest FROM macros").fetchone()
-    if row is None:
-        raise ValueError("Open the workspace to read the macros from pandoc-config.")
-    return row[0]
+    return installed_assets().identity
 
 
 @cache
@@ -432,7 +560,6 @@ def generate(root: Path, path: Path) -> Generated:
                     for file in media_paths(deck, root, scratch).values()
                     if not file.is_relative_to(scratch)
                 ]
-                refresh_macros()
                 inputs = input_hashes(path, media)
                 if inputs[str(path)] != digest(source.encode()):
                     raise ValueError(
@@ -552,14 +679,66 @@ def publish_changes(root: Path, changes: list[Change]) -> Organized:
 
 def dispatch(
     request: Request,
-) -> Workspace | Document | Generated | Organized | Review:
+) -> (
+    Workspace | Document | Generated | Organized | Review | Manifest | Sources | Checks
+):
     root = workspace_path(request.workspace)
+    if isinstance(request, ManifestInput):
+        return Manifest(
+            session=Session(root=str(root), generation=request.generation),
+            entries=[
+                Entry(path=str(path.relative_to(root))) for path in deck_paths(root)
+            ],
+        )
+    if isinstance(request, SourcesInput | ChecksInput):
+        # Resolve the complete batch before reading anything. A path outside
+        # the workspace rejects the request, including symlink escapes.
+        paths = [deck_path(root, name) for name in request.paths]
+        sources: list[SourceResult | PathFailure] = []
+        checks: list[PackageResult | PathFailure] = []
+        for name, path in zip(request.paths, paths, strict=True):
+            try:
+                raw = path.read_bytes()
+                source = raw.decode("utf-8")
+                revision = digest(raw)
+                if isinstance(request, SourcesInput):
+                    sources.append(
+                        SourceResult(path=name, source=source, revision=revision)
+                    )
+                    continue
+                state = sync(path, package_path(root, path))
+                if digest(path.read_bytes()) != revision:
+                    raise ValueError(
+                        "The deck changed during verification. Check it again."
+                    )
+                checks.append(
+                    PackageResult(
+                        path=name,
+                        revision=revision,
+                        status=state.status,
+                        reasons=state.reasons,
+                        built=state.built,
+                    )
+                )
+            except (OSError, UnicodeError) as error:
+                failure = PathFailure(
+                    path=name, kind="UnreadablePath", message=str(error)
+                )
+                sources.append(failure)
+                checks.append(failure)
+            except ValueError as error:
+                checks.append(
+                    PathFailure(path=name, kind="InvalidDeck", message=str(error))
+                )
+        session = Session(root=str(root), generation=request.generation)
+        if isinstance(request, SourcesInput):
+            return Sources(session=session, results=sources)
+        return Checks(session=session, results=checks)
     if isinstance(request, OrganizeInput):
         return publish_changes(root, request.changes)
-    paths = deck_paths(root)
     if isinstance(request, ReviewInput):
         pending: list[Pending] = []
-        for path in paths:
+        for path in deck_paths(root):
             state = sync(path, package_path(root, path))
             if state.status == "Unsynced":
                 pending.append(
@@ -573,9 +752,9 @@ def dispatch(
                 )
         return Review(decks=pending)
     if isinstance(request, ListInput):
-        macros, stmaryrd = refresh_macros()
+        assets = installed_assets()
         summaries: list[Summary] = []
-        for path in paths:
+        for path in deck_paths(root):
             state = sync(path, package_path(root, path))
             summaries.append(
                 Summary(
@@ -588,8 +767,8 @@ def dispatch(
         return Workspace(
             root=str(root),
             decks=summaries,
-            macros=TypeAdapter(dict[str, MacroDefinition]).validate_json(macros),
-            stmaryrd=stmaryrd,
+            macros=assets.macros,
+            stmaryrd=assets.stmaryrd,
         )
     path = deck_path(root, request.path)
     output = package_path(root, path)
@@ -621,6 +800,38 @@ def dispatch(
 
 
 app = cyclopts.App()
+
+
+@app.command
+def prepare() -> None:
+    """Prepare local renderer assets and the interpreter before app launch."""
+    directory = Path(__file__).resolve().parent
+    renderer = MathJaxPackage.model_validate_json(
+        (directory / "node_modules" / "mathjax" / "package.json").read_bytes()
+    ).version
+    raw, stmaryrd = refresh_macros()
+    macros = TypeAdapter(dict[str, MacroDefinition]).validate_json(raw)
+    assets = AssetSet(
+        identity=asset_identity(macros, stmaryrd, renderer),
+        macros=macros,
+        stmaryrd=stmaryrd,
+        renderer=renderer,
+    )
+    with tempfile.TemporaryDirectory(
+        prefix=".flashcards-runtime-", dir=directory
+    ) as temporary:
+        staged = Path(temporary)
+        (staged / "assets.json").write_text(assets.model_dump_json())
+        (staged / "runtime.txt").write_text(sys.executable + "\n")
+        for name in ("assets.json", "runtime.txt"):
+            destination = directory / name
+            if (
+                destination.is_file()
+                and destination.read_bytes() == (staged / name).read_bytes()
+            ):
+                continue
+            (staged / name).replace(destination)
+    print(assets.identity)
 
 
 @app.command

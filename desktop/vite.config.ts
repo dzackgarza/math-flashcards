@@ -1,10 +1,12 @@
 import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
 import { viteStaticCopy } from "vite-plugin-static-copy";
-import { execFile, spawn } from "node:child_process";
-import { promisify } from "node:util";
+import { spawn } from "node:child_process";
+import { readFile } from "node:fs/promises";
 import { text } from "node:stream/consumers";
 import { fileURLToPath } from "node:url";
+import pLimit from "p-limit";
+import { z } from "zod";
 
 // Vite's development middleware runs the same bridge as the native command.
 // https://vite.dev/guide/api-plugin.html#configureserver
@@ -12,6 +14,10 @@ function workbenchBackend(): Plugin {
   return {
     name: "workbench-backend",
     configureServer(server) {
+      // Separate limits reserve foreground capacity during verification:
+      // https://github.com/sindresorhus/p-limit#usage
+      const foreground = pLimit(1);
+      const background = pLimit(1);
       const watched = new Set<string>();
       server.middlewares.use("/api/watch", async (request, response) => {
         if (
@@ -47,43 +53,67 @@ function workbenchBackend(): Plugin {
           return;
         }
         const body = await text(request);
-        // Listing and generation upgrade the script environment to the latest
-        // versions; every request runs its interpreter, so
-        // no other request reads the network.
-        // https://docs.astral.sh/uv/guides/scripts/
+        // Installation prepares this interpreter; document work never installs dependencies.
         const script = fileURLToPath(new URL("./backend.py", import.meta.url));
-        const { action } = JSON.parse(body) as { action: string };
-        const uv = async (args: string[]) =>
-          (
-            await promisify(execFile)("uv", [...args, "--script", script])
-          ).stdout.trim();
-        let python: string;
-        try {
-          if (action === "list" || action === "generate")
-            await uv(["sync", "--upgrade"]);
-          python = await uv(["python", "find"]);
-        } catch (error) {
-          response.writeHead(500).end((error as Error).message);
+        const scope = z
+          .object({ action: z.string() })
+          .safeParse(JSON.parse(body));
+        if (!scope.success) {
+          response.writeHead(400).end(scope.error.message);
           return;
         }
-        const child = spawn(python, [script]);
-        const stdout = text(child.stdout);
-        const stderr = text(child.stderr);
-        child.on("error", (error) =>
-          response.writeHead(500).end(error.message),
-        );
-        child.on("close", async (code) => {
-          const result = await stdout;
-          const diagnostics = await stderr;
-          response.setHeader(
-            "Content-Type",
-            code === 0 ? "application/json" : "text/plain",
-          );
-          response
-            .writeHead(code === 0 ? 200 : 422)
-            .end(code === 0 ? result : diagnostics);
+        const { action } = scope.data;
+        const queue = [
+          "sources",
+          "checks",
+          "review",
+          "generate",
+          "list",
+        ].includes(action)
+          ? background
+          : foreground;
+        await queue(async () => {
+          let python: string;
+          try {
+            python = (
+              await readFile(new URL("./runtime.txt", import.meta.url), "utf8")
+            ).trim();
+          } catch (error) {
+            response
+              .writeHead(500)
+              .end(
+                "The prepared Python runtime is missing. Run just desktop-dependencies. " +
+                  String(error),
+              );
+            return;
+          }
+          await new Promise<void>((resolve) => {
+            const child = spawn(python, [script]);
+            const stdout = text(child.stdout);
+            const stderr = text(child.stderr);
+            child.on("error", (error) => {
+              response.writeHead(500).end(error.message);
+              resolve();
+            });
+            child.on("close", async (code) => {
+              if (response.writableEnded) {
+                resolve();
+                return;
+              }
+              const result = await stdout;
+              const diagnostics = await stderr;
+              response.setHeader(
+                "Content-Type",
+                code === 0 ? "application/json" : "text/plain",
+              );
+              response
+                .writeHead(code === 0 ? 200 : 422)
+                .end(code === 0 ? result : diagnostics);
+              resolve();
+            });
+            child.stdin.end(body + "\n");
+          });
         });
-        child.stdin.end(body + "\n");
       });
     },
   };

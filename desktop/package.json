@@ -47,6 +47,7 @@
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "@vitejs/plugin-react": "latest",
+    "p-limit": "^7.3.3",
     "start-server-and-test": "latest",
     "typescript": "latest",
     "vite": "latest",

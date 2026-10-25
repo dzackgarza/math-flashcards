@@ -16,16 +16,31 @@ struct WorkspaceScope {
     root: PathBuf,
 }
 
+#[derive(serde::Deserialize)]
+struct ManifestScope {
+    session: WorkspaceScope,
+}
+
+struct RequestSlots {
+    foreground: Arc<Semaphore>,
+    background: Arc<Semaphore>,
+}
+
 // Tauri's command boundary: https://v2.tauri.app/develop/calling-rust/
 #[tauri::command]
 async fn request(
     app: tauri::AppHandle,
-    slots: tauri::State<'_, Arc<Semaphore>>,
+    slots: tauri::State<'_, RequestSlots>,
     payload: String,
 ) -> Result<String, String> {
     // Tokio bounds native backend concurrency: https://docs.rs/tokio/latest/tokio/sync/struct.Semaphore.html
-    let permit = slots
-        .inner()
+    let scope: Scope = serde_json::from_str(&payload).map_err(|e| e.to_string())?;
+    let queue = match scope.action.as_str() {
+        "sources" | "checks" | "review" | "generate" | "list" => &slots.background,
+        _ => &slots.foreground,
+    };
+    // Background batches cannot take the foreground permit.
+    let permit = queue
         .clone()
         .acquire_owned()
         .await
@@ -38,29 +53,11 @@ async fn request(
         let _permit = permit;
         let scope: Scope = serde_json::from_str(&payload).map_err(|e| e.to_string())?;
         eprintln!("Backend request: {}", scope.action);
-        // Listing and generation upgrade the script environment to the latest
-        // versions; every request runs its interpreter, so
-        // no other request reads the network.
-        // https://docs.astral.sh/uv/guides/scripts/
-        let uv = |args: &[&str]| -> Result<String, String> {
-            let output = Command::new("uv")
-                .args(args)
-                .arg("--script")
-                .arg(&script)
-                .output()
-                .map_err(|e| format!("Could not start uv: {e}"))?;
-            if !output.status.success() {
-                return Err(String::from_utf8_lossy(&output.stderr).into_owned());
-            }
-            String::from_utf8(output.stdout)
-                .map(|path| path.trim().to_owned())
-                .map_err(|e| e.to_string())
-        };
-        if scope.action == "list" || scope.action == "generate" {
-            uv(&["sync", "--upgrade"])?;
-        }
-        let python = uv(&["python", "find"])?;
-        let mut child = Command::new(python)
+        let python =
+            std::fs::read_to_string(script.with_file_name("runtime.txt")).map_err(|e| {
+                format!("The installed Python runtime is missing. Run just desktop-install. {e}")
+            })?;
+        let mut child = Command::new(python.trim())
             .arg(&script)
             .stdin(Stdio::piped())
             .stdout(Stdio::piped())
@@ -86,6 +83,13 @@ async fn request(
                 .allow_directory(root.root, true)
                 .map_err(|e| e.to_string())?;
         }
+        if scope.action == "manifest" {
+            let manifest: ManifestScope =
+                serde_json::from_slice(&output.stdout).map_err(|e| e.to_string())?;
+            app.fs_scope()
+                .allow_directory(manifest.session.root, true)
+                .map_err(|e| e.to_string())?;
+        }
         String::from_utf8(output.stdout).map_err(|e| e.to_string())
     })
     .await
@@ -95,7 +99,10 @@ async fn request(
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
-        .manage(Arc::new(Semaphore::new(2)))
+        .manage(RequestSlots {
+            foreground: Arc::new(Semaphore::new(1)),
+            background: Arc::new(Semaphore::new(1)),
+        })
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_store::Builder::default().build())
         .plugin(tauri_plugin_fs::init())
