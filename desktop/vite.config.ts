@@ -3,10 +3,26 @@ import react from "@vitejs/plugin-react";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 import { spawn } from "node:child_process";
 import { readFile } from "node:fs/promises";
+import { readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { text } from "node:stream/consumers";
 import { fileURLToPath } from "node:url";
 import pLimit from "p-limit";
 import { z } from "zod";
+
+const checkerIdentity = createHash("sha256");
+for (const source of [
+  "./src/cards.ts",
+  "./src/math.ts",
+  "./src/problems.ts",
+  "./src/bridge.ts",
+  "./bun.lock",
+  import.meta.resolve("@lezer/markdown"),
+]) {
+  checkerIdentity
+    .update(readFileSync(new URL(source, import.meta.url)))
+    .update("\0");
+}
 
 // Vite's development middleware runs the same bridge as the native command.
 // https://vite.dev/guide/api-plugin.html#configureserver
@@ -65,6 +81,8 @@ function workbenchBackend(): Plugin {
         const { action } = scope.data;
         const queue = [
           "assets",
+          "problems",
+          "store-problems",
           "sources",
           "checks",
           "review",
@@ -133,6 +151,7 @@ export default defineConfig({
     ],
   },
   define: {
+    __CHECKER_IDENTITY__: JSON.stringify(checkerIdentity.digest("hex")),
     __DEFAULT_WORKSPACE__: JSON.stringify(
       fileURLToPath(new URL("../decks", import.meta.url)),
     ),

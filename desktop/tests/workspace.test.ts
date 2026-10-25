@@ -91,7 +91,7 @@ test("persisted problems require current file bytes, checker, and renderer ident
   const stale = problemCacheSchema.parse(
     await call({ ...input, action: "problems", entries: [entry] }),
   );
-  expect(stale.results).toEqual([{ state: "pending", path }]);
+  expect(stale.results).toEqual([{ state: "superseded", path }]);
   const superseded = problemStoredSchema.parse(
     await call({
       ...input,

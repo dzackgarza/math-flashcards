@@ -21,7 +21,7 @@ import subprocess
 import sys
 import tempfile
 from collections.abc import Iterator
-from contextlib import contextmanager
+from contextlib import closing, contextmanager
 from functools import cache
 from pathlib import Path
 from typing import Annotated, Literal
@@ -140,6 +140,10 @@ class StoreProblemsInput(ProblemCacheInput):
     entries: list[ProblemEntry] = Field(min_length=1, max_length=8)
 
 
+class RebuildCacheInput(DiscoveryInput):
+    action: Literal["rebuild-cache"]
+
+
 class DeckInput(Input):
     path: str
 
@@ -196,7 +200,8 @@ type Request = Annotated[
     | SourcesInput
     | ChecksInput
     | ReadProblemsInput
-    | StoreProblemsInput,
+    | StoreProblemsInput
+    | RebuildCacheInput,
     Field(discriminator="action"),
 ]
 
@@ -312,7 +317,7 @@ class CachedProblems(ProblemEntry):
 
 
 class PendingProblems(BaseModel):
-    state: Literal["pending"] = "pending"
+    state: Literal["pending", "superseded"] = "pending"
     path: str
 
 
@@ -333,6 +338,11 @@ class ProblemCache(BaseModel):
 class ProblemStored(BaseModel):
     session: Session
     results: list[Annotated[StoredProblems | PathFailure, Field(discriminator="state")]]
+
+
+class CacheRebuilt(BaseModel):
+    session: Session
+    rebuilt: Literal[True] = True
 
 
 class Summary(BaseModel):
@@ -458,20 +468,31 @@ def derived_database() -> Iterator[sqlite3.Connection]:
     """Disposable records use a separate SQLite file from build provenance."""
     directory = user_cache_path("math-flashcards")
     directory.mkdir(parents=True, exist_ok=True)
-    with FileLock(directory / "derived.lock", timeout=0.1):
-        with sqlite3.connect(directory / "derived.sqlite3", timeout=0.1) as connection:
-            connection.execute(
-                "CREATE TABLE IF NOT EXISTS problem_checks ("
-                "root TEXT NOT NULL, path TEXT NOT NULL, revision TEXT NOT NULL, "
-                "producer TEXT NOT NULL, assets TEXT NOT NULL, record TEXT NOT NULL, "
-                "PRIMARY KEY (root, path))"
-            )
-            yield connection
+    with (
+        FileLock(directory / "derived.lock", timeout=0.1),
+        closing(
+            sqlite3.connect(directory / "derived.sqlite3", timeout=0.1)
+        ) as connection,
+        connection,
+    ):
+        connection.execute(
+            "CREATE TABLE IF NOT EXISTS problem_checks ("
+            "root TEXT NOT NULL, path TEXT NOT NULL, revision TEXT NOT NULL, "
+            "producer TEXT NOT NULL, assets TEXT NOT NULL, record TEXT NOT NULL, "
+            "PRIMARY KEY (root, path))"
+        )
+        yield connection
 
 
 def problem_cache(
     root: Path, request: ReadProblemsInput | StoreProblemsInput
 ) -> ProblemCache | ProblemStored:
+    producer_key = digest(
+        (
+            request.producer
+            + json.dumps(CachedProblems.model_json_schema(), sort_keys=True)
+        ).encode()
+    )
     paths = [deck_path(root, entry.path) for entry in request.entries]
     read: list[CachedProblems | PendingProblems | PathFailure] = []
     stored: list[StoredProblems | PathFailure] = []
@@ -486,7 +507,7 @@ def problem_cache(
             stored.append(failure)
             continue
         if revision != entry.revision:
-            read.append(PendingProblems(path=entry.path))
+            read.append(PendingProblems(path=entry.path, state="superseded"))
             stored.append(StoredProblems(path=entry.path, state="superseded"))
             continue
         try:
@@ -505,7 +526,7 @@ def problem_cache(
                             str(root),
                             entry.path,
                             entry.revision,
-                            request.producer,
+                            producer_key,
                             request.assets,
                             record.model_dump_json(),
                         ),
@@ -520,7 +541,7 @@ def problem_cache(
                         str(root),
                         entry.path,
                         entry.revision,
-                        request.producer,
+                        producer_key,
                         request.assets,
                     ),
                 ).fetchone()
@@ -545,7 +566,11 @@ def problem_cache(
             read.append(record)
         except (sqlite3.Error, ValidationError, OSError, Timeout) as error:
             failure = PathFailure(
-                path=entry.path, kind="CacheFailure", message=str(error)
+                path=entry.path,
+                kind="CacheFailure",
+                message="Saved Problems data is damaged. Rebuild cached data."
+                if isinstance(error, ValidationError)
+                else str(error),
             )
             read.append(failure)
             stored.append(failure)
@@ -881,10 +906,27 @@ def dispatch(
     | AssetSet
     | ProblemCache
     | ProblemStored
+    | CacheRebuilt
 ):
     if isinstance(request, AssetsInput):
         return installed_assets()
     root = workspace_path(request.workspace)
+    if isinstance(request, RebuildCacheInput):
+        directory = user_cache_path("math-flashcards")
+        directory.mkdir(parents=True, exist_ok=True)
+        with FileLock(directory / "derived.lock", timeout=0.1):
+            for name in (
+                "derived.sqlite3",
+                "derived.sqlite3-wal",
+                "derived.sqlite3-shm",
+                "derived.sqlite3-journal",
+            ):
+                path = directory / name
+                if path.is_file():
+                    send2trash(path)
+        return CacheRebuilt(
+            session=Session(root=str(root), generation=request.generation)
+        )
     if isinstance(request, ReadProblemsInput | StoreProblemsInput):
         return problem_cache(root, request)
     if isinstance(request, ManifestInput):

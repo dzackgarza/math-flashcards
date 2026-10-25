@@ -7,6 +7,7 @@
 import argparse
 import hashlib
 import json
+import os
 import platform
 import shutil
 import sqlite3
@@ -95,10 +96,9 @@ def startup() -> None:
 
 
 def main() -> None:
-    # The Chromium build that the resolved Playwright version drives:
-    # https://playwright.dev/python/docs/browsers#install-browsers
-    subprocess.run(
-        [sys.executable, "-m", "playwright", "install", "chromium"], check=True
+    cache_root = Path(os.environ["XDG_CACHE_HOME"])
+    assert cache_root.name.startswith("flashcards-browser-cache-"), (
+        "Run this scenario through just desktop-test."
     )
     repo = Path(__file__).resolve().parents[1]
     artifacts = repo / "test-artifacts"
@@ -390,10 +390,148 @@ def main() -> None:
                 page.screenshot(
                     path=str(artifacts / f"layout-{width}.png"), full_page=True
                 )
-            assert not console, console
-            context.tracing.stop(path=str(artifacts / "trace.zip"))
-            (artifacts / "browser-errors.json").write_text(json.dumps(console))
-            browser.close()
+            try:
+                page.set_viewport_size({"width": 1440, "height": 1000})
+                expect(page.locator(".workspace-progress")).to_have_text(
+                    "Workspace checks complete", timeout=60000
+                )
+                derived = cache_root / "math-flashcards" / "derived.sqlite3"
+                provenance = cache_root / "math-flashcards" / "builds.sqlite3"
+                broken = root / "Analysis" / "Broken.md"
+                with sqlite3.connect(provenance) as database:
+                    original_build = database.execute(
+                        "SELECT record FROM deck_builds WHERE path = ?",
+                        (str(deck_path),),
+                    ).fetchone()[0]
+                with sqlite3.connect(derived) as database:
+                    stored = json.loads(
+                        database.execute(
+                            "SELECT record FROM problem_checks WHERE root = ? AND path = ?",
+                            (str(root), "Analysis/Broken.md"),
+                        ).fetchone()[0]
+                    )
+                assert (
+                    stored["revision"]
+                    == hashlib.sha256(broken.read_bytes()).hexdigest()
+                )
+                assert len(stored["problems"]) == 2
+                page.screenshot(path=str(artifacts / "cache-cold.png"))
+
+                def restore_workspace() -> None:
+                    page.on("pageerror", lambda error: console.append(str(error)))
+                    page.goto("http://127.0.0.1:1420")
+                    page.get_by_role("button", name="Workspace", exact=True).click()
+                    expect(page.get_by_label("Workspace folder")).to_have_value(
+                        str(repo.parent / "decks"), timeout=30000
+                    )
+                    page.get_by_label("Workspace folder").fill(str(root))
+                    page.get_by_role(
+                        "button", name="Open workspace", exact=True
+                    ).click()
+                    expect(
+                        page.get_by_role("button", name="Workspace", exact=True)
+                    ).to_have_text(root.name)
+
+                page.close()
+                page = context.new_page()
+                with page.expect_response(
+                    lambda response: (
+                        response.url.endswith("/api/request")
+                        and response.request.post_data_json.get("action") == "problems"
+                        and response.request.post_data_json.get("workspace")
+                        == str(root)
+                    )
+                ) as cached_response:
+                    restore_workspace()
+                cached = cached_response.value.json()
+                assert any(
+                    result["state"] == "ready"
+                    and result["path"] == "Analysis/Broken.md"
+                    for result in cached["results"]
+                )
+                expect(page.locator(".workspace-progress")).to_have_text(
+                    "Workspace checks complete", timeout=30000
+                )
+                page.get_by_role("button", name="Show problems", exact=True).click()
+                expect(
+                    page.get_by_role("dialog", name="3 problems", exact=True)
+                ).to_contain_text("Undefined control sequence \\undefinedmacro")
+                page.screenshot(
+                    path=str(artifacts / "cache-warm.png"), animations="disabled"
+                )
+
+                page.close()
+                page = context.new_page()
+                original = broken.read_text()
+                edited = original.replace(r"\undefinedmacro", r"\undefinedmacrO")
+                metadata = broken.stat()
+                broken.write_text(edited)
+                os.utime(broken, ns=(metadata.st_atime_ns, metadata.st_mtime_ns))
+                restore_workspace()
+                expect(page.locator(".workspace-progress")).to_have_text(
+                    "Workspace checks complete", timeout=30000
+                )
+                page.get_by_role("button", name="Show problems", exact=True).click()
+                drawer = page.get_by_role("dialog", name="3 problems", exact=True)
+                expect(drawer).to_contain_text(
+                    "Undefined control sequence \\undefinedmacrO"
+                )
+                page.screenshot(
+                    path=str(artifacts / "cache-revalidated.png"), animations="disabled"
+                )
+
+                page.close()
+                page = context.new_page()
+                authored_cache_source = deck_path.read_bytes()
+                with sqlite3.connect(derived) as database:
+                    database.execute(
+                        "UPDATE problem_checks SET record = ? WHERE root = ? AND path = ?",
+                        ("damaged record", str(root), "Analysis/Broken.md"),
+                    )
+                restore_workspace()
+                rebuild = page.get_by_role(
+                    "button", name="Rebuild cached data", exact=True
+                )
+                expect(rebuild).to_be_visible(timeout=30000)
+                page.screenshot(path=str(artifacts / "cache-damaged.png"))
+                rebuild.click()
+                expect(rebuild).not_to_be_visible(timeout=30000)
+                expect(page.locator(".workspace-progress")).to_have_text(
+                    "Workspace checks complete", timeout=30000
+                )
+                with sqlite3.connect(derived) as database:
+                    rebuilt = json.loads(
+                        database.execute(
+                            "SELECT record FROM problem_checks WHERE root = ? AND path = ?",
+                            (str(root), "Analysis/Broken.md"),
+                        ).fetchone()[0]
+                    )
+                assert (
+                    rebuilt["revision"]
+                    == hashlib.sha256(broken.read_bytes()).hexdigest()
+                )
+                assert any(
+                    problem["message"] == "Undefined control sequence \\undefinedmacrO"
+                    for problem in rebuilt["problems"]
+                )
+                with sqlite3.connect(provenance) as database:
+                    assert (
+                        database.execute(
+                            "SELECT record FROM deck_builds WHERE path = ?",
+                            (str(deck_path),),
+                        ).fetchone()[0]
+                        == original_build
+                    )
+                assert package.read_bytes() == good_package
+                assert deck_path.read_bytes() == authored_cache_source
+                assert broken.read_text() == edited
+                page.screenshot(path=str(artifacts / "cache-rebuilt.png"))
+                assert not console, console
+            finally:
+                page.screenshot(path=str(artifacts / "cache-last.png"))
+                context.tracing.stop(path=str(artifacts / "trace.zip"))
+                (artifacts / "browser-errors.json").write_text(json.dumps(console))
+                browser.close()
     print(
         "Edits save automatically; the open deck follows its file; the review lists changes; APKG includes saved cards."
     )
@@ -403,6 +541,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--startup", action="store_true")
     arguments = parser.parse_args()
+    # Install the Chromium build of the resolved Playwright version for every scenario.
+    # https://playwright.dev/python/docs/browsers#install-browsers
+    subprocess.run(
+        [sys.executable, "-m", "playwright", "install", "chromium"], check=True
+    )
     if arguments.startup:
         startup()
     else:

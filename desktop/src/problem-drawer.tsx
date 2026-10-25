@@ -11,6 +11,12 @@ import {
 import { previewHtml, type MathJaxRuntime } from "./math";
 import { deckName } from "./organize";
 import { problemBatches, type Problem } from "./problems";
+import {
+  request,
+  problemCacheSchema,
+  problemStoredSchema,
+  type CheckErrorKind,
+} from "./bridge";
 
 const colors = {
   LaTeX: "red",
@@ -22,57 +28,194 @@ const colors = {
 // Yield between cards and report coverage separately from problem counts.
 export function useProblems(
   mathjax: MathJaxRuntime | null,
-  decks: { path: string; source: string }[],
+  decks: { path: string; source: string; revision: string }[],
   assetIdentity: string,
-): { problems: Problem[]; checked: number } {
+  root: string,
+  generation: number,
+  cacheEpoch: number,
+): {
+  problems: Problem[];
+  checked: number;
+  error: string;
+  cacheFailure: boolean;
+} {
   const checked = useRef(
     new Map<
       string,
-      { source: string; assetIdentity: string; problems: Problem[] }
+      {
+        root: string;
+        source: string;
+        assetIdentity: string;
+        cacheEpoch: number;
+        problems: Problem[];
+      }
     >(),
   );
   const [, publish] = useState(0);
+  const [failure, setFailure] = useState<{
+    root: string;
+    kind: CheckErrorKind;
+    message: string;
+  } | null>(null);
   useEffect(() => {
-    if (!mathjax) return;
+    if (!mathjax || !root || !assetIdentity) return;
     let cancelled = false;
+    setFailure(null);
+    const current = (deck: { path: string; source: string }) => {
+      const result = checked.current.get(deck.path);
+      return (
+        result?.root === root &&
+        result.source === deck.source &&
+        result.assetIdentity === assetIdentity &&
+        result.cacheEpoch === cacheEpoch
+      );
+    };
+    const input = {
+      workspace: root,
+      generation,
+      producer: __CHECKER_IDENTITY__,
+      assets: assetIdentity,
+    };
     (async () => {
-      for (const deck of decks) {
-        const previous = checked.current.get(deck.path);
-        if (
-          previous?.source === deck.source &&
-          previous.assetIdentity === assetIdentity
-        )
-          continue;
-        const problems: Problem[] = [];
-        for (const batch of problemBatches(mathjax, deck.path, deck.source)) {
-          problems.push(...batch);
-          await new Promise((resolve) => setTimeout(resolve));
+      let cacheHealthy = true;
+      for (let offset = 0; offset < decks.length; offset += 8) {
+        const pending = decks
+          .slice(offset, offset + 8)
+          .filter((deck) => !current(deck));
+        if (!pending.length) continue;
+        const unavailable = new Set<string>();
+        if (cacheHealthy) {
+          const response = await request(
+            {
+              ...input,
+              action: "problems",
+              entries: pending.map(({ path, revision }) => ({
+                path,
+                revision,
+              })),
+            },
+            problemCacheSchema,
+          );
           if (cancelled) return;
+          if (
+            response.session.root !== root ||
+            response.session.generation !== generation
+          )
+            throw new Error(
+              "The problem cache belongs to another workspace session.",
+            );
+          for (const result of response.results) {
+            const deck = pending.find((deck) => deck.path === result.path);
+            if (!deck)
+              throw new Error(
+                "The problem cache returned a deck outside its request.",
+              );
+            if (result.state === "ready") {
+              if (
+                result.revision !== deck.revision ||
+                result.producer !== input.producer ||
+                result.assets !== assetIdentity
+              )
+                throw new Error(
+                  "The saved Problems result has a different input identity.",
+                );
+              checked.current.set(deck.path, {
+                root,
+                source: deck.source,
+                assetIdentity,
+                cacheEpoch,
+                problems: result.problems,
+              });
+              continue;
+            }
+            if (result.state === "superseded") unavailable.add(result.path);
+            if (result.state === "failed") {
+              setFailure({
+                root,
+                kind: result.kind,
+                message: result.path + ": " + result.message,
+              });
+              if (result.kind === "CacheFailure") cacheHealthy = false;
+              else unavailable.add(result.path);
+            }
+          }
+          publish((version) => version + 1);
         }
-        checked.current.set(deck.path, {
-          source: deck.source,
-          assetIdentity,
-          problems,
-        });
-        publish((version) => version + 1);
-        await new Promise((resolve) => setTimeout(resolve));
-        if (cancelled) return;
+        for (const deck of pending) {
+          if (current(deck) || unavailable.has(deck.path)) continue;
+          const problems: Problem[] = [];
+          for (const batch of problemBatches(mathjax, deck.path, deck.source)) {
+            problems.push(...batch);
+            await new Promise((resolve) => setTimeout(resolve));
+            if (cancelled) return;
+          }
+          if (cacheHealthy) {
+            const response = await request(
+              {
+                ...input,
+                action: "store-problems",
+                entries: [
+                  { path: deck.path, revision: deck.revision, problems },
+                ],
+              },
+              problemStoredSchema,
+            );
+            if (cancelled) return;
+            if (
+              response.session.root !== root ||
+              response.session.generation !== generation
+            )
+              throw new Error(
+                "The saved Problems response belongs to another session.",
+              );
+            const result = response.results[0];
+            if (!result || result.path !== deck.path)
+              throw new Error(
+                "The Problems publication did not identify its deck.",
+              );
+            if (result.state === "superseded") continue;
+            if (result.state === "failed") {
+              setFailure({
+                root,
+                kind: result.kind,
+                message: result.path + ": " + result.message,
+              });
+              if (result.kind !== "CacheFailure") continue;
+              cacheHealthy = false;
+            }
+          }
+          checked.current.set(deck.path, {
+            root,
+            source: deck.source,
+            assetIdentity,
+            cacheEpoch,
+            problems,
+          });
+          publish((version) => version + 1);
+        }
       }
-    })();
+    })().catch((error) => {
+      if (!cancelled)
+        setFailure({ root, kind: "BackendFailure", message: String(error) });
+    });
     return () => {
       cancelled = true;
     };
-  }, [mathjax, decks, assetIdentity]);
+  }, [mathjax, decks, assetIdentity, root, generation, cacheEpoch]);
   const valid = decks.flatMap((deck) => {
     const result = checked.current.get(deck.path);
-    return result?.source === deck.source &&
-      result.assetIdentity === assetIdentity
+    return result?.root === root &&
+      result.source === deck.source &&
+      result.assetIdentity === assetIdentity &&
+      result.cacheEpoch === cacheEpoch
       ? [result]
       : [];
   });
   return {
     problems: valid.flatMap((result) => result.problems),
     checked: valid.length,
+    error: failure?.root === root ? failure.message : "",
+    cacheFailure: failure?.root === root && failure.kind === "CacheFailure",
   };
 }
 

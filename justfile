@@ -71,8 +71,23 @@ desktop-editor-test:
     cd desktop && bunx start-server-and-test 'just -f ../justfile desktop-web' http-get://127.0.0.1:1420 'uv run --upgrade tests/editor.py'
 
 # Exercise the editor against its real backend with an isolated server
-desktop-test:
-    cd desktop && bunx start-server-and-test 'just -f ../justfile desktop-web' http-get://127.0.0.1:1420 'uv run --upgrade tests/workbench.py'
+desktop-test scenario="full":
+    #!/usr/bin/env python3
+    import os
+    import subprocess
+    import tempfile
+    from pathlib import Path
+    flags = {"full": "", "startup": " --startup"}
+    environment = os.environ.copy()
+    environment.setdefault("UV_CACHE_DIR", subprocess.check_output(["uv", "cache", "dir"], text=True).strip())
+    environment.setdefault("PLAYWRIGHT_BROWSERS_PATH", str(Path(os.environ.get("XDG_CACHE_HOME", str(Path.home() / ".cache"))) / "ms-playwright"))
+    with tempfile.TemporaryDirectory(prefix="flashcards-browser-cache-") as directory:
+        environment["XDG_CACHE_HOME"] = directory
+        subprocess.run(
+            ["bunx", "start-server-and-test", "just -f ../justfile desktop-web", "http-get://127.0.0.1:1420", "uv run --upgrade tests/workbench.py" + flags["{{scenario}}"]],
+            cwd="desktop", check=True,
+            env=environment,
+        )
 
 # Exercise card organization and real multi-deck file changes
 desktop-organization-test:

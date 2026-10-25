@@ -56,6 +56,7 @@ const pathFailureSchema = z.object({
   ]),
   message: z.string(),
 });
+export type CheckErrorKind = z.infer<typeof pathFailureSchema>["kind"];
 export const sourcesSchema = z.object({
   session: sessionSchema,
   results: z.array(
@@ -70,6 +71,7 @@ export type Request =
   | z.infer<typeof discoveryRequestSchema>
   | z.infer<typeof problemCacheRequestSchema>
   | { action: "assets" }
+  | { action: "rebuild-cache"; workspace: string; generation: number }
   | { action: "list" | "review"; workspace: string }
   | { action: "generate"; workspace: string; path: string }
   | {
@@ -158,6 +160,7 @@ export const problemCacheSchema = z.object({
         problems: z.array(problemSchema),
       }),
       z.object({ state: z.literal("pending"), path: deckPathSchema }),
+      z.object({ state: z.literal("superseded"), path: deckPathSchema }),
       pathFailureSchema,
     ]),
   ),
@@ -173,6 +176,10 @@ export const problemStoredSchema = z.object({
   ),
 });
 export type Problem = z.infer<typeof problemSchema>;
+export const cacheRebuiltSchema = z.object({
+  session: sessionSchema,
+  rebuilt: z.literal(true),
+});
 const summarySchema = z.object({
   path: z.string(),
   status: statusSchema,

@@ -94,6 +94,7 @@ import {
   manifestSchema,
   sourcesSchema,
   checksSchema,
+  cacheRebuiltSchema,
   documentSchema,
   generatedSchema,
   organizedSchema,
@@ -173,6 +174,7 @@ export default function App() {
     error: "",
   });
   const [assetIdentity, setAssetIdentity] = useState("");
+  const [cacheEpoch, setCacheEpoch] = useState(0);
   const [document, setDocument] = useState<Document | null>(null);
   const [mathjax, setMathjax] = useState<MathJaxRuntime | null>(null);
   const [index, setIndex] = useState(0);
@@ -241,18 +243,38 @@ export default function App() {
     () =>
       decks.flatMap((deck) => {
         if (deck.path === document?.path)
-          return [{ path: deck.path, source: document.saved }];
+          return [
+            {
+              path: deck.path,
+              source: document.saved,
+              revision: document.hash,
+            },
+          ];
         const result = sourceRecords.get(deck.path);
         return result?.state === "ready"
-          ? [{ path: deck.path, source: result.source }]
+          ? [
+              {
+                path: deck.path,
+                source: result.source,
+                revision: result.revision,
+              },
+            ]
           : [];
       }),
-    [decks, sourceRecords, document?.path, document?.saved],
+    [decks, sourceRecords, document?.path, document?.saved, document?.hash],
   );
-  const { problems, checked: problemCoverage } = useProblems(
+  const {
+    problems,
+    checked: problemCoverage,
+    error: problemCacheError,
+    cacheFailure: problemCacheFailure,
+  } = useProblems(
     mathjax,
     sources,
     assetIdentity,
+    workspace,
+    reconciliation.current,
+    cacheEpoch,
   );
   const problemDecks = useMemo(
     () => new Set((problems ?? []).map((problem) => problem.path)),
@@ -1256,6 +1278,23 @@ export default function App() {
     refresh().catch((failure) => setError(String(failure)));
   }
 
+  async function rebuildCache() {
+    try {
+      await request(
+        {
+          action: "rebuild-cache",
+          workspace,
+          generation: reconciliation.current,
+        },
+        cacheRebuiltSchema,
+      );
+      setCacheEpoch((epoch) => epoch + 1);
+      await refresh();
+    } catch (failure) {
+      setError(String(failure));
+    }
+  }
+
   const commands: SpotlightActionGroupData[] = [
     {
       group: "Actions",
@@ -1535,9 +1574,11 @@ export default function App() {
               className="workspace-progress"
               role="status"
             >
-              {coverage.state === "complete" && problemCoverage === decks.length
+              {coverage.state === "complete" &&
+              !problemCacheError &&
+              problemCoverage === decks.length
                 ? "Workspace checks complete"
-                : coverage.state === "failed"
+                : coverage.state === "failed" || problemCacheError
                   ? "Workspace checks need attention"
                   : `Checking ${coverage.checked} of ${coverage.total} decks…`}
             </Text>
@@ -1547,6 +1588,20 @@ export default function App() {
               {coverage.error}
               <Button variant="subtle" size="xs" onClick={refreshWorkspace}>
                 Retry checks
+              </Button>
+            </Text>
+          )}
+          {problemCacheError && (
+            <Text size="xs" c="red" px="xs">
+              {problemCacheError}
+              <Button
+                variant="subtle"
+                size="xs"
+                onClick={() =>
+                  problemCacheFailure ? void rebuildCache() : refreshWorkspace()
+                }
+              >
+                {problemCacheFailure ? "Rebuild cached data" : "Retry checks"}
               </Button>
             </Text>
           )}

@@ -1,16 +1,7 @@
 import { cards, deckParser, type CardRange } from "./cards";
 import { equation, texError, type MathJaxRuntime } from "./math";
-
-export interface Problem {
-  path: string;
-  // The card and side that hold the problem; null for the whole deck.
-  card: string | null;
-  label: string | null;
-  side: "front" | "back" | null;
-  kind: "LaTeX" | "Card structure" | "Empty answer";
-  message: string;
-  source: string | null;
-}
+import type { Problem } from "./bridge";
+export type { Problem } from "./bridge";
 
 type Checker = Pick<MathJaxRuntime, "tex2mml">;
 

@@ -156,6 +156,13 @@ the deck source of each build, use the platform cache directory under
 until the app generates its package. Filesystem watches refresh the status and
 the open deck after workspace changes.
 
+Reusable Problems results use `math-flashcards/derived.sqlite3` in the platform
+cache directory. Reuse requires the same source bytes, checker, parser, and
+renderer assets. A changed file is checked again even if its size and
+modification time stay the same. Cache damage shows **Rebuild cached data**.
+This action clears disposable results and checks them again. It preserves deck
+files, Anki packages, preferences, and successful build records.
+
 ## Anki import
 
 Import the generated `.apkg` with Anki's File → Import command.
@@ -174,6 +181,7 @@ See [Anki's packaged deck documentation](https://docs.ankiweb.net/manual/importi
 | `just desktop-frontend` | TypeScript check and frontend build |
 | `just desktop-source-test` | Side preservation, pair validation, and agreement with Pandoc |
 | `just desktop-test` | Managed browser scenario with real filesystem edits and real APKG generation |
+| `just desktop-test startup` | Edit and save during incomplete workspace coverage |
 | `just desktop-organization-test` | Tree drag, grouped moves, reorder, merge, new decks, rename, delete, Undo, and updating all packages |
 | `just desktop-native-test` | Built native window and export on an isolated X11 display |
 | `just desktop-format` | Canonical Python, TypeScript, CSS, and Rust formatting |

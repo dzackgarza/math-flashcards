@@ -108,3 +108,21 @@ Git repository. A partial commit supplies a temporary index for the application
 repository; nested Git commands must use the parser repository's own index.
 Git documents the environment boundary in its
 [hook guidance](https://git-scm.com/docs/githooks#_description).
+
+## Persistent Problems verification
+
+The browser scenario uses an isolated application cache while retaining the
+tool and browser download caches. It verifies cached Problems after a fresh
+page launch, then changes a macro without changing file size or nanosecond
+modification time. The new undefined-macro diagnostic replaces the cached one.
+
+The scenario damages a stored problem record, observes the rebuild action,
+and rebuilds the cache. It checks that fresh Problems records return and that
+authored source, the prior package bytes, and successful build provenance
+remain unchanged. Cache screenshots use the `cache-` prefix; the replayable
+trace is `desktop/test-artifacts/trace.zip`.
+
+Checker validity includes the card parser, problem checker, math adapter,
+bridge schema, resolved Pandoc parser code, and dependency lock data. The
+backend also keys records by their Pydantic storage schema. Source identity
+uses SHA-256 of file bytes, independently of filesystem timestamps.
