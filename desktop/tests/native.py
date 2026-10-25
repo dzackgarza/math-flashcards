@@ -1,6 +1,6 @@
 # /// script
 # requires-python = ">=3.12"
-# dependencies = ["mss", "cyclopts"]
+# dependencies = ["mss", "cyclopts", "psutil"]
 # ///
 """Capture the built native WebKit app in an isolated X11 display."""
 
@@ -16,6 +16,24 @@ from pathlib import Path
 import cyclopts
 import mss
 import mss.tools
+import psutil
+
+
+def close_native(window: str, launcher: subprocess.Popen[bytes]) -> None:
+    """Wait for this window's renderer processes before removing their cache."""
+    pid = int(subprocess.check_output(["xdotool", "getwindowpid", window], text=True))
+    native = psutil.Process(pid)
+    # Capture descendants before closing their parent, as in psutil's recipe:
+    # https://psutil.io/recipes/#controlling-processes
+    children = native.children(recursive=True)
+    subprocess.run(["xdotool", "windowclose", window], check=True)
+    launcher.wait(timeout=10)
+    _, alive = psutil.wait_procs([native, *children], timeout=10)
+    for child in alive:
+        if child.status() != psutil.STATUS_ZOMBIE:
+            child.terminate()
+    _, alive = psutil.wait_procs(alive, timeout=10)
+    assert all(child.status() == psutil.STATUS_ZOMBIE for child in alive)
 
 
 def main(*, entry: Path | None = None, offline: bool = False) -> None:
@@ -86,7 +104,7 @@ def main(*, entry: Path | None = None, offline: bool = False) -> None:
                 assert json.loads(preferences_path.read_text())["workspace"] == str(
                     desktop.parent / "decks"
                 )
-                with mss.mss() as screen:
+                with mss.MSS() as screen:
                     shot = screen.grab(
                         {"left": 0, "top": 0, "width": 1440, "height": 1000}
                     )
@@ -126,7 +144,7 @@ def main(*, entry: Path | None = None, offline: bool = False) -> None:
                 time.sleep(0.5)
                 subprocess.run(["xdotool", "key", "Return"], check=True)
                 time.sleep(3)
-                with mss.mss() as screen:
+                with mss.MSS() as screen:
                     shot = screen.grab(
                         {"left": 0, "top": 0, "width": 1440, "height": 1000}
                     )
@@ -162,7 +180,7 @@ def main(*, entry: Path | None = None, offline: bool = False) -> None:
                     check=True,
                 )
                 time.sleep(4)
-                with mss.mss() as screen:
+                with mss.MSS() as screen:
                     shot = screen.grab(
                         {"left": 0, "top": 0, "width": 1440, "height": 1000}
                     )
@@ -227,7 +245,7 @@ def main(*, entry: Path | None = None, offline: bool = False) -> None:
                     if package.is_file():
                         break
                     time.sleep(0.25)
-                with mss.mss() as screen:
+                with mss.MSS() as screen:
                     shot = screen.grab(
                         {"left": 0, "top": 0, "width": 1440, "height": 1000}
                     )
@@ -240,7 +258,7 @@ def main(*, entry: Path | None = None, offline: bool = False) -> None:
                     root
                 )
                 time.sleep(1)
-                with mss.mss() as screen:
+                with mss.MSS() as screen:
                     shot = screen.grab(
                         {"left": 0, "top": 0, "width": 1440, "height": 1000}
                     )
@@ -271,7 +289,7 @@ def main(*, entry: Path | None = None, offline: bool = False) -> None:
                     assert len(backend_children) <= 2
                     time.sleep(0.05)
                 time.sleep(2)
-                with mss.mss() as screen:
+                with mss.MSS() as screen:
                     shot = screen.grab(
                         {"left": 0, "top": 0, "width": 1440, "height": 1000}
                     )
@@ -284,7 +302,7 @@ def main(*, entry: Path | None = None, offline: bool = False) -> None:
                 target.write_text('---\ntitle: "Native::Target"\n---\n\n')
                 time.sleep(2)
                 time.sleep(4)
-                with mss.mss() as screen:
+                with mss.MSS() as screen:
                     shot = screen.grab(
                         {"left": 0, "top": 0, "width": 1440, "height": 1000}
                     )
@@ -322,7 +340,7 @@ def main(*, entry: Path | None = None, offline: bool = False) -> None:
                     check=True,
                 )
                 time.sleep(0.5)
-                with mss.mss() as screen:
+                with mss.MSS() as screen:
                     shot = screen.grab(
                         {"left": 0, "top": 0, "width": 1440, "height": 1000}
                     )
@@ -342,7 +360,7 @@ def main(*, entry: Path | None = None, offline: bool = False) -> None:
                     not in (root / "Analysis" / "Precalculus.md").read_text()
                 )
                 time.sleep(2)
-                with mss.mss() as screen:
+                with mss.MSS() as screen:
                     shot = screen.grab(
                         {"left": 0, "top": 0, "width": 1440, "height": 1000}
                     )
@@ -351,9 +369,8 @@ def main(*, entry: Path | None = None, offline: bool = False) -> None:
                         shot.size,
                         output=str(artifacts / "native-organized.png"),
                     )
-                subprocess.run(["xdotool", "windowclose", window], check=True)
+                close_native(window, process)
                 window = None
-                process.wait(timeout=10)
                 log.write("\nWorkspace restart\n")
                 log.flush()
                 process = subprocess.Popen(
@@ -382,7 +399,7 @@ def main(*, entry: Path | None = None, offline: bool = False) -> None:
                     time.sleep(0.25)
                 assert "Backend result: manifest exit status: 0" in restarted_log
                 time.sleep(1)
-                with mss.mss() as screen:
+                with mss.MSS() as screen:
                     shot = screen.grab(
                         {"left": 0, "top": 0, "width": 1440, "height": 1000}
                     )
@@ -396,7 +413,7 @@ def main(*, entry: Path | None = None, offline: bool = False) -> None:
                 )
             finally:
                 if window is not None:
-                    subprocess.run(["xdotool", "windowclose", window], check=True)
+                    close_native(window, process)
                 else:
                     process.terminate()
                 process.wait(timeout=10)

@@ -140,3 +140,12 @@ The installation scenario also opens, saves, and exports through the installed
 interpreter with a fresh derived cache and networking disabled. It checks the
 installed archive and reads the exported package to compare both renderer inputs.
 These bridge checks do not establish native rendering or release timing budgets.
+
+The release installed at the desktop entry also passes the native scenario with
+`--entry ~/.local/share/applications/dev.math.flashcards.desktop --offline`.
+The app and its children run inside the network namespace. Native keyboard input
+changes a card answer and saves it to the disposable workspace. The scenario
+exports an APKG, moves a card, and restores the saved workspace after restart.
+`native-front.png` shows rendered mathematics; the `native-` screenshots record
+the remaining states. This scenario uses a fresh cache but does not measure the
+release timing distributions or prove input latency during full-corpus checks.
