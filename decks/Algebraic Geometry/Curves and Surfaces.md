@@ -1547,3 +1547,32 @@ A relatively minimal elliptic K3 surface over $\mathbb P^1_{\mathbb C}$ has a se
 ::: {.back card-id="application-shioda-tate-k3"}
 Shioda–Tate gives $\operatorname{rank}\operatorname{MW}=20-2-2(9-1)=2$. The fiber Euler numbers give $e(S)=2\cdot10+4\cdot1=24$, as required for a K3 surface.
 :::
+
+::: {.front card-id="theorem-reider-base-points" tags="theorem"}
+Let $S$ be a smooth complex projective surface and $L$ a nef divisor with $L^2\ge5$. If $|K_S+L|$ has a base point $x$, what effective divisor does Reider's theorem produce?
+:::
+
+::: {.back card-id="theorem-reider-base-points"}
+There is a nonzero effective divisor $D$ through $x$ with
+$$\bigl(L\cdot D,D^2\bigr)\in\{(0,-1),(1,0)\}.$$
+:::
+
+::: {.front card-id="theorem-reider-point-separation" tags="theorem"}
+Let $S$ be a smooth complex projective surface and $L$ nef with $L^2\ge10$. Suppose a length-two subscheme $\xi$ is disjoint from the base locus of $|K_S+L|$ but is not separated by that system. What does Reider's theorem imply?
+:::
+
+::: {.back card-id="theorem-reider-point-separation"}
+There is a nonzero effective divisor $D$ containing $\xi$ such that
+$$\bigl(L\cdot D,D^2\bigr)\in\{(0,-1),(0,-2),(1,-1),(1,0),(2,0)\}.$$
+A length-two subscheme may consist of distinct points or a tangent direction at one point.
+:::
+
+::: {.front card-id="application-reider-adjoint-multiples" tags="application"}
+For an ample divisor $A$ on a smooth complex projective surface $S$, use Reider's numerical obstructions to prove global generation of $K_S+3A$ and very ampleness of $K_S+4A$.
+:::
+
+::: {.back card-id="application-reider-adjoint-multiples"}
+For $L=3A$, one has $L^2\ge9$ and $L\cdot D\ge3$ for every nonzero effective $D$, excluding both base-point obstructions. Thus $K_S+3A$ is globally generated.
+
+For $L=4A$, one has $L^2\ge16$ and $L\cdot D\ge4$. The base-point and length-two obstructions are all excluded, so $K_S+4A$ is very ample.
+:::

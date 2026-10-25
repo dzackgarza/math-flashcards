@@ -161,11 +161,11 @@ Cover $\operatorname{Spec}A_i\rightrightarrows X$, let $K_i$ be the integral clo
 :::
 
 ::: {.front card-id="card-eee331be6492de45"}
-Discuss the normalization.
+For an integral variety $X$ over a field, state the finiteness theorem for normalization. What does normality imply about finite birational morphisms to $X$?
 :::
 
 ::: {.back card-id="card-eee331be6492de45"}
-Exists for any reduced scheme, yields $f: \tilde X\to X$ an integral birational morphism (finite for varieties), always regular in codimension 1 so yields regular (thus smooth) curves and surfaces with only isolated singularities. Makes every finite birational morphism into $\tilde X$ an isomorphism.
+The normalization $\nu:X^\nu\to X$ is finite and birational. If $X$ is normal and $Y$ is integral, every finite birational morphism $Y\to X$ is an isomorphism.
 :::
 
 ::: {.front card-id="card-571f6dddb3e98505"}
@@ -797,19 +797,11 @@ $f_y \coloneqq X \underset{\scriptscriptstyle {Y} }{\times} \operatorname{Spec}\
 :::
 
 ::: {.front card-id="card-8313983abf999469"}
-What is a **smooth morphism**?
+State the fiberwise criterion for a morphism of schemes $f:X\to S$ to be smooth.
 :::
 
 ::: {.back card-id="card-8313983abf999469"}
-Locally of finite presentation, flat, and regular geometric fibers. (LFP: open cover where $R\to A$ is fp, so $\exists\, R[x_1, \cdots, x_n] \twoheadrightarrow A$).
-
-Smooth implies regular.
-
-For ring maps: $f:R\to A$ of finite presentation with $\tau_{\leq 1}{\mathbb{L}}_{A/R} \cong M[0]$ with $M\in   {}_{A}\Mod$ some finite projective (i.e. the naive cotangent complex is quasi-isomorphic to a projective module in degree zero). For schemes: smooth at $x \iff \exists U = \operatorname{Spec}A \ni x$ and $V = \operatorname{Spec}R \supseteq f(U)$ such that the induced ring map $R\to A$ is a smooth ring map.
-
-Sufficient condition: flat, locally of finite presentation, smooth fibers (i.e. for all $a\in A$, the fiber $R \underset{\scriptscriptstyle {A} }{\times}\kappa(a)$ is a smooth scheme over $\kappa(a)$).
-
-Equivalently, $\Omega_{R/A}$ is locally free of finite rank equal to $\operatorname{reldim}R/A$ (roughly: $\dim f^{-1}(a)$).
+$f$ is smooth if and only if it is flat, locally of finite presentation, and every fiber $X_s$ is geometrically regular over $\kappa(s)$. Equivalently, each fiber is smooth over its residue field.
 :::
 
 ::: {.front card-id="card-e504a4da2d4624f3"}
@@ -1582,11 +1574,11 @@ $$\dim\mathcal O_{X,x}=\dim\mathcal O_{Y,y}+\dim\mathcal O_{X_y,x}.$$
 :::
 
 ::: {.front card-id="theorem-open-geometric-fiber-loci" tags="theorem"}
-Let $f:X\to S$ be flat and of finite presentation, with $S$ locally Noetherian. Which smoothness locus is open? If $f$ is proper, which geometric fiber loci are open in $S$?
+Let $f:X\to S$ be proper, flat, and of finite presentation. State openness of the smooth, geometrically normal, and geometrically integral fiber loci. What follows if $S$ is integral and its geometric generic fiber has one of these properties?
 :::
 
 ::: {.back card-id="theorem-open-geometric-fiber-loci"}
-The locus in $X$ where $f$ is smooth is open. If $f$ is proper, the loci in $S$ where the fibers are geometrically reduced, geometrically normal, or smooth are open.
+For each property, the set of $s\in S$ whose fiber has that property is open. The geometrically reduced fiber locus is also open. If the generic fiber has the property, this open set contains the generic point, so restricting to it gives a family all of whose geometric fibers have the property.
 :::
 
 ::: {.front card-id="theorem-chow-lemma" tags="theorem"}
@@ -1738,4 +1730,66 @@ For a complex abelian surface $A$, use $T_A\cong\mathcal O_A^{\oplus2}$ to compu
 
 ::: {.back card-id="application-obstruction-space-not-obstructions"}
 Since $h^1(\mathcal O_A)=2$ and $h^2(\mathcal O_A)=1$, one has $h^1(T_A)=4$ and $h^2(T_A)=2$. Nevertheless, Bogomolov–Tian–Todorov applies because $A$ is compact Kähler with trivial canonical bundle. Its Kuranishi space is smooth of dimension four. A nonzero obstruction space need not contain a nonzero obstruction arising from a deformation.
+:::
+
+::: {.front card-id="theorem-rigidity-product" tags="theorem"}
+State the rigidity lemma for $f:X\times Y\to Z$, where $X$ is a projective integral variety over an algebraically closed field, $Y$ is a connected normal variety, and $Z$ is separated.
+:::
+
+::: {.back card-id="theorem-rigidity-product"}
+If $f(X\times\{y_0\})$ is a point for some closed point $y_0\in Y$, there is a unique morphism $g:Y\to Z$ such that $f=g\circ\operatorname{pr}_Y$.
+:::
+
+::: {.front card-id="application-rigidity-abelian-homomorphism" tags="application"}
+Let $h:A\to B$ be a morphism of abelian varieties over an algebraically closed field with $h(0)=0$. How does rigidity show that $h$ preserves addition?
+:::
+
+::: {.back card-id="application-rigidity-abelian-homomorphism"}
+Apply rigidity to $F(x,y)=h(x+y)-h(x)-h(y)$. Since $F(x,0)=0$, the map factors through $y$. Since $F(0,y)=0$, that factor is zero. Thus $h(x+y)=h(x)+h(y)$.
+:::
+
+::: {.front card-id="theorem-open-flat-smooth-loci" tags="theorem"}
+Let $f:X\to S$ be locally of finite presentation and $\mathcal F$ a finitely presented $\mathcal O_X$-module. State openness of the flat and smooth loci, specifying their ambient space.
+:::
+
+::: {.back card-id="theorem-open-flat-smooth-loci"}
+Both
+$$\{x\in X:\mathcal F_x\text{ is flat over }\mathcal O_{S,f(x)}\},\qquad \{x\in X:f\text{ is smooth at }x\}$$
+are open in $X$.
+:::
+
+::: {.front card-id="theorem-image-flat-base-change" tags="theorem"}
+For a quasi-compact, quasi-separated morphism $f:X\to Y$ and a flat morphism $g:Y'\to Y$, how does the scheme-theoretic image change after base change?
+:::
+
+::: {.back card-id="theorem-image-flat-base-change"}
+Writing $Z=\operatorname{Im}_{\mathrm{sch}}(f)$ and $f':X\times_Y Y'\to Y'$, one has
+$$\operatorname{Im}_{\mathrm{sch}}(f')=Z\times_Y Y'.$$
+Its ideal is the pullback of $\ker(\mathcal O_Y\to f_*\mathcal O_X)$: flat pullback preserves this kernel, and flat base change identifies the pushforward.
+:::
+
+::: {.front card-id="theorem-flatness-hilbert-polynomial" tags="theorem"}
+Let $S$ be integral and Noetherian, $X\hookrightarrow\mathbb P^N_S$ a closed subscheme, and $\mathcal F$ coherent on $X$. State the Hilbert-polynomial criterion for $\mathcal F$ to be flat over $S$.
+:::
+
+::: {.back card-id="theorem-flatness-hilbert-polynomial"}
+With the fixed polarization $\mathcal O_X(1)$,
+$$\mathcal F\text{ is flat over }S\iff P_s(m)=\chi(X_s,\mathcal F_s(m))\text{ is independent of }s\in S.$$
+Taking $\mathcal F=\mathcal O_X$ gives the criterion for $X\to S$. More generally, on a reduced Noetherian base the criterion is local constancy of $P_s$.
+:::
+
+::: {.front card-id="application-flatness-nonreduced-base" tags="application"}
+Let $A=k[\epsilon]/(\epsilon^2)$ and $X=\operatorname{Spec}k\hookrightarrow\mathbb P^0_A$. Its fiber Hilbert polynomial is constant. Is $X\to\operatorname{Spec}A$ flat? Explain the role of the base hypothesis.
+:::
+
+::: {.back card-id="application-flatness-nonreduced-base"}
+It is not flat. Tensoring the injection $(\epsilon)\hookrightarrow A$ with $k$ gives the zero map $k\to k$, which is not injective. The base has one point, so constancy of the fiber Hilbert polynomial detects nothing about its nilpotents. The converse criterion requires a reduced base.
+:::
+
+::: {.front card-id="application-smoothness-conic-family" tags="application"}
+Over $\mathbb C$, the family $xy=tz^2$ in $\mathbb P^2\times\mathbb A^1_t$ is flat. Determine the largest open subset of the base over which the morphism is smooth.
+:::
+
+::: {.back card-id="application-smoothness-conic-family"}
+It is $\mathbb A^1\setminus\{0\}$. The fibers there are smooth conics. At $t=0$, the fiber is two lines crossing at $[0:0:1]$, so it is not smooth. Finite presentation and flatness let the fiberwise smoothness criterion decide the question.
 :::

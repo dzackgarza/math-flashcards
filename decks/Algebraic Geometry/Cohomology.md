@@ -574,3 +574,53 @@ Since $f$ is finite, higher direct images vanish; since it is étale, $T_C=f^*T_
 $$\operatorname{ch}(f_*\mathcal O_C)\operatorname{td}(T_B)=f_*f^*\operatorname{td}(T_B)=d\,\operatorname{td}(T_B).$$
 The Todd class is invertible, so $\operatorname{ch}(f_*\mathcal O_C)=d$: the bundle has rank $d$ and degree zero. Curve Riemann–Roch yields $1-g(C)=d(1-g(B))$.
 :::
+
+::: {.front card-id="theorem-castelnuovo-mumford-regularity" tags="theorem"}
+For a coherent sheaf $\mathcal F$ on $\mathbb P^n_k$, state the cohomological criterion for $m$-regularity and the Castelnuovo–Mumford consequences for generation and multiplication of sections.
+:::
+
+::: {.back card-id="theorem-castelnuovo-mumford-regularity"}
+The criterion is $H^i(\mathbb P^n,\mathcal F(m-i))=0$ for every $i>0$. It implies that $\mathcal F(m)$ is globally generated, that $\mathcal F$ is $(m+j)$-regular for all $j\ge0$, and that
+$$H^0(\mathcal F(m+j))\otimes_k H^0(\mathcal O_{\mathbb P^n}(1))\longrightarrow H^0(\mathcal F(m+j+1))$$
+is surjective for every $j\ge0$.
+:::
+
+::: {.front card-id="application-regularity-plane" tags="application"}
+A coherent sheaf $\mathcal F$ on $\mathbb P^2_k$ satisfies $H^1(\mathcal F(2))=H^2(\mathcal F(1))=0$. What follows for $\mathcal F(3)$ and for multiplication of sections in twists at least three?
+:::
+
+::: {.back card-id="application-regularity-plane"}
+These are the conditions for $3$-regularity. Thus $\mathcal F(3)$ is globally generated, and
+$$H^0(\mathcal F(t))\otimes H^0(\mathcal O(1))\twoheadrightarrow H^0(\mathcal F(t+1))\qquad(t\ge3).$$
+All higher twists remain regular in their corresponding degrees.
+:::
+
+::: {.front card-id="theorem-flat-base-change-qcoh" tags="theorem"}
+Let $f:X\to S$ be quasi-compact and quasi-separated, $g:S'\to S$ flat, and $\mathcal F$ quasi-coherent. Set $X'=X\times_S S'$ with projections $g':X'\to X$ and $f':X'\to S'$. State flat base change.
+:::
+
+::: {.back card-id="theorem-flat-base-change-qcoh"}
+The natural maps are isomorphisms for all $i\ge0$:
+$$g^*R^if_*\mathcal F\xrightarrow{\sim}R^if'_*g'^*\mathcal F.$$
+For $S=\operatorname{Spec}A$ and $S'=\operatorname{Spec}B$, this gives $H^i(X,\mathcal F)\otimes_A B\simeq H^i(X',g'^*\mathcal F)$.
+
+[Stacks Project, Tag 02KH](https://stacks.math.columbia.edu/tag/02KH).
+:::
+
+::: {.front card-id="application-base-change-localization-or-fiber" tags="application"}
+Let $f:X\to\operatorname{Spec}A$ be quasi-compact and quasi-separated, and $\mathcal F$ quasi-coherent. Compare base change of $R^if_*\mathcal F$ along $A\to A_a$ and along $A\to A/\mathfrak m$. Which comparison is automatically an isomorphism?
+:::
+
+::: {.back card-id="application-base-change-localization-or-fiber"}
+Localization is flat, so its comparison map is an isomorphism in every degree. A residue-field quotient need not be flat, so the same conclusion does not follow for the fiber. For a proper morphism with a coherent, base-flat sheaf, cohomology and base change gives a separate criterion using surjectivity of the fiber comparison map.
+:::
+
+::: {.front card-id="theorem-relative-kawamata-viehweg" tags="theorem"}
+Let $f:X\to S$ be a projective morphism of complex varieties with $X$ smooth. State relative Kawamata–Viehweg vanishing for an $f$-nef and $f$-big Cartier divisor $D$. Give the klt-pair formulation.
+:::
+
+::: {.back card-id="theorem-relative-kawamata-viehweg"}
+One has
+$$R^if_*\mathcal O_X(K_X+D)=0\qquad(i>0).$$
+More generally, if $(X,\Delta)$ is klt and $L$ is Cartier with $L-(K_X+\Delta)$ $f$-nef and $f$-big, then $R^if_*\mathcal O_X(L)=0$ for $i>0$.
+:::

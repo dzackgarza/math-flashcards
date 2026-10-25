@@ -782,3 +782,53 @@ Compare minimal-model uniqueness for a smooth complex projective surface with $\
 ::: {.back card-id="application-minimal-model-uniqueness-boundary"}
 A surface with $\kappa\ge0$ has a unique smooth minimal model up to isomorphism. Rational surfaces need not: $\mathbb F_0$ and $\mathbb F_2$ are birational and minimal, but are not isomorphic. The latter has a curve of self-intersection $-2$, whereas all effective curve classes on $\mathbb F_0=\mathbb P^1\times\mathbb P^1$ have nonnegative square.
 :::
+
+::: {.front card-id="theorem-indeterminacy-codimension" tags="theorem"}
+For a rational map $f:X\dashrightarrow Y$ with $X$ a normal integral variety and $Y$ proper over the base field, bound the codimension of its indeterminacy locus. What follows for a surface?
+:::
+
+::: {.back card-id="theorem-indeterminacy-codimension"}
+The map is defined at every codimension-one point, so its indeterminacy locus has codimension at least two. On a surface it is a finite set of closed points. At a codimension-one point, normality gives a discrete valuation ring, and properness extends the map by the valuative criterion.
+:::
+
+::: {.front card-id="application-rational-map-curve-extension" tags="application"}
+Compare rational maps from a smooth projective curve to a proper variety with the rational function $1/t:\mathbb P^1\dashrightarrow\mathbb A^1$. Which maps extend everywhere, and which hypothesis decides?
+:::
+
+::: {.back card-id="application-rational-map-curve-extension"}
+Every rational map from a smooth projective curve to a proper variety extends uniquely: a curve has no nonempty closed subset of codimension at least two. The function $1/t$ does not extend as a morphism to $\mathbb A^1$ at $t=0$. Its target is not proper; regarded as a map to $\mathbb P^1$, it extends by taking the value infinity there.
+:::
+
+::: {.front card-id="theorem-miyaoka-mori-bend-break" tags="theorem"}
+Let $X$ be a smooth projective $n$-fold over an algebraically closed field, $C\subset X$ an integral curve with $K_X\cdot C<0$, and $H$ a nef Cartier divisor. State the classical Miyaoka–Mori bend-and-break conclusion through a closed point $x\in C$, with its $H$-degree bound.
+:::
+
+::: {.back card-id="theorem-miyaoka-mori-bend-break"}
+There is an integral rational curve $R\subset X$ through $x$ with
+$$H\cdot R\le 2n\,\frac{H\cdot C}{-K_X\cdot C}.$$
+See Miyaoka–Mori, Theorem 5, as recalled in the [introduction to Optimal bounds in Bend-and-Break](https://doi.org/10.1017/fmp.2026.10033).
+:::
+
+::: {.front card-id="theorem-deformations-maps-curves" tags="theorem"}
+Let $C$ be a smooth projective curve over an algebraically closed field, $X$ a smooth quasi-projective variety, and $f:C\to X$. Identify the tangent and obstruction spaces for deforming $f$ with $C$ fixed. Give a sufficient condition for smoothness of $\operatorname{Hom}(C,X)$ at $[f]$.
+:::
+
+::: {.back card-id="theorem-deformations-maps-curves"}
+The tangent space is $H^0(C,f^*T_X)$, and obstructions lie in $H^1(C,f^*T_X)$. If the latter vanishes, $\operatorname{Hom}(C,X)$ is smooth at $[f]$, of dimension $h^0(C,f^*T_X)$.
+:::
+
+::: {.front card-id="theorem-free-rational-curve-evaluation" tags="theorem"}
+For a nonconstant map $f:\mathbb P^1\to X$ to a smooth quasi-projective variety over an algebraically closed field, write $f^*T_X=\bigoplus_i\mathcal O(a_i)$. What condition makes $f$ free, and what does it imply for deformations and evaluation?
+:::
+
+::: {.back card-id="theorem-free-rational-curve-evaluation"}
+The map is free if every $a_i\ge0$. Then $H^1(f^*T_X)=0$ and $H^1(f^*T_X(-p))=0$ for each $p\in\mathbb P^1$. The Hom scheme is smooth at $[f]$, and evaluation $\operatorname{ev}_p:\operatorname{Hom}(\mathbb P^1,X)\to X$ is smooth there. The universal evaluation $\mathbb P^1\times\operatorname{Hom}(\mathbb P^1,X)\to X$ is smooth at $(p,[f])$ as well.
+:::
+
+::: {.front card-id="application-unobstructed-not-free-map" tags="application"}
+Suppose $f:\mathbb P^1\to X$ has $f^*T_X\simeq\mathcal O(2)\oplus\mathcal O(-1)$. Is the Hom scheme smooth at $[f]$? Is $f$ free? Is evaluation at a fixed point smooth there?
+:::
+
+::: {.back card-id="application-unobstructed-not-free-map"}
+$H^1(f^*T_X)=0$, so the Hom scheme is smooth at $[f]$. The negative summand makes $f$ nonfree. Evaluation is not smooth: its tangent map $H^0(f^*T_X)\to(f^*T_X)_p$ misses the $\mathcal O(-1)$ direction, since that summand has no sections.
+:::

@@ -249,7 +249,7 @@ What is $\fpqc$?
 :::
 
 ::: {.back card-id="card-92995ae2c8714f03"}
-Finitely presented and quasicompact.
+Faithfully flat and quasi-compact. For a single morphism, these conditions give an fpqc cover.
 :::
 
 ::: {.front card-id="card-d593b091659d56f5"}
@@ -273,11 +273,13 @@ The pullback $f^*$ induces an equivalence of categories.
 :::
 
 ::: {.front card-id="card-3e96d99ed7dd0190"}
-What is (fppf) descent for $\QCoh(X)$?
+State faithfully flat descent for quasi-coherent sheaves along an fpqc cover $p:U\to X$. What does it imply for vector bundles?
 :::
 
 ::: {.back card-id="card-3e96d99ed7dd0190"}
-If $f: U\to X$ is an fppf cover, then $f^*: \QCoh(X)  { \, \xrightarrow{\sim}\, }\mathsf{Descent}(U_{/ {X}})$ is an equivalence of categories, where $\mcf\in \QCoh(X)$ is sent to $f^* \mcf\in \QCoh(U)$ with descent data $(f\circ \mathop{\mathrm{proj}}_1)^* \mcf { \, \xrightarrow{\sim}\, }(f\circ \mathop{\mathrm{proj}}_2)^*\mcf$ an isomorphism on $U \underset{\scriptscriptstyle {X} }{\times} U$ induced by pulling back the identity.
+Pullback with its canonical descent datum gives an equivalence
+$$\operatorname{QCoh}(X)\simeq\operatorname{Desc}_{\operatorname{QCoh}}(U/X).$$
+An object on the right is a quasi-coherent sheaf $E$ on $U$ with an isomorphism $p_1^*E\simeq p_2^*E$ on $U\times_X U$ satisfying the cocycle condition on $U\times_X U\times_X U$. Finite locally free sheaves descend, with rank preserved; in particular, line bundles descend. This applies to fppf covers as well.
 :::
 
 ::: {.front card-id="card-5bdf53cb5c2d7bbe"}

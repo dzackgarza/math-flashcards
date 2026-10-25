@@ -867,3 +867,39 @@ They are not isomorphic:
 $$h^0(E(-2))=h^0(\mathcal O(-2))+h^0(\mathcal O)=1,\qquad h^0(F(-2))=2h^0(\mathcal O(-1))=0.$$
 Their line-bundle summands are indecomposable. Krull–Schmidt also distinguishes the multisets $\{\mathcal O,\mathcal O(2)\}$ and $\{\mathcal O(1),\mathcal O(1)\}$; rank and degree alone do not determine a bundle.
 :::
+
+::: {.front card-id="theorem-birkhoff-grothendieck" tags="theorem"}
+State the Birkhoff–Grothendieck classification of vector bundles on $\mathbb P^1_k$, including its uniqueness assertion.
+:::
+
+::: {.back card-id="theorem-birkhoff-grothendieck"}
+Every rank-$r$ vector bundle has a splitting
+$$E\simeq\bigoplus_{i=1}^r\mathcal O_{\mathbb P^1}(a_i),$$
+where the multiset of integers $\{a_1,\ldots,a_r\}$ is unique. The isomorphism giving the splitting need not be unique.
+:::
+
+::: {.front card-id="application-splitting-cohomology-p1" tags="application"}
+For $E=\mathcal O(2)\oplus\mathcal O\oplus\mathcal O(-2)$ on $\mathbb P^1_k$, compute $h^0(E)$ and $h^1(E)$. Is $E$ globally generated?
+:::
+
+::: {.back card-id="application-splitting-cohomology-p1"}
+Using $h^0(\mathcal O(a))=\max\{a+1,0\}$ and $h^1(\mathcal O(a))=\max\{-a-1,0\}$ gives $h^0(E)=4$ and $h^1(E)=1$. It is not globally generated because its quotient $\mathcal O(-2)$ has no global sections.
+:::
+
+::: {.front card-id="theorem-bogomolov-discriminant" tags="theorem"}
+Let $E$ be a torsion-free sheaf of rank $r$ on a smooth complex projective surface, slope-semistable for an ample polarization. State Bogomolov's inequality.
+:::
+
+::: {.back card-id="theorem-bogomolov-discriminant"}
+The degree of its discriminant is nonnegative:
+$$\Delta(E)=2r\,c_2(E)-(r-1)c_1(E)^2\ge0.$$
+Here Chern classes of degree four are evaluated on the surface.
+:::
+
+::: {.front card-id="application-bogomolov-rank-two" tags="application"}
+Can a rank-two torsion-free sheaf on a smooth complex projective surface with $c_1^2=9$ and $c_2=2$ be slope-semistable for an ample polarization? Does $c_2=3$ force semistability?
+:::
+
+::: {.back card-id="application-bogomolov-rank-two"}
+For $c_2=2$, the discriminant is $4\cdot2-9=-1$, so Bogomolov's inequality rules out semistability for every ample polarization. For $c_2=3$, the discriminant is $3$, which satisfies a necessary condition but does not imply semistability; that requires checking slopes of subsheaves.
+:::

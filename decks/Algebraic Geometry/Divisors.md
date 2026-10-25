@@ -864,3 +864,27 @@ The expected codimension is $(2-1)(3-1)=2$, so the locus is zero-dimensional. Th
 $$c_2\bigl(\mathcal O(1)^{\oplus3}-\mathcal O^{\oplus2}\bigr)=[(1+H)^3]_2=3H^2.$$
 Since $\int_{\mathbb P^2}H^2=1$, the scheme has length three.
 :::
+
+::: {.front card-id="theorem-connected-ample-divisor" tags="theorem"}
+State the connectedness theorem for an effective ample Cartier divisor $D$ on a connected normal projective variety $X$ over an algebraically closed field. Include the dimension hypothesis.
+:::
+
+::: {.back card-id="theorem-connected-ample-divisor"}
+If $\dim X\ge2$, then $D$ is connected.
+:::
+
+::: {.front card-id="application-ample-connected-not-irreducible" tags="application"}
+On $\mathbb P^2_{\mathbb C}$, let $D$ be the union of two distinct lines. Which of connectedness, irreducibility, and smoothness follows from $D$ being an effective ample Cartier divisor? How does this compare with a general member of $|\mathcal O(2)|$?
+:::
+
+::: {.back card-id="application-ample-connected-not-irreducible"}
+Connectedness follows from the ample-divisor theorem. This $D$ is reducible and singular at the intersection of the lines. A general plane conic is smooth by Bertini and connected by ampleness, hence irreducible. The general-member hypothesis distinguishes Bertini from connectedness of every effective ample divisor.
+:::
+
+::: {.front card-id="theorem-kleiman-transversality" tags="theorem"}
+Let a connected smooth algebraic group $G$ act transitively on a smooth variety $X$ over an algebraically closed field. State Kleiman's theorem for subvarieties $Y,Z\subseteq X$. What strengthens in characteristic zero when $Y$ and $Z$ are smooth?
+:::
+
+::: {.back card-id="theorem-kleiman-transversality"}
+For $g$ in a dense open subset of $G$, the intersection $gY\cap Z$ is empty or pure of dimension $\dim Y+\dim Z-\dim X$. If this number is negative, the general intersection is empty. In characteristic zero, smooth $Y$ and $Z$ meet transversely for general $g$.
+:::
