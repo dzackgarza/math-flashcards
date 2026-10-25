@@ -1733,11 +1733,11 @@ Since $h^1(\mathcal O_A)=2$ and $h^2(\mathcal O_A)=1$, one has $h^1(T_A)=4$ and 
 :::
 
 ::: {.front card-id="theorem-rigidity-product" tags="theorem"}
-State the rigidity lemma for $f:X\times Y\to Z$, where $X$ is a projective integral variety over an algebraically closed field, $Y$ is a connected normal variety, and $Z$ is separated.
+State the rigidity lemma for a $k$-morphism $f:X\times_k Y\to Z$, where $X$ is a projective geometrically integral $k$-variety, $Y$ is a connected normal $k$-variety, and $Z$ is separated over $k$.
 :::
 
 ::: {.back card-id="theorem-rigidity-product"}
-If $f(X\times\{y_0\})$ is a point for some closed point $y_0\in Y$, there is a unique morphism $g:Y\to Z$ such that $f=g\circ\operatorname{pr}_Y$.
+If the restriction of $f$ to the fiber $X_{\kappa(y_0)}$ is constant for some closed point $y_0\in Y$, there is a unique $k$-morphism $g:Y\to Z$ such that $f=g\circ\operatorname{pr}_Y$.
 :::
 
 ::: {.front card-id="application-rigidity-abelian-homomorphism" tags="application"}

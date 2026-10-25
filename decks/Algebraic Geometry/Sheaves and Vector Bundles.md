@@ -903,3 +903,13 @@ Can a rank-two torsion-free sheaf on a smooth complex projective surface with $c
 ::: {.back card-id="application-bogomolov-rank-two"}
 For $c_2=2$, the discriminant is $4\cdot2-9=-1$, so Bogomolov's inequality rules out semistability for every ample polarization. For $c_2=3$, the discriminant is $3$, which satisfies a necessary condition but does not imply semistability; that requires checking slopes of subsheaves.
 :::
+
+::: {.front card-id="application-splitting-bundle-deformations" tags="application"}
+Let $E=\mathcal O\oplus\mathcal O(2)$ on $\mathbb P^1_k$. Compute the tangent space dimension for deformations of $E$ with $\mathbb P^1$ fixed. Are these deformations obstructed? Express the answer using the splitting of $\mathcal E nd(E)$.
+:::
+
+::: {.back card-id="application-splitting-bundle-deformations"}
+The tangent space is $H^1(\mathbb P^1,\mathcal E nd(E))$, and obstructions lie in $H^2(\mathbb P^1,\mathcal E nd(E))$. Here
+$$\mathcal E nd(E)\simeq\mathcal O^{\oplus2}\oplus\mathcal O(2)\oplus\mathcal O(-2).$$
+Only $\mathcal O(-2)$ contributes to $H^1$, with dimension one. The obstruction group vanishes because the base is a curve, so deformations are unobstructed.
+:::
