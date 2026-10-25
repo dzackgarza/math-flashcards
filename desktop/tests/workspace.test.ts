@@ -28,6 +28,96 @@ afterEach(() => {
   }
 });
 
+test("manifest reconciliation prunes source-derived records after a rename", async () => {
+  const workspace = await mkdtemp(join(tmpdir(), "flashcards-membership-"));
+  temporaryWorkspaces.push(workspace);
+  const backend = resolve(import.meta.dir, "../backend.py");
+  const find = Bun.spawnSync(["uv", "python", "find", "--script", backend]);
+  expect(find.exitCode).toBe(0);
+  const python = find.stdout.toString().trim();
+  const cache = join(workspace, "cache");
+  const source =
+    '---\ntitle: "Study"\n---\n\n::: {.front card-id="proof"}\nA question\n:::\n\n::: {.back card-id="proof"}\nA proof\n:::\n';
+  await Bun.write(join(workspace, "Study.md"), source);
+  function call<T>(payload: Request, schema: z.ZodType<T>): T {
+    const process = Bun.spawnSync([python, backend], {
+      stdin: Buffer.from(JSON.stringify(payload) + "\n"),
+      env: { ...Bun.env, XDG_CACHE_HOME: cache, UV_OFFLINE: "1" },
+    });
+    expect(process.exitCode, process.stderr.toString()).toBe(0);
+    return schema.parse(JSON.parse(process.stdout.toString()));
+  }
+  const assets = call({ action: "assets" }, assetsSchema);
+  const revision = new Bun.CryptoHasher("sha256").update(source).digest("hex");
+  const producer = new Bun.CryptoHasher("sha256")
+    .update("parser fixture")
+    .digest("hex");
+  const input = { workspace, generation: 0, producer };
+  call(
+    {
+      ...input,
+      action: "store-problems",
+      assets: assets.identity,
+      entries: [{ path: "Study.md", revision, problems: [] }],
+    },
+    problemStoredSchema,
+  );
+  call(
+    {
+      ...input,
+      action: "store-search",
+      entries: [
+        {
+          path: "Study.md",
+          revision,
+          cards: [
+            {
+              id: "proof",
+              label: "A question",
+              front: "A question",
+              back: "A proof",
+              tags: "",
+            },
+          ],
+        },
+      ],
+    },
+    searchCacheSchema,
+  );
+  const rows = () => {
+    const result = Bun.spawnSync([
+      python,
+      "-c",
+      "import json, sqlite3, sys; connection=sqlite3.connect(sys.argv[1]); print(json.dumps(sorted(row[0] for row in connection.execute('SELECT path FROM problem_checks UNION ALL SELECT path FROM search_summaries'))))",
+      join(cache, "math-flashcards/derived.sqlite3"),
+    ]);
+    expect(result.exitCode, result.stderr.toString()).toBe(0);
+    return z.array(z.string()).parse(JSON.parse(result.stdout.toString()));
+  };
+  expect(rows()).toEqual(["Study.md", "Study.md"]);
+  call(
+    {
+      action: "organize",
+      workspace,
+      changes: [
+        { path: "Renamed.md", source, expected: null },
+        { path: "Study.md", source: null, expected: revision },
+      ],
+    },
+    organizedSchema,
+  );
+  const manifest = call(
+    { action: "cache-manifest", workspace, generation: 1 },
+    cachedManifestSchema,
+  );
+  expect(manifest).toMatchObject({
+    state: "cached",
+    entries: [{ path: "Renamed.md" }],
+  });
+  expect(rows()).toEqual([]);
+  expect(await Bun.file(join(workspace, "Renamed.md")).text()).toBe(source);
+}, 30000);
+
 test("search summaries persist with exact source and parser identities", async () => {
   const workspace = await mkdtemp(join(tmpdir(), "flashcards-search-cache-"));
   temporaryWorkspaces.push(workspace);
