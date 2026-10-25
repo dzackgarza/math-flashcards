@@ -54,6 +54,17 @@ def startup() -> None:
                 page.screenshot(path=str(artifacts / "startup-tree.png"))
                 progress = page.locator(".workspace-progress")
                 expect(progress).to_contain_text("Checking")
+                page.get_by_role("button", name="Search Ctrl K", exact=True).click()
+                page.get_by_placeholder("Search decks, cards, and commands").fill(
+                    "__not_a_card__"
+                )
+                expect(
+                    page.get_by_text(
+                        "Search is incomplete while workspace cards load.", exact=True
+                    )
+                ).to_be_visible()
+                page.screenshot(path=str(artifacts / "startup-search.png"))
+                page.keyboard.press("Escape")
                 page.get_by_text("Analysis", exact=True).click()
                 selected = time.monotonic()
                 page.get_by_text("Precalculus", exact=True).click()
@@ -526,6 +537,46 @@ def main() -> None:
                 assert deck_path.read_bytes() == authored_cache_source
                 assert broken.read_text() == edited
                 page.screenshot(path=str(artifacts / "cache-rebuilt.png"))
+                distant = root / "Elsewhere.md"
+                distant_source = '---\ntitle: "Elsewhere"\n---\n\n::: {.front card-id="distant"}\nDistant question\n:::\n\n::: {.back card-id="distant"}\nRemote search proof $x^2$\n:::\n'
+                distant.write_text(distant_source)
+                expect(page.get_by_text("Elsewhere", exact=True)).to_be_visible(
+                    timeout=30000
+                )
+                page.get_by_role("button", name="Search Ctrl K", exact=True).click()
+                search = page.get_by_placeholder("Search decks, cards, and commands")
+                search.fill("Remote search proof")
+                result = page.get_by_text("Distant question", exact=True)
+                expect(result).to_be_visible(timeout=30000)
+                current_source = distant_source.replace(
+                    'card-id="distant"', 'card-id="current"'
+                ).replace("Distant question", "Current distant question")
+                distant.write_text(current_source)
+                result.click()
+                expect(
+                    page.get_by_text(
+                        "Error: This card changed on disk. Search again for its current version.",
+                        exact=True,
+                    )
+                ).to_be_visible(timeout=30000)
+                page.get_by_role("button", name="Search Ctrl K", exact=True).click()
+                search.fill("Remote search proof")
+                current_result = page.get_by_text(
+                    "Current distant question", exact=True
+                )
+                expect(current_result).to_be_visible(timeout=30000)
+                current_result.click()
+                expect(
+                    page.get_by_role("heading", name="Elsewhere", exact=True)
+                ).to_be_visible(timeout=30000)
+                expect(page.locator(".side-editor.front .cm-content")).to_contain_text(
+                    "Current distant question"
+                )
+                expect(page.locator(".side-editor.back .cm-content")).to_contain_text(
+                    "Remote search proof"
+                )
+                assert distant.read_text() == current_source
+                page.screenshot(path=str(artifacts / "workspace-search.png"))
                 assert not console, console
             finally:
                 page.screenshot(path=str(artifacts / "cache-last.png"))

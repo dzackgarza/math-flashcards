@@ -149,3 +149,15 @@ exports an APKG, moves a card, and restores the saved workspace after restart.
 `native-front.png` shows rendered mathematics; the `native-` screenshots record
 the remaining states. This scenario uses a fresh cache but does not measure the
 release timing distributions or prove input latency during full-corpus checks.
+
+## Workspace search
+
+The browser scenario creates an unopened deck and finds it by text present only
+in its answer. Changing the card ID before selecting that result produces a
+specific stale-card error. After the watcher publishes the current source,
+the search result opens the current card without modifying its file.
+`workspace-search.png` records the selected result.
+
+The progressive startup scenario opens search before the corpus reads finish.
+An unmatched query reports incomplete search coverage. It then selects, edits,
+and saves a deck while workspace checks remain incomplete.

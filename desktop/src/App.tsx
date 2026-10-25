@@ -166,6 +166,7 @@ export default function App() {
   const [sourceRecords, setSourceRecords] = useState(
     new Map<string, SourceResult>(),
   );
+  const [searchCoverage, setSearchCoverage] = useState(new Set<string>());
   const [packageRecords, setPackageRecords] = useState(
     new Map<string, PackageResult>(),
   );
@@ -213,6 +214,9 @@ export default function App() {
   const deckViewport = useRef<HTMLDivElement>(null);
   const cardViewport = useRef<HTMLDivElement>(null);
   const tree = useTree();
+  const searchRecords = useRef(
+    new Map<string, { source: string; cards: CardRange[]; error: string }>(),
+  );
   const parsed = useMemo(() => {
     try {
       return { cards: cards(document?.source ?? ""), error: "" };
@@ -270,6 +274,39 @@ export default function App() {
       }),
     [decks, sourceRecords, document?.path, document?.saved, document?.hash],
   );
+  const searchIndex = useMemo(() => {
+    const next = new Map<
+      string,
+      { source: string; cards: CardRange[]; error: string }
+    >();
+    for (const deck of sources) {
+      const cached = searchRecords.current.get(deck.path);
+      if (cached?.source === deck.source) {
+        next.set(deck.path, cached);
+        continue;
+      }
+      try {
+        next.set(deck.path, {
+          source: deck.source,
+          cards: cards(deck.source),
+          error: "",
+        });
+      } catch (failure) {
+        next.set(deck.path, {
+          source: deck.source,
+          cards: [],
+          error: String(failure),
+        });
+      }
+    }
+    searchRecords.current = next;
+    return next;
+  }, [sources]);
+  const searchPending =
+    coverage.state === "discovering" || searchCoverage.size < decks.length;
+  const searchFailed =
+    [...searchIndex.values()].some((record) => record.error) ||
+    decks.some((deck) => sourceRecords.get(deck.path)?.state === "failed");
   const {
     problems,
     checked: problemCoverage,
@@ -312,6 +349,7 @@ export default function App() {
 
   async function refresh(root = workspace) {
     if (!root) return;
+    setSearchCoverage(new Set());
     const token = workspaceNavigation.current;
     const generation = ++reconciliation.current;
     void checkAssetUpdate();
@@ -436,6 +474,7 @@ export default function App() {
 
   async function fillWorkspace(manifest: Manifest, token: number) {
     const { root, generation } = manifest.session;
+    setSearchCoverage(new Set());
     setCoverage({
       state: "running",
       checked: 0,
@@ -474,6 +513,13 @@ export default function App() {
           for (const result of response.results) next.set(result.path, result);
           return next;
         });
+        setSearchCoverage(
+          (previous) =>
+            new Set([
+              ...previous,
+              ...response.results.map((result) => result.path),
+            ]),
+        );
         for (const result of response.results)
           if (result.state === "failed")
             errors.push(result.path + ": " + result.message);
@@ -607,11 +653,12 @@ export default function App() {
     let published = false;
     const publish = (result: Manifest) => {
       setWorkspace(result.session.root);
-      workspaceForm.setFieldValue("workspace", result.session.root);
       setDecks(result.entries);
       if (published) return;
       published = true;
+      workspaceForm.setFieldValue("workspace", result.session.root);
       setSourceRecords(new Map());
+      setSearchCoverage(new Set());
       setPackageRecords(new Map());
       updateDocument(() => null);
       setSelection([]);
@@ -1495,16 +1542,24 @@ export default function App() {
     },
     {
       group: "Cards",
-      actions: document
-        ? ranges.map((range, cardIndex) => ({
-            id: "card:" + range.id,
-            label: range.label,
-            onClick: () => {
+      actions: decks.flatMap((deck) => {
+        const entries =
+          deck.path === document?.path
+            ? ranges
+            : (searchIndex.get(deck.path)?.cards ?? []);
+        return entries.map((range, cardIndex) => ({
+          id: "card:" + deck.path + ":" + range.id,
+          label: range.label,
+          description: deckName(deck.path),
+          keywords: [range.front.value, range.back.value, range.tags],
+          onClick: () => {
+            if (document?.path === deck.path) {
               setSelection([range.id]);
               selectCard(cardIndex, document.source);
-            },
-          }))
-        : [],
+            } else guard(() => chooseDeck(deck.path, range.id));
+          },
+        }));
+      }),
     },
   ];
 
@@ -2113,13 +2168,28 @@ export default function App() {
         actions={commands}
         limit={40}
         highlightQuery
-        nothingFound="Nothing found"
+        nothingFound={
+          searchFailed
+            ? "Some decks could not be searched. See Problems."
+            : searchPending
+              ? "Search is incomplete while workspace cards load."
+              : "Nothing found"
+        }
         shortcut="mod + K"
         tagsToIgnore={[]}
         triggerOnContentEditable
         searchProps={{
           leftSection: <IconSearch size={18} />,
           placeholder: "Search decks, cards, and commands",
+          rightSectionWidth: searchPending || searchFailed ? 170 : undefined,
+          rightSection:
+            searchPending || searchFailed ? (
+              <Text size="xs" c="dimmed" role="status">
+                {searchFailed
+                  ? "Some decks unavailable"
+                  : "Loading workspace cards…"}
+              </Text>
+            ) : undefined,
         }}
       />
     </div>

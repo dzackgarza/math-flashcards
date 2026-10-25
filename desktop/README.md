@@ -56,6 +56,12 @@ refreshes the installation from an existing build.
 
 ## Use
 
+Ctrl-K searches deck names, card fronts, card backs, tags, and commands across
+the workspace. Cards become searchable as background source reads finish.
+The search field shows incomplete coverage until the reads finish, and shows
+an error when a deck cannot be searched. Opening a card result reads the
+current file and checks that the requested card still exists.
+
 The app opens the saved workspace on startup. On first launch it opens the
 `decks/` folder in the repository used to build the app. Preferences use the standard Tauri store in
 the XDG configuration directory.
