@@ -4,6 +4,7 @@
 # ///
 """Exercise the editor and real export pipeline in a disposable workspace."""
 
+import argparse
 import hashlib
 import json
 import platform
@@ -17,6 +18,80 @@ import zipfile
 from pathlib import Path
 
 from playwright.sync_api import expect, sync_playwright
+
+
+def startup() -> None:
+    """Edit and save a current deck while workspace checks have partial coverage."""
+    desktop = Path(__file__).resolve().parents[1]
+    artifacts = desktop / "test-artifacts"
+    artifacts.mkdir(exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix="flashcards-startup-") as directory:
+        workspace = Path(directory) / "workspace"
+        shutil.copytree(
+            desktop.parent / "decks", workspace, ignore=shutil.ignore_patterns("apkg")
+        )
+        with sync_playwright() as playwright:
+            browser = playwright.chromium.launch()
+            context = browser.new_context(viewport={"width": 1440, "height": 1000})
+            context.tracing.start(screenshots=True, snapshots=True, sources=True)
+            page = context.new_page()
+            errors: list[str] = []
+            page.on("pageerror", lambda error: errors.append(str(error)))
+            try:
+                page.goto("http://127.0.0.1:1420")
+                page.get_by_role("button", name="Workspace", exact=True).click()
+                expect(page.get_by_label("Workspace folder")).to_have_value(
+                    str(desktop.parent / "decks"), timeout=30000
+                )
+                page.get_by_label("Workspace folder").fill(str(workspace))
+                opened = time.monotonic()
+                page.get_by_role("button", name="Open workspace", exact=True).click()
+                expect(
+                    page.get_by_role("button", name="Workspace", exact=True)
+                ).to_have_text(workspace.name)
+                tree_seconds = time.monotonic() - opened
+                page.screenshot(path=str(artifacts / "startup-tree.png"))
+                progress = page.locator(".workspace-progress")
+                expect(progress).to_contain_text("Checking")
+                page.get_by_text("Analysis", exact=True).click()
+                selected = time.monotonic()
+                page.get_by_text("Precalculus", exact=True).click()
+                front = page.locator(".side-editor.front .cm-content")
+                expect(front).to_be_visible()
+                editable_seconds = time.monotonic() - selected
+                expect(progress).to_contain_text("Checking")
+                typed = time.monotonic()
+                front.fill("Startup input $x^2$")
+                expect(front).to_contain_text("Startup input")
+                input_seconds = time.monotonic() - typed
+                deck = workspace / "Analysis" / "Precalculus.md"
+                for _ in range(300):
+                    if "Startup input $x^2$" in deck.read_text():
+                        break
+                    page.wait_for_timeout(100)
+                assert "Startup input $x^2$" in deck.read_text()
+                page.screenshot(path=str(artifacts / "startup-editing.png"))
+                expect(progress).to_have_text(
+                    "Workspace checks complete", timeout=120000
+                )
+                assert not errors, errors
+                (artifacts / "startup-progressive.json").write_text(
+                    json.dumps(
+                        {
+                            "tree_seconds": tree_seconds,
+                            "editable_seconds": editable_seconds,
+                            "input_seconds": input_seconds,
+                            "background_seconds": time.monotonic() - opened,
+                        },
+                        indent=2,
+                    )
+                    + "\n"
+                )
+            finally:
+                page.screenshot(path=str(artifacts / "startup-last.png"))
+                context.tracing.stop(path=str(artifacts / "startup-trace.zip"))
+                (artifacts / "startup-errors.json").write_text(json.dumps(errors))
+                browser.close()
 
 
 def main() -> None:
@@ -325,4 +400,10 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--startup", action="store_true")
+    arguments = parser.parse_args()
+    if arguments.startup:
+        startup()
+    else:
+        main()
