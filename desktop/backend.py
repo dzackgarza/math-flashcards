@@ -1015,6 +1015,8 @@ def sync(path: Path, output: Path, assets: AssetSet) -> Verification:
     else:
         record = BuildRecord.model_validate_json(row[0])
         reasons: list[str] = []
+        if current.keys() - record.inputs.keys():
+            reasons.append("The exporter changed.")
         if package is None:
             reasons.append("The Anki package file is missing.")
         elif package != record.package:

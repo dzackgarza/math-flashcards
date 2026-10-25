@@ -193,3 +193,7 @@ The browser warm-start scenario observes real tree attributes with a DOM
 MutationObserver. It verifies that prior statuses appear as Pending or Checking
 before the row becomes Ready. Cache failures remain separate from verified
 package results, with an explicit rebuild action.
+The backend case also moves the bridge resources and changes the copied Lua
+filter while retaining the old resource. Verification detects producer paths
+absent from the build record. The damaged-cache browser case rebuilds package
+history together with search and Problems data.

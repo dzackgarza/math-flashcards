@@ -348,6 +348,7 @@ export default function App() {
 
   async function refresh(root = workspace) {
     if (!root) return;
+    updateDocument((open) => open && { ...open, status: null });
     setSearchCoverage(new Set());
     setPackageRecords((previous) => {
       const next = new Map<string, PackageCheck>();
@@ -381,7 +382,6 @@ export default function App() {
       (previous) =>
         new Map([...previous].filter(([path]) => members.has(path))),
     );
-    updateDocument((open) => open && { ...open, status: null });
     void cacheManifest(result.session.root, generation, token);
     void fillWorkspace(result, token);
   }
