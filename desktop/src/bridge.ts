@@ -34,6 +34,10 @@ export const discoveryRequestSchema = z.discriminatedUnion("action", [
   }),
   batchSchema.extend({ action: z.literal("sources") }),
   batchSchema.extend({ action: z.literal("checks"), assets: digestSchema }),
+  batchSchema.extend({
+    action: z.literal("cached-checks"),
+    assets: digestSchema,
+  }),
 ]);
 export const manifestSchema = z.object({
   session: sessionSchema,
@@ -136,17 +140,43 @@ export const packageResultSchema = z.object({
   path: deckPathSchema,
   assets: digestSchema,
   revision: digestSchema,
+  input_identity: digestSchema,
+  checked_at: z.string().datetime({ offset: true }),
   status: statusSchema,
   reasons: z.array(z.string()),
   built: z.string().nullable(),
 });
-export const checksSchema = z.object({
+const readyPackageSchema = packageResultSchema.extend({
+  state: z.literal("ready"),
+});
+const pendingPackageSchema = z.object({
+  state: z.enum(["pending", "checking"]),
+  path: deckPathSchema,
+  previous: readyPackageSchema.nullable(),
+});
+const failedPackageSchema = pathFailureSchema.extend({
+  previous: readyPackageSchema.nullable(),
+});
+export const packageCheckSchema = z.discriminatedUnion("state", [
+  readyPackageSchema,
+  pendingPackageSchema,
+  failedPackageSchema,
+]);
+export type PackageCheck = z.infer<typeof packageCheckSchema>;
+export const cachedChecksSchema = z.object({
   session: sessionSchema,
   results: z.array(
     z.discriminatedUnion("state", [
-      packageResultSchema.extend({ state: z.literal("ready") }),
-      pathFailureSchema,
+      pendingPackageSchema.extend({ state: z.literal("pending") }),
+      failedPackageSchema,
     ]),
+  ),
+});
+export const checksSchema = z.object({
+  session: sessionSchema,
+  cache_errors: z.array(pathFailureSchema),
+  results: z.array(
+    z.discriminatedUnion("state", [readyPackageSchema, pathFailureSchema]),
   ),
 });
 export const problemSchema = z.object({

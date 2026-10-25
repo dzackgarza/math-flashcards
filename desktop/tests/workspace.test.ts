@@ -11,6 +11,7 @@ import {
   cachedManifestSchema,
   sourcesSchema,
   checksSchema,
+  cachedChecksSchema,
   problemCacheSchema,
   problemStoredSchema,
   searchCacheSchema,
@@ -27,6 +28,105 @@ afterEach(() => {
     expect(cleanup.exitCode, cleanup.stderr.toString()).toBe(0);
   }
 });
+
+test("package history remains pending until exact inputs are rechecked", async () => {
+  const workspace = await mkdtemp(
+    join(tmpdir(), "flashcards-package-history-"),
+  );
+  temporaryWorkspaces.push(workspace);
+  const backend = resolve(import.meta.dir, "../backend.py");
+  const find = Bun.spawnSync(["uv", "python", "find", "--script", backend]);
+  expect(find.exitCode).toBe(0);
+  const source =
+    '---\ntitle: "Study"\n---\n\n::: {.front card-id="proof"}\nA question\n:::\n\n::: {.back card-id="proof"}\nA proof\n:::\n';
+  await Bun.write(join(workspace, "Study.md"), source);
+  function call<T>(payload: Request, schema: z.ZodType<T>): T {
+    const process = Bun.spawnSync(
+      [
+        "unshare",
+        "--user",
+        "--map-root-user",
+        "--net",
+        find.stdout.toString().trim(),
+        backend,
+      ],
+      {
+        stdin: Buffer.from(JSON.stringify(payload) + "\n"),
+        env: {
+          ...Bun.env,
+          XDG_CACHE_HOME: join(workspace, "cache"),
+          UV_OFFLINE: "1",
+        },
+      },
+    );
+    expect(process.exitCode, process.stderr.toString()).toBe(0);
+    return schema.parse(JSON.parse(process.stdout.toString()));
+  }
+  const assets = call({ action: "assets" }, assetsSchema);
+  const input = {
+    workspace,
+    generation: 1,
+    paths: ["Study.md"],
+    assets: assets.identity,
+  };
+  expect(
+    call({ ...input, action: "cached-checks" }, cachedChecksSchema).results,
+  ).toEqual([{ state: "pending", path: "Study.md", previous: null }]);
+  const generated = call(
+    {
+      action: "generate",
+      workspace,
+      path: "Study.md",
+      assets: assets.identity,
+    },
+    generatedSchema,
+  );
+  expect(generated.status).toBe("Up to date");
+  const fresh = call({ ...input, action: "checks" }, checksSchema);
+  expect(fresh.cache_errors).toEqual([]);
+  const verified = fresh.results[0];
+  expect(verified).toMatchObject({
+    state: "ready",
+    path: "Study.md",
+    status: "Up to date",
+  });
+  if (verified?.state !== "ready")
+    throw new Error("The package verification did not finish.");
+  const bytes = await Bun.file(generated.package).bytes();
+  await Bun.write(
+    generated.package,
+    Buffer.concat([bytes, Buffer.from("external edit")]),
+  );
+  const historical = call(
+    { ...input, generation: 2, action: "cached-checks" },
+    cachedChecksSchema,
+  );
+  expect(historical.session).toEqual({ root: workspace, generation: 2 });
+  expect(historical.results).toEqual([
+    { state: "pending", path: "Study.md", previous: verified },
+  ]);
+  const rechecked = call(
+    { ...input, generation: 2, action: "checks" },
+    checksSchema,
+  );
+  expect(rechecked.results[0]).toMatchObject({
+    state: "ready",
+    status: "Unsynced",
+    reasons: ["The Anki package file changed after generation."],
+  });
+  const changed = rechecked.results[0];
+  if (changed?.state !== "ready")
+    throw new Error("The changed package verification did not finish.");
+  expect(changed.input_identity).not.toBe(verified.input_identity);
+  expect(changed.revision).toBe(verified.revision);
+  expect(
+    call(
+      { ...input, generation: 3, action: "cached-checks" },
+      cachedChecksSchema,
+    ).results,
+  ).toEqual([{ state: "pending", path: "Study.md", previous: changed }]);
+  expect(await Bun.file(join(workspace, "Study.md")).text()).toBe(source);
+}, 30000);
 
 test("manifest reconciliation prunes source-derived records after a rename", async () => {
   const workspace = await mkdtemp(join(tmpdir(), "flashcards-membership-"));
