@@ -27,13 +27,14 @@ from pathlib import Path
 from typing import Annotated, Literal
 
 import ankdown
-from filelock import FileLock
+from filelock import FileLock, Timeout
 from platformdirs import user_cache_path
 from pydantic import (
     BaseModel,
     ConfigDict,
     Field,
     TypeAdapter,
+    ValidationError,
     field_validator,
     model_validator,
 )
@@ -93,6 +94,52 @@ class ChecksInput(BatchInput):
     action: Literal["checks"]
 
 
+class Problem(BaseModel):
+    path: str
+    card: str | None
+    label: str | None
+    side: Literal["front", "back"] | None
+    kind: Literal["LaTeX", "Card structure", "Empty answer"]
+    message: str
+    source: str | None
+
+
+class ProblemKey(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    path: str
+    revision: Digest
+
+    @field_validator("path")
+    @classmethod
+    def relative_path(cls, value: str) -> str:
+        return BatchInput.relative_decks([value])[0]
+
+
+class ProblemEntry(ProblemKey):
+    problems: list[Problem]
+
+    @model_validator(mode="after")
+    def matching_paths(self) -> ProblemEntry:
+        if any(problem.path != self.path for problem in self.problems):
+            raise ValueError("Each problem must belong to its deck.")
+        return self
+
+
+class ProblemCacheInput(DiscoveryInput):
+    producer: Digest
+    assets: Digest
+
+
+class ReadProblemsInput(ProblemCacheInput):
+    action: Literal["problems"]
+    entries: list[ProblemKey] = Field(min_length=1, max_length=8)
+
+
+class StoreProblemsInput(ProblemCacheInput):
+    action: Literal["store-problems"]
+    entries: list[ProblemEntry] = Field(min_length=1, max_length=8)
+
+
 class DeckInput(Input):
     path: str
 
@@ -147,7 +194,9 @@ type Request = Annotated[
     | ReviewInput
     | ManifestInput
     | SourcesInput
-    | ChecksInput,
+    | ChecksInput
+    | ReadProblemsInput
+    | StoreProblemsInput,
     Field(discriminator="action"),
 ]
 
@@ -254,6 +303,36 @@ class PackageResult(Sync):
 class Checks(BaseModel):
     session: Session
     results: list[Annotated[PackageResult | PathFailure, Field(discriminator="state")]]
+
+
+class CachedProblems(ProblemEntry):
+    state: Literal["ready"] = "ready"
+    producer: Digest
+    assets: Digest
+
+
+class PendingProblems(BaseModel):
+    state: Literal["pending"] = "pending"
+    path: str
+
+
+class StoredProblems(BaseModel):
+    state: Literal["stored", "superseded"]
+    path: str
+
+
+class ProblemCache(BaseModel):
+    session: Session
+    results: list[
+        Annotated[
+            CachedProblems | PendingProblems | PathFailure, Field(discriminator="state")
+        ]
+    ]
+
+
+class ProblemStored(BaseModel):
+    session: Session
+    results: list[Annotated[StoredProblems | PathFailure, Field(discriminator="state")]]
 
 
 class Summary(BaseModel):
@@ -372,6 +451,108 @@ def refresh_macros() -> tuple[str, str]:
     macros = fetch_macros()
     stmaryrd = fetch_stmaryrd()
     return macros, stmaryrd
+
+
+@contextmanager
+def derived_database() -> Iterator[sqlite3.Connection]:
+    """Disposable records use a separate SQLite file from build provenance."""
+    directory = user_cache_path("math-flashcards")
+    directory.mkdir(parents=True, exist_ok=True)
+    with FileLock(directory / "derived.lock", timeout=0.1):
+        with sqlite3.connect(directory / "derived.sqlite3", timeout=0.1) as connection:
+            connection.execute(
+                "CREATE TABLE IF NOT EXISTS problem_checks ("
+                "root TEXT NOT NULL, path TEXT NOT NULL, revision TEXT NOT NULL, "
+                "producer TEXT NOT NULL, assets TEXT NOT NULL, record TEXT NOT NULL, "
+                "PRIMARY KEY (root, path))"
+            )
+            yield connection
+
+
+def problem_cache(
+    root: Path, request: ReadProblemsInput | StoreProblemsInput
+) -> ProblemCache | ProblemStored:
+    paths = [deck_path(root, entry.path) for entry in request.entries]
+    read: list[CachedProblems | PendingProblems | PathFailure] = []
+    stored: list[StoredProblems | PathFailure] = []
+    for position, (entry, path) in enumerate(zip(request.entries, paths, strict=True)):
+        try:
+            revision = digest(path.read_bytes())
+        except OSError as error:
+            failure = PathFailure(
+                path=entry.path, kind="UnreadablePath", message=str(error)
+            )
+            read.append(failure)
+            stored.append(failure)
+            continue
+        if revision != entry.revision:
+            read.append(PendingProblems(path=entry.path))
+            stored.append(StoredProblems(path=entry.path, state="superseded"))
+            continue
+        try:
+            if isinstance(request, StoreProblemsInput):
+                record = CachedProblems(
+                    path=entry.path,
+                    revision=entry.revision,
+                    producer=request.producer,
+                    assets=request.assets,
+                    problems=request.entries[position].problems,
+                )
+                with derived_database() as connection:
+                    connection.execute(
+                        "INSERT OR REPLACE INTO problem_checks VALUES (?, ?, ?, ?, ?, ?)",
+                        (
+                            str(root),
+                            entry.path,
+                            entry.revision,
+                            request.producer,
+                            request.assets,
+                            record.model_dump_json(),
+                        ),
+                    )
+                stored.append(StoredProblems(path=entry.path, state="stored"))
+                continue
+            with derived_database() as connection:
+                row = connection.execute(
+                    "SELECT record FROM problem_checks WHERE root = ? AND path = ? "
+                    "AND revision = ? AND producer = ? AND assets = ?",
+                    (
+                        str(root),
+                        entry.path,
+                        entry.revision,
+                        request.producer,
+                        request.assets,
+                    ),
+                ).fetchone()
+            if row is None:
+                read.append(PendingProblems(path=entry.path))
+                continue
+            record = CachedProblems.model_validate_json(row[0])
+            if (record.path, record.revision, record.producer, record.assets) != (
+                entry.path,
+                entry.revision,
+                request.producer,
+                request.assets,
+            ):
+                read.append(
+                    PathFailure(
+                        path=entry.path,
+                        kind="CacheFailure",
+                        message="The saved problem identity is damaged. Rebuild cached data.",
+                    )
+                )
+                continue
+            read.append(record)
+        except (sqlite3.Error, ValidationError, OSError, Timeout) as error:
+            failure = PathFailure(
+                path=entry.path, kind="CacheFailure", message=str(error)
+            )
+            read.append(failure)
+            stored.append(failure)
+    session = Session(root=str(root), generation=request.generation)
+    if isinstance(request, StoreProblemsInput):
+        return ProblemStored(session=session, results=stored)
+    return ProblemCache(session=session, results=read)
 
 
 def asset_identity(
@@ -698,10 +879,14 @@ def dispatch(
     | Sources
     | Checks
     | AssetSet
+    | ProblemCache
+    | ProblemStored
 ):
     if isinstance(request, AssetsInput):
         return installed_assets()
     root = workspace_path(request.workspace)
+    if isinstance(request, ReadProblemsInput | StoreProblemsInput):
+        return problem_cache(root, request)
     if isinstance(request, ManifestInput):
         return Manifest(
             session=Session(root=str(root), generation=request.generation),
