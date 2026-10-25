@@ -22,6 +22,7 @@ import sys
 import tempfile
 from collections.abc import Iterator
 from contextlib import closing, contextmanager
+from datetime import UTC, datetime
 from functools import cache
 from pathlib import Path
 from typing import Annotated, Literal
@@ -96,6 +97,11 @@ class SourcesInput(BatchInput):
 
 class ChecksInput(BatchInput):
     action: Literal["checks"]
+    assets: Digest
+
+
+class CachedChecksInput(BatchInput):
+    action: Literal["cached-checks"]
     assets: Digest
 
 
@@ -250,6 +256,7 @@ type Request = Annotated[
     | ManifestCacheInput
     | SourcesInput
     | ChecksInput
+    | CachedChecksInput
     | ReadProblemsInput
     | StoreProblemsInput
     | ReadSearchInput
@@ -292,6 +299,11 @@ class Sync(BaseModel):
     status: Status
     reasons: list[str]
     built: str | None
+
+
+class Verification(Sync):
+    input_identity: Digest
+    checked_at: datetime
 
 
 class Session(BaseModel):
@@ -391,7 +403,7 @@ class Sources(BaseModel):
     results: list[Annotated[SourceResult | PathFailure, Field(discriminator="state")]]
 
 
-class PackageResult(Sync):
+class PackageResult(Verification):
     state: Literal["ready"] = "ready"
     path: str
     revision: Digest
@@ -401,6 +413,24 @@ class PackageResult(Sync):
 class Checks(BaseModel):
     session: Session
     results: list[Annotated[PackageResult | PathFailure, Field(discriminator="state")]]
+    cache_errors: list[PathFailure] = Field(default_factory=list)
+
+
+class PendingPackage(BaseModel):
+    state: Literal["pending"] = "pending"
+    path: str
+    previous: PackageResult | None
+
+
+class FailedPackage(PathFailure):
+    previous: PackageResult | None = None
+
+
+class CachedChecks(BaseModel):
+    session: Session
+    results: list[
+        Annotated[PendingPackage | FailedPackage, Field(discriminator="state")]
+    ]
 
 
 class CachedProblems(ProblemEntry):
@@ -606,7 +636,63 @@ def derived_database() -> Iterator[sqlite3.Connection]:
         connection.execute(
             "CREATE TABLE IF NOT EXISTS search_summaries (root TEXT NOT NULL, path TEXT NOT NULL, revision TEXT NOT NULL, producer TEXT NOT NULL, record TEXT NOT NULL, PRIMARY KEY (root, path))"
         )
+        connection.execute(
+            "CREATE TABLE IF NOT EXISTS package_checks (root TEXT NOT NULL, path TEXT NOT NULL, producer TEXT NOT NULL, record TEXT NOT NULL, PRIMARY KEY (root, path))"
+        )
         yield connection
+
+
+@cache
+def package_producer() -> str:
+    return digest(
+        Path(__file__).read_bytes()
+        + json.dumps(PackageResult.model_json_schema(), sort_keys=True).encode()
+    )
+
+
+def package_history(root: Path, request: CachedChecksInput) -> CachedChecks:
+    for path in request.paths:
+        deck_path(root, path)
+    results: list[PendingPackage | FailedPackage] = []
+    for path in request.paths:
+        try:
+            asset_set(request.assets)
+            with derived_database() as connection:
+                row = connection.execute(
+                    "SELECT record FROM package_checks WHERE root = ? AND path = ? AND producer = ?",
+                    (str(root), path, package_producer()),
+                ).fetchone()
+            previous = PackageResult.model_validate_json(row[0]) if row else None
+            if previous is not None and previous.path != path:
+                raise ValueError(
+                    "The saved package identity is damaged. Rebuild cached data."
+                )
+            results.append(PendingPackage(path=path, previous=previous))
+        except InvalidAssetsError as error:
+            results.append(
+                FailedPackage(path=path, kind="InvalidAssets", message=str(error))
+            )
+        except (sqlite3.Error, ValidationError, OSError, Timeout, ValueError) as error:
+            results.append(
+                FailedPackage(
+                    path=path,
+                    kind="CacheFailure",
+                    message="Saved package checks are damaged. Rebuild cached data."
+                    if isinstance(error, ValidationError)
+                    else str(error),
+                )
+            )
+    return CachedChecks(
+        session=Session(root=str(root), generation=request.generation), results=results
+    )
+
+
+def store_package_check(root: Path, result: PackageResult) -> None:
+    with derived_database() as connection:
+        connection.execute(
+            "INSERT OR REPLACE INTO package_checks VALUES (?, ?, ?, ?)",
+            (str(root), result.path, package_producer(), result.model_dump_json()),
+        )
 
 
 def search_cache(
@@ -706,7 +792,7 @@ def manifest_cache(root: Path, request: ManifestCacheInput) -> ManifestCache:
                     (str(root), producer, record.model_dump_json()),
                 )
                 members = {entry.path for entry in record.entries}
-                for table in ("problem_checks", "search_summaries"):
+                for table in ("problem_checks", "search_summaries", "package_checks"):
                     previous = connection.execute(
                         f"SELECT path FROM {table} WHERE root = ?", (str(root),)
                     ).fetchall()
@@ -908,50 +994,67 @@ def has_cards(path: Path) -> bool:
 EMPTY = "The deck has no cards, so it has no Anki package."
 
 
-def sync(path: Path, output: Path, assets: AssetSet) -> Sync:
+def sync(path: Path, output: Path, assets: AssetSet) -> Verification:
     with database() as connection:
         row = connection.execute(
             "SELECT record FROM deck_builds WHERE path = ?", (str(path),)
         ).fetchone()
+    current: dict[str, str | None] = dict(input_hashes(path, [], assets))
+    package = digest(output.read_bytes()) if output.is_file() else None
+    build = digest(row[0].encode()) if row else None
     if row is None:
-        if not has_cards(path):
-            return Sync(status="Empty", reasons=[EMPTY], built=None)
-        return Sync(
-            status="Unsynced",
-            reasons=["No Anki package has been generated from this deck."],
-            built=None,
-        )
-    record = BuildRecord.model_validate_json(row[0])
-    reasons: list[str] = []
-    if not output.is_file():
-        reasons.append("The Anki package file is missing.")
-    elif digest(output.read_bytes()) != record.package:
-        reasons.append("The Anki package file changed after generation.")
-    current = input_hashes(path, [], assets)
-    for name, expected in record.inputs.items():
-        if name in current:
-            if current[name] == expected:
-                continue
-            reason = (
-                "The deck changed."
-                if name == str(path)
-                else "The renderer assets changed."
-                if name == "macros"
-                else "The exporter changed."
+        state = (
+            Sync(
+                status="Unsynced",
+                reasons=["No Anki package has been generated from this deck."],
+                built=None,
             )
-        else:
-            file = Path(name)
-            if file.is_file() and digest(file.read_bytes()) == expected:
-                continue
-            reason = "Media changed: " + file.name
-        if reason not in reasons:
-            reasons.append(reason)
-    if "The deck changed." in reasons and not has_cards(path):
-        reasons.append("The deck has no cards. An update removes its Anki package.")
-    return Sync(
-        status="Unsynced" if reasons else "Up to date",
-        reasons=reasons,
-        built=record.source,
+            if has_cards(path)
+            else Sync(status="Empty", reasons=[EMPTY], built=None)
+        )
+    else:
+        record = BuildRecord.model_validate_json(row[0])
+        reasons: list[str] = []
+        if package is None:
+            reasons.append("The Anki package file is missing.")
+        elif package != record.package:
+            reasons.append("The Anki package file changed after generation.")
+        for name, expected in record.inputs.items():
+            if name in current:
+                if current[name] == expected:
+                    continue
+                reason = (
+                    "The deck changed."
+                    if name == str(path)
+                    else "The renderer assets changed."
+                    if name == "macros"
+                    else "The exporter changed."
+                )
+            else:
+                file = Path(name)
+                current[name] = digest(file.read_bytes()) if file.is_file() else None
+                if current[name] == expected:
+                    continue
+                reason = "Media changed: " + file.name
+            if reason not in reasons:
+                reasons.append(reason)
+        if "The deck changed." in reasons and not has_cards(path):
+            reasons.append("The deck has no cards. An update removes its Anki package.")
+        state = Sync(
+            status="Unsynced" if reasons else "Up to date",
+            reasons=reasons,
+            built=record.source,
+        )
+    return Verification(
+        status=state.status,
+        reasons=state.reasons,
+        built=state.built,
+        input_identity=digest(
+            json.dumps(
+                [current, package, build], sort_keys=True, separators=(",", ":")
+            ).encode()
+        ),
+        checked_at=datetime.now(UTC),
     )
 
 
@@ -1184,6 +1287,7 @@ def dispatch(
     | CacheRebuilt
     | ManifestCache
     | SearchCache
+    | CachedChecks
 ):
     if isinstance(request, AssetsInput):
         return installed_assets()
@@ -1210,6 +1314,8 @@ def dispatch(
         return problem_cache(root, request)
     if isinstance(request, ReadSearchInput | StoreSearchInput):
         return search_cache(root, request)
+    if isinstance(request, CachedChecksInput):
+        return package_history(root, request)
     if isinstance(request, ManifestInput):
         return Manifest(
             session=Session(root=str(root), generation=request.generation),
@@ -1223,6 +1329,7 @@ def dispatch(
         paths = [deck_path(root, name) for name in request.paths]
         sources: list[SourceResult | PathFailure] = []
         checks: list[PackageResult | PathFailure] = []
+        cache_errors: list[PathFailure] = []
         for name, path in zip(request.paths, paths, strict=True):
             try:
                 raw = path.read_bytes()
@@ -1238,16 +1345,23 @@ def dispatch(
                     raise ValueError(
                         "The deck changed during verification. Check it again."
                     )
-                checks.append(
-                    PackageResult(
-                        path=name,
-                        revision=revision,
-                        assets=request.assets,
-                        status=state.status,
-                        reasons=state.reasons,
-                        built=state.built,
-                    )
+                result = PackageResult(
+                    path=name,
+                    revision=revision,
+                    assets=request.assets,
+                    input_identity=state.input_identity,
+                    checked_at=state.checked_at,
+                    status=state.status,
+                    reasons=state.reasons,
+                    built=state.built,
                 )
+                checks.append(result)
+                try:
+                    store_package_check(root, result)
+                except (sqlite3.Error, ValidationError, OSError, Timeout) as error:
+                    cache_errors.append(
+                        PathFailure(path=name, kind="CacheFailure", message=str(error))
+                    )
             except InvalidAssetsError as error:
                 checks.append(
                     PathFailure(path=name, kind="InvalidAssets", message=str(error))
@@ -1265,7 +1379,7 @@ def dispatch(
         session = Session(root=str(root), generation=request.generation)
         if isinstance(request, SourcesInput):
             return Sources(session=session, results=sources)
-        return Checks(session=session, results=checks)
+        return Checks(session=session, results=checks, cache_errors=cache_errors)
     if isinstance(request, OrganizeInput):
         return publish_changes(root, request.changes)
     if isinstance(request, ReviewInput):

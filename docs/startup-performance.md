@@ -178,3 +178,18 @@ retaining authored files, package bytes, and successful build provenance.
 Manifest publication prunes search and Problems rows for paths that are no
 longer members of the workspace. A real organization-and-reconciliation case
 verifies removal of the old path from both tables after a deck rename.
+
+## Historical package checks
+
+The package-history API returns Pending with the prior checked value. It reads
+the derived database without hashing packages or reading deck sources.
+Fresh checks compute a digest over the current input hashes, package bytes,
+and build-record identity. Their check time is metadata, not a validity key.
+
+The offline backend case changes actual package bytes between requests. A
+history read still returns Pending; fresh verification detects the edit and
+changes the input identity while retaining the source revision.
+The browser warm-start scenario observes real tree attributes with a DOM
+MutationObserver. It verifies that prior statuses appear as Pending or Checking
+before the row becomes Ready. Cache failures remain separate from verified
+package results, with an explicit rebuild action.

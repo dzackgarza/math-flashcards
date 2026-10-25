@@ -142,7 +142,11 @@ mjx-merror {
   color: var(--mantine-color-red-8) !important;
   background-color: var(--mantine-color-red-0) !important;
 }
-.tree-dot.problem {
+.tree-dot.pending {
+  background: var(--mantine-color-gray-5);
+}
+.tree-dot.problem,
+.tree-dot.failed {
   background: var(--mantine-color-red-6);
 }
 

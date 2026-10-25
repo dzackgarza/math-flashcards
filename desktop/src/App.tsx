@@ -96,6 +96,7 @@ import {
   cachedManifestSchema,
   sourcesSchema,
   checksSchema,
+  cachedChecksSchema,
   assetsSchema,
   cacheRebuiltSchema,
   documentSchema,
@@ -108,7 +109,7 @@ import {
   type Entry,
   type Manifest,
   type SourceResult,
-  type PackageResult,
+  type PackageCheck,
 } from "./bridge";
 
 type Task = "Idle" | "Loading" | "Generating" | "Organizing";
@@ -153,6 +154,11 @@ function treeData(decks: Entry[]): TreeNodeData[] {
 const deckTitle = (path: string) =>
   JSON.stringify(path.replace(/\.md$/, "").replace(/\//g, "::"));
 
+function previousPackage(check: PackageCheck | undefined) {
+  if (!check) return null;
+  return check.state === "ready" ? check : check.previous;
+}
+
 export default function App() {
   const workspaceForm = useForm({
     mode: "uncontrolled",
@@ -169,8 +175,13 @@ export default function App() {
   );
   const [searchCoverage, setSearchCoverage] = useState(new Set<string>());
   const [packageRecords, setPackageRecords] = useState(
-    new Map<string, PackageResult>(),
+    new Map<string, PackageCheck>(),
   );
+  const [packageCacheIssue, setPackageCacheIssue] = useState<{
+    root: string;
+    message: string;
+    kind: "CacheFailure" | "BackendFailure";
+  } | null>(null);
   const [coverage, setCoverage] = useState({
     state: "idle",
     checked: 0,
@@ -303,11 +314,17 @@ export default function App() {
   const derivedCacheError =
     navigationCacheFailure?.root === workspace
       ? navigationCacheFailure.message
-      : problemCacheError || searchCacheError;
+      : problemCacheError ||
+        searchCacheError ||
+        (packageCacheIssue?.root === workspace
+          ? packageCacheIssue.message
+          : "");
   const derivedCacheFailure =
     navigationCacheFailure?.root === workspace ||
     problemCacheFailure ||
-    searchCacheFailure;
+    searchCacheFailure ||
+    (packageCacheIssue?.root === workspace &&
+      packageCacheIssue.kind === "CacheFailure");
   const problemDecks = useMemo(
     () => new Set((problems ?? []).map((problem) => problem.path)),
     [problems],
@@ -332,6 +349,16 @@ export default function App() {
   async function refresh(root = workspace) {
     if (!root) return;
     setSearchCoverage(new Set());
+    setPackageRecords((previous) => {
+      const next = new Map<string, PackageCheck>();
+      for (const [path, check] of previous)
+        next.set(path, {
+          state: "pending",
+          path,
+          previous: previousPackage(check),
+        });
+      return next;
+    });
     const token = workspaceNavigation.current;
     const generation = ++reconciliation.current;
     void checkAssetUpdate();
@@ -345,6 +372,15 @@ export default function App() {
     )
       return;
     setDecks(result.entries);
+    const members = new Set(result.entries.map((entry) => entry.path));
+    setSourceRecords(
+      (previous) =>
+        new Map([...previous].filter(([path]) => members.has(path))),
+    );
+    setPackageRecords(
+      (previous) =>
+        new Map([...previous].filter(([path]) => members.has(path))),
+    );
     updateDocument((open) => open && { ...open, status: null });
     void cacheManifest(result.session.root, generation, token);
     void fillWorkspace(result, token);
@@ -409,10 +445,38 @@ export default function App() {
       generation !== reconciliation.current
     )
       return;
+    setPackageRecords((previous) => {
+      const next = new Map(previous);
+      for (const path of paths)
+        next.set(path, {
+          state: "checking",
+          path,
+          previous: previousPackage(previous.get(path)),
+        });
+      return next;
+    });
     const response = await request(
       { action: "checks", workspace: root, generation, paths, assets },
       checksSchema,
-    );
+    ).catch((failure) => {
+      if (
+        token === workspaceNavigation.current &&
+        generation === reconciliation.current
+      )
+        setPackageRecords((previous) => {
+          const next = new Map(previous);
+          for (const path of paths)
+            next.set(path, {
+              state: "failed",
+              path,
+              kind: "BackendFailure",
+              message: String(failure),
+              previous: previousPackage(previous.get(path)),
+            });
+          return next;
+        });
+      throw failure;
+    });
     if (
       token !== workspaceNavigation.current ||
       generation !== reconciliation.current
@@ -433,9 +497,26 @@ export default function App() {
       throw new Error("The package response uses another renderer asset set.");
     setPackageRecords((previous) => {
       const next = new Map(previous);
-      for (const result of response.results) next.set(result.path, result);
+      for (const result of response.results)
+        next.set(
+          result.path,
+          result.state === "ready"
+            ? result
+            : {
+                ...result,
+                previous: previousPackage(previous.get(result.path)),
+              },
+        );
       return next;
     });
+    if (response.cache_errors.length)
+      setPackageCacheIssue({
+        root,
+        kind: "CacheFailure",
+        message: response.cache_errors
+          .map((error) => error.path + ": " + error.message)
+          .join("\n"),
+      });
     for (const result of response.results) {
       if (result.state === "failed") continue;
       updateDocument((open) =>
@@ -474,6 +555,76 @@ export default function App() {
         const paths = manifest.entries
           .slice(offset, offset + 8)
           .map((entry) => entry.path);
+        const assets = (await loadMathJax()).identity;
+        try {
+          const history = await request(
+            {
+              action: "cached-checks",
+              workspace: root,
+              generation,
+              paths,
+              assets,
+            },
+            cachedChecksSchema,
+          );
+          if (
+            token !== workspaceNavigation.current ||
+            generation !== reconciliation.current
+          )
+            return;
+          if (
+            history.session.root !== root ||
+            history.session.generation !== generation
+          )
+            throw new Error(
+              "The package history belongs to another workspace session.",
+            );
+          setPackageRecords((previous) => {
+            const next = new Map(previous);
+            for (const result of history.results) {
+              const current = previous.get(result.path);
+              if (current?.state === "ready") continue;
+              next.set(
+                result.path,
+                result.state === "pending"
+                  ? {
+                      ...result,
+                      state:
+                        current?.state === "checking" ? "checking" : "pending",
+                      previous: previousPackage(current) ?? result.previous,
+                    }
+                  : { ...result, previous: previousPackage(current) },
+              );
+            }
+            return next;
+          });
+          for (const result of history.results) {
+            if (result.state !== "failed") continue;
+            if (result.kind === "CacheFailure")
+              setPackageCacheIssue({
+                root,
+                kind: "CacheFailure",
+                message: result.message,
+              });
+            else errors.push(result.path + ": " + result.message);
+          }
+          setPackageCacheIssue((current) =>
+            current?.root === root && current.kind === "BackendFailure"
+              ? null
+              : current,
+          );
+        } catch (failure) {
+          if (
+            token !== workspaceNavigation.current ||
+            generation !== reconciliation.current
+          )
+            return;
+          setPackageCacheIssue({
+            root,
+            kind: "BackendFailure",
+            message: String(failure),
+          });
+        }
         const response = await request(
           { action: "sources", workspace: root, generation, paths },
           sourcesSchema,
@@ -642,6 +793,7 @@ export default function App() {
       setSourceRecords(new Map());
       setSearchCoverage(new Set());
       setPackageRecords(new Map());
+      setPackageCacheIssue(null);
       updateDocument(() => null);
       setSelection([]);
       setNotice(null);
@@ -1453,6 +1605,7 @@ export default function App() {
       );
       setCacheEpoch((epoch) => epoch + 1);
       setNavigationCacheFailure(null);
+      setPackageCacheIssue(null);
       await refresh();
     } catch (failure) {
       setError(String(failure));
@@ -1677,6 +1830,19 @@ export default function App() {
             levelOffset={16}
             renderNode={({ node, expanded, hasChildren, elementProps }) => {
               const path = node.value.slice(1);
+              const check = packageRecords.get(path);
+              const previous = previousPackage(check);
+              const checkTitle =
+                check?.state === "failed"
+                  ? check.message +
+                    (previous
+                      ? " Previous package status: " + previous.status + "."
+                      : "")
+                  : previous
+                    ? "Previous package status: " +
+                      previous.status +
+                      ". Checking current inputs."
+                    : "Checking Anki package inputs.";
               return (
                 <Menu position="bottom-start" shadow="md" width={220}>
                   <Menu.ContextMenu>
@@ -1687,6 +1853,14 @@ export default function App() {
                       disabled={busy}
                       expand={() => tree.expand(node.value)}
                       data-active={document?.path === path || undefined}
+                      data-package-state={
+                        hasChildren ? undefined : (check?.state ?? "pending")
+                      }
+                      data-previous-package-status={
+                        hasChildren || check?.state === "ready"
+                          ? undefined
+                          : previous?.status
+                      }
                       onClick={(event) => {
                         elementProps.onClick?.(event);
                         if (!hasChildren && !busy)
@@ -1716,6 +1890,17 @@ export default function App() {
                         <span
                           className="tree-dot"
                           title="The Anki package is out of date"
+                        />
+                      )}
+                      {!hasChildren && check?.state !== "ready" && (
+                        <span
+                          className={
+                            "tree-dot " +
+                            (check?.state === "failed" ? "failed" : "pending")
+                          }
+                          title={checkTitle}
+                          role="img"
+                          aria-label={checkTitle}
                         />
                       )}
                     </TreeRow>
@@ -1815,15 +2000,20 @@ export default function App() {
                   ` (${problemCoverage}/${decks.length} checked)`}
             </Button>
           )}
-          {pendingDecks.length > 0 && (
+          {workspace && decks.length > 0 && (
             <Button
               variant="light"
               justify="space-between"
               aria-label="Review and update Anki packages"
               rightSection={
-                <Badge size="sm" variant="filled" color="orange">
-                  {pendingDecks.length}
-                </Badge>
+                pendingDecks.length > 0 &&
+                decks.every(
+                  (deck) => packageRecords.get(deck.path)?.state === "ready",
+                ) ? (
+                  <Badge size="sm" variant="filled" color="orange">
+                    {pendingDecks.length}
+                  </Badge>
+                ) : null
               }
               onClick={() => void openReview(null)}
             >

@@ -36,8 +36,10 @@ async fn request(
     // Tokio bounds native backend concurrency: https://docs.rs/tokio/latest/tokio/sync/struct.Semaphore.html
     let scope: Scope = serde_json::from_str(&payload).map_err(|e| e.to_string())?;
     let queue = match scope.action.as_str() {
-        "assets" | "sources" | "checks" | "review" | "generate" | "list" | "problems"
-        | "store-problems" | "cache-manifest" | "search" | "store-search" => &slots.background,
+        "assets" | "sources" | "checks" | "cached-checks" | "review" | "generate" | "list"
+        | "problems" | "store-problems" | "cache-manifest" | "search" | "store-search" => {
+            &slots.background
+        }
         _ => &slots.foreground,
     };
     // Background batches cannot take the foreground permit.

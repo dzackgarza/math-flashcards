@@ -445,7 +445,29 @@ def main() -> None:
 
                 page.close()
                 page = context.new_page()
+                page.add_init_script(
+                    """(expected => {
+                      window.packageHistory = [];
+                      new MutationObserver(() => {
+                        if (document.querySelector('.workspace-name')?.textContent !== expected) return;
+                        for (const row of document.querySelectorAll('[data-deck][data-previous-package-status]')) {
+                          window.packageHistory.push({path: row.dataset.deck, state: row.dataset.packageState, previous: row.dataset.previousPackageStatus});
+                        }
+                      }).observe(document, {subtree: true, childList: true, attributes: true, attributeFilter: ['data-package-state', 'data-previous-package-status']});
+                    })("""
+                    + json.dumps(root.name)
+                    + ");"
+                )
                 with (
+                    page.expect_response(
+                        lambda response: (
+                            response.url.endswith("/api/request")
+                            and response.request.post_data_json.get("action")
+                            == "cached-checks"
+                            and response.request.post_data_json.get("workspace")
+                            == str(root)
+                        )
+                    ) as package_history_response,
                     page.expect_response(
                         lambda response: (
                             response.url.endswith("/api/request")
@@ -466,8 +488,18 @@ def main() -> None:
                     ) as cached_response,
                 ):
                     restore_workspace()
+                    page.get_by_text("Analysis", exact=True).click()
                 cached = cached_response.value.json()
                 saved_search = search_response.value.json()
+                history = package_history_response.value.json()
+                assert all(
+                    result["state"] == "pending" for result in history["results"]
+                )
+                assert any(
+                    result["path"] == "Analysis/Precalculus.md"
+                    and result["previous"] is not None
+                    for result in history["results"]
+                )
                 assert any(
                     result["state"] == "ready"
                     and result["path"] == "Analysis/Broken.md"
@@ -482,6 +514,15 @@ def main() -> None:
                 expect(page.locator(".workspace-progress")).to_have_text(
                     "Workspace checks complete", timeout=30000
                 )
+                observed_history = page.evaluate("window.packageHistory")
+                assert any(
+                    result["path"] == "Analysis/Precalculus.md"
+                    and result["state"] in {"pending", "checking"}
+                    for result in observed_history
+                ), observed_history
+                expect(
+                    page.locator('[data-deck="Analysis/Precalculus.md"]')
+                ).to_have_attribute("data-package-state", "ready")
                 page.get_by_role("button", name="Show problems", exact=True).click()
                 expect(
                     page.get_by_role("dialog", name="3 problems", exact=True)

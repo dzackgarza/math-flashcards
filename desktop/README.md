@@ -64,6 +64,10 @@ current file and checks that the requested card still exists.
 Search summaries and their exact source text are cached on disk by source digest
 and parser version. Warm sessions reuse them after a current-file byte check.
 The cache rebuild action also replaces these disposable records.
+Package checks are cached as history. A gray tree marker means that current
+inputs are being checked; its tooltip gives the previous result when available.
+Only a completed current check supplies the package status. Review and update
+can verify the complete workspace while other background work is incomplete.
 
 The app opens the saved workspace on startup. On first launch it opens the
 `decks/` folder in the repository used to build the app. Preferences use the standard Tauri store in

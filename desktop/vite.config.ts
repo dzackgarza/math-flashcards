@@ -98,6 +98,7 @@ function workbenchBackend(): Plugin {
           "cache-manifest",
           "sources",
           "checks",
+          "cached-checks",
           "review",
           "generate",
           "list",
