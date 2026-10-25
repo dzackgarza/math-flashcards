@@ -174,13 +174,14 @@ test("a deck folder supports discovery, editing, and organization beside its exp
 
     const loaded = await request({
       action: "load",
+      generation: 0,
       workspace,
       path: "Algebra/Groups.md",
     });
     expect(loaded.code, loaded.error).toBe(0);
     const deck = documentSchema.parse(JSON.parse(loaded.output));
     expect(deck.source).toBe(source);
-    expect(deck.cards).toBe(1);
+    expect(deck.session).toEqual({ root: workspace, generation: 0 });
     expect(deck.package).toBe(join(workspace, "apkg/Algebra__Groups.apkg"));
 
     const edited = source.replace(
@@ -189,6 +190,7 @@ test("a deck folder supports discovery, editing, and organization beside its exp
     );
     const saved = await request({
       action: "save",
+      generation: 0,
       workspace,
       path: "Algebra/Groups.md",
       source: edited,
@@ -226,7 +228,12 @@ test("a deck folder supports discovery, editing, and organization beside its exp
     ).toEqual(["Groups.md"]);
 
     for (const path of ["../Outside.md", "apkg/Export notes.md"]) {
-      const rejected = await request({ action: "load", workspace, path });
+      const rejected = await request({
+        action: "load",
+        workspace,
+        path,
+        generation: 0,
+      });
       expect(rejected.code).not.toBe(0);
       expect(rejected.error).toContain("deck");
       const invalidMove = await request({

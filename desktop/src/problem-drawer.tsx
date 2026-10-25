@@ -10,7 +10,7 @@ import {
 } from "@mantine/core";
 import { previewHtml, type MathJaxRuntime } from "./math";
 import { deckName } from "./organize";
-import { deckProblems, type Problem } from "./problems";
+import { problemBatches, type Problem } from "./problems";
 
 const colors = {
   LaTeX: "red",
@@ -18,39 +18,62 @@ const colors = {
   "Empty answer": "orange",
 } as const;
 
-// The problems of every deck, or null until the first check ends. A deck is
-// checked again only when its source changes. The check yields between decks
-// so that typing stays responsive.
+// Completed deck checks are valid for their source and asset identity.
+// Yield between cards and report coverage separately from problem counts.
 export function useProblems(
   mathjax: MathJaxRuntime | null,
   decks: { path: string; source: string }[],
-): Problem[] | null {
+  assetIdentity: string,
+): { problems: Problem[]; checked: number } {
   const checked = useRef(
-    new Map<string, { source: string; problems: Problem[] }>(),
+    new Map<
+      string,
+      { source: string; assetIdentity: string; problems: Problem[] }
+    >(),
   );
-  const [problems, setProblems] = useState<Problem[] | null>(null);
+  const [, publish] = useState(0);
   useEffect(() => {
     if (!mathjax) return;
     let cancelled = false;
     (async () => {
       for (const deck of decks) {
-        if (checked.current.get(deck.path)?.source === deck.source) continue;
+        const previous = checked.current.get(deck.path);
+        if (
+          previous?.source === deck.source &&
+          previous.assetIdentity === assetIdentity
+        )
+          continue;
+        const problems: Problem[] = [];
+        for (const batch of problemBatches(mathjax, deck.path, deck.source)) {
+          problems.push(...batch);
+          await new Promise((resolve) => setTimeout(resolve));
+          if (cancelled) return;
+        }
         checked.current.set(deck.path, {
           source: deck.source,
-          problems: deckProblems(mathjax, deck.path, deck.source),
+          assetIdentity,
+          problems,
         });
+        publish((version) => version + 1);
         await new Promise((resolve) => setTimeout(resolve));
         if (cancelled) return;
       }
-      setProblems(
-        decks.flatMap((deck) => checked.current.get(deck.path)!.problems),
-      );
     })();
     return () => {
       cancelled = true;
     };
-  }, [mathjax, decks]);
-  return problems;
+  }, [mathjax, decks, assetIdentity]);
+  const valid = decks.flatMap((deck) => {
+    const result = checked.current.get(deck.path);
+    return result?.source === deck.source &&
+      result.assetIdentity === assetIdentity
+      ? [result]
+      : [];
+  });
+  return {
+    problems: valid.flatMap((result) => result.problems),
+    checked: valid.length,
+  };
 }
 
 function ProblemRow({
@@ -108,6 +131,7 @@ function ProblemRow({
 export function ProblemDrawer({
   problems,
   decks,
+  checked,
   mathjax,
   opened,
   close,
@@ -115,6 +139,7 @@ export function ProblemDrawer({
 }: {
   problems: Problem[] | null;
   decks: number;
+  checked: number;
   mathjax: MathJaxRuntime | null;
   opened: boolean;
   close: () => void;
@@ -137,8 +162,13 @@ export function ProblemDrawer({
           : "Problems"
       }
     >
-      {problems === null ? (
-        <Text c="dimmed">Checking the decks…</Text>
+      {checked < decks && (
+        <Text c="dimmed" mb="sm">
+          Checking decks: {checked} of {decks}. Results are incomplete.
+        </Text>
+      )}
+      {problems === null || (checked < decks && problems.length === 0) ? (
+        <Text c="dimmed">Checking the available decks…</Text>
       ) : problems.length === 0 ? (
         <Text c="dimmed">
           Every equation renders and every card has an answer in all {decks}{" "}

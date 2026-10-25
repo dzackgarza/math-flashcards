@@ -80,7 +80,12 @@ def main() -> None:
         loaded = subprocess.run(
             offline,
             input=json.dumps(
-                {"action": "load", "workspace": str(workspace), "path": "Study.md"}
+                {
+                    "action": "load",
+                    "workspace": str(workspace),
+                    "path": "Study.md",
+                    "generation": 0,
+                }
             ),
             text=True,
             capture_output=True,
@@ -96,6 +101,7 @@ def main() -> None:
             input=json.dumps(
                 {
                     "action": "save",
+                    "generation": 0,
                     "workspace": str(workspace),
                     "path": "Study.md",
                     "source": edited,

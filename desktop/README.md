@@ -58,6 +58,12 @@ the XDG configuration directory.
 Select the workspace name in the sidebar to open the workspace menu. Select
 **Browse** or enter a workspace path to change it, then select a deck in the
 tree. A dot after a deck name marks a deck whose Anki package is out of date.
+The tree appears before workspace checks finish. A progress line shows the
+checked coverage. Deck selection reads current file bytes independently of
+package checks, and the package status shows **Checking Anki package…** until
+verification finishes. Problems shows its own checked coverage while results
+are incomplete. You can edit and save during these checks. Failed background
+checks show an error and a retry action. Refresh uses local resources.
 The card list shows its cards; select a card to edit its sides. **New** and
 **Edited** mark the cards that the package does not contain yet.
 

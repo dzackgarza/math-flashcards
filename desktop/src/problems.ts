@@ -48,16 +48,16 @@ function sideProblems(
 }
 
 // Problems that stop a deck from rendering or exporting correctly.
-export function deckProblems(
+export function* problemBatches(
   mathjax: Checker,
   path: string,
   source: string,
-): Problem[] {
+): Generator<Problem[]> {
   let ranges: CardRange[];
   try {
     ranges = cards(source);
   } catch (failure) {
-    return [
+    yield [
       {
         path,
         card: null,
@@ -68,22 +68,32 @@ export function deckProblems(
         source: null,
       },
     ];
+    return;
   }
-  return ranges.flatMap((card) => [
-    ...sideProblems(mathjax, path, card, "front"),
-    ...sideProblems(mathjax, path, card, "back"),
-    ...(card.back.value.trim()
-      ? []
-      : [
-          {
-            path,
-            card: card.id,
-            label: card.label,
-            side: "back" as const,
-            kind: "Empty answer" as const,
-            message: "The exporter rejects a card without an answer.",
-            source: null,
-          },
-        ]),
-  ]);
+  for (const card of ranges)
+    yield [
+      ...sideProblems(mathjax, path, card, "front"),
+      ...sideProblems(mathjax, path, card, "back"),
+      ...(card.back.value.trim()
+        ? []
+        : [
+            {
+              path,
+              card: card.id,
+              label: card.label,
+              side: "back" as const,
+              kind: "Empty answer" as const,
+              message: "The exporter rejects a card without an answer.",
+              source: null,
+            },
+          ]),
+    ];
+}
+
+export function deckProblems(
+  mathjax: Checker,
+  path: string,
+  source: string,
+): Problem[] {
+  return [...problemBatches(mathjax, path, source)].flat();
 }

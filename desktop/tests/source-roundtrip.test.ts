@@ -25,7 +25,8 @@ test("repository card ranges preserve source and agree with Pandoc export", asyn
     }
     const process = Bun.spawn([python, backend], {
       stdin: new Blob([
-        JSON.stringify({ action: "load", workspace, path }) + "\n",
+        JSON.stringify({ action: "validate", workspace, path, generation: 0 }) +
+          "\n",
       ]),
       stdout: "pipe",
       stderr: "pipe",

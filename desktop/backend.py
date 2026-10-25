@@ -43,6 +43,12 @@ from send2trash import send2trash
 EXPORTER = Path(ankdown.cli.__file__).parent
 PAIR_FILTER = Path(__file__).with_name("paired-cards.lua")
 type MacroDefinition = str | tuple[str, int] | tuple[str, int, str]
+type Digest = Annotated[str, Field(pattern=r"^[a-f0-9]{64}$")]
+
+
+class AssetsInput(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    action: Literal["assets"]
 
 
 class Input(BaseModel):
@@ -93,13 +99,15 @@ class DeckInput(Input):
 
 
 class LoadInput(DeckInput):
-    action: Literal["load"]
+    action: Literal["load", "validate"]
+    generation: int = Field(ge=0, strict=True)
 
 
 class SaveInput(DeckInput):
     action: Literal["save"]
     source: str
-    expected: str
+    expected: Digest
+    generation: int = Field(ge=0, strict=True)
 
 
 class GenerateInput(DeckInput):
@@ -131,7 +139,8 @@ class Organized(BaseModel):
 
 
 type Request = Annotated[
-    ListInput
+    AssetsInput
+    | ListInput
     | LoadInput
     | SaveInput
     | GenerateInput
@@ -191,9 +200,6 @@ class Entry(BaseModel):
 class Manifest(BaseModel):
     session: Session
     entries: list[Entry]
-
-
-type Digest = Annotated[str, Field(pattern=r"^[a-f0-9]{64}$")]
 
 
 class AssetSet(BaseModel):
@@ -276,10 +282,12 @@ class Workspace(BaseModel):
 
 
 class Document(BaseModel):
+    session: Session
+    path: str
     source: str
-    hash: str
-    cards: int
-    status: Status
+    hash: Digest
+    cards: int | None
+    status: Status | None
     reasons: list[str]
     built: str | None
     package: str
@@ -680,8 +688,18 @@ def publish_changes(root: Path, changes: list[Change]) -> Organized:
 def dispatch(
     request: Request,
 ) -> (
-    Workspace | Document | Generated | Organized | Review | Manifest | Sources | Checks
+    Workspace
+    | Document
+    | Generated
+    | Organized
+    | Review
+    | Manifest
+    | Sources
+    | Checks
+    | AssetSet
 ):
+    if isinstance(request, AssetsInput):
+        return installed_assets()
     root = workspace_path(request.workspace)
     if isinstance(request, ManifestInput):
         return Manifest(
@@ -787,14 +805,22 @@ def dispatch(
                 ],
             )
     source = path.read_bytes().decode("utf-8")
-    state = sync(path, output)
+    with database() as connection:
+        row = connection.execute(
+            "SELECT record FROM deck_builds WHERE path = ?", (str(path),)
+        ).fetchone()
+    record = BuildRecord.model_validate_json(row[0]) if row is not None else None
     return Document(
+        session=Session(root=str(root), generation=request.generation),
+        path=request.path,
         source=source,
         hash=digest(source.encode()),
-        cards=validate(root, path, source),
-        status=state.status,
-        reasons=state.reasons,
-        built=state.built,
+        cards=validate(root, path, source)
+        if isinstance(request, SaveInput) or request.action == "validate"
+        else None,
+        status=None,
+        reasons=[],
+        built=record.source if record is not None else None,
         package=str(output),
     )
 

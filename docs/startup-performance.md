@@ -54,6 +54,30 @@ input latency, and background-completion distributions remain to be measured.
 
 ## Request capacity
 
+The focused browser startup scenario copies the complete source corpus into a
+disposable workspace. It requires selection, editing, and a saved disk change
+while check coverage is incomplete, then waits for completed source, package,
+and Problems coverage. Its screenshots and trace use the `startup-` prefix in
+`desktop/test-artifacts/`. The populated editor and final coverage screenshots
+were inspected.
+
+| Progressive development endpoint | Seconds, single observation |
+| --- | ---: |
+| Open workspace to tree | 1.628 |
+| Select deck to editable fields | 3.375 |
+| Fill field and observe its text through Playwright | 0.896 |
+| Open workspace to complete background checks | 76.572 |
+
+The field-fill interval includes browser automation and assertions. It is not
+the keyboard-event latency acceptance measurement. Release distributions remain
+required. The selection observation exceeds the proposed release target and
+needs critical-path profiling.
+
+An import profile of a manifest request is saved in
+`desktop/test-artifacts/startup-imports.log`. Importing `ankdown.cli` took
+622 ms cumulatively in that observation; its imports include Cyclopts, Pydantic,
+and Genanki. Foreground reads can avoid exporter and CLI imports.
+
 The native bridge uses independent Tokio semaphores for foreground requests and
 background batches. The browser adapter uses independent
 [p-limit queues](https://github.com/sindresorhus/p-limit#usage) with the same

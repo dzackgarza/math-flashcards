@@ -91,7 +91,10 @@ import { ProblemDrawer, useProblems } from "./problem-drawer";
 import {
   request,
   watchWorkspace,
-  workspaceSchema,
+  manifestSchema,
+  sourcesSchema,
+  checksSchema,
+  assetsSchema,
   documentSchema,
   generatedSchema,
   organizedSchema,
@@ -99,7 +102,10 @@ import {
   type Change,
   type Document,
   type Pending,
-  type Summary,
+  type Entry,
+  type Manifest,
+  type SourceResult,
+  type PackageResult,
 } from "./bridge";
 
 type Task = "Idle" | "Loading" | "Generating" | "Organizing";
@@ -120,7 +126,7 @@ function preferences() {
     );
 }
 
-function treeData(decks: Summary[]): TreeNodeData[] {
+function treeData(decks: Entry[]): TreeNodeData[] {
   const roots: TreeNodeData[] = [];
   for (const deck of decks) {
     let children = roots;
@@ -154,7 +160,20 @@ export default function App() {
     },
   });
   const [workspace, setWorkspace] = useState("");
-  const [decks, setDecks] = useState<Summary[]>([]);
+  const [decks, setDecks] = useState<Entry[]>([]);
+  const [sourceRecords, setSourceRecords] = useState(
+    new Map<string, SourceResult>(),
+  );
+  const [packageRecords, setPackageRecords] = useState(
+    new Map<string, PackageResult>(),
+  );
+  const [coverage, setCoverage] = useState({
+    state: "idle",
+    checked: 0,
+    total: 0,
+    error: "",
+  });
+  const [assetIdentity, setAssetIdentity] = useState("");
   const [document, setDocument] = useState<Document | null>(null);
   const [mathjax, setMathjax] = useState<MathJaxRuntime | null>(null);
   const [index, setIndex] = useState(0);
@@ -181,6 +200,7 @@ export default function App() {
   const saving = useRef<Promise<void>>(Promise.resolve());
   const navigation = useRef(0);
   const workspaceNavigation = useRef(0);
+  const reconciliation = useRef(0);
   const anchor = useRef<string | null>(null);
   const deckViewport = useRef<HTMLDivElement>(null);
   const cardViewport = useRef<HTMLDivElement>(null);
@@ -199,7 +219,10 @@ export default function App() {
   const data = useMemo(() => treeData(decks), [decks]);
   // Pandoc counts the saved deck's cards; the editor parser must agree.
   const mismatch = useMemo(
-    () => document !== null && document.cards !== cards(document.saved).length,
+    () =>
+      document !== null &&
+      document.cards !== null &&
+      document.cards !== cards(document.saved).length,
     [document?.cards, document?.saved],
   );
   const changes = useMemo<CardChange[]>(() => {
@@ -217,14 +240,21 @@ export default function App() {
   // The open deck is checked as saved; the others as listed.
   const sources = useMemo(
     () =>
-      decks.map((deck) =>
-        deck.path === document?.path
-          ? { path: deck.path, source: document.saved }
-          : deck,
-      ),
-    [decks, document?.path, document?.saved],
+      decks.flatMap((deck) => {
+        if (deck.path === document?.path)
+          return [{ path: deck.path, source: document.saved }];
+        const result = sourceRecords.get(deck.path);
+        return result?.state === "ready"
+          ? [{ path: deck.path, source: result.source }]
+          : [];
+      }),
+    [decks, sourceRecords, document?.path, document?.saved],
   );
-  const problems = useProblems(mathjax, sources);
+  const { problems, checked: problemCoverage } = useProblems(
+    mathjax,
+    sources,
+    assetIdentity,
+  );
   const problemDecks = useMemo(
     () => new Set((problems ?? []).map((problem) => problem.path)),
     [problems],
@@ -248,18 +278,145 @@ export default function App() {
 
   async function refresh(root = workspace) {
     if (!root) return;
+    const token = workspaceNavigation.current;
+    const generation = ++reconciliation.current;
     const result = await request(
-      { action: "list", workspace: root },
-      workspaceSchema,
+      { action: "manifest", workspace: root, generation },
+      manifestSchema,
     );
-    setDecks(result.decks);
-    updateDocument((open) => {
-      if (!open) return open;
-      const summary = result.decks.find((item) => item.path === open.path);
-      return summary
-        ? { ...open, status: summary.status, reasons: summary.reasons }
-        : open;
+    if (
+      token !== workspaceNavigation.current ||
+      generation !== reconciliation.current
+    )
+      return;
+    setDecks(result.entries);
+    updateDocument((open) => open && { ...open, status: null });
+    void fillWorkspace(result, token);
+  }
+
+  async function checkPaths(
+    root: string,
+    generation: number,
+    paths: string[],
+    token: number,
+  ) {
+    const response = await request(
+      { action: "checks", workspace: root, generation, paths },
+      checksSchema,
+    );
+    if (
+      token !== workspaceNavigation.current ||
+      generation !== reconciliation.current
+    )
+      return;
+    if (
+      response.session.root !== root ||
+      response.session.generation !== generation
+    )
+      throw new Error(
+        "The package response belongs to another workspace session.",
+      );
+    setPackageRecords((previous) => {
+      const next = new Map(previous);
+      for (const result of response.results) next.set(result.path, result);
+      return next;
     });
+    for (const result of response.results) {
+      if (result.state === "failed") continue;
+      updateDocument((open) =>
+        open?.path === result.path && open.hash === result.revision
+          ? {
+              ...open,
+              status: result.status,
+              reasons: result.reasons,
+              built: result.built,
+            }
+          : open,
+      );
+    }
+    return response.results
+      .filter((result) => result.state === "failed")
+      .map((result) => result.path + ": " + result.message);
+  }
+
+  async function fillWorkspace(manifest: Manifest, token: number) {
+    const { root, generation } = manifest.session;
+    setCoverage({
+      state: "running",
+      checked: 0,
+      total: manifest.entries.length,
+      error: "",
+    });
+    const errors: string[] = [];
+    try {
+      for (let offset = 0; offset < manifest.entries.length; offset += 8) {
+        if (
+          token !== workspaceNavigation.current ||
+          generation !== reconciliation.current
+        )
+          return;
+        const paths = manifest.entries
+          .slice(offset, offset + 8)
+          .map((entry) => entry.path);
+        const response = await request(
+          { action: "sources", workspace: root, generation, paths },
+          sourcesSchema,
+        );
+        if (
+          token !== workspaceNavigation.current ||
+          generation !== reconciliation.current
+        )
+          return;
+        if (
+          response.session.root !== root ||
+          response.session.generation !== generation
+        )
+          throw new Error(
+            "The source response belongs to another workspace session.",
+          );
+        setSourceRecords((previous) => {
+          const next = new Map(previous);
+          for (const result of response.results) next.set(result.path, result);
+          return next;
+        });
+        for (const result of response.results)
+          if (result.state === "failed")
+            errors.push(result.path + ": " + result.message);
+        const failures = await checkPaths(root, generation, paths, token);
+        if (
+          token !== workspaceNavigation.current ||
+          generation !== reconciliation.current
+        )
+          return;
+        errors.push(...(failures ?? []));
+        setCoverage({
+          state: "running",
+          checked: offset + paths.length,
+          total: manifest.entries.length,
+          error: errors.join("\n"),
+        });
+      }
+      if (
+        token === workspaceNavigation.current &&
+        generation === reconciliation.current
+      )
+        setCoverage({
+          state: errors.length ? "failed" : "complete",
+          checked: manifest.entries.length,
+          total: manifest.entries.length,
+          error: errors.join("\n"),
+        });
+    } catch (failure) {
+      if (
+        token === workspaceNavigation.current &&
+        generation === reconciliation.current
+      )
+        setCoverage((current) => ({
+          ...current,
+          state: "failed",
+          error: String(failure),
+        }));
+    }
   }
 
   const refreshOnChange = useDebouncedCallback(() => {
@@ -281,6 +438,7 @@ export default function App() {
         const result = await request(
           {
             action: "save",
+            generation: reconciliation.current,
             workspace,
             path: open.path,
             source: open.source,
@@ -302,6 +460,12 @@ export default function App() {
             : document,
         );
         setConflict(false);
+        void checkPaths(
+          workspace,
+          reconciliation.current,
+          [open.path],
+          workspaceNavigation.current,
+        ).catch((failure) => setError(String(failure)));
       } catch (failure) {
         if (STALE.test(String(failure))) setConflict(true);
         else setError(String(failure));
@@ -331,36 +495,49 @@ export default function App() {
 
   async function chooseWorkspace(root: string) {
     const token = ++workspaceNavigation.current;
+    navigation.current++;
+    const generation = ++reconciliation.current;
     setTask("Loading");
     setError("");
     try {
       const result = await request(
-        { action: "list", workspace: root },
-        workspaceSchema,
+        { action: "manifest", workspace: root, generation },
+        manifestSchema,
       );
       if (token !== workspaceNavigation.current) return;
       navigation.current++;
-      setWorkspace(result.root);
-      workspaceForm.setFieldValue("workspace", result.root);
-      setDecks(result.decks);
+      setWorkspace(result.session.root);
+      workspaceForm.setFieldValue("workspace", result.session.root);
+      setDecks(result.entries);
+      setSourceRecords(new Map());
+      setPackageRecords(new Map());
       updateDocument(() => null);
       setSelection([]);
       setNotice(null);
       setDraft(null);
       setLog("");
       setConflict(false);
-      loadMathJax(result.macros, result.stmaryrd).then(
-        (runtime) => {
-          if (token === workspaceNavigation.current) setMathjax(runtime);
-        },
-        (failure) => {
-          if (token === workspaceNavigation.current) setError(String(failure));
-        },
-      );
+      request({ action: "assets" }, assetsSchema)
+        .then((assets) => {
+          if (token !== workspaceNavigation.current) return;
+          setAssetIdentity(assets.identity);
+          return loadMathJax(assets.macros, assets.stmaryrd);
+        })
+        .then(
+          (runtime) => {
+            if (runtime && token === workspaceNavigation.current)
+              setMathjax(runtime);
+          },
+          (failure) => {
+            if (token === workspaceNavigation.current)
+              setError(String(failure));
+          },
+        );
+      void fillWorkspace(result, token);
       setBuildResult("Ready");
       if (isTauri()) {
         const store = await preferences();
-        await store.set("workspace", result.root);
+        await store.set("workspace", result.session.root);
         await store.save();
       }
     } catch (failure) {
@@ -393,21 +570,38 @@ export default function App() {
 
   async function chooseDeck(path: string, cardId?: string) {
     const token = ++navigation.current;
+    const workspaceToken = workspaceNavigation.current;
     setTask("Loading");
     setError("");
     try {
       const result = await request(
-        { action: "load", workspace, path },
+        { action: "load", workspace, path, generation: reconciliation.current },
         documentSchema,
       );
-      if (token !== navigation.current) return;
+      if (
+        token !== navigation.current ||
+        workspaceToken !== workspaceNavigation.current
+      )
+        return;
+      if (result.session.root !== workspace)
+        throw new Error("The document belongs to another workspace session.");
       showDocument(path, result, cardId);
+      void checkPaths(
+        workspace,
+        reconciliation.current,
+        [path],
+        workspaceNavigation.current,
+      ).catch((failure) => setError(String(failure)));
       setSelection([]);
       setLog("");
       setBuildResult("Ready");
       setCardFilter("");
     } catch (failure) {
-      setError(String(failure));
+      if (
+        token === navigation.current &&
+        workspaceToken === workspaceNavigation.current
+      )
+        setError(String(failure));
     } finally {
       if (token === navigation.current) setTask("Idle");
     }
@@ -421,7 +615,12 @@ export default function App() {
     if (!open || open.source !== open.saved) return;
     const token = navigation.current;
     const result = await request(
-      { action: "load", workspace, path: open.path },
+      {
+        action: "load",
+        workspace,
+        path: open.path,
+        generation: reconciliation.current,
+      },
       documentSchema,
     );
     const latest = current.current;
@@ -584,7 +783,12 @@ export default function App() {
     const open = current.current;
     if (!open) return;
     const disk = await request(
-      { action: "load", workspace, path: open.path },
+      {
+        action: "load",
+        workspace,
+        path: open.path,
+        generation: reconciliation.current,
+      },
       documentSchema,
     );
     updateDocument((document) => document && { ...document, hash: disk.hash });
@@ -621,6 +825,12 @@ export default function App() {
     setTask("Idle");
     await refresh();
     await followDisk();
+  }
+
+  async function generateAll() {
+    await flush();
+    const result = await request({ action: "review", workspace }, reviewSchema);
+    await generate(result.decks.map((deck) => deck.path));
   }
 
   async function openReview(scope: string | null) {
@@ -674,7 +884,10 @@ export default function App() {
   async function loadDeck(path: string) {
     const open = current.current;
     if (open?.path === path) return open;
-    return request({ action: "load", workspace, path }, documentSchema);
+    return request(
+      { action: "load", workspace, path, generation: reconciliation.current },
+      documentSchema,
+    );
   }
 
   // Changes publish immediately; the open deck reloads, or follows `focus`.
@@ -973,7 +1186,10 @@ export default function App() {
     [document !== null],
   );
 
-  const pendingDecks = decks.filter((deck) => deck.status === "Unsynced");
+  const pendingDecks = decks.filter((deck) => {
+    const result = packageRecords.get(deck.path);
+    return result?.state === "ready" && result.status === "Unsynced";
+  });
   // One status: the editor's save state first, then the package.
   const status =
     task === "Generating"
@@ -986,15 +1202,17 @@ export default function App() {
             ? "Not saved: the deck changed on disk"
             : dirty
               ? "Saving…"
-              : document?.status === "Up to date"
-                ? "Anki package up to date"
-                : document?.status === "Empty"
-                  ? "No cards to export"
-                  : changes.length
-                    ? changes.length +
-                      (changes.length === 1 ? " change" : " changes") +
-                      " not in the Anki package"
-                    : (document?.reasons[0] ?? "");
+              : document?.status === null
+                ? "Checking Anki package…"
+                : document?.status === "Up to date"
+                  ? "Anki package up to date"
+                  : document?.status === "Empty"
+                    ? "No cards to export"
+                    : changes.length
+                      ? changes.length +
+                        (changes.length === 1 ? " change" : " changes") +
+                        " not in the Anki package"
+                      : (document?.reasons[0] ?? "");
   const tone =
     buildResult === "Failed" || parsed.error || conflict
       ? "failed"
@@ -1023,8 +1241,13 @@ export default function App() {
     [mathjax, ranges],
   );
   const statuses = useMemo(
-    () => new Map(decks.map((deck) => [deck.path, deck.status])),
-    [decks],
+    () =>
+      new Map(
+        [...packageRecords].flatMap(([path, result]) =>
+          result.state === "ready" ? [[path, result.status] as const] : [],
+        ),
+      ),
+    [packageRecords],
   );
 
   useHotkeys([["mod+S", () => guard(() => {})]], [], true);
@@ -1075,9 +1298,8 @@ export default function App() {
               {
                 id: "generate-all",
                 label: "Update all Anki packages",
-                disabled: busy || pendingDecks.length === 0,
-                onClick: () =>
-                  guard(() => generate(pendingDecks.map((deck) => deck.path))),
+                disabled: busy,
+                onClick: () => guard(generateAll),
               },
               {
                 id: "new-deck",
@@ -1313,6 +1535,29 @@ export default function App() {
         </div>
         <Stack gap={4}>
           {workspace && (
+            <Text
+              size="xs"
+              c="dimmed"
+              px="xs"
+              className="workspace-progress"
+              role="status"
+            >
+              {coverage.state === "complete" && problemCoverage === decks.length
+                ? "Workspace checks complete"
+                : coverage.state === "failed"
+                  ? "Workspace checks need attention"
+                  : `Checking ${coverage.checked} of ${coverage.total} decks…`}
+            </Text>
+          )}
+          {coverage.error && (
+            <Text size="xs" c="red" px="xs">
+              {coverage.error}
+              <Button variant="subtle" size="xs" onClick={refreshWorkspace}>
+                Retry checks
+              </Button>
+            </Text>
+          )}
+          {workspace && (
             <Button
               variant="subtle"
               color={problems?.length ? "red" : "gray"}
@@ -1330,6 +1575,8 @@ export default function App() {
               onClick={() => setProblemsOpen(true)}
             >
               Problems
+              {problemCoverage < decks.length &&
+                ` (${problemCoverage}/${decks.length} checked)`}
             </Button>
           )}
           {pendingDecks.length > 0 && (
@@ -1519,12 +1766,8 @@ export default function App() {
                     <Menu.Divider />
                     <Menu.Item
                       leftSection={<IconRefresh size={16} />}
-                      disabled={busy || pendingDecks.length === 0}
-                      onClick={() =>
-                        guard(() =>
-                          generate(pendingDecks.map((deck) => deck.path)),
-                        )
-                      }
+                      disabled={busy}
+                      onClick={() => guard(() => generateAll())}
                     >
                       Update all Anki packages
                     </Menu.Item>
@@ -1662,6 +1905,7 @@ export default function App() {
       <ProblemDrawer
         problems={problems}
         decks={decks.length}
+        checked={problemCoverage}
         mathjax={mathjax}
         opened={problemsOpen}
         close={() => setProblemsOpen(false)}

@@ -68,8 +68,15 @@ export const sourcesSchema = z.object({
 
 export type Request =
   | z.infer<typeof discoveryRequestSchema>
+  | { action: "assets" }
   | { action: "list" | "review"; workspace: string }
-  | { action: "load" | "generate"; workspace: string; path: string }
+  | { action: "generate"; workspace: string; path: string }
+  | {
+      action: "load" | "validate";
+      workspace: string;
+      path: string;
+      generation: number;
+    }
   | { action: "organize"; workspace: string; changes: Change[] }
   | {
       action: "save";
@@ -77,6 +84,7 @@ export type Request =
       path: string;
       source: string;
       expected: string;
+      generation: number;
     };
 
 export interface Change {
@@ -126,14 +134,26 @@ export const workspaceSchema = z.object({
   stmaryrd: z.string(),
 });
 export const documentSchema = z.object({
+  session: sessionSchema,
+  path: deckPathSchema,
   source: z.string(),
-  hash: z.string(),
-  cards: z.number(),
-  status: statusSchema,
+  hash: digestSchema,
+  cards: z.number().int().nonnegative().nullable(),
+  status: statusSchema.nullable(),
   reasons: z.array(z.string()),
   built: z.string().nullable(),
   package: z.string(),
 });
+export const assetsSchema = workspaceSchema
+  .pick({ macros: true, stmaryrd: true })
+  .extend({
+    identity: digestSchema,
+    renderer: z.string().min(1),
+  });
+export type Manifest = z.infer<typeof manifestSchema>;
+export type Entry = Manifest["entries"][number];
+export type SourceResult = z.infer<typeof sourcesSchema>["results"][number];
+export type PackageResult = z.infer<typeof checksSchema>["results"][number];
 export const reviewSchema = z.object({
   decks: z.array(summarySchema.extend({ built: z.string().nullable() })),
 });
