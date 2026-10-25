@@ -836,6 +836,9 @@ def remove_package(root: Path, path: Path) -> None:
 
 
 def generate(root: Path, path: Path) -> Generated:
+    from ankdown.cli import RendererAssets
+
+    assets = installed_assets()
     output = package_path(root, path)
     if not has_cards(path):
         remove_package(root, path)
@@ -861,6 +864,12 @@ def generate(root: Path, path: Path) -> Generated:
                         "The deck changed before generation. Generate it again."
                     )
                 temporary = scratch / output.name
+                renderer = scratch / "renderer-assets.json"
+                renderer.write_text(
+                    RendererAssets(
+                        macros=assets.macros, stmaryrd=assets.stmaryrd
+                    ).model_dump_json()
+                )
                 process = subprocess.run(
                     [
                         sys.executable,
@@ -869,6 +878,8 @@ def generate(root: Path, path: Path) -> Generated:
                         "compile",
                         "--output",
                         str(temporary),
+                        "--renderer-assets",
+                        str(renderer),
                     ],
                     input=deck.model_dump_json(),
                     cwd=scratch,

@@ -27,9 +27,9 @@ Installation needs `uv`, Pandoc, and network access to GitHub. Install/update
 prepares the Python environment for the installed bridge path and saves its
 interpreter location. It fetches the macro set and MathJax `stmaryrd` package
 from pandoc-config main as one checked asset set. Opening, refreshing, loading,
-and saving use these local resources. Missing runtime files produce an
-installation error; run `just desktop-install` to prepare them. Package
-generation still obtains its bundled macro script through Ankdown.
+and saving use these local resources. Package generation uses prepared local
+renderer inputs through Ankdown. Missing runtime files produce an
+installation error; run `just desktop-install` to prepare them.
 The native build includes the
 bridge and local MathJax 4 assets, with the New Computer Modern font.
 Installation adds **Math Flashcards** to the application menu and installs the
