@@ -804,6 +804,53 @@ def main() -> None:
                     "Workspace checks complete", timeout=30000
                 )
                 page.screenshot(path=str(artifacts / "media-invalidation.png"))
+                delayed_review: list[tuple[Route, APIResponse]] = []
+                exports: list[str] = []
+
+                def delay_build_all_review(route: Route) -> None:
+                    payload = route.request.post_data_json
+                    if payload.get("action") == "review" and not delayed_review:
+                        delayed_review.append((route, route.fetch()))
+                    else:
+                        if payload.get("action") == "generate":
+                            exports.append(payload["workspace"])
+                        route.continue_()
+
+                page.route("**/api/request", delay_build_all_review)
+                page.keyboard.press("Control+k")
+                page.get_by_placeholder("Search decks, cards, and commands").fill(
+                    "Update all Anki packages"
+                )
+                page.keyboard.press("Enter")
+                for _ in range(300):
+                    if delayed_review:
+                        break
+                    page.wait_for_timeout(100)
+                assert delayed_review
+                next_workspace = root / "Next workspace"
+                next_workspace.mkdir()
+                (next_workspace / "Fresh.md").write_text(
+                    '---\ntitle: "Fresh"\n---\n\n::: {.front card-id="fresh"}\nNew workspace question\n:::\n\n::: {.back card-id="fresh"}\nNew workspace answer\n:::\n'
+                )
+                page.get_by_role("button", name="Workspace", exact=True).click()
+                page.get_by_label("Workspace folder").fill(str(next_workspace))
+                page.get_by_role("button", name="Open workspace", exact=True).click()
+                expect(
+                    page.get_by_role("button", name="Workspace", exact=True)
+                ).to_have_text(next_workspace.name)
+                page.get_by_text("Fresh", exact=True).click()
+                expect(page.locator(".side-editor.front .cm-content")).to_contain_text(
+                    "New workspace question"
+                )
+                old_route, old_response = delayed_review[0]
+                old_route.fulfill(response=old_response)
+                page.wait_for_timeout(1000)
+                assert not exports, exports
+                expect(page.locator(".side-editor.front .cm-content")).to_contain_text(
+                    "New workspace question"
+                )
+                expect(page.locator(".generation-log")).to_have_count(0)
+                page.unroute("**/api/request", delay_build_all_review)
                 assert not console, console
             finally:
                 page.screenshot(path=str(artifacts / "cache-last.png"))
