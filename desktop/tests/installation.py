@@ -37,13 +37,13 @@ def main() -> None:
         entry.read(entry_path)
         assert entry["Desktop Entry"]["Name"] == "Math Flashcards"
         subprocess.run(["desktop-file-validate", str(entry_path)], check=True)
+        resources = (
+            data / "math-flashcards" / "active" / "lib" / "Math Flashcards"
+        ).resolve(strict=True)
         for name in ("backend.py", "paired-cards.lua", "assets.json"):
-            assert (
-                data / "math-flashcards" / "lib" / "Math Flashcards" / name
-            ).read_bytes() == (
+            assert (resources / name).read_bytes() == (
                 desktop / "src-tauri" / "target" / "release" / name
             ).read_bytes()
-        resources = data / "math-flashcards" / "lib" / "Math Flashcards"
         python = (resources / "runtime.txt").read_text().strip()
         workspace = root / "offline workspace"
         workspace.mkdir()
@@ -156,10 +156,27 @@ def main() -> None:
         )
         subprocess.run(arguments, check=True)
         assert entry_path.read_bytes() == original_entry
-        assert (data / "math-flashcards" / "bin" / "desktop").read_bytes() == (
+        assert (
+            data / "math-flashcards" / "active" / "bin" / "desktop"
+        ).read_bytes() == (
             desktop / "src-tauri" / "target" / "release" / "desktop"
         ).read_bytes()
-        original_assets = (resources / "assets.json").read_bytes()
+        application = data / "math-flashcards"
+        active_release = (application / "active").resolve(strict=True)
+        current_resources = active_release / "lib" / "Math Flashcards"
+        assert current_resources != resources
+        current_python = (current_resources / "runtime.txt").read_text().strip()
+        current_offline = [
+            *offline[:4],
+            current_python,
+            str(current_resources / "backend.py"),
+        ]
+        original_assets = (current_resources / "assets.json").read_bytes()
+        original_launcher = (application / "launch").read_bytes()
+        original_runtime = (current_resources / "runtime.txt").read_bytes()
+        original_releases = sorted(
+            path.name for path in (application / "releases").iterdir()
+        )
         candidate = root / "next build"
         candidate.mkdir()
         build = desktop / "src-tauri" / "target" / "release"
@@ -207,11 +224,18 @@ def main() -> None:
         assert failed.returncode != 0, (
             "The disconnected dependency update unexpectedly succeeded."
         )
-        assert (resources / "assets.json").read_bytes() == original_assets, (
+        assert (application / "active").resolve(strict=True) == active_release
+        assert (
+            sorted(path.name for path in (application / "releases").iterdir())
+            == original_releases
+        )
+        assert (current_resources / "assets.json").read_bytes() == original_assets, (
             failed.stderr
         )
+        assert (application / "launch").read_bytes() == original_launcher
+        assert (current_resources / "runtime.txt").read_bytes() == original_runtime
         retained = subprocess.run(
-            offline,
+            current_offline,
             input=json.dumps({"action": "list", "workspace": str(workspace)}),
             text=True,
             capture_output=True,
@@ -219,8 +243,94 @@ def main() -> None:
             env=environment,
         )
         assert json.loads(retained.stdout)["macros"] == assets["macros"]
+        assert json.loads(retained.stdout)["decks"][0]["status"] == "Up to date"
         assert deck.read_text() == edited
         assert entry_path.read_bytes() == original_entry
+        subprocess.run(
+            [
+                installer_python,
+                str(installer),
+                str(candidate),
+                "--data-dir",
+                str(data),
+                "--bin-dir",
+                str(commands),
+            ],
+            check=True,
+        )
+        updated_resources = (
+            application / "active" / "lib" / "Math Flashcards"
+        ).resolve(strict=True)
+        updated_python = (updated_resources / "runtime.txt").read_text().strip()
+        updated_offline = [
+            *offline[:4],
+            updated_python,
+            str(updated_resources / "backend.py"),
+        ]
+        original = subprocess.run(
+            current_offline,
+            input='{"action":"assets"}',
+            text=True,
+            capture_output=True,
+            check=True,
+            env=environment,
+        )
+        original_set = json.loads(original.stdout)
+        adopted = subprocess.run(
+            updated_offline,
+            input='{"action":"assets"}',
+            text=True,
+            capture_output=True,
+            check=True,
+            env=environment,
+        )
+        adopted_set = json.loads(adopted.stdout)
+        assert original_set["identity"] == assets["identity"]
+        assert adopted_set["identity"] != original_set["identity"]
+        version = subprocess.run(
+            current_offline,
+            input='{"action":"asset-version"}',
+            text=True,
+            capture_output=True,
+            check=True,
+            env=environment,
+        )
+        assert json.loads(version.stdout)["identity"] == adopted_set["identity"]
+        for runtime, renderer in (
+            (current_offline, original_set),
+            (updated_offline, adopted_set),
+        ):
+            generated = subprocess.run(
+                runtime,
+                input=json.dumps(
+                    {
+                        "action": "generate",
+                        "workspace": str(workspace),
+                        "path": "Study.md",
+                        "assets": renderer["identity"],
+                    }
+                ),
+                text=True,
+                capture_output=True,
+                check=True,
+                env=environment,
+            )
+            exported = json.loads(generated.stdout)
+            assert exported["status"] == "Up to date"
+            with zipfile.ZipFile(exported["package"]) as package:
+                media = json.loads(package.read("media"))
+                macro_file = next(
+                    name
+                    for name, value in media.items()
+                    if value == "_ankdown_macros.js"
+                )
+                script, assignment = (
+                    package.read(macro_file)
+                    .decode()
+                    .split("\nwindow.ANKDOWN_MACROS = ")
+                )
+                assert script == renderer["stmaryrd"]
+                assert json.loads(assignment.removesuffix(";")) == renderer["macros"]
     print(
         "Installation and update preserve the native build and refresh the validated desktop entry."
     )

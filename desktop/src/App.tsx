@@ -98,7 +98,7 @@ import {
   sourcesSchema,
   checksSchema,
   cachedChecksSchema,
-  assetsSchema,
+  assetVersionSchema,
   cacheRebuiltSchema,
   documentSchema,
   generatedSchema,
@@ -434,7 +434,10 @@ export default function App() {
   async function checkAssetUpdate() {
     try {
       const session = await loadMathJax();
-      const active = await request({ action: "assets" }, assetsSchema);
+      const active = await request(
+        { action: "asset-version" },
+        assetVersionSchema,
+      );
       setRestartRequired(active.identity !== session.identity);
     } catch (failure) {
       setError(String(failure));

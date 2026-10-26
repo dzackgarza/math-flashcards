@@ -87,90 +87,148 @@ def install(spec: Installation) -> Path:
         if not source.is_file():
             raise FileNotFoundError(f"Build the desktop app first: {source}")
     dependency_directories: list[str] = []
-    for name in ("uv", "pandoc"):
+    for name in ("uv", "pandoc", "trash"):
         executable = shutil.which(name)
         if executable is None:
             raise FileNotFoundError(f"Required runtime command: {name}")
         dependency_directories.append(str(Path(executable).parent))
 
     application = spec.data_dir / "math-flashcards"
-    # Tauri's Linux resources live beside bin/ in lib/<runtime application name>:
-    # https://v2.tauri.app/develop/resources/
-    installed_binary = application / "bin" / "desktop"
     configuration = TauriConfiguration.model_validate(
         json.loads((SOURCES.parent / "src-tauri" / "tauri.conf.json").read_text())
     )
-    publish(binary, installed_binary)
-    for source in resources:
-        publish(
-            source,
-            application
-            / "lib"
-            / configuration.productName
-            / source.relative_to(spec.build_dir),
+    releases = application / "releases"
+    releases.mkdir(parents=True, exist_ok=True)
+    release = Path(tempfile.mkdtemp(prefix="release-", dir=releases))
+    active = application / "active"
+    activated = False
+    try:
+        # Tauri resolves Linux resources beside the actual executable:
+        # https://v2.tauri.app/develop/resources/
+        installed_binary = release / "bin" / "desktop"
+        publish(binary, installed_binary)
+        resource_directory = release / "lib" / configuration.productName
+        for source in resources:
+            publish(source, resource_directory / source.relative_to(spec.build_dir))
+        installed_script = resource_directory / "backend.py"
+        python = subprocess.check_output(
+            ["uv", "python", "find", "--script", str(installed_script)], text=True
+        ).strip()
+        environment = release / "environment"
+        subprocess.run(["uv", "venv", "--python", python, str(environment)], check=True)
+        # Sync at the final installed script path into the release-owned environment:
+        # https://docs.astral.sh/uv/reference/cli/#uv-sync--active
+        subprocess.run(
+            [
+                "uv",
+                "sync",
+                "--upgrade",
+                "--active",
+                "--compile-bytecode",
+                "--script",
+                str(installed_script),
+            ],
+            check=True,
+            env=os.environ | {"VIRTUAL_ENV": str(environment)},
         )
-
-    # uv script environments depend on the installed script path, so prepare
-    # that environment before publishing its launcher:
-    # https://docs.astral.sh/uv/guides/scripts/
-    installed_script = application / "lib" / configuration.productName / "backend.py"
-    subprocess.run(
-        ["uv", "sync", "--upgrade", "--script", str(installed_script)], check=True
-    )
-    python = subprocess.check_output(
-        ["uv", "python", "find", "--script", str(installed_script)], text=True
-    ).strip()
-    resource_directory = installed_script.parent
-    with tempfile.TemporaryDirectory(
-        prefix=".runtime-", dir=resource_directory
-    ) as directory:
-        runtime = Path(directory) / "runtime.txt"
-        runtime.write_text(python + "\n")
-        publish(runtime, resource_directory / "runtime.txt")
-
-    application.mkdir(parents=True, exist_ok=True)
-    launcher = application / "launch"
-    contents = (
-        (SOURCES / "launch.sh.in")
-        .read_text()
-        .replace(
-            "@DEPENDENCY_PATH@",
-            shlex.quote(":".join(dict.fromkeys(dependency_directories))),
+        interpreter = environment / "bin" / "python3"
+        (resource_directory / "runtime.txt").write_text(str(interpreter) + "\n")
+        (resource_directory / "active-assets.json").symlink_to(
+            active / "lib" / configuration.productName / "assets.json"
         )
-        .replace("@APPLICATION@", shlex.quote(str(installed_binary)))
-    )
-    with tempfile.TemporaryDirectory(prefix=".launcher-", dir=application) as directory:
-        temporary = Path(directory) / "launch"
-        temporary.write_text(contents)
-        temporary.chmod(0o755)
-        temporary.replace(launcher)
-    spec.bin_dir.mkdir(parents=True, exist_ok=True)
-    command = spec.bin_dir / "math-flashcards"
-    with tempfile.TemporaryDirectory(prefix=".command-", dir=spec.bin_dir) as directory:
-        temporary = Path(directory) / "math-flashcards"
-        temporary.symlink_to(launcher)
-        temporary.replace(command)
+        subprocess.run(
+            [str(interpreter), "-I", "-c", "from ankdown.cli import RendererAssets"],
+            check=True,
+        )
+        validated = RendererResource.model_validate_json(
+            subprocess.check_output(
+                [str(interpreter), "-I", str(installed_script)],
+                input='{"action":"assets"}\n',
+                text=True,
+            )
+        )
+        if validated.identity != assets.identity:
+            raise ValueError(
+                "The installed renderer assets do not match the prepared release."
+            )
+        if (
+            archived_assets.read_bytes()
+            != (resource_directory / "assets.json").read_bytes()
+        ):
+            raise ValueError(
+                "The renderer archive does not match the prepared release."
+            )
 
-    entry = configparser.ConfigParser(interpolation=None)
-    entry.optionxform = str
-    entry.read(SOURCES / f"{APP_ID}.desktop.in")
-    entry["Desktop Entry"]["Exec"] = exec_argument(command)
-    entry["Desktop Entry"]["TryExec"] = str(command)
-    applications = spec.data_dir / "applications"
-    applications.mkdir(parents=True, exist_ok=True)
-    destination = applications / f"{APP_ID}.desktop"
-    with tempfile.TemporaryDirectory(prefix=".entry-", dir=applications) as directory:
-        temporary = Path(directory) / destination.name
-        with temporary.open("w") as handle:
+        release_launcher = release / "launch"
+        release_launcher.write_text(
+            (SOURCES / "launch.sh.in")
+            .read_text()
+            .replace(
+                "@DEPENDENCY_PATH@",
+                shlex.quote(":".join(dict.fromkeys(dependency_directories))),
+            )
+            .replace("@APPLICATION@", shlex.quote(str(installed_binary)))
+        )
+        release_launcher.chmod(0o755)
+        dispatcher = release / "dispatch"
+        dispatcher.write_text(
+            (SOURCES / "dispatch.sh.in")
+            .read_text()
+            .replace("@APPLICATION@", shlex.quote(str(active / "launch")))
+        )
+        dispatcher.chmod(0o755)
+
+        launcher = application / "launch"
+        command = spec.bin_dir / "math-flashcards"
+        entry = configparser.ConfigParser(interpolation=None)
+        entry.optionxform = str
+        entry.read(SOURCES / f"{APP_ID}.desktop.in")
+        entry["Desktop Entry"]["Exec"] = exec_argument(command)
+        entry["Desktop Entry"]["TryExec"] = str(command)
+        applications = spec.data_dir / "applications"
+        applications.mkdir(parents=True, exist_ok=True)
+        destination = applications / f"{APP_ID}.desktop"
+        staged_entry = release / destination.name
+        with staged_entry.open("w") as handle:
             entry.write(handle, space_around_delimiters=False)
-        subprocess.run(["desktop-file-validate", str(temporary)], check=True)
-        temporary.replace(destination)
-    icon = SOURCES.parent / "src-tauri" / "icons" / "128x128.png"
-    publish(
-        icon, spec.data_dir / "icons" / "hicolor" / "128x128" / "apps" / f"{APP_ID}.png"
-    )
-    subprocess.run(["update-desktop-database", str(applications)], check=True)
-    return destination
+        subprocess.run(["desktop-file-validate", str(staged_entry)], check=True)
+        publish(
+            SOURCES.parent / "src-tauri" / "icons" / "128x128.png", release / "icon.png"
+        )
+
+        # Stable entry points refer to the active release. Candidate preparation
+        # and validation complete before any installed entry point changes.
+        publish(dispatcher, launcher)
+        spec.bin_dir.mkdir(parents=True, exist_ok=True)
+        with tempfile.TemporaryDirectory(
+            prefix=".command-", dir=spec.bin_dir
+        ) as directory:
+            temporary = Path(directory) / "math-flashcards"
+            temporary.symlink_to(launcher)
+            temporary.replace(command)
+        publish(staged_entry, destination)
+        icon = (
+            spec.data_dir / "icons" / "hicolor" / "128x128" / "apps" / f"{APP_ID}.png"
+        )
+        icon.parent.mkdir(parents=True, exist_ok=True)
+        with tempfile.TemporaryDirectory(prefix=".icon-", dir=icon.parent) as directory:
+            temporary = Path(directory) / icon.name
+            temporary.symlink_to(active / "icon.png")
+            temporary.replace(icon)
+        subprocess.run(["update-desktop-database", str(applications)], check=True)
+        with tempfile.TemporaryDirectory(
+            prefix=".activation-", dir=application
+        ) as directory:
+            pointer = Path(directory) / "active"
+            pointer.symlink_to(
+                release.relative_to(application), target_is_directory=True
+            )
+            pointer.replace(active)
+            activated = True
+        return destination
+    finally:
+        if not activated:
+            subprocess.run(["trash", str(release)], check=True)
 
 
 app = cyclopts.App()

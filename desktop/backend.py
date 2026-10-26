@@ -57,6 +57,11 @@ class AssetsInput(BaseModel):
     action: Literal["assets"]
 
 
+class AssetVersionInput(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    action: Literal["asset-version"]
+
+
 class Input(BaseModel):
     model_config = ConfigDict(extra="forbid")
     workspace: str
@@ -251,6 +256,7 @@ class Organized(BaseModel):
 
 type Request = Annotated[
     AssetsInput
+    | AssetVersionInput
     | ListInput
     | LoadInput
     | SaveInput
@@ -389,6 +395,14 @@ class AssetSet(BaseModel):
 
 class InvalidAssetsError(ValueError):
     """The requested installed renderer set cannot be used."""
+
+
+class InstallationError(ValueError):
+    """A prepared runtime component cannot be used."""
+
+
+class AssetVersion(BaseModel):
+    identity: Digest
 
 
 class MathJaxPackage(BaseModel):
@@ -954,6 +968,18 @@ def installed_assets() -> AssetSet:
     return AssetSet.model_validate_json(path.read_bytes())
 
 
+def active_asset_version() -> AssetVersion:
+    try:
+        active = AssetSet.model_validate_json(
+            Path(__file__).with_name("active-assets.json").read_bytes()
+        )
+    except (OSError, ValidationError) as error:
+        raise InstallationError(
+            "The active renderer descriptor is unavailable. Run just desktop-install."
+        ) from error
+    return AssetVersion(identity=active.identity)
+
+
 @cache
 def asset_set(identity: Digest) -> AssetSet:
     path = Path(__file__).with_name("asset-sets") / (identity + ".json")
@@ -979,25 +1005,46 @@ def pandoc_digest() -> str:
     )
 
 
-def input_hashes(path: Path, media: list[Path], assets: AssetSet) -> dict[str, str]:
-    files = [
-        path,
-        Path(__file__),
-        PAIR_FILTER,
-        *media,
-        *(
-            EXPORTER / name
-            for name in (
-                "ankdown.lua",
-                "cli.py",
-                "mathjax.html",
-                "card.css",
+def producer_files() -> dict[str, Path]:
+    return {
+        "bridge": Path(__file__),
+        "pair-filter": PAIR_FILTER,
+        **{
+            "ankdown/" + name: EXPORTER / name
+            for name in ("ankdown.lua", "cli.py", "mathjax.html", "card.css")
+        },
+    }
+
+
+@cache
+def environment_identity() -> str:
+    # Installed distribution metadata supplies producer versions and VCS identities:
+    # https://docs.python.org/3/library/importlib.metadata.html
+    from importlib.metadata import distributions
+
+    packages: dict[str, tuple[str, str | None]] = {}
+    for package in distributions():
+        name = package.metadata["Name"]
+        if not name or name in packages:
+            raise InstallationError(
+                "The installed dependency metadata is incomplete. Run just desktop-install."
             )
-        ),
-    ]
-    hashes = {str(file): digest(file.read_bytes()) for file in files}
+        packages[name] = (package.version, package.read_text("direct_url.json"))
+    return digest(
+        json.dumps(
+            [sys.version, packages], sort_keys=True, separators=(",", ":")
+        ).encode()
+    )
+
+
+def input_hashes(path: Path, media: list[Path], assets: AssetSet) -> dict[str, str]:
+    hashes = {str(file): digest(file.read_bytes()) for file in [path, *media]}
+    hashes.update(
+        {name: digest(file.read_bytes()) for name, file in producer_files().items()}
+    )
     hashes["macros"] = assets.identity
     hashes["pandoc"] = pandoc_digest()
+    hashes["environment"] = environment_identity()
     return hashes
 
 
@@ -1076,7 +1123,9 @@ def sync(path: Path, output: Path, assets: AssetSet) -> Verification:
         ),
         checked_at=datetime.now(UTC),
         dependencies=sorted(
-            {name for name in current if Path(name).is_absolute()} | {str(output)}
+            {name for name in current if Path(name).is_absolute()}
+            | {str(file) for file in producer_files().values()}
+            | {str(output)}
         ),
     )
 
@@ -1184,6 +1233,7 @@ def generate(root: Path, path: Path, assets: AssetSet) -> Generated:
                 process = subprocess.run(
                     [
                         sys.executable,
+                        "-I",
                         "-m",
                         "ankdown.cli",
                         "compile",
@@ -1306,6 +1356,7 @@ def dispatch(
     | Sources
     | Checks
     | AssetSet
+    | AssetVersion
     | ProblemCache
     | ProblemStored
     | CacheRebuilt
@@ -1315,6 +1366,8 @@ def dispatch(
 ):
     if isinstance(request, AssetsInput):
         return installed_assets()
+    if isinstance(request, AssetVersionInput):
+        return active_asset_version()
     root = workspace_path(request.workspace)
     if isinstance(request, ManifestCacheInput):
         return manifest_cache(root, request)
@@ -1387,6 +1440,10 @@ def dispatch(
                     cache_errors.append(
                         PathFailure(path=name, kind="CacheFailure", message=str(error))
                     )
+            except InstallationError as error:
+                checks.append(
+                    PathFailure(path=name, kind="BackendFailure", message=str(error))
+                )
             except InvalidAssetsError as error:
                 checks.append(
                     PathFailure(path=name, kind="InvalidAssets", message=str(error))
@@ -1493,6 +1550,7 @@ def prepare() -> None:
     ) as temporary:
         staged = Path(temporary)
         (staged / "assets.json").write_text(assets.model_dump_json())
+        (staged / "active-assets.json").write_text(assets.model_dump_json())
         (staged / "runtime.txt").write_text(sys.executable + "\n")
         archive = directory / "asset-sets"
         archive.mkdir(exist_ok=True)
@@ -1504,7 +1562,7 @@ def prepare() -> None:
             or destination.read_bytes() != archived.read_bytes()
         ):
             archived.replace(destination)
-        for name in ("assets.json", "runtime.txt"):
+        for name in ("assets.json", "active-assets.json", "runtime.txt"):
             destination = directory / name
             if (
                 destination.is_file()

@@ -91,6 +91,7 @@ function workbenchBackend(): Plugin {
         const { action } = scope.data;
         const queue = [
           "assets",
+          "asset-version",
           "problems",
           "store-problems",
           "search",
@@ -121,7 +122,7 @@ function workbenchBackend(): Plugin {
             return;
           }
           await new Promise<void>((resolve) => {
-            const child = spawn(python, [script]);
+            const child = spawn(python, ["-I", script]);
             const stdout = text(child.stdout);
             const stderr = text(child.stderr);
             child.on("error", (error) => {

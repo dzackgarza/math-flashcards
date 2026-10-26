@@ -106,7 +106,7 @@ export type Request =
   | z.infer<typeof problemCacheRequestSchema>
   | z.infer<typeof manifestCacheRequestSchema>
   | z.infer<typeof searchCacheRequestSchema>
-  | { action: "assets" }
+  | { action: "assets" | "asset-version" }
   | { action: "rebuild-cache"; workspace: string; generation: number }
   | { action: "list"; workspace: string }
   | {
@@ -324,6 +324,7 @@ export const assetsSchema = workspaceSchema
     renderer: z.string().min(1),
   });
 export type Manifest = z.infer<typeof manifestSchema>;
+export const assetVersionSchema = assetsSchema.pick({ identity: true });
 export type Entry = Manifest["entries"][number];
 export type SourceResult = z.infer<typeof sourcesSchema>["results"][number];
 export type PackageResult = z.infer<typeof checksSchema>["results"][number];

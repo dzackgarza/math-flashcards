@@ -215,3 +215,22 @@ visible to hashing and watches. `media-invalidation.png` records the result.
 The bridge reports missing runtime modules as an incomplete installation and
 names `just desktop-install`. A focused case executes the real bridge with site
 packages disabled and checks that diagnostic.
+
+## Versioned installation
+
+The installer prepares and validates each release at its final path. Its Python
+environment belongs to that release. One active symlink selects the executable,
+resources, and environment together. A separate asset-version descriptor lets
+an older process detect an update while retaining its own assets.
+
+The installation scenario verifies a failed real dependency fetch with networking
+disabled. The active pointer, launcher, runtime marker, renderer file, and desktop
+entry remain unchanged; the candidate directory is removed through trash. The
+active installation still opens its workspace offline. Reinstalling identical
+producer content preserves package freshness across different release paths.
+
+A successful update then supplies a changed validated macro set. The old runtime
+reports the new active version while its own asset request retains the original
+set. Offline exports through the old and new runtimes contain their respective
+exact macro and stmaryrd contents. The rendered restart notice and native session
+update interaction remain separate acceptance cases.

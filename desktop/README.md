@@ -23,9 +23,9 @@ package (`vendor/lezer-markdown-pandoc` in
 [Zettlr-pandoc-mathjax](https://github.com/dzackgarza/Zettlr-pandoc-mathjax)) from
 its `develop` branch into `desktop/.parser`, and the npm override makes CodeMirror
 use the same parser as card pairing.
-Installation needs `uv`, Pandoc, and network access to GitHub. Install/update
-prepares the Python environment for the installed bridge path and saves its
-interpreter location. It fetches the macro set and MathJax `stmaryrd` package
+Installation needs `uv`, Pandoc, `trash`, and network access to GitHub.
+Install/update prepares an immutable release with its own Python environment
+and installed bridge. It fetches the macro set and MathJax `stmaryrd` package
 from pandoc-config main as one checked asset set. Opening, refreshing, loading,
 and saving use these local resources. Package generation uses prepared local
 renderer inputs through Ankdown. Missing runtime files produce an
@@ -37,14 +37,17 @@ launch uses the updated set.
 The native build includes the
 bridge and local MathJax 4 assets, with the New Computer Modern font.
 Installation adds **Math Flashcards** to the application menu and installs the
-`math-flashcards` command. The commit gate ends with `just desktop-update`, which
-rebuilds and installs the app, icon, launcher, and desktop entry. Each commit
-that passes the gate therefore updates the app in the menu.
+`math-flashcards` command. `just desktop-update` resolves dependencies, rebuilds,
+validates the candidate release, and switches the active pointer. A failed
+dependency update preserves the active installation. Earlier releases stay on
+disk so running windows can keep their bridge, environment, and renderer files.
 
 | Installed item | Location |
 | --- | --- |
 | Desktop entry | `$XDG_DATA_HOME/applications/dev.math.flashcards.desktop` |
 | App and resources | `$XDG_DATA_HOME/math-flashcards/` |
+| Active release | `$XDG_DATA_HOME/math-flashcards/active` |
+| Prepared releases | `$XDG_DATA_HOME/math-flashcards/releases/` |
 | Icon | `$XDG_DATA_HOME/icons/hicolor/128x128/apps/dev.math.flashcards.png` |
 | Command | `~/.local/bin/math-flashcards` |
 | Preferences | `$XDG_CONFIG_HOME/dev.math.flashcards/preferences.json` |

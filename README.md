@@ -26,7 +26,7 @@ just desktop-install
 ```
 
 Launch **Math Flashcards** from the application menu or run `math-flashcards`.
-Each commit that passes the commit gate rebuilds and installs the app.
+`just desktop-update` rebuilds and activates a prepared release.
 Open `decks/` itself from the workspace menu in the sidebar. A workspace is any
 folder containing deck Markdown files and subject subfolders. Its `apkg/`
 subfolder holds exports and is excluded from deck discovery.

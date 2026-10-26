@@ -171,10 +171,7 @@ test("package history remains pending until exact inputs are rechecked", async (
   const filter = await Bun.file(
     resolve(import.meta.dir, "../paired-cards.lua"),
   ).text();
-  await Bun.write(
-    join(resources, "paired-cards.lua"),
-    filter + "\n-- Updated exporter resource.\n",
-  );
+  await Bun.write(join(resources, "paired-cards.lua"), filter);
   await Bun.write(
     join(resources, "asset-sets", assets.identity + ".json"),
     Bun.file(join(resources, "assets.json")),
@@ -185,6 +182,20 @@ test("package history remains pending until exact inputs are rechecked", async (
     join(resources, "backend.py"),
   );
   expect(relocated.results[0]).toMatchObject({
+    state: "ready",
+    status: "Up to date",
+    input_identity: verified.input_identity,
+  });
+  await Bun.write(
+    join(resources, "paired-cards.lua"),
+    filter + "\n-- Updated exporter resource.\n",
+  );
+  const updated = call(
+    { ...input, action: "checks" },
+    checksSchema,
+    join(resources, "backend.py"),
+  );
+  expect(updated.results[0]).toMatchObject({
     state: "ready",
     status: "Unsynced",
     reasons: ["The exporter changed."],

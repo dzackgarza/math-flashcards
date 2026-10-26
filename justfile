@@ -27,8 +27,7 @@ desktop-dependencies:
     env -u GIT_INDEX_FILE git -C desktop/.parser pull --quiet --ff-only
     cd desktop && bun update
     cd desktop/src-tauri && cargo update --quiet
-    uv sync --upgrade --script desktop/backend.py
-    "$(uv python find --script desktop/backend.py)" desktop/backend.py prepare
+    uv run --upgrade desktop/backend.py prepare
 
 # Build and install the app in XDG user directories
 desktop-install: desktop-dependencies desktop-build desktop-deploy

@@ -1,6 +1,7 @@
 # Update publication
 
-Decision: pending. Owner: the runtime lifecycle in the startup plan.
+Decision: immutable releases with atomic activation. Owner: the runtime lifecycle
+in the startup plan. The user approved this design on 2026-10-26.
 
 ## Failure to correct
 
