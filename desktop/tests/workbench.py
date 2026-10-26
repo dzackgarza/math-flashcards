@@ -851,6 +851,50 @@ def main() -> None:
                 )
                 expect(page.locator(".generation-log")).to_have_count(0)
                 page.unroute("**/api/request", delay_build_all_review)
+                other = next_workspace / "Other.md"
+                other.write_text(
+                    (next_workspace / "Fresh.md").read_text().replace(
+                        "Fresh", "Other"
+                    ).replace("fresh", "other").replace(
+                        "New workspace", "Other deck"
+                    )
+                )
+                expect(page.get_by_text("Other", exact=True)).to_be_visible()
+                expect(page.locator(".workspace-progress")).to_have_text(
+                    "Workspace checks complete", timeout=30000
+                )
+                deleted_load: list[tuple[Route, APIResponse]] = []
+
+                def delay_deleted_load(route: Route) -> None:
+                    payload = route.request.post_data_json
+                    if (
+                        payload.get("action") == "load"
+                        and payload.get("path") == "Fresh.md"
+                    ):
+                        deleted_load.append((route, route.fetch()))
+                    else:
+                        route.continue_()
+
+                page.route("**/api/request", delay_deleted_load)
+                subprocess.run(["trash", str(next_workspace / "Fresh.md")], check=True)
+                for _ in range(300):
+                    if deleted_load:
+                        break
+                    page.wait_for_timeout(100)
+                assert deleted_load
+                assert not deleted_load[0][1].ok
+                page.get_by_text("Other", exact=True).click()
+                expect(page.locator(".side-editor.front .cm-content")).to_contain_text(
+                    "Other deck question"
+                )
+                for route, response in deleted_load:
+                    route.fulfill(response=response)
+                page.wait_for_timeout(1000)
+                expect(page.locator(".side-editor.front .cm-content")).to_contain_text(
+                    "Other deck question"
+                )
+                expect(page.get_by_text("Action failed", exact=True)).to_have_count(0)
+                page.unroute("**/api/request", delay_deleted_load)
                 assert not console, console
             finally:
                 page.screenshot(path=str(artifacts / "cache-last.png"))
