@@ -14,6 +14,25 @@ import zipfile
 from pathlib import Path
 
 
+def prepare_asset_update(build: Path, candidate: Path, resources: Path) -> None:
+    """Prepare a changed renderer set with the real bridge's asset model."""
+    candidate.mkdir()
+    for name in ("desktop", "backend.py", "paired-cards.lua", "assets.json"):
+        shutil.copy2(build / name, candidate / name)
+    shutil.copytree(build / "asset-sets", candidate / "asset-sets")
+    python = (resources / "runtime.txt").read_text().strip()
+    subprocess.run(
+        [
+            python,
+            "-c",
+            "from pathlib import Path; import backend, sys; old=backend.installed_assets(); macros=old.macros | {'maintenanceProof': r'\\mathrm{updated}'}; assets=backend.AssetSet(identity=backend.asset_identity(macros, old.stmaryrd, old.renderer), macros=macros, stmaryrd=old.stmaryrd, renderer=old.renderer); candidate=Path(sys.argv[1]); (candidate / 'assets.json').write_text(assets.model_dump_json()); (candidate / 'asset-sets' / (assets.identity + '.json')).write_text(assets.model_dump_json())",
+            str(candidate),
+        ],
+        cwd=resources,
+        check=True,
+    )
+
+
 def main() -> None:
     desktop = Path(__file__).resolve().parents[1]
     with tempfile.TemporaryDirectory(prefix="flashcards-install-") as directory:
@@ -178,21 +197,8 @@ def main() -> None:
             path.name for path in (application / "releases").iterdir()
         )
         candidate = root / "next build"
-        candidate.mkdir()
         build = desktop / "src-tauri" / "target" / "release"
-        for name in ("desktop", "backend.py", "paired-cards.lua", "assets.json"):
-            shutil.copy2(build / name, candidate / name)
-        shutil.copytree(build / "asset-sets", candidate / "asset-sets")
-        subprocess.run(
-            [
-                python,
-                "-c",
-                "from pathlib import Path; import backend, sys; old=backend.installed_assets(); macros=old.macros | {'maintenanceProof': r'\\mathrm{updated}'}; assets=backend.AssetSet(identity=backend.asset_identity(macros, old.stmaryrd, old.renderer), macros=macros, stmaryrd=old.stmaryrd, renderer=old.renderer); candidate=Path(sys.argv[1]); (candidate / 'assets.json').write_text(assets.model_dump_json()); (candidate / 'asset-sets' / (assets.identity + '.json')).write_text(assets.model_dump_json())",
-                str(candidate),
-            ],
-            cwd=resources,
-            check=True,
-        )
+        prepare_asset_update(build, candidate, resources)
         installer = desktop / "linux" / "install.py"
         installer_python = subprocess.check_output(
             ["uv", "python", "find", "--script", str(installer)], text=True

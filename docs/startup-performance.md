@@ -232,5 +232,25 @@ producer content preserves package freshness across different release paths.
 A successful update then supplies a changed validated macro set. The old runtime
 reports the new active version while its own asset request retains the original
 set. Offline exports through the old and new runtimes contain their respective
-exact macro and stmaryrd contents. The rendered restart notice and native session
-update interaction remain separate acceptance cases.
+exact macro and stmaryrd contents.
+
+`just desktop-update-test` passes with the release frontend at `f8131d1`. It
+launches a temporary installation through its desktop entry with networking
+disabled. The running window renders the restart notice after activation of a
+changed asset set. It still edits, saves, and exports with its original complete
+macro/stmaryrd pair. The restarted window exports the new complete pair.
+`native-update-notice.png` and `native-updated-session.png` record the inspected
+states. The trace covers each launch and contains no updater execution or remote
+connection. These observations do not establish the timing budgets.
+
+The native input scenario waits for a rendered package status before invoking
+export. Tesseract reads the actual window pixels. The package assertions compare
+the complete macro set and stmaryrd contents with the expected release resources.
+
+## Response ownership
+
+The browser scenario delays delivery of real backend responses. A late review
+cannot replace a newer review of the same deck. A build-all review delivered
+after a workspace switch starts no export. A missing-file response for a deleted
+previous deck cannot close the newer editor. Review, generation, action errors,
+and disk-follow errors retain their originating session or document identity.

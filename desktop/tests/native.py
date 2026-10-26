@@ -19,6 +19,51 @@ import cyclopts
 import mss
 import mss.tools
 import psutil
+from installation import prepare_asset_update
+
+
+def wait_for_text(text: str) -> None:
+    """Wait for rendered native state before sending the next input."""
+    # Tesseract CLI: https://tesseract-ocr.github.io/tessdoc/Command-Line-Usage.html
+    deadline = time.monotonic() + 30
+    observed = ""
+    with mss.MSS() as screen:
+        while time.monotonic() < deadline:
+            shot = screen.grab({"left": 250, "top": 0, "width": 1190, "height": 200})
+            result = subprocess.run(
+                ["tesseract", "stdin", "stdout", "--psm", "6"],
+                input=mss.tools.to_png(shot.rgb, shot.size),
+                capture_output=True,
+                check=True,
+            )
+            observed = " ".join(result.stdout.decode().split())
+            if text in observed:
+                return
+            time.sleep(0.1)
+    raise AssertionError(f"Expected native text {text!r}; observed {observed!r}")
+
+
+def command_action(label: str) -> None:
+    subprocess.run(
+        ["xdotool", "key", "ctrl+k", "sleep", "0.3", "type", "--clearmodifiers", label],
+        check=True,
+    )
+    time.sleep(0.5)
+    subprocess.run(["xdotool", "mousemove", "600", "190", "click", "1"], check=True)
+
+
+def assert_package_assets(package: Path, asset_file: Path) -> None:
+    expected = json.loads(asset_file.read_text())
+    with zipfile.ZipFile(package) as archive:
+        media = json.loads(archive.read("media"))
+        name = next(
+            key for key, value in media.items() if value == "_ankdown_macros.js"
+        )
+        stmaryrd, assignment = (
+            archive.read(name).decode().split("\nwindow.ANKDOWN_MACROS = ")
+        )
+        assert stmaryrd == expected["stmaryrd"]
+        assert json.loads(assignment.removesuffix(";")) == expected["macros"]
 
 
 def close_native(window: str, launcher: subprocess.Popen[bytes]) -> None:
@@ -41,7 +86,9 @@ def close_native(window: str, launcher: subprocess.Popen[bytes]) -> None:
     launcher.wait(timeout=10)
 
 
-def main(*, entry: Path | None = None, offline: bool = False) -> None:
+def main(
+    *, entry: Path | None = None, offline: bool = False, updates: bool = False
+) -> None:
     """Exercise a built app, or launch an installed desktop entry through Gio."""
     desktop = Path(__file__).resolve().parents[1]
     artifacts = desktop / "test-artifacts"
@@ -51,6 +98,29 @@ def main(*, entry: Path | None = None, offline: bool = False) -> None:
         trace.write_text("")
     with tempfile.TemporaryDirectory(prefix="flashcards-native-") as directory:
         environment = Path(directory)
+        build = desktop / "src-tauri" / "target" / "release"
+        if updates:
+            if entry is not None:
+                raise ValueError("The update scenario owns its temporary installation.")
+            installation = environment / "installation"
+            install_arguments = [
+                "uv",
+                "run",
+                "--upgrade",
+                str(desktop / "linux" / "install.py"),
+                str(build),
+                "--data-dir",
+                str(installation),
+                "--bin-dir",
+                str(environment / "commands"),
+            ]
+            subprocess.run(install_arguments, check=True)
+            entry = installation / "applications" / "dev.math.flashcards.desktop"
+            resources = (
+                installation / "math-flashcards" / "active" / "lib" / "Math Flashcards"
+            ).resolve(strict=True)
+            candidate = environment / "next build"
+            prepare_asset_update(build, candidate, resources)
         root = environment / "workspace"
         (root / "Analysis").mkdir(parents=True)
         shutil.copyfile(
@@ -228,11 +298,10 @@ def main(*, entry: Path | None = None, offline: bool = False) -> None:
                         "--delay",
                         "10",
                         "Native input $x^2$",
-                        "key",
-                        "ctrl+s",
                     ],
                     check=True,
                 )
+                subprocess.run(["xdotool", "key", "ctrl+s"], check=True)
                 source_path = root / "Analysis" / "Precalculus.md"
                 for _ in range(120):
                     if "Native input $x^2$" in source_path.read_text():
@@ -241,28 +310,8 @@ def main(*, entry: Path | None = None, offline: bool = False) -> None:
                 assert "Native input $x^2$" in source_path.read_text(), (
                     artifacts / "native.log"
                 ).read_text()
-                subprocess.run(
-                    [
-                        "xdotool",
-                        "mousemove",
-                        "--window",
-                        window,
-                        "1403",
-                        "28",
-                        "click",
-                        "1",
-                        "sleep",
-                        "0.5",
-                        "mousemove",
-                        "--window",
-                        window,
-                        "1280",
-                        "74",
-                        "click",
-                        "1",
-                    ],
-                    check=True,
-                )
+                wait_for_text("not in the Anki package")
+                command_action("Update this Anki package")
                 package = root / "apkg" / "Analysis__Precalculus.apkg"
                 for _ in range(120):
                     if package.is_file():
@@ -277,6 +326,81 @@ def main(*, entry: Path | None = None, offline: bool = False) -> None:
                     )
                 assert package.is_file(), (artifacts / "native.log").read_text()
                 assert zipfile.is_zipfile(package)
+                if updates:
+                    assert_package_assets(package, resources / "assets.json")
+                    update_arguments = install_arguments.copy()
+                    update_arguments[4] = str(candidate)
+                    subprocess.run(update_arguments, check=True)
+                    command_action("Refresh workspace")
+                    wait_for_text("Renderer update ready")
+                    with mss.MSS() as screen:
+                        shot = screen.grab(
+                            {"left": 0, "top": 0, "width": 1440, "height": 1000}
+                        )
+                        mss.tools.to_png(
+                            shot.rgb,
+                            shot.size,
+                            output=str(artifacts / "native-update-notice.png"),
+                        )
+                    package.write_bytes(b"external package edit")
+                    source_path.write_text(
+                        source_path.read_text().replace(
+                            "Native input $x^2$", "Native input $x^2$ after update"
+                        )
+                    )
+                    wait_for_text("not in the Anki package")
+                    command_action("Update this Anki package")
+                    for _ in range(120):
+                        if zipfile.is_zipfile(package):
+                            break
+                        time.sleep(0.25)
+                    assert zipfile.is_zipfile(package), (
+                        artifacts / "native.log"
+                    ).read_text()
+                    assert_package_assets(package, resources / "assets.json")
+                    close_native(window, process)
+                    window = None
+                    process = subprocess.Popen(
+                        command, stdout=log, stderr=log, env=runtime_environment
+                    )
+                    window = subprocess.check_output(
+                        [
+                            "xdotool",
+                            "search",
+                            "--sync",
+                            "--onlyvisible",
+                            "--name",
+                            "Math Flashcards",
+                        ],
+                        text=True,
+                        timeout=30,
+                    ).splitlines()[0]
+                    time.sleep(3)
+                    command_action("Precalculus")
+                    time.sleep(3)
+                    package.write_bytes(b"external package edit")
+                    source_path.write_text(
+                        source_path.read_text().replace("after update", "after restart")
+                    )
+                    wait_for_text("not in the Anki package")
+                    command_action("Update this Anki package")
+                    for _ in range(120):
+                        if zipfile.is_zipfile(package):
+                            break
+                        time.sleep(0.25)
+                    assert zipfile.is_zipfile(package), (
+                        artifacts / "native.log"
+                    ).read_text()
+                    assert_package_assets(package, candidate / "assets.json")
+                    with mss.MSS() as screen:
+                        shot = screen.grab(
+                            {"left": 0, "top": 0, "width": 1440, "height": 1000}
+                        )
+                        mss.tools.to_png(
+                            shot.rgb,
+                            shot.size,
+                            output=str(artifacts / "native-updated-session.png"),
+                        )
                 assert json.loads(preferences_path.read_text())["workspace"] == str(
                     root
                 )

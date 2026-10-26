@@ -209,13 +209,17 @@ See [Anki's packaged deck documentation](https://docs.ankiweb.net/manual/importi
 | `just desktop-test startup` | Edit and save during incomplete workspace coverage |
 | `just desktop-organization-test` | Tree drag, grouped moves, reorder, merge, new decks, rename, delete, Undo, and updating all packages |
 | `just desktop-native-test` | Built native window and export on an isolated X11 display |
+| `just desktop-update-test` | Running temporary installation, update notice, and exports before and after restart with network access disabled |
 | `just desktop-format` | Canonical Python, TypeScript, CSS, and Rust formatting |
 | `just check-math` | The Problems list for every deck in the repository; fails when it is not empty |
 
-The commit gate runs the deck check, the math check, frontend build, source corpus check, and
-browser scenario. The browser checks install the Chromium build of the
+`just test-commit` defines the deck check, math check, frontend build, source corpus check,
+browser scenarios, and installation. The browser checks install the Chromium build of the
 Playwright version they resolve.
-Native capture requires Xvfb and xdotool. Screenshots, the browser trace, and
+Native capture requires Xvfb, xdotool, and Tesseract with its English data. The
+update case also uses a session D-Bus, `unshare`, and `strace`. Tesseract waits
+for the rendered package status before native input activates an export.
+Screenshots, the browser trace, and
 diagnostic logs are generated in `desktop/test-artifacts/`.
 
 The browser scenario checks card typing, inline math, source preservation,

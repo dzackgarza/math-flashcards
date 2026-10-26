@@ -104,6 +104,10 @@ desktop-native-test:
 desktop-installed-test:
     xvfb-run -a -s '-screen 0 1600x1200x24' uv run --upgrade desktop/tests/native.py --entry '{{env_var_or_default("XDG_DATA_HOME", env_var("HOME") / ".local/share")}}/applications/dev.math.flashcards.desktop'
 
+# Update a running temporary installation and verify both native sessions offline
+desktop-update-test:
+    xvfb-run -a -s '-screen 0 1600x1200x24' dbus-run-session -- uv run --upgrade desktop/tests/native.py --updates --offline
+
 # Apply the canonical formatters to desktop sources
 desktop-format:
     uvx ruff check --fix desktop/backend.py desktop/tests desktop/linux/install.py

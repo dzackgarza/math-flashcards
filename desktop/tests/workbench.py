@@ -853,11 +853,11 @@ def main() -> None:
                 page.unroute("**/api/request", delay_build_all_review)
                 other = next_workspace / "Other.md"
                 other.write_text(
-                    (next_workspace / "Fresh.md").read_text().replace(
-                        "Fresh", "Other"
-                    ).replace("fresh", "other").replace(
-                        "New workspace", "Other deck"
-                    )
+                    (next_workspace / "Fresh.md")
+                    .read_text()
+                    .replace("Fresh", "Other")
+                    .replace("fresh", "other")
+                    .replace("New workspace", "Other deck")
                 )
                 expect(page.get_by_text("Other", exact=True)).to_be_visible()
                 expect(page.locator(".workspace-progress")).to_have_text(
