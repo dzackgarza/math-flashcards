@@ -7,6 +7,7 @@ import configparser
 import hashlib
 import json
 import os
+import shutil
 import subprocess
 import tempfile
 import zipfile
@@ -158,6 +159,68 @@ def main() -> None:
         assert (data / "math-flashcards" / "bin" / "desktop").read_bytes() == (
             desktop / "src-tauri" / "target" / "release" / "desktop"
         ).read_bytes()
+        original_assets = (resources / "assets.json").read_bytes()
+        candidate = root / "next build"
+        candidate.mkdir()
+        build = desktop / "src-tauri" / "target" / "release"
+        for name in ("desktop", "backend.py", "paired-cards.lua", "assets.json"):
+            shutil.copy2(build / name, candidate / name)
+        shutil.copytree(build / "asset-sets", candidate / "asset-sets")
+        subprocess.run(
+            [
+                python,
+                "-c",
+                "from pathlib import Path; import backend, sys; old=backend.installed_assets(); macros=old.macros | {'maintenanceProof': r'\\mathrm{updated}'}; assets=backend.AssetSet(identity=backend.asset_identity(macros, old.stmaryrd, old.renderer), macros=macros, stmaryrd=old.stmaryrd, renderer=old.renderer); candidate=Path(sys.argv[1]); (candidate / 'assets.json').write_text(assets.model_dump_json()); (candidate / 'asset-sets' / (assets.identity + '.json')).write_text(assets.model_dump_json())",
+                str(candidate),
+            ],
+            cwd=resources,
+            check=True,
+        )
+        installer = desktop / "linux" / "install.py"
+        installer_python = subprocess.check_output(
+            ["uv", "python", "find", "--script", str(installer)], text=True
+        ).strip()
+        failed_environment = os.environ.copy()
+        failed_environment.pop("UV_OFFLINE", None)
+        failed_environment.update(
+            {"GIT_CONFIG_GLOBAL": os.devnull, "GIT_CONFIG_NOSYSTEM": "1"}
+        )
+        failed = subprocess.run(
+            [
+                "unshare",
+                "--user",
+                "--map-root-user",
+                "--net",
+                installer_python,
+                str(installer),
+                str(candidate),
+                "--data-dir",
+                str(data),
+                "--bin-dir",
+                str(commands),
+            ],
+            text=True,
+            capture_output=True,
+            env=failed_environment,
+            check=False,
+        )
+        assert failed.returncode != 0, (
+            "The disconnected dependency update unexpectedly succeeded."
+        )
+        assert (resources / "assets.json").read_bytes() == original_assets, (
+            failed.stderr
+        )
+        retained = subprocess.run(
+            offline,
+            input=json.dumps({"action": "list", "workspace": str(workspace)}),
+            text=True,
+            capture_output=True,
+            check=True,
+            env=environment,
+        )
+        assert json.loads(retained.stdout)["macros"] == assets["macros"]
+        assert deck.read_text() == edited
+        assert entry_path.read_bytes() == original_entry
     print(
         "Installation and update preserve the native build and refresh the validated desktop entry."
     )
