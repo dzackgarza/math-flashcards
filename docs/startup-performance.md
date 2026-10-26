@@ -293,6 +293,23 @@ part of the selection path. The captured stack maps to `previewHtml` in
 `src/math.ts`, called for every card by `App.tsx` before the editor is published.
 The shared field editor has a separate stack.
 
+Card summaries now render one card per task after the selected deck is
+published. The tree keeps its data identity while membership is unchanged, so
+a folder opened between cached and reconciled publication stays open. The
+release built from `3833e78`'s frontend, measured on an otherwise idle
+workstation, gives this distribution:
+
+| Cache | Samples | Tree publication p95 / worst (s) | Selection p95 / worst (s) | Key command to glyph p95 / worst (s) |
+| --- | --- | --- | --- | --- |
+| Warm | 20 | 1.161 / 1.282 | 0.870 / 0.896 | 0.156 / 0.161 |
+| Cold | 20 | 1.476 / 1.589 | 0.899 / 0.930 | 0.169 / 0.182 |
+
+Selection meets its budget. Warm tree publication and keyboard paint do not.
+The timing run also reads an in-page `flashcards:tree-published` mark and the
+interval from keydown to the second following animation frame, to separate page
+work from driver and input-tool overhead. A run under external load (load
+average above 14) is not an acceptance sample.
+
 | Conversion owner | Warm calls | Warm CPU (s) | Cold calls | Cold CPU (s) |
 | --- | --- | --- | --- | --- |
 | Card summaries | 106 | 0.736 | 106 | 0.849 |
