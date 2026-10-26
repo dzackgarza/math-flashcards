@@ -8,7 +8,7 @@ build: desktop-dependencies
 
 # Sanity-check that every deck is well-formed new-format Markdown
 test: check-math
-    uv run --upgrade .agents/check-decks.py
+    uv run --upgrade scripts/check-decks.py
 
 # Reject TeX that MathJax cannot render, such as an undefined macro
 check-math: desktop-dependencies

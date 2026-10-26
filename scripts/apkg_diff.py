@@ -9,8 +9,8 @@ Acceptance-criterion tool for issue #1: proves whether every note in every commi
 .apkg has a corresponding card in decks/ (normalized-front match).
 
 Usage:
-    uv run .agents/apkg_diff.py            # summary + missing-card report
-    uv run .agents/apkg_diff.py --dump-missing PATH   # write missing cards as JSON
+    uv run scripts/apkg_diff.py            # summary + missing-card report
+    uv run scripts/apkg_diff.py --dump-missing PATH   # write missing cards as JSON
 """
 import argparse
 import html

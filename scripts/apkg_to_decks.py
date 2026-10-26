@@ -15,8 +15,8 @@ skipped, so this adds exactly the missing set the diff reports.
 Media is unrecoverable (no apkg bundles any; all <img src="attachments/..."> are
 dangling), so <img> tags are dropped, keeping surrounding text.
 
-Run:  uv run .agents/apkg_to_decks.py
-Then: uv run .agents/apkg_diff.py   (expect 0 missing)  &&  just build
+Run:  uv run scripts/apkg_to_decks.py
+Then: uv run scripts/apkg_diff.py   (expect 0 missing)  &&  just build
 """
 import html
 import json
