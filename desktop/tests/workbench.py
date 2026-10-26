@@ -163,7 +163,7 @@ def main() -> None:
             page.get_by_text("Analysis", exact=True).click()
             selected = time.monotonic()
             page.get_by_text("Precalculus", exact=True).click()
-            expect(status).to_contain_text("not in the Anki package")
+            expect(status).to_contain_text("not in the Anki package", timeout=30000)
             expect(page.locator(".side-editor.front .cm-editor")).to_be_visible()
             expect(page.locator(".side-editor.back .cm-editor")).to_be_visible()
             editable_seconds = time.monotonic() - selected

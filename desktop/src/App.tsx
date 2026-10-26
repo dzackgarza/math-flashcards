@@ -1,4 +1,11 @@
-import { useEffect, useMemo, useRef, useState, type MouseEvent } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type MouseEvent,
+} from "react";
 import {
   ActionIcon,
   Alert,
@@ -916,6 +923,7 @@ export default function App() {
       });
   }
 
+  const publishedField = useRef("");
   async function chooseWorkspace(root: string) {
     const token = ++workspaceNavigation.current;
     reviewRequest.current++;
@@ -963,7 +971,11 @@ export default function App() {
             if (token === workspaceNavigation.current)
               setError(String(failure));
           });
-      workspaceForm.setFieldValue("workspace", result.session.root);
+      // A path the user is typing for the next workspace takes precedence.
+      const typed = workspaceForm.getValues().workspace;
+      if (!typed || typed === publishedField.current)
+        workspaceForm.setFieldValue("workspace", result.session.root);
+      publishedField.current = result.session.root;
       setSourceRecords(new Map());
       setSearchCoverage(new Set());
       setPackageRecords(new Map());
@@ -1649,6 +1661,17 @@ export default function App() {
     });
   }
 
+  // Rows receive one stable handler that calls the current chooseRow.
+  const chooseRowRef = useRef(chooseRow);
+  chooseRowRef.current = chooseRow;
+  const chooseCard = useCallback(
+    (id: string, event: MouseEvent) => chooseRowRef.current(id, event),
+    [],
+  );
+  const selectedGroup = useMemo(
+    () => ranges.map((card) => card.id).filter((id) => selection.includes(id)),
+    [ranges, selection],
+  );
   function chooseRow(id: string, event: MouseEvent) {
     if (!document) return;
     if (event.shiftKey && anchor.current) {
@@ -1781,26 +1804,44 @@ export default function App() {
     !dirty &&
     !blocked &&
     !conflict;
-  const [previewState, setPreviewState] = useState<{
-    ranges: CardRange[];
-    values: CardPreview[];
-  } | null>(null);
+  // Summaries are keyed by renderer and TeX source, so an edit renders only
+  // the changed field. Unrendered fields show no summary until their turn.
+  const previewCache = useRef<{
+    renderer: MathJaxRuntime | null;
+    html: Map<string, string>;
+  }>({ renderer: null, html: new Map() });
+  const [previewVersion, setPreviewVersion] = useState(0);
   useEffect(() => {
     if (!mathjax) return;
+    const cache = previewCache.current;
+    if (cache.renderer !== mathjax) {
+      cache.renderer = mathjax;
+      cache.html = new Map();
+    }
+    const missing = [
+      ...new Set(
+        ranges.flatMap((range) => [
+          range.front.value,
+          range.back.value.split(/\n\s*\n/)[0],
+        ]),
+      ),
+    ].filter((source) => !cache.html.has(source));
+    if (!missing.length) return;
     let cancelled = false;
     async function renderPreviews(renderer: MathJaxRuntime) {
-      const values: CardPreview[] = [];
-      setPreviewState({ ranges, values: [] });
-      for (const range of ranges) {
-        // Use the same task boundary as workspace search and Problems.
-        await new Promise<void>((resolve) => setTimeout(resolve, 0));
+      let started = performance.now();
+      for (const source of missing) {
         if (cancelled) return;
-        values.push({
-          front: previewHtml(renderer, range.front.value),
-          back: previewHtml(renderer, range.back.value.split(/\n\s*\n/)[0]),
-        });
-        setPreviewState({ ranges, values: [...values] });
+        cache.html.set(source, previewHtml(renderer, source));
+        // Yield at the task boundary used by search and Problems, publishing
+        // the summaries rendered so far at most once per frame budget.
+        if (performance.now() - started > 8) {
+          setPreviewVersion((version) => version + 1);
+          await new Promise<void>((resolve) => setTimeout(resolve, 0));
+          started = performance.now();
+        }
       }
+      if (!cancelled) setPreviewVersion((version) => version + 1);
     }
     void renderPreviews(mathjax).catch((failure) => {
       if (!cancelled) setError(String(failure));
@@ -1809,7 +1850,15 @@ export default function App() {
       cancelled = true;
     };
   }, [mathjax, ranges]);
-  const previews = previewState?.ranges === ranges ? previewState.values : null;
+  const previews = useMemo((): (CardPreview | null)[] => {
+    const html = previewCache.current.html;
+    return ranges.map((range) => {
+      const front = html.get(range.front.value);
+      const back = html.get(range.back.value.split(/\n\s*\n/)[0]);
+      return front !== undefined && back !== undefined ? { front, back } : null;
+    });
+    // previewVersion publishes insertions into the mutable cache.
+  }, [ranges, previewVersion, mathjax]);
   const statuses = useMemo(
     () =>
       new Map(
@@ -2399,11 +2448,9 @@ export default function App() {
                         problem={problemCards.has(range.id)}
                         active={index === cardIndex}
                         selected={selection.includes(range.id)}
-                        group={ranges
-                          .map((card) => card.id)
-                          .filter((id) => selection.includes(id))}
+                        group={selectedGroup}
                         disabled={busy || !!parsed.error || conflict}
-                        choose={(event) => chooseRow(range.id, event)}
+                        choose={chooseCard}
                       />
                     ),
                 )}

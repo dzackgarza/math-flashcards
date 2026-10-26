@@ -1,4 +1,5 @@
 import {
+  memo,
   useEffect,
   useRef,
   useState,
@@ -105,7 +106,37 @@ export function TreeRow({
 }
 
 // Dragging a selected card carries the whole selection.
-export function CardRow({
+interface CardRowProps {
+  id: string;
+  path: string;
+  label: string;
+  preview: CardPreview | null;
+  change: "added" | "edited" | "removed" | null;
+  problem: boolean;
+  active: boolean;
+  selected: boolean;
+  group: string[];
+  disabled: boolean;
+  choose: (id: string, event: MouseEvent) => void;
+}
+
+// An edit re-renders the deck editor on every keystroke; rows whose card,
+// summary, and selection are unchanged keep their DOM.
+const sameRow = (a: CardRowProps, b: CardRowProps) =>
+  a.id === b.id &&
+  a.path === b.path &&
+  a.label === b.label &&
+  a.preview?.front === b.preview?.front &&
+  a.preview?.back === b.preview?.back &&
+  a.change === b.change &&
+  a.problem === b.problem &&
+  a.active === b.active &&
+  a.selected === b.selected &&
+  a.group.join("|") === b.group.join("|") &&
+  a.disabled === b.disabled &&
+  a.choose === b.choose;
+
+export const CardRow = memo(function CardRow({
   id,
   path,
   label,
@@ -117,19 +148,7 @@ export function CardRow({
   group,
   disabled,
   choose,
-}: {
-  id: string;
-  path: string;
-  label: string;
-  preview: CardPreview | null;
-  change: "added" | "edited" | "removed" | null;
-  problem: boolean;
-  active: boolean;
-  selected: boolean;
-  group: string[];
-  disabled: boolean;
-  choose: (event: MouseEvent) => void;
-}) {
+}: CardRowProps) {
   const element = useRef<HTMLDivElement>(null);
   const [edge, setEdge] = useState<Edge | null>(null);
   const [dragging, setDragging] = useState(false);
@@ -178,7 +197,7 @@ export function CardRow({
         className="card-row-label"
         aria-label={label}
         aria-pressed={selected}
-        onClick={choose}
+        onClick={(event) => choose(id, event)}
       >
         {preview ? (
           <>
@@ -212,7 +231,7 @@ export function CardRow({
       {edge && <DropIndicator edge={edge} gap="4px" />}
     </div>
   );
-}
+}, sameRow);
 
 export function NewDeckForm({
   folder,

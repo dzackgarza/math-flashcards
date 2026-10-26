@@ -12,6 +12,7 @@ import sqlite3
 import subprocess
 import sys
 import tempfile
+import time
 import zipfile
 from pathlib import Path
 
@@ -195,14 +196,25 @@ def scenario(root: Path) -> None:
         )
         expect(review.get_by_text("Associativity")).to_be_visible(timeout=30000)
         review.get_by_role("button", name="Update 3 Anki packages", exact=True).click()
-        expect(
-            page.get_by_role("button", name="Review and update Anki packages")
-        ).to_have_count(0, timeout=120000)
-        assert {path.name for path in packages.iterdir()} == {
+        expected = {
             "Algebra__Original.apkg",
             "Algebra__Absorb.apkg",
             "Analysis__Target.apkg",
         }
+        deadline = time.monotonic() + 120
+        while (
+            not packages.is_dir()
+            or {path.name for path in packages.iterdir()} != expected
+        ):
+            assert time.monotonic() < deadline, sorted(packages.iterdir())
+            page.wait_for_timeout(200)
+        # The button stays available; its badge counts out-of-date packages.
+        expect(page.locator(".workspace-progress")).to_have_text(
+            "Workspace checks complete", timeout=120000
+        )
+        expect(
+            page.get_by_role("button", name="Review and update Anki packages")
+        ).to_have_text("Update Anki packages")
 
         card_row("Closure").drag_to(deck_row(TARGET))
         expect(
