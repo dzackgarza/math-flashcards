@@ -68,6 +68,10 @@ Package checks are cached as history. A gray tree marker means that current
 inputs are being checked; its tooltip gives the previous result when available.
 Only a completed current check supplies the package status. Review and update
 can verify the complete workspace while other background work is incomplete.
+File watches refresh the changed deck and packages that use the changed file.
+Unrelated checked decks keep their results. Focus and manual refresh recheck
+the workspace to cover missed notifications. A shared image change checks its
+dependent packages without rereading unchanged deck sources.
 
 The app opens the saved workspace on startup. On first launch it opens the
 `decks/` folder in the repository used to build the app. Preferences use the standard Tauri store in

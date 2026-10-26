@@ -197,3 +197,21 @@ The backend case also moves the bridge resources and changes the copied Lua
 filter while retaining the old resource. Verification detects producer paths
 absent from the build record. The damaged-cache browser case rebuilds package
 history together with search and Problems data.
+
+## Watcher invalidation
+
+Fresh package results include their file dependencies. The watcher coalesces
+paths and derives separate source-read and package-check sets. Pending source
+reads survive superseding refreshes; failed paths wait for a relevant change or
+manual retry. Unchanged document reads retain build history while checks run.
+
+The real browser scenario edits one deck and verifies that source and package
+requests name only that deck. It then exports two decks with a shared image
+symlink, changes the link target, and verifies that only the dependent packages
+are checked. Their sources are not reread. Media resolution validates the target
+inside the workspace and records the referenced path so link changes remain
+visible to hashing and watches. `media-invalidation.png` records the result.
+
+The bridge reports missing runtime modules as an incomplete installation and
+names `just desktop-install`. A focused case executes the real bridge with site
+packages disabled and checks that diagnostic.

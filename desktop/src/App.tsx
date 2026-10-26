@@ -89,6 +89,7 @@ import {
 import { ReviewChanges } from "./review";
 import { ProblemDrawer, useProblems } from "./problem-drawer";
 import { useSearch } from "./search";
+import { previousPackage, refreshTargets } from "./packages";
 import {
   request,
   watchWorkspace,
@@ -154,11 +155,6 @@ function treeData(decks: Entry[]): TreeNodeData[] {
 const deckTitle = (path: string) =>
   JSON.stringify(path.replace(/\.md$/, "").replace(/\//g, "::"));
 
-function previousPackage(check: PackageCheck | undefined) {
-  if (!check) return null;
-  return check.state === "ready" ? check : check.previous;
-}
-
 export default function App() {
   const workspaceForm = useForm({
     mode: "uncontrolled",
@@ -219,9 +215,13 @@ export default function App() {
   // The latest document for asynchronous saves and disk events.
   const current = useRef<Document | null>(null);
   const saving = useRef<Promise<void>>(Promise.resolve());
+  const savingPreferences = useRef<Promise<void>>(Promise.resolve());
   const navigation = useRef(0);
   const workspaceNavigation = useRef(0);
   const reconciliation = useRef(0);
+  const workspaceRoot = useRef<string | null>(null);
+  const changedPaths = useRef(new Set<string>());
+  const pendingSources = useRef(new Set<string>());
   const anchor = useRef<string | null>(null);
   const deckViewport = useRef<HTMLDivElement>(null);
   const cardViewport = useRef<HTMLDivElement>(null);
@@ -246,14 +246,32 @@ export default function App() {
       document.cards !== cards(document.saved).length,
     [document?.cards, document?.saved],
   );
+  const packageHistory = document
+    ? previousPackage(packageRecords.get(document.path))
+    : null;
   const changes = useMemo<CardChange[]>(() => {
-    if (!document || document.status === null || parsed.error) return [];
+    if (
+      !document ||
+      (document.status === null && !packageHistory) ||
+      parsed.error
+    )
+      return [];
     try {
-      return cardChanges(document.built, document.source);
+      return cardChanges(
+        packageHistory ? packageHistory.built : document.built,
+        document.source,
+      );
     } catch {
       return [];
     }
-  }, [document?.built, document?.source, document?.status, parsed.error]);
+  }, [
+    document?.built,
+    document?.source,
+    document?.status,
+    packageHistory?.built,
+    packageHistory?.input_identity,
+    parsed.error,
+  ]);
   const changed = useMemo(
     () => new Map(changes.map((change) => [change.id, change.kind])),
     [changes],
@@ -262,7 +280,8 @@ export default function App() {
   const sources = useMemo(
     () =>
       decks.flatMap((deck) => {
-        if (deck.path === document?.path)
+        if (!searchCoverage.has(deck.path)) return [];
+        if (deck.path === document?.path && !conflict)
           return [
             {
               path: deck.path,
@@ -281,7 +300,15 @@ export default function App() {
             ]
           : [];
       }),
-    [decks, sourceRecords, document?.path, document?.saved, document?.hash],
+    [
+      decks,
+      sourceRecords,
+      searchCoverage,
+      conflict,
+      document?.path,
+      document?.saved,
+      document?.hash,
+    ],
   );
   const {
     index: searchIndex,
@@ -346,23 +373,41 @@ export default function App() {
     setDocument(current.current);
   }
 
-  async function refresh(root = workspace) {
-    if (!root) return;
-    updateDocument((open) => open && { ...open, status: null });
-    setSearchCoverage(new Set());
+  async function refresh(root = workspace, changes: string[] | null = null) {
+    if (!root || root !== workspaceRoot.current) return;
+    const targets = refreshTargets(
+      root,
+      decks,
+      sourceRecords,
+      packageRecords,
+      pendingSources.current,
+      changes,
+    );
+    for (const path of targets.read) pendingSources.current.add(path);
+    updateDocument((open) =>
+      open && (changes === null || targets.verify.has(open.path))
+        ? { ...open, status: null }
+        : open,
+    );
+    setSearchCoverage((previous) =>
+      changes === null
+        ? new Set()
+        : new Set([...previous].filter((path) => !targets.read.has(path))),
+    );
     setPackageRecords((previous) => {
-      const next = new Map<string, PackageCheck>();
+      const next = new Map(previous);
       for (const [path, check] of previous)
-        next.set(path, {
-          state: "pending",
-          path,
-          previous: previousPackage(check),
-        });
+        if (changes === null || targets.verify.has(path))
+          next.set(path, {
+            state: "pending",
+            path,
+            previous: previousPackage(check),
+          });
       return next;
     });
     const token = workspaceNavigation.current;
     const generation = ++reconciliation.current;
-    void checkAssetUpdate();
+    if (changes === null) void checkAssetUpdate();
     const result = await request(
       { action: "manifest", workspace: root, generation },
       manifestSchema,
@@ -383,7 +428,7 @@ export default function App() {
         new Map([...previous].filter(([path]) => members.has(path))),
     );
     void cacheManifest(result.session.root, generation, token);
-    void fillWorkspace(result, token);
+    void fillWorkspace(result, token, changes);
   }
 
   async function checkAssetUpdate() {
@@ -442,7 +487,8 @@ export default function App() {
     const assets = (await loadMathJax()).identity;
     if (
       token !== workspaceNavigation.current ||
-      generation !== reconciliation.current
+      generation !== reconciliation.current ||
+      root !== workspaceRoot.current
     )
       return;
     setPackageRecords((previous) => {
@@ -479,7 +525,8 @@ export default function App() {
     });
     if (
       token !== workspaceNavigation.current ||
-      generation !== reconciliation.current
+      generation !== reconciliation.current ||
+      root !== workspaceRoot.current
     )
       return;
     if (
@@ -535,37 +582,151 @@ export default function App() {
       .map((result) => result.path + ": " + result.message);
   }
 
-  async function fillWorkspace(manifest: Manifest, token: number) {
+  async function fillWorkspace(
+    manifest: Manifest,
+    token: number,
+    changes: string[] | null,
+  ) {
     const { root, generation } = manifest.session;
-    setSearchCoverage(new Set());
+    if (
+      token !== workspaceNavigation.current ||
+      generation !== reconciliation.current ||
+      root !== workspaceRoot.current
+    )
+      return;
+    const targets = refreshTargets(
+      root,
+      manifest.entries,
+      sourceRecords,
+      packageRecords,
+      pendingSources.current,
+      changes,
+    );
+    const work = new Set([...targets.read, ...targets.verify]);
+    const workPaths = manifest.entries
+      .map((entry) => entry.path)
+      .filter((path) => work.has(path));
+    const members = new Set(manifest.entries.map((entry) => entry.path));
+    for (const path of pendingSources.current)
+      if (!members.has(path)) pendingSources.current.delete(path);
+    for (const path of targets.read) pendingSources.current.add(path);
+    setSearchCoverage(
+      (previous) =>
+        new Set(
+          [...previous].filter(
+            (path) => members.has(path) && !targets.read.has(path),
+          ),
+        ),
+    );
+    const errors: string[] = manifest.entries.flatMap(({ path }) => {
+      if (work.has(path)) return [];
+      const source = sourceRecords.get(path);
+      const check = packageRecords.get(path);
+      return [
+        ...(source?.state === "failed" ? [path + ": " + source.message] : []),
+        ...(check?.state === "failed" ? [path + ": " + check.message] : []),
+      ];
+    });
+    const skipped = manifest.entries.length - workPaths.length;
     setCoverage({
       state: "running",
-      checked: 0,
+      checked: skipped,
       total: manifest.entries.length,
-      error: "",
+      error: [...new Set(errors)].join("\n"),
     });
-    const errors: string[] = [];
     try {
-      for (let offset = 0; offset < manifest.entries.length; offset += 8) {
+      for (let offset = 0; offset < workPaths.length; offset += 8) {
         if (
           token !== workspaceNavigation.current ||
           generation !== reconciliation.current
         )
           return;
-        const paths = manifest.entries
-          .slice(offset, offset + 8)
-          .map((entry) => entry.path);
-        const assets = (await loadMathJax()).identity;
-        try {
-          const history = await request(
+        const paths = workPaths.slice(offset, offset + 8);
+        const verifyPaths = paths.filter((path) => targets.verify.has(path));
+        const readPaths = paths.filter((path) => targets.read.has(path));
+        if (verifyPaths.length) {
+          const assets = (await loadMathJax()).identity;
+          try {
+            const history = await request(
+              {
+                action: "cached-checks",
+                workspace: root,
+                generation,
+                paths: verifyPaths,
+                assets,
+              },
+              cachedChecksSchema,
+            );
+            if (
+              token !== workspaceNavigation.current ||
+              generation !== reconciliation.current
+            )
+              return;
+            if (
+              history.session.root !== root ||
+              history.session.generation !== generation
+            )
+              throw new Error(
+                "The package history belongs to another workspace session.",
+              );
+            setPackageRecords((previous) => {
+              const next = new Map(previous);
+              for (const result of history.results) {
+                const current = previous.get(result.path);
+                if (current?.state === "ready") continue;
+                next.set(
+                  result.path,
+                  result.state === "pending"
+                    ? {
+                        ...result,
+                        state:
+                          current?.state === "checking"
+                            ? "checking"
+                            : "pending",
+                        previous: previousPackage(current) ?? result.previous,
+                      }
+                    : { ...result, previous: previousPackage(current) },
+                );
+              }
+              return next;
+            });
+            for (const result of history.results) {
+              if (result.state !== "failed") continue;
+              if (result.kind === "CacheFailure")
+                setPackageCacheIssue({
+                  root,
+                  kind: "CacheFailure",
+                  message: result.message,
+                });
+              else errors.push(result.path + ": " + result.message);
+            }
+            setPackageCacheIssue((current) =>
+              current?.root === root && current.kind === "BackendFailure"
+                ? null
+                : current,
+            );
+          } catch (failure) {
+            if (
+              token !== workspaceNavigation.current ||
+              generation !== reconciliation.current
+            )
+              return;
+            setPackageCacheIssue({
+              root,
+              kind: "BackendFailure",
+              message: String(failure),
+            });
+          }
+        }
+        if (readPaths.length) {
+          const response = await request(
             {
-              action: "cached-checks",
+              action: "sources",
               workspace: root,
               generation,
-              paths,
-              assets,
+              paths: readPaths,
             },
-            cachedChecksSchema,
+            sourcesSchema,
           );
           if (
             token !== workspaceNavigation.current ||
@@ -573,90 +734,49 @@ export default function App() {
           )
             return;
           if (
-            history.session.root !== root ||
-            history.session.generation !== generation
+            response.session.root !== root ||
+            response.session.generation !== generation
           )
             throw new Error(
-              "The package history belongs to another workspace session.",
+              "The source response belongs to another workspace session.",
             );
-          setPackageRecords((previous) => {
+          setSourceRecords((previous) => {
             const next = new Map(previous);
-            for (const result of history.results) {
-              const current = previous.get(result.path);
-              if (current?.state === "ready") continue;
-              next.set(
-                result.path,
-                result.state === "pending"
-                  ? {
-                      ...result,
-                      state:
-                        current?.state === "checking" ? "checking" : "pending",
-                      previous: previousPackage(current) ?? result.previous,
-                    }
-                  : { ...result, previous: previousPackage(current) },
-              );
-            }
+            for (const result of response.results)
+              next.set(result.path, result);
             return next;
           });
-          for (const result of history.results) {
-            if (result.state !== "failed") continue;
-            if (result.kind === "CacheFailure")
-              setPackageCacheIssue({
-                root,
-                kind: "CacheFailure",
-                message: result.message,
-              });
-            else errors.push(result.path + ": " + result.message);
+          for (const result of response.results) {
+            pendingSources.current.delete(result.path);
+            const previous = packageRecords.get(result.path);
+            if (
+              (result.state === "failed" ||
+                (previous?.state === "ready" &&
+                  previous.revision !== result.revision)) &&
+              !verifyPaths.includes(result.path)
+            )
+              verifyPaths.push(result.path);
+            if (result.state === "ready")
+              updateDocument((open) =>
+                open?.path === result.path && open.hash !== result.revision
+                  ? { ...open, status: null }
+                  : open,
+              );
           }
-          setPackageCacheIssue((current) =>
-            current?.root === root && current.kind === "BackendFailure"
-              ? null
-              : current,
+          setSearchCoverage(
+            (previous) =>
+              new Set([
+                ...previous,
+                ...response.results.map((result) => result.path),
+              ]),
           );
-        } catch (failure) {
-          if (
-            token !== workspaceNavigation.current ||
-            generation !== reconciliation.current
-          )
-            return;
-          setPackageCacheIssue({
-            root,
-            kind: "BackendFailure",
-            message: String(failure),
-          });
+          for (const result of response.results)
+            if (result.state === "failed")
+              errors.push(result.path + ": " + result.message);
         }
-        const response = await request(
-          { action: "sources", workspace: root, generation, paths },
-          sourcesSchema,
-        );
-        if (
-          token !== workspaceNavigation.current ||
-          generation !== reconciliation.current
-        )
-          return;
-        if (
-          response.session.root !== root ||
-          response.session.generation !== generation
-        )
-          throw new Error(
-            "The source response belongs to another workspace session.",
-          );
-        setSourceRecords((previous) => {
-          const next = new Map(previous);
-          for (const result of response.results) next.set(result.path, result);
-          return next;
-        });
-        setSearchCoverage(
-          (previous) =>
-            new Set([
-              ...previous,
-              ...response.results.map((result) => result.path),
-            ]),
-        );
-        for (const result of response.results)
-          if (result.state === "failed")
-            errors.push(result.path + ": " + result.message);
-        const failures = await checkPaths(root, generation, paths, token);
+        const failures = verifyPaths.length
+          ? await checkPaths(root, generation, verifyPaths, token)
+          : [];
         if (
           token !== workspaceNavigation.current ||
           generation !== reconciliation.current
@@ -665,9 +785,9 @@ export default function App() {
         errors.push(...(failures ?? []));
         setCoverage({
           state: "running",
-          checked: offset + paths.length,
+          checked: skipped + offset + paths.length,
           total: manifest.entries.length,
-          error: errors.join("\n"),
+          error: [...new Set(errors)].join("\n"),
         });
       }
       if (
@@ -678,7 +798,7 @@ export default function App() {
           state: errors.length ? "failed" : "complete",
           checked: manifest.entries.length,
           total: manifest.entries.length,
-          error: errors.join("\n"),
+          error: [...new Set(errors)].join("\n"),
         });
     } catch (failure) {
       if (
@@ -694,7 +814,12 @@ export default function App() {
   }
 
   const refreshOnChange = useDebouncedCallback(() => {
-    refresh().catch((failure) => setError(String(failure)));
+    const paths = [...changedPaths.current].filter(
+      (path) => path === workspace || path.startsWith(workspace + "/"),
+    );
+    changedPaths.current.clear();
+    if (paths.length)
+      refresh(workspace, paths).catch((failure) => setError(String(failure)));
   }, 500);
 
   // Saves queue behind each other, so each one sends the hash the previous
@@ -713,7 +838,7 @@ export default function App() {
           {
             action: "save",
             generation: reconciliation.current,
-            workspace,
+            workspace: open.session.root,
             path: open.path,
             source: open.source,
             expected: open.hash,
@@ -721,7 +846,8 @@ export default function App() {
           documentSchema,
         );
         updateDocument((document) =>
-          document?.path === open.path
+          document?.path === open.path &&
+          document.session.root === open.session.root
             ? {
                 ...document,
                 saved: open.source,
@@ -735,12 +861,17 @@ export default function App() {
         );
         setConflict(false);
         void checkPaths(
-          workspace,
+          open.session.root,
           reconciliation.current,
           [open.path],
           workspaceNavigation.current,
         ).catch((failure) => setError(String(failure)));
       } catch (failure) {
+        if (
+          current.current?.path !== open.path ||
+          current.current.session.root !== open.session.root
+        )
+          return;
         if (STALE.test(String(failure))) setConflict(true);
         else setError(String(failure));
       }
@@ -769,6 +900,10 @@ export default function App() {
 
   async function chooseWorkspace(root: string) {
     const token = ++workspaceNavigation.current;
+    const previousRoot = workspaceRoot.current ?? workspace;
+    workspaceRoot.current = null;
+    changedPaths.current.clear();
+    pendingSources.current.clear();
     const navigationToken = ++navigation.current;
     const generation = ++reconciliation.current;
     setTask("Loading");
@@ -785,10 +920,24 @@ export default function App() {
     );
     let published = false;
     const publish = (result: Manifest) => {
+      workspaceRoot.current = result.session.root;
       setWorkspace(result.session.root);
       setDecks(result.entries);
       if (published) return;
       published = true;
+      if (isTauri())
+        savingPreferences.current = savingPreferences.current
+          .then(async () => {
+            if (token !== workspaceNavigation.current) return;
+            const store = await preferences();
+            if (token !== workspaceNavigation.current) return;
+            await store.set("workspace", result.session.root);
+            await store.save();
+          })
+          .catch((failure) => {
+            if (token === workspaceNavigation.current)
+              setError(String(failure));
+          });
       workspaceForm.setFieldValue("workspace", result.session.root);
       setSourceRecords(new Map());
       setSearchCoverage(new Set());
@@ -813,6 +962,8 @@ export default function App() {
           "The cached navigation belongs to another workspace session.",
         );
       if (cached.state === "cached") {
+        await flush();
+        if (token !== workspaceNavigation.current) return;
         publish(cached);
         setCoverage({ state: "discovering", checked: 0, total: 0, error: "" });
         if (navigationToken === navigation.current) setTask("Idle");
@@ -834,17 +985,21 @@ export default function App() {
         throw new Error(
           "The discovered navigation belongs to another workspace session.",
         );
+      if (!published) await flush();
+      if (
+        token !== workspaceNavigation.current ||
+        generation !== reconciliation.current
+      )
+        return;
       publish(result);
       if (cached.state !== "failed")
         void cacheManifest(result.session.root, generation, token);
-      void fillWorkspace(result, token);
-      if (isTauri()) {
-        const store = await preferences();
-        await store.set("workspace", result.session.root);
-        await store.save();
-      }
+      void fillWorkspace(result, token, null);
     } catch (failure) {
-      if (token === workspaceNavigation.current) setError(String(failure));
+      if (token === workspaceNavigation.current) {
+        if (!published) workspaceRoot.current = previousRoot;
+        setError(String(failure));
+      }
     } finally {
       if (
         token === workspaceNavigation.current &&
@@ -932,7 +1087,7 @@ export default function App() {
     const result = await request(
       {
         action: "load",
-        workspace,
+        workspace: open.session.root,
         path: open.path,
         generation: reconciliation.current,
       },
@@ -942,21 +1097,13 @@ export default function App() {
     if (
       token !== navigation.current ||
       latest?.path !== open.path ||
+      latest.session.root !== open.session.root ||
       latest.source !== latest.saved
     )
       return;
-    if (result.hash === latest.hash) {
-      updateDocument(
-        (document) =>
-          document && {
-            ...document,
-            status: result.status,
-            reasons: result.reasons,
-            built: result.built,
-          },
-      );
-      return;
-    }
+    if (result.session.root !== open.session.root)
+      throw new Error("The document belongs to another workspace session.");
+    if (result.hash === latest.hash) return;
     showDocument(open.path, result, ranges[index]?.id);
   }
 
@@ -1028,12 +1175,13 @@ export default function App() {
     const token = workspaceNavigation.current;
     const reconcileOnFocus = () => {
       if (disposed || token !== workspaceNavigation.current) return;
-      refreshOnChange();
+      refresh().catch((failure) => setError(String(failure)));
       followOnChange();
     };
     window.addEventListener("focus", reconcileOnFocus);
     let stop: (() => void) | undefined;
     watchWorkspace(workspace, (paths) => {
+      if (disposed || token !== workspaceNavigation.current) return;
       const relevant = paths
         .map((path) => path.replace(/\\/g, "/"))
         .filter(
@@ -1043,6 +1191,7 @@ export default function App() {
             ) && !path.includes(".flashcards-"),
         );
       if (!relevant.length) return;
+      for (const path of relevant) changedPaths.current.add(path);
       refreshOnChange();
       const open = current.current;
       if (open && relevant.includes(workspace + "/" + open.path))

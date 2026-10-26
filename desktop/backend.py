@@ -27,19 +27,24 @@ from functools import cache
 from pathlib import Path
 from typing import Annotated, Literal
 
-import ankdown
-from filelock import FileLock, Timeout
-from platformdirs import user_cache_path
-from pydantic import (
-    BaseModel,
-    ConfigDict,
-    Field,
-    TypeAdapter,
-    ValidationError,
-    field_validator,
-    model_validator,
-)
-from send2trash import send2trash
+try:
+    import ankdown
+    from filelock import FileLock, Timeout
+    from platformdirs import user_cache_path
+    from pydantic import (
+        BaseModel,
+        ConfigDict,
+        Field,
+        TypeAdapter,
+        ValidationError,
+        field_validator,
+        model_validator,
+    )
+    from send2trash import send2trash
+except ModuleNotFoundError as error:
+    raise SystemExit(
+        f"The installed Python runtime is incomplete. Run just desktop-install. {error}"
+    ) from error
 
 EXPORTER = Path(ankdown.__file__).parent
 PAIR_FILTER = Path(__file__).with_name("paired-cards.lua")
@@ -304,6 +309,18 @@ class Sync(BaseModel):
 class Verification(Sync):
     input_identity: Digest
     checked_at: datetime
+    dependencies: list[str]
+
+    @field_validator("dependencies")
+    @classmethod
+    def absolute_dependencies(cls, values: list[str]) -> list[str]:
+        if values != sorted(set(values)) or any(
+            not Path(value).is_absolute() for value in values
+        ):
+            raise ValueError(
+                "Package dependencies must be distinct absolute paths in sorted order."
+            )
+        return values
 
 
 class Session(BaseModel):
@@ -965,6 +982,7 @@ def pandoc_digest() -> str:
 def input_hashes(path: Path, media: list[Path], assets: AssetSet) -> dict[str, str]:
     files = [
         path,
+        Path(__file__),
         PAIR_FILTER,
         *media,
         *(
@@ -1057,6 +1075,9 @@ def sync(path: Path, output: Path, assets: AssetSet) -> Verification:
             ).encode()
         ),
         checked_at=datetime.now(UTC),
+        dependencies=sorted(
+            {name for name in current if Path(name).is_absolute()} | {str(output)}
+        ),
     )
 
 
@@ -1101,8 +1122,9 @@ def media_paths(deck: RenderedDeck, root: Path, scratch: Path) -> dict[str, Path
     mapping: dict[str, Path] = {}
     for entry in deck.media:
         source, name = entry.split(":", 1)
-        path = Path(source).resolve(strict=True)
-        if not path.is_relative_to(root) and not path.is_relative_to(scratch):
+        path = Path(os.path.abspath(source))
+        resolved = path.resolve(strict=True)
+        if not resolved.is_relative_to(root) and not resolved.is_relative_to(scratch):
             raise ValueError("Referenced media must stay inside the workspace.")
         mapping[name] = path
     return mapping
@@ -1353,6 +1375,7 @@ def dispatch(
                     assets=request.assets,
                     input_identity=state.input_identity,
                     checked_at=state.checked_at,
+                    dependencies=state.dependencies,
                     status=state.status,
                     reasons=state.reasons,
                     built=state.built,

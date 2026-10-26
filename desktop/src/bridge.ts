@@ -142,6 +142,7 @@ export const packageResultSchema = z.object({
   revision: digestSchema,
   input_identity: digestSchema,
   checked_at: z.string().datetime({ offset: true }),
+  dependencies: z.array(z.string().startsWith("/")),
   status: statusSchema,
   reasons: z.array(z.string()),
   built: z.string().nullable(),
