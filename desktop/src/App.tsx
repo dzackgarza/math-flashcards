@@ -79,6 +79,7 @@ import { type Side, SideEditor } from "./editor";
 import { loadMathJax, previewHtml, type MathJaxRuntime } from "./math";
 import {
   CardRow,
+  type CardPreview,
   DeckNameForm,
   NewDeckForm,
   TreeRow,
@@ -131,12 +132,12 @@ function preferences() {
     );
 }
 
-function treeData(decks: Entry[]): TreeNodeData[] {
+function treeData(paths: string[]): TreeNodeData[] {
   const roots: TreeNodeData[] = [];
-  for (const deck of decks) {
+  for (const path of paths) {
     let children = roots;
     let value = "";
-    const parts = deck.path.split("/");
+    const parts = path.split("/");
     for (const [index, part] of parts.entries()) {
       value += "/" + part;
       let node = children.find((item) => item.value === value);
@@ -239,7 +240,14 @@ export default function App() {
   const dirty = document !== null && document.source !== document.saved;
   const busy = task !== "Idle";
   const selected = ranges[index];
-  const data = useMemo(() => treeData(decks), [decks]);
+  // Mantine's Tree reinitializes its expansion state from a stale closure
+  // whenever `data` changes identity, which can drop a folder the user has just
+  // expanded. Republishing unchanged membership therefore keeps the same data.
+  const membership = decks.map((deck) => deck.path).join("\n");
+  const data = useMemo(
+    () => treeData(membership ? membership.split("\n") : []),
+    [membership],
+  );
   // Pandoc counts the saved deck's cards; the editor parser must agree.
   const mismatch = useMemo(
     () =>
@@ -939,6 +947,9 @@ export default function App() {
       setDecks(result.entries);
       if (published) return;
       published = true;
+      // Release timing reads this mark to separate page work from launch.
+      if (!performance.getEntriesByName("flashcards:tree-published").length)
+        performance.mark("flashcards:tree-published");
       if (isTauri())
         savingPreferences.current = savingPreferences.current
           .then(async () => {
@@ -1770,16 +1781,35 @@ export default function App() {
     !dirty &&
     !blocked &&
     !conflict;
-  const previews = useMemo(
-    () =>
-      mathjax
-        ? ranges.map((range) => ({
-            front: previewHtml(mathjax, range.front.value),
-            back: previewHtml(mathjax, range.back.value.split(/\n\s*\n/)[0]),
-          }))
-        : null,
-    [mathjax, ranges],
-  );
+  const [previewState, setPreviewState] = useState<{
+    ranges: CardRange[];
+    values: CardPreview[];
+  } | null>(null);
+  useEffect(() => {
+    if (!mathjax) return;
+    let cancelled = false;
+    async function renderPreviews(renderer: MathJaxRuntime) {
+      const values: CardPreview[] = [];
+      setPreviewState({ ranges, values: [] });
+      for (const range of ranges) {
+        // Use the same task boundary as workspace search and Problems.
+        await new Promise<void>((resolve) => setTimeout(resolve, 0));
+        if (cancelled) return;
+        values.push({
+          front: previewHtml(renderer, range.front.value),
+          back: previewHtml(renderer, range.back.value.split(/\n\s*\n/)[0]),
+        });
+        setPreviewState({ ranges, values: [...values] });
+      }
+    }
+    void renderPreviews(mathjax).catch((failure) => {
+      if (!cancelled) setError(String(failure));
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [mathjax, ranges]);
+  const previews = previewState?.ranges === ranges ? previewState.values : null;
   const statuses = useMemo(
     () =>
       new Map(
@@ -2018,7 +2048,12 @@ export default function App() {
                 >
                   Refresh workspace
                 </Button>
-                <Button disabled={busy} onClick={openWorkspace}>
+                {/* A pending load is superseded by its navigation token, so a
+                    stalled workspace never prevents opening another. */}
+                <Button
+                  disabled={busy && task !== "Loading"}
+                  onClick={openWorkspace}
+                >
                   Open workspace
                 </Button>
               </Group>

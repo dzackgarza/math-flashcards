@@ -9,6 +9,7 @@ import hashlib
 import json
 import os
 import platform
+import re
 import shutil
 import sqlite3
 import subprocess
@@ -18,7 +19,14 @@ import time
 import zipfile
 from pathlib import Path
 
-from playwright.sync_api import APIResponse, Request, Route, expect, sync_playwright
+from playwright.sync_api import (
+    APIResponse,
+    Request,
+    Route,
+    WebSocketRoute,
+    expect,
+    sync_playwright,
+)
 
 
 def startup() -> None:
@@ -895,6 +903,93 @@ def main() -> None:
                 )
                 expect(page.get_by_text("Action failed", exact=True)).to_have_count(0)
                 page.unroute("**/api/request", delay_deleted_load)
+
+                # A watcher notification that never arrives is recovered by
+                # reconciliation when the window regains focus.
+                page.close()
+                page = context.new_page()
+                page.on("pageerror", lambda error: console.append(str(error)))
+                dropped: list[str] = []
+
+                def drop_change_events(socket: WebSocketRoute) -> None:
+                    server = socket.connect_to_server()
+
+                    def forward(message: str | bytes) -> None:
+                        if isinstance(message, str) and "flashcards:changed" in message:
+                            dropped.append(message)
+                            return
+                        socket.send(message)
+
+                    server.on_message(forward)
+
+                page.route_web_socket(re.compile(r".*"), drop_change_events)
+                page.goto("http://127.0.0.1:1420")
+                page.get_by_role("button", name="Workspace", exact=True).click()
+                # The default preference loads into the field before it accepts input.
+                expect(page.get_by_label("Workspace folder")).to_have_value(
+                    str(repo.parent / "decks"), timeout=30000
+                )
+                page.get_by_label("Workspace folder").fill(str(next_workspace))
+                page.get_by_role("button", name="Open workspace", exact=True).click()
+                expect(
+                    page.get_by_role("button", name="Workspace", exact=True)
+                ).to_have_text(next_workspace.name)
+                expect(page.get_by_text("Other", exact=True)).to_be_visible()
+                expect(page.locator(".workspace-progress")).to_have_text(
+                    "Workspace checks complete", timeout=30000
+                )
+                (next_workspace / "Missed.md").write_text(
+                    other.read_text()
+                    .replace("Other", "Missed")
+                    .replace("other", "missed")
+                )
+                for _ in range(100):
+                    if any("Missed.md" in message for message in dropped):
+                        break
+                    page.wait_for_timeout(100)
+                assert any("Missed.md" in message for message in dropped), dropped
+                expect(page.get_by_text("Missed", exact=True)).to_have_count(0)
+                page.evaluate("window.dispatchEvent(new Event('focus'))")
+                expect(page.get_by_text("Missed", exact=True)).to_be_visible()
+                expect(page.locator(".workspace-progress")).to_have_text(
+                    "Workspace checks complete", timeout=30000
+                )
+
+                # Discovery for a superseded workspace cannot publish its tree.
+                held_discovery: list[tuple[Route, APIResponse]] = []
+
+                def hold_old_discovery(route: Route) -> None:
+                    payload = route.request.post_data_json
+                    if payload.get("workspace") == str(root) and payload.get(
+                        "action"
+                    ) in ("cached-manifest", "manifest"):
+                        held_discovery.append((route, route.fetch()))
+                    else:
+                        route.continue_()
+
+                page.route("**/api/request", hold_old_discovery)
+                page.get_by_role("button", name="Workspace", exact=True).click()
+                page.get_by_label("Workspace folder").fill(str(root))
+                page.get_by_role("button", name="Open workspace", exact=True).click()
+                for _ in range(300):
+                    if held_discovery:
+                        break
+                    page.wait_for_timeout(100)
+                assert held_discovery
+                page.get_by_role("button", name="Workspace", exact=True).click()
+                page.get_by_label("Workspace folder").fill(str(next_workspace))
+                page.get_by_role("button", name="Open workspace", exact=True).click()
+                expect(page.get_by_text("Missed", exact=True)).to_be_visible()
+                page.wait_for_timeout(1000)
+                for route, response in held_discovery:
+                    route.fulfill(response=response)
+                page.wait_for_timeout(1500)
+                expect(
+                    page.get_by_role("button", name="Workspace", exact=True)
+                ).to_have_text(next_workspace.name)
+                expect(page.get_by_text("Analysis", exact=True)).to_have_count(0)
+                expect(page.get_by_text("Missed", exact=True)).to_be_visible()
+                page.unroute("**/api/request", hold_old_discovery)
                 assert not console, console
             finally:
                 page.screenshot(path=str(artifacts / "cache-last.png"))

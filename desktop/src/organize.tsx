@@ -36,6 +36,11 @@ export const targetSchema = z.discriminatedUnion("kind", [
 export const deckName = (path: string) =>
   path.split("/").slice(-1)[0].replace(/\.md$/, "");
 
+export interface CardPreview {
+  front: string;
+  back: string;
+}
+
 // Atlassian's drop-target pattern: https://atlassian.design/components/pragmatic-drag-and-drop/design-guidelines/
 // Deck rows take dragged decks and cards; folder rows expand while a drag hovers.
 export function TreeRow({
@@ -116,7 +121,7 @@ export function CardRow({
   id: string;
   path: string;
   label: string;
-  preview: { front: string; back: string } | null;
+  preview: CardPreview | null;
   change: "added" | "edited" | "removed" | null;
   problem: boolean;
   active: boolean;

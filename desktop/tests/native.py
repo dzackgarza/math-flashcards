@@ -38,6 +38,10 @@ class StartupSample:
     selection_seconds: float
     input_paint_seconds: float
     background_running: bool
+    # In-page components: WebView navigation start to the first tree
+    # publication, and keydown dispatch to the following animation frame.
+    page_tree_seconds: float
+    page_input_seconds: float
 
 
 @dataclass
@@ -196,6 +200,12 @@ def measure_startup(entry: Path | None, profile: bool) -> None:
                                 )
                             )
                             tree_seconds = time.monotonic() - launched
+                            page_tree_seconds = (
+                                driver.execute_script(
+                                    "return performance.getEntriesByName('flashcards:tree-published')[0].startTime"
+                                )
+                                / 1000
+                            )
                             driver.find_element(
                                 By.XPATH,
                                 "//*[@role='treeitem' and normalize-space()='Analysis']",
@@ -293,6 +303,15 @@ def measure_startup(entry: Path | None, profile: bool) -> None:
                                     for i in range(0, len(pixels), 3)
                                 )
                                 baseline = dark(before)
+                                driver.execute_script("""
+                                  window.inputFrame = null;
+                                  window.addEventListener('keydown', (event) => {
+                                    const start = event.timeStamp;
+                                    requestAnimationFrame(() => requestAnimationFrame(() => {
+                                      window.inputFrame = (performance.now() - start) / 1000;
+                                    }));
+                                  }, {once: true, capture: true});
+                                """)
                                 typed = time.monotonic()
                                 subprocess.run(
                                     ["xdotool", "key", "--clearmodifiers", "m"],
@@ -338,6 +357,9 @@ def measure_startup(entry: Path | None, profile: bool) -> None:
                                         "The native input glyph did not paint."
                                     )
                                 input_seconds = time.monotonic() - typed
+                            page_input_seconds = wait.until(
+                                lambda d: d.execute_script("return window.inputFrame")
+                            )
                             assert (
                                 driver.execute_script(
                                     "return document.querySelector('.side-editor.front .cm-line:last-child').textContent.trim()"
@@ -370,6 +392,8 @@ def measure_startup(entry: Path | None, profile: bool) -> None:
                                 selection_seconds,
                                 input_seconds,
                                 background_running,
+                                page_tree_seconds,
+                                page_input_seconds,
                             )
                             samples.append(sample)
                             print(json.dumps(asdict(sample)), flush=True)
@@ -411,8 +435,20 @@ def measure_startup(entry: Path | None, profile: bool) -> None:
             }
             for condition in ("warm", "cold")
         },
+        "page_p95": {
+            condition: {
+                metric: sorted(
+                    getattr(sample, metric)
+                    for sample in samples
+                    if sample.condition == condition
+                )[math.ceil(0.95 * repetitions) - 1]
+                for metric in ("page_tree_seconds", "page_input_seconds")
+            }
+            for condition in ("warm", "cold")
+        },
     }
     if profile:
+        report.pop("page_p95")
         report.pop("p95")
         report["mathjax"] = [asdict(result) for result in profiles]
     (
