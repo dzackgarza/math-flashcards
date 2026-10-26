@@ -1,18 +1,22 @@
 # /// script
 # requires-python = ">=3.12"
-# dependencies = ["mss", "cyclopts", "psutil"]
+# dependencies = ["mss", "cyclopts", "psutil", "selenium"]
 # ///
 """Capture the built native WebKit app in an isolated X11 display."""
 
+import configparser
 import json
+import math
 import os
 import re
+import shlex
 import shutil
 import subprocess
 import tempfile
 import time
 import zipfile
 from contextlib import suppress
+from dataclasses import asdict, dataclass
 from pathlib import Path
 
 import cyclopts
@@ -20,6 +24,414 @@ import mss
 import mss.tools
 import psutil
 from installation import prepare_asset_update
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.webkitgtk.options import Options
+from selenium.webdriver.webkitgtk.service import Service
+
+
+@dataclass
+class StartupSample:
+    condition: str
+    tree_seconds: float
+    selection_seconds: float
+    input_paint_seconds: float
+    background_running: bool
+
+
+@dataclass
+class MathProfile:
+    condition: str
+    stack: str
+    calls: int
+    seconds: float
+
+
+def measure_startup(entry: Path | None, profile: bool) -> None:
+    """Measure real release windows and native keyboard paint during checks."""
+    desktop = Path(__file__).resolve().parents[1]
+    artifacts = desktop / "test-artifacts"
+    if entry is None:
+        binary = desktop / "src-tauri" / "target" / "release" / "desktop"
+        resources = binary.parent
+    else:
+        configuration = configparser.ConfigParser(interpolation=None)
+        configuration.read(entry)
+        # Desktop entry escaping: https://specifications.freedesktop.org/desktop-entry-spec/latest/exec-variables.html
+        binary = Path(
+            shlex.split(configuration["Desktop Entry"]["Exec"])[0].replace("%%", "%")
+        )
+        resources = (
+            entry.parent.parent
+            / "math-flashcards"
+            / "active"
+            / "lib"
+            / "Math Flashcards"
+        )
+    samples: list[StartupSample] = []
+    profiles: list[MathProfile] = []
+    repetitions = 1 if profile else 20
+    with tempfile.TemporaryDirectory(prefix="flashcards-timings-") as temporary:
+        root = Path(temporary)
+        workspace = root / "workspace"
+        shutil.copytree(desktop.parent / "decks", workspace)
+        source = workspace / "Analysis" / "Precalculus.md"
+        original = source.read_bytes()
+        environment = os.environ | {
+            "TAURI_WEBVIEW_AUTOMATION": "true",
+            "GDK_BACKEND": "x11",
+            "XDG_CONFIG_HOME": str(root / "config"),
+            "XDG_CACHE_HOME": str(root / "cache"),
+            "XDG_DATA_HOME": str(root / "data"),
+        }
+        options = Options()
+        # Tauri supplies its application identity, rather than MiniBrowser's.
+        # https://v2.tauri.app/develop/tests/webdriver/example/selenium/
+        options.capabilities.pop("browserName")
+        options.binary_location = str(binary)
+        with (artifacts / "native-timings.log").open("w") as log:
+            service = Service(
+                executable_path="/bin/WebKitWebDriver", env=environment, log_output=log
+            )
+            service.start()
+
+            def launch() -> webdriver.Remote:
+                return webdriver.Remote(
+                    command_executor=service.service_url, options=options
+                )
+
+            def finish(driver: webdriver.Remote) -> None:
+                children = psutil.Process(service.process.pid).children(recursive=True)
+                driver.quit()
+                _, alive = psutil.wait_procs(children, timeout=10)
+                for child in alive:
+                    with suppress(psutil.NoSuchProcess):
+                        if child.status() != psutil.STATUS_ZOMBIE:
+                            child.terminate()
+                _, alive = psutil.wait_procs(alive, timeout=10)
+                for child in alive:
+                    with suppress(psutil.NoSuchProcess):
+                        assert child.status() == psutil.STATUS_ZOMBIE
+
+            try:
+                driver = launch()
+                try:
+                    wait = WebDriverWait(driver, 120, poll_frequency=0.02)
+                    wait.until(
+                        lambda d: d.find_elements(By.CSS_SELECTOR, "[data-deck]")
+                    )
+                    driver.find_element(
+                        By.CSS_SELECTOR, '[aria-label="Workspace"]'
+                    ).click()
+                    field = driver.find_element(
+                        By.CSS_SELECTOR,
+                        'input[placeholder="Folder containing your Markdown decks"]',
+                    )
+                    from selenium.webdriver.common.keys import Keys
+
+                    field.send_keys(Keys.CONTROL, "a")
+                    field.send_keys(str(workspace))
+                    wait.until(
+                        lambda d: d.find_element(
+                            By.XPATH, "//button[normalize-space()='Open workspace']"
+                        ).is_enabled()
+                    )
+                    started = time.monotonic()
+                    driver.find_element(
+                        By.XPATH, "//button[normalize-space()='Open workspace']"
+                    ).click()
+                    wait.until(
+                        lambda d: (
+                            d.find_element(By.CSS_SELECTOR, ".workspace-name")
+                            .get_attribute("textContent")
+                            .strip()
+                            == workspace.name
+                        )
+                    )
+                    wait.until(
+                        lambda d: (
+                            d.find_element(
+                                By.CSS_SELECTOR, ".workspace-progress"
+                            ).get_attribute("textContent")
+                            == "Workspace checks complete"
+                        )
+                    )
+                    background_seconds = time.monotonic() - started
+                finally:
+                    finish(driver)
+                for condition in ("warm", "cold"):
+                    for repetition in range(repetitions):
+                        if condition == "cold":
+                            python = (resources / "runtime.txt").read_text().strip()
+                            subprocess.run(
+                                [python, "-I", str(resources / "backend.py")],
+                                input=json.dumps(
+                                    {
+                                        "action": "rebuild-cache",
+                                        "workspace": str(workspace),
+                                        "generation": 0,
+                                    }
+                                ),
+                                text=True,
+                                capture_output=True,
+                                check=True,
+                                env=environment,
+                            )
+                        launched = time.monotonic()
+                        driver = launch()
+                        try:
+                            wait = WebDriverWait(driver, 30, poll_frequency=0.01)
+                            wait.until(
+                                lambda d: (
+                                    d.find_element(By.CSS_SELECTOR, ".workspace-name")
+                                    .get_attribute("textContent")
+                                    .strip()
+                                    == workspace.name
+                                    and d.find_elements(By.CSS_SELECTOR, "[data-deck]")
+                                    and not d.find_elements(
+                                        By.CSS_SELECTOR,
+                                        '.sidebar-head [aria-label="Loading"]',
+                                    )
+                                )
+                            )
+                            tree_seconds = time.monotonic() - launched
+                            driver.find_element(
+                                By.XPATH,
+                                "//*[@role='treeitem' and normalize-space()='Analysis']",
+                            ).click()
+                            deck = wait.until(
+                                lambda d: d.find_element(
+                                    By.CSS_SELECTOR,
+                                    '[data-deck="Analysis/Precalculus.md"]',
+                                )
+                            )
+                            if profile:
+                                wait.until(
+                                    lambda d: d.execute_script(
+                                        "return typeof window.MathJax?.tex2chtml === 'function'"
+                                    )
+                                )
+                                driver.execute_script(r"""
+                                  window.nativeMathProfile = new Map();
+                                  const original = window.MathJax.tex2chtml;
+                                  window.MathJax.tex2chtml = function(...args) {
+                                    const stack = new Error().stack.split('\n').slice(1, 5).join('\n');
+                                    const start = performance.now();
+                                    try { return original.apply(this, args); }
+                                    finally {
+                                      const result = window.nativeMathProfile.get(stack) ?? {stack, calls: 0, seconds: 0};
+                                      result.calls++;
+                                      result.seconds += (performance.now() - start) / 1000;
+                                      window.nativeMathProfile.set(stack, result);
+                                    }
+                                  };
+                                """)
+                            selected = time.monotonic()
+                            deck.click()
+                            editor = wait.until(
+                                lambda d: d.find_element(
+                                    By.CSS_SELECTOR, ".side-editor.front .cm-content"
+                                )
+                            )
+                            wait.until(
+                                lambda d: (
+                                    d.find_elements(
+                                        By.CSS_SELECTOR,
+                                        ".side-editor.front mjx-container",
+                                    )
+                                    and d.find_element(
+                                        By.CSS_SELECTOR,
+                                        ".side-editor.front .cm-content",
+                                    ).get_attribute("contenteditable")
+                                    == "true"
+                                )
+                            )
+                            selection_seconds = time.monotonic() - selected
+                            if profile:
+                                profiles.extend(
+                                    MathProfile(condition=condition, **values)
+                                    for values in driver.execute_script(
+                                        "return [...window.nativeMathProfile.values()].sort((a,b)=>b.seconds-a.seconds)"
+                                    )
+                                )
+                            background_running = (
+                                driver.find_element(
+                                    By.CSS_SELECTOR, ".workspace-progress"
+                                ).get_attribute("textContent")
+                                != "Workspace checks complete"
+                            )
+                            editor.click()
+                            subprocess.run(
+                                [
+                                    "xdotool",
+                                    "key",
+                                    "--clearmodifiers",
+                                    "ctrl+End",
+                                    "Return",
+                                ],
+                                check=True,
+                            )
+                            wait.until(
+                                lambda d: d.execute_script(
+                                    "return document.querySelector('.side-editor.front .cm-line:last-child').textContent.trim() === ''"
+                                )
+                            )
+                            left, top = driver.execute_script(
+                                "const line=document.querySelector('.side-editor.front .cm-line:last-child');const r=line.getBoundingClientRect();return [Math.floor(r.left+parseFloat(getComputedStyle(line).paddingLeft))+2,Math.floor(r.top)+4]"
+                            )
+                            with mss.MSS() as screen:
+                                region = {
+                                    "left": left,
+                                    "top": top,
+                                    "width": 5,
+                                    "height": 16,
+                                }
+                                before = screen.grab(region).rgb
+                                dark = lambda pixels: sum(
+                                    max(pixels[i : i + 3]) < 160
+                                    for i in range(0, len(pixels), 3)
+                                )
+                                baseline = dark(before)
+                                typed = time.monotonic()
+                                subprocess.run(
+                                    ["xdotool", "key", "--clearmodifiers", "m"],
+                                    check=True,
+                                )
+                                while time.monotonic() - typed < 5:
+                                    pixels = screen.grab(region).rgb
+                                    if pixels != before and dark(pixels) > baseline + 5:
+                                        break
+                                else:
+                                    driver.save_screenshot(
+                                        str(artifacts / "native-timing-last.png")
+                                    )
+                                    frame = screen.grab(
+                                        {
+                                            "left": 0,
+                                            "top": 0,
+                                            "width": 1440,
+                                            "height": 1000,
+                                        }
+                                    )
+                                    mss.tools.to_png(
+                                        frame.rgb,
+                                        frame.size,
+                                        output=str(
+                                            artifacts / "native-timing-frame.png"
+                                        ),
+                                    )
+                                    print(
+                                        json.dumps(
+                                            {
+                                                "region": region,
+                                                "baseline_dark": baseline,
+                                                "observed_dark": dark(pixels),
+                                                "line": driver.execute_script(
+                                                    "return document.querySelector('.side-editor.front .cm-line:last-child').textContent"
+                                                ),
+                                            }
+                                        ),
+                                        flush=True,
+                                    )
+                                    raise AssertionError(
+                                        "The native input glyph did not paint."
+                                    )
+                                input_seconds = time.monotonic() - typed
+                            assert (
+                                driver.execute_script(
+                                    "return document.querySelector('.side-editor.front .cm-line:last-child').textContent.trim()"
+                                )
+                                == "m"
+                            )
+                            subprocess.run(
+                                [
+                                    "xdotool",
+                                    "key",
+                                    "--clearmodifiers",
+                                    "ctrl+z",
+                                    "ctrl+z",
+                                    "ctrl+s",
+                                ],
+                                check=True,
+                            )
+                            wait.until(
+                                lambda d: (
+                                    source.read_bytes() == original
+                                    and "Saving"
+                                    not in d.find_element(
+                                        By.CSS_SELECTOR, ".toolbar .status"
+                                    ).get_attribute("textContent")
+                                )
+                            )
+                            sample = StartupSample(
+                                condition,
+                                tree_seconds,
+                                selection_seconds,
+                                input_seconds,
+                                background_running,
+                            )
+                            samples.append(sample)
+                            print(json.dumps(asdict(sample)), flush=True)
+                            if repetition == 0:
+                                driver.save_screenshot(
+                                    str(artifacts / f"native-timing-{condition}.png")
+                                )
+                        except Exception:
+                            driver.save_screenshot(
+                                str(artifacts / "native-timing-failure.png")
+                            )
+                            print(
+                                driver.execute_script(
+                                    "return [...document.querySelectorAll('[role=treeitem]')].map(n=>({text:n.textContent,expanded:n.getAttribute('aria-expanded')}))"
+                                ),
+                                flush=True,
+                            )
+                            raise
+                        finally:
+                            finish(driver)
+            finally:
+                service.stop()
+    report = {
+        "binary": str(binary),
+        "background_seconds": background_seconds,
+        "samples": [asdict(sample) for sample in samples],
+        "p95": {
+            condition: {
+                metric: sorted(
+                    getattr(sample, metric)
+                    for sample in samples
+                    if sample.condition == condition
+                )[math.ceil(0.95 * repetitions) - 1]
+                for metric in (
+                    "tree_seconds",
+                    "selection_seconds",
+                    "input_paint_seconds",
+                )
+            }
+            for condition in ("warm", "cold")
+        },
+    }
+    if profile:
+        report.pop("p95")
+        report["mathjax"] = [asdict(result) for result in profiles]
+    (
+        artifacts / ("native-profile.json" if profile else "native-timings.json")
+    ).write_text(json.dumps(report, indent=2) + "\n")
+    if not profile:
+        failures = []
+        for condition, results in report["p95"].items():
+            for metric, value in results.items():
+                target = (
+                    (1 if condition == "warm" else 2)
+                    if metric == "tree_seconds"
+                    else (1 if metric == "selection_seconds" else 0.1)
+                )
+                if value > target:
+                    failures.append(
+                        f"{condition} {metric}: p95 {value:.3f}s exceeds {target:.3f}s"
+                    )
+        assert not failures, "\n".join(failures)
 
 
 def wait_for_text(text: str) -> None:
@@ -87,9 +499,21 @@ def close_native(window: str, launcher: subprocess.Popen[bytes]) -> None:
 
 
 def main(
-    *, entry: Path | None = None, offline: bool = False, updates: bool = False
+    *,
+    entry: Path | None = None,
+    offline: bool = False,
+    updates: bool = False,
+    timings: bool = False,
+    profile: bool = False,
 ) -> None:
     """Exercise a built app, or launch an installed desktop entry through Gio."""
+    if timings:
+        if offline or updates:
+            raise ValueError("Timing uses its own release-window scenario.")
+        measure_startup(entry, profile)
+        return
+    if profile:
+        raise ValueError("Use --timings with --profile.")
     desktop = Path(__file__).resolve().parents[1]
     artifacts = desktop / "test-artifacts"
     artifacts.mkdir(exist_ok=True)

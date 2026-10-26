@@ -254,3 +254,51 @@ cannot replace a newer review of the same deck. A build-all review delivered
 after a workspace switch starts no export. A missing-file response for a deleted
 previous deck cannot close the newer editor. Review, generation, action errors,
 and disk-follow errors retain their originating session or document identity.
+
+## Release timing baseline
+
+The release frontend at `f8131d1` has a complete repeated baseline on the
+workstation's isolated X11 display. The fixture copies the repository workspace,
+including its packages. Warm launches follow a completed analysis. Cold launches
+rebuild only the derived cache. Every keyboard sample runs during incomplete
+workspace checks.
+
+| Cache | Samples | Tree publication p95 / worst (s) | Selection p95 / worst (s) | Key command to glyph p95 / worst (s) |
+| --- | --- | --- | --- | --- |
+| Warm | 20 | 1.326 / 1.385 | 2.041 / 2.136 | 0.124 / 0.128 |
+| Cold | 20 | 1.893 / 2.319 | 1.987 / 2.360 | 0.133 / 0.142 |
+
+The initial complete analysis takes 44.659 seconds. The p95 calculation uses the
+nearest rank. Raw samples are in `desktop/test-artifacts/native-timings-baseline.json`.
+
+WebKitWebDriver controls the real release WebView through Tauri's supported
+automation interface. Tree publication and selection durations include driver command and
+observation time. Selection ends when the selected field is editable and its
+MathJax content exists. The keyboard duration starts before native key command
+submission and ends when the glyph interior changes in an X11 screen capture.
+The test also checks that the editor contains the expected character and restores
+the original source. This keyboard upper bound includes input-tool overhead.
+
+The baseline tree endpoint observes populated rows; the final usable-tree
+measurement must also require navigation to be enabled. The timing harness now
+checks that the loading indicator has cleared before selecting a deck.
+
+The warm tree publication, selection, and keyboard observations exceed the plan's budgets.
+Profile application work and measurement overhead before changing the critical
+path. The current installed revision and final rendering endpoint still need
+their acceptance distributions. These baseline values do not close task F.
+
+The native selection profile identifies synchronous card summaries as a major
+part of the selection path. The captured stack maps to `previewHtml` in
+`src/math.ts`, called for every card by `App.tsx` before the editor is published.
+The shared field editor has a separate stack.
+
+| Conversion owner | Warm calls | Warm CPU (s) | Cold calls | Cold CPU (s) |
+| --- | --- | --- | --- | --- |
+| Card summaries | 106 | 0.736 | 106 | 0.849 |
+| Selected field editor | 2 | 0.013 | 2 | 0.013 |
+
+These durations cover actual MathJax conversion calls and exclude Markdown
+parsing, stylesheet updates, backend time, and driver overhead. Raw stacks are
+in `desktop/test-artifacts/native-profile.json`. Summary conversion must yield
+outside the selected editor's initial render; complete summaries remain required.

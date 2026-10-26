@@ -97,12 +97,12 @@ desktop-source-test:
     cd desktop && bun test tests/source-roundtrip.test.ts tests/paired-cards.test.ts tests/organization.test.ts tests/workspace.test.ts
 
 # Capture and exercise the built native window on an isolated display
-desktop-native-test:
-    xvfb-run -a -s '-screen 0 1600x1200x24' uv run --upgrade desktop/tests/native.py
+desktop-native-test *arguments:
+    xvfb-run -a -s '-screen 0 1600x1200x24' uv run --upgrade desktop/tests/native.py {{arguments}}
 
 # Launch the installed desktop entry and exercise its native export
-desktop-installed-test:
-    xvfb-run -a -s '-screen 0 1600x1200x24' uv run --upgrade desktop/tests/native.py --entry '{{env_var_or_default("XDG_DATA_HOME", env_var("HOME") / ".local/share")}}/applications/dev.math.flashcards.desktop'
+desktop-installed-test *arguments:
+    xvfb-run -a -s '-screen 0 1600x1200x24' uv run --upgrade desktop/tests/native.py --entry '{{env_var_or_default("XDG_DATA_HOME", env_var("HOME") / ".local/share")}}/applications/dev.math.flashcards.desktop' {{arguments}}
 
 # Update a running temporary installation and verify both native sessions offline
 desktop-update-test:
