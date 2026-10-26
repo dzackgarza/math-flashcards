@@ -218,6 +218,8 @@ export default function App() {
   const savingPreferences = useRef<Promise<void>>(Promise.resolve());
   const navigation = useRef(0);
   const workspaceNavigation = useRef(0);
+  const reviewRequest = useRef(0);
+  const generationRequest = useRef(0);
   const reconciliation = useRef(0);
   const workspaceRoot = useRef<string | null>(null);
   const changedPaths = useRef(new Set<string>());
@@ -896,13 +898,22 @@ export default function App() {
   }
 
   function guard(action: () => void | Promise<void>) {
+    const token = workspaceNavigation.current;
     flush()
-      .then(action)
-      .catch((failure) => setError(String(failure)));
+      .then(() => {
+        if (token === workspaceNavigation.current) return action();
+      })
+      .catch((failure) => {
+        if (token === workspaceNavigation.current) setError(String(failure));
+      });
   }
 
   async function chooseWorkspace(root: string) {
     const token = ++workspaceNavigation.current;
+    reviewRequest.current++;
+    generationRequest.current++;
+    setReview(null);
+    setProgress("");
     const previousRoot = workspaceRoot.current ?? workspace;
     workspaceRoot.current = null;
     changedPaths.current.clear();
@@ -1271,14 +1282,24 @@ export default function App() {
   }
 
   async function generate(paths: string[]) {
+    const root = workspace;
+    const workspaceToken = workspaceNavigation.current;
+    const token = ++generationRequest.current;
+    const active = () =>
+      token === generationRequest.current &&
+      workspaceToken === workspaceNavigation.current &&
+      root === workspaceRoot.current;
     await flush();
+    if (!active()) return;
     const assets = (await loadMathJax()).identity;
+    if (!active()) return;
     setTask("Generating");
     setBuildResult("Ready");
     setError("");
     const logs: string[] = [];
     const failures: string[] = [];
     for (const [position, path] of paths.entries()) {
+      if (!active()) return;
       setProgress(
         paths.length === 1
           ? "Updating the Anki package…"
@@ -1286,42 +1307,69 @@ export default function App() {
       );
       try {
         const result = await request(
-          { action: "generate", workspace, path, assets },
+          { action: "generate", workspace: root, path, assets },
           generatedSchema,
         );
+        if (!active()) return;
         logs.push(deckName(path) + "\n" + result.log);
       } catch (failure) {
+        if (!active()) return;
         failures.push(deckName(path) + ": " + String(failure));
         if (path === current.current?.path) setBuildResult("Failed");
       }
     }
+    if (!active()) return;
     setLog([...logs, ...failures].join("\n\n"));
     if (failures.length) setError(failures.join("\n\n"));
     setProgress("");
     setTask("Idle");
     await refresh();
+    if (!active()) return;
     await followDisk();
   }
 
   async function generateAll() {
+    const root = workspace;
+    const workspaceToken = workspaceNavigation.current;
+    const token = ++generationRequest.current;
+    const active = () =>
+      token === generationRequest.current &&
+      workspaceToken === workspaceNavigation.current &&
+      root === workspaceRoot.current;
     await flush();
+    if (!active()) return;
     const assets = (await loadMathJax()).identity;
-    const result = await request(
-      { action: "review", workspace, assets },
-      reviewSchema,
-    );
-    await generate(result.decks.map((deck) => deck.path));
+    if (!active()) return;
+    try {
+      const result = await request(
+        { action: "review", workspace: root, assets },
+        reviewSchema,
+      );
+      if (active()) await generate(result.decks.map((deck) => deck.path));
+    } catch (failure) {
+      if (active()) setError(String(failure));
+    }
   }
 
   async function openReview(scope: string | null) {
+    const root = workspace;
+    const workspaceToken = workspaceNavigation.current;
+    const token = ++reviewRequest.current;
+    const active = () =>
+      token === reviewRequest.current &&
+      workspaceToken === workspaceNavigation.current &&
+      root === workspaceRoot.current;
     setReview({ scope, decks: null });
     try {
       await flush();
+      if (!active()) return;
       const assets = (await loadMathJax()).identity;
+      if (!active()) return;
       const result = await request(
-        { action: "review", workspace, assets },
+        { action: "review", workspace: root, assets },
         reviewSchema,
       );
+      if (!active()) return;
       setReview((open) =>
         open && open.scope === scope
           ? {
@@ -1333,6 +1381,7 @@ export default function App() {
           : open,
       );
     } catch (failure) {
+      if (!active()) return;
       setReview(null);
       setError(String(failure));
     }
@@ -2475,7 +2524,10 @@ export default function App() {
         mathjax={mathjax}
         opened={review !== null}
         busy={busy}
-        close={() => setReview(null)}
+        close={() => {
+          reviewRequest.current++;
+          setReview(null);
+        }}
         openCard={(path, id) => {
           setReview(null);
           guard(() => chooseDeck(path, id));

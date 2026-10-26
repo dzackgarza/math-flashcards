@@ -18,7 +18,7 @@ import time
 import zipfile
 from pathlib import Path
 
-from playwright.sync_api import Request, expect, sync_playwright
+from playwright.sync_api import APIResponse, Request, Route, expect, sync_playwright
 
 
 def startup() -> None:
@@ -247,10 +247,40 @@ def main() -> None:
             expect(page.get_by_placeholder("Search")).not_to_be_visible()
 
             # The status opens the review of changes that the package lacks.
+            delayed: list[tuple[Route, APIResponse]] = []
+
+            def delay_first_review(route: Route) -> None:
+                payload = route.request.post_data_json
+                if payload.get("action") == "review" and not delayed:
+                    # Delay delivery of the real backend response without changing it.
+                    delayed.append((route, route.fetch()))
+                else:
+                    route.continue_()
+
+            page.route("**/api/request", delay_first_review)
             status.click()
             review = page.get_by_role(
                 "dialog", name="Changes not in the Anki packages", exact=True
             )
+            for _ in range(300):
+                if delayed:
+                    break
+                page.wait_for_timeout(100)
+            assert delayed
+            review.get_by_role("button", name="Close", exact=True).click()
+            front = page.locator(".side-editor.front .cm-content")
+            front.fill(front.inner_text() + " Current review")
+            saved(lambda text: "Current review" in text)
+            status.click()
+            expect(review).to_contain_text("Current review", timeout=30000)
+            delayed_route, delayed_response = delayed[0]
+            delayed_route.fulfill(response=delayed_response)
+            page.evaluate(
+                "() => new Promise(resolve => requestAnimationFrame(() => "
+                "requestAnimationFrame(resolve)))"
+            )
+            expect(review).to_contain_text("Current review")
+            page.unroute("**/api/request", delay_first_review)
             expect(review.get_by_text("New", exact=True).first).to_be_visible(
                 timeout=30000
             )
@@ -445,6 +475,20 @@ def main() -> None:
 
                 page.close()
                 page = context.new_page()
+                delayed_checks: list[tuple[Route, APIResponse]] = []
+
+                def delay_package_checks(route: Route) -> None:
+                    payload = route.request.post_data_json
+                    if (
+                        payload.get("action") == "checks"
+                        and payload.get("workspace") == str(root)
+                        and not delayed_checks
+                    ):
+                        delayed_checks.append((route, route.fetch()))
+                    else:
+                        route.continue_()
+
+                page.route("**/api/request", delay_package_checks)
                 page.add_init_script(
                     """(expected => {
                       window.packageHistory = [];
@@ -489,6 +533,17 @@ def main() -> None:
                 ):
                     restore_workspace()
                     page.get_by_text("Analysis", exact=True).click()
+                    expect(
+                        page.locator('[data-deck="Analysis/Precalculus.md"]')
+                    ).to_have_attribute("data-package-state", "checking")
+                    for _ in range(300):
+                        if delayed_checks:
+                            break
+                        page.wait_for_timeout(100)
+                    assert delayed_checks
+                    check_route, check_response = delayed_checks[0]
+                    check_route.fulfill(response=check_response)
+                    page.unroute("**/api/request", delay_package_checks)
                 cached = cached_response.value.json()
                 saved_search = search_response.value.json()
                 history = package_history_response.value.json()
