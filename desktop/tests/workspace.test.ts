@@ -29,6 +29,22 @@ afterEach(() => {
   }
 });
 
+test("the bridge identifies an incomplete prepared runtime", () => {
+  const backend = resolve(import.meta.dir, "../backend.py");
+  const find = Bun.spawnSync(["uv", "python", "find", "--script", backend]);
+  expect(find.exitCode).toBe(0);
+  const process = Bun.spawnSync(
+    [find.stdout.toString().trim(), "-S", backend],
+    { stdin: Buffer.from('{"action":"assets"}\n') },
+  );
+  expect(process.exitCode).not.toBe(0);
+  expect(process.stderr.toString()).toContain(
+    "The installed Python runtime is incomplete.",
+  );
+  expect(process.stderr.toString()).toContain("Run just desktop-install.");
+  expect(process.stderr.toString()).toContain("ankdown");
+});
+
 test("package history remains pending until exact inputs are rechecked", async () => {
   const workspace = await mkdtemp(
     join(tmpdir(), "flashcards-package-history-"),
