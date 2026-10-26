@@ -1122,7 +1122,16 @@ export default function App() {
   }
 
   const followOnChange = useDebouncedCallback(() => {
+    const open = current.current;
+    const token = navigation.current;
     followDisk().catch((failure) => {
+      const latest = current.current;
+      if (
+        token !== navigation.current ||
+        latest?.path !== open?.path ||
+        latest?.session.root !== open?.session.root
+      )
+        return;
       // A deck removed outside the app closes.
       if (/No such file|does not exist/.test(String(failure))) {
         updateDocument(() => null);
