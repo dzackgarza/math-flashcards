@@ -62,6 +62,289 @@ class MathProfile:
     seconds: float
 
 
+def measure_quiver_native(entry: Path | None) -> None:
+    """Verify Quiver's local iframe bridge inside the installed WebKit app."""
+    desktop = Path(__file__).resolve().parents[1]
+    binary = desktop / "src-tauri" / "target" / "release" / "desktop"
+    if entry is not None:
+        configuration = configparser.ConfigParser(interpolation=None)
+        configuration.read(entry)
+        binary = Path(
+            shlex.split(configuration["Desktop Entry"]["Exec"])[0].replace("%%", "%")
+        )
+    artifacts = desktop / "test-artifacts"
+    artifacts.mkdir(exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix="flashcards-native-quiver-") as temporary:
+        root = Path(temporary)
+        workspace = root / "workspace"
+        workspace.mkdir()
+        deck = workspace / "Category Theory.md"
+        deck.write_bytes((desktop.parent / "decks" / "Category Theory.md").read_bytes())
+        before = deck.read_bytes()
+        environment = os.environ | {
+            "TAURI_WEBVIEW_AUTOMATION": "true",
+            "GDK_BACKEND": "x11",
+            "XDG_CONFIG_HOME": str(root / "config"),
+            "XDG_CACHE_HOME": str(root / "cache"),
+            "XDG_DATA_HOME": str(root / "data"),
+            "UV_OFFLINE": "1",
+        }
+        options = Options()
+        options.capabilities.pop("browserName")
+        options.binary_location = str(binary)
+        with (artifacts / "native-quiver.log").open("w") as log:
+            service = Service(
+                executable_path="/bin/WebKitWebDriver", env=environment, log_output=log
+            )
+            service.start()
+            driver: webdriver.Remote | None = None
+            try:
+                driver = webdriver.Remote(
+                    command_executor=service.service_url, options=options
+                )
+                wait = WebDriverWait(driver, 120, poll_frequency=0.05)
+                wait.until(
+                    lambda browser: (
+                        browser.find_element(By.CSS_SELECTOR, ".workspace-name")
+                        .get_attribute("textContent")
+                        .strip()
+                        != "Choose a workspace"
+                    )
+                )
+                driver.find_element(By.CSS_SELECTOR, '[aria-label="Workspace"]').click()
+                field = wait.until(
+                    lambda browser: browser.find_element(
+                        By.CSS_SELECTOR,
+                        'input[placeholder="Folder containing your Markdown decks"]',
+                    )
+                )
+                from selenium.webdriver.common.keys import Keys
+
+                field.send_keys(Keys.CONTROL, "a")
+                field.send_keys(str(workspace))
+                wait.until(
+                    lambda browser: (
+                        browser.find_element(
+                            By.CSS_SELECTOR,
+                            'input[placeholder="Folder containing your Markdown decks"]',
+                        ).get_attribute("value")
+                        == str(workspace)
+                    )
+                )
+                wait.until(
+                    lambda browser: browser.find_element(
+                        By.XPATH, "//button[normalize-space()='Open workspace']"
+                    ).is_enabled()
+                )
+                driver.find_element(
+                    By.XPATH, "//button[normalize-space()='Open workspace']"
+                ).click()
+                try:
+                    WebDriverWait(driver, 25, poll_frequency=0.05).until(
+                        lambda browser: (
+                            browser.execute_script(
+                                "return document.querySelector('.workspace-name')?.textContent?.trim()"
+                            )
+                            == workspace.name
+                        )
+                    )
+                except TimeoutException:
+                    driver.save_screenshot(
+                        str(artifacts / "native-quiver-workspace-failure.png")
+                    )
+                    print(
+                        json.dumps(
+                            {
+                                "requested": str(workspace),
+                                "field": driver.execute_script(
+                                    "return document.querySelector('input[placeholder*=\"Folder containing\"]')?.value"
+                                ),
+                                "displayed": driver.execute_script(
+                                    "return document.querySelector('.workspace-name')?.textContent"
+                                ),
+                                "tree": driver.execute_script(
+                                    "return [...document.querySelectorAll('[data-deck]')].map(n=>n.dataset.deck)"
+                                ),
+                                "errors": driver.execute_script(
+                                    "return document.body.innerText.slice(0, 1000)"
+                                ),
+                            }
+                        ),
+                        flush=True,
+                    )
+                    raise
+                wait.until(
+                    lambda browser: browser.find_element(
+                        By.CSS_SELECTOR, '[data-deck="Category Theory.md"]'
+                    )
+                ).click()
+                wait.until(
+                    lambda browser: browser.find_elements(
+                        By.CSS_SELECTOR, ".side-editor.front .cm-content"
+                    )
+                )
+                # The diagram is on the limit/colimit card, not the first
+                # card selected when this deck opens.
+                wait.until(
+                    lambda browser: (
+                        browser.find_element(
+                            By.CSS_SELECTOR,
+                            '[data-card="card-d87ef906950bd548"] .card-row-label',
+                        )
+                        if browser.find_element(
+                            By.CSS_SELECTOR,
+                            '[data-card="card-d87ef906950bd548"] .card-row-label',
+                        ).is_enabled()
+                        else False
+                    )
+                ).click()
+                try:
+                    wait.until(
+                        lambda browser: browser.find_elements(
+                            By.CSS_SELECTOR, ".side-editor.back .diagram-field-entry"
+                        )
+                    )
+                except TimeoutException:
+                    driver.save_screenshot(
+                        str(artifacts / "native-quiver-selection-failure.png")
+                    )
+                    print(
+                        "Native diagram selection diagnostic:",
+                        driver.execute_script("""return {
+                          active: document.querySelector('.card-row.active')?.dataset.card,
+                          selected: [...document.querySelectorAll('.card-row-label')].filter(n=>n.getAttribute('aria-pressed')==='true').map(n=>n.textContent.slice(0,100)),
+                          status: document.querySelector('.toolbar .status')?.textContent,
+                          heading: document.querySelector('.card-stage')?.innerText.slice(0,250),
+                          error: document.querySelector('[role="alert"]')?.textContent,
+                        }"""),
+                        flush=True,
+                    )
+                    raise
+                # The side editor presents the diagram instead of 1,889 bytes
+                # of opaque URL or 1,076 bytes of LaTeX.
+                assert not any(
+                    r"\begin{tikzcd}" in editor.text
+                    for editor in driver.find_elements(
+                        By.CSS_SELECTOR, ".side-editor.back .cm-content"
+                    )
+                )
+                preview = wait.until(
+                    lambda browser: browser.find_element(
+                        By.CSS_SELECTOR,
+                        '.side-editor.back iframe[title="Rendered commutative diagram"]',
+                    )
+                )
+                driver.switch_to.frame(preview)
+                try:
+                    WebDriverWait(driver, 25, poll_frequency=0.1).until(
+                        lambda browser: (
+                            len(browser.find_elements(By.CSS_SELECTOR, ".vertex")) == 15
+                        )
+                    )
+                except TimeoutException:
+                    print(
+                        "Native Quiver iframe diagnostic:",
+                        driver.execute_script(
+                            "return {href:location.href,origin:location.origin,referrer:document.referrer,ready:document.readyState,body:document.body?.innerText.slice(0,1000),vertices:document.querySelectorAll('.vertex').length,html:document.documentElement.outerHTML.slice(0,800)}"
+                        ),
+                        flush=True,
+                    )
+                    driver.switch_to.default_content()
+                    driver.save_screenshot(str(artifacts / "native-quiver-failure.png"))
+                    print(
+                        "Native parent diagnostic:",
+                        driver.execute_script(
+                            "return {href:location.href,origin:location.origin,body:document.body.innerText.slice(-1800)}"
+                        ),
+                        flush=True,
+                    )
+                    raise
+                geometry_script = """return {
+                      viewport: [document.documentElement.clientWidth, document.documentElement.clientHeight],
+                      transform: document.querySelector('.canvas')?.style.transform,
+                      bodyClass: document.body.className,
+                      fonts: document.fonts.status,
+                      points: [...document.querySelectorAll('.vertex')].map(vertex => {
+                        const r = vertex.getBoundingClientRect();
+                        return [r.left, r.top, r.right, r.bottom];
+                      }),
+                    }"""
+                try:
+                    WebDriverWait(driver, 20, poll_frequency=0.05).until(
+                        lambda browser: (
+                            "scale(1)"
+                            not in browser.execute_script(geometry_script)["transform"]
+                        )
+                    )
+                except TimeoutException:
+                    print(
+                        "Native Quiver did not fit its preview:",
+                        driver.execute_script(geometry_script),
+                        flush=True,
+                    )
+                    raise
+                geometry = driver.execute_script(geometry_script)
+                width, height = geometry["viewport"]
+                assert all(
+                    left >= -10
+                    and top >= -10
+                    and right <= width + 10
+                    and bottom <= height + 10
+                    for left, top, right, bottom in geometry["points"]
+                ), "The native card preview clips diagram objects."
+                x_span = max(point[2] for point in geometry["points"]) - min(
+                    point[0] for point in geometry["points"]
+                )
+                y_span = max(point[3] for point in geometry["points"]) - min(
+                    point[1] for point in geometry["points"]
+                )
+                assert x_span > width * 0.5 and y_span > height * 0.35, (
+                    "The native diagram was over-shrunk and is unreadable.",
+                    geometry,
+                )
+                driver.switch_to.default_content()
+                driver.save_screenshot(str(artifacts / "native-quiver-card.png"))
+                driver.find_element(
+                    By.XPATH, "//button[normalize-space()='Edit in Quiver']"
+                ).click()
+                editable = wait.until(
+                    lambda browser: browser.find_element(
+                        By.CSS_SELECTOR, 'iframe[title="Quiver diagram editor"]'
+                    )
+                )
+                driver.switch_to.frame(editable)
+                wait.until(
+                    lambda browser: (
+                        len(browser.find_elements(By.CSS_SELECTOR, ".vertex")) == 15
+                    )
+                )
+                driver.switch_to.default_content()
+                wait.until(
+                    lambda browser: browser.find_element(
+                        By.XPATH, "//button[normalize-space()='Use diagram']"
+                    ).is_enabled()
+                )
+                driver.save_screenshot(str(artifacts / "native-quiver-editor.png"))
+                driver.find_element(
+                    By.XPATH, "//button[normalize-space()='Cancel']"
+                ).click()
+                assert deck.read_bytes() == before
+                print("Installed WebKit renders and edits Quiver diagrams offline.")
+            finally:
+                if driver is not None:
+                    children = psutil.Process(service.process.pid).children(
+                        recursive=True
+                    )
+                    driver.quit()
+                    _, alive = psutil.wait_procs(children, timeout=10)
+                    for child in alive:
+                        with suppress(psutil.NoSuchProcess):
+                            if child.status() != psutil.STATUS_ZOMBIE:
+                                child.terminate()
+                    psutil.wait_procs(alive, timeout=10)
+                service.stop()
+
+
 def measure_startup(entry: Path | None, profile: bool) -> None:
     """Measure real release windows and native keyboard paint during checks."""
     desktop = Path(__file__).resolve().parents[1]
@@ -715,8 +998,16 @@ def main(
     updates: bool = False,
     timings: bool = False,
     profile: bool = False,
+    diagrams: bool = False,
 ) -> None:
     """Exercise a built app, or launch an installed desktop entry through Gio."""
+    if diagrams:
+        if offline or updates or timings or profile:
+            raise ValueError(
+                "The native Quiver scenario uses its own isolated session."
+            )
+        measure_quiver_native(entry)
+        return
     if timings:
         if offline or updates:
             raise ValueError("Timing uses its own release-window scenario.")

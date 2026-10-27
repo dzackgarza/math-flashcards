@@ -60,7 +60,36 @@ What is a **limit**? A **colimit**?
 :::
 
 ::: {.back card-id="card-d87ef906950bd548"}
-How to remember: limits are like sequences and live above (sequences project), colimits are like gluing and live below (include into disjoint unions) <https://q.uiver.app/?q=WzAsMTUsWzAsNCwiQV97aS0xfSJdLFswLDMsIlxcdmRvdHMiXSxbMCwyLCJBX3tpKzF9Il0sWzQsMywiXFxjZG90cyJdLFs1LDMsIkYoQV97aS0xfSkiXSxbNiwzLCJcXGNkb3RzIl0sWzcsMywiRihBX3tpKzF9KSJdLFs4LDMsIlxcY2RvdHMiXSxbMCwxLCJcXHZkb3RzIl0sWzAsNSwiXFx2ZG90cyJdLFs2LDIsIlxcdW5kZXJzZXR7XFxsb25nbGVmdGFycm93fXtcXG1hdGhybXtsaW19fVxcLCBGICJdLFs2LDQsIlxcdW5kZXJzZXR7XFxsb25ncmlnaHRhcnJvd317XFxtYXRocm17Y29saW19fVxcLCBGIl0sWzYsMCwiXFxmb3JhbGwgTCJdLFs2LDYsIlxcZm9yYWxsIEMiXSxbMCwwXSxbMyw0XSxbNCw1XSxbNSw2XSxbMCwxXSxbMSwyXSxbMiw4XSxbOSwwXSxbMTAsNF0sWzEwLDZdLFs0LDExXSxbNiwxMV0sWzEyLDQsIiIsMix7ImN1cnZlIjoyfV0sWzEyLDEwLCJcXGV4aXN0cyAhIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzEyLDYsIiIsMix7ImN1cnZlIjotMn1dLFs0LDEzLCIiLDIseyJjdXJ2ZSI6Mn1dLFs2LDEzLCIiLDIseyJjdXJ2ZSI6LTJ9XSxbMTEsMTMsIlxcZXhpc3RzICEiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNiw3XSxbMTksMTUsIkYiLDAseyJjdXJ2ZSI6LTMsInNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH19XV0=>https://q.uiver.app/?q=WzAsMTUsWzAsNCwiQV97aS0xfSJdLFswLDMsIlxcdmRvdHMiXSxbMCwyLCJBX3tpKzF9Il0sWzQsMywiXFxjZG90cyJdLFs1LDMsIkYoQV97aS0xfSkiXSxbNiwzLCJcXGNkb3RzIl0sWzcsMywiRihBX3tpKzF9KSJdLFs4LDMsIlxcY2RvdHMiXSxbMCwxLCJcXHZkb3RzIl0sWzAsNSwiXFx2ZG90cyJdLFs2LDIsIlxcdW5kZXJzZXR7XFxsb25nbGVmdGFycm93fXtcXG1hdGhybXtsaW19fVxcLCBGICJdLFs2LDQsIlxcdW5kZXJzZXR7XFxsb25ncmlnaHRhcnJvd317XFxtYXRocm17Y29saW19fVxcLCBGIl0sWzYsMCwiXFxmb3JhbGwgTCJdLFs2LDYsIlxcZm9yYWxsIEMiXSxbMCwwXSxbMyw0XSxbNCw1XSxbNSw2XSxbMCwxXSxbMSwyXSxbMiw4XSxbOSwwXSxbMTAsNF0sWzEwLDZdLFs0LDExXSxbNiwxMV0sWzEyLDQsIiIsMix7ImN1cnZlIjoyfV0sWzEyLDEwLCJcXGV4aXN0cyAhIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzEyLDYsIiIsMix7ImN1cnZlIjotMn1dLFs0LDEzLCIiLDIseyJjdXJ2ZSI6Mn1dLFs2LDEzLCIiLDIseyJjdXJ2ZSI6LTJ9XSxbMTEsMTMsIlxcZXhpc3RzICEiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNiw3XSxbMTksMTUsIkYiLDAseyJjdXJ2ZSI6LTMsInNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH19XV0=
+How to remember: limits are like sequences and live above (sequences project), colimits are like gluing and live below (include into disjoint unions)
+
+\begin{tikzcd}
+	{} &&&&&& {\forall L} && \\
+	\vdots \\
+	{A_{i+1}} &&&&&& {\underset{\longleftarrow}{\mathrm{lim}}\, F } \\
+	\vdots &&&& \cdots & {F(A_{i-1})} & \cdots & {F(A_{i+1})} & \cdots \\
+	{A_{i-1}} &&&&&& {\underset{\longrightarrow}{\mathrm{colim}}\, F} \\
+	\vdots \\
+	&&&&&& {\forall C}
+	\arrow["{\exists !}"', dashed, from=1-7, to=3-7]
+	\arrow[curve={height=12pt}, from=1-7, to=4-6]
+	\arrow[curve={height=-12pt}, from=1-7, to=4-8]
+	\arrow[from=3-1, to=2-1]
+	\arrow[from=3-7, to=4-6]
+	\arrow[from=3-7, to=4-8]
+	\arrow[""{name=0, anchor=center, inner sep=0}, from=4-1, to=3-1]
+	\arrow[""{name=1, anchor=center, inner sep=0}, from=4-5, to=4-6]
+	\arrow[from=4-6, to=4-7]
+	\arrow[from=4-6, to=5-7]
+	\arrow[curve={height=12pt}, from=4-6, to=7-7]
+	\arrow[from=4-7, to=4-8]
+	\arrow[from=4-8, to=4-9]
+	\arrow[from=4-8, to=5-7]
+	\arrow[curve={height=-12pt}, from=4-8, to=7-7]
+	\arrow[from=5-1, to=4-1]
+	\arrow["{\exists !}", dashed, from=5-7, to=7-7]
+	\arrow[from=6-1, to=5-1]
+	\arrow["F", curve={height=-18pt}, between={0.2}{0.8}, Rightarrow, nfold, from=0, to=1]
+\end{tikzcd}
 :::
 
 ::: {.front card-id="card-6b282cf8ba9d9f58"}

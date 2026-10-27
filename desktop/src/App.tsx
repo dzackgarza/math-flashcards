@@ -85,6 +85,7 @@ import {
   type CardRange,
 } from "./cards";
 import type { Side } from "./editor";
+import { replaceDiagram, type DiagramTarget } from "./diagrams";
 import { loadMathJax, previewHtml, type MathJaxRuntime } from "./math";
 import {
   CardRow,
@@ -136,6 +137,9 @@ const STALE = /changed on disk|changed during|changed before/;
 // serves this chunk locally, without an installer or network dependency.
 const SideEditor = lazy(() =>
   import("./editor").then(({ SideEditor }) => ({ default: SideEditor })),
+);
+const QuiverEditor = lazy(() =>
+  import("./quiver").then(({ QuiverEditor }) => ({ default: QuiverEditor })),
 );
 
 function preferences() {
@@ -216,6 +220,16 @@ export default function App() {
     card: CardRange;
     front: string;
     back: string;
+  } | null>(null);
+  const [diagramSession, setDiagramSession] = useState<{
+    root: string;
+    generation: number;
+    navigationToken: number;
+    path: string;
+    cardId: string;
+    side: Side;
+    source: string;
+    target: DiagramTarget | null;
   } | null>(null);
   const latestDraft = useRef<typeof draft>(null);
   const [task, setTask] = useState<Task>("Idle");
@@ -2645,6 +2659,36 @@ export default function App() {
                               mathjax={mathjax}
                               editable={!busy}
                               onChange={(value) => editCard(side, value)}
+                              onNewDiagram={() => {
+                                const active = latestDraft.current;
+                                if (!active || !current.current) return;
+                                setDiagramSession({
+                                  root: current.current.session.root,
+                                  generation:
+                                    current.current.session.generation,
+                                  navigationToken: navigation.current,
+                                  path: current.current.path,
+                                  cardId: active.card.id,
+                                  side,
+                                  source: active[side],
+                                  target: null,
+                                });
+                              }}
+                              onEditDiagram={(target) => {
+                                const active = latestDraft.current;
+                                if (!active || !current.current) return;
+                                setDiagramSession({
+                                  root: current.current.session.root,
+                                  generation:
+                                    current.current.session.generation,
+                                  navigationToken: navigation.current,
+                                  path: current.current.path,
+                                  cardId: active.card.id,
+                                  side,
+                                  source: active[side],
+                                  target,
+                                });
+                              }}
                             />
                           ))}
                         </div>
@@ -2749,6 +2793,47 @@ export default function App() {
           guard(() => chooseDeck(problem.path, problem.card ?? undefined));
         }}
       />
+      {diagramSession && (
+        <Suspense fallback={<Text>Loading Quiver…</Text>}>
+          <QuiverEditor
+            initial={diagramSession.target}
+            onClose={() => setDiagramSession(null)}
+            onApply={(source) => {
+              const active = latestDraft.current;
+              const doc = current.current;
+              if (
+                !active ||
+                !doc ||
+                doc.session.root !== diagramSession.root ||
+                doc.session.generation !== diagramSession.generation ||
+                navigation.current !== diagramSession.navigationToken ||
+                doc.path !== diagramSession.path ||
+                active.card.id !== diagramSession.cardId ||
+                active[diagramSession.side] !== diagramSession.source
+              ) {
+                setError(
+                  "The card changed while Quiver was open. Reopen its current diagram.",
+                );
+                setDiagramSession(null);
+                return;
+              }
+              try {
+                editCard(
+                  diagramSession.side,
+                  replaceDiagram(
+                    diagramSession.source,
+                    diagramSession.target,
+                    source,
+                  ),
+                );
+                setDiagramSession(null);
+              } catch (failure) {
+                setError(String(failure));
+              }
+            }}
+          />
+        </Suspense>
+      )}
       <Spotlight
         actions={commands}
         limit={40}

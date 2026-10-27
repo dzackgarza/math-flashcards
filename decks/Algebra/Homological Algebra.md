@@ -563,7 +563,22 @@ What is an **injective object**?
 :::
 
 ::: {.back card-id="card-d51a653fa3481330"}
-Remembering injectives and projectives: <https://q.uiver.app/?q=WzAsNSxbMCwyLCJBIl0sWzIsMiwiQiJdLFs0LDIsIkMiXSxbMCw0LCJJIl0sWzQsMCwiUCJdLFswLDEsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzEsMiwiIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzQsMl0sWzAsM10sWzQsMSwiXFxleGlzdHMgXFxpZmYgQyBcXHRleHR7IHByb2plY3RpdmV9IiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzEsMywiXFxleGlzdHMgXFxpZmYgQSBcXHRleHR7IGluamVjdGl2ZX0iLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=>
+Remembering injectives and projectives:
+
+\begin{tikzcd}
+	&&&& P \\
+	\\
+	A && B && C \\
+	\\
+	I
+	\arrow["{\exists \iff C \text{ projective}}"', dashed, from=1-5, to=3-3]
+	\arrow[from=1-5, to=3-5]
+	\arrow[hook, from=3-1, to=3-3]
+	\arrow[from=3-1, to=5-1]
+	\arrow[two heads, from=3-3, to=3-5]
+	\arrow["{\exists \iff A \text{ injective}}", dashed, from=3-3, to=5-1]
+\end{tikzcd}
+
 :::
 
 ::: {.front card-id="card-e37ad2148e34f1cb"}

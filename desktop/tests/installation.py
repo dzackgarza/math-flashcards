@@ -20,6 +20,10 @@ def prepare_asset_update(build: Path, candidate: Path, resources: Path) -> None:
     for name in ("desktop", "backend.py", "paired-cards.lua", "assets.json"):
         shutil.copy2(build / name, candidate / name)
     shutil.copytree(build / "asset-sets", candidate / "asset-sets")
+    # A test update must be a *complete* candidate. Omitting the newly
+    # prepared TikZ renderer would make its failure an installation-input
+    # failure instead of exercising the intended disconnected upgrade.
+    shutil.copytree(build / "tikz-assets", candidate / "tikz-assets")
     python = (resources / "runtime.txt").read_text().strip()
     subprocess.run(
         [
@@ -62,6 +66,16 @@ def main() -> None:
         for name in ("backend.py", "paired-cards.lua", "assets.json"):
             assert (resources / name).read_bytes() == (
                 desktop / "src-tauri" / "target" / "release" / name
+            ).read_bytes()
+        tikz_files = sorted(
+            file.relative_to(resources / "tikz-assets")
+            for file in (resources / "tikz-assets").rglob("*")
+            if file.is_file()
+        )
+        assert tikz_files
+        for name in tikz_files:
+            assert (resources / "tikz-assets" / name).read_bytes() == (
+                desktop / "src-tauri" / "target" / "release" / "tikz-assets" / name
             ).read_bytes()
         python = (resources / "runtime.txt").read_text().strip()
         workspace = root / "offline workspace"

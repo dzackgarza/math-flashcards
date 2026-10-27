@@ -23,7 +23,13 @@ package (`vendor/lezer-markdown-pandoc` in
 [Zettlr-pandoc-mathjax](https://github.com/dzackgarza/Zettlr-pandoc-mathjax)) from
 its `develop` branch into `desktop/.parser`, and the npm override makes CodeMirror
 use the same parser as card pairing.
-Installation needs `uv`, Pandoc, `trash`, and network access to GitHub.
+Installation needs `uv`, Pandoc, `trash`, LuaLaTeX, `pdf2svg`, the TeX Live
+TikZ dependencies, and network access to GitHub.
+The local Quiver editor assets are reused from the sibling
+`visual-tikz-editor/vendor/quiver` maintained fork. The installer also stages
+the canonical Pandoc TikZ filter and macro templates from
+`pandoc-config` main, plus the matching Quiver LaTeX package. All are part of
+the installed release; ordinary editing and export do not fetch resources.
 Install/update prepares an immutable release with its own Python environment
 and installed bridge. It fetches the macro set and MathJax `stmaryrd` package
 from pandoc-config main as one checked asset set. Opening, refreshing, loading,
@@ -115,6 +121,26 @@ including list indentation, emphasis, headings, blockquotes, code, and TeX.
 Set tags with **Tags**.
 The app creates the card ID and stores the sides as paired fenced divs.
 Each side can contain paragraphs, lists, math, and nested divs.
+
+Each Front/Back field has **New diagram** and, for existing diagrams,
+**Edit in Quiver**. Quiver opens locally in a full-screen diagram editor where
+you can create vertices, connect arrows, edit labels and styles, and use its
+keyboard and mouse tools. **Use diagram** commits the result to that card
+through the ordinary save/conflict mechanism; **Cancel** preserves the current
+authored source. The card editor shows a fitted diagram instead of the opaque
+link/source. **View larger** opens a full-screen view, and **Edit source**
+allows direct TikZ-cd editing. Diagrams are stored as human-editable `\\begin{tikzcd}` ...
+`\\end{tikzcd}` source, not as opaque URLs or SVG blobs. Older `q.uiver.app`
+links are recognized, imported locally by Quiver itself, and replaced by
+TikZ-cd when you apply the edit. A literal code example is never interpreted
+as a live diagram.
+
+Anki package generation passes actual TikZ-cd blocks to pandoc-config's
+canonical LuaLaTeX diagram renderer and embeds the generated SVG directly in
+the exported card. It uses the pinned Quiver package matching the installed
+editor, including higher-cell arrow styles. An invalid or unsupported diagram
+fails package generation without discarding the preceding `.apkg`. The
+Markdown source remains editable and is not replaced by the rendered image.
 
 A deck contains `.front` and `.back` divs with a shared `card-id` attribute.
 Pairs can appear in any order; fronts set the card order. Missing sides,
@@ -210,6 +236,8 @@ See [Anki's packaged deck documentation](https://docs.ankiweb.net/manual/importi
 | `just desktop-web` | Browser editor with the real backend on localhost |
 | `just desktop-frontend` | TypeScript check and frontend build |
 | `just desktop-source-test` | Side preservation, pair validation, and agreement with Pandoc |
+| `just desktop-diagram-test` | Local Quiver import, diagram creation/reimport, autosave and offline SVG in an actual Anki package |
+| `just desktop-installed-test --diagrams` | Real installed WebKit offline Quiver view/edit, asserting against clipped or illegibly small previews |
 | `just desktop-test` | Managed browser scenario with real filesystem edits and real APKG generation |
 | `just desktop-test startup` | Edit and save during incomplete workspace coverage |
 | `just desktop-organization-test` | Tree drag, grouped moves, reorder, merge, new decks, rename, delete, Undo, and updating all packages |

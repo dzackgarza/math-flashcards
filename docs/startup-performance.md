@@ -382,3 +382,22 @@ most 1 s, cold tree at most 2 s, selection at most 1 s and native input paint
 at most 0.100 s. Raw individual observations, page markers, and load average
 are retained in `desktop/test-artifacts/native-timings.json`. The measurement
 assertion continues to fail on any missed budget.
+
+## Quiver-enabled release regression (2026-10-28)
+
+After integrating local Quiver editing and restoring human-editable TikZ-cd in
+two decks, the unchanged native performance gate completed another 40 release
+launches (20 warm, 20 cold). The navigation tree paints before Quiver is used;
+its local host loads only when a diagram card is opened. Installed WebKit
+verification separately requires all vertices to fit at a legible scale and
+opens the full graphical editor without internet access.
+
+| Cache | Tree p95 / worst | Selection p95 / worst | Input paint p95 / worst |
+| --- | --- | --- | --- |
+| Warm | 0.933 / 1.025 s | 0.768 / 0.826 s | 92.2 / 94.7 ms |
+| Cold | 1.177 / 1.201 s | 0.762 / 0.818 s | 84.2 / 84.7 ms |
+
+All original p95 budgets remain satisfied: warm tree 1 s, cold tree 2 s,
+selected editor 1 s, and keyboard paint 100 ms. Every sampled input occurred
+while background checks remained incomplete. Individual observations and
+driver-overhead diagnostics are in `desktop/test-artifacts/native-timings.json`.

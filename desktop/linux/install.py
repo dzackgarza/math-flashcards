@@ -83,11 +83,20 @@ def install(spec: Installation) -> Path:
     if not archived_assets.is_file():
         raise FileNotFoundError(f"Prepare renderer assets first: {archived_assets}")
     resources = [*sorted(archive.glob("*.json")), *resources]
+    resources.extend(
+        sorted(
+            path
+            for path in (spec.build_dir / "tikz-assets").rglob("*")
+            if path.is_file()
+        )
+    )
+    if not any(path.name == "tikzcd.lua" for path in resources):
+        raise FileNotFoundError("Prepare the bundled TikZ renderer first.")
     for source in (binary, *resources):
         if not source.is_file():
             raise FileNotFoundError(f"Build the desktop app first: {source}")
     dependency_directories: list[str] = []
-    for name in ("uv", "pandoc", "trash"):
+    for name in ("uv", "pandoc", "trash", "lualatex", "pdf2svg"):
         executable = shutil.which(name)
         if executable is None:
             raise FileNotFoundError(f"Required runtime command: {name}")

@@ -18,16 +18,20 @@ check-math: desktop-dependencies
 test-push: test
 
 # Commit gate entry point; installs the verified build so the menu app matches the commit
-test-commit: test desktop-frontend desktop-source-test desktop-editor-test desktop-test desktop-organization-test desktop-update
+test-commit: test desktop-frontend desktop-source-test desktop-editor-test desktop-test desktop-diagram-test desktop-organization-test desktop-update
 
 # Install the desktop build dependencies
 desktop-dependencies:
     [ -d desktop/.parser ] || env -u GIT_INDEX_FILE git clone --quiet --filter=tree:0 --sparse --branch develop https://github.com/dzackgarza/Zettlr-pandoc-mathjax desktop/.parser
     env -u GIT_INDEX_FILE git -C desktop/.parser sparse-checkout set vendor/lezer-markdown-pandoc
     env -u GIT_INDEX_FILE git -C desktop/.parser pull --quiet --ff-only
+    [ -d desktop/.renderer ] || env -u GIT_INDEX_FILE git clone --quiet --filter=tree:0 --sparse --branch main https://github.com/dzackgarza/pandoc-config desktop/.renderer
+    env -u GIT_INDEX_FILE git -C desktop/.renderer sparse-checkout set styles filters templates
+    env -u GIT_INDEX_FILE git -C desktop/.renderer pull --quiet --ff-only
     cd desktop && bun update
     cd desktop/src-tauri && cargo update --quiet
     uv run --upgrade desktop/backend.py prepare
+    uv run --upgrade desktop/scripts/prepare-diagrams.py
 
 # Build and install the app in XDG user directories
 desktop-install: desktop-dependencies desktop-build desktop-deploy
@@ -68,6 +72,10 @@ desktop-frontend:
 # Verify the shared editor's rendering, wrapping, and source edits
 desktop-editor-test:
     cd desktop && bunx start-server-and-test 'just -f ../justfile desktop-web' http-get://127.0.0.1:1420 'uv run --upgrade tests/editor.py'
+
+# Graphical Quiver import/creation and offline SVG export through real backend
+desktop-diagram-test:
+    cd desktop && bunx start-server-and-test 'just -f ../justfile desktop-web' http-get://127.0.0.1:1420 'uv run --upgrade tests/quiver.py'
 
 # Exercise the editor against its real backend with an isolated server
 desktop-test scenario="full":

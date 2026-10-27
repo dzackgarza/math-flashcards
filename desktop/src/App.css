@@ -604,3 +604,49 @@ button.change-row:hover {
     max-height: 18rem;
   }
 }
+
+/* Quiver is the actual editor, installed as part of this release. Its iframe
+   includes all vertex/arrow controls, canvas gestures, and editing history. */
+.side-editor-heading { min-height: 28px; }
+.diagram-field-entry {
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px solid var(--hairline);
+}
+.quiver-card-diagram {
+  width: 100%;
+  min-height: 240px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--hairline);
+  border-radius: 6px;
+}
+.quiver-card-frame {
+  display: block;
+  width: 100%;
+  height: 320px;
+  border: 0;
+  pointer-events: none;
+}
+.quiver-card-diagram.expanded,
+.quiver-card-diagram.expanded .quiver-card-frame {
+  height: calc(100dvh - 115px);
+  max-height: none;
+}
+.quiver-modal .mantine-Modal-content,
+.quiver-modal .mantine-Modal-body { overflow: hidden; }
+.quiver-dialog {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: calc(100dvh - 102px);
+  min-height: 350px;
+}
+.quiver-edit-frame {
+  flex: 1 1 auto;
+  display: block;
+  width: 100%;
+  min-height: 0;
+  border: 1px solid var(--hairline);
+  border-radius: 6px;
+}

@@ -16,6 +16,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import re
 import sqlite3
 import subprocess
 import sys
@@ -26,6 +27,7 @@ from datetime import UTC, datetime
 from functools import cache
 from pathlib import Path
 from typing import Annotated, Literal
+from xml.etree import ElementTree
 
 try:
     import ankdown
@@ -48,6 +50,10 @@ except ModuleNotFoundError as error:
 
 EXPORTER = Path(ankdown.__file__).parent
 PAIR_FILTER = Path(__file__).with_name("paired-cards.lua")
+TIKZ_ASSETS = Path(__file__).with_name("tikz-assets")
+TIKZ_ENVIRONMENT = re.compile(
+    r"\\begin\{tikzcd\}(?:\[[^\n]*\])?[\s\S]*?\\end\{tikzcd\}"
+)
 type MacroDefinition = str | tuple[str, int] | tuple[str, int, str]
 type Digest = Annotated[str, Field(pattern=r"^[a-f0-9]{64}$")]
 
@@ -1013,7 +1019,116 @@ def producer_files() -> dict[str, Path]:
             "ankdown/" + name: EXPORTER / name
             for name in ("ankdown.lua", "cli.py", "mathjax.html", "card.css")
         },
+        **{
+            "tikz-assets/" + str(file.relative_to(TIKZ_ASSETS)): file
+            for file in sorted(TIKZ_ASSETS.rglob("*"))
+            if file.is_file()
+        },
     }
+
+
+@cache
+def tikz_renderer_identity() -> str:
+    files = sorted(file for file in TIKZ_ASSETS.rglob("*") if file.is_file())
+    if not files or not (TIKZ_ASSETS / "tikzcd.lua").is_file():
+        raise InstallationError(
+            "The prepared TikZ-cd renderer is missing. Run just desktop-install."
+        )
+    return digest(
+        b"".join(
+            str(file.relative_to(TIKZ_ASSETS)).encode()
+            + b"\0"
+            + digest(file.read_bytes()).encode()
+            + b"\0"
+            for file in files
+        )
+    )
+
+
+def render_diagrams(source: str, path: Path) -> tuple[str, str]:
+    """Produce offline inline SVG using pandoc-config's canonical TikZ filter.
+
+    The original Markdown remains authoritative. This rendering is for the
+    temporary Pandoc/Ankdown export input only; it does not rewrite card source
+    or substitute another diagram syntax/renderer.
+    """
+    if not TIKZ_ENVIRONMENT.search(source):
+        return "markdown", source
+    # Work on Pandoc's actual RawBlock nodes: a code fence illustrating
+    # TikZ-cd, or a quotation containing it, must not become a diagram.
+    parsed = subprocess.run(
+        ["pandoc", "-f", "markdown", "-t", "json"],
+        input=source,
+        text=True,
+        capture_output=True,
+        check=True,
+    )
+    document = json.loads(parsed.stdout)
+    identity = tikz_renderer_identity()
+    output_dir = user_cache_path("math-flashcards") / "tikz-images"
+    output_dir.mkdir(parents=True, exist_ok=True)
+    env = os.environ | {
+        "FIGURE_STYLES_DIR": str(TIKZ_ASSETS / "styles"),
+        "FIGURE_TEMPLATE_FILE": str(TIKZ_ASSETS / "standalone-tikz.tex"),
+        "FIGURES_SOURCE_DIR": str(path.parent),
+        "PANDOC_DOC_PATH": str(path),
+        "SVG_DIR": str(output_dir),
+        "TIKZ_RENDER_CONTEXT_HASH": identity,
+    }
+
+    def replace(block: str) -> str:
+        process = subprocess.run(
+            [
+                "pandoc",
+                "-f",
+                "markdown",
+                "-t",
+                "html",
+                "--lua-filter",
+                str(TIKZ_ASSETS / "tikzcd.lua"),
+            ],
+            input=block,
+            text=True,
+            cwd=path.parent,
+            env=env,
+            capture_output=True,
+            check=False,
+        )
+        image = re.search(r"<svg\b[\s\S]*?</svg>", process.stdout)
+        if process.returncode or image is None:
+            raise ValueError(
+                "The commutative diagram did not compile through the shared "
+                "TikZ-cd renderer. " + process.stderr[-5000:]
+            )
+        svg = image.group()
+        ElementTree.fromstring(svg)
+        return '<div class="anki-commutative-diagram">\n' + svg + "\n</div>"
+
+    pending: list[object] = [document]
+    converted = 0
+    while pending:
+        node = pending.pop()
+        if isinstance(node, dict):
+            content = node.get("c")
+            if (
+                node.get("t") == "RawBlock"
+                and isinstance(content, list)
+                and len(content) == 2
+                and content[0] in ("tex", "latex")
+                and isinstance(content[1], str)
+                and TIKZ_ENVIRONMENT.fullmatch(content[1].strip())
+            ):
+                node["c"] = ["html", replace(content[1])]
+                converted += 1
+            else:
+                pending.extend(node.values())
+        elif isinstance(node, list):
+            pending.extend(node)
+    return (
+        ("json", json.dumps(document, ensure_ascii=False))
+        if converted
+        else ("markdown", source)
+    )
 
 
 @cache
@@ -1134,6 +1249,7 @@ def sync(path: Path, output: Path, assets: AssetSet) -> Verification:
 def render(path: Path, source: str, scratch: Path) -> Iterator[RenderedDeck]:
     # Pandoc owns card parsing: https://pandoc.org/lua-filters.html
     # Keeping the input beside its deck preserves the exporter's image resolution.
+    format, prepared = render_diagrams(source, path)
     with tempfile.NamedTemporaryFile(
         mode="w",
         suffix=".tmp",
@@ -1141,13 +1257,13 @@ def render(path: Path, source: str, scratch: Path) -> Iterator[RenderedDeck]:
         dir=path.parent,
         encoding="utf-8",
     ) as temporary:
-        temporary.write(source)
+        temporary.write(prepared)
         temporary.flush()
         process = subprocess.run(
             [
                 "pandoc",
                 "-f",
-                "markdown",
+                format,
                 "--lua-filter",
                 str(PAIR_FILTER),
                 "--lua-filter",
