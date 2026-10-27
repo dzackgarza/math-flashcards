@@ -5,6 +5,7 @@
 """Capture the built native WebKit app in an isolated X11 display."""
 
 import configparser
+import difflib
 import json
 import math
 import os
@@ -25,6 +26,7 @@ import mss.tools
 import psutil
 from installation import prepare_asset_update
 from selenium import webdriver
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.webkitgtk.options import Options
@@ -34,14 +36,22 @@ from selenium.webdriver.webkitgtk.service import Service
 @dataclass
 class StartupSample:
     condition: str
+    # Actual release-process launch to usable painted tree, native click to
+    # painted editor, and native keydown to glyph pixels. These exclude the
+    # automation driver's session, command dispatch and xdotool startup.
     tree_seconds: float
     selection_seconds: float
     input_paint_seconds: float
     background_running: bool
-    # In-page components: WebView navigation start to the first tree
-    # publication, and keydown dispatch to the following animation frame.
+    # Diagnostics and conservative end-to-end automation upper bounds.
+    driver_tree_seconds: float
+    driver_selection_seconds: float
+    driver_input_seconds: float
+    # In-page components: WebView navigation start to published navigation,
+    # and keydown dispatch to the second following animation frame.
     page_tree_seconds: float
     page_input_seconds: float
+    page_start_seconds: float
 
 
 @dataclass
@@ -105,6 +115,18 @@ def measure_startup(entry: Path | None, profile: bool) -> None:
                     command_executor=service.service_url, options=options
                 )
 
+            def native_start() -> float:
+                # The driver launches the real release binary as its child.
+                # WebDriver's session handshake is not part of the app launch.
+                children = psutil.Process(service.process.pid).children(recursive=True)
+                candidates = [
+                    child.create_time()
+                    for child in children
+                    if child.name() == "desktop"
+                ]
+                assert candidates, "The native release process was not found."
+                return min(candidates)
+
             def finish(driver: webdriver.Remote) -> None:
                 children = psutil.Process(service.process.pid).children(recursive=True)
                 driver.quit()
@@ -121,7 +143,8 @@ def measure_startup(entry: Path | None, profile: bool) -> None:
             try:
                 driver = launch()
                 try:
-                    wait = WebDriverWait(driver, 120, poll_frequency=0.02)
+                    # The first complete analysis is setup, not a measured endpoint.
+                    wait = WebDriverWait(driver, 900, poll_frequency=0.02)
                     wait.until(
                         lambda d: d.find_elements(By.CSS_SELECTOR, "[data-deck]")
                     )
@@ -185,6 +208,7 @@ def measure_startup(entry: Path | None, profile: bool) -> None:
                         launched = time.monotonic()
                         driver = launch()
                         try:
+                            process_started = native_start()
                             wait = WebDriverWait(driver, 30, poll_frequency=0.01)
                             wait.until(
                                 lambda d: (
@@ -197,9 +221,36 @@ def measure_startup(entry: Path | None, profile: bool) -> None:
                                         By.CSS_SELECTOR,
                                         '.sidebar-head [aria-label="Loading"]',
                                     )
+                                    and d.execute_script(
+                                        "return performance.getEntriesByName('flashcards:tree-usable').length > 0"
+                                    )
                                 )
                             )
-                            tree_seconds = time.monotonic() - launched
+                            driver_tree_seconds = time.monotonic() - launched
+                            tree_clock = driver.execute_script("""
+                              const usable = performance.getEntriesByName('flashcards:tree-usable')[0];
+                              if (!usable) return null;
+                              return (performance.timeOrigin + usable.startTime) / 1000;
+                            """)
+                            assert tree_clock is not None, (
+                                "The usable tree was not marked."
+                            )
+                            tree_seconds = tree_clock - process_started
+                            # WebKit's performance.timeOrigin and psutil's
+                            # kernel process creation timestamp are separate
+                            # wall-clock estimates. In particular a usable
+                            # paint can follow WebDriver's earlier DOM-ready
+                            # observation; their measured difference is not
+                            # a validity assertion. Retain both measurements.
+                            assert tree_seconds > 0
+                            page_start_seconds = (
+                                tree_clock
+                                - driver.execute_script(
+                                    "return performance.getEntriesByName('flashcards:tree-usable')[0].startTime"
+                                )
+                                / 1000
+                                - process_started
+                            )
                             page_tree_seconds = (
                                 driver.execute_script(
                                     "return performance.getEntriesByName('flashcards:tree-published')[0].startTime"
@@ -237,6 +288,28 @@ def measure_startup(entry: Path | None, profile: bool) -> None:
                                     }
                                   };
                                 """)
+                            # Observe the actual native click and the editor's
+                            # second painted frame inside the WebView, not the
+                            # Selenium request/response round trip.
+                            driver.execute_script("""
+                              window.nativeSelection = null;
+                              const deck = document.querySelector('[data-deck="Analysis/Precalculus.md"]');
+                              deck.addEventListener('click', () => {
+                                const start = performance.now();
+                                const ready = () => {
+                                  const editor = document.querySelector('.side-editor.front .cm-content');
+                                  const math = document.querySelector('.side-editor.front mjx-container');
+                                  if (editor?.getAttribute('contenteditable') !== 'true' || !math) return;
+                                  observer.disconnect();
+                                  requestAnimationFrame(() => requestAnimationFrame(() => {
+                                    window.nativeSelection = (performance.now() - start) / 1000;
+                                  }));
+                                };
+                                const observer = new MutationObserver(ready);
+                                observer.observe(document.body, {childList: true, subtree: true, attributes: true});
+                                ready();
+                              }, {capture: true, once: true});
+                            """)
                             selected = time.monotonic()
                             deck.click()
                             editor = wait.until(
@@ -257,7 +330,12 @@ def measure_startup(entry: Path | None, profile: bool) -> None:
                                     == "true"
                                 )
                             )
-                            selection_seconds = time.monotonic() - selected
+                            driver_selection_seconds = time.monotonic() - selected
+                            selection_seconds = wait.until(
+                                lambda d: d.execute_script(
+                                    "return window.nativeSelection"
+                                )
+                            )
                             if profile:
                                 profiles.extend(
                                     MathProfile(condition=condition, **values)
@@ -271,6 +349,14 @@ def measure_startup(entry: Path | None, profile: bool) -> None:
                                 ).get_attribute("textContent")
                                 != "Workspace checks complete"
                             )
+                            # innerText alone loses trailing empty lines, so
+                            # it can claim Undo restored a field while a new
+                            # blank line remains in the saved Markdown.
+                            front_text = """return {
+                              text: document.querySelector('.side-editor.front .cm-content').innerText,
+                              lines: document.querySelectorAll('.side-editor.front .cm-line').length
+                            }"""
+                            unedited = driver.execute_script(front_text)
                             editor.click()
                             subprocess.run(
                                 [
@@ -287,9 +373,25 @@ def measure_startup(entry: Path | None, profile: bool) -> None:
                                     "return document.querySelector('.side-editor.front .cm-line:last-child').textContent.trim() === ''"
                                 )
                             )
-                            left, top = driver.execute_script(
-                                "const line=document.querySelector('.side-editor.front .cm-line:last-child');const r=line.getBoundingClientRect();return [Math.floor(r.left+parseFloat(getComputedStyle(line).paddingLeft))+2,Math.floor(r.top)+4]"
-                            )
+                            # Math above the new line can still be laying out;
+                            # sample the line only once its position holds
+                            # across consecutive animation frames.
+                            left, top = driver.execute_async_script("""
+                              const done = arguments[arguments.length - 1];
+                              const place = () => {
+                                const line = document.querySelector('.side-editor.front .cm-line:last-child');
+                                const r = line.getBoundingClientRect();
+                                return [Math.floor(r.left + parseFloat(getComputedStyle(line).paddingLeft)) + 2, Math.floor(r.top) + 4];
+                              };
+                              let previous = place(), stable = 0;
+                              const step = () => requestAnimationFrame(() => {
+                                const next = place();
+                                stable = next[0] === previous[0] && next[1] === previous[1] ? stable + 1 : 0;
+                                previous = next;
+                                if (stable >= 3) done(next); else step();
+                              });
+                              step();
+                            """)
                             with mss.MSS() as screen:
                                 region = {
                                     "left": left,
@@ -305,8 +407,10 @@ def measure_startup(entry: Path | None, profile: bool) -> None:
                                 baseline = dark(before)
                                 driver.execute_script("""
                                   window.inputFrame = null;
+                                  window.nativeKeyEpoch = null;
                                   window.addEventListener('keydown', (event) => {
                                     const start = event.timeStamp;
+                                    window.nativeKeyEpoch = (performance.timeOrigin + start) / 1000;
                                     requestAnimationFrame(() => requestAnimationFrame(() => {
                                       window.inputFrame = (performance.now() - start) / 1000;
                                     }));
@@ -320,6 +424,7 @@ def measure_startup(entry: Path | None, profile: bool) -> None:
                                 while time.monotonic() - typed < 5:
                                     pixels = screen.grab(region).rgb
                                     if pixels != before and dark(pixels) > baseline + 5:
+                                        pixel_seen_epoch = time.time()
                                         break
                                 else:
                                     driver.save_screenshot(
@@ -356,7 +461,15 @@ def measure_startup(entry: Path | None, profile: bool) -> None:
                                     raise AssertionError(
                                         "The native input glyph did not paint."
                                     )
-                                input_seconds = time.monotonic() - typed
+                                driver_input_seconds = time.monotonic() - typed
+                            key_epoch = driver.execute_script(
+                                "return window.nativeKeyEpoch"
+                            )
+                            assert key_epoch is not None, (
+                                "The native key event was not received."
+                            )
+                            input_seconds = pixel_seen_epoch - key_epoch
+                            assert 0 < input_seconds <= driver_input_seconds + 0.05
                             page_input_seconds = wait.until(
                                 lambda d: d.execute_script("return window.inputFrame")
                             )
@@ -366,34 +479,61 @@ def measure_startup(entry: Path | None, profile: bool) -> None:
                                 )
                                 == "m"
                             )
+                            # CodeMirror groups history entries by input timing:
+                            # https://codemirror.net/docs/ref/#commands.history^config.newGroupDelay
+                            for _ in range(4):
+                                if driver.execute_script(front_text) == unedited:
+                                    break
+                                subprocess.run(
+                                    ["xdotool", "key", "--clearmodifiers", "ctrl+z"],
+                                    check=True,
+                                )
+                                time.sleep(0.2)
+                            assert driver.execute_script(front_text) == unedited
                             subprocess.run(
-                                [
-                                    "xdotool",
-                                    "key",
-                                    "--clearmodifiers",
-                                    "ctrl+z",
-                                    "ctrl+z",
-                                    "ctrl+s",
-                                ],
+                                ["xdotool", "key", "--clearmodifiers", "ctrl+s"],
                                 check=True,
                             )
-                            wait.until(
-                                lambda d: (
-                                    source.read_bytes() == original
-                                    and "Saving"
-                                    not in d.find_element(
-                                        By.CSS_SELECTOR, ".toolbar .status"
-                                    ).get_attribute("textContent")
+                            try:
+                                wait.until(
+                                    lambda d: (
+                                        source.read_bytes() == original
+                                        and "Saving"
+                                        not in d.find_element(
+                                            By.CSS_SELECTOR, ".toolbar .status"
+                                        ).get_attribute("textContent")
+                                    )
                                 )
-                            )
+                            except TimeoutException:
+                                raise AssertionError(
+                                    json.dumps(
+                                        {
+                                            "status": driver.find_element(
+                                                By.CSS_SELECTOR, ".toolbar .status"
+                                            ).get_attribute("textContent"),
+                                            "difference": [
+                                                line
+                                                for line in difflib.unified_diff(
+                                                    original.decode().splitlines(),
+                                                    source.read_text().splitlines(),
+                                                    lineterm="",
+                                                )
+                                            ][:20],
+                                        }
+                                    ),
+                                )
                             sample = StartupSample(
                                 condition,
                                 tree_seconds,
                                 selection_seconds,
                                 input_seconds,
                                 background_running,
+                                driver_tree_seconds,
+                                driver_selection_seconds,
+                                driver_input_seconds,
                                 page_tree_seconds,
                                 page_input_seconds,
+                                page_start_seconds,
                             )
                             samples.append(sample)
                             print(json.dumps(asdict(sample)), flush=True)
@@ -419,6 +559,8 @@ def measure_startup(entry: Path | None, profile: bool) -> None:
     report = {
         "binary": str(binary),
         "background_seconds": background_seconds,
+        # Samples taken under external CPU load are not acceptance samples.
+        "load_average": os.getloadavg(),
         "samples": [asdict(sample) for sample in samples],
         "p95": {
             condition: {
@@ -431,6 +573,36 @@ def measure_startup(entry: Path | None, profile: bool) -> None:
                     "tree_seconds",
                     "selection_seconds",
                     "input_paint_seconds",
+                )
+            }
+            for condition in ("warm", "cold")
+        },
+        "worst": {
+            condition: {
+                metric: max(
+                    getattr(sample, metric)
+                    for sample in samples
+                    if sample.condition == condition
+                )
+                for metric in (
+                    "tree_seconds",
+                    "selection_seconds",
+                    "input_paint_seconds",
+                )
+            }
+            for condition in ("warm", "cold")
+        },
+        "driver_p95": {
+            condition: {
+                metric: sorted(
+                    getattr(sample, metric)
+                    for sample in samples
+                    if sample.condition == condition
+                )[math.ceil(0.95 * repetitions) - 1]
+                for metric in (
+                    "driver_tree_seconds",
+                    "driver_selection_seconds",
+                    "driver_input_seconds",
                 )
             }
             for condition in ("warm", "cold")
@@ -450,6 +622,8 @@ def measure_startup(entry: Path | None, profile: bool) -> None:
     if profile:
         report.pop("page_p95")
         report.pop("p95")
+        report.pop("driver_p95")
+        report.pop("worst")
         report["mathjax"] = [asdict(result) for result in profiles]
     (
         artifacts / ("native-profile.json" if profile else "native-timings.json")

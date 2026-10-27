@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { cards } from "./cards";
+import { backgroundTurn } from "./background";
 import { request, searchCacheSchema, type SearchCard } from "./bridge";
 
 interface SearchSource {
@@ -126,6 +127,8 @@ export function useSearch(
           }
           let summaries: SearchCard[];
           try {
+            await backgroundTurn();
+            if (cancelled) return;
             summaries = cards(deck.source).map((card) => ({
               id: card.id,
               label: card.label,
@@ -205,8 +208,7 @@ export function useSearch(
             error: "",
           });
           publish((value) => value + 1);
-          // Yield between decks, as in the existing Problems scheduler.
-          await new Promise<void>((resolve) => setTimeout(resolve, 0));
+          // The next source parser also waits for an idle foreground interval.
         }
       }
     };

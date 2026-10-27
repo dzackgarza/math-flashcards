@@ -89,6 +89,11 @@ package checks, and the package status shows **Checking Anki package…** until
 verification finishes. Problems shows its own checked coverage while results
 are incomplete. You can edit and save during these checks. Failed background
 checks show an error and a retry action. Refresh uses local resources.
+The shared CodeMirror card editors load from a local application chunk after
+the navigation tree appears; opening a deck does not fetch dependencies from the
+network. Source search, Problems checks, and card previews process the complete
+workspace on cooperative idle turns and defer computational work briefly while
+the user is typing. Nothing is silently omitted from the final results.
 The card list shows its cards; select a card to edit its sides. **New** and
 **Edited** mark the cards that the package does not contain yet.
 

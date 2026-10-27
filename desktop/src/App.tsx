@@ -1,4 +1,6 @@
 import {
+  lazy,
+  Suspense,
   useCallback,
   useEffect,
   useMemo,
@@ -82,7 +84,7 @@ import {
   type CardChange,
   type CardRange,
 } from "./cards";
-import { type Side, SideEditor } from "./editor";
+import type { Side } from "./editor";
 import { loadMathJax, previewHtml, type MathJaxRuntime } from "./math";
 import {
   CardRow,
@@ -98,6 +100,7 @@ import { ReviewChanges } from "./review";
 import { ProblemDrawer, useProblems } from "./problem-drawer";
 import { useSearch } from "./search";
 import { previousPackage, refreshTargets } from "./packages";
+import { backgroundTurn, noteForegroundInput } from "./background";
 import {
   request,
   watchWorkspace,
@@ -127,6 +130,13 @@ type Notice = { label: string; undo: Change[] | null };
 type Review = { scope: string | null; decks: Pending[] | null };
 
 const STALE = /changed on disk|changed during|changed before/;
+
+// Loading the CodeMirror/MathJax field editor is only required after a deck is
+// selected. Keep its extensions out of the initial navigation bundle; Tauri
+// serves this chunk locally, without an installer or network dependency.
+const SideEditor = lazy(() =>
+  import("./editor").then(({ SideEditor }) => ({ default: SideEditor })),
+);
 
 function preferences() {
   return appConfigDir()
@@ -207,6 +217,7 @@ export default function App() {
     front: string;
     back: string;
   } | null>(null);
+  const latestDraft = useRef<typeof draft>(null);
   const [task, setTask] = useState<Task>("Idle");
   const [progress, setProgress] = useState("");
   const [buildResult, setBuildResult] = useState<"Ready" | "Failed">("Ready");
@@ -255,6 +266,34 @@ export default function App() {
     () => treeData(membership ? membership.split("\n") : []),
     [membership],
   );
+  // The publication mark precedes React's DOM commit. Release measurements
+  // also need the first usable, painted tree (with navigation enabled).
+  useEffect(() => {
+    if (
+      !workspace ||
+      busy ||
+      !decks.length ||
+      performance.getEntriesByName("flashcards:tree-usable").length
+    )
+      return;
+    let frame = requestAnimationFrame(() => {
+      frame = requestAnimationFrame(() => {
+        if (
+          window.document.querySelector("[data-deck]") &&
+          !window.document.querySelector('.sidebar-head [aria-label="Loading"]')
+        ) {
+          performance.mark("flashcards:tree-usable");
+          // Request the local editor chunk only after navigation has painted.
+          // Its JavaScript compilation must not delay the initial deck tree.
+          void import("./editor");
+        }
+      });
+    });
+    return () => cancelAnimationFrame(frame);
+    // Cached navigation and the reconciled manifest can have identical
+    // membership but distinct array identities. Do not cancel the first
+    // painted-tree measurement (or its editor prefetch) for that refetch.
+  }, [workspace, busy, membership]);
   // Pandoc counts the saved deck's cards; the editor parser must agree.
   const mismatch = useMemo(
     () =>
@@ -388,6 +427,11 @@ export default function App() {
   ) {
     current.current = next(current.current);
     setDocument(current.current);
+  }
+
+  function updateDraft(next: typeof draft) {
+    latestDraft.current = next;
+    setDraft(next);
   }
 
   async function refresh(root = workspace, changes: string[] | null = null) {
@@ -848,6 +892,14 @@ export default function App() {
     saving.current = saving.current.then(async () => {
       const open = current.current;
       if (!open || open.source === open.saved) return;
+      const selectionToken = navigation.current;
+      const stillOpen = (latest: Document | null): latest is Document =>
+        selectionToken === navigation.current &&
+        latest?.path === open.path &&
+        latest.session.root === open.session.root &&
+        latest.session.generation === open.session.generation &&
+        latest.hash === open.hash &&
+        latest.saved === open.saved;
       try {
         cards(open.source);
       } catch {
@@ -865,21 +917,22 @@ export default function App() {
           },
           documentSchema,
         );
-        updateDocument((document) =>
-          document?.path === open.path &&
-          document.session.root === open.session.root
-            ? {
-                ...document,
-                saved: open.source,
-                hash: result.hash,
-                cards: result.cards,
-                status: result.status,
-                reasons: result.reasons,
-                built: result.built,
-              }
-            : document,
-        );
-        setConflict(false);
+        if (stillOpen(current.current)) {
+          updateDocument((document) =>
+            stillOpen(document)
+              ? {
+                  ...document,
+                  saved: open.source,
+                  hash: result.hash,
+                  cards: result.cards,
+                  status: result.status,
+                  reasons: result.reasons,
+                  built: result.built,
+                }
+              : document,
+          );
+          setConflict(false);
+        }
         void checkPaths(
           open.session.root,
           reconciliation.current,
@@ -887,11 +940,7 @@ export default function App() {
           workspaceNavigation.current,
         ).catch((failure) => setError(String(failure)));
       } catch (failure) {
-        if (
-          current.current?.path !== open.path ||
-          current.current.session.root !== open.session.root
-        )
-          return;
+        if (!stillOpen(current.current)) return;
         if (STALE.test(String(failure))) setConflict(true);
         else setError(String(failure));
       }
@@ -983,7 +1032,7 @@ export default function App() {
       updateDocument(() => null);
       setSelection([]);
       setNotice(null);
-      setDraft(null);
+      updateDraft(null);
       setLog("");
       setConflict(false);
       setBuildResult("Ready");
@@ -1158,12 +1207,23 @@ export default function App() {
       // A deck removed outside the app closes.
       if (/No such file|does not exist/.test(String(failure))) {
         updateDocument(() => null);
-        setDraft(null);
+        updateDraft(null);
         return;
       }
       setError(String(failure));
     });
   }, 300);
+
+  useEffect(() => {
+    window.addEventListener("keydown", noteForegroundInput, true);
+    window.addEventListener("input", noteForegroundInput, true);
+    window.addEventListener("pointerdown", noteForegroundInput, true);
+    return () => {
+      window.removeEventListener("keydown", noteForegroundInput, true);
+      window.removeEventListener("input", noteForegroundInput, true);
+      window.removeEventListener("pointerdown", noteForegroundInput, true);
+    };
+  }, []);
 
   useEffect(() => {
     if (!isTauri()) {
@@ -1256,7 +1316,11 @@ export default function App() {
   }, [workspace, refreshOnChange, followOnChange]);
 
   function edit(source: string) {
-    if (!document || document.source === source) return;
+    noteForegroundInput();
+    // The ref holds the latest text; a render-time copy can predate the
+    // previous keystroke, which would drop an edit that restores it.
+    const open = current.current;
+    if (!open || open.source === source) return;
     updateDocument((open) => (open ? { ...open, source } : open));
     autosave();
   }
@@ -1264,7 +1328,7 @@ export default function App() {
   function selectCard(cardIndex: number, source: string) {
     setIndex(cardIndex);
     const card = cards(source)[cardIndex];
-    setDraft(
+    updateDraft(
       card
         ? { source, card, front: card.front.value, back: card.back.value }
         : null,
@@ -1272,16 +1336,17 @@ export default function App() {
   }
 
   function editCard(field: Side, value: string) {
-    if (!document || !draft) return;
-    const next = { ...draft, [field]: value };
-    let source = draft.source;
+    const previous = latestDraft.current;
+    if (!current.current || !previous) return;
+    const next = { ...previous, [field]: value };
+    let source = previous.source;
     const sides: Side[] = ["front", "back"];
     for (const side of sides.sort(
-      (a, b) => draft.card[b].from - draft.card[a].from,
+      (a, b) => previous.card[b].from - previous.card[a].from,
     )) {
-      source = replaceField(source, draft.card[side], next[side]);
+      source = replaceField(source, previous.card[side], next[side]);
     }
-    setDraft(next);
+    updateDraft(next);
     edit(source);
   }
 
@@ -1300,16 +1365,29 @@ export default function App() {
   async function keepMyVersion() {
     const open = current.current;
     if (!open) return;
+    const token = navigation.current;
     const disk = await request(
       {
         action: "load",
-        workspace,
+        workspace: open.session.root,
         path: open.path,
         generation: reconciliation.current,
       },
       documentSchema,
     );
-    updateDocument((document) => document && { ...document, hash: disk.hash });
+    if (
+      token !== navigation.current ||
+      current.current?.path !== open.path ||
+      current.current.session.root !== open.session.root ||
+      current.current.session.generation !== open.session.generation ||
+      current.current.hash !== open.hash
+    )
+      return;
+    updateDocument((document) =>
+      document && document.path === open.path
+        ? { ...document, hash: disk.hash }
+        : document,
+    );
     await persist();
   }
 
@@ -1460,38 +1538,62 @@ export default function App() {
     label: string,
     focus?: string,
   ) {
+    const root = workspace;
+    const workspaceToken = workspaceNavigation.current;
+    const navigationToken = navigation.current;
+    const active = () =>
+      workspaceToken === workspaceNavigation.current &&
+      root === workspaceRoot.current;
+    const ownsSelection = () =>
+      active() && navigationToken === navigation.current;
+    // The caller may have awaited a file read in an older workspace before
+    // invoking organize. Do not write its edits to that obsolete root.
+    if (!active()) return;
     const open = current.current?.path;
     const touched = changes.some((change) => change.path === open);
     setTask("Organizing");
     setError("");
-    const result = await request(
-      { action: "organize", workspace, changes },
-      organizedSchema,
-    ).finally(() => setTask("Idle"));
-    await refresh();
-    const removed = changes
-      .filter((change) => change.source === null)
-      .map((change) => change.path);
-    const next = focus ?? (touched ? open : undefined);
-    if (next && !removed.includes(next))
-      await chooseDeck(next, selected?.id, "preferred");
-    else if (touched) {
-      navigation.current++;
-      updateDocument(() => null);
-      setDraft(null);
-      setSelection([]);
+    try {
+      const result = await request(
+        { action: "organize", workspace: root, changes },
+        organizedSchema,
+      );
+      if (!active()) return;
+      await refresh(root);
+      if (!active()) return;
+      const removed = changes
+        .filter((change) => change.source === null)
+        .map((change) => change.path);
+      const next = focus ?? (touched ? open : undefined);
+      if (ownsSelection()) {
+        if (next && !removed.includes(next))
+          await chooseDeck(next, selected?.id, "preferred");
+        else if (touched) {
+          navigation.current++;
+          updateDocument(() => null);
+          updateDraft(null);
+          setSelection([]);
+          setTask("Idle");
+        }
+      }
+      if (!active()) return;
+      setNotice({
+        label,
+        undo:
+          originals &&
+          result.changed.map((deck) => ({
+            path: deck.path,
+            source: originals[deck.path],
+            expected: deck.hash,
+          })),
+      });
+      announce(label);
+    } catch (failure) {
+      if (active()) throw failure;
+    } finally {
+      // A superseding deck load or workspace change owns the task indicator.
+      if (ownsSelection()) setTask("Idle");
     }
-    setNotice({
-      label,
-      undo:
-        originals &&
-        result.changed.map((deck) => ({
-          path: deck.path,
-          source: originals[deck.path],
-          expected: deck.hash,
-        })),
-    });
-    announce(label);
   }
 
   async function moveCards(
@@ -1829,16 +1931,20 @@ export default function App() {
     if (!missing.length) return;
     let cancelled = false;
     async function renderPreviews(renderer: MathJaxRuntime) {
-      let started = performance.now();
+      let published = performance.now();
       for (const source of missing) {
+        // Each MathJax conversion is synchronous and can outlast a frame.
+        // Yielding through a zero-delay timer immediately queues more main-
+        // thread work, competing with typing. Render one summary at a time
+        // only when the browser has an idle turn (with a finite fallback).
+        await backgroundTurn();
         if (cancelled) return;
         cache.html.set(source, previewHtml(renderer, source));
-        // Yield at the task boundary used by search and Problems, publishing
-        // the summaries rendered so far at most once per frame budget.
-        if (performance.now() - started > 8) {
+        // The cache is mutable; publish at bounded intervals rather than
+        // triggering one whole-editor React render for every card summary.
+        if (performance.now() - published > 50) {
           setPreviewVersion((version) => version + 1);
-          await new Promise<void>((resolve) => setTimeout(resolve, 0));
-          started = performance.now();
+          published = performance.now();
         }
       }
       if (!cancelled) setPreviewVersion((version) => version + 1);
@@ -2527,20 +2633,22 @@ export default function App() {
                           Delete card
                         </Button>
                       </Group>
-                      <div className="side-editors">
-                        {(["front", "back"] as const).map((side) => (
-                          <SideEditor
-                            key={
-                              document.path + ":" + draft.card.id + ":" + side
-                            }
-                            side={side}
-                            value={draft[side]}
-                            mathjax={mathjax}
-                            editable={!busy}
-                            onChange={(value) => editCard(side, value)}
-                          />
-                        ))}
-                      </div>
+                      <Suspense fallback={<Text>Loading card editors…</Text>}>
+                        <div className="side-editors">
+                          {(["front", "back"] as const).map((side) => (
+                            <SideEditor
+                              key={
+                                document.path + ":" + draft.card.id + ":" + side
+                              }
+                              side={side}
+                              value={draft[side]}
+                              mathjax={mathjax}
+                              editable={!busy}
+                              onChange={(value) => editCard(side, value)}
+                            />
+                          ))}
+                        </div>
+                      </Suspense>
                       <TagsInput
                         label="Tags"
                         placeholder="Add a tag"
@@ -2555,7 +2663,7 @@ export default function App() {
                             selected,
                             tags,
                           );
-                          setDraft({
+                          updateDraft({
                             ...draft,
                             source,
                             card: cards(source)[index],

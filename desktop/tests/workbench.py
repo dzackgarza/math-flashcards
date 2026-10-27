@@ -84,12 +84,31 @@ def startup() -> None:
                 front.fill("Startup input $x^2$")
                 expect(front).to_contain_text("Startup input")
                 input_seconds = time.monotonic() - typed
+                # Send two CodeMirror input transactions in one browser task.
+                # React can batch both state updates, so the second must not
+                # rebuild the deck from the draft captured before the first.
+                inserted = page.evaluate("""() => {
+                  const front = document.querySelector('.side-editor.front .cm-content');
+                  const back = document.querySelector('.side-editor.back .cm-content');
+                  front.focus();
+                  const first = document.execCommand('insertText', false, ' rapid-front');
+                  back.focus();
+                  const second = document.execCommand('insertText', false, 'rapid-back ');
+                  return [first, second];
+                }""")
+                assert inserted == [True, True], inserted
+                expect(front).to_contain_text("rapid-front")
+                expect(page.locator(".side-editor.back .cm-content")).to_contain_text(
+                    "rapid-back"
+                )
                 deck = workspace / "Analysis" / "Precalculus.md"
                 for _ in range(300):
                     if "Startup input $x^2$" in deck.read_text():
                         break
                     page.wait_for_timeout(100)
-                assert "Startup input $x^2$" in deck.read_text()
+                saved = deck.read_text()
+                assert "Startup input $x^2$" in saved
+                assert "rapid-front" in saved and "rapid-back" in saved
                 page.screenshot(path=str(artifacts / "startup-editing.png"))
                 expect(progress).to_have_text(
                     "Workspace checks complete", timeout=120000

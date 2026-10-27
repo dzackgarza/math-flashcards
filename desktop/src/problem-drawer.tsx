@@ -11,6 +11,7 @@ import {
 import { previewHtml, type MathJaxRuntime } from "./math";
 import { deckName } from "./organize";
 import { problemBatches, type Problem } from "./problems";
+import { backgroundTurn } from "./background";
 import {
   request,
   problemCacheSchema,
@@ -144,10 +145,16 @@ export function useProblems(
         for (const deck of pending) {
           if (current(deck) || unavailable.has(deck.path)) continue;
           const problems: Problem[] = [];
-          for (const batch of problemBatches(mathjax, deck.path, deck.source)) {
-            problems.push(...batch);
-            await new Promise((resolve) => setTimeout(resolve));
+          const batches = problemBatches(mathjax, deck.path, deck.source);
+          while (true) {
+            // `next()` can synchronously parse and check an entire card.
+            // Defer that work, not just the iteration after it, so the editor
+            // handles input before the next expensive MathJax check.
+            await backgroundTurn();
             if (cancelled) return;
+            const batch = batches.next();
+            if (batch.done) break;
+            problems.push(...batch.value);
           }
           if (cacheHealthy) {
             const response = await request(

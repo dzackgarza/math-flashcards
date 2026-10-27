@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { Box, Text } from "@mantine/core";
 import CodeMirror from "@uiw/react-codemirror";
 import {
@@ -26,6 +26,28 @@ export function SideEditor({
   onChange: (value: string) => void;
 }) {
   const label = side === "front" ? "Front" : "Back";
+  // @uiw/react-codemirror applies a changed `value` prop as an ExternalChange
+  // transaction, which it never reports through onChange. A late render can
+  // deliver a value this editor already emitted and overwrite newer text
+  // without the parent seeing it. Values the editor emitted are echoes; only
+  // other values are external changes.
+  // Props arrive in emission order, so an acknowledged value retires every
+  // earlier one.
+  const emitted = useRef([value]);
+  const [shown, setShown] = useState(value);
+  const acknowledged = emitted.current.lastIndexOf(value);
+  if (acknowledged > 0) emitted.current = emitted.current.slice(acknowledged);
+  else if (acknowledged < 0) {
+    emitted.current = [value];
+    if (value !== shown) setShown(value);
+  }
+  const onChangeRef = useRef(onChange);
+  onChangeRef.current = onChange;
+  const change = useCallback((next: string) => {
+    emitted.current.push(next);
+    setShown(next);
+    onChangeRef.current(next);
+  }, []);
   const extensions = useMemo(
     () => [
       previewConfig.of({ previewModeShowSyntaxWhenCursorIsAdjacent: false }),
@@ -51,7 +73,7 @@ export function SideEditor({
         {label}
       </Text>
       <CodeMirror
-        value={value}
+        value={shown}
         minHeight="160px"
         extensions={extensions}
         basicSetup={{
@@ -61,7 +83,7 @@ export function SideEditor({
           syntaxHighlighting: false,
         }}
         editable={editable}
-        onChange={onChange}
+        onChange={change}
         aria-label={label}
       />
     </Box>
