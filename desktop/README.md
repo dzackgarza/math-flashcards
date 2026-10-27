@@ -127,8 +127,13 @@ Each Front/Back field has **New diagram** and, for existing diagrams,
 you can create vertices, connect arrows, edit labels and styles, and use its
 keyboard and mouse tools. **Use diagram** commits the result to that card
 through the ordinary save/conflict mechanism; **Cancel** preserves the current
-authored source. The card editor shows a fitted diagram instead of the opaque
-link/source. **View larger** opens a full-screen view, and **Edit source**
+authored source. The card editor displays the exact compiled SVG produced by
+the shared Pandoc/TikZ-cd renderer (also used for Anki export), not Quiver's
+CSS-scaled editing canvas. This avoids seams and uneven line thickness on
+curved/double arrows. The preview compiles asynchronously and has its own
+backend queue, so it cannot block foreground saving or background checks.
+It never rewrites the authored source. **View larger** opens a full-screen
+vector view, and **Edit source**
 allows direct TikZ-cd editing. Diagrams are stored as human-editable `\\begin{tikzcd}` ...
 `\\end{tikzcd}` source, not as opaque URLs or SVG blobs. Older `q.uiver.app`
 links are recognized, imported locally by Quiver itself, and replaced by

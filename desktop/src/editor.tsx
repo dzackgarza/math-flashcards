@@ -22,6 +22,8 @@ export function SideEditor({
   onChange,
   onNewDiagram,
   onEditDiagram,
+  workspace,
+  path,
 }: {
   side: Side;
   value: string;
@@ -30,6 +32,8 @@ export function SideEditor({
   onChange: (value: string) => void;
   onNewDiagram?: () => void;
   onEditDiagram?: (target: DiagramTarget) => void;
+  workspace: string;
+  path: string;
 }) {
   const label = side === "front" ? "Front" : "Back";
   // @uiw/react-codemirror applies a changed `value` prop as an ExternalChange
@@ -185,7 +189,11 @@ export function SideEditor({
                       </Button>
                     )}
                   </Group>
-                  <QuiverPreview target={diagrams[i]} />
+                  <QuiverPreview
+                    target={diagrams[i]}
+                    workspace={workspace}
+                    path={path}
+                  />
                 </div>
               )}
             </div>

@@ -228,82 +228,78 @@ def measure_quiver_native(entry: Path | None) -> None:
                         By.CSS_SELECTOR, ".side-editor.back .cm-content"
                     )
                 )
+                # The read-only view must contain a single compiled SVG image,
+                # not Quiver's CSS-zoomed grid/arrow/label SVG layers.
                 preview = wait.until(
                     lambda browser: browser.find_element(
                         By.CSS_SELECTOR,
-                        '.side-editor.back iframe[title="Rendered commutative diagram"]',
+                        '.side-editor.back img[alt="Rendered commutative diagram"]',
                     )
                 )
-                driver.switch_to.frame(preview)
                 try:
-                    WebDriverWait(driver, 25, poll_frequency=0.1).until(
-                        lambda browser: (
-                            len(browser.find_elements(By.CSS_SELECTOR, ".vertex")) == 15
+                    wait.until(
+                        lambda browser: browser.execute_script(
+                            "const img = document.querySelector("
+                            "'.side-editor.back img[alt=\"Rendered commutative diagram\"]');"
+                            "return !!img && img.complete && img.naturalWidth > 200"
+                            " && img.naturalHeight > 100;"
                         )
                     )
                 except TimeoutException:
-                    print(
-                        "Native Quiver iframe diagnostic:",
-                        driver.execute_script(
-                            "return {href:location.href,origin:location.origin,referrer:document.referrer,ready:document.readyState,body:document.body?.innerText.slice(0,1000),vertices:document.querySelectorAll('.vertex').length,html:document.documentElement.outerHTML.slice(0,800)}"
-                        ),
-                        flush=True,
-                    )
-                    driver.switch_to.default_content()
                     driver.save_screenshot(str(artifacts / "native-quiver-failure.png"))
                     print(
-                        "Native parent diagnostic:",
+                        "Native compiled SVG diagnostic:",
                         driver.execute_script(
-                            "return {href:location.href,origin:location.origin,body:document.body.innerText.slice(-1800)}"
+                            "return {source: document.querySelector('.side-editor.back img')?.src.slice(0,80),"
+                            " width: document.querySelector('.side-editor.back img')?.naturalWidth,"
+                            " error: document.querySelector('.side-editor.back [role=alert]')?.textContent}"
                         ),
                         flush=True,
                     )
                     raise
-                geometry_script = """return {
-                      viewport: [document.documentElement.clientWidth, document.documentElement.clientHeight],
-                      transform: document.querySelector('.canvas')?.style.transform,
-                      bodyClass: document.body.className,
-                      fonts: document.fonts.status,
-                      points: [...document.querySelectorAll('.vertex')].map(vertex => {
-                        const r = vertex.getBoundingClientRect();
-                        return [r.left, r.top, r.right, r.bottom];
-                      }),
-                    }"""
-                try:
-                    WebDriverWait(driver, 20, poll_frequency=0.05).until(
-                        lambda browser: (
-                            "scale(1)"
-                            not in browser.execute_script(geometry_script)["transform"]
+                assert preview.get_attribute("src").startswith(
+                    "data:image/svg+xml;charset=utf-8,"
+                )
+                assert not driver.find_elements(
+                    By.CSS_SELECTOR,
+                    '.side-editor.back iframe[title="Rendered commutative diagram"]',
+                )
+                driver.save_screenshot(str(artifacts / "native-quiver-card.png"))
+                original_image = preview.get_attribute("src")
+                driver.find_element(
+                    By.XPATH, "//button[normalize-space()='View larger']"
+                ).click()
+                enlarged = wait.until(
+                    lambda browser: browser.find_element(
+                        By.CSS_SELECTOR,
+                        '[role="dialog"] .quiver-card-diagram.expanded img',
+                    )
+                )
+                wait.until(
+                    lambda browser: (
+                        enlarged.get_attribute("src") == original_image
+                        and enlarged.size["width"] > 800
+                        and enlarged.size["height"] > 400
+                    )
+                )
+                # The enlarged image exists during the modal entrance fade.
+                # Only capture and accept the actually painted fullscreen view.
+                time.sleep(0.55)
+                assert driver.execute_script(
+                    "const d=document.querySelector('[role=dialog]');"
+                    "return !!d && d.getBoundingClientRect().width > 1200"
+                    " && getComputedStyle(d).visibility !== 'hidden';"
+                )
+                driver.save_screenshot(str(artifacts / "native-quiver-enlarged.png"))
+                driver.find_element(By.TAG_NAME, "body").send_keys(Keys.ESCAPE)
+                wait.until(
+                    lambda browser: (
+                        not browser.find_elements(
+                            By.CSS_SELECTOR,
+                            '[role="dialog"] .quiver-card-diagram.expanded',
                         )
                     )
-                except TimeoutException:
-                    print(
-                        "Native Quiver did not fit its preview:",
-                        driver.execute_script(geometry_script),
-                        flush=True,
-                    )
-                    raise
-                geometry = driver.execute_script(geometry_script)
-                width, height = geometry["viewport"]
-                assert all(
-                    left >= -10
-                    and top >= -10
-                    and right <= width + 10
-                    and bottom <= height + 10
-                    for left, top, right, bottom in geometry["points"]
-                ), "The native card preview clips diagram objects."
-                x_span = max(point[2] for point in geometry["points"]) - min(
-                    point[0] for point in geometry["points"]
                 )
-                y_span = max(point[3] for point in geometry["points"]) - min(
-                    point[1] for point in geometry["points"]
-                )
-                assert x_span > width * 0.5 and y_span > height * 0.35, (
-                    "The native diagram was over-shrunk and is unreadable.",
-                    geometry,
-                )
-                driver.switch_to.default_content()
-                driver.save_screenshot(str(artifacts / "native-quiver-card.png"))
                 driver.find_element(
                     By.XPATH, "//button[normalize-space()='Edit in Quiver']"
                 ).click()

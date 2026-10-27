@@ -235,6 +235,11 @@ class GenerateInput(DeckInput):
     assets: Digest
 
 
+class DiagramPreviewInput(DeckInput):
+    action: Literal["render-diagram"]
+    source: str = Field(min_length=27, max_length=100_000)
+
+
 class ReviewInput(Input):
     action: Literal["review"]
     assets: Digest
@@ -267,6 +272,7 @@ type Request = Annotated[
     | LoadInput
     | SaveInput
     | GenerateInput
+    | DiagramPreviewInput
     | OrganizeInput
     | ReviewInput
     | ManifestInput
@@ -299,6 +305,12 @@ class RenderedDeck(BaseModel):
     meta: Metadata
     cards: list[Card]
     media: list[str] = Field(default_factory=list)
+
+
+class RenderedDiagram(BaseModel):
+    path: str
+    source: str
+    svg: str
 
 
 class BuildRecord(BaseModel):
@@ -1045,25 +1057,18 @@ def tikz_renderer_identity() -> str:
     )
 
 
-def render_diagrams(source: str, path: Path) -> tuple[str, str]:
-    """Produce offline inline SVG using pandoc-config's canonical TikZ filter.
+def render_tikzcd_svg(source: str, path: Path) -> str:
+    """Compile the authored diagram with the *same* renderer as Anki export.
 
-    The original Markdown remains authoritative. This rendering is for the
-    temporary Pandoc/Ankdown export input only; it does not rewrite card source
-    or substitute another diagram syntax/renderer.
+    The Quiver UI paints many independently transformed SVG layers. Its CSS
+    zoom produces seams and nonuniform-looking strokes, particularly on nfold
+    curved arrows. The read-only preview uses the authoritative TikZ-cd SVG
+    instead; this does not change the original TeX or the graphical editor.
     """
-    if not TIKZ_ENVIRONMENT.search(source):
-        return "markdown", source
-    # Work on Pandoc's actual RawBlock nodes: a code fence illustrating
-    # TikZ-cd, or a quotation containing it, must not become a diagram.
-    parsed = subprocess.run(
-        ["pandoc", "-f", "markdown", "-t", "json"],
-        input=source,
-        text=True,
-        capture_output=True,
-        check=True,
-    )
-    document = json.loads(parsed.stdout)
+    if not TIKZ_ENVIRONMENT.fullmatch(source.strip()):
+        raise ValueError(
+            "A diagram preview must contain exactly one TikZ-cd environment."
+        )
     identity = tikz_renderer_identity()
     output_dir = user_cache_path("math-flashcards") / "tikz-images"
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -1076,33 +1081,49 @@ def render_diagrams(source: str, path: Path) -> tuple[str, str]:
         "TIKZ_RENDER_CONTEXT_HASH": identity,
     }
 
-    def replace(block: str) -> str:
-        process = subprocess.run(
-            [
-                "pandoc",
-                "-f",
-                "markdown",
-                "-t",
-                "html",
-                "--lua-filter",
-                str(TIKZ_ASSETS / "tikzcd.lua"),
-            ],
-            input=block,
-            text=True,
-            cwd=path.parent,
-            env=env,
-            capture_output=True,
-            check=False,
+    process = subprocess.run(
+        [
+            "pandoc",
+            "-f",
+            "markdown",
+            "-t",
+            "html",
+            "--lua-filter",
+            str(TIKZ_ASSETS / "tikzcd.lua"),
+        ],
+        input=source,
+        text=True,
+        cwd=path.parent,
+        env=env,
+        capture_output=True,
+        check=False,
+    )
+    image = re.search(r"<svg\b[\s\S]*?</svg>", process.stdout)
+    if process.returncode or image is None:
+        raise ValueError(
+            "The commutative diagram did not compile through the shared "
+            "TikZ-cd renderer. " + process.stderr[-5000:]
         )
-        image = re.search(r"<svg\b[\s\S]*?</svg>", process.stdout)
-        if process.returncode or image is None:
-            raise ValueError(
-                "The commutative diagram did not compile through the shared "
-                "TikZ-cd renderer. " + process.stderr[-5000:]
-            )
-        svg = image.group()
-        ElementTree.fromstring(svg)
-        return '<div class="anki-commutative-diagram">\n' + svg + "\n</div>"
+    svg = image.group()
+    if ElementTree.fromstring(svg).tag != "{http://www.w3.org/2000/svg}svg":
+        raise ValueError("The TikZ-cd renderer did not produce an SVG image.")
+    return svg
+
+
+def render_diagrams(source: str, path: Path) -> tuple[str, str]:
+    """Prepare the temporary Pandoc/Anki input without modifying authored text."""
+    if not TIKZ_ENVIRONMENT.search(source):
+        return "markdown", source
+    # Work on Pandoc's actual RawBlock nodes: a code fence illustrating
+    # TikZ-cd, or a quotation containing it, must not become a diagram.
+    parsed = subprocess.run(
+        ["pandoc", "-f", "markdown", "-t", "json"],
+        input=source,
+        text=True,
+        capture_output=True,
+        check=True,
+    )
+    document = json.loads(parsed.stdout)
 
     pending: list[object] = [document]
     converted = 0
@@ -1118,7 +1139,12 @@ def render_diagrams(source: str, path: Path) -> tuple[str, str]:
                 and isinstance(content[1], str)
                 and TIKZ_ENVIRONMENT.fullmatch(content[1].strip())
             ):
-                node["c"] = ["html", replace(content[1])]
+                node["c"] = [
+                    "html",
+                    '<div class="anki-commutative-diagram">\n'
+                    + render_tikzcd_svg(content[1], path)
+                    + "\n</div>",
+                ]
                 converted += 1
             else:
                 pending.extend(node.values())
@@ -1466,6 +1492,7 @@ def dispatch(
     Workspace
     | Document
     | Generated
+    | RenderedDiagram
     | Organized
     | Review
     | Manifest
@@ -1485,6 +1512,15 @@ def dispatch(
     if isinstance(request, AssetVersionInput):
         return active_asset_version()
     root = workspace_path(request.workspace)
+    if isinstance(request, DiagramPreviewInput):
+        path = deck_path(root, request.path)
+        if not path.is_file():
+            raise FileNotFoundError("The diagram's deck is no longer in the workspace.")
+        return RenderedDiagram(
+            path=request.path,
+            source=request.source,
+            svg=render_tikzcd_svg(request.source, path),
+        )
     if isinstance(request, ManifestCacheInput):
         return manifest_cache(root, request)
     if isinstance(request, RebuildCacheInput):

@@ -2655,6 +2655,8 @@ export default function App() {
                                 document.path + ":" + draft.card.id + ":" + side
                               }
                               side={side}
+                              workspace={document.session.root}
+                              path={document.path}
                               value={draft[side]}
                               mathjax={mathjax}
                               editable={!busy}

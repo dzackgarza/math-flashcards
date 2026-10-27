@@ -110,6 +110,12 @@ export type Request =
   | { action: "rebuild-cache"; workspace: string; generation: number }
   | { action: "list"; workspace: string }
   | {
+      action: "render-diagram";
+      workspace: string;
+      path: string;
+      source: string;
+    }
+  | {
       action: "load" | "validate";
       workspace: string;
       path: string;
@@ -335,6 +341,11 @@ export const generatedSchema = z.object({
   status: statusSchema,
   package: z.string(),
   log: z.string(),
+});
+export const renderedDiagramSchema = z.object({
+  path: deckPathSchema,
+  source: z.string(),
+  svg: z.string().startsWith("<svg"),
 });
 export type Summary = z.infer<typeof summarySchema>;
 export type Pending = z.infer<typeof reviewSchema>["decks"][number];

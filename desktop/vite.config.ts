@@ -44,6 +44,7 @@ function workbenchBackend(): Plugin {
       // https://github.com/sindresorhus/p-limit#usage
       const foreground = pLimit(1);
       const background = pLimit(1);
+      const diagram = pLimit(1);
       const watched = new Set<string>();
       server.middlewares.use("/api/watch", async (request, response) => {
         if (
@@ -89,23 +90,26 @@ function workbenchBackend(): Plugin {
           return;
         }
         const { action } = scope.data;
-        const queue = [
-          "assets",
-          "asset-version",
-          "problems",
-          "store-problems",
-          "search",
-          "store-search",
-          "cache-manifest",
-          "sources",
-          "checks",
-          "cached-checks",
-          "review",
-          "generate",
-          "list",
-        ].includes(action)
-          ? background
-          : foreground;
+        const queue =
+          action === "render-diagram"
+            ? diagram
+            : [
+                  "assets",
+                  "asset-version",
+                  "problems",
+                  "store-problems",
+                  "search",
+                  "store-search",
+                  "cache-manifest",
+                  "sources",
+                  "checks",
+                  "cached-checks",
+                  "review",
+                  "generate",
+                  "list",
+                ].includes(action)
+              ? background
+              : foreground;
         await queue(async () => {
           let python: string;
           try {
@@ -196,53 +200,18 @@ export default defineConfig({
           rename: { stripBase: 4 },
           transform(content, filename) {
             if (filename.endsWith("/zettlr-host.mjs")) {
-              // The passive flashcard view uses Quiver's own embedded mode
-              // and viewport fit, rather than attempting to scale its SVG
-              // ourselves. The modal retains the ordinary Quiver controls.
-              const imports = "{ UI, load_katex }";
-              const display =
-                'document.body.classList.toggle("zettlr-fullscreen", fullscreen);';
+              // Only the graphical editor uses Quiver's iframe. Read-only
+              // previews use the exact compiled SVG shared with Anki export,
+              // not a CSS-scaled assemblage of independent Quiver SVG layers.
               const origin =
                 "const host_origin = new URL(document.referrer).origin;";
-              if (
-                !content.includes(imports) ||
-                !content.includes(display) ||
-                !content.includes(origin)
-              )
+              if (!content.includes(origin))
                 throw new Error("The vendored Quiver host protocol changed.");
-              return (
-                content
-                  // The Tauri resource protocol does not set iframe referrers.
-                  // Both the iframe and its owning card editor are same-origin
-                  // local resources. Keep the existing message-origin validation
-                  // without requiring the optional Referer header.
-                  .replace(
-                    origin,
-                    "const host_origin = window.location.origin;",
-                  )
-                  .replace(imports, "{ UI, UIMode, load_katex }")
-                  .replace(
-                    display,
-                    display +
-                      `
-        if (message.readonly === true) {
-            ui.switch_mode(new UIMode.Embedded());
-            // WebKit/Tauri may retain a pending FontFaceSet.ready promise
-            // even though the diagram has been laid out. Do not make the
-            // visible preview depend on that optional completion signal.
-            // Quiver's scale_to_fit applies a *relative* zoom via pan_view.
-            // Multiple fits (initial layout, font settlement, resize) must
-            // first reset zoom; otherwise every call exponentially shrinks
-            // the same diagram until it is unreadable.
-            const fit = () => requestAnimationFrame(() => requestAnimationFrame(() => {
-                ui.pan_to(ui.view, 0);
-                ui.scale_to_fit();
-            }));
-            fit();
-            document.fonts.ready.then(fit);
-            window.addEventListener("resize", fit, { passive: true });
-        }`,
-                  )
+              // Tauri's local resource protocol omits iframe referrers. Both
+              // documents still share an origin; validate it on messages.
+              return content.replace(
+                origin,
+                "const host_origin = window.location.origin;",
               );
             }
             if (!filename.endsWith("/parser.mjs")) return content;

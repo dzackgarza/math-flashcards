@@ -11,7 +11,8 @@ import tempfile
 import time
 import zipfile
 from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import unquote, urlparse
+from xml.etree import ElementTree
 
 from playwright.sync_api import expect, sync_playwright
 
@@ -59,52 +60,49 @@ def main() -> None:
                 back = page.locator(".side-editor.back")
                 edit = back.get_by_role("button", name="Edit in Quiver")
                 expect(edit).to_be_visible(timeout=30000)
-                preview = back.frame_locator(
-                    'iframe[title="Rendered commutative diagram"]'
+                # The old iframe used fractional CSS transforms of Quiver's
+                # independently rasterized arrow/label layers. That made the
+                # double curved arrow jagged and left a focus-point outline.
+                # The preview must instead be the *compiled* vector SVG used
+                # for Anki, painted atomically as one image in the document.
+                preview = back.get_by_role("img", name="Rendered commutative diagram")
+                expect(preview).to_be_visible(timeout=120000)
+                page.wait_for_function(
+                    """() => {
+                      const img = document.querySelector(
+                        '.side-editor.back img[alt="Rendered commutative diagram"]');
+                      return img?.complete && img.naturalWidth > 200 && img.naturalHeight > 100;
+                    }""",
+                    timeout=120000,
                 )
-                expect(preview.locator(".vertex")).to_have_count(15, timeout=30000)
-                # Rendering 15 vertices without fitting the diagram is still
-                # unusable: the preview must show the entire graph, not a crop.
-                expect(preview.locator(".canvas")).to_have_attribute(
-                    "style", re.compile(r"scale\(0\.[0-9]+\)"), timeout=30000
+                src = preview.get_attribute("src")
+                assert src is not None and src.startswith(
+                    "data:image/svg+xml;charset=utf-8,"
                 )
-                geometry = preview.locator("body").evaluate(
-                    """body => {
-                      const width = body.clientWidth, height = body.clientHeight;
-                      const points = [...body.querySelectorAll('.vertex')].map(vertex => {
-                        const r = vertex.getBoundingClientRect();
-                        return [r.left, r.top, r.right, r.bottom];
-                      });
-                      return { width, height, points };
-                    }"""
-                )
-                assert all(
-                    left >= -10
-                    and top >= -10
-                    and right <= geometry["width"] + 10
-                    and bottom <= geometry["height"] + 10
-                    for left, top, right, bottom in geometry["points"]
-                ), geometry
-                x_span = max(point[2] for point in geometry["points"]) - min(
-                    point[0] for point in geometry["points"]
-                )
-                y_span = max(point[3] for point in geometry["points"]) - min(
-                    point[1] for point in geometry["points"]
+                svg = unquote(src.split(",", 1)[1])
+                document = ElementTree.fromstring(svg)
+                assert document.tag == "{http://www.w3.org/2000/svg}svg"
+                assert len(document.findall(".//{http://www.w3.org/2000/svg}path")) > 50
+                assert (
+                    back.locator('iframe[title="Rendered commutative diagram"]').count()
+                    == 0
                 )
                 assert (
-                    x_span > geometry["width"] * 0.5
-                    and y_span > geometry["height"] * 0.35
-                ), ("The diagram is too small to read.", geometry)
+                    "q.uiver.app" in deck.read_text()
+                )  # viewing never rewrites source
                 page.screenshot(path=str(artifacts / "quiver-card-preview.png"))
                 back.get_by_role("button", name="View larger").click()
                 enlarged = page.get_by_role("dialog", name="Commutative diagram")
                 expect(enlarged).to_be_visible()
-                expect(
-                    enlarged.frame_locator(
-                        'iframe[title="Rendered commutative diagram"]'
-                    ).locator(".vertex")
-                ).to_have_count(15, timeout=30000)
-                page.screenshot(path=str(artifacts / "quiver-card-enlarged.png"))
+                bigger = enlarged.get_by_role(
+                    "img", name="Rendered commutative diagram"
+                )
+                expect(bigger).to_be_visible(timeout=30000)
+                assert bigger.get_attribute("src") == src
+                page.screenshot(
+                    path=str(artifacts / "quiver-card-enlarged.png"),
+                    animations="disabled",
+                )
                 page.keyboard.press("Escape")
                 expect(enlarged).not_to_be_visible()
                 # Normal card view shows the diagram, not the opaque link.
@@ -139,6 +137,30 @@ def main() -> None:
                 assert "Remember: categorical limits." in saved
                 # One authored diagram and one *literal* TeX code example.
                 assert saved.count(r"\begin{tikzcd}") == 2
+                authored = re.search(r"\\begin\{tikzcd\}[\s\S]*?\\end\{tikzcd\}", saved)
+                assert authored is not None
+                compiled = page.request.post(
+                    "http://127.0.0.1:1420/api/request",
+                    headers={"x-flashcards": "1", "content-type": "application/json"},
+                    data=json.dumps(
+                        {
+                            "action": "render-diagram",
+                            "workspace": str(root),
+                            "path": "Diagrams.md",
+                            "source": authored.group(),
+                        }
+                    ),
+                    timeout=120000,
+                )
+                assert compiled.ok, compiled.text()
+                response = compiled.json()
+                assert response["source"] == authored.group()
+                now = back.get_by_role("img", name="Rendered commutative diagram")
+                expect(now).to_be_visible(timeout=120000)
+                assert (
+                    unquote(now.get_attribute("src").split(",", 1)[1])
+                    == response["svg"]
+                )
                 expect(back.get_by_role("button", name="Edit in Quiver")).to_have_count(
                     1
                 )

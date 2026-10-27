@@ -401,3 +401,11 @@ All original p95 budgets remain satisfied: warm tree 1 s, cold tree 2 s,
 selected editor 1 s, and keyboard paint 100 ms. Every sampled input occurred
 while background checks remained incomplete. Individual observations and
 driver-overhead diagnostics are in `desktop/test-artifacts/native-timings.json`.
+
+The subsequent rendering correction changes only the lazy, diagram-bearing
+card preview. Read-only diagrams now use the exact compiled SVG from the
+existing LuaLaTeX/Anki path rather than Quiver's CSS-scaled SVG layers. The
+preview has an independent backend semaphore so compiling it cannot acquire
+the foreground permit or queue behind workspace verification. Its source is
+never rewritten. The native startup timings above precede this change and
+should not be construed as new latency measurements.

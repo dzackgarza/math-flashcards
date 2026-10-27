@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Alert, Button, Group, Loader, Modal, Text } from "@mantine/core";
 import { z } from "zod";
-import { request, assetsSchema } from "./bridge";
+import { request, assetsSchema, renderedDiagramSchema } from "./bridge";
 import { EMPTY_TIKZCD, type DiagramTarget } from "./diagrams";
 
 const messageSchema = z.object({
@@ -82,119 +82,85 @@ function LegacyConverter({
 }
 
 function ReadOnlyDiagram({
-  source,
+  image,
   expanded = false,
 }: {
-  source: string;
+  image: string;
   expanded?: boolean;
 }) {
-  const frame = useRef<HTMLIFrameElement>(null);
-  const sessionId = useRef(crypto.randomUUID());
-  const [ready, setReady] = useState(false);
-  const [error, setError] = useState("");
-  const [macros, setMacros] = useState<Record<string, string> | null>(null);
-  const [hostReady, setHostReady] = useState(false);
-  useEffect(() => {
-    let active = true;
-    quiverMacros().then(
-      (value) => {
-        if (active) setMacros(value);
-      },
-      (failure) => {
-        if (active) setError(String(failure));
-      },
-    );
-    return () => {
-      active = false;
-    };
-  }, []);
-  useEffect(() => {
-    if (!hostReady || macros === null) return;
-    frame.current?.contentWindow?.postMessage(
-      {
-        type: "zettlr-quiver:load",
-        sessionId: sessionId.current,
-        revision: 1,
-        source,
-        macros,
-        theme: "light",
-      },
-      location.origin,
-    );
-  }, [hostReady, macros, source]);
-  useEffect(() => {
-    function receive(event: MessageEvent) {
-      if (
-        event.origin !== location.origin ||
-        event.source !== frame.current?.contentWindow
-      )
-        return;
-      const parsed = messageSchema.safeParse(event.data);
-      if (!parsed.success) return;
-      const message = parsed.data;
-      if (message.type === "zettlr-quiver:ready") {
-        setHostReady(true);
-        return;
-      }
-      if (message.sessionId !== sessionId.current || message.revision !== 1)
-        return;
-      if (message.type === "zettlr-quiver:loaded") {
-        const errors = (message.diagnostics ?? []).filter(
-          (d) => d.severity === "error",
-        );
-        if (errors.length) {
-          setError(errors.map((d) => d.message).join("; "));
-          return;
-        }
-        // Quiver owns embedded read-only mode, centring, and scale-to-fit.
-        frame.current?.contentWindow?.postMessage(
-          {
-            type: "zettlr-quiver:display",
-            sessionId: sessionId.current,
-            revision: 1,
-            fullscreen: false,
-            readonly: true,
-          },
-          location.origin,
-        );
-        setReady(true);
-      }
-      if (message.type === "zettlr-quiver:error")
-        setError(message.message ?? "Quiver could not render this diagram.");
-    }
-    window.addEventListener("message", receive);
-    return () => window.removeEventListener("message", receive);
-  }, []);
+  // The packaged LaTeX renderer owns the *display* image. The independently
+  // transformed SVG/HTML layers in Quiver's embedded UI can have mismatched
+  // rasterisation at fractional CSS zoom (especially curved nfold arrows).
+  // Quiver remains the sole graphical editor; the image matches Anki export.
   return (
     <div className={"quiver-card-diagram" + (expanded ? " expanded" : "")}>
-      {!ready && !error && (
-        <Text size="xs" c="dimmed">
-          Rendering commutative diagram…
-        </Text>
-      )}
-      {error && <Alert color="red">{error}</Alert>}
-      <iframe
-        ref={frame}
-        src="/quiver/zettlr-host.html"
-        tabIndex={-1}
-        className="quiver-card-frame"
-        title="Rendered commutative diagram"
+      <img
+        className="quiver-compiled-image"
+        src={image}
+        alt="Rendered commutative diagram"
       />
     </div>
   );
 }
 
-export function QuiverPreview({ target }: { target: DiagramTarget }) {
+export function QuiverPreview({
+  target,
+  workspace,
+  path,
+}: {
+  target: DiagramTarget;
+  workspace: string;
+  path: string;
+}) {
   const [source, setSource] = useState<string | null>(
     target.kind === "tikzcd" ? target.source : null,
   );
   const [error, setError] = useState("");
+  const [rendered, setRendered] = useState<{
+    source: string;
+    image: string;
+  } | null>(null);
   const [expanded, setExpanded] = useState(false);
   useEffect(() => {
     setSource(target.kind === "tikzcd" ? target.source : null);
     setError("");
+    // Quiver can export exactly the same canonical source that the legacy
+    // importer already supplied. Retain its compiled image in that case:
+    // `source` will not change, so the rendering effect will not rerun.
+    // A *different* source is handled by the rendering effect below, and
+    // its identity check prevents displaying the old image.
     setExpanded(false);
   }, [target.kind, target.source]);
+  useEffect(() => {
+    if (source === null) return;
+    let current = true;
+    setRendered(null);
+    setError("");
+    void request(
+      { action: "render-diagram", workspace, path, source },
+      renderedDiagramSchema,
+    ).then(
+      (result) => {
+        if (!current) return;
+        if (result.source !== source || result.path !== path) {
+          setError("The diagram preview belongs to another document revision.");
+          return;
+        }
+        setRendered({
+          source,
+          image:
+            "data:image/svg+xml;charset=utf-8," +
+            encodeURIComponent(result.svg),
+        });
+      },
+      (failure) => {
+        if (current) setError(String(failure));
+      },
+    );
+    return () => {
+      current = false;
+    };
+  }, [source, workspace, path]);
   return (
     <>
       {target.kind === "quiver-url" && source === null && !error && (
@@ -207,9 +173,14 @@ export function QuiverPreview({ target }: { target: DiagramTarget }) {
         />
       )}
       {error && <Alert color="red">{error}</Alert>}
-      {source !== null && (
+      {source !== null && !rendered && !error && (
+        <Text size="xs" c="dimmed">
+          Compiling diagram…
+        </Text>
+      )}
+      {source !== null && rendered?.source === source && !error && (
         <>
-          <ReadOnlyDiagram key={source} source={source} />
+          <ReadOnlyDiagram image={rendered.image} />
           <Button
             variant="subtle"
             size="compact-xs"
@@ -225,11 +196,7 @@ export function QuiverPreview({ target }: { target: DiagramTarget }) {
             title="Commutative diagram"
             className="quiver-modal"
           >
-            <ReadOnlyDiagram
-              key={source + ":expanded"}
-              source={source}
-              expanded
-            />
+            <ReadOnlyDiagram image={rendered.image} expanded />
           </Modal>
         </>
       )}
