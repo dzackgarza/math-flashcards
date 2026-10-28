@@ -409,3 +409,22 @@ preview has an independent backend semaphore so compiling it cannot acquire
 the foreground permit or queue behind workspace verification. Its source is
 never rewritten. The native startup timings above precede this change and
 should not be construed as new latency measurements.
+
+## Deferred MathJax start rejected (2026-10-28)
+
+Starting MathJax only after the navigation tree painted was measured on the
+native timing gate and reverted. Its first warm launch took 3.41 s to the tree
+and 3.36 s to the selected editor. In two consecutive runs, the
+type-undo-save case left the typed edit in the deck file. The revision without
+the change completed all 40 launches with the save intact.
+
+Repeat of the reverted revision, on a workstation that was not idle
+(load average 4.5 on 12 CPUs):
+
+| Cache | Tree p95 | Selection p95 | Input paint p95 |
+| --- | --- | --- | --- |
+| Warm | 1.083 s | 0.871 s | 92.9 ms |
+| Cold | 1.693 s | 0.938 s | 92.2 ms |
+
+The warm tree misses its 1 s budget under this load. The budgets apply to an
+idle workstation, so this run does not supersede the idle measurements above.
