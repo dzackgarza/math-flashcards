@@ -127,25 +127,23 @@ Each Front/Back field has **New diagram** and, for existing diagrams,
 you can create vertices, connect arrows, edit labels and styles, and use its
 keyboard and mouse tools. **Use diagram** commits the result to that card
 through the ordinary save/conflict mechanism; **Cancel** preserves the current
-authored source. The card editor displays the exact compiled SVG produced by
-the shared Pandoc/TikZ-cd renderer (also used for Anki export), not Quiver's
-CSS-scaled editing canvas. This avoids seams and uneven line thickness on
-curved/double arrows. The preview compiles asynchronously and has its own
-backend queue, so it cannot block foreground saving or background checks.
-It never rewrites the authored source. **View larger** opens a full-screen
-vector view, and **Edit source**
-allows direct TikZ-cd editing. Diagrams are stored as human-editable `\\begin{tikzcd}` ...
-`\\end{tikzcd}` source, not as opaque URLs or SVG blobs. Older `q.uiver.app`
-links are recognized, imported locally by Quiver itself, and replaced by
-TikZ-cd when you apply the edit. A literal code example is never interpreted
-as a live diagram.
+authored source. The card editor shows the SVG that the shared Pandoc TikZ-cd
+renderer compiles. Anki export uses the same renderer, so curved and double
+arrows look the same in the editor and in Anki. The preview compiles on its own
+backend queue, so saves and background checks continue while it runs. The
+preview never changes the authored source. **View larger** opens a full-screen
+vector view. **Edit source** shows the whole field as text for direct TikZ-cd
+editing, and **Visual view** returns to the previews. The card stores each
+diagram as `\begin{tikzcd}` ... `\end{tikzcd}` source. The editor recognizes
+`q.uiver.app` links, Quiver imports them locally, and **Use diagram** replaces
+the link with TikZ-cd. A literal code example stays text.
 
 Anki package generation passes actual TikZ-cd blocks to pandoc-config's
 canonical LuaLaTeX diagram renderer and embeds the generated SVG directly in
-the exported card. It uses the pinned Quiver package matching the installed
-editor, including higher-cell arrow styles. An invalid or unsupported diagram
-fails package generation without discarding the preceding `.apkg`. The
-Markdown source remains editable and is not replaced by the rendered image.
+the exported card. It uses the Quiver LaTeX package from the same upstream
+commit as the installed editor, including higher-cell arrow styles. An invalid
+or unsupported diagram fails package generation and keeps the preceding
+`.apkg`. The Markdown source stays the editable diagram source.
 
 A deck contains `.front` and `.back` divs with a shared `card-id` attribute.
 Pairs can appear in any order; fronts set the card order. Missing sides,
@@ -238,8 +236,10 @@ See [Anki's packaged deck documentation](https://docs.ankiweb.net/manual/importi
 | Command | Operation |
 | --- | --- |
 | `just desktop-dev` | Native Tauri development window |
+| `just desktop-run` | The built native executable in `desktop/src-tauri/target/release` |
 | `just desktop-web` | Browser editor with the real backend on localhost |
 | `just desktop-frontend` | TypeScript check and frontend build |
+| `just desktop-editor-test` | Shared editor rendering, wrapping, and source edits in a browser |
 | `just desktop-source-test` | Side preservation, pair validation, and agreement with Pandoc |
 | `just desktop-diagram-test` | Local Quiver import, diagram creation/reimport, autosave and offline SVG in an actual Anki package |
 | `just desktop-installed-test --diagrams` | Real installed WebKit offline Quiver view/edit, asserting against clipped or illegibly small previews |
@@ -250,6 +250,7 @@ See [Anki's packaged deck documentation](https://docs.ankiweb.net/manual/importi
 | `just desktop-native-test --timings` | Repeated release startup, selected-field, and native input paint measurements |
 | `just desktop-native-test --timings --profile` | Short native selection profile with actual MathJax call durations |
 | `just desktop-installed-test --timings` | The same timing case using the dispatcher from the installed desktop entry |
+| `just desktop-install-test` | Installation and update in temporary XDG directories |
 | `just desktop-update-test` | Running temporary installation, update notice, and exports before and after restart with network access disabled |
 | `just desktop-format` | Canonical Python, TypeScript, CSS, and Rust formatting |
 | `just check-math` | The Problems list for every deck in the repository; fails when it is not empty |

@@ -15,7 +15,10 @@ the macro set track the main branches of ankdown-for-math and pandoc-config.
 | --- | --- | --- |
 | Desktop window and frontend build | [Tauri with Vite](https://v2.tauri.app/start/frontend/vite/) | Official React/TypeScript scaffold |
 | Deck navigation | [Mantine Tree](https://mantine.dev/core/tree/) | Folder hierarchy and selectable deck nodes |
-| App layout | [Mantine AppShell](https://mantine.dev/core/app-shell/), [Splitter](https://mantine.dev/core/splitter/) | Deck tree, card list, Front and Back editors |
+| App layout | CSS grid columns with Mantine components | Deck tree, card list, Front and Back editors |
+| Command menu | [Mantine Spotlight](https://mantine.dev/x/spotlight/) | Ctrl-K search over decks, cards, and actions |
+| Card and deck organization | [Atlassian Pragmatic drag and drop](https://atlassian.design/components/pragmatic-drag-and-drop/) | Drag sources, drop targets, insertion markers, auto-scroll, and announcements; see `card-organization.md` |
+| Commutative diagrams | Quiver from the sibling `visual-tikz-editor` checkout; `quiver.sty` and the TikZ Lua filter from pandoc-config | Graphical diagram editing; TikZ-cd source renders to SVG offline |
 | Editing | Zettlr's `@dzack/pandoc-editor`, mounted with [React CodeMirror](https://github.com/uiwjs/react-codemirror) | Shared Pandoc editing and live rendering in separate Front and Back fields |
 | Source ranges and syntax | Zettlr-Pandoc's Lezer fork | Pandoc fenced divs, attributes, math, and source positions; shared parser for both editors and deck pairing |
 | External changes | [Tauri filesystem plugin](https://v2.tauri.app/plugin/file-system/) | Watch the selected workspace |
@@ -25,7 +28,7 @@ the macro set track the main branches of ankdown-for-math and pandoc-config.
 | Generation records | Python SQLite and [platformdirs](https://platformdirs.readthedocs.io/) | Successful build fingerprints in the platform cache |
 | Card HTML and APKG | [ankdown-for-math](https://github.com/dzackgarza/ankdown-for-math), [Pandoc Lua filters](https://pandoc.org/lua-filters.html) | Reuse the filter's front/back JSON and exporter CLI |
 | Math rendering | Zettlr's shared equation renderer and [MathJax 4](https://docs.mathjax.org/en/v4.0/web/typeset.html) | The host supplies MathJax and the exporter's macros; the shared editor owns widgets and source selection |
-| Status controls | Mantine Badge, Button, Alert, Loader | Visible build state |
+| Status controls | Mantine Badge, Button, Alert, Loader, Drawer | Visible build state and the Problems drawer |
 
 ## Alternatives
 
@@ -41,8 +44,8 @@ the macro set track the main branches of ankdown-for-math and pandoc-config.
 
 ## Source and export contracts
 
-Local evidence: `README.md`, `justfile`, and the sibling checkout's
-`ankdown/ankdown.lua`, `ankdown/cli.py`, and `ankdown/mathjax.html`.
+Local evidence: `README.md`, `justfile`, `desktop/backend.py`, and the installed
+`ankdown` package's `ankdown.lua`, `cli.py`, `mathjax.html`, and `card.css`.
 
 The paired-card filter validates `.front` and `.back` divs linked by `card-id`.
 It supplies each complete side to Ankdown's filter as a block container.
@@ -63,7 +66,9 @@ saving, and export. Saves compare disk content to detect external edits.
 ## Generation state
 
 Show separate indicators for an unsaved draft and the saved deck's package state.
-Package states are Up to date, Unsynced, Generating and Failed.
+The bridge reports Up to date, Unsynced, or Empty for a saved deck. The editor
+also shows a checking state while the bridge status is pending, Generating
+during a build, and Failed after a failed build.
 
 A successful generation record contains hashes of the source, resolved media,
 exporter assets, the macro set, and resulting APKG bytes.

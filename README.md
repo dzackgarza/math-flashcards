@@ -50,6 +50,11 @@ select it to review the new, edited, and removed cards and to go to each one.
 **Update Anki packages** in the sidebar reviews and updates every out-of-date
 package at once. A failed update keeps the previous package.
 
+Each Front and Back field has **New diagram**, and each diagram has **Edit in
+Quiver**. Quiver runs locally in a full-screen editor. The card stores the
+diagram as TikZ-cd source. The editor and the Anki package show the same
+compiled SVG. The editor imports `q.uiver.app` links as TikZ-cd.
+
 **Problems** in the sidebar lists every equation that does not render, every
 card without an answer, and every deck with invalid card structure. Select a
 problem to open its card.
@@ -104,7 +109,9 @@ saving use that local runtime and asset set. Run `just desktop-install` to
 update it. Each command-line build also prepares the current dependencies.
 Pandoc reads and validates the paired divs. The bridge uses Ankdown's existing
 math and media filter and package writer to generate `.apkg` files.
-Pandoc and `uv` must be on `PATH`.
+Pandoc and `uv` must be on `PATH`. TikZ-cd diagrams also need LuaLaTeX and
+`pdf2svg`. The bridge renders each diagram with pandoc-config's TikZ-cd filter
+and the Quiver LaTeX package, and embeds the SVG in the package.
 
 Math renders via MathJax 4 using the macro set that
 [pandoc-config](https://github.com/dzackgarza/pandoc-config) main generates from its

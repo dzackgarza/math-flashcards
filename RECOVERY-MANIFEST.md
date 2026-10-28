@@ -2,7 +2,20 @@
 
 Recovered on: 2026-06-26T12:42:29Z
 Source repo: `/home/dzack/gitclones/math-flashcards` (HEAD `5871456`, 856 commits across all refs; read-only — history untouched)
-Staging dir: `/home/dzack/gitclones/math-flashcards-recovered/`
+Staging dir: `/home/dzack/gitclones/math-flashcards-recovered/` (no longer exists)
+
+## Current state
+
+Commit `c1be754` merged 119 recovered files into 48 decks under `decks/`. It
+did not merge `NonQualDecks/test.md`. The other recovered paths are not in the
+current tree, except `README.md`, which later commits rewrote. Each row below
+is a historical blob. To read one, run `git show <commit>:<path>`.
+
+| Count | Value |
+| --- | --- |
+| Rows whose commit, date, and byte size match `git cat-file` | 120 / 120 |
+| Commits on all refs at recovery (2026-06-26) | 856 |
+| Deck files under `decks/` now (excluding `decks/apkg/`) | 41 |
 
 ## Summary
 
