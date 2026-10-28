@@ -1,9 +1,9 @@
 # Missing Figures
 
-These figure files are referenced by cards under `decks/` but do not exist in the repository. All 17 are missing (the `figures/` directory was never recovered). Card content that depended only on an image is therefore incomplete; where possible the reconciliation replaced figures with explicit LaTeX.
+These figure files are referenced by cards under `decks/` but do not exist in the repository. All 16 are missing (the `figures/` directory was never recovered). Card content that depended only on an image is therefore incomplete; where possible the reconciliation replaced figures with explicit LaTeX.
 
-- Distinct missing figures: **17**
-- References across cards: **18**
+- Distinct missing figures: **16**
+- References across cards: **17**
 - Present on disk: **0**
 
 | Figure | Deck | Card (front) |
@@ -24,4 +24,3 @@ These figure files are referenced by cards under `decks/` but do not exist in th
 | `figures/2022-11-23_20-16-34.png` | `Algebraic Geometry/Toric Varieties.md` | Give an example of a simplicial cone that is not smooth. |
 | `figures/2022-11-23_20-51-32.png` | `Algebraic Geometry/Toric Varieties.md` | What is $K_X$ (the canonical sheaf) for $X$ toric? |
 | `figures/2022-11-23_20-52-30.png` | `Algebraic Geometry/Morphisms.md` | What are the three valuative criteria? |
-| `figures/image_2020-06-12-19-45-12.png` | `Algebra/Category Theory.md` | Definition: A natural transformation between $F, G: \mathcal{C}\to\mathcal{D}$ |
