@@ -280,46 +280,26 @@ export default function App() {
     () => treeData(membership ? membership.split("\n") : []),
     [membership],
   );
-  const mathStartedForNavigation = useRef(-1);
   // The publication mark precedes React's DOM commit. Release measurements
   // also need the first usable, painted tree (with navigation enabled).
   useEffect(() => {
-    if (!workspace || busy || !decks.length) return;
-    const token = workspaceNavigation.current;
+    if (
+      !workspace ||
+      busy ||
+      !decks.length ||
+      performance.getEntriesByName("flashcards:tree-usable").length
+    )
+      return;
     let frame = requestAnimationFrame(() => {
       frame = requestAnimationFrame(() => {
-        if (token !== workspaceNavigation.current) return;
-        const usable =
+        if (
           window.document.querySelector("[data-deck]") &&
-          !window.document.querySelector(
-            '.sidebar-head [aria-label="Loading"]',
-          );
-        if (usable) {
-          if (!performance.getEntriesByName("flashcards:tree-usable").length) {
-            performance.mark("flashcards:tree-usable");
-          }
+          !window.document.querySelector('.sidebar-head [aria-label="Loading"]')
+        ) {
+          performance.mark("flashcards:tree-usable");
           // Request the local editor chunk only after navigation has painted.
           // Its JavaScript compilation must not delay the initial deck tree.
           void import("./editor");
-          // MathJax downloads and initialises a large TeX runtime. Starting it
-          // in chooseWorkspace() races the first cached-manifest request and
-          // delays the actual painted tree. Only start it after usable
-          // navigation has painted, without postponing any eventual checking
-          // or selected-deck equation rendering.
-          if (mathStartedForNavigation.current !== token) {
-            mathStartedForNavigation.current = token;
-            void loadMathJax().then(
-              (loaded) => {
-                if (token !== workspaceNavigation.current) return;
-                setAssetIdentity(loaded.identity);
-                setMathjax(loaded.mathjax);
-              },
-              (failure) => {
-                if (token === workspaceNavigation.current)
-                  setError(String(failure));
-              },
-            );
-          }
         }
       });
     });
@@ -1021,6 +1001,16 @@ export default function App() {
     const generation = ++reconciliation.current;
     setTask("Loading");
     setError("");
+    loadMathJax().then(
+      (loaded) => {
+        if (token !== workspaceNavigation.current) return;
+        setAssetIdentity(loaded.identity);
+        setMathjax(loaded.mathjax);
+      },
+      (failure) => {
+        if (token === workspaceNavigation.current) setError(String(failure));
+      },
+    );
     let published = false;
     const publish = (result: Manifest) => {
       workspaceRoot.current = result.session.root;
