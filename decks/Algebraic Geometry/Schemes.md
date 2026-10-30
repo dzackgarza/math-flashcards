@@ -1764,4 +1764,3 @@ Let $A=k[\epsilon]/(\epsilon^2)$ and $X=\operatorname{Spec}k\hookrightarrow\math
 ::: {.back card-id="application-flatness-nonreduced-base"}
 It is not flat. Tensoring the injection $(\epsilon)\hookrightarrow A$ with $k$ gives the zero map $k\to k$, which is not injective. The base has one point, so constancy of the fiber Hilbert polynomial detects nothing about its nilpotents. The converse criterion requires a reduced base.
 :::
-
