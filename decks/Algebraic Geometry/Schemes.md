@@ -1694,15 +1694,6 @@ The map $\mathbb A^2_{u,v}\to V(xy-z^2)$ given by $(u,v)\mapsto(u^2,v^2,uv)$ is 
 No. The target is normal but not regular at the vertex, so the regular-target hypothesis of purity fails. Over the vertex the fiber has coordinate ring $\mathbb C[u,v]/(u^2,v^2,uv)$, which is nonreduced; thus the map is not étale there. A cover of a singular target can branch only in codimension two.
 :::
 
-::: {.front card-id="application-hilbert-family-conics" tags="application"}
-For the family $xy=t z^2$ in $\mathbb P^2_{\mathbb C}\times\mathbb A^1_t$, find its Hilbert polynomial and explain why it defines a morphism to a single projective Hilbert scheme, including at $t=0$.
-:::
-
-::: {.back card-id="application-hilbert-family-conics"}
-The total space is integral and dominates the smooth base curve, so the family is flat. Every fiber is a plane conic, with Hilbert polynomial
-$$P(m)=\binom{m+2}{2}-\binom m2=2m+1.$$
-Hilbert representability therefore gives a morphism $\mathbb A^1\to\operatorname{Hilb}^{2m+1}_{\mathbb P^2}$. The union of two lines at $t=0$ is a valid fiber of the same flat family.
-:::
 
 ::: {.front card-id="application-obstruction-space-curves" tags="application"}
 For a smooth connected projective complex curve $C$ of genus $g\ge2$, determine whether its deformation functor is unobstructed and compute its tangent dimension. Which groups give the two answers?
@@ -1774,10 +1765,3 @@ Let $A=k[\epsilon]/(\epsilon^2)$ and $X=\operatorname{Spec}k\hookrightarrow\math
 It is not flat. Tensoring the injection $(\epsilon)\hookrightarrow A$ with $k$ gives the zero map $k\to k$, which is not injective. The base has one point, so constancy of the fiber Hilbert polynomial detects nothing about its nilpotents. The converse criterion requires a reduced base.
 :::
 
-::: {.front card-id="application-smoothness-conic-family" tags="application"}
-Over $\mathbb C$, the family $xy=tz^2$ in $\mathbb P^2\times\mathbb A^1_t$ is flat. Determine the largest open subset of the base over which the morphism is smooth.
-:::
-
-::: {.back card-id="application-smoothness-conic-family"}
-It is $\mathbb A^1\setminus\{0\}$. The fibers there are smooth conics. At $t=0$, the fiber is two lines crossing at $[0:0:1]$, so it is not smooth. Finite presentation and flatness let the fiberwise smoothness criterion decide the question.
-:::

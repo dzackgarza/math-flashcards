@@ -871,13 +871,6 @@ For a smooth connected intersection of surfaces of degrees $d,e$ in $\mathbb P^3
 $$g=1+\frac{de(d+e-4)}2.$$
 :::
 
-::: {.front card-id="formula-quadric-curve-genus" tags="formula"}
-For a smooth connected curve of bidegree $(a,b)$ in $\mathbb P^1_{\mathbb C}\times\mathbb P^1_{\mathbb C}$, compute the genus.
-:::
-
-::: {.back card-id="formula-quadric-curve-genus"}
-$$g=(a-1)(b-1).$$
-:::
 
 ::: {.front card-id="formula-plane-singularity-jacobian-algebras" tags="formula"}
 For an isolated reduced complex plane-curve singularity $f=0$, compute its Milnor and Tjurina numbers using local analytic algebras.
