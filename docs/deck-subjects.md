@@ -31,6 +31,13 @@ Geometry deck. Vocabulary is a separate study subject.
 
 ## Subject boundaries
 
+- Algebraic Geometry / Examples collects explicit equations, parametrizations,
+  and projective constructions of curves and varieties, including rational normal
+  curves, scrolls, and Segre and Veronese embeddings.
+  References for scroll constructions and determinantal equations are
+  [Reid, Rational Scrolls](https://mreid.warwick.ac.uk/surf/Reid_Park_City_chapters.pdf)
+  and [Eisenbud, Commutative Algebra](https://www.math.ens.psl.eu/~benoist/refs/Eisenbud.pdf).
+
 - Complex Analysis holds definitions, formulas, examples, statements, and proof
   prompts together. Tags identify the kind of card.
 - Schemes includes morphisms and their properties. Sheaves and Vector Bundles

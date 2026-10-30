@@ -414,21 +414,7 @@ For a smooth quintic threefold $X\subset\mathbb P^4_{\mathbb C}$, compute $K_X,H
 $$K_X\sim0,\quad H^3=5,\quad c_2(X)H=50,\quad e(X)=-200,\quad \chi(\mathcal O_X(mH))=\frac{5m^3+25m}{6}.$$
 :::
 
-::: {.front card-id="formula-veronese-degree" tags="formula"}
-Compute the degree of the image of $\mathbb P^n_{\mathbb C}$ under the $d$-uple Veronese embedding, $d\ge1$.
-:::
 
-::: {.back card-id="formula-veronese-degree"}
-$$\deg\nu_d(\mathbb P^n)=d^n.$$
-:::
-
-::: {.front card-id="formula-segre-degree" tags="formula"}
-Compute the degree of $\mathbb P^m_{\mathbb C}\times\mathbb P^n_{\mathbb C}$ in its Segre embedding.
-:::
-
-::: {.back card-id="formula-segre-degree"}
-$$\deg\operatorname{Seg}(\mathbb P^m\times\mathbb P^n)=\binom{m+n}{m}.$$
-:::
 
 ::: {.front card-id="formula-grassmannian-degree" tags="formula"}
 Compute the Plücker degree of $\operatorname{Gr}(k,n)$, parametrizing $k$-dimensional subspaces of $\mathbb C^n$, for $1\le k<n$.

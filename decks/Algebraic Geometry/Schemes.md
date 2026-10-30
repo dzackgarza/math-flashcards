@@ -17,23 +17,11 @@ Give several concrete examples of schemes
 ::: {.back card-id="card-11777c341e4d7e90"}
 $V(xy)$ the union of axes, which is not irreducible.
 
-$V(y^2-x^3)$ the cuspidal curve.
-
 $V(x^2-y^2)$, the X-shaped space.
-
-$V(y^2-x^3-x)$ the nodal curve
-
-$V(y^2-ax^3-bx)$ a general elliptic curve.
-
-The rational normal curves ${\mathbf{P}}^1\to {\mathbf{P}}^N$ given by the Veronese embedding $[x:y]\mapsto$ monomials of degree $d$, so $N = {n+d\choose d}$.
-
-The twisted cubic $\operatorname{im}\qty{{\left[ {x:y} \right]} \to {\left[ {x^3: x^2 y : xy^2 : y^3} \right]} }$, cut out as $V(xz-y^2, yw-z^2, xw-yz)\subseteq {\mathbf{P}}^3$ (i.e. the image of Veronese ${\mathbf{P}}^1\to {\mathbf{P}}^3$). Equivalently the $d=3$ rational normal curve.
 
 The dual numbers $\operatorname{Spec}k[{\varepsilon}]/{\varepsilon}^2$.
 
 ${\mathbf{A}}^1$ with a doubled origin (not separated)
-
-The quadric surface $V(xy-zw) \subseteq {\mathbf{P}}^3$
 
 $V(x^2+y^2-z^2)$ the double cone along the $z\dash$axis.
 

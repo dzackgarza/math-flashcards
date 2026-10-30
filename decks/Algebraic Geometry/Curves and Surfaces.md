@@ -1311,13 +1311,6 @@ For a relatively minimal complex projective elliptic surface $f:S\to B$ with sec
 $$\rho(S)=2+\operatorname{rank}\operatorname{MW}(f)+\sum_v(m_v-1).$$
 :::
 
-::: {.front card-id="formula-weierstrass-discriminant-j" tags="formula"}
-For a complex elliptic curve in short Weierstrass form $y^2=x^3+a_4x+a_6$, compute $\Delta$ and $j$.
-:::
-
-::: {.back card-id="formula-weierstrass-discriminant-j"}
-$$\Delta=-16(4a_4^3+27a_6^2),\qquad j=1728\frac{4a_4^3}{4a_4^3+27a_6^2}.$$
-:::
 
 ::: {.front card-id="formula-weierstrass-coefficient-bundles" tags="formula"}
 For the minimal Weierstrass model of a relatively minimal complex projective elliptic surface with section, put $L=(R^1f_*\mathcal O_S)^\vee$. In which spaces do $a_4,a_6,\Delta$ lie?
