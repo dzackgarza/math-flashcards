@@ -1016,7 +1016,7 @@ Infimum
 The infimum $\inf A$ is the greatest lower bound of $A$: a lower bound that is $\geq$ every other lower bound.
 :::
 
-::: {.front card-id="card-25d69b9393b0ae7b" tags="definition"}
+::: {.front card-id="card-25d69b9393b0ae7b" tags="definition, prerequisite"}
 Integral
 :::
 

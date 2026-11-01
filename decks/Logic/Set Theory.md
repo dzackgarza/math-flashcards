@@ -107,7 +107,7 @@ Axiom of choice
 Every family $(A_i)_{i \in I}$ of nonempty sets has a choice function: a map $f$ with $f(i) \in A_i$ for all $i \in I$.
 :::
 
-::: {.front card-id="card-fd475ee92dbc9e3c" tags="definition"}
+::: {.front card-id="card-fd475ee92dbc9e3c" tags="definition, prerequisite"}
 Bijective
 :::
 
@@ -115,7 +115,7 @@ Bijective
 A function $f:X\to Y$ is bijective if it is both injective and surjective: for every $y\in Y$ there is exactly one $x\in X$ with $f(x)=y$. Equivalently, $f$ has a two-sided inverse.
 :::
 
-::: {.front card-id="card-b9fc088ef91deb67" tags="definition"}
+::: {.front card-id="card-b9fc088ef91deb67" tags="definition, prerequisite"}
 Cardinality
 :::
 
@@ -131,7 +131,7 @@ Cartesian product
 The Cartesian product $A \times B$ is the set of ordered pairs $A \times B = \{(a,b) : a \in A,\ b \in B\}$.
 :::
 
-::: {.front card-id="card-23566624becbff1d" tags="definition"}
+::: {.front card-id="card-23566624becbff1d" tags="definition, prerequisite"}
 Chain
 :::
 
@@ -139,7 +139,7 @@ Chain
 A chain in a poset $P$ is a subset $C\subseteq P$ that is totally ordered by the induced order: for all $x,y\in C$, $x\le y$ or $y\le x$.
 :::
 
-::: {.front card-id="card-c35d8e9a34d445ea" tags="definition"}
+::: {.front card-id="card-c35d8e9a34d445ea" tags="definition, prerequisite"}
 Complement
 :::
 
@@ -147,7 +147,7 @@ Complement
 For $A\subseteq X$, the complement of $A$ in $X$ is $X\setminus A=\{x\in X:x\notin A\}$, often written $A^{c}$. More generally, the complement of $B$ in $A$ is $A\setminus B$.
 :::
 
-::: {.front card-id="card-e46c7da0b4229208" tags="definition"}
+::: {.front card-id="card-e46c7da0b4229208" tags="definition, prerequisite"}
 Countable
 :::
 
@@ -179,7 +179,7 @@ Disjoint union
 The disjoint union of a family $\{A_i\}_{i\in I}$ is $\coprod_{i\in I}A_i=\{(i,a):i\in I,\ a\in A_i\}$. It contains a copy of each $A_i$, and these copies are pairwise disjoint; it is the coproduct in $\mathbf{Set}$.
 :::
 
-::: {.front card-id="card-ba8a30c6642b6f38" tags="definition"}
+::: {.front card-id="card-ba8a30c6642b6f38" tags="definition, prerequisite"}
 Equivalence relation
 :::
 
@@ -187,7 +187,7 @@ Equivalence relation
 A relation $\sim$ on a set $A$ is an equivalence relation if it is reflexive ($a \sim a$), symmetric ($a \sim b \Rightarrow b \sim a$), and transitive ($a \sim b$ and $b \sim c$ imply $a \sim c$).
 :::
 
-::: {.front card-id="card-4bd35916e11750a6" tags="definition"}
+::: {.front card-id="card-4bd35916e11750a6" tags="definition, prerequisite"}
 Function
 :::
 
@@ -203,7 +203,7 @@ Indexed family
 An indexed family $\{A_i\}_{i\in I}$ is a function $i\mapsto A_i$ from an index set $I$ to a collection of sets (or other objects). A sequence is the case $I=\mathbb{N}$.
 :::
 
-::: {.front card-id="card-b53b3c7595396074" tags="definition"}
+::: {.front card-id="card-b53b3c7595396074" tags="definition, prerequisite"}
 Intersection
 :::
 
@@ -219,7 +219,7 @@ Inverse function
 If $f:X\to Y$ is bijective, its inverse $f^{-1}:Y\to X$ is the unique function with $f^{-1}(f(x))=x$ for all $x\in X$ and $f(f^{-1}(y))=y$ for all $y\in Y$; equivalently $f^{-1}\circ f=\mathrm{id}_X$ and $f\circ f^{-1}=\mathrm{id}_Y$.
 :::
 
-::: {.front card-id="card-77ee8321ad40e058" tags="definition"}
+::: {.front card-id="card-77ee8321ad40e058" tags="definition, prerequisite"}
 Maximal element
 :::
 
@@ -227,7 +227,7 @@ Maximal element
 An element $m\in P$ is maximal if there is no $x\in P$ with $m<x$; equivalently, $m\le x$ implies $x=m$. A greatest element (maximum) is an upper bound of all of $P$; it is maximal, but a maximal element need not be greatest.
 :::
 
-::: {.front card-id="card-f4b465c564475ad6" tags="definition"}
+::: {.front card-id="card-f4b465c564475ad6" tags="definition, prerequisite"}
 Ordered pair
 :::
 
@@ -235,7 +235,7 @@ Ordered pair
 An ordered pair $(a,b)$ is a set with the property $(a,b)=(c,d)$ if and only if $a=c$ and $b=d$; the Kuratowski model is $(a,b)=\{\{a\},\{a,b\}\}$.
 :::
 
-::: {.front card-id="card-77bebd51ba2ee791" tags="definition"}
+::: {.front card-id="card-77bebd51ba2ee791" tags="definition, prerequisite"}
 Poset
 :::
 
@@ -243,7 +243,7 @@ Poset
 A partially ordered set (poset) is a pair $(P,\le)$ where $\le$ is reflexive ($x\le x$), transitive ($x\le y$ and $y\le z$ imply $x\le z$), and antisymmetric ($x\le y$ and $y\le x$ imply $x=y$).
 :::
 
-::: {.front card-id="card-c6051ab15af14b0b" tags="definition"}
+::: {.front card-id="card-c6051ab15af14b0b" tags="definition, prerequisite"}
 Power set
 :::
 
@@ -259,7 +259,7 @@ Preimage
 For $f:X\to Y$ and $B\subseteq Y$, the preimage (or inverse image) of $B$ is $f^{-1}(B)=\{x\in X:f(x)\in B\}\subseteq X$. It is defined for every function $f$, whether or not $f$ is invertible.
 :::
 
-::: {.front card-id="card-541fd61b8f78963f" tags="definition"}
+::: {.front card-id="card-541fd61b8f78963f" tags="definition, prerequisite"}
 Relation
 :::
 
@@ -275,7 +275,7 @@ Right inverse
 A right inverse of $f:X\to Y$ is a function $g:Y\to X$ with $f\circ g=\mathrm{id}_Y$, i.e. $f(g(y))=y$ for all $y\in Y$. A function has a right inverse iff it is surjective (the converse uses the axiom of choice).
 :::
 
-::: {.front card-id="card-d38f961a10aa08a1" tags="definition"}
+::: {.front card-id="card-d38f961a10aa08a1" tags="definition, prerequisite"}
 Set
 :::
 
@@ -291,7 +291,7 @@ Set difference
 The set difference of $A$ and $B$ is $A\setminus B=\{x\in A:x\notin B\}$. When $B\subseteq A$, this is also called the complement of $B$ in $A$.
 :::
 
-::: {.front card-id="card-7614eef730ffa76f" tags="definition"}
+::: {.front card-id="card-7614eef730ffa76f" tags="definition, prerequisite"}
 Subset
 :::
 
@@ -307,7 +307,7 @@ Total order
 A total order (linear order) on $P$ is a partial order such that for all $x,y\in P$, $x\le y$ or $y\le x$. A set equipped with a total order is totally ordered.
 :::
 
-::: {.front card-id="card-6c951c9e85ad5b76" tags="definition"}
+::: {.front card-id="card-6c951c9e85ad5b76" tags="definition, prerequisite"}
 Uncountable
 :::
 
@@ -315,7 +315,7 @@ Uncountable
 A set is uncountable if it is not countable, that is, it admits no injection into $\mathbb{N}$.
 :::
 
-::: {.front card-id="card-0e8d87064c84183c" tags="definition"}
+::: {.front card-id="card-0e8d87064c84183c" tags="definition, prerequisite"}
 Union
 :::
 
@@ -323,7 +323,7 @@ Union
 The union of a family $\{A_i\}_{i\in I}$ is $\bigcup_{i\in I}A_i=\{x:\exists i\in I,\ x\in A_i\}$. For two sets, $A\cup B=\{x:x\in A\text{ or }x\in B\}$.
 :::
 
-::: {.front card-id="card-9873a6d0534b8d25" tags="definition"}
+::: {.front card-id="card-9873a6d0534b8d25" tags="definition, prerequisite"}
 Upper bound
 :::
 

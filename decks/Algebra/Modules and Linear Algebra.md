@@ -186,7 +186,7 @@ Proposition: Every free module is projective.
 :::
 
 
-::: {.front card-id="card-9d1c938e872bdfec" tags="definition"}
+::: {.front card-id="card-9d1c938e872bdfec" tags="definition, prerequisite"}
 Basis
 :::
 
@@ -218,7 +218,7 @@ Diagonal matrix
 A matrix $D=(d_{ij})$ is diagonal if $d_{ij}=0$ for all $i\neq j$.
 :::
 
-::: {.front card-id="card-d7860e0362742150" tags="definition"}
+::: {.front card-id="card-d7860e0362742150" tags="definition, prerequisite"}
 Dimension
 :::
 
@@ -258,7 +258,7 @@ General linear group
 The general linear group $\mathrm{GL}_n(R)$ is the group of invertible $n\times n$ matrices over $R$ under multiplication; over a field $k$, $\mathrm{GL}_n(k)=\{A\in M_n(k):\det A\neq0\}$.
 :::
 
-::: {.front card-id="card-e89fa8b593142a71" tags="definition"}
+::: {.front card-id="card-e89fa8b593142a71" tags="definition, prerequisite"}
 Linear map
 :::
 
@@ -290,7 +290,7 @@ Minimal polynomial
 For a linear map $T:V\to V$ over a field, the minimal polynomial is the monic polynomial $m_T(x)$ of least positive degree with $m_T(T)=0$. For $\alpha$ algebraic over $k$, $m_\alpha(x)$ is the monic polynomial of least positive degree with $m_\alpha(\alpha)=0$.
 :::
 
-::: {.front card-id="card-fde08668f063f0b1" tags="definition"}
+::: {.front card-id="card-fde08668f063f0b1" tags="definition, prerequisite"}
 Module
 :::
 
@@ -338,7 +338,7 @@ Trace
 For a finite-dimensional $k$-vector space $V$ and an endomorphism $T$, the trace $\mathrm{tr}(T)$ is the sum of the diagonal entries of any matrix of $T$, independent of the basis. For a finite extension $L/K$, $\mathrm{Tr}_{L/K}(\alpha)$ is the trace of multiplication by $\alpha$.
 :::
 
-::: {.front card-id="card-77078815a98d2643" tags="definition"}
+::: {.front card-id="card-77078815a98d2643" tags="definition, prerequisite"}
 Vector space
 :::
 

@@ -138,7 +138,7 @@ Divisibility
 For $a,b\in R$, $a$ divides $b$, written $a\mid b$, if $b=ac$ for some $c\in R$; equivalently, $b\in(a)$.
 :::
 
-::: {.front card-id="card-f366d9fa925a2c17" tags="definition"}
+::: {.front card-id="card-f366d9fa925a2c17" tags="definition, prerequisite"}
 Field
 :::
 
@@ -154,7 +154,7 @@ Field of fractions
 For an integral domain $R$, the field of fractions is $\operatorname{Frac}(R)=\{a/b:a,b\in R,\ b\neq0\}$ with $a/b=c/d$ iff $ad=bc$; it is the smallest field containing $R$.
 :::
 
-::: {.front card-id="card-826b6653fb77634a" tags="definition"}
+::: {.front card-id="card-826b6653fb77634a" tags="definition, prerequisite"}
 Ideal
 :::
 
@@ -202,7 +202,7 @@ Reducible polynomial
 A nonconstant polynomial $f\in K[x]$ is reducible if $f=gh$ with $g,h\in K[x]$ of positive degree; otherwise $f$ is irreducible. In a general ring, a nonzero nonunit is reducible if it is a product of two nonunits.
 :::
 
-::: {.front card-id="card-2eb0c22f7a9b4082" tags="definition"}
+::: {.front card-id="card-2eb0c22f7a9b4082" tags="definition, prerequisite"}
 Ring
 :::
 

@@ -357,7 +357,7 @@ Identity component
 The connected component of a topological group that contains the identity element.
 :::
 
-::: {.front card-id="card-afec5b6e607221bf" tags="definition"}
+::: {.front card-id="card-afec5b6e607221bf" tags="definition, prerequisite"}
 Injective
 :::
 
@@ -365,7 +365,7 @@ Injective
 A function $f: A \to B$ is injective if $f(a) = f(b)$ implies $a = b$.
 :::
 
-::: {.front card-id="card-f0fe32e6614819fe" tags="definition"}
+::: {.front card-id="card-f0fe32e6614819fe" tags="definition, prerequisite"}
 Isomorphism
 :::
 
@@ -421,7 +421,7 @@ Sine
 For an angle $\theta$, $\sin \theta$ is the $y$-coordinate of the point at angle $\theta$ on the unit circle; equivalently, opposite/hypotenuse in a right triangle.
 :::
 
-::: {.front card-id="card-ea3700191729197d" tags="definition"}
+::: {.front card-id="card-ea3700191729197d" tags="definition, prerequisite"}
 Surjective
 :::
 

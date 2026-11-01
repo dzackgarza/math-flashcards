@@ -45,7 +45,7 @@ Equivalently $\chi_V \leq f \leq \chi_{X\setminus U}$.
 Related (Urysohn metrization theorem): a topological space is separable and metrizable $\iff$ it is regular, Hausdorff, and second-countable.
 :::
 
-::: {.front card-id="card-33f04bfb88b19535" tags="definition"}
+::: {.front card-id="card-33f04bfb88b19535" tags="definition, prerequisite"}
 Hausdorff Space
 :::
 
@@ -292,7 +292,7 @@ Give an example of a set that is not nowhere dense.
 Counterexample: $\left\{{1 \over n}\right\}, \ZZ$ are nowhere dense, $\QQ, \ZZ\cup\qty{(a, b)\cap\QQ}$ is *not* nowhere dense
 :::
 
-::: {.front card-id="card-cba9c84c0e89e212" tags="definition"}
+::: {.front card-id="card-cba9c84c0e89e212" tags="definition, prerequisite"}
 Basis for a topology
 :::
 
@@ -308,7 +308,7 @@ Boolean space
 A boolean space is a compact Hausdorff space with a basis of sets that are both open and closed; equivalently, a Stone space.
 :::
 
-::: {.front card-id="card-e2d871c1a4ba63ee" tags="definition"}
+::: {.front card-id="card-e2d871c1a4ba63ee" tags="definition, prerequisite"}
 Boundary
 :::
 
@@ -324,7 +324,7 @@ Cauchy sequence
 A sequence $(x_n)$ in a metric space $(M,d)$ is Cauchy if for every $\varepsilon>0$ there is $N$ such that $d(x_m,x_n) < \varepsilon$ for all $m,n \ge N$.
 :::
 
-::: {.front card-id="card-b1f9fcb31fc9ae88" tags="definition"}
+::: {.front card-id="card-b1f9fcb31fc9ae88" tags="definition, prerequisite"}
 Closed set
 :::
 
@@ -332,7 +332,7 @@ Closed set
 A subset $F$ of a topological space $X$ is closed if its complement $X \setminus F$ is open.
 :::
 
-::: {.front card-id="card-c80158ab39900b38" tags="definition"}
+::: {.front card-id="card-c80158ab39900b38" tags="definition, prerequisite"}
 Closure
 :::
 
@@ -348,7 +348,7 @@ Complete metric space
 A metric space is complete if every Cauchy sequence in it converges.
 :::
 
-::: {.front card-id="card-b77ec2f39bfeb2ff" tags="definition"}
+::: {.front card-id="card-b77ec2f39bfeb2ff" tags="definition, prerequisite"}
 Connected space
 :::
 
@@ -364,7 +364,7 @@ Continuous at a point
 A map $f: X \to Y$ is continuous at $x \in X$ if for every neighborhood $V$ of $f(x)$ there is a neighborhood $U$ of $x$ with $f(U) \subseteq V$.
 :::
 
-::: {.front card-id="card-b301ebc6dbf20736" tags="definition"}
+::: {.front card-id="card-b301ebc6dbf20736" tags="definition, prerequisite"}
 Continuous map
 :::
 
@@ -372,7 +372,7 @@ Continuous map
 A map $f: X \to Y$ between topological spaces is continuous if $f^{-1}(V)$ is open in $X$ for every open $V \subseteq Y$; equivalently, $f^{-1}(F)$ is closed for every closed $F \subseteq Y$, or $f(\overline{A}) \subseteq \overline{f(A)}$ for every $A \subseteq X$.
 :::
 
-::: {.front card-id="card-a21e2d8d5f7ab170" tags="definition"}
+::: {.front card-id="card-a21e2d8d5f7ab170" tags="definition, prerequisite"}
 Convergence
 :::
 
@@ -380,7 +380,7 @@ Convergence
 A sequence $(x_n)$ in a topological space $X$ converges to $x \in X$ if every neighborhood of $x$ contains all but finitely many terms $x_n$; in a metric space this means $d(x_n,x) \to 0$. The point $x$ is the limit of the sequence.
 :::
 
-::: {.front card-id="card-41bf16dc927efef4" tags="definition"}
+::: {.front card-id="card-41bf16dc927efef4" tags="definition, prerequisite"}
 Homeomorphism
 :::
 
@@ -388,7 +388,7 @@ Homeomorphism
 A homeomorphism is a bijective continuous map $f: X \to Y$ whose inverse $f^{-1}: Y \to X$ is continuous; equivalently, a bijection that induces a bijection between the open sets of $X$ and $Y$.
 :::
 
-::: {.front card-id="card-5653008a0da946f2" tags="definition"}
+::: {.front card-id="card-5653008a0da946f2" tags="definition, prerequisite"}
 Interior
 :::
 
@@ -412,7 +412,7 @@ Locally constant
 A map $f: X \to Y$ is locally constant if every point of $X$ has a neighborhood on which $f$ is constant.
 :::
 
-::: {.front card-id="card-f32d7174be2324e3" tags="definition"}
+::: {.front card-id="card-f32d7174be2324e3" tags="definition, prerequisite"}
 Metric space
 :::
 
@@ -436,7 +436,7 @@ Open ball
 In a metric space $(M,d)$, the open ball of radius $r>0$ about $x \in M$ is $B(x,r) = \{y \in M : d(x,y) < r\}$.
 :::
 
-::: {.front card-id="card-c24c1ebb7e6150ef" tags="definition"}
+::: {.front card-id="card-c24c1ebb7e6150ef" tags="definition, prerequisite"}
 Open set
 :::
 
@@ -452,7 +452,7 @@ Path-connected space
 A topological space $X$ is path-connected if for every $x, y \in X$ there is a continuous map $\gamma: [0,1] \to X$ with $\gamma(0)=x$ and $\gamma(1)=y$.
 :::
 
-::: {.front card-id="card-217f3ed82aeccb4f" tags="definition"}
+::: {.front card-id="card-217f3ed82aeccb4f" tags="definition, prerequisite"}
 Product topology
 :::
 
@@ -468,7 +468,7 @@ Profinite space
 A profinite space is an inverse limit of an inverse system of finite discrete spaces; equivalently, a compact Hausdorff totally disconnected space.
 :::
 
-::: {.front card-id="card-293f4bdf15126950" tags="definition"}
+::: {.front card-id="card-293f4bdf15126950" tags="definition, prerequisite"}
 Quotient topology
 :::
 
@@ -508,7 +508,7 @@ Separation axioms
 The separation axioms are conditions on a topological space describing how points and closed sets can be separated by open sets; they include $T_0$, $T_1$, $T_2$ (Hausdorff), $T_3$ (regular), and $T_4$ (normal).
 :::
 
-::: {.front card-id="card-1846e9469cede6b1" tags="definition"}
+::: {.front card-id="card-1846e9469cede6b1" tags="definition, prerequisite"}
 Sequence
 :::
 
@@ -532,7 +532,7 @@ Subbasis for a topology
 A subbasis for a topology on $X$ is a family $\mathcal{S}$ of subsets of $X$ whose finite intersections form a basis; the topology generated by $\mathcal{S}$ is the smallest topology containing $\mathcal{S}$.
 :::
 
-::: {.front card-id="card-215e09ee7f09277f" tags="definition"}
+::: {.front card-id="card-215e09ee7f09277f" tags="definition, prerequisite"}
 Subcover
 :::
 
@@ -540,7 +540,7 @@ Subcover
 A subcover of an open cover $\{U_i\}_{i \in I}$ is a subfamily $\{U_j\}_{j \in J}$ with $J \subseteq I$ that still covers $A$; it is finite if $J$ is finite.
 :::
 
-::: {.front card-id="card-7ae7ccb66208e4af" tags="definition"}
+::: {.front card-id="card-7ae7ccb66208e4af" tags="definition, prerequisite"}
 Subsequence
 :::
 
@@ -548,7 +548,7 @@ Subsequence
 A subsequence of $(x_n)$ is a sequence $(x_{n_k})$ where $n_1 < n_2 < \cdots$ is a strictly increasing sequence of indices.
 :::
 
-::: {.front card-id="card-0e4738f6913d3c5f" tags="definition"}
+::: {.front card-id="card-0e4738f6913d3c5f" tags="definition, prerequisite"}
 Subspace topology
 :::
 
@@ -556,7 +556,7 @@ Subspace topology
 For $A \subseteq X$, the subspace topology on $A$ is $\tau_A = \{U \cap A : U \in \tau_X\}$.
 :::
 
-::: {.front card-id="card-26b31a5d44a7965b" tags="definition"}
+::: {.front card-id="card-26b31a5d44a7965b" tags="definition, prerequisite"}
 Topological space
 :::
 
@@ -564,7 +564,7 @@ Topological space
 A topological space is a pair $(X, \tau)$ consisting of a set $X$ and a topology $\tau$ on $X$.
 :::
 
-::: {.front card-id="card-12d182d2b70faa72" tags="definition"}
+::: {.front card-id="card-12d182d2b70faa72" tags="definition, prerequisite"}
 Topology
 :::
 

@@ -426,7 +426,7 @@ Coprime
 Integers $a$ and $b$ are coprime (relatively prime) if $\gcd(a,b)=1$.
 :::
 
-::: {.front card-id="card-c9ac48471e97591c" tags="definition"}
+::: {.front card-id="card-c9ac48471e97591c" tags="definition, prerequisite"}
 Coset
 :::
 
@@ -482,7 +482,7 @@ Free group
 The free group $F(S)$ on a set $S$ consists of finite words in $S \cup S^{-1}$ modulo cancellation, with concatenation as multiplication; every map $S \to G$ into a group extends uniquely to a homomorphism $F(S) \to G$.
 :::
 
-::: {.front card-id="card-8c23df2ebf32bad0" tags="definition"}
+::: {.front card-id="card-8c23df2ebf32bad0" tags="definition, prerequisite"}
 Group
 :::
 
@@ -490,7 +490,7 @@ Group
 A group is a set $G$ with a binary operation $\cdot$ such that the operation is associative, there is an identity $e$ with $eg=ge=g$, and every $g\in G$ has an inverse $g^{-1}$ with $gg^{-1}=g^{-1}g=e$.
 :::
 
-::: {.front card-id="card-139d9f345ad2a7de" tags="definition"}
+::: {.front card-id="card-139d9f345ad2a7de" tags="definition, prerequisite"}
 Group action
 :::
 
@@ -498,7 +498,7 @@ Group action
 A left action of a group $G$ on a set $X$ is a map $G\times X\to X$, $(g,x)\mapsto g\cdot x$, with $e\cdot x=x$ and $(gh)\cdot x=g\cdot(h\cdot x)$; equivalently, a homomorphism $G\to\operatorname{Sym}(X)$.
 :::
 
-::: {.front card-id="card-3665e688bed7d83b" tags="definition"}
+::: {.front card-id="card-3665e688bed7d83b" tags="definition, prerequisite"}
 Group homomorphism
 :::
 
@@ -522,7 +522,7 @@ Group presentation
 A presentation $\langle S \mid R \rangle$ denotes the group $F(S)/N$, where $F(S)$ is the free group on $S$ and $N$ is the normal closure of the set $R$ of relators.
 :::
 
-::: {.front card-id="card-8363ce39057c40e3" tags="definition"}
+::: {.front card-id="card-8363ce39057c40e3" tags="definition, prerequisite"}
 Image
 :::
 
@@ -538,7 +538,7 @@ Index of a subgroup
 For $H\le G$, the index $[G:H]$ is the number of distinct left cosets of $H$ in $G$ (equivalently, the number of right cosets); if $G$ is finite, $[G:H]=|G|/|H|$.
 :::
 
-::: {.front card-id="card-73ef693dc7fa7d03" tags="definition"}
+::: {.front card-id="card-73ef693dc7fa7d03" tags="definition, prerequisite"}
 Inverse
 :::
 
@@ -546,7 +546,7 @@ Inverse
 In a group $G$, the inverse of $g$ is the unique element $g^{-1}$ with $g g^{-1} = g^{-1} g = e$. For a bijection $f : X \to Y$, the inverse map $f^{-1} : Y \to X$ satisfies $f^{-1} \circ f = \mathrm{id}_X$ and $f \circ f^{-1} = \mathrm{id}_Y$.
 :::
 
-::: {.front card-id="card-cfa1f0e3b3dec3ee" tags="definition"}
+::: {.front card-id="card-cfa1f0e3b3dec3ee" tags="definition, prerequisite"}
 Kernel
 :::
 
@@ -554,7 +554,7 @@ Kernel
 For a group homomorphism $\varphi:G\to H$, the kernel is $\ker\varphi=\{g\in G:\varphi(g)=e_H\}$; it is a normal subgroup of $G$.
 :::
 
-::: {.front card-id="card-f42c869a59bd7fc2" tags="definition"}
+::: {.front card-id="card-f42c869a59bd7fc2" tags="definition, prerequisite"}
 Normal subgroup
 :::
 
@@ -562,7 +562,7 @@ Normal subgroup
 A subgroup $N\le G$ is normal, written $N\trianglelefteq G$, if $gNg^{-1}=N$ for every $g\in G$; equivalently, every left coset of $N$ equals a right coset, so $G/N$ is a group.
 :::
 
-::: {.front card-id="card-bacde55ea4062944" tags="definition"}
+::: {.front card-id="card-bacde55ea4062944" tags="definition, prerequisite"}
 Orbit
 :::
 
@@ -602,7 +602,7 @@ Quaternion group
 The quaternion group is $Q_8=\{\pm1,\pm i,\pm j,\pm k\}$ with $i^2=j^2=k^2=ijk=-1$; the generalized quaternion group $Q_{2^n}$ has order $2^n$ and presentation $\langle a,b\mid a^{2^{n-1}}=e,\ b^2=a^{2^{n-2}},\ bab^{-1}=a^{-1}\rangle$.
 :::
 
-::: {.front card-id="card-f476dc23874c19e1" tags="definition"}
+::: {.front card-id="card-f476dc23874c19e1" tags="definition, prerequisite"}
 Quotient group
 :::
 
@@ -626,7 +626,7 @@ Sign homomorphism
 The sign homomorphism $\varepsilon:S_n\to\{\pm1\}$ sends a permutation to $(-1)^k$, where $k$ is the number of transpositions in any decomposition; it is well defined, and $\ker\varepsilon=A_n$.
 :::
 
-::: {.front card-id="card-1e593a43a522a7db" tags="definition"}
+::: {.front card-id="card-1e593a43a522a7db" tags="definition, prerequisite"}
 Subgroup
 :::
 

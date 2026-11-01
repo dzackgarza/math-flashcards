@@ -290,7 +290,7 @@ Commutative monoid
 A monoid is a set $M$ with an associative binary operation $M \times M \to M$ and a two-sided identity element. It is commutative if the operation is commutative.
 :::
 
-::: {.front card-id="card-7b0a4da37d88a8c8" tags="definition"}
+::: {.front card-id="card-7b0a4da37d88a8c8" tags="definition, prerequisite"}
 Compact space
 :::
 
@@ -482,7 +482,7 @@ N-sphere
 The $n$-sphere is $S^n = \{x \in \mathbb{R}^{n+1} : \|x\| = 1\}$ with the subspace topology; $S^0 = \{\pm 1\}$ and $S^n$ is the one-point compactification of $\mathbb{R}^n$ for $n \ge 1$.
 :::
 
-::: {.front card-id="card-dc8d3d79c843486c" tags="definition"}
+::: {.front card-id="card-dc8d3d79c843486c" tags="definition, prerequisite"}
 Neighborhood
 :::
 

@@ -266,7 +266,7 @@ Curl
 For $F=(F_1,F_2,F_3)$ on $\RR^3$, $\nabla \times F = \left(\frac{\partial F_3}{\partial y}-\frac{\partial F_2}{\partial z},\frac{\partial F_1}{\partial z}-\frac{\partial F_3}{\partial x},\frac{\partial F_2}{\partial x}-\frac{\partial F_1}{\partial y}\right)$.
 :::
 
-::: {.front card-id="card-4b89587cd1e156b3" tags="definition"}
+::: {.front card-id="card-4b89587cd1e156b3" tags="definition, prerequisite"}
 Derivative
 :::
 
@@ -346,7 +346,7 @@ L'hopital's rule
 If $f,g$ are differentiable near $a$, $f(a)=g(a)=0$ or both tend to $\pm\infty$, and $\lim f'(x)/g'(x)=L$, then $\lim f(x)/g(x)=L$, provided the hypotheses hold on a punctured neighborhood.
 :::
 
-::: {.front card-id="card-ec7a9144ff6c9cc6" tags="definition"}
+::: {.front card-id="card-ec7a9144ff6c9cc6" tags="definition, prerequisite"}
 Limit
 :::
 
@@ -410,7 +410,7 @@ Plane
 A set of the form $\{x \in \RR^3 : \langle x-p_0, n\rangle = 0\}$, where $p_0$ is a point on the plane and $n$ is a normal vector.
 :::
 
-::: {.front card-id="card-c052dea471cd16ed" tags="definition"}
+::: {.front card-id="card-c052dea471cd16ed" tags="definition, prerequisite"}
 Series
 :::
 

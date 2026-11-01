@@ -269,7 +269,7 @@ Degree of a field extension
 For a field extension $L/K$, the degree is $[L:K]=\dim_K L$; the extension is finite if $[L:K]<\infty$.
 :::
 
-::: {.front card-id="card-f7e48c8bfb9b6eee" tags="definition"}
+::: {.front card-id="card-f7e48c8bfb9b6eee" tags="definition, prerequisite"}
 Field extension
 :::
 
