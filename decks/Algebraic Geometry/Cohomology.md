@@ -729,14 +729,6 @@ Kodaira vanishing
 If $X$ is a smooth projective variety over a field of characteristic zero and $L$ is an ample line bundle, then $H^i(X,\omega_X\otimes L)=0$ for all $i>0$.
 :::
 
-::: {.front card-id="card-e74dad8bae380943" tags="definition, prerequisite"}
-Open cover
-:::
-
-::: {.back card-id="card-e74dad8bae380943"}
-A family $\mathcal U=\{U_i\}_{i\in I}$ of open subsets with $\bigcup_i U_i=X$. It is locally finite if every point has a neighborhood meeting only finitely many $U_i$. Cech cohomology is computed from such a cover.
-:::
-
 ::: {.front card-id="card-26480f215f75c15f" tags="definition"}
 Partition of unity
 :::

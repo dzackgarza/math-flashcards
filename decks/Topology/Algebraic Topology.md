@@ -233,7 +233,6 @@ What is $\chi(A\# B)$?
 $\chi(A) + \chi(B) - 2$
 :::
 
-
 ::: {.front card-id="card-4ca5023bd31304cf" tags="definition"}
 Annulus
 :::
@@ -288,14 +287,6 @@ Commutative monoid
 
 ::: {.back card-id="card-7c4e99aa42c83054"}
 A monoid is a set $M$ with an associative binary operation $M \times M \to M$ and a two-sided identity element. It is commutative if the operation is commutative.
-:::
-
-::: {.front card-id="card-7b0a4da37d88a8c8" tags="definition, prerequisite"}
-Compact space
-:::
-
-::: {.back card-id="card-7b0a4da37d88a8c8"}
-A topological space $X$ is compact if every open cover of $X$ admits a finite subcover.
 :::
 
 ::: {.front card-id="card-5abf4d513b1fa4dd" tags="definition"}
@@ -480,14 +471,6 @@ N-sphere
 
 ::: {.back card-id="card-c10c2ecad4fec0f1"}
 The $n$-sphere is $S^n = \{x \in \mathbb{R}^{n+1} : \|x\| = 1\}$ with the subspace topology; $S^0 = \{\pm 1\}$ and $S^n$ is the one-point compactification of $\mathbb{R}^n$ for $n \ge 1$.
-:::
-
-::: {.front card-id="card-dc8d3d79c843486c" tags="definition, prerequisite"}
-Neighborhood
-:::
-
-::: {.back card-id="card-dc8d3d79c843486c"}
-A neighborhood of a point $x \in X$ is a subset $N \subseteq X$ containing an open set $U$ with $x \in U$. Some authors require neighborhoods themselves to be open.
 :::
 
 ::: {.front card-id="card-04916e1d4c02dcc8" tags="definition"}

@@ -1016,14 +1016,6 @@ Infimum
 The infimum $\inf A$ is the greatest lower bound of $A$: a lower bound that is $\geq$ every other lower bound.
 :::
 
-::: {.front card-id="card-25d69b9393b0ae7b" tags="definition, prerequisite"}
-Integral
-:::
-
-::: {.back card-id="card-25d69b9393b0ae7b"}
-For a measure space $(X,\mu)$ and measurable $f$, the integral is $\int_X f\,d\mu = \int f^+\,d\mu - \int f^-\,d\mu$, defined when at least one term is finite. For bounded $f : [a,b] \to \mathbb{R}$, the Riemann integral is the limit of Riemann sums, equivalently the common value of the upper and lower integrals.
-:::
-
 ::: {.front card-id="card-3e90b2b5da3eb6a5" tags="definition"}
 Interval
 :::

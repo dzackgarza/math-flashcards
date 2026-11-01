@@ -357,22 +357,6 @@ Identity component
 The connected component of a topological group that contains the identity element.
 :::
 
-::: {.front card-id="card-afec5b6e607221bf" tags="definition, prerequisite"}
-Injective
-:::
-
-::: {.back card-id="card-afec5b6e607221bf"}
-A function $f: A \to B$ is injective if $f(a) = f(b)$ implies $a = b$.
-:::
-
-::: {.front card-id="card-f0fe32e6614819fe" tags="definition, prerequisite"}
-Isomorphism
-:::
-
-::: {.back card-id="card-f0fe32e6614819fe"}
-A bijective homomorphism whose inverse is also a homomorphism.
-:::
-
 ::: {.front card-id="card-62f69108ecc199f1" tags="definition"}
 Logarithm
 :::
@@ -419,14 +403,6 @@ Sine
 
 ::: {.back card-id="card-e4e511236b378196"}
 For an angle $\theta$, $\sin \theta$ is the $y$-coordinate of the point at angle $\theta$ on the unit circle; equivalently, opposite/hypotenuse in a right triangle.
-:::
-
-::: {.front card-id="card-ea3700191729197d" tags="definition, prerequisite"}
-Surjective
-:::
-
-::: {.back card-id="card-ea3700191729197d"}
-A function $f: A \to B$ is surjective if for every $b \in B$ there exists $a \in A$ with $f(a) = b$.
 :::
 
 ::: {.front card-id="card-b76048aa63bcf609" tags="definition"}

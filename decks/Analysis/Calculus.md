@@ -266,14 +266,6 @@ Curl
 For $F=(F_1,F_2,F_3)$ on $\RR^3$, $\nabla \times F = \left(\frac{\partial F_3}{\partial y}-\frac{\partial F_2}{\partial z},\frac{\partial F_1}{\partial z}-\frac{\partial F_3}{\partial x},\frac{\partial F_2}{\partial x}-\frac{\partial F_1}{\partial y}\right)$.
 :::
 
-::: {.front card-id="card-4b89587cd1e156b3" tags="definition, prerequisite"}
-Derivative
-:::
-
-::: {.back card-id="card-4b89587cd1e156b3"}
-$f'(x) = \lim_{h \to 0} \frac{f(x+h)-f(x)}{h}$, when the limit exists.
-:::
-
 ::: {.front card-id="card-226447c0d4b49a89" tags="definition"}
 Divergence
 :::
@@ -346,14 +338,6 @@ L'hopital's rule
 If $f,g$ are differentiable near $a$, $f(a)=g(a)=0$ or both tend to $\pm\infty$, and $\lim f'(x)/g'(x)=L$, then $\lim f(x)/g(x)=L$, provided the hypotheses hold on a punctured neighborhood.
 :::
 
-::: {.front card-id="card-ec7a9144ff6c9cc6" tags="definition, prerequisite"}
-Limit
-:::
-
-::: {.back card-id="card-ec7a9144ff6c9cc6"}
-$\lim_{x \to a} f(x) = L$ if for every $\varepsilon>0$ there is $\delta>0$ such that $0<|x-a|<\delta$ implies $|f(x)-L|<\varepsilon$.
-:::
-
 ::: {.front card-id="card-5aec7fa2f93688d3" tags="definition"}
 Line integral
 :::
@@ -408,14 +392,6 @@ Plane
 
 ::: {.back card-id="card-8ffc80ba2aae0fd0"}
 A set of the form $\{x \in \RR^3 : \langle x-p_0, n\rangle = 0\}$, where $p_0$ is a point on the plane and $n$ is a normal vector.
-:::
-
-::: {.front card-id="card-c052dea471cd16ed" tags="definition, prerequisite"}
-Series
-:::
-
-::: {.back card-id="card-c052dea471cd16ed"}
-A formal sum $\sum_{n=1}^{\infty} a_n$, defined as the limit of its partial sums $S_N = \sum_{n=1}^{N} a_n$.
 :::
 
 ::: {.front card-id="card-1f06a57c84074d61" tags="definition"}

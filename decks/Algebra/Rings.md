@@ -138,28 +138,12 @@ Divisibility
 For $a,b\in R$, $a$ divides $b$, written $a\mid b$, if $b=ac$ for some $c\in R$; equivalently, $b\in(a)$.
 :::
 
-::: {.front card-id="card-f366d9fa925a2c17" tags="definition, prerequisite"}
-Field
-:::
-
-::: {.back card-id="card-f366d9fa925a2c17"}
-A field is a commutative ring $F$ with $1\neq0$ in which every nonzero element has a multiplicative inverse; equivalently, its only ideals are $(0)$ and $F$.
-:::
-
 ::: {.front card-id="card-4fd7042798fa65ee" tags="definition"}
 Field of fractions
 :::
 
 ::: {.back card-id="card-4fd7042798fa65ee"}
 For an integral domain $R$, the field of fractions is $\operatorname{Frac}(R)=\{a/b:a,b\in R,\ b\neq0\}$ with $a/b=c/d$ iff $ad=bc$; it is the smallest field containing $R$.
-:::
-
-::: {.front card-id="card-826b6653fb77634a" tags="definition, prerequisite"}
-Ideal
-:::
-
-::: {.back card-id="card-826b6653fb77634a"}
-A (two-sided) ideal of a ring $R$ is an additive subgroup $I\subseteq R$ such that $rI\subseteq I$ and $Ir\subseteq I$ for all $r\in R$; equivalently, $R/I$ is a ring.
 :::
 
 ::: {.front card-id="card-0c7db8f1fdccc3e8" tags="definition"}
@@ -200,14 +184,6 @@ Reducible polynomial
 
 ::: {.back card-id="card-0a4c36868ebc59ca"}
 A nonconstant polynomial $f\in K[x]$ is reducible if $f=gh$ with $g,h\in K[x]$ of positive degree; otherwise $f$ is irreducible. In a general ring, a nonzero nonunit is reducible if it is a product of two nonunits.
-:::
-
-::: {.front card-id="card-2eb0c22f7a9b4082" tags="definition, prerequisite"}
-Ring
-:::
-
-::: {.back card-id="card-2eb0c22f7a9b4082"}
-A ring is a set $R$ with addition and multiplication such that $(R,+)$ is an abelian group, multiplication is associative, and multiplication distributes over addition; rings are unital unless stated otherwise.
 :::
 
 ::: {.front card-id="card-cb8a5a9e3dd1d712" tags="definition"}

@@ -385,7 +385,6 @@ What is a sporadic simple group?
 One of 26 exceptional groups: not cyclic, alternating, or of Lie type.
 :::
 
-
 ::: {.front card-id="card-dc7999a8f6c6fd7f" tags="definition"}
 Center
 :::
@@ -424,14 +423,6 @@ Coprime
 
 ::: {.back card-id="card-3901fd88342de459"}
 Integers $a$ and $b$ are coprime (relatively prime) if $\gcd(a,b)=1$.
-:::
-
-::: {.front card-id="card-c9ac48471e97591c" tags="definition, prerequisite"}
-Coset
-:::
-
-::: {.back card-id="card-c9ac48471e97591c"}
-For $H\le G$ and $g\in G$, the left coset is $gH=\{gh:h\in H\}$ and the right coset is $Hg=\{hg:h\in H\}$; the left cosets partition $G$, as do the right cosets.
 :::
 
 ::: {.front card-id="card-003ad7055ed7c0f5" tags="definition"}
@@ -482,30 +473,6 @@ Free group
 The free group $F(S)$ on a set $S$ consists of finite words in $S \cup S^{-1}$ modulo cancellation, with concatenation as multiplication; every map $S \to G$ into a group extends uniquely to a homomorphism $F(S) \to G$.
 :::
 
-::: {.front card-id="card-8c23df2ebf32bad0" tags="definition, prerequisite"}
-Group
-:::
-
-::: {.back card-id="card-8c23df2ebf32bad0"}
-A group is a set $G$ with a binary operation $\cdot$ such that the operation is associative, there is an identity $e$ with $eg=ge=g$, and every $g\in G$ has an inverse $g^{-1}$ with $gg^{-1}=g^{-1}g=e$.
-:::
-
-::: {.front card-id="card-139d9f345ad2a7de" tags="definition, prerequisite"}
-Group action
-:::
-
-::: {.back card-id="card-139d9f345ad2a7de"}
-A left action of a group $G$ on a set $X$ is a map $G\times X\to X$, $(g,x)\mapsto g\cdot x$, with $e\cdot x=x$ and $(gh)\cdot x=g\cdot(h\cdot x)$; equivalently, a homomorphism $G\to\operatorname{Sym}(X)$.
-:::
-
-::: {.front card-id="card-3665e688bed7d83b" tags="definition, prerequisite"}
-Group homomorphism
-:::
-
-::: {.back card-id="card-3665e688bed7d83b"}
-A map $\varphi:G\to H$ between groups is a homomorphism if $\varphi(ab)=\varphi(a)\varphi(b)$ for all $a,b\in G$; then $\varphi(e_G)=e_H$ and $\varphi(g^{-1})=\varphi(g)^{-1}$.
-:::
-
 ::: {.front card-id="card-87fe69a5afd1401f" tags="definition"}
 Group of lie type
 :::
@@ -522,52 +489,12 @@ Group presentation
 A presentation $\langle S \mid R \rangle$ denotes the group $F(S)/N$, where $F(S)$ is the free group on $S$ and $N$ is the normal closure of the set $R$ of relators.
 :::
 
-::: {.front card-id="card-8363ce39057c40e3" tags="definition, prerequisite"}
-Image
-:::
-
-::: {.back card-id="card-8363ce39057c40e3"}
-For a map $\varphi:G\to H$, the image is $\operatorname{im}\varphi=\{\varphi(g):g\in G\}\subseteq H$; for a group homomorphism it is a subgroup of $H$.
-:::
-
 ::: {.front card-id="card-803bc68692ec52be" tags="definition"}
 Index of a subgroup
 :::
 
 ::: {.back card-id="card-803bc68692ec52be"}
 For $H\le G$, the index $[G:H]$ is the number of distinct left cosets of $H$ in $G$ (equivalently, the number of right cosets); if $G$ is finite, $[G:H]=|G|/|H|$.
-:::
-
-::: {.front card-id="card-73ef693dc7fa7d03" tags="definition, prerequisite"}
-Inverse
-:::
-
-::: {.back card-id="card-73ef693dc7fa7d03"}
-In a group $G$, the inverse of $g$ is the unique element $g^{-1}$ with $g g^{-1} = g^{-1} g = e$. For a bijection $f : X \to Y$, the inverse map $f^{-1} : Y \to X$ satisfies $f^{-1} \circ f = \mathrm{id}_X$ and $f \circ f^{-1} = \mathrm{id}_Y$.
-:::
-
-::: {.front card-id="card-cfa1f0e3b3dec3ee" tags="definition, prerequisite"}
-Kernel
-:::
-
-::: {.back card-id="card-cfa1f0e3b3dec3ee"}
-For a group homomorphism $\varphi:G\to H$, the kernel is $\ker\varphi=\{g\in G:\varphi(g)=e_H\}$; it is a normal subgroup of $G$.
-:::
-
-::: {.front card-id="card-f42c869a59bd7fc2" tags="definition, prerequisite"}
-Normal subgroup
-:::
-
-::: {.back card-id="card-f42c869a59bd7fc2"}
-A subgroup $N\le G$ is normal, written $N\trianglelefteq G$, if $gNg^{-1}=N$ for every $g\in G$; equivalently, every left coset of $N$ equals a right coset, so $G/N$ is a group.
-:::
-
-::: {.front card-id="card-bacde55ea4062944" tags="definition, prerequisite"}
-Orbit
-:::
-
-::: {.back card-id="card-bacde55ea4062944"}
-For a group action $G\curvearrowright X$ and $x\in X$, the orbit is $G\cdot x=\{g\cdot x:g\in G\}$; the orbits partition $X$.
 :::
 
 ::: {.front card-id="card-d5f7d876e651169f" tags="definition"}
@@ -602,14 +529,6 @@ Quaternion group
 The quaternion group is $Q_8=\{\pm1,\pm i,\pm j,\pm k\}$ with $i^2=j^2=k^2=ijk=-1$; the generalized quaternion group $Q_{2^n}$ has order $2^n$ and presentation $\langle a,b\mid a^{2^{n-1}}=e,\ b^2=a^{2^{n-2}},\ bab^{-1}=a^{-1}\rangle$.
 :::
 
-::: {.front card-id="card-f476dc23874c19e1" tags="definition, prerequisite"}
-Quotient group
-:::
-
-::: {.back card-id="card-f476dc23874c19e1"}
-For $N\trianglelefteq G$, the quotient group $G/N$ is the set of cosets $\{gN:g\in G\}$ with multiplication $(gN)(hN)=ghN$.
-:::
-
 ::: {.front card-id="card-fb5a91e10631831b" tags="definition"}
 Semidirect product
 :::
@@ -624,14 +543,6 @@ Sign homomorphism
 
 ::: {.back card-id="card-e332dd610e6a7a7e"}
 The sign homomorphism $\varepsilon:S_n\to\{\pm1\}$ sends a permutation to $(-1)^k$, where $k$ is the number of transpositions in any decomposition; it is well defined, and $\ker\varepsilon=A_n$.
-:::
-
-::: {.front card-id="card-1e593a43a522a7db" tags="definition, prerequisite"}
-Subgroup
-:::
-
-::: {.back card-id="card-1e593a43a522a7db"}
-A subset $H\subseteq G$ is a subgroup, written $H\le G$, if $H$ is nonempty and $a,b\in H$ implies $ab^{-1}\in H$; equivalently, $H$ is closed under the group operation and inverses.
 :::
 
 ::: {.front card-id="card-538c931c90bd562b" tags="definition"}

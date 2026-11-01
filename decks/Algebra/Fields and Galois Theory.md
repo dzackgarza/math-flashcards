@@ -212,7 +212,6 @@ What is the Galois correspondence for infinite extensions?
 Subextensions of $k^{ {}^{ \operatorname{sep} } }/k$ correspond to **closed** subgroups of $\Gal(k^{ {}^{ \operatorname{sep} } }/k)$ with the Krull topology.
 :::
 
-
 ::: {.front card-id="card-c91a2881f00ee820" tags="definition"}
 Algebraic closure
 :::
@@ -267,14 +266,6 @@ Degree of a field extension
 
 ::: {.back card-id="card-c3bbb6764f8d7d5c"}
 For a field extension $L/K$, the degree is $[L:K]=\dim_K L$; the extension is finite if $[L:K]<\infty$.
-:::
-
-::: {.front card-id="card-f7e48c8bfb9b6eee" tags="definition, prerequisite"}
-Field extension
-:::
-
-::: {.back card-id="card-f7e48c8bfb9b6eee"}
-A field extension $L/K$ is a pair of fields $K\subseteq L$; then $L$ is a vector space over $K$, and its degree is $[L:K]=\dim_K L$.
 :::
 
 ::: {.front card-id="card-1370fb010bf5821b" tags="definition"}

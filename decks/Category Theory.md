@@ -180,14 +180,6 @@ Adjunction
 An adjunction $F\dashv G$ between functors $F:\mathcal{C}\to\mathcal{D}$ and $G:\mathcal{D}\to\mathcal{C}$ is a natural bijection $\operatorname{Hom}_{\mathcal{D}}(F(X),Y)\cong\operatorname{Hom}_{\mathcal{C}}(X,G(Y))$ for all $X\in\mathcal{C}$ and $Y\in\mathcal{D}$. Then $F$ is left adjoint to $G$ and $G$ is right adjoint to $F$; equivalently, there are unit $\eta:1_{\mathcal{C}}\Rightarrow G\circ F$ and counit $\varepsilon:F\circ G\Rightarrow1_{\mathcal{D}}$ satisfying the triangle identities.
 :::
 
-::: {.front card-id="card-34b9d94f9754cbcb" tags="definition, prerequisite"}
-Category
-:::
-
-::: {.back card-id="card-34b9d94f9754cbcb"}
-A category $\mathcal{C}$ consists of a class of objects, a set of morphisms $\mathcal{C}(X,Y)=\operatorname{Hom}_{\mathcal{C}}(X,Y)$ for each pair of objects $X,Y$, an identity $1_X\in\mathcal{C}(X,X)$, and a composition $\mathcal{C}(Y,Z)\times\mathcal{C}(X,Y)\to\mathcal{C}(X,Z)$, $(g,f)\mapsto g\circ f$, such that composition is associative and $1_Y\circ f=f=f\circ 1_X$.
-:::
-
 ::: {.front card-id="card-9d2eba9c6dac9b92" tags="definition"}
 Class
 :::
@@ -202,14 +194,6 @@ Cocone
 
 ::: {.back card-id="card-48d6063244a1eded"}
 A cocone under a diagram $F:I\to\mathcal{C}$ is an object $C$ together with morphisms $\iota_i:F(i)\to C$ for all $i\in I$ such that $\iota_j\circ F(u)=\iota_i$ for every morphism $u:i\to j$ in $I$.
-:::
-
-::: {.front card-id="card-f119fd025c46d264" tags="definition, prerequisite"}
-Colimit
-:::
-
-::: {.back card-id="card-f119fd025c46d264"}
-The colimit of a diagram $D : I \to \mathcal{C}$ is an object $\varinjlim D$ together with morphisms $D(i) \to \varinjlim D$ forming a cocone, universal among all cocones over $D$.
 :::
 
 ::: {.front card-id="card-e561c0aeefcb997b" tags="definition"}
@@ -234,30 +218,6 @@ Cone
 
 ::: {.back card-id="card-9a9c026fdf5d91f0"}
 A cone over a diagram $F:I\to\mathcal{C}$ is an object $L$ together with morphisms $\lambda_i:L\to F(i)$ for all $i\in I$ such that $F(u)\circ\lambda_i=\lambda_j$ for every morphism $u:i\to j$ in $I$. The maps $\lambda_i$ are the legs of the cone.
-:::
-
-::: {.front card-id="card-55efc5861576a2e0" tags="definition, prerequisite"}
-Coproduct
-:::
-
-::: {.back card-id="card-55efc5861576a2e0"}
-A coproduct of objects $\{X_i\}_{i\in I}$ is an object $\coprod_{i\in I}X_i$ with injections $\iota_i:X_i\to\coprod_{i\in I}X_i$ such that for every object $A$ and morphisms $f_i:X_i\to A$ there is a unique $f:\coprod_{i\in I}X_i\to A$ with $f\circ\iota_i=f_i$. It is the dual of the product; in $\mathbf{Set}$ it is the disjoint union.
-:::
-
-::: {.front card-id="card-1a6fb58590700430" tags="definition, prerequisite"}
-Diagram
-:::
-
-::: {.back card-id="card-1a6fb58590700430"}
-A diagram in a category $\mathcal{C}$ is a functor $F:I\to\mathcal{C}$ from a small index category $I$ (often a poset, a graph, or a finite shape) to $\mathcal{C}$; it selects objects $F(i)$ and morphisms $F(i\to j)$.
-:::
-
-::: {.front card-id="card-5ed4b24560148b76" tags="definition, prerequisite"}
-Functor
-:::
-
-::: {.back card-id="card-5ed4b24560148b76"}
-A functor $F:\mathcal{C}\to\mathcal{D}$ assigns to each object $X$ of $\mathcal{C}$ an object $F(X)$ of $\mathcal{D}$, and to each morphism $f:X\to Y$ a morphism $F(f):F(X)\to F(Y)$, such that $F(1_X)=1_{F(X)}$ and $F(g\circ f)=F(g)\circ F(f)$. A contravariant functor reverses the direction of morphisms.
 :::
 
 ::: {.front card-id="card-8c793764756f2e0d" tags="definition"}
@@ -300,28 +260,12 @@ Locally small category
 A category $\mathcal{C}$ is locally small if for every pair of objects $X,Y$, the morphisms $X\to Y$ form a set (rather than a proper class).
 :::
 
-::: {.front card-id="card-a3c78f865c43299c" tags="definition, prerequisite"}
-Morphism
-:::
-
-::: {.back card-id="card-a3c78f865c43299c"}
-A morphism (arrow) $f:X\to Y$ in a category $\mathcal{C}$ is an element of the hom-set $\mathcal{C}(X,Y)$. $X$ is its domain (source) and $Y$ its codomain (target); morphisms compose associatively and have identities.
-:::
-
 ::: {.front card-id="card-12805de172fcbf35" tags="definition"}
 Natural isomorphism
 :::
 
 ::: {.back card-id="card-12805de172fcbf35"}
 A natural transformation $\eta:F\Rightarrow G$ is a natural isomorphism if every component $\eta_X:F(X)\to G(X)$ is an isomorphism. Equivalently, there is a natural transformation $\eta^{-1}:G\Rightarrow F$ with $\eta^{-1}\circ\eta=1_F$ and $\eta\circ\eta^{-1}=1_G$; one writes $F\cong G$.
-:::
-
-::: {.front card-id="card-a70cf264e4dc4c27" tags="definition, prerequisite"}
-Object
-:::
-
-::: {.back card-id="card-a70cf264e4dc4c27"}
-An object of a category $\mathcal{C}$ is one of the entities $X,Y,\dots$ among which morphisms are defined. Its only data are the hom-sets $\mathcal{C}(X,Y)$ and the composition and identity morphisms involving it.
 :::
 
 ::: {.front card-id="card-59ce6ef14b0fad41" tags="definition"}
@@ -338,14 +282,6 @@ Preadditive category
 
 ::: {.back card-id="card-e3aab7371e1a02b1"}
 A preadditive category is a category in which every hom-set $\mathcal{C}(X,Y)$ is an abelian group and composition is bilinear: $(g+g')\circ f=g\circ f+g'\circ f$ and $g\circ(f+f')=g\circ f+g\circ f'$. Equivalently, it is a category enriched over abelian groups.
-:::
-
-::: {.front card-id="card-9b06b57ebd9b85d6" tags="definition, prerequisite"}
-Product
-:::
-
-::: {.back card-id="card-9b06b57ebd9b85d6"}
-A product of objects $\{X_i\}_{i\in I}$ in a category is an object $\prod_{i\in I}X_i$ with projections $\pi_i:\prod_{i\in I}X_i\to X_i$ such that for every object $A$ and morphisms $f_i:A\to X_i$ there is a unique $f:A\to\prod_{i\in I}X_i$ with $\pi_i\circ f=f_i$. Equivalently, $\operatorname{Hom}(A,\prod_i X_i)\cong\prod_i\operatorname{Hom}(A,X_i)$ naturally in $A$.
 :::
 
 ::: {.front card-id="card-12d35eb6988ddb4f" tags="definition"}
