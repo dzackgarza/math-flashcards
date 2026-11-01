@@ -47,7 +47,7 @@ Equivalently, for $f$ of finite type and quasi-separated, the valuative criterio
 
 Consequences:
 
-- $X$ is complete iff the structure morphism to a point is proper, where complete means proper over a point.
+- A variety $X$ over a field is **complete** if its structure morphism $X\to\Spec k$ is proper.
 - Fibers of a proper morphism are complete.
 - Inverse images of complete subvarieties of $Y$ are complete.
 - Any morphism obtained by base change from a proper morphism is proper.
