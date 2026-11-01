@@ -34,7 +34,8 @@ exists.
 
 ## Completion conditions
 
-- [ ] Read every card and extract every technical term it uses.
+- [ ] Read every deck, then read the cards therein.
+- [ ] Extract every technical term used by each card.
 - [ ] Check whether each extracted term has a definition card.
 - [ ] Add one definition card for each term without one: the term on the front,
   its definition on the back.
