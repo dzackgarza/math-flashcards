@@ -237,14 +237,6 @@ Chern class
 Characteristic classes $c_k(E)\in H^{2k}(X;\mathbb{Z})$ of a vector bundle; for a line bundle $L$, $c_1(L)$ is the class of the divisor of a rational section.
 :::
 
-::: {.front card-id="card-b3bb1eb117ffeafa" tags="definition"}
-Commutator
-:::
-
-::: {.back card-id="card-b3bb1eb117ffeafa"}
-$[A,B]=AB-BA$; quantization replaces $\{f,g\}$ by $(i\hbar)^{-1}[f,g]$.
-:::
-
 ::: {.front card-id="card-7e3131de44d182e2" tags="definition"}
 Covariant derivative
 :::
@@ -285,14 +277,6 @@ Derived equivalence
 An equivalence between the derived categories $D(\mathcal A)$ and $D(\mathcal B)$ of two abelian categories, or between their differential graded enhancements; equivalently, a quasi-equivalence of the corresponding dg categories.
 :::
 
-::: {.front card-id="card-6d3dacfdacb332bf" tags="definition"}
-Dirichlet boundary condition
-:::
-
-::: {.back card-id="card-6d3dacfdacb332bf"}
-A boundary condition that fixes the value of a field on the boundary.
-:::
-
 ::: {.front card-id="card-81678f003293771c" tags="definition"}
 Dolbeault operator
 :::
@@ -307,30 +291,6 @@ Dual bundle
 
 ::: {.back card-id="card-7db4e967ee343782"}
 For a vector bundle $E$, $E^*=\operatorname{Hom}(E,\mathcal{O}_X)$, the bundle of fiberwise linear functionals.
-:::
-
-::: {.front card-id="card-14aabe117cbf423f" tags="definition"}
-Electric field
-:::
-
-::: {.back card-id="card-14aabe117cbf423f"}
-The components $E_i=F_{0i}$ of the field strength $F$; the force per unit charge.
-:::
-
-::: {.front card-id="card-29c2323fc92c2e58" tags="definition"}
-Endomorphism
-:::
-
-::: {.back card-id="card-29c2323fc92c2e58"}
-A linear map $V\to V$; an endomorphism of a bundle $E$ is a bundle map $E\to E$ over the identity.
-:::
-
-::: {.front card-id="card-61c49a7b0e0aa72e" tags="definition"}
-Equations of motion
-:::
-
-::: {.back card-id="card-61c49a7b0e0aa72e"}
-The Euler-Lagrange equations obtained by stationarizing the action.
 :::
 
 ::: {.front card-id="card-41a40951754e3e4f" tags="definition"}
@@ -437,14 +397,6 @@ Hodge star
 The isomorphism $*:\Omega^k(M)\to\Omega^{n-k}(M)$ determined by a metric and orientation, with $\alpha\wedge*\beta=\langle\alpha,\beta\rangle\,\mathrm{vol}$.
 :::
 
-::: {.front card-id="card-a196f7be1063234c" tags="definition"}
-Holomorphic map
-:::
-
-::: {.back card-id="card-a196f7be1063234c"}
-A map $f:U\to V$ between open subsets of $\mathbb C^n$ that is complex differentiable at every point; equivalently, each component is a holomorphic function of $n$ complex variables.
-:::
-
 ::: {.front card-id="card-9b9825102e0d2e8e" tags="definition"}
 Holomorphic vector bundle
 :::
@@ -475,14 +427,6 @@ Langlands dual group
 
 ::: {.back card-id="card-bdc1aadb29d1f7bf"}
 The complex reductive group ${}^LG$ whose root datum is dual to that of $G$.
-:::
-
-::: {.front card-id="card-a2e4e19b7327bfb7" tags="definition"}
-Magnetic field
-:::
-
-::: {.back card-id="card-a2e4e19b7327bfb7"}
-The components $B_i=-\frac12\epsilon_{ijk}F^{jk}$ of the field strength.
 :::
 
 ::: {.front card-id="card-1bbb90a5c3b42d78" tags="definition"}
@@ -595,14 +539,6 @@ Semistable snc model
 
 ::: {.back card-id="card-a3094ab97f1c1e56"}
 A model $\mathcal{X}\to S$ whose special fiber is a divisor with simple normal crossings and whose total space is semistable.
-:::
-
-::: {.front card-id="card-b24875595bfa0fa3" tags="definition"}
-Simplicial complex
-:::
-
-::: {.back card-id="card-b24875595bfa0fa3"}
-A set of simplices closed under taking faces, with intersections glued along common faces.
 :::
 
 ::: {.front card-id="card-a313a6a3647a8a0d" tags="definition"}

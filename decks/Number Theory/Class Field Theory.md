@@ -1036,14 +1036,6 @@ Locally compact abelian group
 A locally compact abelian group is an abelian topological group whose topology is Hausdorff and locally compact. Pontryagin duality holds for this class: $G\cong\widehat{\widehat{G}}$.
 :::
 
-::: {.front card-id="card-a026bcfe396c683c" tags="definition"}
-Nilpotent group
-:::
-
-::: {.back card-id="card-a026bcfe396c683c"}
-A group $G$ is nilpotent if it has a finite central series $1=G_0\trianglelefteq G_1\trianglelefteq\cdots\trianglelefteq G_n=G$ with $[G,G_i]\subseteq G_{i-1}$ (equivalently $G_{i+1}/G_i\subseteq Z(G/G_i)$). A finite group is nilpotent iff it is the direct product of its Sylow subgroups.
-:::
-
 ::: {.front card-id="card-da2628a38bae81c5" tags="definition"}
 P-adic logarithm
 :::
@@ -1058,14 +1050,6 @@ Perfect pairing
 
 ::: {.back card-id="card-b2d4104c089ec572"}
 A bilinear map $b:A\times B\to C$ is a perfect pairing if the induced homomorphisms $A\to\mathrm{Hom}(B,C)$ and $B\to\mathrm{Hom}(A,C)$ are isomorphisms in the relevant category (for topological groups, continuous homomorphisms).
-:::
-
-::: {.front card-id="card-4d9702793c7a27e9" tags="definition"}
-Q-binomial coefficient
-:::
-
-::: {.back card-id="card-4d9702793c7a27e9"}
-For an integer $n\ge0$, the $q$-integer is $[n]_q=(q^n-1)/(q-1)$. The $q$-binomial coefficient is ${n\brack k}_q=\frac{(q^n-1)(q^{n-1}-1)\cdots(q^{n-k+1}-1)}{(q^k-1)(q^{k-1}-1)\cdots(q-1)}$, a polynomial in $q$ reducing to $\binom{n}{k}$ at $q=1$.
 :::
 
 ::: {.front card-id="card-7b515b5c9b7eb5c2" tags="definition"}

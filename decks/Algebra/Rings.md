@@ -114,58 +114,10 @@ Every nonzero element $x\in R$ can be written as $x = u\prod p_i$ where the $p_i
 This decomposition is unique up to multiplication by a unit, and a permutation of the factors $\sigma$ that makes each $p_i$ associate to $p_{\sigma(i)}$
 :::
 
-::: {.front card-id="card-cf229eb4ce56d877" tags="definition"}
-Associate
-:::
-
-::: {.back card-id="card-cf229eb4ce56d877"}
-Elements $a,b\in R$ are associates if $a=ub$ for some unit $u\in R$; then $(a)=(b)$. In an integral domain (more generally, when $a$ is not a zero divisor) the converse holds: $(a)=(b)$ implies $a=ub$ for some unit $u$.
-:::
-
-::: {.front card-id="card-f0c54fa44db0bad9" tags="definition"}
-Divisibility
-:::
-
-::: {.back card-id="card-f0c54fa44db0bad9"}
-For $a,b\in R$, $a$ divides $b$, written $a\mid b$, if $b=ac$ for some $c\in R$; equivalently, $b\in(a)$.
-:::
-
-::: {.front card-id="card-4fd7042798fa65ee" tags="definition"}
-Field of fractions
-:::
-
-::: {.back card-id="card-4fd7042798fa65ee"}
-For an integral domain $R$, the field of fractions is $\operatorname{Frac}(R)=\{a/b:a,b\in R,\ b\neq0\}$ with $a/b=c/d$ iff $ad=bc$; it is the smallest field containing $R$.
-:::
-
 ::: {.front card-id="card-0c7db8f1fdccc3e8" tags="definition"}
 Krull dimension
 :::
 
 ::: {.back card-id="card-0c7db8f1fdccc3e8"}
 The Krull dimension of a commutative ring $R$ is the supremum of the lengths $n$ of chains of prime ideals $\mathfrak{p}_0 \subsetneq \mathfrak{p}_1 \subsetneq \cdots \subsetneq \mathfrak{p}_n$.
-:::
-
-::: {.front card-id="card-d533d6ec05d43880" tags="definition"}
-Proper ideal
-:::
-
-::: {.back card-id="card-d533d6ec05d43880"}
-An ideal $I\subsetneq R$ is proper; for a unital ring this is equivalent to $1\notin I$.
-:::
-
-::: {.front card-id="card-0a4c36868ebc59ca" tags="definition"}
-Reducible polynomial
-:::
-
-::: {.back card-id="card-0a4c36868ebc59ca"}
-A nonconstant polynomial $f\in K[x]$ is reducible if $f=gh$ with $g,h\in K[x]$ of positive degree; otherwise $f$ is irreducible. In a general ring, a nonzero nonunit is reducible if it is a product of two nonunits.
-:::
-
-::: {.front card-id="card-cb8a5a9e3dd1d712" tags="definition"}
-Unit
-:::
-
-::: {.back card-id="card-cb8a5a9e3dd1d712"}
-An element $u\in R$ is a unit if there exists $v\in R$ with $uv=vu=1$; the units form the group $R^\times$ under multiplication.
 :::

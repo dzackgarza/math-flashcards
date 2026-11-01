@@ -414,8 +414,6 @@ For a smooth quintic threefold $X\subset\mathbb P^4_{\mathbb C}$, compute $K_X,H
 $$K_X\sim0,\quad H^3=5,\quad c_2(X)H=50,\quad e(X)=-200,\quad \chi(\mathcal O_X(mH))=\frac{5m^3+25m}{6}.$$
 :::
 
-
-
 ::: {.front card-id="formula-grassmannian-degree" tags="formula"}
 Compute the Plücker degree of $\operatorname{Gr}(k,n)$, parametrizing $k$-dimensional subspaces of $\mathbb C^n$, for $1\le k<n$.
 :::
@@ -496,14 +494,6 @@ Chern connection
 For a Hermitian holomorphic vector bundle $(E,h)$ on a complex manifold, the Chern connection is the unique connection compatible with $h$ whose $(0,1)$-part is the holomorphic structure operator $\bar\partial_E$. In a holomorphic frame its connection matrix is $\theta=h^{-1}\partial h$, and its curvature is $\Theta=\bar\partial(h^{-1}\partial h)$.
 :::
 
-::: {.front card-id="card-ee9bc56955ac3753" tags="definition"}
-Cofinite topology
-:::
-
-::: {.back card-id="card-ee9bc56955ac3753"}
-The cofinite topology on a set $X$ has open sets $\varnothing$ and complements of finite subsets. On $\mathbb A^1$ over an algebraically closed field, the Zariski topology on closed points is the cofinite topology; on $\mathbb A^n$ for $n\ge2$ it is not.
-:::
-
 ::: {.front card-id="card-5a5a7328d999ae9d" tags="definition"}
 Curvature form
 :::
@@ -518,14 +508,6 @@ Fubini-study form
 
 ::: {.back card-id="card-35a1ab1ac682520a"}
 The Fubini–Study form on $\mathbb P^n$ is the Kähler form $\omega_{\mathrm{FS}}=\frac{\sqrt{-1}}{2\pi}\partial\bar\partial\log(\sum_{i=0}^n|z_i|^2)$ in homogeneous coordinates. Its cohomology class is the hyperplane class, and it is the curvature of the standard Hermitian metric on $\mathcal O(1)$.
-:::
-
-::: {.front card-id="card-14065f6cd08f118f" tags="definition"}
-Integrally closed domain
-:::
-
-::: {.back card-id="card-14065f6cd08f118f"}
-An integral domain $A$ is integrally closed (normal) if every element of its fraction field that is integral over $A$ already lies in $A$; equivalently, $A$ equals its integral closure in $\operatorname{Frac}A$. A normal variety has all local rings integrally closed.
 :::
 
 ::: {.front card-id="card-2e33a1b484322f31" tags="definition"}

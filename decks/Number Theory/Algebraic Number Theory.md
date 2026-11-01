@@ -413,28 +413,12 @@ What is a CM field?
 $K$ a purely imaginary quadratic extension of a totally real field, so $K = K_0(\sqrt\alpha)$ with $\sigma(\alpha)\in {\mathbf{R}}_{\gt 0}$ for every embedding $\sigma: K_0 \hookrightarrow\CC$.
 :::
 
-::: {.front card-id="card-2d28b0bf69a069dc" tags="definition"}
-Absolute value
-:::
-
-::: {.back card-id="card-2d28b0bf69a069dc"}
-An absolute value on a field $K$ is a map $|\cdot|:K\to\mathbb{R}_{\ge0}$ such that $|x|=0\iff x=0$, $|xy|=|x||y|$, and $|x+y|\le|x|+|y|$. It is nonarchimedean if the stronger ultrametric inequality $|x+y|\le\max(|x|,|y|)$ holds.
-:::
-
 ::: {.front card-id="card-af7bae7d937f70bd" tags="definition"}
 Adele
 :::
 
 ::: {.back card-id="card-af7bae7d937f70bd"}
 The adele ring of a number field $K$ is the restricted product $\mathbb{A}_K = \prod'_v K_v$ over all places $v$, consisting of tuples $(x_v)$ with $x_v \in \mathcal{O}_v$ for all but finitely many finite places $v$.
-:::
-
-::: {.front card-id="card-593b0079222b3884" tags="definition"}
-Algebraic integer
-:::
-
-::: {.back card-id="card-593b0079222b3884"}
-An algebraic integer is a complex number $\alpha$ that is a root of a monic polynomial in $\mathbb{Z}[x]$. Equivalently, $\alpha\in\mathcal{O}_K$ for some number field $K$; the algebraic integers form the ring $\overline{\mathbb{Z}}$.
 :::
 
 ::: {.front card-id="card-8fff4f5d5697c42e" tags="definition"}
@@ -501,14 +485,6 @@ Idele
 The idele group $\mathbb{A}_K^\times$ is the group of invertible elements of the adele ring; equivalently, it is the restricted product of the groups $K_v^\times$ with respect to the subgroups $\mathcal{O}_v^\times$.
 :::
 
-::: {.front card-id="card-108828f81fb41881" tags="definition"}
-Local ring
-:::
-
-::: {.back card-id="card-108828f81fb41881"}
-A commutative ring $R$ is local if it has a unique maximal ideal $\mathfrak{m}$. Equivalently, the nonunits of $R$ form an ideal, namely $\mathfrak{m}$; then $R\setminus\mathfrak{m}=R^\times$.
-:::
-
 ::: {.front card-id="card-c6455b6f0a43fb96" tags="definition"}
 Monogenic
 :::
@@ -539,22 +515,6 @@ P-adic valuation
 
 ::: {.back card-id="card-beb08e0117d2699b"}
 For a prime $p$ and $x\in\mathbb{Q}^\times$, the $p$-adic valuation $v_p(x)$ is the exponent of $p$ in the prime factorization of $x$; set $v_p(0)=+\infty$. It extends to $\mathbb{Q}_p$ and satisfies $v_p(x+y)\ge\min(v_p(x),v_p(y))$.
-:::
-
-::: {.front card-id="card-279f332765419d20" tags="definition"}
-Pell equation
-:::
-
-::: {.back card-id="card-279f332765419d20"}
-The Pell equation is $x^2-Dy^2=1$ for a positive nonsquare integer $D$. Its integer solutions form an infinite abelian group under multiplication in $\mathbb{Z}[\sqrt{D}]$, namely the units of norm $1$; the fundamental solution generates the group modulo torsion $\{\pm1\}$.
-:::
-
-::: {.front card-id="card-bb3b3bb6397d494e" tags="definition"}
-Principal ideal
-:::
-
-::: {.back card-id="card-bb3b3bb6397d494e"}
-An ideal $I$ of a ring $R$ is principal if $I=(a)=aR$ for some $a\in R$. In a Dedekind domain the principal fractional ideals form a subgroup of the group of fractional ideals; the quotient is the ideal class group.
 :::
 
 ::: {.front card-id="card-8496d525c2680387" tags="definition"}

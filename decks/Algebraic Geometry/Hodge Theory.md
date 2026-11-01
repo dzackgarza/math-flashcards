@@ -802,14 +802,6 @@ Cocharacter
 A homomorphism $\lambda:\mathbb G_m\to G$ of algebraic groups; for a torus $T$, the cocharacters form $X_*(T)=\operatorname{Hom}(\mathbb G_m,T)$, the dual of the character lattice $X^*(T)$.
 :::
 
-::: {.front card-id="card-0cea8b2138beb893" tags="definition"}
-Eigenspace
-:::
-
-::: {.back card-id="card-0cea8b2138beb893"}
-For a linear operator $T:V\to V$ and eigenvalue $\lambda$, the subspace $V_\lambda=\ker(T-\lambda I)$ of vectors on which $T$ acts as multiplication by $\lambda$.
-:::
-
 ::: {.front card-id="card-2cad8725835ecda3" tags="definition"}
 Fiber bundle
 :::
@@ -840,22 +832,6 @@ Griffiths complex structure
 
 ::: {.back card-id="card-a9bab3596ebd4a38"}
 On the real vector space underlying a Hodge structure of odd weight $2k-1$, the Griffiths complex structure has $(1,0)$-part the Hodge filtration $F^kV$; it defines the Griffiths intermediate Jacobian $J_G(V)=V/(V_{\mathbb Z}+F^kV)$.
-:::
-
-::: {.front card-id="card-4ab6b565dba37339" tags="definition"}
-Hermitian form
-:::
-
-::: {.back card-id="card-4ab6b565dba37339"}
-A sesquilinear form $h:V\times V\to\mathbb C$ with $h(w,v)=\overline{h(v,w)}$; it is positive definite if $h(v,v)>0$ for every $v\ne0$.
-:::
-
-::: {.front card-id="card-54d90d25fdfeea56" tags="definition"}
-Hermitian metric
-:::
-
-::: {.back card-id="card-54d90d25fdfeea56"}
-A smoothly varying positive-definite Hermitian inner product $h$ on the fibres of a complex vector bundle $E\to X$: each $h_x$ is $\mathbb C$-linear in one argument, conjugate-linear in the other, and $h(v,v)>0$ for $v\ne0$.
 :::
 
 ::: {.front card-id="card-c0d7789910359198" tags="definition"}
@@ -1000,14 +976,6 @@ Semisimple local system
 
 ::: {.back card-id="card-9049bc9b0d97b074"}
 A local system whose associated monodromy representation is semisimple (completely reducible); equivalently a local system that is a direct sum of irreducible local systems.
-:::
-
-::: {.front card-id="card-e092aa6b8c6bed5f" tags="definition"}
-Sesquilinear form
-:::
-
-::: {.back card-id="card-e092aa6b8c6bed5f"}
-A map $B:V\times W\to\mathbb C$ that is linear in one argument and conjugate-linear in the other; a Hermitian form is a sesquilinear form $V\times V\to\mathbb C$ with $B(w,v)=\overline{B(v,w)}$.
 :::
 
 ::: {.front card-id="card-0d1ed9edee3e0517" tags="definition"}

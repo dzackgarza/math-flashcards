@@ -246,14 +246,6 @@ Associated prime
 A prime ideal $\mathfrak p$ that is the annihilator of some element of a module $M$, i.e. $\mathfrak p=\operatorname{Ann}_R(m)$ for some $m\in M$.
 :::
 
-::: {.front card-id="card-21ea81f62ab679a9" tags="definition"}
-Center of a ring
-:::
-
-::: {.back card-id="card-21ea81f62ab679a9"}
-The subring $Z(R)=\{z\in R:zr=rz\text{ for all }r\in R\}$ of elements that commute with everything.
-:::
-
 ::: {.front card-id="card-1a72d1cba8538bb4" tags="definition"}
 Integral extension
 :::

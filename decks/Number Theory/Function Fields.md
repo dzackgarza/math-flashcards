@@ -307,14 +307,6 @@ Conductor of an order
 For an order $\mathcal{O}$ in the maximal order $\widetilde{\mathcal{O}}$ of a number field (or an $A$-order in a finite extension), the conductor is $\mathfrak{c}=\{x\in\widetilde{\mathcal{O}}:x\widetilde{\mathcal{O}}\subseteq\mathcal{O}\}$, the largest ideal of $\widetilde{\mathcal{O}}$ contained in $\mathcal{O}$ (equivalently, also an ideal of $\mathcal{O}$).
 :::
 
-::: {.front card-id="card-098ebdf5dd23b7a3" tags="definition"}
-Discrete subgroup
-:::
-
-::: {.back card-id="card-098ebdf5dd23b7a3"}
-A subgroup $\Gamma$ of a topological group $G$ is discrete if the subspace topology on $\Gamma$ is discrete, i.e. every point of $\Gamma$ is isolated in $\Gamma$. Equivalently, there is an open neighborhood of the identity meeting $\Gamma$ only at the identity.
-:::
-
 ::: {.front card-id="card-8bcaeb6ede9a28e4" tags="definition"}
 Division value
 :::
@@ -337,14 +329,6 @@ Functional equation
 
 ::: {.back card-id="card-f8f953bc6c2c0578"}
 A functional equation for a zeta or $L$-function is an identity relating $\Lambda(s)$ to $\Lambda(1-s)$ (or $Z(u)$ to $Z(1/(ru))$), where $\Lambda$ is the completed function including archimedean and conductor factors. It expresses the symmetry of the completed function about the critical line.
-:::
-
-::: {.front card-id="card-cfe8c675cba40b5f" tags="definition"}
-Gamma function
-:::
-
-::: {.back card-id="card-cfe8c675cba40b5f"}
-The Gamma function is $\Gamma(s)=\int_0^\infty t^{s-1}e^{-t}\,dt$ for $\operatorname{Re}s>0$, extended meromorphically to $\mathbb{C}$ with poles at the nonpositive integers. It satisfies $\Gamma(s+1)=s\Gamma(s)$ and $\Gamma(n)=(n-1)!$ for $n\ge1$.
 :::
 
 ::: {.front card-id="card-e2876b1ae69fd850" tags="definition"}

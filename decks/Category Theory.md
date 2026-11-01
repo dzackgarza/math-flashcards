@@ -148,14 +148,6 @@ Abelian category
 An additive category that has kernels and cokernels, in which every monomorphism is a kernel and every epimorphism is a cokernel (equivalently, every morphism factors as an epimorphism followed by a monomorphism).
 :::
 
-::: {.front card-id="card-75b66c730269a306" tags="definition"}
-Abelian group
-:::
-
-::: {.back card-id="card-75b66c730269a306"}
-An abelian group is a set $A$ with an associative and commutative binary operation $+$, an identity element $0$, and additive inverses: for every $a\in A$ there is $-a$ with $a+(-a)=0$. Equivalently, it is a $\mathbb{Z}$-module.
-:::
-
 ::: {.front card-id="card-d06c459821b905bd" tags="definition"}
 Additive category
 :::
@@ -226,14 +218,6 @@ Hom-set
 
 ::: {.back card-id="card-8c793764756f2e0d"}
 For objects $X,Y$ of a category $\mathcal{C}$, the hom-set is $\operatorname{Hom}_{\mathcal{C}}(X,Y)=\mathcal{C}(X,Y)$, the set of all morphisms $X\to Y$. A category is locally small when every hom-collection is a set.
-:::
-
-::: {.front card-id="card-d17ebd79aa765e53" tags="definition"}
-Homomorphism
-:::
-
-::: {.back card-id="card-d17ebd79aa765e53"}
-A group homomorphism is a map $\varphi:G\to H$ between groups such that $\varphi(xy)=\varphi(x)\varphi(y)$ for all $x,y\in G$; then $\varphi(e)=e$ and $\varphi(x^{-1})=\varphi(x)^{-1}$. For abelian groups written additively, the condition is $\varphi(x+y)=\varphi(x)+\varphi(y)$.
 :::
 
 ::: {.front card-id="card-df511473d35130fc" tags="definition"}

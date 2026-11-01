@@ -925,14 +925,6 @@ Group homology
 The left derived functors $H_n(G;M)=\operatorname{Tor}_n^{\mathbb Z[G]}(\mathbb Z,M)$ of the coinvariants functor $M\mapsto M_G$.
 :::
 
-::: {.front card-id="card-b523ada6cbbb0051" tags="definition"}
-Laurent polynomial ring
-:::
-
-::: {.back card-id="card-b523ada6cbbb0051"}
-The ring $R[t,t^{-1}]$, obtained by localizing $R[t]$ at the multiplicative set $\{t^n:n\ge 0\}$.
-:::
-
 ::: {.front card-id="card-27371412d1ac9f6c" tags="definition"}
 Norm map
 :::
@@ -987,20 +979,4 @@ Semisimple module
 
 ::: {.back card-id="card-fe6b2ec7fb7fbd48"}
 A module that is a direct sum of simple (irreducible) submodules.
-:::
-
-::: {.front card-id="card-2c0c32144006744e" tags="definition"}
-Topological group
-:::
-
-::: {.back card-id="card-2c0c32144006744e"}
-A group $G$ equipped with a topology such that multiplication $G\times G\to G$ and inversion $G\to G$ are continuous.
-:::
-
-::: {.front card-id="card-7ffe8eaa3768a719" tags="definition"}
-Totally disconnected
-:::
-
-::: {.back card-id="card-7ffe8eaa3768a719"}
-A topological space whose only connected subsets are single points.
 :::

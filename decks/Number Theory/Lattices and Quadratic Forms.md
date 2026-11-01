@@ -767,22 +767,6 @@ Discriminant of a quadratic form
 For a quadratic form $Q$ on a free $R$-module with Gram matrix $G=(\beta(e_i,e_j))$, where $\beta(x,y)=Q(x+y)-Q(x)-Q(y)$, the discriminant is $\operatorname{disc}(Q)=\det G$ (well defined up to the square of a unit after a change of basis). For a lattice $(\Lambda,\beta)$ this is $\operatorname{disc}(\Lambda)=\det G(\beta)=\operatorname{covol}(\Lambda)^2$.
 :::
 
-::: {.front card-id="card-c220681d2cb0be6c" tags="definition"}
-Divisor sum
-:::
-
-::: {.back card-id="card-c220681d2cb0be6c"}
-The divisor sum function is $\sigma_k(n)=\sum_{d\mid n}d^k$, the sum of the $k$-th powers of the positive divisors of $n$. Thus $\sigma_0(n)$ is the number of divisors and $\sigma_1(n)$ is the sum of divisors.
-:::
-
-::: {.front card-id="card-3c52a1daf2b83912" tags="definition"}
-Free abelian group
-:::
-
-::: {.back card-id="card-3c52a1daf2b83912"}
-A free abelian group is an abelian group isomorphic to a direct sum of copies of $\mathbb{Z}$; equivalently, a free $\mathbb{Z}$-module. Its rank is the cardinality of a basis, and every subgroup of a finitely generated free abelian group is free abelian.
-:::
-
 ::: {.front card-id="card-2742f470f313b98b" tags="definition"}
 Hasse-minkowski theorem
 :::
@@ -855,14 +839,6 @@ Quadratic space
 A quadratic space is a pair $(V,Q)$ consisting of a vector space $V$ over a field or ring $R$ and a quadratic form $Q:V\to R$. The associated bilinear form is $\beta(x,y)=Q(x+y)-Q(x)-Q(y)$.
 :::
 
-::: {.front card-id="card-57bcc857976c7e51" tags="definition"}
-Rank of a lattice
-:::
-
-::: {.back card-id="card-57bcc857976c7e51"}
-The rank of a lattice $\Lambda$ is its rank as a free abelian group, $\dim_{\mathbb{Q}}(\Lambda\otimes_{\mathbb{Z}}\mathbb{Q})=\dim_{\mathbb{R}}(\Lambda\otimes_{\mathbb{Z}}\mathbb{R})$. It is the number of vectors in a $\mathbb{Z}$-basis of $\Lambda$.
-:::
-
 ::: {.front card-id="card-1a0092ebb18709ca" tags="definition"}
 Simple root
 :::
@@ -887,14 +863,6 @@ Spin structure
 A spin structure on an oriented Riemannian manifold $M$ is a principal $\mathrm{Spin}(n)$-bundle $\widetilde{P}\to M$ with a two-sheeted covering $\widetilde{P}\to P_{\mathrm{SO}}(M)$ that restricts to the spin covering $\mathrm{Spin}(n)\to\mathrm{SO}(n)$ on fibers. It exists iff $w_2(M)=0$.
 :::
 
-::: {.front card-id="card-5c2d0e438dc7d04b" tags="definition"}
-Split exact sequence
-:::
-
-::: {.back card-id="card-5c2d0e438dc7d04b"}
-A short exact sequence $0\to A\xrightarrow{i}B\xrightarrow{p}C\to0$ is split if there is a homomorphism $s:C\to B$ with $p\circ s=\mathrm{id}_C$ (equivalently a retraction $r:B\to A$ with $r\circ i=\mathrm{id}_A$). Then $B\cong A\oplus C$.
-:::
-
 ::: {.front card-id="card-5935a4320dc00f9a" tags="definition"}
 Sporadic group
 :::
@@ -903,28 +871,12 @@ Sporadic group
 A sporadic group is one of the $26$ finite simple groups that are neither cyclic of prime order, alternating, nor of Lie type. Examples include the Mathieu groups $M_{11},M_{12},M_{22},M_{23},M_{24}$ and the Conway groups $Co_1,Co_2,Co_3$.
 :::
 
-::: {.front card-id="card-f04af96a4e1f6a38" tags="definition"}
-Symmetric bilinear form
-:::
-
-::: {.back card-id="card-f04af96a4e1f6a38"}
-A bilinear form $\beta:V\times V\to R$ is symmetric if $\beta(x,y)=\beta(y,x)$ for all $x,y\in V$. A quadratic form $Q$ determines a symmetric bilinear form by $\beta(x,y)=Q(x+y)-Q(x)-Q(y)$ (or $\frac12$ of this when $2$ is invertible).
-:::
-
 ::: {.front card-id="card-8cb1b6dc92ecd709" tags="definition"}
 Theta function
 :::
 
 ::: {.back card-id="card-8cb1b6dc92ecd709"}
 A theta function is a holomorphic function on the upper half-plane with a transformation law under a lattice or congruence subgroup, typically a sum $\theta(z)=\sum_{n\in\mathbb{Z}}q^{n^2/2}$ with $q=e^{2\pi iz}$. The theta series of a lattice is the theta function whose coefficients count vectors of a given norm.
-:::
-
-::: {.front card-id="card-000f321e95147eee" tags="definition"}
-Upper half-plane
-:::
-
-::: {.back card-id="card-000f321e95147eee"}
-The upper half-plane is $\mathbb{H}=\{z\in\mathbb{C}:\operatorname{Im}z>0\}$. The group $\mathrm{SL}_2(\mathbb{R})$ acts on $\mathbb{H}$ by Möbius transformations $\begin{pmatrix}a&b\\c&d\end{pmatrix}\cdot z=\frac{az+b}{cz+d}$.
 :::
 
 ::: {.front card-id="card-463a836d19e8f22e" tags="definition"}

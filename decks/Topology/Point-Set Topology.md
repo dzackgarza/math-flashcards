@@ -300,60 +300,12 @@ Boolean space
 A boolean space is a compact Hausdorff space with a basis of sets that are both open and closed; equivalently, a Stone space.
 :::
 
-::: {.front card-id="card-409027cb9306e62f" tags="definition"}
-Continuous at a point
-:::
-
-::: {.back card-id="card-409027cb9306e62f"}
-A map $f: X \to Y$ is continuous at $x \in X$ if for every neighborhood $V$ of $f(x)$ there is a neighborhood $U$ of $x$ with $f(U) \subseteq V$.
-:::
-
-::: {.front card-id="card-b068bf0678e6566a" tags="definition"}
-Inverse limit
-:::
-
-::: {.back card-id="card-b068bf0678e6566a"}
-For a partially ordered set $I$ in which every two elements have an upper bound, topological spaces $X_i$ for $i \in I$, and continuous maps $f_{ij}: X_j \to X_i$ for $i \le j$ with $f_{ii}=\mathrm{id}$ and $f_{ij}\circ f_{jk}=f_{ik}$, the inverse limit is $\varprojlim X_i = \{(x_i) \in \prod_i X_i : f_{ij}(x_j)=x_i \text{ for all } i \le j\}$ with the subspace topology.
-:::
-
-::: {.front card-id="card-c2a5ba4d66f7eddc" tags="definition"}
-Locally constant
-:::
-
-::: {.back card-id="card-c2a5ba4d66f7eddc"}
-A map $f: X \to Y$ is locally constant if every point of $X$ has a neighborhood on which $f$ is constant.
-:::
-
-::: {.front card-id="card-eb430341c3d0f532" tags="definition"}
-Metrizable space
-:::
-
-::: {.back card-id="card-eb430341c3d0f532"}
-A topological space is metrizable if its topology is induced by some metric on the underlying set.
-:::
-
 ::: {.front card-id="card-7fbd37296fbf3a8a" tags="definition"}
 Profinite space
 :::
 
 ::: {.back card-id="card-7fbd37296fbf3a8a"}
 A profinite space is an inverse limit of an inverse system of finite discrete spaces; equivalently, a compact Hausdorff totally disconnected space.
-:::
-
-::: {.front card-id="card-c873db1c7ae7c199" tags="definition"}
-Separately continuous
-:::
-
-::: {.back card-id="card-c873db1c7ae7c199"}
-A map $f: X \times Y \to Z$ is separately continuous if for each $y_0 \in Y$ the map $x \mapsto f(x,y_0)$ is continuous and for each $x_0 \in X$ the map $y \mapsto f(x_0,y)$ is continuous.
-:::
-
-::: {.front card-id="card-0fe1edffc6a6256f" tags="definition"}
-Separation axioms
-:::
-
-::: {.back card-id="card-0fe1edffc6a6256f"}
-The separation axioms are conditions on a topological space describing how points and closed sets can be separated by open sets; they include $T_0$, $T_1$, $T_2$ (Hausdorff), $T_3$ (regular), and $T_4$ (normal).
 :::
 
 ::: {.front card-id="card-a735524b06a7a863" tags="definition"}

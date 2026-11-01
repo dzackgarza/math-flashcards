@@ -149,14 +149,6 @@ What is a **closed immersion** of schemes?
 A morphism $f:X\to Y$ is a **closed immersion** iff it is affine and the map $f^\sharp:{\mathcal{O}}_Y\to f_*{\mathcal{O}}_X$ is surjective on stalks. Equivalently, on every affine open $\Spec B\subseteq Y$, the induced ring map $B\to A$ is surjective, where $f^{-1}(\Spec B)=\Spec A$.
 :::
 
-::: {.front card-id="card-406eb4eed22f7a54" tags="definition"}
-Finitely presented module
-:::
-
-::: {.back card-id="card-406eb4eed22f7a54"}
-An $R$-module $M$ admitting a presentation $R^m\to R^n\to M\to0$ with $m,n$ finite, i.e. $M$ is finitely generated and the kernel of a finite presentation is finitely generated.
-:::
-
 ::: {.front card-id="card-73a0b326379f91d1" tags="definition"}
 Kähler differential
 :::

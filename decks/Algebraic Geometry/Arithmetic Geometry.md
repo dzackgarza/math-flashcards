@@ -274,14 +274,6 @@ P-adically complete
 A ring $R$ is $p$-adically complete if the natural map $R\to\varprojlim_n R/p^nR$ is an isomorphism; equivalently $R$ is complete for the $p$-adic topology.
 :::
 
-::: {.front card-id="card-7407e15eb58a730d" tags="definition"}
-P-torsionfree
-:::
-
-::: {.back card-id="card-7407e15eb58a730d"}
-An abelian group or ring $R$ is $p$-torsionfree if multiplication by $p$ is injective, i.e. $pr=0$ implies $r=0$; equivalently $R$ has no nonzero $p$-torsion.
-:::
-
 ::: {.front card-id="card-23fc31f061e1fa53" tags="definition"}
 Perfect ring
 :::
@@ -320,12 +312,4 @@ Semisimple lie group
 
 ::: {.back card-id="card-ae2cd3772c8f5089"}
 A Lie group whose Lie algebra is semisimple, i.e. a direct sum of simple Lie algebras with no nonzero solvable ideal; equivalently its Killing form is nondegenerate. Connected semisimple Lie groups have finite centre.
-:::
-
-::: {.front card-id="card-f04d6cc96d0e1d93" tags="definition"}
-Universal covering space
-:::
-
-::: {.back card-id="card-f04d6cc96d0e1d93"}
-A covering space $\tilde X\to X$ with $\tilde X$ simply connected; it exists when $X$ is connected, locally path-connected, and semilocally simply connected, and is unique up to isomorphism over $X$.
 :::

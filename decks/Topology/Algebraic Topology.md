@@ -233,22 +233,6 @@ What is $\chi(A\# B)$?
 $\chi(A) + \chi(B) - 2$
 :::
 
-::: {.front card-id="card-4ca5023bd31304cf" tags="definition"}
-Annulus
-:::
-
-::: {.back card-id="card-4ca5023bd31304cf"}
-The annulus is the surface $S^1 \times [0,1]$. It is compact with two boundary components and is homeomorphic to $S^2$ with the interiors of two disjoint closed disks removed.
-:::
-
-::: {.front card-id="card-285520e1f4aa8a75" tags="definition"}
-Boundary of a surface
-:::
-
-::: {.back card-id="card-285520e1f4aa8a75"}
-For a surface $S$, the boundary $\partial S$ is the set of points $p \in S$ having a neighborhood homeomorphic to $\mathbb{H}^2$ with $p$ corresponding to a point of the edge $\{y = 0\}$. A surface is without boundary when $\partial S = \varnothing$.
-:::
-
 ::: {.front card-id="card-bf8e6a277db99586" tags="definition"}
 Boundary operator
 :::
@@ -281,28 +265,12 @@ Cohomology group
 For a chain complex $C_\bullet$ and an abelian group $G$, the $n$-th cohomology group is $H^n(C;G) = H_n(\operatorname{Hom}(C_\bullet,G))$, that is, $\ker \delta^n / \operatorname{im} \delta^{n-1}$ for the dual coboundary $\delta$.
 :::
 
-::: {.front card-id="card-7c4e99aa42c83054" tags="definition"}
-Commutative monoid
-:::
-
-::: {.back card-id="card-7c4e99aa42c83054"}
-A monoid is a set $M$ with an associative binary operation $M \times M \to M$ and a two-sided identity element. It is commutative if the operation is commutative.
-:::
-
 ::: {.front card-id="card-5abf4d513b1fa4dd" tags="definition"}
 Complex projective space
 :::
 
 ::: {.back card-id="card-5abf4d513b1fa4dd"}
 Complex projective $n$-space is $\mathbb{CP}^n = S^{2n+1}/S^1$, where $S^1$ acts on $S^{2n+1} \subseteq \mathbb{C}^{n+1}$ by scalar multiplication; equivalently, it is the space of complex lines in $\mathbb{C}^{n+1}$.
-:::
-
-::: {.front card-id="card-d958db3df3b4112e" tags="definition"}
-Connected sum
-:::
-
-::: {.back card-id="card-d958db3df3b4112e"}
-For connected $n$-manifolds $M$ and $N$, the connected sum $M \# N$ is obtained by removing the interior of a closed $n$-ball from each and gluing the resulting boundary spheres by an orientation-reversing homeomorphism (for orientable manifolds; for nonorientable manifolds the gluing is up to isotopy of attaching maps).
 :::
 
 ::: {.front card-id="card-7bc7af1796e569f7" tags="definition"}
@@ -337,14 +305,6 @@ Eilenberg–maclane space
 For a group $G$ and an integer $n \ge 1$, with $G$ abelian when $n \ge 2$, an Eilenberg–MacLane space $K(G,n)$ is a CW complex with $\pi_n(K(G,n)) \cong G$ and $\pi_k(K(G,n)) = 0$ for $k \ne n$. It is unique up to homotopy equivalence.
 :::
 
-::: {.front card-id="card-c87f1a080bcd0c0e" tags="definition"}
-Euler characteristic
-:::
-
-::: {.back card-id="card-c87f1a080bcd0c0e"}
-For a space with a finite CW structure, $\chi(X) = \sum_n (-1)^n c_n$, where $c_n$ is the number of $n$-cells; equivalently $\chi(X) = \sum_n (-1)^n \operatorname{rank} H_n(X;\mathbb{Z})$ when the homology is finitely generated. For a triangulated surface, $\chi = V - E + F$.
-:::
-
 ::: {.front card-id="card-82f7cf3a0add1918" tags="definition"}
 Exact sequence
 :::
@@ -359,14 +319,6 @@ Fibration
 
 ::: {.back card-id="card-1e151c4f5d969fd8"}
 A Hurewicz fibration is a map $p : E \to B$ with the homotopy lifting property for every space $X$: given a homotopy $H : X \times I \to B$ and a lift $\tilde H_0 : X \to E$ of $H|_{X \times \{0\}}$, there is a homotopy $\tilde H : X \times I \to E$ lifting $H$ and extending $\tilde H_0$. A Serre fibration requires this lifting only for $X = I^n$.
-:::
-
-::: {.front card-id="card-b82cc07155e2f4af" tags="definition"}
-Finitely generated abelian group
-:::
-
-::: {.back card-id="card-b82cc07155e2f4af"}
-An abelian group $A$ is finitely generated if it has a finite generating set. Then $A \cong \mathbb{Z}^r \oplus \mathbb{Z}/n_1 \oplus \cdots \oplus \mathbb{Z}/n_k$ with $n_1 \mid \cdots \mid n_k$. The integer $r$ is the free rank and the finite direct sum is the torsion subgroup.
 :::
 
 ::: {.front card-id="card-915ddd72f4cf772d" tags="definition"}
@@ -393,46 +345,6 @@ Homology with coefficients
 For an abelian group $G$, the homology of $X$ with coefficients in $G$ is $H_n(X;G) = H_n(C_\bullet(X) \otimes_{\mathbb{Z}} G)$, where $C_\bullet(X)$ is the singular chain complex. The case $G = \mathbb{Z}$ is the ordinary homology $H_n(X)$.
 :::
 
-::: {.front card-id="card-335ee73e24147830" tags="definition"}
-Homotopy
-:::
-
-::: {.back card-id="card-335ee73e24147830"}
-A homotopy between maps $f,g : X \to Y$ is a continuous map $H : X \times I \to Y$ with $H(x,0) = f(x)$ and $H(x,1) = g(x)$ for all $x \in X$; one writes $f \simeq g$.
-:::
-
-::: {.front card-id="card-dcb1ce9f0f843d5e" tags="definition"}
-Inclusion map
-:::
-
-::: {.back card-id="card-dcb1ce9f0f843d5e"}
-For a subspace $A \subseteq X$, the inclusion is the map $i : A \hookrightarrow X$ given by $i(a) = a$; it is continuous when $A$ carries the subspace topology.
-:::
-
-::: {.front card-id="card-852d7dbbe1dd6f17" tags="definition"}
-Induced homomorphism
-:::
-
-::: {.back card-id="card-852d7dbbe1dd6f17"}
-For a continuous map $f : X \to Y$, the induced homomorphism $f_* : H_n(X) \to H_n(Y)$ is defined on singular chains by $f_*(\sigma) = f \circ \sigma$. It is functorial: $(g \circ f)_* = g_* \circ f_*$ and $(\operatorname{id}_X)_* = \operatorname{id}$. Dually, $f^* : H^n(Y;G) \to H^n(X;G)$ is contravariant.
-:::
-
-::: {.front card-id="card-2f0b55a5c2c71f2e" tags="definition"}
-Klein bottle
-:::
-
-::: {.back card-id="card-2f0b55a5c2c71f2e"}
-The Klein bottle $K$ is the quotient of the square $[0,1]^2$ by the identifications $(0,t) \sim (1,1-t)$ and $(s,0) \sim (s,1)$. It is the connected sum $\mathbb{RP}^2 \# \mathbb{RP}^2$, a closed connected nonorientable surface with $\chi(K) = 0$.
-:::
-
-::: {.front card-id="card-f22ee85f8bc5ea00" tags="definition"}
-Left inverse
-:::
-
-::: {.back card-id="card-f22ee85f8bc5ea00"}
-A map $g : B \to A$ is a left inverse of $f : A \to B$ if $g \circ f = \operatorname{id}_A$. Equivalently, $f$ is a section of $g$, and such a $g$ exists exactly when $f$ is injective (assuming the axiom of choice).
-:::
-
 ::: {.front card-id="card-3dc8eb2eaeb0d9b1" tags="definition"}
 Loop space
 :::
@@ -449,46 +361,6 @@ Mapping cone
 For a map $f : X \to Y$, the mapping cone $C_f$ is the quotient of $(X \times I) \sqcup Y$ by $(x,0) \sim (x',0)$ and $(x,1) \sim f(x)$; equivalently, $C_f = Y \cup_f CX$, where $CX = X \times I/(X \times \{0\})$ is the cone on $X$.
 :::
 
-::: {.front card-id="card-87fe107f60634f32" tags="definition"}
-Monoid presentation
-:::
-
-::: {.back card-id="card-87fe107f60634f32"}
-A presentation $\langle S \mid R \rangle$ of a monoid consists of a set $S$ of generators and a set $R$ of relations $u = v$ between words in $S$. The presented monoid is the quotient of the free monoid on $S$ by the congruence generated by $R$.
-:::
-
-::: {.front card-id="card-59697d7848032a6f" tags="definition"}
-Möbius band
-:::
-
-::: {.back card-id="card-59697d7848032a6f"}
-The Möbius band is the quotient of $[0,1]^2$ by the identification $(0,t) \sim (1,1-t)$. It is a compact nonorientable surface with one boundary component, homeomorphic to $\mathbb{RP}^2$ with the interior of a closed disk removed.
-:::
-
-::: {.front card-id="card-c10c2ecad4fec0f1" tags="definition"}
-N-sphere
-:::
-
-::: {.back card-id="card-c10c2ecad4fec0f1"}
-The $n$-sphere is $S^n = \{x \in \mathbb{R}^{n+1} : \|x\| = 1\}$ with the subspace topology; $S^0 = \{\pm 1\}$ and $S^n$ is the one-point compactification of $\mathbb{R}^n$ for $n \ge 1$.
-:::
-
-::: {.front card-id="card-04916e1d4c02dcc8" tags="definition"}
-Nonorientable surface
-:::
-
-::: {.back card-id="card-04916e1d4c02dcc8"}
-A surface is nonorientable if it is not orientable; equivalently, if it contains an embedded Möbius band. A closed connected nonorientable surface has $H_2(S;\mathbb{Z}) = 0$.
-:::
-
-::: {.front card-id="card-6f2c6b2ff28223b3" tags="definition"}
-Orientable surface
-:::
-
-::: {.back card-id="card-6f2c6b2ff28223b3"}
-A surface $S$ is orientable if it admits a consistent global choice of orientation, equivalently if it contains no embedded Möbius band. For a closed connected surface this is equivalent to $H_2(S;\mathbb{Z}) \cong \mathbb{Z}$.
-:::
-
 ::: {.front card-id="card-563c89aff894c25d" tags="definition"}
 Pair of spaces
 :::
@@ -497,28 +369,12 @@ Pair of spaces
 A pair of spaces $(X,A)$ consists of a topological space $X$ and a subspace $A \subseteq X$. A map of pairs $f : (X,A) \to (Y,B)$ is a continuous map $f : X \to Y$ with $f(A) \subseteq B$.
 :::
 
-::: {.front card-id="card-79b2ebb1c814caf7" tags="definition"}
-Real projective space
-:::
-
-::: {.back card-id="card-79b2ebb1c814caf7"}
-Real projective $n$-space is $\mathbb{RP}^n = S^n/(x \sim -x)$ with the quotient topology; equivalently, it is the space of lines through the origin in $\mathbb{R}^{n+1}$. Its point is the real projective plane $\mathbb{RP}^2$.
-:::
-
 ::: {.front card-id="card-e9184a38fedb51e4" tags="definition"}
 Relative homology
 :::
 
 ::: {.back card-id="card-e9184a38fedb51e4"}
 For a pair of spaces $(X,A)$, the relative homology $H_n(X,A)$ is the homology of the quotient chain complex $C_\bullet(X)/C_\bullet(A)$. When $A$ is a nonempty closed subspace that is a deformation retract of a neighborhood, $H_n(X,A) \cong \tilde H_n(X/A)$.
-:::
-
-::: {.front card-id="card-7c70d8e3381f49c2" tags="definition"}
-Simply connected
-:::
-
-::: {.back card-id="card-7c70d8e3381f49c2"}
-A path-connected space $X$ is simply connected if $\pi_1(X,x_0) = 0$ for some, equivalently every, basepoint $x_0$; equivalently, every loop in $X$ is null-homotopic.
 :::
 
 ::: {.front card-id="card-ce2d2b4fa17c3321" tags="definition"}
@@ -537,28 +393,12 @@ Singular simplex
 A singular $n$-simplex in a space $X$ is a continuous map $\sigma : \Delta^n \to X$, where $\Delta^n = \{(t_0,\ldots,t_n) \in \mathbb{R}^{n+1} : t_i \ge 0,\ \sum_i t_i = 1\}$ is the standard $n$-simplex.
 :::
 
-::: {.front card-id="card-7f2bc081d517ed66" tags="definition"}
-Subspace
-:::
-
-::: {.back card-id="card-7f2bc081d517ed66"}
-A subset $A \subseteq X$ of a topological space $X$, equipped with the subspace topology $\tau_A = \{A \cap U : U \in \tau_X\}$.
-:::
-
 ::: {.front card-id="card-b51fa5328f9d3138" tags="definition"}
 Tor functor
 :::
 
 ::: {.back card-id="card-b51fa5328f9d3138"}
 For a ring $R$, a right $R$-module $M$, and a left $R$-module $N$, choose a free resolution $\cdots \to Q_1 \to Q_0 \to N \to 0$ and set $\operatorname{Tor}_n^R(M,N) = H_n(M \otimes_R Q_\bullet)$. Then $\operatorname{Tor}_0^R(M,N) \cong M \otimes_R N$.
-:::
-
-::: {.front card-id="card-f72bccfeb75c2540" tags="definition"}
-Torus
-:::
-
-::: {.back card-id="card-f72bccfeb75c2540"}
-The $n$-torus is $T^n = (S^1)^n$ with the product topology. The 2-torus $T^2 = S^1 \times S^1$ is the closed connected orientable surface of genus $1$.
 :::
 
 ::: {.front card-id="card-ad23d8bdc43985fc" tags="definition"}

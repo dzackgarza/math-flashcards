@@ -1201,14 +1201,6 @@ Grothendieck topology
 A collection of covering sieves on each object of a category, closed under base change and composition and containing maximal sieves; a category with a Grothendieck topology is a site, and its sheaves form a Grothendieck topos.
 :::
 
-::: {.front card-id="card-d9df158b84005a9b" tags="definition"}
-Nilpotent ideal
-:::
-
-::: {.back card-id="card-d9df158b84005a9b"}
-An ideal $I\subset R$ such that $I^n=0$ for some $n\ge1$; equivalently every element of $I$ is nilpotent and $I$ is nilpotent as an ideal.
-:::
-
 ::: {.front card-id="card-8d4f2548e72aba52" tags="definition"}
 Poincaré series
 :::

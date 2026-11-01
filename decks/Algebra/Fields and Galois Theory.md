@@ -212,22 +212,6 @@ What is the Galois correspondence for infinite extensions?
 Subextensions of $k^{ {}^{ \operatorname{sep} } }/k$ correspond to **closed** subgroups of $\Gal(k^{ {}^{ \operatorname{sep} } }/k)$ with the Krull topology.
 :::
 
-::: {.front card-id="card-c91a2881f00ee820" tags="definition"}
-Algebraic closure
-:::
-
-::: {.back card-id="card-c91a2881f00ee820"}
-An algebraic closure $\overline{K}$ of $K$ is an algebraically closed field containing $K$ such that every element of $\overline{K}$ is algebraic over $K$; it is unique up to $K$-isomorphism.
-:::
-
-::: {.front card-id="card-b6336d97248af433" tags="definition"}
-Automorphism group
-:::
-
-::: {.back card-id="card-b6336d97248af433"}
-For a field extension $K/F$, $\operatorname{Aut}(K/F)$ is the group of automorphisms $\sigma:K\to K$ with $\sigma|_F=\mathrm{id}_F$, under composition.
-:::
-
 ::: {.front card-id="card-dbc9f1f8659509dc" tags="definition"}
 Closed subgroup
 :::
@@ -244,106 +228,10 @@ Compositum
 For subfields $E_1,E_2$ of a common field $K$, their compositum $E_1E_2$ is the smallest subfield of $K$ containing both; it consists of finite sums of products $x_1x_2$ with $x_i\in E_i$.
 :::
 
-::: {.front card-id="card-46835d7b51ccb3c1" tags="definition"}
-Degree
-:::
-
-::: {.back card-id="card-46835d7b51ccb3c1"}
-For a field extension $L/K$, the degree is $[L:K] = \dim_K L$. For a map $f : M \to N$ of compact oriented $n$-manifolds, the degree is the signed cardinality of a regular fiber $f^{-1}(y)$.
-:::
-
-::: {.front card-id="card-c3bbb6764f8d7d5c" tags="definition"}
-Degree of a field extension
-:::
-
-::: {.back card-id="card-c3bbb6764f8d7d5c"}
-For a field extension $L/K$, the degree is $[L:K]=\dim_K L$; the extension is finite if $[L:K]<\infty$.
-:::
-
-::: {.front card-id="card-e54ec5dace175291" tags="definition"}
-Fixed field
-:::
-
-::: {.back card-id="card-e54ec5dace175291"}
-For a subgroup $H\le\operatorname{Aut}(K)$, the fixed field is $K^H=\{\alpha\in K:\sigma(\alpha)=\alpha\text{ for all }\sigma\in H\}$.
-:::
-
-::: {.front card-id="card-f40af2885627d05e" tags="definition"}
-Formal derivative
-:::
-
-::: {.back card-id="card-f40af2885627d05e"}
-For $f(x)=\sum_{i=0}^n a_i x^i\in K[x]$, the formal derivative is $f'(x)=\sum_{i=1}^n i a_i x^{i-1}$; over a field, $f$ has a repeated root iff $\gcd(f,f')\neq1$.
-:::
-
-::: {.front card-id="card-83b79c17e88dcfbe" tags="definition"}
-Galois extension
-:::
-
-::: {.back card-id="card-83b79c17e88dcfbe"}
-A field extension $K/F$ is Galois if it is algebraic, normal, and separable; equivalently, $K$ is the splitting field of a family of separable polynomials over $F$, or the fixed field of $\operatorname{Aut}(K/F)$ is $F$.
-:::
-
-::: {.front card-id="card-308af5cb20c3cbeb" tags="definition"}
-Intermediate field
-:::
-
-::: {.back card-id="card-308af5cb20c3cbeb"}
-An intermediate field of an extension $K/F$ is a field $E$ with $F\subseteq E\subseteq K$, written $K/E/F$.
-:::
-
 ::: {.front card-id="card-21ed49eded890962" tags="definition"}
 Krull topology
 :::
 
 ::: {.back card-id="card-21ed49eded890962"}
 On the absolute Galois group $\operatorname{Gal}(K^{\mathrm{sep}}/K)$, the Krull topology is the profinite topology for which a basis of open neighborhoods of the identity is the family of subgroups $\operatorname{Gal}(K^{\mathrm{sep}}/E)$ with $E/K$ finite Galois.
-:::
-
-::: {.front card-id="card-051e1509ffa8de24" tags="definition"}
-Root of a polynomial
-:::
-
-::: {.back card-id="card-051e1509ffa8de24"}
-A root (or zero) of $f\in K[x]$ is an element $\alpha$ in an extension of $K$ with $f(\alpha)=0$; over a field, $\alpha$ is a root iff $(x-\alpha)$ divides $f(x)$.
-:::
-
-::: {.front card-id="card-6cec7a8e31f856a5" tags="definition"}
-Separable closure
-:::
-
-::: {.back card-id="card-6cec7a8e31f856a5"}
-A separable closure $K^{\mathrm{sep}}$ of $K$ is the subfield of an algebraic closure $\overline{K}$ consisting of all elements separable over $K$; it is the maximal separable extension of $K$ inside $\overline{K}$.
-:::
-
-::: {.front card-id="card-7c7a164de98808db" tags="definition"}
-Separable element
-:::
-
-::: {.back card-id="card-7c7a164de98808db"}
-An element $\alpha$ algebraic over $K$ is separable if its minimal polynomial over $K$ is separable, i.e. has no repeated roots in an algebraic closure.
-:::
-
-::: {.front card-id="card-3430849c0ffb5525" tags="definition"}
-Separable polynomial
-:::
-
-::: {.back card-id="card-3430849c0ffb5525"}
-A polynomial $f\in K[x]$ is separable if it has no repeated roots in an algebraic closure of $K$; for irreducible $f$, this is equivalent to $f'(x)\neq0$.
-:::
-
-::: {.front card-id="card-f6c522a7dec14c35" tags="definition"}
-Subfield
-:::
-
-::: {.back card-id="card-f6c522a7dec14c35"}
-A subfield of a field $K$ is a subset $F\subseteq K$ that is a field under the operations inherited from $K$; equivalently, $F$ is an additive and multiplicative subgroup containing $1$ and closed under inverses of nonzero elements.
-:::
-
-::: {.front card-id="card-f175ee1227d1eafd" tags="definition"}
-Subring
-:::
-
-::: {.back card-id="card-f175ee1227d1eafd"}
-A subset $S\subseteq R$ is a subring if it is an additive subgroup, is closed under multiplication, and contains $1_R$; it is a ring with the inherited operations.
 :::
