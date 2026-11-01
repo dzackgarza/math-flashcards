@@ -275,7 +275,7 @@ Noetherian local ring
 :::
 
 ::: {.back card-id="card-d6c8beb027dc9d4e"}
-A local ring that is Noetherian.
+A local ring $(R,\mathfrak m)$ that is Noetherian: every ideal of $R$ is finitely generated, equivalently every ascending chain of ideals stabilizes.
 :::
 
 ::: {.front card-id="card-3539175fe01f72e8" tags="definition"}

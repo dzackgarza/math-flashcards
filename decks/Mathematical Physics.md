@@ -282,7 +282,7 @@ Derived equivalence
 :::
 
 ::: {.back card-id="card-5af2e41696aa8876"}
-An equivalence between derived categories, or between their enhancements.
+An equivalence between the derived categories $D(\mathcal A)$ and $D(\mathcal B)$ of two abelian categories, or between their differential graded enhancements; equivalently, a quasi-equivalence of the corresponding dg categories.
 :::
 
 ::: {.front card-id="card-6d3dacfdacb332bf" tags="definition"}
@@ -442,7 +442,7 @@ Holomorphic map
 :::
 
 ::: {.back card-id="card-a196f7be1063234c"}
-A map whose local coordinate expression is holomorphic.
+A map $f:U\to V$ between open subsets of $\mathbb C^n$ that is complex differentiable at every point; equivalently, each component is a holomorphic function of $n$ complex variables.
 :::
 
 ::: {.front card-id="card-9b9825102e0d2e8e" tags="definition"}
@@ -450,7 +450,7 @@ Holomorphic vector bundle
 :::
 
 ::: {.back card-id="card-9b9825102e0d2e8e"}
-A complex vector bundle whose transition functions are holomorphic.
+A complex vector bundle $E\to X$ over a complex manifold $X$ whose transition functions are holomorphic maps between open subsets of $\mathbb C^r$.
 :::
 
 ::: {.front card-id="card-679c5e6e299fbac0" tags="definition"}
@@ -578,7 +578,7 @@ Representation category
 :::
 
 ::: {.back card-id="card-dcf29d066a252dc2"}
-The category $\mathrm{Rep}(G)$ of representations of $G$ and their intertwiners.
+The category $\mathrm{Rep}(G)$ whose objects are representations of $G$ and whose morphisms are $G$-equivariant linear maps (intertwiners).
 :::
 
 ::: {.front card-id="card-a0734d7d6091da10" tags="definition"}
@@ -626,7 +626,7 @@ Subgroupoid
 :::
 
 ::: {.back card-id="card-fea19a0d73723e60"}
-A subcategory that is itself a groupoid.
+A subcategory $\mathcal H\subseteq\mathcal G$ of a groupoid $\mathcal G$ that is itself a groupoid; equivalently, it contains every identity of its objects and is closed under composition and inverses.
 :::
 
 ::: {.front card-id="card-8d1077d8a397ee58" tags="definition"}
