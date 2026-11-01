@@ -40,7 +40,11 @@ Geometry deck. Vocabulary is a separate study subject.
 
 - Complex Analysis holds definitions, formulas, examples, statements, and proof
   prompts together. Tags identify the kind of card.
-- Schemes includes morphisms and their properties. Sheaves and Vector Bundles
+- Algebraic Geometry / Definitions holds definition cards that several subject
+  decks use. Its Morphisms deck defines properties of morphisms, including
+  separated, quasicompact, finite presentation, proper, affine, finite, flat,
+  smooth, unramified, etale, immersion, and closed immersion.
+- Schemes includes schemes and their constructions. Sheaves and Vector Bundles
   includes sheaves of modules, differentials, and normal bundles. Cohomology
   holds cohomology constructions and computations; Homological Algebra holds
   their general algebraic prerequisites.
