@@ -11,11 +11,13 @@ A morphism $f:X\to S$ of schemes is **separated** iff $\Delta_{X/S}: X\to X \und
 :::
 
 ::: {.front card-id="card-17e3b6dd4ac0258d"}
-What is a **quasicompact morphism**? A quasicompact scheme?
+What is a **quasicompact morphism**? When is a scheme **quasicompact over a base**?
 :::
 
 ::: {.back card-id="card-17e3b6dd4ac0258d"}
-$f:Y\to X$ is quasicompact iff $\exists \mcv\rightrightarrows Y$ by open affine subschemes such that each $f^{-1}(V_i)$ is quasicompact as a space (i.e. every open cover admits a finite subcover).
+A morphism $f:X\to Y$ is **quasicompact** iff for every quasicompact open $U\subseteq Y$, the preimage $f^{-1}(U)$ is quasicompact. Equivalently, some open affine cover $\{V_i\}$ of $Y$ has every $f^{-1}(V_i)$ quasicompact.
+
+A scheme $X$ over $S$ is **quasicompact over $S$** iff its structure morphism $X\to S$ is quasicompact. For $S=\Spec\ZZ$, this is the usual absolute notion of a quasicompact scheme.
 :::
 
 ::: {.front card-id="card-67acbfbbf098e7b7"}
