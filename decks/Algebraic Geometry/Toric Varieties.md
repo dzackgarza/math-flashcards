@@ -590,7 +590,7 @@ For $P \subset M$, $u_F\in N_{\mathbf{R}}$ is orthogonal to the face $F$.
 :::
 
 ::: {.front card-id="card-cd1d89861804bb0e" tags="definition"}
-Affine semigroup
+What is the definition of Affine semigroup?
 :::
 
 ::: {.back card-id="card-cd1d89861804bb0e"}
@@ -598,7 +598,7 @@ An affine semigroup is a finitely generated submonoid $S\subset M$ of a lattice 
 :::
 
 ::: {.front card-id="card-18c94d4a2124c9f4" tags="definition"}
-Algebraic torus
+What is the definition of Algebraic torus?
 :::
 
 ::: {.back card-id="card-18c94d4a2124c9f4"}
@@ -606,7 +606,7 @@ An algebraic torus over a field $k$ is an algebraic group $T\cong\mathbf G_{m,k}
 :::
 
 ::: {.front card-id="card-596828f9fc0c4c0b" tags="definition"}
-Anticanonical divisor
+What is the definition of Anticanonical divisor?
 :::
 
 ::: {.back card-id="card-596828f9fc0c4c0b"}
@@ -614,7 +614,7 @@ An anticanonical divisor on a normal variety $X$ is a Weil divisor $D$ with $\ma
 :::
 
 ::: {.front card-id="card-543a3373272883a3" tags="definition"}
-Cartier data
+What is the definition of Cartier data?
 :::
 
 ::: {.back card-id="card-543a3373272883a3"}
@@ -622,7 +622,7 @@ For a torus-invariant Cartier divisor $D=\sum_\rho a_\rho D_\rho$ on $X_\Sigma$,
 :::
 
 ::: {.front card-id="card-e6dd760f34cc8383" tags="definition"}
-Cocharacter lattice
+What is the definition of Cocharacter lattice?
 :::
 
 ::: {.back card-id="card-e6dd760f34cc8383"}
@@ -630,7 +630,7 @@ For an algebraic torus $T$, the cocharacter lattice is $N=\operatorname{Hom}(\ma
 :::
 
 ::: {.front card-id="card-ca0aa9ac34954065" tags="definition"}
-Distinguished point
+What is the definition of Distinguished point?
 :::
 
 ::: {.back card-id="card-ca0aa9ac34954065"}
@@ -638,7 +638,7 @@ For a cone $\sigma$ in a fan $\Sigma$, the distinguished point $x_\sigma\in U_\s
 :::
 
 ::: {.front card-id="card-5cb3e24f78d85a4d" tags="definition"}
-Facet
+What is the definition of Facet?
 :::
 
 ::: {.back card-id="card-5cb3e24f78d85a4d"}
@@ -646,7 +646,7 @@ A facet of a polytope $P$ is a face of dimension $\dim P-1$. For a full-dimensio
 :::
 
 ::: {.front card-id="card-4ef2858cdbeda766" tags="definition"}
-Facet presentation
+What is the definition of Facet presentation?
 :::
 
 ::: {.back card-id="card-4ef2858cdbeda766"}
@@ -654,7 +654,7 @@ A facet presentation of a full-dimensional polytope $P\subset M_{\mathbb R}$ wri
 :::
 
 ::: {.front card-id="card-9c69e3dd4c0b2236" tags="definition"}
-Lattice distance
+What is the definition of Lattice distance?
 :::
 
 ::: {.back card-id="card-9c69e3dd4c0b2236"}
@@ -662,7 +662,7 @@ For a lattice hyperplane $H=\{m\in M_{\mathbb R}:\langle m,u\rangle=b\}$ with pr
 :::
 
 ::: {.front card-id="card-b3294275c9c67711" tags="definition"}
-Lattice polytope
+What is the definition of Lattice polytope?
 :::
 
 ::: {.back card-id="card-b3294275c9c67711"}
@@ -670,7 +670,7 @@ A lattice polytope in $M_{\mathbb R}$ is a convex polytope $P\subset M_{\mathbb 
 :::
 
 ::: {.front card-id="card-06dfd60dc8d94782" tags="definition"}
-Normal fan
+What is the definition of Normal fan?
 :::
 
 ::: {.back card-id="card-06dfd60dc8d94782"}
@@ -678,7 +678,7 @@ For a full-dimensional polytope $P\subset M_{\mathbb R}$, the normal fan is the 
 :::
 
 ::: {.front card-id="card-c6ee7d56ac48dd84" tags="definition"}
-One-parameter subgroup
+What is the definition of One-parameter subgroup?
 :::
 
 ::: {.back card-id="card-c6ee7d56ac48dd84"}
@@ -686,7 +686,7 @@ A one-parameter subgroup (1-PS) of an algebraic group $G$ is a morphism of algeb
 :::
 
 ::: {.front card-id="card-ed67eb76d85ad73b" tags="definition"}
-Piecewise-linear function
+What is the definition of Piecewise-linear function?
 :::
 
 ::: {.back card-id="card-ed67eb76d85ad73b"}
@@ -694,7 +694,7 @@ A function $\varphi:|\Sigma|\to\mathbb R$ is piecewise-linear with respect to $\
 :::
 
 ::: {.front card-id="card-72c63fa87276e61b" tags="definition"}
-Primitive ray generator
+What is the definition of Primitive ray generator?
 :::
 
 ::: {.back card-id="card-72c63fa87276e61b"}
@@ -702,7 +702,7 @@ For a rational ray $\rho\subset N_{\mathbb R}$, the primitive ray generator $u_\
 :::
 
 ::: {.front card-id="card-163fa20a259034cb" tags="definition"}
-Quotient lattice
+What is the definition of Quotient lattice?
 :::
 
 ::: {.back card-id="card-163fa20a259034cb"}
@@ -710,7 +710,7 @@ For a cone $\sigma\subset N_{\mathbb R}$, the quotient lattice is $N(\sigma)=N/(
 :::
 
 ::: {.front card-id="card-7a256d4271506321" tags="definition"}
-Reflexive sheaf
+What is the definition of Reflexive sheaf?
 :::
 
 ::: {.back card-id="card-7a256d4271506321"}
@@ -718,7 +718,7 @@ A coherent sheaf $\mathcal F$ on a normal variety is reflexive if the natural ma
 :::
 
 ::: {.front card-id="card-5cc1ede20b917173" tags="definition"}
-Saturated semigroup
+What is the definition of Saturated semigroup?
 :::
 
 ::: {.back card-id="card-5cc1ede20b917173"}
@@ -726,7 +726,7 @@ A submonoid $S\subset M$ is saturated if $qm\in S$ for some $q>0$ and $m\in M$ i
 :::
 
 ::: {.front card-id="card-e402b717c6505552" tags="definition"}
-Smooth fano polytope
+What is the definition of Smooth fano polytope?
 :::
 
 ::: {.back card-id="card-e402b717c6505552"}
@@ -734,7 +734,7 @@ A smooth Fano polytope is a lattice polytope $P\subset N_{\mathbb R}$ with $0$ i
 :::
 
 ::: {.front card-id="card-39cd0e53c3e7c558" tags="definition"}
-Star fan
+What is the definition of Star fan?
 :::
 
 ::: {.back card-id="card-39cd0e53c3e7c558"}
@@ -742,7 +742,7 @@ For a cone $\sigma$ in a fan $\Sigma$, the star fan $\operatorname{Star}(\sigma)
 :::
 
 ::: {.front card-id="card-316c2a3bb1f98d47" tags="definition"}
-Star subdivision
+What is the definition of Star subdivision?
 :::
 
 ::: {.back card-id="card-316c2a3bb1f98d47"}
@@ -750,7 +750,7 @@ The star subdivision of a fan $\Sigma$ at a ray $\rho_0=\mathbb R_{\ge0}u_0$ rep
 :::
 
 ::: {.front card-id="card-f1d284ca92644cab" tags="definition"}
-Supporting hyperplane
+What is the definition of Supporting hyperplane?
 :::
 
 ::: {.back card-id="card-f1d284ca92644cab"}
@@ -758,7 +758,7 @@ A supporting hyperplane of a polytope $P\subset M_{\mathbb R}$ is an affine hype
 :::
 
 ::: {.front card-id="card-67fdffe224052612" tags="definition"}
-Torus factor
+What is the definition of Torus factor?
 :::
 
 ::: {.back card-id="card-67fdffe224052612"}
@@ -766,7 +766,7 @@ A toric variety $X_\Sigma$ has a torus factor if its primitive ray generators do
 :::
 
 ::: {.front card-id="card-630a271d52290b36" tags="definition"}
-Torus-fixed point
+What is the definition of Torus-fixed point?
 :::
 
 ::: {.back card-id="card-630a271d52290b36"}
@@ -774,7 +774,7 @@ A torus-fixed point of a toric variety $X_\Sigma$ is a point fixed by the dense 
 :::
 
 ::: {.front card-id="card-a667b11ccf419d42" tags="definition"}
-Very ample polytope
+What is the definition of Very ample polytope?
 :::
 
 ::: {.back card-id="card-a667b11ccf419d42"}
@@ -782,7 +782,7 @@ A lattice polytope $P$ is very ample if for every vertex $v$ the semigroup $S_{P
 :::
 
 ::: {.front card-id="card-53639544f22bcf05" tags="definition"}
-Moment map
+What is the definition of Moment map?
 :::
 
 ::: {.back card-id="card-53639544f22bcf05"}
@@ -790,7 +790,7 @@ A moment map for a Hamiltonian action of a Lie group $G$ on a symplectic manifol
 :::
 
 ::: {.front card-id="card-25b38f47b27f0da3" tags="definition"}
-Toric surface
+What is the definition of Toric surface?
 :::
 
 ::: {.back card-id="card-25b38f47b27f0da3"}

@@ -933,7 +933,7 @@ How is $\overline{{ \mathbf{F} }_{q}}$ obtained from ${{ \mathbf{F} }_{q}}$?
 :::
 
 ::: {.front card-id="card-3329856c3071937d" tags="definition"}
-Absolute galois group
+What is the definition of Absolute galois group?
 :::
 
 ::: {.back card-id="card-3329856c3071937d"}
@@ -941,7 +941,7 @@ The absolute Galois group of a field $K$ is $G_K=\mathrm{Gal}(K^{\mathrm{sep}}/K
 :::
 
 ::: {.front card-id="card-eab9564097781973" tags="definition"}
-Artin symbol
+What is the definition of Artin symbol?
 :::
 
 ::: {.back card-id="card-eab9564097781973"}
@@ -949,7 +949,7 @@ For a finite abelian extension $L/K$ and an unramified prime ideal $\mathfrak{p}
 :::
 
 ::: {.front card-id="card-a4354825776d6986" tags="definition"}
-Central simple algebra
+What is the definition of Central simple algebra?
 :::
 
 ::: {.back card-id="card-a4354825776d6986"}
@@ -957,7 +957,7 @@ A central simple algebra over a field $K$ is a finite-dimensional associative $K
 :::
 
 ::: {.front card-id="card-42a8db7fd1d05030" tags="definition"}
-Character group
+What is the definition of Character group?
 :::
 
 ::: {.back card-id="card-42a8db7fd1d05030"}
@@ -965,7 +965,7 @@ The character group (Pontryagin dual) of a locally compact abelian group $G$ is 
 :::
 
 ::: {.front card-id="card-4843dd481b5447ce" tags="definition"}
-Class field
+What is the definition of Class field?
 :::
 
 ::: {.back card-id="card-4843dd481b5447ce"}
@@ -973,7 +973,7 @@ A class field of a number field, local field, or global field $K$ is a finite ab
 :::
 
 ::: {.front card-id="card-1dd70b4c8d88a5f8" tags="definition"}
-Compact-open topology
+What is the definition of Compact-open topology?
 :::
 
 ::: {.back card-id="card-1dd70b4c8d88a5f8"}
@@ -981,7 +981,7 @@ The compact-open topology on the set of continuous maps $X\to Y$ has subbasis $\
 :::
 
 ::: {.front card-id="card-3fbaca0c6dfd54a0" tags="definition"}
-Complex multiplication
+What is the definition of Complex multiplication?
 :::
 
 ::: {.back card-id="card-3fbaca0c6dfd54a0"}
@@ -989,7 +989,7 @@ An elliptic curve $E$ over $\mathbb{C}$ has complex multiplication if $\operator
 :::
 
 ::: {.front card-id="card-3d03294c3b5e41af" tags="definition"}
-Cyclotomic extension
+What is the definition of Cyclotomic extension?
 :::
 
 ::: {.back card-id="card-3d03294c3b5e41af"}
@@ -997,7 +997,7 @@ A cyclotomic extension of a field $K$ is an extension obtained by adjoining root
 :::
 
 ::: {.front card-id="card-99056385e56d55a0" tags="definition"}
-Division algebra
+What is the definition of Division algebra?
 :::
 
 ::: {.back card-id="card-99056385e56d55a0"}
@@ -1005,7 +1005,7 @@ A division algebra over a field $K$ is a finite-dimensional $K$-algebra $D$ (wit
 :::
 
 ::: {.front card-id="card-d518cd57fd187f3f" tags="definition"}
-Field trace
+What is the definition of Field trace?
 :::
 
 ::: {.back card-id="card-d518cd57fd187f3f"}
@@ -1013,7 +1013,7 @@ For a finite extension $L/K$ and $\alpha\in L$, the trace $\mathrm{Tr}_{L/K}(\al
 :::
 
 ::: {.front card-id="card-678c971b71760f09" tags="definition"}
-Free pro-p group
+What is the definition of Free pro-p group?
 :::
 
 ::: {.back card-id="card-678c971b71760f09"}
@@ -1021,7 +1021,7 @@ A pro-$p$ group $F$ is free on a subset $X\subseteq F$ if every map $X\to P$ int
 :::
 
 ::: {.front card-id="card-02ad46c2b8602754" tags="definition"}
-Frobenius element
+What is the definition of Frobenius element?
 :::
 
 ::: {.back card-id="card-02ad46c2b8602754"}
@@ -1029,7 +1029,7 @@ Let $L/K$ be a Galois extension of local or global fields, $\mathfrak{P}\mid\mat
 :::
 
 ::: {.front card-id="card-b9b9b4cb099d2afc" tags="definition"}
-Locally compact abelian group
+What is the definition of Locally compact abelian group?
 :::
 
 ::: {.back card-id="card-b9b9b4cb099d2afc"}
@@ -1037,7 +1037,7 @@ A locally compact abelian group is an abelian topological group whose topology i
 :::
 
 ::: {.front card-id="card-da2628a38bae81c5" tags="definition"}
-P-adic logarithm
+What is the definition of P-adic logarithm?
 :::
 
 ::: {.back card-id="card-da2628a38bae81c5"}
@@ -1045,7 +1045,7 @@ The $p$-adic logarithm is the continuous homomorphism $\log_p:1+p\mathbb{Z}_p\to
 :::
 
 ::: {.front card-id="card-b2d4104c089ec572" tags="definition"}
-Perfect pairing
+What is the definition of Perfect pairing?
 :::
 
 ::: {.back card-id="card-b2d4104c089ec572"}
@@ -1053,7 +1053,7 @@ A bilinear map $b:A\times B\to C$ is a perfect pairing if the induced homomorphi
 :::
 
 ::: {.front card-id="card-7b515b5c9b7eb5c2" tags="definition"}
-Quaternion algebra
+What is the definition of Quaternion algebra?
 :::
 
 ::: {.back card-id="card-7b515b5c9b7eb5c2"}
@@ -1061,7 +1061,7 @@ A quaternion algebra over a field $K$ of characteristic $\neq2$ is a $4$-dimensi
 :::
 
 ::: {.front card-id="card-407e20fb461b01a1" tags="definition"}
-Ray class group
+What is the definition of Ray class group?
 :::
 
 ::: {.back card-id="card-407e20fb461b01a1"}
@@ -1069,7 +1069,7 @@ For a modulus $\mathfrak{m}$, the ray class group is $\mathrm{Cl}_\mathfrak{m} =
 :::
 
 ::: {.front card-id="card-52522936692027ec" tags="definition"}
-Reciprocity law
+What is the definition of Reciprocity law?
 :::
 
 ::: {.back card-id="card-52522936692027ec"}
@@ -1077,7 +1077,7 @@ A reciprocity law is a theorem describing the Galois action on abelian extension
 :::
 
 ::: {.front card-id="card-3eec070a5bf42fd5" tags="definition"}
-Wild inertia subgroup
+What is the definition of Wild inertia subgroup?
 :::
 
 ::: {.back card-id="card-3eec070a5bf42fd5"}

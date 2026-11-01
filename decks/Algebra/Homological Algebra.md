@@ -682,7 +682,7 @@ $$ \operatorname{Ext}^*_\ZZ(C_n, A) = A[n]\cdot t^0 \oplus (A/nA) \cdot t^1 \opl
 :::
 
 ::: {.front card-id="card-aaa1383e5fc4d619" tags="definition"}
-Additive functor
+What is the definition of Additive functor?
 :::
 
 ::: {.back card-id="card-aaa1383e5fc4d619"}
@@ -690,7 +690,7 @@ A functor between additive categories that induces group homomorphisms $\operato
 :::
 
 ::: {.front card-id="card-5d9452c195258d26" tags="definition"}
-Adjoint functors
+What is the definition of Adjoint functors?
 :::
 
 ::: {.back card-id="card-5d9452c195258d26"}
@@ -698,7 +698,7 @@ Functors $F:\mathcal C\to\mathcal D$ and $G:\mathcal D\to\mathcal C$ are adjoint
 :::
 
 ::: {.front card-id="card-8c604b186a38f2a9" tags="definition"}
-Baer's criterion
+What is the definition of Baer's criterion?
 :::
 
 ::: {.back card-id="card-8c604b186a38f2a9"}
@@ -706,7 +706,7 @@ An $R$-module $I$ is injective iff every $R$-linear map from an ideal $\mathfrak
 :::
 
 ::: {.front card-id="card-a65dcd3f74d5bfba" tags="definition"}
-Bifunctor
+What is the definition of Bifunctor?
 :::
 
 ::: {.back card-id="card-a65dcd3f74d5bfba"}
@@ -714,7 +714,7 @@ A functor $\mathcal C\times\mathcal D\to\mathcal E$ of two variables.
 :::
 
 ::: {.front card-id="card-af448c134c90ecb5" tags="definition"}
-Chain map
+What is the definition of Chain map?
 :::
 
 ::: {.back card-id="card-af448c134c90ecb5"}
@@ -722,7 +722,7 @@ A family of maps $f_n:C_n\to D_n$ between complexes such that $d_n^D f_n=f_{n-1}
 :::
 
 ::: {.front card-id="card-84220919c6bdb8e8" tags="definition"}
-Coassociative
+What is the definition of Coassociative?
 :::
 
 ::: {.back card-id="card-84220919c6bdb8e8"}
@@ -730,7 +730,7 @@ A comultiplication $\Delta:C\to C\otimes C$ satisfying $(\Delta\otimes\operatorn
 :::
 
 ::: {.front card-id="card-9ea3a227686a8cdf" tags="definition"}
-Divisible group
+What is the definition of Divisible group?
 :::
 
 ::: {.back card-id="card-9ea3a227686a8cdf"}
@@ -738,7 +738,7 @@ An abelian group $D$ such that for every $d\in D$ and every positive integer $n$
 :::
 
 ::: {.front card-id="card-6d4880586220f4e2" tags="definition"}
-Dold-kan correspondence
+What is the definition of Dold-kan correspondence?
 :::
 
 ::: {.back card-id="card-6d4880586220f4e2"}
@@ -746,7 +746,7 @@ The equivalence between simplicial abelian groups and connective chain complexes
 :::
 
 ::: {.front card-id="card-5ba4c9a8d47fa3b0" tags="definition"}
-Epimorphism
+What is the definition of Epimorphism?
 :::
 
 ::: {.back card-id="card-5ba4c9a8d47fa3b0"}
@@ -754,7 +754,7 @@ A morphism $f:A\to B$ such that $g\circ f=h\circ f$ implies $g=h$ for all parall
 :::
 
 ::: {.front card-id="card-5d8ef1e17cbb6f95" tags="definition"}
-Exact functor
+What is the definition of Exact functor?
 :::
 
 ::: {.back card-id="card-5d8ef1e17cbb6f95"}
@@ -762,7 +762,7 @@ An additive functor that preserves short exact sequences.
 :::
 
 ::: {.front card-id="card-d3bad92cf5729d54" tags="definition"}
-Formal deformation
+What is the definition of Formal deformation?
 :::
 
 ::: {.back card-id="card-d3bad92cf5729d54"}
@@ -770,7 +770,7 @@ An algebra structure on $A[[t]]$ whose reduction modulo $t$ is the given algebra
 :::
 
 ::: {.front card-id="card-d62dcdab878ce6b9" tags="definition"}
-Graded coalgebra
+What is the definition of Graded coalgebra?
 :::
 
 ::: {.back card-id="card-d62dcdab878ce6b9"}
@@ -778,7 +778,7 @@ A graded vector space $C=\bigoplus_n C_n$ with a coassociative comultiplication 
 :::
 
 ::: {.front card-id="card-34654abcad1bf978" tags="definition"}
-Graded commutative algebra
+What is the definition of Graded commutative algebra?
 :::
 
 ::: {.back card-id="card-34654abcad1bf978"}
@@ -786,7 +786,7 @@ A graded algebra $A=\bigoplus_n A_n$ such that $ab=(-1)^{|a||b|}ba$ for homogene
 :::
 
 ::: {.front card-id="card-351b2cecb46bf308" tags="definition"}
-Graded lie algebra
+What is the definition of Graded lie algebra?
 :::
 
 ::: {.back card-id="card-351b2cecb46bf308"}
@@ -794,7 +794,7 @@ A graded vector space $\mathfrak g=\bigoplus_n\mathfrak g_n$ with a bilinear bra
 :::
 
 ::: {.front card-id="card-248d5485411d957b" tags="definition"}
-Injective resolution
+What is the definition of Injective resolution?
 :::
 
 ::: {.back card-id="card-248d5485411d957b"}
@@ -802,7 +802,7 @@ An exact complex $0\to M\to I^0\to I^1\to\cdots$ in which every $I^i$ is injecti
 :::
 
 ::: {.front card-id="card-a5c11af732a0fb10" tags="definition"}
-Inner derivation
+What is the definition of Inner derivation?
 :::
 
 ::: {.back card-id="card-a5c11af732a0fb10"}
@@ -810,7 +810,7 @@ A derivation of the form $d(a)=xa-ax$ (equivalently $d(a)=[x,a]$) for some $x\in
 :::
 
 ::: {.front card-id="card-6f546f8d7cb28ecb" tags="definition"}
-Koszul sign rule
+What is the definition of Koszul sign rule?
 :::
 
 ::: {.back card-id="card-6f546f8d7cb28ecb"}
@@ -818,7 +818,7 @@ The convention that moving a homogeneous element of degree $p$ past one of degre
 :::
 
 ::: {.front card-id="card-66f9ef2f75564a09" tags="definition"}
-Left derived functor
+What is the definition of Left derived functor?
 :::
 
 ::: {.back card-id="card-66f9ef2f75564a09"}
@@ -826,7 +826,7 @@ For a right exact functor $F$, the functor $L_nF$ computed by applying $F$ to a 
 :::
 
 ::: {.front card-id="card-087874951990872b" tags="definition"}
-Long exact sequence
+What is the definition of Long exact sequence?
 :::
 
 ::: {.back card-id="card-087874951990872b"}
@@ -834,7 +834,7 @@ An exact sequence indexed by all integers (or a half-line), typically $\cdots\to
 :::
 
 ::: {.front card-id="card-1999bdd6192b4513" tags="definition"}
-Monomorphism
+What is the definition of Monomorphism?
 :::
 
 ::: {.back card-id="card-1999bdd6192b4513"}
@@ -842,7 +842,7 @@ A morphism $f:A\to B$ such that $f\circ g=f\circ h$ implies $g=h$ for all parall
 :::
 
 ::: {.front card-id="card-fd8c97baa017ff45" tags="definition"}
-Outer derivation
+What is the definition of Outer derivation?
 :::
 
 ::: {.back card-id="card-fd8c97baa017ff45"}
@@ -850,7 +850,7 @@ A derivation modulo inner derivations; the outer derivations are $\operatorname{
 :::
 
 ::: {.front card-id="card-0de23089d403ea86" tags="definition"}
-Projective dimension
+What is the definition of Projective dimension?
 :::
 
 ::: {.back card-id="card-0de23089d403ea86"}
@@ -858,7 +858,7 @@ For an $R$-module $M$, the least length of a projective resolution of $M$, denot
 :::
 
 ::: {.front card-id="card-24509868c8ab14cf" tags="definition"}
-Projective resolution
+What is the definition of Projective resolution?
 :::
 
 ::: {.back card-id="card-24509868c8ab14cf"}
@@ -866,7 +866,7 @@ An exact sequence $\cdots\to P_1\to P_0\to M\to 0$ in which every $P_i$ is a pro
 :::
 
 ::: {.front card-id="card-53516ebb118c1132" tags="definition"}
-Right derived functor
+What is the definition of Right derived functor?
 :::
 
 ::: {.back card-id="card-53516ebb118c1132"}
@@ -874,7 +874,7 @@ For a left exact functor $F$, the functor $R^nF$ computed by applying $F$ to an 
 :::
 
 ::: {.front card-id="card-fa155f6f47bf84a8" tags="definition"}
-Satellite functor
+What is the definition of Satellite functor?
 :::
 
 ::: {.back card-id="card-fa155f6f47bf84a8"}
@@ -882,7 +882,7 @@ One of the functors $T^n$ for $n>0$ in a delta functor $(T^n)$, measuring the fa
 :::
 
 ::: {.front card-id="card-deaaebbd1fff9ad3" tags="definition"}
-Short exact sequence
+What is the definition of Short exact sequence?
 :::
 
 ::: {.back card-id="card-deaaebbd1fff9ad3"}
@@ -890,7 +890,7 @@ An exact sequence of the form $0\to A\to B\to C\to 0$.
 :::
 
 ::: {.front card-id="card-7698ba9e65e562d3" tags="definition"}
-Square-zero extension
+What is the definition of Square-zero extension?
 :::
 
 ::: {.back card-id="card-7698ba9e65e562d3"}
@@ -898,7 +898,7 @@ A ring extension $0\to M\to B\to A\to 0$ in which $M$ is an ideal with $M^2=0$; 
 :::
 
 ::: {.front card-id="card-d2fbd86b043509b8" tags="definition"}
-Zero object
+What is the definition of Zero object?
 :::
 
 ::: {.back card-id="card-d2fbd86b043509b8"}

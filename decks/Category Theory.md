@@ -141,7 +141,7 @@ Let $f: Y \to X$. If $\mcf= \mathop{\mathrm{Hom}}_X({-}, Z)$, then $f^* \mcf= \m
 :::
 
 ::: {.front card-id="card-e528fa481eb10556" tags="definition"}
-Abelian category
+What is the definition of Abelian category?
 :::
 
 ::: {.back card-id="card-e528fa481eb10556"}
@@ -149,7 +149,7 @@ An additive category that has kernels and cokernels, in which every monomorphism
 :::
 
 ::: {.front card-id="card-d06c459821b905bd" tags="definition"}
-Additive category
+What is the definition of Additive category?
 :::
 
 ::: {.back card-id="card-d06c459821b905bd"}
@@ -157,7 +157,7 @@ A category enriched over abelian groups with a zero object and finite biproducts
 :::
 
 ::: {.front card-id="card-414271731d082070" tags="definition"}
-Adjoint functor
+What is the definition of Adjoint functor?
 :::
 
 ::: {.back card-id="card-414271731d082070"}
@@ -165,7 +165,7 @@ Functors $F : \mathcal{C} \to \mathcal{D}$ and $G : \mathcal{D} \to \mathcal{C}$
 :::
 
 ::: {.front card-id="card-2ac513c40cb8e940" tags="definition"}
-Adjunction
+What is the definition of Adjunction?
 :::
 
 ::: {.back card-id="card-2ac513c40cb8e940"}
@@ -173,7 +173,7 @@ An adjunction $F\dashv G$ between functors $F:\mathcal{C}\to\mathcal{D}$ and $G:
 :::
 
 ::: {.front card-id="card-9d2eba9c6dac9b92" tags="definition"}
-Class
+What is the definition of Class?
 :::
 
 ::: {.back card-id="card-9d2eba9c6dac9b92"}
@@ -181,7 +181,7 @@ A class is a collection of sets (or of objects of a category) specified by a pro
 :::
 
 ::: {.front card-id="card-48d6063244a1eded" tags="definition"}
-Cocone
+What is the definition of Cocone?
 :::
 
 ::: {.back card-id="card-48d6063244a1eded"}
@@ -189,7 +189,7 @@ A cocone under a diagram $F:I\to\mathcal{C}$ is an object $C$ together with morp
 :::
 
 ::: {.front card-id="card-e561c0aeefcb997b" tags="definition"}
-Commutative diagram
+What is the definition of Commutative diagram?
 :::
 
 ::: {.back card-id="card-e561c0aeefcb997b"}
@@ -197,7 +197,7 @@ A diagram is commutative if every two composable paths in it with the same sourc
 :::
 
 ::: {.front card-id="card-daa562cc213b94f1" tags="definition"}
-Compatible family
+What is the definition of Compatible family?
 :::
 
 ::: {.back card-id="card-daa562cc213b94f1"}
@@ -205,7 +205,7 @@ Given an inverse system $(S_i,f_{ij})_{i\ge j}$, a compatible family is a family
 :::
 
 ::: {.front card-id="card-9a9c026fdf5d91f0" tags="definition"}
-Cone
+What is the definition of Cone?
 :::
 
 ::: {.back card-id="card-9a9c026fdf5d91f0"}
@@ -213,7 +213,7 @@ A cone over a diagram $F:I\to\mathcal{C}$ is an object $L$ together with morphis
 :::
 
 ::: {.front card-id="card-8c793764756f2e0d" tags="definition"}
-Hom-set
+What is the definition of Hom-set?
 :::
 
 ::: {.back card-id="card-8c793764756f2e0d"}
@@ -221,7 +221,7 @@ For objects $X,Y$ of a category $\mathcal{C}$, the hom-set is $\operatorname{Hom
 :::
 
 ::: {.front card-id="card-df511473d35130fc" tags="definition"}
-Initial object
+What is the definition of Initial object?
 :::
 
 ::: {.back card-id="card-df511473d35130fc"}
@@ -229,7 +229,7 @@ An initial object of a category is an object $I$ such that for every object $X$ 
 :::
 
 ::: {.front card-id="card-9d68f09f357cdb2a" tags="definition"}
-Inverse system
+What is the definition of Inverse system?
 :::
 
 ::: {.back card-id="card-9d68f09f357cdb2a"}
@@ -237,7 +237,7 @@ An inverse system (projective system) in a category $\mathcal{C}$ consists of a 
 :::
 
 ::: {.front card-id="card-452a8b8ab43c3a42" tags="definition"}
-Locally small category
+What is the definition of Locally small category?
 :::
 
 ::: {.back card-id="card-452a8b8ab43c3a42"}
@@ -245,7 +245,7 @@ A category $\mathcal{C}$ is locally small if for every pair of objects $X,Y$, th
 :::
 
 ::: {.front card-id="card-12805de172fcbf35" tags="definition"}
-Natural isomorphism
+What is the definition of Natural isomorphism?
 :::
 
 ::: {.back card-id="card-12805de172fcbf35"}
@@ -253,7 +253,7 @@ A natural transformation $\eta:F\Rightarrow G$ is a natural isomorphism if every
 :::
 
 ::: {.front card-id="card-59ce6ef14b0fad41" tags="definition"}
-Parallel morphisms
+What is the definition of Parallel morphisms?
 :::
 
 ::: {.back card-id="card-59ce6ef14b0fad41"}
@@ -261,7 +261,7 @@ Two morphisms $f,g:X\to Y$ in a category are parallel if they have the same doma
 :::
 
 ::: {.front card-id="card-e3aab7371e1a02b1" tags="definition"}
-Preadditive category
+What is the definition of Preadditive category?
 :::
 
 ::: {.back card-id="card-e3aab7371e1a02b1"}
@@ -269,7 +269,7 @@ A preadditive category is a category in which every hom-set $\mathcal{C}(X,Y)$ i
 :::
 
 ::: {.front card-id="card-12d35eb6988ddb4f" tags="definition"}
-Pullback
+What is the definition of Pullback?
 :::
 
 ::: {.back card-id="card-12d35eb6988ddb4f"}
@@ -277,7 +277,7 @@ A pullback (fiber product) of $f:X\to Z$ and $g:Y\to Z$ is an object $X\times_Z 
 :::
 
 ::: {.front card-id="card-1886ee9af32f10b9" tags="definition"}
-Pushout
+What is the definition of Pushout?
 :::
 
 ::: {.back card-id="card-1886ee9af32f10b9"}
@@ -285,7 +285,7 @@ Given morphisms $f : Z \to X$ and $g : Z \to Y$, the pushout is an object $P$ wi
 :::
 
 ::: {.front card-id="card-7dbbd4d254d4e3c7" tags="definition"}
-Representable functor
+What is the definition of Representable functor?
 :::
 
 ::: {.back card-id="card-7dbbd4d254d4e3c7"}
@@ -293,7 +293,7 @@ A functor $F:\mathcal{C}^{\mathrm{op}}\to\mathbf{Set}$ is representable if there
 :::
 
 ::: {.front card-id="card-6039a6c78a2df71a" tags="definition"}
-Summand
+What is the definition of Summand?
 :::
 
 ::: {.back card-id="card-6039a6c78a2df71a"}
@@ -301,7 +301,7 @@ A summand of an object $X$ is an object $Y$ for which there is an object $Z$ wit
 :::
 
 ::: {.front card-id="card-e38854feec65c1c7" tags="definition"}
-Terminal object
+What is the definition of Terminal object?
 :::
 
 ::: {.back card-id="card-e38854feec65c1c7"}
@@ -309,7 +309,7 @@ A terminal object of a category is an object $T$ such that for every object $X$ 
 :::
 
 ::: {.front card-id="card-81678eb151beb4dd" tags="definition"}
-Universal property
+What is the definition of Universal property?
 :::
 
 ::: {.back card-id="card-81678eb151beb4dd"}
@@ -317,7 +317,7 @@ A universal property characterizes an object $U$, together with specified struct
 :::
 
 ::: {.front card-id="card-7fb7720a0562f2b2" tags="definition"}
-Yoneda lemma
+What is the definition of Yoneda lemma?
 :::
 
 ::: {.back card-id="card-7fb7720a0562f2b2"}

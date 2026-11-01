@@ -66,7 +66,7 @@ A linear map between Banach spaces is bounded if and only if its graph is closed
 :::
 
 ::: {.front card-id="card-941154ccb8f2e3d0" tags="definition"}
-Sublinear function
+What is the definition of Sublinear function?
 :::
 
 ::: {.back card-id="card-941154ccb8f2e3d0"}

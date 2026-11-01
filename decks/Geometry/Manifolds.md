@@ -27,7 +27,7 @@ A smooth map $f:M\to N$ is a submersion if $d f_p:T_pM\to T_{f(p)}N$ is surjecti
 :::
 
 ::: {.front card-id="card-45bb001ecb537ab9" tags="definition"}
-Holonomy
+What is the definition of Holonomy?
 :::
 
 ::: {.back card-id="card-45bb001ecb537ab9"}
@@ -35,7 +35,7 @@ For a connection, the group of linear transformations of a fiber obtained by par
 :::
 
 ::: {.front card-id="card-e843cbd8a58329f9" tags="definition"}
-Smooth manifold
+What is the definition of Smooth manifold?
 :::
 
 ::: {.back card-id="card-e843cbd8a58329f9"}

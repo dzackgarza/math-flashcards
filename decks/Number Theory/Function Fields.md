@@ -268,7 +268,7 @@ to get an entire function with $\widehat{\xi}(s) = \widehat{\xi}(1-s)$.
 :::
 
 ::: {.front card-id="card-ae19b5ca76b254e2" tags="definition"}
-Additive polynomial
+What is the definition of Additive polynomial?
 :::
 
 ::: {.back card-id="card-ae19b5ca76b254e2"}
@@ -276,7 +276,7 @@ An additive polynomial over a ring of characteristic $p$ is a polynomial $f(x)$ 
 :::
 
 ::: {.front card-id="card-c67566c48c2a34b5" tags="definition"}
-Carlitz module
+What is the definition of Carlitz module?
 :::
 
 ::: {.back card-id="card-c67566c48c2a34b5"}
@@ -284,7 +284,7 @@ The Carlitz module is the Drinfeld module over $\mathbb{F}_q[T]$ given by the $\
 :::
 
 ::: {.front card-id="card-e680d9239eb8efcc" tags="definition"}
-Class number
+What is the definition of Class number?
 :::
 
 ::: {.back card-id="card-e680d9239eb8efcc"}
@@ -292,7 +292,7 @@ The class number $h_K$ of a number field $K$ is the order $\#\mathrm{Cl}(K)$ of 
 :::
 
 ::: {.front card-id="card-b78b5390e64274e8" tags="definition"}
-Cocompact subgroup
+What is the definition of Cocompact subgroup?
 :::
 
 ::: {.back card-id="card-b78b5390e64274e8"}
@@ -300,7 +300,7 @@ A subgroup $\Gamma$ of a topological group $G$ is cocompact if the quotient spac
 :::
 
 ::: {.front card-id="card-a83d9f2a77039635" tags="definition"}
-Conductor of an order
+What is the definition of Conductor of an order?
 :::
 
 ::: {.back card-id="card-a83d9f2a77039635"}
@@ -308,7 +308,7 @@ For an order $\mathcal{O}$ in the maximal order $\widetilde{\mathcal{O}}$ of a n
 :::
 
 ::: {.front card-id="card-8bcaeb6ede9a28e4" tags="definition"}
-Division value
+What is the definition of Division value?
 :::
 
 ::: {.back card-id="card-8bcaeb6ede9a28e4"}
@@ -316,7 +316,7 @@ A division value of an exponential $e_C$ (or $e_L$) is a value $e_C(a)$ at a tor
 :::
 
 ::: {.front card-id="card-c93dee3736bd75a3" tags="definition"}
-Function field
+What is the definition of Function field?
 :::
 
 ::: {.back card-id="card-c93dee3736bd75a3"}
@@ -324,7 +324,7 @@ Function field
 :::
 
 ::: {.front card-id="card-f8f953bc6c2c0578" tags="definition"}
-Functional equation
+What is the definition of Functional equation?
 :::
 
 ::: {.back card-id="card-f8f953bc6c2c0578"}
@@ -332,7 +332,7 @@ A functional equation for a zeta or $L$-function is an identity relating $\Lambd
 :::
 
 ::: {.front card-id="card-e2876b1ae69fd850" tags="definition"}
-Geometric frobenius
+What is the definition of Geometric frobenius?
 :::
 
 ::: {.back card-id="card-e2876b1ae69fd850"}
@@ -340,7 +340,7 @@ For a variety over $\mathbb{F}_q$, the geometric Frobenius is the inverse of the
 :::
 
 ::: {.front card-id="card-b4b61ca1d1381eb5" tags="definition"}
-Hilbert class field
+What is the definition of Hilbert class field?
 :::
 
 ::: {.back card-id="card-b4b61ca1d1381eb5"}
@@ -348,7 +348,7 @@ The Hilbert class field $H$ of a number field $K$ is the maximal abelian extensi
 :::
 
 ::: {.front card-id="card-3612cc90f4815c4b" tags="definition"}
-Jacobian variety
+What is the definition of Jacobian variety?
 :::
 
 ::: {.back card-id="card-3612cc90f4815c4b"}
@@ -356,7 +356,7 @@ The Jacobian $\mathrm{Jac}(X)$ of a smooth projective curve $X$ is the abelian v
 :::
 
 ::: {.front card-id="card-8626a74576d0a13a" tags="definition"}
-L-adic representation
+What is the definition of L-adic representation?
 :::
 
 ::: {.back card-id="card-8626a74576d0a13a"}
@@ -364,7 +364,7 @@ An $\ell$-adic representation of a Galois group $G_K$ is a continuous homomorphi
 :::
 
 ::: {.front card-id="card-c94b06514997fb8a" tags="definition"}
-Langlands program
+What is the definition of Langlands program?
 :::
 
 ::: {.back card-id="card-c94b06514997fb8a"}
@@ -372,7 +372,7 @@ The Langlands program is a set of conjectures relating Galois representations (o
 :::
 
 ::: {.front card-id="card-e00493795c1a16cc" tags="definition"}
-Maximal order
+What is the definition of Maximal order?
 :::
 
 ::: {.back card-id="card-e00493795c1a16cc"}
@@ -380,7 +380,7 @@ An order in a finite-dimensional algebra $A$ over $\mathbb{Q}$ (or over a Dedeki
 :::
 
 ::: {.front card-id="card-03a196f43d5f49b0" tags="definition"}
-R-adic expansion
+What is the definition of R-adic expansion?
 :::
 
 ::: {.back card-id="card-03a196f43d5f49b0"}
@@ -388,7 +388,7 @@ For an integer $r\ge2$, the $r$-adic expansion of $x\in\mathbb{Z}_p$ (when $r$ i
 :::
 
 ::: {.front card-id="card-6ba0dca2b7c27ecd" tags="definition"}
-Rigid analytic geometry
+What is the definition of Rigid analytic geometry?
 :::
 
 ::: {.back card-id="card-6ba0dca2b7c27ecd"}
@@ -396,7 +396,7 @@ Rigid analytic geometry is Tate's theory of analytic spaces over a nonarchimedea
 :::
 
 ::: {.front card-id="card-4972336cd57309b4" tags="definition"}
-Shtuka
+What is the definition of Shtuka?
 :::
 
 ::: {.back card-id="card-4972336cd57309b4"}
@@ -404,7 +404,7 @@ A shtuka (Drinfeld) is a vector bundle $\mathcal{E}$ on $X\times S$ together wit
 :::
 
 ::: {.front card-id="card-6aa5244a68396c66" tags="definition"}
-T-module
+What is the definition of T-module?
 :::
 
 ::: {.back card-id="card-6aa5244a68396c66"}
@@ -412,7 +412,7 @@ A $T$-module (in the sense of Anderson) over a field $k$ is a pair $(E,\phi)$ co
 :::
 
 ::: {.front card-id="card-2e6db27fb7b674d9" tags="definition"}
-Tate module
+What is the definition of Tate module?
 :::
 
 ::: {.back card-id="card-2e6db27fb7b674d9"}
@@ -420,7 +420,7 @@ For an abelian group or abelian variety $A$ and a prime $\ell$, the $\ell$-adic 
 :::
 
 ::: {.front card-id="card-73127fa341e1af1f" tags="definition"}
-Uniformization
+What is the definition of Uniformization?
 :::
 
 ::: {.back card-id="card-73127fa341e1af1f"}

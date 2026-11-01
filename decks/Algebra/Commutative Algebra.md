@@ -231,7 +231,7 @@ There exists $0\ne a\in A$ such that $M_a$ is a free $A_a$-module. Its rank over
 :::
 
 ::: {.front card-id="card-d4fe28ff3a6ebd8a" tags="definition"}
-Algebraically independent
+What is the definition of Algebraically independent?
 :::
 
 ::: {.back card-id="card-d4fe28ff3a6ebd8a"}
@@ -239,7 +239,7 @@ Elements $t_1,\ldots,t_d$ of a $k$-algebra are algebraically independent over $k
 :::
 
 ::: {.front card-id="card-b68ff905726843a0" tags="definition"}
-Associated prime
+What is the definition of Associated prime?
 :::
 
 ::: {.back card-id="card-b68ff905726843a0"}
@@ -247,7 +247,7 @@ A prime ideal $\mathfrak p$ that is the annihilator of some element of a module 
 :::
 
 ::: {.front card-id="card-1a72d1cba8538bb4" tags="definition"}
-Integral extension
+What is the definition of Integral extension?
 :::
 
 ::: {.back card-id="card-1a72d1cba8538bb4"}
@@ -255,7 +255,7 @@ A ring homomorphism $R\to S$ such that every element $s\in S$ is integral over $
 :::
 
 ::: {.front card-id="card-2191de5830df11b2" tags="definition"}
-Minimal prime ideal
+What is the definition of Minimal prime ideal?
 :::
 
 ::: {.back card-id="card-2191de5830df11b2"}
@@ -263,7 +263,7 @@ A prime ideal minimal among the prime ideals containing a given ideal $I$; for $
 :::
 
 ::: {.front card-id="card-d6c8beb027dc9d4e" tags="definition"}
-Noetherian local ring
+What is the definition of Noetherian local ring?
 :::
 
 ::: {.back card-id="card-d6c8beb027dc9d4e"}
@@ -271,7 +271,7 @@ A local ring $(R,\mathfrak m)$ that is Noetherian: every ideal of $R$ is finitel
 :::
 
 ::: {.front card-id="card-44ae2e8a89b25e18" tags="definition"}
-Primary ideal
+What is the definition of Primary ideal?
 :::
 
 ::: {.back card-id="card-44ae2e8a89b25e18"}
@@ -279,7 +279,7 @@ An ideal $Q$ such that $ab\in Q$ and $a\notin Q$ imply $b^n\in Q$ for some $n\ge
 :::
 
 ::: {.front card-id="card-cc66e0e65d80adbb" tags="definition"}
-Quasiprojective variety
+What is the definition of Quasiprojective variety?
 :::
 
 ::: {.back card-id="card-cc66e0e65d80adbb"}

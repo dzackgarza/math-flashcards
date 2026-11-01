@@ -174,7 +174,7 @@ $$\nabla \times\mathbf{E} = -{\frac{\partial }{\partial t}\,} \mathbf{B}$$
 :::
 
 ::: {.front card-id="card-31fbea10343f7a8e" tags="definition"}
-'t hooft operator
+What is the definition of 't hooft operator?
 :::
 
 ::: {.back card-id="card-31fbea10343f7a8e"}
@@ -182,7 +182,7 @@ A line operator in gauge theory defined by a prescribed singularity or monodromy
 :::
 
 ::: {.front card-id="card-6e87f6216988d1ab" tags="definition"}
-A-brane
+What is the definition of A-brane?
 :::
 
 ::: {.back card-id="card-6e87f6216988d1ab"}
@@ -190,7 +190,7 @@ An A-model boundary condition supported on a Lagrangian submanifold, together wi
 :::
 
 ::: {.front card-id="card-2fc755a41f204657" tags="definition"}
-A-model
+What is the definition of A-model?
 :::
 
 ::: {.back card-id="card-2fc755a41f204657"}
@@ -198,7 +198,7 @@ The topological sigma model whose path integral localizes on holomorphic maps an
 :::
 
 ::: {.front card-id="card-5b2c5c6a1eb3a292" tags="definition"}
-Action
+What is the definition of Action?
 :::
 
 ::: {.back card-id="card-5b2c5c6a1eb3a292"}
@@ -206,7 +206,7 @@ The functional $S=\int L\,dt$ (or $\int\mathcal{L}\,d^nx$) whose stationary poin
 :::
 
 ::: {.front card-id="card-9779983cd9c95af8" tags="definition"}
-Adjoint bundle
+What is the definition of Adjoint bundle?
 :::
 
 ::: {.back card-id="card-9779983cd9c95af8"}
@@ -214,7 +214,7 @@ For a principal $G$-bundle $P$, $\operatorname{ad}P=P\times_{\operatorname{Ad}}\
 :::
 
 ::: {.front card-id="card-71f374f882a5e646" tags="definition"}
-B-model
+What is the definition of B-model?
 :::
 
 ::: {.back card-id="card-71f374f882a5e646"}
@@ -222,7 +222,7 @@ The topological sigma model localizing on constant maps and depending only on th
 :::
 
 ::: {.front card-id="card-15859a678408b378" tags="definition"}
-Canonical bundle
+What is the definition of Canonical bundle?
 :::
 
 ::: {.back card-id="card-15859a678408b378"}
@@ -230,7 +230,7 @@ $K_X=\bigwedge^n T^*X$, the top exterior power of the cotangent bundle; for a cu
 :::
 
 ::: {.front card-id="card-dcf257317bd1eb28" tags="definition"}
-Chern class
+What is the definition of Chern class?
 :::
 
 ::: {.back card-id="card-dcf257317bd1eb28"}
@@ -238,7 +238,7 @@ Characteristic classes $c_k(E)\in H^{2k}(X;\mathbb{Z})$ of a vector bundle; for 
 :::
 
 ::: {.front card-id="card-7e3131de44d182e2" tags="definition"}
-Covariant derivative
+What is the definition of Covariant derivative?
 :::
 
 ::: {.back card-id="card-7e3131de44d182e2"}
@@ -246,7 +246,7 @@ $d_A=d+A$, the derivative defined by a connection $A$; it acts tensorially on as
 :::
 
 ::: {.front card-id="card-0bf387eecb83fd27" tags="definition"}
-D-module
+What is the definition of D-module?
 :::
 
 ::: {.back card-id="card-0bf387eecb83fd27"}
@@ -254,7 +254,7 @@ A module over the sheaf $\mathcal{D}_X$ of differential operators on $X$.
 :::
 
 ::: {.front card-id="card-c9a3f09ff7c9b49e" tags="definition"}
-Deformation theory
+What is the definition of Deformation theory?
 :::
 
 ::: {.back card-id="card-c9a3f09ff7c9b49e"}
@@ -262,7 +262,7 @@ The study of families of geometric objects and their infinitesimal deformations,
 :::
 
 ::: {.front card-id="card-44b9d890e2bb3446" tags="definition"}
-Degree of a line bundle
+What is the definition of Degree of a line bundle?
 :::
 
 ::: {.back card-id="card-44b9d890e2bb3446"}
@@ -270,7 +270,7 @@ For a line bundle $L$ on a smooth projective curve $C$, $\deg L=\int_C c_1(L)\in
 :::
 
 ::: {.front card-id="card-5af2e41696aa8876" tags="definition"}
-Derived equivalence
+What is the definition of Derived equivalence?
 :::
 
 ::: {.back card-id="card-5af2e41696aa8876"}
@@ -278,7 +278,7 @@ An equivalence between the derived categories $D(\mathcal A)$ and $D(\mathcal B)
 :::
 
 ::: {.front card-id="card-81678f003293771c" tags="definition"}
-Dolbeault operator
+What is the definition of Dolbeault operator?
 :::
 
 ::: {.back card-id="card-81678f003293771c"}
@@ -286,7 +286,7 @@ $\bar\partial:\Omega^{p,q}(X)\to\Omega^{p,q+1}(X)$, the $(0,1)$-part of the exte
 :::
 
 ::: {.front card-id="card-7db4e967ee343782" tags="definition"}
-Dual bundle
+What is the definition of Dual bundle?
 :::
 
 ::: {.back card-id="card-7db4e967ee343782"}
@@ -294,7 +294,7 @@ For a vector bundle $E$, $E^*=\operatorname{Hom}(E,\mathcal{O}_X)$, the bundle o
 :::
 
 ::: {.front card-id="card-41a40951754e3e4f" tags="definition"}
-Equivariant perverse sheaf
+What is the definition of Equivariant perverse sheaf?
 :::
 
 ::: {.back card-id="card-41a40951754e3e4f"}
@@ -302,7 +302,7 @@ A perverse sheaf equipped with a compatible action of an algebraic group.
 :::
 
 ::: {.front card-id="card-1e7f1c884bb20e21" tags="definition"}
-Essential skeleton
+What is the definition of Essential skeleton?
 :::
 
 ::: {.back card-id="card-1e7f1c884bb20e21"}
@@ -310,7 +310,7 @@ A simplicial subcomplex of the dual complex of a semistable degeneration that ca
 :::
 
 ::: {.front card-id="card-63d025d594c74d03" tags="definition"}
-Family
+What is the definition of Family?
 :::
 
 ::: {.back card-id="card-63d025d594c74d03"}
@@ -318,7 +318,7 @@ A morphism $X\to S$; the fiber $X_s$ is the member over $s\in S$.
 :::
 
 ::: {.front card-id="card-b39ffee1d62b3366" tags="definition"}
-Gauge field
+What is the definition of Gauge field?
 :::
 
 ::: {.back card-id="card-b39ffee1d62b3366"}
@@ -326,7 +326,7 @@ A connection on a principal bundle, locally a $\mathfrak{g}$-valued $1$-form $A$
 :::
 
 ::: {.front card-id="card-354cfbbc2e045525" tags="definition"}
-Gauge group
+What is the definition of Gauge group?
 :::
 
 ::: {.back card-id="card-354cfbbc2e045525"}
@@ -334,7 +334,7 @@ The structure group $G$ of a principal bundle or gauge theory, in which gauge tr
 :::
 
 ::: {.front card-id="card-337a8836aa4f87ae" tags="definition"}
-Gauge theory
+What is the definition of Gauge theory?
 :::
 
 ::: {.back card-id="card-337a8836aa4f87ae"}
@@ -342,7 +342,7 @@ A field theory whose dynamical field is a connection on a principal bundle, with
 :::
 
 ::: {.front card-id="card-bb6cd09c110aa6a7" tags="definition"}
-Genus
+What is the definition of Genus?
 :::
 
 ::: {.back card-id="card-bb6cd09c110aa6a7"}
@@ -350,7 +350,7 @@ Genus
 :::
 
 ::: {.front card-id="card-707a9eb2b4510716" tags="definition"}
-Gromov-witten invariant
+What is the definition of Gromov-witten invariant?
 :::
 
 ::: {.back card-id="card-707a9eb2b4510716"}
@@ -358,7 +358,7 @@ An integral over the moduli space of stable holomorphic maps from curves to $X$,
 :::
 
 ::: {.front card-id="card-18f8e402fe607f20" tags="definition"}
-Hamiltonian
+What is the definition of Hamiltonian?
 :::
 
 ::: {.back card-id="card-18f8e402fe607f20"}
@@ -366,7 +366,7 @@ The Legendre transform $H(q,p)=p\dot q-L$; it generates time evolution.
 :::
 
 ::: {.front card-id="card-623807cb6f42af06" tags="definition"}
-Hecke eigensheaf
+What is the definition of Hecke eigensheaf?
 :::
 
 ::: {.back card-id="card-623807cb6f42af06"}
@@ -374,7 +374,7 @@ A sheaf or D-module on $\Bun_G$ that is an eigenobject for all Hecke operators.
 :::
 
 ::: {.front card-id="card-3729ee72b95c0d8d" tags="definition"}
-Hecke transformation
+What is the definition of Hecke transformation?
 :::
 
 ::: {.back card-id="card-3729ee72b95c0d8d"}
@@ -382,7 +382,7 @@ The correspondence on $\Bun_G$ that modifies a bundle at a point; it acts on she
 :::
 
 ::: {.front card-id="card-d437eb9295109467" tags="definition"}
-Hitchin moduli space
+What is the definition of Hitchin moduli space?
 :::
 
 ::: {.back card-id="card-d437eb9295109467"}
@@ -390,7 +390,7 @@ The moduli space of Higgs bundles $(E,\theta)$ on a curve, with the Hitchin fibr
 :::
 
 ::: {.front card-id="card-2615be10eee7932b" tags="definition"}
-Hodge star
+What is the definition of Hodge star?
 :::
 
 ::: {.back card-id="card-2615be10eee7932b"}
@@ -398,7 +398,7 @@ The isomorphism $*:\Omega^k(M)\to\Omega^{n-k}(M)$ determined by a metric and ori
 :::
 
 ::: {.front card-id="card-9b9825102e0d2e8e" tags="definition"}
-Holomorphic vector bundle
+What is the definition of Holomorphic vector bundle?
 :::
 
 ::: {.back card-id="card-9b9825102e0d2e8e"}
@@ -406,7 +406,7 @@ A complex vector bundle $E\to X$ over a complex manifold $X$ whose transition fu
 :::
 
 ::: {.front card-id="card-679c5e6e299fbac0" tags="definition"}
-Irreducible connection
+What is the definition of Irreducible connection?
 :::
 
 ::: {.back card-id="card-679c5e6e299fbac0"}
@@ -414,7 +414,7 @@ A connection whose only parallel subbundles are $0$ and the whole bundle.
 :::
 
 ::: {.front card-id="card-c71ad1c0cbdf4611" tags="definition"}
-Lagrangian
+What is the definition of Lagrangian?
 :::
 
 ::: {.back card-id="card-c71ad1c0cbdf4611"}
@@ -422,7 +422,7 @@ A function $L(q,\dot q,t)$ whose time integral is the action; in field theory, a
 :::
 
 ::: {.front card-id="card-bdc1aadb29d1f7bf" tags="definition"}
-Langlands dual group
+What is the definition of Langlands dual group?
 :::
 
 ::: {.back card-id="card-bdc1aadb29d1f7bf"}
@@ -430,7 +430,7 @@ The complex reductive group ${}^LG$ whose root datum is dual to that of $G$.
 :::
 
 ::: {.front card-id="card-1bbb90a5c3b42d78" tags="definition"}
-Maxwell theory
+What is the definition of Maxwell theory?
 :::
 
 ::: {.back card-id="card-1bbb90a5c3b42d78"}
@@ -438,7 +438,7 @@ The $U(1)$ gauge theory with field strength $F=dA$ and action $-\frac14\int F\we
 :::
 
 ::: {.front card-id="card-3789a4cc24cc774b" tags="definition"}
-Mirror symmetry
+What is the definition of Mirror symmetry?
 :::
 
 ::: {.back card-id="card-3789a4cc24cc774b"}
@@ -446,7 +446,7 @@ An equivalence between the A-model on a Calabi-Yau $X$ and the B-model on a mirr
 :::
 
 ::: {.front card-id="card-b495461f81808024" tags="definition"}
-Moduli space
+What is the definition of Moduli space?
 :::
 
 ::: {.back card-id="card-b495461f81808024"}
@@ -454,7 +454,7 @@ A space whose points parametrize isomorphism classes of a given kind of geometri
 :::
 
 ::: {.front card-id="card-d24058c8ef549c5c" tags="definition"}
-Moduli stack
+What is the definition of Moduli stack?
 :::
 
 ::: {.back card-id="card-d24058c8ef549c5c"}
@@ -462,7 +462,7 @@ A stack parametrizing objects together with their automorphisms; for example, $\
 :::
 
 ::: {.front card-id="card-e87a9daaa42c5b55" tags="definition"}
-Open string
+What is the definition of Open string?
 :::
 
 ::: {.back card-id="card-e87a9daaa42c5b55"}
@@ -470,7 +470,7 @@ A string whose worldsheet has a boundary, with endpoints constrained to lie on a
 :::
 
 ::: {.front card-id="card-21523e70a090f206" tags="definition"}
-Path integral
+What is the definition of Path integral?
 :::
 
 ::: {.back card-id="card-21523e70a090f206"}
@@ -478,7 +478,7 @@ The formal integral $\int\mathcal{D}\phi\,e^{iS[\phi]/\hbar}$ over all field con
 :::
 
 ::: {.front card-id="card-0049910abe60c052" tags="definition"}
-Poisson bracket
+What is the definition of Poisson bracket?
 :::
 
 ::: {.back card-id="card-0049910abe60c052"}
@@ -486,7 +486,7 @@ On a symplectic manifold, $\{f,g\}=\sum_i(\partial_{q_i}f\,\partial_{p_i}g-\part
 :::
 
 ::: {.front card-id="card-843c09d0ebcee54b" tags="definition"}
-Polarized algebraic family
+What is the definition of Polarized algebraic family?
 :::
 
 ::: {.back card-id="card-843c09d0ebcee54b"}
@@ -494,7 +494,7 @@ A family $X\to S$ of algebraic varieties equipped with a relatively ample line b
 :::
 
 ::: {.front card-id="card-99ea41deed4d638a" tags="definition"}
-Principal bundle
+What is the definition of Principal bundle?
 :::
 
 ::: {.back card-id="card-99ea41deed4d638a"}
@@ -502,7 +502,7 @@ A fiber bundle $P\to X$ with a free transitive right action of a group $G$ on ea
 :::
 
 ::: {.front card-id="card-54f72ea67d1d08ed" tags="definition"}
-Punctured curve
+What is the definition of Punctured curve?
 :::
 
 ::: {.back card-id="card-54f72ea67d1d08ed"}
@@ -510,7 +510,7 @@ A curve with finitely many points removed, $C\setminus\{p_1,\dots,p_n\}$; it is 
 :::
 
 ::: {.front card-id="card-dcf29d066a252dc2" tags="definition"}
-Representation category
+What is the definition of Representation category?
 :::
 
 ::: {.back card-id="card-dcf29d066a252dc2"}
@@ -518,7 +518,7 @@ The category $\mathrm{Rep}(G)$ whose objects are representations of $G$ and whos
 :::
 
 ::: {.front card-id="card-a0734d7d6091da10" tags="definition"}
-Riemann surface
+What is the definition of Riemann surface?
 :::
 
 ::: {.back card-id="card-a0734d7d6091da10"}
@@ -526,7 +526,7 @@ A connected one-dimensional complex manifold; equivalently, a smooth surface wit
 :::
 
 ::: {.front card-id="card-95726bce0be647ef" tags="definition"}
-Schubert cell
+What is the definition of Schubert cell?
 :::
 
 ::: {.back card-id="card-95726bce0be647ef"}
@@ -534,7 +534,7 @@ The orbit $\mathrm{Gr}_G^\mu$ of a coweight $\mu$ under $G[[t]]$; the affine Gra
 :::
 
 ::: {.front card-id="card-a3094ab97f1c1e56" tags="definition"}
-Semistable snc model
+What is the definition of Semistable snc model?
 :::
 
 ::: {.back card-id="card-a3094ab97f1c1e56"}
@@ -542,7 +542,7 @@ A model $\mathcal{X}\to S$ whose special fiber is a divisor with simple normal c
 :::
 
 ::: {.front card-id="card-a313a6a3647a8a0d" tags="definition"}
-Stable bundle
+What is the definition of Stable bundle?
 :::
 
 ::: {.back card-id="card-a313a6a3647a8a0d"}
@@ -550,7 +550,7 @@ A vector bundle $E$ is stable if every proper subbundle $F$ satisfies $\mu(F)<\m
 :::
 
 ::: {.front card-id="card-fea19a0d73723e60" tags="definition"}
-Subgroupoid
+What is the definition of Subgroupoid?
 :::
 
 ::: {.back card-id="card-fea19a0d73723e60"}
@@ -558,7 +558,7 @@ A subcategory $\mathcal H\subseteq\mathcal G$ of a groupoid $\mathcal G$ that is
 :::
 
 ::: {.front card-id="card-8d1077d8a397ee58" tags="definition"}
-Symplectic class
+What is the definition of Symplectic class?
 :::
 
 ::: {.back card-id="card-8d1077d8a397ee58"}

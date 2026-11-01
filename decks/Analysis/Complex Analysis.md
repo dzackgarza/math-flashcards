@@ -561,7 +561,7 @@ $w=-(z+z^{-1})$ maps $\{z:|z|<1,\ \operatorname{Im}z>0\}$ biholomorphically onto
 :::
 
 ::: {.front card-id="card-cd5b8936824a4cf9" tags="definition"}
-Argument principle
+What is the definition of Argument principle?
 :::
 
 ::: {.back card-id="card-cd5b8936824a4cf9"}
@@ -571,7 +571,7 @@ where $Z$ and $P$ are the numbers of zeros and poles of $f$ inside $\gamma$, cou
 :::
 
 ::: {.front card-id="card-8cac0a27227249fd" tags="definition"}
-Biholomorphic map
+What is the definition of Biholomorphic map?
 :::
 
 ::: {.back card-id="card-8cac0a27227249fd"}
@@ -579,7 +579,7 @@ A map $f:U\to V$ between open subsets of $\CC$ that is bijective, holomorphic, a
 :::
 
 ::: {.front card-id="card-cd148ff0e176543d" tags="definition"}
-Identity theorem
+What is the definition of Identity theorem?
 :::
 
 ::: {.back card-id="card-cd148ff0e176543d"}
@@ -587,7 +587,7 @@ If two holomorphic functions on a connected open set agree on a subset that has 
 :::
 
 ::: {.front card-id="card-91511271f5f11e8f" tags="definition"}
-Riemann sphere
+What is the definition of Riemann sphere?
 :::
 
 ::: {.back card-id="card-91511271f5f11e8f"}

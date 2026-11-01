@@ -455,7 +455,7 @@ An algebraic endomorphism of $\mathbb A^1_{\mathbb C}$ is a polynomial, whereas 
 :::
 
 ::: {.front card-id="card-cda4ef39c2d129e2" tags="definition"}
-Affine space
+What is the definition of Affine space?
 :::
 
 ::: {.back card-id="card-cda4ef39c2d129e2"}
@@ -463,7 +463,7 @@ $\mathbb A^n_k=\operatorname{Spec}k[x_1,\dots,x_n]$ is affine $n$-space over $k$
 :::
 
 ::: {.front card-id="card-80713ef54baa2818" tags="definition"}
-Affine variety
+What is the definition of Affine variety?
 :::
 
 ::: {.back card-id="card-80713ef54baa2818"}
@@ -471,7 +471,7 @@ A variety that is a closed subvariety of affine space $\mathbb A^n_k$; equivalen
 :::
 
 ::: {.front card-id="card-7288765221fc915e" tags="definition"}
-Algebraic set
+What is the definition of Algebraic set?
 :::
 
 ::: {.back card-id="card-7288765221fc915e"}
@@ -479,7 +479,7 @@ A subset $Y\subseteq\mathbb A^n$ (respectively $Y\subseteq\mathbb P^n$) is algeb
 :::
 
 ::: {.front card-id="card-028eba576c31c295" tags="definition"}
-Analytification
+What is the definition of Analytification?
 :::
 
 ::: {.back card-id="card-028eba576c31c295"}
@@ -487,7 +487,7 @@ For a $\mathbb C$-scheme $X$ locally of finite type, the analytification $X^{\ma
 :::
 
 ::: {.front card-id="card-a923b40b24ddb82d" tags="definition"}
-Chern connection
+What is the definition of Chern connection?
 :::
 
 ::: {.back card-id="card-a923b40b24ddb82d"}
@@ -495,7 +495,7 @@ For a Hermitian holomorphic vector bundle $(E,h)$ on a complex manifold, the Che
 :::
 
 ::: {.front card-id="card-5a5a7328d999ae9d" tags="definition"}
-Curvature form
+What is the definition of Curvature form?
 :::
 
 ::: {.back card-id="card-5a5a7328d999ae9d"}
@@ -503,7 +503,7 @@ For a Hermitian vector bundle $(E,h)$ with Chern connection $\nabla$, the curvat
 :::
 
 ::: {.front card-id="card-35a1ab1ac682520a" tags="definition"}
-Fubini-study form
+What is the definition of Fubini-study form?
 :::
 
 ::: {.back card-id="card-35a1ab1ac682520a"}
@@ -511,7 +511,7 @@ The Fubini–Study form on $\mathbb P^n$ is the Kähler form $\omega_{\mathrm{FS
 :::
 
 ::: {.front card-id="card-2e33a1b484322f31" tags="definition"}
-Jacobian criterion
+What is the definition of Jacobian criterion?
 :::
 
 ::: {.back card-id="card-2e33a1b484322f31"}
@@ -519,7 +519,7 @@ Let $Y=V(f_1,\dots,f_r)\subseteq\mathbb A^n$ be an affine variety of dimension $
 :::
 
 ::: {.front card-id="card-4ec1c402e82f4a78" tags="definition"}
-Morphism of varieties
+What is the definition of Morphism of varieties?
 :::
 
 ::: {.back card-id="card-4ec1c402e82f4a78"}
@@ -527,7 +527,7 @@ A morphism of locally ringed spaces over $k$. In the affine case it corresponds 
 :::
 
 ::: {.front card-id="card-9f5ea1864394028d" tags="definition"}
-Nonsingular
+What is the definition of Nonsingular?
 :::
 
 ::: {.back card-id="card-9f5ea1864394028d"}
@@ -535,7 +535,7 @@ A scheme or variety $X$ is nonsingular (smooth) at a point $x$ if the local ring
 :::
 
 ::: {.front card-id="card-00a61fe475367c6f" tags="definition"}
-Positive (1,1)-form
+What is the definition of Positive (1,1)-form?
 :::
 
 ::: {.back card-id="card-00a61fe475367c6f"}
@@ -543,7 +543,7 @@ A real $(1,1)$-form $\omega=\frac{\sqrt{-1}}2\sum h_{j\bar k}\,dz_j\wedge d\bar 
 :::
 
 ::: {.front card-id="card-035a00f28e2c48c8" tags="definition"}
-Positive line bundle
+What is the definition of Positive line bundle?
 :::
 
 ::: {.back card-id="card-035a00f28e2c48c8"}
@@ -551,7 +551,7 @@ A line bundle $L$ on a compact complex manifold $X$ is positive if it admits a H
 :::
 
 ::: {.front card-id="card-c8c50d3d9fb6620f" tags="definition"}
-Projective variety
+What is the definition of Projective variety?
 :::
 
 ::: {.back card-id="card-c8c50d3d9fb6620f"}
@@ -559,7 +559,7 @@ A variety that is a closed subvariety of projective space $\mathbb P^n_k$; equiv
 :::
 
 ::: {.front card-id="card-1fa6363d969b462c" tags="definition"}
-Singular point
+What is the definition of Singular point?
 :::
 
 ::: {.back card-id="card-1fa6363d969b462c"}
@@ -567,7 +567,7 @@ A point $x\in X$ at which $\mathcal O_{X,x}$ is not a regular local ring, i.e. $
 :::
 
 ::: {.front card-id="card-5346ba4ab0a420de" tags="definition"}
-Stable map
+What is the definition of Stable map?
 :::
 
 ::: {.back card-id="card-5346ba4ab0a420de"}
@@ -575,7 +575,7 @@ For a smooth projective variety $X$ and $\beta\in H_2(X;\mathbb Z)$, an $n$-poin
 :::
 
 ::: {.front card-id="card-2b5c1c6d230a4fab" tags="definition"}
-Variety
+What is the definition of Variety?
 :::
 
 ::: {.back card-id="card-2b5c1c6d230a4fab"}

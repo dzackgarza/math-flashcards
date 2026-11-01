@@ -626,7 +626,7 @@ More generally, if $(X,\Delta)$ is klt and $L$ is Cartier with $L-(K_X+\Delta)$ 
 :::
 
 ::: {.front card-id="card-8fbc1391d742152d" tags="definition"}
-Boundary map
+What is the definition of Boundary map?
 :::
 
 ::: {.back card-id="card-8fbc1391d742152d"}
@@ -634,7 +634,7 @@ Boundary map
 :::
 
 ::: {.front card-id="card-cbb51ea779e62068" tags="definition"}
-Cochain complex
+What is the definition of Cochain complex?
 :::
 
 ::: {.back card-id="card-cbb51ea779e62068"}
@@ -642,7 +642,7 @@ A sequence $\cdots\to C^{p-1}\xrightarrow{d^{p-1}}C^p\xrightarrow{d^p}C^{p+1}\to
 :::
 
 ::: {.front card-id="card-292a7ed29c8d5ef7" tags="definition"}
-Coherent cohomology
+What is the definition of Coherent cohomology?
 :::
 
 ::: {.back card-id="card-292a7ed29c8d5ef7"}
@@ -650,7 +650,7 @@ The sheaf cohomology $H^i(X,\mathcal F)$ of a coherent sheaf $\mathcal F$. If $X
 :::
 
 ::: {.front card-id="card-f393f575f3af05fc" tags="definition"}
-Cohomological dimension
+What is the definition of Cohomological dimension?
 :::
 
 ::: {.back card-id="card-f393f575f3af05fc"}
@@ -658,7 +658,7 @@ $\operatorname{cd}(X)=\sup\{i:H^i(X,\mathcal F)\ne 0\text{ for some }\mathcal F\
 :::
 
 ::: {.front card-id="card-debc17b90ede1af4" tags="definition"}
-Cohomology
+What is the definition of Cohomology?
 :::
 
 ::: {.back card-id="card-debc17b90ede1af4"}
@@ -666,7 +666,7 @@ For a sheaf of abelian groups $\mathcal F$ on a topological space or site $X$, t
 :::
 
 ::: {.front card-id="card-6c6ea1b06a591184" tags="definition"}
-Derived category
+What is the definition of Derived category?
 :::
 
 ::: {.back card-id="card-6c6ea1b06a591184"}
@@ -674,7 +674,7 @@ The localization $D(\mathcal A)$ of the category of cochain complexes in an abel
 :::
 
 ::: {.front card-id="card-26755feeae63650a" tags="definition"}
-Derived functor
+What is the definition of Derived functor?
 :::
 
 ::: {.back card-id="card-26755feeae63650a"}
@@ -682,7 +682,7 @@ For a left exact additive functor $F$ and an object $A$, choose an injective res
 :::
 
 ::: {.front card-id="card-1b12dca96188a8d0" tags="definition"}
-Derived tensor product
+What is the definition of Derived tensor product?
 :::
 
 ::: {.back card-id="card-1b12dca96188a8d0"}
@@ -690,7 +690,7 @@ The left derived functor of $\otimes$: $A\otimes^{\mathbf L}B$ is computed by re
 :::
 
 ::: {.front card-id="card-f2a8b1dc3e6c159c" tags="definition"}
-Exceptional inverse image
+What is the definition of Exceptional inverse image?
 :::
 
 ::: {.back card-id="card-f2a8b1dc3e6c159c"}
@@ -698,7 +698,7 @@ The functor $f^!:\mathcal D^+(\mathcal O_Y)\to\mathcal D^+(\mathcal O_X)$ right 
 :::
 
 ::: {.front card-id="card-0e0e8171f106c2e4" tags="definition"}
-Ext group
+What is the definition of Ext group?
 :::
 
 ::: {.back card-id="card-0e0e8171f106c2e4"}
@@ -706,7 +706,7 @@ $\operatorname{Ext}^i_{\mathcal O_X}(\mathcal F,\mathcal G)=R^i\operatorname{Hom
 :::
 
 ::: {.front card-id="card-054789bf4f93a9c2" tags="definition"}
-First chern class
+What is the definition of First chern class?
 :::
 
 ::: {.back card-id="card-054789bf4f93a9c2"}
@@ -714,7 +714,7 @@ For a line bundle $L$, $c_1(L)\in H^2(X,\mathbb Z)$ is the image of $[L]$ under 
 :::
 
 ::: {.front card-id="card-b9494859d64b64cc" tags="definition"}
-Kodaira vanishing
+What is the definition of Kodaira vanishing?
 :::
 
 ::: {.back card-id="card-b9494859d64b64cc"}
@@ -722,7 +722,7 @@ If $X$ is a smooth projective variety over a field of characteristic zero and $L
 :::
 
 ::: {.front card-id="card-019bda55018f2843" tags="definition"}
-Relative canonical sheaf
+What is the definition of Relative canonical sheaf?
 :::
 
 ::: {.back card-id="card-019bda55018f2843"}
@@ -730,7 +730,7 @@ For a smooth morphism $f:X\to Y$ of relative dimension $n$, $\omega_{X/Y}=\det\O
 :::
 
 ::: {.front card-id="card-88b7b071a0ca4f33" tags="definition"}
-Serre duality
+What is the definition of Serre duality?
 :::
 
 ::: {.back card-id="card-88b7b071a0ca4f33"}
@@ -738,7 +738,7 @@ For a smooth proper scheme $X$ of dimension $n$ over a field $k$ with dualizing 
 :::
 
 ::: {.front card-id="card-96d703b5df7fceea" tags="definition"}
-Sheaf cohomology
+What is the definition of Sheaf cohomology?
 :::
 
 ::: {.back card-id="card-96d703b5df7fceea"}
@@ -746,7 +746,7 @@ The cohomology $H^i(X,\mathcal F)=R^i\Gamma(X,\mathcal F)$ of an $\mathcal O_X$-
 :::
 
 ::: {.front card-id="card-f233125835acf997" tags="definition"}
-Soft sheaf
+What is the definition of Soft sheaf?
 :::
 
 ::: {.back card-id="card-f233125835acf997"}
@@ -754,7 +754,7 @@ A sheaf $\mathcal F$ for which every section over a closed subset $A\subset X$ e
 :::
 
 ::: {.front card-id="card-434a8b44fd60b9cd" tags="definition"}
-Trace map
+What is the definition of Trace map?
 :::
 
 ::: {.back card-id="card-434a8b44fd60b9cd"}

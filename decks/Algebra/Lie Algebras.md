@@ -52,7 +52,7 @@ $$
 :::
 
 ::: {.front card-id="card-aabe516e9962f80b" tags="definition"}
-Cartan subalgebra
+What is the definition of Cartan subalgebra?
 :::
 
 ::: {.back card-id="card-aabe516e9962f80b"}
@@ -60,7 +60,7 @@ A maximal abelian subalgebra $\mathfrak h$ of a semisimple Lie algebra consistin
 :::
 
 ::: {.front card-id="card-59b580ba3c70c604" tags="definition"}
-Lie algebra
+What is the definition of Lie algebra?
 :::
 
 ::: {.back card-id="card-59b580ba3c70c604"}
@@ -68,7 +68,7 @@ A vector space $\mathfrak g$ with a bilinear bracket $[-,-]:\mathfrak g\times\ma
 :::
 
 ::: {.front card-id="card-defd33894fbf96de" tags="definition"}
-Lie bracket
+What is the definition of Lie bracket?
 :::
 
 ::: {.back card-id="card-defd33894fbf96de"}
@@ -76,7 +76,7 @@ The bilinear operation $[-,-]$ on a Lie algebra; it is antisymmetric and satisfi
 :::
 
 ::: {.front card-id="card-a9efd8b164dcfd36" tags="definition"}
-Positive root
+What is the definition of Positive root?
 :::
 
 ::: {.back card-id="card-a9efd8b164dcfd36"}
@@ -84,7 +84,7 @@ A root that is a nonnegative integer combination of the simple roots.
 :::
 
 ::: {.front card-id="card-28e9be3f80ff7129" tags="definition"}
-Root reflection
+What is the definition of Root reflection?
 :::
 
 ::: {.back card-id="card-28e9be3f80ff7129"}
@@ -92,7 +92,7 @@ The reflection $s_\alpha(\beta)=\beta-\frac{2(\alpha,\beta)}{(\alpha,\alpha)}\al
 :::
 
 ::: {.front card-id="card-e1a63b27cfa8a086" tags="definition"}
-Root space
+What is the definition of Root space?
 :::
 
 ::: {.back card-id="card-e1a63b27cfa8a086"}
@@ -100,7 +100,7 @@ For a Lie algebra $\mathfrak g$ with Cartan subalgebra $\mathfrak h$ and $\alpha
 :::
 
 ::: {.front card-id="card-3ab440387f15649b" tags="definition"}
-Root system
+What is the definition of Root system?
 :::
 
 ::: {.back card-id="card-3ab440387f15649b"}
@@ -108,7 +108,7 @@ A finite set $\Phi$ of nonzero vectors spanning a Euclidean space $E$ such that 
 :::
 
 ::: {.front card-id="card-3bd92481facd8c81" tags="definition"}
-Universal enveloping algebra
+What is the definition of Universal enveloping algebra?
 :::
 
 ::: {.back card-id="card-3bd92481facd8c81"}

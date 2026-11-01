@@ -27,7 +27,7 @@ $n^2 - 1$.
 :::
 
 ::: {.front card-id="card-b597392c6e73090e" tags="definition"}
-Affine algebraic group
+What is the definition of Affine algebraic group?
 :::
 
 ::: {.back card-id="card-b597392c6e73090e"}
@@ -35,7 +35,7 @@ A linear algebraic group: a closed subgroup of $\operatorname{GL}_n(k)$, equival
 :::
 
 ::: {.front card-id="card-04522d7c94a9c4a9" tags="definition"}
-Group object
+What is the definition of Group object?
 :::
 
 ::: {.back card-id="card-04522d7c94a9c4a9"}
@@ -43,7 +43,7 @@ An object $G$ of a category with morphisms $m:G\times G\to G$, $e:1\to G$, and $
 :::
 
 ::: {.front card-id="card-d40746c773a22d50" tags="definition"}
-Projective general linear group
+What is the definition of Projective general linear group?
 :::
 
 ::: {.back card-id="card-d40746c773a22d50"}
@@ -51,7 +51,7 @@ The quotient $\operatorname{PGL}_n(k)=\operatorname{GL}_n(k)/k^\times$, the auto
 :::
 
 ::: {.front card-id="card-f5ba597b713da982" tags="definition"}
-Unipotent group
+What is the definition of Unipotent group?
 :::
 
 ::: {.back card-id="card-f5ba597b713da982"}
@@ -59,7 +59,7 @@ A linear algebraic group all of whose elements are unipotent, i.e. $g-1$ is nilp
 :::
 
 ::: {.front card-id="card-e9efe34317462fca" tags="definition"}
-Unipotent radical
+What is the definition of Unipotent radical?
 :::
 
 ::: {.back card-id="card-e9efe34317462fca"}

@@ -834,7 +834,7 @@ $H^1(f^*T_X)=0$, so the Hom scheme is smooth at $[f]$. The negative summand make
 :::
 
 ::: {.front card-id="card-acf2c9c2a6e37c9a" tags="definition"}
-(-1)-curve
+What is the definition of (-1)-curve?
 :::
 
 ::: {.back card-id="card-acf2c9c2a6e37c9a"}
@@ -842,7 +842,7 @@ A $(-1)$-curve on a smooth projective surface is a smooth rational curve $E\cong
 :::
 
 ::: {.front card-id="card-f5c95b91658d022a" tags="definition"}
-Abelian variety
+What is the definition of Abelian variety?
 :::
 
 ::: {.back card-id="card-f5c95b91658d022a"}
@@ -850,7 +850,7 @@ An abelian variety over a field $k$ is a complete connected group variety over $
 :::
 
 ::: {.front card-id="card-8a18ef59d8abdf94" tags="definition"}
-Constant scalar curvature kähler metric
+What is the definition of Constant scalar curvature kähler metric?
 :::
 
 ::: {.back card-id="card-8a18ef59d8abdf94"}
@@ -858,7 +858,7 @@ A Kähler metric $\omega$ on a complex manifold is a constant scalar curvature K
 :::
 
 ::: {.front card-id="card-86fb2447b24e41dd" tags="definition"}
-Different
+What is the definition of Different?
 :::
 
 ::: {.back card-id="card-86fb2447b24e41dd"}
@@ -866,7 +866,7 @@ For a log pair $(X,S+\Delta)$ with $S$ a reduced divisor and $K_X+S+\Delta$ $\ma
 :::
 
 ::: {.front card-id="card-814740f33155ce31" tags="definition"}
-Exceptional locus
+What is the definition of Exceptional locus?
 :::
 
 ::: {.back card-id="card-814740f33155ce31"}
@@ -874,7 +874,7 @@ For a birational morphism $f:X\to Y$, the exceptional locus is the closed subset
 :::
 
 ::: {.front card-id="card-b2b094296f5c90a6" tags="definition"}
-Extremal contraction
+What is the definition of Extremal contraction?
 :::
 
 ::: {.back card-id="card-b2b094296f5c90a6"}
@@ -882,7 +882,7 @@ An extremal contraction is the projective morphism $\varphi_F:X\to Y$ with conne
 :::
 
 ::: {.front card-id="card-fd07ea94087ee7e4" tags="definition"}
-F-exceptional
+What is the definition of F-exceptional?
 :::
 
 ::: {.back card-id="card-fd07ea94087ee7e4"}
@@ -890,7 +890,7 @@ For a morphism $f:Y\to X$, a divisor $E\subset Y$ is $f$-exceptional if $\operat
 :::
 
 ::: {.front card-id="card-4c4388e6f992f9fa" tags="definition"}
-Fiber-type contraction
+What is the definition of Fiber-type contraction?
 :::
 
 ::: {.back card-id="card-4c4388e6f992f9fa"}
@@ -898,7 +898,7 @@ A contraction $f:X\to Y$ is of fiber type if $\dim Y<\dim X$, so its fibers are 
 :::
 
 ::: {.front card-id="card-859e3263b428349d" tags="definition"}
-Free rational curve
+What is the definition of Free rational curve?
 :::
 
 ::: {.back card-id="card-859e3263b428349d"}
@@ -906,7 +906,7 @@ A nonconstant map $f:\mathbb P^1\to X$ is a free rational curve if $f^*T_X\cong\
 :::
 
 ::: {.front card-id="card-a938bcb551387242" tags="definition"}
-Geometric invariant theory
+What is the definition of Geometric invariant theory?
 :::
 
 ::: {.back card-id="card-a938bcb551387242"}
@@ -914,7 +914,7 @@ Geometric invariant theory (GIT) constructs quotients of a variety $X$ by a redu
 :::
 
 ::: {.front card-id="card-715171414ed7f3f9" tags="definition"}
-Iitaka fibration
+What is the definition of Iitaka fibration?
 :::
 
 ::: {.back card-id="card-715171414ed7f3f9"}
@@ -922,7 +922,7 @@ For a smooth projective variety $X$ with $\kappa(X)\ge0$, the Iitaka fibration i
 :::
 
 ::: {.front card-id="card-db8009b44f3c6551" tags="definition"}
-Numerical equivalence
+What is the definition of Numerical equivalence?
 :::
 
 ::: {.back card-id="card-db8009b44f3c6551"}
@@ -930,7 +930,7 @@ Two divisor classes $D_1,D_2\in N^1(X)_{\mathbb R}$ are numerically equivalent i
 :::
 
 ::: {.front card-id="card-9972162b653b2027" tags="definition"}
-Plt
+What is the definition of Plt?
 :::
 
 ::: {.back card-id="card-9972162b653b2027"}
@@ -938,7 +938,7 @@ A log pair $(X,\Delta)$ is purely log terminal (plt) if every exceptional diviso
 :::
 
 ::: {.front card-id="card-987c64ec26849bc7" tags="definition"}
-Q-cartier
+What is the definition of Q-cartier?
 :::
 
 ::: {.back card-id="card-987c64ec26849bc7"}
@@ -946,7 +946,7 @@ A $\mathbb Q$-Weil divisor $D$ on a normal variety is $\mathbb Q$-Cartier if $mD
 :::
 
 ::: {.front card-id="card-5c72b9ad61a841b4" tags="definition"}
-Scheme-theoretic closure
+What is the definition of Scheme-theoretic closure?
 :::
 
 ::: {.back card-id="card-5c72b9ad61a841b4"}
@@ -954,7 +954,7 @@ For a locally closed subscheme $Z\subset X$ contained in an open subscheme $U\su
 :::
 
 ::: {.front card-id="card-5b19b21c81614d35" tags="definition"}
-Semiample
+What is the definition of Semiample?
 :::
 
 ::: {.back card-id="card-5b19b21c81614d35"}
@@ -962,7 +962,7 @@ A line bundle $\mathcal L$ on a projective variety is semiample if $\mathcal L^{
 :::
 
 ::: {.front card-id="card-338da2f604bf5b4b" tags="definition"}
-Smooth locus
+What is the definition of Smooth locus?
 :::
 
 ::: {.back card-id="card-338da2f604bf5b4b"}
@@ -970,7 +970,7 @@ The smooth locus $X^{\mathrm{sm}}\subset X$ is the open subset of points at whic
 :::
 
 ::: {.front card-id="card-be3216d4ed9f3f10" tags="definition"}
-Valuative criterion
+What is the definition of Valuative criterion?
 :::
 
 ::: {.back card-id="card-be3216d4ed9f3f10"}

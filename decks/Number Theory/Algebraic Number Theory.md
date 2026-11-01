@@ -414,7 +414,7 @@ $K$ a purely imaginary quadratic extension of a totally real field, so $K = K_0(
 :::
 
 ::: {.front card-id="card-af7bae7d937f70bd" tags="definition"}
-Adele
+What is the definition of Adele?
 :::
 
 ::: {.back card-id="card-af7bae7d937f70bd"}
@@ -422,7 +422,7 @@ The adele ring of a number field $K$ is the restricted product $\mathbb{A}_K = \
 :::
 
 ::: {.front card-id="card-8fff4f5d5697c42e" tags="definition"}
-Discrete valuation
+What is the definition of Discrete valuation?
 :::
 
 ::: {.back card-id="card-8fff4f5d5697c42e"}
@@ -430,7 +430,7 @@ A discrete valuation on a field $K$ is a surjective map $v:K^\times\to\mathbb{Z}
 :::
 
 ::: {.front card-id="card-047d16c894b48d59" tags="definition"}
-Discriminant
+What is the definition of Discriminant?
 :::
 
 ::: {.back card-id="card-047d16c894b48d59"}
@@ -438,7 +438,7 @@ For a number field $K$ of degree $n$ with integral basis $\omega_1, \dots, \omeg
 :::
 
 ::: {.front card-id="card-6815a6dd71de1f6e" tags="definition"}
-Field norm
+What is the definition of Field norm?
 :::
 
 ::: {.back card-id="card-6815a6dd71de1f6e"}
@@ -446,7 +446,7 @@ For a finite extension $L/K$ and $\alpha\in L$, the norm $N_{L/K}(\alpha)$ is th
 :::
 
 ::: {.front card-id="card-fc530cec796f5c41" tags="definition"}
-Fractional ideal
+What is the definition of Fractional ideal?
 :::
 
 ::: {.back card-id="card-fc530cec796f5c41"}
@@ -454,7 +454,7 @@ A fractional ideal of a Dedekind domain $R$ with fraction field $K$ is a nonzero
 :::
 
 ::: {.front card-id="card-b1187e80e54b164f" tags="definition"}
-Haar measure
+What is the definition of Haar measure?
 :::
 
 ::: {.back card-id="card-b1187e80e54b164f"}
@@ -462,7 +462,7 @@ A Haar measure on a locally compact topological group $G$ is a nonzero Radon mea
 :::
 
 ::: {.front card-id="card-2cba500e0cb7eed2" tags="definition"}
-Higher ramification group
+What is the definition of Higher ramification group?
 :::
 
 ::: {.back card-id="card-2cba500e0cb7eed2"}
@@ -470,7 +470,7 @@ For a finite Galois extension $L/K$ of local fields with valuation ring $B$ and 
 :::
 
 ::: {.front card-id="card-212923cbca48045d" tags="definition"}
-Ideal class group
+What is the definition of Ideal class group?
 :::
 
 ::: {.back card-id="card-212923cbca48045d"}
@@ -478,7 +478,7 @@ The ideal class group of a number field $K$ is $\mathrm{Cl}(K) = I_K/P_K$, the g
 :::
 
 ::: {.front card-id="card-3df6254a6558c806" tags="definition"}
-Idele
+What is the definition of Idele?
 :::
 
 ::: {.back card-id="card-3df6254a6558c806"}
@@ -486,7 +486,7 @@ The idele group $\mathbb{A}_K^\times$ is the group of invertible elements of the
 :::
 
 ::: {.front card-id="card-c6455b6f0a43fb96" tags="definition"}
-Monogenic
+What is the definition of Monogenic?
 :::
 
 ::: {.back card-id="card-c6455b6f0a43fb96"}
@@ -494,7 +494,7 @@ An extension of rings $A\subseteq B$ is monogenic if $B=A[x]$ for some $x\in B$.
 :::
 
 ::: {.front card-id="card-33dae75b9e742d28" tags="definition"}
-Nonarchimedean place
+What is the definition of Nonarchimedean place?
 :::
 
 ::: {.back card-id="card-33dae75b9e742d28"}
@@ -502,7 +502,7 @@ A nonarchimedean place of a number field $K$ is an equivalence class of nonarchi
 :::
 
 ::: {.front card-id="card-e3e945677e8fbf36" tags="definition"}
-Number field
+What is the definition of Number field?
 :::
 
 ::: {.back card-id="card-e3e945677e8fbf36"}
@@ -510,7 +510,7 @@ A number field is a field $K$ that is a finite extension of $\mathbb{Q}$. Equiva
 :::
 
 ::: {.front card-id="card-beb08e0117d2699b" tags="definition"}
-P-adic valuation
+What is the definition of P-adic valuation?
 :::
 
 ::: {.back card-id="card-beb08e0117d2699b"}
@@ -518,7 +518,7 @@ For a prime $p$ and $x\in\mathbb{Q}^\times$, the $p$-adic valuation $v_p(x)$ is 
 :::
 
 ::: {.front card-id="card-8496d525c2680387" tags="definition"}
-Ramification
+What is the definition of Ramification?
 :::
 
 ::: {.back card-id="card-8496d525c2680387"}
@@ -526,7 +526,7 @@ A prime $\mathfrak{p}$ of a number field $K$ ramifies in an extension $L/K$ if $
 :::
 
 ::: {.front card-id="card-2036691235c5bd8e" tags="definition"}
-Residue characteristic
+What is the definition of Residue characteristic?
 :::
 
 ::: {.back card-id="card-2036691235c5bd8e"}
@@ -534,7 +534,7 @@ The residue characteristic of a valued field $(K,v)$ is the characteristic of it
 :::
 
 ::: {.front card-id="card-66b4106ad5234330" tags="definition"}
-Residue degree
+What is the definition of Residue degree?
 :::
 
 ::: {.back card-id="card-66b4106ad5234330"}
@@ -542,7 +542,7 @@ For an extension of Dedekind domains $A\subseteq B$ and a prime $\mathfrak{P}\mi
 :::
 
 ::: {.front card-id="card-e93f565d0bb95844" tags="definition"}
-Ring of integers
+What is the definition of Ring of integers?
 :::
 
 ::: {.back card-id="card-e93f565d0bb95844"}
@@ -550,7 +550,7 @@ The ring of integers $\mathcal{O}_K$ of a number field $K$ is the integral closu
 :::
 
 ::: {.front card-id="card-a1c67652bd548793" tags="definition"}
-Splitting of a prime
+What is the definition of Splitting of a prime?
 :::
 
 ::: {.back card-id="card-a1c67652bd548793"}
@@ -558,7 +558,7 @@ A prime $\mathfrak{p}$ of $K$ splits completely in a finite extension $L/K$ if $
 :::
 
 ::: {.front card-id="card-ce80871430f96599" tags="definition"}
-Uniformizer
+What is the definition of Uniformizer?
 :::
 
 ::: {.back card-id="card-ce80871430f96599"}

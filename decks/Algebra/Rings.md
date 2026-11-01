@@ -115,7 +115,7 @@ This decomposition is unique up to multiplication by a unit, and a permutation o
 :::
 
 ::: {.front card-id="card-0c7db8f1fdccc3e8" tags="definition"}
-Krull dimension
+What is the definition of Krull dimension?
 :::
 
 ::: {.back card-id="card-0c7db8f1fdccc3e8"}

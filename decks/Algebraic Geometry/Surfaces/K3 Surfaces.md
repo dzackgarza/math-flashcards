@@ -1195,7 +1195,7 @@ Yes: polarized Torelli gives a unique isomorphism $f:Y\to X$ with $f^*=\varphi$.
 :::
 
 ::: {.front card-id="card-7dde87ec9eecba8a" tags="definition"}
-Bogomolov–mumford theorem
+What is the definition of Bogomolov–mumford theorem?
 :::
 
 ::: {.back card-id="card-7dde87ec9eecba8a"}
@@ -1203,7 +1203,7 @@ Let $X$ be a projective K3 surface over an algebraically closed field of charact
 :::
 
 ::: {.front card-id="card-ac29a60ed7a2e5d5" tags="definition"}
-Coinvariant lattice
+What is the definition of Coinvariant lattice?
 :::
 
 ::: {.back card-id="card-ac29a60ed7a2e5d5"}
@@ -1211,7 +1211,7 @@ For a finite-order automorphism $\sigma$ of a lattice $L$, the lattice $(L^\sigm
 :::
 
 ::: {.front card-id="card-0864fe38f27357b8" tags="definition"}
-Compact complex surface
+What is the definition of Compact complex surface?
 :::
 
 ::: {.back card-id="card-0864fe38f27357b8"}
@@ -1219,7 +1219,7 @@ A connected compact complex manifold of complex dimension $2$. Examples are $\ma
 :::
 
 ::: {.front card-id="card-7c69b521f27aa9a2" tags="definition"}
-Effective hodge isometry
+What is the definition of Effective hodge isometry?
 :::
 
 ::: {.back card-id="card-7c69b521f27aa9a2"}
@@ -1227,7 +1227,7 @@ A Hodge isometry $g:H^2(X;\mathbb Z)\to H^2(X';\mathbb Z)$ that maps the Kähler
 :::
 
 ::: {.front card-id="card-f9d2f48577eecebd" tags="definition"}
-Holomorphic 2-form
+What is the definition of Holomorphic 2-form?
 :::
 
 ::: {.back card-id="card-f9d2f48577eecebd"}
@@ -1235,7 +1235,7 @@ A global section of $\Omega_X^2$. On a K3 surface a holomorphic $2$-form is a no
 :::
 
 ::: {.front card-id="card-e693aac43b035a27" tags="definition"}
-Hyperbolic plane
+What is the definition of Hyperbolic plane?
 :::
 
 ::: {.back card-id="card-e693aac43b035a27"}
@@ -1243,7 +1243,7 @@ The rank-two even unimodular lattice $U$ with Gram matrix $\begin{pmatrix}0&1\\1
 :::
 
 ::: {.front card-id="card-412e012d939e6cff" tags="definition"}
-Intersection pairing
+What is the definition of Intersection pairing?
 :::
 
 ::: {.back card-id="card-412e012d939e6cff"}
@@ -1251,7 +1251,7 @@ The symmetric bilinear form $H^2(X;\mathbb Z)\times H^2(X;\mathbb Z)\to\mathbb Z
 :::
 
 ::: {.front card-id="card-60e5ba4948c41e2f" tags="definition"}
-Irreducible hodge structure
+What is the definition of Irreducible hodge structure?
 :::
 
 ::: {.back card-id="card-60e5ba4948c41e2f"}
@@ -1259,7 +1259,7 @@ A Hodge structure $V$ with no nonzero proper sub-Hodge structure. Equivalently, 
 :::
 
 ::: {.front card-id="card-76926cb7ee6be178" tags="definition"}
-Kummer sequence
+What is the definition of Kummer sequence?
 :::
 
 ::: {.back card-id="card-76926cb7ee6be178"}
@@ -1267,7 +1267,7 @@ For $n$ invertible on a scheme $X$, the exact sequence of étale sheaves $0\to\m
 :::
 
 ::: {.front card-id="card-957550ab4d6f6c37" tags="definition"}
-Noether formula
+What is the definition of Noether formula?
 :::
 
 ::: {.back card-id="card-957550ab4d6f6c37"}
@@ -1275,7 +1275,7 @@ For a smooth projective complex surface $S$, $12\chi(\mathcal O_S)=K_S^2+c_2(S)=
 :::
 
 ::: {.front card-id="card-5b1a9c18abed8bef" tags="definition"}
-Poincaré duality
+What is the definition of Poincaré duality?
 :::
 
 ::: {.back card-id="card-5b1a9c18abed8bef"}
@@ -1283,7 +1283,7 @@ The nondegenerate pairing $H^k(X;\mathbb Z)\times H^{n-k}(X;\mathbb Z)\to\mathbb
 :::
 
 ::: {.front card-id="card-5e489e6c90b31567" tags="definition"}
-Pontryagin class
+What is the definition of Pontryagin class?
 :::
 
 ::: {.back card-id="card-5e489e6c90b31567"}
@@ -1291,7 +1291,7 @@ For a real vector bundle $E$, the class $p_1(E)=c_1(E\otimes\mathbb C)^2-2c_2(E\
 :::
 
 ::: {.front card-id="card-6a43788773bf5191" tags="definition"}
-Positive cone
+What is the definition of Positive cone?
 :::
 
 ::: {.back card-id="card-6a43788773bf5191"}
@@ -1299,7 +1299,7 @@ For a real vector space with a quadratic form of signature $(1,n)$, the cone $\{
 :::
 
 ::: {.front card-id="card-b9ed3a6a087c1634" tags="definition"}
-Separably closed field
+What is the definition of Separably closed field?
 :::
 
 ::: {.back card-id="card-b9ed3a6a087c1634"}
@@ -1307,7 +1307,7 @@ A field $k$ with no nontrivial finite separable extension; equivalently, every i
 :::
 
 ::: {.front card-id="card-3a139a4f8e33c4bc" tags="definition"}
-Sextic double plane
+What is the definition of Sextic double plane?
 :::
 
 ::: {.back card-id="card-3a139a4f8e33c4bc"}
@@ -1315,7 +1315,7 @@ A double cover $X\to\mathbb P^2$ branched along a smooth plane sextic. It is a K
 :::
 
 ::: {.front card-id="card-2599e5decd6f5d5a" tags="definition"}
-Symplectic form
+What is the definition of Symplectic form?
 :::
 
 ::: {.back card-id="card-2599e5decd6f5d5a"}
@@ -1323,7 +1323,7 @@ A closed nondegenerate holomorphic $2$-form. On a K3 surface a symplectic form i
 :::
 
 ::: {.front card-id="card-d63e2330de347174" tags="definition"}
-Thom–hirzebruch index theorem
+What is the definition of Thom–hirzebruch index theorem?
 :::
 
 ::: {.back card-id="card-d63e2330de347174"}
@@ -1331,7 +1331,7 @@ For a compact oriented smooth $4$-manifold $X$, the signature of the intersectio
 :::
 
 ::: {.front card-id="card-71e5b09d37500058" tags="definition"}
-Totally real field
+What is the definition of Totally real field?
 :::
 
 ::: {.back card-id="card-71e5b09d37500058"}

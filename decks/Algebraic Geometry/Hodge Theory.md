@@ -763,7 +763,7 @@ This is the reflection in the vanishing class.
 :::
 
 ::: {.front card-id="card-2b275615aad39e6c" tags="definition"}
-Algebraic class
+What is the definition of Algebraic class?
 :::
 
 ::: {.back card-id="card-2b275615aad39e6c"}
@@ -771,7 +771,7 @@ A cohomology class in $H^{2k}(X;\mathbb Q)$ that is a $\mathbb Q$-linear combina
 :::
 
 ::: {.front card-id="card-f35177676acfe3b2" tags="definition"}
-Algebraic representation
+What is the definition of Algebraic representation?
 :::
 
 ::: {.back card-id="card-f35177676acfe3b2"}
@@ -779,7 +779,7 @@ A representation $\rho:G\to\operatorname{GL}(V)$ of an algebraic group that is a
 :::
 
 ::: {.front card-id="card-d25f56f728d51c2e" tags="definition"}
-Character of a torus
+What is the definition of Character of a torus?
 :::
 
 ::: {.back card-id="card-d25f56f728d51c2e"}
@@ -787,7 +787,7 @@ A homomorphism $\chi:T\to\mathbb G_m$ of algebraic groups; for $T\cong\mathbb G_
 :::
 
 ::: {.front card-id="card-19c7492f4250dc0e" tags="definition"}
-Character variety
+What is the definition of Character variety?
 :::
 
 ::: {.back card-id="card-19c7492f4250dc0e"}
@@ -795,7 +795,7 @@ For a finitely generated group $\Gamma$ and reductive group $G$, the affine quot
 :::
 
 ::: {.front card-id="card-47e9f5f5ac4967f4" tags="definition"}
-Cocharacter
+What is the definition of Cocharacter?
 :::
 
 ::: {.back card-id="card-47e9f5f5ac4967f4"}
@@ -803,7 +803,7 @@ A homomorphism $\lambda:\mathbb G_m\to G$ of algebraic groups; for a torus $T$, 
 :::
 
 ::: {.front card-id="card-2cad8725835ecda3" tags="definition"}
-Fiber bundle
+What is the definition of Fiber bundle?
 :::
 
 ::: {.back card-id="card-2cad8725835ecda3"}
@@ -811,7 +811,7 @@ A map $p:E\to B$ that is locally trivial: every $b\in B$ has a neighborhood $U$ 
 :::
 
 ::: {.front card-id="card-b9f137da4c23e911" tags="definition"}
-Flat connection
+What is the definition of Flat connection?
 :::
 
 ::: {.back card-id="card-b9f137da4c23e911"}
@@ -819,7 +819,7 @@ A connection $\nabla$ on a vector bundle $E\to X$ with vanishing curvature $\nab
 :::
 
 ::: {.front card-id="card-f63b3fc4a50d2fff" tags="definition"}
-Galois representation
+What is the definition of Galois representation?
 :::
 
 ::: {.back card-id="card-f63b3fc4a50d2fff"}
@@ -827,7 +827,7 @@ A continuous homomorphism $\rho:G_k\to\operatorname{GL}(V)$ for a Galois group $
 :::
 
 ::: {.front card-id="card-a9bab3596ebd4a38" tags="definition"}
-Griffiths complex structure
+What is the definition of Griffiths complex structure?
 :::
 
 ::: {.back card-id="card-a9bab3596ebd4a38"}
@@ -835,7 +835,7 @@ On the real vector space underlying a Hodge structure of odd weight $2k-1$, the 
 :::
 
 ::: {.front card-id="card-c0d7789910359198" tags="definition"}
-Hodge decomposition
+What is the definition of Hodge decomposition?
 :::
 
 ::: {.back card-id="card-c0d7789910359198"}
@@ -843,7 +843,7 @@ For a compact Kähler manifold $X$, the decomposition $H^k(X;\mathbb C)=\bigoplu
 :::
 
 ::: {.front card-id="card-564f652a26b01565" tags="definition"}
-Hodge structure
+What is the definition of Hodge structure?
 :::
 
 ::: {.back card-id="card-564f652a26b01565"}
@@ -851,7 +851,7 @@ A rational Hodge structure of weight $n$ is a finite-dimensional $\mathbb Q$-vec
 :::
 
 ::: {.front card-id="card-d0c4d9aa2c580577" tags="definition"}
-Holomorphic differential operator
+What is the definition of Holomorphic differential operator?
 :::
 
 ::: {.back card-id="card-d0c4d9aa2c580577"}
@@ -859,7 +859,7 @@ A $\mathbb C$-linear endomorphism of $\mathcal O_X$ locally of the form $\sum_{|
 :::
 
 ::: {.front card-id="card-6b2a61a9df86fe75" tags="definition"}
-Hyperkähler manifold
+What is the definition of Hyperkähler manifold?
 :::
 
 ::: {.back card-id="card-6b2a61a9df86fe75"}
@@ -867,7 +867,7 @@ A Riemannian manifold of dimension $4n$ whose holonomy is contained in $\operato
 :::
 
 ::: {.front card-id="card-f4991f604dc40dcf" tags="definition"}
-Intersection cohomology
+What is the definition of Intersection cohomology?
 :::
 
 ::: {.back card-id="card-f4991f604dc40dcf"}
@@ -875,7 +875,7 @@ The cohomology $IH^k(X;\mathbb Q)=H^k(X;IC_X(\mathbb Q))$ of the intersection co
 :::
 
 ::: {.front card-id="card-b91684e8cd33e85f" tags="definition"}
-Intersection complex
+What is the definition of Intersection complex?
 :::
 
 ::: {.back card-id="card-b91684e8cd33e85f"}
@@ -883,7 +883,7 @@ For a local system $L$ on a smooth dense open subset of a variety $X$, the perve
 :::
 
 ::: {.front card-id="card-c85bec55230a03d2" tags="definition"}
-Irreducible representation
+What is the definition of Irreducible representation?
 :::
 
 ::: {.back card-id="card-c85bec55230a03d2"}
@@ -891,7 +891,7 @@ A nonzero representation $V$ of a group or algebra with no proper nonzero subrep
 :::
 
 ::: {.front card-id="card-92fa2bc76a35c8d0" tags="definition"}
-Kähler class
+What is the definition of Kähler class?
 :::
 
 ::: {.back card-id="card-92fa2bc76a35c8d0"}
@@ -899,7 +899,7 @@ The de Rham class $[\omega]\in H^{1,1}(X;\mathbb R)$ of a closed positive $(1,1)
 :::
 
 ::: {.front card-id="card-ae728ba7c6c78ce5" tags="definition"}
-L-adic cohomology
+What is the definition of L-adic cohomology?
 :::
 
 ::: {.back card-id="card-ae728ba7c6c78ce5"}
@@ -907,7 +907,7 @@ For a scheme $X$ separated of finite type over a field and a prime $\ell$ invert
 :::
 
 ::: {.front card-id="card-5dd0bc4617067172" tags="definition"}
-Lefschetz operator
+What is the definition of Lefschetz operator?
 :::
 
 ::: {.back card-id="card-5dd0bc4617067172"}
@@ -915,7 +915,7 @@ For a Kähler class $\omega$ on $X$, the operator $L:H^k(X)\to H^{k+2}(X)$ given
 :::
 
 ::: {.front card-id="card-324ac9216b75b02e" tags="definition"}
-Lowest weight vector
+What is the definition of Lowest weight vector?
 :::
 
 ::: {.back card-id="card-324ac9216b75b02e"}
@@ -923,7 +923,7 @@ In an $\mathfrak{sl}_2$-representation, a vector $v$ annihilated by the lowering
 :::
 
 ::: {.front card-id="card-ff783d82021dce75" tags="definition"}
-Motivic representation
+What is the definition of Motivic representation?
 :::
 
 ::: {.back card-id="card-ff783d82021dce75"}
@@ -931,7 +931,7 @@ A representation of a Galois group (or fundamental group) that occurs as a subqu
 :::
 
 ::: {.front card-id="card-a3c337d2df6608aa" tags="definition"}
-Numerical class
+What is the definition of Numerical class?
 :::
 
 ::: {.back card-id="card-a3c337d2df6608aa"}
@@ -939,7 +939,7 @@ Two divisors are numerically equivalent if they have the same intersection numbe
 :::
 
 ::: {.front card-id="card-d23139a6a987d15e" tags="definition"}
-Perverse cohomology
+What is the definition of Perverse cohomology?
 :::
 
 ::: {.back card-id="card-d23139a6a987d15e"}
@@ -947,7 +947,7 @@ The cohomology objects ${}^p\mathcal H^i(K)$ of a complex $K$ with respect to th
 :::
 
 ::: {.front card-id="card-4b1d53806881ea83" tags="definition"}
-Polarized hodge structure
+What is the definition of Polarized hodge structure?
 :::
 
 ::: {.back card-id="card-4b1d53806881ea83"}
@@ -955,7 +955,7 @@ A pure Hodge structure $(V,V^{p,q})$ of weight $m$ together with a $(-1)^m$-symm
 :::
 
 ::: {.front card-id="card-77db280aaada1e82" tags="definition"}
-Regular holonomic d-module
+What is the definition of Regular holonomic d-module?
 :::
 
 ::: {.back card-id="card-77db280aaada1e82"}
@@ -963,7 +963,7 @@ A left module $M$ over the sheaf $D_X$ of holomorphic differential operators tha
 :::
 
 ::: {.front card-id="card-9408d7d0c684ef74" tags="definition"}
-Riemann-hilbert correspondence
+What is the definition of Riemann-hilbert correspondence?
 :::
 
 ::: {.back card-id="card-9408d7d0c684ef74"}
@@ -971,7 +971,7 @@ The equivalence between regular holonomic $D_X$-modules and bounded constructibl
 :::
 
 ::: {.front card-id="card-9049bc9b0d97b074" tags="definition"}
-Semisimple local system
+What is the definition of Semisimple local system?
 :::
 
 ::: {.back card-id="card-9049bc9b0d97b074"}
@@ -979,7 +979,7 @@ A local system whose associated monodromy representation is semisimple (complete
 :::
 
 ::: {.front card-id="card-0d1ed9edee3e0517" tags="definition"}
-Sl_2-representation
+What is the definition of Sl_2-representation?
 :::
 
 ::: {.back card-id="card-0d1ed9edee3e0517"}
@@ -987,7 +987,7 @@ A representation of the Lie algebra $\mathfrak{sl}_2(\mathbb C)=\langle e,f,h\ra
 :::
 
 ::: {.front card-id="card-4f2a54667ed3078d" tags="definition"}
-Stable higgs bundle
+What is the definition of Stable higgs bundle?
 :::
 
 ::: {.back card-id="card-4f2a54667ed3078d"}
@@ -995,7 +995,7 @@ A Higgs bundle $(E,\theta)$ with $\theta:E\to E\otimes\Omega^1_X$ and $\theta\we
 :::
 
 ::: {.front card-id="card-59820f784bbd6226" tags="definition"}
-Subquotient
+What is the definition of Subquotient?
 :::
 
 ::: {.back card-id="card-59820f784bbd6226"}
@@ -1003,7 +1003,7 @@ An object isomorphic to $A/B$ for a subobject $B$ of a subobject $A$ of a given 
 :::
 
 ::: {.front card-id="card-d41a841dbe205641" tags="definition"}
-Symplectic transvection
+What is the definition of Symplectic transvection?
 :::
 
 ::: {.back card-id="card-d41a841dbe205641"}
@@ -1011,7 +1011,7 @@ For a symplectic form $\omega$ and a nonzero vector $v$, the automorphism $T_v(x
 :::
 
 ::: {.front card-id="card-bdd7373c2c7eb926" tags="definition"}
-Tate hodge structure
+What is the definition of Tate hodge structure?
 :::
 
 ::: {.back card-id="card-bdd7373c2c7eb926"}
@@ -1019,7 +1019,7 @@ The rank-one Hodge structure $\mathbb Z(1)$ of weight $-2$ with lattice $(2\pi i
 :::
 
 ::: {.front card-id="card-030a0cdb11931b03" tags="definition"}
-Transvection
+What is the definition of Transvection?
 :::
 
 ::: {.back card-id="card-030a0cdb11931b03"}
@@ -1027,7 +1027,7 @@ An automorphism of a vector space with bilinear form $B$ of the form $T(x)=x-\fr
 :::
 
 ::: {.front card-id="card-695648298794f57b" tags="definition"}
-Variation of hodge structure
+What is the definition of Variation of hodge structure?
 :::
 
 ::: {.back card-id="card-695648298794f57b"}
@@ -1035,7 +1035,7 @@ A local system $\mathbb V$ of finite-dimensional $\mathbb Q$-vector spaces on a 
 :::
 
 ::: {.front card-id="card-d76909b4beed0c4e" tags="definition"}
-Weight filtration
+What is the definition of Weight filtration?
 :::
 
 ::: {.back card-id="card-d76909b4beed0c4e"}
@@ -1043,7 +1043,7 @@ An increasing filtration $W_\bullet$ on a vector space underlying a mixed Hodge 
 :::
 
 ::: {.front card-id="card-c3e44608ecf1b8d3" tags="definition"}
-Weil complex structure
+What is the definition of Weil complex structure?
 :::
 
 ::: {.back card-id="card-c3e44608ecf1b8d3"}
@@ -1051,7 +1051,7 @@ On the real vector space underlying a Hodge structure, the complex structure $C$
 :::
 
 ::: {.front card-id="card-3d2a91af614ba2fc" tags="definition"}
-Weyl algebra
+What is the definition of Weyl algebra?
 :::
 
 ::: {.back card-id="card-3d2a91af614ba2fc"}
@@ -1059,7 +1059,7 @@ The algebra $W^n=\mathbb C[x_1,\dots,x_n,\partial_1,\dots,\partial_n]$ with rela
 :::
 
 ::: {.front card-id="card-63fc125ab4cf0770" tags="definition"}
-Weyl group
+What is the definition of Weyl group?
 :::
 
 ::: {.back card-id="card-63fc125ab4cf0770"}
@@ -1067,7 +1067,7 @@ The finite reflection group $W$ generated by the reflections in the hyperplanes 
 :::
 
 ::: {.front card-id="card-ed88ff202aea0a6a" tags="definition"}
-Zariski closure
+What is the definition of Zariski closure?
 :::
 
 ::: {.back card-id="card-ed88ff202aea0a6a"}

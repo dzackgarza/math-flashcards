@@ -367,7 +367,7 @@ The associated primes are $(x)$ and $(x,y)$. The reduction is the line $x=0$, an
 :::
 
 ::: {.front card-id="card-3f53ea5eafc329a2" tags="definition"}
-Anticanonical system
+What is the definition of Anticanonical system?
 :::
 
 ::: {.back card-id="card-3f53ea5eafc329a2"}
@@ -375,7 +375,7 @@ The anticanonical system of a normal variety $X$ is the complete linear system $
 :::
 
 ::: {.front card-id="card-1543972cfbfd2c13" tags="definition"}
-Branch
+What is the definition of Branch?
 :::
 
 ::: {.back card-id="card-1543972cfbfd2c13"}
@@ -383,7 +383,7 @@ A branch of a plane curve singularity $(C,p)$ is a local irreducible component o
 :::
 
 ::: {.front card-id="card-29597195b8ada34a" tags="definition"}
-Bézout's theorem
+What is the definition of Bézout's theorem?
 :::
 
 ::: {.back card-id="card-29597195b8ada34a"}
@@ -391,7 +391,7 @@ If projective varieties $X_1,\dots,X_r\subset\mathbb P^n_k$ of degrees $d_1,\dot
 :::
 
 ::: {.front card-id="card-e689ca1225015881" tags="definition"}
-Homogeneous ring
+What is the definition of Homogeneous ring?
 :::
 
 ::: {.back card-id="card-e689ca1225015881"}
@@ -399,7 +399,7 @@ For a closed subscheme $X\subset\mathbb P^n_k$ with homogeneous ideal $I$, the h
 :::
 
 ::: {.front card-id="card-1de60a8a7a9e9277" tags="definition"}
-J-invariant
+What is the definition of J-invariant?
 :::
 
 ::: {.back card-id="card-1de60a8a7a9e9277"}
@@ -407,7 +407,7 @@ The $j$-invariant of an elliptic curve $E$ is $j(E)=1728\,4a_4^3/(4a_4^3+27a_6^2
 :::
 
 ::: {.front card-id="card-cbddcb3e60505698" tags="definition"}
-Linearly normal
+What is the definition of Linearly normal?
 :::
 
 ::: {.back card-id="card-cbddcb3e60505698"}
@@ -415,7 +415,7 @@ A projective variety $X\subset\mathbb P^n$ is linearly normal if the restriction
 :::
 
 ::: {.front card-id="card-bdb2b9814086f7ac" tags="definition"}
-Tangent cone
+What is the definition of Tangent cone?
 :::
 
 ::: {.back card-id="card-bdb2b9814086f7ac"}

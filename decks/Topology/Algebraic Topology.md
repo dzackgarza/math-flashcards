@@ -234,7 +234,7 @@ $\chi(A) + \chi(B) - 2$
 :::
 
 ::: {.front card-id="card-bf8e6a277db99586" tags="definition"}
-Boundary operator
+What is the definition of Boundary operator?
 :::
 
 ::: {.back card-id="card-bf8e6a277db99586"}
@@ -242,7 +242,7 @@ The boundary operator $\partial_n : C_n(X) \to C_{n-1}(X)$ is defined on a singu
 :::
 
 ::: {.front card-id="card-cee58820b5095527" tags="definition"}
-Chain complex
+What is the definition of Chain complex?
 :::
 
 ::: {.back card-id="card-cee58820b5095527"}
@@ -250,7 +250,7 @@ A chain complex $(C_\bullet,\partial_\bullet)$ is a sequence of abelian groups $
 :::
 
 ::: {.front card-id="card-a9f0459542af1917" tags="definition"}
-Cofibration
+What is the definition of Cofibration?
 :::
 
 ::: {.back card-id="card-a9f0459542af1917"}
@@ -258,7 +258,7 @@ A cofibration is a map $i : A \to X$ with the homotopy extension property: for e
 :::
 
 ::: {.front card-id="card-3b4e4ffbf5cd9f2f" tags="definition"}
-Cohomology group
+What is the definition of Cohomology group?
 :::
 
 ::: {.back card-id="card-3b4e4ffbf5cd9f2f"}
@@ -266,7 +266,7 @@ For a chain complex $C_\bullet$ and an abelian group $G$, the $n$-th cohomology 
 :::
 
 ::: {.front card-id="card-5abf4d513b1fa4dd" tags="definition"}
-Complex projective space
+What is the definition of Complex projective space?
 :::
 
 ::: {.back card-id="card-5abf4d513b1fa4dd"}
@@ -274,7 +274,7 @@ Complex projective $n$-space is $\mathbb{CP}^n = S^{2n+1}/S^1$, where $S^1$ acts
 :::
 
 ::: {.front card-id="card-7bc7af1796e569f7" tags="definition"}
-Connecting homomorphism
+What is the definition of Connecting homomorphism?
 :::
 
 ::: {.back card-id="card-7bc7af1796e569f7"}
@@ -282,7 +282,7 @@ For a short exact sequence of chain complexes $0 \to A_\bullet \to B_\bullet \to
 :::
 
 ::: {.front card-id="card-6917134e0056ec60" tags="definition"}
-Covering space
+What is the definition of Covering space?
 :::
 
 ::: {.back card-id="card-6917134e0056ec60"}
@@ -290,7 +290,7 @@ A covering space of $X$ is a space $\tilde X$ with a continuous surjection $p : 
 :::
 
 ::: {.front card-id="card-c5e58950dd99070b" tags="definition"}
-Cw complex
+What is the definition of Cw complex?
 :::
 
 ::: {.back card-id="card-c5e58950dd99070b"}
@@ -298,7 +298,7 @@ A CW complex is a Hausdorff space $X$ with a filtration $X^{(0)} \subseteq X^{(1
 :::
 
 ::: {.front card-id="card-f5a42525f19c2905" tags="definition"}
-Eilenberg–maclane space
+What is the definition of Eilenberg–maclane space?
 :::
 
 ::: {.back card-id="card-f5a42525f19c2905"}
@@ -306,7 +306,7 @@ For a group $G$ and an integer $n \ge 1$, with $G$ abelian when $n \ge 2$, an Ei
 :::
 
 ::: {.front card-id="card-82f7cf3a0add1918" tags="definition"}
-Exact sequence
+What is the definition of Exact sequence?
 :::
 
 ::: {.back card-id="card-82f7cf3a0add1918"}
@@ -314,7 +314,7 @@ A sequence $\cdots \to A_{n+1} \xrightarrow{f_{n+1}} A_n \xrightarrow{f_n} A_{n-
 :::
 
 ::: {.front card-id="card-1e151c4f5d969fd8" tags="definition"}
-Fibration
+What is the definition of Fibration?
 :::
 
 ::: {.back card-id="card-1e151c4f5d969fd8"}
@@ -322,7 +322,7 @@ A Hurewicz fibration is a map $p : E \to B$ with the homotopy lifting property f
 :::
 
 ::: {.front card-id="card-915ddd72f4cf772d" tags="definition"}
-Fundamental group
+What is the definition of Fundamental group?
 :::
 
 ::: {.back card-id="card-915ddd72f4cf772d"}
@@ -330,7 +330,7 @@ For a space $X$ with basepoint $x_0$, the fundamental group $\pi_1(X,x_0)$ is th
 :::
 
 ::: {.front card-id="card-40c4125547730aca" tags="definition"}
-Homology group
+What is the definition of Homology group?
 :::
 
 ::: {.back card-id="card-40c4125547730aca"}
@@ -338,7 +338,7 @@ For a chain complex $(C_\bullet,\partial)$, the $n$-th homology group is $H_n = 
 :::
 
 ::: {.front card-id="card-fa439de69b1adf91" tags="definition"}
-Homology with coefficients
+What is the definition of Homology with coefficients?
 :::
 
 ::: {.back card-id="card-fa439de69b1adf91"}
@@ -346,7 +346,7 @@ For an abelian group $G$, the homology of $X$ with coefficients in $G$ is $H_n(X
 :::
 
 ::: {.front card-id="card-3dc8eb2eaeb0d9b1" tags="definition"}
-Loop space
+What is the definition of Loop space?
 :::
 
 ::: {.back card-id="card-3dc8eb2eaeb0d9b1"}
@@ -354,7 +354,7 @@ For a based space $(X,x_0)$, the loop space $\Omega X$ is the space of based loo
 :::
 
 ::: {.front card-id="card-3b2c616ce59766ee" tags="definition"}
-Mapping cone
+What is the definition of Mapping cone?
 :::
 
 ::: {.back card-id="card-3b2c616ce59766ee"}
@@ -362,7 +362,7 @@ For a map $f : X \to Y$, the mapping cone $C_f$ is the quotient of $(X \times I)
 :::
 
 ::: {.front card-id="card-563c89aff894c25d" tags="definition"}
-Pair of spaces
+What is the definition of Pair of spaces?
 :::
 
 ::: {.back card-id="card-563c89aff894c25d"}
@@ -370,7 +370,7 @@ A pair of spaces $(X,A)$ consists of a topological space $X$ and a subspace $A \
 :::
 
 ::: {.front card-id="card-e9184a38fedb51e4" tags="definition"}
-Relative homology
+What is the definition of Relative homology?
 :::
 
 ::: {.back card-id="card-e9184a38fedb51e4"}
@@ -378,7 +378,7 @@ For a pair of spaces $(X,A)$, the relative homology $H_n(X,A)$ is the homology o
 :::
 
 ::: {.front card-id="card-ce2d2b4fa17c3321" tags="definition"}
-Singular chain
+What is the definition of Singular chain?
 :::
 
 ::: {.back card-id="card-ce2d2b4fa17c3321"}
@@ -386,7 +386,7 @@ The group $C_n(X)$ of singular $n$-chains is the free abelian group on the set o
 :::
 
 ::: {.front card-id="card-2ad6b6e834e5dea3" tags="definition"}
-Singular simplex
+What is the definition of Singular simplex?
 :::
 
 ::: {.back card-id="card-2ad6b6e834e5dea3"}
@@ -394,7 +394,7 @@ A singular $n$-simplex in a space $X$ is a continuous map $\sigma : \Delta^n \to
 :::
 
 ::: {.front card-id="card-b51fa5328f9d3138" tags="definition"}
-Tor functor
+What is the definition of Tor functor?
 :::
 
 ::: {.back card-id="card-b51fa5328f9d3138"}
@@ -402,7 +402,7 @@ For a ring $R$, a right $R$-module $M$, and a left $R$-module $N$, choose a free
 :::
 
 ::: {.front card-id="card-ad23d8bdc43985fc" tags="definition"}
-Universal cover
+What is the definition of Universal cover?
 :::
 
 ::: {.back card-id="card-ad23d8bdc43985fc"}

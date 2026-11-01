@@ -814,7 +814,7 @@ ${ \ZZ_{\widehat{p}} }\coloneqq\projectivelim \ZZ/p^n\ZZ$ the $p\dash$completion
 :::
 
 ::: {.front card-id="card-c96136a609abac88" tags="definition"}
-Adjoint action
+What is the definition of Adjoint action?
 :::
 
 ::: {.back card-id="card-c96136a609abac88"}
@@ -822,7 +822,7 @@ The $G$-action on $\operatorname{Hom}(M,N)$ given by $(g\cdot f)(m)=gf(g^{-1}m)$
 :::
 
 ::: {.front card-id="card-3f55c315a0f91f9f" tags="definition"}
-Artin l-function
+What is the definition of Artin l-function?
 :::
 
 ::: {.back card-id="card-3f55c315a0f91f9f"}
@@ -830,7 +830,7 @@ For a representation $\rho$ of $\operatorname{Gal}(L/K)$, the Euler product $L(s
 :::
 
 ::: {.front card-id="card-7a3783b8af04d496" tags="definition"}
-Character
+What is the definition of Character?
 :::
 
 ::: {.back card-id="card-7a3783b8af04d496"}
@@ -838,7 +838,7 @@ The function $\chi_V(g)=\operatorname{Tr}(\rho(g))$ associated to a representati
 :::
 
 ::: {.front card-id="card-b416a465d71efa7a" tags="definition"}
-Coboundary
+What is the definition of Coboundary?
 :::
 
 ::: {.back card-id="card-b416a465d71efa7a"}
@@ -846,7 +846,7 @@ A cochain of the form $dg$; the group of $n$-coboundaries is $B^n(G;M)=\operator
 :::
 
 ::: {.front card-id="card-f48cf8dcd673ba65" tags="definition"}
-Cochain
+What is the definition of Cochain?
 :::
 
 ::: {.back card-id="card-f48cf8dcd673ba65"}
@@ -854,7 +854,7 @@ For a group $G$ and $G$-module $M$, a function $G^n\to M$; the group cochain com
 :::
 
 ::: {.front card-id="card-9e62a0b0ef0e1557" tags="definition"}
-Cocycle
+What is the definition of Cocycle?
 :::
 
 ::: {.back card-id="card-9e62a0b0ef0e1557"}
@@ -862,7 +862,7 @@ A cochain $f$ with $df=0$; the group of $n$-cocycles is $Z^n(G;M)=\ker(d^n)$.
 :::
 
 ::: {.front card-id="card-75b66aa3fff19cb8" tags="definition"}
-Crossed homomorphism
+What is the definition of Crossed homomorphism?
 :::
 
 ::: {.back card-id="card-75b66aa3fff19cb8"}
@@ -870,7 +870,7 @@ A map $f:G\to M$ satisfying $f(gh)=f(g)+g\cdot f(h)$; these are exactly the 1-co
 :::
 
 ::: {.front card-id="card-3ec3ed0c96dc6d66" tags="definition"}
-Diagonal action
+What is the definition of Diagonal action?
 :::
 
 ::: {.back card-id="card-3ec3ed0c96dc6d66"}
@@ -878,7 +878,7 @@ The $G$-action on a tensor product $M\otimes N$ given by $g(m\otimes n)=gm\otime
 :::
 
 ::: {.front card-id="card-dba1d1bb84445dfd" tags="definition"}
-Eilenberg-maclane space
+What is the definition of Eilenberg-maclane space?
 :::
 
 ::: {.back card-id="card-dba1d1bb84445dfd"}
@@ -886,7 +886,7 @@ A space $K(G,n)$ with $\pi_n(K(G,n))\cong G$ and $\pi_i(K(G,n))=0$ for $i\neq n$
 :::
 
 ::: {.front card-id="card-72fb4759ff1bac5c" tags="definition"}
-Elementary subgroup
+What is the definition of Elementary subgroup?
 :::
 
 ::: {.back card-id="card-72fb4759ff1bac5c"}
@@ -894,7 +894,7 @@ In Brauer's induction theorem, a subgroup of the form $C\times P$ with $C$ cycli
 :::
 
 ::: {.front card-id="card-211d4e55140cf5e6" tags="definition"}
-Equivariant map
+What is the definition of Equivariant map?
 :::
 
 ::: {.back card-id="card-211d4e55140cf5e6"}
@@ -902,7 +902,7 @@ A map $f:M\to N$ of $G$-modules satisfying $f(gm)=gf(m)$ for all $g\in G$, $m\in
 :::
 
 ::: {.front card-id="card-89bcb2419834c66f" tags="definition"}
-Etale fundamental group
+What is the definition of Etale fundamental group?
 :::
 
 ::: {.back card-id="card-89bcb2419834c66f"}
@@ -910,7 +910,7 @@ The profinite group $\pi_1^{\mathrm{et}}(X)$ classifying finite etale covers of 
 :::
 
 ::: {.front card-id="card-2c3c6c9cf8cae5c3" tags="definition"}
-Group cohomology
+What is the definition of Group cohomology?
 :::
 
 ::: {.back card-id="card-2c3c6c9cf8cae5c3"}
@@ -918,7 +918,7 @@ The right derived functors $H^n(G;M)=\operatorname{Ext}^n_{\mathbb Z[G]}(\mathbb
 :::
 
 ::: {.front card-id="card-752066b67a2c8222" tags="definition"}
-Group homology
+What is the definition of Group homology?
 :::
 
 ::: {.back card-id="card-752066b67a2c8222"}
@@ -926,7 +926,7 @@ The left derived functors $H_n(G;M)=\operatorname{Tor}_n^{\mathbb Z[G]}(\mathbb 
 :::
 
 ::: {.front card-id="card-27371412d1ac9f6c" tags="definition"}
-Norm map
+What is the definition of Norm map?
 :::
 
 ::: {.back card-id="card-27371412d1ac9f6c"}
@@ -934,7 +934,7 @@ For a finite extension $L/K$ and $x\in L$, $\operatorname{Nm}_{L/K}(x)=\det_K(m_
 :::
 
 ::: {.front card-id="card-ceacb337e187a271" tags="definition"}
-P-adic integers
+What is the definition of P-adic integers?
 :::
 
 ::: {.back card-id="card-ceacb337e187a271"}
@@ -942,7 +942,7 @@ The ring $\mathbb Z_p=\varprojlim_n\mathbb Z/p^n\mathbb Z$ of $p$-adic integers.
 :::
 
 ::: {.front card-id="card-0bc17a723625f10c" tags="definition"}
-P-completion
+What is the definition of P-completion?
 :::
 
 ::: {.back card-id="card-0bc17a723625f10c"}
@@ -950,7 +950,7 @@ For an abelian group $G$, the inverse limit $\varprojlim_n G/p^nG$; more general
 :::
 
 ::: {.front card-id="card-220589718e58d5e2" tags="definition"}
-P-primary module
+What is the definition of P-primary module?
 :::
 
 ::: {.back card-id="card-220589718e58d5e2"}
@@ -958,7 +958,7 @@ An abelian group or module in which every element is annihilated by some power o
 :::
 
 ::: {.front card-id="card-901a92f5e3bf7a2d" tags="definition"}
-Periodic resolution
+What is the definition of Periodic resolution?
 :::
 
 ::: {.back card-id="card-901a92f5e3bf7a2d"}
@@ -966,7 +966,7 @@ A free resolution whose modules and differentials repeat after a fixed period.
 :::
 
 ::: {.front card-id="card-288ce341ee530555" tags="definition"}
-Pro-object
+What is the definition of Pro-object?
 :::
 
 ::: {.back card-id="card-288ce341ee530555"}
@@ -974,7 +974,7 @@ A formal inverse limit of objects of $\mathcal C$; the category $\mathrm{pro}\te
 :::
 
 ::: {.front card-id="card-fe6b2ec7fb7fbd48" tags="definition"}
-Semisimple module
+What is the definition of Semisimple module?
 :::
 
 ::: {.back card-id="card-fe6b2ec7fb7fbd48"}

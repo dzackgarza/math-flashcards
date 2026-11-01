@@ -890,7 +890,7 @@ For $g$ in a dense open subset of $G$, the intersection $gY\cap Z$ is empty or p
 :::
 
 ::: {.front card-id="card-f76ef7641c052805" tags="definition"}
-Algebraic cycle
+What is the definition of Algebraic cycle?
 :::
 
 ::: {.back card-id="card-f76ef7641c052805"}
@@ -898,7 +898,7 @@ A $k$-cycle on $X$ is a finite formal sum $Z=\sum_i n_i[Y_i]$ with $n_i\in\mathb
 :::
 
 ::: {.front card-id="card-f97dfbd590c2c919" tags="definition"}
-Algebraic equivalence
+What is the definition of Algebraic equivalence?
 :::
 
 ::: {.back card-id="card-f97dfbd590c2c919"}
@@ -906,7 +906,7 @@ Divisors $D_0,D_1$ on $X$ are algebraically equivalent if there exist a connecte
 :::
 
 ::: {.front card-id="card-4d010758d2a10d0a" tags="definition"}
-Ample line bundle
+What is the definition of Ample line bundle?
 :::
 
 ::: {.back card-id="card-4d010758d2a10d0a"}
@@ -914,7 +914,7 @@ A line bundle $L$ on a proper scheme $X$ such that for every coherent sheaf $\ma
 :::
 
 ::: {.front card-id="card-57cf0333ff7b50ba" tags="definition"}
-Ampleness
+What is the definition of Ampleness?
 :::
 
 ::: {.back card-id="card-57cf0333ff7b50ba"}
@@ -922,7 +922,7 @@ The property of a line bundle or Cartier divisor $L$ on a proper scheme of satis
 :::
 
 ::: {.front card-id="card-696f6dce4f6a24e9" tags="definition"}
-Chow group
+What is the definition of Chow group?
 :::
 
 ::: {.back card-id="card-696f6dce4f6a24e9"}
@@ -930,7 +930,7 @@ $\operatorname{CH}_k(X)=Z_k(X)/{\sim_{\mathrm{rat}}}$, the free abelian group on
 :::
 
 ::: {.front card-id="card-ebf397cbf5b93cb3" tags="definition"}
-Cone of curves
+What is the definition of Cone of curves?
 :::
 
 ::: {.back card-id="card-ebf397cbf5b93cb3"}
@@ -938,7 +938,7 @@ $\overline{\operatorname{NE}}(X)$ is the closed convex cone in $N_1(X)_{\mathbb 
 :::
 
 ::: {.front card-id="card-d5369545a0396ce2" tags="definition"}
-Discrete valuation ring
+What is the definition of Discrete valuation ring?
 :::
 
 ::: {.back card-id="card-d5369545a0396ce2"}
@@ -946,7 +946,7 @@ A Noetherian local domain $(R,\mathfrak m)$ whose maximal ideal $\mathfrak m$ is
 :::
 
 ::: {.front card-id="card-289720bdec6846ed" tags="definition"}
-Divisor
+What is the definition of Divisor?
 :::
 
 ::: {.back card-id="card-289720bdec6846ed"}
@@ -954,7 +954,7 @@ A Weil divisor is a finite formal sum $\sum n_i D_i$ of prime divisors with $n_i
 :::
 
 ::: {.front card-id="card-e5948fc8d434e3f9" tags="definition"}
-Effective divisor
+What is the definition of Effective divisor?
 :::
 
 ::: {.back card-id="card-e5948fc8d434e3f9"}
@@ -962,7 +962,7 @@ A Weil divisor $D=\sum_i n_i[Y_i]$ is effective if every coefficient $n_i\ge 0$.
 :::
 
 ::: {.front card-id="card-54e70e3f7b7c02ea" tags="definition"}
-Fixed part
+What is the definition of Fixed part?
 :::
 
 ::: {.back card-id="card-54e70e3f7b7c02ea"}
@@ -970,7 +970,7 @@ In the fixed-mobile decomposition $L=M+F$ on a surface, the fixed part $F$ is th
 :::
 
 ::: {.front card-id="card-b6efa81777a96edf" tags="definition"}
-Integral closed subscheme
+What is the definition of Integral closed subscheme?
 :::
 
 ::: {.back card-id="card-b6efa81777a96edf"}
@@ -978,7 +978,7 @@ A closed subscheme $Y\subset X$ that is reduced and irreducible as a scheme, equ
 :::
 
 ::: {.front card-id="card-13ec36d1e75c44cc" tags="definition"}
-Invertible subsheaf
+What is the definition of Invertible subsheaf?
 :::
 
 ::: {.back card-id="card-13ec36d1e75c44cc"}
@@ -986,7 +986,7 @@ A subsheaf $\mathcal L\subseteq\mathcal K_X$ of the sheaf of rational functions 
 :::
 
 ::: {.front card-id="card-2da8a915ff90da87" tags="definition"}
-Linear equivalence
+What is the definition of Linear equivalence?
 :::
 
 ::: {.back card-id="card-2da8a915ff90da87"}
@@ -994,7 +994,7 @@ Two divisors $D,D'$ on a scheme $X$ are linearly equivalent, written $D\sim D'$,
 :::
 
 ::: {.front card-id="card-29de05ab26c80359" tags="definition"}
-Local equation
+What is the definition of Local equation?
 :::
 
 ::: {.back card-id="card-29de05ab26c80359"}
@@ -1002,7 +1002,7 @@ For a Cartier divisor $D$ at $x\in X$, a rational function $f$ on a neighborhood
 :::
 
 ::: {.front card-id="card-5ed1016302f16005" tags="definition"}
-Local parameter
+What is the definition of Local parameter?
 :::
 
 ::: {.back card-id="card-5ed1016302f16005"}
@@ -1010,7 +1010,7 @@ At a smooth point $x$ of an $n$-dimensional variety, a local parameter is an ele
 :::
 
 ::: {.front card-id="card-a97a66e7c7fd460e" tags="definition"}
-Locally principal
+What is the definition of Locally principal?
 :::
 
 ::: {.back card-id="card-a97a66e7c7fd460e"}
@@ -1018,7 +1018,7 @@ A Cartier divisor (or ideal sheaf) is locally principal if every point has an op
 :::
 
 ::: {.front card-id="card-f73ab1eaa29f6bf6" tags="definition"}
-Maximal minors
+What is the definition of Maximal minors?
 :::
 
 ::: {.back card-id="card-f73ab1eaa29f6bf6"}
@@ -1026,7 +1026,7 @@ For a matrix of $\varphi:E\to F$, the maximal minors of size $r$ are the determi
 :::
 
 ::: {.front card-id="card-568c54ff627ce381" tags="definition"}
-Meromorphic section
+What is the definition of Meromorphic section?
 :::
 
 ::: {.back card-id="card-568c54ff627ce381"}
@@ -1034,7 +1034,7 @@ A section of a line bundle $L$ over a dense open subset of $X$, locally $s=f\,e$
 :::
 
 ::: {.front card-id="card-11b5750ad90e4b9c" tags="definition"}
-Mobile part
+What is the definition of Mobile part?
 :::
 
 ::: {.back card-id="card-11b5750ad90e4b9c"}
@@ -1042,7 +1042,7 @@ In the fixed-mobile decomposition $L=M+F$, the mobile part is $M=L(-F)$. It is n
 :::
 
 ::: {.front card-id="card-a8f303b6686b9598" tags="definition"}
-Normal crossing divisor
+What is the definition of Normal crossing divisor?
 :::
 
 ::: {.back card-id="card-a8f303b6686b9598"}
@@ -1050,7 +1050,7 @@ An effective divisor on a smooth variety such that at each point it is defined b
 :::
 
 ::: {.front card-id="card-3419eda9697a9bff" tags="definition"}
-Order of vanishing
+What is the definition of Order of vanishing?
 :::
 
 ::: {.back card-id="card-3419eda9697a9bff"}
@@ -1058,7 +1058,7 @@ For a prime divisor $Y$ with discrete valuation $v_Y$ and $f\in K(X)^\times$, $\
 :::
 
 ::: {.front card-id="card-bbf4fa36ebc32812" tags="definition"}
-Picard variety
+What is the definition of Picard variety?
 :::
 
 ::: {.back card-id="card-bbf4fa36ebc32812"}
@@ -1066,7 +1066,7 @@ The identity component $\operatorname{Pic}^0(X)\subset\operatorname{Pic}(X)$, co
 :::
 
 ::: {.front card-id="card-154c64bcc6a9b942" tags="definition"}
-Pure dimension
+What is the definition of Pure dimension?
 :::
 
 ::: {.back card-id="card-154c64bcc6a9b942"}
@@ -1074,7 +1074,7 @@ A scheme is pure of dimension $n$ if every irreducible component has dimension $
 :::
 
 ::: {.front card-id="card-52521761b1264fd0" tags="definition"}
-Rational equivalence
+What is the definition of Rational equivalence?
 :::
 
 ::: {.back card-id="card-52521761b1264fd0"}
@@ -1082,7 +1082,7 @@ Two $k$-cycles are rationally equivalent if their difference is a sum of pushfor
 :::
 
 ::: {.front card-id="card-6be11a2773451a11" tags="definition"}
-Rational function field
+What is the definition of Rational function field?
 :::
 
 ::: {.back card-id="card-6be11a2773451a11"}
@@ -1090,7 +1090,7 @@ For an integral scheme $X$ with generic point $\eta$, $K(X)=\mathcal O_{X,\eta}$
 :::
 
 ::: {.front card-id="card-2aacb7cbbb4c8bc0" tags="definition"}
-Regular system of parameters
+What is the definition of Regular system of parameters?
 :::
 
 ::: {.back card-id="card-2aacb7cbbb4c8bc0"}
@@ -1098,7 +1098,7 @@ In a regular local ring $(R,\mathfrak m)$ of dimension $n$, a regular system of 
 :::
 
 ::: {.front card-id="card-3db395d10336f96a" tags="definition"}
-Very ample
+What is the definition of Very ample?
 :::
 
 ::: {.back card-id="card-3db395d10336f96a"}

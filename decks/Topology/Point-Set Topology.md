@@ -293,7 +293,7 @@ Counterexample: $\left\{{1 \over n}\right\}, \ZZ$ are nowhere dense, $\QQ, \ZZ\c
 :::
 
 ::: {.front card-id="card-a6355802f6402b2f" tags="definition"}
-Boolean space
+What is the definition of Boolean space?
 :::
 
 ::: {.back card-id="card-a6355802f6402b2f"}
@@ -301,7 +301,7 @@ A boolean space is a compact Hausdorff space with a basis of sets that are both 
 :::
 
 ::: {.front card-id="card-7fbd37296fbf3a8a" tags="definition"}
-Profinite space
+What is the definition of Profinite space?
 :::
 
 ::: {.back card-id="card-7fbd37296fbf3a8a"}
@@ -309,7 +309,7 @@ A profinite space is an inverse limit of an inverse system of finite discrete sp
 :::
 
 ::: {.front card-id="card-a735524b06a7a863" tags="definition"}
-Stone space
+What is the definition of Stone space?
 :::
 
 ::: {.back card-id="card-a735524b06a7a863"}
@@ -317,7 +317,7 @@ A Stone space is a compact Hausdorff totally disconnected space; equivalently, a
 :::
 
 ::: {.front card-id="card-388b737162857eb9" tags="definition"}
-Étale space
+What is the definition of Étale space?
 :::
 
 ::: {.back card-id="card-388b737162857eb9"}

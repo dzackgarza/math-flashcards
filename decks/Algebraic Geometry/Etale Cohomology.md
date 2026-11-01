@@ -1138,7 +1138,7 @@ Proper base change identifies each geometric stalk with $H^1_{\mathrm{\acute et}
 :::
 
 ::: {.front card-id="card-522a7f34d180592a" tags="definition"}
-Central division algebra
+What is the definition of Central division algebra?
 :::
 
 ::: {.back card-id="card-522a7f34d180592a"}
@@ -1146,7 +1146,7 @@ A division algebra $D$ over a field $k$ whose centre is exactly $k$; by Wedderbu
 :::
 
 ::: {.front card-id="card-6e44ec9f040f08fd" tags="definition"}
-Completed local ring
+What is the definition of Completed local ring?
 :::
 
 ::: {.back card-id="card-6e44ec9f040f08fd"}
@@ -1154,7 +1154,7 @@ For a local ring $(R,\mathfrak m)$, its $\mathfrak m$-adic completion $\widehat 
 :::
 
 ::: {.front card-id="card-5d0deccbc929675a" tags="definition"}
-Constant group scheme
+What is the definition of Constant group scheme?
 :::
 
 ::: {.back card-id="card-5d0deccbc929675a"}
@@ -1162,7 +1162,7 @@ For an abstract group $G$, the group scheme $\underline G=\coprod_{g\in G}\opera
 :::
 
 ::: {.front card-id="card-0bfc5bad35364305" tags="definition"}
-Covering family
+What is the definition of Covering family?
 :::
 
 ::: {.back card-id="card-0bfc5bad35364305"}
@@ -1170,7 +1170,7 @@ A collection of morphisms $\{U_\alpha\to U\}$ in a site that is declared to be a
 :::
 
 ::: {.front card-id="card-4c27c944be8156c7" tags="definition"}
-Divisor sheaf
+What is the definition of Divisor sheaf?
 :::
 
 ::: {.back card-id="card-4c27c944be8156c7"}
@@ -1178,7 +1178,7 @@ On a regular variety $X$ with generic point $\eta$, the sheaf $\bigoplus_{Z\subs
 :::
 
 ::: {.front card-id="card-4269b6d887fd7dc0" tags="definition"}
-Etale sheaf
+What is the definition of Etale sheaf?
 :::
 
 ::: {.back card-id="card-4269b6d887fd7dc0"}
@@ -1186,7 +1186,7 @@ A sheaf on the étale site $X_{\mathrm{ét}}$ of a scheme $X$: a presheaf on the
 :::
 
 ::: {.front card-id="card-56ccdb56a1a62bd2" tags="definition"}
-Gerbe
+What is the definition of Gerbe?
 :::
 
 ::: {.back card-id="card-56ccdb56a1a62bd2"}
@@ -1194,7 +1194,7 @@ A stack locally equivalent to the classifying stack $BG$ of a sheaf of groups $G
 :::
 
 ::: {.front card-id="card-86212eadeae44ae2" tags="definition"}
-Grothendieck topology
+What is the definition of Grothendieck topology?
 :::
 
 ::: {.back card-id="card-86212eadeae44ae2"}
@@ -1202,7 +1202,7 @@ A collection of covering sieves on each object of a category, closed under base 
 :::
 
 ::: {.front card-id="card-8d4f2548e72aba52" tags="definition"}
-Poincaré series
+What is the definition of Poincaré series?
 :::
 
 ::: {.back card-id="card-8d4f2548e72aba52"}
@@ -1210,7 +1210,7 @@ For a graded vector space $V=\bigoplus_{i\ge0}V_i$ of finite type, the formal po
 :::
 
 ::: {.front card-id="card-859084a93c44a0f0" tags="definition"}
-Purity of the branch locus
+What is the definition of Purity of the branch locus?
 :::
 
 ::: {.back card-id="card-859084a93c44a0f0"}
@@ -1218,7 +1218,7 @@ Zariski–Nagata purity: if $f:Y\to X$ is a finite morphism of varieties with $X
 :::
 
 ::: {.front card-id="card-1725d9c80e85f4a6" tags="definition"}
-Regular variety
+What is the definition of Regular variety?
 :::
 
 ::: {.back card-id="card-1725d9c80e85f4a6"}
@@ -1226,7 +1226,7 @@ A variety $X$ all of whose local rings $\mathcal O_{X,x}$ are regular local ring
 :::
 
 ::: {.front card-id="card-335b2c0311c95a50" tags="definition"}
-Right exact functor
+What is the definition of Right exact functor?
 :::
 
 ::: {.back card-id="card-335b2c0311c95a50"}
@@ -1234,7 +1234,7 @@ An additive functor $F:\mathcal A\to\mathcal B$ between abelian categories is ri
 :::
 
 ::: {.front card-id="card-59a4fbf9b7c2f576" tags="definition"}
-Sheaf quotient
+What is the definition of Sheaf quotient?
 :::
 
 ::: {.back card-id="card-59a4fbf9b7c2f576"}
@@ -1242,7 +1242,7 @@ For a subsheaf $G\subset F$ of sheaves of abelian groups, the quotient sheaf $F/
 :::
 
 ::: {.front card-id="card-7d1f438ff71197e7" tags="definition"}
-Strict henselization
+What is the definition of Strict henselization?
 :::
 
 ::: {.back card-id="card-7d1f438ff71197e7"}
@@ -1250,7 +1250,7 @@ For a local ring $\mathcal O_{X,x}$ with separably closed residue field, the str
 :::
 
 ::: {.front card-id="card-3bb0c3ecc3cf6a9f" tags="definition"}
-Topos
+What is the definition of Topos?
 :::
 
 ::: {.back card-id="card-3bb0c3ecc3cf6a9f"}
@@ -1258,7 +1258,7 @@ A category equivalent to the category of sheaves of sets on a site; a Grothendie
 :::
 
 ::: {.front card-id="card-d94c96a2b29fcc69" tags="definition"}
-Weil conjecture
+What is the definition of Weil conjecture?
 :::
 
 ::: {.back card-id="card-d94c96a2b29fcc69"}
@@ -1266,7 +1266,7 @@ The Weil conjectures, proved by Deligne, predict that for a smooth projective va
 :::
 
 ::: {.front card-id="card-136b308d47ad79fd" tags="definition"}
-Zariski open embedding
+What is the definition of Zariski open embedding?
 :::
 
 ::: {.back card-id="card-136b308d47ad79fd"}
@@ -1274,7 +1274,7 @@ A morphism $U\to X$ that identifies $U$ with an open subscheme of $X$ (an open i
 :::
 
 ::: {.front card-id="card-0c5d00b1002bbfcf" tags="definition"}
-Étale neighborhood
+What is the definition of Étale neighborhood?
 :::
 
 ::: {.back card-id="card-0c5d00b1002bbfcf"}

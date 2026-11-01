@@ -213,7 +213,7 @@ Subextensions of $k^{ {}^{ \operatorname{sep} } }/k$ correspond to **closed** su
 :::
 
 ::: {.front card-id="card-dbc9f1f8659509dc" tags="definition"}
-Closed subgroup
+What is the definition of Closed subgroup?
 :::
 
 ::: {.back card-id="card-dbc9f1f8659509dc"}
@@ -221,7 +221,7 @@ A subgroup $H$ of a topological group $G$ is closed if $H$ is a closed subset of
 :::
 
 ::: {.front card-id="card-ad254faa7a24e679" tags="definition"}
-Compositum
+What is the definition of Compositum?
 :::
 
 ::: {.back card-id="card-ad254faa7a24e679"}
@@ -229,7 +229,7 @@ For subfields $E_1,E_2$ of a common field $K$, their compositum $E_1E_2$ is the 
 :::
 
 ::: {.front card-id="card-21ed49eded890962" tags="definition"}
-Krull topology
+What is the definition of Krull topology?
 :::
 
 ::: {.back card-id="card-21ed49eded890962"}

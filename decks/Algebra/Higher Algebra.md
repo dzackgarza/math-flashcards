@@ -245,7 +245,7 @@ If $M$ has a dual $M^\vee$, maps out of $M$ can be transposed: $\operatorname{Ho
 :::
 
 ::: {.front card-id="card-a791584e0ac1271e" tags="definition"}
-(infinity,n)-category
+What is the definition of (infinity,n)-category?
 :::
 
 ::: {.back card-id="card-a791584e0ac1271e"}
@@ -253,7 +253,7 @@ A higher category in which all $k$-morphisms are invertible for $k>n$, so non-in
 :::
 
 ::: {.front card-id="card-4f9dea568ce92121" tags="definition"}
-Adjoint quotient
+What is the definition of Adjoint quotient?
 :::
 
 ::: {.back card-id="card-4f9dea568ce92121"}
@@ -261,7 +261,7 @@ For a group $G$ acting on itself by conjugation, the quotient stack $[G/G]$, equ
 :::
 
 ::: {.front card-id="card-2e34b888a08cdc5f" tags="definition"}
-Cdga
+What is the definition of Cdga?
 :::
 
 ::: {.back card-id="card-2e34b888a08cdc5f"}
@@ -269,7 +269,7 @@ A commutative differential graded algebra: a graded commutative algebra $A$ with
 :::
 
 ::: {.front card-id="card-3b19794fd92da0a9" tags="definition"}
-Chiral homology
+What is the definition of Chiral homology?
 :::
 
 ::: {.back card-id="card-3b19794fd92da0a9"}
@@ -277,7 +277,7 @@ The factorization homology of a factorization coalgebra; a topological/chiral an
 :::
 
 ::: {.front card-id="card-f1ad77a2b8c5fcc0" tags="definition"}
-Classifying space
+What is the definition of Classifying space?
 :::
 
 ::: {.back card-id="card-f1ad77a2b8c5fcc0"}
@@ -285,7 +285,7 @@ For a topological group $G$, a space $BG$ with a principal $G$-bundle $EG\to BG$
 :::
 
 ::: {.front card-id="card-7dcd9b8fd146d7f3" tags="definition"}
-Coevaluation
+What is the definition of Coevaluation?
 :::
 
 ::: {.back card-id="card-7dcd9b8fd146d7f3"}
@@ -293,7 +293,7 @@ For a dualizable object $M$ with dual $M^\vee$, the unit map $1\to M\otimes M^\v
 :::
 
 ::: {.front card-id="card-16128e388f458f16" tags="definition"}
-Configuration space
+What is the definition of Configuration space?
 :::
 
 ::: {.back card-id="card-16128e388f458f16"}
@@ -301,7 +301,7 @@ The space $\operatorname{Conf}_k(M)=\{(x_1,\ldots,x_k)\in M^k:x_i\neq x_j\text{ 
 :::
 
 ::: {.front card-id="card-c266b7a4025a6e2f" tags="definition"}
-Connective
+What is the definition of Connective?
 :::
 
 ::: {.back card-id="card-c266b7a4025a6e2f"}
@@ -309,7 +309,7 @@ A spectrum $X$ with $\pi_n(X)=0$ for $n<0$; a connective ring spectrum is one wh
 :::
 
 ::: {.front card-id="card-38f050718dfbb5a7" tags="definition"}
-Cosimplicial object
+What is the definition of Cosimplicial object?
 :::
 
 ::: {.back card-id="card-38f050718dfbb5a7"}
@@ -317,7 +317,7 @@ A functor $\Delta\to\mathcal C$, where $\Delta$ is the simplex category; the cos
 :::
 
 ::: {.front card-id="card-8194f88a835b7153" tags="definition"}
-Derived center
+What is the definition of Derived center?
 :::
 
 ::: {.back card-id="card-8194f88a835b7153"}
@@ -325,7 +325,7 @@ The derived endomorphism algebra $\operatorname{RHom}_{(A,A)\text{-bimod}}(A,A)$
 :::
 
 ::: {.front card-id="card-87df13960aa92cf4" tags="definition"}
-Derived stack
+What is the definition of Derived stack?
 :::
 
 ::: {.back card-id="card-87df13960aa92cf4"}
@@ -333,7 +333,7 @@ A functor from connective $E_\infty$-rings (or connective cdgas) to spaces satis
 :::
 
 ::: {.front card-id="card-a9986e2c5f6331d2" tags="definition"}
-E-infinity ring spectrum
+What is the definition of E-infinity ring spectrum?
 :::
 
 ::: {.back card-id="card-a9986e2c5f6331d2"}
@@ -341,7 +341,7 @@ A commutative ring spectrum, i.e. an algebra over the $E_\infty$ operad in spect
 :::
 
 ::: {.front card-id="card-46f42be3a2518ba8" tags="definition"}
-Enriched category
+What is the definition of Enriched category?
 :::
 
 ::: {.back card-id="card-46f42be3a2518ba8"}
@@ -349,7 +349,7 @@ A category $\mathcal C$ whose Hom-objects lie in a monoidal category $\mathcal V
 :::
 
 ::: {.front card-id="card-06e35aac7475b65e" tags="definition"}
-Evaluation map
+What is the definition of Evaluation map?
 :::
 
 ::: {.back card-id="card-06e35aac7475b65e"}
@@ -357,7 +357,7 @@ For a dualizable object $M$ with dual $M^\vee$, the map $\operatorname{ev}:M\oti
 :::
 
 ::: {.front card-id="card-2f13d8a819f5d05e" tags="definition"}
-Factorization coalgebra
+What is the definition of Factorization coalgebra?
 :::
 
 ::: {.back card-id="card-2f13d8a819f5d05e"}
@@ -365,7 +365,7 @@ A coalgebra object in a category of $D$-modules (or sheaves) on the Ran space eq
 :::
 
 ::: {.front card-id="card-73aaa2edf7f6bddb" tags="definition"}
-Framed n-manifold
+What is the definition of Framed n-manifold?
 :::
 
 ::: {.back card-id="card-73aaa2edf7f6bddb"}
@@ -373,7 +373,7 @@ A smooth $n$-manifold $M$ together with a trivialization of its tangent bundle, 
 :::
 
 ::: {.front card-id="card-94b31056a61ecf43" tags="definition"}
-Homotopy category
+What is the definition of Homotopy category?
 :::
 
 ::: {.back card-id="card-94b31056a61ecf43"}
@@ -381,7 +381,7 @@ The category obtained from a category with weak equivalences by formally inverti
 :::
 
 ::: {.front card-id="card-469f5cf8c7443c58" tags="definition"}
-Homotopy fixed points
+What is the definition of Homotopy fixed points?
 :::
 
 ::: {.back card-id="card-469f5cf8c7443c58"}
@@ -389,7 +389,7 @@ For a group $G$ acting on a space or spectrum $X$, the derived fixed points $X^{
 :::
 
 ::: {.front card-id="card-4793e4f11906cccf" tags="definition"}
-Kahler differentials
+What is the definition of Kahler differentials?
 :::
 
 ::: {.back card-id="card-4793e4f11906cccf"}
@@ -397,7 +397,7 @@ The module $\Omega_{A/k}$ generated by symbols $da$ for $a\in A$, modulo $d(ab)=
 :::
 
 ::: {.front card-id="card-e3ba668d9b4ff212" tags="definition"}
-Little n-disks operad
+What is the definition of Little n-disks operad?
 :::
 
 ::: {.back card-id="card-e3ba668d9b4ff212"}
@@ -405,7 +405,7 @@ The operad $\mathcal D_n$ whose $k$-ary operations are configurations of $k$ dis
 :::
 
 ::: {.front card-id="card-04a30c2fe605e3f3" tags="definition"}
-Monoidal category
+What is the definition of Monoidal category?
 :::
 
 ::: {.back card-id="card-04a30c2fe605e3f3"}
@@ -413,7 +413,7 @@ A category $\mathcal C$ with a bifunctor $\otimes:\mathcal C\times\mathcal C\to\
 :::
 
 ::: {.front card-id="card-c64c0d8ff960be67" tags="definition"}
-Operad
+What is the definition of Operad?
 :::
 
 ::: {.back card-id="card-c64c0d8ff960be67"}
@@ -421,7 +421,7 @@ A sequence of objects $\mathcal O(n)$ with $\Sigma_n$-actions and composition ma
 :::
 
 ::: {.front card-id="card-78887401d4cafec1" tags="definition"}
-Perfect object
+What is the definition of Perfect object?
 :::
 
 ::: {.back card-id="card-78887401d4cafec1"}
@@ -429,7 +429,7 @@ An object of a stable $\infty$-category (e.g. $D(X)$) that is dualizable; equiva
 :::
 
 ::: {.front card-id="card-db0391ea15ee1c2b" tags="definition"}
-Pure braid group
+What is the definition of Pure braid group?
 :::
 
 ::: {.back card-id="card-db0391ea15ee1c2b"}
@@ -437,7 +437,7 @@ The fundamental group of the configuration space of $n$ ordered points in the pl
 :::
 
 ::: {.front card-id="card-38388f12ef667589" tags="definition"}
-Smooth algebra
+What is the definition of Smooth algebra?
 :::
 
 ::: {.back card-id="card-38388f12ef667589"}
@@ -445,7 +445,7 @@ A $k$-algebra $A$ that is formally smooth: every nilpotent extension $B\to B/I$ 
 :::
 
 ::: {.front card-id="card-b1a6b8c044cade92" tags="definition"}
-Stack
+What is the definition of Stack?
 :::
 
 ::: {.back card-id="card-b1a6b8c044cade92"}
@@ -453,7 +453,7 @@ A sheaf of groupoids on a site (e.g. the etale site of schemes), i.e. a presheaf
 :::
 
 ::: {.front card-id="card-5f31d9e18483f286" tags="definition"}
-Suspension spectrum
+What is the definition of Suspension spectrum?
 :::
 
 ::: {.back card-id="card-5f31d9e18483f286"}
@@ -461,7 +461,7 @@ The spectrum $\Sigma^\infty X$ with $(\Sigma^\infty X)_n=\Sigma^nX$ and identity
 :::
 
 ::: {.front card-id="card-8e2af1243a5ff75e" tags="definition"}
-Symmetric monoidal category
+What is the definition of Symmetric monoidal category?
 :::
 
 ::: {.back card-id="card-8e2af1243a5ff75e"}
@@ -469,7 +469,7 @@ A monoidal category $(\mathcal C,\otimes,1)$ equipped with a natural isomorphism
 :::
 
 ::: {.front card-id="card-af57818899ee9a1d" tags="definition"}
-Tate construction
+What is the definition of Tate construction?
 :::
 
 ::: {.back card-id="card-af57818899ee9a1d"}
@@ -477,7 +477,7 @@ For a spectrum $X$ with $G$-action, the Tate spectrum $X^{tG}=\operatorname{cofi
 :::
 
 ::: {.front card-id="card-0ac4036f79339052" tags="definition"}
-Triangulated category
+What is the definition of Triangulated category?
 :::
 
 ::: {.back card-id="card-0ac4036f79339052"}

@@ -799,15 +799,17 @@ Let $(X,\mathcal A,\mu)$ be a measure space and $E_n\in\mathcal A$. If $\sum_{n=
 :::
 
 ::: {.front card-id="card-8bd4aa683a18b69a"}
-What is the second Borel-Cantelli lemma?
+What is the second Borel-Cantelli lemma, and how does it differ from the first?
 :::
 
 ::: {.back card-id="card-8bd4aa683a18b69a"}
 Let $(X,\mathcal A,\mu)$ be a finite measure space (in particular a probability space) and let $E_n\in\mathcal A$ be independent. If $\sum_{n=1}^\infty \mu(E_n) = \infty$, then $\mu(\limsup_n E_n) = \mu(X)$; for a probability space, $P(\limsup_n E_n) = 1$.
+
+The first lemma needs only $\sum \mu(E_n) < \infty$ and concludes $\mu(\limsup_n E_n)=0$. The second needs independence and a divergent sum, and concludes $\mu(\limsup_n E_n)=\mu(X)$.
 :::
 
 ::: {.front card-id="card-2a557a12b6f74e75" tags="definition"}
-Fourier transform
+What is the definition of Fourier transform?
 :::
 
 ::: {.back card-id="card-2a557a12b6f74e75"}

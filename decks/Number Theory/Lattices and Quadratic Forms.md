@@ -720,7 +720,7 @@ $$E_k(z)=1-\frac{2 k}{B_k} \sum_{m=1}^{\infty} \sigma_{k-1}(m) q^m$$
 :::
 
 ::: {.front card-id="card-36dddf7e357e70c4" tags="definition"}
-Bernoulli number
+What is the definition of Bernoulli number?
 :::
 
 ::: {.back card-id="card-36dddf7e357e70c4"}
@@ -728,7 +728,7 @@ The Bernoulli numbers $B_n$ are the rational numbers defined by $\frac{t}{e^t-1}
 :::
 
 ::: {.front card-id="card-5c8305b1d4a8d8b7" tags="definition"}
-Cartan matrix
+What is the definition of Cartan matrix?
 :::
 
 ::: {.back card-id="card-5c8305b1d4a8d8b7"}
@@ -736,7 +736,7 @@ For a root system with simple roots $\alpha_1,\dots,\alpha_n$, the Cartan matrix
 :::
 
 ::: {.front card-id="card-0d8eed2df9802c4b" tags="definition"}
-Co-torsionfree
+What is the definition of Co-torsionfree?
 :::
 
 ::: {.back card-id="card-0d8eed2df9802c4b"}
@@ -744,7 +744,7 @@ A submodule $R\subseteq\Lambda$ is co-torsionfree if the quotient $\Lambda/R$ is
 :::
 
 ::: {.front card-id="card-4d1a0ca83d5dd848" tags="definition"}
-Congruence subgroup
+What is the definition of Congruence subgroup?
 :::
 
 ::: {.back card-id="card-4d1a0ca83d5dd848"}
@@ -752,7 +752,7 @@ A congruence subgroup of $\mathrm{SL}_2(\mathbb{Z})$ is a subgroup containing a 
 :::
 
 ::: {.front card-id="card-12b87e834fc03b9a" tags="definition"}
-Covolume
+What is the definition of Covolume?
 :::
 
 ::: {.back card-id="card-12b87e834fc03b9a"}
@@ -760,7 +760,7 @@ For a lattice $\Lambda\subseteq V$ in a Euclidean vector space $V$ of dimension 
 :::
 
 ::: {.front card-id="card-567ff60f7069fe31" tags="definition"}
-Discriminant of a quadratic form
+What is the definition of Discriminant of a quadratic form?
 :::
 
 ::: {.back card-id="card-567ff60f7069fe31"}
@@ -768,7 +768,7 @@ For a quadratic form $Q$ on a free $R$-module with Gram matrix $G=(\beta(e_i,e_j
 :::
 
 ::: {.front card-id="card-2742f470f313b98b" tags="definition"}
-Hasse-minkowski theorem
+What is the definition of Hasse-minkowski theorem?
 :::
 
 ::: {.back card-id="card-2742f470f313b98b"}
@@ -776,7 +776,7 @@ The Hasse-Minkowski theorem states that a quadratic form over a number field $K$
 :::
 
 ::: {.front card-id="card-739234bef229f4e3" tags="definition"}
-Hyperbolic module
+What is the definition of Hyperbolic module?
 :::
 
 ::: {.back card-id="card-739234bef229f4e3"}
@@ -784,7 +784,7 @@ For a projective module $M$ over a ring $R$, the hyperbolic module is $H(M)=M\op
 :::
 
 ::: {.front card-id="card-5140259e944d96d7" tags="definition"}
-K3 lattice
+What is the definition of K3 lattice?
 :::
 
 ::: {.back card-id="card-5140259e944d96d7"}
@@ -792,7 +792,7 @@ The K3 lattice is the unique even unimodular lattice of rank $22$ and signature 
 :::
 
 ::: {.front card-id="card-1355b31873688595" tags="definition"}
-Level of a modular form
+What is the definition of Level of a modular form?
 :::
 
 ::: {.back card-id="card-1355b31873688595"}
@@ -800,7 +800,7 @@ The level of a modular form is the smallest positive integer $N$ such that $f$ i
 :::
 
 ::: {.front card-id="card-cc5ef3faa8521def" tags="definition"}
-Modular form
+What is the definition of Modular form?
 :::
 
 ::: {.back card-id="card-cc5ef3faa8521def"}
@@ -808,7 +808,7 @@ A modular form of weight $k$ for a congruence subgroup $\Gamma\subseteq\mathrm{S
 :::
 
 ::: {.front card-id="card-190de4f7cb5045c4" tags="definition"}
-Odd lattice
+What is the definition of Odd lattice?
 :::
 
 ::: {.back card-id="card-190de4f7cb5045c4"}
@@ -816,7 +816,7 @@ A lattice is odd if it is not even, i.e. if there exists $x\in\Lambda$ with $\be
 :::
 
 ::: {.front card-id="card-06adb8f96341c22e" tags="definition"}
-P-adic completion
+What is the definition of P-adic completion?
 :::
 
 ::: {.back card-id="card-06adb8f96341c22e"}
@@ -824,7 +824,7 @@ For a lattice or abelian group $L$, its $p$-adic completion is $L_p=L\otimes_{\m
 :::
 
 ::: {.front card-id="card-ea6aade100c08fae" tags="definition"}
-Quadratic character
+What is the definition of Quadratic character?
 :::
 
 ::: {.back card-id="card-ea6aade100c08fae"}
@@ -832,7 +832,7 @@ A quadratic character is a homomorphism $\chi:(\mathbb{Z}/N\mathbb{Z})^\times\to
 :::
 
 ::: {.front card-id="card-ebc4fe716c6f2807" tags="definition"}
-Quadratic space
+What is the definition of Quadratic space?
 :::
 
 ::: {.back card-id="card-ebc4fe716c6f2807"}
@@ -840,7 +840,7 @@ A quadratic space is a pair $(V,Q)$ consisting of a vector space $V$ over a fiel
 :::
 
 ::: {.front card-id="card-1a0092ebb18709ca" tags="definition"}
-Simple root
+What is the definition of Simple root?
 :::
 
 ::: {.back card-id="card-1a0092ebb18709ca"}
@@ -848,7 +848,7 @@ Let $\Phi$ be a root system with a choice of positive roots $\Phi^+$. A root $\a
 :::
 
 ::: {.front card-id="card-93f96f2cebb7bcee" tags="definition"}
-Spin manifold
+What is the definition of Spin manifold?
 :::
 
 ::: {.back card-id="card-93f96f2cebb7bcee"}
@@ -856,7 +856,7 @@ A spin manifold is an oriented Riemannian manifold whose second Stiefel-Whitney 
 :::
 
 ::: {.front card-id="card-21e08ae6b126b692" tags="definition"}
-Spin structure
+What is the definition of Spin structure?
 :::
 
 ::: {.back card-id="card-21e08ae6b126b692"}
@@ -864,7 +864,7 @@ A spin structure on an oriented Riemannian manifold $M$ is a principal $\mathrm{
 :::
 
 ::: {.front card-id="card-5935a4320dc00f9a" tags="definition"}
-Sporadic group
+What is the definition of Sporadic group?
 :::
 
 ::: {.back card-id="card-5935a4320dc00f9a"}
@@ -872,7 +872,7 @@ A sporadic group is one of the $26$ finite simple groups that are neither cyclic
 :::
 
 ::: {.front card-id="card-8cb1b6dc92ecd709" tags="definition"}
-Theta function
+What is the definition of Theta function?
 :::
 
 ::: {.back card-id="card-8cb1b6dc92ecd709"}
@@ -880,7 +880,7 @@ A theta function is a holomorphic function on the upper half-plane with a transf
 :::
 
 ::: {.front card-id="card-463a836d19e8f22e" tags="definition"}
-Weight of a modular form
+What is the definition of Weight of a modular form?
 :::
 
 ::: {.back card-id="card-463a836d19e8f22e"}

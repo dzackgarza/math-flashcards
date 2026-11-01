@@ -1564,7 +1564,7 @@ For $L=4A$, one has $L^2\ge16$ and $L\cdot D\ge4$. The base-point and length-two
 :::
 
 ::: {.front card-id="card-0a67199290194819" tags="definition"}
-Blowdown
+What is the definition of Blowdown?
 :::
 
 ::: {.back card-id="card-0a67199290194819"}
@@ -1572,7 +1572,7 @@ The birational morphism inverse to a blowup. For a point blowup of a smooth surf
 :::
 
 ::: {.front card-id="card-43fe46a27feebef9" tags="definition"}
-Castelnuovo–severi inequality
+What is the definition of Castelnuovo–severi inequality?
 :::
 
 ::: {.back card-id="card-43fe46a27feebef9"}
@@ -1580,7 +1580,7 @@ If $C\to C_1\times C_2$ is birational onto its image, where $C\to C_i$ are finit
 :::
 
 ::: {.front card-id="card-e38d788d3a5ddd43" tags="definition"}
-Enriques–kodaira classification
+What is the definition of Enriques–kodaira classification?
 :::
 
 ::: {.back card-id="card-e38d788d3a5ddd43"}
@@ -1588,7 +1588,7 @@ The classification of smooth projective complex surfaces by Kodaira dimension: $
 :::
 
 ::: {.front card-id="card-ad5b403d7b573270" tags="definition"}
-Fundamental point
+What is the definition of Fundamental point?
 :::
 
 ::: {.back card-id="card-ad5b403d7b573270"}
@@ -1596,7 +1596,7 @@ A point of indeterminacy of a birational map $f:X\dashrightarrow Y$. For a birat
 :::
 
 ::: {.front card-id="card-75ce00d2b15c761e" tags="definition"}
-Graph closure
+What is the definition of Graph closure?
 :::
 
 ::: {.back card-id="card-75ce00d2b15c761e"}
@@ -1604,7 +1604,7 @@ For a rational map $T:X\dashrightarrow Y$, the closure $\Gamma\subset X\times Y$
 :::
 
 ::: {.front card-id="card-4f29ca92c5939d41" tags="definition"}
-Intersection number
+What is the definition of Intersection number?
 :::
 
 ::: {.back card-id="card-4f29ca92c5939d41"}
@@ -1612,7 +1612,7 @@ For line bundles $L_1,\dots,L_n$ on a smooth proper $n$-fold $X$, the intersecti
 :::
 
 ::: {.front card-id="card-8f343de9852359e9" tags="definition"}
-Rational double point
+What is the definition of Rational double point?
 :::
 
 ::: {.back card-id="card-8f343de9852359e9"}
@@ -1620,7 +1620,7 @@ A normal surface singularity that is rational and whose minimal resolution has e
 :::
 
 ::: {.front card-id="card-9d74e13a11f74a3f" tags="definition"}
-Riemann-roch
+What is the definition of Riemann-roch?
 :::
 
 ::: {.back card-id="card-9d74e13a11f74a3f"}
@@ -1628,7 +1628,7 @@ For a divisor $D$ on a smooth projective curve $C$ of genus $g$, $\ell(D)-i(D)=\
 :::
 
 ::: {.front card-id="card-86317573fecbaa5b" tags="definition"}
-Saturation
+What is the definition of Saturation?
 :::
 
 ::: {.back card-id="card-86317573fecbaa5b"}
@@ -1636,7 +1636,7 @@ For a sublattice $T\subset L$, the saturation $T^{\mathrm{sat}}=\{x\in L:nx\in T
 :::
 
 ::: {.front card-id="card-265b391686a6616f" tags="definition"}
-Shioda–tate formula
+What is the definition of Shioda–tate formula?
 :::
 
 ::: {.back card-id="card-265b391686a6616f"}
@@ -1644,7 +1644,7 @@ For a relatively minimal elliptic surface $f:S\to B$ with a section and at least
 :::
 
 ::: {.front card-id="card-8a168bb531ac08df" tags="definition"}
-Symmetric square
+What is the definition of Symmetric square?
 :::
 
 ::: {.back card-id="card-8a168bb531ac08df"}
@@ -1652,7 +1652,7 @@ The quotient $S^{(2)}=\operatorname{Sym}^2(S)$ of $S\times S$ by the involution 
 :::
 
 ::: {.front card-id="card-c1868ebf42273500" tags="definition"}
-Tangent direction
+What is the definition of Tangent direction?
 :::
 
 ::: {.back card-id="card-c1868ebf42273500"}
@@ -1660,7 +1660,7 @@ A one-dimensional subspace of the Zariski tangent space $T_pS$. Length-two subsc
 :::
 
 ::: {.front card-id="card-2769a29c210bf316" tags="definition"}
-Trivial lattice
+What is the definition of Trivial lattice?
 :::
 
 ::: {.back card-id="card-2769a29c210bf316"}
@@ -1668,7 +1668,7 @@ For an elliptic surface with a section, the sublattice $T\subset\operatorname{NS
 :::
 
 ::: {.front card-id="card-c73298087e0e91a5" tags="definition"}
-Weierstrass normal form
+What is the definition of Weierstrass normal form?
 :::
 
 ::: {.back card-id="card-c73298087e0e91a5"}

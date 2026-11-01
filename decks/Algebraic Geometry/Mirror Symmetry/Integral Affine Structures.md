@@ -349,7 +349,7 @@ Discuss dual intersection graphs and cycles associated to minimal resolutions.
 :::
 
 ::: {.front card-id="card-c354b1c7c752e729" tags="definition"}
-Affine manifold
+What is the definition of Affine manifold?
 :::
 
 ::: {.back card-id="card-c354b1c7c752e729"}
@@ -357,7 +357,7 @@ An affine manifold is a smooth manifold $B$ with an atlas $\{(U_i,\phi_i)\}$ who
 :::
 
 ::: {.front card-id="card-b1cc21ccaddb6e46" tags="definition"}
-Almost toric base
+What is the definition of Almost toric base?
 :::
 
 ::: {.back card-id="card-b1cc21ccaddb6e46"}
@@ -365,7 +365,7 @@ The almost toric base of an almost toric fibration $\mu:(X,\omega)\to S$ is the 
 :::
 
 ::: {.front card-id="card-92769a4b13586c9a" tags="definition"}
-Cycle of rational curves
+What is the definition of Cycle of rational curves?
 :::
 
 ::: {.back card-id="card-92769a4b13586c9a"}
@@ -373,7 +373,7 @@ A cycle of rational curves is a reduced connected divisor $D=\sum_{i=1}^n D_i$ o
 :::
 
 ::: {.front card-id="card-e5ac4665a3c590e7" tags="definition"}
-Deformation equivalent
+What is the definition of Deformation equivalent?
 :::
 
 ::: {.back card-id="card-e5ac4665a3c590e7"}
@@ -381,7 +381,7 @@ Two compact complex varieties $X$ and $Y$ are deformation equivalent if they are
 :::
 
 ::: {.front card-id="card-7ec42e54742410f3" tags="definition"}
-Double curve
+What is the definition of Double curve?
 :::
 
 ::: {.back card-id="card-7ec42e54742410f3"}
@@ -389,7 +389,7 @@ In a reducible surface $X_0=\bigcup_i V_i$, a double curve is an irreducible cur
 :::
 
 ::: {.front card-id="card-5fa52bc6d9e5d4e3" tags="definition"}
-Dual cusp
+What is the definition of Dual cusp?
 :::
 
 ::: {.back card-id="card-5fa52bc6d9e5d4e3"}
@@ -397,7 +397,7 @@ For a cusp singularity with cycle $D$ and self-intersection data $\mathbf d=(d_1
 :::
 
 ::: {.front card-id="card-57cc973230f7ba94" tags="definition"}
-Dual intersection complex
+What is the definition of Dual intersection complex?
 :::
 
 ::: {.back card-id="card-57cc973230f7ba94"}
@@ -405,7 +405,7 @@ For a semistable degeneration $\pi:\mathcal X\to\Delta$ with central fiber $X_0=
 :::
 
 ::: {.front card-id="card-615708f96cbc7338" tags="definition"}
-Grauert-mumford theorem
+What is the definition of Grauert-mumford theorem?
 :::
 
 ::: {.back card-id="card-615708f96cbc7338"}
@@ -413,7 +413,7 @@ The Grauert-Mumford theorem states that a connected compact divisor $E=\sum E_i$
 :::
 
 ::: {.front card-id="card-9065f7ad2a1a7ff3" tags="definition"}
-Gromov-hausdorff limit
+What is the definition of Gromov-hausdorff limit?
 :::
 
 ::: {.back card-id="card-9065f7ad2a1a7ff3"}
@@ -421,7 +421,7 @@ The Gromov-Hausdorff limit of compact metric spaces $(X_i,d_i)$ is a compact met
 :::
 
 ::: {.front card-id="card-5572b0772967e64e" tags="definition"}
-Hodge-tate
+What is the definition of Hodge-tate?
 :::
 
 ::: {.back card-id="card-5572b0772967e64e"}
@@ -429,7 +429,7 @@ A mixed Hodge structure is Hodge-Tate if every graded piece $\mathrm{gr}^W_k$ is
 :::
 
 ::: {.front card-id="card-dee2f67fdb8f773a" tags="definition"}
-Hypersurface singularity
+What is the definition of Hypersurface singularity?
 :::
 
 ::: {.back card-id="card-dee2f67fdb8f773a"}
@@ -437,7 +437,7 @@ A hypersurface singularity is a germ $(X,p)$ isomorphic to $(V(f),0)\subset(\mat
 :::
 
 ::: {.front card-id="card-c52d15822bcdec98" tags="definition"}
-Integral affine structure
+What is the definition of Integral affine structure?
 :::
 
 ::: {.back card-id="card-c52d15822bcdec98"}
@@ -445,7 +445,7 @@ An integral affine structure on an $n$-manifold $B$ is an atlas $\{(U_i,\phi_i:U
 :::
 
 ::: {.front card-id="card-2bfad83d9328a7f6" tags="definition"}
-Lagrangian fibration
+What is the definition of Lagrangian fibration?
 :::
 
 ::: {.back card-id="card-2bfad83d9328a7f6"}
@@ -453,7 +453,7 @@ A Lagrangian fibration is a proper surjective map $f:(X^{2n},\omega)\to B$ whose
 :::
 
 ::: {.front card-id="card-63b5131f7fd0118f" tags="definition"}
-Limiting mixed hodge structure
+What is the definition of Limiting mixed hodge structure?
 :::
 
 ::: {.back card-id="card-63b5131f7fd0118f"}
@@ -461,7 +461,7 @@ For a degeneration $\pi:\mathcal X\to\Delta^*$ with unipotent monodromy $T$, the
 :::
 
 ::: {.front card-id="card-02b0355c3650e92b" tags="definition"}
-Moment polytope
+What is the definition of Moment polytope?
 :::
 
 ::: {.back card-id="card-02b0355c3650e92b"}
@@ -469,7 +469,7 @@ For a Hamiltonian torus action on a compact symplectic manifold $(X,\omega)$ wit
 :::
 
 ::: {.front card-id="card-1fd74048e90db1c2" tags="definition"}
-Monodromy operator
+What is the definition of Monodromy operator?
 :::
 
 ::: {.back card-id="card-1fd74048e90db1c2"}
@@ -477,7 +477,7 @@ For a degeneration $\pi:\mathcal X\to\Delta^*$, the monodromy operator is the au
 :::
 
 ::: {.front card-id="card-795c0ca34a8a8864" tags="definition"}
-Monodromy representation
+What is the definition of Monodromy representation?
 :::
 
 ::: {.back card-id="card-795c0ca34a8a8864"}
@@ -485,7 +485,7 @@ For a fibration $f:X\to B$ with fiber $F$, the monodromy representation is the h
 :::
 
 ::: {.front card-id="card-56810efcabc4bf7c" tags="definition"}
-Semi-universal deformation
+What is the definition of Semi-universal deformation?
 :::
 
 ::: {.back card-id="card-56810efcabc4bf7c"}
@@ -493,7 +493,7 @@ A semi-universal (miniversal) deformation of $X$ is a deformation $\mathcal X\to
 :::
 
 ::: {.front card-id="card-2e3d766f0efeb706" tags="definition"}
-Special lagrangian
+What is the definition of Special lagrangian?
 :::
 
 ::: {.back card-id="card-2e3d766f0efeb706"}
@@ -501,7 +501,7 @@ A special Lagrangian submanifold of a Calabi-Yau manifold $(X,\omega,\Omega)$ is
 :::
 
 ::: {.front card-id="card-50e0c6eeda83171e" tags="definition"}
-Symplectic reduction
+What is the definition of Symplectic reduction?
 :::
 
 ::: {.back card-id="card-50e0c6eeda83171e"}
@@ -509,7 +509,7 @@ Symplectic reduction (Marsden-Weinstein quotient) of a symplectic manifold $(X,\
 :::
 
 ::: {.front card-id="card-aa1ee324431e9f74" tags="definition"}
-Toric boundary
+What is the definition of Toric boundary?
 :::
 
 ::: {.back card-id="card-aa1ee324431e9f74"}
@@ -517,7 +517,7 @@ The toric boundary of a toric variety $X_\Sigma$ is the reduced divisor $D=\sum_
 :::
 
 ::: {.front card-id="card-d03d58dd6041270c" tags="definition"}
-Toric degeneration
+What is the definition of Toric degeneration?
 :::
 
 ::: {.back card-id="card-d03d58dd6041270c"}
@@ -525,7 +525,7 @@ A toric degeneration is a flat family $\pi:\mathcal X\to\Delta$ whose general fi
 :::
 
 ::: {.front card-id="card-b4e485673235edf3" tags="definition"}
-Triple point
+What is the definition of Triple point?
 :::
 
 ::: {.back card-id="card-b4e485673235edf3"}
@@ -533,7 +533,7 @@ A triple point of a reducible surface $X_0=\bigcup_i V_i$ is a point at which th
 :::
 
 ::: {.front card-id="card-356efa2f005e6ec3" tags="definition"}
-Type vii_0 surface
+What is the definition of Type vii_0 surface?
 :::
 
 ::: {.back card-id="card-356efa2f005e6ec3"}
@@ -541,7 +541,7 @@ A type $\mathrm{VII}_0$ surface is a compact complex surface with $b_1=1$, $b_2=
 :::
 
 ::: {.front card-id="card-e8b82c81356a6955" tags="definition"}
-Unipotency index
+What is the definition of Unipotency index?
 :::
 
 ::: {.back card-id="card-e8b82c81356a6955"}
@@ -549,7 +549,7 @@ For a unipotent endomorphism $T$ (so $T-I$ is nilpotent), the unipotency index i
 :::
 
 ::: {.front card-id="card-34e632bf729f4796" tags="definition"}
-Universal deformation
+What is the definition of Universal deformation?
 :::
 
 ::: {.back card-id="card-34e632bf729f4796"}
@@ -557,7 +557,7 @@ A deformation $\mathcal X\to S$ of $X$ is universal if every deformation $\mathc
 :::
 
 ::: {.front card-id="card-8934770be8e9010f" tags="definition"}
-Node smoothing
+What is the definition of Node smoothing?
 :::
 
 ::: {.back card-id="card-8934770be8e9010f"}
@@ -565,7 +565,7 @@ The surgery on an anticanonical pair inverse to a corner blowup: contract the ex
 :::
 
 ::: {.front card-id="card-d64fe05250d1165d" tags="definition"}
-Top stratum
+What is the definition of Top stratum?
 :::
 
 ::: {.back card-id="card-d64fe05250d1165d"}
@@ -573,7 +573,7 @@ Let $B$ be a stratified space with filtration $\emptyset=B_{-1}\subseteq B_0\sub
 :::
 
 ::: {.front card-id="card-1a1d68d156466368" tags="definition"}
-Triple point formula
+What is the definition of Triple point formula?
 :::
 
 ::: {.back card-id="card-1a1d68d156466368"}

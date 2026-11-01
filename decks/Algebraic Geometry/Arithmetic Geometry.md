@@ -179,7 +179,7 @@ The Shimura varieties are the algebraic varieties that arise in this way. In oth
 :::
 
 ::: {.front card-id="card-dbf562814c8f40d6" tags="definition"}
-Adele ring
+What is the definition of Adele ring?
 :::
 
 ::: {.back card-id="card-dbf562814c8f40d6"}
@@ -187,7 +187,7 @@ For a global field $k$, the restricted direct product $\mathbb A_k=\prod_v' k_v$
 :::
 
 ::: {.front card-id="card-f33b4442e360e507" tags="definition"}
-Arithmetic scheme
+What is the definition of Arithmetic scheme?
 :::
 
 ::: {.back card-id="card-f33b4442e360e507"}
@@ -195,7 +195,7 @@ A scheme $X$ equipped with a structure morphism to an arithmetic base such as $\
 :::
 
 ::: {.front card-id="card-5ebb84b5f9c09f0b" tags="definition"}
-Cofibrant replacement
+What is the definition of Cofibrant replacement?
 :::
 
 ::: {.back card-id="card-5ebb84b5f9c09f0b"}
@@ -203,7 +203,7 @@ In a model category, a functorial factorization of an object $X$ as a cofibratio
 :::
 
 ::: {.front card-id="card-b41b486b9c834ef7" tags="definition"}
-Divided power thickening
+What is the definition of Divided power thickening?
 :::
 
 ::: {.back card-id="card-b41b486b9c834ef7"}
@@ -211,7 +211,7 @@ A thickening $A\to B$ (a surjection with nilpotent kernel) together with divided
 :::
 
 ::: {.front card-id="card-4d752f5b42d7bc7a" tags="definition"}
-Finite adeles
+What is the definition of Finite adeles?
 :::
 
 ::: {.back card-id="card-4d752f5b42d7bc7a"}
@@ -219,7 +219,7 @@ The ring $\mathbb A_f=\prod_{v\text{ finite}}' k_v$ of finite adeles, the restri
 :::
 
 ::: {.front card-id="card-53ea801e2b02e4e9" tags="definition"}
-Frobenius endomorphism
+What is the definition of Frobenius endomorphism?
 :::
 
 ::: {.back card-id="card-53ea801e2b02e4e9"}
@@ -227,7 +227,7 @@ For a ring or scheme of characteristic $p$, the endomorphism $\operatorname{Frob
 :::
 
 ::: {.front card-id="card-aa406a897b09b179" tags="definition"}
-Hermitian space
+What is the definition of Hermitian space?
 :::
 
 ::: {.back card-id="card-aa406a897b09b179"}
@@ -235,7 +235,7 @@ A smooth manifold $M$ with a Riemannian metric $g$ and a complex structure $J$ s
 :::
 
 ::: {.front card-id="card-b35d040a5a028195" tags="definition"}
-Homotopy fixed point
+What is the definition of Homotopy fixed point?
 :::
 
 ::: {.back card-id="card-b35d040a5a028195"}
@@ -243,7 +243,7 @@ For a group $G$ acting on a space $X$, the homotopy fixed points $X^{hG}=\operat
 :::
 
 ::: {.front card-id="card-1f242f1dd4b0c491" tags="definition"}
-Hyperbolic curve
+What is the definition of Hyperbolic curve?
 :::
 
 ::: {.back card-id="card-1f242f1dd4b0c491"}
@@ -251,7 +251,7 @@ A smooth projective curve of genus $g\ge2$ over a field $k$; more generally a cu
 :::
 
 ::: {.front card-id="card-feb9a5bc48b07ccb" tags="definition"}
-Hypercover
+What is the definition of Hypercover?
 :::
 
 ::: {.back card-id="card-feb9a5bc48b07ccb"}
@@ -259,7 +259,7 @@ A simplicial object $U_\bullet\to X$ in a site such that, for every $n$, the can
 :::
 
 ::: {.front card-id="card-5354a04ea6eeff20" tags="definition"}
-Negative sectional curvature
+What is the definition of Negative sectional curvature?
 :::
 
 ::: {.back card-id="card-5354a04ea6eeff20"}
@@ -267,7 +267,7 @@ A Riemannian manifold has negative sectional curvature if $K(\sigma)<0$ for ever
 :::
 
 ::: {.front card-id="card-e5250a461a00338c" tags="definition"}
-P-adically complete
+What is the definition of P-adically complete?
 :::
 
 ::: {.back card-id="card-e5250a461a00338c"}
@@ -275,7 +275,7 @@ A ring $R$ is $p$-adically complete if the natural map $R\to\varprojlim_n R/p^nR
 :::
 
 ::: {.front card-id="card-23fc31f061e1fa53" tags="definition"}
-Perfect ring
+What is the definition of Perfect ring?
 :::
 
 ::: {.back card-id="card-23fc31f061e1fa53"}
@@ -283,7 +283,7 @@ A ring $R$ of characteristic $p$ is perfect if its Frobenius $x\mapsto x^p$ is b
 :::
 
 ::: {.front card-id="card-6f080b42d2b1ce48" tags="definition"}
-Pro-infinitesimal
+What is the definition of Pro-infinitesimal?
 :::
 
 ::: {.back card-id="card-6f080b42d2b1ce48"}
@@ -291,7 +291,7 @@ A map of formal schemes or rings that is an inverse limit of infinitesimal thick
 :::
 
 ::: {.front card-id="card-307493a661302070" tags="definition"}
-Pro-space
+What is the definition of Pro-space?
 :::
 
 ::: {.back card-id="card-307493a661302070"}
@@ -299,7 +299,7 @@ An object of the pro-category $\mathsf{pro}(\mathsf{Spaces})$, i.e. a filtered i
 :::
 
 ::: {.front card-id="card-a3593c88b3d5b54e" tags="definition"}
-Restricted direct topology
+What is the definition of Restricted direct topology?
 :::
 
 ::: {.back card-id="card-a3593c88b3d5b54e"}
@@ -307,7 +307,7 @@ The topology on a restricted direct product $\prod_v' G_v$ in which a basis of n
 :::
 
 ::: {.front card-id="card-ae2cd3772c8f5089" tags="definition"}
-Semisimple lie group
+What is the definition of Semisimple lie group?
 :::
 
 ::: {.back card-id="card-ae2cd3772c8f5089"}

@@ -150,7 +150,7 @@ A morphism $f:X\to Y$ is a **closed immersion** iff it is affine and the map $f^
 :::
 
 ::: {.front card-id="card-73a0b326379f91d1" tags="definition"}
-Kähler differential
+What is the definition of Kähler differential?
 :::
 
 ::: {.back card-id="card-73a0b326379f91d1"}

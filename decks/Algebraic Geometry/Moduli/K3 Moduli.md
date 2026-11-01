@@ -453,7 +453,7 @@ No. Orthogonality to $\omega$ makes $\delta$ an integral $(1,1)$ class, so it is
 :::
 
 ::: {.front card-id="card-1aab55ee31850bbb" tags="definition"}
-Ade singularity
+What is the definition of Ade singularity?
 :::
 
 ::: {.back card-id="card-1aab55ee31850bbb"}
@@ -461,7 +461,7 @@ A normal surface singularity whose minimal resolution has exceptional divisor a 
 :::
 
 ::: {.front card-id="card-6b14f9ae9d6474c8" tags="definition"}
-Arithmetic quotient
+What is the definition of Arithmetic quotient?
 :::
 
 ::: {.back card-id="card-6b14f9ae9d6474c8"}
@@ -469,7 +469,7 @@ A quotient $\Gamma\backslash D$ of a symmetric domain $D$ by a discrete subgroup
 :::
 
 ::: {.front card-id="card-bc716af8baef6126" tags="definition"}
-Birational modification
+What is the definition of Birational modification?
 :::
 
 ::: {.back card-id="card-bc716af8baef6126"}
@@ -477,7 +477,7 @@ A birational map between varieties, usually resolved by a sequence of blowups an
 :::
 
 ::: {.front card-id="card-223d21f6a7d001e5" tags="definition"}
-Bounded symmetric domain
+What is the definition of Bounded symmetric domain?
 :::
 
 ::: {.back card-id="card-223d21f6a7d001e5"}
@@ -485,7 +485,7 @@ A bounded open domain $\Omega\subset\mathbb C^n$ such that every point is the un
 :::
 
 ::: {.front card-id="card-fdf58d78e130682d" tags="definition"}
-Central fiber
+What is the definition of Central fiber?
 :::
 
 ::: {.back card-id="card-fdf58d78e130682d"}
@@ -493,7 +493,7 @@ The fibre $X_0=\pi^{-1}(0)$ of a family $\pi:\mathcal X\to\Delta$ over a disc. I
 :::
 
 ::: {.front card-id="card-30b9ac4219789b76" tags="definition"}
-Discriminant locus
+What is the definition of Discriminant locus?
 :::
 
 ::: {.back card-id="card-30b9ac4219789b76"}
@@ -501,7 +501,7 @@ In the period domain of $\rho$-marked K3 surfaces, $\Delta_\rho=\mathbb D_\rho\c
 :::
 
 ::: {.front card-id="card-4527c4cdf3791038" tags="definition"}
-Fine moduli space
+What is the definition of Fine moduli space?
 :::
 
 ::: {.back card-id="card-4527c4cdf3791038"}
@@ -509,7 +509,7 @@ A moduli space that represents the moduli functor: every family is the pullback 
 :::
 
 ::: {.front card-id="card-76e785e17a4b4a7c" tags="definition"}
-Groupoid
+What is the definition of Groupoid?
 :::
 
 ::: {.back card-id="card-76e785e17a4b4a7c"}
@@ -517,7 +517,7 @@ A category in which every morphism is an isomorphism. The moduli stack of a modu
 :::
 
 ::: {.front card-id="card-8e37fe59c02842a4" tags="definition"}
-Local torelli theorem
+What is the definition of Local torelli theorem?
 :::
 
 ::: {.back card-id="card-8e37fe59c02842a4"}
@@ -525,7 +525,7 @@ For a marked K3 surface $(X,\phi)$, the period map from the versal deformation s
 :::
 
 ::: {.front card-id="card-a07cec7de306d8eb" tags="definition"}
-Log canonical center
+What is the definition of Log canonical center?
 :::
 
 ::: {.back card-id="card-a07cec7de306d8eb"}
@@ -533,7 +533,7 @@ For a log canonical pair $(X,D)$, a subvariety $Z\subset X$ that is the image of
 :::
 
 ::: {.front card-id="card-35ca437ea0e015b1" tags="definition"}
-Picard lattice
+What is the definition of Picard lattice?
 :::
 
 ::: {.back card-id="card-35ca437ea0e015b1"}
@@ -541,7 +541,7 @@ The lattice $\operatorname{Pic}(X)$ with its intersection form. For a projective
 :::
 
 ::: {.front card-id="card-4e9bb43f4ef3673f" tags="definition"}
-Q-cartier divisor
+What is the definition of Q-cartier divisor?
 :::
 
 ::: {.back card-id="card-4e9bb43f4ef3673f"}
@@ -549,7 +549,7 @@ A divisor $D$ on a normal variety such that some nonzero multiple $mD$ is Cartie
 :::
 
 ::: {.front card-id="card-9fc12fa0cf8ba0dd" tags="definition"}
-Rational boundary component
+What is the definition of Rational boundary component?
 :::
 
 ::: {.back card-id="card-9fc12fa0cf8ba0dd"}
@@ -557,7 +557,7 @@ A boundary stratum added to a symmetric domain in the Baily–Borel compactifica
 :::
 
 ::: {.front card-id="card-e65c8bbc605edf10" tags="definition"}
-Semi log canonical singularity
+What is the definition of Semi log canonical singularity?
 :::
 
 ::: {.back card-id="card-e65c8bbc605edf10"}
@@ -565,7 +565,7 @@ A singularity of a pair $(X,D)$ such that $X$ is reduced, $K_X+D$ is $\mathbb Q$
 :::
 
 ::: {.front card-id="card-f67ebfdf6dac4a2b" tags="definition"}
-Semifan
+What is the definition of Semifan?
 :::
 
 ::: {.back card-id="card-f67ebfdf6dac4a2b"}
@@ -573,7 +573,7 @@ A collection of rational polyhedral cones in the boundary of a symmetric domain,
 :::
 
 ::: {.front card-id="card-a6dd0db307a9ada3" tags="definition"}
-Toroidal compactification
+What is the definition of Toroidal compactification?
 :::
 
 ::: {.back card-id="card-a6dd0db307a9ada3"}
@@ -581,7 +581,7 @@ A compactification of $\Gamma\backslash D$ obtained by adding torus bundles over
 :::
 
 ::: {.front card-id="card-da95f37a1b1f62ae" tags="definition"}
-Type iv domain
+What is the definition of Type iv domain?
 :::
 
 ::: {.back card-id="card-da95f37a1b1f62ae"}
@@ -589,7 +589,7 @@ A domain of the form $\mathbb D_N=\{[x]\in\mathbb P(N\otimes\mathbb C):x^2=0,\ |
 :::
 
 ::: {.front card-id="card-af9f71bcc0ea225f" tags="definition"}
-Weak torelli theorem
+What is the definition of Weak torelli theorem?
 :::
 
 ::: {.back card-id="card-af9f71bcc0ea225f"}

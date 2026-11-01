@@ -386,7 +386,7 @@ One of 26 exceptional groups: not cyclic, alternating, or of Lie type.
 :::
 
 ::: {.front card-id="card-87fe69a5afd1401f" tags="definition"}
-Group of lie type
+What is the definition of Group of lie type?
 :::
 
 ::: {.back card-id="card-87fe69a5afd1401f"}
