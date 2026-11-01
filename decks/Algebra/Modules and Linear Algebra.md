@@ -185,3 +185,163 @@ Proposition: Every free module is projective.
 ![](https://i.imgur.com/qZiRxvR.png)
 :::
 
+
+::: {.front card-id="card-9d1c938e872bdfec" tags="definition"}
+Basis
+:::
+
+::: {.back card-id="card-9d1c938e872bdfec"}
+A basis of a vector space or free module $V$ is a linearly independent subset $B\subseteq V$ that spans $V$; every element of $V$ is then a unique finite linear combination of elements of $B$.
+:::
+
+::: {.front card-id="card-0a7fed02f00e4ba5" tags="definition"}
+Companion matrix
+:::
+
+::: {.back card-id="card-0a7fed02f00e4ba5"}
+The companion matrix of a monic polynomial $f(x)=x^n+c_{n-1}x^{n-1}+\cdots+c_0$ is the $n\times n$ matrix with ones on the subdiagonal and last column $(-c_0,\dots,-c_{n-1})^T$; its characteristic and minimal polynomials are both $f$.
+:::
+
+::: {.front card-id="card-866806e4b6b15d94" tags="definition"}
+Determinant
+:::
+
+::: {.back card-id="card-866806e4b6b15d94"}
+The determinant is the multiplicative map $\det:M_n(R)\to R$ given by $\det(A)=\sum_{\sigma\in S_n}\operatorname{sgn}(\sigma)\prod_{i=1}^n a_{i\sigma(i)}$; over a field, $\det A\neq0$ iff $A$ is invertible.
+:::
+
+::: {.front card-id="card-4034504749f42211" tags="definition"}
+Diagonal matrix
+:::
+
+::: {.back card-id="card-4034504749f42211"}
+A matrix $D=(d_{ij})$ is diagonal if $d_{ij}=0$ for all $i\neq j$.
+:::
+
+::: {.front card-id="card-d7860e0362742150" tags="definition"}
+Dimension
+:::
+
+::: {.back card-id="card-d7860e0362742150"}
+The dimension of a vector space $V$ over a field $k$ is the cardinality of any basis of $V$; it is well defined, and $\dim_k k^n=n$.
+:::
+
+::: {.front card-id="card-569939a5be76c056" tags="definition"}
+Eigenvalue
+:::
+
+::: {.back card-id="card-569939a5be76c056"}
+For a linear map $T:V\to V$ over a field $k$, an eigenvalue is $\lambda\in k$ for which there exists a nonzero $v\in V$ with $T(v)=\lambda v$.
+:::
+
+::: {.front card-id="card-396d7e209117ccb1" tags="definition"}
+Eigenvector
+:::
+
+::: {.back card-id="card-396d7e209117ccb1"}
+An eigenvector of $T:V\to V$ for eigenvalue $\lambda$ is a nonzero $v\in V$ with $T(v)=\lambda v$.
+:::
+
+::: {.front card-id="card-52686d1a018f6aea" tags="definition"}
+Finitely generated module
+:::
+
+::: {.back card-id="card-52686d1a018f6aea"}
+An $R$-module $M$ is finitely generated if there exist $m_1,\dots,m_n\in M$ such that every $m\in M$ is a finite $R$-linear combination of the $m_i$; equivalently, $M$ is a quotient of $R^n$.
+:::
+
+::: {.front card-id="card-fa57eb0176bd623d" tags="definition"}
+General linear group
+:::
+
+::: {.back card-id="card-fa57eb0176bd623d"}
+The general linear group $\mathrm{GL}_n(R)$ is the group of invertible $n\times n$ matrices over $R$ under multiplication; over a field $k$, $\mathrm{GL}_n(k)=\{A\in M_n(k):\det A\neq0\}$.
+:::
+
+::: {.front card-id="card-e89fa8b593142a71" tags="definition"}
+Linear map
+:::
+
+::: {.back card-id="card-e89fa8b593142a71"}
+A map $T:V\to W$ between vector spaces over $k$ is linear if $T(av+bw)=aT(v)+bT(w)$ for all $a,b\in k$ and $v,w\in V$; equivalently, it is a $k$-module homomorphism.
+:::
+
+::: {.front card-id="card-84d53a4eea2910c0" tags="definition"}
+Linearly independent
+:::
+
+::: {.back card-id="card-84d53a4eea2910c0"}
+A subset $S$ of an $R$-module $M$ is linearly independent if every finite relation $\sum_i r_i s_i=0$ with $s_i\in S$ has all $r_i=0$; otherwise $S$ is linearly dependent.
+:::
+
+::: {.front card-id="card-44373a6fadf9b02d" tags="definition"}
+Matrix
+:::
+
+::: {.back card-id="card-44373a6fadf9b02d"}
+An $m\times n$ matrix over a ring $R$ is an array $(a_{ij})$ with $a_{ij}\in R$; it represents a linear map $R^n\to R^m$, and matrix multiplication is $(AB)_{ij}=\sum_k a_{ik}b_{kj}$.
+:::
+
+::: {.front card-id="card-05028f955eb3eb1f" tags="definition"}
+Minimal polynomial
+:::
+
+::: {.back card-id="card-05028f955eb3eb1f"}
+For a linear map $T:V\to V$ over a field, the minimal polynomial is the monic polynomial $m_T(x)$ of least positive degree with $m_T(T)=0$. For $\alpha$ algebraic over $k$, $m_\alpha(x)$ is the monic polynomial of least positive degree with $m_\alpha(\alpha)=0$.
+:::
+
+::: {.front card-id="card-fde08668f063f0b1" tags="definition"}
+Module
+:::
+
+::: {.back card-id="card-fde08668f063f0b1"}
+A left $R$-module $M$ is an abelian group with a scalar multiplication $R\times M\to M$, $(r,m)\mapsto rm$, such that $r(m+n)=rm+rn$, $(r+s)m=rm+sm$, $(rs)m=r(sm)$, and $1_Rm=m$.
+:::
+
+::: {.front card-id="card-1e0083c047568382" tags="definition"}
+Similar matrices
+:::
+
+::: {.back card-id="card-1e0083c047568382"}
+Square matrices $A,B\in M_n(k)$ are similar if $B=P^{-1}AP$ for some invertible $P\in\mathrm{GL}_n(k)$; they represent the same linear map in different bases.
+:::
+
+::: {.front card-id="card-086228c8f0868f40" tags="definition"}
+Submodule
+:::
+
+::: {.back card-id="card-086228c8f0868f40"}
+A subset $N\subseteq M$ is a submodule if it is a subgroup of $(M,+)$ and is closed under scalar multiplication; equivalently, $N$ is nonempty and $r\in R$, $m,n\in N$ imply $rm+n\in N$.
+:::
+
+::: {.front card-id="card-aa872b79c6d7fb88" tags="definition"}
+Tensor product
+:::
+
+::: {.back card-id="card-aa872b79c6d7fb88"}
+The tensor product $M \otimes_R N$ of $R$-modules is the universal target of $R$-bilinear maps: there is a bilinear map $\otimes : M \times N \to M \otimes_R N$ such that every bilinear map $M \times N \to P$ factors uniquely through it. It is constructed as the quotient of the free abelian group on $M \times N$ by the bilinearity relations.
+:::
+
+::: {.front card-id="card-307de933dfdd2661" tags="definition"}
+Torsion
+:::
+
+::: {.back card-id="card-307de933dfdd2661"}
+Let $R$ be an integral domain and $M$ an $R$-module. An element $m \in M$ is torsion if $rm = 0$ for some nonzero $r \in R$; the torsion submodule $M_{\mathrm{tor}}$ is the set of all such elements. $M$ is torsion if $M = M_{\mathrm{tor}}$.
+:::
+
+::: {.front card-id="card-482ee1ddf8f9c51a" tags="definition"}
+Trace
+:::
+
+::: {.back card-id="card-482ee1ddf8f9c51a"}
+For a finite-dimensional $k$-vector space $V$ and an endomorphism $T$, the trace $\mathrm{tr}(T)$ is the sum of the diagonal entries of any matrix of $T$, independent of the basis. For a finite extension $L/K$, $\mathrm{Tr}_{L/K}(\alpha)$ is the trace of multiplication by $\alpha$.
+:::
+
+::: {.front card-id="card-77078815a98d2643" tags="definition"}
+Vector space
+:::
+
+::: {.back card-id="card-77078815a98d2643"}
+A vector space over a field $k$ is a $k$-module: an abelian group $V$ with scalar multiplication by $k$ satisfying the module axioms.
+:::

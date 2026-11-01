@@ -812,3 +812,203 @@ $\widehat{\ZZ}= \projectivelim_{n>0} \ZZ/n\ZZ$ the profinite completion of $\ZZ$
 
 ${ \ZZ_{\widehat{p}} }\coloneqq\projectivelim \ZZ/p^n\ZZ$ the $p\dash$completion
 :::
+
+::: {.front card-id="card-c96136a609abac88" tags="definition"}
+Adjoint action
+:::
+
+::: {.back card-id="card-c96136a609abac88"}
+The $G$-action on $\operatorname{Hom}(M,N)$ given by $(g\cdot f)(m)=gf(g^{-1}m)$.
+:::
+
+::: {.front card-id="card-3f55c315a0f91f9f" tags="definition"}
+Artin l-function
+:::
+
+::: {.back card-id="card-3f55c315a0f91f9f"}
+For a representation $\rho$ of $\operatorname{Gal}(L/K)$, the Euler product $L(s,\rho)=\prod_{\mathfrak p}\det(1-\rho(\operatorname{Frob}_{\mathfrak p})N(\mathfrak p)^{-s}\mid V^{I_{\mathfrak p}})^{-1}$, with the standard modification at ramified primes.
+:::
+
+::: {.front card-id="card-7a3783b8af04d496" tags="definition"}
+Character
+:::
+
+::: {.back card-id="card-7a3783b8af04d496"}
+The function $\chi_V(g)=\operatorname{Tr}(\rho(g))$ associated to a representation $\rho:G\to\operatorname{GL}(V)$.
+:::
+
+::: {.front card-id="card-b416a465d71efa7a" tags="definition"}
+Coboundary
+:::
+
+::: {.back card-id="card-b416a465d71efa7a"}
+A cochain of the form $dg$; the group of $n$-coboundaries is $B^n(G;M)=\operatorname{im}(d^{n-1})$.
+:::
+
+::: {.front card-id="card-f48cf8dcd673ba65" tags="definition"}
+Cochain
+:::
+
+::: {.back card-id="card-f48cf8dcd673ba65"}
+For a group $G$ and $G$-module $M$, a function $G^n\to M$; the group cochain complex has differential $(df)(g_0,\ldots,g_n)=g_0f(g_1,\ldots,g_n)+\sum_{i=1}^n(-1)^if(\ldots,g_{i-1}g_i,\ldots)+(-1)^{n+1}f(g_0,\ldots,g_{n-1})$.
+:::
+
+::: {.front card-id="card-9e62a0b0ef0e1557" tags="definition"}
+Cocycle
+:::
+
+::: {.back card-id="card-9e62a0b0ef0e1557"}
+A cochain $f$ with $df=0$; the group of $n$-cocycles is $Z^n(G;M)=\ker(d^n)$.
+:::
+
+::: {.front card-id="card-75b66aa3fff19cb8" tags="definition"}
+Crossed homomorphism
+:::
+
+::: {.back card-id="card-75b66aa3fff19cb8"}
+A map $f:G\to M$ satisfying $f(gh)=f(g)+g\cdot f(h)$; these are exactly the 1-cocycles $Z^1(G;M)$.
+:::
+
+::: {.front card-id="card-3ec3ed0c96dc6d66" tags="definition"}
+Diagonal action
+:::
+
+::: {.back card-id="card-3ec3ed0c96dc6d66"}
+The $G$-action on a tensor product $M\otimes N$ given by $g(m\otimes n)=gm\otimes gn$.
+:::
+
+::: {.front card-id="card-dba1d1bb84445dfd" tags="definition"}
+Eilenberg-maclane space
+:::
+
+::: {.back card-id="card-dba1d1bb84445dfd"}
+A space $K(G,n)$ with $\pi_n(K(G,n))\cong G$ and $\pi_i(K(G,n))=0$ for $i\neq n$.
+:::
+
+::: {.front card-id="card-72fb4759ff1bac5c" tags="definition"}
+Elementary subgroup
+:::
+
+::: {.back card-id="card-72fb4759ff1bac5c"}
+In Brauer's induction theorem, a subgroup of the form $C\times P$ with $C$ cyclic and $P$ a $p$-group.
+:::
+
+::: {.front card-id="card-211d4e55140cf5e6" tags="definition"}
+Equivariant map
+:::
+
+::: {.back card-id="card-211d4e55140cf5e6"}
+A map $f:M\to N$ of $G$-modules satisfying $f(gm)=gf(m)$ for all $g\in G$, $m\in M$.
+:::
+
+::: {.front card-id="card-89bcb2419834c66f" tags="definition"}
+Etale fundamental group
+:::
+
+::: {.back card-id="card-89bcb2419834c66f"}
+The profinite group $\pi_1^{\mathrm{et}}(X)$ classifying finite etale covers of a scheme $X$; it is the automorphism group of the fiber functor on finite etale covers.
+:::
+
+::: {.front card-id="card-2c3c6c9cf8cae5c3" tags="definition"}
+Group cohomology
+:::
+
+::: {.back card-id="card-2c3c6c9cf8cae5c3"}
+The right derived functors $H^n(G;M)=\operatorname{Ext}^n_{\mathbb Z[G]}(\mathbb Z,M)$ of the invariants functor $M\mapsto M^G$.
+:::
+
+::: {.front card-id="card-752066b67a2c8222" tags="definition"}
+Group homology
+:::
+
+::: {.back card-id="card-752066b67a2c8222"}
+The left derived functors $H_n(G;M)=\operatorname{Tor}_n^{\mathbb Z[G]}(\mathbb Z,M)$ of the coinvariants functor $M\mapsto M_G$.
+:::
+
+::: {.front card-id="card-b523ada6cbbb0051" tags="definition"}
+Laurent polynomial ring
+:::
+
+::: {.back card-id="card-b523ada6cbbb0051"}
+The ring $R[t,t^{-1}]$, obtained by localizing $R[t]$ at the multiplicative set $\{t^n:n\ge 0\}$.
+:::
+
+::: {.front card-id="card-27371412d1ac9f6c" tags="definition"}
+Norm map
+:::
+
+::: {.back card-id="card-27371412d1ac9f6c"}
+For a finite extension $L/K$ and $x\in L$, $\operatorname{Nm}_{L/K}(x)=\det_K(m_x)$, where $m_x$ is multiplication by $x$; equivalently the product of the conjugates of $x$.
+:::
+
+::: {.front card-id="card-ceacb337e187a271" tags="definition"}
+P-adic integers
+:::
+
+::: {.back card-id="card-ceacb337e187a271"}
+The ring $\mathbb Z_p=\varprojlim_n\mathbb Z/p^n\mathbb Z$ of $p$-adic integers.
+:::
+
+::: {.front card-id="card-0bc17a723625f10c" tags="definition"}
+P-completion
+:::
+
+::: {.back card-id="card-0bc17a723625f10c"}
+For an abelian group $G$, the inverse limit $\varprojlim_n G/p^nG$; more generally the pro-$p$ completion of a group. For $G=\mathbb Z$ it is $\mathbb Z_p$.
+:::
+
+::: {.front card-id="card-32358d45fdf2dd75" tags="definition"}
+P-group
+:::
+
+::: {.back card-id="card-32358d45fdf2dd75"}
+A finite group whose order is a power of the prime $p$.
+:::
+
+::: {.front card-id="card-220589718e58d5e2" tags="definition"}
+P-primary module
+:::
+
+::: {.back card-id="card-220589718e58d5e2"}
+An abelian group or module in which every element is annihilated by some power of the prime $p$; equivalently, a module all of whose elements have $p$-power order.
+:::
+
+::: {.front card-id="card-901a92f5e3bf7a2d" tags="definition"}
+Periodic resolution
+:::
+
+::: {.back card-id="card-901a92f5e3bf7a2d"}
+A free resolution whose modules and differentials repeat after a fixed period.
+:::
+
+::: {.front card-id="card-288ce341ee530555" tags="definition"}
+Pro-object
+:::
+
+::: {.back card-id="card-288ce341ee530555"}
+A formal inverse limit of objects of $\mathcal C$; the category $\mathrm{pro}\text{-}\mathcal C$ has cofiltered diagrams in $\mathcal C$ as objects.
+:::
+
+::: {.front card-id="card-fe6b2ec7fb7fbd48" tags="definition"}
+Semisimple module
+:::
+
+::: {.back card-id="card-fe6b2ec7fb7fbd48"}
+A module that is a direct sum of simple (irreducible) submodules.
+:::
+
+::: {.front card-id="card-2c0c32144006744e" tags="definition"}
+Topological group
+:::
+
+::: {.back card-id="card-2c0c32144006744e"}
+A group $G$ equipped with a topology such that multiplication $G\times G\to G$ and inversion $G\to G$ are continuous.
+:::
+
+::: {.front card-id="card-7ffe8eaa3768a719" tags="definition"}
+Totally disconnected
+:::
+
+::: {.back card-id="card-7ffe8eaa3768a719"}
+A topological space whose only connected subsets are single points.
+:::

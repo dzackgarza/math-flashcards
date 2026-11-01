@@ -799,3 +799,499 @@ $\sum P(E_n) < \infty \implies P(\limsup_n E_n) = 0$
 
 If $E_n$ are independent events and $\sum P(E_n) = \infty$, then $P(\limsup_n E_n) = 1$.
 :::
+
+::: {.front card-id="card-baf3783be3599291" tags="definition"}
+Almost everywhere
+:::
+
+::: {.back card-id="card-baf3783be3599291"}
+A property holds almost everywhere (a.e.) if it holds except on a set of measure zero.
+:::
+
+::: {.front card-id="card-a904281b67c5c53d" tags="definition"}
+Almost everywhere convergence
+:::
+
+::: {.back card-id="card-a904281b67c5c53d"}
+$f_n \to f$ almost everywhere if there is a null set $N$ with $f_n(x) \to f(x)$ for every $x \notin N$.
+:::
+
+::: {.front card-id="card-17a21314cc76f5e0" tags="definition"}
+Almost uniform convergence
+:::
+
+::: {.back card-id="card-17a21314cc76f5e0"}
+$f_n \to f$ almost uniformly if for every $\varepsilon>0$ there is a measurable set $E$ with $\mu(E)<\varepsilon$ such that $f_n \to f$ uniformly on $E^c$.
+:::
+
+::: {.front card-id="card-5476db22544ca360" tags="definition"}
+Ball
+:::
+
+::: {.back card-id="card-5476db22544ca360"}
+The open ball of radius $r>0$ about $x$ is $B_r(x)=\{y : d(x,y)<r\}$.
+:::
+
+::: {.front card-id="card-47920a23f4a138bb" tags="definition"}
+Bounded function
+:::
+
+::: {.back card-id="card-47920a23f4a138bb"}
+A function $f: X \to \RR$ is bounded if $\sup_{x \in X} |f(x)| < \infty$.
+:::
+
+::: {.front card-id="card-22dde930a8b0d1e8" tags="definition"}
+Cantor set
+:::
+
+::: {.back card-id="card-22dde930a8b0d1e8"}
+The subset of $[0,1]$ obtained by repeatedly deleting the open middle third of each remaining interval; it is closed, uncountable, perfect, totally disconnected, and has measure zero.
+:::
+
+::: {.front card-id="card-0ed551f80ca27943" tags="definition"}
+Cantor-lebesgue function
+:::
+
+::: {.back card-id="card-0ed551f80ca27943"}
+The continuous nondecreasing function on $[0,1]$ that is constant on each interval removed in the construction of the Cantor set and maps the Cantor set onto $[0,1]$.
+:::
+
+::: {.front card-id="card-0e22ba91ed3c0fde" tags="definition"}
+Characteristic function
+:::
+
+::: {.back card-id="card-0e22ba91ed3c0fde"}
+For $E \subseteq X$, $\chi_E(x)=1$ if $x \in E$ and $\chi_E(x)=0$ otherwise.
+:::
+
+::: {.front card-id="card-53727d11c4d377e4" tags="definition"}
+Closed cube
+:::
+
+::: {.back card-id="card-53727d11c4d377e4"}
+A set $Q=[a_1,b_1]\times\cdots\times[a_n,b_n]\subset\RR^n$ with $b_i-a_i$ equal for all $i$; its volume is $|Q|=\prod_i (b_i-a_i)$.
+:::
+
+::: {.front card-id="card-bd6767904a796e97" tags="definition"}
+Compact
+:::
+
+::: {.back card-id="card-bd6767904a796e97"}
+A subset $K$ of a topological space is compact if every open cover of $K$ has a finite subcover.
+:::
+
+::: {.front card-id="card-650f4654ace59167" tags="definition"}
+Compactly supported
+:::
+
+::: {.back card-id="card-650f4654ace59167"}
+A function whose support is compact.
+:::
+
+::: {.front card-id="card-0142e1c7708898bc" tags="definition"}
+Composition of functions
+:::
+
+::: {.back card-id="card-0142e1c7708898bc"}
+For $f: A \to B$ and $g: B \to C$, the composition is $(g \circ f)(x) = g(f(x))$.
+:::
+
+::: {.front card-id="card-d45f0173ffd6369f" tags="definition"}
+Continuous function
+:::
+
+::: {.back card-id="card-d45f0173ffd6369f"}
+$f$ is continuous at $a$ if $\lim_{x \to a} f(x) = f(a)$; equivalently, for every $\varepsilon>0$ there is $\delta>0$ with $|x-a|<\delta \Rightarrow |f(x)-f(a)|<\varepsilon$.
+:::
+
+::: {.front card-id="card-2186b57eeea0bf7f" tags="definition"}
+Convergence in norm
+:::
+
+::: {.back card-id="card-2186b57eeea0bf7f"}
+$f_n \to f$ in norm if $\|f_n - f\| \to 0$; in $L^p$ this is convergence in the $L^p$ norm.
+:::
+
+::: {.front card-id="card-9c323571007d3edf" tags="definition"}
+Convergent sequence
+:::
+
+::: {.back card-id="card-9c323571007d3edf"}
+A sequence $(a_n)$ converges to $L$ if for every $\varepsilon>0$ there is $N$ with $|a_n-L|<\varepsilon$ for all $n \geq N$.
+:::
+
+::: {.front card-id="card-fe0ec5cd478a3716" tags="definition"}
+Countable subadditivity
+:::
+
+::: {.back card-id="card-fe0ec5cd478a3716"}
+For a measure or outer measure, $\mu\left(\bigcup_{j=1}^{\infty} E_j\right) \leq \sum_{j=1}^{\infty} \mu(E_j)$.
+:::
+
+::: {.front card-id="card-5fe211a6aa80f9ac" tags="definition"}
+Counting measure
+:::
+
+::: {.back card-id="card-5fe211a6aa80f9ac"}
+The measure $\mu(E)=\#E$ (possibly $+\infty$) on a set $X$.
+:::
+
+::: {.front card-id="card-a0b9699ab87d392c" tags="definition"}
+Cover
+:::
+
+::: {.back card-id="card-a0b9699ab87d392c"}
+A collection $\{U_j\}$ covers a set $A$ if $A \subseteq \bigcup_j U_j$.
+:::
+
+::: {.front card-id="card-5a7c5647b9ca4245" tags="definition"}
+Cylinder
+:::
+
+::: {.back card-id="card-5a7c5647b9ca4245"}
+In $\RR^{n+1}$, a set of the form $M \times \RR$ with $M \subseteq \RR^n$ measurable.
+:::
+
+::: {.front card-id="card-66b9d0ecadcee16b" tags="definition"}
+Differentiable function
+:::
+
+::: {.back card-id="card-66b9d0ecadcee16b"}
+A function that has a derivative at each point of its domain (or at a specified point).
+:::
+
+::: {.front card-id="card-e3cfe34bd1ffb425" tags="definition"}
+Dirichlet function
+:::
+
+::: {.back card-id="card-e3cfe34bd1ffb425"}
+The function $f=\chi_{\QQ}$, equal to $1$ on rationals and $0$ on irrationals.
+:::
+
+::: {.front card-id="card-3d0d85236a6e95a8" tags="definition"}
+Ell^p space
+:::
+
+::: {.back card-id="card-3d0d85236a6e95a8"}
+For $1 \leq p < \infty$, $\ell^p(\ZZ)$ is the set of sequences $(a_n)$ with $\sum_n |a_n|^p < \infty$; $\ell^\infty(\ZZ)$ is the set of bounded sequences, with $\|a\|_\infty = \sup_n |a_n|$.
+:::
+
+::: {.front card-id="card-1cbb9166ca593af5" tags="definition"}
+Event
+:::
+
+::: {.back card-id="card-1cbb9166ca593af5"}
+A measurable subset of a probability space; its probability is $P(E)$.
+:::
+
+::: {.front card-id="card-ed2a4adb7beb6ef0" tags="definition"}
+Factorial
+:::
+
+::: {.back card-id="card-ed2a4adb7beb6ef0"}
+$n! = 1\cdot 2 \cdots n$ for $n\geq 1$, with $0!=1$.
+:::
+
+::: {.front card-id="card-2a557a12b6f74e75" tags="definition"}
+Fourier transform
+:::
+
+::: {.back card-id="card-2a557a12b6f74e75"}
+$\hat f(\xi)=\int_{\RR^n} f(x)e^{-2\pi i \langle x,\xi\rangle}\,dx$ for $f \in L^1(\RR^n)$.
+:::
+
+::: {.front card-id="card-7d3c609ad8266152" tags="definition"}
+Independent events
+:::
+
+::: {.back card-id="card-7d3c609ad8266152"}
+Events $A,B$ are independent if $P(A \cap B)=P(A)P(B)$.
+:::
+
+::: {.front card-id="card-58c0c911a9bec7f7" tags="definition"}
+Infimum
+:::
+
+::: {.back card-id="card-58c0c911a9bec7f7"}
+The infimum $\inf A$ is the greatest lower bound of $A$: a lower bound that is $\geq$ every other lower bound.
+:::
+
+::: {.front card-id="card-25d69b9393b0ae7b" tags="definition"}
+Integral
+:::
+
+::: {.back card-id="card-25d69b9393b0ae7b"}
+For a measure space $(X,\mu)$ and measurable $f$, the integral is $\int_X f\,d\mu = \int f^+\,d\mu - \int f^-\,d\mu$, defined when at least one term is finite. For bounded $f : [a,b] \to \mathbb{R}$, the Riemann integral is the limit of Riemann sums, equivalently the common value of the upper and lower integrals.
+:::
+
+::: {.front card-id="card-3e90b2b5da3eb6a5" tags="definition"}
+Interval
+:::
+
+::: {.back card-id="card-3e90b2b5da3eb6a5"}
+A subset of $\RR$ of the form $[a,b]$, $(a,b)$, $[a,b)$, $(a,b]$, $(-\infty,b]$, $[a,\infty)$, or $\RR$, with $a \leq b$.
+:::
+
+::: {.front card-id="card-4ad88068e969b844" tags="definition"}
+Iterated integral
+:::
+
+::: {.back card-id="card-4ad88068e969b844"}
+An integral evaluated successively, e.g. $\int\left(\int f(x,y)\,dx\right)dy$.
+:::
+
+::: {.front card-id="card-c3cc938d15d2f9af" tags="definition"}
+L^+
+:::
+
+::: {.back card-id="card-c3cc938d15d2f9af"}
+$L^+$ denotes the set of nonnegative measurable functions (with values in $[0,\infty]$).
+:::
+
+::: {.front card-id="card-c650d2d2928c672e" tags="definition"}
+Lebesgue integrable
+:::
+
+::: {.back card-id="card-c650d2d2928c672e"}
+A measurable function $f$ is Lebesgue integrable if $\int |f|\,d\mu < \infty$, i.e. $f \in L^1$.
+:::
+
+::: {.front card-id="card-2e3dbe78f9db60ee" tags="definition"}
+Lebesgue integral
+:::
+
+::: {.back card-id="card-2e3dbe78f9db60ee"}
+For a measurable $f \ge 0$, the Lebesgue integral is $\int f\,d\mu = \sup\{\int s\,d\mu : 0 \le s \le f,\ s \text{ simple}\}$; for a general measurable $f$, $\int f\,d\mu = \int f^+\,d\mu - \int f^-\,d\mu$ when at least one term is finite.
+:::
+
+::: {.front card-id="card-e7e091f820f18223" tags="definition"}
+Lebesgue measure
+:::
+
+::: {.back card-id="card-e7e091f820f18223"}
+The complete translation-invariant measure $m$ on $\RR^n$ with $m([0,1]^n)=1$.
+:::
+
+::: {.front card-id="card-7620a7a2f401a0b3" tags="definition"}
+Limit inferior
+:::
+
+::: {.back card-id="card-7620a7a2f401a0b3"}
+For a real sequence, $\liminf_{n\to\infty} a_n = \sup_{n} \inf_{k \geq n} a_k = \lim_{n\to\infty} \inf_{k \geq n} a_k$; for a sequence of functions it is taken pointwise.
+:::
+
+::: {.front card-id="card-f6fe8ba30274ea5b" tags="definition"}
+Limit superior
+:::
+
+::: {.back card-id="card-f6fe8ba30274ea5b"}
+For a real sequence, $\limsup_{n\to\infty} a_n = \inf_{n} \sup_{k \geq n} a_k = \lim_{n\to\infty} \sup_{k \geq n} a_k$; for a sequence of functions it is taken pointwise.
+:::
+
+::: {.front card-id="card-00cecc797cbd2c24" tags="definition"}
+Linear span
+:::
+
+::: {.back card-id="card-00cecc797cbd2c24"}
+The linear span of a set $S$ is the set of all finite linear combinations of elements of $S$.
+:::
+
+::: {.front card-id="card-ed299f3d77d37846" tags="definition"}
+Measurable function
+:::
+
+::: {.back card-id="card-ed299f3d77d37846"}
+A map $f : (X,\Sigma) \to (Y,\mathcal{T})$ between measurable spaces is measurable if $f^{-1}(E) \in \Sigma$ for every $E \in \mathcal{T}$; for real-valued $f$, equivalently $\{x : f(x) > a\} \in \Sigma$ for every $a \in \mathbb{R}$.
+:::
+
+::: {.front card-id="card-490e7bb6a48436a2" tags="definition"}
+Measure
+:::
+
+::: {.back card-id="card-490e7bb6a48436a2"}
+A function $\mu$ on a $\sigma$-algebra with $\mu(\emptyset)=0$, $\mu(E)\geq 0$, and $\mu\left(\bigcup_j E_j\right)=\sum_j \mu(E_j)$ for pairwise disjoint measurable $E_j$.
+:::
+
+::: {.front card-id="card-c84f20c245e9800b" tags="definition"}
+Measure space
+:::
+
+::: {.back card-id="card-c84f20c245e9800b"}
+A triple $(X,\mathcal{M},\mu)$ consisting of a set, a $\sigma$-algebra of measurable subsets, and a measure on it.
+:::
+
+::: {.front card-id="card-1116487748037990" tags="definition"}
+Metric
+:::
+
+::: {.back card-id="card-1116487748037990"}
+A distance function $d$ on $X$: $d(x,y)\geq 0$, $d(x,y)=0$ iff $x=y$, $d(x,y)=d(y,x)$, and $d(x,z)\leq d(x,y)+d(y,z)$.
+:::
+
+::: {.front card-id="card-bd3f0b7d5a0b2656" tags="definition"}
+Monotone function
+:::
+
+::: {.back card-id="card-bd3f0b7d5a0b2656"}
+A function that is either nondecreasing ($x\leq y \Rightarrow f(x)\leq f(y)$) or nonincreasing ($x\leq y \Rightarrow f(x)\geq f(y)$).
+:::
+
+::: {.front card-id="card-55c40ca9c890d1ce" tags="definition"}
+Monotonicity
+:::
+
+::: {.back card-id="card-55c40ca9c890d1ce"}
+For a measure, $A \subseteq B$ implies $\mu(A) \leq \mu(B)$.
+:::
+
+::: {.front card-id="card-864210a0f991ecba" tags="definition"}
+Orthonormal
+:::
+
+::: {.back card-id="card-864210a0f991ecba"}
+A set $\{e_\alpha\}$ is orthonormal if $\langle e_\alpha,e_\beta\rangle=0$ for $\alpha\neq\beta$ and $\|e_\alpha\|=1$ for all $\alpha$.
+:::
+
+::: {.front card-id="card-450c35ab84864bd2" tags="definition"}
+Orthonormal basis
+:::
+
+::: {.back card-id="card-450c35ab84864bd2"}
+An orthonormal set that is maximal (equivalently, whose linear span is dense); every element is a norm-convergent sum of its Fourier coefficients.
+:::
+
+::: {.front card-id="card-4e0f57d51db70e2c" tags="definition"}
+Oscillation
+:::
+
+::: {.back card-id="card-4e0f57d51db70e2c"}
+The oscillation of $f$ at $x$ is $\omega_f(x)=\inf_{U \ni x} \sup_{y,z \in U} |f(y)-f(z)|$, the infimum over neighborhoods $U$ of $x$.
+:::
+
+::: {.front card-id="card-eeb07d601df0091e" tags="definition"}
+Outer measure
+:::
+
+::: {.back card-id="card-eeb07d601df0091e"}
+An outer measure on $X$ is a function $\mu^* : \mathcal{P}(X) \to [0,\infty]$ with $\mu^*(\emptyset) = 0$, monotonicity ($A \subseteq B \Rightarrow \mu^*(A) \le \mu^*(B)$), and countable subadditivity $\mu^*(\bigcup_n A_n) \le \sum_n \mu^*(A_n)$.
+:::
+
+::: {.front card-id="card-4a9a7d1aee68ff06" tags="definition"}
+Outer regular
+:::
+
+::: {.back card-id="card-4a9a7d1aee68ff06"}
+A measure $\mu$ is outer regular if $\mu(E)=\inf\{\mu(U) : E \subseteq U,\ U \text{ open}\}$ for every measurable $E$.
+:::
+
+::: {.front card-id="card-01f873a5f09d9885" tags="definition"}
+Pointwise convergence
+:::
+
+::: {.back card-id="card-01f873a5f09d9885"}
+$f_n \to f$ pointwise on $E$ if $f_n(x) \to f(x)$ for every $x \in E$.
+:::
+
+::: {.front card-id="card-7594523735285fb3" tags="definition"}
+Probability measure
+:::
+
+::: {.back card-id="card-7594523735285fb3"}
+A measure $P$ on a space $X$ with $P(X)=1$.
+:::
+
+::: {.front card-id="card-37750a1e532e33de" tags="definition"}
+Relatively compact
+:::
+
+::: {.back card-id="card-37750a1e532e33de"}
+A subset $A$ of a topological space is relatively compact if its closure is compact.
+:::
+
+::: {.front card-id="card-3dc1aa2d384d9d82" tags="definition"}
+Restriction
+:::
+
+::: {.back card-id="card-3dc1aa2d384d9d82"}
+For $f: X \to Y$ and $F \subseteq X$, the restriction $f|_F: F \to Y$ is defined by $f|_F(x) = f(x)$ for $x \in F$.
+:::
+
+::: {.front card-id="card-8f9c93e9d0bc28cd" tags="definition"}
+Riemann integrable
+:::
+
+::: {.back card-id="card-8f9c93e9d0bc28cd"}
+A bounded function $f$ on $[a,b]$ is Riemann integrable if its upper and lower Riemann integrals agree, equivalently if its set of discontinuities has measure zero.
+:::
+
+::: {.front card-id="card-d12eef96a3ac5983" tags="definition"}
+Riemann integral
+:::
+
+::: {.back card-id="card-d12eef96a3ac5983"}
+The integral $\int_a^b f(x)\,dx$ defined as the limit of Riemann sums over partitions of $[a,b]$ as the mesh tends to zero.
+:::
+
+::: {.front card-id="card-fdb86b8f2d80fbe9" tags="definition"}
+Sigma-algebra
+:::
+
+::: {.back card-id="card-fdb86b8f2d80fbe9"}
+A collection $\mathcal{M}$ of subsets of $X$ containing $X$ and closed under complements and countable unions.
+:::
+
+::: {.front card-id="card-7fb1e845f322ef62" tags="definition"}
+Simple function
+:::
+
+::: {.back card-id="card-7fb1e845f322ef62"}
+A measurable function taking finitely many values, equivalently a finite linear combination $\sum_{j=1}^{n} c_j \chi_{E_j}$ of characteristic functions of measurable sets.
+:::
+
+::: {.front card-id="card-429503b9f47065a6" tags="definition"}
+Slice function
+:::
+
+::: {.back card-id="card-429503b9f47065a6"}
+For $f(x,y)$ on $X \times Y$, the slice at $y$ is $f^y(x)=f(x,y)$.
+:::
+
+::: {.front card-id="card-d949a79d3a1694bc" tags="definition"}
+Space of continuous functions
+:::
+
+::: {.back card-id="card-d949a79d3a1694bc"}
+For a compact metric space $K$, $C(K)$ is the Banach space of continuous functions $K \to \RR$ with the supremum norm $\|f\|_\infty = \sup_{x \in K}|f(x)|$.
+:::
+
+::: {.front card-id="card-48a18cc85dff65a6" tags="definition"}
+Support
+:::
+
+::: {.back card-id="card-48a18cc85dff65a6"}
+The support of $f$ is the smallest closed set outside which $f$ vanishes, i.e. the intersection of all closed sets containing $\{x : f(x)\neq 0\}$.
+:::
+
+::: {.front card-id="card-de69796d7f46aaff" tags="definition"}
+Supremum
+:::
+
+::: {.back card-id="card-de69796d7f46aaff"}
+The supremum $\sup A$ is the least upper bound of $A$: an upper bound that is $\leq$ every other upper bound.
+:::
+
+::: {.front card-id="card-3f2146f4378e0484" tags="definition"}
+Thomae's function
+:::
+
+::: {.back card-id="card-3f2146f4378e0484"}
+The function $f(x)=1/q$ if $x=p/q$ in lowest terms with $q>0$, and $f(x)=0$ if $x$ is irrational; it is continuous exactly at the irrationals.
+:::
+
+::: {.front card-id="card-5fe503c0e2894719" tags="definition"}
+Uniformly bounded
+:::
+
+::: {.back card-id="card-5fe503c0e2894719"}
+A family $\mathcal{F}$ of functions is uniformly bounded if there is $M$ with $|f(x)|\leq M$ for all $f \in \mathcal{F}$ and all $x$.
+:::

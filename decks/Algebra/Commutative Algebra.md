@@ -229,3 +229,75 @@ Let $A$ be a Noetherian domain, $B$ a finite-type $A$-algebra, and $M$ a finite 
 ::: {.back card-id="theorem-generic-freeness"}
 There exists $0\ne a\in A$ such that $M_a$ is a free $A_a$-module. Its rank over $A_a$ need not be finite.
 :::
+
+::: {.front card-id="card-d4fe28ff3a6ebd8a" tags="definition"}
+Algebraically independent
+:::
+
+::: {.back card-id="card-d4fe28ff3a6ebd8a"}
+Elements $t_1,\ldots,t_d$ of a $k$-algebra are algebraically independent over $k$ if the only polynomial $f\in k[x_1,\ldots,x_d]$ with $f(t_1,\ldots,t_d)=0$ is $f=0$.
+:::
+
+::: {.front card-id="card-b68ff905726843a0" tags="definition"}
+Associated prime
+:::
+
+::: {.back card-id="card-b68ff905726843a0"}
+A prime ideal $\mathfrak p$ that is the annihilator of some element of a module $M$, i.e. $\mathfrak p=\operatorname{Ann}_R(m)$ for some $m\in M$.
+:::
+
+::: {.front card-id="card-21ea81f62ab679a9" tags="definition"}
+Center of a ring
+:::
+
+::: {.back card-id="card-21ea81f62ab679a9"}
+The subring $Z(R)=\{z\in R:zr=rz\text{ for all }r\in R\}$ of elements that commute with everything.
+:::
+
+::: {.front card-id="card-1a72d1cba8538bb4" tags="definition"}
+Integral extension
+:::
+
+::: {.back card-id="card-1a72d1cba8538bb4"}
+A ring homomorphism $R\to S$ such that every element $s\in S$ is integral over $R$, i.e. satisfies a monic polynomial with coefficients in $R$.
+:::
+
+::: {.front card-id="card-2191de5830df11b2" tags="definition"}
+Minimal prime ideal
+:::
+
+::: {.back card-id="card-2191de5830df11b2"}
+A prime ideal minimal among the prime ideals containing a given ideal $I$; for $I=0$, a prime ideal minimal among all prime ideals of $R$.
+:::
+
+::: {.front card-id="card-d6c8beb027dc9d4e" tags="definition"}
+Noetherian local ring
+:::
+
+::: {.back card-id="card-d6c8beb027dc9d4e"}
+A local ring that is Noetherian.
+:::
+
+::: {.front card-id="card-3539175fe01f72e8" tags="definition"}
+Noetherian ring
+:::
+
+::: {.back card-id="card-3539175fe01f72e8"}
+A ring $R$ in which every ideal is finitely generated; equivalently, $R$ satisfies the ascending chain condition on ideals.
+:::
+
+::: {.front card-id="card-44ae2e8a89b25e18" tags="definition"}
+Primary ideal
+:::
+
+::: {.back card-id="card-44ae2e8a89b25e18"}
+An ideal $Q$ such that $ab\in Q$ and $a\notin Q$ imply $b^n\in Q$ for some $n\ge 1$.
+:::
+
+::: {.front card-id="card-cc66e0e65d80adbb" tags="definition"}
+Quasiprojective variety
+:::
+
+::: {.back card-id="card-cc66e0e65d80adbb"}
+A locally closed subvariety of projective space $\mathbf P^n$, i.e. an open subvariety of a projective variety.
+:::

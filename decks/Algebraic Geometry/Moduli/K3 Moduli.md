@@ -451,3 +451,147 @@ A K3 period $\omega$ is orthogonal to a primitive class $h$ with $h^2>0$ and to 
 ::: {.back card-id="application-period-root-obstructs-ampleness"}
 No. Orthogonality to $\omega$ makes $\delta$ an integral $(1,1)$ class, so it is the class of a line bundle by Lefschetz $(1,1)$. K3 Riemann–Roch gives $\chi(\mathcal O(\delta))=1$; Serre duality implies that either $\delta$ or $-\delta$ is effective. An ample class must intersect every nonzero effective divisor positively, contradicting $(h,\delta)=0$.
 :::
+
+::: {.front card-id="card-1aab55ee31850bbb" tags="definition"}
+Ade singularity
+:::
+
+::: {.back card-id="card-1aab55ee31850bbb"}
+A normal surface singularity whose minimal resolution has exceptional divisor a Dynkin diagram of type $A_n$, $D_n$, $E_6$, $E_7$, or $E_8$. These are exactly the rational double points (du Val singularities).
+:::
+
+::: {.front card-id="card-6b14f9ae9d6474c8" tags="definition"}
+Arithmetic quotient
+:::
+
+::: {.back card-id="card-6b14f9ae9d6474c8"}
+A quotient $\Gamma\backslash D$ of a symmetric domain $D$ by a discrete subgroup $\Gamma$ commensurable with an arithmetic lattice. Moduli spaces of polarized K3 surfaces are arithmetic quotients of type IV domains.
+:::
+
+::: {.front card-id="card-bc716af8baef6126" tags="definition"}
+Birational modification
+:::
+
+::: {.back card-id="card-bc716af8baef6126"}
+A birational map between varieties, usually resolved by a sequence of blowups and blowdowns. Kulikov's theorem allows a birational modification after finite base change to obtain a semistable model.
+:::
+
+::: {.front card-id="card-223d21f6a7d001e5" tags="definition"}
+Bounded symmetric domain
+:::
+
+::: {.back card-id="card-223d21f6a7d001e5"}
+A bounded open domain $\Omega\subset\mathbb C^n$ such that every point is the unique fixed point of an involutive holomorphic automorphism of $\Omega$. Period domains of K3 type are bounded symmetric domains of type IV.
+:::
+
+::: {.front card-id="card-fdf58d78e130682d" tags="definition"}
+Central fiber
+:::
+
+::: {.back card-id="card-fdf58d78e130682d"}
+The fibre $X_0=\pi^{-1}(0)$ of a family $\pi:\mathcal X\to\Delta$ over a disc. In a semistable degeneration it is a reduced normal-crossings divisor.
+:::
+
+::: {.front card-id="card-30b9ac4219789b76" tags="definition"}
+Discriminant locus
+:::
+
+::: {.back card-id="card-30b9ac4219789b76"}
+In the period domain of $\rho$-marked K3 surfaces, $\Delta_\rho=\mathbb D_\rho\cap\bigcup_{\delta}\delta^\perp$, where $\delta$ runs over roots in $(L^G)^\perp$. Its complement parametrizes periods with no extra algebraic classes.
+:::
+
+::: {.front card-id="card-4527c4cdf3791038" tags="definition"}
+Fine moduli space
+:::
+
+::: {.back card-id="card-4527c4cdf3791038"}
+A moduli space that represents the moduli functor: every family is the pullback of a universal family over it. Equivalently, it carries a universal object.
+:::
+
+::: {.front card-id="card-76e785e17a4b4a7c" tags="definition"}
+Groupoid
+:::
+
+::: {.back card-id="card-76e785e17a4b4a7c"}
+A category in which every morphism is an isomorphism. The moduli stack of a moduli problem assigns to a base $B$ the groupoid of families over $B$.
+:::
+
+::: {.front card-id="card-8e37fe59c02842a4" tags="definition"}
+Local torelli theorem
+:::
+
+::: {.back card-id="card-8e37fe59c02842a4"}
+For a marked K3 surface $(X,\phi)$, the period map from the versal deformation space of $X$ to the period domain $\mathbb D$ is a local isomorphism.
+:::
+
+::: {.front card-id="card-a07cec7de306d8eb" tags="definition"}
+Log canonical center
+:::
+
+::: {.back card-id="card-a07cec7de306d8eb"}
+For a log canonical pair $(X,D)$, a subvariety $Z\subset X$ that is the image of a divisor $E$ with discrepancy $-1$ in a log resolution. It is the locus where the pair fails to be klt.
+:::
+
+::: {.front card-id="card-35ca437ea0e015b1" tags="definition"}
+Picard lattice
+:::
+
+::: {.back card-id="card-35ca437ea0e015b1"}
+The lattice $\operatorname{Pic}(X)$ with its intersection form. For a projective K3 surface, $\operatorname{Pic}(X)=\operatorname{NS}(X)$ is an even primitive sublattice of $\Lambda_{\mathrm{K3}}$ of signature $(1,\rho(X)-1)$.
+:::
+
+::: {.front card-id="card-4e9bb43f4ef3673f" tags="definition"}
+Q-cartier divisor
+:::
+
+::: {.back card-id="card-4e9bb43f4ef3673f"}
+A divisor $D$ on a normal variety such that some nonzero multiple $mD$ is Cartier. If $K_X$ is $\mathbb Q$-Cartier, then $X$ is $\mathbb Q$-Gorenstein.
+:::
+
+::: {.front card-id="card-9fc12fa0cf8ba0dd" tags="definition"}
+Rational boundary component
+:::
+
+::: {.back card-id="card-9fc12fa0cf8ba0dd"}
+A boundary stratum added to a symmetric domain in the Baily–Borel compactification. For a type IV domain these are points or copies of the upper half-plane $\mathbb H$ (and $-\mathbb H$).
+:::
+
+::: {.front card-id="card-e65c8bbc605edf10" tags="definition"}
+Semi log canonical singularity
+:::
+
+::: {.back card-id="card-e65c8bbc605edf10"}
+A singularity of a pair $(X,D)$ such that $X$ is reduced, $K_X+D$ is $\mathbb Q$-Cartier, and the pair is log canonical after normalization and gluing. These are the singularities allowed in stable slc surface pairs.
+:::
+
+::: {.front card-id="card-f67ebfdf6dac4a2b" tags="definition"}
+Semifan
+:::
+
+::: {.back card-id="card-f67ebfdf6dac4a2b"}
+A collection of rational polyhedral cones in the boundary of a symmetric domain, closed under taking faces, used to construct a toroidal or semitoroidal compactification. A recognizable polarizing divisor determines a unique semifan.
+:::
+
+::: {.front card-id="card-a6dd0db307a9ada3" tags="definition"}
+Toroidal compactification
+:::
+
+::: {.back card-id="card-a6dd0db307a9ada3"}
+A compactification of $\Gamma\backslash D$ obtained by adding torus bundles over boundary components, using a fan or semifan of rational polyhedral cones. It depends on the fan and dominates the Baily–Borel compactification.
+:::
+
+::: {.front card-id="card-da95f37a1b1f62ae" tags="definition"}
+Type iv domain
+:::
+
+::: {.back card-id="card-da95f37a1b1f62ae"}
+A domain of the form $\mathbb D_N=\{[x]\in\mathbb P(N\otimes\mathbb C):x^2=0,\ |x|>0\}$ for a lattice $N$ with a quadratic form. For $N=\Lambda_{\mathrm{K3}}$ it is the $20$-dimensional period domain of K3 surfaces.
+:::
+
+::: {.front card-id="card-af9f71bcc0ea225f" tags="definition"}
+Weak torelli theorem
+:::
+
+::: {.back card-id="card-af9f71bcc0ea225f"}
+Two complex K3 surfaces $X$ and $X'$ are isomorphic iff there is an isometry $H^2(X;\mathbb Z)\to H^2(X';\mathbb Z)$ whose $\mathbb C$-linear extension preserves the Hodge decompositions.
+:::

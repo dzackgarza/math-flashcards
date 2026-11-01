@@ -1562,3 +1562,115 @@ For $L=3A$, one has $L^2\ge9$ and $L\cdot D\ge3$ for every nonzero effective $D$
 
 For $L=4A$, one has $L^2\ge16$ and $L\cdot D\ge4$. The base-point and length-two obstructions are all excluded, so $K_S+4A$ is very ample.
 :::
+
+::: {.front card-id="card-0a67199290194819" tags="definition"}
+Blowdown
+:::
+
+::: {.back card-id="card-0a67199290194819"}
+The birational morphism inverse to a blowup. For a point blowup of a smooth surface it contracts the exceptional curve $E\cong\mathbb P^1$ with $E^2=-1$ to a point; Castelnuovo's criterion characterizes contractible $(-1)$-curves.
+:::
+
+::: {.front card-id="card-43fe46a27feebef9" tags="definition"}
+Castelnuovo–severi inequality
+:::
+
+::: {.back card-id="card-43fe46a27feebef9"}
+If $C\to C_1\times C_2$ is birational onto its image, where $C\to C_i$ are finite morphisms of degrees $d_i$ between smooth projective curves, then $g(C)\le d_1g(C_1)+d_2g(C_2)+(d_1-1)(d_2-1)$.
+:::
+
+::: {.front card-id="card-e38d788d3a5ddd43" tags="definition"}
+Enriques–kodaira classification
+:::
+
+::: {.back card-id="card-e38d788d3a5ddd43"}
+The classification of smooth projective complex surfaces by Kodaira dimension: $-\infty$ (rational or ruled), $0$ (abelian, K3, Enriques, or bielliptic), $1$ (properly elliptic), and $2$ (general type).
+:::
+
+::: {.front card-id="card-ad5b403d7b573270" tags="definition"}
+Fundamental point
+:::
+
+::: {.back card-id="card-ad5b403d7b573270"}
+A point of indeterminacy of a birational map $f:X\dashrightarrow Y$. For a birational map of smooth surfaces, $f$ factors through the blowup at each fundamental point.
+:::
+
+::: {.front card-id="card-75ce00d2b15c761e" tags="definition"}
+Graph closure
+:::
+
+::: {.back card-id="card-75ce00d2b15c761e"}
+For a rational map $T:X\dashrightarrow Y$, the closure $\Gamma\subset X\times Y$ of the graph of $T$ over its domain of definition. The projections $\Gamma\to X$ and $\Gamma\to Y$ resolve the indeterminacy of $T$.
+:::
+
+::: {.front card-id="card-4f29ca92c5939d41" tags="definition"}
+Intersection number
+:::
+
+::: {.back card-id="card-4f29ca92c5939d41"}
+For line bundles $L_1,\dots,L_n$ on a smooth proper $n$-fold $X$, the intersection number is $\int_X c_1(L_1)\cdots c_1(L_n)\in\mathbb Z$. On a smooth projective surface, for divisors $C,D$ meeting properly, $C\cdot D=\sum_{x\in C\cap D}\dim_k\mathcal O_{X,x}/(f_C,f_D)$.
+:::
+
+::: {.front card-id="card-8f343de9852359e9" tags="definition"}
+Rational double point
+:::
+
+::: {.back card-id="card-8f343de9852359e9"}
+A normal surface singularity that is rational and whose minimal resolution has exceptional divisor a Dynkin diagram of type $A_n$, $D_n$, $E_6$, $E_7$, or $E_8$; equivalently, a canonical (du Val) surface singularity. Local models include $A_n: xy=z^{n+1}$, together with the $D_n$ and $E_n$ equations in three variables.
+:::
+
+::: {.front card-id="card-9d74e13a11f74a3f" tags="definition"}
+Riemann-roch
+:::
+
+::: {.back card-id="card-9d74e13a11f74a3f"}
+For a divisor $D$ on a smooth projective curve $C$ of genus $g$, $\ell(D)-i(D)=\deg D+1-g$, where $\ell(D)=\dim H^0(C,\mathcal O_C(D))$ and $i(D)=\dim H^1(C,\mathcal O_C(D))$; equivalently $\chi(C,\mathcal O_C(D))=\deg D+1-g$. Hirzebruch--Riemann--Roch generalizes this to $\chi(X,E)=\int_X\operatorname{ch}(E)\operatorname{td}(X)$.
+:::
+
+::: {.front card-id="card-86317573fecbaa5b" tags="definition"}
+Saturation
+:::
+
+::: {.back card-id="card-86317573fecbaa5b"}
+For a sublattice $T\subset L$, the saturation $T^{\mathrm{sat}}=\{x\in L:nx\in T\text{ for some }n\ne0\}$. It is the smallest primitive sublattice of $L$ containing $T$.
+:::
+
+::: {.front card-id="card-265b391686a6616f" tags="definition"}
+Shioda–tate formula
+:::
+
+::: {.back card-id="card-265b391686a6616f"}
+For a relatively minimal elliptic surface $f:S\to B$ with a section and at least one singular fibre, $\rho(S)=2+\operatorname{rank}\operatorname{MW}(f)+\sum_v(m_v-1)$, where $m_v$ is the number of irreducible components of the fibre $F_v$.
+:::
+
+::: {.front card-id="card-8a168bb531ac08df" tags="definition"}
+Symmetric square
+:::
+
+::: {.back card-id="card-8a168bb531ac08df"}
+The quotient $S^{(2)}=\operatorname{Sym}^2(S)$ of $S\times S$ by the involution swapping the factors. It parametrizes unordered pairs of points and is resolved by the Hilbert–Chow morphism $\operatorname{Hilb}^2(S)\to\operatorname{Sym}^2(S)$.
+:::
+
+::: {.front card-id="card-c1868ebf42273500" tags="definition"}
+Tangent direction
+:::
+
+::: {.back card-id="card-c1868ebf42273500"}
+A one-dimensional subspace of the Zariski tangent space $T_pS$. Length-two subschemes supported at $p$ correspond to tangent directions, so the fibre of $\operatorname{Hilb}^2(S)\to\operatorname{Sym}^2(S)$ over $2p$ is $\mathbb P(T_pS)$.
+:::
+
+::: {.front card-id="card-2769a29c210bf316" tags="definition"}
+Trivial lattice
+:::
+
+::: {.back card-id="card-2769a29c210bf316"}
+For an elliptic surface with a section, the sublattice $T\subset\operatorname{NS}(S)$ generated by the zero section, a fibre, and the non-identity components of all reducible fibres. One has $\operatorname{NS}(S)/T\cong\operatorname{MW}(f)$.
+:::
+
+::: {.front card-id="card-c73298087e0e91a5" tags="definition"}
+Weierstrass normal form
+:::
+
+::: {.back card-id="card-c73298087e0e91a5"}
+The equation $y^2=x^3+a_4x+a_6$ (projectively $y^2z=x^3+a_4xz^2+a_6z^3$) of an elliptic curve or of the fibres of an elliptic fibration. Its discriminant is $\Delta=-16(4a_4^3+27a_6^2)$.
+:::

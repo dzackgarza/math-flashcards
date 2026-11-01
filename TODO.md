@@ -25,19 +25,3 @@ behavior that controls rendered content.
 
 Extraction is an intermediate step. Any rendering behavior still exclusive to
 Zettlr means the task remains incomplete.
-
-# Definition-card coverage
-
-Every technical term used in a card must have a definition card. The collection
-does not meet this requirement, and no complete inventory of missing terms
-exists.
-
-## Completion conditions
-
-- [ ] Read every deck, then read the cards therein.
-- [ ] Extract every technical term used by each card.
-- [ ] Check whether each extracted term has a definition card.
-- [ ] Add one definition card for each term without one: the term on the front,
-  its definition on the back.
-- [ ] Preserve existing card IDs, tags, and deck placement.
-- [ ] Run `just test`.

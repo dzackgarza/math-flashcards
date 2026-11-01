@@ -177,3 +177,155 @@ with compact kernel (such pairs always exist, and are classified). Let $\Gamma$ 
 
 The Shimura varieties are the algebraic varieties that arise in this way. In other words, an algebraic variety over $\mathbb{C}$ is a Shimura variety if its universal covering space (in the topological sense) is a hermitian symmetric domain, and its fundamental group is the image of a congruence group as above.
 :::
+
+::: {.front card-id="card-dbf562814c8f40d6" tags="definition"}
+Adele ring
+:::
+
+::: {.back card-id="card-dbf562814c8f40d6"}
+For a global field $k$, the restricted direct product $\mathbb A_k=\prod_v' k_v$ over all places $v$, with respect to the local rings of integers $\mathcal O_v$; for $k=\mathbb Q$, $\mathbb A=\widehat{\mathbb Z}\otimes\mathbb Q\times\mathbb R$.
+:::
+
+::: {.front card-id="card-f33b4442e360e507" tags="definition"}
+Arithmetic scheme
+:::
+
+::: {.back card-id="card-f33b4442e360e507"}
+A scheme $X$ equipped with a structure morphism to an arithmetic base such as $\operatorname{Spec}\mathbb Z$ or $\operatorname{Spec}\mathcal O_K$; its fibres over primes are schemes over finite fields and its generic fibre is a variety over $\mathbb Q$ or a number field.
+:::
+
+::: {.front card-id="card-5ebb84b5f9c09f0b" tags="definition"}
+Cofibrant replacement
+:::
+
+::: {.back card-id="card-5ebb84b5f9c09f0b"}
+In a model category, a functorial factorization of an object $X$ as a cofibration $QX\to X$ from a cofibrant object $QX$; it is used to compute derived functors, for example $\mathbf L F(X)=F(QX)$.
+:::
+
+::: {.front card-id="card-b41b486b9c834ef7" tags="definition"}
+Divided power thickening
+:::
+
+::: {.back card-id="card-b41b486b9c834ef7"}
+A thickening $A\to B$ (a surjection with nilpotent kernel) together with divided power structures on the kernel compatible with the PD structure on $p$; the universal $p$-adically complete PD thickening of $\mathcal O_K$ over $\mathbb Z_p$ is $A_{\mathrm{crys}}$.
+:::
+
+::: {.front card-id="card-4d752f5b42d7bc7a" tags="definition"}
+Finite adeles
+:::
+
+::: {.back card-id="card-4d752f5b42d7bc7a"}
+The ring $\mathbb A_f=\prod_{v\text{ finite}}' k_v$ of finite adeles, the restricted direct product over the non-Archimedean places; for $\mathbb Q$, $\mathbb A_f=\widehat{\mathbb Z}\otimes_{\mathbb Z}\mathbb Q$.
+:::
+
+::: {.front card-id="card-53ea801e2b02e4e9" tags="definition"}
+Frobenius endomorphism
+:::
+
+::: {.back card-id="card-53ea801e2b02e4e9"}
+For a ring or scheme of characteristic $p$, the endomorphism $\operatorname{Frob}:R\to R$, $x\mapsto x^p$; for $X$ over $\mathbb F_p$ it gives a morphism $X\to X^{(p)}$ to the Frobenius twist, and the relative Frobenius is $F_{X/k}:X\to X^{(p)}$.
+:::
+
+::: {.front card-id="card-aa406a897b09b179" tags="definition"}
+Hermitian space
+:::
+
+::: {.back card-id="card-aa406a897b09b179"}
+A smooth manifold $M$ with a Riemannian metric $g$ and a complex structure $J$ such that $g(Jx,Jy)=g(x,y)$; it is symmetric if every point is an isolated fixed point of an involution, and a Hermitian symmetric domain if it also has nonpositive sectional curvature and is of noncompact type.
+:::
+
+::: {.front card-id="card-b35d040a5a028195" tags="definition"}
+Homotopy fixed point
+:::
+
+::: {.back card-id="card-b35d040a5a028195"}
+For a group $G$ acting on a space $X$, the homotopy fixed points $X^{hG}=\operatorname{Map}^G(EG,X)$, the space of $G$-equivariant maps from a contractible free $G$-space $EG$ to $X$.
+:::
+
+::: {.front card-id="card-1f242f1dd4b0c491" tags="definition"}
+Hyperbolic curve
+:::
+
+::: {.back card-id="card-1f242f1dd4b0c491"}
+A smooth projective curve of genus $g\ge2$ over a field $k$; more generally a curve with negative Euler characteristic. Over a number field it has finitely many $k$-points by Faltings, and its étale fundamental group is anabelian.
+:::
+
+::: {.front card-id="card-feb9a5bc48b07ccb" tags="definition"}
+Hypercover
+:::
+
+::: {.back card-id="card-feb9a5bc48b07ccb"}
+A simplicial object $U_\bullet\to X$ in a site such that, for every $n$, the canonical map from $U_n$ to the $n$-th matching object (the fiber product of the previous stages) is a cover; it generalizes the Čech nerve and computes cohomology when arbitrary covers cannot be refined by a single cover.
+:::
+
+::: {.front card-id="card-5354a04ea6eeff20" tags="definition"}
+Negative sectional curvature
+:::
+
+::: {.back card-id="card-5354a04ea6eeff20"}
+A Riemannian manifold has negative sectional curvature if $K(\sigma)<0$ for every tangent $2$-plane $\sigma$. Hermitian symmetric domains have nonpositive sectional curvature, and negative sectional curvature only in rank one.
+:::
+
+::: {.front card-id="card-e5250a461a00338c" tags="definition"}
+P-adically complete
+:::
+
+::: {.back card-id="card-e5250a461a00338c"}
+A ring $R$ is $p$-adically complete if the natural map $R\to\varprojlim_n R/p^nR$ is an isomorphism; equivalently $R$ is complete for the $p$-adic topology.
+:::
+
+::: {.front card-id="card-7407e15eb58a730d" tags="definition"}
+P-torsionfree
+:::
+
+::: {.back card-id="card-7407e15eb58a730d"}
+An abelian group or ring $R$ is $p$-torsionfree if multiplication by $p$ is injective, i.e. $pr=0$ implies $r=0$; equivalently $R$ has no nonzero $p$-torsion.
+:::
+
+::: {.front card-id="card-23fc31f061e1fa53" tags="definition"}
+Perfect ring
+:::
+
+::: {.back card-id="card-23fc31f061e1fa53"}
+A ring $R$ of characteristic $p$ is perfect if its Frobenius $x\mapsto x^p$ is bijective; equivalently every element has a unique $p$-th root. A perfect field is a field $k$ with $k=k^p$.
+:::
+
+::: {.front card-id="card-6f080b42d2b1ce48" tags="definition"}
+Pro-infinitesimal
+:::
+
+::: {.back card-id="card-6f080b42d2b1ce48"}
+A map of formal schemes or rings that is an inverse limit of infinitesimal thickenings; equivalently each finite-level quotient is an infinitesimal thickening. The map $\theta:\mathbf A_{\inf}(S)\to S$ in perfectoid theory is pro-infinitesimal.
+:::
+
+::: {.front card-id="card-307493a661302070" tags="definition"}
+Pro-space
+:::
+
+::: {.back card-id="card-307493a661302070"}
+An object of the pro-category $\mathsf{pro}(\mathsf{Spaces})$, i.e. a filtered inverse system of spaces, with $\operatorname{Hom}(\{X_i\},\{Y_j\})=\varprojlim_j\varinjlim_i\operatorname{Hom}(X_i,Y_j)$; the étale homotopy type is a pro-space.
+:::
+
+::: {.front card-id="card-a3593c88b3d5b54e" tags="definition"}
+Restricted direct topology
+:::
+
+::: {.back card-id="card-a3593c88b3d5b54e"}
+The topology on a restricted direct product $\prod_v' G_v$ in which a basis of neighborhoods of the identity consists of products $\prod_v U_v$ with $U_v\subset G_v$ open and $U_v=G_v$ for all but finitely many $v$.
+:::
+
+::: {.front card-id="card-ae2cd3772c8f5089" tags="definition"}
+Semisimple lie group
+:::
+
+::: {.back card-id="card-ae2cd3772c8f5089"}
+A Lie group whose Lie algebra is semisimple, i.e. a direct sum of simple Lie algebras with no nonzero solvable ideal; equivalently its Killing form is nondegenerate. Connected semisimple Lie groups have finite centre.
+:::
+
+::: {.front card-id="card-f04d6cc96d0e1d93" tags="definition"}
+Universal covering space
+:::
+
+::: {.back card-id="card-f04d6cc96d0e1d93"}
+A covering space $\tilde X\to X$ with $\tilde X$ simply connected; it exists when $X$ is connected, locally path-connected, and semilocally simply connected, and is unique up to isomorphism over $X$.
+:::

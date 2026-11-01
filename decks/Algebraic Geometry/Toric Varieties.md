@@ -588,3 +588,211 @@ What is $u_F$?
 ::: {.back card-id="card-5264c6df4160af95"}
 For $P \subset M$, $u_F\in N_{\mathbf{R}}$ is orthogonal to the face $F$.
 :::
+
+::: {.front card-id="card-cd1d89861804bb0e" tags="definition"}
+Affine semigroup
+:::
+
+::: {.back card-id="card-cd1d89861804bb0e"}
+An affine semigroup is a finitely generated submonoid $S\subset M$ of a lattice $M\cong\mathbb Z^n$. The semigroup algebra $k[S]$ is the coordinate ring of the affine toric variety $\operatorname{Spec}k[S]$; $S$ is saturated if $qm\in S$ with $q>0$ and $m\in M$ implies $m\in S$.
+:::
+
+::: {.front card-id="card-18c94d4a2124c9f4" tags="definition"}
+Algebraic torus
+:::
+
+::: {.back card-id="card-18c94d4a2124c9f4"}
+An algebraic torus over a field $k$ is an algebraic group $T\cong\mathbf G_{m,k}^n$; over $\bar k$ it is isomorphic to $(\bar k^\times)^n$. Its character lattice is $M=\operatorname{Hom}(T,\mathbf G_m)\cong\mathbb Z^n$ and its cocharacter lattice is $N=\operatorname{Hom}(\mathbf G_m,T)\cong\mathbb Z^n$.
+:::
+
+::: {.front card-id="card-596828f9fc0c4c0b" tags="definition"}
+Anticanonical divisor
+:::
+
+::: {.back card-id="card-596828f9fc0c4c0b"}
+An anticanonical divisor on a normal variety $X$ is a Weil divisor $D$ with $\mathcal O_X(D)\cong\omega_X^{-1}$, i.e. $D\sim-K_X$. It is Cartier exactly when $K_X$ is Cartier.
+:::
+
+::: {.front card-id="card-543a3373272883a3" tags="definition"}
+Cartier data
+:::
+
+::: {.back card-id="card-543a3373272883a3"}
+For a torus-invariant Cartier divisor $D=\sum_\rho a_\rho D_\rho$ on $X_\Sigma$, Cartier data are elements $m_\sigma\in M$ for $\sigma\in\Sigma$ with $\langle m_\sigma,u_\rho\rangle=-a_\rho$ for every ray $\rho\in\sigma(1)$, so that $D|_{U_\sigma}=\operatorname{div}(\chi^{-m_\sigma})|_{U_\sigma}$; they satisfy $m_\sigma-m_{\sigma'}\in M(\sigma\cap\sigma')$.
+:::
+
+::: {.front card-id="card-e6dd760f34cc8383" tags="definition"}
+Cocharacter lattice
+:::
+
+::: {.back card-id="card-e6dd760f34cc8383"}
+For an algebraic torus $T$, the cocharacter lattice is $N=\operatorname{Hom}(\mathbf G_m,T)$, the lattice of one-parameter subgroups. It is dual to the character lattice $M=\operatorname{Hom}(T,\mathbf G_m)$ via the pairing $\langle m,\lambda\rangle$ defined by $\chi^m\circ\lambda(t)=t^{\langle m,\lambda\rangle}$.
+:::
+
+::: {.front card-id="card-ca0aa9ac34954065" tags="definition"}
+Distinguished point
+:::
+
+::: {.back card-id="card-ca0aa9ac34954065"}
+For a cone $\sigma$ in a fan $\Sigma$, the distinguished point $x_\sigma\in U_\sigma$ is defined by the semigroup homomorphism $S_\sigma=\sigma^\vee\cap M\to\{0,1\}$ sending $m$ to $1$ if $m\in\sigma^\perp$ and to $0$ otherwise. Its orbit $O(\sigma)=T\cdot x_\sigma$ corresponds to $\sigma$ under the orbit-cone correspondence.
+:::
+
+::: {.front card-id="card-5cb3e24f78d85a4d" tags="definition"}
+Facet
+:::
+
+::: {.back card-id="card-5cb3e24f78d85a4d"}
+A facet of a polytope $P$ is a face of dimension $\dim P-1$. For a full-dimensional lattice polytope it is cut out by a supporting affine hyperplane $H_{u_F,a_F}$ with primitive inward normal $u_F$.
+:::
+
+::: {.front card-id="card-4ef2858cdbeda766" tags="definition"}
+Facet presentation
+:::
+
+::: {.back card-id="card-4ef2858cdbeda766"}
+A facet presentation of a full-dimensional polytope $P\subset M_{\mathbb R}$ writes $P=\{m\in M_{\mathbb R}:\langle m,u_F\rangle\ge -a_F\text{ for all facets }F\}$, where $u_F$ is the primitive inward normal to $F$ and $a_F\in\mathbb Z$ for a lattice polytope. A reflexive polytope admits such a presentation with $a_F=1$ for every facet.
+:::
+
+::: {.front card-id="card-9c69e3dd4c0b2236" tags="definition"}
+Lattice distance
+:::
+
+::: {.back card-id="card-9c69e3dd4c0b2236"}
+For a lattice hyperplane $H=\{m\in M_{\mathbb R}:\langle m,u\rangle=b\}$ with primitive normal $u\in N$ and $b\in\mathbb Z$, the lattice distance from the origin to $H$ is $|b|$.
+:::
+
+::: {.front card-id="card-b3294275c9c67711" tags="definition"}
+Lattice polytope
+:::
+
+::: {.back card-id="card-b3294275c9c67711"}
+A lattice polytope in $M_{\mathbb R}$ is a convex polytope $P\subset M_{\mathbb R}$ whose vertices lie in the lattice $M\cong\mathbb Z^n$; equivalently $P=\operatorname{Conv}(S)$ for a finite subset $S\subset M$.
+:::
+
+::: {.front card-id="card-06dfd60dc8d94782" tags="definition"}
+Normal fan
+:::
+
+::: {.back card-id="card-06dfd60dc8d94782"}
+For a full-dimensional polytope $P\subset M_{\mathbb R}$, the normal fan is the complete fan in $N_{\mathbb R}$ whose cones are the normal cones $\sigma_F=\{u\in N_{\mathbb R}:\langle u,x\rangle=\max_{y\in P}\langle u,y\rangle\text{ for all }x\in F\}$ of the faces $F$ of $P$.
+:::
+
+::: {.front card-id="card-c6ee7d56ac48dd84" tags="definition"}
+One-parameter subgroup
+:::
+
+::: {.back card-id="card-c6ee7d56ac48dd84"}
+A one-parameter subgroup (1-PS) of an algebraic group $G$ is a morphism of algebraic groups $\lambda:\mathbf G_m\to G$. For a torus $T\cong\mathbf G_m^n$ it has the form $t\mapsto(t^{u_1},\dots,t^{u_n})$ for a cocharacter $u\in N$.
+:::
+
+::: {.front card-id="card-ed67eb76d85ad73b" tags="definition"}
+Piecewise-linear function
+:::
+
+::: {.back card-id="card-ed67eb76d85ad73b"}
+A function $\varphi:|\Sigma|\to\mathbb R$ is piecewise-linear with respect to $\Sigma$ if it is linear on each cone $\sigma\in\Sigma$; it is integral if $\varphi(|\Sigma|\cap N)\subset\mathbb Z$. Such a function is the support function of a torus-invariant Cartier divisor.
+:::
+
+::: {.front card-id="card-72c63fa87276e61b" tags="definition"}
+Primitive ray generator
+:::
+
+::: {.back card-id="card-72c63fa87276e61b"}
+For a rational ray $\rho\subset N_{\mathbb R}$, the primitive ray generator $u_\rho$ is the unique element of $\rho\cap N$ that is not a positive integer multiple of another element of $\rho\cap N$; it generates the monoid $\rho\cap N$.
+:::
+
+::: {.front card-id="card-163fa20a259034cb" tags="definition"}
+Quotient lattice
+:::
+
+::: {.back card-id="card-163fa20a259034cb"}
+For a cone $\sigma\subset N_{\mathbb R}$, the quotient lattice is $N(\sigma)=N/(N\cap\operatorname{span}_{\mathbb R}\sigma)$; it is the lattice of the toric variety $V(\sigma)=\overline{O(\sigma)}$.
+:::
+
+::: {.front card-id="card-7a256d4271506321" tags="definition"}
+Reflexive sheaf
+:::
+
+::: {.back card-id="card-7a256d4271506321"}
+A coherent sheaf $\mathcal F$ on a normal variety is reflexive if the natural map $\mathcal F\to\mathcal F^{\vee\vee}$ is an isomorphism, where $\mathcal F^\vee=\mathcal Hom(\mathcal F,\mathcal O_X)$. On a smooth variety every reflexive rank-one sheaf is invertible, and $\omega_X$ is the reflexive rank-one sheaf associated to $K_X$.
+:::
+
+::: {.front card-id="card-5cc1ede20b917173" tags="definition"}
+Saturated semigroup
+:::
+
+::: {.back card-id="card-5cc1ede20b917173"}
+A submonoid $S\subset M$ is saturated if $qm\in S$ for some $q>0$ and $m\in M$ implies $m\in S$. A finitely generated semigroup $S$ is saturated if and only if $S=M\cap\operatorname{Cone}(S)$; in particular $\sigma^\vee\cap M$ is saturated.
+:::
+
+::: {.front card-id="card-e402b717c6505552" tags="definition"}
+Smooth fano polytope
+:::
+
+::: {.back card-id="card-e402b717c6505552"}
+A smooth Fano polytope is a lattice polytope $P\subset N_{\mathbb R}$ with $0$ in its interior such that the vertices of every facet form a lattice basis of the affine lattice spanned by that facet; equivalently, $P$ is reflexive and the associated toric variety $X_P$ is smooth and Fano.
+:::
+
+::: {.front card-id="card-39cd0e53c3e7c558" tags="definition"}
+Star fan
+:::
+
+::: {.back card-id="card-39cd0e53c3e7c558"}
+For a cone $\sigma$ in a fan $\Sigma$, the star fan $\operatorname{Star}(\sigma)$ is the fan in $N(\sigma)_{\mathbb R}=N_{\mathbb R}/\operatorname{span}(\sigma)$ whose cones are the images of the cones $\tau\in\Sigma$ containing $\sigma$. The orbit closure $V(\sigma)$ is the toric variety of $\operatorname{Star}(\sigma)$.
+:::
+
+::: {.front card-id="card-316c2a3bb1f98d47" tags="definition"}
+Star subdivision
+:::
+
+::: {.back card-id="card-316c2a3bb1f98d47"}
+The star subdivision of a fan $\Sigma$ at a ray $\rho_0=\mathbb R_{\ge0}u_0$ replaces every cone $\sigma$ containing $\rho_0$ by the cones $\sigma$ and $\operatorname{Cone}(\tau,u_0)$ for the faces $\tau\le\sigma$ not containing $\rho_0$. For a smooth toric variety, blowing up $V(\sigma)$ corresponds to star subdivision at the ray through the sum of the primitive generators of $\sigma$.
+:::
+
+::: {.front card-id="card-f1d284ca92644cab" tags="definition"}
+Supporting hyperplane
+:::
+
+::: {.back card-id="card-f1d284ca92644cab"}
+A supporting hyperplane of a polytope $P\subset M_{\mathbb R}$ is an affine hyperplane $H=\{m:\langle m,u\rangle=a\}$ such that $\langle m,u\rangle\le a$ for all $m\in P$ and $H\cap P\ne\emptyset$; its intersection with $P$ is a face.
+:::
+
+::: {.front card-id="card-67fdffe224052612" tags="definition"}
+Torus factor
+:::
+
+::: {.back card-id="card-67fdffe224052612"}
+A toric variety $X_\Sigma$ has a torus factor if its primitive ray generators do not span $N_{\mathbb R}$; equivalently $X_\Sigma\cong X_{\Sigma'}\times\mathbf G_m^k$ for some $k>0$. In this case the maps $M\to\operatorname{Div}_T(X_\Sigma)$ and $M\to\operatorname{CDiv}_T(X_\Sigma)$ are not injective.
+:::
+
+::: {.front card-id="card-630a271d52290b36" tags="definition"}
+Torus-fixed point
+:::
+
+::: {.back card-id="card-630a271d52290b36"}
+A torus-fixed point of a toric variety $X_\Sigma$ is a point fixed by the dense torus $T$. These are exactly the distinguished points $x_\sigma$ for maximal cones $\sigma\in\Sigma(n)$, so their number is $\#\Sigma(n)=\chi(X_\Sigma)$.
+:::
+
+::: {.front card-id="card-a667b11ccf419d42" tags="definition"}
+Very ample polytope
+:::
+
+::: {.back card-id="card-a667b11ccf419d42"}
+A lattice polytope $P$ is very ample if for every vertex $v$ the semigroup $S_{P,v}=\mathbb N(P\cap M-v)$ is saturated in $M$; equivalently the associated line bundle $\mathcal O_{X_P}(1)$ is very ample and $X_P$ embeds by the full linear system $|P\cap M|$.
+:::
+
+::: {.front card-id="card-53639544f22bcf05" tags="definition"}
+Moment map
+:::
+
+::: {.back card-id="card-53639544f22bcf05"}
+A moment map for a Hamiltonian action of a Lie group $G$ on a symplectic manifold $(X,\omega)$ is a smooth $G$-equivariant map $\mu:X\to\mathfrak g^*$ such that $d\langle\mu,\xi\rangle=\iota_{\xi_X}\omega$ for every $\xi\in\mathfrak g$, where $\xi_X$ is the fundamental vector field. For a smooth complete toric variety $X_\Sigma$ with dense torus $T=N\otimes\mathbb C^\times$, the $T$-action is Hamiltonian, and the moment map $\mu_\Sigma:X_\Sigma\to M_{\mathbb R}$ is $T$-equivariant with image the polytope $P_D$ of an ample torus-invariant divisor $D$. Equivalently, $X_\Sigma$ is the symplectic quotient of $\mathbb C^{\#\Sigma(1)}$ by the subtorus $K$, and $\mu_\Sigma$ is induced by $z\mapsto(|z_1|^2,\dots,|z_r|^2)$.
+:::
+
+::: {.front card-id="card-25b38f47b27f0da3" tags="definition"}
+Toric surface
+:::
+
+::: {.back card-id="card-25b38f47b27f0da3"}
+A toric surface is a normal surface $X$ equipped with an action of a two-dimensional torus $T\cong\mathbb G_m^2$ having a dense open orbit; equivalently, $X=X_\Sigma$ for a two-dimensional fan $\Sigma$ in $N\cong\mathbb Z^2$. It is complete iff $|\Sigma|=N_{\mathbb R}$, and smooth iff every cone of $\Sigma$ is generated by part of a $\mathbb Z$-basis of $N$.
+:::

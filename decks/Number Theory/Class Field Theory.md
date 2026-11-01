@@ -931,3 +931,171 @@ How is $\overline{{ \mathbf{F} }_{q}}$ obtained from ${{ \mathbf{F} }_{q}}$?
 ::: {.back card-id="card-9c6ca18eb9036a9f"}
 - Adjoin all roots of unity.
 :::
+
+::: {.front card-id="card-3329856c3071937d" tags="definition"}
+Absolute galois group
+:::
+
+::: {.back card-id="card-3329856c3071937d"}
+The absolute Galois group of a field $K$ is $G_K=\mathrm{Gal}(K^{\mathrm{sep}}/K)$, where $K^{\mathrm{sep}}$ is a separable closure of $K$. It is a profinite group, and its continuous representations are the Galois representations of $K$.
+:::
+
+::: {.front card-id="card-eab9564097781973" tags="definition"}
+Artin symbol
+:::
+
+::: {.back card-id="card-eab9564097781973"}
+For a finite abelian extension $L/K$ and an unramified prime ideal $\mathfrak{p}$, the Artin symbol $\left(\frac{L/K}{\mathfrak{p}}\right) \in \mathrm{Gal}(L/K)$ is the Frobenius automorphism, acting as $x \mapsto x^{N\mathfrak{p}}$ on residue fields; it extends multiplicatively to ideals.
+:::
+
+::: {.front card-id="card-a4354825776d6986" tags="definition"}
+Central simple algebra
+:::
+
+::: {.back card-id="card-a4354825776d6986"}
+A central simple algebra over a field $K$ is a finite-dimensional associative $K$-algebra $A$ with center $K$ and no nontrivial two-sided ideals. Equivalently, $A\cong M_n(D)$ for a division algebra $D$ with center $K$.
+:::
+
+::: {.front card-id="card-42a8db7fd1d05030" tags="definition"}
+Character group
+:::
+
+::: {.back card-id="card-42a8db7fd1d05030"}
+The character group (Pontryagin dual) of a locally compact abelian group $G$ is $\widehat{G}=\mathrm{Hom}_{\mathrm{cts}}(G,U_1)$ with pointwise multiplication and the compact-open topology. Pontryagin duality says $G\cong\widehat{\widehat{G}}$.
+:::
+
+::: {.front card-id="card-4843dd481b5447ce" tags="definition"}
+Class field
+:::
+
+::: {.back card-id="card-4843dd481b5447ce"}
+A class field of a number field, local field, or global field $K$ is a finite abelian extension $L/K$. Class field theory classifies all such extensions by arithmetic data of $K$ (ideal class groups, ray class groups, or idele class groups).
+:::
+
+::: {.front card-id="card-1dd70b4c8d88a5f8" tags="definition"}
+Compact-open topology
+:::
+
+::: {.back card-id="card-1dd70b4c8d88a5f8"}
+The compact-open topology on the set of continuous maps $X\to Y$ has subbasis $\{f:f(K)\subseteq U\}$ for compact $K\subseteq X$ and open $U\subseteq Y$. On the character group of a locally compact abelian group it gives the topology of uniform convergence on compact sets.
+:::
+
+::: {.front card-id="card-3fbaca0c6dfd54a0" tags="definition"}
+Complex multiplication
+:::
+
+::: {.back card-id="card-3fbaca0c6dfd54a0"}
+An elliptic curve $E$ over $\mathbb{C}$ has complex multiplication if $\operatorname{End}(E)$ is an order in an imaginary quadratic field $K$. More generally, CM theory describes abelian extensions of $K$ via torsion points of such curves and their moduli.
+:::
+
+::: {.front card-id="card-3d03294c3b5e41af" tags="definition"}
+Cyclotomic extension
+:::
+
+::: {.back card-id="card-3d03294c3b5e41af"}
+A cyclotomic extension of a field $K$ is an extension obtained by adjoining roots of unity, $K(\zeta_n)$ for some $n\ge1$ (or the union $K(\zeta_n:n\ge1)$). If $\operatorname{char}K\nmid n$, then $K(\zeta_n)/K$ is Galois with Galois group a subgroup of $(\mathbb{Z}/n\mathbb{Z})^\times$.
+:::
+
+::: {.front card-id="card-99056385e56d55a0" tags="definition"}
+Division algebra
+:::
+
+::: {.back card-id="card-99056385e56d55a0"}
+A division algebra over a field $K$ is a finite-dimensional $K$-algebra $D$ (with $K$ in its center) in which every nonzero element is invertible. If $Z(D)=K$ it is a central division algebra; by Wedderburn, every finite-dimensional central simple algebra is $M_n(D)$ for such a $D$.
+:::
+
+::: {.front card-id="card-d518cd57fd187f3f" tags="definition"}
+Field trace
+:::
+
+::: {.back card-id="card-d518cd57fd187f3f"}
+For a finite extension $L/K$ and $\alpha\in L$, the trace $\mathrm{Tr}_{L/K}(\alpha)$ is the trace of the $K$-linear map $m_\alpha:L\to L$, $x\mapsto\alpha x$. If $L/K$ is separable, $\mathrm{Tr}_{L/K}(\alpha)=\sum_{\sigma}\sigma(\alpha)$ over the $K$-embeddings of $L$.
+:::
+
+::: {.front card-id="card-678c971b71760f09" tags="definition"}
+Free pro-p group
+:::
+
+::: {.back card-id="card-678c971b71760f09"}
+A pro-$p$ group $F$ is free on a subset $X\subseteq F$ if every map $X\to P$ into a pro-$p$ group $P$ extends uniquely to a continuous homomorphism $F\to P$. Equivalently, $F$ is a projective pro-$p$ group of cohomological dimension $\le1$.
+:::
+
+::: {.front card-id="card-02ad46c2b8602754" tags="definition"}
+Frobenius element
+:::
+
+::: {.back card-id="card-02ad46c2b8602754"}
+Let $L/K$ be a Galois extension of local or global fields, $\mathfrak{P}\mid\mathfrak{p}$ primes, and $q=\#\kappa(\mathfrak{p})$. The Frobenius element $\mathrm{Frob}_{\mathfrak{P}}\in D_{\mathfrak{P}}/I_{\mathfrak{P}}$ is the unique element inducing $x\mapsto x^q$ on $\kappa(\mathfrak{P})$. If $\mathfrak{p}$ is unramified, $I_{\mathfrak{P}}=1$ and it is a well-defined element of $\mathrm{Gal}(L/K)$.
+:::
+
+::: {.front card-id="card-b9b9b4cb099d2afc" tags="definition"}
+Locally compact abelian group
+:::
+
+::: {.back card-id="card-b9b9b4cb099d2afc"}
+A locally compact abelian group is an abelian topological group whose topology is Hausdorff and locally compact. Pontryagin duality holds for this class: $G\cong\widehat{\widehat{G}}$.
+:::
+
+::: {.front card-id="card-a026bcfe396c683c" tags="definition"}
+Nilpotent group
+:::
+
+::: {.back card-id="card-a026bcfe396c683c"}
+A group $G$ is nilpotent if it has a finite central series $1=G_0\trianglelefteq G_1\trianglelefteq\cdots\trianglelefteq G_n=G$ with $[G,G_i]\subseteq G_{i-1}$ (equivalently $G_{i+1}/G_i\subseteq Z(G/G_i)$). A finite group is nilpotent iff it is the direct product of its Sylow subgroups.
+:::
+
+::: {.front card-id="card-da2628a38bae81c5" tags="definition"}
+P-adic logarithm
+:::
+
+::: {.back card-id="card-da2628a38bae81c5"}
+The $p$-adic logarithm is the continuous homomorphism $\log_p:1+p\mathbb{Z}_p\to p\mathbb{Z}_p$ defined by $\log_p(1+x)=\sum_{n\ge1}(-1)^{n+1}x^n/n$. On a $p$-adic field it is defined on a suitable higher unit group $U^n$ and is an isomorphism onto an additive subgroup for $n>e/(p-1)$.
+:::
+
+::: {.front card-id="card-b2d4104c089ec572" tags="definition"}
+Perfect pairing
+:::
+
+::: {.back card-id="card-b2d4104c089ec572"}
+A bilinear map $b:A\times B\to C$ is a perfect pairing if the induced homomorphisms $A\to\mathrm{Hom}(B,C)$ and $B\to\mathrm{Hom}(A,C)$ are isomorphisms in the relevant category (for topological groups, continuous homomorphisms).
+:::
+
+::: {.front card-id="card-4d9702793c7a27e9" tags="definition"}
+Q-binomial coefficient
+:::
+
+::: {.back card-id="card-4d9702793c7a27e9"}
+For an integer $n\ge0$, the $q$-integer is $[n]_q=(q^n-1)/(q-1)$. The $q$-binomial coefficient is ${n\brack k}_q=\frac{(q^n-1)(q^{n-1}-1)\cdots(q^{n-k+1}-1)}{(q^k-1)(q^{k-1}-1)\cdots(q-1)}$, a polynomial in $q$ reducing to $\binom{n}{k}$ at $q=1$.
+:::
+
+::: {.front card-id="card-7b515b5c9b7eb5c2" tags="definition"}
+Quaternion algebra
+:::
+
+::: {.back card-id="card-7b515b5c9b7eb5c2"}
+A quaternion algebra over a field $K$ of characteristic $\neq2$ is a $4$-dimensional central simple algebra with basis $1,i,j,k$ satisfying $i^2=a$, $j^2=b$, and $ij=-ji=k$ for some $a,b\in K^\times$. For $K=\mathbb{R}$ and $a=b=-1$ this is Hamilton's quaternion algebra $\mathbb{H}$.
+:::
+
+::: {.front card-id="card-407e20fb461b01a1" tags="definition"}
+Ray class group
+:::
+
+::: {.back card-id="card-407e20fb461b01a1"}
+For a modulus $\mathfrak{m}$, the ray class group is $\mathrm{Cl}_\mathfrak{m} = I_K^\mathfrak{m}/P_\mathfrak{m}$, where $I_K^\mathfrak{m}$ is the group of fractional ideals coprime to $\mathfrak{m}$ and $P_\mathfrak{m}$ is the subgroup of principal ideals $(\alpha)$ with $\alpha \equiv 1 \pmod{\mathfrak{m}}$ and positive at the real places in $\mathfrak{m}$.
+:::
+
+::: {.front card-id="card-52522936692027ec" tags="definition"}
+Reciprocity law
+:::
+
+::: {.back card-id="card-52522936692027ec"}
+A reciprocity law is a theorem describing the Galois action on abelian extensions of a field in terms of arithmetic of the base field. For a global field $K$ and finite abelian $L/K$, Artin reciprocity is $C_K/N_{L/K}C_L\cong\mathrm{Gal}(L/K)$, where $C_K=\mathbb{A}_K^\times/K^\times$ is the idele class group; for a local field $K$ it is $K^\times/N_{L/K}L^\times\cong\mathrm{Gal}(L/K)$. Quadratic reciprocity is the classical case.
+:::
+
+::: {.front card-id="card-3eec070a5bf42fd5" tags="definition"}
+Wild inertia subgroup
+:::
+
+::: {.back card-id="card-3eec070a5bf42fd5"}
+For a local field $K$ of residue characteristic $p$, the wild inertia subgroup $P$ (also denoted $I_p$) is the unique Sylow pro-$p$ subgroup of the inertia group $I=\mathrm{Gal}(K^{\mathrm{sep}}/K^{\mathrm{un}})$. It is normal in $I$, and $I/P$ is the tame inertia group, pro-cyclic of order prime to $p$.
+:::

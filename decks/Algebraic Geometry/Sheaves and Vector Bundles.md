@@ -913,3 +913,203 @@ The tangent space is $H^1(\mathbb P^1,\mathcal E nd(E))$, and obstructions lie i
 $$\mathcal E nd(E)\simeq\mathcal O^{\oplus2}\oplus\mathcal O(2)\oplus\mathcal O(-2).$$
 Only $\mathcal O(-2)$ contributes to $H^1$, with dimension one. The obstruction group vanishes because the base is a curve, so deformations are unobstructed.
 :::
+
+::: {.front card-id="card-908c9b1975baecaf" tags="definition"}
+Adic completion
+:::
+
+::: {.back card-id="card-908c9b1975baecaf"}
+Let $A$ be a ring and $I\subseteq A$ an ideal. The $I$-adic completion is $\hat A=\varprojlim_nA/I^n$, and for an $A$-module $M$, $\hat M=\varprojlim_nM/I^nM$. A ring or module is $I$-adically complete if the natural map to its completion is an isomorphism.
+:::
+
+::: {.front card-id="card-fa3280b335bb471e" tags="definition"}
+Chern character
+:::
+
+::: {.back card-id="card-fa3280b335bb471e"}
+For a complex vector bundle $E$ with Chern roots $x_i$, so that $c(E)=\prod_i(1+x_i)$, the Chern character is $\operatorname{ch}(E)=\sum_i e^{x_i}=r+c_1+\frac12(c_1^2-2c_2)+\cdots$. It is additive on direct sums and multiplicative on tensor products, and defines a ring homomorphism $K^0(X)\to H^{\mathrm{even}}(X;\mathbb Q)$ (or to Chow).
+:::
+
+::: {.front card-id="card-16dba6ebfc4da924" tags="definition"}
+Coherent sheaf
+:::
+
+::: {.back card-id="card-16dba6ebfc4da924"}
+An $\mathcal O_X$-module $\mathcal F$ that is locally finitely presented: every point has an open neighborhood $U$ with an exact sequence $\mathcal O_U^{\oplus p}\to\mathcal O_U^{\oplus q}\to\mathcal F|_U\to0$. On a locally Noetherian scheme this is equivalent to $\mathcal F$ being quasi-coherent and locally finitely generated.
+:::
+
+::: {.front card-id="card-ace0c2938920f9ce" tags="definition"}
+De rham complex
+:::
+
+::: {.back card-id="card-ace0c2938920f9ce"}
+For a smooth morphism $f:X\to S$, the relative de Rham complex is $(\Omega^\bullet_{X/S},d)$ with $\Omega^p_{X/S}=\bigwedge^p\Omega^1_{X/S}$ and exterior derivative $d$. For $X$ smooth over $\mathbb C$, the holomorphic de Rham complex computes $H^*(X;\mathbb C)$.
+:::
+
+::: {.front card-id="card-0769f306cf9658f6" tags="definition"}
+Determinant line bundle
+:::
+
+::: {.back card-id="card-0769f306cf9658f6"}
+For a locally free $\mathcal O_X$-module $\mathcal E$ of rank $r$, the determinant line bundle is $\det\mathcal E=\bigwedge^r\mathcal E$. It satisfies $\det(\mathcal E\otimes\mathcal F)\cong(\det\mathcal E)^{\otimes\operatorname{rank}\mathcal F}\otimes(\det\mathcal F)^{\otimes\operatorname{rank}\mathcal E}$ and $\det(\mathcal E^\vee)\cong(\det\mathcal E)^{-1}$. The canonical sheaf is $\omega_{X/S}=\det\Omega_{X/S}$.
+:::
+
+::: {.front card-id="card-548de81a64922ad4" tags="definition"}
+Direct sum
+:::
+
+::: {.back card-id="card-548de81a64922ad4"}
+For a family $\{M_i\}_{i\in I}$ of $R$-modules, the direct sum $\bigoplus_iM_i$ is the submodule of the product $\prod_iM_i$ consisting of tuples with only finitely many nonzero entries. It is the coproduct in $R\text{-Mod}$, with coordinate inclusions $M_i\to\bigoplus_jM_j$.
+:::
+
+::: {.front card-id="card-ab7f443a1b33bdee" tags="definition"}
+Direct summand
+:::
+
+::: {.back card-id="card-ab7f443a1b33bdee"}
+A submodule $N\subseteq M$ is a direct summand if there is a submodule $N'\subseteq M$ with $M=N\oplus N'$; equivalently, the inclusion $N\hookrightarrow M$ admits a left inverse (a retraction), or $N$ is the image of an idempotent endomorphism of $M$.
+:::
+
+::: {.front card-id="card-1293c7c7ab45cc4d" tags="definition"}
+Discriminant of a coherent sheaf
+:::
+
+::: {.back card-id="card-1293c7c7ab45cc4d"}
+For a torsion-free coherent sheaf $E$ of rank $r$ on a smooth projective surface $X$, the discriminant is $\Delta(E)=2r\,c_2(E)-(r-1)c_1(E)^2$, with Chern classes evaluated on $X$. Bogomolov's inequality says $\Delta(E)\ge0$ when $E$ is slope-semistable for an ample polarization.
+:::
+
+::: {.front card-id="card-3e7e3f4ff64aefbc" tags="definition"}
+Dual sheaf
+:::
+
+::: {.back card-id="card-3e7e3f4ff64aefbc"}
+For an $\mathcal O_X$-module $\mathcal F$, the dual sheaf is $\mathcal F^\vee=\mathop{\mathcal H\!\mathit{om}}_{\mathcal O_X}(\mathcal F,\mathcal O_X)$. If $\mathcal F$ is locally free of finite rank, so is $\mathcal F^\vee$ and $\mathcal F^{\vee\vee}\cong\mathcal F$; for a vector bundle $E$, $E^\vee$ is the dual bundle.
+:::
+
+::: {.front card-id="card-69ecd4f420dc5332" tags="definition"}
+Exterior derivative
+:::
+
+::: {.back card-id="card-69ecd4f420dc5332"}
+For a smooth morphism $X\to S$, the exterior derivative $d:\Omega^p_{X/S}\to\Omega^{p+1}_{X/S}$ is the unique $\mathcal O_S$-linear map with $d(f)=df$ on functions, $d^2=0$, and the graded Leibniz rule $d(\omega\wedge\eta)=d\omega\wedge\eta+(-1)^p\omega\wedge d\eta$ for $\omega\in\Omega^p$.
+:::
+
+::: {.front card-id="card-52446b50249e1ebb" tags="definition"}
+Exterior power
+:::
+
+::: {.back card-id="card-52446b50249e1ebb"}
+For an $R$-module $M$ and $p\ge0$, the $p$-th exterior power $\bigwedge^pM$ is the quotient of $M^{\otimes p}$ by the submodule generated by $m_1\otimes\cdots\otimes m_p$ with $m_i=m_j$ for some $i\ne j$. It represents alternating $R$-multilinear maps; if $M$ is locally free of rank $r$, then $\bigwedge^pM$ is locally free of rank $\binom rp$.
+:::
+
+::: {.front card-id="card-44f1d6c6860a0505" tags="definition"}
+Finitely generated projective module
+:::
+
+::: {.back card-id="card-44f1d6c6860a0505"}
+An $R$-module $P$ is finitely generated projective if it has a finite generating set and $\operatorname{Hom}_R(P,-)$ is exact; equivalently, $P$ is a direct summand of a finite free module $R^n$. Over a local ring every finitely generated projective module is free, and over a general ring these modules are the locally free finite-rank modules.
+:::
+
+::: {.front card-id="card-67996880ed82c036" tags="definition"}
+Flat module
+:::
+
+::: {.back card-id="card-67996880ed82c036"}
+An $R$-module $M$ is flat if $-\otimes_RM$ is exact, equivalently $\operatorname{Tor}_1^R(N,M)=0$ for all $N$. Over a Noetherian local ring, a finitely generated flat module is free. An $\mathcal O_X$-module is flat if all its stalks are flat modules.
+:::
+
+::: {.front card-id="card-335fc8d773ec3615" tags="definition"}
+Global generation
+:::
+
+::: {.back card-id="card-335fc8d773ec3615"}
+A sheaf $\mathcal F$ on a scheme $X$ is globally generated (generated by global sections) if the evaluation map $H^0(X,\mathcal F)\otimes_k\mathcal O_X\to\mathcal F$ is surjective. Equivalently, $\mathcal F$ is a quotient of a free $\mathcal O_X$-module.
+:::
+
+::: {.front card-id="card-b1bb3587a6336fa6" tags="definition"}
+Graded module
+:::
+
+::: {.back card-id="card-b1bb3587a6336fa6"}
+Let $S=\bigoplus_{d\ge0}S_d$ be a graded ring. A graded $S$-module is an $S$-module $M$ with a decomposition $M=\bigoplus_{d\in\mathbb Z}M_d$ such that $S_dM_e\subseteq M_{d+e}$. Its shift by $n$ is the graded module $M(n)$ with $M(n)_d=M_{n+d}$.
+:::
+
+::: {.front card-id="card-fa7c72c455f002a2" tags="definition"}
+Invertible sheaf
+:::
+
+::: {.back card-id="card-fa7c72c455f002a2"}
+A coherent $\mathcal O_X$-module $\mathcal L$ that is locally free of rank one: every point of $X$ has an open neighborhood $U$ with $\mathcal L|_U\cong\mathcal O_U$. Isomorphism classes of invertible sheaves form the Picard group $\operatorname{Pic}(X)$ under tensor product.
+:::
+
+::: {.front card-id="card-9e38f6a7ebcfafbd" tags="definition"}
+Locally closed subscheme
+:::
+
+::: {.back card-id="card-9e38f6a7ebcfafbd"}
+A subscheme $Z\subseteq X$ is locally closed if it factors as a closed immersion followed by an open immersion, $Z\hookrightarrow U\hookrightarrow X$ with $U\subseteq X$ open; equivalently, $Z$ is closed in some open subscheme of $X$.
+:::
+
+::: {.front card-id="card-821eed739824f067" tags="definition"}
+Quasi-coherent sheaf
+:::
+
+::: {.back card-id="card-821eed739824f067"}
+An $\mathcal O_X$-module $\mathcal F$ such that every point has an affine open neighborhood $\operatorname{Spec}A\subseteq X$ with $\mathcal F|_{\operatorname{Spec}A}\cong\widetilde M$ for some $A$-module $M$. Equivalently, the natural map $\widetilde{\Gamma(U,\mathcal F)}\to\mathcal F|_U$ is an isomorphism for every affine open $U$.
+:::
+
+::: {.front card-id="card-108b8c6794adf283" tags="definition"}
+Sheaf of sections
+:::
+
+::: {.back card-id="card-108b8c6794adf283"}
+For a vector bundle $\pi:E\to X$, the sheaf of sections is the $\mathcal O_X$-module $\mathcal E$ with $\mathcal E(U)=\Gamma(U,\pi^{-1}(U))$. The functor sending a vector bundle to its sheaf of sections is an equivalence between rank-$r$ geometric vector bundles and rank-$r$ locally free $\mathcal O_X$-modules; the inverse sends a locally free sheaf $\mathcal E$ to $\mathbf V(\mathcal E^\vee)=\operatorname{Spec}\operatorname{Sym}(\mathcal E^\vee)$. With the convention $\mathbf V(\mathcal E)=\operatorname{Spec}\operatorname{Sym}\mathcal E$, the sheaf of sections of $\mathbf V(\mathcal E)$ is $\mathcal E^\vee$.
+:::
+
+::: {.front card-id="card-30509f8ec0d6ded4" tags="definition"}
+Symmetric algebra
+:::
+
+::: {.back card-id="card-30509f8ec0d6ded4"}
+For an $R$-module $M$, $\operatorname{Sym}_R(M)$ is the quotient of the tensor algebra $\bigoplus_{n\ge0}M^{\otimes n}$ by the ideal generated by $x\otimes y-y\otimes x$. It is the free commutative graded $R$-algebra on $M$, characterized by $\operatorname{Hom}_{R\text{-alg}}(\operatorname{Sym}M,A)\cong\operatorname{Hom}_R(M,A)$. For a locally free sheaf $\mathcal E$, $\operatorname{Sym}\mathcal E$ is defined by sheafifying, and $\mathbf V(\mathcal E)=\operatorname{Spec}\operatorname{Sym}\mathcal E$.
+:::
+
+::: {.front card-id="card-bf0b7cb5e4e96d23" tags="definition"}
+Todd class
+:::
+
+::: {.back card-id="card-bf0b7cb5e4e96d23"}
+The Todd class of a complex vector bundle $E$ with Chern roots $x_i$ is $\operatorname{td}(E)=\prod_i\frac{x_i}{1-e^{-x_i}}=1+\frac12c_1+\frac1{12}(c_1^2+c_2)+\frac1{24}c_1c_2+\cdots$. For a smooth complex variety $X$, Hirzebruch–Riemann–Roch states $\chi(X,E)=\int_X\operatorname{ch}(E)\operatorname{td}(T_X)$.
+:::
+
+::: {.front card-id="card-cbf5274d915bb1de" tags="definition"}
+Transition map
+:::
+
+::: {.back card-id="card-cbf5274d915bb1de"}
+Given a vector bundle trivialized on an open cover $\{U_i\}$, the transition maps are the isomorphisms $g_{ij}:U_i\cap U_j\to\operatorname{GL}_r$ obtained by composing the two trivializations. They satisfy the cocycle condition $g_{ij}g_{jk}=g_{ik}$ on $U_i\cap U_j\cap U_k$ and determine the bundle up to isomorphism.
+:::
+
+::: {.front card-id="card-1607f09d94068d2f" tags="definition"}
+Upper shriek functor
+:::
+
+::: {.back card-id="card-1607f09d94068d2f"}
+For a proper morphism $f:X\to Y$, the upper shriek (exceptional inverse image) $f^!$ is the right adjoint of $Rf_*$ on the derived category of quasi-coherent sheaves, characterized by Grothendieck duality; in the six-functor formalism it is right adjoint to $Rf_!$. For a smooth proper morphism of relative dimension $n$, $f^!\mathcal O_Y\cong\omega_{X/Y}[n]$.
+:::
+
+::: {.front card-id="card-5eb338b953c97fe3" tags="definition"}
+Vector bundle
+:::
+
+::: {.back card-id="card-5eb338b953c97fe3"}
+A locally free sheaf of finite rank: an $\mathcal O_X$-module $\mathcal E$ such that every point has an open neighborhood $U$ with $\mathcal E|_U\cong\mathcal O_U^{\oplus r}$. Equivalently, the geometric vector bundle $\operatorname{Spec}_{\mathcal O_X}(\operatorname{Sym}^\bullet\mathcal E^\vee)\to X$.
+:::
+
+::: {.front card-id="card-fe386c7fc751fa8c" tags="definition"}
+Étalé space
+:::
+
+::: {.back card-id="card-fe386c7fc751fa8c"}
+For a presheaf $F$ on $X$, the étalé space is $\coprod_{x\in X}F_x$ with the topology making the projection to $X$ a local homeomorphism; its sheaf of continuous sections is the sheafification $F^+$. A sheaf is equivalent to a local homeomorphism over $X$.
+:::

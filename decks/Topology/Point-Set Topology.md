@@ -291,3 +291,299 @@ Give an example of a set that is not nowhere dense.
 ::: {.back card-id="card-eb276d425f8e2a7c"}
 Counterexample: $\left\{{1 \over n}\right\}, \ZZ$ are nowhere dense, $\QQ, \ZZ\cup\qty{(a, b)\cap\QQ}$ is *not* nowhere dense
 :::
+
+::: {.front card-id="card-cba9c84c0e89e212" tags="definition"}
+Basis for a topology
+:::
+
+::: {.back card-id="card-cba9c84c0e89e212"}
+A basis for a topology on $X$ is a family $\mathcal{B}$ of open sets such that every open set is a union of members of $\mathcal{B}$; equivalently, for every open $U$ and $x \in U$ there is $B \in \mathcal{B}$ with $x \in B \subseteq U$.
+:::
+
+::: {.front card-id="card-a6355802f6402b2f" tags="definition"}
+Boolean space
+:::
+
+::: {.back card-id="card-a6355802f6402b2f"}
+A boolean space is a compact Hausdorff space with a basis of sets that are both open and closed; equivalently, a Stone space.
+:::
+
+::: {.front card-id="card-e2d871c1a4ba63ee" tags="definition"}
+Boundary
+:::
+
+::: {.back card-id="card-e2d871c1a4ba63ee"}
+For $A \subseteq X$, the boundary is $\partial A = \overline{A} \setminus A^\circ = \overline{A} \cap \overline{X \setminus A}$.
+:::
+
+::: {.front card-id="card-7c97ad3b0b831e07" tags="definition"}
+Cauchy sequence
+:::
+
+::: {.back card-id="card-7c97ad3b0b831e07"}
+A sequence $(x_n)$ in a metric space $(M,d)$ is Cauchy if for every $\varepsilon>0$ there is $N$ such that $d(x_m,x_n) < \varepsilon$ for all $m,n \ge N$.
+:::
+
+::: {.front card-id="card-b1f9fcb31fc9ae88" tags="definition"}
+Closed set
+:::
+
+::: {.back card-id="card-b1f9fcb31fc9ae88"}
+A subset $F$ of a topological space $X$ is closed if its complement $X \setminus F$ is open.
+:::
+
+::: {.front card-id="card-c80158ab39900b38" tags="definition"}
+Closure
+:::
+
+::: {.back card-id="card-c80158ab39900b38"}
+For $A \subseteq X$, the closure $\overline{A}$ is the smallest closed subset of $X$ containing $A$; equivalently, $\overline{A} = \bigcap \{F \subseteq X : A \subseteq F \text{ and } F \text{ is closed}\}$.
+:::
+
+::: {.front card-id="card-f251ec9852fcee3a" tags="definition"}
+Complete metric space
+:::
+
+::: {.back card-id="card-f251ec9852fcee3a"}
+A metric space is complete if every Cauchy sequence in it converges.
+:::
+
+::: {.front card-id="card-b77ec2f39bfeb2ff" tags="definition"}
+Connected space
+:::
+
+::: {.back card-id="card-b77ec2f39bfeb2ff"}
+A topological space $X$ is connected if it cannot be written as $U \cup V$ with $U$ and $V$ disjoint nonempty open subsets; equivalently, the only subsets that are both open and closed are $\varnothing$ and $X$.
+:::
+
+::: {.front card-id="card-409027cb9306e62f" tags="definition"}
+Continuous at a point
+:::
+
+::: {.back card-id="card-409027cb9306e62f"}
+A map $f: X \to Y$ is continuous at $x \in X$ if for every neighborhood $V$ of $f(x)$ there is a neighborhood $U$ of $x$ with $f(U) \subseteq V$.
+:::
+
+::: {.front card-id="card-b301ebc6dbf20736" tags="definition"}
+Continuous map
+:::
+
+::: {.back card-id="card-b301ebc6dbf20736"}
+A map $f: X \to Y$ between topological spaces is continuous if $f^{-1}(V)$ is open in $X$ for every open $V \subseteq Y$; equivalently, $f^{-1}(F)$ is closed for every closed $F \subseteq Y$, or $f(\overline{A}) \subseteq \overline{f(A)}$ for every $A \subseteq X$.
+:::
+
+::: {.front card-id="card-a21e2d8d5f7ab170" tags="definition"}
+Convergence
+:::
+
+::: {.back card-id="card-a21e2d8d5f7ab170"}
+A sequence $(x_n)$ in a topological space $X$ converges to $x \in X$ if every neighborhood of $x$ contains all but finitely many terms $x_n$; in a metric space this means $d(x_n,x) \to 0$. The point $x$ is the limit of the sequence.
+:::
+
+::: {.front card-id="card-41bf16dc927efef4" tags="definition"}
+Homeomorphism
+:::
+
+::: {.back card-id="card-41bf16dc927efef4"}
+A homeomorphism is a bijective continuous map $f: X \to Y$ whose inverse $f^{-1}: Y \to X$ is continuous; equivalently, a bijection that induces a bijection between the open sets of $X$ and $Y$.
+:::
+
+::: {.front card-id="card-5653008a0da946f2" tags="definition"}
+Interior
+:::
+
+::: {.back card-id="card-5653008a0da946f2"}
+For $A \subseteq X$, the interior $A^\circ$ is the largest open subset of $X$ contained in $A$; equivalently, $A^\circ = \bigcup \{U \subseteq A : U \text{ is open}\}$.
+:::
+
+::: {.front card-id="card-b068bf0678e6566a" tags="definition"}
+Inverse limit
+:::
+
+::: {.back card-id="card-b068bf0678e6566a"}
+For a partially ordered set $I$ in which every two elements have an upper bound, topological spaces $X_i$ for $i \in I$, and continuous maps $f_{ij}: X_j \to X_i$ for $i \le j$ with $f_{ii}=\mathrm{id}$ and $f_{ij}\circ f_{jk}=f_{ik}$, the inverse limit is $\varprojlim X_i = \{(x_i) \in \prod_i X_i : f_{ij}(x_j)=x_i \text{ for all } i \le j\}$ with the subspace topology.
+:::
+
+::: {.front card-id="card-c2a5ba4d66f7eddc" tags="definition"}
+Locally constant
+:::
+
+::: {.back card-id="card-c2a5ba4d66f7eddc"}
+A map $f: X \to Y$ is locally constant if every point of $X$ has a neighborhood on which $f$ is constant.
+:::
+
+::: {.front card-id="card-f32d7174be2324e3" tags="definition"}
+Metric space
+:::
+
+::: {.back card-id="card-f32d7174be2324e3"}
+A metric space is a pair $(M,d)$ where $M$ is a set and $d: M \times M \to [0,\infty)$ satisfies $d(x,y)=0$ if and only if $x=y$, $d(x,y)=d(y,x)$, and $d(x,z) \le d(x,y)+d(y,z)$.
+:::
+
+::: {.front card-id="card-eb430341c3d0f532" tags="definition"}
+Metrizable space
+:::
+
+::: {.back card-id="card-eb430341c3d0f532"}
+A topological space is metrizable if its topology is induced by some metric on the underlying set.
+:::
+
+::: {.front card-id="card-f52c25ef8ddfd570" tags="definition"}
+Open ball
+:::
+
+::: {.back card-id="card-f52c25ef8ddfd570"}
+In a metric space $(M,d)$, the open ball of radius $r>0$ about $x \in M$ is $B(x,r) = \{y \in M : d(x,y) < r\}$.
+:::
+
+::: {.front card-id="card-c24c1ebb7e6150ef" tags="definition"}
+Open set
+:::
+
+::: {.back card-id="card-c24c1ebb7e6150ef"}
+A subset $U$ of a topological space $(X, \tau)$ is open if $U \in \tau$.
+:::
+
+::: {.front card-id="card-cde316ede4b3bdf3" tags="definition"}
+Path-connected space
+:::
+
+::: {.back card-id="card-cde316ede4b3bdf3"}
+A topological space $X$ is path-connected if for every $x, y \in X$ there is a continuous map $\gamma: [0,1] \to X$ with $\gamma(0)=x$ and $\gamma(1)=y$.
+:::
+
+::: {.front card-id="card-217f3ed82aeccb4f" tags="definition"}
+Product topology
+:::
+
+::: {.back card-id="card-217f3ed82aeccb4f"}
+For topological spaces $\{X_i\}_{i \in I}$, the product topology on $\prod_{i \in I} X_i$ is generated by the subbasis $\{\pi_i^{-1}(U_i) : U_i \subseteq X_i \text{ open}\}$, where $\pi_i$ is the projection; a basis is given by products $\prod_i U_i$ with $U_i$ open and $U_i = X_i$ for all but finitely many $i$.
+:::
+
+::: {.front card-id="card-7fbd37296fbf3a8a" tags="definition"}
+Profinite space
+:::
+
+::: {.back card-id="card-7fbd37296fbf3a8a"}
+A profinite space is an inverse limit of an inverse system of finite discrete spaces; equivalently, a compact Hausdorff totally disconnected space.
+:::
+
+::: {.front card-id="card-293f4bdf15126950" tags="definition"}
+Quotient topology
+:::
+
+::: {.back card-id="card-293f4bdf15126950"}
+For a surjection $q: X \to Y$, the quotient topology on $Y$ is the finest topology making $q$ continuous: $V \subseteq Y$ is open if and only if $q^{-1}(V)$ is open in $X$.
+:::
+
+::: {.front card-id="card-d77e99debb459501" tags="definition"}
+Regular space
+:::
+
+::: {.back card-id="card-d77e99debb459501"}
+A topological space $X$ is regular if for every closed $F \subseteq X$ and every $x \in X \setminus F$ there are disjoint open sets $U$ and $V$ with $x \in U$ and $F \subseteq V$; often $T_1$ is also required.
+:::
+
+::: {.front card-id="card-600e37d7ce54da80" tags="definition"}
+Second-countable space
+:::
+
+::: {.back card-id="card-600e37d7ce54da80"}
+A topological space is second-countable if its topology has a countable basis.
+:::
+
+::: {.front card-id="card-c873db1c7ae7c199" tags="definition"}
+Separately continuous
+:::
+
+::: {.back card-id="card-c873db1c7ae7c199"}
+A map $f: X \times Y \to Z$ is separately continuous if for each $y_0 \in Y$ the map $x \mapsto f(x,y_0)$ is continuous and for each $x_0 \in X$ the map $y \mapsto f(x_0,y)$ is continuous.
+:::
+
+::: {.front card-id="card-0fe1edffc6a6256f" tags="definition"}
+Separation axioms
+:::
+
+::: {.back card-id="card-0fe1edffc6a6256f"}
+The separation axioms are conditions on a topological space describing how points and closed sets can be separated by open sets; they include $T_0$, $T_1$, $T_2$ (Hausdorff), $T_3$ (regular), and $T_4$ (normal).
+:::
+
+::: {.front card-id="card-1846e9469cede6b1" tags="definition"}
+Sequence
+:::
+
+::: {.back card-id="card-1846e9469cede6b1"}
+A sequence in a set $X$ is a map $\mathbb{N} \to X$, written $(x_n)_{n \in \mathbb{N}}$.
+:::
+
+::: {.front card-id="card-a735524b06a7a863" tags="definition"}
+Stone space
+:::
+
+::: {.back card-id="card-a735524b06a7a863"}
+A Stone space is a compact Hausdorff totally disconnected space; equivalently, a profinite space.
+:::
+
+::: {.front card-id="card-b14166d32cd4f7d7" tags="definition"}
+Subbasis for a topology
+:::
+
+::: {.back card-id="card-b14166d32cd4f7d7"}
+A subbasis for a topology on $X$ is a family $\mathcal{S}$ of subsets of $X$ whose finite intersections form a basis; the topology generated by $\mathcal{S}$ is the smallest topology containing $\mathcal{S}$.
+:::
+
+::: {.front card-id="card-215e09ee7f09277f" tags="definition"}
+Subcover
+:::
+
+::: {.back card-id="card-215e09ee7f09277f"}
+A subcover of an open cover $\{U_i\}_{i \in I}$ is a subfamily $\{U_j\}_{j \in J}$ with $J \subseteq I$ that still covers $A$; it is finite if $J$ is finite.
+:::
+
+::: {.front card-id="card-7ae7ccb66208e4af" tags="definition"}
+Subsequence
+:::
+
+::: {.back card-id="card-7ae7ccb66208e4af"}
+A subsequence of $(x_n)$ is a sequence $(x_{n_k})$ where $n_1 < n_2 < \cdots$ is a strictly increasing sequence of indices.
+:::
+
+::: {.front card-id="card-0e4738f6913d3c5f" tags="definition"}
+Subspace topology
+:::
+
+::: {.back card-id="card-0e4738f6913d3c5f"}
+For $A \subseteq X$, the subspace topology on $A$ is $\tau_A = \{U \cap A : U \in \tau_X\}$.
+:::
+
+::: {.front card-id="card-26b31a5d44a7965b" tags="definition"}
+Topological space
+:::
+
+::: {.back card-id="card-26b31a5d44a7965b"}
+A topological space is a pair $(X, \tau)$ consisting of a set $X$ and a topology $\tau$ on $X$.
+:::
+
+::: {.front card-id="card-12d182d2b70faa72" tags="definition"}
+Topology
+:::
+
+::: {.back card-id="card-12d182d2b70faa72"}
+A topology on a set $X$ is a family $\tau \subseteq \mathcal{P}(X)$ such that $\varnothing, X \in \tau$, and $\tau$ is closed under finite intersections and arbitrary unions; its members are the open sets.
+:::
+
+::: {.front card-id="card-595e78647f6a5541" tags="definition"}
+Totally disconnected space
+:::
+
+::: {.back card-id="card-595e78647f6a5541"}
+A topological space $X$ is totally disconnected if every connected subset of $X$ is a singleton.
+:::
+
+::: {.front card-id="card-388b737162857eb9" tags="definition"}
+Étale space
+:::
+
+::: {.back card-id="card-388b737162857eb9"}
+An étale space over $B$ is a local homeomorphism $p:E\to B$, i.e. every point of $E$ has an open neighborhood mapped homeomorphically onto an open subset of $B$. In particular every fiber $p^{-1}(b)$ is discrete. Every covering space is an étale space.
+:::

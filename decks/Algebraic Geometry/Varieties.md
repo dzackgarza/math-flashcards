@@ -455,3 +455,147 @@ Is the holomorphic map $\mathbb A^1_{\mathbb C}{}^{an}\to\mathbb A^1_{\mathbb C}
 ::: {.back card-id="application-gaga-nonproper-counterexample"}
 An algebraic endomorphism of $\mathbb A^1_{\mathbb C}$ is a polynomial, whereas $e^z$ is not a polynomial. The affine line is not proper, so the properness hypothesis of GAGA is absent. Analytification need not preserve the algebraic space of global sections on a nonproper variety.
 :::
+
+::: {.front card-id="card-cda4ef39c2d129e2" tags="definition"}
+Affine space
+:::
+
+::: {.back card-id="card-cda4ef39c2d129e2"}
+$\mathbb A^n_k=\operatorname{Spec}k[x_1,\dots,x_n]$ is affine $n$-space over $k$, with $k$-points $k^n$. It is a smooth affine variety of dimension $n$, and $\mathbb A^n_k\cong\mathbb P^n_k\setminus V(x_0)$.
+:::
+
+::: {.front card-id="card-80713ef54baa2818" tags="definition"}
+Affine variety
+:::
+
+::: {.back card-id="card-80713ef54baa2818"}
+A variety that is a closed subvariety of affine space $\mathbb A^n_k$; equivalently, $\operatorname{Spec}A$ for a finitely generated integral $k$-algebra $A$.
+:::
+
+::: {.front card-id="card-7288765221fc915e" tags="definition"}
+Algebraic set
+:::
+
+::: {.back card-id="card-7288765221fc915e"}
+A subset $Y\subseteq\mathbb A^n$ (respectively $Y\subseteq\mathbb P^n$) is algebraic if it is the common zero locus $V(T)$ of a set of polynomials (respectively homogeneous polynomials). Equivalently, $Y$ is Zariski closed. An affine or projective variety is an irreducible algebraic set.
+:::
+
+::: {.front card-id="card-028eba576c31c295" tags="definition"}
+Analytification
+:::
+
+::: {.back card-id="card-028eba576c31c295"}
+For a $\mathbb C$-scheme $X$ locally of finite type, the analytification $X^{\mathrm{an}}$ is the complex analytic space with underlying set $X(\mathbb C)$, the analytic topology, and the sheaf of holomorphic functions locally obtained from algebraic functions. A coherent sheaf $\mathcal F$ has an analytification $\mathcal F^{\mathrm{an}}$; for $X$ proper, GAGA gives $\operatorname{Coh}(X)\simeq\operatorname{Coh}(X^{\mathrm{an}})$ and $H^i(X,\mathcal F)\cong H^i(X^{\mathrm{an}},\mathcal F^{\mathrm{an}})$.
+:::
+
+::: {.front card-id="card-a923b40b24ddb82d" tags="definition"}
+Chern connection
+:::
+
+::: {.back card-id="card-a923b40b24ddb82d"}
+For a Hermitian holomorphic vector bundle $(E,h)$ on a complex manifold, the Chern connection is the unique connection compatible with $h$ whose $(0,1)$-part is the holomorphic structure operator $\bar\partial_E$. In a holomorphic frame its connection matrix is $\theta=h^{-1}\partial h$, and its curvature is $\Theta=\bar\partial(h^{-1}\partial h)$.
+:::
+
+::: {.front card-id="card-ee9bc56955ac3753" tags="definition"}
+Cofinite topology
+:::
+
+::: {.back card-id="card-ee9bc56955ac3753"}
+The cofinite topology on a set $X$ has open sets $\varnothing$ and complements of finite subsets. On $\mathbb A^1$ over an algebraically closed field, the Zariski topology on closed points is the cofinite topology; on $\mathbb A^n$ for $n\ge2$ it is not.
+:::
+
+::: {.front card-id="card-5a5a7328d999ae9d" tags="definition"}
+Curvature form
+:::
+
+::: {.back card-id="card-5a5a7328d999ae9d"}
+For a Hermitian vector bundle $(E,h)$ with Chern connection $\nabla$, the curvature is $F_\nabla=\nabla^2$, a $2$-form with values in $\operatorname{End}(E)$; locally $F_\nabla=d\theta+\theta\wedge\theta$ for the connection matrix $\theta$. For a line bundle $L$, $\frac{\sqrt{-1}}{2\pi}F_\nabla$ represents $c_1(L)$.
+:::
+
+::: {.front card-id="card-35a1ab1ac682520a" tags="definition"}
+Fubini-study form
+:::
+
+::: {.back card-id="card-35a1ab1ac682520a"}
+The Fubini–Study form on $\mathbb P^n$ is the Kähler form $\omega_{\mathrm{FS}}=\frac{\sqrt{-1}}{2\pi}\partial\bar\partial\log(\sum_{i=0}^n|z_i|^2)$ in homogeneous coordinates. Its cohomology class is the hyperplane class, and it is the curvature of the standard Hermitian metric on $\mathcal O(1)$.
+:::
+
+::: {.front card-id="card-14065f6cd08f118f" tags="definition"}
+Integrally closed domain
+:::
+
+::: {.back card-id="card-14065f6cd08f118f"}
+An integral domain $A$ is integrally closed (normal) if every element of its fraction field that is integral over $A$ already lies in $A$; equivalently, $A$ equals its integral closure in $\operatorname{Frac}A$. A normal variety has all local rings integrally closed.
+:::
+
+::: {.front card-id="card-2e33a1b484322f31" tags="definition"}
+Jacobian criterion
+:::
+
+::: {.back card-id="card-2e33a1b484322f31"}
+Let $Y=V(f_1,\dots,f_r)\subseteq\mathbb A^n$ be an affine variety of dimension $d$ over a field, with Jacobian matrix $J=(\partial f_i/\partial x_j)$. Then $Y$ is smooth at $p$ if and only if $\operatorname{rank}J(p)=n-d$; if the rank is less than $n-d$, then $p$ is singular.
+:::
+
+::: {.front card-id="card-4ec1c402e82f4a78" tags="definition"}
+Morphism of varieties
+:::
+
+::: {.back card-id="card-4ec1c402e82f4a78"}
+A morphism of locally ringed spaces over $k$. In the affine case it corresponds to a $k$-algebra homomorphism $k[Y]\to k[X]$, i.e. a map whose coordinate functions are regular (polynomial).
+:::
+
+::: {.front card-id="card-9f5ea1864394028d" tags="definition"}
+Nonsingular
+:::
+
+::: {.back card-id="card-9f5ea1864394028d"}
+A scheme or variety $X$ is nonsingular (smooth) at a point $x$ if the local ring $\mathcal O_{X,x}$ is regular, i.e. $\dim_{\kappa(x)}\mathfrak m_x/\mathfrak m_x^2=\dim\mathcal O_{X,x}$. It is nonsingular if this holds at every point; over a perfect field this agrees with smoothness over $k$.
+:::
+
+::: {.front card-id="card-00a61fe475367c6f" tags="definition"}
+Positive (1,1)-form
+:::
+
+::: {.back card-id="card-00a61fe475367c6f"}
+A real $(1,1)$-form $\omega=\frac{\sqrt{-1}}2\sum h_{j\bar k}\,dz_j\wedge d\bar z_k$ on a complex manifold is positive if the Hermitian matrix $(h_{j\bar k})$ is positive definite at every point. Positivity of a line-bundle curvature $\sqrt{-1}\Theta(L,h)$ is defined by this condition.
+:::
+
+::: {.front card-id="card-035a00f28e2c48c8" tags="definition"}
+Positive line bundle
+:::
+
+::: {.back card-id="card-035a00f28e2c48c8"}
+A line bundle $L$ on a compact complex manifold $X$ is positive if it admits a Hermitian metric $h$ whose Chern curvature $\sqrt{-1}\Theta(L,h)$ is a positive $(1,1)$-form. By the Kodaira embedding theorem, a compact Kähler manifold is projective if and only if it admits a positive line bundle; on a projective variety, $L$ is positive if and only if $L$ is ample.
+:::
+
+::: {.front card-id="card-c8c50d3d9fb6620f" tags="definition"}
+Projective variety
+:::
+
+::: {.back card-id="card-c8c50d3d9fb6620f"}
+A variety that is a closed subvariety of projective space $\mathbb P^n_k$; equivalently, an integral separated scheme of finite type over $k$ admitting a closed immersion into $\mathbb P^n_k$.
+:::
+
+::: {.front card-id="card-1fa6363d969b462c" tags="definition"}
+Singular point
+:::
+
+::: {.back card-id="card-1fa6363d969b462c"}
+A point $x\in X$ at which $\mathcal O_{X,x}$ is not a regular local ring, i.e. $\dim_{\kappa(x)}\mathfrak m_x/\mathfrak m_x^2>\dim\mathcal O_{X,x}$. For an affine variety $V(f_1,\dots,f_r)\subseteq\mathbb A^n$, these are the points where the Jacobian matrix has rank $<n-\dim X$.
+:::
+
+::: {.front card-id="card-5346ba4ab0a420de" tags="definition"}
+Stable map
+:::
+
+::: {.back card-id="card-5346ba4ab0a420de"}
+For a smooth projective variety $X$ and $\beta\in H_2(X;\mathbb Z)$, an $n$-pointed stable map of genus $g$ is a map $f:C\to X$ from a connected nodal projective curve of arithmetic genus $g$ with $n$ marked nonsingular points such that $(C,f)$ has finite automorphism group fixing the marked points. The moduli stack $\overline M_{g,n}(X,\beta)$ parametrizes stable maps and has virtual dimension $(1-g)(\dim X-3)-K_X\beta+n$.
+:::
+
+::: {.front card-id="card-2b5c1c6d230a4fab" tags="definition"}
+Variety
+:::
+
+::: {.back card-id="card-2b5c1c6d230a4fab"}
+A separated integral scheme of finite type over a field $k$ (Hartshorne's convention); classically, an irreducible algebraic subset of $\mathbb A^n$ or $\mathbb P^n$ over an algebraically closed field, with its sheaf of regular functions.
+:::

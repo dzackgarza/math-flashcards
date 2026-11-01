@@ -1136,3 +1136,155 @@ Let $f:\mathcal C\to B$ be a proper flat complex family with smooth elliptic fib
 ::: {.back card-id="application-proper-base-change-not-local-system"}
 Proper base change identifies each geometric stalk with $H^1_{\mathrm{\acute et}}(C_b,\mathbb F_\ell)$. It has dimension two on smooth elliptic fibers. The nodal cubic has normalization $\mathbb P^1$ with two points identified, giving dimension one. Thus the sheaf is not locally constant. Smooth proper base change would give local constancy, but this family is not smooth at the node.
 :::
+
+::: {.front card-id="card-522a7f34d180592a" tags="definition"}
+Central division algebra
+:::
+
+::: {.back card-id="card-522a7f34d180592a"}
+A division algebra $D$ over a field $k$ whose centre is exactly $k$; by Wedderburn's theorem every finite-dimensional central simple $k$-algebra is $M_n(D)$ for a unique central division algebra $D$.
+:::
+
+::: {.front card-id="card-6e44ec9f040f08fd" tags="definition"}
+Completed local ring
+:::
+
+::: {.back card-id="card-6e44ec9f040f08fd"}
+For a local ring $(R,\mathfrak m)$, its $\mathfrak m$-adic completion $\widehat R=\varprojlim_n R/\mathfrak m^n$; for a point $x$ of a scheme, $\widehat{\mathcal O}_{X,x}$ is the completion of the local ring, and an étale morphism induces an isomorphism on completed local rings.
+:::
+
+::: {.front card-id="card-5d0deccbc929675a" tags="definition"}
+Constant group scheme
+:::
+
+::: {.back card-id="card-5d0deccbc929675a"}
+For an abstract group $G$, the group scheme $\underline G=\coprod_{g\in G}\operatorname{Spec}\mathbb Z$ over $\operatorname{Spec}\mathbb Z$ (or its base change to $S$) representing $T\mapsto G^{\pi_0(T)}$; over a field its points are locally constant $G$-valued functions.
+:::
+
+::: {.front card-id="card-0bfc5bad35364305" tags="definition"}
+Covering family
+:::
+
+::: {.back card-id="card-0bfc5bad35364305"}
+A collection of morphisms $\{U_\alpha\to U\}$ in a site that is declared to be a cover; a presheaf is a sheaf if $F(U)\to\prod_\alpha F(U_\alpha)\rightrightarrows\prod_{\alpha,\beta}F(U_\alpha\times_U U_\beta)$ is an equalizer for every covering family.
+:::
+
+::: {.front card-id="card-4c27c944be8156c7" tags="definition"}
+Divisor sheaf
+:::
+
+::: {.back card-id="card-4c27c944be8156c7"}
+On a regular variety $X$ with generic point $\eta$, the sheaf $\bigoplus_{Z\subset X,\ \operatorname{codim}_X Z=1}\iota_{Z*}\mathbb Z$ recording orders of vanishing along irreducible divisors; it fits in the exact sequence $\mathbb G_m\hookrightarrow\eta_*\mathbb G_m\twoheadrightarrow\bigoplus_Z\iota_{Z*}\mathbb Z$.
+:::
+
+::: {.front card-id="card-4269b6d887fd7dc0" tags="definition"}
+Etale sheaf
+:::
+
+::: {.back card-id="card-4269b6d887fd7dc0"}
+A sheaf on the étale site $X_{\mathrm{ét}}$ of a scheme $X$: a presheaf on the category of étale schemes over $X$ that satisfies the sheaf axiom for every étale covering. Equivalently, it is a presheaf satisfying descent for faithfully flat étale morphisms.
+:::
+
+::: {.front card-id="card-56ccdb56a1a62bd2" tags="definition"}
+Gerbe
+:::
+
+::: {.back card-id="card-56ccdb56a1a62bd2"}
+A stack locally equivalent to the classifying stack $BG$ of a sheaf of groups $G$; geometrically a sheaf of groupoids that is locally nonempty and locally connected, with $H^2(X;G)$ classifying $G$-gerbes.
+:::
+
+::: {.front card-id="card-86212eadeae44ae2" tags="definition"}
+Grothendieck topology
+:::
+
+::: {.back card-id="card-86212eadeae44ae2"}
+A collection of covering sieves on each object of a category, closed under base change and composition and containing maximal sieves; a category with a Grothendieck topology is a site, and its sheaves form a Grothendieck topos.
+:::
+
+::: {.front card-id="card-d9df158b84005a9b" tags="definition"}
+Nilpotent ideal
+:::
+
+::: {.back card-id="card-d9df158b84005a9b"}
+An ideal $I\subset R$ such that $I^n=0$ for some $n\ge1$; equivalently every element of $I$ is nilpotent and $I$ is nilpotent as an ideal.
+:::
+
+::: {.front card-id="card-8d4f2548e72aba52" tags="definition"}
+Poincaré series
+:::
+
+::: {.back card-id="card-8d4f2548e72aba52"}
+For a graded vector space $V=\bigoplus_{i\ge0}V_i$ of finite type, the formal power series $P_V(t)=\sum_{i\ge0}(\dim V_i)t^i$; for étale cohomology one takes $P(t)=\sum_i\dim H^i_{\mathrm{\acute et}}(X;\mathbb F_\ell)t^i$.
+:::
+
+::: {.front card-id="card-859084a93c44a0f0" tags="definition"}
+Purity of the branch locus
+:::
+
+::: {.back card-id="card-859084a93c44a0f0"}
+Zariski–Nagata purity: if $f:Y\to X$ is a finite morphism of varieties with $X$ regular and $f$ étale outside a closed subset $Z\subset X$ of codimension $\ge2$, then $f$ is étale everywhere; equivalently the branch locus is pure of codimension one.
+:::
+
+::: {.front card-id="card-1725d9c80e85f4a6" tags="definition"}
+Regular variety
+:::
+
+::: {.back card-id="card-1725d9c80e85f4a6"}
+A variety $X$ all of whose local rings $\mathcal O_{X,x}$ are regular local rings, i.e. $\dim_{\kappa(x)}\mathfrak m_x/\mathfrak m_x^2=\dim\mathcal O_{X,x}$ for every point $x$.
+:::
+
+::: {.front card-id="card-335b2c0311c95a50" tags="definition"}
+Right exact functor
+:::
+
+::: {.back card-id="card-335b2c0311c95a50"}
+An additive functor $F:\mathcal A\to\mathcal B$ between abelian categories is right exact if every exact sequence $A\to B\to C\to0$ induces an exact sequence $F(A)\to F(B)\to F(C)\to0$; equivalently $F$ preserves cokernels.
+:::
+
+::: {.front card-id="card-59a4fbf9b7c2f576" tags="definition"}
+Sheaf quotient
+:::
+
+::: {.back card-id="card-59a4fbf9b7c2f576"}
+For a subsheaf $G\subset F$ of sheaves of abelian groups, the quotient sheaf $F/G$ is the sheafification of the presheaf $U\mapsto F(U)/G(U)$; its stalks are $(F/G)_x=F_x/G_x$.
+:::
+
+::: {.front card-id="card-7d1f438ff71197e7" tags="definition"}
+Strict henselization
+:::
+
+::: {.back card-id="card-7d1f438ff71197e7"}
+For a local ring $\mathcal O_{X,x}$ with separably closed residue field, the strict henselization $\mathcal O_{X,x}^{\mathrm{sh}}$ is the filtered colimit of étale neighborhoods of $x$; it is strictly Henselian with the same residue field, and $(\iota_{\bar x})^*\mathcal O_X^{\mathrm{\acute et}}=\mathcal O_{X,x}^{\mathrm{sh}}$.
+:::
+
+::: {.front card-id="card-3bb0c3ecc3cf6a9f" tags="definition"}
+Topos
+:::
+
+::: {.back card-id="card-3bb0c3ecc3cf6a9f"}
+A category equivalent to the category of sheaves of sets on a site; a Grothendieck topos is locally presentable and has a geometric morphism to $\mathbf{Set}$, and sheaf cohomology is computed in it.
+:::
+
+::: {.front card-id="card-d94c96a2b29fcc69" tags="definition"}
+Weil conjecture
+:::
+
+::: {.back card-id="card-d94c96a2b29fcc69"}
+The Weil conjectures, proved by Deligne, predict that for a smooth projective variety $X$ over $\mathbb F_q$ the zeta function $Z(X,t)=\prod_i\det(1-tF\mid H^i_{\mathrm{\acute et}}(X;\mathbb Q_\ell))^{(-1)^{i+1}}$ is rational, satisfies a functional equation, and has zeros of absolute value $q^{i/2}$ (Riemann hypothesis).
+:::
+
+::: {.front card-id="card-136b308d47ad79fd" tags="definition"}
+Zariski open embedding
+:::
+
+::: {.back card-id="card-136b308d47ad79fd"}
+A morphism $U\to X$ that identifies $U$ with an open subscheme of $X$ (an open immersion); for varieties over a field, an open immersion in the Zariski topology.
+:::
+
+::: {.front card-id="card-0c5d00b1002bbfcf" tags="definition"}
+Étale neighborhood
+:::
+
+::: {.back card-id="card-0c5d00b1002bbfcf"}
+A pair $(U,u)$ with $U\to X$ étale and $u$ a geometric point of $U$ mapping to a geometric point $x$ of $X$; the étale stalk is the filtered colimit $F_x=\varinjlim_{(U,u)}F(U)$ over such neighborhoods.
+:::

@@ -718,3 +718,219 @@ $$E_k = \frac{1}{2 \zeta(k)} G_k$$
 Explicitly,
 $$E_k(z)=1-\frac{2 k}{B_k} \sum_{m=1}^{\infty} \sigma_{k-1}(m) q^m$$
 :::
+
+::: {.front card-id="card-36dddf7e357e70c4" tags="definition"}
+Bernoulli number
+:::
+
+::: {.back card-id="card-36dddf7e357e70c4"}
+The Bernoulli numbers $B_n$ are the rational numbers defined by $\frac{t}{e^t-1}=\sum_{n\ge0}B_n\frac{t^n}{n!}$. With the convention $B_1=-\frac12$, one has $B_0=1$, $B_2=\frac16$, $B_4=-\frac1{30}$, and $B_{2k+1}=0$ for $k\ge1$.
+:::
+
+::: {.front card-id="card-5c8305b1d4a8d8b7" tags="definition"}
+Cartan matrix
+:::
+
+::: {.back card-id="card-5c8305b1d4a8d8b7"}
+For a root system with simple roots $\alpha_1,\dots,\alpha_n$, the Cartan matrix is $C_{ij}=2(\alpha_i,\alpha_j)/(\alpha_j,\alpha_j)$. For a simply laced root system (type ADE), $C_{ii}=2$ and $C_{ij}\in\{0,-1\}$ for $i\ne j$.
+:::
+
+::: {.front card-id="card-0d8eed2df9802c4b" tags="definition"}
+Co-torsionfree
+:::
+
+::: {.back card-id="card-0d8eed2df9802c4b"}
+A submodule $R\subseteq\Lambda$ is co-torsionfree if the quotient $\Lambda/R$ is torsionfree. For a lattice, this is equivalent to $R$ being a primitive sublattice; then the exact sequence $0\to R\to\Lambda\to\Lambda/R\to0$ splits.
+:::
+
+::: {.front card-id="card-4d1a0ca83d5dd848" tags="definition"}
+Congruence subgroup
+:::
+
+::: {.back card-id="card-4d1a0ca83d5dd848"}
+A congruence subgroup of $\mathrm{SL}_2(\mathbb{Z})$ is a subgroup containing a principal congruence subgroup $\Gamma(N)=\{\gamma\in\mathrm{SL}_2(\mathbb{Z}):\gamma\equiv I\pmod N\}$ for some $N\ge1$. The standard examples are $\Gamma_0(N)=\{\gamma:c\equiv0\pmod N\}$ and $\Gamma_1(N)=\{\gamma:c\equiv0,\ a\equiv d\equiv1\pmod N\}$.
+:::
+
+::: {.front card-id="card-12b87e834fc03b9a" tags="definition"}
+Covolume
+:::
+
+::: {.back card-id="card-12b87e834fc03b9a"}
+For a lattice $\Lambda\subseteq V$ in a Euclidean vector space $V$ of dimension $n$, the covolume is $\operatorname{covol}(\Lambda)=\operatorname{vol}(V/\Lambda)$, the volume of a fundamental parallelepiped. If $G$ is the Gram matrix of a basis, then $\operatorname{covol}(\Lambda)=\sqrt{\det G}$, and $\operatorname{disc}(\Lambda)=\operatorname{covol}(\Lambda)^2$.
+:::
+
+::: {.front card-id="card-567ff60f7069fe31" tags="definition"}
+Discriminant of a quadratic form
+:::
+
+::: {.back card-id="card-567ff60f7069fe31"}
+For a quadratic form $Q$ on a free $R$-module with Gram matrix $G=(\beta(e_i,e_j))$, where $\beta(x,y)=Q(x+y)-Q(x)-Q(y)$, the discriminant is $\operatorname{disc}(Q)=\det G$ (well defined up to the square of a unit after a change of basis). For a lattice $(\Lambda,\beta)$ this is $\operatorname{disc}(\Lambda)=\det G(\beta)=\operatorname{covol}(\Lambda)^2$.
+:::
+
+::: {.front card-id="card-c220681d2cb0be6c" tags="definition"}
+Divisor sum
+:::
+
+::: {.back card-id="card-c220681d2cb0be6c"}
+The divisor sum function is $\sigma_k(n)=\sum_{d\mid n}d^k$, the sum of the $k$-th powers of the positive divisors of $n$. Thus $\sigma_0(n)$ is the number of divisors and $\sigma_1(n)$ is the sum of divisors.
+:::
+
+::: {.front card-id="card-3c52a1daf2b83912" tags="definition"}
+Free abelian group
+:::
+
+::: {.back card-id="card-3c52a1daf2b83912"}
+A free abelian group is an abelian group isomorphic to a direct sum of copies of $\mathbb{Z}$; equivalently, a free $\mathbb{Z}$-module. Its rank is the cardinality of a basis, and every subgroup of a finitely generated free abelian group is free abelian.
+:::
+
+::: {.front card-id="card-2742f470f313b98b" tags="definition"}
+Hasse-minkowski theorem
+:::
+
+::: {.back card-id="card-2742f470f313b98b"}
+The Hasse-Minkowski theorem states that a quadratic form over a number field $K$ represents zero nontrivially iff it does so over every completion $K_v$ of $K$ (including the real and $p$-adic completions). Equivalently, two quadratic forms over $K$ are isometric iff they are isometric over every $K_v$.
+:::
+
+::: {.front card-id="card-739234bef229f4e3" tags="definition"}
+Hyperbolic module
+:::
+
+::: {.back card-id="card-739234bef229f4e3"}
+For a projective module $M$ over a ring $R$, the hyperbolic module is $H(M)=M\oplus M^\vee$ with quadratic form $Q(v+f)=f(v)$ for $v\in M$, $f\in M^\vee$. For $M=R=\mathbb{Z}$, $H(\mathbb{Z})$ is the hyperbolic lattice $U$ with Gram matrix $\begin{pmatrix}0&1\\1&0\end{pmatrix}$.
+:::
+
+::: {.front card-id="card-5140259e944d96d7" tags="definition"}
+K3 lattice
+:::
+
+::: {.back card-id="card-5140259e944d96d7"}
+The K3 lattice is the unique even unimodular lattice of rank $22$ and signature $(3,19)$, isometric to $U^3\oplus E_8(-1)^2$. It is the lattice $H^2(X,\mathbb{Z})$ with the intersection form for a K3 surface $X$.
+:::
+
+::: {.front card-id="card-1355b31873688595" tags="definition"}
+Level of a modular form
+:::
+
+::: {.back card-id="card-1355b31873688595"}
+The level of a modular form is the smallest positive integer $N$ such that $f$ is modular for the congruence subgroup $\Gamma_0(N)$ (or $\Gamma_1(N)$). Equivalently, it is the level of the congruence subgroup in its modular transformation law.
+:::
+
+::: {.front card-id="card-cc5ef3faa8521def" tags="definition"}
+Modular form
+:::
+
+::: {.back card-id="card-cc5ef3faa8521def"}
+A modular form of weight $k$ for a congruence subgroup $\Gamma\subseteq\mathrm{SL}_2(\mathbb{Z})$ is a holomorphic function $f:\mathbb{H}\to\mathbb{C}$ such that $f(\gamma z)=(cz+d)^k f(z)$ for all $\gamma=\begin{pmatrix}a&b\\c&d\end{pmatrix}\in\Gamma$ and $f$ is holomorphic at the cusps. If $f$ vanishes at the cusps, it is a cusp form.
+:::
+
+::: {.front card-id="card-190de4f7cb5045c4" tags="definition"}
+Odd lattice
+:::
+
+::: {.back card-id="card-190de4f7cb5045c4"}
+A lattice is odd if it is not even, i.e. if there exists $x\in\Lambda$ with $\beta(x,x)\notin2\mathbb{Z}$ (for an integral lattice). Equivalently, its quadratic form takes an odd value.
+:::
+
+::: {.front card-id="card-06adb8f96341c22e" tags="definition"}
+P-adic completion
+:::
+
+::: {.back card-id="card-06adb8f96341c22e"}
+For a lattice or abelian group $L$, its $p$-adic completion is $L_p=L\otimes_{\mathbb{Z}}\mathbb{Z}_p$, where $\mathbb{Z}_p=\varprojlim_n\mathbb{Z}/p^n\mathbb{Z}$. For a lattice $L\cong\mathbb{Z}^n$, $L_p\cong\mathbb{Z}_p^n$ is a $\mathbb{Z}_p$-lattice.
+:::
+
+::: {.front card-id="card-ea6aade100c08fae" tags="definition"}
+Quadratic character
+:::
+
+::: {.back card-id="card-ea6aade100c08fae"}
+A quadratic character is a homomorphism $\chi:(\mathbb{Z}/N\mathbb{Z})^\times\to\{\pm1\}$ (equivalently a real Dirichlet character with $\chi^2=1$). The quadratic character associated to a fundamental discriminant $D$ is the Kronecker character $\chi_D(n)=(D/n)$.
+:::
+
+::: {.front card-id="card-ebc4fe716c6f2807" tags="definition"}
+Quadratic space
+:::
+
+::: {.back card-id="card-ebc4fe716c6f2807"}
+A quadratic space is a pair $(V,Q)$ consisting of a vector space $V$ over a field or ring $R$ and a quadratic form $Q:V\to R$. The associated bilinear form is $\beta(x,y)=Q(x+y)-Q(x)-Q(y)$.
+:::
+
+::: {.front card-id="card-57bcc857976c7e51" tags="definition"}
+Rank of a lattice
+:::
+
+::: {.back card-id="card-57bcc857976c7e51"}
+The rank of a lattice $\Lambda$ is its rank as a free abelian group, $\dim_{\mathbb{Q}}(\Lambda\otimes_{\mathbb{Z}}\mathbb{Q})=\dim_{\mathbb{R}}(\Lambda\otimes_{\mathbb{Z}}\mathbb{R})$. It is the number of vectors in a $\mathbb{Z}$-basis of $\Lambda$.
+:::
+
+::: {.front card-id="card-1a0092ebb18709ca" tags="definition"}
+Simple root
+:::
+
+::: {.back card-id="card-1a0092ebb18709ca"}
+Let $\Phi$ be a root system with a choice of positive roots $\Phi^+$. A root $\alpha\in\Phi^+$ is simple if it cannot be written as a sum of two positive roots. The simple roots form a basis of the root lattice, and their Cartan matrix encodes the root system.
+:::
+
+::: {.front card-id="card-93f96f2cebb7bcee" tags="definition"}
+Spin manifold
+:::
+
+::: {.back card-id="card-93f96f2cebb7bcee"}
+A spin manifold is an oriented Riemannian manifold whose second Stiefel-Whitney class vanishes, $w_2(M)=0$, together with a choice of spin structure. Equivalently, the oriented orthonormal frame bundle lifts to a principal $\mathrm{Spin}(n)$-bundle.
+:::
+
+::: {.front card-id="card-21e08ae6b126b692" tags="definition"}
+Spin structure
+:::
+
+::: {.back card-id="card-21e08ae6b126b692"}
+A spin structure on an oriented Riemannian manifold $M$ is a principal $\mathrm{Spin}(n)$-bundle $\widetilde{P}\to M$ with a two-sheeted covering $\widetilde{P}\to P_{\mathrm{SO}}(M)$ that restricts to the spin covering $\mathrm{Spin}(n)\to\mathrm{SO}(n)$ on fibers. It exists iff $w_2(M)=0$.
+:::
+
+::: {.front card-id="card-5c2d0e438dc7d04b" tags="definition"}
+Split exact sequence
+:::
+
+::: {.back card-id="card-5c2d0e438dc7d04b"}
+A short exact sequence $0\to A\xrightarrow{i}B\xrightarrow{p}C\to0$ is split if there is a homomorphism $s:C\to B$ with $p\circ s=\mathrm{id}_C$ (equivalently a retraction $r:B\to A$ with $r\circ i=\mathrm{id}_A$). Then $B\cong A\oplus C$.
+:::
+
+::: {.front card-id="card-5935a4320dc00f9a" tags="definition"}
+Sporadic group
+:::
+
+::: {.back card-id="card-5935a4320dc00f9a"}
+A sporadic group is one of the $26$ finite simple groups that are neither cyclic of prime order, alternating, nor of Lie type. Examples include the Mathieu groups $M_{11},M_{12},M_{22},M_{23},M_{24}$ and the Conway groups $Co_1,Co_2,Co_3$.
+:::
+
+::: {.front card-id="card-f04af96a4e1f6a38" tags="definition"}
+Symmetric bilinear form
+:::
+
+::: {.back card-id="card-f04af96a4e1f6a38"}
+A bilinear form $\beta:V\times V\to R$ is symmetric if $\beta(x,y)=\beta(y,x)$ for all $x,y\in V$. A quadratic form $Q$ determines a symmetric bilinear form by $\beta(x,y)=Q(x+y)-Q(x)-Q(y)$ (or $\frac12$ of this when $2$ is invertible).
+:::
+
+::: {.front card-id="card-8cb1b6dc92ecd709" tags="definition"}
+Theta function
+:::
+
+::: {.back card-id="card-8cb1b6dc92ecd709"}
+A theta function is a holomorphic function on the upper half-plane with a transformation law under a lattice or congruence subgroup, typically a sum $\theta(z)=\sum_{n\in\mathbb{Z}}q^{n^2/2}$ with $q=e^{2\pi iz}$. The theta series of a lattice is the theta function whose coefficients count vectors of a given norm.
+:::
+
+::: {.front card-id="card-000f321e95147eee" tags="definition"}
+Upper half-plane
+:::
+
+::: {.back card-id="card-000f321e95147eee"}
+The upper half-plane is $\mathbb{H}=\{z\in\mathbb{C}:\operatorname{Im}z>0\}$. The group $\mathrm{SL}_2(\mathbb{R})$ acts on $\mathbb{H}$ by Möbius transformations $\begin{pmatrix}a&b\\c&d\end{pmatrix}\cdot z=\frac{az+b}{cz+d}$.
+:::
+
+::: {.front card-id="card-463a836d19e8f22e" tags="definition"}
+Weight of a modular form
+:::
+
+::: {.back card-id="card-463a836d19e8f22e"}
+A modular form $f$ of weight $k$ for a congruence subgroup $\Gamma\subseteq\mathrm{SL}_2(\mathbb{Z})$ satisfies $f(\gamma z)=(cz+d)^k f(z)$ for all $\gamma=\begin{pmatrix}a&b\\c&d\end{pmatrix}\in\Gamma$, with $f$ holomorphic on the upper half-plane and at the cusps. The integer $k$ is the weight.
+:::

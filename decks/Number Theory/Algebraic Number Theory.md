@@ -412,3 +412,203 @@ What is a CM field?
 ::: {.back card-id="card-bf54130388c9cc35"}
 $K$ a purely imaginary quadratic extension of a totally real field, so $K = K_0(\sqrt\alpha)$ with $\sigma(\alpha)\in {\mathbf{R}}_{\gt 0}$ for every embedding $\sigma: K_0 \hookrightarrow\CC$.
 :::
+
+::: {.front card-id="card-2d28b0bf69a069dc" tags="definition"}
+Absolute value
+:::
+
+::: {.back card-id="card-2d28b0bf69a069dc"}
+An absolute value on a field $K$ is a map $|\cdot|:K\to\mathbb{R}_{\ge0}$ such that $|x|=0\iff x=0$, $|xy|=|x||y|$, and $|x+y|\le|x|+|y|$. It is nonarchimedean if the stronger ultrametric inequality $|x+y|\le\max(|x|,|y|)$ holds.
+:::
+
+::: {.front card-id="card-af7bae7d937f70bd" tags="definition"}
+Adele
+:::
+
+::: {.back card-id="card-af7bae7d937f70bd"}
+The adele ring of a number field $K$ is the restricted product $\mathbb{A}_K = \prod'_v K_v$ over all places $v$, consisting of tuples $(x_v)$ with $x_v \in \mathcal{O}_v$ for all but finitely many finite places $v$.
+:::
+
+::: {.front card-id="card-593b0079222b3884" tags="definition"}
+Algebraic integer
+:::
+
+::: {.back card-id="card-593b0079222b3884"}
+An algebraic integer is a complex number $\alpha$ that is a root of a monic polynomial in $\mathbb{Z}[x]$. Equivalently, $\alpha\in\mathcal{O}_K$ for some number field $K$; the algebraic integers form the ring $\overline{\mathbb{Z}}$.
+:::
+
+::: {.front card-id="card-8fff4f5d5697c42e" tags="definition"}
+Discrete valuation
+:::
+
+::: {.back card-id="card-8fff4f5d5697c42e"}
+A discrete valuation on a field $K$ is a surjective map $v:K^\times\to\mathbb{Z}$ such that $v(xy)=v(x)+v(y)$ and $v(x+y)\ge\min(v(x),v(y))$, extended by $v(0)=+\infty$. Its valuation ring is $R=\{x:v(x)\ge0\}$, a DVR.
+:::
+
+::: {.front card-id="card-047d16c894b48d59" tags="definition"}
+Discriminant
+:::
+
+::: {.back card-id="card-047d16c894b48d59"}
+For a number field $K$ of degree $n$ with integral basis $\omega_1, \dots, \omega_n$, the discriminant is $\mathrm{disc}(K) = \det(\mathrm{Tr}_{K/\mathbb{Q}}(\omega_i \omega_j))$; it is independent of the choice of integral basis.
+:::
+
+::: {.front card-id="card-6815a6dd71de1f6e" tags="definition"}
+Field norm
+:::
+
+::: {.back card-id="card-6815a6dd71de1f6e"}
+For a finite extension $L/K$ and $\alpha\in L$, the norm $N_{L/K}(\alpha)$ is the determinant of the $K$-linear map $m_\alpha:L\to L$, $x\mapsto\alpha x$. If $L/K$ is separable, $N_{L/K}(\alpha)=\prod_{\sigma}\sigma(\alpha)$, the product over all $K$-embeddings $L\hookrightarrow\overline{K}$.
+:::
+
+::: {.front card-id="card-fc530cec796f5c41" tags="definition"}
+Fractional ideal
+:::
+
+::: {.back card-id="card-fc530cec796f5c41"}
+A fractional ideal of a Dedekind domain $R$ with fraction field $K$ is a nonzero $R$-submodule $I\subseteq K$ such that $dI\subseteq R$ for some $d\in K^\times$. Equivalently, $I$ is a finitely generated $R$-submodule of $K$. Fractional ideals form a group under multiplication.
+:::
+
+::: {.front card-id="card-b1187e80e54b164f" tags="definition"}
+Haar measure
+:::
+
+::: {.back card-id="card-b1187e80e54b164f"}
+A Haar measure on a locally compact topological group $G$ is a nonzero Radon measure $\mu$ that is left-invariant: $\mu(gA)=\mu(A)$ for all $g\in G$ and Borel sets $A$. It is unique up to a positive scalar; for a local field, $\mu(xA)=|x|\mu(A)$ for a suitable normalization.
+:::
+
+::: {.front card-id="card-2cba500e0cb7eed2" tags="definition"}
+Higher ramification group
+:::
+
+::: {.back card-id="card-2cba500e0cb7eed2"}
+For a finite Galois extension $L/K$ of local fields with valuation ring $B$ and maximal ideal $\mathfrak{P}$, the $i$-th ramification group is $G_i=\{\sigma\in\mathrm{Gal}(L/K):\sigma(b)\equiv b\pmod{\mathfrak{P}^{i+1}}\ \forall b\in B\}$. Thus $G_0$ is the inertia group and $G_1$ is the wild inertia subgroup.
+:::
+
+::: {.front card-id="card-212923cbca48045d" tags="definition"}
+Ideal class group
+:::
+
+::: {.back card-id="card-212923cbca48045d"}
+The ideal class group of a number field $K$ is $\mathrm{Cl}(K) = I_K/P_K$, the group of fractional ideals modulo the subgroup of principal fractional ideals; it is finite, with order the class number $h_K$.
+:::
+
+::: {.front card-id="card-3df6254a6558c806" tags="definition"}
+Idele
+:::
+
+::: {.back card-id="card-3df6254a6558c806"}
+The idele group $\mathbb{A}_K^\times$ is the group of invertible elements of the adele ring; equivalently, it is the restricted product of the groups $K_v^\times$ with respect to the subgroups $\mathcal{O}_v^\times$.
+:::
+
+::: {.front card-id="card-108828f81fb41881" tags="definition"}
+Local ring
+:::
+
+::: {.back card-id="card-108828f81fb41881"}
+A commutative ring $R$ is local if it has a unique maximal ideal $\mathfrak{m}$. Equivalently, the nonunits of $R$ form an ideal, namely $\mathfrak{m}$; then $R\setminus\mathfrak{m}=R^\times$.
+:::
+
+::: {.front card-id="card-4c9ec3a063e850d2" tags="definition"}
+Localization
+:::
+
+::: {.back card-id="card-4c9ec3a063e850d2"}
+For a commutative ring $R$ and a multiplicative subset $S\subseteq R$, the localization $S^{-1}R$ is the ring of fractions $r/s$ with $r\in R$, $s\in S$, modulo the usual equivalence. For a prime ideal $\mathfrak{p}$, $R_{\mathfrak{p}}=(R\setminus\mathfrak{p})^{-1}R$ is the local ring at $\mathfrak{p}$.
+:::
+
+::: {.front card-id="card-c6455b6f0a43fb96" tags="definition"}
+Monogenic
+:::
+
+::: {.back card-id="card-c6455b6f0a43fb96"}
+An extension of rings $A\subseteq B$ is monogenic if $B=A[x]$ for some $x\in B$. A field extension $L/K$ is monogenic if $L=K(\alpha)$ for some $\alpha\in L$; in characteristic zero every finite extension is monogenic by the primitive element theorem.
+:::
+
+::: {.front card-id="card-33dae75b9e742d28" tags="definition"}
+Nonarchimedean place
+:::
+
+::: {.back card-id="card-33dae75b9e742d28"}
+A nonarchimedean place of a number field $K$ is an equivalence class of nonarchimedean absolute values on $K$; equivalently, a prime ideal $\mathfrak{p}$ of $\mathcal{O}_K$, with absolute value $|x|_{\mathfrak{p}}=c^{v_{\mathfrak{p}}(x)}$ for a fixed $0<c<1$. Its completion is a nonarchimedean local field.
+:::
+
+::: {.front card-id="card-e3e945677e8fbf36" tags="definition"}
+Number field
+:::
+
+::: {.back card-id="card-e3e945677e8fbf36"}
+A number field is a field $K$ that is a finite extension of $\mathbb{Q}$. Equivalently, $K=\mathbb{Q}(\alpha)$ for some algebraic number $\alpha$; its degree is $[K:\mathbb{Q}]$.
+:::
+
+::: {.front card-id="card-beb08e0117d2699b" tags="definition"}
+P-adic valuation
+:::
+
+::: {.back card-id="card-beb08e0117d2699b"}
+For a prime $p$ and $x\in\mathbb{Q}^\times$, the $p$-adic valuation $v_p(x)$ is the exponent of $p$ in the prime factorization of $x$; set $v_p(0)=+\infty$. It extends to $\mathbb{Q}_p$ and satisfies $v_p(x+y)\ge\min(v_p(x),v_p(y))$.
+:::
+
+::: {.front card-id="card-279f332765419d20" tags="definition"}
+Pell equation
+:::
+
+::: {.back card-id="card-279f332765419d20"}
+The Pell equation is $x^2-Dy^2=1$ for a positive nonsquare integer $D$. Its integer solutions form an infinite abelian group under multiplication in $\mathbb{Z}[\sqrt{D}]$, namely the units of norm $1$; the fundamental solution generates the group modulo torsion $\{\pm1\}$.
+:::
+
+::: {.front card-id="card-bb3b3bb6397d494e" tags="definition"}
+Principal ideal
+:::
+
+::: {.back card-id="card-bb3b3bb6397d494e"}
+An ideal $I$ of a ring $R$ is principal if $I=(a)=aR$ for some $a\in R$. In a Dedekind domain the principal fractional ideals form a subgroup of the group of fractional ideals; the quotient is the ideal class group.
+:::
+
+::: {.front card-id="card-8496d525c2680387" tags="definition"}
+Ramification
+:::
+
+::: {.back card-id="card-8496d525c2680387"}
+A prime $\mathfrak{p}$ of a number field $K$ ramifies in an extension $L/K$ if $\mathfrak{p}\mathcal{O}_L$ has a repeated prime factor, equivalently if some ramification index $e(\mathfrak{P}\mid\mathfrak{p})>1$. For a finite extension of local fields, ramification is the failure of the residue field extension to capture the full degree, i.e. $e>1$.
+:::
+
+::: {.front card-id="card-2036691235c5bd8e" tags="definition"}
+Residue characteristic
+:::
+
+::: {.back card-id="card-2036691235c5bd8e"}
+The residue characteristic of a valued field $(K,v)$ is the characteristic of its residue field $\kappa=R/\mathfrak{m}$. For a local field it is the prime $p$ with $v(p)>0$.
+:::
+
+::: {.front card-id="card-66b4106ad5234330" tags="definition"}
+Residue degree
+:::
+
+::: {.back card-id="card-66b4106ad5234330"}
+For an extension of Dedekind domains $A\subseteq B$ and a prime $\mathfrak{P}\mid\mathfrak{p}$, the residue degree is $f(\mathfrak{P}/\mathfrak{p})=[\kappa(\mathfrak{P}):\kappa(\mathfrak{p})]$, where $\kappa(\mathfrak{p})=A_{\mathfrak{p}}/\mathfrak{p}A_{\mathfrak{p}}$. For a finite extension of local fields, $[L:K]=ef$ with $e$ the ramification index.
+:::
+
+::: {.front card-id="card-e93f565d0bb95844" tags="definition"}
+Ring of integers
+:::
+
+::: {.back card-id="card-e93f565d0bb95844"}
+The ring of integers $\mathcal{O}_K$ of a number field $K$ is the integral closure of $\mathbb{Z}$ in $K$, i.e. the set of $\alpha\in K$ that are roots of a monic polynomial in $\mathbb{Z}[x]$. It is a Dedekind domain with fraction field $K$.
+:::
+
+::: {.front card-id="card-a1c67652bd548793" tags="definition"}
+Splitting of a prime
+:::
+
+::: {.back card-id="card-a1c67652bd548793"}
+A prime $\mathfrak{p}$ of $K$ splits completely in a finite extension $L/K$ if $\mathfrak{p}\mathcal{O}_L=\mathfrak{P}_1\cdots\mathfrak{P}_n$ with $n=[L:K]$ distinct primes, equivalently $e(\mathfrak{P}_i\mid\mathfrak{p})=f(\mathfrak{P}_i\mid\mathfrak{p})=1$ for all $i$.
+:::
+
+::: {.front card-id="card-ce80871430f96599" tags="definition"}
+Uniformizer
+:::
+
+::: {.back card-id="card-ce80871430f96599"}
+A uniformizer of a discrete valuation ring $R$ with maximal ideal $\mathfrak{m}$ is an element $\pi\in R$ with $v(\pi)=1$, equivalently a generator of $\mathfrak{m}$. Every nonzero element of the fraction field is $u\pi^n$ with $u\in R^\times$ and $n\in\mathbb{Z}$.
+:::

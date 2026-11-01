@@ -761,3 +761,347 @@ This is a transvection. For surfaces, $\delta^2=-2$ and
 $$T(x)=x+(x\cdot\delta)\delta,\qquad T(\delta)=-\delta.$$
 This is the reflection in the vanishing class.
 :::
+
+::: {.front card-id="card-2b275615aad39e6c" tags="definition"}
+Algebraic class
+:::
+
+::: {.back card-id="card-2b275615aad39e6c"}
+A cohomology class in $H^{2k}(X;\mathbb Q)$ that is a $\mathbb Q$-linear combination of fundamental classes $[Z]$ of closed algebraic subvarieties $Z\subset X$ of codimension $k$.
+:::
+
+::: {.front card-id="card-f35177676acfe3b2" tags="definition"}
+Algebraic representation
+:::
+
+::: {.back card-id="card-f35177676acfe3b2"}
+A representation $\rho:G\to\operatorname{GL}(V)$ of an algebraic group that is a morphism of varieties; equivalently a $G$-module whose matrix coefficients are regular functions on $G$.
+:::
+
+::: {.front card-id="card-d25f56f728d51c2e" tags="definition"}
+Character of a torus
+:::
+
+::: {.back card-id="card-d25f56f728d51c2e"}
+A homomorphism $\chi:T\to\mathbb G_m$ of algebraic groups; for $T\cong\mathbb G_m^r$ the characters form the lattice $X^*(T)\cong\mathbb Z^r$, and a representation of $T$ decomposes into weight spaces $V_\chi$.
+:::
+
+::: {.front card-id="card-19c7492f4250dc0e" tags="definition"}
+Character variety
+:::
+
+::: {.back card-id="card-19c7492f4250dc0e"}
+For a finitely generated group $\Gamma$ and reductive group $G$, the affine quotient $\operatorname{Hom}(\Gamma,G)/\!/G$ of the representation scheme by simultaneous conjugation; its points parametrize isomorphism classes of semisimple representations.
+:::
+
+::: {.front card-id="card-47e9f5f5ac4967f4" tags="definition"}
+Cocharacter
+:::
+
+::: {.back card-id="card-47e9f5f5ac4967f4"}
+A homomorphism $\lambda:\mathbb G_m\to G$ of algebraic groups; for a torus $T$, the cocharacters form $X_*(T)=\operatorname{Hom}(\mathbb G_m,T)$, the dual of the character lattice $X^*(T)$.
+:::
+
+::: {.front card-id="card-0cea8b2138beb893" tags="definition"}
+Eigenspace
+:::
+
+::: {.back card-id="card-0cea8b2138beb893"}
+For a linear operator $T:V\to V$ and eigenvalue $\lambda$, the subspace $V_\lambda=\ker(T-\lambda I)$ of vectors on which $T$ acts as multiplication by $\lambda$.
+:::
+
+::: {.front card-id="card-2cad8725835ecda3" tags="definition"}
+Fiber bundle
+:::
+
+::: {.back card-id="card-2cad8725835ecda3"}
+A map $p:E\to B$ that is locally trivial: every $b\in B$ has a neighborhood $U$ and a homeomorphism $p^{-1}(U)\cong U\times F$ over $U$, with fiber $F$; a differentiable fiber bundle requires the trivializations to be diffeomorphisms.
+:::
+
+::: {.front card-id="card-b9f137da4c23e911" tags="definition"}
+Flat connection
+:::
+
+::: {.back card-id="card-b9f137da4c23e911"}
+A connection $\nabla$ on a vector bundle $E\to X$ with vanishing curvature $\nabla^2=0$; equivalently a connection whose horizontal sections form a local system $E^\nabla$ with $E\cong\mathcal O_X\otimes_{\mathbb C}E^\nabla$.
+:::
+
+::: {.front card-id="card-f63b3fc4a50d2fff" tags="definition"}
+Galois representation
+:::
+
+::: {.back card-id="card-f63b3fc4a50d2fff"}
+A continuous homomorphism $\rho:G_k\to\operatorname{GL}(V)$ for a Galois group $G_k=\operatorname{Gal}(\overline k/k)$ and a topological vector space $V$ (often $\ell$-adic); continuity uses the profinite topology on $G_k$ and the natural topology on $V$.
+:::
+
+::: {.front card-id="card-a9bab3596ebd4a38" tags="definition"}
+Griffiths complex structure
+:::
+
+::: {.back card-id="card-a9bab3596ebd4a38"}
+On the real vector space underlying a Hodge structure of odd weight $2k-1$, the Griffiths complex structure has $(1,0)$-part the Hodge filtration $F^kV$; it defines the Griffiths intermediate Jacobian $J_G(V)=V/(V_{\mathbb Z}+F^kV)$.
+:::
+
+::: {.front card-id="card-4ab6b565dba37339" tags="definition"}
+Hermitian form
+:::
+
+::: {.back card-id="card-4ab6b565dba37339"}
+A sesquilinear form $h:V\times V\to\mathbb C$ with $h(w,v)=\overline{h(v,w)}$; it is positive definite if $h(v,v)>0$ for every $v\ne0$.
+:::
+
+::: {.front card-id="card-54d90d25fdfeea56" tags="definition"}
+Hermitian metric
+:::
+
+::: {.back card-id="card-54d90d25fdfeea56"}
+A smoothly varying positive-definite Hermitian inner product $h$ on the fibres of a complex vector bundle $E\to X$: each $h_x$ is $\mathbb C$-linear in one argument, conjugate-linear in the other, and $h(v,v)>0$ for $v\ne0$.
+:::
+
+::: {.front card-id="card-c0d7789910359198" tags="definition"}
+Hodge decomposition
+:::
+
+::: {.back card-id="card-c0d7789910359198"}
+For a compact Kähler manifold $X$, the decomposition $H^k(X;\mathbb C)=\bigoplus_{p+q=k}H^{p,q}(X)$ with $\overline{H^{p,q}}=H^{q,p}$; equivalently the splitting of a pure Hodge structure of weight $k$ into its $(p,q)$ pieces.
+:::
+
+::: {.front card-id="card-564f652a26b01565" tags="definition"}
+Hodge structure
+:::
+
+::: {.back card-id="card-564f652a26b01565"}
+A rational Hodge structure of weight $n$ is a finite-dimensional $\mathbb Q$-vector space $V$ with a decomposition $V_{\mathbb C}=\bigoplus_{p+q=n}V^{p,q}$ satisfying $\overline{V^{p,q}}=V^{q,p}$. Equivalently, a decreasing Hodge filtration $F^\bullet$ on $V_{\mathbb C}$ with $F^p\oplus\overline{F^{n-p+1}}=V_{\mathbb C}$; $H^n(X,\mathbb Q)$ of a smooth projective complex variety carries one.
+:::
+
+::: {.front card-id="card-d0c4d9aa2c580577" tags="definition"}
+Holomorphic differential operator
+:::
+
+::: {.back card-id="card-d0c4d9aa2c580577"}
+A $\mathbb C$-linear endomorphism of $\mathcal O_X$ locally of the form $\sum_{|\alpha|\le m} f_\alpha\partial^\alpha$ with $f_\alpha$ holomorphic; these operators form the sheaf $D_X$.
+:::
+
+::: {.front card-id="card-6b2a61a9df86fe75" tags="definition"}
+Hyperkähler manifold
+:::
+
+::: {.back card-id="card-6b2a61a9df86fe75"}
+A Riemannian manifold of dimension $4n$ whose holonomy is contained in $\operatorname{Sp}(n)$; equivalently a Kähler manifold carrying a holomorphic symplectic $2$-form $\sigma$ that is parallel, with $\sigma^n$ nowhere vanishing.
+:::
+
+::: {.front card-id="card-f4991f604dc40dcf" tags="definition"}
+Intersection cohomology
+:::
+
+::: {.back card-id="card-f4991f604dc40dcf"}
+The cohomology $IH^k(X;\mathbb Q)=H^k(X;IC_X(\mathbb Q))$ of the intersection complex; for a projective variety of dimension $n$ it satisfies Poincaré duality and hard Lefschetz, and it agrees with ordinary cohomology when $X$ is smooth.
+:::
+
+::: {.front card-id="card-b91684e8cd33e85f" tags="definition"}
+Intersection complex
+:::
+
+::: {.back card-id="card-b91684e8cd33e85f"}
+For a local system $L$ on a smooth dense open subset of a variety $X$, the perverse sheaf $IC_X(L)$ obtained by truncating the pushforward $j_*L$ (Deligne's construction); its cohomology computes intersection cohomology with local coefficients.
+:::
+
+::: {.front card-id="card-c85bec55230a03d2" tags="definition"}
+Irreducible representation
+:::
+
+::: {.back card-id="card-c85bec55230a03d2"}
+A nonzero representation $V$ of a group or algebra with no proper nonzero subrepresentation; equivalently $\operatorname{End}_G(V)$ is a division ring, and for algebraically closed fields and finite groups $\operatorname{End}_G(V)=\mathbb C$.
+:::
+
+::: {.front card-id="card-92fa2bc76a35c8d0" tags="definition"}
+Kähler class
+:::
+
+::: {.back card-id="card-92fa2bc76a35c8d0"}
+The de Rham class $[\omega]\in H^{1,1}(X;\mathbb R)$ of a closed positive $(1,1)$-form $\omega$ on a complex manifold; equivalently the class of a Kähler form, so it is represented by a Kähler metric.
+:::
+
+::: {.front card-id="card-ae728ba7c6c78ce5" tags="definition"}
+L-adic cohomology
+:::
+
+::: {.back card-id="card-ae728ba7c6c78ce5"}
+For a scheme $X$ separated of finite type over a field and a prime $\ell$ invertible on $X$, the $\mathbb Q_\ell$-vector spaces $H^i_{\mathrm{\acute et}}(X;\mathbb Q_\ell)=(\varprojlim_n H^i_{\mathrm{\acute et}}(X;\mathbb Z/\ell^n\mathbb Z))\otimes_{\mathbb Z_\ell}\mathbb Q_\ell$.
+:::
+
+::: {.front card-id="card-5dd0bc4617067172" tags="definition"}
+Lefschetz operator
+:::
+
+::: {.back card-id="card-5dd0bc4617067172"}
+For a Kähler class $\omega$ on $X$, the operator $L:H^k(X)\to H^{k+2}(X)$ given by $L(\alpha)=\omega\cup\alpha$; its $\mathfrak{sl}_2$-adjoint is $\Lambda=L^*=\star^{-1}L\star$.
+:::
+
+::: {.front card-id="card-324ac9216b75b02e" tags="definition"}
+Lowest weight vector
+:::
+
+::: {.back card-id="card-324ac9216b75b02e"}
+In an $\mathfrak{sl}_2$-representation, a vector $v$ annihilated by the lowering operator $\Lambda$; for the Lefschetz $\mathfrak{sl}_2$-action generated by $L$ and $\Lambda$, the lowest weight vectors are exactly the primitive cohomology classes.
+:::
+
+::: {.front card-id="card-ff783d82021dce75" tags="definition"}
+Motivic representation
+:::
+
+::: {.back card-id="card-ff783d82021dce75"}
+A representation of a Galois group (or fundamental group) that occurs as a subquotient of the cohomology $H^i(X_{\overline k},\mathbb Q_\ell)$ of a smooth projective variety, hence is of geometric origin.
+:::
+
+::: {.front card-id="card-a3c337d2df6608aa" tags="definition"}
+Numerical class
+:::
+
+::: {.back card-id="card-a3c337d2df6608aa"}
+Two divisors are numerically equivalent if they have the same intersection number with every curve; the numerical class is the image in $N^1(X)=(\operatorname{Div}/\equiv_{\mathrm{num}})\otimes\mathbb R$.
+:::
+
+::: {.front card-id="card-d23139a6a987d15e" tags="definition"}
+Perverse cohomology
+:::
+
+::: {.back card-id="card-d23139a6a987d15e"}
+The cohomology objects ${}^p\mathcal H^i(K)$ of a complex $K$ with respect to the perverse $t$-structure on $D^b_c(X)$; they are perverse sheaves, and the decomposition theorem expresses $Rf_*\mathbb Q$ as a sum of shifts of simple perverse sheaves.
+:::
+
+::: {.front card-id="card-4b1d53806881ea83" tags="definition"}
+Polarized hodge structure
+:::
+
+::: {.back card-id="card-4b1d53806881ea83"}
+A pure Hodge structure $(V,V^{p,q})$ of weight $m$ together with a $(-1)^m$-symmetric bilinear form $Q:V\times V\to\mathbb Q(-m)$ such that $Q(v,\overline w)$ is Hermitian and $i^{p-q}Q(v,\overline v)>0$ for $0\ne v\in V^{p,q}$; equivalently a morphism $V\to V^\vee(-m)$ satisfying Hodge–Riemann positivity.
+:::
+
+::: {.front card-id="card-77db280aaada1e82" tags="definition"}
+Regular holonomic d-module
+:::
+
+::: {.back card-id="card-77db280aaada1e82"}
+A left module $M$ over the sheaf $D_X$ of holomorphic differential operators that is coherent over $D_X$, whose characteristic variety is Lagrangian (holonomic), and whose solutions have regular singularities along that variety (regular).
+:::
+
+::: {.front card-id="card-9408d7d0c684ef74" tags="definition"}
+Riemann-hilbert correspondence
+:::
+
+::: {.back card-id="card-9408d7d0c684ef74"}
+The equivalence between regular holonomic $D_X$-modules and bounded constructible complexes of $\mathbb C$-vector spaces on $X$, sending $M\mapsto\mathbb R\mathcal H om_{D_X}(M,\mathcal O_X)$; it generalizes the correspondence between flat connections and local systems.
+:::
+
+::: {.front card-id="card-9049bc9b0d97b074" tags="definition"}
+Semisimple local system
+:::
+
+::: {.back card-id="card-9049bc9b0d97b074"}
+A local system whose associated monodromy representation is semisimple (completely reducible); equivalently a local system that is a direct sum of irreducible local systems.
+:::
+
+::: {.front card-id="card-e092aa6b8c6bed5f" tags="definition"}
+Sesquilinear form
+:::
+
+::: {.back card-id="card-e092aa6b8c6bed5f"}
+A map $B:V\times W\to\mathbb C$ that is linear in one argument and conjugate-linear in the other; a Hermitian form is a sesquilinear form $V\times V\to\mathbb C$ with $B(w,v)=\overline{B(v,w)}$.
+:::
+
+::: {.front card-id="card-0d1ed9edee3e0517" tags="definition"}
+Sl_2-representation
+:::
+
+::: {.back card-id="card-0d1ed9edee3e0517"}
+A representation of the Lie algebra $\mathfrak{sl}_2(\mathbb C)=\langle e,f,h\rangle$ with $[h,e]=2e$, $[h,f]=-2f$, and $[e,f]=h$; every finite-dimensional one is a direct sum of symmetric powers $\operatorname{Sym}^n(\mathbb C^2)$.
+:::
+
+::: {.front card-id="card-4f2a54667ed3078d" tags="definition"}
+Stable higgs bundle
+:::
+
+::: {.back card-id="card-4f2a54667ed3078d"}
+A Higgs bundle $(E,\theta)$ with $\theta:E\to E\otimes\Omega^1_X$ and $\theta\wedge\theta=0$ is stable for a polarization if every proper $\theta$-invariant subsheaf $F\subset E$ satisfies $\mu(F)<\mu(E)$, where $\mu(F)=\deg F/\operatorname{rk}F$; semistable uses $\le$.
+:::
+
+::: {.front card-id="card-59820f784bbd6226" tags="definition"}
+Subquotient
+:::
+
+::: {.back card-id="card-59820f784bbd6226"}
+An object isomorphic to $A/B$ for a subobject $B$ of a subobject $A$ of a given object; the subquotients of a representation are its constituents and are closed under further subquotients.
+:::
+
+::: {.front card-id="card-d41a841dbe205641" tags="definition"}
+Symplectic transvection
+:::
+
+::: {.back card-id="card-d41a841dbe205641"}
+For a symplectic form $\omega$ and a nonzero vector $v$, the automorphism $T_v(x)=x-\omega(x,v)v$; it is symplectic, fixes $v^\perp$, and satisfies $T_v(v)=v$.
+:::
+
+::: {.front card-id="card-bdd7373c2c7eb926" tags="definition"}
+Tate hodge structure
+:::
+
+::: {.back card-id="card-bdd7373c2c7eb926"}
+The rank-one Hodge structure $\mathbb Z(1)$ of weight $-2$ with lattice $(2\pi i)\mathbb Z\subset\mathbb C$ and type $(-1,-1)$; its $m$-th tensor power $\mathbb Z(m)$ has weight $-2m$ and type $(-m,-m)$.
+:::
+
+::: {.front card-id="card-030a0cdb11931b03" tags="definition"}
+Transvection
+:::
+
+::: {.back card-id="card-030a0cdb11931b03"}
+An automorphism of a vector space with bilinear form $B$ of the form $T(x)=x-\frac{2B(x,v)}{B(v,v)}v$ when $B(v,v)\ne0$, or $T(x)=x-B(x,v)v$ when $B$ is alternating; it fixes the hyperplane $v^\perp$ and shears along $\langle v\rangle$.
+:::
+
+::: {.front card-id="card-695648298794f57b" tags="definition"}
+Variation of hodge structure
+:::
+
+::: {.back card-id="card-695648298794f57b"}
+A local system $\mathbb V$ of finite-dimensional $\mathbb Q$-vector spaces on a smooth variety $S$, with an increasing weight filtration by sub-local systems and a decreasing Hodge filtration $F^p\subset\mathcal O_S\otimes\mathbb V$ by subbundles, such that every fibre is a Hodge structure and $\nabla(F^p)\subset F^{p-1}\otimes\Omega^1_S$ (Griffiths transversality).
+:::
+
+::: {.front card-id="card-d76909b4beed0c4e" tags="definition"}
+Weight filtration
+:::
+
+::: {.back card-id="card-d76909b4beed0c4e"}
+An increasing filtration $W_\bullet$ on a vector space underlying a mixed Hodge structure such that each graded piece $\operatorname{gr}^W_\ell$ carries a pure Hodge structure of weight $\ell$. On the cohomology of a complex variety it is Deligne's weight filtration, with weights recording the compactification and the open complement.
+:::
+
+::: {.front card-id="card-c3e44608ecf1b8d3" tags="definition"}
+Weil complex structure
+:::
+
+::: {.back card-id="card-c3e44608ecf1b8d3"}
+On the real vector space underlying a Hodge structure, the complex structure $C$ acting on $V^{p,q}$ by $i^{p-q}$; it defines the Weil intermediate Jacobian $J_W(V)=V/(V_{\mathbb Z}+V_W^{1,0})$.
+:::
+
+::: {.front card-id="card-3d2a91af614ba2fc" tags="definition"}
+Weyl algebra
+:::
+
+::: {.back card-id="card-3d2a91af614ba2fc"}
+The algebra $W^n=\mathbb C[x_1,\dots,x_n,\partial_1,\dots,\partial_n]$ with relations $[x_i,x_j]=[\partial_i,\partial_j]=0$ and $[\partial_i,x_j]=\delta_{ij}$; it is the ring of global differential operators on $\mathbb A^n$.
+:::
+
+::: {.front card-id="card-63fc125ab4cf0770" tags="definition"}
+Weyl group
+:::
+
+::: {.back card-id="card-63fc125ab4cf0770"}
+The finite reflection group $W$ generated by the reflections in the hyperplanes orthogonal to the roots of a root system $\Phi$; equivalently $W=N(T)/T$ for a maximal torus $T$ in a connected reductive algebraic group. It acts on character lattices and on cohomology such as $H^*(G/B)$.
+:::
+
+::: {.front card-id="card-ed88ff202aea0a6a" tags="definition"}
+Zariski closure
+:::
+
+::: {.back card-id="card-ed88ff202aea0a6a"}
+For a subset $S$ of an algebraic variety $X$, the smallest Zariski-closed subset $\overline S$ containing $S$; equivalently the common zero set of all regular functions on $X$ that vanish on $S$.
+:::

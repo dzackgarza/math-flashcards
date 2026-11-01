@@ -266,3 +266,187 @@ to get an entire function with $\widehat{\xi}(s) = \widehat{\xi}(1-s)$.
 - Relate to a theorem of Wan 8.24.5: Let $y\in { \ZZ_{\widehat{p}} }$ where each $r\dash$adic digit of $-y$ is less than $p$ or equal to $r-1$. Then the zeros of $\zeta_A(x, y)$ are in $K$ and simple.
 - ${\mathbf{R}}$ is a "small" local field and the zeros of $\theta(u)$ are either in ${\mathbf{R}}$ or $\CC$, a degree 2 extension. Compare to zeros of $\zeta_A(s)$ which could be in an extension of $K$ of arbitrary (even infinite) degree but are in $K$ itself.
 :::
+
+::: {.front card-id="card-ae19b5ca76b254e2" tags="definition"}
+Additive polynomial
+:::
+
+::: {.back card-id="card-ae19b5ca76b254e2"}
+An additive polynomial over a ring of characteristic $p$ is a polynomial $f(x)$ satisfying $f(x+y)=f(x)+f(y)$; equivalently, $f(x)=\sum_i a_i x^{p^i}$ is a linearized polynomial. The Carlitz module is defined by additive polynomials $C_\ell$.
+:::
+
+::: {.front card-id="card-c67566c48c2a34b5" tags="definition"}
+Carlitz module
+:::
+
+::: {.back card-id="card-c67566c48c2a34b5"}
+The Carlitz module is the Drinfeld module over $\mathbb{F}_q[T]$ given by the $\mathbb{F}_q$-algebra homomorphism $\mathbb{F}_q[T]\to\operatorname{End}(\mathbb{G}_a)$, $T\mapsto C_T$, where $C_T(x)=Tx+x^q$. It is the simplest Drinfeld module and the function-field analogue of the multiplicative group $\mathbb{G}_m$.
+:::
+
+::: {.front card-id="card-e680d9239eb8efcc" tags="definition"}
+Class number
+:::
+
+::: {.back card-id="card-e680d9239eb8efcc"}
+The class number $h_K$ of a number field $K$ is the order $\#\mathrm{Cl}(K)$ of its ideal class group; for a function field it is $\#\mathrm{Jac}_X(\mathbb{F}_q)$. It measures the failure of the ring of integers to be a unique factorization domain: $h_K=1$ iff $\mathcal{O}_K$ is a UFD.
+:::
+
+::: {.front card-id="card-b78b5390e64274e8" tags="definition"}
+Cocompact subgroup
+:::
+
+::: {.back card-id="card-b78b5390e64274e8"}
+A subgroup $\Gamma$ of a topological group $G$ is cocompact if the quotient space $G/\Gamma$ with the quotient topology is compact.
+:::
+
+::: {.front card-id="card-a83d9f2a77039635" tags="definition"}
+Conductor of an order
+:::
+
+::: {.back card-id="card-a83d9f2a77039635"}
+For an order $\mathcal{O}$ in the maximal order $\widetilde{\mathcal{O}}$ of a number field (or an $A$-order in a finite extension), the conductor is $\mathfrak{c}=\{x\in\widetilde{\mathcal{O}}:x\widetilde{\mathcal{O}}\subseteq\mathcal{O}\}$, the largest ideal of $\widetilde{\mathcal{O}}$ contained in $\mathcal{O}$ (equivalently, also an ideal of $\mathcal{O}$).
+:::
+
+::: {.front card-id="card-098ebdf5dd23b7a3" tags="definition"}
+Discrete subgroup
+:::
+
+::: {.back card-id="card-098ebdf5dd23b7a3"}
+A subgroup $\Gamma$ of a topological group $G$ is discrete if the subspace topology on $\Gamma$ is discrete, i.e. every point of $\Gamma$ is isolated in $\Gamma$. Equivalently, there is an open neighborhood of the identity meeting $\Gamma$ only at the identity.
+:::
+
+::: {.front card-id="card-8bcaeb6ede9a28e4" tags="definition"}
+Division value
+:::
+
+::: {.back card-id="card-8bcaeb6ede9a28e4"}
+A division value of an exponential $e_C$ (or $e_L$) is a value $e_C(a)$ at a torsion point $a$ of the lattice or module. Division values generate abelian extensions of the base field, analogous to how roots of unity generate cyclotomic extensions.
+:::
+
+::: {.front card-id="card-d8b57340c4265056" tags="definition"}
+Entire function
+:::
+
+::: {.back card-id="card-d8b57340c4265056"}
+An entire function is a complex-valued function holomorphic on all of $\mathbb{C}$; equivalently, it is given by a power series $\sum a_n z^n$ with infinite radius of convergence. Over a nonarchimedean field, an entire function is a power series converging on the whole field.
+:::
+
+::: {.front card-id="card-c93dee3736bd75a3" tags="definition"}
+Function field
+:::
+
+::: {.back card-id="card-c93dee3736bd75a3"}
+(1) A function field in one variable over a field $k$ is a finitely generated field extension of $k$ of transcendence degree $1$. In number theory $k$ is usually a finite field $\mathbb{F}_q$, and the function field is the field of rational functions on a smooth projective curve over $\mathbb{F}_q$. (2) For an integral scheme $X$ with generic point $\eta$, the function field is $K(X)=\mathcal O_{X,\eta}$. For an integral variety over a field $k$, it is the field of rational functions on $X$.
+:::
+
+::: {.front card-id="card-f8f953bc6c2c0578" tags="definition"}
+Functional equation
+:::
+
+::: {.back card-id="card-f8f953bc6c2c0578"}
+A functional equation for a zeta or $L$-function is an identity relating $\Lambda(s)$ to $\Lambda(1-s)$ (or $Z(u)$ to $Z(1/(ru))$), where $\Lambda$ is the completed function including archimedean and conductor factors. It expresses the symmetry of the completed function about the critical line.
+:::
+
+::: {.front card-id="card-cfe8c675cba40b5f" tags="definition"}
+Gamma function
+:::
+
+::: {.back card-id="card-cfe8c675cba40b5f"}
+The Gamma function is $\Gamma(s)=\int_0^\infty t^{s-1}e^{-t}\,dt$ for $\operatorname{Re}s>0$, extended meromorphically to $\mathbb{C}$ with poles at the nonpositive integers. It satisfies $\Gamma(s+1)=s\Gamma(s)$ and $\Gamma(n)=(n-1)!$ for $n\ge1$.
+:::
+
+::: {.front card-id="card-e2876b1ae69fd850" tags="definition"}
+Geometric frobenius
+:::
+
+::: {.back card-id="card-e2876b1ae69fd850"}
+For a variety over $\mathbb{F}_q$, the geometric Frobenius is the inverse of the arithmetic Frobenius $x\mapsto x^q$ in $\mathrm{Gal}(\overline{\mathbb{F}}_q/\mathbb{F}_q)$; it acts on $\ell$-adic étale cohomology. For a closed point $w$ of a curve, $\mathrm{Frob}_w$ denotes this geometric Frobenius, normalized as the inverse of $x\mapsto x^q$.
+:::
+
+::: {.front card-id="card-b4b61ca1d1381eb5" tags="definition"}
+Hilbert class field
+:::
+
+::: {.back card-id="card-b4b61ca1d1381eb5"}
+The Hilbert class field $H$ of a number field $K$ is the maximal abelian extension of $K$ that is unramified at all finite primes. Its Galois group is canonically isomorphic to the ideal class group $\mathrm{Cl}(K)$, so $[H:K]=h_K$.
+:::
+
+::: {.front card-id="card-3612cc90f4815c4b" tags="definition"}
+Jacobian variety
+:::
+
+::: {.back card-id="card-3612cc90f4815c4b"}
+The Jacobian $\mathrm{Jac}(X)$ of a smooth projective curve $X$ is the abelian variety whose points over a field $k$ are the degree-zero divisors on $X$ modulo principal divisors. Its dimension is the genus $g$ of $X$, and $\mathrm{Jac}(X)(\mathbb{F}_q)$ is the degree-zero divisor class group.
+:::
+
+::: {.front card-id="card-8626a74576d0a13a" tags="definition"}
+L-adic representation
+:::
+
+::: {.back card-id="card-8626a74576d0a13a"}
+An $\ell$-adic representation of a Galois group $G_K$ is a continuous homomorphism $\rho:G_K\to\mathrm{GL}_n(\mathbb{Q}_\ell)$ (or $\mathrm{GL}_n(E_\lambda)$ for a finite extension $E_\lambda/\mathbb{Q}_\ell$), equivalently a finite-dimensional $\mathbb{Q}_\ell$-vector space with a continuous $G_K$-action.
+:::
+
+::: {.front card-id="card-c94b06514997fb8a" tags="definition"}
+Langlands program
+:::
+
+::: {.back card-id="card-c94b06514997fb8a"}
+The Langlands program is a set of conjectures relating Galois representations (or motives) to automorphic representations of reductive groups, and matching their $L$-functions. It generalizes class field theory, which is the abelian case.
+:::
+
+::: {.front card-id="card-e00493795c1a16cc" tags="definition"}
+Maximal order
+:::
+
+::: {.back card-id="card-e00493795c1a16cc"}
+An order in a finite-dimensional algebra $A$ over $\mathbb{Q}$ (or over a Dedekind domain) is a subring that is a finitely generated projective module of full rank; it is maximal if it is maximal with respect to inclusion among orders. For a number field $K$, the unique maximal order is the ring of integers $\mathcal{O}_K$.
+:::
+
+::: {.front card-id="card-03a196f43d5f49b0" tags="definition"}
+R-adic expansion
+:::
+
+::: {.back card-id="card-03a196f43d5f49b0"}
+For an integer $r\ge2$, the $r$-adic expansion of $x\in\mathbb{Z}_p$ (when $r$ is a power of $p$) is $x=\sum_{i\ge0}a_i r^i$ with digits $0\le a_i<r$. The $a_i$ are the $r$-adic digits; for $r=p$ this is the usual $p$-adic expansion.
+:::
+
+::: {.front card-id="card-6ba0dca2b7c27ecd" tags="definition"}
+Rigid analytic geometry
+:::
+
+::: {.back card-id="card-6ba0dca2b7c27ecd"}
+Rigid analytic geometry is Tate's theory of analytic spaces over a nonarchimedean field, built from affinoid algebras (quotients of Tate algebras) and admissible open coverings. It provides a nonarchimedean analogue of complex analytic geometry and is used to uniformize Drinfeld moduli spaces.
+:::
+
+::: {.front card-id="card-4972336cd57309b4" tags="definition"}
+Shtuka
+:::
+
+::: {.back card-id="card-4972336cd57309b4"}
+A shtuka (Drinfeld) is a vector bundle $\mathcal{E}$ on $X\times S$ together with an isomorphism $\mathcal{E}^{(p)}\to\mathcal{E}$ away from a divisor, where $\mathcal{E}^{(p)}$ is the Frobenius pullback. Shtukas are function-field analogues of motives with Frobenius structure and are used to realize Galois representations.
+:::
+
+::: {.front card-id="card-6aa5244a68396c66" tags="definition"}
+T-module
+:::
+
+::: {.back card-id="card-6aa5244a68396c66"}
+A $T$-module (in the sense of Anderson) over a field $k$ is a pair $(E,\phi)$ consisting of a vector group $E\cong\mathbb{G}_a^d$ and an $\mathbb{F}_q$-linear ring homomorphism $\phi:\mathbb{F}_q[T]\to\operatorname{End}(E)$. Drinfeld modules are the dimension-one case ($d=1$), of arbitrary rank; $T$-modules are function-field analogues of abelian varieties.
+:::
+
+::: {.front card-id="card-2e6db27fb7b674d9" tags="definition"}
+Tate module
+:::
+
+::: {.back card-id="card-2e6db27fb7b674d9"}
+For an abelian group or abelian variety $A$ and a prime $\ell$, the $\ell$-adic Tate module is $T_\ell(A)=\varprojlim_n A[\ell^n]$, the inverse limit of $\ell^n$-torsion subgroups. If $A$ is an abelian variety of dimension $g$ over a field of characteristic $\neq\ell$, then $T_\ell(A)\cong\mathbb{Z}_\ell^{2g}$ as a $\mathbb{Z}_\ell$-module.
+:::
+
+::: {.front card-id="card-73127fa341e1af1f" tags="definition"}
+Uniformization
+:::
+
+::: {.back card-id="card-73127fa341e1af1f"}
+Uniformization is the representation of an analytic or algebraic object as a quotient of a simpler space by a discrete group action, e.g. $\mathbb{C}/\Lambda$ for a complex elliptic curve, or the Drinfeld upper half-plane modulo a lattice for Drinfeld modules.
+:::

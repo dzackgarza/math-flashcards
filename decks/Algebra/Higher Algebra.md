@@ -243,3 +243,243 @@ What is the usefulness of dualizable objects?
 ::: {.back card-id="card-0bcb098e3ee04582"}
 If $M$ has a dual $M^\vee$, maps out of $M$ can be transposed: $\operatorname{Hom}(M\otimes X,Y)\cong\operatorname{Hom}(X,M^\vee\otimes Y)$. Thus tensoring with $M$ has a tensor adjoint, and evaluation and coevaluation let one define traces of endomorphisms of $M$.
 :::
+
+::: {.front card-id="card-a791584e0ac1271e" tags="definition"}
+(infinity,n)-category
+:::
+
+::: {.back card-id="card-a791584e0ac1271e"}
+A higher category in which all $k$-morphisms are invertible for $k>n$, so non-invertible morphisms occur only up to level $n$.
+:::
+
+::: {.front card-id="card-4f9dea568ce92121" tags="definition"}
+Adjoint quotient
+:::
+
+::: {.back card-id="card-4f9dea568ce92121"}
+For a group $G$ acting on itself by conjugation, the quotient stack $[G/G]$, equivalently the free loop space $\mathcal L(BG)$; it classifies $G$-bundles on the circle, equivalently $G$-torsors equipped with an automorphism.
+:::
+
+::: {.front card-id="card-2e34b888a08cdc5f" tags="definition"}
+Cdga
+:::
+
+::: {.back card-id="card-2e34b888a08cdc5f"}
+A commutative differential graded algebra: a graded commutative algebra $A$ with a degree-$1$ differential $d$ satisfying $d(ab)=d(a)b+(-1)^{|a|}a\,d(b)$.
+:::
+
+::: {.front card-id="card-3b19794fd92da0a9" tags="definition"}
+Chiral homology
+:::
+
+::: {.back card-id="card-3b19794fd92da0a9"}
+The factorization homology of a factorization coalgebra; a topological/chiral analogue of Beilinson-Drinfeld chiral homology.
+:::
+
+::: {.front card-id="card-f1ad77a2b8c5fcc0" tags="definition"}
+Classifying space
+:::
+
+::: {.back card-id="card-f1ad77a2b8c5fcc0"}
+For a topological group $G$, a space $BG$ with a principal $G$-bundle $EG\to BG$ that is universal; for discrete $G$, $BG=K(G,1)$.
+:::
+
+::: {.front card-id="card-7dcd9b8fd146d7f3" tags="definition"}
+Coevaluation
+:::
+
+::: {.back card-id="card-7dcd9b8fd146d7f3"}
+For a dualizable object $M$ with dual $M^\vee$, the unit map $1\to M\otimes M^\vee$ exhibiting $M^\vee$ as a dual of $M$.
+:::
+
+::: {.front card-id="card-16128e388f458f16" tags="definition"}
+Configuration space
+:::
+
+::: {.back card-id="card-16128e388f458f16"}
+The space $\operatorname{Conf}_k(M)=\{(x_1,\ldots,x_k)\in M^k:x_i\neq x_j\text{ for }i\neq j\}$ of $k$ distinct ordered points in $M$.
+:::
+
+::: {.front card-id="card-c266b7a4025a6e2f" tags="definition"}
+Connective
+:::
+
+::: {.back card-id="card-c266b7a4025a6e2f"}
+A spectrum $X$ with $\pi_n(X)=0$ for $n<0$; a connective ring spectrum is one whose underlying spectrum is connective.
+:::
+
+::: {.front card-id="card-38f050718dfbb5a7" tags="definition"}
+Cosimplicial object
+:::
+
+::: {.back card-id="card-38f050718dfbb5a7"}
+A functor $\Delta\to\mathcal C$, where $\Delta$ is the simplex category; the cosimplicial bar resolution is built from such an object.
+:::
+
+::: {.front card-id="card-8194f88a835b7153" tags="definition"}
+Derived center
+:::
+
+::: {.back card-id="card-8194f88a835b7153"}
+The derived endomorphism algebra $\operatorname{RHom}_{(A,A)\text{-bimod}}(A,A)$, equivalent to Hochschild cohomology $\operatorname{HH}^*(A)$.
+:::
+
+::: {.front card-id="card-87df13960aa92cf4" tags="definition"}
+Derived stack
+:::
+
+::: {.back card-id="card-87df13960aa92cf4"}
+A functor from connective $E_\infty$-rings (or connective cdgas) to spaces satisfying etale descent; a derived enhancement of a stack.
+:::
+
+::: {.front card-id="card-a9986e2c5f6331d2" tags="definition"}
+E-infinity ring spectrum
+:::
+
+::: {.back card-id="card-a9986e2c5f6331d2"}
+A commutative ring spectrum, i.e. an algebra over the $E_\infty$ operad in spectra; a highly structured refinement of a commutative ring in the stable homotopy category.
+:::
+
+::: {.front card-id="card-46f42be3a2518ba8" tags="definition"}
+Enriched category
+:::
+
+::: {.back card-id="card-46f42be3a2518ba8"}
+A category $\mathcal C$ whose Hom-objects lie in a monoidal category $\mathcal V$, with composition morphisms $\operatorname{Hom}(X,Y)\otimes\operatorname{Hom}(Y,Z)\to\operatorname{Hom}(X,Z)$ in $\mathcal V$.
+:::
+
+::: {.front card-id="card-06e35aac7475b65e" tags="definition"}
+Evaluation map
+:::
+
+::: {.back card-id="card-06e35aac7475b65e"}
+For a dualizable object $M$ with dual $M^\vee$, the map $\operatorname{ev}:M\otimes M^\vee\to 1$.
+:::
+
+::: {.front card-id="card-2f13d8a819f5d05e" tags="definition"}
+Factorization coalgebra
+:::
+
+::: {.back card-id="card-2f13d8a819f5d05e"}
+A coalgebra object in a category of $D$-modules (or sheaves) on the Ran space equipped with factorization isomorphisms, encoding chiral operations.
+:::
+
+::: {.front card-id="card-73aaa2edf7f6bddb" tags="definition"}
+Framed n-manifold
+:::
+
+::: {.back card-id="card-73aaa2edf7f6bddb"}
+A smooth $n$-manifold $M$ together with a trivialization of its tangent bundle, i.e. a global framing.
+:::
+
+::: {.front card-id="card-94b31056a61ecf43" tags="definition"}
+Homotopy category
+:::
+
+::: {.back card-id="card-94b31056a61ecf43"}
+The category obtained from a category with weak equivalences by formally inverting those weak equivalences (e.g. $\operatorname{Ho}(\mathcal C)$ of a model category).
+:::
+
+::: {.front card-id="card-469f5cf8c7443c58" tags="definition"}
+Homotopy fixed points
+:::
+
+::: {.back card-id="card-469f5cf8c7443c58"}
+For a group $G$ acting on a space or spectrum $X$, the derived fixed points $X^{hG}=\operatorname{Map}^G(EG,X)$.
+:::
+
+::: {.front card-id="card-4793e4f11906cccf" tags="definition"}
+Kahler differentials
+:::
+
+::: {.back card-id="card-4793e4f11906cccf"}
+The module $\Omega_{A/k}$ generated by symbols $da$ for $a\in A$, modulo $d(ab)=a\,db+b\,da$ and $d(ka)=k\,da$; it corepresents derivations, $\operatorname{Der}_k(A,M)\cong\operatorname{Hom}_A(\Omega_{A/k},M)$.
+:::
+
+::: {.front card-id="card-e3ba668d9b4ff212" tags="definition"}
+Little n-disks operad
+:::
+
+::: {.back card-id="card-e3ba668d9b4ff212"}
+The operad $\mathcal D_n$ whose $k$-ary operations are configurations of $k$ disjoint standard $n$-disks inside the unit $n$-disk, composed by insertion.
+:::
+
+::: {.front card-id="card-04a30c2fe605e3f3" tags="definition"}
+Monoidal category
+:::
+
+::: {.back card-id="card-04a30c2fe605e3f3"}
+A category $\mathcal C$ with a bifunctor $\otimes:\mathcal C\times\mathcal C\to\mathcal C$, a unit object $1$, and natural associativity and unit isomorphisms satisfying coherence.
+:::
+
+::: {.front card-id="card-c64c0d8ff960be67" tags="definition"}
+Operad
+:::
+
+::: {.back card-id="card-c64c0d8ff960be67"}
+A sequence of objects $\mathcal O(n)$ with $\Sigma_n$-actions and composition maps $\mathcal O(k)\times\mathcal O(n_1)\times\cdots\times\mathcal O(n_k)\to\mathcal O(n_1+\cdots+n_k)$ encoding $n$-ary operations and their substitution; an $\mathcal O$-algebra has operations $\mathcal O(n)\otimes A^{\otimes n}\to A$.
+:::
+
+::: {.front card-id="card-78887401d4cafec1" tags="definition"}
+Perfect object
+:::
+
+::: {.back card-id="card-78887401d4cafec1"}
+An object of a stable $\infty$-category (e.g. $D(X)$) that is dualizable; equivalently, locally a bounded complex of finitely generated projective modules.
+:::
+
+::: {.front card-id="card-db0391ea15ee1c2b" tags="definition"}
+Pure braid group
+:::
+
+::: {.back card-id="card-db0391ea15ee1c2b"}
+The fundamental group of the configuration space of $n$ ordered points in the plane; it is the kernel of the surjection $B_n\to\Sigma_n$ from the braid group to the symmetric group.
+:::
+
+::: {.front card-id="card-38388f12ef667589" tags="definition"}
+Smooth algebra
+:::
+
+::: {.back card-id="card-38388f12ef667589"}
+A $k$-algebra $A$ that is formally smooth: every nilpotent extension $B\to B/I$ and map $A\to B/I$ lifts to $B$. Equivalently, $\Omega_{A/k}$ is projective and the cotangent complex is concentrated in degree $0$.
+:::
+
+::: {.front card-id="card-b1a6b8c044cade92" tags="definition"}
+Stack
+:::
+
+::: {.back card-id="card-b1a6b8c044cade92"}
+A sheaf of groupoids on a site (e.g. the etale site of schemes), i.e. a presheaf satisfying descent up to coherent isomorphism.
+:::
+
+::: {.front card-id="card-5f31d9e18483f286" tags="definition"}
+Suspension spectrum
+:::
+
+::: {.back card-id="card-5f31d9e18483f286"}
+The spectrum $\Sigma^\infty X$ with $(\Sigma^\infty X)_n=\Sigma^nX$ and identity structure maps, associated to a based space $X$.
+:::
+
+::: {.front card-id="card-8e2af1243a5ff75e" tags="definition"}
+Symmetric monoidal category
+:::
+
+::: {.back card-id="card-8e2af1243a5ff75e"}
+A monoidal category $(\mathcal C,\otimes,1)$ equipped with a natural isomorphism $X\otimes Y\cong Y\otimes X$ satisfying the hexagon and coherence axioms.
+:::
+
+::: {.front card-id="card-af57818899ee9a1d" tags="definition"}
+Tate construction
+:::
+
+::: {.back card-id="card-af57818899ee9a1d"}
+For a spectrum $X$ with $G$-action, the Tate spectrum $X^{tG}=\operatorname{cofib}(X_{hG}\to X^{hG})$; the Tate diagonal maps $X\to(X^{\otimes p})^{tC_p}$.
+:::
+
+::: {.front card-id="card-0ac4036f79339052" tags="definition"}
+Triangulated category
+:::
+
+::: {.back card-id="card-0ac4036f79339052"}
+An additive category equipped with a shift functor $[1]$ and a class of distinguished triangles $X\to Y\to Z\to X[1]$ satisfying the axioms (TR1)-(TR4): closure under isomorphisms, the cone construction, and the octahedral axiom.
+:::

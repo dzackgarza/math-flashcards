@@ -113,3 +113,107 @@ Every nonzero element $x\in R$ can be written as $x = u\prod p_i$ where the $p_i
 
 This decomposition is unique up to multiplication by a unit, and a permutation of the factors $\sigma$ that makes each $p_i$ associate to $p_{\sigma(i)}$
 :::
+
+::: {.front card-id="card-cf229eb4ce56d877" tags="definition"}
+Associate
+:::
+
+::: {.back card-id="card-cf229eb4ce56d877"}
+Elements $a,b\in R$ are associates if $a=ub$ for some unit $u\in R$; then $(a)=(b)$. In an integral domain (more generally, when $a$ is not a zero divisor) the converse holds: $(a)=(b)$ implies $a=ub$ for some unit $u$.
+:::
+
+::: {.front card-id="card-4accfaf472893354" tags="definition"}
+Commutative ring
+:::
+
+::: {.back card-id="card-4accfaf472893354"}
+A ring $R$ is commutative if $ab=ba$ for all $a,b\in R$.
+:::
+
+::: {.front card-id="card-f0c54fa44db0bad9" tags="definition"}
+Divisibility
+:::
+
+::: {.back card-id="card-f0c54fa44db0bad9"}
+For $a,b\in R$, $a$ divides $b$, written $a\mid b$, if $b=ac$ for some $c\in R$; equivalently, $b\in(a)$.
+:::
+
+::: {.front card-id="card-f366d9fa925a2c17" tags="definition"}
+Field
+:::
+
+::: {.back card-id="card-f366d9fa925a2c17"}
+A field is a commutative ring $F$ with $1\neq0$ in which every nonzero element has a multiplicative inverse; equivalently, its only ideals are $(0)$ and $F$.
+:::
+
+::: {.front card-id="card-4fd7042798fa65ee" tags="definition"}
+Field of fractions
+:::
+
+::: {.back card-id="card-4fd7042798fa65ee"}
+For an integral domain $R$, the field of fractions is $\operatorname{Frac}(R)=\{a/b:a,b\in R,\ b\neq0\}$ with $a/b=c/d$ iff $ad=bc$; it is the smallest field containing $R$.
+:::
+
+::: {.front card-id="card-826b6653fb77634a" tags="definition"}
+Ideal
+:::
+
+::: {.back card-id="card-826b6653fb77634a"}
+A (two-sided) ideal of a ring $R$ is an additive subgroup $I\subseteq R$ such that $rI\subseteq I$ and $Ir\subseteq I$ for all $r\in R$; equivalently, $R/I$ is a ring.
+:::
+
+::: {.front card-id="card-0c7db8f1fdccc3e8" tags="definition"}
+Krull dimension
+:::
+
+::: {.back card-id="card-0c7db8f1fdccc3e8"}
+The Krull dimension of a commutative ring $R$ is the supremum of the lengths $n$ of chains of prime ideals $\mathfrak{p}_0 \subsetneq \mathfrak{p}_1 \subsetneq \cdots \subsetneq \mathfrak{p}_n$.
+:::
+
+::: {.front card-id="card-86bb1d317cc5985b" tags="definition"}
+Polynomial ring
+:::
+
+::: {.back card-id="card-86bb1d317cc5985b"}
+For a commutative ring $R$, the polynomial ring $R[x]$ is the set of formal sums $\sum_{n \ge 0} a_n x^n$ with $a_n \in R$ eventually zero, added componentwise and multiplied by convolution.
+:::
+
+::: {.front card-id="card-3d02d06d45597db2" tags="definition"}
+Principal ideal domain
+:::
+
+::: {.back card-id="card-3d02d06d45597db2"}
+A principal ideal domain is an integral domain in which every ideal is principal, i.e. has the form $(a)=aR$ for some $a\in R$.
+:::
+
+::: {.front card-id="card-d533d6ec05d43880" tags="definition"}
+Proper ideal
+:::
+
+::: {.back card-id="card-d533d6ec05d43880"}
+An ideal $I\subsetneq R$ is proper; for a unital ring this is equivalent to $1\notin I$.
+:::
+
+::: {.front card-id="card-0a4c36868ebc59ca" tags="definition"}
+Reducible polynomial
+:::
+
+::: {.back card-id="card-0a4c36868ebc59ca"}
+A nonconstant polynomial $f\in K[x]$ is reducible if $f=gh$ with $g,h\in K[x]$ of positive degree; otherwise $f$ is irreducible. In a general ring, a nonzero nonunit is reducible if it is a product of two nonunits.
+:::
+
+::: {.front card-id="card-2eb0c22f7a9b4082" tags="definition"}
+Ring
+:::
+
+::: {.back card-id="card-2eb0c22f7a9b4082"}
+A ring is a set $R$ with addition and multiplication such that $(R,+)$ is an abelian group, multiplication is associative, and multiplication distributes over addition; rings are unital unless stated otherwise.
+:::
+
+::: {.front card-id="card-cb8a5a9e3dd1d712" tags="definition"}
+Unit
+:::
+
+::: {.back card-id="card-cb8a5a9e3dd1d712"}
+An element $u\in R$ is a unit if there exists $v\in R$ with $uv=vu=1$; the units form the group $R^\times$ under multiplication.
+:::

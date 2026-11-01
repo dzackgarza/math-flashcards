@@ -832,3 +832,147 @@ Suppose $f:\mathbb P^1\to X$ has $f^*T_X\simeq\mathcal O(2)\oplus\mathcal O(-1)$
 ::: {.back card-id="application-unobstructed-not-free-map"}
 $H^1(f^*T_X)=0$, so the Hom scheme is smooth at $[f]$. The negative summand makes $f$ nonfree. Evaluation is not smooth: its tangent map $H^0(f^*T_X)\to(f^*T_X)_p$ misses the $\mathcal O(-1)$ direction, since that summand has no sections.
 :::
+
+::: {.front card-id="card-acf2c9c2a6e37c9a" tags="definition"}
+(-1)-curve
+:::
+
+::: {.back card-id="card-acf2c9c2a6e37c9a"}
+A $(-1)$-curve on a smooth projective surface is a smooth rational curve $E\cong\mathbb P^1$ with $E^2=-1$. By Castelnuovo's criterion it can be contracted to a smooth point.
+:::
+
+::: {.front card-id="card-f5c95b91658d022a" tags="definition"}
+Abelian variety
+:::
+
+::: {.back card-id="card-f5c95b91658d022a"}
+An abelian variety over a field $k$ is a complete connected group variety over $k$; over $\mathbb C$ it is equivalently a complex torus $\mathbb C^g/\Lambda$ admitting a projective embedding. Its group law is commutative and algebraic.
+:::
+
+::: {.front card-id="card-8a18ef59d8abdf94" tags="definition"}
+Constant scalar curvature kähler metric
+:::
+
+::: {.back card-id="card-8a18ef59d8abdf94"}
+A Kähler metric $\omega$ on a complex manifold is a constant scalar curvature Kähler (cscK) metric if its scalar curvature $S(\omega)=g^{i\bar j}R_{i\bar j}$ is a constant function.
+:::
+
+::: {.front card-id="card-86fb2447b24e41dd" tags="definition"}
+Different
+:::
+
+::: {.back card-id="card-86fb2447b24e41dd"}
+For a log pair $(X,S+\Delta)$ with $S$ a reduced divisor and $K_X+S+\Delta$ $\mathbb Q$-Cartier, the different $\mathrm{Diff}_{S^\nu}(\Delta)$ is the effective $\mathbb Q$-divisor on the normalization $S^\nu$ defined by $\nu^*(K_X+S+\Delta)|_S=K_{S^\nu}+\mathrm{Diff}_{S^\nu}(\Delta)$.
+:::
+
+::: {.front card-id="card-814740f33155ce31" tags="definition"}
+Exceptional locus
+:::
+
+::: {.back card-id="card-814740f33155ce31"}
+For a birational morphism $f:X\to Y$, the exceptional locus is the closed subset $E\subset X$ on which $f$ is not an isomorphism onto its image; equivalently it is the complement of the largest open set over which $f$ is an isomorphism. When $E$ is a divisor it is the exceptional divisor.
+:::
+
+::: {.front card-id="card-b2b094296f5c90a6" tags="definition"}
+Extremal contraction
+:::
+
+::: {.back card-id="card-b2b094296f5c90a6"}
+An extremal contraction is the projective morphism $\varphi_F:X\to Y$ with connected fibers associated to a $(K_X+\Delta)$-negative extremal face $F$ of $\overline{NE}(X)$; it is characterized by $\varphi_F(C)$ being a point if and only if $[C]\in F$.
+:::
+
+::: {.front card-id="card-fd07ea94087ee7e4" tags="definition"}
+F-exceptional
+:::
+
+::: {.back card-id="card-fd07ea94087ee7e4"}
+For a morphism $f:Y\to X$, a divisor $E\subset Y$ is $f$-exceptional if $\operatorname{codim}_X f(E)\ge2$; a divisor is $f$-exceptional when each of its irreducible components is.
+:::
+
+::: {.front card-id="card-4c4388e6f992f9fa" tags="definition"}
+Fiber-type contraction
+:::
+
+::: {.back card-id="card-4c4388e6f992f9fa"}
+A contraction $f:X\to Y$ is of fiber type if $\dim Y<\dim X$, so its fibers are positive-dimensional. In the minimal model program a $(K_X+\Delta)$-negative extremal contraction of fiber type is a Mori fiber space.
+:::
+
+::: {.front card-id="card-859e3263b428349d" tags="definition"}
+Free rational curve
+:::
+
+::: {.back card-id="card-859e3263b428349d"}
+A nonconstant map $f:\mathbb P^1\to X$ is a free rational curve if $f^*T_X\cong\bigoplus_i\mathcal O(a_i)$ with every $a_i\ge0$; equivalently $H^1(\mathbb P^1,f^*T_X)=0$. Then deformations of $f$ are unobstructed and evaluation maps are smooth.
+:::
+
+::: {.front card-id="card-a938bcb551387242" tags="definition"}
+Geometric invariant theory
+:::
+
+::: {.back card-id="card-a938bcb551387242"}
+Geometric invariant theory (GIT) constructs quotients of a variety $X$ by a reductive group $G$ as $X^{ss}/\!/G=\operatorname{Proj}\bigoplus_{m\ge0}H^0(X,\mathcal L^{\otimes m})^G$, using the semistable locus and a $G$-linearized ample line bundle $\mathcal L$.
+:::
+
+::: {.front card-id="card-715171414ed7f3f9" tags="definition"}
+Iitaka fibration
+:::
+
+::: {.back card-id="card-715171414ed7f3f9"}
+For a smooth projective variety $X$ with $\kappa(X)\ge0$, the Iitaka fibration is the rational map $\varphi_{|mK_X|}:X\dashrightarrow Y$ for $m\gg0$ sufficiently divisible. It is birationally independent of $m$, has $\dim Y=\kappa(X)$, and its general fiber has Kodaira dimension zero.
+:::
+
+::: {.front card-id="card-db8009b44f3c6551" tags="definition"}
+Numerical equivalence
+:::
+
+::: {.back card-id="card-db8009b44f3c6551"}
+Two divisor classes $D_1,D_2\in N^1(X)_{\mathbb R}$ are numerically equivalent if $D_1\cdot C=D_2\cdot C$ for every irreducible curve $C\subset X$; two curve classes are numerically equivalent if they have the same intersection number with every divisor. The numerical class of a divisor is its image in $N^1(X)_{\mathbb R}=(\mathrm{Div}(X)/\equiv)\otimes\mathbb R$.
+:::
+
+::: {.front card-id="card-9972162b653b2027" tags="definition"}
+Plt
+:::
+
+::: {.back card-id="card-9972162b653b2027"}
+A log pair $(X,\Delta)$ is purely log terminal (plt) if every exceptional divisor $E$ over $X$ has discrepancy $a(E;X,\Delta)>-1$, and every $E$ with $a(E;X,\Delta)\le 0$ has center contained in the reduced boundary $\lfloor\Delta\rfloor$.
+:::
+
+::: {.front card-id="card-987c64ec26849bc7" tags="definition"}
+Q-cartier
+:::
+
+::: {.back card-id="card-987c64ec26849bc7"}
+A $\mathbb Q$-Weil divisor $D$ on a normal variety is $\mathbb Q$-Cartier if $mD$ is Cartier for some integer $m>0$; equivalently $D$ lies in $\mathrm{CDiv}(X)\otimes_{\mathbb Z}\mathbb Q$.
+:::
+
+::: {.front card-id="card-5c72b9ad61a841b4" tags="definition"}
+Scheme-theoretic closure
+:::
+
+::: {.back card-id="card-5c72b9ad61a841b4"}
+For a locally closed subscheme $Z\subset X$ contained in an open subscheme $U\subset X$, the scheme-theoretic closure of $Z$ in $X$ is the closed subscheme defined by $\ker(\mathcal O_X\to j_*\mathcal O_Z)$, where $j:U\hookrightarrow X$ is the inclusion; it is the smallest closed subscheme of $X$ containing $Z$.
+:::
+
+::: {.front card-id="card-5b19b21c81614d35" tags="definition"}
+Semiample
+:::
+
+::: {.back card-id="card-5b19b21c81614d35"}
+A line bundle $\mathcal L$ on a projective variety is semiample if $\mathcal L^{\otimes m}$ is globally generated for some $m>0$; equivalently the complete linear system $|mL|$ is base-point-free and defines a morphism for some $m>0$.
+:::
+
+::: {.front card-id="card-338da2f604bf5b4b" tags="definition"}
+Smooth locus
+:::
+
+::: {.back card-id="card-338da2f604bf5b4b"}
+The smooth locus $X^{\mathrm{sm}}\subset X$ is the open subset of points at which $X$ is smooth (regular); its complement is the singular locus $X^{\mathrm{sing}}$.
+:::
+
+::: {.front card-id="card-be3216d4ed9f3f10" tags="definition"}
+Valuative criterion
+:::
+
+::: {.back card-id="card-be3216d4ed9f3f10"}
+The valuative criterion for properness: a morphism $f:X\to Y$ of finite type is proper if and only if for every DVR $R$ with fraction field $K$, every commutative square $\operatorname{Spec}K\to X$, $\operatorname{Spec}R\to Y$ admits a unique lifting $\operatorname{Spec}R\to X$. Separatedness requires only uniqueness.
+:::

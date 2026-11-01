@@ -365,3 +365,59 @@ Take $A=\mathbb C[x,y]/(x^2,xy)$. In $\mathbb C[x,y]$,
 $$(x^2,xy)=(x)\cap(x^2,y).$$
 The associated primes are $(x)$ and $(x,y)$. The reduction is the line $x=0$, and the origin is embedded. The nonzero nilpotent class of $x$ is annihilated by $(x,y)$; away from the origin it vanishes because $y$ is invertible and $xy=0$.
 :::
+
+::: {.front card-id="card-3f53ea5eafc329a2" tags="definition"}
+Anticanonical system
+:::
+
+::: {.back card-id="card-3f53ea5eafc329a2"}
+The anticanonical system of a normal variety $X$ is the complete linear system $|-K_X|$ of effective divisors linearly equivalent to $-K_X$; its associated rational map is the anticanonical map.
+:::
+
+::: {.front card-id="card-1543972cfbfd2c13" tags="definition"}
+Branch
+:::
+
+::: {.back card-id="card-1543972cfbfd2c13"}
+A branch of a plane curve singularity $(C,p)$ is a local irreducible component of $C$ at $p$, i.e. a germ of an irreducible analytic curve through $p$; the number of branches is the number of irreducible factors of the completed local ring $\widehat{\mathcal O}_{C,p}$.
+:::
+
+::: {.front card-id="card-29597195b8ada34a" tags="definition"}
+Bézout's theorem
+:::
+
+::: {.back card-id="card-29597195b8ada34a"}
+If projective varieties $X_1,\dots,X_r\subset\mathbb P^n_k$ of degrees $d_1,\dots,d_r$ meet in finitely many points, then $\sum_p i(X_1,\dots,X_r;p)=d_1\cdots d_r$, where $i$ is the intersection multiplicity; more generally, when the intersection has the expected dimension, $\deg(X_1\cap\cdots\cap X_r)=d_1\cdots d_r$.
+:::
+
+::: {.front card-id="card-e689ca1225015881" tags="definition"}
+Homogeneous ring
+:::
+
+::: {.back card-id="card-e689ca1225015881"}
+For a closed subscheme $X\subset\mathbb P^n_k$ with homogeneous ideal $I$, the homogeneous coordinate ring is $R(X)=k[x_0,\dots,x_n]/I=\bigoplus_{m\ge0}H^0(X,\mathcal O_X(m))$.
+:::
+
+::: {.front card-id="card-1de60a8a7a9e9277" tags="definition"}
+J-invariant
+:::
+
+::: {.back card-id="card-1de60a8a7a9e9277"}
+The $j$-invariant of an elliptic curve $E$ is $j(E)=1728\,4a_4^3/(4a_4^3+27a_6^2)$ for a short Weierstrass model $y^2=x^3+a_4x+a_6$. Over an algebraically closed field, two elliptic curves are isomorphic if and only if they have the same $j$-invariant.
+:::
+
+::: {.front card-id="card-cbddcb3e60505698" tags="definition"}
+Linearly normal
+:::
+
+::: {.back card-id="card-cbddcb3e60505698"}
+A projective variety $X\subset\mathbb P^n$ is linearly normal if the restriction map $H^0(\mathbb P^n,\mathcal O(1))\to H^0(X,\mathcal O_X(1))$ is surjective; equivalently $X$ is not obtained by projecting a nondegenerate variety in $\mathbb P^{n+1}$ from a point.
+:::
+
+::: {.front card-id="card-bdb2b9814086f7ac" tags="definition"}
+Tangent cone
+:::
+
+::: {.back card-id="card-bdb2b9814086f7ac"}
+For a closed point $p\in X$ with maximal ideal $\mathfrak m_p$, the tangent cone is $C_pX=\operatorname{Spec}(\mathrm{gr}_{\mathfrak m_p}\mathcal O_{X,p})$, the cone in the Zariski tangent space $T_pX$ cut out by the leading homogeneous forms of the ideal of $X$ at $p$.
+:::

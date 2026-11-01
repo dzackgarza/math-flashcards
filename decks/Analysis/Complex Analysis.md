@@ -559,3 +559,325 @@ Conformal map: upper half-disc to $\HH$
 ::: {.back card-id="card-595105d101b34f0b"}
 $w=-(z+z^{-1})$ maps $\{z:|z|<1,\ \operatorname{Im}z>0\}$ biholomorphically onto $\mathbb H$. Indeed, $\operatorname{Im}w=\operatorname{Im}z\,(|z|^{-2}-1)>0$; its boundary maps to $\mathbb R$.
 :::
+
+::: {.front card-id="card-51c045e22cc0f169" tags="definition"}
+Analytic function
+:::
+
+::: {.back card-id="card-51c045e22cc0f169"}
+A function $f:U\to\mathbb C$ on an open set $U\subseteq\mathbb C$ that is complex differentiable at every point of $U$; equivalently, it is locally given by a convergent power series. This is a synonym for a holomorphic function.
+:::
+
+::: {.front card-id="card-6f834395042907e2" tags="definition"}
+Angular sector
+:::
+
+::: {.back card-id="card-6f834395042907e2"}
+A region of the form $\{re^{i\theta}:r>0,\ \alpha<\theta<\beta\}$ bounded by two rays from the origin.
+:::
+
+::: {.front card-id="card-092af6ebb4637761" tags="definition"}
+Argument
+:::
+
+::: {.back card-id="card-092af6ebb4637761"}
+For $z\neq0$, an argument is any $\theta\in\RR$ such that $z=|z|e^{i\theta}$; it is determined modulo $2\pi$. The principal argument $\operatorname{Arg}z\in(-\pi,\pi]$ is the unique representative in that interval.
+:::
+
+::: {.front card-id="card-cd5b8936824a4cf9" tags="definition"}
+Argument principle
+:::
+
+::: {.back card-id="card-cd5b8936824a4cf9"}
+If $f$ is meromorphic on a domain bounded by a simple closed contour $\gamma$, with no zeros or poles on $\gamma$, then
+$$\frac{1}{2\pi i}\int_\gamma\frac{f'(z)}{f(z)}\,dz=Z-P,$$
+where $Z$ and $P$ are the numbers of zeros and poles of $f$ inside $\gamma$, counted with multiplicity.
+:::
+
+::: {.front card-id="card-8cac0a27227249fd" tags="definition"}
+Biholomorphic map
+:::
+
+::: {.back card-id="card-8cac0a27227249fd"}
+A map $f:U\to V$ between open subsets of $\CC$ that is bijective, holomorphic, and has a holomorphic inverse. Equivalently, $f$ is holomorphic and injective with $f'(z)\neq0$ for all $z\in U$, and $f(U)=V$.
+:::
+
+::: {.front card-id="card-60be1f567ef499a0" tags="definition"}
+Circle
+:::
+
+::: {.back card-id="card-60be1f567ef499a0"}
+For $a\in\CC$ and $r>0$, the circle of centre $a$ and radius $r$ is
+$$C(a,r)=\{z\in\CC:|z-a|=r\}.$$
+:::
+
+::: {.front card-id="card-1c0c4c82ad89284e" tags="definition"}
+Contour
+:::
+
+::: {.back card-id="card-1c0c4c82ad89284e"}
+A continuous, piecewise $C^1$ path $\gamma:[a,b]\to\CC$, usually given an orientation. It is closed if $\gamma(a)=\gamma(b)$.
+:::
+
+::: {.front card-id="card-53aa39ad5954cb0e" tags="definition"}
+Contour integral
+:::
+
+::: {.back card-id="card-53aa39ad5954cb0e"}
+For a contour $\gamma:[a,b]\to\CC$ and a continuous function $f$ on its image,
+$$\int_\gamma f(z)\,dz=\int_a^b f(\gamma(t))\,\gamma'(t)\,dt.$$
+:::
+
+::: {.front card-id="card-11441d7ca4b3bb14" tags="definition"}
+Disc
+:::
+
+::: {.back card-id="card-11441d7ca4b3bb14"}
+For $a\in\CC$ and $r>0$, the open disc is $D(a,r)=\{z:|z-a|<r\}$ and the closed disc is $\overline{D(a,r)}=\{z:|z-a|\le r\}$.
+:::
+
+::: {.front card-id="card-a50fa20508c55284" tags="definition"}
+Half-plane
+:::
+
+::: {.back card-id="card-a50fa20508c55284"}
+A set of the form $\{z\in\CC:\operatorname{Re}(az)>b\}$ for some $a\neq0$ and $b\in\RR$. The upper half-plane is $\mathbb H=\{z:\operatorname{Im}z>0\}$; the right half-plane is $\{z:\operatorname{Re}z>0\}$.
+:::
+
+::: {.front card-id="card-9f7ef187a9853d78" tags="definition"}
+Harmonic function
+:::
+
+::: {.back card-id="card-9f7ef187a9853d78"}
+A $C^2$ function $u:U\to\RR$ on an open set $U\subseteq\RR^2\cong\CC$ satisfying Laplace's equation
+$$\Delta u=u_{xx}+u_{yy}=0.$$
+The real and imaginary parts of a holomorphic function are harmonic.
+:::
+
+::: {.front card-id="card-7b5f362f5b9f674a" tags="definition"}
+Holomorphic function
+:::
+
+::: {.back card-id="card-7b5f362f5b9f674a"}
+A function $f:U\to\CC$ on an open set $U\subseteq\CC$ is holomorphic if its complex derivative $f'(z)=\lim_{h\to0}\frac{f(z+h)-f(z)}{h}$ exists for every $z\in U$. Equivalently, $f$ is complex-analytic: it has a convergent power-series expansion in a neighbourhood of each point of $U$.
+:::
+
+::: {.front card-id="card-106b6811d8e583f7" tags="definition"}
+Horizontal strip
+:::
+
+::: {.back card-id="card-106b6811d8e583f7"}
+A region of the form $\{z\in\CC:a<\operatorname{Im}z<b\}$ for $-\infty\le a<b\le\infty$.
+:::
+
+::: {.front card-id="card-cd148ff0e176543d" tags="definition"}
+Identity theorem
+:::
+
+::: {.back card-id="card-cd148ff0e176543d"}
+If two holomorphic functions on a connected open set agree on a subset that has an accumulation point in the set, then they agree everywhere on that set.
+:::
+
+::: {.front card-id="card-af0bd1e6ea6671db" tags="definition"}
+Involution
+:::
+
+::: {.back card-id="card-af0bd1e6ea6671db"}
+A map $f$ such that $f\circ f=\mathrm{id}$; equivalently, a bijection that is its own inverse.
+:::
+
+::: {.front card-id="card-d8408b6ad706855d" tags="definition"}
+Isolated singularity
+:::
+
+::: {.back card-id="card-d8408b6ad706855d"}
+A point $a$ such that $f$ is holomorphic on a punctured disc $D(a,r)\setminus\{a\}$ for some $r>0$, but is not holomorphic at $a$ itself. It is removable, a pole, or essential according to the behaviour of $f$ as $z\to a$.
+:::
+
+::: {.front card-id="card-3fba36c771d72f42" tags="definition"}
+Laurent series
+:::
+
+::: {.back card-id="card-3fba36c771d72f42"}
+A series $\sum_{n=-\infty}^{\infty}c_n(z-a)^n$ representing a function holomorphic on an annulus $r<|z-a|<R$. The coefficient $c_{-1}$ is the residue of $f$ at $a$.
+:::
+
+::: {.front card-id="card-cc7ddcb4427b7d0e" tags="definition"}
+Length of a curve
+:::
+
+::: {.back card-id="card-cc7ddcb4427b7d0e"}
+For a piecewise $C^1$ curve $\gamma:[a,b]\to\CC$, its length is
+$$\ell(\gamma)=\int_a^b|\gamma'(t)|\,dt.$$
+:::
+
+::: {.front card-id="card-e4a8b20a372bbe14" tags="definition"}
+Locally injective
+:::
+
+::: {.back card-id="card-e4a8b20a372bbe14"}
+A map $f:U\to\CC$ is locally injective if every point of $U$ has a neighbourhood on which $f$ is injective.
+:::
+
+::: {.front card-id="card-f690142dbe96ade5" tags="definition"}
+Locally uniform convergence
+:::
+
+::: {.back card-id="card-f690142dbe96ade5"}
+A sequence $f_n\to f$ converges locally uniformly on an open set $U$ if $f_n\to f$ uniformly on every compact subset of $U$.
+:::
+
+::: {.front card-id="card-05534dbbeb863a15" tags="definition"}
+Meromorphic function
+:::
+
+::: {.back card-id="card-05534dbbeb863a15"}
+A function on a domain $\Omega$ that is holomorphic except at isolated points, at each of which it has a pole. Equivalently, it is locally a quotient $g/h$ of holomorphic functions with $h\not\equiv0$.
+:::
+
+::: {.front card-id="card-4ad1bf1210cc7fbd" tags="definition"}
+Multiplicity of a zero
+:::
+
+::: {.back card-id="card-4ad1bf1210cc7fbd"}
+If $f$ is holomorphic near $a$ and $f(z)=(z-a)^m g(z)$ with $g$ holomorphic and $g(a)\neq0$, then $a$ is a zero of multiplicity (order) $m$. Thus $m\ge1$ exactly when $f(a)=0$.
+:::
+
+::: {.front card-id="card-8ce98ba70f3e1efd" tags="definition"}
+Open map
+:::
+
+::: {.back card-id="card-8ce98ba70f3e1efd"}
+A map $f:X\to Y$ between topological spaces is open if $f(U)$ is open in $Y$ for every open $U\subseteq X$.
+:::
+
+::: {.front card-id="card-2b5a7862d0c027a8" tags="definition"}
+Pole
+:::
+
+::: {.back card-id="card-2b5a7862d0c027a8"}
+A pole of a holomorphic function $f$ is an isolated singularity $z_0$ with $\lim_{z \to z_0} |f(z)| = \infty$. Equivalently, the Laurent expansion at $z_0$ has a principal part with finitely many nonzero negative-power terms and a nonzero term of lowest order $-m$; $m$ is the order of the pole.
+:::
+
+::: {.front card-id="card-3971e20e2440e892" tags="definition"}
+Power series
+:::
+
+::: {.back card-id="card-3971e20e2440e892"}
+A series of the form $\sum_{n=0}^{\infty}a_n(z-a)^n$ in powers of $z-a$, with centre $a\in\CC$ and coefficients $a_n\in\CC$.
+:::
+
+::: {.front card-id="card-544257a2b1b3a1f4" tags="definition"}
+Principal logarithm
+:::
+
+::: {.back card-id="card-544257a2b1b3a1f4"}
+The branch
+$$\Log z=\log|z|+i\operatorname{Arg}z,\qquad \operatorname{Arg}z\in(-\pi,\pi],$$
+which is holomorphic on the slit plane $\CC\setminus(-\infty,0]$.
+:::
+
+::: {.front card-id="card-7a7fa7be7fcfc9f4" tags="definition"}
+Punctured neighborhood
+:::
+
+::: {.back card-id="card-7a7fa7be7fcfc9f4"}
+A set of the form $D(a,r)\setminus\{a\}=\{z\in\CC:0<|z-a|<r\}$: a disc about $a$ with $a$ removed.
+:::
+
+::: {.front card-id="card-7364c592e168dc1e" tags="definition"}
+Radius of convergence
+:::
+
+::: {.back card-id="card-7364c592e168dc1e"}
+For a power series $\sum_{n\ge0}a_n(z-a)^n$, the radius
+$$R=\frac{1}{\limsup_{n\to\infty}|a_n|^{1/n}}\in[0,\infty].$$
+The series converges absolutely for $|z-a|<R$ and diverges for $|z-a|>R$.
+:::
+
+::: {.front card-id="card-0298917fb9efa60b" tags="definition"}
+Residue
+:::
+
+::: {.back card-id="card-0298917fb9efa60b"}
+For an isolated singularity $a$ of $f$, the residue is
+$$\operatorname{Res}_{z=a}f=\frac{1}{2\pi i}\oint_{|z-a|=r}f(z)\,dz$$
+for sufficiently small $r>0$. Equivalently, it is the coefficient of $(z-a)^{-1}$ in the Laurent expansion of $f$ about $a$.
+:::
+
+::: {.front card-id="card-91511271f5f11e8f" tags="definition"}
+Riemann sphere
+:::
+
+::: {.back card-id="card-91511271f5f11e8f"}
+The extended complex plane $\widehat{\CC}=\CC\cup\{\infty\}$, identified with the complex projective line $\CP^1$. It is a compact Riemann surface homeomorphic to $S^2$.
+:::
+
+::: {.front card-id="card-cbe64076e1551e50" tags="definition"}
+Simple closed contour
+:::
+
+::: {.back card-id="card-cbe64076e1551e50"}
+A closed contour $\gamma:[a,b]\to\CC$ that is injective on $[a,b)$; equivalently, a closed curve with no self-intersections. Its image is a Jordan curve.
+:::
+
+::: {.front card-id="card-7c43743c2af2097c" tags="definition"}
+Simply connected domain
+:::
+
+::: {.back card-id="card-7c43743c2af2097c"}
+A domain $\Omega\subseteq\CC$ with no holes: every closed contour in $\Omega$ can be contracted to a point inside $\Omega$. Equivalently, $\widehat{\CC}\setminus\Omega$ is connected, and every holomorphic function on $\Omega$ has a primitive.
+:::
+
+::: {.front card-id="card-eafd5b8e3979aca1" tags="definition"}
+Singularity
+:::
+
+::: {.back card-id="card-eafd5b8e3979aca1"}
+A point $a\in\CC$ at which a function $f$ is not holomorphic (for example, where $f$ is undefined or has a pole). A singularity is isolated if $f$ is holomorphic on some punctured disc $D(a,r)\setminus\{a\}$.
+:::
+
+::: {.front card-id="card-83a6a6aef32ce495" tags="definition"}
+Slit plane
+:::
+
+::: {.back card-id="card-83a6a6aef32ce495"}
+The complex plane cut along the negative real axis:
+$$\CC\setminus(-\infty,0]=\{z\in\CC:z\neq0,\ \arg z\in(-\pi,\pi)\}.$$
+:::
+
+::: {.front card-id="card-b50dd16aa5abd10c" tags="definition"}
+Taylor series
+:::
+
+::: {.back card-id="card-b50dd16aa5abd10c"}
+The power series
+$$\sum_{n=0}^{\infty}\frac{f^{(n)}(a)}{n!}(z-a)^n$$
+of a holomorphic function $f$ about $a$. It converges to $f$ on the largest disc about $a$ contained in the domain of $f$.
+:::
+
+::: {.front card-id="card-7a0743c06eb6fc3b" tags="definition"}
+Unit circle
+:::
+
+::: {.back card-id="card-7a0743c06eb6fc3b"}
+The unit circle $S^1=\{z\in\CC:|z|=1\}$.
+:::
+
+::: {.front card-id="card-451072ce3d2469b7" tags="definition"}
+Unit disc
+:::
+
+::: {.back card-id="card-451072ce3d2469b7"}
+The open unit disc $\mathbb D=\{z\in\CC:|z|<1\}$.
+:::
+
+::: {.front card-id="card-895e3d49b8f32e6f" tags="definition"}
+Winding number
+:::
+
+::: {.back card-id="card-895e3d49b8f32e6f"}
+For a closed contour $\gamma$ and a point $a\notin\gamma$, the winding number is
+$$n(\gamma,a)=\frac{1}{2\pi i}\int_\gamma\frac{dz}{z-a}\in\ZZ,$$
+the net number of counterclockwise turns of $\gamma$ about $a$.
+:::

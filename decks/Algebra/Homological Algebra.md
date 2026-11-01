@@ -680,3 +680,227 @@ The ext complex between $C_n$ and $A$.
 ::: {.back card-id="card-9bf5130224135f26"}
 $$ \operatorname{Ext}^*_\ZZ(C_n, A) = A[n]\cdot t^0 \oplus (A/nA) \cdot t^1 \oplus \cdots$$
 :::
+
+::: {.front card-id="card-aaa1383e5fc4d619" tags="definition"}
+Additive functor
+:::
+
+::: {.back card-id="card-aaa1383e5fc4d619"}
+A functor between additive categories that induces group homomorphisms $\operatorname{Hom}(A,B)\to\operatorname{Hom}(FA,FB)$ on Hom-sets.
+:::
+
+::: {.front card-id="card-5d9452c195258d26" tags="definition"}
+Adjoint functors
+:::
+
+::: {.back card-id="card-5d9452c195258d26"}
+Functors $F:\mathcal C\to\mathcal D$ and $G:\mathcal D\to\mathcal C$ are adjoint, written $F\dashv G$, if there is a natural bijection $\operatorname{Hom}_{\mathcal D}(FX,Y)\cong\operatorname{Hom}_{\mathcal C}(X,GY)$.
+:::
+
+::: {.front card-id="card-8c604b186a38f2a9" tags="definition"}
+Baer's criterion
+:::
+
+::: {.back card-id="card-8c604b186a38f2a9"}
+An $R$-module $I$ is injective iff every $R$-linear map from an ideal $\mathfrak a\subset R$ to $I$ extends to a map $R\to I$.
+:::
+
+::: {.front card-id="card-a65dcd3f74d5bfba" tags="definition"}
+Bifunctor
+:::
+
+::: {.back card-id="card-a65dcd3f74d5bfba"}
+A functor $\mathcal C\times\mathcal D\to\mathcal E$ of two variables.
+:::
+
+::: {.front card-id="card-af448c134c90ecb5" tags="definition"}
+Chain map
+:::
+
+::: {.back card-id="card-af448c134c90ecb5"}
+A family of maps $f_n:C_n\to D_n$ between complexes such that $d_n^D f_n=f_{n-1}d_n^C$ for all $n$.
+:::
+
+::: {.front card-id="card-84220919c6bdb8e8" tags="definition"}
+Coassociative
+:::
+
+::: {.back card-id="card-84220919c6bdb8e8"}
+A comultiplication $\Delta:C\to C\otimes C$ satisfying $(\Delta\otimes\operatorname{id})\Delta=(\operatorname{id}\otimes\Delta)\Delta$.
+:::
+
+::: {.front card-id="card-9ea3a227686a8cdf" tags="definition"}
+Divisible group
+:::
+
+::: {.back card-id="card-9ea3a227686a8cdf"}
+An abelian group $D$ such that for every $d\in D$ and every positive integer $n$ there exists $x\in D$ with $nx=d$.
+:::
+
+::: {.front card-id="card-6d4880586220f4e2" tags="definition"}
+Dold-kan correspondence
+:::
+
+::: {.back card-id="card-6d4880586220f4e2"}
+The equivalence between simplicial abelian groups and connective chain complexes, sending a simplicial abelian group to its normalized chain complex; homotopy groups correspond to homology groups.
+:::
+
+::: {.front card-id="card-5ba4c9a8d47fa3b0" tags="definition"}
+Epimorphism
+:::
+
+::: {.back card-id="card-5ba4c9a8d47fa3b0"}
+A morphism $f:A\to B$ such that $g\circ f=h\circ f$ implies $g=h$ for all parallel morphisms $g,h$.
+:::
+
+::: {.front card-id="card-5d8ef1e17cbb6f95" tags="definition"}
+Exact functor
+:::
+
+::: {.back card-id="card-5d8ef1e17cbb6f95"}
+An additive functor that preserves short exact sequences.
+:::
+
+::: {.front card-id="card-d3bad92cf5729d54" tags="definition"}
+Formal deformation
+:::
+
+::: {.back card-id="card-d3bad92cf5729d54"}
+An algebra structure on $A[[t]]$ whose reduction modulo $t$ is the given algebra $A$.
+:::
+
+::: {.front card-id="card-d62dcdab878ce6b9" tags="definition"}
+Graded coalgebra
+:::
+
+::: {.back card-id="card-d62dcdab878ce6b9"}
+A graded vector space $C=\bigoplus_n C_n$ with a coassociative comultiplication $\Delta:C\to C\otimes C$ respecting the grading.
+:::
+
+::: {.front card-id="card-34654abcad1bf978" tags="definition"}
+Graded commutative algebra
+:::
+
+::: {.back card-id="card-34654abcad1bf978"}
+A graded algebra $A=\bigoplus_n A_n$ such that $ab=(-1)^{|a||b|}ba$ for homogeneous elements $a,b$.
+:::
+
+::: {.front card-id="card-351b2cecb46bf308" tags="definition"}
+Graded lie algebra
+:::
+
+::: {.back card-id="card-351b2cecb46bf308"}
+A graded vector space $\mathfrak g=\bigoplus_n\mathfrak g_n$ with a bilinear bracket $[-,-]:\mathfrak g_p\times\mathfrak g_q\to\mathfrak g_{p+q}$ satisfying graded antisymmetry $[x,y]=-(-1)^{|x||y|}[y,x]$ and the graded Jacobi identity.
+:::
+
+::: {.front card-id="card-248d5485411d957b" tags="definition"}
+Injective resolution
+:::
+
+::: {.back card-id="card-248d5485411d957b"}
+An exact complex $0\to M\to I^0\to I^1\to\cdots$ in which every $I^i$ is injective. Every module in an abelian category with enough injectives has one, and it computes right derived functors via $R^iF(M)=H^i(F(I^\bullet))$.
+:::
+
+::: {.front card-id="card-a5c11af732a0fb10" tags="definition"}
+Inner derivation
+:::
+
+::: {.back card-id="card-a5c11af732a0fb10"}
+A derivation of the form $d(a)=xa-ax$ (equivalently $d(a)=[x,a]$) for some $x\in A$.
+:::
+
+::: {.front card-id="card-6f546f8d7cb28ecb" tags="definition"}
+Koszul sign rule
+:::
+
+::: {.back card-id="card-6f546f8d7cb28ecb"}
+The convention that moving a homogeneous element of degree $p$ past one of degree $q$ multiplies by $(-1)^{pq}$; e.g. $(f\otimes g)(v\otimes w)=(-1)^{|g||v|}f(v)\otimes g(w)$.
+:::
+
+::: {.front card-id="card-66f9ef2f75564a09" tags="definition"}
+Left derived functor
+:::
+
+::: {.back card-id="card-66f9ef2f75564a09"}
+For a right exact functor $F$, the functor $L_nF$ computed by applying $F$ to a projective resolution and taking homology.
+:::
+
+::: {.front card-id="card-087874951990872b" tags="definition"}
+Long exact sequence
+:::
+
+::: {.back card-id="card-087874951990872b"}
+An exact sequence indexed by all integers (or a half-line), typically $\cdots\to A_n\to B_n\to C_n\to A_{n-1}\to\cdots$, arising from a short exact sequence of complexes.
+:::
+
+::: {.front card-id="card-1999bdd6192b4513" tags="definition"}
+Monomorphism
+:::
+
+::: {.back card-id="card-1999bdd6192b4513"}
+A morphism $f:A\to B$ such that $f\circ g=f\circ h$ implies $g=h$ for all parallel morphisms $g,h$.
+:::
+
+::: {.front card-id="card-fd8c97baa017ff45" tags="definition"}
+Outer derivation
+:::
+
+::: {.back card-id="card-fd8c97baa017ff45"}
+A derivation modulo inner derivations; the outer derivations are $\operatorname{OutDer}(A)=\operatorname{Der}(A)/\operatorname{InnDer}(A)$.
+:::
+
+::: {.front card-id="card-0de23089d403ea86" tags="definition"}
+Projective dimension
+:::
+
+::: {.back card-id="card-0de23089d403ea86"}
+For an $R$-module $M$, the least length of a projective resolution of $M$, denoted $\operatorname{pd}_R(M)$; it is $\infty$ if no finite projective resolution exists.
+:::
+
+::: {.front card-id="card-24509868c8ab14cf" tags="definition"}
+Projective resolution
+:::
+
+::: {.back card-id="card-24509868c8ab14cf"}
+An exact sequence $\cdots\to P_1\to P_0\to M\to 0$ in which every $P_i$ is a projective module.
+:::
+
+::: {.front card-id="card-53516ebb118c1132" tags="definition"}
+Right derived functor
+:::
+
+::: {.back card-id="card-53516ebb118c1132"}
+For a left exact functor $F$, the functor $R^nF$ computed by applying $F$ to an injective resolution and taking cohomology.
+:::
+
+::: {.front card-id="card-fa155f6f47bf84a8" tags="definition"}
+Satellite functor
+:::
+
+::: {.back card-id="card-fa155f6f47bf84a8"}
+One of the functors $T^n$ for $n>0$ in a delta functor $(T^n)$, measuring the failure of $T^0$ to be exact.
+:::
+
+::: {.front card-id="card-deaaebbd1fff9ad3" tags="definition"}
+Short exact sequence
+:::
+
+::: {.back card-id="card-deaaebbd1fff9ad3"}
+An exact sequence of the form $0\to A\to B\to C\to 0$.
+:::
+
+::: {.front card-id="card-7698ba9e65e562d3" tags="definition"}
+Square-zero extension
+:::
+
+::: {.back card-id="card-7698ba9e65e562d3"}
+A ring extension $0\to M\to B\to A\to 0$ in which $M$ is an ideal with $M^2=0$; equivalently, a ring structure on $A\oplus M$ for which $M$ is a square-zero ideal and $A$ is the quotient.
+:::
+
+::: {.front card-id="card-d2fbd86b043509b8" tags="definition"}
+Zero object
+:::
+
+::: {.back card-id="card-d2fbd86b043509b8"}
+An object of a category that is both initial and terminal.
+:::
