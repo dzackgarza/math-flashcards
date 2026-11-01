@@ -25,7 +25,7 @@ What is a locally finitely presented morphism?
 :::
 
 ::: {.back card-id="card-67acbfbbf098e7b7"}
-On affine open covers, the induced ring maps $R_i\to A_i$ are of finite presentation, i.e. $R_i[x_1,\cdots, x_n] \twoheadrightarrow A_i$ with finitely generated kernel for some $n$.
+A morphism $f:X\to Y$ is **locally of finite presentation** iff for every $x\in X$ there are affine opens $U=\Spec A\subseteq X$ and $V=\Spec R\subseteq Y$ with $x\in U$, $f(U)\subseteq V$, and the induced map $R\to A$ of finite presentation. Equivalently, on affine open covers, the induced ring maps $R_i\to A_i$ are of finite presentation, i.e. $R_i[x_1,\cdots, x_n] \twoheadrightarrow A_i$ with finitely generated kernel for some $n$.
 :::
 
 ::: {.front card-id="card-c35dccf24f080a71"}
@@ -33,7 +33,7 @@ What is a finitely presented morphism?
 :::
 
 ::: {.back card-id="card-c35dccf24f080a71"}
-Locally of finite presentation, quasicompact, quasiseparated.
+Locally of finite presentation, quasicompact, and quasi-separated.
 :::
 
 ::: {.front card-id="card-525d10c2757e41de" tags="unsorted"}
@@ -72,7 +72,7 @@ Note that being fg as a **module** is **stronger** than being fg as an **algebra
 
 Thus **finite** implies **finite type** but not conversely.
 
-Equivalently, proper and locally quasifinite.
+Equivalently, proper and quasi-finite.
 :::
 
 ::: {.front card-id="card-b00d12404bc086fb"}
@@ -80,7 +80,7 @@ What is a **flat** morphism?
 :::
 
 ::: {.back card-id="card-b00d12404bc086fb"}
-For projective varieties: the induced maps on stalks are flat ring maps.
+For a morphism of projective varieties, $f$ is flat iff the induced maps on stalks are flat ring maps.
 
 $f: X\to S$ is flat at $x$ iff ${\mathcal{O}}_{X, x} \in   {}_{{\mathcal{O}}_{S, f(x) } }\Mod^\flat$ (i.e. the module structure induced by $f$ yields a flat module.)
 
@@ -146,5 +146,5 @@ What is a **closed immersion** of schemes?
 :::
 
 ::: {.back card-id="card-86f3fc66ea0fc489"}
-$f:X\to Y$ inducing a homeomorphism $\tilde f: {\left\lvert {X} \right\rvert} \to {\left\lvert {V} \right\rvert}$ for ${\left\lvert {V} \right\rvert} \subseteq {\left\lvert {Y} \right\rvert}$ a closed subspace of the underlying topological spaces, such that $f^\sharp: {\mathcal{O}}_Y \twoheadrightarrow f_* {\mathcal{O}}_X$ is a surjective map of sheaves.
+A morphism $f:X\to Y$ is a **closed immersion** iff it is affine and the map $f^\sharp:{\mathcal{O}}_Y\to f_*{\mathcal{O}}_X$ is surjective. Equivalently, on every affine open $\Spec B\subseteq Y$, the induced ring map $B\to A$ is surjective, where $f^{-1}(\Spec B)=\Spec A$.
 :::
