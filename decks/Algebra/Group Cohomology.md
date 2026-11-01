@@ -957,14 +957,6 @@ P-completion
 For an abelian group $G$, the inverse limit $\varprojlim_n G/p^nG$; more generally the pro-$p$ completion of a group. For $G=\mathbb Z$ it is $\mathbb Z_p$.
 :::
 
-::: {.front card-id="card-32358d45fdf2dd75" tags="definition"}
-P-group
-:::
-
-::: {.back card-id="card-32358d45fdf2dd75"}
-A finite group whose order is a power of the prime $p$.
-:::
-
 ::: {.front card-id="card-220589718e58d5e2" tags="definition"}
 P-primary module
 :::

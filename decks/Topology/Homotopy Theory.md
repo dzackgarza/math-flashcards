@@ -226,14 +226,6 @@ $\pi_0^G(X) \coloneqq\colim_{V\in s(U_G)}[S^V\to X(V)]^G_*$ which are $G\dash$eq
 $\pi_k^G(X) = \colim_{\cdots}[S^{V\oplus {\mathbf{R}}^k}\to X(V)]^G_*$ for $k > 0$ and $\pi_k^G(X) = \colim_{\cdots}[S^{V}\to X(V\oplus {\mathbf{R}}^{-k})]^G_*$ for $k < 0$.
 :::
 
-::: {.front card-id="card-cf6c7f45a9f152e7" tags="definition"}
-Abelianization
-:::
-
-::: {.back card-id="card-cf6c7f45a9f152e7"}
-The abelianization of a group $G$ is $G^{\mathrm{ab}}=G/[G,G]$, the quotient by the commutator subgroup; it is the universal abelian quotient of $G$.
-:::
-
 ::: {.front card-id="card-30567ca55f7f936b" tags="definition"}
 Based space
 :::

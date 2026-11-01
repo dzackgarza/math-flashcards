@@ -278,14 +278,6 @@ Noetherian local ring
 A local ring $(R,\mathfrak m)$ that is Noetherian: every ideal of $R$ is finitely generated, equivalently every ascending chain of ideals stabilizes.
 :::
 
-::: {.front card-id="card-3539175fe01f72e8" tags="definition"}
-Noetherian ring
-:::
-
-::: {.back card-id="card-3539175fe01f72e8"}
-A ring $R$ in which every ideal is finitely generated; equivalently, $R$ satisfies the ascending chain condition on ideals.
-:::
-
 ::: {.front card-id="card-44ae2e8a89b25e18" tags="definition"}
 Primary ideal
 :::

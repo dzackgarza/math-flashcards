@@ -65,24 +65,6 @@ Closed Graph Theorem
 A linear map between Banach spaces is bounded if and only if its graph is closed in the product Banach space.
 :::
 
-::: {.front card-id="card-cf4fcb56e56bb251" tags="definition"}
-Banach space
-:::
-
-::: {.back card-id="card-cf4fcb56e56bb251"}
-A complete normed vector space over $\RR$ or $\CC$: every Cauchy sequence converges in the norm.
-:::
-
-::: {.front card-id="card-66705de5c4ff363c" tags="definition"}
-Bounded operator
-:::
-
-::: {.back card-id="card-66705de5c4ff363c"}
-A linear map $T:X\to Y$ between normed spaces is bounded if there is a constant $C\ge0$ such that
-$$\|Tx\|_Y\le C\|x\|_X\qquad\text{for all }x\in X.$$
-Equivalently, $T$ is continuous.
-:::
-
 ::: {.front card-id="card-7cae640f57d55bda" tags="definition"}
 Bounded set
 :::
@@ -117,14 +99,6 @@ For a linear map $T:X\to Y$, its graph is
 $$\Gamma(T)=\{(x,Tx):x\in X\}\subseteq X\times Y.$$
 :::
 
-::: {.front card-id="card-7598707b6d7b2c1c" tags="definition"}
-Hilbert space
-:::
-
-::: {.back card-id="card-7598707b6d7b2c1c"}
-A complete inner product space over $\RR$ or $\CC$, equipped with the norm $\|x\|=\sqrt{\langle x,x\rangle}$ induced by the inner product.
-:::
-
 ::: {.front card-id="card-16702478a880ee87" tags="definition"}
 Hölder conjugate exponent
 :::
@@ -133,24 +107,6 @@ Hölder conjugate exponent
 For $1\le p\le\infty$, the exponent $q\in[1,\infty]$ satisfying
 $$\frac1p+\frac1q=1$$
 (with $1/\infty=0$).
-:::
-
-::: {.front card-id="card-77f04d18eb7efda5" tags="definition"}
-Inner product
-:::
-
-::: {.back card-id="card-77f04d18eb7efda5"}
-A map $\langle\cdot,\cdot\rangle:V\times V\to\CC$ (or $\RR$) that is linear in the second slot, conjugate-linear in the first, Hermitian, and positive definite: $\langle x,x\rangle\ge0$ with equality iff $x=0$. For real spaces it is a positive-definite symmetric bilinear form.
-:::
-
-::: {.front card-id="card-03856afdfb561916" tags="definition"}
-L^p space
-:::
-
-::: {.back card-id="card-03856afdfb561916"}
-For $1\le p<\infty$ and a measure space $(X,\mu)$, $L^p(X)$ is the space of equivalence classes of measurable functions $f$ with
-$$\int_X|f|^p\,d\mu<\infty,$$
-normed by $\|f\|_p=\left(\int_X|f|^p\,d\mu\right)^{1/p}$. The space $L^\infty(X)$ uses the essential supremum as norm.
 :::
 
 ::: {.front card-id="card-cc8b669ee76fb8e1" tags="definition"}
@@ -169,28 +125,12 @@ Linear functional
 A linear map $\varphi:V\to\FF$ from a vector space over a field $\FF$ to its scalar field.
 :::
 
-::: {.front card-id="card-e8a5b1c43430afa4" tags="definition"}
-Norm
-:::
-
-::: {.back card-id="card-e8a5b1c43430afa4"}
-A function $\|\cdot\|:X\to[0,\infty)$ on a vector space $X$ such that $\|x\|=0\iff x=0$, $\|\lambda x\|=|\lambda|\|x\|$, and $\|x+y\|\le\|x\|+\|y\|$.
-:::
-
 ::: {.front card-id="card-d77f00243dea830b" tags="definition"}
 Norm closure
 :::
 
 ::: {.back card-id="card-d77f00243dea830b"}
 The closure of a subset $S$ of a normed space in the norm topology, i.e. the set of all limits of norm-convergent sequences from $S$.
-:::
-
-::: {.front card-id="card-9170724683328f85" tags="definition"}
-Normed space
-:::
-
-::: {.back card-id="card-9170724683328f85"}
-A vector space $X$ equipped with a norm $\|\cdot\|:X\to[0,\infty)$.
 :::
 
 ::: {.front card-id="card-9a0915fcecc51d0f" tags="definition"}

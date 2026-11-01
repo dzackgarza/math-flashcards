@@ -525,14 +525,6 @@ Open string
 A string whose worldsheet has a boundary, with endpoints constrained to lie on a D-brane.
 :::
 
-::: {.front card-id="card-2c864381bec46e36" tags="definition"}
-Partial derivative
-:::
-
-::: {.back card-id="card-2c864381bec46e36"}
-The derivative of a function with respect to one variable, holding the other variables fixed.
-:::
-
 ::: {.front card-id="card-21523e70a090f206" tags="definition"}
 Path integral
 :::

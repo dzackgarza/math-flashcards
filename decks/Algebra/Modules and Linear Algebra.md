@@ -281,14 +281,6 @@ Submodule
 A subset $N\subseteq M$ is a submodule if it is a subgroup of $(M,+)$ and is closed under scalar multiplication; equivalently, $N$ is nonempty and $r\in R$, $m,n\in N$ imply $rm+n\in N$.
 :::
 
-::: {.front card-id="card-aa872b79c6d7fb88" tags="definition"}
-Tensor product
-:::
-
-::: {.back card-id="card-aa872b79c6d7fb88"}
-The tensor product $M \otimes_R N$ of $R$-modules is the universal target of $R$-bilinear maps: there is a bilinear map $\otimes : M \times N \to M \otimes_R N$ such that every bilinear map $M \times N \to P$ factors uniquely through it. It is constructed as the quotient of the free abelian group on $M \times N$ by the bilinearity relations.
-:::
-
 ::: {.front card-id="card-307de933dfdd2661" tags="definition"}
 Torsion
 :::

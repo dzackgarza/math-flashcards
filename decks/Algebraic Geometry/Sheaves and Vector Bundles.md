@@ -986,14 +986,6 @@ Dual sheaf
 For an $\mathcal O_X$-module $\mathcal F$, the dual sheaf is $\mathcal F^\vee=\mathop{\mathcal H\!\mathit{om}}_{\mathcal O_X}(\mathcal F,\mathcal O_X)$. If $\mathcal F$ is locally free of finite rank, so is $\mathcal F^\vee$ and $\mathcal F^{\vee\vee}\cong\mathcal F$; for a vector bundle $E$, $E^\vee$ is the dual bundle.
 :::
 
-::: {.front card-id="card-69ecd4f420dc5332" tags="definition"}
-Exterior derivative
-:::
-
-::: {.back card-id="card-69ecd4f420dc5332"}
-For a smooth morphism $X\to S$, the exterior derivative $d:\Omega^p_{X/S}\to\Omega^{p+1}_{X/S}$ is the unique $\mathcal O_S$-linear map with $d(f)=df$ on functions, $d^2=0$, and the graded Leibniz rule $d(\omega\wedge\eta)=d\omega\wedge\eta+(-1)^p\omega\wedge d\eta$ for $\omega\in\Omega^p$.
-:::
-
 ::: {.front card-id="card-52446b50249e1ebb" tags="definition"}
 Exterior power
 :::

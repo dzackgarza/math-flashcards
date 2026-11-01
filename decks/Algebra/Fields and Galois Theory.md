@@ -220,14 +220,6 @@ Algebraic closure
 An algebraic closure $\overline{K}$ of $K$ is an algebraically closed field containing $K$ such that every element of $\overline{K}$ is algebraic over $K$; it is unique up to $K$-isomorphism.
 :::
 
-::: {.front card-id="card-c544211ca2ffa2c3" tags="definition"}
-Automorphism
-:::
-
-::: {.back card-id="card-c544211ca2ffa2c3"}
-(1) An automorphism of a field $K$ is a bijective field homomorphism $K\to K$; the automorphisms of $K$ form a group under composition. (2) A biholomorphic map from a domain $\Omega$ onto itself. The automorphism group $\operatorname{Aut}(\Omega)$ is the group of all such maps under composition.
-:::
-
 ::: {.front card-id="card-b6336d97248af433" tags="definition"}
 Automorphism group
 :::
@@ -266,14 +258,6 @@ Degree of a field extension
 
 ::: {.back card-id="card-c3bbb6764f8d7d5c"}
 For a field extension $L/K$, the degree is $[L:K]=\dim_K L$; the extension is finite if $[L:K]<\infty$.
-:::
-
-::: {.front card-id="card-1370fb010bf5821b" tags="definition"}
-Finite extension
-:::
-
-::: {.back card-id="card-1370fb010bf5821b"}
-A field extension $L/K$ is finite if $[L:K]=\dim_K L<\infty$.
 :::
 
 ::: {.front card-id="card-e54ec5dace175291" tags="definition"}

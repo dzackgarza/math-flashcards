@@ -509,14 +509,6 @@ Local ring
 A commutative ring $R$ is local if it has a unique maximal ideal $\mathfrak{m}$. Equivalently, the nonunits of $R$ form an ideal, namely $\mathfrak{m}$; then $R\setminus\mathfrak{m}=R^\times$.
 :::
 
-::: {.front card-id="card-4c9ec3a063e850d2" tags="definition"}
-Localization
-:::
-
-::: {.back card-id="card-4c9ec3a063e850d2"}
-For a commutative ring $R$ and a multiplicative subset $S\subseteq R$, the localization $S^{-1}R$ is the ring of fractions $r/s$ with $r\in R$, $s\in S$, modulo the usual equivalence. For a prime ideal $\mathfrak{p}$, $R_{\mathfrak{p}}=(R\setminus\mathfrak{p})^{-1}R$ is the local ring at $\mathfrak{p}$.
-:::
-
 ::: {.front card-id="card-c6455b6f0a43fb96" tags="definition"}
 Monogenic
 :::

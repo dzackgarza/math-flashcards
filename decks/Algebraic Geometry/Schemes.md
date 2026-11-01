@@ -1543,7 +1543,6 @@ The map $\mathbb A^2_{u,v}\to V(xy-z^2)$ given by $(u,v)\mapsto(u^2,v^2,uv)$ is 
 No. The target is normal but not regular at the vertex, so the regular-target hypothesis of purity fails. Over the vertex the fiber has coordinate ring $\mathbb C[u,v]/(u^2,v^2,uv)$, which is nonreduced; thus the map is not étale there. A cover of a singular target can branch only in codimension two.
 :::
 
-
 ::: {.front card-id="application-obstruction-space-curves" tags="application"}
 For a smooth connected projective complex curve $C$ of genus $g\ge2$, determine whether its deformation functor is unobstructed and compute its tangent dimension. Which groups give the two answers?
 :::
@@ -2054,14 +2053,6 @@ Multiplicity of a point
 For a hypersurface $V(f)$ at $p$, the order of vanishing $\operatorname{ord}_{\mathfrak m_p}(f)$. For a curve or scheme at $p$, the leading degree of the associated graded ring of $\mathcal O_{X,p}$ with respect to $\mathfrak m_p$, measuring the tangent cone.
 :::
 
-::: {.front card-id="card-72e9b01c30084f57" tags="definition"}
-Nilpotent element
-:::
-
-::: {.back card-id="card-72e9b01c30084f57"}
-An element $x$ of a ring such that $x^n=0$ for some integer $n\ge1$. A ring is reduced exactly when it has no nonzero nilpotent elements.
-:::
-
 ::: {.front card-id="card-c8ce3bb3bf03ffc3" tags="definition"}
 Normal bundle
 :::
@@ -2268,14 +2259,6 @@ Surface
 
 ::: {.back card-id="card-cc267f5d00780e7d"}
 (1) A scheme or variety of dimension $2$. (2) A surface is a Hausdorff, second-countable topological space in which every point has a neighborhood homeomorphic to $\mathbb{R}^2$ or to the half-plane $\mathbb{H}^2 = \{(x,y) \in \mathbb{R}^2 : y \ge 0\}$. Points of the second type form the boundary.
-:::
-
-::: {.front card-id="card-23f86fe599b146d2" tags="definition"}
-Tangent space
-:::
-
-::: {.back card-id="card-23f86fe599b146d2"}
-For a scheme $X$ at a $k$-point $x$ with local ring $\mathcal O_{X,x}$ and maximal ideal $\mathfrak m_x$, the Zariski tangent space is $T_xX=(\mathfrak m_x/\mathfrak m_x^2)^\vee\cong\operatorname{Der}_k(\mathcal O_{X,x},k)$. For $X\subseteq\mathbb A^n$, it is $\ker J(x)$.
 :::
 
 ::: {.front card-id="card-b236692db8c0406c" tags="definition"}

@@ -560,14 +560,6 @@ Conformal map: upper half-disc to $\HH$
 $w=-(z+z^{-1})$ maps $\{z:|z|<1,\ \operatorname{Im}z>0\}$ biholomorphically onto $\mathbb H$. Indeed, $\operatorname{Im}w=\operatorname{Im}z\,(|z|^{-2}-1)>0$; its boundary maps to $\mathbb R$.
 :::
 
-::: {.front card-id="card-51c045e22cc0f169" tags="definition"}
-Analytic function
-:::
-
-::: {.back card-id="card-51c045e22cc0f169"}
-A function $f:U\to\mathbb C$ on an open set $U\subseteq\mathbb C$ that is complex differentiable at every point of $U$; equivalently, it is locally given by a convergent power series. This is a synonym for a holomorphic function.
-:::
-
 ::: {.front card-id="card-6f834395042907e2" tags="definition"}
 Angular sector
 :::
@@ -619,15 +611,6 @@ Contour
 A continuous, piecewise $C^1$ path $\gamma:[a,b]\to\CC$, usually given an orientation. It is closed if $\gamma(a)=\gamma(b)$.
 :::
 
-::: {.front card-id="card-53aa39ad5954cb0e" tags="definition"}
-Contour integral
-:::
-
-::: {.back card-id="card-53aa39ad5954cb0e"}
-For a contour $\gamma:[a,b]\to\CC$ and a continuous function $f$ on its image,
-$$\int_\gamma f(z)\,dz=\int_a^b f(\gamma(t))\,\gamma'(t)\,dt.$$
-:::
-
 ::: {.front card-id="card-11441d7ca4b3bb14" tags="definition"}
 Disc
 :::
@@ -642,24 +625,6 @@ Half-plane
 
 ::: {.back card-id="card-a50fa20508c55284"}
 A set of the form $\{z\in\CC:\operatorname{Re}(az)>b\}$ for some $a\neq0$ and $b\in\RR$. The upper half-plane is $\mathbb H=\{z:\operatorname{Im}z>0\}$; the right half-plane is $\{z:\operatorname{Re}z>0\}$.
-:::
-
-::: {.front card-id="card-9f7ef187a9853d78" tags="definition"}
-Harmonic function
-:::
-
-::: {.back card-id="card-9f7ef187a9853d78"}
-A $C^2$ function $u:U\to\RR$ on an open set $U\subseteq\RR^2\cong\CC$ satisfying Laplace's equation
-$$\Delta u=u_{xx}+u_{yy}=0.$$
-The real and imaginary parts of a holomorphic function are harmonic.
-:::
-
-::: {.front card-id="card-7b5f362f5b9f674a" tags="definition"}
-Holomorphic function
-:::
-
-::: {.back card-id="card-7b5f362f5b9f674a"}
-A function $f:U\to\CC$ on an open set $U\subseteq\CC$ is holomorphic if its complex derivative $f'(z)=\lim_{h\to0}\frac{f(z+h)-f(z)}{h}$ exists for every $z\in U$. Equivalently, $f$ is complex-analytic: it has a convergent power-series expansion in a neighbourhood of each point of $U$.
 :::
 
 ::: {.front card-id="card-106b6811d8e583f7" tags="definition"}
@@ -694,14 +659,6 @@ Isolated singularity
 A point $a$ such that $f$ is holomorphic on a punctured disc $D(a,r)\setminus\{a\}$ for some $r>0$, but is not holomorphic at $a$ itself. It is removable, a pole, or essential according to the behaviour of $f$ as $z\to a$.
 :::
 
-::: {.front card-id="card-3fba36c771d72f42" tags="definition"}
-Laurent series
-:::
-
-::: {.back card-id="card-3fba36c771d72f42"}
-A series $\sum_{n=-\infty}^{\infty}c_n(z-a)^n$ representing a function holomorphic on an annulus $r<|z-a|<R$. The coefficient $c_{-1}$ is the residue of $f$ at $a$.
-:::
-
 ::: {.front card-id="card-cc7ddcb4427b7d0e" tags="definition"}
 Length of a curve
 :::
@@ -727,14 +684,6 @@ Locally uniform convergence
 A sequence $f_n\to f$ converges locally uniformly on an open set $U$ if $f_n\to f$ uniformly on every compact subset of $U$.
 :::
 
-::: {.front card-id="card-05534dbbeb863a15" tags="definition"}
-Meromorphic function
-:::
-
-::: {.back card-id="card-05534dbbeb863a15"}
-A function on a domain $\Omega$ that is holomorphic except at isolated points, at each of which it has a pole. Equivalently, it is locally a quotient $g/h$ of holomorphic functions with $h\not\equiv0$.
-:::
-
 ::: {.front card-id="card-4ad1bf1210cc7fbd" tags="definition"}
 Multiplicity of a zero
 :::
@@ -749,14 +698,6 @@ Open map
 
 ::: {.back card-id="card-8ce98ba70f3e1efd"}
 A map $f:X\to Y$ between topological spaces is open if $f(U)$ is open in $Y$ for every open $U\subseteq X$.
-:::
-
-::: {.front card-id="card-2b5a7862d0c027a8" tags="definition"}
-Pole
-:::
-
-::: {.back card-id="card-2b5a7862d0c027a8"}
-A pole of a holomorphic function $f$ is an isolated singularity $z_0$ with $\lim_{z \to z_0} |f(z)| = \infty$. Equivalently, the Laurent expansion at $z_0$ has a principal part with finitely many nonzero negative-power terms and a nonzero term of lowest order $-m$; $m$ is the order of the pole.
 :::
 
 ::: {.front card-id="card-3971e20e2440e892" tags="definition"}
@@ -795,16 +736,6 @@ $$R=\frac{1}{\limsup_{n\to\infty}|a_n|^{1/n}}\in[0,\infty].$$
 The series converges absolutely for $|z-a|<R$ and diverges for $|z-a|>R$.
 :::
 
-::: {.front card-id="card-0298917fb9efa60b" tags="definition"}
-Residue
-:::
-
-::: {.back card-id="card-0298917fb9efa60b"}
-For an isolated singularity $a$ of $f$, the residue is
-$$\operatorname{Res}_{z=a}f=\frac{1}{2\pi i}\oint_{|z-a|=r}f(z)\,dz$$
-for sufficiently small $r>0$. Equivalently, it is the coefficient of $(z-a)^{-1}$ in the Laurent expansion of $f$ about $a$.
-:::
-
 ::: {.front card-id="card-91511271f5f11e8f" tags="definition"}
 Riemann sphere
 :::
@@ -827,14 +758,6 @@ Simply connected domain
 
 ::: {.back card-id="card-7c43743c2af2097c"}
 A domain $\Omega\subseteq\CC$ with no holes: every closed contour in $\Omega$ can be contracted to a point inside $\Omega$. Equivalently, $\widehat{\CC}\setminus\Omega$ is connected, and every holomorphic function on $\Omega$ has a primitive.
-:::
-
-::: {.front card-id="card-eafd5b8e3979aca1" tags="definition"}
-Singularity
-:::
-
-::: {.back card-id="card-eafd5b8e3979aca1"}
-A point $a\in\CC$ at which a function $f$ is not holomorphic (for example, where $f$ is undefined or has a pole). A singularity is isolated if $f$ is holomorphic on some punctured disc $D(a,r)\setminus\{a\}$.
 :::
 
 ::: {.front card-id="card-83a6a6aef32ce495" tags="definition"}

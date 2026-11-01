@@ -832,14 +832,6 @@ Ball
 The open ball of radius $r>0$ about $x$ is $B_r(x)=\{y : d(x,y)<r\}$.
 :::
 
-::: {.front card-id="card-47920a23f4a138bb" tags="definition"}
-Bounded function
-:::
-
-::: {.back card-id="card-47920a23f4a138bb"}
-A function $f: X \to \RR$ is bounded if $\sup_{x \in X} |f(x)| < \infty$.
-:::
-
 ::: {.front card-id="card-22dde930a8b0d1e8" tags="definition"}
 Cantor set
 :::
@@ -1008,14 +1000,6 @@ Independent events
 Events $A,B$ are independent if $P(A \cap B)=P(A)P(B)$.
 :::
 
-::: {.front card-id="card-58c0c911a9bec7f7" tags="definition"}
-Infimum
-:::
-
-::: {.back card-id="card-58c0c911a9bec7f7"}
-The infimum $\inf A$ is the greatest lower bound of $A$: a lower bound that is $\geq$ every other lower bound.
-:::
-
 ::: {.front card-id="card-3e90b2b5da3eb6a5" tags="definition"}
 Interval
 :::
@@ -1046,14 +1030,6 @@ Lebesgue integrable
 
 ::: {.back card-id="card-c650d2d2928c672e"}
 A measurable function $f$ is Lebesgue integrable if $\int |f|\,d\mu < \infty$, i.e. $f \in L^1$.
-:::
-
-::: {.front card-id="card-2e3dbe78f9db60ee" tags="definition"}
-Lebesgue integral
-:::
-
-::: {.back card-id="card-2e3dbe78f9db60ee"}
-For a measurable $f \ge 0$, the Lebesgue integral is $\int f\,d\mu = \sup\{\int s\,d\mu : 0 \le s \le f,\ s \text{ simple}\}$; for a general measurable $f$, $\int f\,d\mu = \int f^+\,d\mu - \int f^-\,d\mu$ when at least one term is finite.
 :::
 
 ::: {.front card-id="card-e7e091f820f18223" tags="definition"}
@@ -1088,22 +1064,6 @@ Linear span
 The linear span of a set $S$ is the set of all finite linear combinations of elements of $S$.
 :::
 
-::: {.front card-id="card-ed299f3d77d37846" tags="definition"}
-Measurable function
-:::
-
-::: {.back card-id="card-ed299f3d77d37846"}
-A map $f : (X,\Sigma) \to (Y,\mathcal{T})$ between measurable spaces is measurable if $f^{-1}(E) \in \Sigma$ for every $E \in \mathcal{T}$; for real-valued $f$, equivalently $\{x : f(x) > a\} \in \Sigma$ for every $a \in \mathbb{R}$.
-:::
-
-::: {.front card-id="card-490e7bb6a48436a2" tags="definition"}
-Measure
-:::
-
-::: {.back card-id="card-490e7bb6a48436a2"}
-A function $\mu$ on a $\sigma$-algebra with $\mu(\emptyset)=0$, $\mu(E)\geq 0$, and $\mu\left(\bigcup_j E_j\right)=\sum_j \mu(E_j)$ for pairwise disjoint measurable $E_j$.
-:::
-
 ::: {.front card-id="card-c84f20c245e9800b" tags="definition"}
 Measure space
 :::
@@ -1126,14 +1086,6 @@ Monotone function
 
 ::: {.back card-id="card-bd3f0b7d5a0b2656"}
 A function that is either nondecreasing ($x\leq y \Rightarrow f(x)\leq f(y)$) or nonincreasing ($x\leq y \Rightarrow f(x)\geq f(y)$).
-:::
-
-::: {.front card-id="card-55c40ca9c890d1ce" tags="definition"}
-Monotonicity
-:::
-
-::: {.back card-id="card-55c40ca9c890d1ce"}
-For a measure, $A \subseteq B$ implies $\mu(A) \leq \mu(B)$.
 :::
 
 ::: {.front card-id="card-864210a0f991ecba" tags="definition"}
@@ -1160,28 +1112,12 @@ Oscillation
 The oscillation of $f$ at $x$ is $\omega_f(x)=\inf_{U \ni x} \sup_{y,z \in U} |f(y)-f(z)|$, the infimum over neighborhoods $U$ of $x$.
 :::
 
-::: {.front card-id="card-eeb07d601df0091e" tags="definition"}
-Outer measure
-:::
-
-::: {.back card-id="card-eeb07d601df0091e"}
-An outer measure on $X$ is a function $\mu^* : \mathcal{P}(X) \to [0,\infty]$ with $\mu^*(\emptyset) = 0$, monotonicity ($A \subseteq B \Rightarrow \mu^*(A) \le \mu^*(B)$), and countable subadditivity $\mu^*(\bigcup_n A_n) \le \sum_n \mu^*(A_n)$.
-:::
-
 ::: {.front card-id="card-4a9a7d1aee68ff06" tags="definition"}
 Outer regular
 :::
 
 ::: {.back card-id="card-4a9a7d1aee68ff06"}
 A measure $\mu$ is outer regular if $\mu(E)=\inf\{\mu(U) : E \subseteq U,\ U \text{ open}\}$ for every measurable $E$.
-:::
-
-::: {.front card-id="card-01f873a5f09d9885" tags="definition"}
-Pointwise convergence
-:::
-
-::: {.back card-id="card-01f873a5f09d9885"}
-$f_n \to f$ pointwise on $E$ if $f_n(x) \to f(x)$ for every $x \in E$.
 :::
 
 ::: {.front card-id="card-7594523735285fb3" tags="definition"}
@@ -1224,14 +1160,6 @@ Riemann integral
 The integral $\int_a^b f(x)\,dx$ defined as the limit of Riemann sums over partitions of $[a,b]$ as the mesh tends to zero.
 :::
 
-::: {.front card-id="card-fdb86b8f2d80fbe9" tags="definition"}
-Sigma-algebra
-:::
-
-::: {.back card-id="card-fdb86b8f2d80fbe9"}
-A collection $\mathcal{M}$ of subsets of $X$ containing $X$ and closed under complements and countable unions.
-:::
-
 ::: {.front card-id="card-7fb1e845f322ef62" tags="definition"}
 Simple function
 :::
@@ -1262,14 +1190,6 @@ Support
 
 ::: {.back card-id="card-48a18cc85dff65a6"}
 The support of $f$ is the smallest closed set outside which $f$ vanishes, i.e. the intersection of all closed sets containing $\{x : f(x)\neq 0\}$.
-:::
-
-::: {.front card-id="card-de69796d7f46aaff" tags="definition"}
-Supremum
-:::
-
-::: {.back card-id="card-de69796d7f46aaff"}
-The supremum $\sup A$ is the least upper bound of $A$: an upper bound that is $\leq$ every other upper bound.
 :::
 
 ::: {.front card-id="card-3f2146f4378e0484" tags="definition"}

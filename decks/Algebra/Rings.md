@@ -122,14 +122,6 @@ Associate
 Elements $a,b\in R$ are associates if $a=ub$ for some unit $u\in R$; then $(a)=(b)$. In an integral domain (more generally, when $a$ is not a zero divisor) the converse holds: $(a)=(b)$ implies $a=ub$ for some unit $u$.
 :::
 
-::: {.front card-id="card-4accfaf472893354" tags="definition"}
-Commutative ring
-:::
-
-::: {.back card-id="card-4accfaf472893354"}
-A ring $R$ is commutative if $ab=ba$ for all $a,b\in R$.
-:::
-
 ::: {.front card-id="card-f0c54fa44db0bad9" tags="definition"}
 Divisibility
 :::
@@ -152,22 +144,6 @@ Krull dimension
 
 ::: {.back card-id="card-0c7db8f1fdccc3e8"}
 The Krull dimension of a commutative ring $R$ is the supremum of the lengths $n$ of chains of prime ideals $\mathfrak{p}_0 \subsetneq \mathfrak{p}_1 \subsetneq \cdots \subsetneq \mathfrak{p}_n$.
-:::
-
-::: {.front card-id="card-86bb1d317cc5985b" tags="definition"}
-Polynomial ring
-:::
-
-::: {.back card-id="card-86bb1d317cc5985b"}
-For a commutative ring $R$, the polynomial ring $R[x]$ is the set of formal sums $\sum_{n \ge 0} a_n x^n$ with $a_n \in R$ eventually zero, added componentwise and multiplied by convolution.
-:::
-
-::: {.front card-id="card-3d02d06d45597db2" tags="definition"}
-Principal ideal domain
-:::
-
-::: {.back card-id="card-3d02d06d45597db2"}
-A principal ideal domain is an integral domain in which every ideal is principal, i.e. has the form $(a)=aR$ for some $a\in R$.
 :::
 
 ::: {.front card-id="card-d533d6ec05d43880" tags="definition"}

@@ -218,14 +218,6 @@ How do you solve a linear second order ODE?
 For $y''+p(x)y'+q(x)y=g(x)$, first find independent solutions $y_1,y_2$ of the homogeneous equation. The general solution is $c_1y_1+c_2y_2+y_p$, where $y_p$ is a particular solution, obtainable by variation of parameters. For constant coefficients, solve the characteristic polynomial for $y_1,y_2$.
 :::
 
-::: {.front card-id="card-ff702937bc14f55a" tags="definition"}
-Absolute convergence
-:::
-
-::: {.back card-id="card-ff702937bc14f55a"}
-A series $\sum a_n$ converges absolutely if $\sum |a_n|$ converges.
-:::
-
 ::: {.front card-id="card-062a149dfc31e301" tags="definition"}
 Alternating series
 :::
@@ -448,14 +440,6 @@ Variation of parameters
 
 ::: {.back card-id="card-5eb6084f8cc39544"}
 A method for finding a particular solution by replacing the constants in the homogeneous solution with functions and solving for them.
-:::
-
-::: {.front card-id="card-a3c35686dac5f92c" tags="definition"}
-Vector field
-:::
-
-::: {.back card-id="card-a3c35686dac5f92c"}
-An assignment of a vector $F(x)$ to each point $x$ in a subset of $\RR^n$.
 :::
 
 ::: {.front card-id="card-c0807240a03a7284" tags="definition"}

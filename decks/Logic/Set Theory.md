@@ -107,14 +107,6 @@ Axiom of choice
 Every family $(A_i)_{i \in I}$ of nonempty sets has a choice function: a map $f$ with $f(i) \in A_i$ for all $i \in I$.
 :::
 
-::: {.front card-id="card-44f2714441531e52" tags="definition"}
-Cartesian product
-:::
-
-::: {.back card-id="card-44f2714441531e52"}
-The Cartesian product $A \times B$ is the set of ordered pairs $A \times B = \{(a,b) : a \in A,\ b \in B\}$.
-:::
-
 ::: {.front card-id="card-d9f71ee53d0d2061" tags="definition"}
 Countable set
 :::
@@ -123,44 +115,12 @@ Countable set
 A set $A$ is countable if it is finite or there is a bijection $A\to\mathbb{N}$. Equivalently, its elements can be listed as a sequence (possibly finite). A countably infinite set has cardinality $\aleph_0$.
 :::
 
-::: {.front card-id="card-80951cdbb461fde9" tags="definition"}
-Disjoint sets
-:::
-
-::: {.back card-id="card-80951cdbb461fde9"}
-Sets $A$ and $B$ are disjoint if $A\cap B=\varnothing$. A family $\{A_i\}_{i\in I}$ is pairwise disjoint if $A_i\cap A_j=\varnothing$ for all $i\neq j$.
-:::
-
-::: {.front card-id="card-94b5194d8015f8cf" tags="definition"}
-Disjoint union
-:::
-
-::: {.back card-id="card-94b5194d8015f8cf"}
-The disjoint union of a family $\{A_i\}_{i\in I}$ is $\coprod_{i\in I}A_i=\{(i,a):i\in I,\ a\in A_i\}$. It contains a copy of each $A_i$, and these copies are pairwise disjoint; it is the coproduct in $\mathbf{Set}$.
-:::
-
-::: {.front card-id="card-4047761b683cef32" tags="definition"}
-Indexed family
-:::
-
-::: {.back card-id="card-4047761b683cef32"}
-An indexed family $\{A_i\}_{i\in I}$ is a function $i\mapsto A_i$ from an index set $I$ to a collection of sets (or other objects). A sequence is the case $I=\mathbb{N}$.
-:::
-
 ::: {.front card-id="card-fa2cab9329f11859" tags="definition"}
 Inverse function
 :::
 
 ::: {.back card-id="card-fa2cab9329f11859"}
 If $f:X\to Y$ is bijective, its inverse $f^{-1}:Y\to X$ is the unique function with $f^{-1}(f(x))=x$ for all $x\in X$ and $f(f^{-1}(y))=y$ for all $y\in Y$; equivalently $f^{-1}\circ f=\mathrm{id}_X$ and $f\circ f^{-1}=\mathrm{id}_Y$.
-:::
-
-::: {.front card-id="card-9bca59f793558272" tags="definition"}
-Preimage
-:::
-
-::: {.back card-id="card-9bca59f793558272"}
-For $f:X\to Y$ and $B\subseteq Y$, the preimage (or inverse image) of $B$ is $f^{-1}(B)=\{x\in X:f(x)\in B\}\subseteq X$. It is defined for every function $f$, whether or not $f$ is invertible.
 :::
 
 ::: {.front card-id="card-5b9d076709fa737f" tags="definition"}

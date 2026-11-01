@@ -323,14 +323,6 @@ Division value
 A division value of an exponential $e_C$ (or $e_L$) is a value $e_C(a)$ at a torsion point $a$ of the lattice or module. Division values generate abelian extensions of the base field, analogous to how roots of unity generate cyclotomic extensions.
 :::
 
-::: {.front card-id="card-d8b57340c4265056" tags="definition"}
-Entire function
-:::
-
-::: {.back card-id="card-d8b57340c4265056"}
-An entire function is a complex-valued function holomorphic on all of $\mathbb{C}$; equivalently, it is given by a power series $\sum a_n z^n$ with infinite radius of convergence. Over a nonarchimedean field, an entire function is a power series converging on the whole field.
-:::
-
 ::: {.front card-id="card-c93dee3736bd75a3" tags="definition"}
 Function field
 :::

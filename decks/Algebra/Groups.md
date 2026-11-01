@@ -385,14 +385,6 @@ What is a sporadic simple group?
 One of 26 exceptional groups: not cyclic, alternating, or of Lie type.
 :::
 
-::: {.front card-id="card-dc7999a8f6c6fd7f" tags="definition"}
-Center
-:::
-
-::: {.back card-id="card-dc7999a8f6c6fd7f"}
-The center of a group $G$ is $Z(G) = \{z \in G : zg = gz \text{ for all } g \in G\}$; it is a normal subgroup of $G$.
-:::
-
 ::: {.front card-id="card-0a36ff1308b232bf" tags="definition"}
 Center of a group
 :::
@@ -407,14 +399,6 @@ Composition factor
 
 ::: {.back card-id="card-be29258462168dfc"}
 For a composition series $1=N_0\trianglelefteq N_1\trianglelefteq\cdots\trianglelefteq N_k=G$, the composition factors are the simple quotient groups $N_{i+1}/N_i$.
-:::
-
-::: {.front card-id="card-0ffd0be50f3dd00e" tags="definition"}
-Conjugacy class
-:::
-
-::: {.back card-id="card-0ffd0be50f3dd00e"}
-The conjugacy class of $x\in G$ is $\{gxg^{-1}:g\in G\}$; conjugacy classes partition $G$.
 :::
 
 ::: {.front card-id="card-3901fd88342de459" tags="definition"}
@@ -449,14 +433,6 @@ Dihedral group
 The dihedral group $D_n$ of order $2n$ is the symmetry group of a regular $n$-gon; it has presentation $\langle r,s\mid r^n=s^2=e,\ srs=r^{-1}\rangle$.
 :::
 
-::: {.front card-id="card-a27839d2f99893f1" tags="definition"}
-Direct product
-:::
-
-::: {.back card-id="card-a27839d2f99893f1"}
-For groups $G$ and $H$, the direct product $G\times H$ is the set of ordered pairs with componentwise operation; more generally $\prod_i G_i$ is the Cartesian product with componentwise operation.
-:::
-
 ::: {.front card-id="card-b310befb160a3863" tags="definition"}
 Euler totient function
 :::
@@ -465,28 +441,12 @@ Euler totient function
 Euler's totient function $\varphi(n)$ counts the integers $1\le k\le n$ with $\gcd(k,n)=1$. If $n=\prod_i p_i^{e_i}$, then $\varphi(n)=\prod_i p_i^{e_i-1}(p_i-1)$.
 :::
 
-::: {.front card-id="card-d4b75f23a7727c9f" tags="definition"}
-Free group
-:::
-
-::: {.back card-id="card-d4b75f23a7727c9f"}
-The free group $F(S)$ on a set $S$ consists of finite words in $S \cup S^{-1}$ modulo cancellation, with concatenation as multiplication; every map $S \to G$ into a group extends uniquely to a homomorphism $F(S) \to G$.
-:::
-
 ::: {.front card-id="card-87fe69a5afd1401f" tags="definition"}
 Group of lie type
 :::
 
 ::: {.back card-id="card-87fe69a5afd1401f"}
 A finite group of Lie type is the group of $\mathbb{F}_q$-points of a connected reductive algebraic group over $\mathbb{F}_q$, or equivalently the fixed points of a Frobenius endomorphism; examples include $\mathrm{GL}_n(\mathbb{F}_q)$ and $\mathrm{SL}_n(\mathbb{F}_q)$.
-:::
-
-::: {.front card-id="card-52312fa352f5e3c0" tags="definition"}
-Group presentation
-:::
-
-::: {.back card-id="card-52312fa352f5e3c0"}
-A presentation $\langle S \mid R \rangle$ denotes the group $F(S)/N$, where $F(S)$ is the free group on $S$ and $N$ is the normal closure of the set $R$ of relators.
 :::
 
 ::: {.front card-id="card-803bc68692ec52be" tags="definition"}
@@ -527,14 +487,6 @@ Quaternion group
 
 ::: {.back card-id="card-f7194cce580b0b61"}
 The quaternion group is $Q_8=\{\pm1,\pm i,\pm j,\pm k\}$ with $i^2=j^2=k^2=ijk=-1$; the generalized quaternion group $Q_{2^n}$ has order $2^n$ and presentation $\langle a,b\mid a^{2^{n-1}}=e,\ b^2=a^{2^{n-2}},\ bab^{-1}=a^{-1}\rangle$.
-:::
-
-::: {.front card-id="card-fb5a91e10631831b" tags="definition"}
-Semidirect product
-:::
-
-::: {.back card-id="card-fb5a91e10631831b"}
-If $N\trianglelefteq G$, $H\le G$, $N\cap H=\{e\}$, and $G=NH$, then $G$ is the internal semidirect product $N\rtimes H$. Equivalently, a homomorphism $\alpha:H\to\operatorname{Aut}(N)$ gives the external semidirect product with $(n,h)(n',h')=(n\,\alpha(h)(n'),hh')$.
 :::
 
 ::: {.front card-id="card-e332dd610e6a7a7e" tags="definition"}
