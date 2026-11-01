@@ -25,7 +25,7 @@ What is a locally finitely presented morphism?
 :::
 
 ::: {.back card-id="card-67acbfbbf098e7b7"}
-On open covers, the induced rings maps $R_i\to A_i$ are finite presentation, i.e. $R_i[x_1,\cdots, x_n] \twoheadrightarrow A_i$ with fg kernel for some $n$.
+On affine open covers, the induced ring maps $R_i\to A_i$ are of finite presentation, i.e. $R_i[x_1,\cdots, x_n] \twoheadrightarrow A_i$ with finitely generated kernel for some $n$.
 :::
 
 ::: {.front card-id="card-c35dccf24f080a71"}
@@ -84,7 +84,7 @@ For projective varieties: the induced maps on stalks are flat ring maps.
 
 $f: X\to S$ is flat at $x$ iff ${\mathcal{O}}_{X, x} \in   {}_{{\mathcal{O}}_{S, f(x) } }\Mod^\flat$ (i.e. the module structure induced by $f$ yields a flat module.)
 
-Hartshorne's definition: for $f:X\to Y$ and $\mcf\in  {}_{{\mathcal{O}}_X}\Mod$, $\mcf$ is flat over $Y$ at $x\in X$ if $\mcf_x \in   {}_{{\mathcal{O}}_{Y, f(x)}}\Mod^\flat$; flat if flat at every $x\in S$, and $X$ is flat over $Y$ if $\mcf\coloneqq{\mathcal{O}}_X$ is flat.
+Hartshorne's definition: for $f:X\to Y$ and $\mcf\in  {}_{{\mathcal{O}}_X}\Mod$, $\mcf$ is flat over $Y$ at $x\in X$ if $\mcf_x \in   {}_{{\mathcal{O}}_{Y, f(x)}}\Mod^\flat$; flat if flat at every $x\in X$, and $X$ is flat over $Y$ if $\mcf\coloneqq{\mathcal{O}}_X$ is flat.
 
 $f\in \mathsf{CRing}(A, B)$ is a flat map iff $B\in   {}_{A}\Mod^\flat$, and a morphism $f\in \Sch(X, Y)$ is flat iff flat on local rings, i.e. $f_x: {\mathcal{O}}_{Y, f(x)}\to {\mathcal{O}}_{X, x}$ is flat.
 :::
@@ -112,29 +112,25 @@ What is an **unramified** morphism?
 :::
 
 ::: {.back card-id="card-e9ced257a3fb0b70"}
-For every $x\in X$, $f^\sharp(\mfm_{f(x)}) \cdot {\mathcal{O}}_{X, x} \cong\mfm_x$ where $f^\sharp: {\mathcal{O}}_{Y, f(x)}\to {\mathcal{O}}_{X, x}$, and $\kappa(x)/\kappa(y)$ is a separable algebraic extension.
+A morphism $f:X\to Y$ is **unramified** if it is locally of finite presentation and for every $x\in X$, the induced map $f^\sharp:{\mathcal{O}}_{Y,f(x)}\to{\mathcal{O}}_{X,x}$ satisfies $f^\sharp(\mfm_{f(x)}){\mathcal{O}}_{X,x}=\mfm_x$, and $\kappa(x)/\kappa(f(x))$ is a separable algebraic extension.
 
-Equivalently, $f:X\to Y$ with $\Omega_{X/Y} = 0$.
+Equivalently, $f$ is locally of finite presentation and $\Omega_{X/Y}=0$.
 
-Equivalently, $f$ locally of finite presentation and the diagonal is an open immersion.
+Equivalently, $f$ is locally of finite presentation and the diagonal $\Delta_{X/Y}$ is an open immersion.
 
-For curves: $\exists e_p\in \ZZ_{\geq 0}$ such that $f^\sharp(\mfm_{f(p)}) {\mathcal{O}}_{X, x} = \mfm_{x}^{e_p}$, and unramified iff $e_p = 1$ for all $p\in X$.
+For a finite morphism of smooth curves, there are $e_p\in\ZZ_{\geq0}$ such that $f^\sharp(\mfm_{f(p)}){\mathcal{O}}_{X,p}=\mfm_p^{e_p}$, and $f$ is unramified iff $e_p=1$ for all $p\in X$.
 
 Flat + unramified = etale.
 :::
 
 ::: {.front card-id="card-a484edc8e6016938"}
-What is an **etale** morphism $f:X\to Y\in \Sch_{/ {k}}$?
+What is an **etale** morphism $f:X\to Y$ of $k$-schemes?
 :::
 
 ::: {.back card-id="card-a484edc8e6016938"}
-Fully general: flat, finite type, unramified.
+A morphism $f:X\to Y$ is **etale** if it is flat, locally of finite presentation, and unramified. Equivalently, it is flat, locally of finite presentation, and $\Omega_{X/Y}=0$. Equivalently, it is smooth of relative dimension $0$.
 
-Smooth of relative dimension 0.
-
-Flat and $\Omega_{X/ Y} = 0$.
-
-For varieties: flat and unramified.
+For schemes of finite type over a field, locally of finite presentation is automatic, so etale means flat and unramified.
 :::
 
 ::: {.front card-id="card-c79260140f5f0dbd"}
@@ -142,7 +138,7 @@ When is a morphism of schemes an immersion?
 :::
 
 ::: {.back card-id="card-c79260140f5f0dbd"}
-$\iota: X\to Z$ making $X$ isomorphic to an open subscheme *of a closed subscheme* of $Z$.
+$\iota:X\to Z$ factors as $X\to U\to Z$, where $X\to U$ is a closed immersion and $U\to Z$ is an open immersion. Equivalently, $X$ is a closed subscheme of an open subscheme of $Z$.
 :::
 
 ::: {.front card-id="card-86f3fc66ea0fc489"}
@@ -151,6 +147,4 @@ What is a **closed immersion** of schemes?
 
 ::: {.back card-id="card-86f3fc66ea0fc489"}
 $f:X\to Y$ inducing a homeomorphism $\tilde f: {\left\lvert {X} \right\rvert} \to {\left\lvert {V} \right\rvert}$ for ${\left\lvert {V} \right\rvert} \subseteq {\left\lvert {Y} \right\rvert}$ a closed subspace of the underlying topological spaces, such that $f^\sharp: {\mathcal{O}}_Y \twoheadrightarrow f_* {\mathcal{O}}_X$ is a surjective map of sheaves.
-
-Equivalently, separates points and tangent vectors, i.e. $p\neq q$ closed points in $X \implies \exists s\in \mfm_p \mcl_p \setminus\mfm_q \mcl_q$, and $\left\{{s\in V \st s_p\in \mfm_p \mcl_p}\right\}$ spans $\mfm_p \mcl_p/\mfm_p^2 \mcl_p$, where $\phi: X\to {\mathbf{P}}^n_{/ {k}}$ corresponds to $\mcl$ and $\left\{{s_0, \cdots, s_n}\right\}\in H^0(X; \mcl)$.
 :::
