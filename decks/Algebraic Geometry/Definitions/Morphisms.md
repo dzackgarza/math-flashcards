@@ -7,7 +7,7 @@ What is a **separated morphism**?
 :::
 
 ::: {.back card-id="card-2fc77d27d9c19b46"}
-A morphism $f:X\to S$ is **separated** iff the diagonal $\Delta_{X/S}:X\to X\times_S X$ is a closed immersion, i.e. it is affine (preimages of affine opens are affine) and the map $\mathcal O_{X\times_S X}\to(\Delta_{X/S})_*\mathcal O_X$ is surjective.
+A morphism $f:X\to S$ is **separated** iff the diagonal $\Delta_{X/S}:X\to X\times_S X$ is a closed immersion, i.e. it is affine (preimages of affine opens are affine) and the map $\mathcal O_{X\times_S X}\to(\Delta_{X/S})_*\mathcal O_X$ is surjective on stalks.
 :::
 
 ::: {.front card-id="card-17e3b6dd4ac0258d"}
