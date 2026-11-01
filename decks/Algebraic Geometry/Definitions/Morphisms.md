@@ -130,7 +130,7 @@ When is a morphism of schemes an immersion?
 :::
 
 ::: {.back card-id="card-c79260140f5f0dbd"}
-A morphism $\iota:X\to Z$ is an **immersion** iff it factors as $X\to U\to Z$, where $X\to U$ is a closed immersion (affine with surjective structure sheaf) and $U\to Z$ is an open immersion (an isomorphism onto an open subscheme). Equivalently, $X$ is a closed subscheme of an open subscheme of $Z$.
+A morphism $\iota:X\to Z$ is an **immersion** iff it factors as $X\xrightarrow{j}U\to Z$, where $j$ is a closed immersion (affine and the map $\mathcal O_U\to j_*\mathcal O_X$ is surjective on stalks) and $U\to Z$ is an open immersion (an isomorphism onto an open subscheme). Equivalently, $X$ is a closed subscheme of an open subscheme of $Z$.
 :::
 
 ::: {.front card-id="card-86f3fc66ea0fc489"}
@@ -138,5 +138,5 @@ What is a **closed immersion** of schemes?
 :::
 
 ::: {.back card-id="card-86f3fc66ea0fc489"}
-A morphism $f:X\to Y$ is a **closed immersion** iff it is affine (preimages of affine opens are affine) and the map $f^\sharp:\mathcal O_Y\to f_*\mathcal O_X$ is surjective. Equivalently, on every affine open $\Spec B\subseteq Y$, the induced ring map $B\to A$ is surjective, where $f^{-1}(\Spec B)=\Spec A$.
+A morphism $f:X\to Y$ is a **closed immersion** iff it is affine (preimages of affine opens are affine) and the map $f^\sharp:\mathcal O_Y\to f_*\mathcal O_X$ is surjective on stalks. Equivalently, on every affine open $\Spec B\subseteq Y$, the induced ring map $B\to A$ is surjective, where $f^{-1}(\Spec B)=\Spec A$.
 :::
