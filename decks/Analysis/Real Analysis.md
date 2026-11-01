@@ -795,9 +795,10 @@ What is the Borel-Cantelli lemma?
 :::
 
 ::: {.back card-id="card-c2f05c220c261c17"}
-$\sum P(E_n) < \infty \implies P(\limsup_n E_n) = 0$
+Let $(X,\mathcal A,\mu)$ be a measure space and $E_n\in\mathcal A$.
 
-If $E_n$ are independent events and $\sum P(E_n) = \infty$, then $P(\limsup_n E_n) = 1$.
+- If $\sum_{n=1}^\infty \mu(E_n) < \infty$, then $\mu(\limsup_n E_n) = 0$.
+- If $\mu$ is finite (in particular a probability measure) and the $E_n$ are independent, then $\sum_{n=1}^\infty \mu(E_n) = \infty$ implies $\mu(\limsup_n E_n) = \mu(X)$; for a probability space, $P(\limsup_n E_n) = 1$.
 :::
 
 ::: {.front card-id="card-2a557a12b6f74e75" tags="definition"}
