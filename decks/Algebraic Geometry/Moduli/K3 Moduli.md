@@ -289,15 +289,6 @@ All K3s, including non-projective: $\dcosetr{\Omega}{{\operatorname{O}}(\Lambda_
 Algebraic (projective) K3s: 19-dimensional, since one has to vary periods in the orthogonal complement of an ample class.
 :::
 
-::: {.front card-id="card-a3226206edbadebd"}
-What are the dimensions of moduli of all and just algebraic Kummer surfaces?
-:::
-
-::: {.back card-id="card-a3226206edbadebd"}
-All: 4-dimensional
-
-Algebraic: 3-dimensional.
-:::
 
 ::: {.front card-id="card-e5204c524e5af7fb" tags="theorem"}
 Describe the period domain for marked complex K3 surfaces and its dimension. Which of its points occur as periods? How does fixing a polarization change the domain?
@@ -326,33 +317,8 @@ What is a marking of a K3?
 Let $X$ be a K3 surface. A marking is an isometry $\phi: H^2(X; \ZZ) { \, \xrightarrow{\sim}\, }\Lambda_{{\mathsf{K}}3}$, where $\Lambda_{{\mathsf{K}}3}$ (also written $L$) is the K3 lattice $U{ {}^{ \scriptscriptstyle\oplus^{3} }  } \oplus E_8(-1){ {}^{ \scriptscriptstyle\oplus^{2} }  }$.
 :::
 
-::: {.front card-id="card-4bf015e09e65996f"}
-What is the dimension of quartics in ${\mathbf{P}}^3$? Up to coordinate changes?
-:::
 
-::: {.back card-id="card-4bf015e09e65996f"}
-$h^0({\mathcal{O}}_{{\mathbf{P}}^3}(4)) = {4+3\choose 4} = 35$ and its projective dimension is 34.
 
-$\dim \operatorname{PGL}_4(\CC) = 16-1 = 15$
-
-So $34-15 = 19$ moduli.
-:::
-
-::: {.front card-id="card-feb6d5dd0d9fef49"}
-What are the dimensions of moduli for $S_{2,3}, S_{2,2,2}$, and the double plane $S\to {\mathbf{P}}^2$?
-:::
-
-::: {.back card-id="card-feb6d5dd0d9fef49"}
-All 19.
-:::
-
-::: {.front card-id="card-b5a57050c6bdb637"}
-Compute the dimension of moduli of K3s with an order 3 symplectic automorphism.
-:::
-
-::: {.back card-id="card-b5a57050c6bdb637"}
-For algebraic complex K3 surfaces, the dimension is $7$. An order-three symplectic automorphism has six fixed points. The Lefschetz formula gives $6=2+\operatorname{tr}(\sigma^*|H^2)$; with eigenvalue multiplicities $a$ for $1$ and $b$ for each primitive cube root, $a-b=4$ and $a+2b=22$. Thus $a=10$, $b=6$, and the coinvariant lattice has rank $12$ in $\operatorname{NS}(X)$. An invariant ample class raises the generic Picard rank to $13$, leaving $20-13=7$ moduli. Families attain this bound (Garbagnati–Sarti, *Symplectic automorphisms of prime order on K3 surfaces*, §5).
-:::
 
 ::: {.front card-id="card-3669e4b341b8e820"}
 Describe the period map of a single K3.
@@ -412,37 +378,9 @@ What is the dual graph of a degeneration?
 Let $S_0=\bigcup V_i$ be the central fibre in a semistable degeneration. Define the dual graph $\Gamma$ of $S_0$ as follows: $\Gamma$ is a simplicial complex whose vertices $P_1, \ldots, P_r$ correspond to the components $V_1, \ldots, V_r$ of $S_0$; the $k$-simplex $\left\langle P_{i_0}, \ldots, P_{i_k}\right\rangle$ belongs to $\Gamma$ if and only if $V_{i_0} \cap \cdots \cap V_{i_k} \neq \emptyset$.
 :::
 
-::: {.front card-id="formula-mukai-vector-computation" tags="formula"}
-For a coherent sheaf $E$ on a complex projective K3 surface, compute its Mukai vector using $r=\operatorname{rk}E,c_1(E),c_2(E)$.
-:::
 
-::: {.back card-id="formula-mukai-vector-computation"}
-$$v(E)=\left(r,c_1(E),r+\frac12c_1(E)^2-c_2(E)\right).$$
-:::
 
-::: {.front card-id="formula-mukai-pairing-euler" tags="formula"}
-For coherent sheaves $E,F$ on a complex projective K3 surface with Mukai vectors $v=(r,c,s)$ and $v'=(r',c',s')$, compute their Mukai pairing and $\chi(E,F)=\sum_i(-1)^i\dim\operatorname{Ext}^i(E,F)$.
-:::
 
-::: {.back card-id="formula-mukai-pairing-euler"}
-$$\langle v,v'\rangle=cc'-rs'-r's,\qquad \chi(E,F)=-\langle v(E),v(F)\rangle.$$
-:::
-
-::: {.front card-id="formula-k3-stable-sheaf-tangent" tags="formula"}
-For an $H$-stable coherent sheaf $E$ on a complex projective K3 surface, compute $\dim\operatorname{Ext}^1(E,E)$ from its Mukai vector.
-:::
-
-::: {.back card-id="formula-k3-stable-sheaf-tangent"}
-$$\dim\operatorname{Ext}^1(E,E)=\langle v(E),v(E)\rangle+2.$$
-:::
-
-::: {.front card-id="formula-k3-sheaf-moduli-dimension" tags="formula"}
-For a nonempty moduli space $M_H(v)$ of stable sheaves on a complex projective K3 surface, with primitive Mukai vector $v$ and $v$-generic polarization $H$, compute its dimension.
-:::
-
-::: {.back card-id="formula-k3-sheaf-moduli-dimension"}
-$$\dim M_H(v)=\langle v,v\rangle+2.$$
-:::
 
 ::: {.front card-id="application-period-root-obstructs-ampleness" tags="application"}
 A K3 period $\omega$ is orthogonal to a primitive class $h$ with $h^2>0$ and to a class $\delta$ with $\delta^2=-2$ and $(h,\delta)=0$. Can a marked K3 with this period have $h$ as an ample polarization? Explain the obstruction, not just the period-domain exclusion.

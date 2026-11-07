@@ -31,6 +31,13 @@ Geometry deck. Vocabulary is a separate study subject.
 
 ## Subject boundaries
 
+- Algebraic Geometry / Numerical Invariants collects numerical recall and
+  computation cards: dimensions and moduli, degrees and intersections, curves,
+  surfaces, K3 surfaces, cohomology and Hilbert polynomials, and Chern classes
+  and Riemann–Roch. Keep hypotheses and conventions on each card. Distinguish
+  parameter spaces from moduli, and expected dimensions from actual dimensions.
+  Definitions, proofs, and structural theorems remain in their subject decks.
+
 - Algebraic Geometry / Examples collects explicit equations, parametrizations,
   and projective constructions of curves and varieties, including rational normal
   curves, scrolls, and Segre and Veronese embeddings.

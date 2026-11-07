@@ -374,13 +374,6 @@ For the smooth cyclic cover $f:X\to Y$ of degree $n$ defined by a smooth branch 
 $$f_*\mathcal O_X=\bigoplus_{i=0}^{n-1}L^{-i},\qquad \omega_X\cong f^*(\omega_Y\otimes L^{n-1}).$$
 :::
 
-::: {.front card-id="formula-cyclic-cover-euler" tags="formula"}
-For a smooth degree-$n$ cyclic cover $X\to Y$ of smooth projective complex varieties branched along smooth $B\in\lvert L^n\rvert$, compute the topological and holomorphic Euler characteristics of $X$.
-:::
-
-::: {.back card-id="formula-cyclic-cover-euler"}
-$$e(X)=ne(Y)-(n-1)e(B),\qquad \chi(\mathcal O_X)=\sum_{i=0}^{n-1}\chi(Y,L^{-i}).$$
-:::
 
 ::: {.front card-id="formula-double-cover-pushforward-canonical" tags="formula"}
 For a smooth double cover $f:X\to Y$ of smooth projective complex varieties defined by a smooth branch divisor in $\lvert L^2\rvert$, compute $f_*\mathcal O_X$ and $\omega_X$.
@@ -390,53 +383,11 @@ For a smooth double cover $f:X\to Y$ of smooth projective complex varieties defi
 $$f_*\mathcal O_X=\mathcal O_Y\oplus L^{-1},\qquad \omega_X\cong f^*(\omega_Y\otimes L).$$
 :::
 
-::: {.front card-id="formula-stable-map-virtual-dimension" tags="formula"}
-For a smooth projective complex $m$-fold $X$, compute the virtual dimension of $\overline M_{g,n}(X,\beta)$.
-:::
 
-::: {.back card-id="formula-stable-map-virtual-dimension"}
-$$\operatorname{vdim}\overline M_{g,n}(X,\beta)=(1-g)(m-3)-K_X\beta+n.$$
-:::
 
-::: {.front card-id="formula-hypersurface-threefold-invariants" tags="formula"}
-For a smooth degree-$d$ hypersurface $X\subset\mathbb P^4_{\mathbb C}$, compute $H^3,K_X,c_2(X),c_3(X)$ and $e(X)$.
-:::
 
-::: {.back card-id="formula-hypersurface-threefold-invariants"}
-$$\begin{aligned}H^3&=d,\qquad K_X=(d-5)H,\\c_2(X)&=(d^2-5d+10)H^2,\\c_3(X)&=(-d^3+5d^2-10d+10)H^3,\\e(X)&=d(-d^3+5d^2-10d+10).\end{aligned}$$
-:::
 
-::: {.front card-id="formula-quintic-threefold-invariants" tags="formula"}
-For a smooth quintic threefold $X\subset\mathbb P^4_{\mathbb C}$, compute $K_X,H^3,c_2(X)H,e(X)$ and $\chi(\mathcal O_X(mH))$.
-:::
 
-::: {.back card-id="formula-quintic-threefold-invariants"}
-$$K_X\sim0,\quad H^3=5,\quad c_2(X)H=50,\quad e(X)=-200,\quad \chi(\mathcal O_X(mH))=\frac{5m^3+25m}{6}.$$
-:::
-
-::: {.front card-id="formula-grassmannian-degree" tags="formula"}
-Compute the Plücker degree of $\operatorname{Gr}(k,n)$, parametrizing $k$-dimensional subspaces of $\mathbb C^n$, for $1\le k<n$.
-:::
-
-::: {.back card-id="formula-grassmannian-degree"}
-$$\deg\operatorname{Gr}(k,n)=\frac{(k(n-k))!\prod_{i=0}^{k-1}i!}{\prod_{i=0}^{k-1}(n-k+i)!}.$$
-:::
-
-::: {.front card-id="formula-grassmannian-two-planes-degree" tags="formula"}
-Compute the Plücker degree of $\operatorname{Gr}(2,n)$ and its values for $n=4,5,6$.
-:::
-
-::: {.back card-id="formula-grassmannian-two-planes-degree"}
-$$\deg\operatorname{Gr}(2,n)=\frac1{n-1}\binom{2n-4}{n-2},\qquad \deg\operatorname{Gr}(2,4)=2,\quad \deg\operatorname{Gr}(2,5)=5,\quad \deg\operatorname{Gr}(2,6)=14.$$
-:::
-
-::: {.front card-id="formula-hypersurface-discriminant-degree" tags="formula"}
-For $n\ge1,d\ge2$, compute the degree of the discriminant hypersurface of singular degree-$d$ hypersurfaces in $\mathbb P^n_{\mathbb C}$.
-:::
-
-::: {.back card-id="formula-hypersurface-discriminant-degree"}
-$$\deg\Delta_{n,d}=(n+1)(d-1)^n.$$
-:::
 
 ::: {.front card-id="application-gaga-proper-bundles" tags="application"}
 Let $X/\mathbb C$ be projective. An analytic vector bundle on $X^{an}$ and a holomorphic morphism between two such bundles are given. Can both be recovered algebraically, and will analytic and algebraic cohomology agree? Identify the theorem.

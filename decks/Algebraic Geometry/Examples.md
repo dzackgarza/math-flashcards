@@ -20,37 +20,9 @@ Over $\mathbb C$, the family $xy=tz^2$ in $\mathbb P^2\times\mathbb A^1_t$ is fl
 It is $\mathbb A^1\setminus\{0\}$. The fibers there are smooth conics. At $t=0$, the fiber is two lines crossing at $[0:0:1]$, so it is not smooth. Finite presentation and flatness let the fiberwise smoothness criterion decide the question.
 :::
 
-::: {.front card-id="formula-quadric-curve-genus" tags="formula"}
-For a smooth connected curve of bidegree $(a,b)$ in $\mathbb P^1_{\mathbb C}\times\mathbb P^1_{\mathbb C}$, compute the genus.
-:::
 
-::: {.back card-id="formula-quadric-curve-genus"}
-$$g=(a-1)(b-1).$$
-:::
 
-::: {.front card-id="formula-veronese-degree" tags="formula"}
-Compute the degree of the image of $\mathbb P^n_{\mathbb C}$ under the $d$-uple Veronese embedding, $d\ge1$.
-:::
 
-::: {.back card-id="formula-veronese-degree"}
-$$\deg\nu_d(\mathbb P^n)=d^n.$$
-:::
-
-::: {.front card-id="formula-segre-degree" tags="formula"}
-Compute the degree of $\mathbb P^m_{\mathbb C}\times\mathbb P^n_{\mathbb C}$ in its Segre embedding.
-:::
-
-::: {.back card-id="formula-segre-degree"}
-$$\deg\operatorname{Seg}(\mathbb P^m\times\mathbb P^n)=\binom{m+n}{m}.$$
-:::
-
-::: {.front card-id="formula-weierstrass-discriminant-j" tags="formula"}
-For a complex elliptic curve in short Weierstrass form $y^2=x^3+a_4x+a_6$, compute $\Delta$ and $j$.
-:::
-
-::: {.back card-id="formula-weierstrass-discriminant-j"}
-$$\Delta=-16(4a_4^3+27a_6^2),\qquad j=1728\frac{4a_4^3}{4a_4^3+27a_6^2}.$$
-:::
 
 ::: {.front card-id="example-plane-conic" tags="example construction"}
 Over $\mathbb C$, give an equation and an isomorphism from $\mathbb P^1$ for a smooth plane conic.

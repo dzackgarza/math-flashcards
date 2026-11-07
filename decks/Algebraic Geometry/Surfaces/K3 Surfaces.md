@@ -708,20 +708,6 @@ What is $c_2(X)$ for a K3?
 24 by the Noether formula.
 :::
 
-::: {.front card-id="card-dca3b01c137d5f80"}
-What is the Hodge diamond of a K3?
-:::
-
-::: {.back card-id="card-dca3b01c137d5f80"}
-For a complex K3 surface, $q=0$, $p_g=1$, and $h^{1,1}=20$.
-
-$h^{p, q}(X) = 1$ for the corners: $h^{0,0} = h^{2,2} = 1$ and $h^{2,0} = h^{0,2} = 1$ since $\Omega^2_X\cong{\mathcal{O}}_X$. $h^{0, 1}(X) = h^{1,0}(X) = 0$, and $h^{2,1} = h^{1,2} = 0$ by Serre duality.
-
-By HRR, Serre duality, and $\Omega_X \cong {\mathbf{T}}_X$,
-$$2 h^0\left(\Omega_X\right)-h^1\left(\Omega_X\right)=\operatorname{ch}_2\left(\Omega_X\right)+4=4-\mathrm{c}_2\left(\Omega_X\right)=-20$$
-so $h^1(\Omega_X) = 20$ since $h^0(\Omega_X) = h^{1,0}(X) = 0$. The Hodge diamond is
-$$\begin{matrix}&&1&&\\&0&&0&\\1&&20&&1\\&0&&0&\\&&1&&\end{matrix}.$$
-:::
 
 ::: {.front card-id="card-758927d12fcaa059"}
 Discuss $h^0({\mathbf{T}}_X)$ for $X$ a K3.
@@ -1162,21 +1148,7 @@ What is the Kahler cone $\mck_X$?
 $\mck_X \subseteq H^{1, 1}(X; {\mathbf{R}})$ the set of Kahler forms, forms an open convex cone.
 :::
 
-::: {.front card-id="formula-k3-tangent-invariants" tags="formula"}
-For a complex K3 surface $S$, compute $\chi(T_S)$ and $h^1(T_S)$.
-:::
 
-::: {.back card-id="formula-k3-tangent-invariants"}
-$$\chi(T_S)=-20,\qquad h^1(T_S)=20.$$
-:::
-
-::: {.front card-id="formula-polarized-k3-sections" tags="formula"}
-For an ample line bundle $L$ on a complex K3 surface with $L^2=2g-2$, compute $h^0(S,L)$.
-:::
-
-::: {.back card-id="formula-polarized-k3-sections"}
-$$h^0(S,L)=g+1.$$
-:::
 
 ::: {.front card-id="application-torelli-sign-isometry" tags="application"}
 For a complex K3 surface $X$, the map $-\operatorname{id}$ is an integral Hodge isometry of $H^2(X,\mathbb Z)$. Must it be induced by an automorphism? Which part of global Torelli decides?
