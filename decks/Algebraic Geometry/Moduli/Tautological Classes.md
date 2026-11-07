@@ -12,21 +12,25 @@ Its fiber is the stable marked curve itself. The total stack identifies with $\o
 :::
 
 ::: {.front card-id="tautological-psi" tags="definition"}
-Define the cotangent-line bundle and $\psi_i$ on $\overline{\mathcal M}_{g,n}$.
+Let $\pi:\mathcal C_{g,n}\to\overline{\mathcal M}_{g,n}$ be the universal stable curve over $\mathbb C$, with sections $s_i$. Define $L_i$ and $\psi_i$.
 :::
 
 ::: {.back card-id="tautological-psi"}
-$$L_i=s_i^*\omega_\pi,\qquad \psi_i=c_1(L_i)\in\operatorname{CH}^1(\overline{\mathcal M}_{g,n})_{\mathbb Q}.$$
-At $[C,p_1,\ldots,p_n]$, its fiber is $T_{p_i}^*C$. The markings lie in the smooth locus, even when $C$ is nodal.
+$$L_i=s_i^*\omega_\pi,\qquad (L_i)_{[C,p_1,\ldots,p_n]}=T_{p_i}^*C,\qquad
+\psi_i=c_1(L_i)\in\operatorname{CH}^1(\overline{\mathcal M}_{g,n})_{\mathbb Q}.$$
 :::
 
 ::: {.front card-id="tautological-lambda" tags="definition"}
-Define the Hodge bundle and the classes $\lambda_j$ on $\overline{\mathcal M}_{g,n}$.
+Let $\pi:\mathcal C_{g,n}\to\overline{\mathcal M}_{g,n}$ be the universal stable curve over $\mathbb C$. Define the Hodge bundle $\mathbb E$ and its classes $\lambda_j$.
 :::
 
 ::: {.back card-id="tautological-lambda"}
-$$\mathbb E=\pi_*\omega_\pi,\qquad\operatorname{rank}\mathbb E=g,\qquad\lambda_j=c_j(\mathbb E)\in\operatorname{CH}^j(\overline{\mathcal M}_{g,n})_{\mathbb Q}.$$
-The fiber is $H^0(C,\omega_C)$. Here $\lambda_0=1$ and $\lambda_j=0$ for $j>g$.
+$$\mathbb E=\pi_*\omega_\pi,\qquad
+\mathbb E_{[C,p_1,\ldots,p_n]}=H^0(C,\omega_C),\qquad
+\operatorname{rank}\mathbb E=g.$$
+Its Chern classes are
+$$\lambda_j=c_j(\mathbb E)\in\operatorname{CH}^j(\overline{\mathcal M}_{g,n})_{\mathbb Q},
+\qquad\lambda_0=1,\qquad\lambda_j=0\quad(j>g).$$
 :::
 
 ::: {.front card-id="tautological-kappa" tags="definition"}
@@ -40,13 +44,13 @@ $$\kappa_a=\pi_*\bigl(c_1(\omega_\pi(D_1+\cdots+D_n))^{a+1}\bigr).$$
 :::
 
 ::: {.front card-id="tautological-kappa-tilde" tags="formula"}
-Define $\widetilde\kappa_a$ using the untwisted relative dualizing sheaf. Compare it with $\kappa_a$ on $\overline{\mathcal M}_{g,n}$.
+For the universal stable curve $\pi:\mathcal C_{g,n}\to\overline{\mathcal M}_{g,n}$ and $a\ge0$, define $\widetilde\kappa_a$ and relate it to the logarithmic class $\kappa_a$.
 :::
 
 ::: {.back card-id="tautological-kappa-tilde"}
 $$\widetilde\kappa_a=\pi_*(c_1(\omega_\pi)^{a+1}),\qquad
 \kappa_a=\widetilde\kappa_a+\sum_{i=1}^n\psi_i^a.$$
-For $a=0$, interpret $\psi_i^0=1$. The two conventions agree when there are no markings.
+Here $\psi_i^0=1$.
 :::
 
 ::: {.front card-id="tautological-kappa-zero" tags="formula"}
@@ -59,12 +63,14 @@ They are the fiber degrees of the logarithmic and untwisted dualizing bundles.
 :::
 
 ::: {.front card-id="tautological-mmm" tags="definition"}
-For a smooth oriented bundle $\pi:E\to B$ of closed genus-$g$ surfaces, define the tangent-convention Miller–Morita–Mumford class $e_a$.
+Let $\pi:E\to B$ be a smooth oriented bundle of closed genus-$g$ surfaces. Define the Miller–Morita–Mumford classes using the vertical tangent bundle.
 :::
 
 ::: {.back card-id="tautological-mmm"}
-$$T_\pi E=\ker(d\pi),\qquad e_a=\pi_!\bigl(e(T_\pi E)^{a+1}\bigr)\in H^{2a}(B,\mathbb Z).$$
-Fiber integration lowers real cohomological degree by $2$. These characteristic classes are natural under pullback of surface bundles.
+For $a\ge0$,
+$$T_\pi E=\ker(d\pi),\qquad
+e_a(\pi)=\pi_!\bigl(e(T_\pi E)^{a+1}\bigr)\in H^{2a}(B,\mathbb Z).$$
+Here $\pi_!:H^{2a+2}(E,\mathbb Z)\to H^{2a}(B,\mathbb Z)$ is integration along the fibers. For $f:B'\to B$, naturality gives $e_a(f^*\pi)=f^*e_a(\pi)$.
 :::
 
 ::: {.front card-id="tautological-mmm-sign" tags="formula"}
@@ -86,11 +92,13 @@ For surface bundles, powers of the Euler class recover the ordinary MMM classes.
 :::
 
 ::: {.front card-id="tautological-grading" tags="definition"}
-Where do algebraic tautological classes and their topological cycle classes live? What degree corresponds to codimension $a$?
+State the cycle map for $\overline{\mathcal M}_{g,n}$ over $\mathbb C$, including its grading and coefficients. How do stabilizers enter stack integration?
 :::
 
 ::: {.back card-id="tautological-grading"}
-Use $\operatorname{CH}^a(\overline{\mathcal M}_{g,n})_{\mathbb Q}$ and its cycle map to $H^{2a}(\overline{\mathcal M}_{g,n}^{\mathrm{an}},\mathbb Q)$. Algebraic codimension $a$ corresponds to real cohomological degree $2a$. Stack intersection numbers include automorphism weights; integral stack classes need not descend integrally to the coarse space.
+$$\operatorname{cl}:\operatorname{CH}^a(\overline{\mathcal M}_{g,n})_{\mathbb Q}
+\longrightarrow H^{2a}(\overline{\mathcal M}_{g,n}^{\mathrm{an}},\mathbb Q).$$
+A residual gerbe $BG$ for a finite group $G$ has degree $1/|G|$. These stabilizer factors enter intersection numbers on the stack; descent to the coarse space can require rational coefficients.
 :::
 
 ::: {.front card-id="tautological-gluing" tags="definition"}
@@ -124,37 +132,44 @@ Legs carry the marking labels, edges give nodes, $g=\sum_vg(v)+b_1(\Gamma)$, and
 :::
 
 ::: {.front card-id="tautological-ring" tags="definition"}
-Define the system of tautological rings $R^*(\overline{\mathcal M}_{g,n})$.
+Define the tautological rings $R^*(\overline{\mathcal M}_{g,n})$ and describe their additive generators.
 :::
 
 ::: {.back card-id="tautological-ring"}
-It is the smallest system of unital $\mathbb Q$-subalgebras of the Chow rings containing the $\psi$-classes and closed under pushforward by forgetful maps and gluing maps, using external products on gluing sources. Equivalently, it is additively spanned by gluing pushforwards of monomials in $\psi$- and $\kappa$-classes on vertex factors.
+They form the smallest system of unital subalgebras
+$$R^*(\overline{\mathcal M}_{g,n})\subseteq\operatorname{CH}^*(\overline{\mathcal M}_{g,n})_{\mathbb Q}$$
+containing the $\psi$-classes and closed under forgetful pushforwards and gluing pushforwards of external products.
+Additive generators are decorated boundary strata
+$$\xi_{\Gamma*}\left(\prod_{v\in V(\Gamma)}\alpha_v\right),$$
+where each $\alpha_v$ is a monomial in $\psi$- and $\kappa$-classes on the factor indexed by $v$.
 :::
 
 ::: {.front card-id="tautological-open-ring" tags="definition"}
-How is $R^*(\mathcal M_{g,n})$ related to the compactified tautological ring? Must tautological Chow classes exhaust cohomology?
+For $j:\mathcal M_{g,n}\hookrightarrow\overline{\mathcal M}_{g,n}$ over $\mathbb C$, define the open tautological Chow ring and the tautological cohomology ring.
 :::
 
 ::: {.back card-id="tautological-open-ring"}
-It is the image of $R^*(\overline{\mathcal M}_{g,n})$ under restriction to the smooth-curve locus. Boundary-supported classes restrict to zero. The tautological cohomology ring is the image under the cycle map; neither equality with all cohomology nor injectivity of that map is part of the definition.
+$$R^*(\mathcal M_{g,n})=\operatorname{im}\left(j^*:R^*(\overline{\mathcal M}_{g,n})\to\operatorname{CH}^*(\mathcal M_{g,n})_{\mathbb Q}\right),$$
+and
+$$RH^{2*}(\mathcal M_{g,n})=\operatorname{cl}\bigl(R^*(\mathcal M_{g,n})\bigr)\subseteq H^{2*}(\mathcal M_{g,n},\mathbb Q).$$
+Boundary-supported classes lie in $\ker j^*$. The kernel and cokernel of the restricted cycle map measure the difference between tautological Chow classes and cohomology.
 :::
 
 ::: {.front card-id="tautological-psi-forgetting" tags="formula"}
-For $f:\overline{\mathcal M}_{g,n+1}\to\overline{\mathcal M}_{g,n}$, compare the upstairs $\psi_i$ with $f^*\psi_i$, for $i\le n$.
+Let $f:\overline{\mathcal M}_{g,n+1}\to\overline{\mathcal M}_{g,n}$ forget the last marking. For $i\le n$, express $\psi_i^{(n+1)}$ in terms of $f^*\psi_i^{(n)}$.
 :::
 
 ::: {.back card-id="tautological-psi-forgetting"}
-$$\psi_i^{(n+1)}=f^*\psi_i^{(n)}+[D_{i,n+1}].$$
-The divisor $D_{i,n+1}$ has a rational tail carrying exactly marks $i,n+1$ and its attaching node; that tail is contracted by $f$.
+$$\psi_i^{(n+1)}=f^*\psi_i^{(n)}+[D_{i,n+1}],$$
+where $D_{i,n+1}$ parametrizes curves with a rational tail carrying marks $i,n+1$ and the attaching node. The morphism $f$ contracts this tail.
 :::
 
 ::: {.front card-id="tautological-kappa-forgetting" tags="formula"}
-State the pullback formula for the logarithmic $\kappa_a$ under forgetting the last mark.
+Let $f:\overline{\mathcal M}_{g,n+1}\to\overline{\mathcal M}_{g,n}$ forget the last marking. State the pullback formula for logarithmic $\kappa_a$, $a\ge0$.
 :::
 
 ::: {.back card-id="tautological-kappa-forgetting"}
 $$\kappa_a^{(n+1)}=f^*\kappa_a^{(n)}+\psi_{n+1}^a.$$
-For $a=0$, this increases $2g-2+n$ by one.
 :::
 
 ::: {.front card-id="tautological-mumford-relation" tags="formula"}
@@ -220,9 +235,11 @@ Compute $\int_{\overline{\mathcal M}_{0,5}}\psi_1\psi_2$ and $\int_{\overline{\m
 :::
 
 ::: {.back card-id="tautological-examples"}
-$$\int_{\overline{\mathcal M}_{0,5}}\psi_1\psi_2=2,\qquad
-\int_{\overline{\mathcal M}_{1,2}}\psi_1\psi_2=\frac1{24}.$$
-Use the genus-zero factorial formula and the dilaton equation, respectively.
+The genus-zero formula gives
+$$\int_{\overline{\mathcal M}_{0,5}}\psi_1\psi_2=\frac{2!}{1!\,1!}=2.$$
+The dilaton equation gives
+$$\int_{\overline{\mathcal M}_{1,2}}\psi_1\psi_2
+=(2\cdot1-2+1)\int_{\overline{\mathcal M}_{1,1}}\psi_1=\frac1{24}.$$
 :::
 
 ::: {.front card-id="tautological-sign-example" tags="application"}
@@ -234,11 +251,11 @@ $$e_0=-4,\qquad\widetilde\kappa_0=4,\qquad\kappa_0=6.$$
 :::
 
 ::: {.front card-id="tautological-stable-mumford" tags="theorem"}
-What does the Madsen–Weiss theorem imply for the stable rational cohomology of the mapping class group?
+State the Madsen–Weiss theorem for the stable rational cohomology of the mapping class group.
 :::
 
 ::: {.back card-id="tautological-stable-mumford"}
-$$H^*(\Gamma_\infty,\mathbb Q)=\mathbb Q[e_1,e_2,\ldots],\qquad\deg e_i=2i.$$
-The classes are MMM classes. This stable statement does not assert that the finite-genus compactified moduli stack has a freely generated tautological ring.
+$$H^*(\Gamma_\infty,\mathbb Q)\cong\mathbb Q[e_1,e_2,\ldots],\qquad\deg e_i=2i,$$
+where $e_i$ are the Miller–Morita–Mumford classes.
 :::
 
