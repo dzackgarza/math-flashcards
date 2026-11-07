@@ -390,13 +390,6 @@ A K3 period $\omega$ is orthogonal to a primitive class $h$ with $h^2>0$ and to 
 No. Orthogonality to $\omega$ makes $\delta$ an integral $(1,1)$ class, so it is the class of a line bundle by Lefschetz $(1,1)$. K3 Riemann–Roch gives $\chi(\mathcal O(\delta))=1$; Serre duality implies that either $\delta$ or $-\delta$ is effective. An ample class must intersect every nonzero effective divisor positively, contradicting $(h,\delta)=0$.
 :::
 
-::: {.front card-id="card-1aab55ee31850bbb" tags="definition"}
-What is the definition of Ade singularity?
-:::
-
-::: {.back card-id="card-1aab55ee31850bbb"}
-A normal surface singularity whose minimal resolution has exceptional divisor a Dynkin diagram of type $A_n$, $D_n$, $E_6$, $E_7$, or $E_8$. These are exactly the rational double points (du Val singularities).
-:::
 
 ::: {.front card-id="card-6b14f9ae9d6474c8" tags="definition"}
 What is the definition of Arithmetic quotient?
@@ -462,13 +455,6 @@ What is the definition of Local torelli theorem?
 For a marked K3 surface $(X,\phi)$, the period map from the versal deformation space of $X$ to the period domain $\mathbb D$ is a local isomorphism.
 :::
 
-::: {.front card-id="card-a07cec7de306d8eb" tags="definition"}
-What is the definition of Log canonical center?
-:::
-
-::: {.back card-id="card-a07cec7de306d8eb"}
-For a log canonical pair $(X,D)$, a subvariety $Z\subset X$ that is the image of a divisor $E$ with discrepancy $-1$ in a log resolution. It is the locus where the pair fails to be klt.
-:::
 
 ::: {.front card-id="card-35ca437ea0e015b1" tags="definition"}
 What is the definition of Picard lattice?
@@ -494,13 +480,6 @@ What is the definition of Rational boundary component?
 A boundary stratum added to a symmetric domain in the Baily–Borel compactification. For a type IV domain these are points or copies of the upper half-plane $\mathbb H$ (and $-\mathbb H$).
 :::
 
-::: {.front card-id="card-e65c8bbc605edf10" tags="definition"}
-What is the definition of Semi log canonical singularity?
-:::
-
-::: {.back card-id="card-e65c8bbc605edf10"}
-A singularity of a pair $(X,D)$ such that $X$ is reduced, $K_X+D$ is $\mathbb Q$-Cartier, and the pair is log canonical after normalization and gluing. These are the singularities allowed in stable slc surface pairs.
-:::
 
 ::: {.front card-id="card-f67ebfdf6dac4a2b" tags="definition"}
 What is the definition of Semifan?

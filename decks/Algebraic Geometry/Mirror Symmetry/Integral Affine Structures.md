@@ -2,21 +2,7 @@
 title: "Algebraic Geometry::Mirror Symmetry::Integral Affine Structures"
 ---
 
-::: {.front card-id="card-dcd1e437d41fbead"}
-What is a cusp singularity?
-:::
 
-::: {.back card-id="card-dcd1e437d41fbead"}
-Any singularity such that the exceptional divisor of the minimal resolution is a cycle of rational curves.
-:::
-
-::: {.front card-id="card-d5ec173bf75ab3ce"}
-What does it mean for a singularity to be **smoothable**, i.e. what is a **smoothing**?
-:::
-
-::: {.back card-id="card-d5ec173bf75ab3ce"}
-For $X$ with isolated singularities, a flat family $\mcx\to \mathbb{D}$ with $\mcx_0 \cong X$ and all nearby fibers $\mcx_t$ smooth. E.g. most plane curves are smoothable, not automatic for surfaces. Hypersurface singularities are always smoothable. There is no general criterion. There exists non-smoothable varieties: e.g. a cone over a 2-dimensional abelian variety which can't be a limit of smooth projective varieties. Alternatively, quotient singularities in dimension $\geq 3$, since these are rigid. Du Val singularities are smoothable, since they are hypersurface type, replace $F(x,y,z)= 0$ with $F(x,y,z) = t$.
-:::
 
 ::: {.front card-id="card-1e60c609baa1e7af"}
 What is an **anticanonical pair**?
@@ -339,14 +325,6 @@ Motivation: singularities.
 - Blowups:
 :::
 
-::: {.front card-id="card-3fb785303c85fc6d"}
-Discuss dual intersection graphs and cycles associated to minimal resolutions.
-:::
-
-::: {.back card-id="card-3fb785303c85fc6d"}
-- For $\pi: (\tilde X, E)\to (X, 0)$ a minimal (no -1 curves) resolution, define $\Gamma$ whose vertices are components of $E$, put $e_{ij}\coloneqq E_i \cdot E_j$ edges between $v_i$ and $v_j$, and attach the number $e_{ii} \coloneqq-E_i^2$ to each $v_i$. Note $\Gamma$ has no graph-theoretic cycles. Form a matrix $M_{ij} = e_{ij}$, by a theorem of Grauert-Mumford $M$ is negative definite.
-- Example: ?
-:::
 
 ::: {.front card-id="card-c354b1c7c752e729" tags="definition"}
 What is the definition of Affine manifold?
@@ -428,13 +406,6 @@ What is the definition of Hodge-tate?
 A mixed Hodge structure is Hodge-Tate if every graded piece $\mathrm{gr}^W_k$ is a direct sum of Tate twists $\mathbb Q(-p)$ of Hodge type $(p,p)$; equivalently it is a successive extension of the $\mathbb Q(n)$.
 :::
 
-::: {.front card-id="card-dee2f67fdb8f773a" tags="definition"}
-What is the definition of Hypersurface singularity?
-:::
-
-::: {.back card-id="card-dee2f67fdb8f773a"}
-A hypersurface singularity is a germ $(X,p)$ isomorphic to $(V(f),0)\subset(\mathbb A^n,0)$ for a nonzero $f\in k[x_1,\dots,x_n]$ with $f(0)=0$ and $df(0)=0$; equivalently $\mathcal O_{X,p}\cong k[x_1,\dots,x_n]_{(x)}/(f)$.
-:::
 
 ::: {.front card-id="card-c52d15822bcdec98" tags="definition"}
 What is the definition of Integral affine structure?

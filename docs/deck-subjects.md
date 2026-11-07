@@ -31,6 +31,14 @@ Geometry deck. Vocabulary is a separate study subject.
 
 ## Subject boundaries
 
+- Algebraic Geometry / Singularities holds local definitions, equations,
+  classification results, resolutions, and recognition exercises. Plane Curves
+  separates branch geometry from Surface Singularities and their resolution
+  graphs. Birational Classes states discrepancy conventions and pair hypotheses.
+  Numerical invariant formulas remain in Numerical Invariants.
+  References: [Reid, Du Val singularities](https://mreid.warwick.ac.uk/surf/more/DuVal.pdf)
+  and [Kollár, Semi Log Canonical Pairs](https://web.math.princeton.edu/~kollar/book/chap3.pdf).
+
 - Algebraic Geometry / Numerical Invariants collects numerical recall and
   computation cards: dimensions and moduli, degrees and intersections, curves,
   surfaces, K3 surfaces, cohomology and Hilbert polynomials, and Chern classes

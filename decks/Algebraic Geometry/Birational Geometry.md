@@ -2,13 +2,6 @@
 title: "Algebraic Geometry::Birational Geometry"
 ---
 
-::: {.front card-id="card-8c26bb201aefe21c" tags="definition"}
-What is: crepant resolutions
-:::
-
-::: {.back card-id="card-8c26bb201aefe21c"}
-A resolution $f:Y\to X$ of a normal $\mathbb Q$-Gorenstein variety is crepant if $K_Y=f^*K_X$ as $\mathbb Q$-divisors, equivalently if all exceptional discrepancies are zero.
-:::
 
 ::: {.front card-id="card-21139fdf3f221644"}
 What is **Kodaira dimension**?
@@ -177,19 +170,6 @@ What is a minimal model?
 For $\kappa(X) \geq 0$, a birational $\tilde X\to X$ with $K_{\tilde X}$ nef and $\tilde X$ terminal.
 :::
 
-::: {.front card-id="card-704cc7c711f84485"}
-What is a terminal singularity? Canonical singularity? Log-terminal singularity?
-:::
-
-::: {.back card-id="card-704cc7c711f84485"}
-For a resolution $\pi: \tilde X\to X$, write $K_{\tilde X} \equiv_\QQ\pi^* K_{X} + \sum a_i E_i$ with $a_i\in \QQ$, then
-
-Terminal: $a_i > 0$.
-
-Canonical: $a_i \geq 0$
-
-Log-terminal: $a_i > -1$.
-:::
 
 ::: {.front card-id="card-3c64e95c0377e039"}
 What is Luroth's problem?
@@ -396,13 +376,6 @@ Discuss properties of the blowup morphism.
 It is an isomorphism away from $p$ and $\pi^{-1}(p)$, for varieties $X$ it is birational, proper, and surjective; if $X$ is quasiprojective then $\tilde X$ is too and $\pi$ is projective.
 :::
 
-::: {.front card-id="card-3ee6736250e4d3aa"}
-What is a **resolution of singularities**?
-:::
-
-::: {.back card-id="card-3ee6736250e4d3aa"}
-For varieties $X$, a regular irreducible variety $\tilde X$ admitting a proper birational morphism $\pi: \tilde X\to X$ and restricts to an isomorphism on $f^{-1}(X^{\mathrm{reg}})$. For curves, the normalization suffices since it removes all singularities in codimension 1.
-:::
 
 ::: {.front card-id="card-8ec58f09e82af130" tags="definition"}
 What is: Blowups
@@ -428,23 +401,7 @@ What is a **contractible curve**?
 E.g. if starting with a proper normal algebraic surface $X$ and a curve $C$ in $X$, a contraction morphism $\pi: X\to Y$ where $\pi(C)$ is a point.
 :::
 
-::: {.front card-id="card-28accb71191608ee"}
-What is a **resolution**?
-:::
 
-::: {.back card-id="card-28accb71191608ee"}
-For $X$ singular, a proper morphism $\pi: W\to X$ where $W$ is smooth, $\pi^{-1}(X^{\mathsf{sm}}) \subseteq W$ is dense and $\pi$ induces an isomorphism on the smooth locus.
-:::
-
-::: {.front card-id="card-63ead0b6b3f67ab5"}
-What is a **minimal resolution**?
-:::
-
-::: {.back card-id="card-63ead0b6b3f67ab5"}
-Minimal $W$ is minimal iff whenever $W'\to V$ is another resolution, it factors as $W'\to W\to V$.
-
-Exist uniquely in dimensions 1 and 2, but may not in higher dimensions. For a surface with an isolated singularity at 0: $\pi: W\to V$ is minimal iff $\pi^{-1}(0)$ does not contain any exceptional curves of the first kind. Any non-minimal resolution must contain a -1 curve.
-:::
 
 ::: {.front card-id="card-701972d5f4fef18e"}
 What does it mean for a line bundle on a surface to be big and nef? Why care?
@@ -519,15 +476,6 @@ $$\kappa(X)\le\kappa(F)+\dim Y.$$
 In particular, $\kappa(F)=-\infty$ implies $\kappa(X)=-\infty$.
 :::
 
-::: {.front card-id="theorem-rational-singularities" tags="theorem"}
-Let $Y$ be a complex variety with rational singularities and $f:X\to Y$ a resolution. State the direct-image identities. What do klt singularities imply?
-:::
-
-::: {.back card-id="theorem-rational-singularities"}
-One has
-$$f_*\mathcal O_X=\mathcal O_Y,\qquad R^if_*\mathcal O_X=0\quad(i>0).$$
-A normal complex variety with klt singularities has rational singularities. Rational singularities are Cohen–Macaulay, so klt varieties are Cohen–Macaulay.
-:::
 
 ::: {.front card-id="theorem-inversion-adjunction" tags="theorem"}
 Let $X$ be smooth over $\mathbb C$, $S\subset X$ a smooth divisor, and $\Delta\ge0$ an effective $\mathbb Q$-divisor not containing $S$. State adjunction and inversion of adjunction.
@@ -541,13 +489,6 @@ $$(X,S+\Delta)\text{ is plt near }S\iff(S,\Delta|_S)\text{ is klt}.$$
 For a normal ambient pair with reduced boundary component $S$ and $K_X+S+\Delta$ $\mathbb Q$-Cartier, the normalized adjunction boundary is the different on $S^\nu$: the pullback of $(K_X+S+\Delta)|_S$ is $K_{S^\nu}+\operatorname{Diff}_{S^\nu}(\Delta)$.
 :::
 
-::: {.front card-id="theorem-hironaka-resolution" tags="theorem"}
-State resolution of singularities for a reduced variety over a field of characteristic zero, including the behavior over the regular locus and the exceptional divisor.
-:::
-
-::: {.back card-id="theorem-hironaka-resolution"}
-There is a proper birational morphism $\pi:\widetilde X\to X$ with $\widetilde X$ smooth, which is an isomorphism over the regular locus of $X$. It can be chosen so that the exceptional locus is a divisor with simple normal crossings.
-:::
 
 ::: {.front card-id="theorem-eliminate-indeterminacy" tags="theorem"}
 For a rational map $f:X\dashrightarrow Y$ between smooth projective varieties in characteristic zero, state elimination of indeterminacies.

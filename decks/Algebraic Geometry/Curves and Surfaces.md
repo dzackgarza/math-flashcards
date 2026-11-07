@@ -677,21 +677,7 @@ For a smooth projective complex surface $S$, express $\chi(\mathcal O_S)$ using 
 $$12\chi(\mathcal O_S)=K_S^2+c_2(S),\qquad c_2(S)=e(S).$$
 :::
 
-::: {.front card-id="card-862154888a8bb22d"}
-What does an $A_1$ singularity look like?
-:::
 
-::: {.back card-id="card-862154888a8bb22d"}
-Locally the vertex of a cone, rational double points.
-:::
-
-::: {.front card-id="card-df4853bcf54d4927"}
-What type of curve is the resolution of an $A_1$ singularity?
-:::
-
-::: {.back card-id="card-df4853bcf54d4927"}
-$D\cong {\mathbf{P}}^1$ with $D^2 = -2$.
-:::
 
 ::: {.front card-id="card-4afe15399d883416"}
 What is an elliptic fibration?
@@ -1119,13 +1105,6 @@ What is the definition of Intersection number?
 For line bundles $L_1,\dots,L_n$ on a smooth proper $n$-fold $X$, the intersection number is $\int_X c_1(L_1)\cdots c_1(L_n)\in\mathbb Z$. On a smooth projective surface, for divisors $C,D$ meeting properly, $C\cdot D=\sum_{x\in C\cap D}\dim_k\mathcal O_{X,x}/(f_C,f_D)$.
 :::
 
-::: {.front card-id="card-8f343de9852359e9" tags="definition"}
-What is the definition of Rational double point?
-:::
-
-::: {.back card-id="card-8f343de9852359e9"}
-A normal surface singularity that is rational and whose minimal resolution has exceptional divisor a Dynkin diagram of type $A_n$, $D_n$, $E_6$, $E_7$, or $E_8$; equivalently, a canonical (du Val) surface singularity. Local models include $A_n: xy=z^{n+1}$, together with the $D_n$ and $E_n$ equations in three variables.
-:::
 
 ::: {.front card-id="card-9d74e13a11f74a3f" tags="definition"}
 What is the definition of Riemann-roch?

@@ -56,25 +56,7 @@ $$I=(x_0x_2-x_1^2,\ x_0x_3-x_1x_2,\ x_1x_3-x_2^2).$$
 It has degree three and genus zero. A complete intersection curve of degree three in $\mathbb P^3$ would have defining degrees one and three and would be planar. The twisted cubic spans $\mathbb P^3$, so it is not a complete intersection.
 :::
 
-::: {.front card-id="example-cuspidal-cubic" tags="example construction"}
-Give a projective cuspidal cubic over $\mathbb C$ and its normalization map. What is its local singularity?
-:::
 
-::: {.back card-id="example-cuspidal-cubic"}
-Take $Y^2Z=X^3$. Its normalization is
-$$\mathbb P^1\longrightarrow C,\qquad [s:t]\longmapsto[s^2t:s^3:t^3].$$
-On $Z=1$ this is $u\mapsto(u^2,u^3)$. The cusp $(0,0)$ has one branch, tangent cone $y^2=0$, and $\delta=1$. The arithmetic genus is one; the normalization has genus zero.
-:::
-
-::: {.front card-id="example-nodal-cubic" tags="example construction"}
-Give a projective nodal cubic over $\mathbb C$ and its normalization map. Which points lie above the node?
-:::
-
-::: {.back card-id="example-nodal-cubic"}
-Take $Y^2Z=X^2(X+Z)$. Its normalization is
-$$[s:t]\longmapsto[t(s^2-t^2):s(s^2-t^2):t^3].$$
-On $Z=1$, $x=u^2-1$ and $y=u(u^2-1)$. The points $u=1,-1$ lie above the node $(0,0)$. Its tangent cone is $(y-x)(y+x)=0$ and $\delta=1$. Its arithmetic genus is one and its normalization has genus zero.
-:::
 
 ::: {.front card-id="example-elliptic-plane-cubic" tags="example construction"}
 Construct a smooth plane cubic with a marked point over $\mathbb C$. State the condition on its coefficients and explain its genus.
@@ -230,15 +212,6 @@ Inside $\mathbb A^2_{x,y}\times\mathbb P^1_{[u:v]}$ take $xv=yu$, with projectio
 The exceptional divisor is $E=\{0\}\times\mathbb P^1$, cut out by $x=0$ and $y=0$ in the respective charts. The blowup is the total space of $\mathcal O_{\mathbb P^1}(-1)$ and $N_{E/\operatorname{Bl}_0\mathbb A^2}\cong\mathcal O_{\mathbb P^1}(-1)$.
 :::
 
-::: {.front card-id="example-blowup-node-cusp" tags="example application"}
-Blow up the origin of $\mathbb A^2_{\mathbb C}$. Compute the strict transforms of $y^2=x^2(x+1)$ and $y^2=x^3$, and their intersections with the exceptional divisor.
-:::
-
-::: {.back card-id="example-blowup-node-cusp"}
-In the chart $y=xq$, the total transforms have equations $x^2(q^2-1-x)=0$ and $x^2(q^2-x)=0$. Removing the exceptional factor gives the strict transforms
-$$q^2=1+x,\qquad q^2=x.$$
-The first meets $E=V(x)$ transversely at $q=1,-1$, separating the node's branches. The second is smooth but tangent to $E$ at $q=0$, with intersection multiplicity two. Thus one blowup makes the cusp's strict transform smooth, but does not yet give a divisor with normal crossings.
-:::
 
 ::: {.front card-id="example-plane-cremona" tags="example construction"}
 Give the standard quadratic Cremona transformation of $\mathbb P^2_{\mathbb C}$, its inverse, base points, and contracted curves.
@@ -300,23 +273,7 @@ $$p_{12}p_{34}-p_{13}p_{24}+p_{14}p_{23}=0.$$
 This is the decomposability condition for $u\wedge v$. Its points parametrize two-dimensional vector subspaces of $\mathbb C^4$, equivalently projective lines in $\mathbb P^3$.
 :::
 
-::: {.front card-id="example-node-smoothing" tags="example construction"}
-For $X=V(xy-t)\subset\mathbb A^3_{\mathbb C}$ with map to $\mathbb A^1_t$, describe the fibers, total space, and flatness. Where is the morphism not smooth?
-:::
 
-::: {.back card-id="example-node-smoothing"}
-For $t\ne0$ the fiber is $\mathbb G_m$; at zero it is the two coordinate axes meeting in a node. Eliminating $t$ identifies $X$ with $\mathbb A^2$, so the total space is smooth. Its coordinate ring is torsion-free over the PID $\mathbb C[t]$, hence flat. The differential of $t=xy$ vanishes only at $(0,0)$, so the morphism fails to be smooth only at that point.
-:::
-
-::: {.front card-id="example-cubic-degeneration" tags="example construction"}
-Give a flat family of plane cubics over $\mathbb C$ whose fiber at zero is nodal and whose nearby fibers are smooth. Is the total space smooth at the node?
-:::
-
-::: {.back card-id="example-cubic-degeneration"}
-Use
-$$Y^2Z=X^3+X^2Z+tZ^3.$$
-On $Z=1$, repeated roots of $x^3+x^2+t$ occur only for $t=0,-4/27$. Restrict the base to $\mathbb A^1\setminus\{-4/27\}$. The zero fiber is the nodal cubic $y^2=x^2(x+1)$; all other fibers are smooth. This family of nonzero cubic equations is flat, with Hilbert polynomial $3m$. At the node the partial derivative of the defining equation with respect to $t$ is $-1$, so the total space is smooth there.
-:::
 
 ::: {.front card-id="example-double-line" tags="example construction"}
 Describe the projective double line $D=V(X^2)\subset\mathbb P^2_{\mathbb C}$ scheme-theoretically. Give its reduction, associated prime, and Hilbert polynomial.
@@ -346,13 +303,6 @@ What is the definition of Anticanonical system?
 The anticanonical system of a normal variety $X$ is the complete linear system $|-K_X|$ of effective divisors linearly equivalent to $-K_X$; its associated rational map is the anticanonical map.
 :::
 
-::: {.front card-id="card-1543972cfbfd2c13" tags="definition"}
-What is the definition of Branch?
-:::
-
-::: {.back card-id="card-1543972cfbfd2c13"}
-A branch of a plane curve singularity $(C,p)$ is a local irreducible component of $C$ at $p$, i.e. a germ of an irreducible analytic curve through $p$; the number of branches is the number of irreducible factors of the completed local ring $\widehat{\mathcal O}_{C,p}$.
-:::
 
 ::: {.front card-id="card-29597195b8ada34a" tags="definition"}
 What is the definition of Bézout's theorem?
