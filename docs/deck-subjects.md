@@ -42,9 +42,18 @@ Geometry deck. Vocabulary is a separate study subject.
 - Algebraic Geometry / Numerical Invariants collects numerical recall and
   computation cards: dimensions and moduli, degrees and intersections, curves,
   surfaces, K3 surfaces, cohomology and Hilbert polynomials, and Chern classes
-  and Riemann–Roch. Keep hypotheses and conventions on each card. Distinguish
+  and Riemann–Roch. Hodge Diamonds, Picard Groups, and Chow Groups and Rings
+  collect standard computations, including group and ring structure alongside
+  numerical invariants. Specify generators, relations, torsion, grading, and
+  coefficient rings where needed. Keep hypotheses and conventions on each card. Distinguish
   parameter spaces from moduli, and expected dimensions from actual dimensions.
   Definitions, proofs, and structural theorems remain in their subject decks.
+
+  References for standard computations include the
+  [Stacks Project, Chow groups](https://stacks.math.columbia.edu/tag/02P3),
+  [Grassmannians and their Chow rings](https://ravif.web.illinois.edu/exposition/seminar_talks/Grassmannians%20and%20their%20Chow%20rings.pdf),
+  and [Givental, mirror-symmetry lectures](https://math.berkeley.edu/~giventh/ln/l15-16.pdf)
+  for the quintic Hodge diamond.
 
 - Algebraic Geometry / Examples collects explicit equations, parametrizations,
   and projective constructions of curves and varieties, including rational normal

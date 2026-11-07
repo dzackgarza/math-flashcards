@@ -285,12 +285,3 @@ What are the Betti numbers and Euler characteristic of $\mathbb P^n_{\mathbb C}$
 ::: {.back card-id="numerical-projective-betti"}
 $$b_{2i}=1\quad(0\le i\le n),\qquad b_{2i+1}=0,\qquad e(\mathbb P^n)=n+1.$$
 :::
-
-::: {.front card-id="numerical-abelian-hodge" tags="formula"}
-For a complex abelian variety $A$ of dimension $g\ge1$, compute its Hodge numbers, Betti numbers, and Euler characteristics.
-:::
-
-::: {.back card-id="numerical-abelian-hodge"}
-$$h^{p,q}(A)=\binom gp\binom gq,\qquad b_k(A)=\binom{2g}k,\qquad e(A)=\chi(\mathcal O_A)=0.$$
-:::
-

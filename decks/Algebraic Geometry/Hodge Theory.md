@@ -645,15 +645,6 @@ Under the isomorphism $H^2_\text{ét}(X; { \QQ_\ell }(1)) { \, \xrightarrow{\sim
 Proved for K3s over number fields.
 :::
 
-::: {.front card-id="card-b895e365a3b35d5b"}
-What is the Hodge diamond for a surface?
-:::
-
-::: {.back card-id="card-b895e365a3b35d5b"}
-For a smooth projective complex surface, the Hodge diamond is
-$$\begin{matrix}&&1&&\\&q&&q&\\p_g&&h^{1,1}&&p_g\\&q&&q&\\&&1&&\end{matrix}$$
-where $q=h^{1,0}=h^1(\mathcal O_X)$ and $p_g=h^{2,0}=h^0(\omega_X)$.
-:::
 
 ::: {.front card-id="theorem-hodge-de-rham-degeneration" tags="theorem"}
 For a smooth proper complex variety $X$, state the degeneration of the Hodge–de Rham spectral sequence and its dimension consequence.

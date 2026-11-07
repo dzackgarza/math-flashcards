@@ -42,21 +42,7 @@ For the minimal resolution $\pi:\widetilde X\to X$ of a complex Du Val surface s
 $$E_i^2=-2,\qquad K_{\widetilde X}=\pi^*K_X,\qquad R^1\pi_*\mathcal O_{\widetilde X}=0.$$
 :::
 
-::: {.front card-id="formula-chow-projective-space" tags="formula"}
-For complex projective space with hyperplane class $H$, give its Chow ring and degree map.
-:::
 
-::: {.back card-id="formula-chow-projective-space"}
-$$A^*(\mathbb P^n)=\mathbb Z[H]/(H^{n+1}),\qquad \int_{\mathbb P^n}H^n=1.$$
-:::
-
-::: {.front card-id="formula-chow-product-projective-spaces" tags="formula"}
-For $\mathbb P^m_{\mathbb C}\times\mathbb P^n_{\mathbb C}$ with the pulled-back hyperplane classes $H_1,H_2$, compute the Chow ring and its top monomial degree.
-:::
-
-::: {.back card-id="formula-chow-product-projective-spaces"}
-$$A^*(\mathbb P^m\times\mathbb P^n)=\frac{\mathbb Z[H_1,H_2]}{(H_1^{m+1},H_2^{n+1})},\qquad \int H_1^mH_2^n=1.$$
-:::
 
 ::: {.front card-id="formula-diagonal-projective-space" tags="formula"}
 Compute the diagonal class in $A^n(\mathbb P^n_{\mathbb C}\times\mathbb P^n_{\mathbb C})$, using the hyperplane classes $H_1,H_2$.
@@ -82,13 +68,6 @@ For a finite surjective map $f:X\to Y$ of smooth projective complex $n$-folds an
 $$(f^*D_1)\cdots(f^*D_n)=(\deg f)D_1\cdots D_n.$$
 :::
 
-::: {.front card-id="formula-projective-bundle-chow" tags="formula"}
-Let $X$ be smooth over $\mathbb C$ and $E$ have rank $r$. For the quotient bundle $\pi:\mathbb P(E)=\operatorname{Proj}(\operatorname{Sym}E)\to X$, set $\xi=c_1(\mathcal O(1))$. Compute the Chow ring.
-:::
-
-::: {.back card-id="formula-projective-bundle-chow"}
-$$A^*(\mathbb P(E))=\frac{A^*(X)[\xi]}{\left(\sum_{i=0}^r(-1)^ic_i(E)\xi^{r-i}\right)}.$$
-:::
 
 ::: {.front card-id="formula-projective-bundle-pushforward" tags="formula"}
 For a rank-$r$ bundle $E$ on smooth $X/\mathbb C$, use the quotient convention for $\pi:\mathbb P(E)\to X$ and $\xi=c_1(\mathcal O(1))$. Compute $\pi_*\xi^{r-1+j}$ for $0\le j\le3$.

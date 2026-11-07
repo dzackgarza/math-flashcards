@@ -18,20 +18,6 @@ For coherent sheaves $E,F$ on a complex projective K3 surface with Mukai vectors
 $$\langle v,v'\rangle=cc'-rs'-r's,\qquad \chi(E,F)=-\langle v(E),v(F)\rangle.$$
 :::
 
-::: {.front card-id="card-dca3b01c137d5f80"}
-What is the Hodge diamond of a K3?
-:::
-
-::: {.back card-id="card-dca3b01c137d5f80"}
-For a complex K3 surface, $q=0$, $p_g=1$, and $h^{1,1}=20$.
-
-$h^{p, q}(X) = 1$ for the corners: $h^{0,0} = h^{2,2} = 1$ and $h^{2,0} = h^{0,2} = 1$ since $\Omega^2_X\cong{\mathcal{O}}_X$. $h^{0, 1}(X) = h^{1,0}(X) = 0$, and $h^{2,1} = h^{1,2} = 0$ by Serre duality.
-
-By HRR, Serre duality, and $\Omega_X \cong {\mathbf{T}}_X$,
-$$2 h^0\left(\Omega_X\right)-h^1\left(\Omega_X\right)=\operatorname{ch}_2\left(\Omega_X\right)+4=4-\mathrm{c}_2\left(\Omega_X\right)=-20$$
-so $h^1(\Omega_X) = 20$ since $h^0(\Omega_X) = h^{1,0}(X) = 0$. The Hodge diamond is
-$$\begin{matrix}&&1&&\\&0&&0&\\1&&20&&1\\&0&&0&\\&&1&&\end{matrix}.$$
-:::
 
 ::: {.front card-id="formula-k3-tangent-invariants" tags="formula"}
 For a complex K3 surface $S$, compute $\chi(T_S)$ and $h^1(T_S)$.
