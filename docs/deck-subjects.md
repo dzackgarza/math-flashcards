@@ -31,37 +31,35 @@ Geometry deck. Vocabulary is a separate study subject.
 
 ## Subject boundaries
 
-- Algebraic Geometry / Moduli / Tautological Classes holds universal-curve,
-  cotangent-line, Hodge, kappa, MMM, and boundary classes, tautological rings,
-  and descendant intersections. Cards specify the stack, coefficient ring,
-  grading, and tangent or cotangent convention. References:
-  [Schmitt, The moduli space of curves, Section 6](https://johannesschmitt.gitlab.io/ModCurves/Script.pdf),
-  [Kock, Notes on psi classes, Part I](https://mat.uab.es/~kock/GW/notes/psi-notes.pdf),
-  and [Wahl, The Mumford conjecture, Lecture 1](https://web.math.ku.dk/~wahl/PCMIlec.pdf).
+- Algebraic Geometry / Moduli / Tautological Classes studies classes constructed
+  from the universal curve. Its intersection formulas use the moduli stack;
+  each comparison with topological MMM classes states the sign convention.
+  [Schmitt, Section 6](https://johannesschmitt.gitlab.io/ModCurves/Script.pdf)
+  develops the tautological ring.
+  [Kock, Part I](https://mat.uab.es/~kock/GW/notes/psi-notes.pdf) supplies the
+  descendant calculus, and
+  [Wahl, Lecture 1](https://web.math.ku.dk/~wahl/PCMIlec.pdf) treats MMM classes.
 
-- Algebraic Geometry / Singularities holds local definitions, equations,
-  classification results, resolutions, and recognition exercises. Plane Curves
-  separates branch geometry from Surface Singularities and their resolution
-  graphs. Birational Classes states discrepancy conventions and pair hypotheses.
-  Numerical invariant formulas remain in Numerical Invariants.
-  References: [Reid, Du Val singularities](https://mreid.warwick.ac.uk/surf/more/DuVal.pdf)
-  and [Kollár, Semi Log Canonical Pairs](https://web.math.princeton.edu/~kollar/book/chap3.pdf).
+- Algebraic Geometry / Singularities identifies local germs from their equations
+  and resolutions. Plane Curves studies branches; Surface Singularities studies
+  exceptional curves on resolutions. Birational Classes classifies pairs by
+  discrepancies. Numerical invariant formulas belong in Numerical Invariants.
+  [Reid](https://mreid.warwick.ac.uk/surf/more/DuVal.pdf) gives the Du Val
+  classification; [Kollár](https://web.math.princeton.edu/~kollar/book/chap3.pdf)
+  defines semi-log-canonical pairs through normalization.
 
-- Algebraic Geometry / Numerical Invariants collects numerical recall and
-  computation cards: dimensions and moduli, degrees and intersections, curves,
-  surfaces, K3 surfaces, cohomology and Hilbert polynomials, and Chern classes
-  and Riemann–Roch. Hodge Diamonds, Picard Groups, and Chow Groups and Rings
-  collect standard computations, including group and ring structure alongside
-  numerical invariants. Specify generators, relations, torsion, grading, and
-  coefficient rings where needed. Keep hypotheses and conventions on each card. Distinguish
-  parameter spaces from moduli, and expected dimensions from actual dimensions.
-  Definitions, proofs, and structural theorems remain in their subject decks.
+- Algebraic Geometry / Numerical Invariants collects computations for standard
+  varieties. A dimension card identifies the space being measured and states
+  whether the dimension is expected or actual. A group or ring computation gives
+  its structure, rather than only its rank. Each card supplies the hypotheses
+  needed to interpret its answer. Structural theorems belong in the subject decks.
 
-  References for standard computations include the
-  [Stacks Project, Chow groups](https://stacks.math.columbia.edu/tag/02P3),
-  [Grassmannians and their Chow rings](https://ravif.web.illinois.edu/exposition/seminar_talks/Grassmannians%20and%20their%20Chow%20rings.pdf),
-  and [Givental, mirror-symmetry lectures](https://math.berkeley.edu/~giventh/ln/l15-16.pdf)
-  for the quintic Hodge diamond.
+  The [Stacks Project](https://stacks.math.columbia.edu/tag/02P3) gives the Chow
+  operations used in these computations.
+  [Grassmannians and their Chow rings](https://ravif.web.illinois.edu/exposition/seminar_talks/Grassmannians%20and%20their%20Chow%20rings.pdf)
+  develops the Schubert presentation.
+  [Givental](https://math.berkeley.edu/~giventh/ln/l15-16.pdf) computes the quintic
+  Hodge diamond.
 
 - Algebraic Geometry / Examples collects explicit equations, parametrizations,
   and projective constructions of curves and varieties, including rational normal
