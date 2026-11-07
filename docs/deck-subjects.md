@@ -31,6 +31,14 @@ Geometry deck. Vocabulary is a separate study subject.
 
 ## Subject boundaries
 
+- Algebraic Geometry / Moduli / Tautological Classes holds universal-curve,
+  cotangent-line, Hodge, kappa, MMM, and boundary classes, tautological rings,
+  and descendant intersections. Cards specify the stack, coefficient ring,
+  grading, and tangent or cotangent convention. References:
+  [Schmitt, The moduli space of curves, Section 6](https://johannesschmitt.gitlab.io/ModCurves/Script.pdf),
+  [Kock, Notes on psi classes, Part I](https://mat.uab.es/~kock/GW/notes/psi-notes.pdf),
+  and [Wahl, The Mumford conjecture, Lecture 1](https://web.math.ku.dk/~wahl/PCMIlec.pdf).
+
 - Algebraic Geometry / Singularities holds local definitions, equations,
   classification results, resolutions, and recognition exercises. Plane Curves
   separates branch geometry from Surface Singularities and their resolution
