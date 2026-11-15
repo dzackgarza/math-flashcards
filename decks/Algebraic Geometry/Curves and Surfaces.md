@@ -2,6 +2,29 @@
 title: "Algebraic Geometry::Curves and Surfaces"
 ---
 
+::: {.front card-id="definition-gonality-pencil" tags="definition application"}
+Define the gonality of a smooth projective complex curve. What are the gonalities of $\mathbb P^1$, an elliptic curve, and a smooth plane quartic?
+:::
+
+::: {.back card-id="definition-gonality-pencil"}
+The gonality is the least degree of a nonconstant morphism $C\to\mathbb P^1$, equivalently the least degree of a line bundle equipped with a basepoint-free pencil of sections.
+
+For $\mathbb P^1$ it is one. An elliptic curve has gonality two: a degree-two line bundle gives such a pencil, whereas degree one would give an isomorphism with $\mathbb P^1$. A smooth plane quartic has gonality three: lines through a point of the curve give a degree-three pencil after removing that base point. Its canonical embedding is the plane quartic, so it is nonhyperelliptic and has no degree-two map.
+:::
+
+::: {.front card-id="definition-clifford-index" tags="definition application"}
+Define the Clifford index of a smooth projective complex curve of genus at least four. How does it relate to special linear series and gonality?
+:::
+
+::: {.back card-id="definition-clifford-index"}
+For a line bundle $L$ with $h^0(L)\ge2$ and $h^1(L)\ge2$, set
+$$\operatorname{Cliff}(L)=\deg L-2(h^0(L)-1),\qquad
+\operatorname{Cliff}(C)=\min_L\operatorname{Cliff}(L).$$
+Clifford's theorem makes this nonnegative. It measures how far a special series is from equality in Clifford's bound. Hyperelliptic curves have Clifford index zero.
+
+A complete special pencil of degree $d$ contributes $d-2$, but higher-dimensional series can give a smaller value. On a smooth plane quintic, $\mathcal O_C(1)$ has degree five and $h^0=h^1=3$, giving Clifford index one, whereas the gonality is four. Thus Clifford index need not equal gonality minus two. For low genus one uses conventions: genus two has index zero; genus three has index zero in the hyperelliptic case and one otherwise.
+:::
+
 ::: {.front card-id="definition-hirzebruch-surface-use" tags="definition application"}
 Define the Hirzebruch surface $\mathbb F_n$ for $n\ge0$. Identify its section and fiber classes, canonical class, and which members are minimal or del Pezzo.
 :::
@@ -869,7 +892,7 @@ What is the irregularity of $S$?
 :::
 
 ::: {.back card-id="card-fffe378c18f2e57c"}
-$q(S) \coloneqq h^1({\mathcal{O}}_S)$ or $h^0(\Omega^1)$, so $h^{1, 0}$ or $h^{0, 1}$.
+$q(S)\coloneqq h^1(S,\mathcal O_S)=h^{0,1}(S)$. For a smooth compact Kähler surface, in particular a smooth complex projective surface, Hodge symmetry also gives $q(S)=h^0(S,\Omega_S^1)=h^{1,0}(S)$ and $b_1=2q$. These equalities need not hold for a non-Kähler surface; a primary Kodaira surface has $q=2$, $h^{1,0}=1$, and $b_1=3$.
 :::
 
 ::: {.front card-id="card-c4fe37e7e21f6d02"}

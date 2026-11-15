@@ -161,7 +161,7 @@ What is the **dimension** of an affine variety?
 :::
 
 ::: {.back card-id="card-06bc339afe07854e"}
-Supremum over all $n$ of lengths of chains $C_0 \subseteq \cdots C_n$ of irreducible closed subsets.
+Supremum over all $n$ of lengths of strict chains $C_0\subsetneq\cdots\subsetneq C_n$ of irreducible closed subsets. The length is the number of inclusions. For an integral affine variety over $k$, it equals $\operatorname{trdeg}_k K(X)$.
 :::
 
 ::: {.front card-id="card-c647f3d346591b35"}
@@ -169,7 +169,7 @@ What is the **degree** of a variety?
 :::
 
 ::: {.back card-id="card-c647f3d346591b35"}
-For $\dim X = n$, the number of points in $X$ intersected with $n$ general hyperplanes.
+For an $n$-dimensional projective variety with a fixed embedding, the length of its intersection with $n$ general hyperplanes, counted with scheme-theoretic multiplicity. With $H=c_1(\mathcal O_X(1))$, this is $\deg_H X=H^n$, equivalently $n!$ times the leading coefficient of its Hilbert polynomial. The degree depends on the embedding; replacing $H$ by $aH$ multiplies it by $a^n$.
 :::
 
 ::: {.front card-id="card-7892e4e293c4f44e" tags="definition"}

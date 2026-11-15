@@ -2,6 +2,30 @@
 title: "Algebraic Geometry::Singularities::Plane Curves"
 ---
 
+::: {.front card-id="definition-delta-normalization-genus" tags="definition application"}
+Define the delta invariant of a reduced complex curve singularity. How does it recover geometric genus from arithmetic genus, and why do a node and a cusp have the same delta?
+:::
+
+::: {.back card-id="definition-delta-normalization-genus"}
+For the normalization $\nu:\widetilde C\to C$,
+$$\delta_p=\dim_{\mathbb C}(\nu_*\mathcal O_{\widetilde C}/\mathcal O_C)_p.$$
+It measures the local defect of normality. For an integral projective curve, the normalization sequence gives
+$$p_a(C)=g(\widetilde C)+\sum_p\delta_p.$$
+For a connected reduced curve with $r$ irreducible components, replace $g(\widetilde C)$ by $\sum_i g(\widetilde C_i)$ and subtract $r-1$ on the right.
+
+For the cusp, $\mathbb C\{t\}\!/\mathbb C\{t^2,t^3\}$ has vector-space basis the class of $t$, so $\delta=1$. At a node, normalization separates two branches; functions on the curve are the pairs with equal constant terms, again giving a one-dimensional quotient. Delta alone does not distinguish their branch counts.
+:::
+
+::: {.front card-id="application-milnor-tjurina-meaning" tags="definition application"}
+What do the Milnor and Tjurina numbers measure for an isolated complex plane-curve singularity? Compare a node and a cusp.
+:::
+
+::: {.back card-id="application-milnor-tjurina-meaning"}
+The Milnor number $\mu=\dim_{\mathbb C}\mathbb C\{x,y\}/(f_x,f_y)$ is the rank of the first reduced homology of the Milnor fiber, hence counts its vanishing cycles. The Tjurina number $\tau=\dim_{\mathbb C}\mathbb C\{x,y\}/(f,f_x,f_y)$ is the dimension of the base of a miniversal deformation of the hypersurface germ. Always $\tau\le\mu$.
+
+For $xy=0$, the Jacobian algebra is $\mathbb C$, so $\mu=\tau=1$. For $y^2-x^3=0$, it has basis $1,x$, so $\mu=\tau=2$. Both have $\delta=1$; the relation $\mu=2\delta-r+1$ distinguishes the node's two branches from the cusp's one branch. In these weighted-homogeneous examples Euler's identity puts $f$ in its Jacobian ideal, explaining $\tau=\mu$.
+:::
+
 ::: {.front card-id="example-blowup-node-cusp" tags="example application"}
 Blow up the origin of $\mathbb A^2_{\mathbb C}$. Compute the strict transforms of $y^2=x^2(x+1)$ and $y^2=x^3$, and their intersections with the exceptional divisor.
 :::

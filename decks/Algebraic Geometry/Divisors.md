@@ -2,6 +2,16 @@
 title: "Algebraic Geometry::Divisors"
 ---
 
+::: {.front card-id="definition-fano-cartier-indices" tags="definition application"}
+Distinguish the Fano index from the Cartier index. Compute both for the canonical divisor of projective space.
+:::
+
+::: {.back card-id="definition-fano-cartier-indices"}
+For a smooth complex Fano variety $X$, the Fano index is the largest positive integer $r$ for which $-K_X\sim rH$ for some Cartier divisor $H$. It measures divisibility of the anticanonical class in $\operatorname{Pic}(X)$. For $\mathbb P^n$, $-K=(n+1)H$, so the Fano index is $n+1$; for a smooth quadric of dimension $n\ge2$ it is $n$.
+
+For a $\mathbb Q$-Cartier Weil divisor $D$ on a normal variety, its Cartier index is the least positive integer $r$ such that $rD$ is Cartier. One can ask for the local index at a point or the global index. For $D=K_X$ this is the canonical or Gorenstein index in common birational terminology. Smooth varieties have canonical Cartier index one, including $\mathbb P^n$. The two indices measure different things: divisibility of an already Cartier class versus the multiple needed to become Cartier.
+:::
+
 ::: {.front card-id="application-pencil-net-conventions" tags="application"}
 For $V\subset H^0(X,L)$, what dimensions define a pencil and a net? What is a complete system, and what is the target of the associated rational map? Illustrate with conics on $\mathbb P^2$.
 :::

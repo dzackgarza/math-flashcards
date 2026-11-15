@@ -2,6 +2,30 @@
 title: "Algebraic Geometry::Schemes"
 ---
 
+::: {.front card-id="definition-local-dimension-embedding" tags="definition application"}
+Distinguish local-ring dimension, component dimension, and embedding dimension. Compute them at the generic point of a line in $\mathbb A^2$ and at a plane cusp.
+:::
+
+::: {.back card-id="definition-local-dimension-embedding"}
+For a Noetherian local ring $(A,\mathfrak m,k)$, $\dim A$ is its Krull dimension and
+$$\operatorname{edim}A=\dim_k\mathfrak m/\mathfrak m^2.$$
+The latter is the minimal number of generators of $\mathfrak m$. One has $\dim A\le\operatorname{edim}A$, with equality exactly when $A$ is regular.
+
+At the point $(x)\in\operatorname{Spec}k[x,y]$, the local ring $k[x,y]_{(x)}$ has dimension and embedding dimension one, although the ambient irreducible component has dimension two. At the origin of $y^2=x^3$, the local ring has dimension one and embedding dimension two. At a closed point over an algebraically closed field, embedding dimension is the dimension of the Zariski tangent space.
+:::
+
+::: {.front card-id="definition-hilbert-samuel-multiplicity" tags="definition application"}
+Define Hilbert–Samuel multiplicity. Compute it for a smooth point, a plane cusp, and the scheme $\operatorname{Spec}k[t]/(t^r)$.
+:::
+
+::: {.back card-id="definition-hilbert-samuel-multiplicity"}
+For a Noetherian local ring $(A,\mathfrak m)$ of dimension $d$, the length $\ell_A(A/\mathfrak m^{n+1})$ is eventually a polynomial of degree $d$. Its leading term is
+$$\frac{e_{\mathfrak m}(A)}{d!}n^d.$$
+The positive integer $e_{\mathfrak m}(A)$ is the multiplicity. More generally one can use an $\mathfrak m$-primary ideal $I$ and obtain $e_I(A)$, which depends on $I$.
+
+A regular local ring has multiplicity one. A plane hypersurface germ has multiplicity equal to the lowest total degree of its equation, so $y^2-x^3$ has multiplicity two. In dimension zero the eventual length is $\ell(A)$ itself, so $k[t]/(t^r)$ has multiplicity $r$ despite having only one underlying point. These distinguish multiplicity from dimension, tangent dimension, and the number of points.
+:::
+
 ::: {.front card-id="application-normalization-cusp-conductor" tags="application"}
 For $A=\mathbb C[t^2,t^3]\subset\mathbb C(t)$, compute its normalization $B$, the quotient $B/A$, and the conductor $\mathfrak c=\{b\in B:bB\subset A\}$. What do these say about the cusp?
 :::
@@ -927,11 +951,13 @@ What are some consequences of flatness?
 :::
 
 ::: {.back card-id="card-da88a614473cf4db"}
-Numerical invariants remain constant in flat families, e.g. the dimensions of fibers and their hilbert polynomials.
+For a projective flat morphism $f:X\to B$ over a locally Noetherian base with a fixed relatively ample line bundle, the Hilbert polynomial of the fibers is locally constant. Hence so are the dimension and degree of nonempty fibers and their coherent Euler characteristic. Individual cohomology dimensions, geometric genus, Picard number, and topological Euler characteristic need not be constant in a flat family.
 
-Defining $\dim_x X \coloneqq\dim {\mathcal{O}}_{X, x}$, if $f:X\to Y$ is flat then $\dim_x X_{f(x)} = \dim_x X - \dim_{f(x)} Y$.
+For a flat morphism of locally Noetherian schemes and $y=f(x)$, the local-ring dimension formula is
+$$\dim\mathcal O_{X,x}=\dim\mathcal O_{Y,y}+\dim\mathcal O_{X_y,x}.$$
+Here local-ring dimension is meant; at a nonclosed point it differs from the dimension of the irreducible component through the point.
 
-If $B$ is smooth 1-dimensional affine, $X\to B$ is a family, and $0\in B$ is a closed point, $\lim_{b\to 0} X_b = X_0$ where $\lim_{b\to 0} X_b \coloneqq\overline{X_0}$, the fiber over $0$.
+If $B$ is a smooth integral affine curve and $X\to B$ is flat, then $X$ is the scheme-theoretic closure of its generic fiber in $X$. The special fiber over $0\in B$ is obtained by intersecting that closure with the fiber over $0$, including its scheme structure. This is the algebraic specialization underlying the idea of a limit of fibers.
 :::
 
 ::: {.front card-id="card-7eb3cab7d1016342"}
@@ -1112,7 +1138,11 @@ What is the degree of a morphism?
 :::
 
 ::: {.back card-id="card-588fc4423bcb3277"}
-$f:X\to S$ with $f_*{\mathcal{O}}_X\in   {}_{{\mathcal{O}}_s}\Mod$ finite and locally free, take its degree as a Coherent sheaf, where $\deg \mcf\coloneqq\deg \operatorname{det}\mcf$ since $\operatorname{det}\mcf\in \operatorname{Pic}(X)$, where the degree is the degree of the associated divisor.
+For a finite locally free morphism $f:X\to S$, take the rank of the locally free sheaf $f_*\mathcal O_X$. This is locally constant on $S$ and equals the length of every geometric fiber on each constant-rank component.
+
+For a dominant generically finite morphism of integral varieties, $\deg f=[K(X):K(S)]$. In the separable case this counts geometric points after restricting to an open set where the map is finite étale.
+
+By contrast, on a smooth proper curve the degree of a vector bundle $\mathcal F$ is $\deg\det\mathcal F$, the degree of the associated divisor. That is a different invariant from its rank. For example, the identity map has degree one, while $\deg\det(\mathcal O_S)=0$.
 :::
 
 ::: {.front card-id="card-16d44af59a623c18"}
@@ -1802,7 +1832,11 @@ What is the definition of Degree of a coherent sheaf?
 :::
 
 ::: {.back card-id="card-76ba15e3434da622"}
-For a coherent sheaf $\mathcal F$ on a proper curve or on a scheme with a fixed polarization, the degree is $\deg(\det\mathcal F)$ when $\det\mathcal F$ is invertible, with the degree of the associated divisor. On a smooth proper curve, $\deg\mathcal F=\chi(\mathcal F)-\operatorname{rank}(\mathcal F)\chi(\mathcal O_X)$.
+For a vector bundle $\mathcal F$ on a smooth proper curve, the degree is $\deg(\det\mathcal F)$, the degree of the associated divisor. More generally, for any coherent sheaf on a smooth proper integral curve,
+$$\deg\mathcal F=\chi(\mathcal F)-\operatorname{rank}(\mathcal F)\chi(\mathcal O_X).$$
+For a torsion sheaf this equals its length weighted by residue-field degrees; a skyscraper sheaf at a rational point has rank zero and degree one.
+
+On a smooth polarized projective $n$-fold $(X,H)$, the determinant of a torsion-free sheaf gives the class $c_1(\mathcal F)$, and its degree is $\deg_H\mathcal F=c_1(\mathcal F)\cdot H^{n-1}$. A determinant class alone is not a number in higher dimension; the polarization supplies the intersections.
 :::
 
 ::: {.front card-id="card-9b4c4e1a09c15b37" tags="definition"}

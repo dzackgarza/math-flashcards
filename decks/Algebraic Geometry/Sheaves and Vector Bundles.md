@@ -2,6 +2,43 @@
 title: "Algebraic Geometry::Sheaves and Vector Bundles"
 ---
 
+::: {.front card-id="definition-sheaf-degree-slope" tags="definition application"}
+Define degree and slope for a torsion-free sheaf on a polarized smooth projective variety. How does the choice of polarization enter?
+:::
+
+::: {.back card-id="definition-sheaf-degree-slope"}
+Let $X$ have dimension $n\ge1$, let $H$ be an ample divisor, and let $E$ be torsion-free of positive rank $r$. Its determinant is $(\bigwedge^rE)^{**}$, a line bundle on smooth $X$. Define
+$$\deg_H(E)=c_1(E)\cdot H^{n-1},\qquad \mu_H(E)=\frac{\deg_H(E)}r.$$
+On a curve this is the usual determinant degree and requires no polarization. In higher dimension $c_1(E)$ is a class, and intersecting with $H^{n-1}$ turns it into a number.
+
+On $\mathbb P^1\times\mathbb P^1$, with $H=\mathcal O(a,b)$ and $a,b>0$, the degree of $\mathcal O(u,v)$ is $ub+va$. Thus changing $H$ can change slope comparisons. Rank-zero sheaves do not have a slope under this definition.
+:::
+
+::: {.front card-id="definition-reduced-hilbert-stability" tags="definition application"}
+Define the reduced Hilbert polynomial and explain how it enters Gieseker stability. How does it compare with slope stability?
+:::
+
+::: {.back card-id="definition-reduced-hilbert-stability"}
+For a nonzero coherent sheaf $E$ on a polarized projective scheme, write
+$$P_E(m)=a_dm^d+\cdots+a_0,\qquad a_d>0.$$
+Its reduced Hilbert polynomial is $p_E=P_E/a_d$ in the monic convention. Dividing instead by the multiplicity $d!a_d$ is another convention; for fixed dimension it gives the same comparisons.
+
+A pure sheaf $E$ is Gieseker semistable if every nonzero proper subsheaf $F$ satisfies $p_F(m)\le p_E(m)$ for all sufficiently large $m$; stability uses strict inequality. Compare coefficients starting with the highest degree where they differ.
+
+For torsion-free sheaves on a smooth polarized projective variety, the first nonconstant comparison after the common leading term is slope. Hence slope stable implies Gieseker stable, and Gieseker semistable implies slope semistable. On curves the two notions agree. On surfaces equal slopes can leave different constant terms, involving $c_2$ through Riemann–Roch.
+:::
+
+::: {.front card-id="application-slope-p1-splitting" tags="application"}
+For $E=\mathcal O_{\mathbb P^1}(a)\oplus\mathcal O_{\mathbb P^1}(b)$ with $a\ge b$, compute rank, degree, slope, and reduced Hilbert polynomial. When is $E$ semistable?
+:::
+
+::: {.back card-id="application-slope-p1-splitting"}
+The rank is two, the determinant is $\mathcal O(a+b)$, and
+$$\deg E=a+b,\qquad \mu(E)=\frac{a+b}{2},\qquad
+P_E(m)=2m+a+b+2,\qquad p_E(m)=m+1+\frac{a+b}{2}.$$
+The summand $\mathcal O(a)$ destabilizes when $a>b$. When $a=b$, every line subsheaf has degree at most $a$, so $E$ is semistable, but not stable because a summand has equal slope. Thus semistability holds exactly when $a=b$.
+:::
+
 ::: {.front card-id="application-projective-morphism-sections" tags="application"}
 How do an invertible sheaf $L$ and sections $s_0,\ldots,s_n$ on a $k$-scheme $X$ define a morphism $f:X\to\mathbb P^n_k$? What condition must hold everywhere, and how do you recover $L$ from $f$?
 :::
@@ -193,7 +230,11 @@ What is the **rank** of an ${\mathcal{O}}_X\dash$module?
 :::
 
 ::: {.back card-id="card-7ea20bc415140836"}
-If locally free, on some open set, the $n$ appearing in ${ \left.{{\mcf}} \right|_{{U}} }_i \cong {\mathcal{O}}_X{ {}^{ \scriptscriptstyle\oplus^{n} }  }$.
+If locally free, on an open set $U$ the rank is the integer $r$ in $\mathcal F|_U\cong\mathcal O_U^{\oplus r}$; it is locally constant.
+
+More generally, on an integral scheme with generic point $\eta$, a coherent sheaf has generic rank
+$$\operatorname{rk}\mathcal F=\dim_{K(X)}\mathcal F_\eta.$$
+A torsion sheaf has rank zero. On a reducible scheme, record the ranks at the generic points of its components. Fiber dimension $\dim_{\kappa(x)}(\mathcal F\otimes\kappa(x))$ can jump where $\mathcal F$ is not locally free.
 :::
 
 ::: {.front card-id="card-041465065808b2ca"}
@@ -375,7 +416,9 @@ What is the **Euler characteristic** of an ${\mathcal{O}}_X$ module?
 :::
 
 ::: {.back card-id="card-a335a1700d07eb09"}
-$\chi(X; \mcf) \coloneqq\sum_i (-1)^i h^i(X; \mcf)$.
+For a coherent sheaf $\mathcal F$ on a proper scheme $X$ over a field $k$,
+$$\chi(X,\mathcal F)=\sum_i(-1)^i\dim_k H^i(X,\mathcal F).$$
+Properness and coherence ensure finite-dimensional cohomology, with only finitely many nonzero terms. This is a coherent Euler characteristic; for $\mathcal F=\mathcal O_X$ it need not equal the topological Euler characteristic of $X(\mathbb C)$.
 :::
 
 ::: {.front card-id="card-c1ffa65f50144241"}
@@ -383,7 +426,9 @@ What is the **Hilbert polynomial** of an ${\mathcal{O}}_X$ module?
 :::
 
 ::: {.back card-id="card-c1ffa65f50144241"}
-Using that $\chi(X; \mcf(n))$ is some polynomial $p(n)$ in $n$, take $p$ to be the Hilbert polynomial.
+Fix an ample line bundle $H$ on a projective scheme $X$ and a coherent sheaf $\mathcal F$. Using that
+$$P_{\mathcal F,H}(m)=\chi(X,\mathcal F\otimes H^{\otimes m})$$
+is a polynomial in $m$, take this to be the Hilbert polynomial. For $m\gg0$, higher cohomology vanishes, so it equals $h^0(X,\mathcal F\otimes H^{\otimes m})$. Its degree is $\dim\operatorname{Supp}\mathcal F$ when $\mathcal F\ne0$. It depends on the polarization; replacing $H$ by $H^{\otimes a}$ replaces $P(m)$ by $P(am)$.
 :::
 
 ::: {.front card-id="card-37be5dabde736ed0" tags="definition"}

@@ -2,6 +2,22 @@
 title: "Algebraic Geometry::Singularities::Birational Classes"
 ---
 
+::: {.front card-id="definition-log-canonical-threshold" tags="definition application"}
+Define the log canonical threshold of an effective divisor on a smooth complex variety. How do discrepancies compute it? Compare a node and a cusp.
+:::
+
+::: {.back card-id="definition-log-canonical-threshold"}
+For a nonzero effective divisor $D$ on smooth $X$,
+$$\operatorname{lct}_p(X,D)=\sup\{c\ge0:(X,cD)\text{ is log canonical near }p\}.$$
+On a log resolution $\pi:Y\to X$, write $\pi^*D=\sum b_iE_i$ and $K_Y-\pi^*K_X=\sum a_iE_i$, including strict transforms with $a_i=0$. Then
+$$\operatorname{lct}_p(X,D)=\min_{\substack{b_i>0\\p\in\pi(E_i)}}\frac{a_i+1}{b_i}.$$
+The numerator is the log discrepancy. This gives a threshold for how much boundary can be added before log canonicity fails.
+
+At the origin, $x^ay^b=0$ has threshold $\min(1/a,1/b)$ for positive integers $a,b$. A node $xy=0$ therefore has threshold one; the cusp $y^2-x^3=0$ has threshold $5/6$. Multiplicity alone does not distinguish these singularities.
+
+[Reference: log resolutions and thresholds, §2.6](https://people.math.harvard.edu/~mpopa/notes/DMBG-posted.pdf).
+:::
+
 ::: {.front card-id="singularity-pair-discrepancies" tags="definition"}
 Define discrepancies and log discrepancies for a complex pair $(X,\Delta)$ and state the klt and log canonical conditions.
 :::

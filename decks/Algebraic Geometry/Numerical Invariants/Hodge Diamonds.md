@@ -2,6 +2,30 @@
 title: "Algebraic Geometry::Numerical Invariants::Hodge Diamonds"
 ---
 
+::: {.front card-id="definition-hodge-betti-euler" tags="definition application"}
+Define Hodge numbers, Betti numbers, and the two Euler characteristics for a smooth complex projective variety. How do they differ on a K3 surface?
+:::
+
+::: {.back card-id="definition-hodge-betti-euler"}
+For $X$ of complex dimension $n$,
+$$h^{p,q}(X)=\dim_{\mathbb C}H^q(X,\Omega_X^p),\qquad b_i(X)=\dim_{\mathbb Q}H^i(X(\mathbb C),\mathbb Q).$$
+Hodge decomposition gives $b_i=\sum_{p+q=i}h^{p,q}$. The topological and holomorphic Euler characteristics are
+$$e(X)=\sum_{i=0}^{2n}(-1)^ib_i,\qquad \chi(\mathcal O_X)=\sum_{q=0}^n(-1)^qh^{0,q}.$$
+For a K3 surface, $e=1+22+1=24$ while $\chi(\mathcal O)=1-0+1=2$. The decomposition and Hodge symmetry used here require the Kähler hypothesis in the compact complex setting.
+:::
+
+::: {.front card-id="application-invariants-flat-smooth-families" tags="application"}
+Which invariants are constant in projective flat families, and what improves for smooth projective families over $\mathbb C$? Give examples of jumping.
+:::
+
+::: {.back card-id="application-invariants-flat-smooth-families"}
+For a flat projective family with a fixed relative polarization, the Hilbert polynomial is locally constant, hence so are degree, dimension of nonempty fibers, and $\chi(\mathcal O)$. The same statement holds for a coherent sheaf flat over the base. Individual $h^i$ are upper semicontinuous and can jump.
+
+A plane cubic degenerating from smooth to integral nodal has $p_a=1$ and $\chi(\mathcal O)=0$ throughout, but geometric genus drops from $1$ to $0$ and topological Euler characteristic changes from $0$ to $1$.
+
+In a smooth projective family over a connected smooth complex base, Betti numbers, Hodge numbers, and Chern numbers are constant. Picard number can still jump: a very general quartic surface has Picard number one, whereas a smooth quartic containing a line has Picard number at least two. Even on a fixed elliptic curve, degree-zero line bundles have $h^0=0$ except at the trivial bundle, where $h^0=1$.
+:::
+
 ::: {.front card-id="standard-hodge-curves" tags="formula"}
 Give the Hodge diamond of a smooth connected projective complex curve of genus $g$.
 :::

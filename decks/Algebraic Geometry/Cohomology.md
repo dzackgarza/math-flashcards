@@ -112,11 +112,13 @@ Fine implies soft.
 :::
 
 ::: {.front card-id="card-2578e6e4881e953d"}
-What is the **geometric genus** in full generality?
+What is the **geometric genus** for smooth and singular complex projective varieties?
 :::
 
 ::: {.back card-id="card-2578e6e4881e953d"}
-$p_g(X) \coloneqq h^{n, 0}(X) \coloneqq h^0(\omega_X)$, the number of linearly-independent top forms.
+For $X$ smooth projective of dimension $n$ over $\mathbb C$, $p_g(X)\coloneqq h^{n,0}(X)=h^0(X,\omega_X)$, the number of linearly independent global top forms.
+
+For $X$ singular integral projective over $\mathbb C$, its birational geometric genus is $p_g(\widetilde X)=h^0(\widetilde X,\omega_{\widetilde X})$ on a smooth projective resolution; this is independent of the resolution. It need not equal $h^0(X,\omega_X)$ for the dualizing sheaf. An integral nodal cubic has normalization $\mathbb P^1$ and geometric genus zero, while its dualizing sheaf is trivial and has a one-dimensional space of sections.
 :::
 
 ::: {.front card-id="card-213db50f27de0ed0"}

@@ -2,6 +2,30 @@
 title: "Algebraic Geometry::Numerical Invariants::Chern Classes and Riemann-Roch"
 ---
 
+::: {.front card-id="definition-chern-class-number" tags="definition application"}
+What is the difference between a Chern class and a Chern number? Interpret $K_S^2$ and $c_2(S)$ for a smooth complex projective surface.
+:::
+
+::: {.back card-id="definition-chern-class-number"}
+For a rank-$r$ vector bundle $E$ on smooth $X$, $c_i(E)\in\operatorname{CH}^i(X)$ is a codimension-$i$ class, with a cycle class in $H^{2i}(X,\mathbb Z)$ over $\mathbb C$. Under the splitting principle,
+$$c(E)=1+c_1(E)+\cdots+c_r(E)=\prod_{j=1}^r(1+x_j),$$
+where the $x_j$ are the Chern roots; $c_1(E)=c_1(\det E)$. On a smooth proper $n$-fold, a Chern number is the degree of a product of Chern classes of total codimension $n$.
+
+For a surface, $c_1(T_S)=-c_1(\omega_S)$, so the Chern numbers are
+$$\deg c_1(T_S)^2=K_S^2,\qquad \deg c_2(T_S)=e(S).$$
+The notation $c_2(S)$ often suppresses the degree map. $K_S^2$ is an intersection number, not a dimension of sections: on a K3 surface it is zero, whereas $h^0(K_S)=1$.
+:::
+
+::: {.front card-id="definition-surface-signature" tags="definition application"}
+Define the signature of a smooth complex projective surface. Distinguish it from the signature of its Néron–Severi intersection form, and compute it for a K3 surface.
+:::
+
+::: {.back card-id="definition-surface-signature"}
+The cup-product form on $H^2(S,\mathbb R)$ has positive and negative indices $(b_2^+,b_2^-)$. Its signature as an integer is
+$$\tau(S)=b_2^+-b_2^-=\frac{K_S^2-2e(S)}3.$$
+For a K3 surface this is $-16$, with indices $(3,19)$. On the smaller space $N^1(S)_{\mathbb R}$, the Hodge index theorem gives indices $(1,\rho-1)$ instead. A point blowup adds a negative direction, so it decreases $\tau$ by one.
+:::
+
 ::: {.front card-id="rr-worked-curve-degree" tags="application"}
 Let $C/\mathbb C$ be a smooth projective curve of genus $4$ and $L$ a line bundle of degree $9$. Compute $h^0(C,L)$ using Riemann–Roch and justify the required vanishing.
 :::

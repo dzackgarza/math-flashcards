@@ -2,6 +2,43 @@
 title: "Algebraic Geometry::Birational Geometry"
 ---
 
+::: {.front card-id="definition-divisor-volume" tags="definition application"}
+Define the volume of a Cartier divisor on a projective variety. When does it equal a top self-intersection, and what does positivity detect?
+:::
+
+::: {.back card-id="definition-divisor-volume"}
+For a Cartier divisor $D$ on an integral projective $n$-fold with $n>0$,
+$$\operatorname{vol}_X(D)=\limsup_{m\to\infty}\frac{n!\,h^0(X,\mathcal O_X(mD))}{m^n}.$$
+It measures the leading asymptotic growth of sections. It depends only on the numerical class, is homogeneous of degree $n$, and is positive exactly when $D$ is big. For a nef divisor, $\operatorname{vol}(D)=D^n$.
+
+Nefness matters: on $\operatorname{Bl}_p\mathbb P^2$, let $H$ be the pullback of a line and $E$ the exceptional curve. Then $D=H+E$ has fixed part $mE$ in every $|mD|$, so $h^0(mD)=\binom{m+2}{2}$ and $\operatorname{vol}(D)=1$, although $D^2=0$. For rational divisors, define volume by clearing denominators and using homogeneity.
+:::
+
+::: {.front card-id="definition-nef-numerical-dimension" tags="definition application"}
+Define the numerical dimension of a nef divisor. Compare it with Iitaka dimension for $\mathcal O(1,0)$ on $\mathbb P^1\times\mathbb P^1$ and for degree-zero line bundles on an elliptic curve.
+:::
+
+::: {.back card-id="definition-nef-numerical-dimension"}
+For a nef divisor $D$ on a smooth projective $n$-fold and an ample divisor $A$,
+$$\nu(D)=\max\{k\in\{0,\ldots,n\}:D^k\cdot A^{n-k}>0\}.$$
+It is independent of $A$ and depends only on the numerical class. It measures numerical positivity; $\nu(D)=n$ exactly when $D$ is big. This ordinary-intersection definition is for nef divisors; extensions to general pseudoeffective divisors require a specified definition using positive products or asymptotic growth.
+
+For $\mathcal O(1,0)$ on $\mathbb P^1\times\mathbb P^1$, $\nu=\kappa=1$ but volume is zero. On an elliptic curve every degree-zero line bundle has $\nu=0$ and volume zero. A torsion one has $\kappa=0$, whereas a nontorsion one has $\kappa=-\infty$: a degree-zero line bundle has a nonzero section only when trivial. Thus Iitaka dimension need not be a numerical invariant.
+:::
+
+::: {.front card-id="application-birational-invariants-blowup" tags="application"}
+Which familiar invariants of smooth complex projective surfaces survive birational maps? What changes under a point blowup?
+:::
+
+::: {.back card-id="application-birational-invariants-blowup"}
+The spaces of global forms and pluricanonical sections are birationally invariant. Thus $q$, $p_g$, $\chi(\mathcal O)=1-q+p_g$, all $P_m=h^0(mK)$, and $\kappa$ are birational invariants.
+
+For $\pi:\widetilde S\to S$ blowing up one point, the exceptional curve adds one algebraic class of square $-1$:
+$$b_2(\widetilde S)=b_2(S)+1,\quad \rho(\widetilde S)=\rho(S)+1,\quad
+K_{\widetilde S}^2=K_S^2-1,\quad e(\widetilde S)=e(S)+1.$$
+The last two changes cancel in Noether's formula $12\chi(\mathcal O)=K^2+e$. A degree also requires a chosen polarization, so it is not an invariant of an unpolarized birational class.
+:::
+
 ::: {.front card-id="application-blowup-base-ideal-map" tags="application"}
 Let $V=\langle s_0,\ldots,s_r\rangle\subset H^0(X,L)$ on an integral projective variety. How does its base ideal resolve the rational map $[s_0:\cdots:s_r]$? Identify the line bundle defining the resolved map and the relation with the graph.
 :::
@@ -155,11 +192,11 @@ What is **Kodaira dimension**?
 :::
 
 ::: {.back card-id="card-21139fdf3f221644"}
-For$X$ normal projective and $D\in \QQ\dash\operatorname{Div}(X)$,
-$$\kappa(X, D)\coloneqq\limsup _{m \in \ZZ_{\geq 0}} \frac{\log \left(h^0\left(\mathcal{O}_X(m D)\right)\right)}{\log m}$$
-Equivalently, the Iitaka dimension of the canonical
-$$\kappa(X) \coloneqq\kappa(X; \omega_X)$$
-Concretely: $\kappa(X) \coloneqq-\infty$ if $P_d(X) = 0$ for all $d>0$, otherwise $\kappa(X) = \min \left\{{k \in \ZZ\st{P_d\over d^k} \leq { \mathsf{O}}(1) }\right\}$ (i.e. the minimal $k$ so that $P_d(X) \in { \mathsf{O}}(d^k)$). Interpret as $P_m(X) \sim m^{\kappa(x)}$ (bounded above and below by constant multiples, for $m$ sufficiently divisible). Generally $\kappa(X) \in \left\{{-\infty}\right\}\cup\left\{{0, 1, \cdots, \dim X}\right\}$.
+For $X$ normal integral projective and $D$ a $\mathbb Q$-Cartier divisor, measure section growth by
+$$\kappa(X,D)=\limsup_{\substack{m\to\infty\\mD\ {\rm Cartier}\\h^0(mD)>0}}\frac{\log h^0(X,\mathcal O_X(mD))}{\log m},$$
+with value $-\infty$ if no positive Cartier multiple has a nonzero section. For smooth projective $X$, the Kodaira dimension is the Iitaka dimension of the canonical bundle:
+$$\kappa(X)=\kappa(X;\omega_X).$$
+Concretely, $\kappa(X)=-\infty$ if $P_m(X)=0$ for all $m>0$; otherwise it is the smallest integer $k$ for which $P_m(X)=O(m^k)$. Interpret $P_m(X)\asymp m^{\kappa(X)}$ as upper and lower bounds by positive constant multiples for sufficiently large, sufficiently divisible $m$. Thus $\kappa(X)\in\{-\infty,0,1,\ldots,\dim X\}$. For a singular complex projective variety, its birational Kodaira dimension is computed on a smooth projective resolution; using reflexive canonical powers on the singular model needs additional hypotheses.
 :::
 
 ::: {.front card-id="card-0996fd4a0ee4d958"}
@@ -185,15 +222,16 @@ What is Iitaka dimension?
 :::
 
 ::: {.back card-id="card-a54e2a90c7831a3d"}
-For $\mcl\in \operatorname{Pic}(X)$, define the *Iitaka dimension* of $\mcl\in \operatorname{Pic}(X)$ as the maximal embedding dimension:
-$$\kappa(X; \mcl) \coloneqq\sup_{m\in \ZZ_{\geq 0}} \left\{{\dim \phi_{{\left\lvert {m\mcl} \right\rvert}}(X)}\right\},\qquad \phi_{{\left\lvert {m\mcl} \right\rvert}}:X\to {\mathbf{P}}^n$$
-Always have $\kappa(X; \mcl) \in \left\{{-\infty, 0, 1,\cdots, \dim(X)}\right\}$.
+For a line bundle $\mcl$ on an integral projective variety $X$, define its *Iitaka dimension* as the maximal image dimension of its nonempty positive-power systems:
+$$\kappa(X;\mcl)=\max_{\substack{m>0\\H^0(X,\mcl^{\otimes m})\ne0}}\dim\overline{\phi_{|m\mcl|}(X)},\qquad
+\phi_{|m\mcl|}:X\dashrightarrow\mathbb P(H^0(X,\mcl^{\otimes m})^\vee).$$
+These are rational maps, not necessarily embeddings or morphisms. Always $\kappa(X;\mcl)\in\{-\infty,0,1,\ldots,\dim X\}$.
 
-If $\mcl$ is not effective, define $\kappa(X; \mcl)= -\infty$.
+If every positive power of $\mcl$ has no section, define $\kappa(X;\mcl)=-\infty$. Non-effectivity of $\mcl$ alone does not suffice: on a complex Enriques surface $H^0(\omega_X)=0$ but $\omega_X^{\otimes2}\cong\mathcal O_X$, so $\kappa(X;\omega_X)=0$.
 
-Fact:
+When a positive power has a section, the equivalent section-ring formula is
 $$\kappa(X; \mcl) + 1 = \trdeg_k \operatorname{ff}(R(X; L))$$
-where $R(X; L)$ is the section ring.
+where $L=\mcl$ and $R(X;L)$ is the section ring.
 :::
 
 ::: {.front card-id="card-e9e007319ee4649c"}
@@ -376,6 +414,10 @@ How are plurigenera related to the arithmetic or geometric genus?
 
 ::: {.back card-id="card-fb89ad30738ffe16"}
 $P_1(X) = g(X)$ for smooth projective curves.
+
+For every smooth projective variety, $P_1(X)=p_g(X)=h^0(X,\omega_X)$. On a smooth complex projective surface,
+$$\chi(\mathcal O_X)=1-q+p_g,\qquad p_a(X)=\chi(\mathcal O_X)-1=p_g-q.$$
+Thus $P_1=p_g$ need not equal the arithmetic genus: an abelian surface has $p_g=1$, $q=2$, and $p_a=-1$. Arithmetic genus can be negative in higher dimension.
 :::
 
 ::: {.front card-id="card-97356860c51b279d"}
