@@ -658,7 +658,7 @@ $$\dim H_{\mathrm{dR}}^n(X)=\sum_{p+q=n}h^q(X,\Omega_X^p).$$
 :::
 
 ::: {.front card-id="theorem-weak-lefschetz" tags="theorem"}
-Let $X$ be smooth complex projective of dimension $n\ge2$ and $H\subset X$ a smooth ample divisor. State weak Lefschetz for integral cohomology and homotopy groups.
+Let $X$ be smooth complex projective of dimension $n\ge2$ and $H\subset X$ a smooth ample divisor. State the Lefschetz hyperplane theorem (weak Lefschetz) for integral homology, integral cohomology, and homotopy groups.
 :::
 
 ::: {.back card-id="theorem-weak-lefschetz"}
@@ -667,6 +667,77 @@ $$H^i(X,\mathbb Z)\longrightarrow H^i(H,\mathbb Z)$$
 is an isomorphism for $i<n-1$ and injective for $i=n-1$. For compatible base points, the inclusion-induced map
 $$\pi_i(H)\longrightarrow\pi_i(X)$$
 is an isomorphism for $i<n-1$ and surjective for $i=n-1$.
+The homology map
+$$H_i(H,\mathbb Z)\longrightarrow H_i(X,\mathbb Z)$$
+is likewise an isomorphism for $i<n-1$ and surjective for $i=n-1$.
+:::
+
+::: {.front card-id="proof-weak-lefschetz-affine-complement" tags="proof"}
+Let $H$ be a smooth ample divisor in a smooth complex projective $n$-fold $X$. Prove the integral cohomology form of weak Lefschetz using the topology of $X\setminus H$. State the topological theorem used.
+:::
+
+::: {.back card-id="proof-weak-lefschetz-affine-complement"}
+Set $U=X\setminus H$. A positive multiple of $H$ is very ample, so $U$ is a smooth affine variety. The Andreotti–Frankel theorem, proved by Morse theory, gives $U$ the homotopy type of a CW complex of real dimension at most $n$. Thus $H_j(U,\mathbb Z)=0$ for $j>n$.
+
+Excision and Poincaré duality give
+$$H^k(X,H;\mathbb Z)\cong H_c^k(U,\mathbb Z)\cong H_{2n-k}(U,\mathbb Z)=0\qquad(k<n).$$
+In the exact sequence
+$$H^k(X,H;\mathbb Z)\longrightarrow H^k(X,\mathbb Z)\longrightarrow H^k(H,\mathbb Z)\longrightarrow H^{k+1}(X,H;\mathbb Z),$$
+both outer groups vanish for $k<n-1$, and the left group vanishes for $k=n-1$. Restriction is therefore an isomorphism below degree $n-1$ and injective in degree $n-1$.
+
+Reference: [Popa, topology of algebraic varieties, §1](https://people.math.harvard.edu/~mpopa/571/chapter1.pdf).
+:::
+
+::: {.front card-id="application-weak-lefschetz-boundary-cubic" tags="application"}
+Let $C\subset\mathbb P^2_{\mathbb C}$ be a smooth plane cubic. Compute the maps induced by inclusion on integral $H^1$, integral $H_1$, and $\pi_1$. What do they show about the boundary degree in weak Lefschetz?
+:::
+
+::: {.back card-id="application-weak-lefschetz-boundary-cubic"}
+The curve has genus one, while $\mathbb P^2$ is simply connected. The maps are
+$$H^1(\mathbb P^2,\mathbb Z)=0\longrightarrow H^1(C,\mathbb Z)\cong\mathbb Z^2,$$
+$$H_1(C,\mathbb Z)\cong\mathbb Z^2\longrightarrow H_1(\mathbb P^2,\mathbb Z)=0,$$
+$$\pi_1(C)\cong\mathbb Z^2\longrightarrow\pi_1(\mathbb P^2)=1.$$
+Here the ambient dimension is $n=2$, so degree one is the boundary degree. Cohomology restriction is injective but not surjective; the homology and fundamental-group maps are surjective but not injective. The degree bounds are sharp even for smooth ample divisors.
+:::
+
+::: {.front card-id="application-weak-lefschetz-ampleness" tags="application"}
+Let $C$ be a smooth complex projective curve of genus $g\ge1$, let $X=C\times\mathbb P^1$, and set $D=\{p\}\times\mathbb P^1$. Does this smooth divisor satisfy the conclusions of weak Lefschetz? Check ampleness and the maps on $H^1(-,\mathbb Z)$ and $\pi_1$.
+:::
+
+::: {.back card-id="application-weak-lefschetz-ampleness"}
+The fiber has $D^2=0$, so $D$ is not ample: an ample divisor on a projective surface has positive square. Restriction is
+$$H^1(X,\mathbb Z)\cong\mathbb Z^{2g}\longrightarrow H^1(D,\mathbb Z)=0,$$
+which is not injective. The map
+$$\pi_1(D)=1\longrightarrow\pi_1(X)\cong\pi_1(C)$$
+is not surjective. Both conclusions required in boundary degree one fail. Smoothness of the divisor alone is insufficient.
+:::
+
+::: {.front card-id="application-weak-lefschetz-complete-intersections" tags="application"}
+Let $Y\subset\mathbb P^N_{\mathbb C}$ be a smooth complete intersection of dimension $m\ge2$, and let $h=c_1(\mathcal O_Y(1))$. Determine $\pi_1(Y)$ and $H^k(Y,\mathbb Z)$ for $0\le k<m$. Explain how weak Lefschetz applies repeatedly and what it gives in degree $m$.
+:::
+
+::: {.back card-id="application-weak-lefschetz-complete-intersections"}
+For general defining equations, the successive intersections are smooth, and each is an ample divisor in the preceding variety. Iterating weak Lefschetz gives
+$$\pi_1(Y)=1,\qquad H^k(Y,\mathbb Z)=\begin{cases}\mathbb Z\,h^{k/2}&k\text{ even},\\0&k\text{ odd}\end{cases}\qquad(0\le k<m).$$
+For an arbitrary smooth complete intersection of the same multidegree, deform the equations through the connected smooth parameter locus to a general choice. Ehresmann's theorem preserves the topology and the restricted hyperplane class.
+
+In degree $m$, restriction $H^m(\mathbb P^N,\mathbb Z)\to H^m(Y,\mathbb Z)$ is injective; additional middle cohomology can occur.
+
+Reference: [Catanese, Topological methods in moduli theory, Lefschetz theorems](https://link.springer.com/article/10.1007/s13373-015-0070-1).
+:::
+
+::: {.front card-id="application-weak-lefschetz-complete-intersection-irregularity" tags="application"}
+Let $S\subset\mathbb P^4_{\mathbb C}$ be a smooth complete intersection of a quadric and a cubic, with hyperplane class $h$. Determine $\pi_1(S)$, $H^1(S,\mathbb Z)$, and $q(S)=h^1(S,\mathcal O_S)$ using weak Lefschetz and Hodge decomposition. Does weak Lefschetz also give $H^2(S,\mathbb Z)=\mathbb Z\,h$?
+:::
+
+::: {.back card-id="application-weak-lefschetz-complete-intersection-irregularity"}
+Since $\dim S=2$, weak Lefschetz for complete intersections gives
+$$\pi_1(S)=1,\qquad H^1(S,\mathbb Z)=0.$$
+Hodge decomposition gives
+$$0=H^1(S,\mathbb C)=H^{1,0}(S)\oplus H^{0,1}(S),$$
+so $q(S)=h^{0,1}(S)=0$. In degree two the theorem gives only an injection
+$$\mathbb Z\,h=H^2(\mathbb P^4,\mathbb Z)\hookrightarrow H^2(S,\mathbb Z).$$
+It does not determine the middle cohomology. In fact, adjunction gives $K_S\cong\mathcal O_S$, so $S$ is a K3 surface and $H^2(S,\mathbb Z)$ has rank $22$.
 :::
 
 ::: {.front card-id="theorem-ehresmann-monodromy" tags="theorem"}
