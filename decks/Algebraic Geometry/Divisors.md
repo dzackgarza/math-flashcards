@@ -2,6 +2,50 @@
 title: "Algebraic Geometry::Divisors"
 ---
 
+::: {.front card-id="application-bertini-general-choice" tags="application"}
+A research argument needs a divisor in a complex linear system satisfying several properties, each known to hold for a general member. Can the properties be imposed simultaneously? Does the same argument guarantee a member defined over a finite field?
+:::
+
+::: {.back card-id="application-bertini-general-choice"}
+Each general-member property holds on a nonempty Zariski-open subset of the projective parameter space. Finitely many such opens have nonempty intersection because the parameter space is irreducible. Over $\mathbb C$ that intersection has a point. The conclusion applies to finitely many conditions; a countable collection instead involves a very-general choice. Over a finite field, a nonempty open need not have a rational point, so this argument alone does not produce a divisor over that field.
+:::
+
+::: {.front card-id="application-bertini-prescribed-points" tags="application"}
+Let $X\subset\mathbb P^N_{\mathbb C}$ be smooth projective of dimension at least two, and let $Z$ be a finite set of distinct points of $X$. Can one choose a smooth irreducible divisor in $|\mathcal I_Z(d)|$ for sufficiently large $d$? What must be checked at the imposed points?
+:::
+
+::: {.back card-id="application-bertini-prescribed-points"}
+For sufficiently large $d$, the system has base locus exactly $Z$ and permits arbitrary linear terms at each point of $Z$. Bertini gives smoothness off $Z$. At $p\in Z$, a local equation defines a smooth divisor exactly when its image in $\mathfrak m_p/\mathfrak m_p^2$ is nonzero. These are finitely many nonempty open conditions on sections, so a general section satisfies all of them. The resulting divisor is ample and connected; a smooth connected divisor is irreducible. Imposing vanishing to order two instead would force singularities at those points.
+:::
+
+::: {.front card-id="application-bertini-successive-sections" tags="application"}
+Let $X\subset\mathbb P^N_{\mathbb C}$ be smooth integral projective of dimension $n$. Choose general hypersurfaces of fixed positive degrees $d_1,\ldots,d_r$. For $r<n$, what can be arranged for every successive intersection? What changes for $r=n$?
+:::
+
+::: {.back card-id="application-bertini-successive-sections"}
+The restricted hypersurface systems are very ample. At each stage whose ambient dimension is at least two, Bertini gives a smooth irreducible divisor of codimension one. Thus one can arrange a smooth irreducible flag with final dimension $n-r$. At $r=n$, the last step cuts a smooth curve in a reduced finite set of points of cardinality $\deg(X)\prod_i d_i$. Smoothness remains, but irreducibility generally does not.
+:::
+
+::: {.front card-id="application-bertini-transverse-fixed-subvariety" tags="application"}
+Let $X\subset\mathbb P^N_{\mathbb C}$ be smooth projective, and let $Z_1,\ldots,Z_s\subset X$ be smooth closed subvarieties of positive dimension. Can one choose a hyperplane section smooth on $X$ and transverse to all the $Z_i$? What condition gives transversality at an intersection point?
+:::
+
+::: {.back card-id="application-bertini-transverse-fixed-subvariety"}
+Apply Bertini to the embedded $X$ and to each embedded $Z_i$, and intersect the finitely many open sets of acceptable hyperplanes. At $z\in Z_i\cap H$, smoothness of the restricted hyperplane equation means its differential is nonzero on $T_zZ_i$. Hence
+$$T_zZ_i\not\subset T_z(X\cap H),$$
+which is transversality inside $X$. Each $Z_i\cap H$ is smooth of dimension $\dim Z_i-1$.
+:::
+
+::: {.front card-id="application-bertini-frobenius-system" tags="application"}
+Over an algebraically closed field of characteristic $p>0$, consider $V=\langle x_0^p,x_1^p,x_2^p\rangle\subset H^0(\mathbb P^2,\mathcal O(p))$. Is $V$ base-point-free? Is a general member smooth? Does this contradict Bertini for hyperplane sections of an embedding?
+:::
+
+::: {.back card-id="application-bertini-frobenius-system"}
+The system is base-point-free. But every nonzero section is
+$$a_0x_0^p+a_1x_1^p+a_2x_2^p=(b_0x_0+b_1x_1+b_2x_2)^p,$$
+so its divisor is a nonreduced multiple of a line. The associated morphism is Frobenius, not an immersion. Smooth hyperplane sections of a smooth embedded variety remain a valid Bertini conclusion; arbitrary base-point-free systems in positive characteristic require additional hypotheses.
+:::
+
 ::: {.front card-id="card-bcba6e654f0b5155" tags="definition"}
 What is the **Picard group**?
 :::

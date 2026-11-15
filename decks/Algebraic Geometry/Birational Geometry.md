@@ -2,6 +2,87 @@
 title: "Algebraic Geometry::Birational Geometry"
 ---
 
+::: {.front card-id="application-mori-blowup-plane" tags="application"}
+Let $X=\operatorname{Bl}_p\mathbb P^2_{\mathbb C}$, with line pullback $H$ and exceptional curve $E$. Determine $\overline{\operatorname{NE}}(X)$, the canonical degree of each extremal generator, and both contractions. When is $D=aH-bE$ nef or ample?
+:::
+
+::: {.back card-id="application-mori-blowup-plane"}
+Put $f=H-E$. A nonexceptional integral curve has class $dH-mE=d f+(d-m)E$ with $0\le m\le d$, so
+$$\overline{\operatorname{NE}}(X)=\mathbb R_{\ge0}[E]+\mathbb R_{\ge0}[f].$$
+Since $K_X=-3H+E$, $K_XE=-1$ and $K_Xf=-2$. The first ray contracts by the blowdown to $\mathbb P^2$; the second by the pencil of lines through $p$ to $\mathbb P^1$. The blowdown is divisorial and the pencil is of fiber type. Since $DE=b$ and $Df=a-b$, nefness means $a\ge b\ge0$, and ampleness means $a>b>0$.
+:::
+
+::: {.front card-id="application-mori-hirzebruch-sign" tags="application"}
+On the complex Hirzebruch surface $\mathbb F_n$ with $n\ge1$, let $S^2=-n$ be the negative section and $f$ a fiber. Identify the curve cone and decide which extremal rays the $K$-negative contraction theorem covers. Can the negative section be contracted when the theorem does not cover it?
+:::
+
+::: {.back card-id="application-mori-hirzebruch-sign"}
+One has
+$$\overline{\operatorname{NE}}(\mathbb F_n)=\mathbb R_{\ge0}[S]+\mathbb R_{\ge0}[f],\qquad K=-2S-(n+2)f,$$
+so $Kf=-2$ and $KS=n-2$. The fiber ray always gives the ruling. The section ray is $K$-negative only for $n=1$, when it gives the blowdown to $\mathbb P^2$. It is $K$-trivial for $n=2$ and $K$-positive for $n>2$. Nevertheless, $|S+nf|$ contracts $S$ to the vertex of the cone over the degree-$n$ rational normal curve. For $n\ge2$ the target is singular. Negative self-intersection alone does not imply $K$-negativity.
+:::
+
+::: {.front card-id="application-mori-finiteness" tags="application"}
+For a complex projective klt pair $(X,\Delta)$, what finite reduction does the cone theorem give after fixing an ample divisor $A$ and $\varepsilon>0$? What stronger conclusion follows if $-(K_X+\Delta)$ is ample?
+:::
+
+::: {.back card-id="application-mori-finiteness"}
+Only finitely many extremal rays are negative for $K_X+\Delta+\varepsilon A$, and
+$$\overline{\operatorname{NE}}(X)=\overline{\operatorname{NE}}(X)_{K_X+\Delta+\varepsilon A\ge0}
++\sum_{j=1}^r\mathbb R_{\ge0}[C_j].$$
+The finite set can grow as $\varepsilon$ tends to zero. If $-(K_X+\Delta)$ is ample, take $A=-(K_X+\Delta)$ and $0<\varepsilon<1$. The nonnegative part is then $\{0\}$, so the whole curve cone is rational polyhedral. Nefness of a divisor can consequently be checked on finitely many rational curve generators.
+:::
+
+::: {.front card-id="application-mori-k3-boundary" tags="application"}
+Let $X$ be a complex projective K3 surface containing a smooth rational curve $C$. Does the cone theorem assert that $[C]$ is a $K_X$-negative ray? Does it imply that the whole curve cone is rational polyhedral? Can $C$ still be contracted?
+:::
+
+::: {.back card-id="application-mori-k3-boundary"}
+Since $K_X=0$, every curve class is $K_X$-trivial, so the $K_X$-negative part is empty. The cone theorem gives no rational-polyhedral conclusion for the whole cone. Adjunction gives $C^2=-2$. For an ample Cartier divisor $A$, take
+$$D=2A+(A\cdot C)C.$$
+Then $DC=0$, $D^2=4A^2+2(A\cdot C)^2>0$, and $D$ intersects every other integral curve positively. Base-point-freeness for nef and big divisors on a K3 makes $D$ semiample. Its morphism contracts precisely $C$ to an $A_1$ singularity. This is a $K_X$-trivial contraction.
+:::
+
+::: {.front card-id="application-mori-length-degree" tags="application"}
+Let $X$ be a smooth complex Fano $n$-fold with $-K_X=rH$, where $H$ is ample Cartier and $r>0$ is an integer. What bound on $H$-degree can you use when searching for rational generators of extremal rays? Specialize to $n=3$, $r=2$.
+:::
+
+::: {.back card-id="application-mori-length-degree"}
+Every extremal ray has a rational curve generator $C$ with $0<-K_XC\le n+1$. Hence
+$$1\le H\cdot C\le\left\lfloor\frac{n+1}{r}\right\rfloor.$$
+For an index-two Fano threefold, it suffices to find a generator of $H$-degree one or two on each ray. The bound controls a choice of generator, not the degrees of all curves in the ray.
+:::
+
+::: {.front card-id="application-mori-relative-cone" tags="application"}
+Let $\pi:X=\operatorname{Bl}_p\mathbb P^2_{\mathbb C}\to\mathbb P^2$, with classes $H,E$. Determine $\overline{\operatorname{NE}}(X/\mathbb P^2)$. For $D=aH-bE$, compare relative nefness with absolute nefness. Can the ruling $X\to\mathbb P^1$ be performed over this fixed base?
+:::
+
+::: {.back card-id="application-mori-relative-cone"}
+The relative cone records curves contracted by $\pi$, so
+$$\overline{\operatorname{NE}}(X/\mathbb P^2)=\mathbb R_{\ge0}[E].$$
+Relative nefness requires $DE=b\ge0$; absolute nefness also requires $D(H-E)=a-b\ge0$. The ruling contracts curves mapping to lines in $\mathbb P^2$, so it is not a contraction over $\mathbb P^2$. Relative Mori theory only contracts vertical curve classes.
+:::
+
+::: {.front card-id="application-mori-nef-threshold" tags="application"}
+On $X=\operatorname{Bl}_p\mathbb P^2_{\mathbb C}$, set $A=2H-E$. Compute the nef threshold
+$$\lambda=\inf\{t\ge0:K_X+tA\text{ is nef}\}.$$
+Which ray is orthogonal to $K_X+\lambda A$, and what contraction does it determine?
+:::
+
+::: {.back card-id="application-mori-nef-threshold"}
+The cone generators are $E$ and $f=H-E$, with $AE=Af=1$, $K_XE=-1$, and $K_Xf=-2$. Thus nefness requires $t\ge1$ and $t\ge2$, giving $\lambda=2$. At the threshold,
+$$K_X+2A=H-E=f,\qquad fE=1,\quad f^2=0.$$
+The orthogonal ray is $\mathbb R_{\ge0}[f]$, and $|H-E|$ gives the ruling to $\mathbb P^1$. This is the ray selected by this choice of scaling divisor.
+:::
+
+::: {.front card-id="application-mori-contraction-types" tags="application"}
+Let $(X,\Delta)$ be a complex projective $\mathbb Q$-factorial klt pair, and let $f:X\to Y$ contract a $(K_X+\Delta)$-negative extremal ray. Which geometric tests distinguish the possible next steps in the minimal model program? What extra construction is needed in the small case?
+:::
+
+::: {.back card-id="application-mori-contraction-types"}
+If $\dim Y<\dim X$, the contraction is of fiber type and gives a log Mori fiber space. If $f$ is birational and contracts a divisor, it is divisorial; continue on $Y$ with the pushed-forward boundary. If $f$ is birational with exceptional locus of codimension at least two, it is small. Then the next step is the flip $X\dashrightarrow X^+$ over $Y$, with $K_{X^+}+\Delta^+$ ample over $Y$. The contraction theorem supplies $f$, not the flip. For a ray contraction, $\rho(X/Y)=1$.
+:::
+
 
 ::: {.front card-id="card-21139fdf3f221644"}
 What is **Kodaira dimension**?
@@ -551,6 +632,7 @@ For a complex projective klt pair $(X,\Delta)$, state the cone theorem, includin
 There are rational curves $C_i$ spanning $(K_X+\Delta)$-negative extremal rays such that
 $$\overline{\operatorname{NE}}(X)=\overline{\operatorname{NE}}(X)_{K_X+\Delta\ge0}+\sum_i\mathbb R_{\ge0}[C_i],\qquad 0<-(K_X+\Delta)C_i\le2\dim X.$$
 These rays are locally finite in the open half-space where $K_X+\Delta$ is negative.
+Equivalently, for every ample $\mathbb R$-divisor $A$, only finitely many of these rays are $(K_X+\Delta+A)$-negative. If $X$ is smooth and $\Delta=0$, the rational generators can be chosen with $0<-K_X\cdot C_i\le\dim X+1$.
 :::
 
 ::: {.front card-id="theorem-extremal-contraction" tags="theorem"}
@@ -800,7 +882,9 @@ What is the definition of Fiber-type contraction?
 :::
 
 ::: {.back card-id="card-4c4388e6f992f9fa"}
-A contraction $f:X\to Y$ is of fiber type if $\dim Y<\dim X$, so its fibers are positive-dimensional. In the minimal model program a $(K_X+\Delta)$-negative extremal contraction of fiber type is a Mori fiber space.
+A projective surjective morphism $f:X\to Y$ with connected fibers is of fiber type if $\dim Y<\dim X$. For a projective $\mathbb Q$-factorial klt pair $(X,\Delta)$, a log Mori fiber space additionally requires
+$$\rho(X/Y)=1,\qquad -(K_X+\Delta)\text{ is }f\text{-ample}.$$
+For $\Delta=0$ this is a Mori fiber space in the klt convention. A contraction of a higher-dimensional face can have relative Picard number greater than one.
 :::
 
 ::: {.front card-id="card-859e3263b428349d" tags="definition"}

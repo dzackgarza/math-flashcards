@@ -15,11 +15,11 @@ For a birational map $T:X\dashrightarrow Y$ of projective varieties with $X$ nor
 :::
 
 ::: {.front card-id="card-6bfa90e1ac9bf990"}
-Discuss Zariski's main theorem.
+How can a birational map between smooth complex projective surfaces be resolved? Distinguish this factorization result from Zariski's Main Theorem.
 :::
 
 ::: {.back card-id="card-6bfa90e1ac9bf990"}
-Used to factor birational transformations of surfaces: if $f:X' \to X$ is a birational transformation of smooth projective surfaces and $p$ is a fundamental point of $f^{-1}$, then $f$ factors through the blowup $\pi: \operatorname{Bl}_p X \to X$. So any birational transformation $T: X_1\to X_2$ can be factored as a finite sequence of blowups and blowdowns.
+There is a smooth projective surface $W$ and birational morphisms $W\to X_1$, $W\to X_2$, each a composition of point blowups, resolving the birational map $X_1\dashrightarrow X_2$. Consequently the map factors into point blowups and blowdowns. This uses elimination of indeterminacy and factorization of birational morphisms of smooth surfaces. Zariski's Main Theorem instead factors a separated quasi-finite morphism as an open immersion followed by a finite morphism.
 :::
 
 ::: {.front card-id="card-56667f14a942273f"}

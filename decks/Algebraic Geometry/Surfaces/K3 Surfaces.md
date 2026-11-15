@@ -2,6 +2,78 @@
 title: "Algebraic Geometry::Surfaces::K3 Surfaces"
 ---
 
+::: {.front card-id="construction-k3-complete-intersections" tags="construction application"}
+Construct K3 surfaces as smooth complete intersections in ordinary complex projective space. After removing linear equations, which multidegrees work? How do you ensure smoothness and verify the K3 conditions?
+:::
+
+::: {.back card-id="construction-k3-complete-intersections"}
+For a surface $S\subset\mathbb P^{r+2}$ of multidegree $(d_1,\ldots,d_r)$ with $d_i\ge2$, adjunction gives
+$$\omega_S=\mathcal O_S\left(\sum_i d_i-r-3\right).$$
+Thus $\sum_i(d_i-1)=3$, giving $(4)$, $(2,3)$, or $(2,2,2)$. Choose general equations: successive Bertini applications give smooth intersections. Weak Lefschetz gives $H^1(S,\mathbb C)=0$, hence $q(S)=0$. The hyperplane polarizations have squares $4$, $6$, and $8$, respectively.
+:::
+
+::: {.front card-id="construction-k3-kummer-resolution" tags="construction application"}
+Starting with a complex abelian surface $A$, construct a smooth K3 surface. What happens to the holomorphic two-form, irregularity, and exceptional curves?
+:::
+
+::: {.back card-id="construction-k3-kummer-resolution"}
+Resolve the quotient $A/\langle-1\rangle$ minimally. Its $A_1$ singularities are du Val, so the resolution is crepant and their exceptional curves are disjoint smooth rational $(-2)$-curves. Inversion preserves the nowhere-vanishing two-form on $A$, which descends and extends without zeros. It acts as $-1$ on $H^1(A,\mathcal O_A)$, so the invariant part is zero. Finite-quotient cohomology and rationality of the singularities give $q(\operatorname{Km}(A))=0$.
+:::
+
+::: {.front card-id="construction-k3-product-kummer-equation" tags="construction application"}
+Let $E_i$ be complex elliptic curves with affine equations $y_i^2=f_i(x_i)$, where $f_i$ is a squarefree cubic. Give a birational equation for $\operatorname{Km}(E_1\times E_2)$ and describe its branch divisor.
+:::
+
+::: {.back card-id="construction-k3-product-kummer-equation"}
+The invariant $z=y_1y_2$ gives
+$$z^2=f_1(x_1)f_2(x_2).$$
+Compactify as a double cover of $\mathbb P^1\times\mathbb P^1$. The branch divisor consists of the four vertical and four horizontal fibers over the branch points of the elliptic double covers, including infinity. Their crossings give $A_1$ singularities; the minimal resolution is the Kummer K3. Thus a reducible $(4,4)$ branch divisor can produce a K3 after resolution, although the double cover is not smooth.
+:::
+
+::: {.front card-id="construction-k3-weierstrass" tags="construction application"}
+Construct a complex elliptic K3 surface with section by a Weierstrass equation over $\mathbb P^1$. Specify the coefficient bundles and the conditions to check, including at infinity.
+:::
+
+::: {.back card-id="construction-k3-weierstrass"}
+Take $L=\mathcal O_{\mathbb P^1}(2)$ and the relative Weierstrass equation
+$$y^2z=x^3+a_4xz^2+a_6z^3,\qquad a_4\in H^0(\mathcal O(8)),\quad a_6\in H^0(\mathcal O(12)).$$
+Require $\Delta=-16(4a_4^3+27a_6^2)\not\equiv0$ and minimality: at no point are both $\operatorname{ord}(a_4)\ge4$ and $\operatorname{ord}(a_6)\ge6$. Check this in local trivializations also at infinity. Resolve the Weierstrass model to its smooth relatively minimal elliptic surface $f:S\to\mathbb P^1$. The canonical bundle formula gives $\omega_S=f^*(\omega_{\mathbb P^1}\otimes L)\cong\mathcal O_S$; Leray gives $q(S)=0$ since $H^1(\mathcal O_{\mathbb P^1})=H^0(L^{-1})=0$. The discriminant is a section of $\mathcal O(24)$.
+
+Reference: [Schütt–Shioda, Elliptic Surfaces, elliptic K3 surfaces](https://arxiv.org/abs/0907.0298).
+:::
+
+::: {.front card-id="construction-k3-quadratic-base-change" tags="construction application"}
+Let $f:R\to\mathbb P^1_{\mathbb C}$ be a relatively minimal rational elliptic surface with section. How can a quadratic base change produce a K3? Choose branch points that make the construction straightforward and describe the singular fibers afterward.
+:::
+
+::: {.back card-id="construction-k3-quadratic-base-change"}
+Choose a double cover $g:\mathbb P^1\to\mathbb P^1$ branched over two distinct smooth fibers of $f$, and form $S=R\times_{\mathbb P^1}\mathbb P^1$. The surface is smooth: over singular fibers the base change is étale, and over branch points $f$ is smooth. The section pulls back. The fundamental line bundle changes from $\mathcal O(1)$ to $g^*\mathcal O(1)=\mathcal O(2)$, so the canonical bundle formula and Leray give $\omega_S\cong\mathcal O_S$ and $q(S)=0$. Each singular fiber of $R$ occurs twice with the same Kodaira type; the branch fibers remain smooth.
+
+Reference: [Schütt–Shioda, Elliptic Surfaces, quadratic base change](https://arxiv.org/abs/0907.0298).
+:::
+
+::: {.front card-id="construction-k3-anticanonical" tags="construction application"}
+Let $V$ be a smooth complex Fano threefold and $S\in|-K_V|$ smooth. Determine whether $S$ is K3. Use this construction to give examples in $\mathbb P^1\times\mathbb P^2$ and $(\mathbb P^1)^3$.
+:::
+
+::: {.back card-id="construction-k3-anticanonical"}
+Adjunction gives $\omega_S\cong\mathcal O_S$. Kodaira vanishing gives $H^i(V,\mathcal O_V)=0$ for $i>0$; Serre duality gives $H^2(V,K_V)=0$. The sequence
+$$0\longrightarrow\mathcal O_V(K_V)\longrightarrow\mathcal O_V\longrightarrow\mathcal O_S\longrightarrow0$$
+then gives $H^0(S,\mathcal O_S)=\mathbb C$ and $H^1(S,\mathcal O_S)=0$. Thus $S$ is K3. In the products, take a general equation of bidegree $(2,3)$ or tridegree $(2,2,2)$, respectively. These anticanonical systems are base-point-free, so Bertini supplies smooth members.
+
+Reference: [Beauville, Fano threefolds and K3 surfaces](https://arxiv.org/abs/math/0211313).
+:::
+
+::: {.front card-id="construction-k3-enriques-cover" tags="construction application"}
+Given a complex Enriques surface $Y$, construct its canonical cover and determine its degree, ramification, and surface type.
+:::
+
+::: {.back card-id="construction-k3-enriques-cover"}
+The nontrivial line bundle $\omega_Y$ has order two. Choose $\omega_Y^{\otimes2}\cong\mathcal O_Y$ and form
+$$X=\operatorname{Spec}_Y(\mathcal O_Y\oplus\omega_Y^{-1}).$$
+The multiplication uses this trivialization. The cover is connected and étale of degree two, and $\omega_X=\pi^*\omega_Y\cong\mathcal O_X$. Since $H^1(Y,\mathcal O_Y)=H^1(Y,\omega_Y)=0$, one has $q(X)=0$. Thus $X$ is K3 and its deck involution is fixed-point-free.
+:::
+
 ::: {.front card-id="card-cd4f095b6e904394"}
 What is a primitively polarized K3 of genus $g$?
 :::
@@ -105,7 +177,7 @@ What is a Kummer surface?
 :::
 
 ::: {.back card-id="card-d6ef2e2a6407833d"}
-$\widetilde{T/\iota}$ where $T = \CC^2/\Lambda$ is a torus and $\iota$ is an involution with 16 ordinary double point singularities of type $A_1$.
+The minimal resolution $\operatorname{Km}(A)$ of $A/\langle-1\rangle$, where $A$ is a complex two-dimensional torus. The quotient has an $A_1$ singularity at the image of each point of $A[2]$. The resolution is a K3 surface; it is projective when $A$ is an abelian surface.
 :::
 
 ::: {.front card-id="card-e0924526d2ecf9d1"}
@@ -133,7 +205,7 @@ Or Kummer, Kahler, Kodaira.
 :::
 
 ::: {.front card-id="card-a0c53897863d4619"}
-Let $X_4$ be the Fermat quartic, what is $K_{X_4}$?
+Let $X_4\subset\mathbb P^3_{\mathbb C}$ be the Fermat quartic surface. What is $K_{X_4}$?
 :::
 
 ::: {.back card-id="card-a0c53897863d4619"}
@@ -141,7 +213,7 @@ By adjunction, $K_{X_4} = (K_{{\mathbf{P}}^3} + X_4)\mathrel{\Big|}_{X_4} = (-4H
 :::
 
 ::: {.front card-id="card-a974a6a357f3c50a"}
-What is $\pi_1(X_4)$?
+What is the fundamental group of the complex Fermat quartic surface $X_4\subset\mathbb P^3$?
 :::
 
 ::: {.back card-id="card-a974a6a357f3c50a"}
@@ -149,27 +221,31 @@ By Lefschetz, $\pi_1(X_4) = \pi_1({\mathbf{P}}^3) = 1$.
 :::
 
 ::: {.front card-id="card-4dbd0152fa065638"}
-Compute $q(X_4)$.
+Compute the irregularity $q(X_4)$ of the complex Fermat quartic surface.
 :::
 
 ::: {.back card-id="card-4dbd0152fa065638"}
-$H_1(X; \ZZ) = \pi_1(X)_\ab= 1$ so $1 = H^1(X;\CC) = H^{0,1 } \oplus H^{1, 0}$ so $q(X_4) = 0$.
+For the complex Fermat quartic, simple connectivity gives $H_1(X_4,\mathbb Z)=0$. Hence
+$$0=H^1(X_4,\mathbb C)=H^{1,0}(X_4)\oplus H^{0,1}(X_4),$$
+so $q(X_4)=h^{0,1}(X_4)=0$.
 :::
 
 ::: {.front card-id="card-a83a6fcf30b32ed7"}
-Give a birational definition of a K3.
+What conditions define a complex K3 surface? Does blowing up a point preserve those conditions?
 :::
 
 ::: {.back card-id="card-a83a6fcf30b32ed7"}
-A compact complex surface with $K_S \sim 0$ and $q(S) = 0$.
+A smooth connected compact complex surface $S$ with $\omega_S\cong\mathcal O_S$ and $H^1(S,\mathcal O_S)=0$. For a point blowup $\pi:\widetilde S\to S$ with exceptional curve $E$,
+$$K_{\widetilde S}=\pi^*K_S+E=E.$$
+Thus $\widetilde S$ is birational to a K3 but is not itself a K3.
 :::
 
 ::: {.front card-id="card-d8dece29c26816e2"}
-How does one show a surface is K3?
+For a smooth connected complex projective surface $S$ given by equations or a finite cover, which invariants establish that it is K3? Which tools commonly compute them?
 :::
 
 ::: {.back card-id="card-d8dece29c26816e2"}
-Show $q(S) = 0$, e.g. using Lefschetz, and show $K_S \sim 0$ e.g. using adjunction.
+Establish $\omega_S\cong\mathcal O_S$ and $H^1(S,\mathcal O_S)=0$. Use adjunction for complete intersections and the canonical bundle formula for covers or elliptic fibrations. Compute $H^1$ by Lefschetz and Hodge decomposition, a finite-cover pushforward, a defining exact sequence, or Leray, as appropriate. The numerical equality $K_S^2=0$ alone does not establish triviality of $\omega_S$.
 :::
 
 ::: {.front card-id="card-d4ca0d9726924b5c"}
@@ -177,7 +253,7 @@ Give several examples of K3s.
 :::
 
 ::: {.back card-id="card-d4ca0d9726924b5c"}
-Any smooth quartic in ${\mathbf{P}}^3$, e.g. $x_0^4 + \cdots + x_3^4\subset {\mathbf{P}}^3$ when $\operatorname{ch}k \neq 2$.
+Any smooth quartic in $\mathbb P^3$, for example $V(x_0^4+\cdots+x_3^4)$ over $\mathbb C$.
 
 A smooth complete intersection of type $(d_1,\cdots, d_n) \subset {\mathbf{P}}^{n+2}$ with all $d_i\geq 2$ and $\sum d_i = n+3$: the quartic and the types $(2,3)$ and $(2,2,2)$.
 
@@ -187,19 +263,15 @@ A double plane: a double cover $X\to {\mathbf{P}}^2$ branched along a smooth cur
 :::
 
 ::: {.front card-id="card-c9537c6e8b69fd2a"}
-Show that the double plane is K3.
+Let $\pi:S\to\mathbb P^2_{\mathbb C}$ be the double cover branched over a smooth sextic. Compute $\omega_S$, $q(S)$, and $e(S)$, and decide whether $S$ is K3.
 :::
 
 ::: {.back card-id="card-c9537c6e8b69fd2a"}
-Check $K_S = \pi^* K_{{\mathbf{P}}^2} + R$ where $\pi_*(R) = C_6$ and $\pi_*(C_6) = 2R$, use $K_{{\mathbf{P}}^2} = -3H$ and $C_6 = 6H$ to get
-$$2K_S = \pi^*(2K_{{\mathbf{P}}^2}) + 2R = \pi^*(2K_{{\mathbf{P}}^2}) + \pi^*(C_6) = \pi^*(-6H) + \pi^*(6H) = 0$$
-If $K_S\neq 0$ but $2K_S = 0$, note $h^0(K_S) = 0$.
-
-Check
-$$\chi(S) = 2(\chi({\mathbf{P}}^2) - \chi(C_6)) + \chi(R) = 2(3+18)-18 =24$$
-using that $\chi(C_6) = 2\cdot 2g$.
-
-Check $\chi({\mathcal{O}}_S) = 2$ and use Noether to conclude $1-h^1({\mathcal{O}}_S) = 2$, a contradiction.
+The cover is defined by $L=\mathcal O_{\mathbb P^2}(3)$ and a section of $L^2$ with smooth zero divisor $B$. The double-cover formulas give
+$$\pi_*\mathcal O_S=\mathcal O_{\mathbb P^2}\oplus\mathcal O_{\mathbb P^2}(-3),\qquad
+\omega_S=\pi^*(\omega_{\mathbb P^2}\otimes L)\cong\mathcal O_S.$$
+Both summands have vanishing $H^1$, so $q(S)=0$ and $S$ is K3. Since $g(B)=10$,
+$$e(S)=2e(\mathbb P^2)-e(B)=6-(2-20)=24.$$
 :::
 
 ::: {.front card-id="card-87f15ed99f31bbce"}
@@ -211,19 +283,21 @@ $S: t^2 = f_6(x_0, x_1, x_2) \subseteq {\mathbf{P}}(3,1,1,1)$ where $C_6 = V(f_6
 :::
 
 ::: {.front card-id="card-96d7a76cd22ee066"}
-What is the involution on an abelian surface? What are its fixed points?
+Which involution on a complex abelian surface gives the Kummer construction? Identify its fixed points and the local quotient singularities.
 :::
 
 ::: {.back card-id="card-96d7a76cd22ee066"}
-$A = \CC^2/\Lambda$ with $\operatorname{rank}_\ZZ\Lambda = 4$, take $(x,y)\mapsto (-x,y)$ on $\CC^2$ to get $2(x,y)\in \Lambda$, there are 16 such points and thus 16 $A_1$ singularities in $A/\iota$.
+Use inversion $\iota(a)=-a$. For $A=\mathbb C^2/\Lambda$,
+$$\operatorname{Fix}(\iota)=A[2]\cong(\mathbb Z/2\mathbb Z)^4.$$
+At a fixed point the action is $(x,y)\mapsto(-x,-y)$. The invariant coordinates $u=x^2$, $v=y^2$, $w=xy$ satisfy $uv=w^2$, so each image is an $A_1$ singularity. Each resolves to a smooth rational curve of square $-2$.
 :::
 
 ::: {.front card-id="card-bc593360b0b42e7f"}
-If $A{\circlearrowleft}_\iota$ is the involute on an abelian surface, what is the induced involution on the blowup at the 16 fixed points?
+In the Kummer construction over $\mathbb C$, blow up the fixed points of inversion on an abelian surface. Describe the lifted involution in a blowup chart and check that its quotient is smooth there.
 :::
 
 ::: {.back card-id="card-bc593360b0b42e7f"}
-Write $\left\{{{\left[ { x_0: x_1} \right]}, {\left[ {x, y} \right]} \in {\mathbf{P}}^1 \times \CC^2 \st x_0 y = x_1 x}\right\}$ and send ${\left[ {x_0, x_1} \right]}, {\left[ {x, y} \right]}\mapsto {\left[ { x_0: x_1} \right]}, {\left[ {-x, -y} \right]}$.
+At a fixed point inversion acts by $(x,y)\mapsto(-x,-y)$. In the blowup chart $y=xu$, it acts by $(x,u)\mapsto(-x,u)$. The invariant ring is $\mathbb C[x^2,u]$, so the quotient is smooth in this chart; the other chart is analogous. The exceptional $\mathbb P^1$ is fixed pointwise. Its image is the exceptional $(-2)$-curve resolving the quotient node.
 :::
 
 ::: {.front card-id="card-af30b3367d559ae0"}
@@ -412,23 +486,15 @@ Generically $\operatorname{Pic}(X) = \left\langle{L}\right\rangle_\ZZ$ for $L$ a
 :::
 
 ::: {.front card-id="card-cf4969638484b2a6"}
-Discuss projective models of K3s.
+Let $L$ be a base-point-free line bundle with $L^2>0$ on a complex projective K3 surface. What is the dimension of $|L|$, and when can its morphism fail to be an embedding? Describe the very ample models of degrees four, six, and eight.
 :::
 
 ::: {.back card-id="card-cf4969638484b2a6"}
-Saint-Donat 74: if $\mcl\in \operatorname{Pic}(X)$ with $\mcl^2 > 0$ with no base components (so bpf), then the induced embedding $\phi_{{\left\lvert {\mcl} \right\rvert}}:X\to {\mathbf{P}}^N$ where $N = h^0({\mathcal{O}}_X(\mcl)) - 1 = {1\over 2}\mcl^2 -1$ is either
+Riemann–Roch and vanishing give $h^0(L)=2+L^2/2$, so $|L|$ maps to $\mathbb P^{1+L^2/2}$. The morphism can have degree two onto a surface of degree $L^2/2$, or be birational onto a surface of degree $L^2$. It contracts precisely the curves $C$ with $L\cdot C=0$.
 
-Hyperelliptic: 2-to-1 cover and $\deg \operatorname{im}\phi_{{\left\lvert {\mcl} \right\rvert}} = {1\over 2}\mcl^2$, or
+For $L$ very ample, degree four gives a quartic in $\mathbb P^3$, and degree six gives a $(2,3)$ complete intersection in $\mathbb P^4$. In degree eight, the model in $\mathbb P^5$ is an intersection of three quadrics exactly when its general hyperplane section is not trigonal. Equivalently, the trigonal exception has an elliptic pencil $E$ with $L\cdot E=3$.
 
-Non-hyperelliptic: birational with $\deg \operatorname{im}\phi_{{\left\lvert {\mcl} \right\rvert}} = \mcl^2$.
-
-$\mcl^2 = 2$ is the double plane.
-
-$\mcl^2 = 4$ non-hyperelliptic is $X\to {\mathbf{P}}^3$ a quartic
-
-$\mcl^2 = 6$ non-hyperelliptic is $X\to {\mathbf{P}}^4$ a complete intersection $(2, 3)$
-
-$\mcl^2 = 8$ non-hyperelliptic is $X\to {\mathbf{P}}^5$ a complete intersection $(2, 2, 2)$
+Reference: [Morrison, The geometry of K3 surfaces, projective models](https://web.math.ucsb.edu/~drm/conferences/ITP99/morrison/cortona.pdf).
 :::
 
 ::: {.front card-id="card-dfe46593dd91df51"}
@@ -542,13 +608,11 @@ $L(\sigma) = 2$ for a symplectic automorphism.
 :::
 
 ::: {.front card-id="card-f12fcae19855ecbf"}
-Why are symplectic automorphisms important?
+For a complex K3 surface $X$ and a finite group $G$ of symplectic automorphisms, which surface obtained from $X/G$ is again K3?
 :::
 
 ::: {.back card-id="card-f12fcae19855ecbf"}
-Quotients are again K3.
-
-Not the case for non-symplectic automorphisms!
+The minimal resolution of $X/G$ is K3. The quotient has only du Val singularities, and the invariant holomorphic two-form extends without zeros across their crepant resolution. The quotient itself can be singular.
 :::
 
 ::: {.front card-id="card-67d5703c9df61496"}
@@ -938,13 +1002,11 @@ Yes: ${\left[ {x_0, \zeta_8 x_0, x_2, \zeta_8 x_2} \right]}$.
 :::
 
 ::: {.front card-id="card-324108ea57273d0b"}
-When is a K3 surface elliptic?
+When does a complex projective K3 surface admit a genus-one fibration? How does an isotropic divisor class produce the fibration, and what extra condition gives a section?
 :::
 
 ::: {.back card-id="card-324108ea57273d0b"}
-$X$ is elliptic $\iff \exists L\in \operatorname{Pic}(X)$ with $L^2 =0$ away from characteristic 2,3.
-
-Idea: pass from $L$ with $L^2 = 0$ to a nef $L'$ with $(L')^2 = 0$ through a series of reflections $L\mapsto L + (L.C)C$ for $C$ a $(-2)\dash$curve with $L.C < 0$.
+The criterion is a nonzero integral class $L\in\operatorname{NS}(X)$ with $L^2=0$. Choose its effective sign, then use reflections $L\mapsto L+(L\cdot C)C$ in $(-2)$-curves with $L\cdot C<0$ to obtain a nef class. Its primitive generator $F$ has a base-point-free pencil $|F|$ defining $X\to\mathbb P^1$ with smooth genus-one general fiber. A section exists exactly when there is an integral curve $D$ with $F\cdot D=1$. A genus-one fibration need not have a section.
 :::
 
 ::: {.front card-id="card-a772d749c355f1fe"}
@@ -1109,19 +1171,14 @@ $$\begin{aligned}q&=0,&p_g&=1,&\chi(\mathcal O_S)&=2,\\K_S^2&=0,&c_2(S)&=24,&b_2
 :::
 
 ::: {.front card-id="card-b4c7696af026d814"}
-What are the two most widely studied classes of K3s?
+Construct a K3 surface as a double cover of $\mathbb P^1_{\mathbb C}\times\mathbb P^1_{\mathbb C}$. Determine the branch bidegree and the genus of the general fiber over either factor.
 :::
 
 ::: {.back card-id="card-b4c7696af026d814"}
-Sextic double planes: birational to $X\to {\mathbf{P}}^1$ a degree 2 cover branched over a sextic curve (equivalently a sextic hypersurface in $\WP(1,1,1,3)$.)
-
-Quartic hypersurfaces:
-
-$X\subseteq {\mathbf{P}}^3$ a quartic hypersurface
-
-$X\to {\mathbf{P}}^1 \times {\mathbf{P}}^1$ a double cover branched over a bidegree $(4, 4)$ curve.
-
-$X\to C$ an elliptic fibration over the twisted cubic.
+Take a smooth branch divisor $B\in|\mathcal O(4,4)|$, and form the double cover with $L=\mathcal O(2,2)$. Then
+$$\pi_*\mathcal O_X=\mathcal O\oplus\mathcal O(-2,-2),\qquad
+\omega_X=\pi^*(\mathcal O(-2,-2)\otimes L)\cong\mathcal O_X.$$
+Künneth gives $H^1(\mathcal O_X)=0$, so the smooth cover is K3. Over a general point of either factor, the fiber is a double cover of $\mathbb P^1$ branched at four points, hence has genus one. A section requires an additional condition; this construction alone gives a genus-one fibration.
 :::
 
 ::: {.front card-id="card-4e90b1d8184c7c0a"}

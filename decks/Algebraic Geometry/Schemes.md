@@ -2,6 +2,48 @@
 title: "Algebraic Geometry::Schemes"
 ---
 
+::: {.front card-id="application-zmt-cusp-normality" tags="application"}
+For $\nu:\mathbb A^1_{\mathbb C}\to C=V(y^2-x^3)$ given by $t\mapsto(t^2,t^3)$, check finiteness, birationality, and bijectivity on closed points. Is $\nu$ an isomorphism? Which hypothesis of the birational form of Zariski's Main Theorem fails?
+:::
+
+::: {.back card-id="application-zmt-cusp-normality"}
+The inclusion $\mathbb C[t^2,t^3]\subset\mathbb C[t]$ is finite because $t$ is integral, and their fraction fields agree since $t=t^3/t^2$. The map is bijective on closed points but is not an isomorphism: $t$ is absent from the source ring. The target is not normal. A smooth source and even a proper bijective birational morphism do not replace normality of the target.
+:::
+
+::: {.front card-id="application-zmt-separatedness" tags="application"}
+Glue two copies of $\mathbb A^1_{\mathbb C}$ along $\mathbb G_m$ and map the resulting doubled-origin line $X$ to $\mathbb A^1$ by the identity on each chart. Is this a quasi-finite birational morphism to a normal variety? Why does Zariski's Main Theorem not make it an open immersion?
+:::
+
+::: {.back card-id="application-zmt-separatedness"}
+It is finite type with singleton fibers away from zero and a two-point fiber over zero, hence quasi-finite. It is birational and its target is normal. It is not separated: the identity map from the fraction field of $\mathbb C[[t]]$ has two extensions, one specializing to each origin. An open immersion is injective, so this map is not one. Separatedness is essential.
+:::
+
+::: {.front card-id="application-zmt-finite-completion" tags="application"}
+Let $X=\mathbb G_{m,\mathbb C}\setminus\{1\}$ and $f:X\to\mathbb G_m$ be $t\mapsto t^2$. Give a Zariski Main factorization. Is $f$ finite? Does quasi-finiteness and surjectivity make it an isomorphism?
+:::
+
+::: {.back card-id="application-zmt-finite-completion"}
+Factor as
+$$\mathbb G_m\setminus\{1\}\hookrightarrow\mathbb G_m\xrightarrow{t\mapsto t^2}\mathbb G_m.$$
+The first arrow is open and the second finite. The map $f$ is surjective and étale, but not finite: a finite étale map over a connected base has constant fiber cardinality, whereas this map has two points over $s\ne1$ and only $t=-1$ over $s=1$. Its function-field extension has degree two, so it is not birational and the birational isomorphism criterion does not apply.
+:::
+
+::: {.front card-id="application-zmt-frobenius-birationality" tags="application"}
+Over an algebraically closed field $k$ of characteristic $p>0$, the map $f:\mathbb A^1_k\to\mathbb A^1_k$, $t\mapsto t^p$, is finite and bijective on closed points, with normal source and target. Does Zariski's Main Theorem make it an isomorphism?
+:::
+
+::: {.back card-id="application-zmt-frobenius-birationality"}
+No. On function fields the extension is $k(t^p)\subset k(t)$, purely inseparable of degree $p$. Thus $f$ is not birational. Its coordinate-ring map is not surjective, and $f$ is not an isomorphism. Bijectivity on closed points is insufficient to establish birationality in positive characteristic.
+:::
+
+::: {.front card-id="application-zmt-local-isomorphism" tags="application"}
+Let $f:X\to Y$ be a proper birational morphism of integral complex varieties, with $Y$ normal. Suppose $f^{-1}(y)$ has finitely many points. What can be concluded on a neighborhood of $y$?
+:::
+
+::: {.back card-id="application-zmt-local-isomorphism"}
+The morphism is an isomorphism over some open neighborhood $V$ of $y$. The quasi-finite locus $U\subset X$ is open and contains $f^{-1}(y)$. Properness makes $f(X\setminus U)$ closed, so take $V=Y\setminus f(X\setminus U)$. Over $V$ the morphism is proper and quasi-finite, hence finite. It remains birational with normal target, so it is an isomorphism. Thus a nontrivial exceptional fiber over a normal target cannot be finite.
+:::
+
 ::: {.front card-id="card-e01d6cc90a3752e3" tags="definition"}
 What is specialization/generization?
 :::

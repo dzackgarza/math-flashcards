@@ -2,6 +2,24 @@
 title: "Algebraic Geometry::Hodge Theory"
 ---
 
+::: {.front card-id="application-lefschetz-calabi-yau-hypersurface" tags="application"}
+Let $X\subset\mathbb P^{d+1}_{\mathbb C}$ be a smooth hypersurface of degree $d+2$, with $d\ge2$. Determine $\omega_X$, $\pi_1(X)$, and $H^q(X,\mathcal O_X)$ for $0<q<d$. Which results give the conclusions?
+:::
+
+::: {.back card-id="application-lefschetz-calabi-yau-hypersurface"}
+Adjunction gives $\omega_X=\mathcal O_X(d+2-d-2)\cong\mathcal O_X$. The homotopy form of weak Lefschetz gives $\pi_1(X)=\pi_1(\mathbb P^{d+1})=1$. For $q<d$, cohomology restriction is an isomorphism compatible with Hodge structures. The ambient space has $H^{0,q}=0$ for $q>0$, so
+$$H^q(X,\mathcal O_X)=H^{0,q}(X)=0\qquad(0<q<d).$$
+These establish the usual Calabi–Yau conditions. In top degree $h^d(\mathcal O_X)=1$ by Serre duality; it is outside the isomorphism range.
+:::
+
+::: {.front card-id="application-lefschetz-curve-monodromy" tags="application"}
+Let $X$ be a smooth connected complex projective variety of dimension at least two, and let $C$ be a smooth curve obtained by successive general hyperplane sections. Can a nontrivial representation $\pi_1(X)\to\operatorname{GL}_r(\mathbb C)$ become trivial on $C$? Must every representation of $\pi_1(C)$ extend to $X$?
+:::
+
+::: {.back card-id="application-lefschetz-curve-monodromy"}
+Weak Lefschetz gives a surjection $\pi_1(C)\twoheadrightarrow\pi_1(X)$. Therefore restriction to $C$ preserves the image of a representation; in particular it detects triviality of monodromy. A representation of $\pi_1(C)$ extends to $X$ exactly when it kills the kernel of this surjection. Surjectivity alone does not make the fundamental groups isomorphic or ensure extension of arbitrary representations.
+:::
+
 ::: {.front card-id="card-e0262b52c2d6df11"}
 What is the Albanese variety of $Z$? Its corresponding embedding?
 :::
