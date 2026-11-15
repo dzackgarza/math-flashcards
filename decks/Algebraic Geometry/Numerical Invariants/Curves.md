@@ -2,6 +2,114 @@
 title: "Algebraic Geometry::Numerical Invariants::Curves"
 ---
 
+::: {.front card-id="numerical-plane-pencil-reference" tags="formula application"}
+For a general pencil of degree-$d$ plane curves over $\mathbb C$, $d\ge2$, compute the number of base points, genus of a smooth member, and number of singular members. Specialize to conics, cubics, and quartics.
+:::
+
+::: {.back card-id="numerical-plane-pencil-reference"}
+The base points are transverse, so Bézout gives $d^2$ distinct points. A smooth member has $g=(d-1)(d-2)/2$. A general pencil meets the discriminant transversely in $3(d-1)^2$ points; each corresponding member has one ordinary node and no other singularity.
+
+| $d$ | Base points | Genus | Singular members |
+| --- | --- | --- | --- |
+| 2 | 4 | 0 | 3 |
+| 3 | 9 | 1 | 12 |
+| 4 | 16 | 3 | 27 |
+
+For a numerical check, the blown-up plane has $e=3+d^2$, while a smooth bundle over $\mathbb P^1$ with genus-$g$ fiber would have Euler number $4-4g$. Each nodal fiber adds one, giving $3+d^2-(4-4g)=3(d-1)^2$. Special pencils can have nonreduced base schemes or fewer distinct singular members.
+:::
+
+::: {.front card-id="application-cubic-interpolation-ninth-point" tags="application"}
+Compare cubics through eight general plane points, cubics through nine general plane points, and cubics through the nine transverse intersection points of two cubics. Why does the last configuration behave differently?
+:::
+
+::: {.back card-id="application-cubic-interpolation-ninth-point"}
+The vector space of cubics has dimension $10$.
+
+| Point configuration | Dimension of cubics vanishing there | Projective system |
+| --- | --- | --- |
+| Eight general points | 2 | Pencil |
+| Nine general points | 1 | Unique cubic |
+| Nine transverse intersections of two cubics | 2 | Pencil |
+
+In the last case the ideal in degree three is spanned by the two defining cubics. Cayley–Bacharach says every cubic through any eight of the nine points passes through the ninth. Thus the ninth condition is dependent. Nine points arising as the base locus of a cubic pencil are not nine independently general points.
+:::
+
+::: {.front card-id="numerical-theta-characteristics-bitangents" tags="formula application"}
+For a smooth complex curve of genus $g\ge1$, count theta characteristics and their even and odd parts. What does this give for bitangents of a smooth plane quartic?
+:::
+
+::: {.back card-id="numerical-theta-characteristics-bitangents"}
+A theta characteristic is a line bundle $\theta$ with $\theta^{\otimes2}\cong\omega_C$; parity means $h^0(\theta)\bmod2$. They form a torsor under $\operatorname{Pic}^0(C)[2]$.
+
+| Type | Count |
+| --- | --- |
+| All | $2^{2g}$ |
+| Even | $2^{g-1}(2^g+1)$ |
+| Odd | $2^{g-1}(2^g-1)$ |
+
+For a plane quartic, $g=3$ and each odd theta characteristic has a unique effective divisor $D$ of degree two. The line cutting out $2D$ is a bitangent, including a hyperflex when $D=2p$. Hence there are $28$ bitangents, and $36$ even theta characteristics.
+
+Reference: [Kailasa, Bitangents and Theta Characteristics on a Smooth Plane Quartic](https://websites.umich.edu/~kailasas/quart28-fin.pdf).
+:::
+
+::: {.front card-id="numerical-branch-count-versus-ramification" tags="application"}
+For a degree-$n$ map $C\to\mathbb P^1_{\mathbb C}$ with $C$ smooth projective of genus $g$, when is the number of branch points $2g+2n-2$? Give the hyperelliptic specialization and explain what changes at a totally ramified fiber.
+:::
+
+::: {.back card-id="numerical-branch-count-versus-ramification"}
+Riemann–Hurwitz always gives $\deg R=2g+2n-2$. This equals the number of branch values only when each branch fiber has exactly one ramification point of index two and all other points unramified.
+
+| Cover | Number of branch values |
+| --- | --- |
+| Simply branched degree $n$ | $2g+2n-2$ |
+| Hyperelliptic double cover | $2g+2$ |
+| Elliptic double cover of $\mathbb P^1$ | 4 |
+
+A totally ramified fiber contributes $n-1$ to $\deg R$ but only one branch value. Numerical ramification degree and the number of distinct branch points must therefore be kept separate.
+:::
+
+::: {.front card-id="application-curve-degree-thresholds" tags="application"}
+For an arbitrary line bundle $L$ on a smooth projective curve of genus $g\ge2$, give degree bounds ensuring nonspeciality, base-point-freeness, and very ampleness. What do they imply for $2K_C$ and $3K_C$?
+:::
+
+::: {.back card-id="application-curve-degree-thresholds"}
+
+| Property guaranteed for every $L$ | Sufficient degree |
+| --- | --- |
+| $H^1(L)=0$ | $\deg L\ge2g-1$ |
+| Base-point-free | $\deg L\ge2g$ |
+| Very ample | $\deg L\ge2g+1$ |
+
+These are uniform sufficient bounds, not necessary conditions for a particular $L$. Since $\deg(2K)=4g-4$, $2K$ is very ample for $g\ge3$. In genus two it is base-point-free but factors through the hyperelliptic map and the conic embedding of $\mathbb P^1$. The bundle $3K$ is very ample for every $g\ge2$.
+:::
+
+::: {.front card-id="numerical-plane-flex-count" tags="formula application"}
+For a smooth plane curve of degree $d\ge3$ over $\mathbb C$, compute the total inflection weight. How do ordinary flexes and hyperflexes contribute? Specialize to cubics and quartics.
+:::
+
+::: {.back card-id="numerical-plane-flex-count"}
+The Hessian determinant has degree $3(d-2)$, and its intersection with the curve is the inflection divisor, of degree $3d(d-2)$. Tangent contact order $r\ge3$ contributes weight $r-2$.
+
+| Curve | Total weight | Distinct flexes for a general curve |
+| --- | --- | --- |
+| Smooth cubic | 9 | 9 |
+| Smooth quartic | 24 | 24 |
+
+A quartic hyperflex has contact order four and contributes weight two; an ordinary flex contributes one. Thus a special quartic can have fewer distinct flex points while keeping the same total weight.
+:::
+
+::: {.front card-id="numerical-hurwitz-automorphism-bound" tags="theorem application"}
+State the Hurwitz bound for automorphisms of a smooth complex projective curve of genus $g\ge2$. What quotient ramification data give equality, and what is the genus-three example?
+:::
+
+::: {.back card-id="numerical-hurwitz-automorphism-bound"}
+The automorphism group is finite and satisfies
+$$|\operatorname{Aut}(C)|\le84(g-1).$$
+Equality requires quotient $\mathbb P^1$ with three branch values of inertia orders $(2,3,7)$. The Riemann–Hurwitz factor is
+$$-2+\left(1-\frac12\right)+\left(1-\frac13\right)+\left(1-\frac17\right)=\frac1{42},$$
+so $2g-2=|G|/42$. The Klein quartic $x^3y+y^3z+z^3x=0$ has genus three and automorphism group of order $168$, attaining the bound. The characteristic-zero hypothesis matters; wild automorphisms can violate this bound in positive characteristic.
+:::
+
 ::: {.front card-id="card-c75bc53b976644b0" tags="formula"}
 For a smooth connected projective complex curve $C$ of genus $g$, compute the degree of its canonical divisor.
 :::

@@ -2,6 +2,80 @@
 title: "Algebraic Geometry::Numerical Invariants::Surfaces"
 ---
 
+::: {.front card-id="numerical-pencil-base-length" tags="formula application"}
+Let a pencil in $|L|$ on a smooth complex projective surface have no fixed curve. What is the length of its base scheme? How does this relate to the multiplicities of all proper and infinitely near base points?
+:::
+
+::: {.back card-id="numerical-pencil-base-length"}
+Two generators have no common curve, so their intersection is the base scheme $Z$ and
+$$\operatorname{length}Z=L^2.$$
+If they meet transversely, this is the number of distinct base points. In general it counts local intersection multiplicities. After resolving all base points, with multiplicities $m_i$ in the total-transform basis, the fiber class has square zero:
+$$F=\pi^*L-\sum_i m_iE_i,\qquad 0=F^2=L^2-\sum_i m_i^2.$$
+Thus $\sum_i m_i^2=L^2$. For the local pencil $(x^2,y)$, the base scheme has length two at one point; resolution has two successive base points of multiplicity one. This differs from the jet-condition count $\binom{m+1}{2}$ used for interpolation.
+:::
+
+::: {.front card-id="numerical-del-pezzo-general-position" tags="definition application"}
+For $r\le8$ distinct points of $\mathbb P^2_{\mathbb C}$, state the precise general-position conditions making their blowup del Pezzo. Explain the numerical obstruction behind each condition.
+:::
+
+::: {.back card-id="numerical-del-pezzo-general-position"}
+No three points lie on a line, no six lie on a conic, and no eight lie on a cubic singular at one of those eight. Conditions requiring more than $r$ points are vacuous. These conditions are necessary and sufficient for $-K$ to be ample.
+
+For a strict transform $C=eH-\sum m_iE_i$,
+$$(-K)C=3e-\sum m_i.$$
+The forbidden line, conic, and cubic give respectively $3-3=0$, $6-6=0$, and $9-(2+7)=0$, contradicting ampleness. The cubic condition is additional to the line and conic conditions.
+
+Reference: [Van Luijk, Del Pezzo Surfaces](https://samirsiksek.github.io/siksek.github.io/arith/notes/delpezzo.pdf).
+:::
+
+::: {.front card-id="numerical-del-pezzo-exceptional-counts" tags="formula"}
+How many $(-1)$-curves occur on a smooth complex del Pezzo surface of each degree? What distinguishes the two degree-eight surfaces?
+:::
+
+::: {.back card-id="numerical-del-pezzo-exceptional-counts"}
+
+| $K^2$ | Surface | $(-1)$-curves |
+| --- | --- | --- |
+| 9 | $\mathbb P^2$ | 0 |
+| 8 | $\mathbb P^1\times\mathbb P^1$ | 0 |
+| 8 | $\mathbb F_1$ | 1 |
+| 7 | $\operatorname{Bl}_2\mathbb P^2$ | 3 |
+| 6 | $\operatorname{Bl}_3\mathbb P^2$ | 6 |
+| 5 | $\operatorname{Bl}_4\mathbb P^2$ | 10 |
+| 4 | $\operatorname{Bl}_5\mathbb P^2$ | 16 |
+| 3 | $\operatorname{Bl}_6\mathbb P^2$ | 27 |
+| 2 | $\operatorname{Bl}_7\mathbb P^2$ | 56 |
+| 1 | $\operatorname{Bl}_8\mathbb P^2$ | 240 |
+
+These are geometric counts over $\mathbb C$; over another ground field the curves need not all be individually defined. For $d\ge3$, the anticanonical embedding sends them to lines. The word “line” in degrees one and two refers instead to anticanonical degree one.
+:::
+
+::: {.front card-id="numerical-del-pezzo-anticanonical-basepoints" tags="application"}
+For a smooth complex del Pezzo surface of degree $d$, compare the dimension, base locus, and map of $|-K|$ for $d=1$, $d=2$, and $d\ge3$. How does degree one connect to a cubic pencil?
+:::
+
+::: {.back card-id="numerical-del-pezzo-anticanonical-basepoints"}
+Since $h^0(-K)=d+1$, the system has dimension $d$.
+
+| Degree | Base locus of $|-K|$ | Map |
+| --- | --- | --- |
+| 1 | One reduced point | Pencil; blowing up that point gives a rational elliptic surface |
+| 2 | Empty | Double cover of $\mathbb P^2$ branched over a smooth quartic |
+| $\ge3$ | Empty | Closed immersion in $\mathbb P^d$ |
+
+In degree one, write $S=\operatorname{Bl}_{p_1,\ldots,p_8}\mathbb P^2$. The anticanonical members are cubics through those points; their ninth intersection point is the remaining base point. Also $|-2K|$ is base-point-free and gives a double cover of a quadric cone in $\mathbb P^3$.
+:::
+
+::: {.front card-id="application-degree-two-del-pezzo-bitangents" tags="application"}
+For a degree-two complex del Pezzo surface $f:S\to\mathbb P^2$ branched over a smooth quartic $B$, how do the bitangents of $B$ account for the exceptional curves on $S$?
+:::
+
+::: {.back card-id="application-degree-two-del-pezzo-bitangents"}
+A bitangent line, allowing a hyperflex as coincident tangencies, meets $B$ in an even divisor $2D$. The double cover therefore splits over that line into two rational curves $E,E'$ with
+$$f^*\ell=E+E',\qquad (-K)E=(-K)E'=1,\qquad E^2=(E')^2=-1.$$
+Each bitangent gives a pair of exceptional curves, and every exceptional curve arises this way. Thus the quartic's $28$ bitangents give the del Pezzo's $56$ exceptional curves.
+:::
+
 ::: {.front card-id="formula-divisor-sum-genus" tags="formula"}
 For effective divisors $C,D$ with no common components on a smooth projective complex surface, compute $p_a(C+D)$.
 :::

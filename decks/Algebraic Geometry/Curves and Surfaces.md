@@ -2,6 +2,111 @@
 title: "Algebraic Geometry::Curves and Surfaces"
 ---
 
+::: {.front card-id="definition-hirzebruch-surface-use" tags="definition application"}
+Define the Hirzebruch surface $\mathbb F_n$ for $n\ge0$. Identify its section and fiber classes, canonical class, and which members are minimal or del Pezzo.
+:::
+
+::: {.back card-id="definition-hirzebruch-surface-use"}
+Using the quotient convention,
+$$\mathbb F_n=\mathbb P_{\mathbb P^1}(\mathcal O\oplus\mathcal O(n)).$$
+The quotient onto $\mathcal O$ gives a section $S$ with $S^2=-n$. A fiber $F$ satisfies $F^2=0$, $SF=1$, and
+$$\operatorname{Pic}(\mathbb F_n)=\mathbb ZS\oplus\mathbb ZF,\qquad K=-2S-(n+2)F.$$
+Here $\mathbb F_0\cong\mathbb P^1\times\mathbb P^1$ and $\mathbb F_1\cong\operatorname{Bl}_p\mathbb P^2$. All are minimal except $\mathbb F_1$. Since $(-K)S=2-n$, only $\mathbb F_0,\mathbb F_1$ are del Pezzo; $\mathbb F_2$ has nef and big, but nonample, anticanonical class.
+:::
+
+::: {.front card-id="definition-surface-general-type-use" tags="definition application"}
+What defines a smooth complex projective surface of general type? For a minimal such surface, distinguish the properties of $K_S$ and explain why its canonical model can differ from it.
+:::
+
+::: {.back card-id="definition-surface-general-type-use"}
+General type means $\kappa(S)=2$, equivalently $K_S$ is big. On its smooth minimal model, $K_S$ is nef and big, hence $K_S^2>0$, but need not be ample. The canonical model contracts the curves with $K_SC=0$; these are smooth rational $(-2)$-curves arranged in ADE configurations. Its singularities are Du Val and its canonical divisor is ample.
+
+For example, a smooth degree-$d$ surface in $\mathbb P^3$ with $d\ge5$ has $K_S=(d-4)H$, which is ample. A blowup of it remains of general type but has a $(-1)$-curve $E$ with $K E=-1$, so its canonical divisor is no longer nef.
+:::
+
+::: {.front card-id="application-product-surface-classification" tags="application"}
+For smooth projective complex curves $C,D$ of genera at least one, classify $C\times D$ by Kodaira dimension. Compute $q,p_g,\chi(\mathcal O)$ and $K^2$.
+:::
+
+::: {.back card-id="application-product-surface-classification"}
+Künneth and $K=p_C^*K_C+p_D^*K_D$ give
+$$q=g(C)+g(D),\quad p_g=g(C)g(D),\quad
+\chi(\mathcal O)=(g(C)-1)(g(D)-1),\quad K^2=8(g(C)-1)(g(D)-1).$$
+If both genera are one, the product is an abelian surface and $\kappa=0$. If exactly one is one, projection to the higher-genus curve is the Iitaka fibration and $\kappa=1$. If both genera are at least two, $K$ is ample and $\kappa=2$. By contrast, $\mathbb P^1\times C$ is ruled and has $\kappa=-\infty$, even when projection to $\mathbb P^1$ has elliptic fibers.
+:::
+
+::: {.front card-id="numerical-kodaira-zero-surface-identification" tags="application"}
+For smooth minimal complex projective surfaces with $\kappa=0$, give the distinguishing values of $q,p_g,\chi(\mathcal O),b_2,c_2$ and the order of the canonical bundle. Can $K^2$ distinguish them?
+:::
+
+::: {.back card-id="numerical-kodaira-zero-surface-identification"}
+All have $K^2=0$. Their other invariants are:
+
+| Surface | $q$ | $p_g$ | $\chi(\mathcal O)$ | $b_2$ | $c_2$ | Order of $\omega$ |
+| --- | --- | --- | --- | --- | --- | --- |
+| Abelian | 2 | 1 | 0 | 6 | 0 | 1 |
+| K3 | 0 | 1 | 2 | 22 | 24 | 1 |
+| Enriques | 0 | 0 | 1 | 10 | 12 | 2 |
+| Bielliptic | 1 | 0 | 0 | 2 | 0 | 2, 3, 4, or 6 |
+
+The assumption $\kappa=0$ matters: $p_g=q=0$ alone does not imply Enriques, since rational and general-type surfaces can have those values.
+:::
+
+::: {.front card-id="definition-compact-complex-classification-boundary" tags="theorem"}
+How does the classification of smooth minimal compact complex surfaces extend the complex projective classification? Which extra classes occur, organized by Kodaira dimension?
+:::
+
+::: {.back card-id="definition-compact-complex-classification-boundary"}
+
+| $\kappa$ | Minimal compact complex surfaces |
+| --- | --- |
+| $-\infty$ | $\mathbb P^2$, minimal ruled surfaces, and class VII surfaces |
+| $0$ | Complex two-tori, K3, Enriques, bielliptic, and primary or secondary Kodaira surfaces |
+| $1$ | Properly elliptic surfaces, including nonprojective ones |
+| $2$ | Surfaces of general type, which are projective |
+
+Two-tori and K3 surfaces may be nonprojective but are Kähler. Kodaira and class VII surfaces are non-Kähler. Thus the projective classification does not exhaust compact complex surfaces, and a classification into classes is not an explicit classification of every member of class VII.
+:::
+
+::: {.front card-id="definition-nonprojective-torus-k3" tags="definition application"}
+Define a complex two-torus and a complex K3 surface without assuming projectivity. How do you test projectivity in each case?
+:::
+
+::: {.back card-id="definition-nonprojective-torus-k3"}
+A two-torus is $\mathbb C^2/\Lambda$ for a rank-four lattice; it is an abelian surface precisely when it admits a polarization, an integral positive Riemann form.
+
+A complex K3 surface is a smooth simply connected compact complex surface with trivial canonical bundle. It is Kähler and is projective precisely when it has a line bundle $L$ with $c_1(L)^2>0$. Nonprojective K3 surfaces still have the K3 Hodge numbers and integral cohomology lattice; projectivity is extra data, not part of this analytic definition.
+:::
+
+::: {.front card-id="definition-kodaira-surfaces" tags="definition"}
+What are primary and secondary Kodaira surfaces in the compact-complex classification? Give a construction and their distinguishing numerical invariants.
+:::
+
+::: {.back card-id="definition-kodaira-surfaces"}
+A primary Kodaira surface is a minimal non-Kähler compact complex surface with $\kappa=0$ and $b_1=3$. It is a holomorphic principal elliptic bundle over an elliptic curve with nonzero topological Chern class; its canonical bundle is trivial.
+
+A secondary Kodaira surface is a finite étale quotient of a primary Kodaira surface with nontrivial canonical bundle. Its canonical cover is primary.
+
+| Type | $b_1$ | $b_2$ | $q$ | $p_g$ | Order of $\omega$ |
+| --- | --- | --- | --- | --- | --- |
+| Primary | 3 | 4 | 2 | 1 | 1 |
+| Secondary | 1 | 0 | 1 | 0 | 2, 3, 4, or 6 |
+
+Both have $\chi(\mathcal O)=c_2=K^2=0$. Their odd first Betti numbers rule out Kählerness and projectivity.
+:::
+
+::: {.front card-id="definition-class-vii-hopf-example" tags="definition example"}
+What defines a class VII surface? Give an explicit Hopf-surface example and explain how the class differs numerically from ruled surfaces.
+:::
+
+::: {.back card-id="definition-class-vii-hopf-example"}
+A class VII surface is a compact complex surface with $\kappa=-\infty$ and $b_1=1$; class VII$_0$ means minimal. It has $q=1$, $p_g=0$, $\chi(\mathcal O)=0$, $c_2=b_2$, and $K^2=-b_2$.
+
+For $0<|\alpha|,|\beta|<1$, the quotient
+$$H=(\mathbb C^2\setminus\{0\})/\langle(z_1,z_2)\mapsto(\alpha z_1,\beta z_2)\rangle$$
+is a primary Hopf surface, with $b_1=1,b_2=0$. It is non-Kähler. A ruled surface over a genus-$g$ curve instead has $b_1=2g$. Thus $\kappa=-\infty$ alone does not imply ruled in the compact-complex category.
+:::
+
 ::: {.front card-id="application-adjunction-nodal-cubic" tags="application"}
 Let $C\subset\mathbb P^2_{\mathbb C}$ be an integral cubic with one ordinary node and no other singularities. Compute $\omega_C$, $p_a(C)$, and the genus of its normalization $\nu:\widetilde C\to C$. Is $\nu^*\omega_C=\omega_{\widetilde C}$?
 :::
@@ -679,7 +784,7 @@ What is a **rational surface**?
 :::
 
 ::: {.back card-id="card-baf0044bf7bc363a"}
-A 2-dimensional projective variety birationally equivalent to ${\mathbf{P}}^2$; simplest in the Enriques-Kodaira classification. Always a repeated blowup of a minimal rational surface, one of ${\mathbf{P}}^2$ or ${ \mathbf{F} }_n$ (the Hirzebruch surface). Suffices to show irregularity $q=0$ and plurigenus $p_2 = 0$.
+A 2-dimensional variety birationally equivalent to ${\mathbf{P}}^2$ over the ground field. In the classification of smooth complex projective surfaces, every rational surface is a repeated point blowup of a minimal rational surface: ${\mathbf{P}}^2$ or a Hirzebruch surface $\mathbb F_n$ with $n=0$ or $n\ge2$. The exception $\mathbb F_1=\operatorname{Bl}_p\mathbb P^2$ is not minimal. For a smooth complex projective surface, Castelnuovo's criterion says it suffices to show irregularity $q=0$ and plurigenus $P_2=0$.
 :::
 
 ::: {.front card-id="card-39afa431b819ac1f"}
@@ -712,7 +817,7 @@ What is a minimal surface?
 :::
 
 ::: {.back card-id="card-552f2fab724f8aa8"}
-No rational $(-1)\dash$curves
+For a smooth projective surface, no smooth rational $(-1)$-curves: no curve $E\cong\mathbb P^1$ with $E^2=-1$. Equivalently, it admits no nonisomorphic birational morphism to another smooth projective surface. Relative minimality of a fibration only excludes such curves contained in fibers.
 :::
 
 ::: {.front card-id="card-d5bebb5d7791f258"}
@@ -720,7 +825,7 @@ What is a ruled surface?
 :::
 
 ::: {.back card-id="card-d5bebb5d7791f258"}
-$\exists S\dashrightarrow C\times {\mathbf{P}}^1$ with $g(C) \geq 0$.
+There exists a birational map $S\dashrightarrow C\times\mathbb P^1$ for a smooth projective curve $C$; here we work over $\mathbb C$ and allow $g(C)=0$. A geometrically ruled surface over $C$ is a $\mathbb P^1$-bundle $\mathbb P_C(E)$ for a rank-two vector bundle $E$. A blowup of such a bundle remains ruled but need not be a bundle. A minimal ruled surface over a positive-genus curve is geometrically ruled.
 :::
 
 ::: {.front card-id="card-f6c1f8a6683ecb7a"}
@@ -728,7 +833,7 @@ What is an abelian surface?
 :::
 
 ::: {.back card-id="card-f6c1f8a6683ecb7a"}
-$\CC^2/\Lambda \hookrightarrow{\mathbf{P}}^N$ with $\Lambda$ a rank 4 lattice.
+$\mathbb C^2/\Lambda\hookrightarrow\mathbb P^N$ with $\Lambda$ a rank-four lattice: a projective complex torus of dimension two. Algebraically, it is a connected projective algebraic group of dimension two. The embedding condition matters: a complex two-torus need not be projective. Choosing an origin on a projective torus supplies the group structure.
 :::
 
 ::: {.front card-id="card-4ede286dfe44fe0c"}
@@ -736,9 +841,9 @@ What is an Enriques surface?
 :::
 
 ::: {.back card-id="card-4ede286dfe44fe0c"}
-Exactly quotients of K3s by fixed point free involutions.
+Over $\mathbb C$, exactly quotients of K3 surfaces by fixed-point-free involutions.
 
-Smooth projective $Y$ with $2K_Y \sim 0$ and $h^1({\mathcal{O}}_Y) = h^2({\mathcal{O}}_Y) = 0$; the canonical induces an unramified 2-to-1 cover $X\to Y$ for $X$ a K3.
+A smooth connected projective complex surface $Y$ with $2K_Y\sim0$ and $h^1(\mathcal O_Y)=h^2(\mathcal O_Y)=0$. Here $K_Y\not\sim0$, so $\omega_Y$ has order exactly two; its canonical cover is an étale double cover $X\to Y$ with $X$ a K3 surface.
 :::
 
 ::: {.front card-id="card-2983289eb3e5ba5b"}
@@ -746,15 +851,17 @@ What are bielliptic surfaces?
 :::
 
 ::: {.back card-id="card-2983289eb3e5ba5b"}
-Quotients of $E\times E'$ elliptic curves.
+Quotients $(E\times E')/G$ of products of complex elliptic curves, where $G$ is a finite subgroup of translations of $E$, acting diagonally and faithfully on $E'$ with $E'/G\cong\mathbb P^1$. The translation action makes the diagonal action free.
+
+Equivalently, these are smooth minimal complex projective surfaces with $\kappa=0$, $q=1$, and $p_g=0$. They are also called hyperelliptic surfaces. The projections induce a smooth genus-one fibration over $E/G$ and a genus-one fibration over $E'/G\cong\mathbb P^1$. Arbitrary quotients of products of elliptic curves need not be bielliptic.
 :::
 
 ::: {.front card-id="card-117b11cbf23727bc"}
-What is a special fact about proper elliptic surfaces?
+What is a special fact about properly elliptic surfaces?
 :::
 
 ::: {.back card-id="card-117b11cbf23727bc"}
-Always have an elliptic fibration.
+Always have a genus-one fibration. A properly elliptic surface means a smooth minimal surface with Kodaira dimension one. In the complex projective case, its Iitaka fibration is $f:S\to B$ with connected fibers and smooth genus-one general fiber. A section need not exist. Having a genus-one fibration alone does not force $\kappa=1$: rational elliptic surfaces and elliptic K3 surfaces have $\kappa=-\infty$ and $0$, respectively.
 :::
 
 ::: {.front card-id="card-fffe378c18f2e57c"}
@@ -873,7 +980,9 @@ What is an elliptic surface?
 :::
 
 ::: {.back card-id="card-e1c263264e18ad22"}
-$\pi:X\to {\mathbf{P}}^1$ surjective with generic fiber a smooth elliptic curve. Admit Weierstrass normal forms.
+A smooth projective surface with a surjective morphism $\pi:X\to B$ to a smooth projective curve, with connected fibers and smooth genus-one generic fiber. We use the convention that an elliptic surface need not have a section; with a chosen section it is a Jacobian elliptic surface. The base $B$ need not be $\mathbb P^1$.
+
+A relatively minimal elliptic surface with section has a Weierstrass model over $B$. Without a section, its relative Jacobian has a Weierstrass model, while the original genus-one fibration is a torsor over the smooth locus. A general fiber of genus one does not determine the Kodaira dimension of the surface.
 :::
 
 ::: {.front card-id="card-ddfdea50da4dc550"}
@@ -1182,7 +1291,7 @@ What is the definition of Enriques–kodaira classification?
 :::
 
 ::: {.back card-id="card-e38d788d3a5ddd43"}
-The classification of smooth projective complex surfaces by Kodaira dimension: $-\infty$ (rational or ruled), $0$ (abelian, K3, Enriques, or bielliptic), $1$ (properly elliptic), and $2$ (general type).
+After passing to a smooth minimal model, the classification of smooth projective complex surfaces by Kodaira dimension is: $-\infty$ ($\mathbb P^2$ or minimal ruled), $0$ (abelian, K3, Enriques, or bielliptic), $1$ (properly elliptic), and $2$ (general type). Arbitrary smooth projective surfaces are obtained from their minimal models by point blowups; the Kodaira dimension is unchanged.
 :::
 
 ::: {.front card-id="card-ad5b403d7b573270" tags="definition"}

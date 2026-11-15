@@ -2,6 +2,53 @@
 title: "Algebraic Geometry::Numerical Invariants::Dimensions and Moduli"
 ---
 
+::: {.front card-id="application-moduli-complete-intersection-counts" tags="application"}
+Compute the dimensions up to projective equivalence of smooth $(2,2)$ surfaces in $\mathbb P^4$ and smooth $(2,3)$ K3 surfaces in $\mathbb P^4$. Which redundancies in their defining equations must be removed?
+:::
+
+::: {.back card-id="application-moduli-complete-intersection-counts"}
+Quadrics in $\mathbb P^4$ form a vector space of dimension $15$. A $(2,2)$ ideal is determined by its two-dimensional space of quadrics, so its parameter space is open in $\operatorname{Gr}(2,15)$ of dimension $26$. Subtracting $\dim\operatorname{PGL}_5=24$ gives moduli dimension $2$.
+
+For a $(2,3)$ surface, choose the quadric in a projective space of dimension $14$. Cubics have vector-space dimension $35$, but adding any of the five linear multiples of the quadric leaves the ideal unchanged. The cubic therefore contributes $35-5-1=29$ parameters. The result is $14+29-24=19$. Smooth members have finite projective stabilizers, so these subtractions apply.
+:::
+
+::: {.front card-id="application-moduli-stabilizer-quadric" tags="application"}
+Why does subtracting $\dim\operatorname{PGL}_4$ from the parameter-space dimension of quadric surfaces give the wrong moduli dimension? Compare smooth cubic surfaces.
+:::
+
+::: {.back card-id="application-moduli-stabilizer-quadric"}
+Quadrics have projective parameter-space dimension $9$, while $\operatorname{PGL}_4$ has dimension $15$. A smooth quadric has projective stabilizer of dimension $6$, coming from $\operatorname{PGL}_2\times\operatorname{PGL}_2$ (and a discrete factor interchanging rulings). Thus the orbit has dimension $15-6=9$, and the moduli dimension is zero.
+
+Cubic surfaces have projective parameter-space dimension $19$ and finite stabilizer, giving dimension $19-15=4$. The orbit dimension, not the group dimension alone, is what must be subtracted.
+:::
+
+::: {.front card-id="numerical-general-position-versus-interpolation" tags="definition application"}
+Define linear general position for distinct points in $\mathbb P^n$. Does it imply independence of their conditions on forms of every degree? Give a plane counterexample and the correct test for interpolation.
+:::
+
+::: {.back card-id="numerical-general-position-versus-interpolation"}
+Every subset of at most $n+1$ points must be linearly independent; equivalently, no $r$-plane with $r<n$ contains more than $r+1$ of the points. In $\mathbb P^2$ this means no three are collinear.
+
+Six distinct points on a smooth conic satisfy linear general position, but their conditions on conics are dependent: there is a nonzero conic through all six. For a reduced finite set $Z$, independence in degree $d$ means the evaluation map
+$$H^0(\mathbb P^n,\mathcal O(d))\longrightarrow H^0(Z,\mathcal O_Z(d))$$
+is surjective, equivalently $H^1(\mathcal I_Z(d))=0$ for $d\ge0$. “General position” must name the incidence or interpolation condition needed.
+:::
+
+::: {.front card-id="numerical-point-configurations-moduli" tags="application"}
+For $r\ge4$ ordered general points of $\mathbb P^2_{\mathbb C}$, compute the dimension of their configurations up to projective equivalence. How does this recover familiar del Pezzo moduli dimensions?
+:::
+
+::: {.back card-id="numerical-point-configurations-moduli"}
+A general ordered quadruple with no three collinear is a projective frame, so its stabilizer is trivial. The configuration space has dimension $2r$ and $\operatorname{PGL}_3$ has dimension $8$, giving $2r-8$.
+
+| Points blown up | 4 | 5 | 6 | 7 | 8 |
+| --- | --- | --- | --- | --- | --- |
+| Del Pezzo degree | 5 | 4 | 3 | 2 | 1 |
+| Moduli dimension | 0 | 2 | 4 | 6 | 8 |
+
+Restricting to the del Pezzo general-position locus does not change dimension. Forgetting the ordering and blowdown marking makes only a finite identification.
+:::
+
 ::: {.front card-id="card-a3226206edbadebd"}
 What are the dimensions of moduli of all and just algebraic Kummer surfaces?
 :::
