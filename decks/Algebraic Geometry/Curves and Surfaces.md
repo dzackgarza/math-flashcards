@@ -2,6 +2,97 @@
 title: "Algebraic Geometry::Curves and Surfaces"
 ---
 
+::: {.front card-id="application-adjunction-nodal-cubic" tags="application"}
+Let $C\subset\mathbb P^2_{\mathbb C}$ be an integral cubic with one ordinary node and no other singularities. Compute $\omega_C$, $p_a(C)$, and the genus of its normalization $\nu:\widetilde C\to C$. Is $\nu^*\omega_C=\omega_{\widetilde C}$?
+:::
+
+::: {.back card-id="application-adjunction-nodal-cubic"}
+Cartier-divisor adjunction gives the dualizing line bundle $\omega_C\cong\mathcal O_C$ and $p_a(C)=1$. The node has delta invariant one, so $g(\widetilde C)=0$ and $\widetilde C\cong\mathbb P^1$. Thus $\nu^*\omega_C\cong\mathcal O_{\mathbb P^1}$ while $\omega_{\widetilde C}\cong\mathcal O_{\mathbb P^1}(-2)$. If $p,q$ are the preimages of the node, then
+$$\nu^*\omega_C\cong\omega_{\widetilde C}(p+q).$$
+Adjunction on a singular Cartier curve computes its dualizing sheaf, not the canonical bundle of its normalization.
+:::
+
+::: {.front card-id="application-adjunction-strict-transform-genus" tags="application"}
+An integral plane quartic has one ordinary node $p$ and is otherwise smooth. Blow up $p$, with line pullback $H$ and exceptional curve $E$. Compute the class and genus of the strict transform using adjunction.
+:::
+
+::: {.back card-id="application-adjunction-strict-transform-genus"}
+The strict transform $C'$ is smooth and has class $4H-2E$, since the node has multiplicity two. On the blowup, $K=-3H+E$ and $H^2=1$, $HE=0$, $E^2=-1$. Hence
+$$2g(C')-2=(4H-2E)(H-E)=2,\qquad g(C')=2.$$
+This agrees with the plane arithmetic genus three minus the node's delta invariant one.
+:::
+
+::: {.front card-id="application-adjunction-bidegree-ramification" tags="application"}
+Let $C\subset\mathbb P^1_{\mathbb C}\times\mathbb P^1_{\mathbb C}$ be a general smooth curve of bidegree $(3,4)$. Compute $\omega_C$, its genus, the degrees of the two projections, and the total ramification degree of each projection.
+:::
+
+::: {.back card-id="application-adjunction-bidegree-ramification"}
+Adjunction gives $\omega_C=\mathcal O_C(1,2)$. Since $(a,b)\cdot(c,d)=ad+bc$,
+$$\deg\omega_C=(1,2)\cdot(3,4)=10,\qquad g(C)=6.$$
+The first projection has degree four and the second degree three. Riemann–Hurwitz gives total ramification degrees $10+2\cdot4=18$ and $10+2\cdot3=16$, respectively. These are degrees of ramification divisors; interpreting them as numbers of branch points requires simple branching with distinct branch values.
+:::
+
+::: {.front card-id="application-hurwitz-cyclic-infinity" tags="application"}
+Let $C$ be the smooth projective normalization of $y^m=f(x)$ over $\mathbb C$, where $m\ge2$ and $f$ is squarefree of degree $d\ge1$. Compute the ramification of $C\to\mathbb P^1_x$, including infinity, and the genus. Specialize to $(m,d)=(3,4)$ and $(3,6)$.
+:::
+
+::: {.back card-id="application-hurwitz-cyclic-infinity"}
+The cover has degree $m$. Each root of $f$ has one point above it with ramification index $m$. Put $\delta=\gcd(m,d)$. Above infinity there are $\delta$ points, each with index $m/\delta$, contributing $m-\delta$ in total. Thus
+$$2g(C)-2=-2m+d(m-1)+(m-\delta),\qquad
+g(C)=\frac{(m-1)(d-1)-(\delta-1)}2.$$
+For $(3,4)$ the genus is three and infinity is totally ramified. For $(3,6)$ the genus is four and infinity has three unramified points.
+:::
+
+::: {.front card-id="application-hurwitz-proposed-map" tags="application"}
+Can a smooth complex curve of genus two admit a degree-two morphism to a smooth curve of genus two? Can an elliptic curve map nonconstantly to a curve of genus at least two? What numerical test decides both questions?
+:::
+
+::: {.back card-id="application-hurwitz-proposed-map"}
+For any finite nonconstant morphism in characteristic zero,
+$$2g(X)-2\ge n(2g(Y)-2).$$
+The proposed degree-two map would require $2\ge4$, which is impossible. For an elliptic source the left side is zero, whereas a target of genus at least two makes the right side positive. Neither map exists.
+:::
+
+::: {.front card-id="application-hurwitz-simple-branch-count" tags="application"}
+A connected degree-three cover $C\to\mathbb P^1_{\mathbb C}$ is simply branched over eight distinct points. Compute its genus. How does the ramification contribution change if one branch fiber is instead totally ramified?
+:::
+
+::: {.back card-id="application-hurwitz-simple-branch-count"}
+A simple branch fiber has indices $(2,1)$ and contributes one to $\deg R$. Thus
+$$2g(C)-2=-6+8=2,\qquad g(C)=2.$$
+A totally ramified fiber has index three and contributes two, although it still gives only one branch point downstairs. Replacing just one simple branch fiber while keeping the other seven would give $\deg R=9$ and $2g-2=3$, so that proposed branch data cannot occur.
+:::
+
+::: {.front card-id="application-hurwitz-quotient-involution" tags="application"}
+An involution of a smooth complex projective genus-three curve has four fixed points. Compute the genus of the quotient. How many fixed points would an involution with rational quotient have?
+:::
+
+::: {.back card-id="application-hurwitz-quotient-involution"}
+The quotient map has degree two and is simply ramified precisely at the fixed points. Hence
+$$4=2(2g(Y)-2)+4,\qquad g(Y)=1.$$
+If $g(Y)=0$, the formula instead gives $4=-4+r$, so $r=8$. Counting fixed points can therefore distinguish a bielliptic involution from a hyperelliptic involution in genus three.
+:::
+
+::: {.front card-id="application-hurwitz-galois-branch-data" tags="application"}
+Let a finite group $G$ act faithfully on a smooth complex projective curve $X$, with quotient $Y$. If the branch points of $X\to Y$ have inertia orders $e_1,\ldots,e_r$, how do you compute $g(X)$? Test $|G|=60$, $Y=\mathbb P^1$, and inertia orders $(2,3,5)$.
+:::
+
+::: {.back card-id="application-hurwitz-galois-branch-data"}
+Above a branch point with inertia order $e_i$ there are $|G|/e_i$ points, so
+$$2g(X)-2=|G|\left(2g(Y)-2+\sum_{i=1}^r\left(1-\frac1{e_i}\right)\right).$$
+For the stated data, the bracket is $-2+1/2+2/3+4/5=-1/30$, giving $2g(X)-2=-2$ and $g(X)=0$. The formula is a necessary numerical check; it does not by itself construct a cover with prescribed group and branch data.
+:::
+
+::: {.front card-id="application-hurwitz-wild-artin-schreier" tags="application"}
+Over an algebraically closed field of characteristic $p>0$, consider $f:\mathbb P^1_y\to\mathbb P^1_x$ given by $x=y^p-y$. Locate its ramification and compute the different divisor. Why does summing $e_P-1$ give the wrong answer?
+:::
+
+::: {.back card-id="application-hurwitz-wild-artin-schreier"}
+The degree-$p$ map is separable and unramified on the affine line since $dx/dy=-1$. Infinity is its only ramification point and has index $p$. Riemann–Hurwitz gives
+$$-2=-2p+\deg R,\qquad R=(2p-2)[\infty].$$
+In local coordinates $s=1/y$ and $t=1/x$, one has $t=s^p/(1-s^{p-1})$ and $\operatorname{ord}_s(dt/ds)=2p-2$. The tame expression would contribute only $p-1$; the ramification is wild.
+:::
+
 ::: {.front card-id="card-f45bbd1cf89681a6" tags="theorem"}
 For a proper birational morphism $f:X\to Y$ of integral complex varieties with normal target, state Zariski's connectedness theorem. What does it imply for the total transform of a point of indeterminacy of a birational map from a normal projective variety?
 :::
@@ -121,23 +212,29 @@ Twist by $\mcl(D+p)$ to get $\mcl(D) \hookrightarrow\mcl(D+p) \twoheadrightarrow
 :::
 
 ::: {.front card-id="card-19de812341c2379c" tags="definition"}
-What is the **Riemann-Hurwitz** theorem for curves?
+What is the **Riemann–Hurwitz** theorem for curves?
 :::
 
 ::: {.back card-id="card-19de812341c2379c"}
-Consider a finite morphism of smooth projective curves $f: X \longrightarrow Y$ of degree $n=[K(X): K(Y)]$. If $f$ is separable,
-$$2 g(X)-2=n(2 g(Y)-2)+\operatorname{deg} R, \qquad \text{equivalently} \qquad \chi(X) = n\cdot\chi(Y) - \deg R,$$
-where $R=\sum_P \operatorname{length}(\Omega_{X / Y})_P\,[P]$ is the ramification divisor. Then $\deg R \geq \sum_{p\in X} (e_p-1)$, with equality iff $f$ is tamely ramified (e.g. in characteristic zero), so
-$$2g_X - 2 = \deg(f)\cdot(2g_Y - 2) + \sum_{p\in X} (e_p - 1) \qquad \text{(tame case)}.$$
-If $f$ is purely inseparable, then $g(X)=g(Y)$.
+Consider a finite morphism of smooth connected projective curves $f:X\to Y$ over an algebraically closed field, of degree $n=[K(X):K(Y)]$. If $f$ is separable,
+$$2g(X)-2=n(2g(Y)-2)+\deg R.$$
+Over $\mathbb C$, equivalently $\chi_{\mathrm{top}}(X)=n\chi_{\mathrm{top}}(Y)-\deg R$. Here
+$$R=\sum_{P\in X}\operatorname{length}_{\mathcal O_{X,P}}(\Omega_{X/Y,P})[P]$$
+is the ramification divisor; its coefficients are the different exponents. Then $\deg R\ge\sum_P(e_P-1)$, with equality iff $f$ is tamely ramified (e.g. in characteristic zero), so
+$$2g_X-2=\deg(f)(2g_Y-2)+\sum_{P\in X}(e_P-1)\qquad\text{(tame case)}.$$
+For a purely inseparable morphism over the stated algebraically closed field, $g(X)=g(Y)$; the separable ramification formula does not apply.
+
+Reference: [Stacks Project, Riemann–Hurwitz](https://stacks.math.columbia.edu/tag/0C1B).
 :::
 
 ::: {.front card-id="card-698d5032f513e86a"}
-What is the **ramification index** $e_p$?
+What is the **ramification index** $e_P$?
 :::
 
 ::: {.back card-id="card-698d5032f513e86a"}
-For a finite morphism $f:X\to Y$ of curves and $p\in X, q=f(p)\in Y$, let $t\in {\mathcal{O}}_{Y, q}$ be a local parameter, push to ${\mathcal{O}}_{X, p}$ via $f^\sharp: {\mathcal{O}}_{Y, q} \to {\mathcal{O}}_{X, p}$ and define $e_p \coloneqq v_p(f^\sharp(t))$ where $v_p$ is the valuation in the DVR ${\mathcal{O}}_{X, p}$. If $e_p > 1$ then $f$ is ramified at $p$ and $f(p)$ is a branch point; if $e_p = 1$ then $f$ is unramified at $p$.
+For a finite separable morphism $f:X\to Y$ of smooth curves over an algebraically closed field and $P\in X$, $Q=f(P)$, take a local parameter $t\in\mathcal O_{Y,Q}$ and pull it to $\mathcal O_{X,P}$ via $f^\sharp$. Define
+$$e_P\coloneqq v_P(f^\sharp(t)),$$
+where $v_P$ is the valuation in the DVR $\mathcal O_{X,P}$. Equivalently, write $f^*t=u s^{e_P}$ with $u$ a unit and $s$ a local parameter at $P$. If $e_P>1$, then $P$ is a ramification point and $Q$ is a branch point; if $e_P=1$, the map is unramified at $P$.
 :::
 
 ::: {.front card-id="card-c82084f33fcd2fe7"}
@@ -145,7 +242,7 @@ What is **tame/wild ramification**?
 :::
 
 ::: {.back card-id="card-c82084f33fcd2fe7"}
-For $\operatorname{ch}k = 0$ or $p$ where $p\not\mathrel{\Big|}e_p$, **tame**. Otherwise if $\operatorname{ch}k = 0$ with $p\mathrel{\Big|}e_p$, **wild**.
+For a finite separable morphism of smooth curves over an algebraically closed field $k$: $\operatorname{char}k=0$, or $\operatorname{char}k=p>0$ with $p\nmid e_P$, gives **tame** ramification. If $\operatorname{char}k=p>0$ and $p\mid e_P$, it is **wild**. In the wild case the different exponent is strictly greater than $e_P-1$.
 :::
 
 ::: {.front card-id="card-f669238762e481bf"}
@@ -272,6 +369,9 @@ What is the **adjunction formula** for divisors?
 ::: {.back card-id="card-ed2454525c6b8c81"}
 For a regular immersion $i:Z\hookrightarrow X$ of codimension $c$ between smooth varieties, $\omega_Z\cong i^*\omega_X\otimes\det(N_{Z/X})$. For $X$ smooth projective and $D$ a smooth prime divisor, $N_{D/X} = {\mathcal{O}}_X(D)|_D$, so
 $$K_D = (K_X +D)\mathrel{\Big|}_D.$$
+For an effective Cartier divisor $D$ in a smooth variety, the line-bundle formula
+$$\omega_D\cong(\omega_X\otimes\mathcal O_X(D))|_D$$
+still holds when $D$ is singular: $\omega_D$ is then its dualizing sheaf. For an integral projective curve on a smooth surface, it gives $2p_a(D)-2=D\cdot(D+K_X)$.
 :::
 
 ::: {.front card-id="card-a47c1867ae974328"}
@@ -546,12 +646,16 @@ $$K_SC=2g-2-C^2.$$
 :::
 
 ::: {.front card-id="card-f73cddec8b039beb"}
-What is the degree formula for a curve of degree $d$ in ${\mathbf{P}}^2$?
+What is the genus formula for a curve of degree $d$ in $\mathbb P^2$?
 :::
 
 ::: {.back card-id="card-f73cddec8b039beb"}
-By adjunction,
-$$2g-2 = C.(C+K_{{\mathbf{P}}^2}) = dH.(d-3)H = d(d-3)\implies g ={1\over 2}(d-1)(d-2).$$
+For $C$ smooth over $\mathbb C$, by adjunction,
+$$2g-2=C\cdot(C+K_{\mathbb P^2})=dH\cdot(d-3)H=d(d-3)
+\implies g=\frac12(d-1)(d-2).$$
+For an integral singular plane curve, the same intersection computation gives the arithmetic genus $p_a(C)$ instead. Its normalization $\nu:\widetilde C\to C$ has
+$$g(\widetilde C)=p_a(C)-\sum_{P\in\operatorname{Sing}(C)}\delta_P.$$
+The genera agree exactly when $C$ is smooth. A node or an ordinary cusp has $\delta_P=1$.
 :::
 
 ::: {.front card-id="card-f99d3b6a576c782a"}

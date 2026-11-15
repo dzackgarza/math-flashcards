@@ -19,6 +19,28 @@ reusing a construction from its proof. Routine applications take priority over
 reconstructing standard proofs. A missing proof card alone does not establish
 a coverage gap.
 
+## Edit existing cards by synthesis
+
+Existing cards contain authored choices about how to recall and use mathematics.
+Preserve their voice, question, notation, examples, mnemonic cues, and route
+through an argument. A derivation may be the means of remembering a formula.
+The priority assigned to new proof cards does not authorize removing an
+existing derivation.
+
+Integrate corrections and additions into that structure. Repair a false step,
+supply a missing hypothesis, or extend an answer while keeping the useful
+reasoning around it. Before accepting a rewrite, compare it with the original:
+account for each removed explanation, intermediate equality, example, and
+retrieval cue. Mathematical equivalence of the final answer is insufficient
+if the edit loses the author's way of reaching it. Put a distinct new task in
+a separate card instead of replacing an existing question with that task.
+Ask before changing a sound authored approach merely to prefer another one.
+
+Preserve useful additions as well as the original material. When an edit needs
+repair, work from its current state and retain valid corrections, hypotheses,
+examples, and explanations. Add the missing reasoning beside those improvements;
+compare against both the original card and the expanded version.
+
 ## Require retrieval before revealing the answer
 
 Put the question on the front and the answer on the back. Ask the learner to

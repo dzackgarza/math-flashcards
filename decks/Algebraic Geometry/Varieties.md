@@ -129,10 +129,12 @@ Give several examples of Fano varieties.
 :::
 
 ::: {.back card-id="card-72e647f121eed544"}
-$-K_{{\mathbf{P}}^n} = {\mathcal{O}}(n+1)$ which is very ample.
+For $n\ge1$, $-K_{\mathbb P^n}=\mathcal O(n+1)$, which is very ample.
 
-Any $D\in \operatorname{Div}({\mathbf{P}}^n)$ when $\deg D < n+1$, since adjunction yields
-$$K_D = (K_{{\mathbf{P}}^n} + D)\mathrel{\Big|}_D = \qty{-(n+1)H + \deg(D)\cdot H}\mathrel{\Big|}_D > 0$$
+Any smooth hypersurface $D\subset\mathbb P^n_{\mathbb C}$ with $n\ge2$ and $1\le\deg D<n+1$, since adjunction yields
+$$K_D=(K_{\mathbb P^n}+D)|_D
+=\bigl(-(n+1)H+\deg(D)H\bigr)|_D,$$
+so $-K_D=(n+1-\deg D)H|_D$ is ample. For example, a smooth cubic surface in $\mathbb P^3$ is Fano.
 :::
 
 ::: {.front card-id="card-c3dc4c2d611a350b"}
@@ -148,9 +150,10 @@ Give examples of Calabi-Yau varieties.
 :::
 
 ::: {.back card-id="card-2957b6e954c7da3c"}
-Hypersurfaces $D$ of $\deg D = n+1$, since adjunction yields
-$$K_D = (K_{{\mathbf{P}}^n} + D)\mathrel{\Big|}_D = \qty{-(n+1)H + \deg(D)\cdot H}\mathrel{\Big|}_D = 0H\mathrel{\Big|}_D = 0,$$
-using the Lefschetz hyperplane theorem to show that the $h^i$ vanish.
+Smooth hypersurfaces $D\subset\mathbb P^n_{\mathbb C}$ of degree $n+1$, with $n\ge3$, since adjunction yields
+$$K_D=(K_{\mathbb P^n}+D)|_D
+=\bigl(-(n+1)H+\deg(D)H\bigr)|_D=0.$$
+Use the Lefschetz hyperplane theorem and Hodge decomposition to show $h^q(\mathcal O_D)=0$ for $0<q<n-1$; Lefschetz also gives $\pi_1(D)=1$. The top group has $h^{n-1}(\mathcal O_D)=1$ by Serre duality. Examples are quartic K3 surfaces in $\mathbb P^3$ and quintic threefolds in $\mathbb P^4$.
 :::
 
 ::: {.front card-id="card-06bc339afe07854e"}

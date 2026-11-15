@@ -2,6 +2,58 @@
 title: "Algebraic Geometry::Cohomology"
 ---
 
+::: {.front card-id="application-projective-hypersurface-restriction" tags="application"}
+Let $X=V(F_d)\subset\mathbb P^n_k$ be a degree-$d$ hypersurface, with $n\ge2$ and $d\ge1$. Does every section of $\mathcal O_X(m)$ extend to $\mathbb P^n$? Compute $h^0(X,\mathcal O_X(m))$ for $m\ge0$, and specialize to $m=2$ on a quartic surface.
+:::
+
+::: {.back card-id="application-projective-hypersurface-restriction"}
+Use
+$$0\longrightarrow\mathcal O_{\mathbb P^n}(m-d)\xrightarrow{\cdot F_d}\mathcal O_{\mathbb P^n}(m)\longrightarrow\mathcal O_X(m)\longrightarrow0.$$
+Since $H^1(\mathbb P^n,\mathcal O(m-d))=0$ for $n\ge2$, restriction on sections is surjective for every integer $m$. Its kernel is $F_d$ times the degree-$(m-d)$ forms. For $m\ge0$,
+$$h^0(X,\mathcal O_X(m))=\binom{n+m}{n}-\begin{cases}\binom{n+m-d}{n}&m\ge d,\\0&m<d.\end{cases}$$
+For a quartic surface and $m=2$, the answer is $\binom52=10$.
+:::
+
+::: {.front card-id="application-projective-extension-obstruction" tags="application"}
+Let $Z$ consist of four distinct points of $\mathbb P^1_{\mathbb C}$. Does every section of $\mathcal O_Z(1)$ extend to a section of $\mathcal O_{\mathbb P^1}(1)$? Identify the obstruction group and its dimension.
+:::
+
+::: {.back card-id="application-projective-extension-obstruction"}
+The sequence
+$$0\longrightarrow\mathcal O_{\mathbb P^1}(-3)\longrightarrow\mathcal O_{\mathbb P^1}(1)\longrightarrow\mathcal O_Z(1)\longrightarrow0$$
+gives
+$$0\longrightarrow\mathbb C^2\longrightarrow\mathbb C^4\longrightarrow H^1(\mathbb P^1,\mathcal O(-3))\longrightarrow0.$$
+The obstruction space has dimension two. Only the image of the evaluation map extends. The vanishing used for hypersurfaces in $\mathbb P^n$ with $n\ge2$ fails here.
+:::
+
+::: {.front card-id="application-projective-complete-intersection-sections" tags="application"}
+Let $C\subset\mathbb P^3_{\mathbb C}$ be a smooth complete intersection of a quadric and a cubic. Compute $h^0(C,\mathcal O_C(2))$ and $h^0(C,\mathcal O_C(3))$ by restricting ambient forms. What relations must be subtracted?
+:::
+
+::: {.back card-id="application-projective-complete-intersection-sections"}
+The ideal has Koszul resolution
+$$0\longrightarrow\mathcal O(-5)\longrightarrow\mathcal O(-2)\oplus\mathcal O(-3)\longrightarrow\mathcal I_C\longrightarrow0.$$
+Intermediate cohomology of line bundles on $\mathbb P^3$ vanishes, so $H^1(\mathcal I_C(m))=0$ and restriction is surjective. In degree two the only relation is the defining quadric, giving $10-1=9$ sections. In degree three the relations are its four linear multiples and the defining cubic, giving $20-4-1=15$.
+:::
+
+::: {.front card-id="formula-bott-projective-differentials" tags="formula"}
+For $n\ge1$, $0\le p\le n$, and $k\in\mathbb Z$, compute $h^q(\mathbb P^n_{\mathbb C},\Omega^p(k))$. Which twists have cohomology?
+:::
+
+::: {.back card-id="formula-bott-projective-differentials"}
+Bott's formula is
+$$h^q(\mathbb P^n,\Omega^p(k))=
+\begin{cases}
+\binom{n+k-p}{k}\binom{k-1}{p}&q=0,\ k>p,\\
+1&q=p,\ k=0,\\
+\binom{p-k}{-k}\binom{-k-1}{n-p}&q=n,\ k<p-n,\\
+0&\text{otherwise}.
+\end{cases}$$
+For example, $\Omega^1_{\mathbb P^3}(1)$ is acyclic, $h^0(\Omega^1_{\mathbb P^3}(2))=6$, and $h^1(\Omega^1_{\mathbb P^3})=1$.
+
+Reference: [Movasati, A Course in Hodge Theory, Theorem 7.1](https://w3.impa.br/~hossein/myarticles/hodgetheoryII-beforepublication.pdf).
+:::
+
 ::: {.front card-id="card-dc50c39867acc702"}
 Why does ${}_{{\mathcal{O}}_X}\Mod$ have enough injectives?
 :::
@@ -127,15 +179,18 @@ $H^{i\geq 1}(\operatorname{Spec}A, \mcf) = 0$ for any $\mcf\in \QCoh(\operatorna
 :::
 
 ::: {.front card-id="card-81d3dee3bf3d5a16"}
-What is $H^i(X; {\mathcal{O}}_X(n))$ for $X \coloneqq{\mathbf{P}}^r_{/ {A}}$?
+What is $H^i(X;\mathcal O_X(n))$ for $X\coloneqq\mathbb P^r_A$, with $r\ge1$?
 :::
 
 ::: {.back card-id="card-81d3dee3bf3d5a16"}
-Write $\Gamma^*(\mcf) \coloneqq\bigoplus_{n\geq 0} H^0(X; {\mathcal{O}}_X(n))$ for the section ring, then $A[x_0,\cdots, x_r]  { \, \xrightarrow{\sim}\, }\Gamma({\mathcal{O}}_X)$ as graded rings. So $H^0(X; {\mathcal{O}}_X(n)) \cong A[x_0, \cdots, x_r]_n$, degree $n$ homogeneous polynomials over $A$.
+Write $\Gamma_*(\mathcal O_X)\coloneqq\bigoplus_{n\ge0}H^0(X;\mathcal O_X(n))$ for the section ring. Then $A[x_0,\ldots,x_r]\xrightarrow{\sim}\Gamma_*(\mathcal O_X)$ as graded rings. So $H^0(X;\mathcal O_X(n))\cong A[x_0,\ldots,x_r]_n$, the degree-$n$ homogeneous polynomials over $A$; it is zero for $n<0$. In degree zero this gives $\Gamma(X,\mathcal O_X)=A$.
 
-$H^i(X; {\mathcal{O}}_X(n)) = 0$ for $0<i<r$ and every $n$.
+$H^i(X;\mathcal O_X(n))=0$ for $0<i<r$ and every $n$.
 
-$H^r(X; {\mathcal{O}}_X(-(r+1))) = A$.
+$H^r(X;\mathcal O_X(-(r+1)))=A$. More generally, top cohomology is zero for $n>-r-1$; otherwise it is free over $A$ with basis
+$$x_0^{-a_0}\cdots x_r^{-a_r},\qquad a_i\ge1,\quad\sum_i a_i=-n.$$
+Its rank is $\binom{-n-1}{r}$, and cohomology above degree $r$ vanishes.
+Reference: [Stacks Project, cohomology of projective space](https://stacks.math.columbia.edu/tag/01XS).
 :::
 
 ::: {.front card-id="card-847e440e17d15caf" tags="theorem"}
@@ -185,11 +240,18 @@ Since $H^1({\mathcal{O}}_X^{\times}) = \operatorname{Pic}(X)$, $\delta^1 = c_1({
 :::
 
 ::: {.front card-id="card-1ad7a8deaabeb009"}
-What is $\omega_X$ for $X = {\mathbf{P}}^n_{/ {A}}$? Derive it.
+What is $\omega_{X/A}$ for $X=\mathbb P^n_A$? Derive it.
 :::
 
 ::: {.back card-id="card-1ad7a8deaabeb009"}
-Take determinants in the Euler exact sequence $\Omega^1_{X}\hookrightarrow{\mathcal{O}}_X(-1){ {}^{ \scriptscriptstyle\oplus^{n+1} }  }\twoheadrightarrow{\mathcal{O}}_X$ to get $\operatorname{det}{\mathcal{O}}_X(-1){ {}^{ \scriptscriptstyle\oplus^{n+1} }  } = \omega_X \otimes{\mathcal{O}}_X = \omega_X$ and so $\omega_X = {\mathcal{O}}_X(-(n+1))$.
+Take determinants in the relative Euler exact sequence
+$$0\longrightarrow\Omega^1_{X/A}\longrightarrow\mathcal O_X(-1)^{\oplus(n+1)}\longrightarrow\mathcal O_X\longrightarrow0$$
+to get
+$$\det\bigl(\mathcal O_X(-1)^{\oplus(n+1)}\bigr)
+\cong\det\Omega^1_{X/A}\otimes\mathcal O_X
+=\omega_{X/A}\otimes\mathcal O_X
+\cong\omega_{X/A}.$$
+The determinant on the left is the tensor product of $n+1$ copies of $\mathcal O_X(-1)$, so $\omega_{X/A}\cong\mathcal O_X(-(n+1))$.
 :::
 
 ::: {.front card-id="card-00941d78f8260900"}
