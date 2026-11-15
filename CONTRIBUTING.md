@@ -1,6 +1,23 @@
 # Contributing flashcard content
 
-Write cards that practise recalling, explaining, and using mathematics.
+This collection supports mathematical research. Prioritize knowledge that helps
+the researcher recognize a useful result, check its hypotheses, construct an
+example, compute an invariant, or carry an argument forward.
+
+## Choose content by research use
+
+Assess coverage by the research tasks the cards prepare the learner to perform.
+For a theorem, prioritize recognizing when it applies, recalling the precise
+hypotheses and conclusion, and applying it in different settings. For a
+construction, prioritize the input data, the construction itself, conditions
+that make it valid, and properties of the resulting object. Include examples
+and counterexamples that help choose a method or detect an invalid application.
+
+Proof study is long-tail coverage. Add proof questions when a proof technique
+has a concrete research use, such as adapting a result to new hypotheses or
+reusing a construction from its proof. Routine applications take priority over
+reconstructing standard proofs. A missing proof card alone does not establish
+a coverage gap.
 
 ## Require retrieval before revealing the answer
 
@@ -11,10 +28,10 @@ requires retrieval [1, 2].
 
 ## Practise the intended use of the knowledge
 
-Match the question to the skill being learned. Ask for a theorem's statement to
-practise recall, its proof to practise proving it, or an application to practise
-using it. For a method-selection question, present the problem and ask the
-learner to choose and justify a method [3, 5].
+Match the question to the research task being practised. Ask for a theorem's
+statement when its precise form must be available from memory. Present a
+problem and ask the learner to choose and justify a method when the goal is
+recognizing which result to use [3, 5].
 
 Include application questions with different examples or assumptions. These
 should require using the concept in the given case [3].
