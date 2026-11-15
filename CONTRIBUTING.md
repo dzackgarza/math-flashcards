@@ -19,6 +19,32 @@ reusing a construction from its proof. Routine applications take priority over
 reconstructing standard proofs. A missing proof card alone does not establish
 a coverage gap.
 
+## Build and reuse a simple example repertoire
+
+Develop a small stock of familiar mathematical objects that can serve many
+purposes. When choosing an example, search that stock first. Prefer a case
+whose construction, relevant properties, and calculations the researcher can
+recover from familiar ideas. Repeated use should deepen intuition and connect
+topics while reducing the amount of separate material to remember.
+
+Choose the least complicated example that exhibits the intended phenomenon.
+Apply this priority equally to examples of definitions, counterexamples, and
+failures caused by removing a theorem's hypothesis. A collection of elementary
+cases can be more useful than a single elaborate construction. Judge simplicity
+by the knowledge and reasoning needed to reconstruct the example, not merely
+by the length of its equation or description.
+
+Small variations of familiar objects belong to this repertoire too. Try changing
+a coefficient or invariant, specializing a parameter, taking a product, or
+performing a familiar operation such as a blowup. State what changes, what
+persists, and which feature explains the result. For a failed hypothesis,
+isolate its role while retaining the other hypotheses whenever possible.
+Use a more involved construction when the simpler repertoire cannot capture
+the required phenomenon. Extend that repertoire through these connections.
+
+This priority guides additions and example selection. Apply the editorial
+rules below when improving an existing authored example or derivation.
+
 ## Edit existing cards by synthesis
 
 Existing cards contain authored choices about how to recall and use mathematics.
