@@ -1,5 +1,18 @@
 # Kodaira fiber classification coverage
 
+## Remediation
+
+The [visual atlas](kodaira-fiber-atlas.md) and the kodaira-* cards in
+[Curves and Surfaces](../decks/Algebraic%20Geometry/Curves%20and%20Surfaces.md)
+address the findings below. They include geometric recognition and reverse
+sketch prompts, weighted diagrams, component and root data, Weierstrass
+classification exercises, monodromy, base change, twists, component groups,
+height corrections, and scope distinctions.
+
+The figures have editable TikZ source and compiled SVGs linked directly from
+the cards. The remaining sections preserve the baseline assessment before
+remediation.
+
 Coverage is weak for recognizing and using the classification itself.
 The cards contain numerical consequences, but no visual classification atlas
 was found in the inspected Algebraic Geometry decks. Searches found no

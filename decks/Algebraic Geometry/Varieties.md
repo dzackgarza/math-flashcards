@@ -121,7 +121,7 @@ What is a del Pezzo surface?
 :::
 
 ::: {.back card-id="card-0324110ee3d3217f"}
-Fano of dimension 2.
+Fano of dimension 2: in the smooth convention, a smooth projective surface $X$ with ample anticanonical divisor $-K_X$. Its degree is $K_X^2$. A weak del Pezzo has $-K_X$ nef and big instead; singular del Pezzo variants must specify the allowed singularities and whether $K_X$ is Cartier or only $\mathbb Q$-Cartier.
 :::
 
 ::: {.front card-id="card-72e647f121eed544"}

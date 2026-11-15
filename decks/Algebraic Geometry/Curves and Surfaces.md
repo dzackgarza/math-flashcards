@@ -2,6 +2,482 @@
 title: "Algebraic Geometry::Curves and Surfaces"
 ---
 
+::: {.front card-id="kodaira-draw-unstarred" tags="application visual"}
+Sketch $I_1,II,I_2,III,I_3,IV$. Which distinctions are lost by recording only pairwise component intersections?
+:::
+
+::: {.back card-id="kodaira-draw-unstarred"}
+In order: node, cusp, two transverse crossings, tangency, three separate crossings, and a common triple point.
+
+![Nodal curve](assets/kodaira/fiber-2.svg){width=220px}
+
+![Cuspidal curve](assets/kodaira/fiber-3.svg){width=220px}
+
+![Two crossings](assets/kodaira/fiber-4.svg){width=220px}
+
+![Tangency](assets/kodaira/fiber-5.svg){width=220px}
+
+![Three separate intersections](assets/kodaira/fiber-6.svg){width=220px}
+
+![Common triple point](assets/kodaira/fiber-7.svg){width=220px}
+
+$I_1$ and $II$ are both irreducible. The pairs $I_2,III$ and $I_3,IV$ have equal intersection matrices within each pair, but different incidence geometry and Euler numbers. Thus a weighted dual graph needs geometric information about singularities, tangencies, and coincident intersection points.
+:::
+
+::: {.front card-id="kodaira-components-root-summary" tags="formula"}
+For each Kodaira fiber, recall the component count and root lattice contributed to Shioda–Tate. Is the affine diagram itself the negative-definite lattice used there?
+:::
+
+::: {.back card-id="kodaira-components-root-summary"}
+Remove the component met by the zero section. The remaining component classes form the negative-definite root lattice:
+
+| Fiber | Components | Root type, with negative form |
+| --- | --- | --- |
+| $I_0,I_1,II$ | 1 | 0 |
+| $I_n,\ n\ge2$ | $n$ | $A_{n-1}$ |
+| $III$ | 2 | $A_1$ |
+| $IV$ | 3 | $A_2$ |
+| $I_n^*,\ n\ge0$ | $n+5$ | $D_{n+4}$ |
+| $IV^*$ | 7 | $E_6$ |
+| $III^*$ | 8 | $E_7$ |
+| $II^*$ | 9 | $E_8$ |
+
+The full fiber intersection matrix is negative semidefinite and has the fiber multiplicity vector in its kernel. Removing the identity component makes the matrix negative definite and gives rank one less than the component count. It is this finite root rank that enters Shioda–Tate.
+:::
+
+::: {.front card-id="kodaira-scope-models" tags="definition"}
+What does Kodaira classify for a relatively minimal complex elliptic surface with section? Which surface should a fiber picture depict?
+:::
+
+::: {.back card-id="kodaira-scope-models"}
+It classifies the fibers of the smooth relatively minimal surface $f:S\to B$, whose general fiber is a smooth genus-one curve. A zero section rules out multiple fibers: intersecting $F=\sum m_iC_i$ with the section gives one, so it meets a multiplicity-one component once.
+
+The Weierstrass model contracts the fiber components not meeting the section. Its special plane cubic is often nodal or cuspidal even when the resolved fiber has many components. Thus a picture of the cubic alone does not identify the Kodaira type on $S$. For example an $II^*$ fiber has nine components on $S$, while its Weierstrass model has an $E_8$ surface singularity.
+
+All visual cards here use schematic curves or weighted graphs, not literal embeddings of complex curves in a real plane. In weighted graphs each vertex is a component, its number is its fiber multiplicity, and a double rim marks the identity component. Reference: [Schütt–Shioda, §§4–6](https://arxiv.org/abs/0907.0298).
+:::
+
+::: {.front card-id="kodaira-recognize-smooth" tags="application visual"}
+Identify this fiber type and its Euler number. The picture is a topological schematic of a smooth fiber.
+
+![Fiber configuration](assets/kodaira/fiber-1.svg){width=460px}
+:::
+
+::: {.back card-id="kodaira-recognize-smooth"}
+Type $I_0$: a smooth genus-one curve, with $e=0$. Its connected smooth group is elliptic, and its component group is trivial.
+:::
+
+::: {.front card-id="kodaira-recognize-node" tags="application visual"}
+Identify this irreducible singular fiber and compute its Euler number.
+
+![Fiber configuration](assets/kodaira/fiber-2.svg){width=460px}
+:::
+
+::: {.back card-id="kodaira-recognize-node"}
+Type $I_1$: an irreducible nodal rational curve. Normalization is $\mathbb P^1$ and identifies two points, so $e=2-1=1$. Its arithmetic genus is one, geometric genus zero. The smooth locus is $\mathbb G_m$.
+:::
+
+::: {.front card-id="kodaira-recognize-cusp" tags="application visual"}
+Identify this irreducible singular fiber and compute its Euler number.
+
+![Fiber configuration](assets/kodaira/fiber-3.svg){width=460px}
+:::
+
+::: {.back card-id="kodaira-recognize-cusp"}
+Type $II$: an irreducible cuspidal rational curve. Normalization is bijective on points, so $e=2$. Its arithmetic genus is one, geometric genus zero. The smooth locus is $\mathbb G_a$. A one-vertex component graph would not distinguish it from $I_1$.
+:::
+
+::: {.front card-id="kodaira-recognize-two-crossings" tags="application visual"}
+Identify this fiber of two smooth rational components. What distinguishes it from the tangent configuration?
+
+![Fiber configuration](assets/kodaira/fiber-4.svg){width=460px}
+:::
+
+::: {.back card-id="kodaira-recognize-two-crossings"}
+Type $I_2$: the components meet transversely at two distinct points, so $e=2+2-2=2$. Both have multiplicity one and square $-2$. The intersection number is two, just as for $III$, but the two intersection points are distinct. Deleting the identity component gives $A_1(-1)$.
+:::
+
+::: {.front card-id="kodaira-recognize-tangency" tags="application visual"}
+Identify this fiber of two smooth rational components. What distinguishes it from two transverse intersections?
+
+![Fiber configuration](assets/kodaira/fiber-5.svg){width=460px}
+:::
+
+::: {.back card-id="kodaira-recognize-tangency"}
+Type $III$: two rational components tangent at one point, with intersection multiplicity two. Both have multiplicity one and square $-2$. There is only one intersection point, so $e=2+2-1=3$. Its finite root lattice is $A_1(-1)$, as for $I_2$, but its Euler number and local geometry differ.
+:::
+
+::: {.front card-id="kodaira-recognize-three-crossings" tags="application visual"}
+Identify this fiber. Each stroke represents a smooth rational component; the marked intersections are distinct.
+
+![Fiber configuration](assets/kodaira/fiber-6.svg){width=460px}
+:::
+
+::: {.back card-id="kodaira-recognize-three-crossings"}
+Type $I_3$: three rational components form a cycle, with three distinct transverse intersection points. All multiplicities are one, all component squares are $-2$, and $e=6-3=3$. Its finite root lattice is $A_2(-1)$.
+:::
+
+::: {.front card-id="kodaira-recognize-triple-point" tags="application visual"}
+Identify this fiber. Each stroke represents a smooth rational component, and all meet at the marked point.
+
+![Fiber configuration](assets/kodaira/fiber-7.svg){width=460px}
+:::
+
+::: {.back card-id="kodaira-recognize-triple-point"}
+Type $IV$: three rational components meet at one common point with distinct tangent directions. All multiplicities are one. Inclusion–exclusion gives $e=6-3+1=4$. Its pairwise intersection matrix and ordinary dual graph agree with $I_3$, so the graph alone does not record the common triple point. Its finite root lattice is $A_2(-1)$.
+:::
+
+::: {.front card-id="kodaira-recognize-cycle" tags="application visual"}
+Identify this weighted component graph and its general family. Vertices are components; the double-rim vertex meets the zero section.
+
+![Fiber configuration](assets/kodaira/fiber-8.svg){width=460px}
+:::
+
+::: {.back card-id="kodaira-recognize-cycle"}
+This is $I_5$, in the family $I_n$: a cycle of $n$ rational components for $n\ge3$, all of multiplicity one and square $-2$. It has $e=n$ and finite root lattice $A_{n-1}(-1)$. The cases $I_1$ and $I_2$ require a nodal curve and a pair with two intersections, respectively.
+:::
+
+::: {.front card-id="kodaira-recognize-four-arms" tags="application visual"}
+Identify this weighted component graph. Numbers are multiplicities; the double-rim vertex meets the zero section.
+
+![Fiber configuration](assets/kodaira/fiber-9.svg){width=460px}
+:::
+
+::: {.back card-id="kodaira-recognize-four-arms"}
+Type $I_0^*$: a central multiplicity-two rational component meets four disjoint multiplicity-one rational components. All have square $-2$. There are five components and four intersection points, so $e=10-4=6$. Removing the identity component gives $D_4(-1)$. This is not a multiple fiber: the greatest common divisor of its component multiplicities is one.
+:::
+
+::: {.front card-id="kodaira-recognize-double-chain" tags="application visual"}
+Identify this weighted component graph and recover the index in its Kodaira family. The double-rim vertex meets the zero section.
+
+![Fiber configuration](assets/kodaira/fiber-10.svg){width=460px}
+:::
+
+::: {.back card-id="kodaira-recognize-double-chain"}
+Type $I_3^*$. In general $I_n^*$ for $n\ge1$ has a chain of $n+1$ multiplicity-two components, with two multiplicity-one leaves at each end. Thus it has $n+5$ components, $e=n+6$, and finite root lattice $D_{n+4}(-1)$. Here the chain has four double components, so $n=3$, with eight components, Euler number nine, and root lattice $D_7(-1)$.
+:::
+
+::: {.front card-id="kodaira-recognize-three-equal-arms" tags="application visual"}
+Identify this weighted component graph, its Euler number, and its finite root lattice.
+
+![Fiber configuration](assets/kodaira/fiber-11.svg){width=460px}
+:::
+
+::: {.back card-id="kodaira-recognize-three-equal-arms"}
+Type $IV^*$: affine $E_6$, with central multiplicity three and three arms of multiplicities $2,1$. There are seven rational components and six transverse intersections, giving $e=14-6=8$. Removing the double-rim identity component gives $E_6(-1)$.
+:::
+
+::: {.front card-id="kodaira-recognize-long-symmetric-arms" tags="application visual"}
+Identify this weighted component graph, its Euler number, and its finite root lattice.
+
+![Fiber configuration](assets/kodaira/fiber-12.svg){width=460px}
+:::
+
+::: {.back card-id="kodaira-recognize-long-symmetric-arms"}
+Type $III^*$: affine $E_7$. The central multiplicity is four; two arms have multiplicities $3,2,1$, and the short arm has multiplicity two. There are eight rational components and seven transverse intersections, giving $e=16-7=9$. Removing the double-rim identity component gives $E_7(-1)$.
+:::
+
+::: {.front card-id="kodaira-recognize-long-asymmetric-arms" tags="application visual"}
+Identify this weighted component graph, its Euler number, and its finite root lattice.
+
+![Fiber configuration](assets/kodaira/fiber-13.svg){width=460px}
+:::
+
+::: {.back card-id="kodaira-recognize-long-asymmetric-arms"}
+Type $II^*$: affine $E_8$. From the central multiplicity-six component the arms have multiplicities $5,4,3,2,1$; $4,2$; and $3$. There are nine rational components and eight transverse intersections, giving $e=18-8=10$. Removing the unique multiplicity-one identity component gives $E_8(-1)$.
+:::
+
+::: {.front card-id="kodaira-draw-starred" tags="application visual"}
+Sketch the weighted configurations of $I_0^*,I_n^*$ ($n\ge1$), $IV^*,III^*,II^*$. How are their multiplicities checked?
+:::
+
+::: {.back card-id="kodaira-draw-starred"}
+The diagrams show $I_0^*$, an $I_3^*$ representative, $IV^*$, $III^*$, and $II^*$, in order. For general $I_n^*$ the double chain has $n+1$ vertices.
+
+![Four-arm weighted configuration](assets/kodaira/fiber-9.svg){width=260px}
+
+![Double-chain weighted configuration](assets/kodaira/fiber-10.svg){width=460px}
+
+![Three equal arms](assets/kodaira/fiber-11.svg){width=300px}
+
+![Symmetric long arms](assets/kodaira/fiber-12.svg){width=460px}
+
+![Asymmetric long arms](assets/kodaira/fiber-13.svg){width=500px}
+
+Every component is a smooth rational $(-2)$-curve. The fiber multiplicity vector is the primitive positive kernel vector of the intersection matrix: $F\cdot C_i=0$. Thus twice each multiplicity equals the sum of adjacent multiplicities. Normalize to greatest common divisor one; the section meets a multiplicity-one component.
+:::
+
+::: {.front card-id="kodaira-minimal-orders" tags="formula application"}
+For a minimal short Weierstrass equation $y^2=x^3+a(t)x+b(t)$ over $\mathbb C[[t]]$, identify the Kodaira type from the vanishing orders of $a,b,\Delta$. What must be checked first?
+:::
+
+::: {.back card-id="kodaira-minimal-orders"}
+Use $\Delta=-16(4a^3+27b^2)$ and require $\Delta\not\equiv0$. If $\operatorname{ord}a\ge4$ and $\operatorname{ord}b\ge6$, replace $x=t^2X$, $y=t^3Y$ and repeat until minimal. For the zero coefficient use order $+\infty$.
+
+| Type | $\operatorname{ord}a$ | $\operatorname{ord}b$ | $\operatorname{ord}\Delta$ |
+| --- | --- | --- | --- |
+| $I_0$ | $\ge0$ | $\ge0$ | 0 |
+| $I_n,\ n\ge1$ | 0 | 0 | $n$ |
+| $II$ | $\ge1$ | 1 | 2 |
+| $III$ | 1 | $\ge2$ | 3 |
+| $IV$ | $\ge2$ | 2 | 4 |
+| $I_0^*$ | $\ge2$ | $\ge3$ | 6 |
+| $I_n^*,\ n\ge1$ | 2 | 3 | $n+6$ |
+| $IV^*$ | $\ge3$ | 4 | 8 |
+| $III^*$ | 3 | $\ge5$ | 9 |
+| $II^*$ | $\ge4$ | 5 | 10 |
+
+The three orders are used together: cancellation can increase the discriminant order. In characteristic zero, $\operatorname{ord}\Delta=e(F)$ for the minimal model. The table needs modification in residue characteristics two and three.
+
+Reference: [Miranda, The Basic Theory of Elliptic Surfaces, III.4](https://www.math.colostate.edu/~miranda/BTES-Miranda.pdf).
+:::
+
+::: {.front card-id="kodaira-equations-ambiguous-discriminant" tags="application"}
+At $t=0$, classify the fibers of $y^2=x^3-3x+2+t^3$ and $y^2=x^3+tx+t^2$. Why is the discriminant order alone insufficient?
+:::
+
+::: {.back card-id="kodaira-equations-ambiguous-discriminant"}
+For the first equation,
+$$4(-3)^3+27(2+t^3)^2=108t^3+27t^6,$$
+so the orders are $(0,0,3)$ and the type is $I_3$. For the second,
+$$4t^3+27t^4=t^3(4+27t),$$
+so the orders are $(1,2,3)$ and the type is $III$. Both minimal discriminants have order three, but one fiber has a three-component cycle and the other has two tangent components.
+:::
+
+::: {.front card-id="kodaira-equations-star-and-minimality" tags="application"}
+Classify at $t=0$: $y^2=x^3+t^5$; $y^2=x^3+t^4x+t^6$; and $y^2=x^3-3t^2x+2t^3+t^4$.
+:::
+
+::: {.back card-id="kodaira-equations-star-and-minimality"}
+The first has orders $(\infty,5,10)$ and is minimal, hence type $II^*$.
+
+The second is not minimal. Set $x=t^2X$, $y=t^3Y$ to obtain $Y^2=X^3+X+1$, whose discriminant is nonzero. Its minimal fiber is smooth $I_0$, not a fiber of Euler number twelve.
+
+For the third,
+$$4(-3t^2)^3+27(2t^3+t^4)^2=108t^7+27t^8.$$
+The orders $(2,3,7)$ give $I_1^*$.
+:::
+
+::: {.front card-id="kodaira-components-groups" tags="formula application"}
+Over an algebraically closed field of characteristic zero, give the identity group and component group of the Néron fiber for each Kodaira type. Which components can a section meet?
+:::
+
+::: {.back card-id="kodaira-components-groups"}
+The identity group is elliptic for $I_0$, $\mathbb G_m$ for $I_n$ with $n\ge1$, and $\mathbb G_a$ for every additive type.
+
+| Type | Component group $\Phi$ |
+| --- | --- |
+| $I_0,II,II^*$ | 0 |
+| $I_n,\ n\ge1$ | $\mathbb Z/n$ |
+| $III,III^*$ | $\mathbb Z/2$ |
+| $IV,IV^*$ | $\mathbb Z/3$ |
+| $I_n^*$, $n$ even, including zero | $(\mathbb Z/2)^2$ |
+| $I_n^*$, $n$ odd | $\mathbb Z/4$ |
+
+A section meets a multiplicity-one component at a smooth point of the fiber, since its total intersection with the fiber is one. The order of $\Phi$ is the number of multiplicity-one components, not the total number of components. Over a nonclosed residue field, Galois action and split/nonsplit reduction affect rational components and Tamagawa numbers.
+:::
+
+::: {.front card-id="kodaira-root-height-computation" tags="application"}
+How does a fiber diagram give the local correction to the height pairing? Compute it for a section meeting component $i$ of an $I_n$ fiber, and for a nonidentity component of $I_0^*$.
+:::
+
+::: {.back card-id="kodaira-root-height-computation"}
+Delete the identity component and let $A=(C_i\cdot C_j)$ be the remaining negative-definite intersection matrix. The local correction is $-(A^{-1})_{ij}$ for sections meeting $C_i,C_j$, and zero if either meets the identity component.
+
+For $I_n$, number components cyclically with identity $0$. The diagonal correction is
+$$\operatorname{contr}_v(P)=\frac{i(n-i)}n.$$
+For $I_5$ and $i=2$ this is $6/5$. At $I_0^*$, deleting an outer identity component gives $D_4(-1)$; the inverse Cartan diagonal at each of the other outer vertices is one. Thus a section meeting any nonidentity component contributes one. It cannot meet the central multiplicity-two component.
+:::
+
+::: {.front card-id="kodaira-monodromy-table" tags="formula"}
+Give local monodromy representatives for Kodaira fibers. Fix the positive-loop convention with $I_1$ represented by $T=\begin{pmatrix}1&1\\0&1\end{pmatrix}$.
+:::
+
+::: {.back card-id="kodaira-monodromy-table"}
+On integral first homology, after a choice of symplectic basis, the representatives are:
+
+| Fiber | Monodromy |
+| --- | --- |
+| $I_n$, including $I_0$ | $T^n$ |
+| $I_n^*$, including $I_0^*$ | $-T^n$ |
+| $II$ | $\begin{pmatrix}1&1\\-1&0\end{pmatrix}$ |
+| $III$ | $\begin{pmatrix}0&1\\-1&0\end{pmatrix}$ |
+| $IV$ | $\begin{pmatrix}0&1\\-1&-1\end{pmatrix}$ |
+| $IV^*$ | $\begin{pmatrix}-1&-1\\1&0\end{pmatrix}$ |
+| $III^*$ | $\begin{pmatrix}0&-1\\1&0\end{pmatrix}$ |
+| $II^*$ | $\begin{pmatrix}0&-1\\1&1\end{pmatrix}$ |
+
+Changing basis conjugates the matrices; reversing the loop inverts them. The starred exceptional matrices are the inverses of their unstarred partners of the same Roman numeral. The finite orders are respectively $6,4,3,3,4,6$; $I_0^*$ has order two. The $I_n$ and $I_n^*$ cases with $n>0$ have infinite order.
+
+Reference: [Bogomolov–Tschinkel, Monodromy of elliptic surfaces](https://math.nyu.edu/~tschinke/papers/yuri/03monodromy/monodromy21.pdf).
+:::
+
+::: {.front card-id="kodaira-base-change-twist" tags="application"}
+How do ramified base change and ramified quadratic twist change Kodaira fibers over $\mathbb C$? State examples requiring minimalization.
+:::
+
+::: {.back card-id="kodaira-base-change-twist"}
+Under $t=s^e$, local monodromy becomes $M^e$. Multiplicative fibers change by $I_n\mapsto I_{en}$. For $I_n^*$, $n>0$, even $e$ gives $I_{en}$ and odd $e$ gives $I_{en}^*$ after minimalization.
+
+For potentially good fibers, a ramification degree equal to the finite monodromy order gives good reduction: degrees $6,4,3,2,3,4,6$ suffice for $II,III,IV,I_0^*,IV^*,III^*,II^*$ respectively. A quadratic base change takes $II$ to $IV$, $III$ to $I_0^*$, and $I_0^*$ to $I_0$. For $y^2=x^3+t^3x$, substituting $t=s^2$ gives $y^2=x^3+s^6x$; rescaling $x=s^2X,y=s^3Y$ gives $Y^2=X^3+s^2X$, type $I_0^*$.
+
+A quadratic twist ramified at the place sends
+$$I_n\leftrightarrow I_n^*,\qquad
+II\leftrightarrow IV^*,\qquad III\leftrightarrow III^*,\qquad IV\leftrightarrow II^*.$$
+For $y^2=x^3+ax+b$, twisting by $t$ replaces $(a,b)$ with $(t^2a,t^3b)$, then one minimizes. An unramified quadratic base change of a smooth fiber simply gives two smooth fibers over that point.
+:::
+
+::: {.front card-id="kodaira-global-fiber-check" tags="application"}
+A proposed elliptic K3 with section has fibers $II^*,IV^*,I_0^*$ and no others. What do Euler number and Shioda–Tate say? Do the numerical checks prove existence?
+:::
+
+::: {.back card-id="kodaira-global-fiber-check"}
+The Euler sum is $10+8+6=24$, which passes the K3 Euler test. But the root ranks are $8,6,4$, so Shioda–Tate gives
+$$\rho=2+8+6+4+\operatorname{rank}\operatorname{MW}
+=20+\operatorname{rank}\operatorname{MW}.$$
+Since a complex K3 has $\rho\le20$, the Mordell–Weil rank would have to be zero and $\rho=20$. These are necessary constraints, not an existence proof; a Weierstrass construction or lattice embedding must establish existence.
+:::
+
+::: {.front card-id="kodaira-scope-multiple-wild" tags="application"}
+What changes when an elliptic-fiber picture is used for a genus-one fibration without section, or over a nonclosed or positive-characteristic field?
+:::
+
+::: {.back card-id="kodaira-scope-multiple-wild"}
+Without a section a fiber may be $mF_0$ with $m>1$, multiplying every component multiplicity. This differs from a starred Kodaira fiber, whose normalized multiplicities have greatest common divisor one. The reduced picture alone loses the multiple-fiber information.
+
+Over a nonclosed residue field, distinguish the geometric fiber after algebraic closure from its split/nonsplit form and Galois action on components. In characteristics two and three, the characteristic-zero short-Weierstrass order table is not sufficient: Tate's algorithm includes wild reduction, and the minimal discriminant valuation can exceed the geometric fiber Euler number. A quasi-elliptic fibration has cuspidal geometric generic fiber, so it is not an elliptic fibration with just an isolated bad fiber.
+:::
+
+::: {.front card-id="delpezzo-degrees-classification" tags="definition construction"}
+Which degrees occur for smooth complex del Pezzo surfaces? Give the complete construction list and explain the degree-eight exception.
+:::
+
+::: {.back card-id="delpezzo-degrees-classification"}
+A smooth del Pezzo surface is a smooth projective surface with $-K$ ample; its degree is $d=K^2$. Every integer $1\le d\le9$ occurs.
+
+| Degree | Surface |
+| --- | --- |
+| 9 | $\mathbb P^2$ |
+| 8 | $\mathbb P^1\times\mathbb P^1$ or $\mathbb F_1=\operatorname{Bl}_p\mathbb P^2$ |
+| $1\le d\le7$ | $\operatorname{Bl}_{9-d}\mathbb P^2$ at points in del Pezzo general position |
+
+The blowup formula gives $K^2=9-r$. General position means no three collinear, no six on a conic, and no eight on a cubic singular at one of those eight. The degree-eight surfaces differ: the product has no $(-1)$-curve, while $\mathbb F_1$ has one. Over a nonclosed field this describes the geometric surfaces after base change, not necessarily a blowup presentation over the original field.
+:::
+
+::: {.front card-id="delpezzo-weak-and-singular" tags="definition application"}
+Distinguish smooth del Pezzo, weak del Pezzo, and Du Val del Pezzo surfaces. What does the anticanonical map contract in the weak case?
+:::
+
+::: {.back card-id="delpezzo-weak-and-singular"}
+A smooth del Pezzo has $-K$ ample; a weak del Pezzo is smooth projective with $-K$ nef and big. Its anticanonical model, formed with sufficiently divisible multiples, contracts the $(-2)$-curves to Du Val singularities and has ample Cartier anticanonical divisor. A Du Val del Pezzo is this normal singular version; its minimal resolution is weak del Pezzo.
+
+For a weak del Pezzo, a curve $C$ with $(-K)C=0$ has $C^2<0$ by Hodge index, and adjunction gives $C^2=-2$ and $p_a(C)=0$. Such curves obstruct ampleness. For example $\mathbb F_2$ is weak del Pezzo of degree eight; its negative section contracts to the quadric cone. General log del Pezzo surfaces allow klt singularities and merely $\mathbb Q$-Cartier $K$, so they are a broader class.
+:::
+
+::: {.front card-id="delpezzo-picard-lattice" tags="definition application"}
+Identify $\operatorname{Pic}(X)$ as a lattice for a complex del Pezzo surface, including the two degree-eight cases. Why is there no $\operatorname{Pic}^0$ part?
+:::
+
+::: {.back card-id="delpezzo-picard-lattice"}
+These surfaces are rational, so $\operatorname{Pic}^0=0$ and $\operatorname{Pic}=\operatorname{NS}$ is torsion-free. For the blowup at $r=9-d$ plane points,
+$$\operatorname{Pic}(X)=\mathbb ZH\oplus\bigoplus_{i=1}^r\mathbb ZE_i,\qquad
+(H^2,HE_i,E_iE_j)=(1,0,-\delta_{ij}),\qquad K=-3H+\sum_iE_i.$$
+Thus its lattice is odd unimodular $I_{1,r}$ of signature $(1,r)$. For successive blowups at infinitely near points, the same diagonal form uses total exceptional transforms.
+
+For $\mathbb P^1\times\mathbb P^1$, the two rulings give the even hyperbolic lattice
+$$U=\begin{pmatrix}0&1\\1&0\end{pmatrix},\qquad K=-2f_1-2f_2.$$
+It is not isometric to the odd lattice $I_{1,1}$ of $\mathbb F_1$, although both have degree eight and Picard rank two.
+:::
+
+::: {.front card-id="delpezzo-roots-weyl" tags="definition application"}
+Which root lattices occur in $K^\perp$ for del Pezzo plane blowups? Give roots and their reflections. Must a root be represented by a curve?
+:::
+
+::: {.back card-id="delpezzo-roots-weyl"}
+For $3\le r\le8$, $K^\perp$ is negative definite:
+
+| $r$ | 3 | 4 | 5 | 6 | 7 | 8 |
+| --- | --- | --- | --- | --- | --- | --- |
+| Root lattice | $A_2(-1)\oplus A_1(-1)$ | $A_4(-1)$ | $D_5(-1)$ | $E_6(-1)$ | $E_7(-1)$ | $E_8(-1)$ |
+
+Here the notation means the negative-definite root form, with roots of square $-2$. Simple roots can be taken as $E_1-E_2,\ldots,E_{r-1}-E_r,H-E_1-E_2-E_3$. Their reflections are
+$$s_\alpha(D)=D+(D\cdot\alpha)\alpha.$$
+They preserve the pairing and $K$ and generate the Weyl group. No nonzero effective divisor on a smooth del Pezzo can be orthogonal to $-K$, so lattice roots are not effective there. Effective roots appear on weak del Pezzo degenerations.
+
+The low-rank cases should not be forced into the full-root-lattice statement: for $r=1$, $K^\perp=\mathbb Z(H-3E_1)$ has square $-8$; for $r=2$, the roots span only a rank-one sublattice of the rank-two complement.
+:::
+
+::: {.front card-id="delpezzo-cremona-reflection" tags="application"}
+On a marked plane blowup, apply the reflection in $\alpha=H-E_1-E_2-E_3$ to $H$ and $E_1$. Interpret it geometrically.
+:::
+
+::: {.back card-id="delpezzo-cremona-reflection"}
+Since $H\alpha=1$ and $E_1\alpha=1$,
+$$s_\alpha(H)=2H-E_1-E_2-E_3,\qquad
+s_\alpha(E_1)=H-E_2-E_3.$$
+These are the pullback of a target line and the new exceptional curve under the quadratic Cremona transformation centered at the first three noncollinear points. The other two exceptional classes transform similarly.
+
+This changes the plane blowdown marking and generally the point configuration. A Weyl-group action on lattice markings is not an assertion that every reflection is an automorphism of a fixed del Pezzo surface.
+:::
+
+::: {.front card-id="delpezzo-exceptional-classes-cones" tags="application"}
+On a smooth complex del Pezzo surface, how can the Picard lattice enumerate $(-1)$-curves and test nefness? State the caveat in degrees eight and nine.
+:::
+
+::: {.back card-id="delpezzo-exceptional-classes-cones"}
+Integral classes satisfying
+$$E^2=-1,\qquad K\cdot E=-1$$
+are exactly the classes of $(-1)$-curves. Riemann–Roch gives $\chi(\mathcal O(E))=1$, and $K-E$ cannot be effective since $(-K)(K-E)=-d-1<0$. Thus $E$ is effective. Its anticanonical degree one forces it to be reduced and irreducible, and adjunction gives a smooth rational curve; negative self-intersection gives uniqueness.
+
+For degree at most seven, the curve cone is generated by these finitely many curves, so $D$ is nef iff $D\cdot E\ge0$ for each. For $\mathbb F_1$ also include the ruling fiber $H-E$; on $\mathbb P^1\times\mathbb P^1$ use both rulings, and on $\mathbb P^2$ use a line. Exceptional curves alone would miss these fiber-type rays.
+:::
+
+::: {.front card-id="blowup-nine-points-versus-pencil" tags="application"}
+Does blowing up nine plane points always give a rational elliptic surface? Compare a cubic pencil's base points with nine very general complex points.
+:::
+
+::: {.back card-id="blowup-nine-points-versus-pencil"}
+Always $K^2=0$, but that does not produce a pencil. For distinct base points of a cubic pencil, the proper transforms give a base-point-free $|-K|$, hence a rational elliptic surface; the exceptional curves are sections.
+
+For nine very general points there is a unique smooth cubic $C$. Its strict transform $C'=-K$ is nef with square zero, while
+$$\mathcal O_{C'}(C')=\mathcal O_C(3)(-p_1-\cdots-p_9)$$
+is a nontorsion degree-zero bundle. The exact sequence
+$$0\to\mathcal O((m-1)C')\to\mathcal O(mC')\to\mathcal O_{C'}(mC')\to0$$
+gives $h^0(mC')=h^0((m-1)C')=1$ for every $m>0$. Thus $-K$ is nef but not semiample. The nontorsion condition explains the need for “very general” over $\mathbb C$.
+:::
+
+::: {.front card-id="blowup-more-than-nine-positivity" tags="application"}
+What survives after blowing up $r\ge10$ distinct plane points? Does $K^2<0$ determine effectivity or bigness of $-K$?
+:::
+
+::: {.back card-id="blowup-more-than-nine-positivity"}
+The surface stays rational, with $\kappa=-\infty$, $p_g=q=0$, and Picard lattice $I_{1,r}$. Since $K^2=9-r<0$, $-K$ is not nef and the surface is neither del Pezzo nor weak del Pezzo. The configuration still matters:
+
+| Points | Anticanonical behavior |
+| --- | --- |
+| Very general | $H^0(-mK)=0$ for every $m>0$ |
+| On a smooth cubic | Its strict transform is effective anticanonical of negative square |
+| On a line | With $L'=H-\sum E_i$, $-K=2H+L'$ is big, although its square is negative |
+
+For the first row, choose the first nine with unique cubic and nontorsion normal bundle, so every degree-$3m$ curve with multiplicity at least $m$ there is $mC$. A further point outside $C$ rules this out. For the last row, multiplying by the section of $mL'$ embeds $H^0(2mH)$ into $H^0(-mK)$, giving quadratic growth. Negative square rules out nefness, not bigness of a nonnef divisor.
+:::
+
+::: {.front card-id="blowup-finite-affine-indefinite" tags="application"}
+How do the canonical orthogonal complement and the curve cone change across $r=8,9,10$ for plane blowups?
+:::
+
+::: {.back card-id="blowup-finite-affine-indefinite"}
+For $r\le8$, $K^2>0$ and $K^\perp$ is negative definite. Del Pezzo general position gives finite exceptional-curve lists and rational polyhedral cones.
+
+For $r=9$, $K^2=0$: $K^\perp$ is negative semidefinite with radical $\mathbb ZK$, and
+$$K^\perp/\mathbb ZK\cong E_8(-1).$$
+This is the affine $E_8$ transition. For $r\ge10$, $K^2<0$ and $K^\perp$ has signature $(1,r-1)$, so it is indefinite.
+
+For very general complex point configurations with $r\ge9$, there are infinitely many $(-1)$-curves and the curve cone is not rational polyhedral. This is not a statement about every special configuration. On a rational elliptic surface, sections are $(-1)$-curves, and positive Mordell–Weil rank supplies infinitely many.
+
+Reference: [de Fernex, Mori cones of plane blowups](https://arxiv.org/abs/1001.5243).
+:::
+
 ::: {.front card-id="definition-gonality-pencil" tags="definition application"}
 Define the gonality of a smooth projective complex curve. What are the gonalities of $\mathbb P^1$, an elliptic curve, and a smooth plane quartic?
 :::

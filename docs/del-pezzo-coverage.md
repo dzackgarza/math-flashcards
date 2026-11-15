@@ -1,5 +1,20 @@
 # Del Pezzo coverage and the boundary of plane blowups
 
+## Remediation
+
+The findings below are addressed by the delpezzo-* and blowup-* cards in
+[Curves and Surfaces](../decks/Algebraic%20Geometry/Curves%20and%20Surfaces.md),
+the construction-delpezzo-weighted-low-degree card in
+[Examples](../decks/Algebraic%20Geometry/Examples.md), and the clarified
+definition in [Varieties](../decks/Algebraic%20Geometry/Varieties.md).
+
+Coverage now includes degree classification, weak and singular variants,
+Picard lattices, roots and Cremona reflections, exceptional-class enumeration,
+weighted constructions, and contrasting point configurations at and beyond
+nine blowups. The existing numerical and construction cards remain in place.
+
+The remaining sections preserve the baseline assessment before remediation.
+
 Coverage is useful for numerical calculations, but incomplete as a working
 theory. The admissible degrees and blowup constructions are present, sometimes
 inside answers to other questions. The lattice interpretation and the change

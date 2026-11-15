@@ -1,5 +1,19 @@
 # Convex geometry coverage
 
+## Remediation
+
+The findings below are addressed in the maintained decks:
+
+| Coverage | Owner and card identifiers |
+| --- | --- |
+| Corrected convex, fan, support-function, and polytope definitions; repaired semigroup calculation | [Toric Varieties](../decks/Algebraic%20Geometry/Toric%20Varieties.md), existing card IDs retained |
+| Faces, rays, lineality, relative interior, duality, polyhedra, Hilbert bases | Same deck, convex-* cards |
+| Divisor and curve spaces, all positivity cones, BDPP, relative cones, numerical caveats | [Divisors](../decks/Algebraic%20Geometry/Divisors.md), cones-* cards |
+| Surface cone computations and supporting contractions | Same deck, cones-plane-blowup-comparison, cones-product-comparison, cones-relative-supporting-contraction |
+| Nonpolyhedral cone and chamber computations | [Birational Geometry](../decks/Algebraic%20Geometry/Birational%20Geometry.md), cones-nonpolyhedral-abelian-example and cones-mori-chamber-surface-example |
+
+The remaining sections preserve the baseline assessment before remediation.
+
 The cards contain useful toric definitions and strong Mori applications, but
 the foundations are uneven. Some definitions are wrong, and the relationships
 among divisor cones need a connected treatment for research use.

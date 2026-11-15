@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152.003pt" height="95.31pt" viewBox="0 0 152.003 95.31">
+<defs>
+<clipPath id="clip-0">
+<path clip-rule="nonzero" d="M 0 0 L 152.003906 0 L 152.003906 95.308594 L 0 95.308594 Z M 0 0 "/>
+</clipPath>
+<clipPath id="clip-1">
+<path clip-rule="nonzero" d="M 0 0 L 96 0 L 96 95.308594 L 0 95.308594 Z M 0 0 "/>
+</clipPath>
+<clipPath id="clip-2">
+<path clip-rule="nonzero" d="M 56 0 L 152.003906 0 L 152.003906 95.308594 L 56 95.308594 Z M 56 0 "/>
+</clipPath>
+</defs>
+<g clip-path="url(#clip-0)">
+<path fill-rule="nonzero" fill="rgb(100%, 100%, 100%)" fill-opacity="1" d="M 0 95.308594 L 152.003906 95.308594 L 152.003906 0 L 0 0 Z M 0 95.308594 "/>
+</g>
+<g clip-path="url(#clip-1)">
+<path fill="none" stroke-width="1.39478" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(8.233643%, 37.644958%, 50.979614%)" stroke-opacity="1" stroke-miterlimit="10" d="M -0.001 -0.00125 C -0.001 15.655 -12.692406 28.346406 -28.34475 28.346406 C -44.001 28.346406 -56.692406 15.655 -56.692406 -0.00125 C -56.692406 -15.653594 -44.001 -28.345 -28.34475 -28.345 C -12.692406 -28.345 -0.001 -15.653594 -0.001 -0.00125 Z M -0.001 -0.00125 " transform="matrix(1, 0, 0, -1, 76.001, 47.655)"/>
+</g>
+<g clip-path="url(#clip-2)">
+<path fill="none" stroke-width="1.39478" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(65.879822%, 25.881958%, 8.625793%)" stroke-opacity="1" stroke-miterlimit="10" d="M 56.694312 -0.00125 C 56.694312 15.655 44.002906 28.346406 28.346656 28.346406 C 12.690406 28.346406 -0.001 15.655 -0.001 -0.00125 C -0.001 -15.653594 12.690406 -28.345 28.346656 -28.345 C 44.002906 -28.345 56.694312 -15.653594 56.694312 -0.00125 Z M 56.694312 -0.00125 " transform="matrix(1, 0, 0, -1, 76.001, 47.655)"/>
+</g>
+<path fill-rule="nonzero" fill="rgb(0%, 0%, 0%)" fill-opacity="1" d="M 77.992188 47.65625 C 77.992188 46.554688 77.101562 45.664062 76 45.664062 C 74.902344 45.664062 74.007812 46.554688 74.007812 47.65625 C 74.007812 48.753906 74.902344 49.648438 76 49.648438 C 77.101562 49.648438 77.992188 48.753906 77.992188 47.65625 Z M 77.992188 47.65625 "/>
+</svg>

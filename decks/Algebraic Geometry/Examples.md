@@ -2,6 +2,22 @@
 title: "Algebraic Geometry::Examples"
 ---
 
+::: {.front card-id="construction-delpezzo-weighted-low-degree" tags="construction application"}
+Construct smooth complex del Pezzo surfaces of degrees two and one by equations. Recover their degrees and anticanonical maps.
+:::
+
+::: {.back card-id="construction-delpezzo-weighted-low-degree"}
+In degree two, use
+$$X_4=\{w^2=f_4(x,y,z)\}\subset\mathbb P(1,1,1,2),$$
+where $f_4=0$ is a smooth plane quartic. Weighted adjunction gives $-K=\mathcal O_X(1)$ and $K^2=4/(1\cdot1\cdot1\cdot2)=2$. Projection to $[x:y:z]$ is the anticanonical double cover.
+
+In degree one, use a smooth sextic
+$$X_6=\{w^2=z^3+f_4(x,y)z+f_6(x,y)\}\subset\mathbb P(1,1,2,3).$$
+Again $-K=\mathcal O_X(1)$, now with square $6/(1\cdot1\cdot2\cdot3)=1$. The sections $x,y$ give an anticanonical pencil with one base point; $x^2,xy,y^2,z$ give the bi-anticanonical double cover of a quadric cone.
+
+Concrete smooth examples are $w^2=x^4+y^4+z^4$ and $w^2=z^3+x^6+y^6$. Their affine cones are smooth away from the vertex and the surfaces avoid the singular points of the ambient weighted spaces. Thus the weighted formulas apply to smooth surfaces, not merely to stacks.
+:::
+
 ::: {.front card-id="example-quadric-projection-parametrization" tags="example application"}
 Parametrize $Q=V(X_0X_3-X_1X_2)\subset\mathbb P^3_{\mathbb C}$ birationally by projection from $p=[1:0:0:0]$. Give the rational inverse and locate its base points.
 :::
