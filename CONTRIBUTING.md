@@ -45,6 +45,30 @@ the required phenomenon. Extend that repertoire through these connections.
 This priority guides additions and example selection. Apply the editorial
 rules below when improving an existing authored example or derivation.
 
+## Prioritize compact representations of relationships
+
+Give high priority to composite cards that organize a connected body of
+knowledge in one place. Use implication chains, diagrams, tables, and concise
+annotations to make the structure visible. For an implication hierarchy,
+combine the full chain with a short list of examples showing where the
+converses fail. Reuse the familiar example repertoire to explain those
+boundaries. A card can test several facts when their relationships form the
+idea being learned; one fact per card is not a default requirement.
+
+For initial learning, establish this connected representation before expanding
+it into separate prompts for each implication, converse, example, or
+rearrangement. Prefer a compact representation that helps the researcher
+reconstruct the whole pattern. Compression should expose relationships and
+retain the hypotheses needed to interpret them, rather than merely abbreviate
+the text or collect unrelated facts.
+
+Focused cards serve a complementary, later purpose. Use them to test individual
+parts of the composite, distinguish apparent familiarity from understanding,
+and locate gaps through spaced-repetition results. Those results can guide
+targeted practice of weak links. Treat this diagnostic coverage as long-tail
+work after the composite card, not as a replacement for it. A review grade on
+the composite alone does not identify which part needs attention.
+
 ## Edit existing cards by synthesis
 
 Existing cards contain authored choices about how to recall and use mathematics.
