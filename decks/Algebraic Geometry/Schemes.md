@@ -2,6 +2,62 @@
 title: "Algebraic Geometry::Schemes"
 ---
 
+::: {.front card-id="application-normalization-cusp-conductor" tags="application"}
+For $A=\mathbb C[t^2,t^3]\subset\mathbb C(t)$, compute its normalization $B$, the quotient $B/A$, and the conductor $\mathfrak c=\{b\in B:bB\subset A\}$. What do these say about the cusp?
+:::
+
+::: {.back card-id="application-normalization-cusp-conductor"}
+Since $t=t^3/t^2\in\operatorname{Frac}(A)$ and satisfies the monic equation $T^2-t^2=0$, $B=\mathbb C[t]$ is finite over $A$; it is integrally closed and has the same fraction field, so it is the normalization. Every power $t^j$ with $j\ge2$ lies in $A$, but $t$ does not. Hence
+$$B/A=\mathbb C\cdot\bar t,\qquad\delta=1,\qquad\mathfrak c=t^2B=(t^2,t^3)\subset A.$$
+The normalization map is $t\mapsto(t^2,t^3)$. It is bijective on complex points, but not an isomorphism: the local function $t$ is missing downstairs.
+:::
+
+::: {.front card-id="application-normalization-node-ring" tags="application"}
+Normalize $A=\mathbb C[x,y]/(y^2-x^2(x+1))$. Compute its conductor and describe which functions on the normalization descend to the nodal curve.
+:::
+
+::: {.back card-id="application-normalization-node-ring"}
+In the fraction field set $t=y/x$. Then $t^2=x+1$, so
+$$x=t^2-1,\qquad y=t(t^2-1),\qquad B=\mathbb C[t].$$
+The element $t$ is integral over $A$, and $B$ is integrally closed with the same fraction field. Under this inclusion,
+$$A=\{f\in\mathbb C[t]:f(1)=f(-1)\}=\mathbb C+(t^2-1)\mathbb C[t].$$
+Thus $B/A$ has dimension one, and the conductor is $(t^2-1)B=(x,y)$ as an ideal of $A$. A function descends precisely when its values at the two preimages of the node agree.
+:::
+
+::: {.front card-id="application-normalization-exact-sequence" tags="application"}
+An integral projective complex plane quartic has two ordinary nodes and no other singularities. Use the normalization exact sequence to compute the genus of its normalization. Where do the local corrections enter cohomology?
+:::
+
+::: {.back card-id="application-normalization-exact-sequence"}
+For $\nu:\widetilde C\to C$, use
+$$0\longrightarrow\mathcal O_C\longrightarrow\nu_*\mathcal O_{\widetilde C}\longrightarrow Q\longrightarrow0,$$
+where $Q$ is supported at the singularities and has local length $\delta_p$. Both curves are integral projective, so the map on global functions is $\mathbb C\xrightarrow{\sim}\mathbb C$. Since $\nu$ is finite,
+$$0\longrightarrow H^0(Q)\longrightarrow H^1(\mathcal O_C)\longrightarrow H^1(\mathcal O_{\widetilde C})\longrightarrow0.$$
+Here $h^1(\mathcal O_C)=p_a(C)=3$ and $h^0(Q)=2$, so $g(\widetilde C)=1$. The same sequence gives $p_a(C)-g(\widetilde C)=\sum_p\delta_p$ for any integral projective complex curve.
+:::
+
+::: {.front card-id="application-normalization-lift-map" tags="application"}
+Let $C=V(y^2-x^2(x+1))$ over $\mathbb C$. A dominant map $f:Z\to C$ comes from a normal integral variety $Z$. How do you find its lift to $\mathbb A^1_t=C^\nu$? What happens for maps whose image is the node?
+:::
+
+::: {.back card-id="application-normalization-lift-map"}
+The rational function $t=f^*y/f^*x$ satisfies $t^2=f^*x+1$. It is integral over the regular functions on each affine open of $Z$, so normality makes it regular there. These functions glue to the unique lift.
+
+A map from a point to the node has two lifts, $t=1$ and $t=-1$. Thus dominance is essential for this uniqueness statement. Conversely, the identity $C\to C$ has no lift to $C^\nu$, illustrating the need for a normal source.
+
+Reference: [Stacks Project, normalization](https://stacks.math.columbia.edu/tag/035E).
+:::
+
+::: {.front card-id="application-normalization-versus-resolution" tags="application"}
+Does normalization resolve every complex variety? Compare the cusp $y^2=x^3$ with the surface $xy=z^2$.
+:::
+
+::: {.back card-id="application-normalization-versus-resolution"}
+For an integral complex curve, normalization is finite and normal, hence regular and smooth; it resolves the cusp by $t\mapsto(t^2,t^3)$.
+
+The surface $X=V(xy-z^2)\subset\mathbb A^3$ is already normal: it is a hypersurface, hence Cohen–Macaulay and $S_2$, and its only singular point has codimension two, so it is $R_1$. Its normalization is the identity and leaves the singular point intact. Blowing up the vertex resolves it, with exceptional smooth conic, isomorphic to $\mathbb P^1$, of self-intersection $-2$.
+:::
+
 ::: {.front card-id="application-zmt-cusp-normality" tags="application"}
 For $\nu:\mathbb A^1_{\mathbb C}\to C=V(y^2-x^3)$ given by $t\mapsto(t^2,t^3)$, check finiteness, birationality, and bijectivity on closed points. Is $\nu$ an isomorphism? Which hypothesis of the birational form of Zariski's Main Theorem fails?
 :::
@@ -205,7 +261,7 @@ Give an example of a non-normal scheme.
 ::: {.back card-id="card-571f6dddb3e98505"}
 The cuspidal curve $V(y^2-x^3)$, since there is a finite birational morphism
 $$\begin{align*}{\mathbf{A}}^1&\to X \\ t&\mapsto (t^2, t^3)\end{align*}$$
-which is not an isomorphism. Similarly, the nodal cubic $V(y^2-x(x+1))$ is not normal since its parameterization $t\mapsto (f_1(t), f_2(t))$ which is not an isomorphism (2-to-1 at the node).
+which is not an isomorphism. Over $\mathbb C$, similarly, the nodal cubic $V(y^2-x^2(x+1))$ is not normal: its normalization $t\mapsto(t^2-1,t(t^2-1))$ is not an isomorphism, since $t=1,-1$ both map to the node.
 :::
 
 ::: {.front card-id="card-9b3ba2e73259c05c"}
@@ -213,7 +269,7 @@ What is the universal property of normalization?
 :::
 
 ::: {.back card-id="card-9b3ba2e73259c05c"}
-Every dominant $f:Z\to X$ factors through $\tilde X\to X$.
+For $X$ integral and $Z$ normal integral, every dominant $f:Z\to X$ factors uniquely through $\tilde X\to X$. Normality of $Z$ is essential: the identity of a nonnormal integral variety does not lift to its normalization.
 :::
 
 ::: {.front card-id="card-1a4004ebf4e453ee" tags="definition"}

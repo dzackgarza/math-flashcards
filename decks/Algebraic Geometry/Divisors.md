@@ -2,6 +2,64 @@
 title: "Algebraic Geometry::Divisors"
 ---
 
+::: {.front card-id="application-pencil-net-conventions" tags="application"}
+For $V\subset H^0(X,L)$, what dimensions define a pencil and a net? What is a complete system, and what is the target of the associated rational map? Illustrate with conics on $\mathbb P^2$.
+:::
+
+::: {.back card-id="application-pencil-net-conventions"}
+The system is $\mathbb P(V)$, where this notation means one-dimensional subspaces of $V$, so its dimension is $\dim V-1$. A pencil has $\dim V=2$, a net has $\dim V=3$, and the system is complete if $V=H^0(X,L)$.
+
+Evaluation gives $X\dashrightarrow\mathbb P(V^\vee)$, with point $x$ represented by the functional $s\mapsto s(x)$ after trivializing $L_x$. A basis gives coordinates $[s_0(x):\cdots:s_r(x)]$.
+
+For $L=\mathcal O_{\mathbb P^2}(2)$, $h^0(L)=6$ and the complete system has dimension five. The span of $x^2,y^2,z^2$ is an incomplete net. The parameter plane of its conics and the target plane of its evaluation map are dual projective spaces.
+:::
+
+::: {.front card-id="application-fixed-part-residual-basepoint" tags="application"}
+On $\mathbb P^2_{\mathbb C}$, consider the pencil $V=\langle x^2,xy\rangle$. Find its fixed divisor, residual system, base ideal, and rational map. Does removing the fixed divisor remove all base points?
+:::
+
+::: {.back card-id="application-fixed-part-residual-basepoint"}
+Every member is $x(ax+by)=0$. The fixed divisor is the line $x=0$, and the residual pencil is $\langle x,y\rangle\subset H^0(\mathcal O(1))$. The original base ideal is $(x^2,xy)=x(x,y)$.
+
+Canceling the common factor gives $[x:y]$, which extends across the fixed line except at $[0:0:1]$. The residual pencil still has that base point. Blowing it up yields a morphism with line bundle $\pi^*\mathcal O(1)(-E)$. A moving system can therefore still have isolated base points.
+:::
+
+::: {.front card-id="application-net-image-dimension-degree" tags="application"}
+Compare the nets $\langle x^2,xy,y^2\rangle$, $\langle x^2,y^2,z^2\rangle$, and $\langle yz,xz,xy\rangle$ on $\mathbb P^2_{\mathbb C}$. What are their image dimensions and, when defined, generic degrees onto the image?
+:::
+
+::: {.back card-id="application-net-image-dimension-degree"}
+The first map factors as $[x:y:z]\dashrightarrow[x:y]\mapsto[x^2:xy:y^2]$. Its image is the conic $AC=B^2$ and its general fiber is one-dimensional; it is not generically finite.
+
+The second is a morphism onto $\mathbb P^2$, generically of degree four: on $z\ne0$, two independent squares determine two independent signs.
+
+The third is the quadratic Cremona map, birational onto $\mathbb P^2$, with its three coordinate base points. Thus a net need not have surface image, and quadratic coordinates do not determine the map degree.
+:::
+
+::: {.front card-id="application-linear-system-map-degree-intersection" tags="application"}
+A linear system on a smooth complex projective surface has been resolved to a base-point-free line bundle $M$ defining $f:S\to Y\subset\mathbb P^r$. How do you use $M^2$ to distinguish a pencil-type map from a generically finite map and compute its degree?
+:::
+
+::: {.back card-id="application-linear-system-map-degree-intersection"}
+If $\dim Y=1$, then $M^2=0$: general hyperplane divisors on the image pull back to disjoint unions of fibers. If $\dim Y=2$, the projection formula gives
+$$M^2=\deg(f)\deg(Y).$$
+Thus $M^2>0$ forces a surface image, and division by $\deg(Y)$ gives the generic degree. On a resolved plane system of degree $d$ with base multiplicities $m_i$, in the total-transform basis,
+$$M=dH-\sum_i m_iE_i,\qquad M^2=d^2-\sum_i m_i^2.$$
+Use the resolved moving class: fixed components and unresolved base points invalidate this calculation of the map degree.
+:::
+
+::: {.front card-id="application-plane-system-imposed-conditions" tags="application"}
+How many linear conditions does multiplicity at least $m$ at a specified smooth point impose on degree-$d$ plane forms? When may you subtract these conditions to compute the dimension of a linear system? Test conics through three distinct collinear points.
+:::
+
+::: {.back card-id="application-plane-system-imposed-conditions"}
+Vanishing of all local terms of total degree less than $m$ gives $\binom{m+1}{2}$ jet conditions. Their independence must be checked; for a single point they are independent when $d\ge m-1$. For several points the expected projective dimension is
+$$\max\left\{-1,\binom{d+2}{2}-1-\sum_i\binom{m_i+1}{2}\right\},$$
+but special configurations can force dependencies or fixed components.
+
+A conic through three collinear points contains their line: its restriction to the line has degree two and three distinct zeros. The system is that fixed line plus an arbitrary line, so it is a net of projective dimension two. Its dimension equals the expected value, yet it has a fixed component; a correct dimension count does not establish base-point-freeness.
+:::
+
 ::: {.front card-id="application-bertini-general-choice" tags="application"}
 A research argument needs a divisor in a complex linear system satisfying several properties, each known to hold for a general member. Can the properties be imposed simultaneously? Does the same argument guarantee a member defined over a finite field?
 :::

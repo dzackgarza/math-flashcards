@@ -233,7 +233,7 @@ Why is the normalization a resolution of singularities in dimension 1?
 :::
 
 ::: {.back card-id="card-09997a605600bdd5"}
-The normalization is normal, hence regular in codimension 1, hence regular hence smooth.
+For an integral curve over a perfect field (in particular $\mathbb C$), the normalization is normal, hence regular in codimension 1, hence regular, hence smooth. The normalization map is finite and birational and is an isomorphism over the regular locus, so it is a resolution. The perfect-field hypothesis justifies the step from regular to smooth.
 :::
 
 ::: {.front card-id="card-46208803000099ea" tags="formula"}

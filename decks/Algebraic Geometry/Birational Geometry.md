@@ -2,6 +2,72 @@
 title: "Algebraic Geometry::Birational Geometry"
 ---
 
+::: {.front card-id="application-blowup-base-ideal-map" tags="application"}
+Let $V=\langle s_0,\ldots,s_r\rangle\subset H^0(X,L)$ on an integral projective variety. How does its base ideal resolve the rational map $[s_0:\cdots:s_r]$? Identify the line bundle defining the resolved map and the relation with the graph.
+:::
+
+::: {.back card-id="application-blowup-base-ideal-map"}
+Define $\mathcal I$ by $\operatorname{im}(V\otimes L^{-1}\to\mathcal O_X)=\mathcal I$. On $\pi:\widetilde X=\operatorname{Bl}_{\mathcal I}X\to X$,
+$$\mathcal I\mathcal O_{\widetilde X}=\mathcal O_{\widetilde X}(-E),\qquad M=\pi^*L\otimes\mathcal O_{\widetilde X}(-E).$$
+The pulled-back sections, with their common exceptional factor removed, generate $M$ and give $\widetilde X\to\mathbb P^r$. The combined map to $X\times\mathbb P^r$ identifies $\widetilde X$ with the scheme-theoretic closure of the graph. The blowup resolves the rational map but need not be smooth. A fixed Cartier divisor can first be removed from the system without changing the rational map.
+
+Reference: [Stacks Project, blowing up](https://stacks.math.columbia.edu/tag/01OF).
+:::
+
+::: {.front card-id="application-infinitely-near-exceptional-basis" tags="application"}
+Blow up a smooth surface at $p$, then blow up a point $q$ on the exceptional curve. On the final surface, let $E_1$ be the total transform of the first exceptional curve and $E_2$ the second exceptional curve. Compute the strict transform of the first curve, the intersection matrix in both bases, and the relative canonical divisor.
+:::
+
+::: {.back card-id="application-infinitely-near-exceptional-basis"}
+The first strict transform is $E_1'=E_1-E_2$. The total-transform basis has
+$$E_1^2=E_2^2=-1,\qquad E_1E_2=0.$$
+Thus $(E_1')^2=-2$, $E_1'E_2=1$, and the matrix in the irreducible exceptional basis is
+$$\begin{pmatrix}-2&1\\1&-1\end{pmatrix}.$$
+For the composite $\pi$,
+$$K_{\widetilde S}=\pi^*K_S+E_1+E_2=\pi^*K_S+E_1'+2E_2.$$
+The coefficient of $E_2$ depends on whether the other symbol denotes a total transform or an irreducible curve.
+:::
+
+::: {.front card-id="application-infinitely-near-pencil-resolution" tags="application"}
+Resolve $(x,y)\mapsto[x^2:y]$ as a rational map from $\mathbb A^2_{\mathbb C}$ to $\mathbb P^1$. Does blowing up the origin once suffice? Which exceptional curve maps nonconstantly to $\mathbb P^1$?
+:::
+
+::: {.back card-id="application-infinitely-near-pencil-resolution"}
+In the chart $y=xv$, remove the common factor $x$ to get $[x:v]$, still undefined at $x=v=0$. The other first-blowup chart $x=yu$ gives $[yu^2:1]$ and has no base point.
+
+Blow up the remaining point: the charts $v=xw$ and $x=vu$ give $[1:w]$ and $[u:1]$. The second exceptional curve maps isomorphically to $\mathbb P^1$. The strict transform of the first exceptional curve maps to $[0:1]$. The original base scheme $(x^2,y)$ has length two at one point, and its second base point is infinitely near.
+:::
+
+::: {.front card-id="application-nonreduced-center-blowup" tags="application"}
+Compute the blowup of $(x^2,y)\subset\mathbb C[x,y]$. Is it the ordinary blowup of the origin? Does it resolve $[x^2:y]$, and is its source smooth?
+:::
+
+::: {.back card-id="application-nonreduced-center-blowup"}
+With $[U:V]=[x^2:y]$, its equation is $x^2V=yU$. On $U\ne0$, put $v=V/U$: the chart is $y=x^2v$, hence smooth with coordinates $(x,v)$. On $V\ne0$, put $u=U/V$: the chart is
+$$\operatorname{Spec}\mathbb C[x,y,u]/(x^2-yu),$$
+with an $A_1$ singularity at the origin. Projection to $[U:V]$ resolves the rational map. Unlike the smooth ordinary point blowup, this blowup is singular: the scheme structure of the center matters. Successive ordinary blowups at the origin and the remaining infinitely near base point give a smooth resolution of the map.
+:::
+
+::: {.front card-id="application-hirzebruch-elementary-transform" tags="application"}
+Let $S\subset\mathbb F_n$ be the section with $S^2=-n$, $n\ge1$. Blow up a point $p$ and contract the strict transform of its ruling fiber. Which Hirzebruch surface results when $p\in S$ and when $p\notin S$?
+:::
+
+::: {.back card-id="application-hirzebruch-elementary-transform"}
+The fiber through $p$ acquires square $-1$, so it can be contracted to a smooth point. If $p\in S$, the strict transform of $S$ has square $-n-1$ and is disjoint from the contracted fiber; the result is $\mathbb F_{n+1}$.
+
+If $p\notin S$, the section still has square $-n$ and meets the contracted fiber once. Contraction raises its square by one, giving $\mathbb F_{n-1}$. Starting from $\mathbb F_0$, either choice gives $\mathbb F_1$. These elementary transformations give explicit birational maps among ruled surfaces while preserving their ruling over $\mathbb P^1$.
+:::
+
+::: {.front card-id="application-cremona-curve-transform" tags="application"}
+A plane curve of degree $d$ has multiplicities $m_1,m_2,m_3$ at the coordinate points and contains no coordinate line. Under the quadratic Cremona transformation, compute its image degree and multiplicities at the inverse base points. Apply this to a conic through all three points.
+:::
+
+::: {.back card-id="application-cremona-curve-transform"}
+On the common blowup its class is $D=dH-\sum m_iE_i$, while a target line pulls back to $H'=2H-E_1-E_2-E_3$. Thus
+$$d'=DH'=2d-m_1-m_2-m_3,\qquad m_i'=d-m_j-m_k\quad(\{i,j,k\}=\{1,2,3\}).$$
+The second formula intersects $D$ with the contracted line $H-E_j-E_k$. A conic through the three points becomes a line avoiding the inverse base points: $d'=1$ and all $m_i'=0$. The exclusion of coordinate components prevents a contracted component from invalidating this interpretation.
+:::
+
 ::: {.front card-id="application-mori-blowup-plane" tags="application"}
 Let $X=\operatorname{Bl}_p\mathbb P^2_{\mathbb C}$, with line pullback $H$ and exceptional curve $E$. Determine $\overline{\operatorname{NE}}(X)$, the canonical degree of each extremal generator, and both contractions. When is $D=aH-bE$ nef or ample?
 :::
@@ -432,11 +498,13 @@ What is the **blowup** of a variety?
 :::
 
 ::: {.back card-id="card-9db7a801cc266d51"}
-For $\operatorname{Bl}_0 {\mathbf{A}}^n$: take ${\mathbf{A}}^n\times {\mathbf{P}}^{n-1}$ with coordinates ${\left[ {x_0, \cdots, x_{n-1}} \right]}, {\left[ {y_0:\cdots : y_{n-1}} \right]}$, so the closed subsets are $V(f)$ where $f$ is a polynomial in $x_i, y_i$ which is homogeneous in the $y_i$. Take the blowup to be the subset $\left\{{x_iy_j = x_j y_i \st1\leq i,j\leq n-1}\right\} = \left\{{2\times 2\text{ minors of} \begin{bmatrix}x_0 & x_1 & \cdots & x_n \\ y_0 & y_1 & \cdots & y_n \end{bmatrix}}\right\}$.
-
+For $\operatorname{Bl}_0 {\mathbf{A}}^n$: take ${\mathbf{A}}^n\times {\mathbf{P}}^{n-1}$ with coordinates $(x_0,\ldots,x_{n-1})$, $[y_0:\cdots:y_{n-1}]$. Closed subschemes are cut out by equations polynomial in the $x_i,y_i$ and homogeneous in the $y_i$. Take the blowup to be
+$$\{x_iy_j=x_jy_i\mid0\le i<j\le n-1\},$$
+the common zero locus of the $2\times2$ minors of
+$$\begin{bmatrix}x_0&x_1&\cdots&x_{n-1}\\y_0&y_1&\cdots&y_{n-1}\end{bmatrix}.$$
 Then $\exists \pi: \operatorname{Bl}_0 {\mathbf{A}}^n \to {\mathbf{A}}^n$ where ${\sharp}\pi^{-1}(p) = 1$ for $p\neq 0$ and $\pi^{-1}(0)\cong {\mathbf{P}}^{n-1}$ corresponding to all lines through $0$.
 
-For $\operatorname{Bl}_Y {\mathbf{A}}^n$ with $Y \subseteq {\mathbf{A}}^n$ a closed subvariety: take $\cl_{\operatorname{Bl}_0 {\mathbf{A}}^n}\qty{\pi^{-1}(Y\setminus\left\{{0}\right\})}$.
+For a positive-dimensional integral closed subvariety $Y\subseteq{\mathbf{A}}^n$ containing $0$, take $\cl_{\operatorname{Bl}_0 {\mathbf{A}}^n}\qty{\pi^{-1}(Y\setminus\left\{{0}\right\})}$. This is the strict transform of $Y$, isomorphic to $\operatorname{Bl}_0Y$. To blow up the ambient ${\mathbf{A}}^n$ along $Y$ instead, use the Rees algebra of the ideal of $Y$.
 :::
 
 ::: {.front card-id="card-77f1ef48e07e3dc0"}
@@ -446,7 +514,9 @@ What is the **blowup of a scheme along a subscheme**? How does this recover blow
 ::: {.back card-id="card-77f1ef48e07e3dc0"}
 Can generally blowup along a coherent sheaf of ideals $\mci$ on $X$: take the sheaf of graded algebras $\tilde \mci\coloneqq\bigoplus_{d\geq 0}\mci^d$ where $\mci^0 \coloneqq{\mathcal{O}}_X$ and set $\tilde X \coloneqq\mathop{\mathrm{Proj}}\tilde \mci$. Can do this with the ideal of sheaf of $Y\hookrightarrow X$ a closed subscheme.
 
-For $X={\mathbf{A}}^n_{/ {k}}$, $p=0$ corresponds to $I = \left\langle{x_0,\cdots,x_n}\right\rangle$ and $\tilde X \coloneqq\mathop{\mathrm{Proj}}S$ where $S\coloneqq\bigoplus_{d\geq 0} I^d$; then setting $X \coloneqq\operatorname{Spec}A, A\coloneqq k[x_1, \cdots, x_{n}]$ there is a surjection $A[y_1,\cdots, y_n]$ where $y_i\mapsto x_i, {\left\lvert {x_i} \right\rvert} = 1$, making $\tilde X$ isomorphic to a closed subscheme of $\mathop{\mathrm{Proj}}A[y_1,\cdots, y_n] \cong {\mathbf{P}}^{n-1}_{/ {A}}$, and the ideal of definition is generated by $\left\{{x_iy_j - x_jy_i}\right\}$.
+For $X={\mathbf{A}}^n_k=\operatorname{Spec}A$, set $A=k[x_0,\ldots,x_{n-1}]$ and $I=(x_0,\ldots,x_{n-1})$, the ideal of $p=0$. Write the Rees algebra as $S=\bigoplus_{d\ge0}I^dt^d\subset A[t]$. There is a graded surjection
+$$A[y_0,\ldots,y_{n-1}]\twoheadrightarrow S,\qquad y_i\mapsto x_it,$$
+where elements of $A$ have degree zero and the $y_i$ and $x_it$ have degree one. Thus $\tilde X=\operatorname{Proj}S$ is a closed subscheme of $\operatorname{Proj}A[y_0,\ldots,y_{n-1}]\cong\mathbb P^{n-1}_A$, with ideal generated by $x_iy_j-x_jy_i$. This recovers the incidence equations.
 :::
 
 ::: {.front card-id="card-93938d5c9783d630"}
@@ -454,7 +524,7 @@ Discuss properties of the blowup morphism.
 :::
 
 ::: {.back card-id="card-93938d5c9783d630"}
-It is an isomorphism away from $p$ and $\pi^{-1}(p)$, for varieties $X$ it is birational, proper, and surjective; if $X$ is quasiprojective then $\tilde X$ is too and $\pi$ is projective.
+For a proper closed center $Z$ in an integral variety $X$, it is an isomorphism away from $Z$ and $\pi^{-1}(Z)$ (in particular, away from $p$ and $\pi^{-1}(p)$ for a point blowup). It is birational, projective, hence proper, and surjective. If $X$ is quasiprojective then $\tilde X$ is too. Blowing up an effective Cartier divisor gives an isomorphism.
 :::
 
 

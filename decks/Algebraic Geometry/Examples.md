@@ -2,6 +2,75 @@
 title: "Algebraic Geometry::Examples"
 ---
 
+::: {.front card-id="example-quadric-projection-parametrization" tags="example application"}
+Parametrize $Q=V(X_0X_3-X_1X_2)\subset\mathbb P^3_{\mathbb C}$ birationally by projection from $p=[1:0:0:0]$. Give the rational inverse and locate its base points.
+:::
+
+::: {.back card-id="example-quadric-projection-parametrization"}
+Projection is $[X_0:X_1:X_2:X_3]\dashrightarrow[X_1:X_2:X_3]$. On $X_3\ne0$, the equation recovers $X_0=X_1X_2/X_3$. Thus the inverse is
+$$[u:v:w]\dashrightarrow[uv:uw:vw:w^2].$$
+Substitution gives $X_0X_3=X_1X_2$, and composition is the identity on $w\ne0$. Its base points are $[1:0:0]$ and $[0:1:0]$. The line $w=0$ contracts to $p$ away from those points. Projection from $p$ contracts the two ruling lines on $Q$ through $p$, away from $p$ itself.
+:::
+
+::: {.front card-id="example-plane-product-birational-map" tags="example application"}
+Give explicit inverse birational maps between $\mathbb P^2_{\mathbb C}$ and $\mathbb P^1\times\mathbb P^1$. Describe their indeterminacy and a common smooth resolution.
+:::
+
+::: {.back card-id="example-plane-product-birational-map"}
+Use
+$$[x:y:z]\dashrightarrow([x:y],[x:z]),\qquad
+([a:b],[c:d])\dashrightarrow[ac:bc:ad].$$
+They are inverse where $x\ne0$ and $ac\ne0$. The forward map has base points $[0:1:0]$ and $[0:0:1]$; the inverse has base point $([0:1],[0:1])$.
+
+Blow up the two plane base points. The strict transform of $x=0$ has class $H-E_1-E_2$ and square $-1$; contracting it gives $\mathbb P^1\times\mathbb P^1$. The ruling classes pull back to $H-E_1$ and $H-E_2$, with square zero and mutual intersection one. This surface is also the blowup of the product at the inverse base point.
+:::
+
+::: {.front card-id="example-conic-pencil-four-basepoints" tags="example application"}
+Consider the pencil spanned by $F=x(y-z)$ and $G=y(x-z)$ in $\mathbb P^2_{\mathbb C}$. Find its base scheme, resolve the map $[F:G]$, and describe the fiber class, sections, and singular members.
+:::
+
+::: {.back card-id="example-conic-pencil-four-basepoints"}
+The base scheme consists of four reduced points
+$$[1:0:0],\quad[0:1:0],\quad[0:0:1],\quad[1:1:1].$$
+The gradients of $F,G$ are independent at each point. Blowing them up resolves the map, with fiber class $D=2H-E_1-E_2-E_3-E_4$. Then $D^2=0$, $K_SD=-2$, and the general fiber has genus zero. Each $E_i$ meets $D$ once and is a section.
+
+The singular members are $F$, $G$, and $F-G=z(y-x)$: the three pairings of the four base points into pairs of lines. Each resolved singular fiber consists of two $(-1)$-curves meeting once. There are no others: the determinant of the symmetric matrix of $\lambda F+\mu G$ is a nonzero scalar times $\lambda\mu(\lambda+\mu)$.
+:::
+
+::: {.front card-id="example-cubic-pencil-elliptic-surface" tags="example application"}
+A general pencil of plane cubics over $\mathbb C$ has nine distinct base points. What surface and fibration result from blowing them up? Compute the fiber class, canonical class, sections, and number of singular fibers.
+:::
+
+::: {.back card-id="example-cubic-pencil-elliptic-surface"}
+Blowing up the base points gives a rational elliptic surface $f:S\to\mathbb P^1$, with
+$$F=3H-\sum_{i=1}^9E_i=-K_S,\qquad F^2=0,\qquad K_SF=0.$$
+Adjunction gives genus one for a smooth fiber. Each $E_i$ has $E_iF=1$ and is a section, so the fibration has a section as well as genus-one fibers.
+
+For a general pencil all singular fibers are irreducible nodal cubics. Since $e(S)=e(\mathbb P^2)+9=12$, smooth elliptic fibers have Euler characteristic zero, and each nodal fiber contributes one, there are twelve singular fibers. Distinct base points alone do not guarantee this fiber type; special pencils can have reducible or cuspidal fibers.
+
+Reference: [Vakil, Twelve points on the projective line, branched covers, and rational elliptic fibrations](https://arxiv.org/abs/math/9910077).
+:::
+
+::: {.front card-id="example-conic-system-discriminant" tags="example application"}
+How do you find singular members of a pencil or net of plane conics over $\mathbb C$? Compute the discriminant of the net $ax^2+by^2+cz^2$ and distinguish this discriminant from the base locus.
+:::
+
+::: {.back card-id="example-conic-system-discriminant"}
+Write a conic as $\mathbf x^TA\mathbf x$ with $A$ symmetric. It is singular exactly when $\det A=0$. Rank two gives two distinct lines, and rank one gives a double line. For a pencil $A=\lambda A_0+\mu A_1$, the determinant is a binary cubic; if not identically zero, it has three roots counted with multiplicity.
+
+For a net $A=aA_0+bA_1+cA_2$, the discriminant is a cubic in its parameter plane, unless identically zero. In the diagonal example it is $abc=0$: a triangle. A general point on each side gives a pair of lines, and each vertex gives a double line. The net's base locus lies in the original plane and is empty, since $x^2=y^2=z^2=0$ has no projective solution.
+:::
+
+::: {.front card-id="example-cremona-net-complete-subsystem" tags="example application"}
+View the quadratic Cremona map as a net. Which conditions on conics define it? Is it complete as a plane conic system, and what happens to completeness on the blowup?
+:::
+
+::: {.back card-id="example-cremona-net-complete-subsystem"}
+Vanishing at $[1:0:0]$, $[0:1:0]$, and $[0:0:1]$ kills the coefficients of $x^2,y^2,z^2$, leaving
+$$V=\langle yz,xz,xy\rangle.$$
+Thus it is an incomplete subsystem of $|\mathcal O_{\mathbb P^2}(2)|$, but contains every conic through the three points. On their blowup it is the complete, base-point-free system $|2H-E_1-E_2-E_3|$. This class has square one, so the morphism to its image $\mathbb P^2$ has degree one; the strict transforms of the coordinate lines are contracted.
+:::
+
 ::: {.front card-id="application-hilbert-family-conics" tags="application"}
 For the family $xy=t z^2$ in $\mathbb P^2_{\mathbb C}\times\mathbb A^1_t$, find its Hilbert polynomial and explain why it defines a morphism to a single projective Hilbert scheme, including at $t=0$.
 :::
