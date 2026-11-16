@@ -84,17 +84,21 @@ desktop-test scenario="full":
     import subprocess
     import tempfile
     from pathlib import Path
-    flags = {"full": "", "startup": " --startup"}
+    scenarios = {"full": "tests/workbench.py", "startup": "tests/workbench.py --startup", "study": "tests/study.py"}
     environment = os.environ.copy()
     environment.setdefault("UV_CACHE_DIR", subprocess.check_output(["uv", "cache", "dir"], text=True).strip())
     environment.setdefault("PLAYWRIGHT_BROWSERS_PATH", str(Path(os.environ.get("XDG_CACHE_HOME", str(Path.home() / ".cache"))) / "ms-playwright"))
     with tempfile.TemporaryDirectory(prefix="flashcards-browser-cache-") as directory:
-        environment["XDG_CACHE_HOME"] = directory
+        environment["XDG_CACHE_HOME"] = str(Path(directory) / "cache")
+        environment["XDG_DATA_HOME"] = str(Path(directory) / "data")
         subprocess.run(
-            ["bunx", "start-server-and-test", "just -f ../justfile desktop-web", "http-get://127.0.0.1:1420", "uv run --upgrade tests/workbench.py" + flags["{{scenario}}"]],
+            ["bunx", "start-server-and-test", "just -f ../justfile desktop-web", "http-get://127.0.0.1:1420", "uv run --upgrade " + scenarios["{{scenario}}"]],
             cwd="desktop", check=True,
             env=environment,
         )
+
+# Exercise Study with isolated learning data and cache directories
+desktop-study-test: (desktop-test "study")
 
 # Exercise card organization and real multi-deck file changes
 desktop-organization-test:
