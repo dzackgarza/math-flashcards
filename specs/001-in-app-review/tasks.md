@@ -38,7 +38,7 @@ the copy, and the analyses, and each phase lists its tasks in the order of work.
 
 **Purpose**: Dependencies, test isolation, and fixtures
 
-- [ ] T080 Open the owning GitHub issue of this feature, with the purpose of `specs/001-in-app-review/spec.md` in the repository's own words and a link to this directory. Each failing test commit that the commit hook rejects goes through the sanctioned route for red commits with this issue's number, and each issue that a later task opens refers to it
+- [X] T080 Open the owning GitHub issue of this feature, with the purpose of `specs/001-in-app-review/spec.md` in the repository's own words and a link to this directory. Each failing test commit that the commit hook rejects goes through the sanctioned route for red commits with this issue's number, and each issue that a later task opens refers to it. Owner: [issue #2](https://github.com/dzackgarza/math-flashcards/issues/2).
 - [ ] T001 Add `anki` with no version pin to the PEP 723 dependency block of `desktop/backend.py`, and confirm that `just desktop-dependencies` prepares an environment in which `import anki` and `import ankdown` both succeed
 - [ ] T002 In the `ankdown-for-math` repository, add an `id` field to the card model in `ankdown/cli.py` and emit it from `ankdown/ankdown.lua` for each card that supplies one; the package build ignores `id` and package GUIDs stay `simple_hash(front + back)`; prove it with a test in that repository and commit there
 - [ ] T003 In `justfile`, make the `desktop-test` recipe set `XDG_DATA_HOME` to a temporary directory beside its `XDG_CACHE_HOME` override, and add a `desktop-study-test` recipe that runs `desktop/tests/study.py` against `just desktop-web` with temporary `XDG_DATA_HOME` and `XDG_CACHE_HOME`
