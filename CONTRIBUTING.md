@@ -726,6 +726,13 @@ produce the intended knowledge: state a definition, explain a connection, or
 solve a problem. Keep the information being tested out of the prompt so answering
 requires retrieval [1, 2].
 
+Test mathematical content, not a source's theorem, proposition, or definition
+number. Use the mathematical object, hypotheses, conclusion sought, or standard
+name to identify the task. Keep source numbering in references on the back.
+For example, replace “Thm 4.3.1 (fundamental)” with “How does the lattice
+exponential $e_L(ax)$ depend on $e_L(x)$ and $a^{-1}L/L$?” Preserve the formula
+and its derivation on the back. A source locator is not a mathematical recall cue.
+
 ## Practise the intended use of the knowledge
 
 Match the question to the research task being practised. Ask for a theorem's
