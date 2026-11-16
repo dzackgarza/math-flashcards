@@ -31,6 +31,24 @@ Geometry deck. Vocabulary is a separate study subject.
 
 ## Subject boundaries
 
+- Sheaves and Vector Bundles owns exact sequences of sheaves and the local
+  operations that construct them. Cohomology owns their derived functors,
+  vanishing theorems, duality, and global calculations. Spectral Sequences owns
+  page conventions, convergence, edge maps, and degeneration tests;
+  Hodge Theory keeps the geometric Hodge structures.
+  Hartshorne, *Algebraic Geometry*, Chapters II–III, and the
+  [Stacks Project](https://stacks.math.columbia.edu/) supply the algebraic conventions.
+
+- Geometry / Manifolds owns smooth differential geometry, Riemannian curvature,
+  and the differential-geometric foundations of complex and Kähler geometry.
+  Its curvature convention is
+  `R(X,Y)Z = ∇_X∇_Y Z − ∇_Y∇_X Z − ∇_[X,Y] Z`, with positive sectional
+  curvature on the round sphere. Its Kähler form is `ω(X,Y) = g(JX,Y)`.
+  [Joyce's differential geometry course](https://people.maths.ox.ac.uk/~joyce/Nairobi2019/IntroDiffGeom.html)
+  and [complex and Kähler geometry course](https://people.maths.ox.ac.uk/joyce/KahlerGeom2022/index.html)
+  supply reference material. Keep metric-dependent statements distinct from
+  assertions about the complex manifold admitting such a metric.
+
 - Combinatorics / Matroids owns independence, rank, circuits, flats, matroid
   polytopes, and regular subdivisions. Toric Varieties owns the varieties and
   degenerations constructed from lattice polytopes.

@@ -161,9 +161,9 @@ What is a Hermitian symmetric domain?
 :::
 
 ::: {.back card-id="card-5c5663f6f10fe152"}
-A hermitian space is a smooth manifold $M$ endowed with a riemannian structure $g$ and a complex structure $J$ that are compatible in the sense that $g(J x, J y)=g(x, y)$ for all $m \in M$ and all $x, y \in T_m M$. $^6$ A hermitian space is symmetric if every point is an isolated fixed point of an involution. A hermitian symmetric domain is a hermitian symmetric space with negative (sectional) curvature.
+A Hermitian manifold is a smooth manifold $M$ with a Riemannian metric $g$ and a complex structure $J$ such that $g(Jx,Jy)=g(x,y)$. It is Hermitian symmetric if every point is an isolated fixed point of an involutive holomorphic isometry. A Hermitian symmetric domain is a connected simply connected Hermitian symmetric space of noncompact type. Its sectional curvature is nonpositive, not necessarily negative: a product has zero-curvature mixed tangent planes.
 
-Every hermitian symmetric domain decomposes as a product of simple (irreducible) hermitian symmetric domains $D$ whose automorphism groups $\operatorname{Hol}(D)$ are simple Lie groups.
+Every Hermitian symmetric domain decomposes as a product of irreducible Hermitian symmetric domains. For each irreducible factor, the identity component of the holomorphic automorphism group is a noncompact simple adjoint real Lie group.
 :::
 
 ::: {.front card-id="card-6e62b7a6104572a1"}
@@ -231,7 +231,7 @@ What is the definition of Hermitian space?
 :::
 
 ::: {.back card-id="card-aa406a897b09b179"}
-A smooth manifold $M$ with a Riemannian metric $g$ and a complex structure $J$ such that $g(Jx,Jy)=g(x,y)$; it is symmetric if every point is an isolated fixed point of an involution, and a Hermitian symmetric domain if it also has nonpositive sectional curvature and is of noncompact type.
+In the manifold sense: a smooth $M$ with a Riemannian metric $g$ and an integrable complex structure $J$ such that $g(Jx,Jy)=g(x,y)$. Hermitian symmetric means each point is an isolated fixed point of an involutive holomorphic isometry. A Hermitian symmetric domain is connected, simply connected, and of noncompact type; its invariant metric has nonpositive sectional curvature.
 :::
 
 ::: {.front card-id="card-b35d040a5a028195" tags="definition"}

@@ -2028,7 +2028,7 @@ What is the definition of Kähler manifold?
 :::
 
 ::: {.back card-id="card-58271c784e2e4572"}
-A complex manifold equipped with a closed positive $(1,1)$-form, equivalently a Hermitian metric whose associated $2$-form is closed. It admits a Hodge decomposition and satisfies hard Lefschetz.
+A complex manifold equipped with a closed positive $(1,1)$-form, equivalently a Hermitian metric whose associated $2$-form is closed. If compact, it admits the Hodge decomposition and satisfies hard Lefschetz.
 :::
 
 ::: {.front card-id="card-2a92d4ad6fefcca1" tags="definition"}
