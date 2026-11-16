@@ -1,8 +1,10 @@
 # Quickstart: Validate In-App Review
 
 These scenarios prove the feature through the real window, the real bridge, and a real
-store. Values and actions are defined in [data-model.md](./data-model.md) and
-[contracts/study-bridge.md](./contracts/study-bridge.md).
+store. Values and actions are defined in [data-model.md](./data-model.md),
+[contracts/study-bridge.md](./contracts/study-bridge.md), and
+[contracts/learning-record.md](./contracts/learning-record.md). The scenario reads the
+learning record with Python's `sqlite3`, with no part of the app and no part of Anki.
 
 ## Prerequisites
 
@@ -23,25 +25,45 @@ browser. `just test-commit` includes it.
 
 | Step | Expected result |
 | --- | --- |
-| Open a workspace of fixture decks that was never studied | The tree shows a new count on each deck and folder; no learning or review count. |
-| Select **Study** on the workspace | The front of one card shows. The back and the grades are hidden. |
-| Press Space | The back shows. Four grades show, each with an interval label. |
-| Press 3 | The next card shows. The store has one review log row. The card's stored interval agrees with the label that Good showed. |
-| Press Ctrl-Z | The first card returns. The store has no review log row. |
-| Grade a card, then end the bridge host with `SIGKILL` | After the window's next request, the grade is in the store. |
+| Open a workspace of fixture decks that was never studied | The tree shows a new count on each deck and folder; no learning or review count. The store directory has `store.json` and `record.sqlite3`. The record has a `card_change` row and a `content` row for each card. |
+| Select **Study** on the workspace | The front of one card shows. The back and the grades are hidden. The record has one `session` row and one `presentation` row. |
+| Wait 2 s, then press Space | The back shows. Four grades show, each with an interval label. |
+| Wait 1 s, then press 3 | The next card shows. The store has one review log row. The card's stored interval agrees with the label that Good showed. |
+| Read the `review` view | The first row has every field of FR-028: time and offset, card ID, deck path, folder, deck title, tags, the front and back shown, session and position, kind, scheduler day, `reveal_ms` within 100 ms of 2000, `grade_ms` within 100 ms of 1000, grade, four offered intervals, state before and after, target recall, parameter set, and writer. Its `revlog_*` values equal the store's review log row. |
+| Read the record with a second `sqlite3` connection while the app runs, then grade a card | The connection reads every row. The grade succeeds. |
+| Press Ctrl-Z | The first card returns. The store has no review log row. The record still has the `response` row, has an `undo` row that refers to it, and has a new `presentation` row for the returned card. |
+| With a card on screen, take the focus from the window for 2 s, then reveal and grade | `unfocused_ms` is within 100 ms of 2000. |
+| Advance the page clock by 3 hours between the reveal and the grade | `grade_ms` is the full time. `revlog_time_ms` is Anki's limited value. |
+| Press Escape with a card on screen | The `presentation` row has no `response` row. The session has a `session_end` row with cause `left`. |
+| Run the four queries of `contracts/learning-record.md` | Each gives the numbers that the grades of the scenario imply. |
+| Compare the record's schema with `docs/study-record.md` | The document names every table and every column. |
+| Grade a card, then end the bridge host with `SIGKILL` | After the window's next request, the grade is in the store and in the record. The session that had no end has a `session_end` row with cause `recovered`. |
 | Grade a card Again and wait for its learning delay | The same card returns in the session. |
 | Study a card with a macro equation and a TikZ-cd diagram | The equation and the diagram render. A screenshot goes to `desktop/test-artifacts/`. |
-| Stop the app; set several cards due today with the `anki` library; start the app | The tree shows review counts for their decks and folders. |
-| Edit the back of a reviewed card in the editor and save | The store shows the new back within 10 seconds, with the same due date. |
-| Move a reviewed card to another deck by editing the files on disk | The card's Anki deck changes; its due date and review log stay. |
+| Stop the app; set several cards due today with the `anki` library; start the app | The tree shows review counts for their decks and folders. The record has one `response` row, with `recovered` set and empty times, for each review log row that the library wrote. |
+| Study three due cards whose estimated recall differs | The session offers them in ascending order of `before_retrievability`. |
+| Edit the back of a reviewed card in the editor and save | The store shows the new back within 10 seconds, with the same due date. The record has a `card_change` row of kind `content` and a new `content` row. |
+| Study the edited card | Its two `review` rows give the earlier back and the later back. |
+| Move a reviewed card to another deck by editing the files on disk | The card's Anki deck changes; its due date and review log stay. The record has a `card_change` row of kind `moved`; earlier `presentation` rows keep the earlier deck path. |
+| Give a note the tag `leech` with the `anki` library, then change the card's tags in its deck | The note has the new tags and `leech`. |
 | Rename a deck with reviewed cards | Each card keeps its due date. |
 | Delete a reviewed card from its deck, then paste it back | The card leaves the counts, then returns with the same due date. |
 | Put one `card-id` in two decks | The sync result names both decks. The note stays with the first deck. |
-| Set new cards per day to 3 and study the workspace | Exactly 3 new cards are offered. |
+| Set new cards per day to 3 and study the workspace | Exactly 3 new cards are offered. The record has a `setting_change` row with the earlier and the later value. |
 | Set target recall to 1.0 | The field shows its bound; the stored setting is unchanged. |
 | Start a second bridge host on the same store | Its first request returns `StoreInUse`. |
 | Replace `collection.anki2` with an unreadable file and open the workspace | The window shows the error with the store path. The file is unchanged. |
-| Select **Rebuild cached data** | The store and its review log are unchanged. |
+| Select **Rebuild cached data** | The store, its review log, and the record are unchanged. |
+| Open the Study settings | The path of the learning record shows and is the file that the scenario reads. |
+| Stop the app; rename the workspace folder; open it | The window lists the existing store with its earlier path, last use, and numbers of cards and grades. No store is created. |
+| Attach the listed store | The counts and the review history are as before the rename. `store.json` lists both paths. The record has a `store_event` row of kind `attached`. |
+| Open a second workspace and select a new store | A second store directory exists. The first store is unchanged. |
+| Run the fit on a store with no review | The window states that the history is too small. Nothing changes. |
+| Stop the app; add a dated review history with the `anki` library; start the app; run the fit | The window shows the fitted parameters and Anki's two measures for the fitted and the current set. |
+| Accept the fit | The preset holds the fitted parameters. The record has a `parameter_set` row with source `fit`; a later `presentation` row refers to it. |
+| Stop the app and read `backups/` | Each `.colpkg` has a copy of the record with the same time in its name; `sqlite3` opens the copy and finds the same number of rows in each table. |
+| Compare every record row that the scenario read at an earlier step with the same row at the end | Each row is equal. No row is missing. |
+| Open a store that holds `desktop/tests/fixtures/study/record-v1.sqlite3` | Every row equals the committed dump, and the `review` view reads it. |
 | Run Anki's database check on the store | No problem is reported. |
 | Generate a package for a studied deck | The package and its status are as before this feature. |
 
@@ -59,6 +81,8 @@ Open `http://127.0.0.1:1420` and the repository's `decks/` folder.
 | Reload after preparation | Counts show within 2 seconds. | SC-006 |
 | Grade 20 cards | The next card is readable within 0.5 seconds after each grade. | SC-002 |
 | Total of the tree's new counts | Equal to the number of cards in the decks, limited by the daily setting. | SC-006 |
+| Size of `record.sqlite3` after the 20 grades | Record the bytes for each presentation. | Purpose (career time scale) |
+| Open `record.sqlite3` with the `sqlite3` shell and with DuckDB while the app runs | Both read the `review` view. | SC-011 |
 
 ## Native check
 
@@ -67,5 +91,5 @@ just desktop-native-test
 ```
 
 The native scenario gains one study step: start a session in the built window, grade a
-card, and confirm the review log row. It proves the host route in `lib.rs` and the media
-scope, which the browser scenario does not use.
+card, and confirm the review log row and the record's `review` row. It proves the host
+route in `lib.rs` and the media scope, which the browser scenario does not use.

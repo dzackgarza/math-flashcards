@@ -8,10 +8,43 @@
 
 **Input**: Review the cards with spaced repetition inside the desktop app, reusing Anki's
 own scheduling code, so that studying needs no package export and no import into Anki.
+The app adapts and reuses Anki as the base of a personal mathematics learning system for
+one person over a career. It records as much as it can observe about that person's
+learning, keeps the record permanently, and makes it available for statistical analysis.
+
+## Purpose
+
+This feature is the first part of a learning system for one person, not a general
+flashcard program. Four aims decide its requirements:
+
+1. **Durable knowledge.** The person wants to recall this material for a whole career.
+   The time scale is decades, not the weeks before an examination.
+2. **A lifelong repository.** The decks are where the person puts everything they want to
+   remember for life. The system must stay usable as the collection and its history grow
+   for decades.
+3. **A complete record.** The system collects and keeps as much data about the person's
+   performance as it can observe. Data that is not recorded at the moment of a review
+   cannot be recovered later.
+4. **Analysis of that record.** The person organizes their own learning from the data,
+   with statistical methods and with results from learning research. The record must show
+   which subjects are weak, so that the person studies them further or looks for books
+   and papers on them, and which are fluent, so that they get little review and little
+   emphasis.
+
+Anki supplies the scheduler and its data model. Where Anki's behaviour serves a general
+audience against these aims (a cap on recorded answer time, a review log with no card
+content or subject, removal of an undone grade), the app adds what the aims need and
+does not copy the limit.
 
 ## Clarifications
 
-### Session 2026-11-16
+### Session 2026-11-16, requirement stated by the user
+
+- The purpose above is a stated requirement, not a default. It adds User Stories 6 and 7,
+  FR-028 to FR-046, and SC-009 to SC-014, and it changes FR-018, FR-021, and the handling
+  of a workspace that moves to a new path.
+
+### Session 2026-11-16, defaults
 
 These answers are defaults taken from repository evidence. The user has not confirmed
 them. A different answer changes only the requirement named in each line.
@@ -21,8 +54,10 @@ them. A different answer changes only the requirement named in each line.
   gets its schedule back (FR-016). Reason: deck files change under external editors, and
   a deleted history cannot be recovered.
 - Q: Where does the review history live? → A: In the app's data directory for the user,
-  one store for each workspace path (FR-018). Reason: this machine's convention keeps
-  application data in XDG directories and out of repositories.
+  one store for each workspace (FR-018). Reason: this machine's convention keeps
+  application data in XDG directories and out of repositories. A store belongs to a
+  workspace, not to a path: when the path changes, the user attaches the store to the new
+  path (FR-041).
 - Q: Is existing review history from Anki imported? → A: No. Every card starts as new
   (FR-026). Reason: no Anki profile exists at `~/.local/share/Anki2` or
   `~/.var/app/net.ankiweb.Anki`, the two locations inspected.
@@ -172,6 +207,75 @@ confirm that the app introduces exactly that many new cards today.
 
 ---
 
+### User Story 6 - Keep a complete record of my learning for analysis (Priority: P1)
+
+Every time the app shows a card, it records what happened: when, which card, what content
+the card had at that moment, its deck and tags, how long the user took to reveal the
+answer and how long to grade, the grade, and the scheduler's estimate of the user's
+memory before and after. The app also records what changes around the reviews: sessions,
+undone grades, cards added, edited, moved, removed, and restored, and each change of a
+scheduling setting. Nothing in this record is deleted or overwritten. The user opens the
+record with their own data tools and analyses it by subject, by time, and by card.
+
+**Why this priority**: A review that is not recorded in full is lost for every later
+analysis. The record must be complete from the first grade, so it is part of the first
+usable version, with User Stories 1 and 2.
+
+**Independent Test**: Study several cards, undo one grade, edit one card, and move one
+card. Open the record with a standard database tool while the app runs. Each event is
+present with its fields, the undone grade is present and marked, and the record gives the
+text of each card as the user saw it.
+
+**Acceptance Scenarios**:
+
+1. **Given** a card on screen, **When** the user reveals and grades it, **Then** the
+   record has one entry with the time, the card ID, the deck and tags at that moment, the
+   content shown, the time to reveal, the time to grade, the grade, the interval each
+   grade offered, and the memory estimate before and after.
+2. **Given** the user took longer than Anki's limit for recorded answer time, **When** the
+   grade is recorded, **Then** the record has the full time.
+3. **Given** the user undoes a grade, **When** the record is read, **Then** the grade is
+   still present, with the time of the undo.
+4. **Given** a card was reviewed, then edited, then reviewed again, **When** the record is
+   read, **Then** each review gives the content the user saw at that review.
+5. **Given** a card is shown and the user leaves the session without a grade, **When** the
+   record is read, **Then** that presentation is present, with no grade.
+6. **Given** the app is running, **When** the user opens the record with a standard
+   database tool, **Then** the tool reads every entry, and the app keeps working.
+7. **Given** a record that an earlier release wrote, **When** a later release opens it,
+   **Then** every earlier entry is readable and unchanged.
+8. **Given** a workspace folder that moved to a new path, **When** the user opens it,
+   **Then** the app offers the existing record for that folder and does not start an
+   empty one without the user's choice.
+
+---
+
+### User Story 7 - Fit the scheduler to my own history (Priority: P3)
+
+The user asks the app to fit the scheduler's memory model to their own review history.
+The app uses Anki's own fitting and evaluation code, shows how well the fitted model
+predicts the history, and applies the fitted parameters when the user accepts them. The
+record keeps each set of parameters and the time it applied from.
+
+**Why this priority**: Anki's default parameters give a usable schedule, and a fit needs
+history that only exists after months of use. The fit is the first use of the record to
+organize the user's learning.
+
+**Independent Test**: With a prepared history of sufficient size, run the fit, accept it,
+and confirm that the intervals offered for a card change and that the record holds the
+earlier and the later parameters with their times.
+
+**Acceptance Scenarios**:
+
+1. **Given** enough review history, **When** the user runs the fit, **Then** the app shows
+   the fitted parameters and Anki's measures of their accuracy against the history.
+2. **Given** a fit on screen, **When** the user accepts it, **Then** later intervals use
+   the fitted parameters, and the record holds the earlier and later parameter sets.
+3. **Given** too little history for Anki's fitting code, **When** the user runs the fit,
+   **Then** the app states that and changes nothing.
+
+---
+
 ### Edge Cases
 
 - A deck has unsaved edits when a review starts: the app saves first, as it does before
@@ -189,8 +293,15 @@ confirm that the app introduces exactly that many new cards today.
 - A second running copy of the app opens a workspace whose review history is in use: the
   second copy states that review of this workspace is in use by another window. Its
   editor keeps working, and no grade is lost or recorded twice.
-- A workspace moves to a new path: the workspace at the new path starts with no history,
-  and the history of the earlier path stays on disk.
+- A workspace moves to a new path, or the data moves to a new machine: the app finds no
+  store for the path, lists the stores that exist, and asks the user to attach one or to
+  start a new one. It never starts an empty history without that choice when a store
+  exists.
+- A grade is recorded by the scheduler and the app stops before it writes its own entry:
+  at the next start the app writes the missing entry from the scheduler's log and marks
+  the fields it could not observe.
+- The user's attention leaves the app while a card is on screen: the record gives the
+  time the window was not in focus, apart from the total time.
 - The date changes during a session: cards due on the new day become available by the
   scheduler's day boundary.
 - The first use on a large workspace: the app shows progress while it prepares the cards,
@@ -249,7 +360,7 @@ confirm that the app introduces exactly that many new cards today.
 - **FR-017**: The system MUST keep the review history across restarts, crashes, and
   updates of the app.
 - **FR-018**: The system MUST keep the review history in the app's data directory for the
-  user, with one store for each workspace path, and MUST make dated backups of it. The
+  user, with one store for each workspace, and MUST make dated backups of it. The
   store MUST NOT be a cache: the action that rebuilds cached data MUST NOT touch it.
 - **FR-019**: The system MUST NOT replace an existing review history with an empty one. A
   history that cannot be read MUST produce an error that names the file.
@@ -260,7 +371,8 @@ confirm that the app introduces exactly that many new cards today.
   folder, and MUST update them after each grade.
 - **FR-021**: Users MUST be able to undo the last grade while that grade is the most
   recent change to the review history in the running app. When Undo is unavailable, the
-  system MUST show that it is.
+  system MUST show that it is. Undo restores the schedule; the learning record keeps the
+  undone grade (FR-031).
 - **FR-022**: Users MUST be able to open the card on screen in the editor and return to
   the review.
 - **FR-023**: Users MUST be able to set the daily new-card limit, the daily review limit,
@@ -278,6 +390,59 @@ confirm that the app introduces exactly that many new cards today.
 - **FR-026**: Every card MUST start as a new card. The system imports no review history
   from an Anki collection.
 
+**Learning record**
+
+- **FR-028**: For each presentation of a card, the system MUST record: the time, with the
+  local time zone offset; the card ID; the deck, folder, deck title, and tags of the card
+  at that moment; an identifier of the content shown; the session and the position in
+  it; the kind of presentation (new, learning, review, relearning); the time from showing
+  the front to the reveal; the time from the reveal to the grade; the time the window was
+  not in focus; the grade, or the fact that the user left without one; the interval each
+  of the four grades offered; the scheduler's state and memory estimate for the card
+  before and after; and the scheduling settings and parameter set in effect.
+- **FR-029**: The system MUST record times as measured. A limit that the scheduler applies
+  to its own recorded answer time MUST NOT limit the learning record.
+- **FR-030**: The system MUST keep the content of each card as the user saw it at each
+  presentation, so that an analysis can read what was shown after the card is edited or
+  removed.
+- **FR-031**: The system MUST NOT delete or overwrite an entry of the learning record. An
+  undo, a correction, and a removal are new entries that refer to earlier ones.
+- **FR-032**: The system MUST record each session with its start, its end, and its scope.
+- **FR-033**: The system MUST record each change to a card that the review store applies:
+  added, content changed, tags changed, moved, removed, restored, with its time.
+- **FR-034**: The system MUST record each change of a scheduling setting and each change
+  of the scheduler's parameters, with the earlier value, the later value, and the time.
+- **FR-035**: The system MUST record, with each entry, the release of the app and the
+  version of the scheduler that wrote it.
+- **FR-036**: The learning record MUST be complete without the scheduler's own database:
+  every grade that the scheduler holds is also in the learning record, with the
+  scheduler's values for it.
+- **FR-037**: The learning record MUST be readable with standard data tools, without this
+  app and without Anki, while the app runs and when it does not.
+- **FR-038**: The project MUST document every field of the learning record: its meaning,
+  its unit, and when it is empty.
+- **FR-039**: The format of the learning record MUST only grow. Every entry written by an
+  earlier release MUST stay readable and unchanged under every later release.
+- **FR-040**: The dated backups (FR-018) MUST include the learning record.
+- **FR-041**: A store MUST belong to a workspace and not to its path. When the system
+  finds no store for the path of a workspace and at least one store exists, it MUST ask
+  the user to attach an existing store or to start a new one.
+- **FR-042**: Users MUST be able to find the location of the learning record from inside
+  the app.
+- **FR-043**: The learning record MUST stay on the user's machine. The system MUST NOT
+  send any part of it elsewhere.
+
+**Scheduling for long-term retention**
+
+- **FR-044**: When the reviews due exceed what the user studies in a day, the system MUST
+  offer first the cards that the scheduler estimates the user is most likely to have
+  forgotten, so that cards the user knows best wait longest.
+- **FR-045**: Scheduler tags that mark a card as repeatedly failed MUST survive every
+  deck change, so that the record and the review store both show which cards are weak.
+- **FR-046**: Users MUST be able to fit the scheduler's parameters to their own review
+  history with Anki's own fitting code, see Anki's measures of the fit, and accept or
+  reject it.
+
 ### Key Entities
 
 - **Card**: One front and back pair in a deck, identified by its card ID. It has rendered
@@ -293,6 +458,17 @@ confirm that the app introduces exactly that many new cards today.
   target recall probability.
 - **Review store**: The durable store of schedules, review records, and settings for one
   workspace.
+- **Learning record**: The permanent, append-only record of everything the app observes
+  about the user's learning in one workspace. It is part of the review store and is
+  readable without the app and without Anki.
+- **Presentation**: One showing of one card to the user, with its times, its grade or
+  the absence of one, the content shown, the card's subject at that moment, and the
+  scheduler's state before and after.
+- **Content version**: The front and back of a card as shown at a presentation.
+- **Card change**: One change that the review store applied to a card: added, content
+  changed, tags changed, moved, removed, or restored.
+- **Settings change**: One change of a scheduling setting or of the scheduler's
+  parameters, with the earlier and later values.
 
 ## Success Criteria *(mandatory)*
 
@@ -315,6 +491,22 @@ confirm that the app introduces exactly that many new cards today.
 - **SC-008**: For 100% of grades, the interval that the app shows on the selected grade
   equals the interval that Anki's scheduler stores for the card, and Anki's own database
   check reports no problem in the review store.
+- **SC-009**: 100% of presentations, graded or not, are in the learning record with every
+  field of FR-028. Every grade in the scheduler's log has its entry in the learning
+  record.
+- **SC-010**: Across undo, card edits, moves, removals, deck reorganization, app updates,
+  **Rebuild cached data**, and a change of the workspace path, zero entries of the
+  learning record are lost or changed.
+- **SC-011**: With a standard database tool and the field documentation alone, the user
+  computes, for any folder, deck, or tag and any period: the number of presentations, the
+  share graded Again, and the mean time to reveal. No access to the app or to Anki's
+  database is needed.
+- **SC-012**: For any past presentation, the record gives the exact front and back that
+  the user saw.
+- **SC-013**: A record written by the first release of this feature is readable, with
+  every entry unchanged, by each later release.
+- **SC-014**: A recorded time above Anki's limit for answer time equals the measured
+  time within 0.1 seconds.
 
 ## Assumptions
 
@@ -322,16 +514,20 @@ confirm that the app introduces exactly that many new cards today.
   a phone, shared decks, and add-ons are out of scope.
 - The app is the only program that reviews these cards after this feature exists.
 - Scheduling uses Anki's current algorithm, FSRS, with Anki's default parameters until
-  enough history exists to fit them. Fitting the parameters to the user's history is out
-  of scope for this feature.
+  the user accepts a fit to their own history (User Story 7).
 - Each workspace has its own review history.
+- The subject of a card, for analysis, is its folder, its deck, and its tags. The system
+  adds no separate subject classification.
+- Views inside the app that analyse the learning record, and recommendations of study
+  material from it, are later features. This feature produces the record they need and
+  makes it readable with external tools.
+- The app has no command that deletes any part of the learning record.
 - The grades, their keys, and the reveal key follow Anki's conventions: Space reveals,
   and 1 to 4 select Again, Hard, Good, and Easy.
 - Cards have one front and one back. Cloze deletions, typed answers, audio, and card
   templates are out of scope.
-- Statistics graphs, filtered decks, custom study, burying, and manual rescheduling are
-  out of scope for this feature.
-- A command that permanently deletes the history of removed cards is out of scope.
+- Filtered decks, custom study, burying, and manual rescheduling are out of scope for
+  this feature.
 - One running copy of the app studies a workspace at a time.
 - The card editor, package export, Problems list, and deck organization keep their
   current behaviour.

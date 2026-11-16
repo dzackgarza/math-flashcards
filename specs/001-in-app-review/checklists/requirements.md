@@ -35,7 +35,12 @@
 
 - FR-005, SC-008, and the Assumptions name Anki and FSRS. The request is to reuse Anki's
   scheduling code, so the scheduler's identity is a requirement, not a design choice.
-- The three answers in the spec's Clarifications section are defaults from repository
+- The purpose and the learning-record requirements (User Stories 6 and 7, FR-028 to
+  FR-046, SC-009 to SC-014) come from a requirement that the user stated. The three
+  answers under "defaults" in the spec's Clarifications section come from repository
   evidence. The user has not confirmed them.
+- FR-037 and SC-011 name "standard data tools" and "a standard database tool". The
+  requirement is independence from this app and from Anki; the file format is a design
+  choice in `research.md` (R12).
 - SC-002, SC-003, and SC-006 state time limits. No measurement of the full workspace
   backs SC-003 and SC-006 yet; `research.md` records the measurements that exist.

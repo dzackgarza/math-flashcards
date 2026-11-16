@@ -2,7 +2,9 @@
 
 The study bridge is the interface between the window and the review store. It extends the
 existing bridge (`request()` in `desktop/src/bridge.ts`, the `Request` union in
-`desktop/backend.py`). Value types are defined in [data-model.md](../data-model.md).
+`desktop/backend.py`). Value types are defined in [data-model.md](../data-model.md). The
+learning record that these actions write is defined in
+[learning-record.md](./learning-record.md).
 
 ## Transport
 
@@ -14,34 +16,59 @@ existing bridge (`request()` in `desktop/src/bridge.ts`, the `Request` union in
 | Framing | One JSON request on one line of the host's standard input. One JSON response on one line of its standard output. Diagnostics go to standard error. |
 | Order | One request at a time, in arrival order. |
 | Response | `{"ok": true, "result": …}` or `{"ok": false, "error": StudyError}`. The shell returns the result as the command's value and the error as its rejection, as JSON. |
-| End | The host closes the store and exits when its standard input closes. A host that exits early makes the pending request fail with the host's diagnostics; the next request starts a new host. |
+| End | The host ends each open session in the record, closes the store, and exits when its standard input closes. A host that exits early makes the pending request fail with the host's diagnostics; the next request starts a new host. |
 | Workspace | Each request names its workspace. The host opens the store of a workspace at its first request and holds it until exit. |
+| Network | The host opens no network connection (FR-043). |
 
 ## Actions
 
 Every request has `action` and `workspace`. Unknown fields are rejected.
 
-| Action | Further request fields | Result | Changes the store |
-| --- | --- | --- | --- |
-| `study-open` | | `{ store: str, media: str, settings: Settings, counts: DeckCounts }` | Creates the store when its directory does not exist |
-| `study-sync` | `assets: Digest`, `limit: int` (1 to 8) | `SyncResult` | Yes |
-| `study-counts` | | `DeckCounts` | No |
-| `study-next` | `scope: Scope` | `StudyNext` | No |
-| `study-answer` | `scope: Scope`, `card_id: CardId`, `grade: Grade`, `elapsed_ms: int` (0 or more) | `StudyNext` for the card after the grade | Yes |
-| `study-undo` | `scope: Scope` | `StudyNext` for the restored card | Yes |
-| `study-set-settings` | `settings: Settings` | `Settings` | Yes |
+| Action | Further request fields | Result | Collection | Learning record |
+| --- | --- | --- | --- | --- |
+| `study-open` | | `StudyOpen` | Created when no store exists | `store_event`; recovered rows |
+| `study-attach` | `choice: { kind: "existing", store: StoreId }` \| `{ kind: "new" }` | `StudyOpen` with state `Open` | Created for `new` | `store_event` |
+| `study-sync` | `assets: Digest`, `limit: int` (1 to 8) | `SyncResult` | Notes, decks, tags | `card_change`, `content`, `media` |
+| `study-counts` | | `DeckCounts` | No | No |
+| `study-begin` | `scope: Scope` | `{ session: SessionId, next: StudyNext }` | No | `session`; `presentation` |
+| `study-next` | `session: SessionId` | `StudyNext` | No | `presentation` |
+| `study-answer` | `session: SessionId`, `presentation: PresentationId`, `grade: Grade`, `timing: Timing` | `StudyNext` for the card after the grade | Grade | `response`; `presentation` |
+| `study-undo` | `session: SessionId` | `StudyNext` for the restored card | Undo | `undo`; `presentation` |
+| `study-end` | `session: SessionId` | `{}` | No | `session_end` |
+| `study-set-settings` | `settings: Settings` | `Settings` | Preset | `setting_change` |
+| `study-fit` | | `Fit` | No | No |
+| `study-apply-fit` | `parameters: float[]` | `Settings` | Preset parameters | `parameter_set`, `setting_change` |
+
+No action updates or deletes a row of the learning record.
 
 ## Behaviour
 
 ### `study-open`
 
-- Returns the absolute paths of the store directory and its media folder. The native
-  shell adds the media folder to the asset scope, as it adds the workspace for `list`.
-- A new store gets the settings in R9 of `research.md` before its first queue is built.
-- An existing directory whose collection does not open returns `StoreUnreadable`. The
-  host creates nothing in it.
+- Finds the store whose current attached path is the workspace path (R4 of
+  `research.md`).
+- With a store for the path, or with no store on disk, it returns `Open` with the
+  absolute paths of the store directory, its media folder, and the learning record. The
+  native shell adds the media folder to the asset scope, as it adds the workspace for
+  `list`.
+- With stores on disk and none for the path, it returns `Unattached` with a summary of
+  each store. It creates nothing.
+- A new store gets the settings in R9 before its first queue is built, and the first
+  `parameter_set` row with source `anki-default`.
+- At each open the host writes the rows that the record lacks: a recovered `response`
+  row for each review log row with none, and a `session_end` row with cause `recovered`
+  for each session with none.
+- An existing directory whose collection or record does not open returns
+  `StoreUnreadable`. The host creates nothing in it.
 - A store that another process holds returns `StoreInUse`.
-- A store whose `workspace.txt` names another path returns `StoreUnreadable`.
+
+### `study-attach`
+
+- `existing` adds the workspace path to the store's `store.json` as its current path and
+  opens the store. A store ID that is not on disk returns `UnknownStore`.
+- `new` creates a store for the path. It is the only way to create a store while another
+  store exists.
+- Neither choice changes or removes another store.
 
 ### `study-sync`
 
@@ -50,42 +77,74 @@ Every request has `action` and `workspace`. Unknown fields are rejected.
 - With no deck out of date, it changes nothing and returns zero counts.
 - Renders with the asset set named by `assets`, by the package render path.
 - Never changes a schedule or a review log row (invariant 3).
+- Sets deck tags and card tags and keeps the tags that Anki's scheduler set (FR-045).
+- Writes one `card_change` row for each add, content change, tag change, move, removal,
+  and restore, and one `content` row for each front and back pair that the record does
+  not hold yet, with its media files.
 - A deck that fails to render is listed in `failed` and counts as not current.
 
-### `study-next`
+### `study-begin`, `study-next`, `study-end`
 
-- Returns the card at the top of Anki's queue for the scope, or `Finished`.
+- `study-begin` writes a `session` row and returns the first card of the scope, or
+  `Finished`. An unknown folder or deck returns `UnknownScope`.
+- `study-next` returns the card at the top of Anki's queue for the session's scope, or
+  `Finished`.
+- Each returned card is one new `presentation` row, written before the response. The row
+  holds every field of FR-028 that exists before a grade. A card that is fetched again is
+  a new presentation; the earlier row stays with no response.
 - `labels` are Anki's interval texts for the four grades of that card.
 - `counts` are the remaining new, learning, and review counts of the scope.
 - `Finished.next_learning_seconds` is the time until a learning card returns, or null.
-- An unknown folder or deck returns `UnknownScope`.
+- `study-end` writes a `session_end` row with cause `left` or `finished`. A session that
+  is not open returns `StaleCard`.
 
 ### `study-answer`
 
-- Applies the grade only when `card_id` is the card at the top of the queue. Otherwise
-  it returns `StaleCard` and records nothing.
-- The grade is durable when the response is written.
+- Applies the grade only when `presentation` is the last presentation of the session and
+  its card is at the top of the queue. Otherwise it returns `StaleCard` and records
+  nothing.
+- `timing` is measured by the window. The host sends `reveal_ms + grade_ms` to Anki as
+  the answer time and writes the three values, with no limit, to the `response` row
+  (FR-029).
+- The grade is durable in the collection, and the `response` row is durable in the
+  record, when the response is written.
 - The result is the next card, as `study-next` would give it.
 
 ### `study-undo`
 
-- Reverses the last grade when Anki's last undo step is a grade, and returns the
-  restored card. Otherwise it returns `StaleCard` and changes nothing.
+- Reverses the last grade in the collection when Anki's last undo step is a grade,
+  writes an `undo` row that refers to the `response` row, and returns the restored card.
+  The `response` row stays (FR-031). Otherwise it returns `StaleCard` and changes
+  nothing.
 
 ### `study-set-settings`
 
 - Rejects a value outside its bound with `InvalidSettings`.
 - Applies the values to the one preset that all decks share.
+- Writes one `setting_change` row for each value that changed, with the earlier and the
+  later value.
+
+### `study-fit`, `study-apply-fit`
+
+- `study-fit` runs Anki's fit on the whole store and returns the fitted parameters, the
+  current parameters, the number of reviews used, and Anki's two accuracy measures for
+  each set (R14). It changes nothing.
+- Too little history for Anki's fitting code returns `NotEnoughHistory`.
+- `study-apply-fit` sets the preset's parameters, writes a `parameter_set` row with
+  source `fit` and the measures, and returns the settings. The user rejects a fit by not
+  applying it.
 
 ## Errors
 
 | Kind | Meaning | What the window shows |
 | --- | --- | --- |
 | `StoreInUse` | Another process holds the store. | Study of this workspace is in use by another window. |
-| `StoreUnreadable` | The store exists and cannot be opened, or belongs to another path. | The error, with the store path. |
-| `StaleCard` | The request names a card or an undo that is no longer current. | The current card, fetched again. |
+| `StoreUnreadable` | The store exists and its collection or record cannot be opened. | The error, with the store path. |
+| `UnknownStore` | The store ID is not on disk. | The error; the list of stores refreshes. |
+| `StaleCard` | The request names a presentation, a session, or an undo that is no longer current. | The current card, fetched again. |
 | `InvalidSettings` | A setting is outside its bound. | The bound, beside the field. |
 | `UnknownScope` | The folder or deck is not in the store. | The error; the tree refreshes. |
+| `NotEnoughHistory` | Anki's fitting code needs more reviews. | That statement; nothing changes. |
 
 Failures outside these kinds (a missing runtime, a Pandoc error, an Anki exception) keep
 the existing form: the request is rejected with the diagnostic text.
@@ -110,7 +169,10 @@ build ignores `id`, and package GUIDs do not change.
 | Keys | Space reveals the answer. 1, 2, 3, 4 select Again, Hard, Good, Easy. Ctrl-Z undoes. E opens the card in the editor. Escape leaves the session. |
 | Card | The `front` HTML; after reveal, the `back` HTML below it. Both are typeset by the app's MathJax with the active macro set. Image sources resolve against `media`. |
 | Grades | Four buttons, each with its `labels` text. Hidden until reveal. |
+| Timing | The window measures, with its monotonic clock, the time from the card on screen to the reveal, the time from the reveal to the grade, and the time in both that the window was hidden or without focus. It sends the three values with the grade. |
 | Counts | New, learning, and review counts of the scope, during the session and in the tree. |
 | Undo | Enabled when `undoable` is true. When false, its tooltip gives the reason. |
 | Finished | States that study for today is complete, the number graded today, and the time until a learning card returns when there is one. |
-| Settings | New cards per day, reviews per day, and target recall, with their bounds. |
+| Session end | The window sends `study-end` when the user leaves the session and when the queue is finished. |
+| Attach | For `Unattached`, the window lists each store with its paths, whether its current path exists, its last use, and its numbers of cards and grades. The user attaches one or starts a new one. Study is unavailable until the choice; the editor keeps working. |
+| Settings | New cards per day, reviews per day, and target recall, with their bounds. The path of the learning record and of the store, with a command that opens the folder. A command that runs the fit, shows both sets of measures, and applies the fitted set on the user's choice. |
