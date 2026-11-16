@@ -1,3 +1,39 @@
+# Durable documentation
+
+Repository documentation should explain maintained behavior, mathematical
+reference material, authoring conventions, or decisions that govern future
+work. A request for an assessment or explanation normally calls for an answer
+in chat, not a new repository file.
+
+Do not create durable documents for:
+
+- Point-in-time coverage assessments, gap lists, or inventories of which cards
+  currently contain a topic. These become stale as cards change.
+- Ad hoc audit reports, review findings, or proposed remediation lists produced
+  to answer a conversational question.
+- Session status, progress reports, completion summaries, validation logs, or
+  accounts of attempts and failures. Git history and tool output already record
+  changes and checks.
+- Apologies, explanations of agent mistakes, or transcripts of user corrections.
+  Apply the correction to the owning material. When instructed to change a
+  policy, write the operative rule rather than the conversation that led to it.
+- Duplicate plans, handoffs, or tracking files that compete with an existing
+  source of task state.
+- A file created solely to satisfy an assumed requirement to return an artifact
+  path. The requested deliverable determines whether a file is needed.
+
+Give assessments in chat with their substantive findings, supporting examples,
+and limits. Do not replace that answer with a link to a newly created report or
+compress away findings that determine the scope of the work. When remediation
+is requested, edit the cards or other owning source directly.
+
+An explicit request for a saved report, audit artifact, or handoff authorizes
+that deliverable within the requested scope. Otherwise, before adding a document,
+identify its continuing purpose and how it will remain accurate as the repository
+changes. If its only purpose is to record the answer to the current conversation,
+keep the answer in chat. Extend an existing owning document when a durable rule
+or explanation belongs there.
+
 <!-- agent-memory:start -->
 # Agent memory
 
