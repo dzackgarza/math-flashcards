@@ -4,7 +4,35 @@ This collection supports mathematical research. Prioritize knowledge that helps
 the researcher recognize a useful result, check its hypotheses, construct an
 example, compute an invariant, or carry an argument forward.
 
-## Choose content by research use
+## Select foundational and reusable knowledge
+
+Select material before deciding how to present it as cards. Give priority to
+the shared working knowledge of the relevant research field: definitions,
+constructions, theorem statements, formulas, examples, and techniques that a
+researcher needs to read papers and carry out arguments. Foundational material
+qualifies even when papers routinely assume it without citation. Include the
+prerequisites and practical calculations needed to use that knowledge.
+
+Specialized material belongs when it has demonstrated use beyond its original
+exposition or serves an identified need in the user's research. Evidence can
+include applications in other papers, established use in research texts, or a
+concrete task in the user's project. Explain the mathematical use when selecting
+the material; citation counts and the prominence of a source do not establish
+that use.
+
+A concept newly defined in a paper is normally material for reading notes,
+not a flashcard candidate merely because it has a name or a precise definition.
+Include it when other work uses it as a tool, or when its role in the user's
+research has been identified. A citation or a repeated definition alone is not
+evidence of reuse. Recent material can qualify immediately through a specific
+research need; age and popularity are not prerequisites.
+
+Assess a proposed addition by what the learner will need to recognize,
+reconstruct, or apply again. Do not turn a paper's sequence of definitions into
+a deck by default, or treat every concept absent from the collection as a gap.
+These selection criteria apply to concepts and results as well as examples.
+
+## Choose prompts by research use
 
 Assess coverage by the research tasks the cards prepare the learner to perform.
 For a theorem, prioritize recognizing when it applies, recalling the precise
