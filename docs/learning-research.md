@@ -92,17 +92,22 @@ algorithm and does not state how FSRS derives from them
 | `vangog2015` | van Gog, Sweller. Not new, but nearly forgotten: the testing effect decreases or even disappears as the complexity of learning materials increases. *Educational Psychology Review*, 2015. doi:10.1007/s10648-015-9310-x | Review; introduction to a special issue | The testing effect becomes smaller as the number of interacting elements in the material increases, and may be absent for very complex material. | Abstract |
 | `karpicke2015` | Karpicke, Aue. The testing effect is alive and well with complex materials. *Educational Psychology Review*, 2015. doi:10.1007/s10648-015-9309-3 | Reply to `vangog2015` | The claim of `vangog2015` is incorrect: its measure of complexity is not defined, its review omits studies with complex material that show the effect, and the worked-example experiments used immediate, massed retrieval and still show a small positive effect. | Abstract |
 
-## Undergraduate mathematics: proof and oral assessment
+## Undergraduate mathematics: retrieval, proof, and oral assessment
 
 | Key | Source | Population and material | Result | Depth |
 | --- | --- | --- | --- | --- |
+| `muzsnay2025` | Muzsnay, Szabó, Zámbó, Szabó, Szeibert. Retrieval practice—A tool to narrow the achievement gap in learning higher mathematics. *International Journal of Science and Mathematics Education*, 2025. [doi:10.1007/s10763-025-10607-1](https://link.springer.com/article/10.1007/s10763-025-10607-1) | Ages 18–23; first-year mathematics teacher students, 42 in number theory and 50 in algebra. Quasi-experiment: independent end-of-class problems versus instructor-assisted solutions for 13 weeks. Post-tests after 3 and 5 months; algebra post-test analysis used 34 students and a substituted baseline. | Retrieval groups performed better on delayed tests; group effects χ²=14.2 (number theory) and 6.23 (algebra). No standardized treatment effect is reported. The algebra baseline-by-group interaction was p=.054, so its claimed gap reduction is less secure. Nonrandom group assignment, instructor differences, attrition, and outside learning limit causal claims. Tasks included elementary proofs and computations, not research-level mathematics or years of card recall. | Full main text and appendix; PDF tables and figure inspected |
 | `hodds2014` | Hodds, Alcock, Inglis. Self-explanation training improves proof comprehension. *Journal for Research in Mathematics Education*, 2014. doi:10.5951/jresematheduc.45.1.0062 | Students (level not stated; the authors recommend the training for transition-to-proof courses); proofs; three experiments | Training to explain the logical relations in a proof to oneself gave better proof comprehension (d = 0.950 in Experiment 1). A 15-minute version in a lecture also worked, and the effect persisted. | Abstract |
 | `mejiaramos2012` | Mejía-Ramos, Fuller, Weber, Rhoads, Samkoff. An assessment model for proof comprehension in undergraduate mathematics. *Educational Studies in Mathematics*, 2012. doi:10.1007/s10649-011-9349-7 | Model for advanced undergraduate mathematics; no experiment | Understanding of a proof has these parts: the meaning, logical status, and logical chaining of its statements; its high-level ideas; its main components; its methods; and its relation to specific examples. The paper shows a question for each part. | Abstract |
 | `iannone2014` | Iannone, Simpson. Students' views of oral performance assessment in mathematics: straddling the 'assessment of' and 'assessment for' learning divide. *Assessment & Evaluation in Higher Education*, 2014. doi:10.1080/02602938.2014.961124 | Students of a first-year university mathematics module | Students report that an oral assessment encourages a focus on understanding and reacts to their needs, with concerns about anxiety and fairness. The data are views, not measured learning. | Abstract |
 
 ## Topics with no entry
 
-No search was made for these topics. Each needs one before a feature decides on it.
+The entries above do not settle these questions. Searches for university and advanced
+mathematics retrieval found `muzsnay2025`; its undergraduate classroom evidence does not
+settle graduate-level study. Searches for target recall and review order found scheduler
+models and product documentation, which do not establish adult learning outcomes. The
+unmeasured values remain explicit defaults until suitable research supports a change.
 
 - Spaced retrieval of graduate-level mathematics (definitions, statements, proofs).
 - The target probability of recall that gives the best retention for the time spent.

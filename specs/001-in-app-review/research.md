@@ -660,6 +660,9 @@ material.
 
 **Consequences for later forms of study** (outside this feature)
 
+- `muzsnay2025` supplies limited evidence for independent undergraduate problem solving
+  with delayed tests. It does not establish the effectiveness of covert flashcard
+  review for research-level mathematics or determine its schedule.
 - A form of study in which the person produces the answer, and in which the answer is
   checked against the parts of the correct answer, has support from `tauber2017` and
   `dunlosky2010`. The latter measured scoring accuracy immediately, not delayed
