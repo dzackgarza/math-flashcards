@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 100" width="120" height="100">
+  <title>A triangle</title>
+  <path d="M60 10 L110 90 L10 90 Z" fill="#dbeafe" stroke="#1e40af" stroke-width="3"/>
+</svg>
