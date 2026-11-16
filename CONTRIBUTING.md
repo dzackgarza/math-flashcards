@@ -258,6 +258,16 @@ forms. Complete literary sentences are optional. Do not replace clear prose
 with an artificial voice, invented abbreviations, or a string of disconnected
 keywords.
 
+Prefer standard mathematical notation to prose that merely spells out a
+symbolic condition or relation. For example, write “where $a,b>0$” rather than
+“where the two parameters are positive,” and $x\in U\cap V$ rather than
+“$x$ belongs to each of the two sets.” Apply this to hypotheses, quantifiers,
+membership, inequalities, maps, and relations. Name the objects explicitly;
+do not make the reader recover them from phrases such as “each entry.” Use
+prose for interpretation, reasoning, and memory cues that notation alone does
+not convey. Keep notation standard and readable, with all necessary
+conventions and quantifier scope explicit.
+
 The minimum answer retains the object, assumptions, property or operation,
 quantifiers, and conclusion. An example also needs the feature that establishes
 its role. A calculation or explanation needs the steps requested by the prompt
