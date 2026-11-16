@@ -19,6 +19,7 @@ tauri-build = { version = "*", features = [] }
 
 [dependencies]
 tauri = { version = "*", features = [] }
+tauri-plugin-single-instance = "*"
 tauri-plugin-dialog = "*"
 tauri-plugin-store = "*"
 tauri-plugin-fs = { version = "*", features = ["watch"] }
