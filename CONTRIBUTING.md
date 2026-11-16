@@ -69,6 +69,32 @@ targeted practice of weak links. Treat this diagnostic coverage as long-tail
 work after the composite card, not as a replacement for it. A review grade on
 the composite alone does not identify which part needs attention.
 
+## Write for recall and rapid checking
+
+Most cards should present compact mathematical structure. The learner should
+be able to compare an attempted answer with the back directly, without first
+extracting the answer from an expository paragraph.
+
+- Put the requested definition, formula, conclusion, or construction first.
+- Use equations and implication chains for relationships, tables for parallel
+  comparisons, lists for conditions and examples, and aligned steps for calculations.
+- Keep hypotheses and quantifiers next to the statements they govern. Give
+  shared assumptions once when they apply to an entire table or chain.
+- Use short prose where it explains a mechanism, distinguishes cases, or supplies
+  a mnemonic cue. Place explanations beside the facts they explain.
+- Omit article-style introductions, historical framing, rhetorical transitions,
+  repeated summaries, and commentary announcing the importance of the material.
+- Keep references secondary to the answer. Source discussion belongs on a card
+  only when identifying or comparing sources is itself the retrieval task.
+
+Compact presentation is compatible with substantial composite cards. Organize
+their connected content so the structure and the points of comparison are visible;
+do not split it into isolated prompts merely to shorten each card. Do not achieve
+brevity by dropping hypotheses, examples, intermediate reasoning, or authored
+memory aids. Preserve useful derivations and the author's voice under the
+editorial rules below. Longer prose is appropriate when the explanation itself
+is what the card asks the learner to reconstruct.
+
 ## Ban mathematical hand-waving
 
 A card must give enough information to reconstruct the requested statement,
