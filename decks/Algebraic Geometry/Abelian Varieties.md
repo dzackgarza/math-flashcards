@@ -132,17 +132,3 @@ The central-cone compactification is the normalization of the Igusa blowup. In h
 
 Reference: Alexeev–Brunyate, *Extending the Torelli map to toroidal compactifications of Siegel space*, §2.
 :::
-
-::: {.front card-id="abelian-graph-coedges-emm-dicing" tags="definition construction example"}
-Define graph coedges and a lattice dicing. Explain the role of bridges.
-:::
-
-::: {.back card-id="abelian-graph-coedges-emm-dicing"}
-Orient a connected graph $\Gamma$ and set $H_1=\ker(\partial:\mathbb Z^E\to\mathbb Z^V)$. The **coedge** $e^*$ is the restriction of the $e$th coordinate functional to $H_1$, an element of $H^1(\Gamma,\mathbb Z)$. It is zero iff $e$ is a bridge.
-
-A **dicing** is the periodic subdivision cut out by $u_i(x)=m$, $m\in\mathbb Z$, for a spanning unimodular system of integral covectors: every maximal independent subset is a lattice basis. Thus all subdivision vertices are lattice points.
-
-Example: for a cycle graph all nonzero coedges equal $\pm1$ in $H^1\simeq\mathbb Z$. The hyperplanes $x=m$, $m\in\mathbb Z$, cut the cycle lattice $H_1(\Gamma,\mathbb R)\simeq\mathbb R$ into unit intervals.
-
-Reference: Alexeev–Brunyate, §§3 and 5; Alexeev, *Moduli of Weighted Hyperplane Arrangements*, §3.10.
-:::

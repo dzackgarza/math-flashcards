@@ -34,6 +34,24 @@ A rational curve is constant-cycle because its normalization is $\mathbb P^1$ an
 Reference: Alexeev–Engel, *The flex divisor of a K3 surface*, §2; Beauville–Voisin, *On the Chow ring of a K3 surface*.
 :::
 
+::: {.front card-id="k3-flex-point-divisor" tags="definition construction example"}
+Define a flex point for a polarized K3 surface. On smooth surfaces for which no pencil in $|L|$ has a base curve, construct the flex divisor with its multiplicities. What is its role in stable-pair compactifications?
+:::
+
+::: {.back card-id="k3-flex-point-divisor"}
+For a polarized K3 $(X,L)$, a point $x$ is **flex** if a pencil $V\subset|L|$ has set-theoretic base locus $\{x\}$. It need not be a reduced basepoint: when $L^2=2d$, the intersection is a length-$2d$ zero-dimensional scheme supported at $x$.
+
+Assume $X$ is smooth over $\mathbb C$, $L$ is primitive and ample, and no pencil in $|L|$ has a base curve. Set $G=\operatorname{Gr}(2,H^0(X,L))$. Taking the scheme-theoretic base locus gives a closed immersion $i:G\hookrightarrow X^{[2d]}$ into the Hilbert scheme. For the Hilbert–Chow map $HC:X^{[2d]}\to X^{(2d)}$, put
+$$\Delta=\{2d[x]:x\in X\},\qquad P_{2d}=HC^{-1}(\Delta),\qquad R_{\mathrm{flex}}=\operatorname{supp}_*[P_{2d}\cap i(G)].$$
+The inverse image and intersection are scheme-theoretic; $\operatorname{supp}:P_{2d}\to X$ sends a punctual subscheme to its support. The intersection is pure one-dimensional and finite over its image in $X$. Its fundamental cycle supplies the multiplicities of the flex divisor.
+
+Example: two members of the pencil may meet only at $x$, with total intersection multiplicity $2d$. Replacing this by “they meet transversely at $x$” would contradict $L^2=2d$.
+
+Use: an algebraically varying canonical polarizing divisor gives pairs $(X,\epsilon R_{\mathrm{flex}})$ whose closure defines a stable-pair compactification. Identifying its normalization as semitoroidal requires recognizability as an additional theorem; the cited paper constructs the divisor and investigates this question.
+
+Reference: Alexeev–Engel, *The flex divisor of a K3 surface*, §1 and Definitions 2.2 and 2.8.
+:::
+
 ::: {.front card-id="construction-k3-complete-intersections" tags="construction application"}
 Construct K3 surfaces as smooth complete intersections in ordinary complex projective space. After removing linear equations, which multidegrees work? How do you ensure smoothness and verify the K3 conditions?
 :::

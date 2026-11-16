@@ -279,6 +279,34 @@ An arithmetic quotient of a type IV domain, i.e. a Shimura variety for $\SO_{2, 
 Quasiprojective, $\dim F_{2d} = 19$ for each $d$.
 :::
 
+::: {.front card-id="card-681a11bbc6a0be2c"}
+What is $F_\rho^{\mathrm{ade}}$ when the nonsymplectic automorphism fixes a curve $R$ of genus $g\ge2$? How is its surface model obtained?
+:::
+
+::: {.back card-id="card-681a11bbc6a0be2c"}
+Start with a $\rho$-markable K3 surface $(X,\sigma)$ and its fixed curve $R$, with $R^2=2g-2>0$. Contract the $(-2)$-curves orthogonal to $R$:
+$$\pi:X\longrightarrow\overline X,\qquad \overline R=\pi_*R\ \text{ample}.$$
+The result is an ADE K3 surface with the induced automorphism. These models form the separated moduli space
+$$F_\rho^{\mathrm{ade}}=F_\rho^{\mathrm{sep}}\cong(\mathbb D_\rho\setminus\Delta_\rho)/\Gamma_\rho.$$
+Here $\mathbb D_\rho$ is the period domain for the chosen action on $H^{2,0}$, $\Gamma_\rho$ the change-of-markings group, and $\Delta_\rho$ the root discriminant orthogonal to the invariant lattice.
+
+Reference: Alexeev–Engel–Han, *Compact moduli of K3 surfaces with a nonsymplectic automorphism*, §3B, Remark 3.6.
+:::
+
+::: {.front card-id="card-6e339cb955627865"}
+How is $\overline F_\rho^{\mathrm{slc}}$ constructed from K3 surfaces with a nonsymplectic automorphism fixing a curve $R$ of genus at least two?
+:::
+
+::: {.back card-id="card-6e339cb955627865"}
+Contract the curves orthogonal to $R$ to obtain $(\overline X,\overline R)$ with $\overline R$ ample. Fix rational $\epsilon>0$ such that $(\overline X,\epsilon\overline R)$ is log canonical throughout this fixed numerical moduli problem. Since $K_{\overline X}\sim0$, its log canonical divisor is ample. Send
+$$\psi:(X,\sigma)\longmapsto(\overline X,\epsilon\overline R).$$
+Take the reduced closure of $\operatorname{im}\psi$ in the projective moduli space of stable slc pairs with these numerical invariants, then normalize:
+$$\overline F_\rho^{\mathrm{slc}}=\left(\overline{\operatorname{im}\psi}\right)^\nu.$$
+Its open part is $F_\rho^{\mathrm{ade}}$. The normalization can retain finite data over a stable pair. The compactification is semitoroidal; the fixed-curve divisor supplies the recognizable polarizing divisor.
+
+Reference: Alexeev–Engel–Han, *Compact moduli of K3 surfaces with a nonsymplectic automorphism*, §§3B and 3F.
+:::
+
 ::: {.front card-id="card-ac88b51027b8331a"}
 For K3 surfaces with a finite-order nonsymplectic automorphism acting as $\rho$ on the K3 lattice, which root hyperplanes form the discriminant in its period domain?
 :::

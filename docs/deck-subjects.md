@@ -105,8 +105,13 @@ Geometry deck. Vocabulary is a separate study subject.
 
 - Covers owns the general construction of finite abelian covers. Surfaces /
   Abelian Cover Surfaces owns Campedelli and Burniat constructions and
-  double-cover surface pairs. Surface Singularities owns the local ADE germs.
-  Alexeev–Pardini's papers on abelian covers fix the cover conventions.
+  double-cover surface pairs. ADE Pairs owns the surface–boundary shapes,
+  branch pairs, and priming used to construct components of stable K3 and
+  Enriques degenerations. Surface Singularities owns the local ADE germs.
+  Alexeev–Pardini's papers on abelian covers fix the cover conventions;
+  Alexeev–Thompson's *ADE surfaces and their moduli* and
+  Alexeev–Engel–Garza–Schaffler's *Compact moduli of Enriques surfaces of
+  degree 2*, §§6–7, supply the global surface constructions.
 
 - Abelian Varieties owns polarizations, period spaces, and semiabelic
   compactifications. Symplectic Varieties owns symplectic singularities,
