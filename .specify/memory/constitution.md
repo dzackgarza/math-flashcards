@@ -66,6 +66,12 @@ backend, real files, and the real rendered window. A bug fix starts with a commi
 that fails for the reported reason. Mocks that supply the behaviour under test are not
 evidence. The whole suite stays under five minutes.
 
+The local edit-and-check loop MUST return useful feedback in seconds or a few minutes
+at most. Use targeted checks and incremental builds for routine changes. Long-running
+checks and full builds belong at planned integration or release milestones. A plan MUST
+name those milestones and their checks before implementation. A slow local loop is a
+defect to fix; it does not justify weakening the checks or substituting a different path.
+
 ### VI. The learning record is complete, permanent, and open to analysis
 
 Every feature in which the person learns, recalls, or reviews MUST record what the person
@@ -176,6 +182,21 @@ later form of study.
 `docs/learning-research.md` is the register of sources. A plan cites entries of the
 register for each learning decision and adds the entries that it needs.
 
+### XI. Research becomes durable repository knowledge
+
+Every research activity MUST produce a synthesis in the repository's maintained
+documentation before dependent work is accepted. This applies to learning research,
+architecture, dependencies, APIs, experiments, and technical investigations.
+
+The synthesis states the question, the supported findings, their sources, relevant
+alternatives and contrary evidence, the limits of the evidence, and the resulting
+decision or unresolved question. Extend the document that owns the topic: the research
+register, feature design, dependency survey, or maintained technical documentation.
+Keep source references precise enough for a later reader to verify the conclusions.
+Chat, tool output, source lists, and copied passages do not replace this synthesis.
+Use durable conclusions and their reasons; compute changing inventories from their
+sources, as `AGENTS.md` requires.
+
 ## Technical Constraints
 
 - Python runs through `uv`; JavaScript tooling runs through `bun`. `npm` and `pip` are not used.
@@ -203,4 +224,4 @@ change: MAJOR for a removed or redefined principle, MINOR for an added principle
 section, PATCH for a clarification. Every plan records its check against these principles,
 and each violation it keeps is justified in that plan.
 
-**Version**: 2.0.0 | **Ratified**: 2026-11-16 | **Last Amended**: 2026-11-16
+**Version**: 2.1.0 | **Ratified**: 2026-11-16 | **Last Amended**: 2026-11-16

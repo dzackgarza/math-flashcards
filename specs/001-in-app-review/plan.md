@@ -199,6 +199,23 @@ is not used on the real data directory before that phase is complete. US2 to US5
 US8, and the copy each depend on that phase and not on each other. Each core story
 writes its own record rows. US8 writes none.
 
+## Local feedback and milestone checks
+
+Routine edits use the affected scenario, type check, or incremental compile with prepared
+dependencies. Each loop must finish in seconds or a few minutes. Dependency refreshes,
+full release builds, installation, and full-workspace measurements run at these milestones:
+
+| Milestone | Checks |
+| --- | --- |
+| Foundation complete | Build the native app and verify one running copy, the host route, store identity, and isolated data placement. |
+| First complete Study session with permanent record | Verify the complete native save, study, grade, undo, and recovery path. |
+| Feature release | Run `desktop-update`, installer validation, and the full-workspace checks in T058. |
+
+The feature's research synthesis belongs in `research.md`, with learning evidence in
+`docs/learning-research.md` and dependency choices in `docs/desktop-dependency-survey.md`.
+Each implementation decision cites its owning synthesis. New evidence updates that owner
+before dependent work is accepted (constitution XI).
+
 ## Risks
 
 | Risk | Evidence | Handling |
