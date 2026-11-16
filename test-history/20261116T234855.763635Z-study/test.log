@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/evidence.py", line 53, in evidence
+    yield directory
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study.py", line 630, in <module>
+    main(artifacts)
+    ~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study.py", line 285, in main
+    assert abs(views[1][3] - 1000) <= 100, views
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [('study-absolute-value', 'Basics.md', 2378, 0), ('study-image', 'Basics.md', 1235, 1106)]
