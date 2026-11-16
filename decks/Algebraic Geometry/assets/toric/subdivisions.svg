@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="400" viewBox="0 0 820 400">
+  <title>Star subdivisions of a smooth cone and a singular cone</title>
+  <desc>Panel A inserts (1,1) between (1,0) and (0,1). Panel B inserts (1,1) between (1,0) and (1,2). The inserted ray is dashed blue.</desc>
+  <rect width="820" height="400" fill="white"/>
+  <g font-family="sans-serif" font-size="20" fill="#17212b">
+    <text x="30" y="35" font-weight="bold">A</text><text x="440" y="35" font-weight="bold">B</text>
+    <g fill="#f1f5f7" stroke="none">
+      <path d="M90 300 L310 300 L310 80 L90 80 Z"/>
+      <path d="M490 300 L730 300 L610 60 Z"/>
+    </g>
+    <g fill="none" stroke="#17212b" stroke-width="3">
+      <path d="M90 80 L90 300 L310 300"/>
+      <path d="M610 60 L490 300 L730 300"/>
+    </g>
+    <g fill="none" stroke="#246a91" stroke-width="3" stroke-dasharray="8 5">
+      <path d="M90 300 L300 90"/><path d="M490 300 L640 150"/>
+    </g>
+    <text x="98" y="70">(0,1)</text><text x="295" y="328">(1,0)</text><text x="298" y="80">(1,1)</text>
+    <text x="610" y="53">(1,2)</text><text x="717" y="328">(1,0)</text><text x="650" y="144">(1,1)</text>
+    <text x="30" y="375">Solid rays: original cone. Dashed ray: subdivision.</text>
+  </g>
+</svg>

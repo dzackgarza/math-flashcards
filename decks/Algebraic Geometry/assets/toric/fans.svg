@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="560" viewBox="0 0 800 560">
+  <title>Four complete fans in a rank two lattice</title>
+  <desc>Panels A through D show primitive ray generators. Every adjacent pair spans a maximal cone.</desc>
+  <rect width="800" height="560" fill="white"/>
+  <g font-family="sans-serif" font-size="19" fill="#17212b">
+    <text x="30" y="32" font-weight="bold">A</text><text x="430" y="32" font-weight="bold">B</text>
+    <text x="30" y="312" font-weight="bold">C</text><text x="430" y="312" font-weight="bold">D</text>
+    <g stroke="#17212b" stroke-width="2.5" fill="none">
+      <path d="M190 145 L300 145 M190 145 L190 55 M190 145 L115 220"/>
+      <path d="M590 145 L700 145 M590 145 L590 55 M590 145 L480 145 M590 145 L590 235"/>
+      <path d="M190 425 L300 425 M190 425 L190 335 M190 425 L110 345 M190 425 L190 515"/>
+      <path d="M590 425 L700 425 M590 425 L590 335 M590 425 L545 335 M590 425 L590 515"/>
+    </g>
+    <g fill="#246a91">
+      <circle cx="190" cy="145" r="4"/><circle cx="590" cy="145" r="4"/>
+      <circle cx="190" cy="425" r="4"/><circle cx="590" cy="425" r="4"/>
+    </g>
+    <text x="307" y="151">(1,0)</text><text x="198" y="60">(0,1)</text><text x="48" y="244">(−1,−1)</text>
+    <text x="707" y="151">(1,0)</text><text x="598" y="60">(0,1)</text><text x="426" y="135">(−1,0)</text><text x="598" y="251">(0,−1)</text>
+    <text x="307" y="431">(1,0)</text><text x="198" y="340">(0,1)</text><text x="42" y="339">(−1,1)</text><text x="198" y="531">(0,−1)</text>
+    <text x="707" y="431">(1,0)</text><text x="598" y="340">(0,1)</text><text x="462" y="329">(−1,2)</text><text x="598" y="531">(0,−1)</text>
+  </g>
+</svg>

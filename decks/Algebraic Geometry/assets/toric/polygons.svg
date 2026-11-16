@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="340" viewBox="0 0 880 340">
+  <title>Three lattice polygons with their lattice points</title>
+  <desc>A is the triangle with vertices (0,0), (2,0), (0,2). B is the rectangle [0,2] by [0,1]. C has vertices (0,0), (1,0), (5,2), (0,2).</desc>
+  <rect width="880" height="340" fill="white"/>
+  <g font-family="sans-serif" font-size="18" fill="#17212b">
+    <text x="30" y="34" font-weight="bold">A</text><text x="305" y="34" font-weight="bold">B</text><text x="575" y="34" font-weight="bold">C</text>
+    <g fill="#e8f1f5" stroke="#246a91" stroke-width="2.5">
+      <path d="M60 230 L220 230 L60 70 Z"/>
+      <path d="M335 230 L495 230 L495 150 L335 150 Z"/>
+      <path d="M605 230 L645 230 L805 150 L605 150 Z"/>
+    </g>
+    <g fill="#17212b">
+      <circle cx="60" cy="230" r="4"/><circle cx="140" cy="230" r="4"/><circle cx="220" cy="230" r="4"/>
+      <circle cx="60" cy="150" r="4"/><circle cx="140" cy="150" r="4"/><circle cx="60" cy="70" r="4"/>
+      <circle cx="335" cy="230" r="4"/><circle cx="415" cy="230" r="4"/><circle cx="495" cy="230" r="4"/>
+      <circle cx="335" cy="150" r="4"/><circle cx="415" cy="150" r="4"/><circle cx="495" cy="150" r="4"/>
+      <circle cx="605" cy="230" r="4"/><circle cx="645" cy="230" r="4"/>
+      <circle cx="605" cy="190" r="4"/><circle cx="645" cy="190" r="4"/><circle cx="685" cy="190" r="4"/><circle cx="725" cy="190" r="4"/>
+      <circle cx="605" cy="150" r="4"/><circle cx="645" cy="150" r="4"/><circle cx="685" cy="150" r="4"/><circle cx="725" cy="150" r="4"/><circle cx="765" cy="150" r="4"/><circle cx="805" cy="150" r="4"/>
+    </g>
+    <text x="35" y="260">(0,0)</text><text x="197" y="260">(2,0)</text><text x="35" y="58">(0,2)</text>
+    <text x="310" y="260">(0,0)</text><text x="475" y="260">(2,0)</text><text x="310" y="137">(0,1)</text><text x="475" y="137">(2,1)</text>
+    <text x="565" y="260">(0,0)</text><text x="638" y="260">(1,0)</text><text x="575" y="137">(0,2)</text><text x="783" y="137">(5,2)</text>
+    <text x="30" y="315">Each dot is a lattice point. Scales differ between panels.</text>
+  </g>
+</svg>
