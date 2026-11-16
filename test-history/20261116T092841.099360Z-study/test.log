@@ -1,0 +1,45 @@
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/evidence.py", line 53, in evidence
+    yield directory
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study.py", line 350, in <module>
+    main(artifacts)
+    ~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study.py", line 137, in main
+    browser = playwright.chromium.launch()
+  File "/home/dzack/.cache/uv/environments-v2/study-2b228d10dd0cf191/lib/python3.14/site-packages/playwright/sync_api/_generated.py", line 4113, in launch
+    self._sync(
+    ~~~~~~~~~~^
+        self._impl_obj.launch(
+        ^^^^^^^^^^^^^^^^^^^^^^
+    ...<17 lines>...
+        )
+        ^
+    )
+    ^
+  File "/home/dzack/.cache/uv/environments-v2/study-2b228d10dd0cf191/lib/python3.14/site-packages/playwright/_impl/_sync_base.py", line 124, in _sync
+    return task.result()
+           ~~~~~~~~~~~^^
+  File "/home/dzack/.cache/uv/environments-v2/study-2b228d10dd0cf191/lib/python3.14/site-packages/playwright/_impl/channel_owner.py", line 387, in finish
+    raise e from None
+  File "/home/dzack/.cache/uv/environments-v2/study-2b228d10dd0cf191/lib/python3.14/site-packages/playwright/_impl/channel_owner.py", line 352, in finish
+    result = await zone.run_async(lambda: awaitable)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzack/.cache/uv/environments-v2/study-2b228d10dd0cf191/lib/python3.14/site-packages/playwright/_impl/utils/zones.py", line 58, in run_async
+    return await func()
+           ^^^^^^^^^^^^
+  File "/home/dzack/.cache/uv/environments-v2/study-2b228d10dd0cf191/lib/python3.14/site-packages/playwright/_impl/browser_type.py", line 176, in launch
+    await self._channel.launch(
+    ...<2 lines>...
+    )
+  File "/home/dzack/.cache/uv/environments-v2/study-2b228d10dd0cf191/lib/python3.14/site-packages/playwright/_impl/channel_owner.py", line 398, in _mapped
+    return mapper(await awaitable)
+                  ^^^^^^^^^^^^^^^
+playwright._impl._errors.Error: BrowserType.launch: Executable doesn't exist at /home/dzack/.cache/ms-playwright/chromium_headless_shell-1255/chrome-headless-shell-linux64/chrome-headless-shell
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝

@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/evidence.py", line 53, in evidence
+    yield directory
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study.py", line 350, in <module>
+    main(artifacts)
+    ~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study.py", line 156, in main
+    assert len(views) == 1, f"Leaving a card in the editor must record its view: {views}"
+           ^^^^^^^^^^^^^^^
+AssertionError: Leaving a card in the editor must record its view: []

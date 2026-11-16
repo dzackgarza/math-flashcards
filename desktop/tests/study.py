@@ -19,7 +19,7 @@ from uuid import UUID, uuid4
 import psutil
 from anki.collection import Collection
 from evidence import evidence
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import expect, sync_playwright
 
 
 def main(artifacts: Path) -> None:
@@ -133,6 +133,32 @@ def main(artifacts: Path) -> None:
                         "select source from parameter_set"
                     ).fetchall() == [("anki-default",)]
                     assert record.execute("select * from review").fetchall() == []
+
+                browser = playwright.chromium.launch()
+                page = browser.new_page()
+                try:
+                    page.goto("http://127.0.0.1:1420")
+                    page.get_by_role("button", name="Workspace", exact=True).click()
+                    page.get_by_label("Workspace folder").fill(str(workspace))
+                    page.get_by_role("button", name="Open workspace", exact=True).click()
+                    expect(page.get_by_role("button", name="Workspace", exact=True)).to_have_text(workspace.name)
+                    page.get_by_text("Basics", exact=True).click()
+                    front = page.locator(".side-editor.front .cm-content")
+                    expect(front).to_contain_text("Evaluate")
+                    page.wait_for_timeout(2000)
+                    page.locator(".card-row-label").nth(1).click()
+                    expect(front).to_contain_text("Which shape")
+                    # The next bridge request is a barrier after the window's action.
+                    response = api.post("/api/request", data={"action": "study-open", "workspace": str(workspace)})
+                    assert response.ok, response.text()
+                    with closing(sqlite3.connect(record_path)) as record:
+                        views = record.execute("select card_id, deck_path, shown_ms, unfocused_ms from editor_view").fetchall()
+                    assert len(views) == 1, f"Leaving a card in the editor must record its view: {views}"
+                    assert views[0][:2] == ("study-absolute-value", "Basics.md"), views
+                    assert views[0][2] >= 2000, views
+                    assert 0 <= views[0][3] <= views[0][2], views
+                finally:
+                    browser.close()
 
                 # Anki owns the collection exclusively. Stop this isolated test host
                 # before inspecting its committed state with Anki's own library.
