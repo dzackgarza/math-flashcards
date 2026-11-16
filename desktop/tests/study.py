@@ -334,6 +334,47 @@ def main(artifacts: Path) -> None:
                             == before_views
                         )
                     assert list(stores.iterdir()) == [store]
+                    page.get_by_role("button", name="Workspace", exact=True).click()
+                    page.get_by_label("Workspace folder").fill(str(workspace))
+                    page.get_by_role(
+                        "button", name="Open workspace", exact=True
+                    ).click()
+                    expect(page.get_by_role("status", name="Study")).to_have_text(
+                        "Study cards ready"
+                    )
+                    page.get_by_role("button", name="Workspace", exact=True).click()
+                    page.get_by_role("button", name="Study", exact=True).click()
+                    study = page.get_by_role("region", name="Study session")
+                    expect(study.locator(".side-editor.front")).to_be_visible()
+                    expect(study.locator(".side-editor.back")).to_have_count(0)
+                    expect(
+                        study.get_by_role("button", name="Good", exact=False)
+                    ).to_have_count(0)
+                    page.screenshot(path=str(artifacts / "study-front.png"))
+                    page.wait_for_timeout(2000)
+                    page.keyboard.press("Space")
+                    expect(study.locator(".side-editor.back")).to_be_visible()
+                    expect(
+                        study.get_by_role("button", name="Good", exact=False)
+                    ).to_be_visible()
+                    page.screenshot(path=str(artifacts / "study-answer.png"))
+                    page.wait_for_timeout(1000)
+                    page.keyboard.press("3")
+                    expect(
+                        study.get_by_role("button", name="Show answer", exact=False)
+                    ).to_be_visible()
+                    with closing(sqlite3.connect(record_path)) as record:
+                        response_row = record.execute(
+                            "select grade, reveal_ms, grade_ms, recovered from response"
+                        ).fetchone()
+                        assert response_row[0] == "good" and response_row[3] == 0, (
+                            response_row
+                        )
+                        assert response_row[1] >= 2000 and response_row[2] >= 1000, (
+                            response_row
+                        )
+                    page.keyboard.press("Escape")
+                    expect(study).to_have_count(0)
                 finally:
                     browser.close()
 
@@ -418,7 +459,7 @@ def main(artifacts: Path) -> None:
                 with closing(sqlite3.connect(record_path)) as record:
                     assert record.execute(
                         "select count(*) from response"
-                    ).fetchone() == (4,)
+                    ).fetchone() == (5,)
                     assert record.execute(
                         "select cause from session_end where session=?", (session,)
                     ).fetchone() == ("left",)
@@ -487,7 +528,7 @@ def main(artifacts: Path) -> None:
                 assert summary[0]["store"] == store.name
                 assert summary[0]["paths"] == [str(workspace)]
                 assert summary[0]["last_used"]
-                assert summary[0]["cards"] == 12 and summary[0]["responses"] == 4
+                assert summary[0]["cards"] == 12 and summary[0]["responses"] == 5
                 assert set(stores.iterdir()) == before
 
                 response = api.post(

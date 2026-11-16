@@ -1,0 +1,44 @@
+Traceback (most recent call last):
+  File "/tmp/just-V4xkQq/desktop-test", line 101, in <module>
+    subprocess.run(
+    ~~~~~~~~~~~~~~^
+        ["bunx", "start-server-and-test", "just -f ../justfile desktop-web", "http-get://127.0.0.1:1420", scenarios["study"]],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        cwd="desktop", check=True, env=environment,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        stdout=log, stderr=subprocess.STDOUT,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/dzack/.local/share/uv/python/cpython-3.13-linux-x86_64-gnu/lib/python3.13/subprocess.py", line 577, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['bunx', 'start-server-and-test', 'just -f ../justfile desktop-web', 'http-get://127.0.0.1:1420', 'xvfb-run -a uv run --upgrade tests/study.py']' returned non-zero exit status 1.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/evidence.py", line 53, in evidence
+    yield directory
+  File "/tmp/just-V4xkQq/desktop-test", line 95, in <module>
+    with evidence("browser-study", Path("desktop/tests/fixtures")) as artifacts, tempfile.TemporaryDirectory(prefix="flashcards-browser-cache-") as directory:
+                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzack/.local/share/uv/python/cpython-3.13-linux-x86_64-gnu/lib/python3.13/tempfile.py", line 950, in __exit__
+    self.cleanup()
+    ~~~~~~~~~~~~^^
+  File "/home/dzack/.local/share/uv/python/cpython-3.13-linux-x86_64-gnu/lib/python3.13/tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzack/.local/share/uv/python/cpython-3.13-linux-x86_64-gnu/lib/python3.13/tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/home/dzack/.local/share/uv/python/cpython-3.13-linux-x86_64-gnu/lib/python3.13/shutil.py", line 763, in rmtree
+    _rmtree_safe_fd(stack, onexc)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/dzack/.local/share/uv/python/cpython-3.13-linux-x86_64-gnu/lib/python3.13/shutil.py", line 707, in _rmtree_safe_fd
+    onexc(func, path, err)
+    ~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/dzack/.local/share/uv/python/cpython-3.13-linux-x86_64-gnu/lib/python3.13/shutil.py", line 658, in _rmtree_safe_fd
+    os.rmdir(name, dir_fd=dirfd)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 39] Directory not empty: '/tmp/flashcards-browser-cache-7iq7zkqq/state/math-flashcards/diagnostics/363ac217-1bc3-4468-b0e6-406a09f33738'
