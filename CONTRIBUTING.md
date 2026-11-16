@@ -1,5 +1,23 @@
 # Contributing flashcard content
 
+## Application contribution lessons
+
+- **ARCH001 — Native source ownership.** Saving and studying cards use the existing
+  card parser, the shared renderer, and direct Anki scheduling calls. Routing Study
+  through generated packages => pass native card identities and source to these owners.
+- **TEST001 — Observe the user path.** Derive acceptance tests from the specification's
+  user stories and follow `test-guidelines`. Set an internal completion flag and assert
+  it is set => perform the user action and assert the resulting visible or stored output.
+  A transport test proves that transport; the complete Study story also needs the window.
+- **TEST002 — Short feedback with retained evidence.** Keep tier 1 under five minutes,
+  including setup, and retain logs and nested timing evidence with revision and input
+  context. Rebuild the release after every small edit => check the affected path with
+  prepared dependencies and build the release at the plan's milestones.
+- **RESEARCH001 — Synthesize at the owner.** State findings, sources, alternatives,
+  limits, and the resulting decision in the maintained document that owns the topic.
+  Leave a decision in search output or chat => update the feature research, research
+  register, or dependency survey before accepting work that relies on it.
+
 This collection supports mathematical research. Prioritize knowledge that helps
 the researcher recognize a useful result, check its hypotheses, construct an
 example, compute an invariant, or carry an argument forward.

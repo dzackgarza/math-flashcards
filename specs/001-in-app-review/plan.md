@@ -46,7 +46,7 @@ inside the app.
 
 **Storage**: One store for each workspace under `user_data_path("math-flashcards")/study/<store ID>/`: an Anki collection (SQLite) with its media folder, the learning record `record.sqlite3` (SQLite, schema owned by the app, rows only inserted) with `record-media/` and `record-assets/`, `store.json`, and `backups/` with Anki `.colpkg` files and record copies
 
-**Testing**: Playwright scenarios in Python against `just desktop-web` with the real bridge; `bun test` for TypeScript units; the native scenario under Xvfb; all run from `just test-commit`
+**Testing**: Tier 1 covers real user stories and meaningful branches through Playwright and the prepared bridge, plus type and boundary checks. Tier 2 covers the built Linux app under Xvfb and broader combinations at milestones. Tests follow `test-guidelines`; internal assertions do not replace real-path evidence.
 
 **Target Platform**: Linux desktop (Tauri/WebKitGTK), one user, one machine, one running copy
 
@@ -54,7 +54,7 @@ inside the app.
 
 **Performance Goals**: Next card readable within 0.5 s of a grade (SC-002); changed cards in review within 10 s of a save (SC-003); tree counts within 2 s of opening a prepared workspace (SC-006)
 
-**Constraints**: No network at run time; the learning record never leaves the machine; no row of the record is updated or deleted; the record's schema only grows; installed releases are immutable; no version pins or lock files; the whole test suite under five minutes; Anki is AGPL-3.0-or-later; an analysis has a read-only connection and imports no core code; every file outside the workspace is under its XDG base directory
+**Constraints**: No network at run time; the learning record never leaves the machine; no row of the record is updated or deleted; the record's schema only grows; installed releases are immutable; no version pins or lock files; the complete tier 1 loop under five minutes; Anki is AGPL-3.0-or-later; an analysis has a read-only connection and imports no core code; every file outside the workspace is under its XDG base directory
 
 **Scale/Scope**: About 3,300 cards in 68 decks; a record that grows for decades (an estimate of 1 kB for each presentation, not measured); a catalog of analyses that grows for decades; two new screens (Study, Statistics); fourteen study actions and two analysis actions; one new process type
 
@@ -75,8 +75,8 @@ inside the app.
 | VII. One person, one running copy | The single-instance plugin gives the focus to the running window (R15). One host is the only writer of the store for the life of the running copy, and an update takes effect at the next launch. | Pass |
 | VIII. XDG Base Directory placement | R16 gives the directory of each file. The feature writes learning data under the data directory and writes no result of an analysis to a file; a result that a later analysis stores is a cache file (R16). One existing defect is outside the feature's own files: the web view writes its cache under the data directory. Tauri's web view library owns that placement and gives no setting for it (R16). | Pass for the feature's files; one existing defect, owned upstream |
 | IX. Three parts with a small blast radius | Core in `desktop/study/`, analyses in `desktop/analysis/`, interface in `desktop/src/` (R17). An analysis has a read-only connection, runs outside the host, and returns a generic table that the Statistics screen renders, so a new analysis is one module. Import Linter contracts in the commit gate forbid imports across the boundary. The record holds facts, not results, so an analysis change needs no migration. | Pass |
-| X. Learning decisions rest on published research | R19 gives, for each learning decision of the feature, its sources in `docs/learning-research.md` and a status. Supported: recall before reveal, spaced reviews, relearning, no setting aside, the recorded time to reveal. Inference: the adaptive schedule, and mixed subjects in a session. Default with no source: target recall 0.9, the learning steps, and the review order. Contrary evidence: recall in thought with a self-assigned grade, for definition cards; FR-059 and FR-060 state the limit in each analysis. Every source has depth Abstract or Secondary, so the statuses are provisional until T079. | Open: the full texts are not read |
-| Technical constraints | `uv` and `bun` only; no run-time network; releases stay immutable, and the running copy keeps its host on its own release. | Pass |
+| X. Learning decisions rest on published research | R19 gives, for each learning decision of the feature, its sources in `docs/learning-research.md` and a status. Supported: recall before reveal, spaced reviews, relearning, no setting aside, the recorded time to reveal. Inference: the adaptive schedule, and mixed subjects in a session. Default with no source: target recall 0.9, the learning steps, and the review order. Contrary evidence: recall in thought with a self-assigned grade, for definition cards; FR-059 and FR-060 state the limit in each analysis. Reading depth is recorded per source in the register. T079 requires full texts and qualifications before dependent learning decisions are accepted. | Open: T079 |
+| XI. Research becomes durable repository knowledge | Technical choices and alternatives belong in `research.md`; learning evidence belongs in `docs/learning-research.md`; dependency choices belong in `docs/desktop-dependency-survey.md`. Update the owner before accepting dependent work. | Pass at each decision |\n| XII. Durable logs, timing history, and measured optimization | Study scenarios retain revision, source and fixture digests, elapsed time, nested Python profiles, and diagnostics under `test-history/`. Application operations need XDG state logs and timings; broader test runners need the same durable evidence. | Open: T081 |\n| Technical constraints | `uv` and `bun` only; no run-time network; releases stay immutable, and the running copy keeps its host on its own release. | Pass |
 
 **Post-design check**: The design in `research.md`, `data-model.md`, and `contracts/`
 adds no violation. One risk stays open and is not a violation: a retained earlier release
@@ -211,7 +211,7 @@ full release builds, installation, and full-workspace measurements run at these 
 | First complete Study session with permanent record | Verify the complete native save, study, grade, undo, and recovery path. |
 | Feature release | Run `desktop-update`, installer validation, and the full-workspace checks in T058. |
 
-The feature's research synthesis belongs in `research.md`, with learning evidence in
+Study test runs retain evidence under `test-history/<UTC timestamp>-<scenario>/`: `run.json`\nrecords the revision, working source hashes, fixture hashes, environment, result, preparation\ntime, and elapsed time; `python.pstats` records nested calls in the test process; `test.log`\nrecords failures; native runs also retain WebKit diagnostics and the executable hash. The\nPython profile includes waits for child processes but not their call stacks. T081 extends\nmeasurement and durable logs to those operations and the other test runners. A timing\noptimization starts with the cost table required by constitution XII, in the design that\nowns the operation.\n\nThe feature's research synthesis belongs in `research.md`, with learning evidence in
 `docs/learning-research.md` and dependency choices in `docs/desktop-dependency-survey.md`.
 Each implementation decision cites its owning synthesis. New evidence updates that owner
 before dependent work is accepted (constitution XI).
@@ -229,7 +229,7 @@ before dependent work is accepted (constitution XI).
 | Anki's fit does not run in the wheel, or needs more history than a test can prepare | Presence of the calls probed; no call made | The US7 test task measures it first and records the result in `research.md` |
 | No test proves that the record stays on the machine | A negative property | The host calls no sync function and opens no connection; a reviewer checks this by inspection |
 | Tests write to the real history | `desktop-test` isolates the cache directory only | The Foundation changes the recipe before the window opens any store |
-| Suite time | The suite limit is five minutes | The study scenario uses small fixture decks; the full workspace is a manual check |
+| Tier 1 feedback time | The complete tier 1 loop must stay under five minutes | Measure setup and nested work, fix repeated costs from a triage table, and run broader evidence at milestones |
 | A later agent puts an analysis into the core, or a core call into an analysis | Analyses are added all the time, by agents | The import contracts fail the commit; the analysis connection is read-only; `docs/analyses.md` and the repository `AGENTS.md` state the rule |
 | An analysis needs a dependency that conflicts with the core's | One environment for both packages (R17, alternative C) | Not handled now. A separate environment for the analyses is the next step when the first conflict occurs |
 | A newer `anki` changes the core's behaviour with no change in this repository | Principle III against principle IX | Open for the user. The record names the Anki version on each row, and the store has dated backups |
