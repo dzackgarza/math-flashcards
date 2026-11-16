@@ -2,6 +2,55 @@
 title: "Algebraic Geometry::Surfaces::Enriques Surfaces"
 ---
 
+::: {.front card-id="enriques-quotient-dual-complex" tags="construction comparison"}
+How do the involution on a Kulikov dual complex and its action on components determine the topology and singularities of an Enriques quotient degeneration?
+:::
+
+::: {.back card-id="enriques-quotient-dual-complex"}
+Use a regular involution on the model, with an equivariant subdivision when needed.
+
+| K3 dual complex and action | Quotient complex | Component behavior |
+| --- | --- | --- |
+| Type III: $S^2$, antipodal | $\mathbb{RP}^2$ | Components exchanged in pairs |
+| Type III: $S^2$, reflection | Disk | Exchanged pairs off the fixed equator; preserved components on it |
+| Type II: interval, reversal | Interval | Components paired, possibly a preserved middle component or double curve |
+| Type II: interval, identity | Interval | Every component preserved |
+
+For an exchanged pair, the normalization of its quotient is one of the components. In the AEGS type III reflection models, a preserved component has four isolated fixed points, lying in pairs on two boundary curves; its quotient has four $A_1$ points.
+
+A nontrivial involution of $\mathbb P^1$ is conjugate to $t\mapsto-t$ and has two fixed points. On an elliptic double curve, preserving its one-form gives translation by nonzero two-torsion; negating the form gives $p\mapsto a-p$ with four fixed points. Opposite residues on the two branches determine which action is compatible with a nonsymplectic involution that exchanges, or preserves, the adjacent components.
+
+The quotient complex records incidence, not the gluing isomorphisms or the singularities on each normalized component; retain those separately.
+
+Reference: AEGS, Proposition 4.8 and §7.3.
+:::
+
+::: {.front card-id="enriques-affine-to-stable-example" tags="application calculation"}
+Recover the stable Enriques limit from the following divisor-model construction: the mirror polygon has successive edge vectors $(2,0),(-1,1),(-1,0),(0,-1)$, with a unit Symington surgery on the diagonal edge. The doubled sphere yields four invariant components with ramification squares $(0,8,4,4)$; the first is ruled, the others are a $D_8$ pair and two $D_4$ pairs. Determine the surviving quotient components and polarization degree.
+:::
+
+::: {.back card-id="enriques-affine-to-stable-example"}
+Putting the edge vectors end to end gives vertices
+$$ (0,0),\ (2,0),\ (1,1),\ (0,1).$$
+Perform the unit shear surgery on $(2,0)\!\to\!(1,1)$, then double the resulting affine disk with opposite orientation. In this construction the Enriques and del Pezzo reflections have the same equator. Choose the equivariant triangulation and component gluings giving the stated divisor model.
+
+Each component is preserved, so each component map to the quotient has degree two. With $q^*R_i=\widetilde R_i$:
+
+| Component | $\widetilde R_i^2$ upstairs | $R_i^2$ downstairs | Stable-model map |
+| --- | --- | --- | --- |
+| Ruled component | $0$ | $0$ | Contracts along its ruling |
+| $D_8$ anticanonical pair | $8$ | $4$ | Survives as its index-two folded quotient |
+| Each $D_4$ anticanonical pair | $4$ | $2$ | Survives as its index-two folded quotient |
+
+The surviving shapes are $D_8:2={}_2'B_4^-$ and two copies of $D_4:2={}_2'B_2^-$. The global ramification degree is
+$$R_Z^2=4+2+2=8,$$
+as required for the square of the degree-two numerical polarization. On each surviving component, contract any remaining $R_i$-orthogonal curves and retain the induced conductor gluing.
+
+Square zero alone would not specify the contraction: here the restricted polarization is nontrivial and semiample with one-dimensional image. A numerically trivial restriction would instead contract the component to a point.
+
+Reference: AEGS, Example 4.14, Corollary 4.9, and §6.5.
+:::
+
 ::: {.front card-id="enriques-degree-two-projective-model" tags="construction comparison formula"}
 For an ADE Enriques surface with an ample numerical polarization of square two, which line bundle defines its quartic del Pezzo model? Distinguish the ordinary and special cases.
 :::
