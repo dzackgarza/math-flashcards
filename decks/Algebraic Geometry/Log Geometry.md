@@ -53,37 +53,20 @@ For $xy=t$, use $Q=\mathbb N\to P=\mathbb N^2$, $1\mapsto(1,1)$, with $t$ on the
 Reference: Abramovich et al., *Logarithmic geometry and moduli*, Theorem 3.10.
 :::
 
-::: {.front card-id="log-polync-colored-dual" tags="definition construction example"}
-Define a polync variety, its polysimplicial dual complex, and a coloring. Give a two-parameter semistable local model.
+::: {.front card-id="log-normal-crossing-d-semistability" tags="definition comparison example"}
+Define $d$-semistability for a normal-crossing variety. What normal-bundle condition does it impose on a two-component crossing?
 :::
 
-::: {.back card-id="log-polync-colored-dual"}
-Over $\mathbb C$, polync means étale-locally a product of normal-crossing spaces and a smooth factor:
-$$\prod_{i\in I}\{x_{i1}\cdots x_{im_i}=0\}\times\mathbb A^a.$$
-The dual complex has local cells $\prod_i\Delta^{m_i-1}$, glued along faces according to the strata. An $S$-coloring assigns a distinct color in $S$ to each simplex factor of each cell, compatibly on faces; edges in a factor have its color.
+::: {.back card-id="log-normal-crossing-d-semistability"}
+For a normal-crossing variety $X_0/\mathbb C$ with singular locus $D$, the sheaf of local first-order smoothing parameters is
+$$\mathcal T^1_{X_0}=\mathcal Ext^1(\Omega^1_{X_0},\mathcal O_{X_0}),$$
+an invertible sheaf on $D$. The variety is $d$-semistable iff $\mathcal T^1_{X_0}\simeq\mathcal O_D$.
 
-A semistable morphism over a smooth base has local equations $\prod_jx_{ij}=t_i$ in disjoint groups of coordinates, together with smooth coordinates. Example:
-$$xy=s,\qquad uv=t.$$
-The central fiber has four components; its local dual cell is a square $\Delta^1\times\Delta^1$, with horizontal and vertical edges differently colored. The total space is smooth. A polync space need not itself be a normal-crossing hypersurface.
+A semistable smoothing with smooth total space supplies a nowhere-zero smoothing parameter, hence this trivialization. This necessary condition alone does not assert global smoothability.
 
-Reference: [Engel, *Polync varieties*, §1](https://arxiv.org/abs/2601.21871).
-:::
-
-::: {.front card-id="log-polync-d-semistability" tags="definition comparison example"}
-Define $d$-semistability for a colored polync variety. Relate it to smoothing and to the normal bundles in a two-component crossing.
-:::
-
-::: {.back card-id="log-polync-d-semistability"}
-For an $S$-colored polync variety $X_0$, let $Z_s$ be the union of singular strata involving color $s$. The sheaf of local first-order smoothing parameters splits as
-$$\mathcal T^1_{X_0}=\mathcal Ext^1(\Omega^1_{X_0},\mathcal O_{X_0})
-=\bigoplus_{s\in S}\mathcal L_s,$$
-where $\mathcal L_s$ is a line bundle on $Z_s$, pushed forward to $X_0$.
-
-$d$-semistable means $\mathcal L_s\simeq\mathcal O_{Z_s}$ for every $s$. A semistable smoothing supplies these trivializations. Conversely this condition gives a log structure of semistable type; a global smoothing requires further hypotheses.
-
-For $X_0=Y_1\cup_DY_2$ with smooth components and smooth transverse double locus, no triple locus:
+For $X_0=Y_1\cup_DY_2$ with smooth components, smooth transverse double locus, and no triple locus:
 $$\mathcal T^1_{X_0}|_D\simeq N_{D/Y_1}\otimes N_{D/Y_2}.$$
-Thus a necessary condition for a smooth-total-space semistable smoothing is $N_{D/Y_2}\simeq N_{D/Y_1}^{-1}$.
+Thus $d$-semistability means $N_{D/Y_2}\simeq N_{D/Y_1}^{-1}$. Local example: $xy=t$ smooths $xy=0$; changing the local equations $x,y$ multiplies the parameter by the product of their transition units, explaining the tensor product.
 
-Reference: [Engel, Definition 1.13 and Proposition 2.2](https://arxiv.org/abs/2601.21871).
+Reference: Abramovich et al., *Logarithmic geometry and moduli*, §5.
 :::

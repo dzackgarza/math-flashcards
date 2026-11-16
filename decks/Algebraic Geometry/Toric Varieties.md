@@ -14,11 +14,11 @@ using the affine lattice where the last coordinates sum to one. Projection sends
 
 Normally equivalent polytopes have the same normal fan after identifying their spaces of directions. They define the same toric variety with possibly different ample polarizations.
 
-For a surjective lattice map $\pi:M\to\Lambda$, a $\pi$-twisted Cayley sum is $R=\operatorname{conv}(R_1,\ldots,R_\ell)$, where the normally equivalent lattice polytopes $R_i$ lie in parallel fibers and their images $v_i$ are precisely the distinct vertices of $F=\pi(R)$. Dropping the requirement that each $v_i$ be a vertex gives a generalized twisted Cayley sum. The latter can yield reducible special fibers.
+For a surjective lattice map $\pi:M\to\Lambda$, a $\pi$-twisted Cayley sum is $R=\operatorname{conv}(R_1,\ldots,R_\ell)$, where the normally equivalent lattice polytopes $R_i$ lie in parallel fibers and their images $v_i$ are precisely the distinct vertices of $F=\pi(R)$.
 
 Example: $P_0=[0,a]$, $P_1=[0,b]$, $a,b>0$. Their Cayley polygon is a trapezoid; its toric surface is $\mathbb F_{|a-b|}$, ruled over $\mathbb P^1$. If $a=b$, the rectangle gives $\mathbb P^1\times\mathbb P^1$.
 
-Reference: [Di Rocco–Schaffler, Definitions 1.1 and 2.2](https://arxiv.org/abs/2110.04842).
+Reference: [Di Rocco–Schaffler, Definition 1.1](https://arxiv.org/abs/2110.04842).
 :::
 
 ::: {.front card-id="toric-quotient-fan-lattice-fibers" tags="definition construction comparison"}

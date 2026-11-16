@@ -376,7 +376,7 @@ surjective for every $k\ge0$ by Max Noether's theorem. Normality of $C$ is autom
 
 $d$-normality asks for just the degree-$d$ restriction to be surjective. Linear normality is $1$-normality. For $d\ge0$, $d$-normality is equivalent to $H^1(\mathbb P^N,I_X(d))=0$. Normality of the variety alone does not imply normality of its homogeneous coordinate ring.
 
-Reference: Caminata–Moon–Schaffler, *On a theorem of L. G. Roberts*, Appendix A.
+Reference: Caminata–Moon–Schaffler, *Determinantal varieties from point configurations on hypersurfaces*, Appendix A.
 :::
 
 ::: {.front card-id="formula-cyclic-cover-pushforward-canonical" tags="formula"}

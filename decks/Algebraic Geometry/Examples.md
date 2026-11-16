@@ -31,7 +31,7 @@ Rank $\le s$ is cut out scheme-theoretically by all $(s+1)$-minors. A nonzero eq
 
 Examples: three plane points collinear iff the $3\times3$ coordinate determinant vanishes. Six plane points lie on a conic, possibly reducible or nonreduced, iff the determinant of their quadratic $6\times6$ evaluation matrix vanishes.
 
-Reference: Caminata–Moon–Schaffler, *On a new class of determinantal varieties*, §2.
+Reference: Caminata–Moon–Schaffler, *Determinantal varieties from point configurations on hypersurfaces*, §2.
 :::
 
 ::: {.front card-id="projective-osculating-jets" tags="definition construction example"}
@@ -47,7 +47,7 @@ For $v(t)=(1,t,\ldots,t^r)$, $\dim\operatorname{Osc}^k= k$ for $0\le k\le r$. At
 $$\sum_{j=0}^r\binom rj(-a)^{r-j}X_j=0.$$
 It meets the curve at $a$ with multiplicity $r$. For the twisted cubic: points, tangent lines, osculating planes, then all of $\mathbb P^3$.
 
-Reference: Carlini–Catalisano–Schaffler, *On osculating simplices of curves*, §2.
+Reference: Caminata–Carlini–Schaffler, *Simplices osculating rational normal curves*, §2.
 :::
 
 ::: {.front card-id="construction-delpezzo-weighted-low-degree" tags="construction application"}

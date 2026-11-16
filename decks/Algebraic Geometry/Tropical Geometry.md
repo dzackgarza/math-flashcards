@@ -37,7 +37,7 @@ References: Gallardo–Schaffler, *Mustafin degenerations of six points and self
 :::
 
 ::: {.front card-id="tropical-grassmannian-tree-metric" tags="definition comparison example"}
-Relate the tropical Grassmannian $\operatorname{Trop}\operatorname{Gr}(2,n)$ to tree metrics. Distinguish ordinary and weighted higher dissimilarities.
+Relate the tropical Grassmannian $\operatorname{Trop}\operatorname{Gr}(2,n)$ to tree metrics. State the four-point condition and explain the sign convention.
 :::
 
 ::: {.back card-id="tropical-grassmannian-tree-metric"}
@@ -47,12 +47,9 @@ For a metric $d=(d_{ij})$ on $n$ labels, a tree with nonnegative edge lengths re
 $$d_{ij}+d_{kl},\quad d_{ik}+d_{jl},\quad d_{il}+d_{jk}$$
 occurs at least twice. This is the four-point condition. In the minimum convention, the tropical Plücker coordinates are $w_{ij}=-d_{ij}$. General tropical points allow arbitrary pendant lengths; changing them adds the lineality vector $(a_i+a_j)_{ij}$.
 
-For an $r$-element leaf set $I$:
-
-- Ordinary $r$-dissimilarity: sum of lengths of edges in the minimal subtree spanning $I$.
-- Weighted $r$-dissimilarity: $\sum_{\{i,j\}\subset I}d_{ij}$; an edge splitting $I$ into sizes $a,r-a$ contributes $a(r-a)$ times its length.
-
-For $r=3$, weighted equals twice ordinary. For $r=4$, a $1|3$ edge has factor three and a $2|2$ edge factor four, so no universal scalar relates them.
+Example: a four-leaf tree with pendant lengths one and an internal edge of length $a>0$ separating $\{1,2\}$ from $\{3,4\}$ has
+$$d_{12}+d_{34}=4,\qquad d_{13}+d_{24}=d_{14}+d_{23}=4+2a.$$
+The two largest sums agree. At $a=0$ the internal edge contracts and all three sums agree.
 
 Reference: [Caminata–Giansiracusa–Moon–Schaffler, §1](https://arxiv.org/abs/2005.02629).
 :::

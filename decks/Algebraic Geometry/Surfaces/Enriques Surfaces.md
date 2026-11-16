@@ -32,17 +32,3 @@ The abstract Enriques lattice admits length-ten sequences. On a specified surfac
 
 Reference: [Moschetti–Rota–Schaffler, Definitions 2.6–2.11](https://arxiv.org/abs/2202.01775).
 :::
-
-::: {.front card-id="enriques-combinatorial-nd" tags="definition application"}
-What does the combinatorial non-degeneracy invariant computed from a finite collection of rational curves on an Enriques surface measure? What does its output establish?
-:::
-
-::: {.back card-id="enriques-combinatorial-nd"}
-Fix a complex Enriques surface $S$ and a finite set $\mathcal R$ of smooth rational curves. Enumerate genus-one fibrations having a fiber supported on $\mathcal R$, using affine Dynkin configurations with their Kodaira multiplicities. Associate to each its numerical half-fiber class: divide the fiber class by two when the configuration is a full fiber.
-
-$\mathrm{cnd}(S,\mathcal R)$ is the largest size of a set of these half-fiber classes with pairwise intersection one. Equivalently: maximum clique in the graph joining classes with intersection one.
-$$\mathrm{cnd}(S,\mathcal R)\le\mathrm{nd}(S)\le10.$$
-Enlarging $\mathcal R$ cannot decrease the lower bound. A value below ten does not exclude fibrations absent from the chosen curve configuration. A value ten proves $\mathrm{nd}(S)=10$.
-
-Reference: [Moschetti–Rota–Schaffler, §3](https://arxiv.org/abs/2202.01775).
-:::
