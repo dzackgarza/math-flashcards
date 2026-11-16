@@ -648,8 +648,10 @@ material.
 
 - A grade is the person's own judgement, and the app does not check the answer. Each
   measure that an analysis computes from grades is named as self-graded
-  (`contracts/analysis.md`). `dunlosky2010` gives the direction of the expected error:
-  too high.
+  (`contracts/analysis.md`). `dunlosky2010` found overconfidence for incorrect and
+  partly correct definitions, even with the correct answer visible. It does not
+  establish the magnitude of this person's grading error. Checking separate ideas
+  reduced overconfidence but also lowered scores for correct answers.
 - Recall of a card is not competence with its content. `pan2018` finds the weakest
   transfer to material that was studied and not tested and to problems with worked
   examples, and `vangog2015` and `karpicke2015` dispute the size of the testing effect
@@ -660,7 +662,9 @@ material.
 
 - A form of study in which the person produces the answer, and in which the answer is
   checked against the parts of the correct answer, has support from `tauber2017` and
-  `dunlosky2010`. It also gives the record a measure that is not self-graded.
+  `dunlosky2010`. The latter measured scoring accuracy immediately, not delayed
+  learning gains. Checking one's own answer against separate ideas is still
+  self-grading; an independently scored answer is needed to estimate grading error.
 - Questions about a proof have a published model of what to ask (`mejiaramos2012`) and
   a tested method of study (`hodds2014`).
 - `iannone2014` holds students' views of oral assessment and no measured learning. The
