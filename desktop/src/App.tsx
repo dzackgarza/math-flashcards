@@ -100,7 +100,7 @@ import {
 import { ReviewChanges } from "./review";
 import { ProblemDrawer, useProblems } from "./problem-drawer";
 import { useSearch } from "./search";
-import { useEditorViews } from "./study";
+import { useEditorViews, useStudySync } from "./study";
 import { previousPackage, refreshTargets } from "./packages";
 import { backgroundTurn, noteForegroundInput } from "./background";
 import {
@@ -273,6 +273,13 @@ export default function App() {
   const dirty = document !== null && document.source !== document.saved;
   const busy = task !== "Idle";
   const selected = ranges[index];
+  const studyStatus = useStudySync(
+    workspace,
+    decks,
+    sourceRecords,
+    assetIdentity,
+    setError,
+  );
   const finishEditorView = useEditorViews(
     workspace,
     document?.path ?? null,
@@ -2352,6 +2359,11 @@ export default function App() {
             )}
         </div>
         <Stack gap={4}>
+          {workspace && (
+            <Text size="xs" c="dimmed" px="xs" role="status" aria-label="Study">
+              {studyStatus}
+            </Text>
+          )}
           {workspace && (
             <Text
               size="xs"

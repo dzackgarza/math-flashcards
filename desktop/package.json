@@ -19,6 +19,7 @@
     "@codemirror/language": "latest",
     "@codemirror/legacy-modes": "latest",
     "@codemirror/state": "latest",
+    "@dzack/pandoc-editor": "file:../../Zettlr-pandoc-mathjax/packages/pandoc-editor",
     "@fontsource-variable/inter": "latest",
     "@lezer/common": "latest",
     "@lezer/highlight": "latest",
@@ -35,11 +36,12 @@
     "@tauri-apps/plugin-store": "latest",
     "@uiw/react-codemirror": "latest",
     "mathjax": "latest",
+    "micromark-util-decode-string": "^2.0.1",
     "pathe": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "zod": "latest",
-    "@dzack/pandoc-editor": "file:../../Zettlr-pandoc-mathjax/packages/pandoc-editor"
+    "yaml": "^2.9.1",
+    "zod": "latest"
   },
   "devDependencies": {
     "@tauri-apps/cli": "latest",

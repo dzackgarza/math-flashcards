@@ -36,6 +36,7 @@ class Card(Value):
     front: str
     back: str
     tags: list[str]
+    media: list[str]
 
 
 class StudyDeck(Value):

@@ -84,6 +84,11 @@ No action updates or deletes a row of the learning record.
   `desktop/src/cards.ts`. Each deck includes its saved-source digest. The host checks
   that digest against the file before accepting the batch. `pending` is the number
   of paths whose saved source differs from the last accepted version.
+- Each native card includes its local image references in `media: string[]`. The shared
+  Lezer parser identifies images and reference definitions; the window resolves those
+  definitions before sending the batch. The core retains the referenced bytes and their
+  authored names. YAML metadata uses the same parser's metadata boundaries and the
+  `yaml` library for values.
 - With no deck out of date, it changes nothing and returns zero counts.
 - Records native front and back source with the asset identity named by `assets`.
   Anki notes carry the `card-id`; the app's content record supplies presentation.

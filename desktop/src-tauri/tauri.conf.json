@@ -50,7 +50,8 @@
       "../tikz-assets/": "tikz-assets/",
       "../study/": "study/",
       "../analysis/": "analysis/",
-      "../diagnostics.py": "diagnostics.py"
+      "../diagnostics.py": "diagnostics.py",
+      "../rendering.py": "rendering.py"
     }
   }
 }

@@ -202,6 +202,15 @@ after a save, after a file-watch event, and before a session starts.
 **Alternatives considered**: Sync from frontend edit events alone misses external edits.
 The file watcher and saved-source comparison cover both paths.
 
+Native batches include per-card image references found by the existing Lezer Pandoc
+parser. [`yaml`](https://eemeli.org/yaml/#parsing-documents) reads the contents of its
+metadata nodes; [`micromark-util-decode-string`](https://github.com/micromark/micromark/tree/main/packages/micromark-util-decode-string)
+decodes Markdown URL escapes and character references. The core receives these native
+values, verifies the saved-source digest, and reads the referenced local files. Shared
+asset descriptor validation lives in `desktop/rendering.py`, used by both the editor
+bridge and Study. Its validated descriptor is retained under its identity in
+`record-assets/`; media bytes are retained under their digest in `record-media/`.
+
 ## R7. Media
 
 **Decision**: The app resolves native image references relative to the saved deck and

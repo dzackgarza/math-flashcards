@@ -9,12 +9,15 @@ from pydantic import TypeAdapter
 from diagnostics import Diagnostics
 from study.session import viewed
 from study.store import Stores
+from study.sync import sync
 from study.values import (
     AttachRequest,
     Existing,
     New,
     Request,
     StudyFailure,
+    StudyError,
+    SyncRequest,
     ViewedRequest,
     WorkspaceRequest,
 )
@@ -42,6 +45,16 @@ def main(*, release: str) -> None:
                                 result = stores.create(workspace).opened()
                             case ViewedRequest():
                                 result = viewed(stores, request, workspace)
+                            case SyncRequest():
+                                store = stores.attached(workspace)
+                                if store is None:
+                                    raise StudyFailure(
+                                        StudyError(
+                                            kind="UnknownStore",
+                                            message="Attach a study store before synchronizing cards.",
+                                        )
+                                    )
+                                result = sync(store, Path(workspace), request)
                             case _:
                                 raise NotImplementedError(
                                     f"Study action is not implemented: {request.action}"

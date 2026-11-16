@@ -233,6 +233,12 @@ class Stores:
                 return self.load(item).opened()
         return Unattached(stores=[self.summary(item) for item in metadata])
 
+    def attached(self, workspace: str) -> Store | None:
+        for item in self.metadata():
+            if item.paths[-1].path == workspace:
+                return self.load(item)
+        return None
+
     def summary(self, metadata: Metadata) -> StoreSummary:
         if metadata.id in self.opened:
             return self.opened[metadata.id].summary()

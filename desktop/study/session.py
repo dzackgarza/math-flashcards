@@ -5,13 +5,12 @@ from study.values import Value, ViewedRequest
 
 
 def viewed(stores: Stores, request: ViewedRequest, workspace: str) -> Value:
-    for metadata in stores.metadata():
-        if metadata.paths[-1].path == workspace:
-            stores.load(metadata).record.editor_view(
-                request.card_id,
-                request.deck,
-                request.shown_ms,
-                request.unfocused_ms,
-            )
-            break
+    store = stores.attached(workspace)
+    if store is not None:
+        store.record.editor_view(
+            request.card_id,
+            request.deck,
+            request.shown_ms,
+            request.unfocused_ms,
+        )
     return Value()

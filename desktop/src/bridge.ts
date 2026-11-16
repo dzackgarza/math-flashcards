@@ -365,6 +365,7 @@ export const studyCardSourceSchema = z.strictObject({
   front: z.string(),
   back: z.string(),
   tags: z.array(z.string()),
+  media: z.array(z.string()),
 });
 export const studyDeckSchema = z.strictObject({
   path: deckPathSchema,

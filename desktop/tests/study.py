@@ -81,14 +81,6 @@ def main(artifacts: Path) -> None:
                 # with the authored file's type, independent of the current workspace.
                 image = (workspace / "triangle.svg").read_bytes()
                 retained = store / "record-media" / sha256(image).hexdigest()
-                retained.write_bytes(image)
-                media = api.get(
-                    "/api/study-media?"
-                    + urlencode({"path": str(retained), "name": "triangle.svg"})
-                )
-                assert media.ok, media.text()
-                assert media.headers["content-type"] == "image/svg+xml", media.headers
-                assert media.body() == image
                 forbidden = api.get(
                     "/api/study-media?"
                     + urlencode(
@@ -189,25 +181,47 @@ def main(artifacts: Path) -> None:
                     expect(page.get_by_role("status", name="Study")).to_have_text(
                         "Study cards ready"
                     )
+                    media = api.get(
+                        "/api/study-media?"
+                        + urlencode({"path": str(retained), "name": "triangle.svg"})
+                    )
+                    assert media.ok, media.text()
+                    assert media.headers["content-type"] == "image/svg+xml", (
+                        media.headers
+                    )
+                    assert media.body() == image
                     with closing(sqlite3.connect(record_path)) as record:
                         added = record.execute(
                             "select card_id, to_deck, kind from card_change order by id"
                         ).fetchall()
-                        assert len(added) == 12 and all(row[2] == "added" for row in added), added
+                        assert len(added) == 12 and all(
+                            row[2] == "added" for row in added
+                        ), added
                         assert ("study-absolute-value", "Basics.md", "added") in added
                         content = record.execute(
                             "select c.front, c.back, c.assets from content c join card_change a on a.content=c.id where a.card_id='study-absolute-value'"
                         ).fetchone()
-                        assert content[:2] == (r"Evaluate $\abs{-2}$.", r"$\abs{-2}=2$."), content
-                        assert (store / "record-assets" / (content[2] + ".json")).is_file()
+                        assert content[:2] == (
+                            r"Evaluate $\abs{-2}$.",
+                            r"$\abs{-2}=2$.",
+                        ), content
+                        assert (
+                            store / "record-assets" / (content[2] + ".json")
+                        ).is_file()
                         retained_image = record.execute(
                             "select m.name, m.digest from media m join card_change a on a.content=m.content where a.card_id='study-image'"
                         ).fetchone()
-                        assert retained_image == ("triangle.svg", sha256(image).hexdigest()), retained_image
-                        assert (store / "record-media" / retained_image[1]).read_bytes() == image
+                        assert retained_image == (
+                            "triangle.svg",
+                            sha256(image).hexdigest(),
+                        ), retained_image
+                        assert (
+                            store / "record-media" / retained_image[1]
+                        ).read_bytes() == image
                     page.get_by_text("Basics", exact=True).click()
                     front = page.locator(".side-editor.front .cm-content")
                     expect(front).to_contain_text("Evaluate")
+                    page.screenshot(path=str(artifacts / "study-ready.png"))
                     page.wait_for_timeout(2000)
                     page.locator(".card-row-label").nth(1).click()
                     expect(front).to_contain_text("Which shape")
@@ -256,6 +270,9 @@ def main(artifacts: Path) -> None:
                     )
                     assert response.ok, response.text()
                     with closing(sqlite3.connect(record_path)) as record:
+                        assert record.execute(
+                            "select count(*) from card_change"
+                        ).fetchone() == (12,)
                         views = record.execute(
                             "select card_id, deck_path, shown_ms, unfocused_ms from editor_view order by id"
                         ).fetchall()
@@ -348,8 +365,15 @@ def main(artifacts: Path) -> None:
                 collection = Collection(str(snapshot))
                 try:
                     identities = collection.db.all("select guid, flds from notes")
-                    assert len(identities) == 12 and all(guid == fields for guid, fields in identities), identities
-                    assert [field["name"] for field in collection.get_note(collection.find_notes("CardId:study-absolute-value")[0]).note_type()["flds"]] == ["CardId"]
+                    assert len(identities) == 12 and all(
+                        guid == fields for guid, fields in identities
+                    ), identities
+                    assert [
+                        field["name"]
+                        for field in collection.get_note(
+                            collection.find_notes("CardId:study-absolute-value")[0]
+                        ).note_type()["flds"]
+                    ] == ["CardId"]
                     assert collection.get_config("fsrs") is True
                     assert collection.get_config("applyAllParentLimits") is True
                     preset = collection.decks.get_config(1)

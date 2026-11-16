@@ -14,7 +14,7 @@
 
 from __future__ import annotations
 
-import hashlib
+
 import json
 import os
 import re
@@ -31,6 +31,16 @@ from typing import Annotated, Literal
 from xml.etree import ElementTree
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from rendering import (
+    AssetSet,
+    Digest,
+    InvalidAssetsError,
+    MacroDefinition,
+    asset_identity,
+    asset_set,
+    digest,
+)
 
 if __name__ == "__main__" and sys.argv[1:2] == ["study-host"]:
     import cyclopts
@@ -67,8 +77,6 @@ TIKZ_ASSETS = Path(__file__).with_name("tikz-assets")
 TIKZ_ENVIRONMENT = re.compile(
     r"\\begin\{tikzcd\}(?:\[[^\n]*\])?[\s\S]*?\\end\{tikzcd\}"
 )
-type MacroDefinition = str | tuple[str, int] | tuple[str, int, str]
-type Digest = Annotated[str, Field(pattern=r"^[a-f0-9]{64}$")]
 
 
 class AssetsInput(BaseModel):
@@ -409,25 +417,6 @@ type ManifestCache = Annotated[
 ]
 
 
-class AssetSet(BaseModel):
-    identity: Digest
-    macros: dict[str, MacroDefinition]
-    stmaryrd: str = Field(min_length=1)
-    renderer: str = Field(min_length=1)
-
-    @model_validator(mode="after")
-    def verify_identity(self) -> AssetSet:
-        if self.identity != asset_identity(self.macros, self.stmaryrd, self.renderer):
-            raise ValueError(
-                "The installed renderer assets are damaged. Run just desktop-install."
-            )
-        return self
-
-
-class InvalidAssetsError(ValueError):
-    """The requested installed renderer set cannot be used."""
-
-
 class InstallationError(ValueError):
     """A prepared runtime component cannot be used."""
 
@@ -596,10 +585,6 @@ class Generated(BaseModel):
     status: Status
     package: str
     log: str
-
-
-def digest(data: bytes) -> str:
-    return hashlib.sha256(data).hexdigest()
 
 
 def workspace_path(value: str) -> Path:
@@ -981,16 +966,6 @@ def problem_cache(
     return ProblemCache(session=session, results=read)
 
 
-def asset_identity(
-    macros: dict[str, MacroDefinition], stmaryrd: str, renderer: str
-) -> str:
-    return digest(
-        json.dumps(
-            [macros, stmaryrd, renderer], sort_keys=True, separators=(",", ":")
-        ).encode()
-    )
-
-
 @cache
 def installed_assets() -> AssetSet:
     path = Path(__file__).with_name("assets.json")
@@ -1009,22 +984,6 @@ def active_asset_version() -> AssetVersion:
             "The active renderer descriptor is unavailable. Run just desktop-install."
         ) from error
     return AssetVersion(identity=active.identity)
-
-
-@cache
-def asset_set(identity: Digest) -> AssetSet:
-    path = Path(__file__).with_name("asset-sets") / (identity + ".json")
-    try:
-        result = AssetSet.model_validate_json(path.read_bytes())
-    except (OSError, ValidationError) as error:
-        raise InvalidAssetsError(
-            "The requested renderer assets are unavailable. Run just desktop-install."
-        ) from error
-    if result.identity != identity:
-        raise InvalidAssetsError(
-            "The renderer asset identity is damaged. Run just desktop-install."
-        )
-    return result
 
 
 @cache
