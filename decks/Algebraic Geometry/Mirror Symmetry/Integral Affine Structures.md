@@ -111,14 +111,14 @@ For a smooth fiber $(Y,D)$, put $\Lambda=D^\perp$. There is an exact sequence
 $$0\to\mathbb Z\gamma\to H_2(Y\setminus D,\mathbb Z)\to\Lambda\to0,$$
 where $\mathbb Z\gamma$ is the radical of the intersection pairing. The induced pairing with $\Lambda$ gives
 $$T(x)=x-\langle\lambda,x\rangle\gamma,\qquad \lambda\in\Lambda.$$
-Although $T$ is the identity on $H_2(Y,\mathbb Z)$, it need not be the identity on the complement.
+Although $T|_{H_2(Y,\mathbb Z)}=\mathrm{id}$, one can have $T|_{H_2(Y\setminus D,\mathbb Z)}\ne\mathrm{id}$.
 
 Choose the sign so that
 $$\lambda\in B_{\rm gen}:=\operatorname{Int}_{\Lambda_{\mathbb R}}
 (\overline{\mathcal A}_{\rm gen}\cap\Lambda_{\mathbb R}).$$
-The invariant is the orbit of $\lambda$ under admissible isometries. Its square is the number of triple points in the Type III central fiber.
-
-Under $t=s^m$, monodromy becomes $T^m$ and $\lambda$ becomes $m\lambda$. Hence its positive rational ray, modulo admissible isometries, is unchanged. Do not infer trivial degeneration from trivial monodromy on the compact surface alone.
+The invariant is the orbit of $\lambda$ under admissible isometries, with
+$$\lambda^2=\#\{\text{triple points in the Type III central fiber}\}.$$
+Base change $t=s^m$: $(T,\lambda)\mapsto(T^m,m\lambda)$. Hence $\mathbb Q_{>0}\lambda$, modulo admissible isometries, is unchanged. Do not infer trivial degeneration from trivial monodromy on the compact surface alone.
 
 Reference: Engel–Friedman, §§0 and 3.
 :::

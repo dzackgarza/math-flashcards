@@ -407,11 +407,11 @@ Reference: Alexeev–Engel–Han, *Compact moduli of K3 surfaces with a nonsympl
 :::
 
 ::: {.front card-id="card-6e339cb955627865"}
-How is $\overline F_\rho^{\mathrm{slc}}$ constructed from K3 surfaces with a nonsymplectic automorphism fixing a curve $R$ of genus at least two?
+How is $\overline F_\rho^{\mathrm{slc}}$ constructed from K3 surfaces with a nonsymplectic automorphism fixing a curve $R$ with $g(R)\ge2$?
 :::
 
 ::: {.back card-id="card-6e339cb955627865"}
-Contract the curves orthogonal to $R$ to obtain $(\overline X,\overline R)$ with $\overline R$ ample. Fix rational $\epsilon>0$ such that $(\overline X,\epsilon\overline R)$ is log canonical throughout this fixed numerical moduli problem. Since $K_{\overline X}\sim0$, its log canonical divisor is ample. Send
+Contract the curves $C$ with $R\cdot C=0$ to obtain $(\overline X,\overline R)$ with $\overline R$ ample. Fix $\epsilon\in\mathbb Q_{>0}$ such that $(\overline X,\epsilon\overline R)$ is log canonical throughout this fixed numerical moduli problem. Then $K_{\overline X}+\epsilon\overline R\sim_{\mathbb Q}\epsilon\overline R$ is ample. Send
 $$\psi:(X,\sigma)\longmapsto(\overline X,\epsilon\overline R).$$
 Take the reduced closure of $\operatorname{im}\psi$ in the projective moduli space of stable slc pairs with these numerical invariants, then normalize:
 $$\overline F_\rho^{\mathrm{slc}}=\left(\overline{\operatorname{im}\psi}\right)^\nu.$$

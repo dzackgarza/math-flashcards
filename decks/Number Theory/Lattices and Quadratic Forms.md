@@ -23,8 +23,8 @@ How are primitive orthogonal complements glued in an even unimodular lattice? Wh
 ::: {.back card-id="lattice-complement-isometry-extension"}
 Let $S\subset L$ be primitive and nondegenerate, $L$ even unimodular, $T=S^\perp$. The finite-index inclusion $S\oplus T\subset L$ is specified by an anti-isometry
 $$\gamma:(A_S,q_S)\xrightarrow{\sim}(A_T,-q_T).$$
-Explicitly $L\subset S^\vee\oplus T^\vee$ consists of pairs whose residue classes lie in the graph of $\gamma$.
-
+Explicitly,
+$$L=\{(s,t)\in S^\vee\oplus T^\vee:\bar t=\gamma(\bar s)\}.$$
 For $g_S\in O(S)$, $g_T\in O(T)$, extension holds iff
 $$\bar g_T\gamma=\gamma\bar g_S.$$
 The extension is unique because it is already fixed on $L\otimes\mathbb Q$. Thus an abstract rational extension need not be integral.
@@ -171,7 +171,7 @@ Discuss Milnor's classification.
 :::
 
 ::: {.back card-id="card-a11f16d91f65c85e"}
-Let $\Lambda$ be an **indefinite unimodular integral** lattice of signature $(s_+,s_-)$, both entries positive. Signature and parity determine its isometry class.
+Let $\Lambda$ be an **indefinite unimodular integral** lattice of signature $(s_+,s_-)$, where $s_+,s_->0$. Signature and parity determine its isometry class.
 
 - Odd: $\Lambda\cong\langle1\rangle^{s_+}\oplus\langle-1\rangle^{s_-}$.
 - Even: requires $s_+-s_-\equiv0\pmod8$. Put $h=\min(s_+,s_-)$; use $U^h$ and $|s_+-s_-|/8$ copies of the definite $E_8$ lattice with the sign of $s_+-s_-$.
@@ -375,15 +375,19 @@ What is the reflection formula for a quadratic module?
 ::: {.back card-id="card-0302c59509013bff"}
 For $Q(z)\ne0$, with polar form $\beta(x,y)=Q(x+y)-Q(x)-Q(y)$:
 $$\tau_z(x)=x-\frac{\beta(x,z)}{Q(z)}z.$$
-Thus $\tau_z(z)=-z$ and $\tau_z$ fixes $z^\perp$. With lattice pairing $(\ ,\ )=\beta$ and $z^2=2Q(z)$, this is $x-2(x,z)z/z^2$. Over a ring, require $Q(z)$ invertible, or check that the displayed formula preserves the module.
+Thus $\tau_z(z)=-z$ and $\tau_z|_{z^\perp}=\mathrm{id}$. With lattice pairing $(\ ,\ )=\beta$ and $z^2=2Q(z)$, this is $x-2(x,z)z/z^2$. Over a ring $R$, require $Q(z)\in R^\times$, or check that the displayed formula preserves the module.
 :::
 
 ::: {.front card-id="card-fddde22020cafe92"}
-What is Witt's theorem on quadratic modules?
+State the Cartan–Dieudonné theorem for a quadratic space.
 :::
 
 ::: {.back card-id="card-fddde22020cafe92"}
-If $(V, Q)\in   {}_{R}\Mod$ is a quadratic space, then ${\operatorname{O}}(V) = \left\langle{\tau_z \st z\in V}\right\rangle_R$ and in fact every element is a product of at most $\dim V$ reflections.
+For a nondegenerate quadratic space $(V,Q)$ over a field $k$, with $\operatorname{char}k\ne2$ and $\dim_kV=n<\infty$:
+$$\forall g\in O(V,Q),\quad g=\tau_{v_1}\cdots\tau_{v_r},\qquad 0\le r\le n,\quad Q(v_i)\ne0.$$
+The empty product is $\mathrm{id}$; hence $O(V,Q)=\langle\tau_v:Q(v)\ne0\rangle$.
+
+Reference: [Lundholm–Svensson, *Clifford algebra, geometric algebra, and applications*, Cartan–Dieudonné theorem](https://www.math.lmu.de/~lundholm/clifford.pdf).
 :::
 
 ::: {.front card-id="card-4abe9b7ef41fa2f1"}
@@ -431,11 +435,11 @@ What is an overlattice? Give an example.
 ::: {.back card-id="card-c987fae249683c99"}
 $\Lambda$ is an overlattice of $M$ iff $M\leq \Lambda$ is a sublattice and $[\Lambda: M] < \infty$, so $\operatorname{rank}_\ZZ\Lambda = \operatorname{rank}_\ZZ M$.
 
-For nondegenerate integral lattices with the same rational pairing, an **integral** overlattice lies between $M$ and $M^\vee$. The dual is a finite-index supermodule but need not itself be integral: the dual generator of $\langle2\rangle$ has square $1/2$.
+For nondegenerate integral lattices with the same rational pairing, an **integral** overlattice satisfies $M\subseteq\Lambda\subseteq M^\vee$. The dual is a finite-index supermodule but need not itself be integral: for $M=\mathbb Ze$, $e^2=2$, one has $M^\vee=\mathbb Z(e/2)$ and $(e/2)^2=1/2$.
 
-For a nondegenerate sublattice $M\leq\Lambda$, $M\oplus M^\perp$ has finite index in $\Lambda$. Nondegeneracy matters: an isotropic line in $U$ is contained in its own orthogonal complement.
+For a nondegenerate sublattice $M\leq\Lambda$, $[\Lambda:M\oplus M^\perp]<\infty$. Nondegeneracy matters: an isotropic line $\ell\subset U$ satisfies $\ell\subseteq\ell^\perp$.
 
-Example: in $U=\mathbb Ze\oplus\mathbb Zf$, the vectors $e+f,e-f$ span $\langle2\rangle\oplus\langle-2\rangle$ of index two; $U$ is its even overlattice.
+Example: in $U=\mathbb Ze\oplus\mathbb Zf$, put $M=\mathbb Z(e+f)\oplus\mathbb Z(e-f)\cong\langle2\rangle\oplus\langle-2\rangle$. Then $[U:M]=2$; $U$ is its even overlattice.
 :::
 
 ::: {.front card-id="card-89fe712e79552f01"}
