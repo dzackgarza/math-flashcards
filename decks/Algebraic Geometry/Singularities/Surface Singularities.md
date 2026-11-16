@@ -2,6 +2,42 @@
 title: "Algebraic Geometry::Singularities::Surface Singularities"
 ---
 
+::: {.front card-id="singularity-smoothing-adjacency-resolution" tags="definition comparison example"}
+Distinguish a smoothing, a smoothing component, an adjacency, and a simultaneous resolution of a complex surface singularity. Use an $A_1$ example.
+:::
+
+::: {.back card-id="singularity-smoothing-adjacency-resolution"}
+- **Smoothing:** a flat deformation over a pointed smooth curve whose special fiber is the singularity and whose nearby fibers are smooth.
+- **Smoothing component:** an irreducible component of the reduced base of a semiuniversal deformation whose general point parametrizes a smooth fiber. Different smoothing components can give different Milnor fibers.
+- **Adjacency:** a deformation of the given singularity whose nearby fibers have a specified singularity, or configuration of singularities. State the direction: the special singularity deforms to the nearby configuration. Adjacency alone does not specify a smoothing component.
+- **Simultaneous resolution:** a proper map from a smooth family over the same base to the singular family, restricting on each fiber to a resolution. A finite base change can be necessary; resolving the total space alone does not imply that the resolved family is smooth over the base.
+
+Example: $xy-z^2=t$ smooths $A_1$. After $t=s^2$, write $xy=(z+is)(z-is)$. Blowing up the ideal $(x,z+is)$ gives a simultaneous resolution: an isomorphism for $s\ne0$, and the minimal resolution with one $(-2)$-curve at $s=0$.
+
+For a nontrivial adjacency, $xy=z^3+t z^2$ has an $A_2$ singularity at $t=0$ and an $A_1$ singularity at the origin for $t\ne0$. Thus $A_2$ deforms to $A_1$; this family is not itself a smoothing.
+
+Reference: Engel–Friedman, *Smoothings and rational double point adjacencies for cusp singularities*, introduction; the simultaneous resolution of du Val singularities.
+:::
+
+::: {.front card-id="hypersurface-milnor-tjurina-modality-suspension" tags="definition comparison example"}
+For an isolated complex hypersurface germ, compare Milnor number, Tjurina number, and modality. What does suspension preserve? Compute the example $x^2+y^3+z^7$.
+:::
+
+::: {.back card-id="hypersurface-milnor-tjurina-modality-suspension"}
+For $f\in\mathbb C\{x_0,\ldots,x_n\}$ with an isolated critical point,
+$$\mu=\dim_{\mathbb C}\frac{\mathbb C\{x\}}{(\partial f)},\qquad
+\tau=\dim_{\mathbb C}\frac{\mathbb C\{x\}}{(f,\partial f)}.$$
+$\mu$ is the rank of the middle reduced homology of the Milnor fiber; $\tau$ is the dimension of the first-order deformation space of the hypersurface germ. Weighted-homogeneous $f$ satisfies $\mu=\tau$ by the Euler relation.
+
+For Arnold's function-germ classification, right equivalence means an analytic change of source coordinates. Modality counts the maximum number of parameters of inequivalent germs in nearby orbit strata: for a sufficiently high finite jet space, take the maximum of $\dim S-\dim(\text{orbit in }S)$ over the local constant-orbit-dimension strata. Modality zero means simple; modality one means unimodal. It is not $\mu$, $\tau$, or the number of coefficients in an arbitrary equation.
+
+Suspension replaces $f$ by $f+u^2$. Stable right equivalence allows adding nondegenerate quadratic variables; $\mu$ and the Arnold type are unchanged, while the hypersurface dimension increases.
+
+Example: $x^2+y^3+z^7$ is the $E_{12}$ surface germ. Its Jacobian algebra has basis $y^a z^b$ for $0\le a<2$, $0\le b<6$, so $\mu=\tau=12$. It is unimodal, unlike the simple du Val $E_6,E_7,E_8$. The branch-curve germ $y^3+z^7$ has the same stable label but is a curve, not a surface.
+
+Reference: Gallardo–Pearlstein–Schaffler–Zhang, §2.3; Arnold's hypersurface classification.
+:::
+
 ::: {.front card-id="surface-double-crossing-involution-quotient" tags="application calculation"}
 Describe the normalization and conductor of $S=\{xz=0\}\subset\mathbb A^3_{x,y,z}$ modulo $(x,y,z)\mapsto(-x,-y,-z)$. Why is this quotient slc, and does the image of the origin become an isolated log canonical center?
 :::

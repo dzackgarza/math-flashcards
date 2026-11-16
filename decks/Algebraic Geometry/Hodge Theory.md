@@ -2,6 +2,39 @@
 title: "Algebraic Geometry::Hodge Theory"
 ---
 
+::: {.front card-id="hodge-clemens-schmid-surface-specialization" tags="theorem comparison example"}
+For a projective semistable degeneration of surfaces, how does Clemens–Schmid relate central-fiber cohomology to limiting cohomology? What follows when monodromy is finite?
+:::
+
+::: {.back card-id="hodge-clemens-schmid-surface-specialization"}
+Let $f:\mathcal X\to\Delta$ be projective, with $\mathcal X$ smooth, $X_0$ a reduced SNC divisor, and smooth fibers over $\Delta^*$. With rational coefficients and $N=\log T$, the exact segment is
+$$H_4(X_0)(-3)\longrightarrow H^2(X_0)
+\xrightarrow{\mathrm{sp}}H^2_{\lim}
+\xrightarrow{N}H^2_{\lim}(-1)
+\longrightarrow H_2(X_0)(-3).$$
+The first map comes from duality and restriction; $\mathrm{sp}$ is specialization. The displayed Tate twists make these morphisms of mixed Hodge structures.
+
+Thus $\operatorname{im}(\mathrm{sp})=\ker N$. If monodromy is finite, a finite base change kills it; after semistable reduction $N=0$, $H^2_{\lim}$ is pure of weight two, and specialization is surjective. It can still have a kernel from central-fiber component classes.
+
+Simple comparison in degree one: two smooth curves joined at a separating node have trivial monodromy and pure limiting $H^1$. An irreducible one-nodal curve has a nonzero vanishing-cycle monodromy. Reducibility alone does not determine the weight filtration.
+
+Reference: Gallardo–Pearlstein–Schaffler–Zhang, §6; Morrison, *The Clemens–Schmid exact sequence and applications*.
+:::
+
+::: {.front card-id="hodge-v-manifold-purity" tags="definition comparison"}
+What is a complex V-manifold? What Hodge-theoretic conclusion holds for a projective V-manifold?
+:::
+
+::: {.back card-id="hodge-v-manifold-purity"}
+A complex analytic space locally isomorphic to $U/G$, where $U$ is smooth and $G$ is finite: a space with finite quotient singularities. It need not be smooth; $\mathbb A^2/\{\pm1\}$ is the $A_1$ example.
+
+For a projective V-manifold, $H^k(X,\mathbb Q)$ carries a pure Hodge structure of weight $k$, with the usual Hodge decomposition. This applies to ordinary rational cohomology of the quotient space; it does not assert smoothness or an integral torsion-free cohomology lattice.
+
+For a reducible stable surface, apply this fact to quotient-singular components where appropriate, then analyze the gluing. Purity of the components alone does not make the whole central fiber's cohomology pure.
+
+Reference: Gallardo–Pearlstein–Schaffler–Zhang, Remark 1.6 and §6; Peters–Steenbrink, *Mixed Hodge Structures*.
+:::
+
 ::: {.front card-id="hodge-representation-scheme-presentations" tags="definition application"}
 Construct a representation scheme from a group presentation. Compute it for a free group, a surface group, and rank-one representations of a closed surface.
 :::

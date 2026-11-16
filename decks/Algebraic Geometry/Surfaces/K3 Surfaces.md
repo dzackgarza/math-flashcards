@@ -2,6 +2,41 @@
 title: "Algebraic Geometry::Surfaces::K3 Surfaces"
 ---
 
+::: {.front card-id="k3-pseudoelliptic-contraction" tags="definition construction example"}
+What is a pseudoelliptic surface? For an elliptic K3 with section $S$ and fiber $F$, explain the contraction using $S+2F$ and its effect on a ramification polarization.
+:::
+
+::: {.back card-id="k3-pseudoelliptic-contraction"}
+A pseudoelliptic surface is obtained by contracting the section of an elliptic surface. The fiber curves survive, but their images meet at the contraction point; they do not define a morphism to the original base. This differs from a genus-one fibration without a section.
+
+For an elliptic K3,
+$$S^2=-2,\qquad SF=1,\qquad F^2=0,\qquad
+L=S+2F,\quad L^2=2,\quad LS=0.$$
+$L$ is nef and big. Its section ring contracts $S$ and the fiber components disjoint from $S$, giving a degree-two polarized surface with du Val singularities. Use a sufficiently divisible multiple of $L$: the degree-one linear system $|S+2F|$ itself has fixed component $S$.
+
+The elliptic involution fixes $S$ and the closure $R'$ of the nonzero two-torsion points. On the minimal elliptic K3 with no reducible fibers, $R'\sim3(S+2F)$. Thus $S+R'$ is not nef, since $(S+R')S=-2$. After contracting $S$, the image of $R'$ is ample. With reducible fibers, first pass to the Weierstrass model by contracting the components disjoint from $S$.
+
+Reference: Alexeev–Brunyate–Engel, *Compactifications of moduli of elliptic K3 surfaces: stable pair and toroidal*, §2C.
+:::
+
+::: {.front card-id="k3-eight-points-order-four" tags="construction example"}
+Construct a K3 surface with a purely nonsymplectic order-four automorphism from eight distinct points of $\mathbb P^1$, partitioned into two sets of four.
+:::
+
+::: {.back card-id="k3-eight-points-order-four"}
+Let $f_4(x_0,x_1)$ and $g_4(x_0,x_1)$ vanish at the two sets. On $\mathbb P^1_x\times\mathbb P^1_y$, set
+$$C=(y_0^2f_4+y_1^2g_4=0),\qquad B=C+(y_0=0)+(y_1=0).$$
+$B$ has bidegree $(4,4)$. Its eight transverse crossings give eight $A_1$ singularities on the double cover
+$$w^2=y_0y_1(y_0^2f_4+y_1^2g_4).$$
+Resolve them to obtain a K3: the covering line bundle is $\mathcal O(2,2)=-K_{\mathbb P^1\times\mathbb P^1}$ and the singularities are crepant.
+
+The lift $(y_0,y_1,w)\mapsto(y_0,-y_1,iw)$ has order four; its square is the deck involution. On an affine chart $\omega=dx\wedge dy/w$, it acts by $i$, so every nontrivial power is nonsymplectic.
+
+Relabeling preserves the unordered partition into two blocks: the group is $(S_4\times S_4)\rtimes S_2$, not all of $S_8$. The eight points modulo $\operatorname{PGL}_2$ give dimension five.
+
+Reference: Moon–Schaffler, *KSBA compactification of the moduli space of K3 surfaces with purely non-symplectic automorphism of order four*, §2.1.
+:::
+
 ::: {.front card-id="k3-even-eight-nikulin-cover" tags="definition construction formula"}
 Define an even set of disjoint rational curves on a complex K3 surface. Construct the double cover from an even eight and relate it to a Nikulin involution.
 :::
@@ -1152,6 +1187,12 @@ What is the transcendental part of a Hodge structure of K3 type?
 For an integral or rational Hodge structure of K3 type $V$ one defines the transcendental lattice or transcendental part $T$ as the minimal primitive sub-Hodge structure
 $$\begin{align}T \subset V \text { with } V^{2,0}=T^{2,0} \subset T_\CC\end{align}$$
 The primitivity, i.e. the condition that $V / T$ is torsion free, has to be added for integral Hodge structures, as otherwise minimality cannot be achieved.
+
+More generally, for a polarizable rational Hodge structure $A$ of weight two with $F^3A=0$, let $T[A]$ be its smallest rational sub-Hodge structure containing $F^2A$. This also applies when $h^{2,0}>1$ and satisfies
+$$T[A\oplus B]=T[A]\oplus T[B].$$
+For a projective surface, it is the orthogonal complement of the rational $(1,1)$-classes under a polarization. In an integral lattice take the primitive intersection with this rational subspace. This is the version used to split the transcendental parts of components in a finite-monodromy surface limit.
+
+Reference: Gallardo–Pearlstein–Schaffler–Zhang, §6.2.
 :::
 
 ::: {.front card-id="card-14234c9dd775e812"}

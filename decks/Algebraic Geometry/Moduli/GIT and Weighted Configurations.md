@@ -2,6 +2,28 @@
 title: "Algebraic Geometry::Moduli::GIT and Weighted Configurations"
 ---
 
+::: {.front card-id="git-kirwan-partial-desingularization" tags="construction example"}
+What does Kirwan partial desingularization do to a projective GIT problem? Use eight equally weighted points on $\mathbb P^1$ to identify its first centers.
+:::
+
+::: {.back card-id="git-kirwan-partial-desingularization"}
+Let reductive $G$ act on smooth projective $X$ with ample linearization $L$ and nonempty stable locus. Among closed semistable orbits with positive-dimensional stabilizer, take the maximal stabilizer dimension. Blow up the $G$-saturations of the corresponding reductive fixed loci in $X^{ss}$.
+
+For blowup $\pi$ and exceptional divisor $E$, use the linearization
+$$\pi^*L^{\otimes m}\otimes\mathcal O(-E),\qquad m\gg0,$$
+and recompute semistability. Iterate as the maximal stabilizer dimension decreases. The quotient retains the original stable quotient as an open subset and has only finite stabilizers upstairs; finite quotient singularities can remain.
+
+For $(\mathbb P^1)^8$ with diagonal $\operatorname{SL}_2$ action and symmetric weights:
+
+- Semistable: at most four coincident points.
+- Stable: at most three coincident points.
+- Closed strictly semistable orbit: four points at $0$ and four at $\infty$, with a one-dimensional torus stabilizer.
+
+The unordered $4+4$ partitions index the first centers. Blowing up the coarse quotient without changing the linearization is not this construction.
+
+Reference: Moon–Schaffler, §4; Kirwan, *Partial desingularisations of quotients of nonsingular varieties and their Betti numbers*.
+:::
+
 ::: {.front card-id="git-linearization-stability" tags="definition comparison example"}
 For a reductive group $G$ acting on a projective variety $X/\mathbb C$, define a linearization and the semistable, polystable, and stable loci for an ample line bundle $L$.
 :::

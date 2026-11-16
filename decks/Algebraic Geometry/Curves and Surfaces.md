@@ -2,6 +2,25 @@
 title: "Algebraic Geometry::Curves and Surfaces"
 ---
 
+::: {.front card-id="surfaces-i-horikawa-canonical-model" tags="definition construction calculation"}
+What is an I-surface? Give its canonical weighted-hypersurface model, recover its invariants, and identify its bicanonical map.
+:::
+
+::: {.back card-id="surfaces-i-horikawa-canonical-model"}
+A smooth minimal surface of general type with $(K^2,p_g,q)=(1,2,0)$. Gallardo–Pearlstein–Schaffler–Zhang use “Horikawa surface” for this family; that name has broader uses elsewhere.
+
+Its canonical model is
+$$X=(w^2=F_{10}(x,y,z))\subset\mathbb P(1,1,2,5),$$
+with at most canonical singularities for the smooth-minimal-surface moduli problem. Weighted adjunction gives $K_X=\mathcal O_X(1)$ and
+$$K_X^2=\frac{10}{1\cdot1\cdot2\cdot5}=1,\qquad
+H^0(K_X)=\langle x,y\rangle.$$
+The bicanonical coordinates $x^2,xy,y^2,z$ give a degree-two map onto the quadric cone $\mathbb P(1,1,2)\subset\mathbb P^3$. Forgetting $w$ is the cover, branched along $F_{10}=0$ away from the cone vertex.
+
+The canonical model contracts any $K$-trivial $(-2)$-curves of the smooth minimal surface. A singular equation limit with worse singularities need not be the KSBA limit.
+
+Reference: Gallardo–Pearlstein–Schaffler–Zhang, *Unimodal singularities and boundary divisors in the KSBA moduli of a class of Horikawa surfaces*, §§1–2.
+:::
+
 ::: {.front card-id="kodaira-draw-unstarred" tags="application visual"}
 Sketch $I_1,II,I_2,III,I_3,IV$. Which distinctions are lost by recording only pairwise component intersections?
 :::

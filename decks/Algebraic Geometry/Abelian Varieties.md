@@ -31,7 +31,7 @@ defined up to simultaneous integral change of basis $B_i\mapsto AB_iA^t$. Coordi
 
 Put $t_i=e^{2\pi iz_i}$. The untwisted period map $\Psi(t)=\tau(z)-\sum_i z_iB_i$ extends to the origin in the compact dual. The nilpotent orbit replaces it by its limit:
 $$\tau_{\mathrm{nilp}}(z)=\Psi(0)+\sum_i z_iB_i.$$
-It lies in Siegel space when every $\operatorname{Im}z_i$ is large enough. For a one-node curve degeneration, $B=e^*\otimes e^*$, with $e^*$ the graph coedge. A separating node has $e^*=0$ and contributes no abelian monodromy.
+It lies in Siegel space when every $\operatorname{Im}z_i$ is large enough. For a one-node curve degeneration, orient its edge $e$ in the dual graph $\Gamma$. The functional $e^*:H_1(\Gamma,\mathbb Z)\to\mathbb Z$ reads the coefficient of $e$ in a cycle; $B=e^*\otimes e^*$. If the node separates the curve, $e$ lies in no cycle, so $e^*=0$ and contributes no abelian monodromy. For an irreducible one-nodal curve, the graph is one loop and $B=(1)$.
 
 Reference: Engel–de Gaay Fortman–Schreieder, *A survey of the Mumford construction*, Definitions 2.6–2.8.
 :::

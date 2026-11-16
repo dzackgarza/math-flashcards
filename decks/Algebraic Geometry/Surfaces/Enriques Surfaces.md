@@ -2,6 +2,45 @@
 title: "Algebraic Geometry::Surfaces::Enriques Surfaces"
 ---
 
+::: {.front card-id="enriques-bidouble-six-fibers" tags="construction calculation"}
+Construct an Enriques surface as a bidouble cover of $\operatorname{Bl}_3\mathbb P^2$ using pairs of fibers. Compute its eigensheaves and numerical invariants.
+:::
+
+::: {.back card-id="enriques-bidouble-six-fibers"}
+Over $\mathbb C$, blow up three noncollinear points. Write $F_i=H-E_i$ for the three rational pencils. Choose two distinct smooth fibers in each pencil, with no triple intersection among the six curves. Set $D_i\sim2F_i$, labeled by the three nonzero elements of $(\mathbb Z/2)^2$.
+
+The character line bundles are
+$$L_i=F_j+F_k=2H-E_j-E_k,\qquad
+\pi_*\mathcal O_S=\mathcal O_Y\oplus\bigoplus_{i=1}^3\mathcal O_Y(-L_i).$$
+Distinct branch labels meet transversely, so $S$ is smooth. Since $\sum D_i\sim-2K_Y$, Hurwitz gives $2K_S\sim0$. Also
+$$\chi(\mathcal O_S)=4\chi(\mathcal O_Y)+\frac12\sum_iL_i(L_i+K_Y)
+=4+\frac12(-6)=1.$$
+Here $K_Y+L_i=-H+E_i$ has no sections, so $p_g(S)=0$ and then $q(S)=0$. Thus $K_S$ is nontrivial two-torsion and $S$ is Enriques.
+
+For a branch fiber $C\in|F_i|$, write $\pi^*C=2R_C$. The connected smooth curve $R_C$ is genus one, and pulling back the pencil gives $|2R_C|$: its branch fibers yield half-fibers. Each exceptional $E_i$ splits into two disjoint $(-2)$-curves upstairs.
+
+Reference: Schaffler, *The KSBA compactification of the moduli space of $D_{1,6}$-polarized Enriques surfaces*, §2.1.
+:::
+
+::: {.front card-id="enriques-d16-polarization" tags="definition construction"}
+Define $D_{p,q}$ and the geometric conditions on a $D_{1,6}$-polarization of an Enriques surface.
+:::
+
+::: {.back card-id="enriques-d16-polarization"}
+Let $I_{p,q}=\mathbb Z^{p+q}$ with diagonal form $(1^p,-1^q)$. Its even sublattice is
+$$D_{p,q}=\{v\in I_{p,q}:v^2\in2\mathbb Z\}
+=\{(v_i):\sum_i v_i\in2\mathbb Z\}.$$
+For $I_{1,6}$ use basis $e_0,e_1,\ldots,e_6$ with $e_0^2=1$ and $e_i^2=-1$.
+
+A $D_{1,6}$-polarization includes a primitive embedding into $\operatorname{Pic}(S)$, preserving the intersection pairing, such that $2e_0$ is represented by a nef divisor and
+$$e_1\pm e_2,\quad e_3\pm e_4,\quad e_5\pm e_6$$
+are represented by six irreducible $(-2)$-curves. They are mutually orthogonal. Thus an abstract embedding without nefness and effective curve representatives is insufficient.
+
+In the bidouble-cover construction, $2e_0$ is the pullback of a line in $\mathbb P^2$, with square four; the six curves are the two lifts of each exceptional curve.
+
+Reference: Schaffler, §2.1, geometric polarization description.
+:::
+
 ::: {.front card-id="enriques-quotient-dual-complex" tags="construction comparison"}
 How do the involution on a Kulikov dual complex and its action on components determine the topology and singularities of an Enriques quotient degeneration?
 :::

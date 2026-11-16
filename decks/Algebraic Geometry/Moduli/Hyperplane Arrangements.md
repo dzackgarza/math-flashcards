@@ -32,3 +32,40 @@ The facets $x_i=1$ of $\Delta(r,n)$ supply the labeled boundary divisors on $X$;
 
 Reference: Alexeev, *Weighted Grassmannians and Stable Hyperplane Arrangements*, §4.
 :::
+
+::: {.front card-id="arrangement-weighted-grassmannian" tags="definition construction"}
+Define Alexeev's weighted Grassmannian from the Plücker ring. Which grading and weight restriction enter?
+:::
+
+::: {.back card-id="arrangement-weighted-grassmannian"}
+Let $R=k[p_I]/I_{\mathrm{Pl}}$ be the homogeneous Plücker ring of $\operatorname{Gr}(r,n)$, with $\deg p_I=1$ and torus weight $e_I=\sum_{i\in I}e_i$.
+
+For $b\in\mathbb Q^n$, $0<b_i\le1$, $\sum b_i>r$, retain homogeneous weight spaces whose normalized weight lies in the weighted hypersimplex:
+$$R_b=\bigoplus_{\substack{m\ge0,\ \alpha\\
+\sum\alpha_i=rm,\ 0\le\alpha_i\le mb_i}}R_{m,\alpha},
+\qquad G_b=\operatorname{Proj}R_b.$$
+The inequalities are additive, so $R_b$ is a subalgebra. A divisible Veronese gives an integral polarization. Orbit polytopes become $P(V)\cap\Delta_b(r,n)$.
+
+For $b=(1,\ldots,1)$, the weight restriction keeps the whole Plücker ring, so $G_b=\operatorname{Gr}(r,n)$. Lower weights cut the same orbit polytopes by the half-spaces $x_i\le b_i$.
+
+Reference: Alexeev, *Weighted Grassmannians and Stable Hyperplane Arrangements*, Definition 5.2.
+:::
+
+::: {.front card-id="arrangement-weighted-toric-git-construction" tags="definition construction"}
+Construct a weighted stable hyperplane arrangement from a stable toric variety over the weighted Grassmannian. Specify the quotient, its linearization, and the boundary.
+:::
+
+::: {.back card-id="arrangement-weighted-toric-git-construction"}
+Let $b\in\mathbb Q^n$, $0<b_i\le1$, $|b|=\sum b_i>r$, and $T=(\mathbb G_m)^n/\mathbb G_m$. On the incidence variety
+$$U=\{([z],V)\in\mathbb P^{n-1}\times\operatorname{Gr}(r,n):z\in V\},$$
+use the rational line bundle $\mathcal O_{\mathbb P^{n-1}}(|b|-r)\boxtimes\mathcal O_{\operatorname{Gr}}(1)$ with character $b$. Explicitly, for $m$ clearing denominators, retain sections of bidegree $(m(|b|-r),m)$ and torus weight $mb$. Let $U_b^{ss}$ be the locus where some such positive-degree section is nonzero; it has a natural map to $G_b$.
+
+Take a finite equivariant stable toric map $Y\to G_b$ whose polarized components tile $\Delta_b(r,n)$. Then
+$$X=(Y\times_{G_b}U_b^{ss})/\!/_{b}T,\qquad
+B_i=(Y\times_{G_b}(U_b^{ss}\cap\{z_i=0\}))/\!/_{b}T.$$
+This defines the labeled pair $(X,\sum b_iB_i)$, which is slc with ample log canonical divisor. For the normalized orbit closure of a subspace $V$ giving an lc arrangement, the construction recovers $\mathbb P V$ and its coordinate hyperplane sections.
+
+For $r=2$, the output is a weighted stable pointed rational curve: markings may coincide exactly when their total weight is at most one. This is the curve case of the same weighted stable-pair construction.
+
+Reference: Alexeev, [*Weighted Grassmannians and Stable Hyperplane Arrangements*, §§5–7](https://arxiv.org/html/0806.0881); *Moduli of Weighted Hyperplane Arrangements*, §5.3.
+:::

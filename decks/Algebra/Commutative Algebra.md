@@ -239,11 +239,19 @@ Elements $t_1,\ldots,t_d$ of a $k$-algebra are algebraically independent over $k
 :::
 
 ::: {.front card-id="card-b68ff905726843a0" tags="definition"}
-What is the definition of Associated prime?
+Define an associated prime of a module. How does it differ from an arbitrary point of the support? Give an embedded-prime example.
 :::
 
 ::: {.back card-id="card-b68ff905726843a0"}
 A prime ideal $\mathfrak p$ that is the annihilator of some element of a module $M$, i.e. $\mathfrak p=\operatorname{Ann}_R(m)$ for some $m\in M$.
+
+For a finite module over a Noetherian ring,
+$$\operatorname{Supp}M=\bigcup_{\mathfrak p\in\operatorname{Ass}M}V(\mathfrak p).$$
+The minimal primes of the support are associated; other associated primes are embedded. Thus knowing the support as a closed set loses embedded-prime data.
+
+Example: for $R=k[x,y]$ and $M=R/(x^2,xy)$, $\operatorname{Ann}_R(\bar y)=(x)$ and $\operatorname{Ann}_R(\bar x)=(x,y)$. The support is the line $V(x)$, but the origin is an embedded associated point.
+
+For a resolution $f:Y\to X$, this distinction matters when studying the coherent sheaves $R^if_*\mathcal O_Y$: vanishing detects rational singularities; their associated points contain finer information than their set-theoretic support.
 :::
 
 ::: {.front card-id="card-1a72d1cba8538bb4" tags="definition"}

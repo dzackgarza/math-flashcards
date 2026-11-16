@@ -675,7 +675,50 @@ How does one construct weighted projective space as a toric variety?
 :::
 
 ::: {.back card-id="card-700c8b1f3d679d6c"}
-${\mathbf{P}}(q_0,\cdots, q_n) \leadsto \Conv(0, k_1e_1,\cdots, k_ne_n) - (1,1,\cdots,1)$ where $k_i \coloneqq\qty{q_i\over \sum q_i}^{-1}\in \ZZ$.
+For positive integer weights,
+$$\mathbb P(q_0,\ldots,q_n)=\operatorname{Proj}k[x_0,\ldots,x_n],\qquad\deg x_i=q_i.$$
+Equivalently, use weighted scaling $(x_i)\mapsto(\lambda^{q_i}x_i)$ on $\mathbb A^{n+1}\setminus0$. After normalizing to well-formed weights, its fan is in $N=\mathbb Z^{n+1}/\mathbb Z(q_0,\ldots,q_n)$, with cones spanned by every proper subset of the images of the coordinate vectors.
+
+The simplex mnemonic
+$$\operatorname{Conv}(0,k_1e_1,\ldots,k_ne_n)-(1,\ldots,1),\qquad k_i=\frac{\sum_jq_j}{q_i},$$
+is an integral anticanonical-polytope description when $q_0=1$ and every $q_i$ divides $\sum_jq_j$. It is not the construction for arbitrary weights.
+:::
+
+::: {.front card-id="weighted-projective-charts-adjunction" tags="definition formula example"}
+For weighted projective space, distinguish quotient charts, well-formedness, quasismoothness, and Cartier twists. Compute the canonical class of a weighted hypersurface.
+:::
+
+::: {.back card-id="weighted-projective-charts-adjunction"}
+Over $\mathbb C$, the chart $x_i\ne0$ of $\mathbb P(q_0,\ldots,q_n)$ is $\mathbb A^n/\mu_{q_i}$, with weights $q_j$ on the other coordinates. The quotient stack retains these stabilizers; the coarse space does not.
+
+Well-formed weights satisfy $\gcd(q_0,\ldots,\widehat q_i,\ldots,q_n)=1$ for every $i$. For well-formed weighted projective space of dimension at least two,
+$$\operatorname{Cl}(X)=\mathbb Z[\mathcal O_X(1)],\qquad
+\operatorname{Pic}(X)=\mathbb Z[\mathcal O_X(\operatorname{lcm}(q_i))].$$
+$\mathcal O_X(d)$ is generally rank-one reflexive, not necessarily invertible. For $H=c_1(\mathcal O_X(1))$ as a rational divisor class,
+$$H^n=\frac1{\prod_iq_i},\qquad K_X\sim-\Bigl(\sum_iq_i\Bigr)H.$$
+A hypersurface $V(F_d)$ is quasismooth if its affine cone is smooth away from the origin. If it is also well formed (its intersection with the ambient singular locus has codimension at least two in it), adjunction gives
+$$K_{V(F_d)}\sim_{\mathbb Q}(d-\sum_iq_i)H|_{V(F_d)}.$$
+Quasismooth need not mean smooth on the coarse space. Example: $\mathbb P(1,1,2)$ has an $A_1$ quotient chart at $[0:0:1]$, $H^2=1/2$, and $\mathcal O(2)$ is Cartier.
+
+Reference: Gallardo–Pearlstein–Schaffler–Zhang, *Unimodal singularities and boundary divisors in the KSBA moduli of a class of Horikawa surfaces*, §2 and its weighted-projective references.
+:::
+
+::: {.front card-id="weighted-blowup-initial-form" tags="construction example"}
+Define the weighted blowup of $\mathbb A^n$ at the origin. How do its weights determine the exceptional divisor and the strict transform of a hypersurface?
+:::
+
+::: {.back card-id="weighted-blowup-initial-form"}
+Choose positive relatively prime weights $a=(a_1,\ldots,a_n)$. Let $I_m$ be the ideal spanned by monomials $x^u$ with $\sum a_i u_i\ge m$. Then
+$$\operatorname{Bl}_a\mathbb A^n=\operatorname{Proj}_{\mathbb A^n}\bigoplus_{m\ge0}I_m t^m.$$
+Toric description: subdivide the positive orthant by the ray through $a$. The exceptional divisor is $\mathbb P(a_1,\ldots,a_n)$. On a cyclic covering chart,
+$$x_i=u^{a_i},\qquad x_j=u^{a_j}y_j\quad(j\ne i),$$
+then quotient by $\mu_{a_i}$ acting with weights $1,-a_j$ on $u,y_j$. Quotient singularities can remain.
+
+If $f$ has lowest weighted degree $d$, divide its pullback by $u^d$ to obtain the strict transform. Its intersection with the exceptional divisor is the lowest-weight form $\operatorname{in}_a(f)=0$.
+
+Weights $(1,\ldots,1)$ recover the ordinary blowup. For weights $(1,2)$ and $f=y-x^2$, the first chart gives $f=u^2(v-1)$; the strict transform is $v=1$ and meets the exceptional curve at one point.
+
+Reference: Gallardo–Pearlstein–Schaffler–Zhang, §2.4.
 :::
 
 ::: {.front card-id="card-e1a99de59c6e75bf" tags="unsorted"}

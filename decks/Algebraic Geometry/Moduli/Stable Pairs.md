@@ -2,6 +2,20 @@
 title: "Algebraic Geometry::Moduli::Stable Pairs"
 ---
 
+::: {.front card-id="pairs-stable-replacement-family" tags="definition comparison"}
+What is a KSBA stable replacement of a punctured family? Distinguish it from a naive equation limit and from a GIT limit.
+:::
+
+::: {.back card-id="pairs-stable-replacement-family"}
+Start with a family of stable pairs over the punctured spectrum of a DVR, in a proper KSBA moduli problem with fixed numerical data. After a finite extension of the DVR, extend it to a flat family with slc fibers, relatively ample log canonical divisor, and the required relative $\mathbb Q$-Gorenstein/Kollár conditions.
+
+The central fiber is the stable replacement. Separatedness makes two such extensions isomorphic when their generic-fiber identification is fixed. A semistable or dlt model is an intermediate model; take its relative log canonical model to obtain the stable one.
+
+A naive limit of equations may lose slc singularities or log ampleness. A GIT limit depends on its linearization. Neither is automatically the KSBA limit. The comparison requires a family construction and a check of singularities and positivity.
+
+Reference: Moon–Schaffler, §§3 and 5; Gallardo–Pearlstein–Schaffler–Zhang, §3.
+:::
+
 ::: {.front card-id="pairs-automorphism-extension-quotient-family" tags="theorem construction"}
 When does an automorphism of a generic stable pair extend over a degeneration? What must be checked when its quotient family is used to define a morphism to KSBA moduli?
 :::
@@ -16,6 +30,10 @@ To obtain a KSBA classifying map, also establish:
 1. A relative boundary $\Delta_Y$ and the crepant equality $K_X+\Delta_X=q^*(K_Y+\Delta_Y)$. Include the Hurwitz contribution if there is divisorial ramification.
 2. Demi-normal quotient fibers and lc normalized pairs; then the fibers are slc. Ampleness descends along the finite map.
 3. Kollár's base-change conditions for the relative log pluricanonical sheaves and K-flatness of the boundary. When these sheaves are identified with invariant pushforwards upstairs, exactness of invariants supplies base-change compatibility. Fiberwise stability alone is insufficient.
+
+For a normal double cover in characteristic zero with reduced branch divisor $B$ and ramification divisor $R$, $q^*B=2R$. Thus
+$$K_X+\epsilon R=q^*\left(K_Y+\frac{1+\epsilon}{2}B\right).$$
+When these divisors are $\mathbb Q$-Cartier, the pairs are lc simultaneously, and log ampleness is equivalent under the finite surjective map. For nonnormal fibers, use normalization and include the conductor before applying this comparison.
 
 Such a family gives $S\to\mathcal M_{\mathrm{KSBA}}$ and then its coarse-space map. A universal family generally lives over the moduli stack, not its coarse space.
 
