@@ -1,6 +1,7 @@
 # /// script
 # requires-python = ">=3.12"
 # dependencies = [
+#   "anki",
 #   "ankdown @ git+https://github.com/dzackgarza/ankdown-for-math",
 #   "cyclopts",
 #   "filelock",

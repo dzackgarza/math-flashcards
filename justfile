@@ -24,10 +24,10 @@ test-commit: test desktop-frontend desktop-source-test desktop-editor-test deskt
 desktop-dependencies:
     [ -d desktop/.parser ] || env -u GIT_INDEX_FILE git clone --quiet --filter=tree:0 --sparse --branch develop https://github.com/dzackgarza/Zettlr-pandoc-mathjax desktop/.parser
     env -u GIT_INDEX_FILE git -C desktop/.parser sparse-checkout set vendor/lezer-markdown-pandoc
-    env -u GIT_INDEX_FILE git -C desktop/.parser pull --quiet --ff-only
+    env -u GIT_INDEX_FILE git -C desktop/.parser pull --quiet --ff-only --no-recurse-submodules
     [ -d desktop/.renderer ] || env -u GIT_INDEX_FILE git clone --quiet --filter=tree:0 --sparse --branch main https://github.com/dzackgarza/pandoc-config desktop/.renderer
     env -u GIT_INDEX_FILE git -C desktop/.renderer sparse-checkout set styles filters templates
-    env -u GIT_INDEX_FILE git -C desktop/.renderer pull --quiet --ff-only
+    env -u GIT_INDEX_FILE git -C desktop/.renderer pull --quiet --ff-only --no-recurse-submodules
     cd desktop && bun update
     cd desktop/src-tauri && cargo update --quiet
     uv run --upgrade desktop/backend.py prepare
