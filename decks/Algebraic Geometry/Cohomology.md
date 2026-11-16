@@ -2,6 +2,74 @@
 title: "Algebraic Geometry::Cohomology"
 ---
 
+::: {.front card-id="sequence-supports-localization" tags="formula application"}
+State the cohomology-with-supports sequence for $Z\subset X$ closed and $U=X\setminus Z$. Compute it for $X=\operatorname{Spec}k[t]$, $Z=(t)$, and $F=\mathcal O_X$.
+:::
+
+::: {.back card-id="sequence-supports-localization"}
+For an abelian sheaf $F$, $\Gamma_Z(X,F)=\ker(\Gamma(X,F)\to\Gamma(U,F))$ and $H_Z^i$ are its right derived functors. The sequence is
+$$\cdots\to H_Z^i(X,F)\to H^i(X,F)\to H^i(U,F|_U)\to H_Z^{i+1}(X,F)\to\cdots.$$
+Here $X,U$ are affine and $t$ is a nonzerodivisor, so
+$$H_Z^0(X,\mathcal O)=0,\qquad
+H_Z^1(X,\mathcal O)=k[t,t^{-1}]/k[t],\qquad H_Z^{i\ge2}(X,\mathcal O)=0.$$
+The quotient records principal parts supported at the origin, not ordinary higher cohomology of the affine scheme.
+:::
+
+::: {.front card-id="sequence-sheaf-mayer-vietoris" tags="formula application"}
+State sheaf-cohomological Mayer–Vietoris for $X=U\cup V$. Use the two standard affine charts to recover $H^1(\mathbb P^1,\mathcal O(-2))$.
+:::
+
+::: {.back card-id="sequence-sheaf-mayer-vietoris"}
+For an abelian sheaf $F$,
+$$\cdots\to H^i(X,F)\to H^i(U,F)\oplus H^i(V,F)\xrightarrow{\mathrm{res}_U-\mathrm{res}_V}H^i(U\cap V,F)\to H^{i+1}(X,F)\to\cdots.$$
+Use $U=(x_0\ne0)$, $z=x_1/x_0$, and $V=(x_1\ne0)$. With frames $e_U=x_0^{-2}$ and $e_V=x_1^{-2}=z^{-2}e_U$,
+$$H^1(\mathbb P^1,\mathcal O(-2))=
+\frac{k[z,z^{-1}]}{k[z]+z^{-2}k[z^{-1}]}=k\cdot z^{-1}.$$
+Affineness of the charts and their intersection kills the higher cohomology needed for this Čech computation.
+:::
+
+::: {.front card-id="formula-coherent-kunneth" tags="formula application"}
+State coherent Künneth over a field. Compute all cohomology of $\mathcal O(2,-2)$ on $\mathbb P^1\times\mathbb P^1$, and $H^1(\mathcal O)$ on a product of curves.
+:::
+
+::: {.back card-id="formula-coherent-kunneth"}
+For proper $k$-schemes $X,Y$ and coherent $F,G$,
+$$H^n(X\times_kY,F\boxtimes G)
+\cong\bigoplus_{p+q=n}H^p(X,F)\otimes_k H^q(Y,G),$$
+where $F\boxtimes G=p_X^*F\otimes p_Y^*G$. Over a general base ring, derived tensor products and Tor terms replace this field formula.
+
+For $\mathcal O(2,-2)$, the only nonzero group is $H^1\cong k^3$: $h^0(\mathcal O(2))=3$, $h^1(\mathcal O(-2))=1$. For smooth geometrically connected projective curves $C,D$,
+$$H^1(C\times D,\mathcal O)=H^1(C,\mathcal O_C)\oplus H^1(D,\mathcal O_D),\qquad q(C\times D)=g(C)+g(D).$$
+:::
+
+::: {.front card-id="duality-torsion-sheaf-example" tags="application comparison"}
+On a smooth projective curve $C/k$ with rational point $p$, compute $\mathcal H om(k(p),\omega_C)$ and $\operatorname{Ext}^1_C(k(p),\omega_C)$. Which Serre-duality formulation applies?
+:::
+
+::: {.back card-id="duality-torsion-sheaf-example"}
+$$\mathcal H om(k(p),\omega_C)=0,\qquad
+\operatorname{Ext}^1_C(k(p),\omega_C)\cong H^0(C,k(p))^\vee\cong k.$$
+The first vanishes because $\omega_C$ is torsion-free. Locally resolve $k(p)$ by multiplication by a uniformizer on $\mathcal O_C$; dualizing gives a one-dimensional sheaf Ext at $p$.
+
+The vector-bundle formula with $k(p)^\vee\otimes\omega_C$ would give zero and is inapplicable. Global Ext supplies the correct dual of $H^0(C,k(p))$.
+:::
+
+::: {.front card-id="vanishing-selection-table" tags="comparison application"}
+For coherent cohomology, compare the hypotheses and outputs of affine acyclicity, Serre vanishing, Kodaira vanishing, Kawamata–Viehweg vanishing, and Kodaira–Akizuki–Nakano vanishing. What prevents using each without checking positivity or characteristic?
+:::
+
+::: {.back card-id="vanishing-selection-table"}
+| Setting | Conclusion |
+| --- | --- |
+| $X$ affine, $F$ quasi-coherent | $H^{i>0}(X,F)=0$ |
+| $X/k$ projective, $A$ ample, $F$ coherent | $\exists m_0(F,A)$: $H^{i>0}(X,F\otimes A^m)=0$ for every $m\ge m_0$ |
+| $X/\mathbb C$ smooth projective, $A$ ample | $H^{i>0}(X,\omega_X\otimes A)=0$ |
+| $X/\mathbb C$ smooth projective, $L$ nef and big | $H^{i>0}(X,\omega_X\otimes L)=0$ |
+| $X/\mathbb C$ smooth projective of dimension $n$, $A$ ample | $H^q(X,\Omega_X^p\otimes A)=0$ for $p+q>n$ |
+
+Serre gives no universal small twist. Kodaira and Kawamata–Viehweg concern canonical twists; they do not assert $H^{>0}(L)=0$ for every positive $L$. Nakano's boundary $p+q=n$ is excluded: $H^0(\mathbb P^1,\Omega^1(2))=k$. An elliptic curve has $H^1(\mathcal O)=k$, so replacing ample or nef-and-big by nef alone fails. Positive-characteristic Kodaira needs additional hypotheses.
+:::
+
 ::: {.front card-id="application-projective-hypersurface-restriction" tags="application"}
 Let $X=V(F_d)\subset\mathbb P^n_k$ be a degree-$d$ hypersurface, with $n\ge2$ and $d\ge1$. Does every section of $\mathcal O_X(m)$ extend to $\mathbb P^n$? Compute $h^0(X,\mathcal O_X(m))$ for $m\ge0$, and specialize to $m=2$ on a quartic surface.
 :::
@@ -214,9 +282,9 @@ What is **Serre duality**? What is the dualizing sheaf?
 ::: {.back card-id="card-24f0f5d5999e4fbf"}
 For a smooth proper connected curve $X/k$, the dualizing sheaf is $\omega_X=\Omega^1_{X/k}$; for $X$ smooth proper of dimension $n$ it is $\mck = \omega_X = \Omega^n_{X/k}$.
 
-For $X$ smooth proper of dimension $n$ and $\mcl$ locally free there is a perfect pairing
+For $X/k$ smooth proper of pure dimension $n$, with $H^0(X,\mathcal O_X)=k$, and $\mcl$ finite locally free there is a perfect pairing
 $$ H^i(X;\mcl) \otimes H^{n-i}(X; \mck\otimes\mcl {}^{ \vee }) \to H^n(X;\mck) \cong k\implies H^i(X;\mcl) \cong H^{n-i}(X; \mck\otimes\mcl {}^{ \vee }) {}^{ \vee }$$
-For $\mcf\in \Coh(X)$ in general, it pairs $H^i(X,\mcf)$ with $\operatorname{Ext}^{n-i}(\mcf,\omega_X)$.
+For $\mcf\in \Coh(X)$ in general, it pairs $H^i(X,\mcf)$ with $\operatorname{Ext}^{n-i}_X(\mcf,\omega_X)$. Without $H^0(X,\mathcal O_X)=k$, compose the cup product with the trace $H^n(X,\omega_X)\to k$; do not identify that cohomology group with $k$.
 
 For curves and every invertible sheaf $L$,
 $$H^0(C; \mcl) \cong H^1(C; \mck\otimes\mcl {}^{ \vee }) {}^{ \vee }, \qquad H^1(C,L)^\vee\cong H^0(C,\omega_C\otimes L^{-1}).$$
@@ -278,8 +346,10 @@ What is the Leray spectral sequence?
 :::
 
 ::: {.back card-id="card-66eb03a60b9bcd39"}
-For $f:X\to Y$,
-$$H^p\left(Y, {\mathbf{R}}^q f_* \mathbb{Q}\right) \Rightarrow H^{p+q}(X, \mathbb{Q})$$
+For a continuous map $f:X\to Y$ and an abelian sheaf $F$ on $X$,
+$$E_2^{p,q}=H^p(Y,R^qf_*F)\Longrightarrow H^{p+q}(X,F).$$
+For schemes this applies to the underlying Zariski sheaves, including quasi-coherent modules. For complex varieties and $F=\mathbb Q$, use the analytic topology:
+$$H^p(Y,R^qf_*\mathbb Q)\Longrightarrow H^{p+q}(X,\mathbb Q).$$
 :::
 
 ::: {.front card-id="card-69f6f29eb7bd975c" tags="theorem"}
@@ -355,9 +425,9 @@ Does Kodaira vanishing hold in positive characteristic?
 :::
 
 ::: {.back card-id="card-ff488447828ff571"}
-Generally no, see Mumford's normal projective surface as a counterexample, or Raynaud finds for any smooth projective surface $X$ over $k=\kbar$ an $L\in \operatorname{Pic}(X)$ with $H^1(L\otimes\omega_X) \neq 0$.
+No. Raynaud constructs smooth projective surfaces in positive characteristic with an ample $L$ and $H^1(X,\omega_X\otimes L)\ne0$; this is an existence result, not a claim about every surface. Singular examples, such as normal surfaces in Mumford's work, do not by themselves disprove the smooth theorem.
 
-However it *does* hold for K3s, using $H^1({\mathcal{O}}_X) = 0$ and any big and nef $L$ on a K3 is effective. This is explained by Deligne-Illusie for surfaces that lift to characteristic zero (which K3s do).
+A sufficient condition (Deligne–Illusie): $X/k$ smooth projective over a perfect field of characteristic $p$, $\dim X<p$, and $X$ lifts smoothly to $W_2(k)$. Then Kodaira vanishing holds. K3 surfaces admit such lifts; this criterion applies to them for $p>2$. The inequality excludes characteristic two for surfaces, so it cannot settle that case.
 :::
 
 
@@ -756,7 +826,9 @@ What is the definition of Serre duality?
 :::
 
 ::: {.back card-id="card-88b7b071a0ca4f33"}
-For a smooth proper scheme $X$ of dimension $n$ over a field $k$ with dualizing sheaf $\omega_X$, there are perfect pairings $H^i(X,\mathcal F)\times H^{n-i}(X,\mathcal F^\vee\otimes\omega_X)\to H^n(X,\omega_X)\cong k$, so $H^i(X,\mathcal F)^\vee\cong H^{n-i}(X,\mathcal F^\vee\otimes\omega_X)$. For coherent $\mathcal F$, replace the right factor by $\operatorname{Ext}^{n-i}(\mathcal F,\omega_X)$.
+For $X/k$ smooth proper of pure dimension $n$ and $\mathcal F$ finite locally free, cup product followed by trace gives a perfect pairing
+$$H^i(X,\mathcal F)\otimes H^{n-i}(X,\mathcal F^\vee\otimes\omega_X)\to H^n(X,\omega_X)\xrightarrow{\operatorname{tr}}k.$$
+Thus $H^i(X,\mathcal F)^\vee\cong H^{n-i}(X,\mathcal F^\vee\otimes\omega_X)$. For coherent $\mathcal F$, replace the right factor by global $\operatorname{Ext}^{n-i}_X(\mathcal F,\omega_X)$. The trace is an isomorphism when $H^0(X,\mathcal O_X)=k$, for example when $X$ is geometrically connected.
 :::
 
 ::: {.front card-id="card-96d703b5df7fceea" tags="definition"}
