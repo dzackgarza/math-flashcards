@@ -576,8 +576,8 @@ unavailable, as after a sync (FR-021).
 ## R19. Basis of the learning decisions in published research
 
 Constitution principle X. The keys refer to `docs/learning-research.md`. Each source
-there has depth Abstract or Secondary: no full text was read. The statuses below are
-therefore provisional, and task T079 reads the full texts and corrects this section.
+there states its reading depth. The statuses remain provisional where the full text
+is unread; task T079 checks the papers and corrects this section.
 
 The distance from the studies to this person's case is the same for most rows. The
 experiments use word pairs, facts, text passages, definitions of key terms, and
@@ -593,7 +593,7 @@ material.
 | Reviews of a card are spread over increasing intervals | FR-005 | `cepeda2006`, `cepeda2008`, `bahrick1993`; for mathematics with college students, `rohrer2006`, `hopkins2016`, `lyle2020` | Supported up to 1 year. Beyond that: `bahrick1993` (4 people) and `bahrick1991` (not read) |
 | The schedule adapts to each card and to this person, and the person can fit it to their own history | FR-005, FR-046 | `mettler2016` shows the gain of adaptation to item and learner, with a different algorithm. `ye2022` and `su2023` evaluate their scheduler on logs and in simulation, with vocabulary. | Inference. No experiment on learning outcomes with FSRS is in the register |
 | A card graded Again comes back in the same session and at short intervals | FR-005, User Story 1 scenario 7 | `rawson2011`, `rawson2013`: relearning to a correct recall in later sessions gives durable retention at small cost. Their first-session criterion (3 correct recalls) is not Anki's default steps. | Supported in direction. The steps are Anki's defaults |
-| The app has no action that sets a card aside for the rest of a session | Assumptions | `kornell2008` | Supported |
+| The app has no action that sets a card aside for the rest of a session | Assumptions | `kornell2008` | Inference from vocabulary experiments with short delays. Effects were not significant in every comparison; the paper does not establish a general prohibition on postponing mathematics cards. |
 | The answer is recalled in thought, and the person grades the recall | FR-003, Assumptions | `smith2013` finds no difference between retrieval in thought and a produced response. `tauber2017` finds a produced response better for definitions (d = 0.43), which is the material of many cards. `dunlosky2010` finds that students grade their own recalled definitions too high. | Contrary evidence for definition cards. See the consequences below |
 | Target probability of recall of 0.9 | R9 | None in the register | Default of Anki |
 | Reviews in order of ascending retrievability | FR-044, R9 | None in the register. The source is the Anki manual. | Default, chosen in R9 from the manual |
