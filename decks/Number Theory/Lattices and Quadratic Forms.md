@@ -2,6 +2,112 @@
 title: "Number Theory::Lattices and Quadratic Forms"
 ---
 
+::: {.front card-id="lattice-overlattice-discriminant-gluing" tags="construction formula example"}
+Classify even overlattices of an even nondegenerate lattice $M$ using its discriminant form. Construct $U$ as an overlattice of $\langle2\rangle\oplus\langle-2\rangle$.
+:::
+
+::: {.back card-id="lattice-overlattice-discriminant-gluing"}
+With $A_M=M^\vee/M$ and $q_M(x)=x^2\bmod2\mathbb Z$:
+$$M\subset L\subset M^\vee\text{ even}\ \longleftrightarrow\ H=L/M\subset A_M,\quad q_M|_H=0.$$
+Recover $L$ as the inverse image of $H$. Then
+$$[L:M]=|H|,\qquad |\det L|=|\det M|/|H|^2,\qquad (A_L,q_L)=(H^\perp/H,\bar q_M).$$
+For $M=\mathbb Za\oplus\mathbb Zb$, $a^2=2$, $b^2=-2$, $ab=0$, the class of $(a+b)/2$ is isotropic of order two. Adjoin it. The basis $e=(a+b)/2$, $f=(a-b)/2$ has $e^2=f^2=0$, $ef=1$, hence $L=U$.
+
+Reference: Nikulin, *Integral symmetric bilinear forms*, Proposition 1.4.1.
+:::
+
+::: {.front card-id="lattice-complement-isometry-extension" tags="theorem construction application"}
+How are primitive orthogonal complements glued in an even unimodular lattice? When does a pair of isometries extend to the whole lattice?
+:::
+
+::: {.back card-id="lattice-complement-isometry-extension"}
+Let $S\subset L$ be primitive and nondegenerate, $L$ even unimodular, $T=S^\perp$. The finite-index inclusion $S\oplus T\subset L$ is specified by an anti-isometry
+$$\gamma:(A_S,q_S)\xrightarrow{\sim}(A_T,-q_T).$$
+Explicitly $L\subset S^\vee\oplus T^\vee$ consists of pairs whose residue classes lie in the graph of $\gamma$.
+
+For $g_S\in O(S)$, $g_T\in O(T)$, extension holds iff
+$$\bar g_T\gamma=\gamma\bar g_S.$$
+The extension is unique because it is already fixed on $L\otimes\mathbb Q$. Thus an abstract rational extension need not be integral.
+
+If $O(T)\to O(q_T)$ is surjective, every isometry of $S$ extends with some action on $T$. Requiring the extension to be the identity on $T$ instead requires $\bar g_S=1$.
+
+Reference: Nikulin, §§1.5–1.6; AEGS, Lemmas 2.4 and 3.11.
+:::
+
+::: {.front card-id="lattice-primitive-embedding-complement-test" tags="theorem application"}
+What complement data decide primitive embedding into an even unimodular lattice? How can they prove uniqueness of the embedding?
+:::
+
+::: {.back card-id="lattice-primitive-embedding-complement-test"}
+Let $S$ be even nondegenerate of signature $(s_+,s_-)$, and $L$ even unimodular indefinite of signature $(l_+,l_-)$. A primitive embedding exists iff there is an even lattice $T$ with
+$$\operatorname{sign}T=(l_+-s_+,l_--s_-),\qquad q_T\simeq-q_S.$$
+Glue $S\oplus T$ along an anti-isometry to obtain an even unimodular lattice of the required signature, hence $L$.
+
+If such $T$ is indefinite and $\operatorname{rank}T\ge\ell(A_T)+2$, its signature and discriminant form determine it, and $O(T)\to O(q_T)$ is onto. All gluing choices are then equivalent: the primitive embedding of the fixed $S$ is unique up to $O(L)$.
+
+The existence of $T$ is a separate requirement; uniqueness of a genus does not prove that the genus is nonempty. This is the complement-and-gluing method behind the embedding argument in AEGS Lemma 2.4.
+
+Reference: Nikulin, Corollary 1.6.2 and Theorem 1.14.2.
+:::
+
+::: {.front card-id="lattice-isotropic-cusp-quotient" tags="construction formula example"}
+For a primitive isotropic vector $e$ in an even lattice $L$ of signature $(2,n)$, determine the rank, signature, and determinant of $e^\perp/\mathbb Ze$. Compare $L=U(m)\oplus M$ for $m=1,2$.
+:::
+
+::: {.back card-id="lattice-isotropic-cusp-quotient"}
+Put $d=\operatorname{div}_L(e)=\gcd\{(e,x):x\in L\}$. Then
+$$K=e^\perp/\mathbb Ze,\quad \operatorname{rank}K=n,\quad
+\operatorname{sign}K=(1,n-1),\quad |\det K|=|\det L|/d^2.$$
+The class $e/d\in A_L$ generates an isotropic subgroup $H$ of order $d$, and $q_K\simeq q_L|_{H^\perp/H}$.
+
+For $U(m)=\mathbb Ze+\mathbb Zf$, $ef=m$, $e^2=f^2=0$, one has $d=m$, $e^\perp=\mathbb Ze\oplus M$, and $K=M$. Thus the same quotient lattice can arise from different divisibilities.
+
+For a primitive isotropic plane $I$, $I^\perp/I$ instead has signature $(0,n-2)$. It is definite: the indefinite uniqueness criterion cannot classify it.
+
+Reference: AEGS, §§3.1–3.3; Nikulin, discriminant-form calculus.
+:::
+
+::: {.front card-id="lattice-reflections-null-roots-saturation" tags="formula construction example"}
+Test whether a primitive negative vector gives an integral reflection. How do affine Dynkin null roots and saturation enter cusp calculations?
+:::
+
+::: {.back card-id="lattice-reflections-null-roots-saturation"}
+For $r\in L$ primitive, $r^2<0$:
+$$s_r(x)=x-\frac{2(x,r)}{r^2}r,\qquad
+s_r(L)=L\iff r^2\mid2\operatorname{div}_L(r).$$
+Thus a $(-2)$-vector reflects integrally; a primitive $(-4)$-vector does so iff its divisibility is even. A wall of the full reflection group need not come from a $(-2)$-root.
+
+For a connected affine simply-laced diagram with Gram matrix $G$, solve
+$$G(a_i)=0,\qquad a_i>0,\qquad\gcd_i a_i=1.$$
+The null root is $\delta=\sum a_i\alpha_i$. For $\widetilde A_1$, $G=\left(\begin{smallmatrix}-2&2\\2&-2\end{smallmatrix}\right)$, so $\delta=\alpha_0+\alpha_1$.
+
+These coefficients are primitive in the root span, not necessarily in the ambient lattice. Compute $R^{\mathrm{sat}}=(R\otimes\mathbb Q)\cap L$; $\delta/2$ may be integral there. Parabolic components at one cusp share the same ambient isotropic ray, so their null roots can impose relations rather than independent generators.
+
+Reference: AEGS, §§3.4–3.8.
+:::
+
+::: {.front card-id="lattice-folding-integral-fixed-lattice" tags="construction example"}
+For the involution exchanging the two factors of $M\oplus M$, compute the invariant and anti-invariant lattices and their index. What extra checks does a folded Coxeter diagram require?
+:::
+
+::: {.back card-id="lattice-folding-integral-fixed-lattice"}
+The kernels of $J-1$ and $J+1$ are
+$$L^+=\{(x,x):x\in M\}\simeq M(2),\qquad
+L^-=\{(x,-x):x\in M\}\simeq M(2).$$
+If $\operatorname{rank}M=r$, then $[M\oplus M:L^+\oplus L^-]=2^r$. Rational projections $(1\pm J)/2$ need not be integral.
+
+For folding, restrict the chamber inequalities to $L^+_\mathbb R$. The normal of a wall becomes $(\alpha+J\alpha)/2$; retain nonzero negative-square normals and remove redundant walls. Then:
+
+1. Find the primitive normal in the actual lattice $L^+$ and compute its square and divisibility.
+2. Test integrality of its reflection and membership in the arithmetic group being used.
+3. Check saturation of the lattice generated by folded roots.
+4. If an action must lift from a cusp quotient or orthogonal summand, check discriminant gluing.
+
+A graph automorphism alone does not settle these integral questions.
+
+Reference: AEGS, Lemmas 3.8–3.11.
+:::
+
 ::: {.front card-id="lattice-divisibility-doubled-dual" tags="definition comparison example"}
 Distinguish primitivity and divisibility of a vector. Define the doubled dual of a 2-elementary lattice and coeven/coodd.
 :::
@@ -65,11 +171,12 @@ Discuss Milnor's classification.
 :::
 
 ::: {.back card-id="card-a11f16d91f65c85e"}
-Let $\Lambda$ be an indefinite lattice of signature $(s_+, s_-)$ where $s_+,\, s_- > 0$.
+Let $\Lambda$ be an **indefinite unimodular integral** lattice of signature $(s_+,s_-)$, both entries positive. Signature and parity determine its isometry class.
 
-If $\Lambda$ is odd the $\Lambda \cong (1){ {}^{ \scriptscriptstyle\oplus^{n} }  } \oplus (-1){ {}^{ \scriptscriptstyle\oplus^{n} }  }$ where $n>0$.
+- Odd: $\Lambda\cong\langle1\rangle^{s_+}\oplus\langle-1\rangle^{s_-}$.
+- Even: requires $s_+-s_-\equiv0\pmod8$. Put $h=\min(s_+,s_-)$; use $U^h$ and $|s_+-s_-|/8$ copies of the definite $E_8$ lattice with the sign of $s_+-s_-$.
 
-If $\Lambda$ is even then $\Lambda \cong U{ {}^{ \scriptscriptstyle\oplus^{h} }  } \oplus E_8{ {}^{ \scriptscriptstyle\oplus^{k} }  }$ where $h > 0$ and $k\geq 0$.
+Here $E_8$ without a sign is positive definite. Example: signature $(3,19)$ gives $U^3\oplus E_8(-1)^2$. Without unimodularity, signature and parity do not suffice: $U$ and $U(2)$ have the same signature and parity but determinants $-1$ and $-4$.
 :::
 
 ::: {.front card-id="card-2d755f3e60381c7b"}
@@ -266,7 +373,9 @@ What is the reflection formula for a quadratic module?
 :::
 
 ::: {.back card-id="card-0302c59509013bff"}
-$$\tau_z(x) \coloneqq x - {\beta(x,z) \over Q(x)}\cdot z$$
+For $Q(z)\ne0$, with polar form $\beta(x,y)=Q(x+y)-Q(x)-Q(y)$:
+$$\tau_z(x)=x-\frac{\beta(x,z)}{Q(z)}z.$$
+Thus $\tau_z(z)=-z$ and $\tau_z$ fixes $z^\perp$. With lattice pairing $(\ ,\ )=\beta$ and $z^2=2Q(z)$, this is $x-2(x,z)z/z^2$. Over a ring, require $Q(z)$ invertible, or check that the displayed formula preserves the module.
 :::
 
 ::: {.front card-id="card-fddde22020cafe92"}
@@ -630,9 +739,13 @@ What is Nikulin's theorem on lattices?
 :::
 
 ::: {.back card-id="card-270598bc626a9161"}
-For $\Lambda$ even, negative definite, $\operatorname{rank}_\ZZ(\Lambda) \geq \ell(D_\Lambda) + 2$:
+For a nondegenerate even **indefinite** lattice $\Lambda$ with
+$$\operatorname{rank}\Lambda\ge\ell(A_\Lambda)+2,$$
+its genus has one isometry class, and $O(\Lambda)\to O(q_\Lambda)$ is surjective. Here $A_\Lambda=\Lambda^\vee/\Lambda$, $q_\Lambda(x)=x^2\bmod2\mathbb Z$, and $\ell$ is the minimum number of generators.
 
-$\Lambda$ is determined up to isometry by its rank, signature, and discriminant form.
+Definiteness cannot replace indefiniteness: $E_8\oplus E_8$ and $D_{16}^+$ are distinct positive-definite even unimodular lattices of rank $16$, distinguished by their root systems.
+
+Reference: Nikulin, *Integral symmetric bilinear forms and some of their applications*, Theorem 1.14.2; AEGS, §§2.3–3.3.
 :::
 
 ::: {.front card-id="card-24ce2bd142183187"}
