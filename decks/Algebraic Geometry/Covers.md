@@ -2,6 +2,43 @@
 title: "Algebraic Geometry::Covers"
 ---
 
+::: {.front card-id="covers-reflexive-torsion-twists" tags="construction example"}
+How does a rank-one reflexive sheaf define a double cover of a normal variety? How can two covers have the same divisorial branch locus but differ over singular points?
+:::
+
+::: {.back card-id="covers-reflexive-torsion-twists"}
+Over $\mathbb C$, choose a normal variety $Y$, a rank-one reflexive sheaf $A$, and a multiplication $A^{[2]}\to\mathcal O_Y$. Compose $A\otimes A\to A^{[2]}$ with this map and form
+$$X=\operatorname{Spec}_Y(\mathcal O_Y\oplus A).$$
+On the locus where $A$ is invertible this is $z^2=s$; the deck involution acts by $-1$ on $A$. Require normality of the resulting algebra when using normal-cover formulas. At singular points the cover need not be flat.
+
+For a two-torsion class $T\in\operatorname{Cl}(Y)$, a chosen isomorphism $\mathcal O_Y(2T)\simeq\mathcal O_Y$ gives a cover unramified in codimension one. Twisting $A$ by $\mathcal O_Y(T)$, with reflexive tensor product, leaves $A^{[2]}$ unchanged but can alter the cover above the singular locus.
+
+In the Enriques diagram, $\operatorname{Tors}\operatorname{Cl}(W)=\langle T\rangle\simeq\mathbb Z/2$. The sheaves $\mathcal O_W(K_W)$ and $\mathcal O_W(K_W+T)$, with multiplication given by $B_W\in|-2K_W|$, yield the K3 and Enriques intermediate covers. The torsion cover uses $\mathcal O_W\oplus\mathcal O_W(T)$.
+
+Reference: AEGS, Remark 2.2 and Proposition 6.1.
+:::
+
+::: {.front card-id="covers-canonical-character-norm" tags="formula application"}
+Let $\pi:(X,D)\to(Y,D_Y)$ be a connected double quotient of a proper normal log Calabi–Yau pair, unramified in codimension one, with $D=\pi^*D_Y$ reduced. How does the character on a log volume form decide the log canonical index downstairs?
+:::
+
+::: {.back card-id="covers-canonical-character-norm"}
+Assume $K_X+D\sim0$, $H^0(X,\mathcal O_X)=\mathbb C$, and use reflexive sheaves across codimension two. Write
+$$\pi_*\mathcal O_X=\mathcal O_Y\oplus A,$$
+where $A$ is the nontrivial eigensheaf. On the étale locus $A^{\otimes2}\simeq\mathcal O_Y$, hence $A^{[2]}\simeq\mathcal O_Y$ globally.
+
+| Character of a generator $\omega$ of $K_X+D$ | Descended sheaf | Consequence |
+| --- | --- | --- |
+| $+1$ | $\mathcal O_Y(K_Y+D_Y)\simeq\mathcal O_Y$ | Log canonical class trivial |
+| $-1$ | $\mathcal O_Y(K_Y+D_Y)\simeq A$ | Nontrivial class of order two |
+
+For the second row, $A\not\simeq\mathcal O_Y$: otherwise its global section would give a nonconstant anti-invariant regular function on proper connected $X$. The divisor norm also gives $2(K_Y+D_Y)\sim0$ from $\pi^*(K_Y+D_Y)\sim0$; the character decides whether the order is one or two.
+
+For a finite surjective map of degree $d$, a $\mathbb Q$-Cartier divisor $H$ is ample, respectively nef, iff $\pi^*H$ is. On surfaces $(\pi^*H)^2=dH^2$. These formulas descend the polarization in the covering diagram.
+
+Reference: AEGS, Proposition 6.1, especially its eigensheaf and norm argument.
+:::
+
 ::: {.front card-id="covers-galois-flat-inertia" tags="definition comparison example"}
 Define an abelian $G$-cover and its branch inertia data. Which extra assumption makes its character eigensheaves line bundles?
 :::
@@ -58,6 +95,31 @@ The rank-four algebra is $\mathcal O_Y\oplus L_1^{-1}\oplus L_2^{-1}\oplus L_3^{
 On a smooth surface, reduced SNC branch with distinct labels at each crossing and no triple points gives a smooth cover. Locally at a crossing of two labels, the map is $(u,v)\mapsto(u^2,v^2)$. At a collision of equal labels, this local smoothness test fails.
 
 Reference: Alexeev–Pardini, *Explicit compactifications of moduli spaces of Campedelli and Burniat surfaces*, §2.
+:::
+
+::: {.front card-id="covers-commuting-involutions-quotients" tags="construction application comparison"}
+Two distinct commuting involutions act faithfully on a normal complex variety $X$. Recover the three intermediate double covers and their algebras from the character decomposition. Identify these quotients in the AEGS surface diagram. Must the eigensheaves be line bundles?
+:::
+
+::: {.back card-id="covers-commuting-involutions-quotients"}
+The involutions generate $G\cong(\mathbb Z/2)^2$. Put $W=X/G$. Each nontrivial character $\chi$ has an order-two kernel $H_\chi$, giving
+$$X\longrightarrow X/H_\chi\longrightarrow W.$$
+For $\pi:X\to W$, write
+$$\pi_*\mathcal O_X=\mathcal O_W\oplus\mathcal F_{\chi_1}\oplus\mathcal F_{\chi_2}\oplus\mathcal F_{\chi_3}.$$
+Taking $H_\chi$-invariants gives the intermediate double-cover algebra
+$$\bigl(\pi_*\mathcal O_X\bigr)^{H_\chi}=\mathcal O_W\oplus\mathcal F_\chi,$$
+with multiplication inherited from the full covering algebra. Thus one bidouble cover packages all three double covers and their compatibility.
+
+In the general AEGS construction, $X$ is a K3 double cover of $Y=\mathbb P^1\times\mathbb P^1$. Its involutions satisfy
+$$\iota_{\mathrm{Nik}}=\iota_{\mathrm{dP}}\iota_{\mathrm{En}},\qquad
+Y=X/\langle\iota_{\mathrm{dP}}\rangle,\quad
+Z=X/\langle\iota_{\mathrm{En}}\rangle,\quad
+Z'=X/\langle\iota_{\mathrm{Nik}}\rangle.$$
+Here $Z$ is Enriques; all three intermediate surfaces map to $W=X/G$. The del Pezzo and Enriques involutions act by $-1$ on the holomorphic two-form, so their product acts by $+1$. The same commuting-involution construction organizes the ADE boundary quotients.
+
+On a normal singular base, the character summands are rank-one reflexive sheaves; they need not be invertible. Finite flatness makes them line bundles. In AEGS, the cover algebras on $W$ use divisorial sheaves such as $\mathcal O_W(K_W)$ and $\mathcal O_W(K_W+A)$, with $A$ the nonzero torsion class in $\operatorname{Cl}(W)$; the smooth-base line-bundle recipe alone does not cover this case.
+
+Reference: Alexeev–Engel–Garza–Schaffler, *Compact moduli of Enriques surfaces of degree 2*, §§2.1–2.2 and 6.4.
 :::
 
 ::: {.front card-id="covers-total-ramification-hurwitz" tags="definition formula example"}
