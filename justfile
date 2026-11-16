@@ -18,7 +18,7 @@ check-math:
 test-push: test
 
 # Commit gate entry point using prepared dependencies
-test-commit: test desktop-boundaries desktop-frontend desktop-source-test desktop-editor-test desktop-test desktop-diagram-test desktop-organization-test
+test-commit: test desktop-boundaries desktop-frontend desktop-source-test desktop-editor-test desktop-test desktop-study-test desktop-diagram-test desktop-organization-test
 
 # Install the desktop build dependencies
 desktop-dependencies:
