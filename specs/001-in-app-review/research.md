@@ -104,6 +104,7 @@ bridge requests keep the current model: one new process for each request.
 **Decision**: `platformdirs.user_data_path("math-flashcards") / "study" / <store ID>`.
 The store ID is a UUID made when the store is created. The directory holds
 `collection.anki2`, Anki's `collection.media`, the learning record (R12),
+`record-media/` for retained media, `record-assets/` for retained shared editor assets,
 a `store.json` with the store ID and every workspace path the store was attached to, and
 `backups/`.
 

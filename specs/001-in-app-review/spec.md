@@ -577,8 +577,8 @@ record changes, and the earlier analyses give the same results.
 
 ### Key Entities
 
-- **Card**: One front and back pair in a deck, identified by its card ID. It has rendered
-  content, tags, and one deck.
+- **Card**: One front and back pair of native Markdown source in a deck, identified by
+  its card ID. It has tags and one deck; the shared editor renderer presents its source.
 - **Deck**: One Markdown file. Its title places it in the hierarchy of folders and decks.
 - **Schedule**: The review state of one card: new, learning, or in review; its due time;
   its interval; and the scheduler's memory estimate for it.

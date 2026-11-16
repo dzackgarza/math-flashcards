@@ -52,9 +52,9 @@ No action updates or deletes a row of the learning record.
 - Finds the store whose current attached path is the workspace path (R4 of
   `research.md`).
 - With a store for the path, or with no store on disk, it returns `Open` with the
-  absolute paths of the store directory, its media folder, and the learning record. The
-  native shell adds the media folder to the asset scope, as it adds the workspace for
-  `list`.
+  absolute paths of the store directory, `record-media/`, and the learning record. The
+  native shell adds `record-media/` and `record-assets/` to the asset scope, as it adds
+  the workspace for `list`.
 - With stores on disk and none for the path, it returns `Unattached` with a summary of
   each store. It creates nothing.
 - A new store gets the settings in R9 before its first queue is built, and the first
@@ -87,7 +87,8 @@ No action updates or deletes a row of the learning record.
 - Writes one `card_change` row for each add, content change, tag change, move, removal,
   and restore, and one `content` row for each front and back pair that the record does
   not hold yet, with its media files.
-- A deck that fails to render is listed in `failed` and counts as not current.
+- A deck whose source, media, or rendering assets cannot be validated or retained is
+  listed in `failed` and counts as not current, with the cause shown in the window.
 
 ### `study-begin`, `study-next`, `study-end`
 

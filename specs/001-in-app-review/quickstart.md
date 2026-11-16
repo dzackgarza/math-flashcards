@@ -74,7 +74,7 @@ browser. `just test-commit` includes it.
 | Run each analysis on `desktop/tests/fixtures/study/record-v1.sqlite3` | Each returns a table. |
 | List every file that the bridge processes wrote outside the workspace | Each is under the temporary data directory or the temporary cache directory. |
 | Run Anki's database check on the store | No problem is reported. |
-| Generate a package for a studied deck | The package and its status are as before this feature. |
+| Compare a studied card with its saved Markdown source, content record, and Anki note | The record retains the exact native front and back source. Study renders it through the shared editor renderer. The Anki note's GUID and sole `CardId` field equal the native card ID. |
 
 ## Analysis catalog
 

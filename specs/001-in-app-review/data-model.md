@@ -52,10 +52,11 @@ One record for each synced deck, in the collection's config.
 | Field | Rule |
 | --- | --- |
 | `path` | `DeckPath` |
-| `inputs` | Map from absolute input path to digest: the deck source, each media file, and the renderer asset identity, as `input_hashes()` gives them. |
+| `inputs` | Map from absolute input path to digest: the saved deck source and each referenced media file. |
+| `assets` | Identity of the shared editor rendering assets retained in `record-assets/`. |
 
-A deck is current when every recorded input has its recorded digest. A deck with no
-record is not current.
+A deck is current when every recorded input has its recorded digest and the shared
+editor assets have the recorded identity. A deck with no record is not current.
 
 ### Scheduling settings
 
@@ -138,7 +139,7 @@ Rules for fields:
 | Add | Sync | A new `CardId` becomes a new note in its deck. |
 | Grade | Anki scheduler | Only for the card at the top of the queue. |
 | Undo | Anki undo | Only when the last undo step is a grade. The record keeps the grade and adds an `undo` row. |
-| Edit, retag | Sync | Fields and tags change; the schedule stays. |
+| Edit, retag | Sync | Changed native content is recorded as a new version; tags change; the scheduling identity and schedule stay. |
 | Move | Sync | The Anki deck changes; the schedule stays. |
 | Remove | Sync | Suspend, then move to `Removed`. The schedule stays. |
 | Restore | Sync | Move to the deck, then unsuspend. The schedule stays. |
@@ -155,7 +156,8 @@ Rules for fields:
    writes the record. Every other reader of the record opens it read-only.
 6. An Anki deck under `Workspace` exists for each deck file and each folder, and for
    nothing else.
-7. The package build and its records are unchanged by study operations.
+7. Study reads native card source from the learning record and renders it with the
+   shared editor renderer. Anki notes hold the native card identity as their sole field.
 8. No row of the learning record is updated or deleted.
 9. Each card that the window shows has one `presentation` row, written before the
    user can grade it.

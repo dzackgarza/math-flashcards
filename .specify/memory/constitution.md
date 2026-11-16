@@ -21,21 +21,29 @@ does (principle X).
 
 ### I. Markdown decks are the only authored source
 
-Card content is authored in the Markdown files under `decks/`. Every other store of card
-content is generated from those files and can be regenerated from them: Anki packages,
-caches, search records, and any review store. A feature MUST NOT make a generated store the
-only copy of card content, and MUST NOT require an edit outside the Markdown source to
+Card content is authored in the Markdown files under `decks/`. The app reads those files
+directly into its native card model. Current-content caches and search records can be
+regenerated from them. Historical content shown during learning is permanent evidence
+under principle VI. A feature MUST NOT make a generated store the only copy of card
+content, and MUST NOT require an edit outside the Markdown source to
 change a card. Data that the user produces by using the app and that cannot be regenerated
 (review history, preferences) is user data: a feature MUST name where it lives and how it
 survives an update of the app.
 
-### II. Shared rendering sources
+### II. Native cards, shared rendering, direct Anki integration
 
-A card looks the same wherever it appears. Pandoc and the exporter's filters own card
-structure. MathJax with the macro set that pandoc-config generates owns equations. The
-pandoc-config LuaLaTeX renderer owns TikZ-cd diagrams. The editor fields use the Pandoc
-editor package shared with Zettlr. A feature MUST NOT add a second parser of card
-structure, define a macro by hand, or add a second equation or diagram renderer.
+A card looks the same wherever it appears. The app's existing card parser owns card
+structure and supplies native Markdown source to editing and study. Both use the Pandoc
+editor renderer shared with Zettlr. MathJax with the macro set that pandoc-config generates
+owns equations. The pandoc-config LuaLaTeX renderer owns TikZ-cd diagrams. A feature MUST
+NOT add a second parser of card structure, define a macro by hand, or add a second equation
+or diagram renderer.
+
+The core MUST call Anki's library directly for scheduling, queues, grades, undo, and
+scheduler history. Stable native card IDs connect that scheduling state to the app's
+cards. Anki's scheduling notes hold those identities; the app owns content, presentation,
+and the permanent content record. Saving and studying a native card MUST work directly
+through these boundaries, from Markdown source to the shared renderer and scheduler.
 
 ### III. Dependencies before hand-written code
 
@@ -195,4 +203,4 @@ change: MAJOR for a removed or redefined principle, MINOR for an added principle
 section, PATCH for a clarification. Every plan records its check against these principles,
 and each violation it keeps is justified in that plan.
 
-**Version**: 1.3.0 | **Ratified**: 2026-11-16 | **Last Amended**: 2026-11-16
+**Version**: 2.0.0 | **Ratified**: 2026-11-16 | **Last Amended**: 2026-11-16
