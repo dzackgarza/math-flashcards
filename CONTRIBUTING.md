@@ -69,6 +69,45 @@ targeted practice of weak links. Treat this diagnostic coverage as long-tail
 work after the composite card, not as a replacement for it. A review grade on
 the composite alone does not identify which part needs attention.
 
+## Ban mathematical hand-waving
+
+A card must give enough information to reconstruct the requested statement,
+check an example, and judge an attempted answer. Hand-waving that conceals
+this information is prohibited. Compression must preserve the mathematical
+content needed for the task. Apply this rule to definitions, theorem statements,
+examples, calculations, and explanations alike.
+
+| Prohibited omission | Required replacement |
+| --- | --- |
+| Hidden predicates: “a suitable resolution,” “appropriate conditions,” “a nice space” | State the conditions that make the object or choice qualify. |
+| Missing hypotheses: “vanishing applies,” “the usual assumptions” | State the relevant hypotheses, including the field, characteristic, regularity, properness, positivity, and Cartier conditions when needed. In an application, identify why they hold. |
+| Ambiguous quantifiers: “on a resolution,” “for large multiples” | Distinguish existence from universality and one chosen model from all models. Specify thresholds, divisibility, and parameter dependence as required by the statement. |
+| Unexplained genericity or size: “general position,” “sufficiently positive” | Give the incidence exclusions, parameter-space condition, or positivity requirement being used. Do not make the learner guess what the qualifier excludes. |
+| Undefined conventions or objects | Identify the ambient objects, notation, sign and indexing conventions, and the domain and codomain of maps when these affect the answer. |
+| Unspecified constructions: “resolve,” “perturb,” “take a quotient” | Specify the input, operation, and required output: for example, the blowup center, permitted perturbation, or group and action. |
+| Circular definitions: “the good singularities,” “the resolution that works” | Give an independent criterion that decides membership in the class. |
+| Labels standing in for examples: “a standard counterexample” | Identify the object and the properties that establish the claimed distinction. A separating example must satisfy one condition and fail the other. |
+| Missing decisive calculations: “one checks,” “clearly,” “by a standard computation” | Supply the equality, inequality, invariant, or short argument that settles the question when that step is part of the requested task. |
+| Unexplained relationships: “these are related,” “essentially equivalent” | State the implication, equivalence, isomorphism, or correspondence, its hypotheses, and any choices on which it depends. |
+| References replacing answers: “see the theorem,” “as above” | Give the requested mathematical content on the card. References support the answer; they do not supply a missing definition or conclusion. |
+| Unspecified remainder: “and so on,” “etc.” in a classification or recipe | State the full requested list or a precise rule that determines its remaining entries. |
+
+These are semantic requirements, not a banned-word search. Terms such as
+“general,” “canonical,” and “sufficiently large” have precise mathematical
+uses. State their meaning and quantifiers when they carry the content being
+tested. An existence theorem need not provide an effective numerical bound:
+state the existence and dependencies of the bound instead of inventing one.
+
+Use established terminology as vocabulary, but expand it when its definition
+or its distinction from a neighboring notion is the task. For example, a dlt
+definition must specify the resolution conditions and which exceptional
+divisors satisfy the discrepancy inequality. Naming a resolution alone does
+not supply those conditions.
+
+This does not require adding a proof to every statement. Supply the information
+needed for the question asked, retain useful authored derivations, and keep
+composite cards compact through formulas, tables, and explicit examples.
+
 ## Edit existing cards by synthesis
 
 Existing cards contain authored choices about how to recall and use mathematics.
