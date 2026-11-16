@@ -1,0 +1,27 @@
+{
+  "run": "study-media-red",
+  "started_at": "2026-11-16T07:39:37Z",
+  "base_revision": "1bc530a879fd66abc4718b4180d34992ba582cb2",
+  "command": [
+    "just",
+    "desktop-study-test"
+  ],
+  "environment": {
+    "kernel": "Linux 7.2.14-zen1-1-zen x86_64",
+    "bun": "1.4.4",
+    "uv": "0.12.5"
+  },
+  "input": "desktop/tests/fixtures/study",
+  "working_changes": [
+    "desktop/tests/study.py",
+    "desktop/package.json",
+    "specs/001-in-app-review/tasks.md"
+  ],
+  "result": {
+    "exit_code": 1,
+    "assertion": "Retained SVG response must have image/svg+xml; observed text/html from Vite document fallback."
+  },
+  "timings": "time.txt",
+  "console": "output.log",
+  "measurement_scope": "Whole scenario including server startup, temporary workspace setup and shutdown. Nested timings were not captured in this run."
+}

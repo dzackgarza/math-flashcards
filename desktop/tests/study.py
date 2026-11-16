@@ -10,7 +10,9 @@ import shutil
 import sqlite3
 import tempfile
 from contextlib import closing
+from hashlib import sha256
 from pathlib import Path
+from urllib.parse import urlencode
 from uuid import UUID, uuid4
 
 import psutil
@@ -47,6 +49,28 @@ def main() -> None:
                 record_path = store / "record.sqlite3"
                 assert opened["record"] == str(record_path)
                 assert opened["media"] == str(store / "record-media")
+                # Retained files are content-addressed store input. Serve their bytes
+                # with the authored file's type, independent of the current workspace.
+                image = (workspace / "triangle.svg").read_bytes()
+                retained = store / "record-media" / sha256(image).hexdigest()
+                retained.write_bytes(image)
+                media = api.get(
+                    "/api/study-media?"
+                    + urlencode({"path": str(retained), "name": "triangle.svg"})
+                )
+                assert media.ok, media.text()
+                assert media.headers["content-type"] == "image/svg+xml", media.headers
+                assert media.body() == image
+                forbidden = api.get(
+                    "/api/study-media?"
+                    + urlencode({"path": str(store / "store.json"), "name": "store.json"})
+                )
+                assert forbidden.status == 403, forbidden.text()
+                missing = api.get(
+                    "/api/study-media?"
+                    + urlencode({"path": str(retained.parent / ("0" * 64)), "name": "missing.svg"})
+                )
+                assert missing.status == 404, missing.text()
                 assert opened["settings"] == {
                     "new_per_day": 20,
                     "reviews_per_day": 200,
