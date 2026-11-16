@@ -84,6 +84,63 @@ Thus preserving periods and the nef cone realizes a lattice symmetry, but its li
 Reference: Gross–Hacking–Keel, *Moduli of surfaces with an anti-canonical cycle*, Theorem 1.8 and its nef-cone formulation; AEGS, Corollary 4.9.
 :::
 
+::: {.front card-id="anticanonical-generic-cone-roots" tags="definition comparison application"}
+For an anticanonical pair, distinguish the present nef cone, generic ample cone, admissible isometries, and Looijenga roots. How does the period detect internal $(-2)$-curves?
+:::
+
+::: {.back card-id="anticanonical-generic-cone-roots"}
+Use a marking in a deformation family of rational anticanonical pairs $(Y,D)$, with ordered boundary components. Set $\Lambda=D^\perp\subset H^2(Y,\mathbb Z)$ and let $\mathcal C^+$ be the positive-cone component containing ample classes.
+
+- $\mathcal A_{\rm gen}$ is the ample cone of a very general deformation, transported by the marking. Its closure is taken inside $\mathcal C^+$.
+- An admissible isometry fixes every $[D_i]$, preserves $\mathcal C^+$, and preserves $\overline{\mathcal A}_{\rm gen}$. The present nef cone can have additional walls from internal $(-2)$-curves.
+- A Looijenga root is $\alpha\in\Lambda$, $\alpha^2=-2$, that becomes the class of an internal smooth rational curve on some deformation. Square $-2$ alone is not this geometric condition.
+
+The period $\phi_Y(L)=L|_D\in\operatorname{Pic}^0(D)\simeq\mathbb C^\times$ of an internal curve class is $1$: its divisor is disjoint from $D$. Root hyperplanes in period coordinates are therefore $\phi_Y(\alpha)=1$. On these loci the nef chamber determines which signs and simple roots are effective; a root need not be an irreducible curve on the present surface.
+
+Negative-definite configurations of internal $(-2)$-curves contract to ADE singularities, with Dynkin diagram given by their intersections. This connects lattice roots, periods, cone walls, and actual surface contractions.
+
+Reference: Engel–Friedman, *Smoothings and rational double point adjacencies for cusp singularities*, §§1 and 9.
+:::
+
+::: {.front card-id="anticanonical-open-monodromy" tags="definition formula application"}
+For a Type III degeneration of negative-definite rational anticanonical pairs, where does nontrivial monodromy live? Define its invariant and describe base change.
+:::
+
+::: {.back card-id="anticanonical-open-monodromy"}
+For a smooth fiber $(Y,D)$, put $\Lambda=D^\perp$. There is an exact sequence
+$$0\to\mathbb Z\gamma\to H_2(Y\setminus D,\mathbb Z)\to\Lambda\to0,$$
+where $\mathbb Z\gamma$ is the radical of the intersection pairing. The induced pairing with $\Lambda$ gives
+$$T(x)=x-\langle\lambda,x\rangle\gamma,\qquad \lambda\in\Lambda.$$
+Although $T$ is the identity on $H_2(Y,\mathbb Z)$, it need not be the identity on the complement.
+
+Choose the sign so that
+$$\lambda\in B_{\rm gen}:=\operatorname{Int}_{\Lambda_{\mathbb R}}
+(\overline{\mathcal A}_{\rm gen}\cap\Lambda_{\mathbb R}).$$
+The invariant is the orbit of $\lambda$ under admissible isometries. Its square is the number of triple points in the Type III central fiber.
+
+Under $t=s^m$, monodromy becomes $T^m$ and $\lambda$ becomes $m\lambda$. Hence its positive rational ray, modulo admissible isometries, is unchanged. Do not infer trivial degeneration from trivial monodromy on the compact surface alone.
+
+Reference: Engel–Friedman, §§0 and 3.
+:::
+
+::: {.front card-id="degeneration-elementary-modifications" tags="construction comparison"}
+Compare Type 0, I, and II modifications of a Type III normal-crossing surface degeneration. Where is the flopped curve, and how do the components change?
+:::
+
+::: {.back card-id="degeneration-elementary-modifications"}
+For a flop in the smooth total space, centered on $C$ in the central fiber:
+
+| Modification | Position of $C$ | Effect on components |
+| --- | --- | --- |
+| Type 0 | Internal $(-2)$-curve, disjoint from the double locus, not deforming to the general fiber | Central fiber's isomorphism type is unchanged; its marking can change |
+| Type I | $(-1)$-curve on one component, meeting a double curve once transversely | Blow it down there; blow up its meeting point on the neighboring component |
+| Type II | Double curve with self-intersection $-1$ on both adjacent components | Blow it down on both; blow up the two triple points on the opposite components |
+
+Type I transfers an **internal** blowup. Type II transfers **corner** blowups and changes the diagonal of the corresponding quadrilateral in the dual triangulation. The operation preserves the general fiber. These modification labels describe birational operations; they are not the Kulikov Types I, II, and III.
+
+Reference: Engel–Friedman, §4; Alexeev–Engel, *Compact moduli of K3 surfaces*, §7.
+:::
+
 ::: {.front card-id="ias-toric-model-corner-equivalence" tags="definition construction example"}
 Define a toric model of an anticanonical pair and corner-blowup equivalence. Distinguish internal and corner blowups in this construction.
 :::
@@ -148,7 +205,9 @@ What is an **anticanonical pair**?
 :::
 
 ::: {.back card-id="card-1e60c609baa1e7af"}
-A pair $(Y, D)$ where $Y$ is a rational surface and $D$ is a cycle of rational curves $D = \sum D_i$.
+A pair $(Y, D)$ where $Y$ is a smooth projective rational surface and $D = \sum D_i\in|-K_Y|$ is a reduced cycle of rational curves. Include an irreducible nodal rational curve and two smooth rational curves meeting transversely twice. More broadly, “anticanonical pair” only specifies a surface with an effective anticanonical divisor; the rational-cycle convention is the one used here.
+
+Example: the coordinate triangle in $\mathbb P^2$ is anticanonical because its class is $3H=-K_{\mathbb P^2}$. A cycle alone is not enough: the three strict transforms after blowing up a vertex have class $3H-2E$, whereas $-K=3H-E$; include $E$ to obtain the corner-blown-up anticanonical boundary.
 :::
 
 ::: {.front card-id="card-8f58666bb53a9709"}
@@ -180,7 +239,9 @@ Discuss the **dual divisors** $D$ and $\widehat{D}$.
 :::
 
 ::: {.back card-id="card-aa75df981fa1d916"}
-For $(\overline{V}, p)$ the germ of a cusp, the exceptional divisor $D$ of a minimal resolution forms (by definition) a cycle of smooth rational transversely intersecting curves with $D_{i\operatorname{mod}n}\cdot D_{i+1 \operatorname{mod}n} = 1$, which is characterized by the diagonal of the intersection matrix $\mathbf{d} = {\left[ {d_1,\cdots, d_n} \right]}$. The hyperbolic Inoue surface has two cycles $D, \widehat{D}$ which blow down to dual cusps $p, \widehat{p}$.
+For a cusp germ $(\overline V,p)$, the minimal resolution has a negative-definite rational cycle $D$. With at least three components, adjacent components meet transversely once; a two-component cycle has two intersections, and a one-component cycle is an irreducible nodal rational curve.
+
+The cyclic weight data are $\mathbf d=[d_1,\ldots,d_n]$, with $d_i=-D_i^2$ for $n>1$ and $d_1=2-D_1^2$ for $n=1$. The hyperbolic Inoue surface has two cycles $D,\widehat D$ which contract to dual cusps $p,\widehat p$. This is the duality encoded by the cyclic weight-block formula.
 :::
 
 ::: {.front card-id="card-e1f9c6c06a356657"}
@@ -204,7 +265,9 @@ What is a **pseudofan**?
 :::
 
 ::: {.back card-id="card-20dcddff332cb1eb"}
-For $(V, D)$ an ACP where $D = \sum_{i=1}^nD_i$ is a cycle, the pseudofan of $(V, D)$ is the triangulated IAS whose underlying triangulated surface is $\Cone(\Gamma(D))$, the cone over the dual complex of $D$.
+For $(V,D)$ an anticanonical pair, the underlying triangulated surface is $\operatorname{Cone}(\Gamma(D))$. Make each sector a standard integral-affine basis triangle. Across the ray for $D_i$, glue by
+$$v_{i-1}+v_{i+1}=d_i v_i,\qquad d_i=-D_i^2.$$
+Here the $v_i$ are the primitive ray vectors in the successive local charts; they need not lie in a single global chart. For an irreducible nodal boundary use $d_1=2-D_1^2$; for a two-component cycle retain both edges of its dual graph. The apex may have affine monodromy. The boundary intersection data determine the affine structure, not merely the cone's topology.
 :::
 
 ::: {.front card-id="card-f270c4dc468b873e"}
@@ -214,7 +277,7 @@ What are the two main **surgeries** on pseudofans?
 ::: {.back card-id="card-f270c4dc468b873e"}
 Internal blowups and node smoothing.
 
-An internal blowup inserts an interior exceptional curve and changes one boundary self-intersection $D_i^2\mapsto D_i^2-1$. Smoothing a node between $D_i$ and $D_{i+1}$ replaces those components by one with self-intersection $D_i^2+D_{i+1}^2+2$.
+An internal blowup inserts an interior exceptional curve and changes one boundary self-intersection $D_i^2\mapsto D_i^2-1$. Smoothing the unique intersection between adjacent components replaces them by one with self-intersection $D_i^2+D_{i+1}^2+2$. For a two-component cycle, the components meet twice: smoothing one node gives an irreducible nodal boundary of square $D_1^2+D_2^2+4$.
 :::
 
 ::: {.front card-id="card-a45da020a729aa8b"}
@@ -222,7 +285,13 @@ What is an **almost toric fibration**?
 :::
 
 ::: {.back card-id="card-a45da020a729aa8b"}
-A Lagrangian fibration $\mu: (X, \omega) \to S$ whose general fiber is a smooth $T^2$ which undergoes symplectic reduction at ${{\partial}}S$ where fibers in $S^\circ$ degenerate to wedges of $S^2$ at finitely many specified points. The **almost toric base** generalizes the moment polytope and has an IA structure with $v\in S^\sing\iff \mu^{-1}(v)$ is singular. $\mu^{-1}({{\partial}}S)$ is an anticanonical divisor on $X$.
+A Lagrangian fibration $\mu:(X^4,\omega)\to S$ with regular fiber $T^2$ and only elliptic and focus-focus singularities.
+
+- Along a boundary edge, one circle collapses; at an elliptic corner, both collapse.
+- At an interior simple focus-focus value, a primitive circle in $T^2$ collapses. The fiber is a pinched torus, topologically $S^2$ with two points identified.
+- The regular base has an integral-affine structure. A simple focus-focus point has monodromy conjugate to $\begin{pmatrix}1&1\\0&1\end{pmatrix}$.
+
+For the rational anticanonical-pair fibrations used here, $\mu^{-1}(\partial S)$ is the anticanonical boundary. Boundary collapse and interior focus-focus points are different singular strata.
 :::
 
 ::: {.front card-id="card-f4f2a1127c580098"}
@@ -270,7 +339,11 @@ What is an internal blowup?
 :::
 
 ::: {.back card-id="card-7cb45956de5022ad"}
-For $(Y, D)$ an ACP, a blowup at $p\in D^\sing$. Yields anticanonical $\pi^* D - E$
+For $(Y,D)$ an anticanonical pair, blow up a **smooth point** $p\in D$. The new boundary is the strict transform
+$$D'=\pi^*D-E,\qquad K_{Y'}+D'=\pi^*(K_Y+D)=0.$$
+The exceptional $(-1)$-curve is internal: it is not a boundary component. The affected component has $D_i'^2=D_i^2-1$ and charge increases by one.
+
+At a node of $D$, a corner blowup instead includes $E$ in the new boundary; its charge is unchanged.
 :::
 
 ::: {.front card-id="card-fdc3053e059f5adb"}
@@ -306,7 +379,9 @@ What is **$d\dash$semistability**?
 :::
 
 ::: {.back card-id="card-726a9d643dacbb85"}
-$\operatorname{Ext}_{{\mathcal{O}}_{\mcx_0}}( \Omega_{\mcx_0}^1, {\mathcal{O}}_{\mcx_0}) \cong {\mathcal{O}}_{\mcx_0^\sing}$
+For a normal-crossing central fiber $\mathcal X_0$ with singular locus $D$:
+$$\mathcal T^1_{\mathcal X_0}:=\mathcal Ext^1_{\mathcal O_{\mathcal X_0}}(\Omega^1_{\mathcal X_0},\mathcal O_{\mathcal X_0})\simeq\mathcal O_D.$$
+This is an isomorphism of sheaves on the double locus, not an unindexed global Ext group. With two smooth components and no triple locus, it means $N_{D/Y_1}\otimes N_{D/Y_2}\simeq\mathcal O_D$. A semistable smoothing with smooth total space supplies this trivialization; the condition alone does not prove global smoothability.
 :::
 
 ::: {.front card-id="card-34641c38d14db4fa"}
@@ -330,7 +405,9 @@ What is a **degeneration**?
 :::
 
 ::: {.back card-id="card-eb930237132be4b8"}
-A degeneration of $X$: a flat proper morphism $\pi: \mcx\to \mathbb{D}$ of complex analytic spaces such that $\pi$ is smooth over $\mathbb{D}^\circ$, the general fibers $\mcx_t$ are deformation equivalent to $X$ for all $t\in \mathbb{D}^\circ$, and the monodromy action on $H^2(\mcx_t; \ZZ)$ is nontrivial and unipotent.
+A degeneration of $X$: a flat proper morphism $\pi:\mathcal X\to\Delta$ of complex analytic spaces, smooth over $\Delta^*$, with general fibers deformation equivalent to $X$. The central fiber may be singular.
+
+Semistability and unipotent monodromy are additional conditions. For a geometric polarized variation, monodromy is quasi-unipotent; a finite base change makes it unipotent. Finite monodromy becomes trivial after such a base change. A degeneration need not have nonzero $N=\log T$.
 :::
 
 ::: {.front card-id="card-701904cdad9a4b3c"}
@@ -338,7 +415,13 @@ What is a **maximally unipotent degeneration**?
 :::
 
 ::: {.back card-id="card-701904cdad9a4b3c"}
-Unipotent: $r-1$ is nilpotent; for matrices, $p(t) = (t-1)^n$ for some $n$, so all eigenvalues are 1. Index of unipotency: the minimal power $r$ such that $(M-\operatorname{id})^{r-1}\neq 0$ but $(M-\operatorname{id})^r=0$. Maximal: of maximal possible unipotency index; alternatively the limiting mixed Hodge structure is Hodge-Tate type (extensions of sums of $\ZZ(n)$). Concretely, the monodromy operator $T: H^n(\mcx_t; \QQ) {\circlearrowleft}$ satisfies $(T-I)^{n+1} = 0$ but $(T-I)^n\neq 0$.
+Unipotent: $T-I$ is nilpotent; for an $r\times r$ matrix the characteristic polynomial is $(t-1)^r$. Its unipotency index is the least $s$ with $(T-I)^s=0$.
+
+For a polarized variation of weight $n$ arising from a smooth projective degeneration, after unipotent base change $(T-I)^{n+1}=0$. **Maximally unipotent** on $H^n$ means
+$$(T-I)^n\ne0,\qquad (T-I)^{n+1}=0,$$
+equivalently $N^n\ne0$, $N^{n+1}=0$ for $N=\log T$.
+
+For K3 surfaces, this is Type III; the limiting mixed Hodge structure is then Hodge–Tate. Hodge–Tate is a statement about the Hodge structures on all weight-graded pieces, not a general synonym for maximal nilpotency.
 :::
 
 ::: {.front card-id="card-2392e89f2c4ead0e"}
@@ -386,7 +469,9 @@ What is **charge**?
 :::
 
 ::: {.back card-id="card-b3a5d5b512719741"}
-$Q(Y, D):=12+\sum_{i=1}^n\left(d_i-3\right)=12+\sum_{i=1}^n\left(a_i-b_i\right)$ where $\mathbf{d}=\left(d_1, \ldots, d_n\right)=(a_1+3, \underbrace{2, \ldots, 2}_{b_1}, \ldots, a_k+3, \underbrace{2, \ldots, 2}_{b_k})$ and $a_i, b_i \geq 0$. All toric pairs have charge zero.
+$Q(Y,D)=12+\sum_{i=1}^n(d_i-3)$, where $d_i=-D_i^2$ for $n>1$ and $d_1=2-D_1^2$ for an irreducible nodal boundary.
+
+When $\mathbf d=(a_1+3,\underbrace{2,\ldots,2}_{b_1},\ldots,a_k+3,\underbrace{2,\ldots,2}_{b_k})$ with $a_i,b_i\ge0$, this becomes $Q=12+\sum_{i=1}^k(a_i-b_i)$. For a rational anticanonical pair, $Q=e(Y\setminus D)$. All toric pairs have charge zero.
 :::
 
 ::: {.front card-id="card-0d5e3770ce1f2ca9"}
@@ -470,7 +555,7 @@ What is the definition of Affine manifold?
 :::
 
 ::: {.back card-id="card-c354b1c7c752e729"}
-An affine manifold is a smooth manifold $B$ with an atlas $\{(U_i,\phi_i)\}$ whose transition maps $\phi_i\circ\phi_j^{-1}$ are affine transformations of $\mathbb R^n$; equivalently $B$ carries a flat torsion-free connection. It is integral if the transitions lie in $\mathrm{Aff}(\mathbb Z^n)=\mathrm{GL}_n(\mathbb Z)\ltimes\mathbb Z^n$.
+An affine manifold is a smooth manifold $B$ with an atlas $\{(U_i,\phi_i)\}$ whose transition maps $\phi_i\circ\phi_j^{-1}$ are affine transformations of $\mathbb R^n$; equivalently $B$ carries a flat torsion-free connection. It is integral when the linear parts lie in $\mathrm{GL}_n(\mathbb Z)$; translations may be real. Integral translations additionally specify an integral-vertex structure.
 :::
 
 ::: {.front card-id="card-b1cc21ccaddb6e46" tags="definition"}
@@ -478,7 +563,7 @@ What is the definition of Almost toric base?
 :::
 
 ::: {.back card-id="card-b1cc21ccaddb6e46"}
-The almost toric base of an almost toric fibration $\mu:(X,\omega)\to S$ is the stratified space $S$ with an integral affine structure on $S\setminus S^{\mathrm{sing}}$; it generalizes the moment polytope, and $\mu^{-1}(v)$ is singular exactly at $v\in S^{\mathrm{sing}}$.
+The stratified base $S$ of an almost toric fibration, with an integral-affine structure on its regular locus, boundary collapse data, and interior focus-focus values. A boundary edge has circle fibers, a corner has a point fiber, and a regular interior point has a torus fiber. Interior affine singularities record focus-focus monodromy; they do not record all singular fibers, since boundary fibers also degenerate.
 :::
 
 ::: {.front card-id="card-92769a4b13586c9a" tags="definition"}
@@ -486,7 +571,9 @@ What is the definition of Cycle of rational curves?
 :::
 
 ::: {.back card-id="card-92769a4b13586c9a"}
-A cycle of rational curves is a reduced connected divisor $D=\sum_{i=1}^n D_i$ on a smooth surface with each $D_i\cong\mathbb P^1$, $D_i\cdot D_{i+1}=1$ for indices modulo $n$, $D_i\cdot D_j=0$ when $|i-j|>1$, and no other intersections. It is the exceptional divisor of the minimal resolution of a cusp singularity.
+A reduced connected nodal divisor of arithmetic genus one whose normalized components are rational. For $n\ge3$, its smooth rational components meet transversely in a cycle, with no other intersections. For $n=2$, the components meet at two distinct points; for $n=1$, it is an irreducible nodal rational curve.
+
+Cusp resolutions have such cycles with negative-definite intersection matrix. The cycle condition alone does not imply contractibility: the three coordinate lines in $\mathbb P^2$ form a cycle with positive-square components.
 :::
 
 ::: {.front card-id="card-e5ac4665a3c590e7" tags="definition"}
@@ -551,7 +638,9 @@ What is the definition of Integral affine structure?
 :::
 
 ::: {.back card-id="card-c52d15822bcdec98"}
-An integral affine structure on an $n$-manifold $B$ is an atlas $\{(U_i,\phi_i:U_i\to\mathbb R^n)\}$ whose transition maps lie in $\mathrm{Aff}(\mathbb Z^n)=\mathrm{GL}_n(\mathbb Z)\ltimes\mathbb Z^n$; equivalently it is a flat torsion-free connection whose holonomy lies in $\mathrm{Aff}(\mathbb Z^n)$.
+An atlas $\{(U_i,\phi_i:U_i\to\mathbb R^n)\}$ with transition maps $x\mapsto Ax+b$, where $A\in\mathrm{GL}_n(\mathbb Z)$ and $b\in\mathbb R^n$. Equivalently, an affine structure with a parallel lattice in its tangent bundle. For an oriented structure use $\mathrm{SL}_n(\mathbb Z)$.
+
+Requiring $b\in\mathbb Z^n$ is the stronger integral-vertex convention used for lattice triangulations. An ordinary integral-affine structure specifies integral tangent vectors, not a distinguished lattice of points.
 :::
 
 ::: {.front card-id="card-2bfad83d9328a7f6" tags="definition"}
@@ -567,7 +656,17 @@ What is the definition of Limiting mixed hodge structure?
 :::
 
 ::: {.back card-id="card-63b5131f7fd0118f"}
-For a degeneration $\pi:\mathcal X\to\Delta^*$ with unipotent monodromy $T$, the limiting mixed Hodge structure is the mixed Hodge structure on the cohomology of the limiting fiber constructed by Schmid from the variation of Hodge structure and the weight filtration of the nilpotent operator $N=\log T$.
+For a polarized variation of Hodge structure of weight $m$ over $\Delta^*$ with unipotent monodromy, fix a coordinate $t=e^{2\pi iz}$ and identify nearby cohomology with $H_{\mathbb Q}$. Put $N=\log T$, using the convention $F(z+1)=T F(z)$.
+
+The limit is
+$$F_\infty=\lim_{\operatorname{Im}z\to\infty}e^{-zN}F(z),\qquad
+H_{\lim}=(H_{\mathbb Q},W(N)[m],F_\infty).$$
+The weight filtration is characterized by
+$$NW_k\subset W_{k-2},\qquad
+N^j:\operatorname{Gr}_{m+j}^W\xrightarrow{\sim}\operatorname{Gr}_{m-j}^W.$$
+Untwisting multivalued flat sections by $e^{-zN}$ gives a frame for Deligne's canonical extension; its connection has nilpotent residue.
+
+This is a mixed Hodge structure on **nearby cohomology**, not $H^m(X_0)$. Specialization maps $H^m(X_0)\to H^m_{\lim}$ and need not be an isomorphism. If $N=0$, the limit is pure of weight $m$, even when the central fiber is reducible: two smooth curves meeting at a separating node give the compact-type example.
 :::
 
 ::: {.front card-id="card-02b0355c3650e92b" tags="definition"}
@@ -591,7 +690,9 @@ What is the definition of Monodromy representation?
 :::
 
 ::: {.back card-id="card-795c0ca34a8a8864"}
-For a fibration $f:X\to B$ with fiber $F$, the monodromy representation is the homomorphism $\pi_1(B,b_0)\to\operatorname{Aut}(H^*(F;\mathbb Z))$ obtained by transporting cycles around loops in $B$. For a degeneration $\pi:\mathcal X\to\Delta^*$ it is generated by the Picard-Lefschetz transformation $T$.
+For a locally topologically trivial family $f:X\to B$ with fiber $F$, parallel transport gives
+$$\pi_1(B,b_0)\to\operatorname{Aut}(H^*(F;\mathbb Z)).$$
+Over a punctured disk it is specified by the automorphism $T$ for one positive loop. Picard–Lefschetz is the formula for this action in an ordinary quadratic-singularity degeneration; general monodromy need not be a single Picard–Lefschetz transformation.
 :::
 
 ::: {.front card-id="card-56810efcabc4bf7c" tags="definition"}
@@ -636,7 +737,9 @@ What is the definition of Toric degeneration?
 :::
 
 ::: {.back card-id="card-d03d58dd6041270c"}
-A toric degeneration is a flat family $\pi:\mathcal X\to\Delta$ whose general fibers are smooth (often Calabi-Yau) and whose central fiber $X_0$ is a toric variety; equivalently the family is locally toric and its dual intersection complex is a triangulated integral affine manifold.
+In the irreducible sense, a toric degeneration is a flat family whose special fiber is a toric variety. Smoothness of the general fiber and normality of the special fiber must be specified when required.
+
+In the normal-crossing constructions used for Calabi–Yau degenerations, the special fiber is instead a union of toric components glued along toric strata. A compatible toroidal or log structure supplies the integral-affine data. An arbitrary flat family with toric special fiber need not be locally toric, and the two usages are not equivalent.
 :::
 
 ::: {.front card-id="card-b4e485673235edf3" tags="definition"}
@@ -652,7 +755,9 @@ What is the definition of Type vii_0 surface?
 :::
 
 ::: {.back card-id="card-356efa2f005e6ec3"}
-A type $\mathrm{VII}_0$ surface is a compact complex surface with $b_1=1$, $b_2=0$, and Kodaira dimension $\kappa=-\infty$, in Kodaira's classification of compact complex surfaces. The hyperbolic Inoue surfaces are examples.
+A minimal compact complex surface of class VII: $b_1=1$ and Kodaira dimension $\kappa=-\infty$. The subscript $0$ means **minimal**, not $b_2=0$.
+
+Class VII contains surfaces with $b_2=0$ and surfaces with $b_2>0$. Hyperbolic Inoue surfaces have $b_2>0$ and two disjoint cycles of rational curves.
 :::
 
 ::: {.front card-id="card-e8b82c81356a6955" tags="definition"}
@@ -676,7 +781,11 @@ What is the definition of Node smoothing?
 :::
 
 ::: {.back card-id="card-8934770be8e9010f"}
-The surgery on an anticanonical pair inverse to a corner blowup: contract the exceptional $(-1)$-curve produced by blowing up a node of the boundary divisor, so that the two boundary branches meet again in a node. On the weight data of an integral affine structure it acts by $(\dots,d_i,d_{i+1},\dots)\mapsto(\dots,d_i+d_{i+1}-2,\dots)$ and raises the charge by $1$.
+Deform a boundary node locally by $xy=t$. When it is the unique intersection of $D_i,D_{i+1}$, they merge into one component with self-intersection
+$$D_{\mathrm{new}}^2=D_i^2+D_{i+1}^2+2.$$
+For a two-component cycle, smoothing one of the two nodes gives an irreducible nodal component of square $D_1^2+D_2^2+4$. With the nodal convention $d=2-D^2$, both cases give $(\ldots,d_i,d_{i+1},\ldots)\mapsto(\ldots,d_i+d_{i+1}-2,\ldots)$ and charge increases by one.
+
+This is a deformation of the boundary, not the contraction of a corner exceptional curve. A corner blowdown is birational and preserves charge.
 :::
 
 ::: {.front card-id="card-d64fe05250d1165d" tags="definition"}
