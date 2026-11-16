@@ -1,0 +1,16 @@
+MESA-EGL: warning: DRI3 error: Could not get DRI3 device
+MESA-EGL: warning: Ensure your X server supports DRI3 to get accelerated rendering
+
+** (desktop:2078009): WARNING **: 15:45:59.284: AT-SPI: Could not obtain desktop path or name
+
+
+** (desktop:2078009): WARNING **: 15:45:59.299: atk-bridge: GetRegisteredEvents returned message with unknown signature
+
+** (desktop:2078009): WARNING **: 15:45:59.299: atk-bridge: get_device_events_reply: unknown signature
+
+** (process:2078312): WARNING **: 15:46:00.130: Failed to get atspi registered event listeners: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+Backend request: study-open
+Backend request: assets
+Backend result: study-open exit status: 1
+Backend request: cached-manifest

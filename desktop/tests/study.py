@@ -17,6 +17,7 @@ from uuid import UUID, uuid4
 
 import psutil
 from anki.collection import Collection
+from evidence import evidence
 from playwright.sync_api import sync_playwright
 
 
@@ -293,4 +294,5 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    with evidence("study", Path(__file__).parent / "fixtures" / "study"):
+        main()

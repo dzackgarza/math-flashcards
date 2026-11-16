@@ -116,6 +116,10 @@ desktop-source-test:
 desktop-native-test *arguments:
     xvfb-run -a -s '-screen 0 1600x1200x24' dbus-run-session -- uv run --upgrade desktop/tests/native.py {{arguments}}
 
+# Verify the Study host lifecycle through the built native bridge
+desktop-native-study-test:
+    xvfb-run -a -s '-screen 0 1600x1200x24' dbus-run-session -- uv run desktop/tests/native-study.py
+
 # Launch the installed desktop entry and exercise its native export
 desktop-installed-test *arguments:
     xvfb-run -a -s '-screen 0 1600x1200x24' uv run --upgrade desktop/tests/native.py --entry '{{env_var_or_default("XDG_DATA_HOME", env_var("HOME") / ".local/share")}}/applications/dev.math.flashcards.desktop' {{arguments}}
