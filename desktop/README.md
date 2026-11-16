@@ -14,8 +14,8 @@ just desktop-install
 ```
 
 Build dependencies: Bun, Rust, Cargo, `just`, and the [Tauri Linux prerequisites](https://v2.tauri.app/start/prerequisites/).
-Every build resolves each dependency to its latest version; the repository keeps
-no lock files. The editor uses `@dzack/pandoc-editor` from the sibling
+Dependency updates resolve current releases and retain package-manager lockfiles.
+The editor uses `@dzack/pandoc-editor` from the sibling
 `Zettlr-pandoc-mathjax/packages/pandoc-editor` workspace package. Zettlr and
 the card fields share its source. Keep that checkout beside this repository.
 `just desktop-dependencies` clones Zettlr-Pandoc's Pandoc parser

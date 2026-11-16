@@ -52,7 +52,8 @@ the copy, and the analyses, and each phase lists its tasks in the order of work.
 
 **Purpose**: One running copy, native card identities and source, typed study values, the store with its identity, the record database, and the host route
 
-**⚠️ CRITICAL**: No user story work can begin until this phase is complete
+Story work follows its actual code and data dependencies. Logging accompanies each
+operation. Whole-run timing classification does not block a missing user capability.
 
 - [ ] T081 Apply constitution XII to the test runners and application operations: retain test context, logs, setup and nested timings in `test-history/`; write detailed application logs and operation timings under the XDG state directory; include child-process work and the source, runtime, and input context needed for comparisons. Use the existing Study evidence capture as the first caller. Classify the real user-story scenarios into tier 1 and milestone tiers, measure the complete tier 1 loop, and use a cost triage table at the owning design before optimizing any slow operation.
 
@@ -272,9 +273,9 @@ the copy, and the analyses, and each phase lists its tasks in the order of work.
 
 ### Phase Dependencies
 
-- **Setup (Phase 1)**: T060 comes before T061, and T061 comes before every task that names a file in `desktop/study/` or `desktop/analysis/`. T080 comes first. T079 changes no code and blocks no task of Phases 1 and 2, which hold no learning decision. It is complete before Phase 3 starts: principle X requires the full text for a decision that depends on one paper, and Phase 3 builds such decisions. A status that it changes in R19 goes to the user before the story that it affects starts.
-- **Foundational (Phase 2)**: Depends on Setup. Blocks every story. T062 and T063 come first: the store's design depends on one running copy.
-- **US1 and US6 (Phase 3)**: Depends on Foundational.
+- **Setup (Phase 1)**: T060 comes before T061, and T061 comes before every task that names a file in `desktop/study/` or `desktop/analysis/`. T079 supplies research for the learning decisions that consume it. Read the full sources for each such decision before implementing that decision; unrelated unread sources do not block native card synchronization, rendering, or recording. Keep unsupported choices explicitly labelled as defaults in R19. A changed learning-decision status is reported before implementing the affected behaviour.
+- **Foundational (Phase 2)**: T062 and T063 precede store operations: the store's design depends on one running copy. The typed values, store, record, and host route supply the inputs for story implementation. T081 adds logging with each operation; tier classification and performance work follow the required functionality.
+- **US1 and US6 (Phase 3)**: Depends on the native values, store, record, and host route in Foundational. Implement the native sync path, shared card presentation, and window entry point together with the scheduler and record operations they use.
 - **US2 to US5 and US7 (Phases 4 to 8)**: Each depends on Phase 3. None depends on another.
 - **US8 (Phase 9)**: Depends on Phase 3 for a record with rows. It depends on no other story and changes no file of `desktop/study/`.
 - **Keeping the data (Phase 10)**: Depends on Phase 3.

@@ -24,10 +24,6 @@ test-artifacts/
 *.sln
 *.sw?
 
-# Dependencies resolve to their latest versions; lock files are not kept.
-bun.lock
-Cargo.lock
-*.py.lock
 # Zettlr-pandoc-mathjax develop, cloned by `just desktop-dependencies`.
 .parser/
 # Prepared during install/update.

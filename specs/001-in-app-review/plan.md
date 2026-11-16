@@ -54,7 +54,7 @@ inside the app.
 
 **Performance Goals**: Next card readable within 0.5 s of a grade (SC-002); changed cards in review within 10 s of a save (SC-003); tree counts within 2 s of opening a prepared workspace (SC-006)
 
-**Constraints**: No network at run time; the learning record never leaves the machine; no row of the record is updated or deleted; the record's schema only grows; installed releases are immutable; no version pins or lock files; the complete tier 1 loop under five minutes; Anki is AGPL-3.0-or-later; an analysis has a read-only connection and imports no core code; every file outside the workspace is under its XDG base directory
+**Constraints**: No network at run time; the learning record never leaves the machine; no row of the record is updated or deleted; the record's schema only grows; installed releases are immutable; dependency changes retain package-manager lockfiles; the complete tier 1 loop under five minutes; Anki is AGPL-3.0-or-later; an analysis has a read-only connection and imports no core code; every file outside the workspace is under its XDG base directory
 
 **Scale/Scope**: About 3,300 cards in 68 decks; a record that grows for decades (an estimate of 1 kB for each presentation, not measured); a catalog of analyses that grows for decades; two new screens (Study, Statistics); fourteen study actions and two analysis actions; one new process type
 

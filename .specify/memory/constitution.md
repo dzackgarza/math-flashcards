@@ -50,7 +50,8 @@ through these boundaries, from Markdown source to the shared renderer and schedu
 A maintained library, an existing component, or a reference implementation owns each
 behaviour that one exists for. Hand-written code MUST cite a mature reference; with no
 reference it needs the user's approval. Vendored code is never modified in place.
-Dependencies track their latest versions: no version pins and no lock files.
+Dependency manifests track current releases. Commit the package manager's lockfiles
+with dependency changes so the resolved environment can be reproduced.
 
 ### IV. Fail loudly
 
@@ -267,4 +268,4 @@ change: MAJOR for a removed or redefined principle, MINOR for an added principle
 section, PATCH for a clarification. Every plan records its check against these principles,
 and each violation it keeps is justified in that plan.
 
-**Version**: 2.2.0 | **Ratified**: 2026-11-16 | **Last Amended**: 2026-11-16
+**Version**: 2.2.1 | **Ratified**: 2026-11-16 | **Last Amended**: 2026-11-16
