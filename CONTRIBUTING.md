@@ -95,6 +95,83 @@ memory aids. Preserve useful derivations and the author's voice under the
 editorial rules below. Longer prose is appropriate when the explanation itself
 is what the card asks the learner to reconstruct.
 
+### Compress sentence structure, preserve mathematical content
+
+Use the shortest readily understood form that retains the requested knowledge.
+Sentence fragments, labels, and mathematical notation are normal flashcard
+forms. Complete literary sentences are optional. Do not replace clear prose
+with an artificial voice, invented abbreviations, or a string of disconnected
+keywords.
+
+The minimum answer retains the object, assumptions, property or operation,
+quantifiers, and conclusion. An example also needs the feature that establishes
+its role. A calculation or explanation needs the steps requested by the prompt
+and the connections needed to recover them. Reuse context established on the
+front or in shared assumptions; do not repeat it in every row.
+
+Prefer these transformations when their stated context applies:
+
+| Verbose structure | Compact form |
+| --- | --- |
+| Metadiscourse: “It is important to observe that…”; “We now recall that…” | Delete the introduction; state the fact. |
+| Repeated question: “The definition of a … is the following…” | Give the definition directly. |
+| Definition wrapper: “We say that $X$ is $P$ if and only if…” | “$X$ is $P$ iff …”, or “$P\iff\cdots$” under a clear label. |
+| Predicate padding: “$X$ has the property that it is normal” | “$X$ normal.” |
+| Cleft sentence: “It is the exceptional divisor $E$ that has discrepancy $-1$” | “$a(E)=-1$.” Retain any intended exclusivity explicitly. |
+| Existential scaffolding: “There exists an integer $m>0$ such that $mD$ is Cartier” | “$\exists m\in\mathbb Z_{>0}: mD$ Cartier.” Preserve existence. |
+| Nominalization: “Perform a computation of the intersection number” | “Compute $D\cdot C$.” |
+| Weak verb plus noun: “Make a choice of a point $p\in X$” | “Choose $p\in X$.” |
+| Passive construction: “The blowup of $X$ at $p$ is taken” | “Blow up $p\in X$.” |
+| Relative-clause packaging: “Let $X$ be a variety which is smooth and projective over $\mathbb C$” | “$X/\mathbb C$ smooth projective.” |
+| Conditional packaging: “Under the assumption that $P$ holds, we can conclude that $Q$ holds” | “$P\Rightarrow Q$.” |
+| Causal packaging: “The reason that $Q$ holds is that $P$ holds” | “$Q$, since $P$”, or “$P\Rightarrow Q$” when this is the full reasoning. |
+| Possibility padding: “We can use adjunction in order to compute…” | “By adjunction: [formula].” Include its hypotheses where needed. |
+| Contrastive packaging: “However, it is not necessarily the case that the converse holds” | “Converse fails: [counterexample].” |
+| Example announcement: “An example illustrating this phenomenon is given by…” | “Example: [object; decisive property].” |
+| Repeated subjects: “$X$ is normal. $X$ is Cohen–Macaulay. $X$ is not smooth.” | “$X$: normal, CM, singular.” Use CM only when established vocabulary. |
+| Nested case prose: “In the first case …, whereas in the second case …” | A case split or table with explicit conditions and outcomes. |
+| Fact followed by paraphrase: formula, then “In other words…” restating it | Keep one representation unless the second supplies a useful interpretation or memory cue. |
+| Evaluation and emphasis: “This is a very useful and important consequence” | Delete; or name the concrete application when that is part of the task. |
+
+Articles and copulas can disappear in labels and lists: “Exceptional curve:
+$E\cong\mathbb P^1$, $E^2=-2$.” Remove them only when the referent and relation
+remain clear. Passive voice is not intrinsically wrong; “$E$ is contracted”
+may be the shortest precise description when the morphism is already fixed.
+Do not force every sentence into the same template.
+
+Preserve the logic during every transformation:
+
+- Keep $\forall$, $\exists$, uniqueness, quantifier order, and dependence of
+  choices. $\forall x\,\exists y$ and $\exists y\,\forall x$ differ.
+- Keep negation, exceptions, restrictions, and inequality endpoints. “Not all”
+  is different from “none”; $>0$ is different from $\ge0$.
+- Preserve the direction and strength of a relation: implication, equivalence,
+  equality, isomorphism, and equality up to a choice are distinct.
+- Keep mathematical modifiers such as “normal,” “proper,” “relative,” and
+  “geometrically.” A relative clause may carry a hypothesis; compress its
+  grammar, not its restriction.
+- Keep causal and conditional connections explicit. “$P$. $Q$.” does not
+  express “$P\Rightarrow Q$.” Use arrows, “if,” “since,” or an aligned derivation
+  when they carry meaning.
+- Name an object again when a pronoun would have multiple possible referents.
+- Preserve authored derivations and mnemonic routes. Compress surrounding
+  prose without removing the steps that make the result recoverable.
+
+Do not impose a word cap or a token-reduction target. Judge a revision by whether
+the same mathematical answer is easier to retrieve and check. A dense composite
+card can retain many related facts. Splitting it into isolated fragments is not
+a substitute for exposing their structure.
+
+These rules adapt the removal of linguistic overhead in
+[Caveman Compression](https://github.com/wilpel/caveman-compression/blob/main/SPEC.md)
+and the preservation of technical content in
+[caveman](https://github.com/JuliusBrussee/caveman/blob/main/skills/caveman/SKILL.md).
+The projects concern LLM communication; their token-saving claims do not
+establish effects on human recall. In particular, do not adopt blanket deletion
+of logical connectives. The use of direct verbs and removal of empty phrases
+also follows the
+[Microsoft concise-writing guidance](https://learn.microsoft.com/en-us/style-guide/word-choice/use-simple-words-concise-sentences).
+
 ## Ban mathematical hand-waving
 
 A card must give enough information to reconstruct the requested statement,
