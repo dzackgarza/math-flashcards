@@ -575,9 +575,20 @@ export async function request<Schema extends z.ZodType>(
   if (payload.action.startsWith("study-")) studyRequestSchema.parse(payload);
   const body = JSON.stringify(payload);
   if (isTauri()) {
-    return schema.parse(
-      JSON.parse(await invoke<string>("request", { payload: body })),
-    );
+    let result: string;
+    try {
+      result = await invoke<string>("request", { payload: body });
+    } catch (error) {
+      if (typeof error !== "string" || !payload.action.startsWith("study-"))
+        throw error;
+      try {
+        throw new StudyError(studyErrorSchema.parse(JSON.parse(error)));
+      } catch (parsed) {
+        if (parsed instanceof SyntaxError) throw new Error(error);
+        throw parsed;
+      }
+    }
+    return schema.parse(JSON.parse(result));
   }
   const response = await fetch("/api/request", {
     method: "POST",

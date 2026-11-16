@@ -39,7 +39,8 @@ TABLES = {
     "response": """presentation integer references presentation(id), card_id text not null,
         grade text, reveal_ms integer, grade_ms integer, unfocused_ms integer,
         after_interval_days integer, after_due integer, after_stability real, after_difficulty real,
-        recovered integer not null, revlog_id integer not null unique, revlog_ease integer not null,
+        recovered integer not null, revlog_id integer not null unique,
+        revlog_cid integer not null, revlog_usn integer not null, revlog_ease integer not null,
         revlog_ivl integer not null, revlog_last_ivl integer not null, revlog_factor integer not null,
         revlog_time_ms integer not null, revlog_type integer not null""",
     "undo": "response integer not null references response(id)",
@@ -90,6 +91,8 @@ class Response(Value):
     after_difficulty: float | None
     recovered: bool
     revlog_id: int
+    revlog_cid: int
+    revlog_usn: int
     revlog_ease: int
     revlog_ivl: int
     revlog_last_ivl: int
@@ -116,28 +119,36 @@ class Record:
                 self.connection.execute(f'create table "{table}" ({COMMON}, {fields})')
             self.connection.execute("""create view review as
                 select p.*, c.front, c.back, c.assets,
-                    r.id as response, r.at_ms as responded_at_ms, r.grade,
+                    r.id as response, r.at_ms as responded_at_ms,
+                    r.utc_offset_min as response_utc_offset_min, r.writer as response_writer, r.grade,
                     r.reveal_ms, r.grade_ms, r.unfocused_ms,
                     r.after_interval_days, r.after_due, r.after_stability, r.after_difficulty,
-                    r.recovered, r.revlog_id, r.revlog_ease, r.revlog_ivl, r.revlog_last_ivl,
+                    r.recovered, r.revlog_id, r.revlog_cid, r.revlog_usn, r.revlog_ease, r.revlog_ivl, r.revlog_last_ivl,
                     r.revlog_factor, r.revlog_time_ms, r.revlog_type, u.at_ms as undone_at_ms
                 from presentation p join content c on c.id=p.content
                 left join response r on r.presentation=p.id
                 left join undo u on u.response=r.id""")
-        self.writer = self.connection.execute(
+        self.writer = self.add_writer(release, anki_version)
+        if create:
+            self.schema(1, json.dumps(TABLES))
+
+    def add_writer(self, release: str, anki_version: str) -> int:
+        writer = self.connection.execute(
             "select coalesce(max(id), 0) + 1 from writer"
         ).fetchone()[0]
         at_ms, offset = instant()
         with self.connection:
             self.connection.execute(
                 "insert into writer values (?, ?, ?, ?, ?, ?, ?)",
-                (self.writer, at_ms, offset, self.writer, release, anki_version, 1),
+                (writer, at_ms, offset, writer, release, anki_version, 1),
             )
-            if create:
-                self.connection.execute(
-                    'insert into "schema" (at_ms, utc_offset_min, writer, version, added) values (?, ?, ?, ?, ?)',
-                    (at_ms, offset, self.writer, 1, json.dumps(TABLES)),
-                )
+        return writer
+
+    def schema(self, version: int, added: str) -> int:
+        return self.insert(
+            'insert into "schema" (at_ms, utc_offset_min, writer, version, added) values (?, ?, ?, ?, ?)',
+            (version, added),
+        )
 
     def store_event(self, kind: str, path: str) -> int:
         return self.insert(

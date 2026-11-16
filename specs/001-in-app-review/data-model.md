@@ -104,7 +104,7 @@ are only inserted. `docs/study-record.md` is the field reference for the user.
 | `media` | `content` (the `content` row that refers to the file), `name` (the file name in the card), `digest` (the file is `record-media/<digest>`, stored once for all rows with that digest) |
 | `card_change` | `card_id`, `kind` (added, content, tags, moved, removed, restored), `from_deck`, `to_deck`, `content`, `tags` |
 | `presentation` | `session`, `position`, `card_id`, `content`, `deck_path`, `folder`, `deck_title`, `tags`, `kind` (new, learning, review, relearning), `scheduler_day`, `before_interval_days`, `before_due`, `before_reps`, `before_lapses`, `before_stability`, `before_difficulty`, `before_retrievability`, `offer_again_s`, `offer_hard_s`, `offer_good_s`, `offer_easy_s`, `labels`, `desired_retention`, `parameter_set`, `new_per_day`, `reviews_per_day` |
-| `response` | `presentation` (empty for a recovered row), `card_id`, `grade`, `reveal_ms`, `grade_ms`, `unfocused_ms`, `after_interval_days`, `after_due`, `after_stability`, `after_difficulty`, `recovered`, and Anki's row: `revlog_id`, `revlog_ease`, `revlog_ivl`, `revlog_last_ivl`, `revlog_factor`, `revlog_time_ms`, `revlog_type` |
+| `response` | `presentation` (empty for a recovered row), `card_id`, `grade`, `reveal_ms`, `grade_ms`, `unfocused_ms`, `after_interval_days`, `after_due`, `after_stability`, `after_difficulty`, `recovered`, and Anki's row: `revlog_id`, `revlog_cid`, `revlog_usn`, `revlog_ease`, `revlog_ivl`, `revlog_last_ivl`, `revlog_factor`, `revlog_time_ms`, `revlog_type` |
 | `undo` | `response` |
 | `setting_change` | `key`, `before`, `after` |
 | `parameter_set` | `parameters`, `source` (anki-default, fit), `reviews`, `log_loss`, `rmse_bins` |
