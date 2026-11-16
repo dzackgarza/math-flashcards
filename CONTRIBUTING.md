@@ -239,6 +239,73 @@ recovered from the card's stated context, verify and supply it. Do not guess a
 missing quantity, baseline, hypothesis, or causal explanation merely to produce
 a fluent rewrite.
 
+### Organize the whole card around the knowledge being recalled
+
+Identify the answer's main point before shortening its sentences. Give the
+requested knowledge the main position; keep supporting material subordinate
+and visibly connected to it. Repair misplaced emphasis first. Further deletion
+is optional when it would remove useful explanation or an authored memory cue.
+
+Match the organization to the retrieval task:
+
+| Task | Visible organization |
+| --- | --- |
+| Definition | Object and ambient assumptions; defining conditions and quantifiers |
+| Theorem | Hypotheses attached to the conclusion; exceptions and scope beside the claims they qualify |
+| Construction | Input; operation; output and its required properties |
+| Comparison | Shared assumptions; parallel criteria; examples separating the classes |
+| Implication or failed converse | Precise relation; example satisfying the premise and failing the proposed conclusion |
+| Calculation or derivation | Starting data; connected steps; result, with each justification beside its step |
+
+These are organizational guides, not mandatory templates. Preserve an authored
+route that already makes the mathematics recoverable. Composite cards can
+combine these forms while keeping their relationships visible.
+
+Align sentence structure with mathematical structure. Prefer “$f$ contracts
+$E$” to “The exceptional contraction behavior is realized through $f$.”
+If the question concerns $E$, “$E$ is contracted by $f$” may place the emphasis
+better. Abstract objects and passive constructions are legitimate mathematical
+language; reject them when they hide the relevant object or operation, not
+merely because they are abstract or passive.
+
+Use natural combinations of established mathematical words. Defining an invented
+phrase does not justify retaining it. “Coefficient admissibility behavior”
+adds a translation step where explicit coefficient inequalities would answer
+the question. For each sentence, identify the proposition or explanatory
+connection it contributes. Familiar words and grammatical correctness do not
+rescue a sentence with no discernible point.
+
+Keep the status of claims explicit. Distinguish a proved result from a heuristic,
+conjecture, computed example, or prediction. State what a calculation establishes
+and which general conclusion still needs an argument. A transition such as
+“therefore” must not silently promote an observation or proposed explanation
+into a theorem.
+
+Exclude argumentative framing that answers no part of the prompt. Do not invent
+a dispute, defense, or dramatic reversal before giving the mathematics. A real
+misconception or false converse belongs when the card asks the learner to
+distinguish it; state the disputed claim and the decisive evidence directly.
+
+Control dependencies between clauses. Introduce notation before using it, keep
+names stable, and put each qualification beside its target. Break up chains of
+pronouns, parentheses, comparisons, and renamed objects when the reader must
+backtrack to determine which assertion belongs to which object. Use separate
+lines or a table while retaining the logical connections.
+
+After local wording edits, review the front and back as a whole. Check that:
+
+- the answer's organization matches the question;
+- shared assumptions have clear scope and individual qualifications remain attached;
+- examples support the definition or distinction without interrupting it;
+- each conclusion remains connected to its justification;
+- the learner can compare a recalled answer with the card without reorganizing it.
+
+These rules extend the cited Zonder analysis to mathematical recall. Its
+emphasis on sentence subjects, actions, natural wording, and main points
+supports the clarity rules. The distinctions between theorem, heuristic, and
+prediction, and the whole-card checks, are editorial applications to this
+collection.
+
 ## Ban mathematical hand-waving
 
 A card must give enough information to reconstruct the requested statement,
