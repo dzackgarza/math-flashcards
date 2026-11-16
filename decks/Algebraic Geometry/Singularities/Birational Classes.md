@@ -2,6 +2,100 @@
 title: "Algebraic Geometry::Singularities::Birational Classes"
 ---
 
+::: {.front card-id="singularity-mld-epsilon-lt" tags="definition comparison example"}
+Define minimal log discrepancy along a closed set and compare $\epsilon$-lt with $\epsilon$-lc. Compute the smooth-point example.
+:::
+
+::: {.back card-id="singularity-mld-epsilon-lt"}
+For a normal pair $(X,\Delta)$ with $K_X+\Delta$ $\mathbb R$-Cartier, let $A(E,X,\Delta)=1+a(E,X,\Delta)$. For closed $W\subset X$:
+$$\operatorname{mld}_W(X,\Delta)=
+\inf_{\substack{E\text{ prime divisor over }X\\c_X(E)\subseteq W}}A(E,X,\Delta).$$
+Include divisors on $X$, not only exceptional divisors; specify $W$. At a point $\eta$, use center exactly $\overline{\{\eta\}}$. In dimension at least two, a negative local infimum becomes $-\infty$; some conventions also replace negative curve values by $-\infty$.
+
+| Condition | Every prime divisor $E$ over $X$ |
+| --- | --- |
+| $\epsilon$-lc | $A(E,X,\Delta)\ge\epsilon$ |
+| $\epsilon$-lt | $A(E,X,\Delta)>\epsilon$ |
+
+For a smooth closed point of an $n$-fold with zero boundary, mld is $n$. At an SNC point with coordinate boundary coefficients $b_1,\ldots,b_r\le1$, it is $n-\sum b_i$. Along the generic point of a divisor of coefficient $b$, it is $1-b$. A strict inequality for every valuation should not be replaced by a strict inequality for an infimum without checking attainment.
+
+Reference: Alexeev–Borisov, *On the log discrepancies in toric Mori contractions*, §1.
+:::
+
+::: {.front card-id="singularity-dlt-modification" tags="definition construction comparison"}
+Define a dlt modification of an lc pair. State the generalized surface convention for a boundary that is not lc.
+:::
+
+::: {.back card-id="singularity-dlt-modification"}
+For an lc pair $(X,B)$, a dlt modification is a projective birational $f:Y\to X$ such that
+$$Y\ \mathbb Q\text{-factorial},\qquad
+B_Y=f_*^{-1}B+\sum_{E\ \mathrm{exceptional}}E,\qquad
+(Y,B_Y)\ \mathrm{dlt},\qquad K_Y+B_Y=f^*(K_X+B).$$
+Thus every extracted exceptional divisor has discrepancy $-1$.
+
+For a normal surface with $B=\sum b_jB_j\ge0$, possibly non-lc, define $B_Y$ by the same crepant equality. Alexeev–Liu's dlt blowup requires:
+
+- $Y$ $\mathbb Q$-factorial.
+- $(Y,\sum\min(1,b_j)f_*^{-1}B_j+\sum E)$ dlt.
+- $B_Y\ge f_*^{-1}B+\sum E$, equivalently extracted discrepancies $\le-1$.
+
+An arbitrary log resolution is not a dlt modification: it may extract divisors of positive discrepancy. The blowup of a smooth point of a surface with zero boundary extracts discrepancy $1$.
+
+Reference: Alexeev–Liu, *On accumulation points of volumes of log surfaces*, Definition 2.1.
+:::
+
+::: {.front card-id="singularity-dcc-standard-coefficients" tags="definition comparison example"}
+Define ACC and DCC for subsets of $\mathbb R$, the standard coefficient set, and iterated accumulation sets. Give examples separating the conditions.
+:::
+
+::: {.back card-id="singularity-dcc-standard-coefficients"}
+| Property of $S\subset\mathbb R$ | Forbidden sequence in $S$ |
+| --- | --- |
+| ACC | Infinite strictly increasing sequence |
+| DCC | Infinite strictly decreasing sequence |
+
+Standard boundary coefficients:
+$$\mathcal C_{\mathrm{std}}=\{1-1/m:m\in\mathbb Z_{>0}\}\cup\{1\}.$$
+This set is DCC, not ACC; $1-1/m$ increases to $1$. It arises from tame ramification of order $m$. The set $\{1/m:m\ge1\}$ is ACC, not DCC.
+
+$\operatorname{Acc}(S)$ consists of limits of sequences of **distinct** elements of $S$; the limit need not belong to $S$. Put $\operatorname{Acc}^0(S)=S$ and $\operatorname{Acc}^{k+1}(S)=\operatorname{Acc}(\operatorname{Acc}^k(S))$. Here $\operatorname{Acc}(\mathcal C_{\mathrm{std}})=\{1\}$ and its second accumulation set is empty.
+
+Reference: Alexeev–Liu, *On accumulation points of volumes of log surfaces*, §§2 and 6.
+:::
+
+::: {.front card-id="singularity-nonrational-center" tags="definition comparison example"}
+Define a nonrational center. How does it differ from a log canonical center?
+:::
+
+::: {.back card-id="singularity-nonrational-center"}
+$X/\mathbb C$ normal, $f:Y\to X$ a resolution. A **nonrational center** is the irreducible closed subvariety determined by an associated prime of some $R^if_*\mathcal O_Y$, $i>0$. These sheaves are independent of the resolution.
+
+An lc center of $(X,\Delta)$ is instead the center of a divisor with $A(E,X,\Delta)=0$. It depends on the boundary. For an lc pair every nonrational center is an lc center, but the converse fails.
+
+Example: $(\mathbb A^2,\{x=0\})$ has an lc center, while its underlying smooth variety has rational singularities and no nonrational centers. A normal cone over an elliptic curve has a nonrational center at its vertex.
+
+Reference: Alexeev–Hacon, *Non-rational centers of log canonical singularities*, Definition 1.1 and Theorem 1.2.
+:::
+
+::: {.front card-id="singularity-embedded-snc-qlc" tags="definition construction"}
+Define a globally embedded SNC pair and a quasi-log canonical structure. State the sheaf condition and the strata.
+:::
+
+::: {.back card-id="singularity-embedded-snc-qlc"}
+A globally embedded SNC pair is $(Y,B_Y)$ with $Y$ a reduced SNC divisor in smooth $M$, $B_Y=D|_Y$, and $D$ a real divisor on $M$ sharing no components with $Y$, with $\operatorname{Supp}(D+Y)$ SNC.
+
+A qlc structure on $[X,\omega]$ consists of a proper $f:(Y,B_Y)\to X$ with all coefficients of $B_Y\le1$ and
+$$f^*\omega\sim_{\mathbb R}K_Y+B_Y,\qquad
+\mathcal O_X\xrightarrow{\sim}f_*\mathcal O_Y(\lceil-B_Y^{<1}\rceil).$$
+Here $B_Y^{<1}$ retains exactly the components with coefficient $<1$; $\omega$ is $\mathbb R$-Cartier. The rational version uses $\mathbb Q$ throughout.
+
+On the normalization $\nu:Y^\nu\to Y$, define $\Theta$ by $K_{Y^\nu}+\Theta=\nu^*(K_Y+B_Y)$. Strata are components of $Y$ and images of lc centers of $(Y^\nu,\Theta)$. Their images under $f$ are qlc strata; those not irreducible components of $X$ are usually called qlc centers. Alexeev–Hacon includes components in its “qlc centers.”
+
+An lc pair gives $\omega=K_X+\Delta$ and strata $X$ together with its lc centers.
+
+Reference: Alexeev–Hacon, *Non-rational centers of log canonical singularities*, §2.
+:::
+
 ::: {.front card-id="definition-log-canonical-threshold" tags="definition application"}
 Define the log canonical threshold of an effective divisor on a smooth complex variety. How do discrepancies compute it? Compare a node and a cusp.
 :::

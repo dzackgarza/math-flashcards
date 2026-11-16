@@ -2,6 +2,23 @@
 title: "Algebraic Geometry::Singularities::Surface Singularities"
 ---
 
+::: {.front card-id="surface-resolution-graph-determinant" tags="definition computation"}
+Define the weighted dual graph and determinant of a resolved normal surface singularity. Compute a two-vertex chain.
+:::
+
+::: {.back card-id="surface-resolution-graph-determinant"}
+For a resolution $f:Y\to(X,x)$ with exceptional curves $E_i$, put one vertex per $E_i$, labeled by its genus and self-intersection. Distinct vertices have $E_iE_j$ edges for transverse intersections; record non-SNC intersections separately.
+
+The exceptional intersection matrix $Q=(E_iE_j)$ is negative definite. Define the graph determinant
+$$\det(\Gamma)=\det(-Q)>0.$$
+A rational chain with self-intersections $-b_1,-b_2$ has
+$$-Q=\begin{pmatrix}b_1&-1\\-1&b_2\end{pmatrix},\qquad
+\det(\Gamma)=b_1b_2-1.$$
+For an $A_2$ singularity, $b_1=b_2=2$, so the determinant is three. For a rational tree whose plumbing boundary is a rational homology sphere, this determinant is the order of its first homology. Genus and graph cycles cannot be omitted when deciding that hypothesis.
+
+Reference: Alexeev–Liu, *Log surfaces of Picard rank one from four lines in the plane*, §2.
+:::
+
 ::: {.front card-id="card-8f343de9852359e9" tags="definition"}
 Characterize a rational double point over $\mathbb C$ using rationality and multiplicity.
 :::

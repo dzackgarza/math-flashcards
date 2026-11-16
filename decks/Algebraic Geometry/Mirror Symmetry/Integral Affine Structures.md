@@ -2,6 +2,63 @@
 title: "Algebraic Geometry::Mirror Symmetry::Integral Affine Structures"
 ---
 
+::: {.front card-id="ias-toric-model-corner-equivalence" tags="definition construction example"}
+Define a toric model of an anticanonical pair and corner-blowup equivalence. Distinguish internal and corner blowups in this construction.
+:::
+
+::: {.back card-id="ias-toric-model-corner-equivalence"}
+For a rational anticanonical pair $(V,D)$, a toric model is a diagram
+$$ (V,D)\longleftarrow(V',D')\longrightarrow(\overline V,\overline D)$$
+where the first map is a sequence of corner blowups and the second is a sequence of blowdowns inverse to internal blowups; $(\overline V,\overline D)$ is a smooth toric surface with its full boundary.
+
+- Corner blowup: blow up a node of $D$, include the exceptional curve in the new boundary.
+- Internal blowup: blow up a smooth point of $D$, use only its strict transform as boundary.
+- Corner-blowup equivalent: connected by corner blowups and their inverses.
+
+Both preserve the anticanonical condition. Corner blowups refine the pseudofan without changing its singularity; an internal blowup changes the singularity and increases charge by one.
+
+Example: start with the coordinate triangle in $\mathbb P^2$. Blowing up a vertex is toric; blowing up a nonvertex boundary point is an internal blowup.
+
+Reference: Alexeev–Engel–Thompson, *Stable pair compactification of moduli of K3 surfaces of degree 2*, §2.
+:::
+
+::: {.front card-id="ias-divisor-balancing-polarization" tags="definition comparison application"}
+Define an integral-affine divisor on an integral-affine sphere. State the extra data at singular vertices, balancing, and polarization.
+:::
+
+::: {.back card-id="ias-divisor-balancing-polarization"}
+An integral-affine divisor consists of:
+
+1. A graph of straight edges $e_{ij}$ with integer weights $n_{ij}=n_{ji}$.
+2. At every vertex, an anticanonical pair $(V_i,D_i)$ whose pseudofan models the germ and includes the edge rays, and a line bundle $L_i$ with
+$$L_iD_{ij}=n_{ij},\qquad L_iD=0\ \text{on other boundary components}.$$
+
+At a nonsingular vertex, the primitive outgoing directions satisfy
+$$\sum_jn_{ij}v_{ij}=0.$$
+At singular vertices, this ordinary vector equation does not replace the line-bundle data. At a single $I_1$ singularity with invariant primitive direction $v$, the corresponding condition is $\sum_jn_{ij}v_{ij}\in\mathbb Zv$.
+
+Effective means $n_{ij}\ge0$. Polarizing means every $L_i$ nef and at least one big; self-intersection is $\sum_iL_i^2$. Compatible with a triangulation means every graph edge is a union of triangulation edges.
+
+Example: the three unit-weight directions $(1,0),(0,1),(-1,-1)$ balance; they represent $\mathcal O_{\mathbb P^2}(1)$ on the toric vertex model.
+
+Reference: Alexeev–Engel–Thompson, Definitions 2.30–2.36.
+:::
+
+::: {.front card-id="ias-nodal-slide-symington" tags="definition construction comparison"}
+Distinguish a nodal slide from Symington surgery on an almost-toric base. State the cut-and-glue operation.
+:::
+
+::: {.back card-id="ias-nodal-slide-symington"}
+An $I_1$ affine singularity has monodromy conjugate to $\left(\begin{smallmatrix}1&1\\0&1\end{smallmatrix}\right)$ and an invariant direction.
+
+- **Nodal slide:** move the endpoint of its shear cut along the invariant eigenline; the affine structure outside the swept segment stays unchanged. From a multiple singularity, moving one shear ray splits off an $I_1$ point.
+- **Symington surgery:** remove a triangle with base of lattice length $a$ on a boundary edge and primitive height $a$, then identify its two remaining sides by the integral shear fixing the apex and matching their primitive tangent vectors. The apex becomes an $I_1$ singularity.
+
+In coordinates, remove the triangle with vertices $(0,0),(a,0),(0,a)$; the shear $(x,y)\mapsto(x,y+x)$ maps its side from $(0,a)$ to $(a,0)$ onto the side from $(0,a)$ to $(0,0)$. The boundary shortens by $a$. This models a symplectic blowup of size $a$ at a smooth point of an anticanonical boundary component; the normalized area drops by $a^2$.
+
+Reference: Alexeev–Engel–Thompson, Definitions 2.27 and 2.38.
+:::
+
 
 
 ::: {.front card-id="card-1e60c609baa1e7af"}

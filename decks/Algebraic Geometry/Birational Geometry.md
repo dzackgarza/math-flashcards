@@ -2,6 +2,24 @@
 title: "Algebraic Geometry::Birational Geometry"
 ---
 
+::: {.front card-id="birational-open-log-invariants" tags="definition construction example"}
+Define logarithmic Kodaira dimension and volume of a smooth open complex surface. When is volume a self-intersection?
+:::
+
+::: {.back card-id="birational-open-log-invariants"}
+Choose a smooth projective SNC compactification $U=S\setminus D$, with $D$ reduced:
+$$\overline\kappa(U)=\kappa(S,K_S+D),\qquad
+\operatorname{vol}(U)=\limsup_{m\to\infty}
+\frac{2h^0(S,m(K_S+D))}{m^2}.$$
+These are independent of the chosen SNC compactification. Log general type means $\overline\kappa(U)=2$, equivalently positive volume.
+
+For the Zariski decomposition $K_S+D=P+N$ of a big divisor, volume is $P^2$, not generally $(K_S+D)^2$. On the log canonical model it equals $(K_{S_{\mathrm{can}}}+D_{\mathrm{can}})^2$.
+
+Example: $(\mathbb C^\times)^2=\mathbb P^2\setminus$ three coordinate lines has $K+D=0$, so $\overline\kappa=0$ and volume zero. The complement of four lines with no three concurrent has $K+D=H$, hence $\overline\kappa=2$ and volume one.
+
+Reference: Alexeev–Liu, *Open surfaces of small volume*, §1.
+:::
+
 ::: {.front card-id="cones-nonpolyhedral-abelian-example" tags="example application"}
 Give a concrete nonpolyhedral nef cone and distinguish irrational boundary rays from merely having infinitely many rational extremal rays.
 :::
