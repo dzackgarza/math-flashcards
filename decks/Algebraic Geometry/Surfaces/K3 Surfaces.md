@@ -17,13 +17,15 @@ Reference: Alexeev–Engel, *The flex divisor of a K3 surface*, §2; Beauville�
 :::
 
 ::: {.front card-id="k3-flex-point-divisor" tags="definition construction example"}
-Define a flex point for a polarized K3 surface and the flex divisor on the locus where the construction is finite. What does the base-locus condition mean?
+Define a flex point for a polarized K3 surface. On smooth surfaces for which no pencil in $|L|$ has a base curve, construct the flex divisor with its multiplicities.
 :::
 
 ::: {.back card-id="k3-flex-point-divisor"}
 For a polarized K3 $(X,L)$, a point $x$ is **flex** if a pencil $V\subset|L|$ has set-theoretic base locus $\{x\}$. It need not be a reduced basepoint: when $L^2=2d$, the intersection is a length-$2d$ zero-dimensional scheme supported at $x$.
 
-On the open locus used by Alexeev–Engel, $|L|$ is basepoint-free and the incidence of such pencils defines a divisor cycle on $X$ by sending a pencil to its unique basepoint, with incidence multiplicities. This is the flex divisor, rather than the reduced set of flex points.
+Assume $X$ is smooth over $\mathbb C$, $L$ is primitive and ample, and no pencil in $|L|$ has a base curve. Set $G=\operatorname{Gr}(2,H^0(X,L))$. Taking the scheme-theoretic base locus gives a closed immersion $i:G\hookrightarrow X^{[2d]}$ into the Hilbert scheme. For the Hilbert–Chow map $HC:X^{[2d]}\to X^{(2d)}$, put
+$$\Delta=\{2d[x]:x\in X\},\qquad P_{2d}=HC^{-1}(\Delta),\qquad R_{\mathrm{flex}}=\operatorname{supp}_*[P_{2d}\cap i(G)].$$
+The inverse image and intersection are scheme-theoretic; $\operatorname{supp}:P_{2d}\to X$ sends a punctual subscheme to its support. The intersection is pure one-dimensional and finite over its image in $X$. Its fundamental cycle supplies the multiplicities of the flex divisor.
 
 Example: two members of the pencil may meet only at $x$, with total intersection multiplicity $2d$. Replacing this by “they meet transversely at $x$” would contradict $L^2=2d$.
 

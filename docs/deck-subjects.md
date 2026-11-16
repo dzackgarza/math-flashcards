@@ -31,6 +31,32 @@ Geometry deck. Vocabulary is a separate study subject.
 
 ## Subject boundaries
 
+- Combinatorics / Matroids owns independence, rank, circuits, flats, matroid
+  polytopes, and regular subdivisions. Toric Varieties owns the varieties and
+  degenerations constructed from lattice polytopes.
+
+- Moduli / Stable Pairs owns KSBA stability, families, weight changes, and the
+  characteristic classes of their universal families. GIT and Weighted
+  Configurations owns quotients, linearizations, and weighted pointed curves;
+  Hyperplane Arrangements owns weighted arrangements and their toric models.
+  Hurwitz and Prym owns cover moduli and the abelian varieties constructed from
+  curve correspondences. Conformal Blocks owns coinvariants, fusion, and the
+  bundles they define on moduli of curves.
+
+- Covers owns the general construction of finite abelian covers. Surfaces /
+  Abelian Cover Surfaces owns Campedelli and Burniat constructions; ADE Pairs
+  owns the index-two surface–boundary shapes and priming used in double-cover
+  compactifications. These global shapes differ from the local ADE germs in
+  Surface Singularities. Alexeev–Pardini's papers on abelian covers and
+  Alexeev–Thompson's *ADE surfaces and their moduli* fix these conventions.
+
+- Abelian Varieties owns polarizations, period spaces, and semiabelic
+  compactifications. Symplectic Varieties owns symplectic singularities,
+  Hilbert schemes of points, and generalized Kummer varieties. Derived
+  Categories owns semiorthogonal decompositions, exceptional collections, and
+  admissible subcategories. Specialized surface constructions remain in the
+  surface decks.
+
 - Algebraic Geometry / Intersection Theory owns cycle equivalences, intersection
   operations, moving and excess intersection, and enumerative constructions.
   Numerical Invariants keeps standard ring presentations and numerical formulas;

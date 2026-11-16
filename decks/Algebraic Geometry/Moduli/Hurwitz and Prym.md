@@ -56,7 +56,6 @@ A Prym–Tyurin variety of exponent $e$ is an abelian subvariety $P\subset JC$ w
 
 In the $E_6$ construction, $(D-1)(D+5)=0$ and
 $$P=\operatorname{im}(D-1)=\ker(D+5)^0,\qquad \Theta_C|_P=6\Xi.$$
-
 Reference: Alexeev–Donagi–Farkas–Izadi–Ortega, *The uniformization of the moduli space of principally polarized abelian 6-folds*, §1.
 :::
 

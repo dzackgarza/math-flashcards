@@ -54,7 +54,7 @@ An $I_1$ affine singularity has monodromy conjugate to $\left(\begin{smallmatrix
 - **Nodal slide:** move the endpoint of its shear cut along the invariant eigenline; the affine structure outside the swept segment stays unchanged. From a multiple singularity, moving one shear ray splits off an $I_1$ point.
 - **Symington surgery:** remove a triangle with base of lattice length $a$ on a boundary edge and primitive height $a$, then identify its two remaining sides by the integral shear fixing the apex and matching their primitive tangent vectors. The apex becomes an $I_1$ singularity.
 
-In coordinates, remove the triangle with vertices $(0,0),(a,0),(0,a)$; the shear $(x,y)\mapsto(x,y+x)$ maps its side from $(0,a)$ to $(a,0)$ onto the side from $(0,a)$ to $(0,0)$. The boundary shortens by $a$. This models a symplectic blowup of size $a$ at a smooth point of an anticanonical boundary component; the normalized area drops by $a^2$.
+In coordinates, remove the triangle with vertices $(0,0),(a,0),(0,a)$; the affine shear $(x,y)\mapsto(x+y-a,y)$ fixes $(0,a)$ and maps $(a,0)$ to $(0,0)$, identifying the two nonbase sides. The boundary shortens by $a$. This models a symplectic blowup of size $a$ at a smooth point of an anticanonical boundary component; the normalized area drops by $a^2$.
 
 Reference: Alexeev–Engel–Thompson, Definitions 2.27 and 2.38.
 :::

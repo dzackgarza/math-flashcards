@@ -63,7 +63,7 @@ Let $(X,x)$ be a normal complex germ with $K_X$ of Cartier index $r$. Shrink and
 $$\widetilde X=\operatorname{Spec}_X\bigoplus_{i=0}^{r-1}\mathcal O_X(-iK_X),$$
 with reflexive multiplication and reduction of exponents using the trivialization. It has a $\mu_r$-action, quotient $X$, and Cartier canonical class; it is unramified in codimension one. “Index-one” means Cartier canonical class; Gorenstein additionally requires Cohen–Macaulayness.
 
-A $\mathbb Q$-Gorenstein deformation is locally induced by a $\mu_r$-equivariant deformation of these covers. Equivalently, in the usual flat family of demi-normal varieties, the reflexive powers $\omega_{X/S}^{[m]}$ commute with arbitrary base change and some positive power is invertible.
+A $\mathbb Q$-Gorenstein deformation is locally induced by a $\mu_r$-equivariant deformation of these covers. For a flat family $X\to S$ of finite type over $\mathbb C$ with demi-normal fibers, the relative formulation requires every divisorial power $\omega_{X/S}^{[m]}$ to be flat over $S$ and commute with arbitrary base change, with some positive power invertible. Here the divisorial power is extended from the relative Gorenstein locus; $m$ ranges over all integers.
 
 The local stacks $[\widetilde X/\mu_r]$ glue to the **index-one covering stack**. A family is “almost lci” in Alexeev's usage when its index-one covering stack is lci over the base.
 
