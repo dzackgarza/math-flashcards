@@ -352,7 +352,7 @@ How are ACPs related to toric pairs?
 :::
 
 ::: {.back card-id="card-3c8695ea7ecde08d"}
-Prop 5.1: every ACP $(Y, D)$ is a sequence of node smoothings and internal blowups of a toric pair $(\overline{Y}, \overline{D})$.
+Every ACP $(Y, D)$ is a sequence of node smoothings and internal blowups of a toric pair $(\overline{Y}, \overline{D})$.
 :::
 
 ::: {.front card-id="card-bfda170c1a6d2203"}

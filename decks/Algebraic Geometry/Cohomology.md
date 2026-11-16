@@ -225,7 +225,7 @@ When does Cech cohomology compute sheaf cohomology?
 :::
 
 ::: {.back card-id="card-b3dc6977ff83178a"}
-For $X$ a Noetherian separated scheme and $\mcf\in \QCoh(X)$. (Thm 4.5) Alternatively, whenever $\mcf$ has no cohomology on any open in a cover $\mcu$.
+For $X$ a Noetherian separated scheme and $\mcf\in \QCoh(X)$. Alternatively, whenever $\mcf$ has no cohomology on any open in a cover $\mcu$.
 :::
 
 ::: {.front card-id="card-7b0ae0c2f2899228"}

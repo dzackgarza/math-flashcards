@@ -728,7 +728,9 @@ requires retrieval [1, 2].
 
 Test mathematical content, not a source's theorem, proposition, or definition
 number. Use the mathematical object, hypotheses, conclusion sought, or standard
-name to identify the task. Keep source numbering in references on the back.
+name to identify the task. Source numbers may appear only in identifiable
+citations on the back, separate from the answer. Remove bare source numbers;
+moving an unexplained number from the front into the answer does not fix the card.
 For example, replace “Thm 4.3.1 (fundamental)” with “How does the lattice
 exponential $e_L(ax)$ depend on $e_L(x)$ and $a^{-1}L/L$?” Preserve the formula
 and its derivation on the back. A source locator is not a mathematical recall cue.

@@ -111,7 +111,7 @@ What is the Kunneth theorem?
 :::
 
 ::: {.back card-id="card-5f25fa26b584c6bc"}
-Theorem A.5.2 (Kunneth Theorem). Let $C_\bullet$ and $D_\bullet$ be complexes of right and left $R$-modules, respectively, for which $C_n$ and $d\left(C_n\right)$ are flat $R$-modules for all $n \in \mathbb{Z}$. Then for all $n \in \mathbb{Z}$, there is a short exact sequence:
+Künneth theorem. Let $C_\bullet$ and $D_\bullet$ be complexes of right and left $R$-modules, respectively, for which $C_n$ and $d\left(C_n\right)$ are flat $R$-modules for all $n \in \mathbb{Z}$. Then for all $n \in \mathbb{Z}$, there is a short exact sequence:
 $$\begin{aligned} 0 \longrightarrow \bigoplus_{i+j=n} \mathrm{H}_i(C) \otimes_R \mathrm{H}_j(D) \longrightarrow & \mathrm{H}_n\left(C \otimes_R D\right) \longrightarrow \\ & \bigoplus_{i+j=n-1} \operatorname{Tor}_1^R\left(\mathrm{H}_i(C), \mathrm{H}_j(D)\right) \longrightarrow 0 \end{aligned}$$
 Topological case: for $R$ a PID, singular chains $C_n(X;R)$ and their boundaries are free, and $C_*(X\times Y;R)\simeq C_*(X;R)\otimes_R C_*(Y;R)$ by Eilenberg-Zilber, so
 $$0\to \bigoplus_{i+j=k}H_{i}(X;R)\otimes _{R}H_{j}(Y;R)\to H_{k}(X\times Y;R)\to \bigoplus_{i+j=k-1}{\mathrm  {Tor}}_{R}^{1}(H_{i}(X;R),H_{j}(Y;R))\to 0$$
@@ -122,7 +122,7 @@ UCT: Change of Coefficients SES
 :::
 
 ::: {.back card-id="card-e77e1d0a0faf351c"}
-Theorem A.5.4 (Universal Coefficients Theorem). Let $C$ be a complex of right $R$-modules in which all $C_n, d\left(C_n\right)$ are flat, and let $M$ be a left $R$ module. There is a short exact sequence
+Universal coefficient theorem. Let $C$ be a complex of right $R$-modules in which all $C_n, d\left(C_n\right)$ are flat, and let $M$ be a left $R$ module. There is a short exact sequence
 $$0 \longrightarrow \mathrm{H}_n(C) \otimes_R M \longrightarrow \mathrm{H}_n\left(C \otimes_R M\right) \longrightarrow \operatorname{Tor}_1^R\left(\mathrm{H}_{n-1}(C), M\right) \longrightarrow 0 .$$
 Topological case: take $C = C_*(X;\mathbb{Z})$ and $M = A$ an abelian group:
 $${\displaystyle 0\to \mathrm{Tor}_\mathbb{Z}^0 (H_{i}(X;\mathbb{Z}), A)\,{\to }\,H_{i}(X;A)\to \mathrm{Tor}_\mathbb{Z}^1 (H_{i-1}(X;\mathbb{Z} ),A)\to 0}$$
@@ -343,7 +343,7 @@ What is a Gerstenhaber algebra?
 :::
 
 ::: {.back card-id="card-c8c54bff10c46b9b"}
-Definition 1.4.8. A Gerstenhaber algebra $(H, \smile,[]$,$) is a free \mathbb{Z}$-graded $k$-module $H$ for which $(H, \smile)$ is a graded commutative associative algebra, $(H,[]$,$) is a graded Lie algebra with bracket [$,$] of degree -1$ and corresponding degree shift by $-1$ on elements, and
+A Gerstenhaber algebra $(H, \smile,[]$,$) is a free \mathbb{Z}$-graded $k$-module $H$ for which $(H, \smile)$ is a graded commutative associative algebra, $(H,[]$,$) is a graded Lie algebra with bracket [$,$] of degree -1$ and corresponding degree shift by $-1$ on elements, and
 $$[\gamma, \alpha \smile \beta]=[\gamma, \alpha] \smile \beta+(-1)^{|\alpha|(|\gamma|-1)} \alpha \smile[\gamma, \beta]$$
 for all homogeneous $\alpha, \beta, \gamma$ in $H$.
 :::

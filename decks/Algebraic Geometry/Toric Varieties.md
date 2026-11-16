@@ -511,7 +511,7 @@ What is $K_X$ (the canonical sheaf) for $X$ toric?
 :::
 
 ::: {.back card-id="card-0c70d88cb73d4df2"}
-Theorem 8.2.3. For a normal toric variety $X_{\Sigma}$, the canonical sheaf $\omega_{X_{\Sigma}}$ is given by
+For a normal toric variety $X_{\Sigma}$, the canonical sheaf $\omega_{X_{\Sigma}}$ is given by
 $$
 \omega_{X_{\Sigma}} \simeq \mathscr{O}_{X_{\Sigma}}\left(-\sum_\rho D_\rho\right) .
 $$

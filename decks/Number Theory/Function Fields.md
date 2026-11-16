@@ -105,8 +105,6 @@ $I$ is discrete and cocompact in $K$.
 
 - Discreteness: $\exists a\in k^{\times}$ st $aI \subseteq A$.
 - Compactness of $K/I$: Riemann-Roch
-
-Reference: Prop. 4.1.1.
 :::
 
 ::: {.front card-id="card-15b76f738e1bec0f"}
@@ -133,8 +131,6 @@ What is an $M$-lattice, and what is its rank?
 
 ::: {.back card-id="card-9d15d0cc12f3a90f"}
 Let $M\subseteq C_\infty$ be a field containing $k$. An $M$-lattice is an $A$-submodule $L\subseteq M^{\mathrm{sep}}\subseteq C_\infty$ that is finitely generated over $A$, discrete in $C_\infty$, and stable under $G_M=\operatorname{Gal}(M^{\mathrm{sep}}/M)$. Its rank is $\operatorname{rank}_A L$.
-
-Reference: Definition 4.2.1.
 :::
 
 ::: {.front card-id="card-a47a773808d252c6"}
@@ -145,8 +141,6 @@ For an $M$-lattice $L$, where is $e_L$ analytic, and where do its Taylor coeffic
 $e_L$ is entire on $C_\infty$, with Taylor coefficients at $0$ in $M$.
 
 - Proof: convergence is due to discreteness of $L$, the Taylor expansion is from $G_M \coloneqq \Gal(M^{ {}^{ \operatorname{sep} } }/M)$ which fixes $L$ and the nature of the continuous action $G_M\curvearrowright M^{ {}^{ \operatorname{sep} } }$. So $e_L$ is a non-constant entire function and thus surjective.
-
-Reference: Prop. 4.2.4.
 :::
 
 ::: {.front card-id="card-8f2e3bd06d6b417a"}
@@ -157,8 +151,6 @@ For $0\ne a\in A$, express $e_L(ax)$ in terms of $e_L(x)$ and the nonzero classe
 $$e_L(ax) = ae_L(x)\cdot \prod_{a\in (a^{-1}L/L)\setminus\left\{{0}\right\}} \qty{1 - {e_L(x)\over e_L(a)}}$$
 
 - Proof: short.
-
-Reference: Thm. 4.3.1.
 :::
 
 ::: {.front card-id="card-fa7e496f4f0f935c"}
@@ -172,8 +164,6 @@ satisfies:
 - ${ \mathbf{F} }_r\dash$linear,
 - $a\in { \mathbf{F} }_r \subset A\implies \phi_a = a \tau^0$,
 - $\phi_{ab}(\tau) = \phi_a(\tau)\phi_b(\tau) = \phi_b(\tau)\phi_a(\tau) = \phi_{ba}(\tau)$.
-
-Reference: Prop. 4.3.2.
 :::
 
 ::: {.front card-id="card-360f6bdb868cede0"}
@@ -184,8 +174,6 @@ What is the Drinfeld module associated to an $A$-lattice $L$, and what is its ra
 The injection
 $$\begin{align} A &\to M\left\{{\tau}\right\} \\ a&\mapsto \phi_a\end{align}$$
 which has rank $d = \operatorname{rank}_A(L)$.
-
-Reference: Definition 4.3.3.
 :::
 
 ::: {.front card-id="card-0d5faf71b98a4979"}
@@ -196,8 +184,6 @@ What is an $A$-field? Define its $A$-characteristic and distinguish generic from
 An $A\dash$field $F$ is a field with a morphism $i:A\to F$; $\ker i =\mfp$ is prime and $\operatorname{ch}F \coloneqq\mfp$; $F$ has "generic characteristic" (char zero) if $\mfp= \left\langle{0}\right\rangle$, otherwise $F$ has finite characteristic.
 
 - Agrees with definition for $A = { \mathbf{F} }_r[T]$.
-
-Reference: Definition 4.4.1.
 :::
 
 ::: {.front card-id="card-4373490afd563e55"}
@@ -273,8 +259,6 @@ For $A={\mathbf F}_r[T]$, what does Yu's theorem say about transcendence of $\ze
 $\zeta_A(i)$ is transcendental over $k$ for every positive integer $i$. If $r-1\nmid i$, then $\zeta_A(i)/\varepsilon^i$ is also transcendental over $k$.
 
 - Here $\zeta_A(s) = \sum_{I\subseteq A} I^{-s}$.
-
-Reference: Yu, Thm. 8.18.8.
 :::
 
 ::: {.front card-id="card-370ac2c151e43eba"}
@@ -288,7 +272,7 @@ $$\widehat{\xi}(s) \coloneqq s(1-s)\xi(s)$$
 to get an entire function with $\widehat{\xi}(s) = \widehat{\xi}(1-s)$.
 
 - RH: the zeroes of $\widehat{\xi}$ are of the form ${1\over 2} + i\beta$ for $\beta\in {\mathbf{R}}$; can shift and rotate to get a function $\theta(u)$ and equivalently ask that the zeros of $\theta$ are real.
-- Relate to a theorem of Wan 8.24.5: Let $y\in { \ZZ_{\widehat{p}} }$ where each $r\dash$adic digit of $-y$ is less than $p$ or equal to $r-1$. Then the zeros of $\zeta_A(x, y)$ are in $K$ and simple.
+- Relate to Wan's theorem: Let $y\in { \ZZ_{\widehat{p}} }$ where each $r\dash$adic digit of $-y$ is less than $p$ or equal to $r-1$. Then the zeros of $\zeta_A(x, y)$ are in $K$ and simple.
 - ${\mathbf{R}}$ is a "small" local field and the zeros of $\theta(u)$ are either in ${\mathbf{R}}$ or $\CC$, a degree 2 extension. Compare to zeros of $\zeta_A(s)$ which could be in an extension of $K$ of arbitrary (even infinite) degree but are in $K$ itself.
 :::
 
