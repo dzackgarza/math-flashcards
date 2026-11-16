@@ -104,11 +104,9 @@ Geometry deck. Vocabulary is a separate study subject.
   bundles they define on moduli of curves.
 
 - Covers owns the general construction of finite abelian covers. Surfaces /
-  Abelian Cover Surfaces owns Campedelli and Burniat constructions; ADE Pairs
-  owns the index-two surface–boundary shapes and priming used in double-cover
-  compactifications. These global shapes differ from the local ADE germs in
-  Surface Singularities. Alexeev–Pardini's papers on abelian covers and
-  Alexeev–Thompson's *ADE surfaces and their moduli* fix these conventions.
+  Abelian Cover Surfaces owns Campedelli and Burniat constructions and
+  double-cover surface pairs. Surface Singularities owns the local ADE germs.
+  Alexeev–Pardini's papers on abelian covers fix the cover conventions.
 
 - Abelian Varieties owns polarizations, period spaces, and semiabelic
   compactifications. Symplectic Varieties owns symplectic singularities,

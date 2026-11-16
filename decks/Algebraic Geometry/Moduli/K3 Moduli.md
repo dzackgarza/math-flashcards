@@ -279,35 +279,13 @@ An arithmetic quotient of a type IV domain, i.e. a Shimura variety for $\SO_{2, 
 Quasiprojective, $\dim F_{2d} = 19$ for each $d$.
 :::
 
-::: {.front card-id="card-681a11bbc6a0be2c"}
-What is $F_\rho^{\mathrm{ade}}$?
-:::
-
-::: {.back card-id="card-681a11bbc6a0be2c"}
-$(\mathbb{D}_\rho \setminus\Delta_\rho)/\Gamma_\rho$
-
-Obtained from smooth K3s by contracting $(-2)\dash$curves orthogonal to $C_1 \in  \mathrm{Fix}(\sigma)$ with $g\geq 2$
-
-Has a separated stack.
-:::
-
-::: {.front card-id="card-6e339cb955627865"}
-What is $\overline{F_\rho}^\mathrm{slc}$?
-:::
-
-::: {.back card-id="card-6e339cb955627865"}
-The geometrically meaningful compactification Valery constructs, stable pairs w/automorphisms
-
-Main theorem: is a semitoroidal compactification of $\mathbb{D}_\rho/\Gamma_\rho$.
-:::
-
 ::: {.front card-id="card-ac88b51027b8331a"}
-What is $\Delta_\rho$?
+For K3 surfaces with a finite-order nonsymplectic automorphism acting as $\rho$ on the K3 lattice, which root hyperplanes form the discriminant in its period domain?
 :::
 
 ::: {.back card-id="card-ac88b51027b8331a"}
-Discriminant locus: $\mathbb{D}_\rho \cap\bigcup_{\text{roots }\delta \in (L^G)^\perp} \delta^\perp$.
-
+Write $\mathbb D_\rho$ for the K3 period domain in the eigenspace corresponding to the action on $H^{2,0}$. The discriminant is
+$$\Delta_\rho=\mathbb{D}_\rho \cap\bigcup_{\substack{\delta \in (L^G)^\perp\\ \delta^2=-2}} \delta^\perp.$$
 $L^G \coloneqq \mathrm{Fix}(\rho) \subset S_\rho$ the fixed classes for $G = \left\langle{\rho}\right\rangle$
 
 $L \coloneqq\Lambda_{\mathrm{K3}}$.
@@ -315,6 +293,10 @@ $L \coloneqq\Lambda_{\mathrm{K3}}$.
 $S_\rho \coloneqq T_\rho^\perp$, $T_\rho \coloneqq L^\prim_\CC\cap L$ generic Picard/transcendental lattices.
 
 $L^\prim_\CC$ the sum of primitive eigenspaces of $\rho$.
+
+The condition $(\omega,\delta)=0$ makes the root $\delta$ algebraic. These hyperplanes exclude roots orthogonal to the invariant lattice; they do not exclude every possible Picard-rank jump.
+
+Reference: Alexeev–Deopurkar–Han, *Compactifications of moduli spaces of K3 surfaces with a higher-order nonsymplectic automorphism*, §2.1.
 :::
 
 ::: {.front card-id="card-f1f9e680ce07e9ba"}
@@ -338,7 +320,9 @@ What is the importance of a recognizable divisor?
 :::
 
 ::: {.back card-id="card-beee68f3907963f4"}
-If $R$ is recognizable, then $\overline{F_\rho}^{\mathrm{slc}}$ is a semitoroidal compactification of $F_\rho$ for a unique semifan $\mcf_R$.
+For the moduli $F_\rho$ of K3 surfaces with the specified nonsymplectic automorphism, choose a canonical polarizing divisor $R$. Let $\overline{F_\rho}^{\mathrm{slc}}$ denote the normalization of the closure of the associated pairs $(X,\epsilon R)$ in stable-pair moduli, for small positive rational $\epsilon$.
+
+If $R$ is recognizable, then $\overline{F_\rho}^{\mathrm{slc}}$ is semitoroidal for a unique semifan $\mcf_R$.
 :::
 
 ::: {.front card-id="card-77e273a483fa5164"}
@@ -508,7 +492,7 @@ What is the definition of Discriminant locus?
 :::
 
 ::: {.back card-id="card-30b9ac4219789b76"}
-In the period domain of $\rho$-marked K3 surfaces, $\Delta_\rho=\mathbb D_\rho\cap\bigcup_{\delta}\delta^\perp$, where $\delta$ runs over roots in $(L^G)^\perp$. Its complement parametrizes periods with no extra algebraic classes.
+In the period domain of $\rho$-marked K3 surfaces, $\Delta_\rho=\mathbb D_\rho\cap\bigcup_{\delta}\delta^\perp$, where $\delta$ runs over $(-2)$-roots orthogonal to the invariant lattice $L^G$. Its complement excludes these roots from the algebraic classes; other extra algebraic classes can remain.
 :::
 
 ::: {.front card-id="card-4527c4cdf3791038" tags="definition"}

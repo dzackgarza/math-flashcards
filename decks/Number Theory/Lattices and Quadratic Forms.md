@@ -140,8 +140,6 @@ $\dim = 16$: $E_8{ {}^{ \scriptscriptstyle\oplus^{2} }  }$ and $\Gamma_{16} = D_
 $\dim = 24$: 24 Niemeier lattices $N_i$, including the Leech lattice: uniquely has no roots.
 
 $\dim = 32$: billions.
-
-$\dim = 40$: at least $8.45\cdot10^{51}$ classes of extremal even unimodular lattices alone (Peters' mass-formula bound).
 :::
 
 ::: {.front card-id="card-d5f5aa469e5492cc"}

@@ -134,19 +134,15 @@ Reference: Alexeev–Brunyate, *Extending the Torelli map to toroidal compactifi
 :::
 
 ::: {.front card-id="abelian-graph-coedges-emm-dicing" tags="definition construction example"}
-Define graph coedges, an edge-minimizing metric, and a lattice dicing. Explain the role of bridges.
+Define graph coedges and a lattice dicing. Explain the role of bridges.
 :::
 
 ::: {.back card-id="abelian-graph-coedges-emm-dicing"}
 Orient a connected graph $\Gamma$ and set $H_1=\ker(\partial:\mathbb Z^E\to\mathbb Z^V)$. The **coedge** $e^*$ is the restriction of the $e$th coordinate functional to $H_1$, an element of $H^1(\Gamma,\mathbb Z)$. It is zero iff $e$ is a bridge.
 
-An edge-minimizing metric is a positive-definite quadratic form $q$ on $H^1(\Gamma,\mathbb R)$ such that
-$$q(e^*)=1\quad(e^*\ne0),\qquad q(v)\ge1\quad(0\ne v\in H^1(\Gamma,\mathbb Z)).$$
-It is strong if equality occurs only at the nonzero signed coedges. Specify whether $q$ has integral, rational, or real coefficients.
-
 A **dicing** is the periodic subdivision cut out by $u_i(x)=m$, $m\in\mathbb Z$, for a spanning unimodular system of integral covectors: every maximal independent subset is a lattice basis. Thus all subdivision vertices are lattice points.
 
-Example: for a cycle graph all nonzero coedges equal $\pm1$ in $H^1\simeq\mathbb Z$; $q(x)=x^2$ is strong. Its dicing is the unit-interval subdivision.
+Example: for a cycle graph all nonzero coedges equal $\pm1$ in $H^1\simeq\mathbb Z$. The hyperplanes $x=m$, $m\in\mathbb Z$, cut the cycle lattice $H_1(\Gamma,\mathbb R)\simeq\mathbb R$ into unit intervals.
 
 Reference: Alexeev–Brunyate, §§3 and 5; Alexeev, *Moduli of Weighted Hyperplane Arrangements*, §3.10.
 :::

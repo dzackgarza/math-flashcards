@@ -173,7 +173,7 @@ $\xi(V, W) \subset W\times L(V\to W)$ given by $\left\{{(v, \psi) \st v\perp \ps
 :::
 
 ::: {.front card-id="card-1cd0d32eba84d3c1"}
-What is $O(V, W)$?
+For finite-dimensional real inner product spaces $V,W$, what is the morphism space $O(V,W)$ used to define orthogonal spectra?
 :::
 
 ::: {.back card-id="card-1cd0d32eba84d3c1"}
@@ -181,7 +181,7 @@ The one-point compactification of $\xi(V, W)$ the orthogonal complement bundle; 
 :::
 
 ::: {.front card-id="card-9185ede38bf3fdee"}
-What is the category $O$?
+Define the topologically enriched category $O$ used to define orthogonal spectra, including composition.
 :::
 
 ::: {.back card-id="card-9185ede38bf3fdee"}
@@ -196,6 +196,10 @@ What is an orthogonal spectrum? A $G\dash$spectrum?
 A based $X\in \Fun^\text{cts}(O, \Top_*)$ into based spaces.
 
 For $G\dash$spectra: $X\in \Fun^\text{cts}(O, G\dash\Top_*)$ into based $G\dash$spaces.
+
+This model encodes suspension by representation spheres and supports genuine equivariant stable homotopy theory when stable equivalences are tested on equivariant homotopy groups in a complete universe.
+
+Reference: Schwede, *Global Homotopy Theory*, §3.1.
 :::
 
 ::: {.front card-id="card-f6b5c945918010b8"}

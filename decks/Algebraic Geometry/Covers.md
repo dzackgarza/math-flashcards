@@ -38,6 +38,8 @@ The **standard cover** is $\operatorname{Spec}_Y\bigoplus_\chi L_\chi^{-1}$ with
 
 For $G=\mathbb Z/2$: $L^2\simeq\mathcal O_Y(D)$ and the algebra is $\mathcal O_Y\oplus L^{-1}$ with local equation $z^2=s_D$.
 
+Example over $\mathbb C$: a smooth conic $D=(q_2=0)\subset\mathbb P^2$ has $L=\mathcal O(1)$. The double cover is the smooth quadric $w^2=q_2(x,y,z)$ in $\mathbb P^3$, hence $\mathbb P^1\times\mathbb P^1$.
+
 Reference: Alexeev–Pardini, *Non-normal abelian covers*, §1.2.
 :::
 

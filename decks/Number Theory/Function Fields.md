@@ -244,16 +244,8 @@ where $\overline{w}$ is an point over $w$ in $\kbar$ and $I_{\overline{w}}$ is i
 $$L_V(s) \coloneqq\prod_{w\in {\left\lvert {X} \right\rvert}} f_w({\left\lVert {w} \right\rVert}^{-s})^{-1},\qquad {\left\lVert {w} \right\rVert} \coloneqq{\sharp}\kappa(w)$$
 :::
 
-::: {.front card-id="card-998ffc9f1e45a806"}
-Thm 8.18.8 (Yu): let $A = { \mathbf{F} }_r[T]$ and $\zeta_A(s)$ be its zeta function, then $\zeta_A(i)$ is transcendental over $k$ for all positive $i$. If $i$ is not divisible by $r-1$, then $\zeta_A(i)/{\varepsilon}^i$ is transcendental over $k$.
-:::
-
-::: {.back card-id="card-998ffc9f1e45a806"}
-- Here $\zeta_A(s) = \sum_{I\subseteq A} I^{-s}$.
-:::
-
 ::: {.front card-id="card-370ac2c151e43eba"}
-Recalling classical RH: define
+Define the completed Riemann zeta function and its entire normalization. State RH in terms of their zeros.
 :::
 
 ::: {.back card-id="card-370ac2c151e43eba"}
@@ -263,8 +255,6 @@ $$\widehat{\xi}(s) \coloneqq s(1-s)\xi(s)$$
 to get an entire function with $\widehat{\xi}(s) = \widehat{\xi}(1-s)$.
 
 - RH: the zeroes of $\widehat{\xi}$ are of the form ${1\over 2} + i\beta$ for $\beta\in {\mathbf{R}}$; can shift and rotate to get a function $\theta(u)$ and equivalently ask that the zeros of $\theta$ are real.
-- Relate to a theorem of Wan 8.24.5: Let $y\in { \ZZ_{\widehat{p}} }$ where each $r\dash$adic digit of $-y$ is less than $p$ or equal to $r-1$. Then the zeros of $\zeta_A(x, y)$ are in $K$ and simple.
-- ${\mathbf{R}}$ is a "small" local field and the zeros of $\theta(u)$ are either in ${\mathbf{R}}$ or $\CC$, a degree 2 extension. Compare to zeros of $\zeta_A(s)$ which could be in an extension of $K$ of arbitrary (even infinite) degree but are in $K$ itself.
 :::
 
 ::: {.front card-id="card-ae19b5ca76b254e2" tags="definition"}

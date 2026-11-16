@@ -95,23 +95,33 @@ ${\mathsf{Sp}}$ does not have a diagonal map, $X\to X{ {}^{ \scriptstyle\otimes_
 :::
 
 ::: {.front card-id="card-99e54636d46d62ff"}
-Define the Tate diagonal.
+Define the Tate diagonal for a prime $p$. Where is it used?
 :::
 
 ::: {.back card-id="card-99e54636d46d62ff"}
+Let $T_p(X)=(X^{\otimes p})^{tC_p}$, with $C_p$ cyclically permuting the factors; $(-)^{tC_p}$ is the cofiber of the norm from homotopy orbits to homotopy fixed points.
+
 The natural transformation
 $$ \Delta_p: \mathrm{id}_{\mathrm{Sp}} \rightarrow T_p: X \rightarrow(X \otimes \ldots \otimes X)^{t C_p}$$
 of endofunctors of $\mathrm{Sp}$ which corresponds to the map
 $$\mathbb{S} \rightarrow T_p(\mathbb{S})=\mathbb{S}^{t C_p}$$
 which is the composition $\mathbb{S} \rightarrow \mathbb{S}^{h C_p} \rightarrow \mathbb{S}^{t C_p}$.
+
+Use: constructs the cyclotomic Frobenius $\varphi_p:\operatorname{THH}(A)\to\operatorname{THH}(A)^{tC_p}$ for topological Hochschild homology, hence the cyclotomic structure used to define topological cyclic homology.
+
+Reference: Nikolaus–Scholze, *On topological cyclic homology*, Definition III.1.4 and §III.2.
 :::
 
 ::: {.front card-id="card-7f04f673834a95af"}
-What is the right analog of ${ \ZZ_{\widehat{p}} }$ in ${\mathsf{Sp}}$?
+What is the $p$-complete sphere, and how does it compare with $\mathbb S^{tC_p}$ and $H\mathbb Z^{tC_p}$ for trivial $C_p$-actions?
 :::
 
 ::: {.back card-id="card-7f04f673834a95af"}
-${\mathbf{S}}^{tC_p}$, since $H\ZZ^{tC_p}$ is not connective.
+The $p$-completion $\mathbb S_p^\wedge$ of the sphere is the spectral analogue of completing $\mathbb Z$ at $p$. The Segal conjecture for $C_p$ identifies
+$$\mathbb S_p^\wedge\simeq\mathbb S^{tC_p}.$$
+It is connective. In contrast, $H\mathbb Z^{tC_p}$ is not connective, so applying the Tate construction to $H\mathbb Z$ does not give the $p$-complete sphere.
+
+Reference: Nikolaus–Scholze, *On topological cyclic homology*, Remark III.1.6.
 :::
 
 ::: {.front card-id="card-d66a92114e3de17e"}

@@ -119,20 +119,6 @@ $\operatorname{Acc}(S)$ consists of limits of sequences of **distinct** elements
 Reference: Alexeev–Liu, *On accumulation points of volumes of log surfaces*, §§2 and 6.
 :::
 
-::: {.front card-id="singularity-nonrational-center" tags="definition comparison example"}
-Define a nonrational center. How does it differ from a log canonical center?
-:::
-
-::: {.back card-id="singularity-nonrational-center"}
-$X/\mathbb C$ normal, $f:Y\to X$ a resolution. A **nonrational center** is the irreducible closed subvariety determined by an associated prime of some $R^if_*\mathcal O_Y$, $i>0$. These sheaves are independent of the resolution.
-
-An lc center of $(X,\Delta)$ is instead the center of a divisor with $A(E,X,\Delta)=0$. It depends on the boundary. For an lc pair every nonrational center is an lc center, but the converse fails.
-
-Example: $(\mathbb A^2,\{x=0\})$ has an lc center, while its underlying smooth variety has rational singularities and no nonrational centers. A normal cone over an elliptic curve has a nonrational center at its vertex.
-
-Reference: Alexeev–Hacon, *Non-rational centers of log canonical singularities*, Definition 1.1 and Theorem 1.2.
-:::
-
 ::: {.front card-id="singularity-embedded-snc-qlc" tags="definition construction"}
 Define a globally embedded SNC pair and a quasi-log canonical structure. State the sheaf condition and the strata.
 :::
@@ -266,6 +252,8 @@ What is a log canonical center of a log canonical pair $(X,\Delta)$?
 
 ::: {.back card-id="card-a07cec7de306d8eb"}
 A subvariety $c_X(E)$ that is the center of a prime divisor over $X$ with $a(E,X,\Delta)=-1$. The union of these centers is the non-klt locus.
+
+Example: $(\mathbb A^2,\{x=0\})$ has the line $\{x=0\}$ as an lc center, although the underlying variety is smooth and has rational singularities. The center depends on the boundary.
 :::
 
 ::: {.front card-id="card-e65c8bbc605edf10"}
