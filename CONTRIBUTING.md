@@ -172,6 +172,46 @@ of logical connectives. The use of direct verbs and removal of empty phrases
 also follows the
 [Microsoft concise-writing guidance](https://learn.microsoft.com/en-us/style-guide/word-choice/use-simple-words-concise-sentences).
 
+### Remove language that obscures the retrieval task
+
+The learner should retrieve mathematics and check the answer without first
+decoding the author's phrasing. Reject wording that hides the objects,
+operations, relationships, or decisive distinctions, even when it is short.
+
+| Pattern | Flashcard failure | Required form |
+| --- | --- | --- |
+| Hidden objects and operations | “The recovery of the sequence is achieved through dualization” buries the operation in abstract nouns. | “Dualize: [sequence]”, retaining the intermediate steps that explain how to obtain it. |
+| Abstract noun piles | “Boundary coefficient admissibility controls singularity classification” leaves the actual test unstated. | Under the stated pair hypotheses: “SNC boundary: klt iff all $b_i<1$; lc iff all $b_i\le1$.” |
+| Ambiguous references | “This preserves the relevant property” requires guessing both the operation and the property. | Name what acts, on which object, and what it preserves. |
+| Empty significance claims | “An important bridge between the theories” supplies no retrievable relationship. | State the implication, correspondence, formula, or concrete use. |
+| Buried distinctions | Expository setup delays the quantifier, inequality, or exception that distinguishes the concepts. | Put the distinguishing condition first, with its assumptions; place supporting explanation beside it. |
+| Invented metaphors and terminology | “The boundary is the gatekeeper of admissibility” adds a translation task and competes with established terminology. | State the boundary condition in standard mathematical language. |
+| Repeated paraphrases | Reading a formula aloud in prose adds another pass through the same content. | Retain the formula and any explanation that adds interpretation, reasoning, or a useful memory cue. |
+
+These patterns cause specific problems for review:
+
+- An unclear retrieval target leaves the learner unsure what to produce.
+- An answer without explicit criteria cannot reliably identify a missing
+  hypothesis, wrong quantifier, or incorrect conclusion.
+- Familiarity with polished wording can conceal inability to reconstruct the
+  mathematical relationship. Ask for the relationship and make it checkable.
+- Invented terminology competes with standard vocabulary and existing authored
+  memory cues.
+- Buried content imposes the same decoding work on every repetition.
+
+Before accepting a card, check that the learner can immediately identify the
+objects, conditions, operation or relationship, and conclusion relevant to its
+prompt, then compare an attempted answer against them. A short sentence can
+fail this check; a substantial derivation or comparison table can pass it.
+Repair the wording while preserving mathematical content and useful authored
+explanations. Do not infer poor quality from a stylistic marker alone.
+
+This applies the clarity taxonomy in
+[Zonder Labs, Why is AI Slop so Frustrating to Read?](https://zonderlabs.com/slop):
+hidden actors and actions, vague wording, and empty statements or misplaced
+emphasis. The consequences for flashcard review above are editorial reasoning
+for this collection; the article does not establish learning outcomes.
+
 ## Ban mathematical hand-waving
 
 A card must give enough information to reconstruct the requested statement,
