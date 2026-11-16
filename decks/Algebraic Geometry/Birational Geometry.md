@@ -379,7 +379,11 @@ What is a minimal model?
 :::
 
 ::: {.back card-id="card-15b64175339c625d"}
-For $\kappa(X) \geq 0$, a birational $\tilde X\to X$ with $K_{\tilde X}$ nef and $\tilde X$ terminal.
+For a smooth projective variety $X$ over $\mathbb C$, a minimal model is a normal projective $\mathbb Q$-factorial terminal variety $Y$ with $K_Y$ nef and a birational map $X\dashrightarrow Y$ that extracts no divisors and is $K_X$-negative. On a common resolution $p:W\to X$, $q:W\to Y$:
+$$p^*K_X=q^*K_Y+E,$$
+where $E\ge0$ is $q$-exceptional and its support contains the strict transforms of every divisor contracted by $X\dashrightarrow Y$.
+
+The map to $Y$ need not be a morphism. A good minimal model additionally has $K_Y$ semiample. For a projective $\mathbb Q$-factorial klt pair, replace $K_X,K_Y$ by $K_X+\Delta,K_Y+\Delta_Y$, and terminality by klt.
 :::
 
 
@@ -1108,4 +1112,137 @@ What is the definition of Valuative criterion?
 
 ::: {.back card-id="card-be3216d4ed9f3f10"}
 The valuative criterion for properness: a morphism $f:X\to Y$ of finite type is proper if and only if for every DVR $R$ with fraction field $K$, every commutative square $\operatorname{Spec}K\to X$, $\operatorname{Spec}R\to Y$ admits a unique lifting $\operatorname{Spec}R\to X$. Separatedness requires only uniqueness.
+:::
+
+::: {.front card-id="mmp-program-and-termination" tags="definition comparison"}
+For a projective $\mathbb Q$-factorial klt pair $(X,\Delta)/\mathbb C$, describe the steps and possible endpoints of a $(K_X+\Delta)$-MMP. What does termination assert, and why do divisorial contractions not cause the difficulty?
+:::
+
+::: {.back card-id="mmp-program-and-termination"}
+At each stage choose a $(K_{X_i}+\Delta_i)$-negative extremal ray.
+
+| Contraction | Next operation |
+| --- | --- |
+| Divisorial | Replace $X_i$ by its target and push forward $\Delta_i$ |
+| Small | Replace $X_i$ by its flip over the contraction target |
+| Fiber type | Stop at a Mori fiber space |
+| No negative ray | Stop with $K_{X_i}+\Delta_i$ nef: a minimal model |
+
+Termination of flips: every sequence of flips of the specified pair is finite. Existence of each flip does not assert this. Divisorial contractions decrease the nonnegative integer $\rho(X_i)$; flips preserve it. Thus an infinite MMP would eventually consist only of flips. A nef endpoint need not be semiample by definition.
+
+Reference: Birkar, *Birational geometry*, §§4.2, 5.2.
+:::
+
+::: {.front card-id="mmp-flip-flop-models" tags="definition comparison"}
+Distinguish a flip, a flop, a minimal model, a good minimal model, and a canonical model for a projective klt pair over $\mathbb C$.
+:::
+
+::: {.back card-id="mmp-flip-flop-models"}
+Write $D=K_X+\Delta$.
+
+| Object | Defining feature |
+| --- | --- |
+| Flip of a small contraction $f:X\to Z$ | $-D$ is $f$-ample; $X\dashrightarrow X^+$ is an isomorphism in codimension one; $X^+\to Z$ is small and $D^+$ relatively ample |
+| Flop | Small birational modification over $Z$ with $D$ numerically trivial over $Z$; an auxiliary relatively ample divisor changes sign |
+| Log minimal model $Y$ | Birational contraction, $\mathbb Q$-factorial klt, $D_Y$ nef, discrepancies increase strictly for contracted divisors |
+| Good log minimal model | A log minimal model with $D_Y$ semiample |
+| Log canonical model in the big case | $\operatorname{Proj}\bigoplus_{m\ge0}H^0(X,\mathcal O_X(\lfloor mD\rfloor))$, with its ample log canonical divisor |
+
+Different good minimal models can map to the same canonical model. On a minimal surface of general type, curves with $K\cdot C=0$ can be contracted by the canonical map even though no $(-1)$-curve remains.
+:::
+
+::: {.front card-id="mmp-abundance-nonvanishing" tags="conjecture comparison"}
+State log nonvanishing and log abundance for projective klt $\mathbb Q$-pairs over $\mathbb C$. Distinguish these assertions from finite generation and give a reason that nefness alone is insufficient for an arbitrary divisor.
+:::
+
+::: {.back card-id="mmp-abundance-nonvanishing"}
+Put $D=K_X+\Delta$.
+
+| Assertion | Conclusion |
+| --- | --- |
+| Nonvanishing conjecture | $D$ pseudoeffective $\Rightarrow D\sim_{\mathbb Q}E$ for some $E\ge0$ |
+| Abundance conjecture | $D$ nef $\Rightarrow D$ semiample |
+| Finite generation | The graded ring of sections has finitely many homogeneous generators |
+
+For nef $D$, abundance predicts $\kappa(D)=\nu(D)$ as well as the morphism defined by a divisible multiple. These are statements about adjoint divisors. A nontorsion degree-zero line bundle on an elliptic curve is nef with no sections in any positive power: its section ring is just $\mathbb C$, hence finitely generated, but it is not semiample.
+
+The conjectural formulations are not blanket theorems in arbitrary dimension. Surface abundance and the big-boundary existence results are separate theorems with stronger hypotheses.
+:::
+
+::: {.front card-id="mmp-known-existence-boundaries" tags="theorem comparison"}
+For a projective $\mathbb Q$-factorial klt pair $(X,\Delta)/\mathbb C$, what do the characteristic-zero existence results provide when $\Delta$ is big, or when $K_X+\Delta$ is not pseudoeffective? What do they not say about an arbitrary flip sequence?
+:::
+
+::: {.back card-id="mmp-known-existence-boundaries"}
+| Hypotheses | Established conclusion |
+| --- | --- |
+| $\Delta$ big and $K_X+\Delta$ pseudoeffective | A log minimal model exists; the big-boundary MMP with scaling can be run to termination |
+| $K_X+\Delta$ not pseudoeffective | An MMP with scaling of an ample divisor terminates in a Mori fiber space |
+| A klt flipping contraction in characteristic zero | Its flip exists |
+
+Existence of a terminating choice is weaker than termination of every possible sequence. Finite generation of a canonical ring does not by itself prove abundance at a nef endpoint.
+
+Reference: Birkar–Cascini–Hacon–McKernan, *Existence of minimal models for varieties of log general type*, Theorem 1.2 and Corollaries 1.3.2–1.3.3.
+:::
+
+::: {.front card-id="mmp-scaling-algorithm" tags="construction application"}
+Define MMP with scaling of an ample $\mathbb Q$-divisor $A$ for a projective $\mathbb Q$-factorial klt pair, starting with $K_X+\Delta+A$ nef. What happens to the scaling numbers?
+:::
+
+::: {.back card-id="mmp-scaling-algorithm"}
+On $X_i$, let $\Delta_i,A_i$ be the transforms and set
+$$\lambda_i=\inf\{t\ge0:K_{X_i}+\Delta_i+tA_i\text{ is nef}\}.$$
+If $K_{X_i}+\Delta_i$ is not nef, choose a negative extremal ray $R_i$ satisfying
+$$(K_{X_i}+\Delta_i+\lambda_iA_i)\cdot R_i=0.$$
+Contract it; stop in the fiber-type case, otherwise perform the divisorial contraction or flip and repeat. The transforms $A_i$ need not stay ample. The numbers satisfy $\lambda_{i+1}\le\lambda_i$; monotonicity alone does not prove finitely many steps.
+
+For $\mathbb P^2$, $A=4H$ gives $\lambda_0=3/4$ and the contraction to a point. The output is a Mori fiber space, not a nef canonical model.
+:::
+
+::: {.front card-id="mmp-special-termination" tags="definition comparison"}
+What does special termination mean for a sequence of flips of a $\mathbb Q$-factorial dlt pair $(X,\Delta)$? How does adjunction to the boundary enter the question?
+:::
+
+::: {.back card-id="mmp-special-termination"}
+Eventually the flipping and flipped loci are disjoint from the transforms of $\lfloor\Delta\rfloor$. Flips may still occur elsewhere; special termination is weaker than termination.
+
+For a coefficient-one component $S$, dlt adjunction gives
+$$(K_X+\Delta)|_S=K_S+\operatorname{Diff}_S(\Delta-S).$$
+It relates birational changes along $S$ to lower-dimensional log birational geometry. This is the inductive role of special termination. Its definition does not assume that an arbitrary sequence has this property.
+:::
+
+::: {.front card-id="mmp-termination-adjunction" tags="definition theorem application"}
+Define classical termination of adjunction on a smooth projective complex variety. Relate it to pseudoeffectivity and uniruledness, and compare $\mathbb P^2$ with a K3 surface.
+:::
+
+::: {.back card-id="mmp-termination-adjunction"}
+Adjunction terminates if for every Cartier divisor $D$ there is $m_0(D)$ such that
+$$H^0(X,\mathcal O_X(D+mK_X))=0\qquad(m\ge m_0(D)).$$
+For smooth projective $X/\mathbb C$:
+$$\text{adjunction terminates}\iff K_X\text{ is not pseudoeffective}\iff X\text{ is uniruled}.$$
+The last equivalence is BDPP. The first is the classical adjunction criterion (see Corti, *The minimal model program*, §1).
+
+| $X$ | Calculation |
+| --- | --- |
+| $\mathbb P^2$, $D=dH$ | $D+mK=(d-3m)H$; no sections for $m>d/3$ |
+| K3, $D=0$ | $mK\sim0$ for every $m$; a constant section always remains |
+
+This concerns adjoint linear systems on a fixed variety. Termination of flips concerns a sequence of birational models.
+:::
+
+::: {.front card-id="surface-blackbox-selection" tags="application comparison"}
+Choose a theorem and check its decisive hypothesis in each case: contract a smooth rational curve of square $-1$; test rationality from $q=P_2=0$; prove a nef line bundle $L$ semiample on a smooth Fano variety; compare two smooth minimal surfaces birational with $\kappa\ge0$.
+:::
+
+::: {.back card-id="surface-blackbox-selection"}
+All varieties are smooth projective over $\mathbb C$.
+
+| Data | Result and hypothesis check |
+| --- | --- |
+| $E\cong\mathbb P^1$, $E^2=-1$ | Castelnuovo contracts $E$ to a smooth point; the inverse is a point blowup |
+| $q=P_2=0$ | Castelnuovo rationality; $p_g=0$ alone would not suffice |
+| $L$ nef, $-K$ ample | Base-point-free theorem: $L-K$ ample, hence nef and big; $L$ semiample |
+| Smooth minimal surfaces, $\kappa\ge0$ | Uniqueness of the minimal surface model gives an isomorphism |
+
+Boundary tests: a $(-2)$-curve need not contract to a smooth point; an Enriques surface has $q=p_g=0$ but is not rational; a nef nontorsion degree-zero bundle on an elliptic curve is not semiample; rational minimal surfaces need not be isomorphic.
 :::
