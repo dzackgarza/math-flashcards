@@ -2,6 +2,75 @@
 title: "Algebraic Geometry::Toric Varieties"
 ---
 
+::: {.front card-id="polyhedral-coherent-secondary" tags="definition construction example"}
+Define a coherent subdivision, secondary fan, and secondary polytope for a finite point configuration. Use a square to distinguish subdivisions.
+:::
+
+::: {.back card-id="polyhedral-coherent-secondary"}
+$A\subset\mathbb R^d$ finite, affinely spanning; $P=\operatorname{conv}A$.
+
+- Height function $h:A\to\mathbb R$: project the lower faces of $\operatorname{conv}\{(a,h(a)):a\in A\}$ to $P$. The resulting subdivision is **coherent/regular**.
+- Heights giving the same subdivision form a relatively open polyhedral cone. Their closures form the **secondary fan**, modulo affine functions on $A$.
+- For a triangulation $T$ using vertices in $A$, set $\phi_T(a)=\sum_{\sigma\in T,\ a\in\sigma}\operatorname{vol}(\sigma)$, summing over maximal simplices with one fixed volume normalization. The **secondary polytope** is $\operatorname{conv}\{\phi_T\}$; its normal fan, with the lower-height convention, is the secondary fan.
+
+For the four vertices of a square, compare $h_{00}+h_{11}$ with $h_{10}+h_{01}$. A strict inequality selects one diagonal; equality gives the unsubdivided square. The secondary polytope is a segment. A general subdivision need not be coherent.
+
+Reference: Gel'fand–Kapranov–Zelevinsky, *Discriminants, Resultants, and Multidimensional Determinants*, Chapter 7; Alexeev, *Moduli of Weighted Hyperplane Arrangements*, §2.7.
+:::
+
+::: {.front card-id="polyhedral-fiber-polytope" tags="definition construction example"}
+Define the fiber polytope of a projection of polytopes. What does its normal fan record?
+:::
+
+::: {.back card-id="polyhedral-fiber-polytope"}
+For an affine surjection $\pi:P\to Q$, fix Lebesgue measure on $\operatorname{aff}Q$ and set
+$$\Sigma(P,Q)=\frac1{\operatorname{vol}Q}\int_Q\pi^{-1}(q)\,dq.$$
+The Minkowski integral is the set of averages $\operatorname{vol}(Q)^{-1}\int_Qs(q)\,dq$ of measurable sections $s(q)\in\pi^{-1}(q)$. Its image under $\pi$ is the barycenter of $Q$; translation identifies its affine span with a subspace of $\ker\pi$.
+
+Its normal fan records the coherent subdivisions of $Q$ induced by minimizing a linear functional on each fiber of $\pi$.
+
+Example: projecting the unit square onto its first coordinate gives vertical interval fibers. Their average is $\{1/2\}\times[0,1]$. Secondary polytopes arise from projecting a simplex with vertices indexed by $A$ onto $\operatorname{conv}A$.
+
+Reference: Billera–Sturmfels, *Fiber polytopes*; Alexeev–Pardini, *Explicit compactifications of moduli spaces of Campedelli and Burniat surfaces*, §4.
+:::
+
+::: {.front card-id="toric-stable-polarized-gluing" tags="definition comparison example"}
+Define a polarized stable toric variety. What extra data are needed beyond its complex of polytopes?
+:::
+
+::: {.back card-id="toric-stable-polarized-gluing"}
+Over an algebraically closed field, a polarized stable toric variety $(X,L)$ for a torus $T$ consists of:
+
+- A projective seminormal variety $X$ with a $T$-action and finitely many orbits.
+- Connected reduced stabilizers, hence subtori.
+- An ample $T$-linearized line bundle $L$.
+
+Normalization components are polarized toric varieties. Their lattice polytopes glue along faces into a complex $|\Delta|$ with a map $\rho:|\Delta|\to M_{\mathbb R}$ integral-affine on each cell. The map need not be injective.
+
+Face gluings also require torus translations $t_{ij}$: on triple overlaps $t_{ij}t_{jk}t_{ki}=1$, modulo changes of origins on components. The complex alone need not determine $X$.
+
+Example: two copies of $\mathbb P^1$ glued at torus-fixed endpoints, each with $\mathcal O(1)$, correspond to two unit intervals meeting at an endpoint.
+
+Reference: Alexeev, *Moduli of Weighted Hyperplane Arrangements*, §2.2.
+:::
+
+::: {.front card-id="toric-stable-over-target-pair" tags="definition comparison"}
+Distinguish a stable toric variety over a projective target from a stable toric pair.
+:::
+
+::: {.back card-id="toric-stable-over-target-pair"}
+Fix a projective $T$-scheme $V$ with linearized ample $\mathcal O_V(1)$.
+
+| Object | Additional data on a stable toric variety $X$ |
+| --- | --- |
+| Over $V$ | Finite $T$-equivariant map $f:X\to V$ and $L\simeq f^*\mathcal O_V(1)$ |
+| Stable toric pair $(X,B)$ | Effective ample Cartier divisor $B$, containing no $T$-orbit |
+
+$B$ is not required to be invariant. For $\mathbb P^1$ with its standard torus action, a point of $\mathbb G_m$ gives such a divisor; either fixed point fails the orbit condition.
+
+Reference: Alexeev, *Moduli of Weighted Hyperplane Arrangements*, §§2.4–2.7.
+:::
+
 ::: {.front card-id="convex-lineality-relative-interior" tags="definition application"}
 Distinguish dimension, lineality, pointedness, interior, and relative interior of a convex cone. Test them on a ray and a half-plane in $\mathbb R^2$.
 :::
