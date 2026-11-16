@@ -74,6 +74,12 @@ def main(artifacts: Path) -> None:
                 assert first["ok"], first
                 opened = first["result"]
                 assert opened["state"] == "Open", opened
+                native_log = root / "state" / "math-flashcards" / "diagnostics" / "native" / "native.log"
+                assert native_log.is_file(), "Native request diagnostics were not retained in XDG state"
+                events = native_log.read_text()
+                assert "event=app-start" in events, events
+                assert "event=request-completed action=study-open outcome=ok" in events, events
+                assert "elapsed_ms=" in events and "release=0.1.0" in events, events
                 store = Path(opened["store"])
                 assert store.parent == root / "data" / "math-flashcards" / "study"
                 with closing(sqlite3.connect(opened["record"])) as record:
@@ -101,6 +107,17 @@ def main(artifacts: Path) -> None:
                 restarted = driver.execute_async_script(script, payload)
                 assert restarted == first, restarted
                 assert not hosts[0].is_running()
+                failure = driver.execute_async_script(script, json.dumps({
+                    "action": "study-attach",
+                    "workspace": str(workspace),
+                    "choice": {"kind": "existing", "store": "00000000-0000-0000-0000-000000000000"},
+                }))
+                assert not failure["ok"], failure
+                assert "UnknownStore" in failure["error"], failure
+                events = native_log.read_text()
+                assert "event=study-host-reaped" in events, events
+                assert "event=request-completed action=study-attach outcome=error" in events, events
+                assert "UnknownStore" in events, events
                 with closing(sqlite3.connect(opened["record"])) as record:
                     assert record.execute("select count(*) from writer").fetchone()[0] == writers + 1
                     assert record.execute("select kind from store_event").fetchall() == [("created",)]
@@ -109,6 +126,7 @@ def main(artifacts: Path) -> None:
                 driver = None
                 _, alive = psutil.wait_procs(children, timeout=10)
                 assert all(child.status() == psutil.STATUS_ZOMBIE for child in alive), alive
+                assert "event=app-exit" in native_log.read_text()
             finally:
                 assert service.process is not None
                 children = psutil.Process(service.process.pid).children(recursive=True)
@@ -121,6 +139,9 @@ def main(artifacts: Path) -> None:
                             child.terminate()
                 psutil.wait_procs(alive, timeout=10)
                 service.stop()
+                state = root / "state"
+                if state.is_dir():
+                    shutil.copytree(state, artifacts / "application-state")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/evidence.py", line 53, in evidence
+    yield directory
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/native-study.py", line 149, in <module>
+    main(artifacts)
+    ~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/native-study.py", line 78, in main
+    assert native_log.is_file(), "Native request diagnostics were not retained in XDG state"
+           ~~~~~~~~~~~~~~~~~~^^
+AssertionError: Native request diagnostics were not retained in XDG state
