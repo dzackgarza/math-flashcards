@@ -29,7 +29,17 @@ K3 covers, genus-one fibrations, and compactification problems gives a reason
 to learn their definitions and constructions. It does not make every result
 about these surfaces a recall requirement.
 
-Sources for this scope are the
+The published paper anchoring this scope is Valery Alexeev, Philip Engel,
+D. Zack Garza, and Luca Schaffler,
+[*Compact moduli of Enriques surfaces of degree 2*](https://doi.org/10.1017/nmj.2025.10),
+Nagoya Mathematical Journal 259 (2025), 581–624, arXiv:2312.03638.
+It constructs the stable-pair compactification of numerically degree-two
+polarized Enriques surfaces and identifies its normalization with an explicit
+semitoroidal compactification. Sections 6–7 describe the boundary surfaces
+using ADE and BC constructions. This paper is the user's work, not merely a
+paper by authors whose bibliography is being surveyed.
+
+The broader program is described in the
 [research statement](../../research/writing/research-statement/ResearchStatement.md),
 especially its overview and compactification program, and the Coble manuscript's
 [surface constructions](../../research/writing/coble/surfaces-and-moduli/surface-types.md)
@@ -57,6 +67,83 @@ number theory, and other study subjects described in
 not disposable because it falls outside the surface program. Conversely, a
 tool's usefulness in an unrelated subject does not make it a missing
 prerequisite for the surface program.
+
+## Understand the research before evaluating coverage
+
+Use the published Enriques paper to understand the completed construction and
+the research statement and Coble manuscript to understand the larger program.
+Keep published theorems, draft claims, proposed extensions, and conjectures
+distinct. The Coble and Halphen directions must not silently acquire the status
+of the published Enriques theorem. Bibliography membership, a directory name,
+or a shared coauthor does not establish the user's research objective.
+
+Read an argument far enough to explain its mathematical input, operation, and
+output. An abstract identifies the objective; it does not identify all its
+prerequisites. Follow the definitions and cited results used in the relevant
+construction or proof. For the Enriques paper, the dependencies include:
+
+| Location | Mathematical role | Consequence for card selection |
+| --- | --- | --- |
+| §2, the surface diagram | A K3 double cover of a quadric carries commuting involutions; its quotients give the Enriques and del Pezzo surfaces. | Branch divisors, double-cover algebras, involutions, numerical polarizations, and canonical-divisor calculations support an actual construction. |
+| §3, cusps and Coxeter diagrams | Lattice and reflection data, including folding by involutions, determine cusp diagrams and their maps. | Primitive isotropic sublattices, discriminant forms, divisibility, reflection groups, and folding are working tools; the word "lattice" alone does not justify another lattice-related topic. |
+| §4, integral-affine models | Integral-affine spheres with involutions produce quotient dual complexes on a disk or real projective plane and describe dlt degenerations. | Kulikov models, dual complexes, integral-affine singularities, and quotient constructions have a specific geometric use. |
+| §5.3, Theorem 5.9 | Recognizability supplies a K3 compactification; extending the involution and taking quotients produces a family of stable Enriques pairs. Boundary geometry controls the comparison of compactifications. | Stable limits, families and classifying maps, normalization, finite maps, recognizable divisors, and semifans serve identifiable steps of the argument. |
+| §§6–7, boundary components | ADE surfaces, priming, and involution quotients supply components and their gluings in stable limits. | Learn how to recognize and construct these pairs, including the role of their boundaries and branch data. Their specialized names do not make them incidental. |
+
+This is a map of mathematical uses, not a list of all cards that must exist.
+It also identifies background that a paper can leave implicit: for example,
+Riemann–Hurwitz is used in §6, equation (6.1), to relate the canonical divisors
+of the double-cover pairs. Its statement, hypotheses, and use deserve attention
+even though the paper does not introduce it as a new definition.
+
+For another paper or project, recover the same information from that work:
+the objects studied, the result sought, the constructions and arguments used,
+and the background those steps assume. Identify whether it is the user's own
+work, a tool used by that work, or a separate subject being studied. Do not
+extend this paper's scope to every topic in Alexeev's, Engel's, or Schaffler's
+other publications.
+
+## Evaluate usefulness through a mathematical task
+
+For each proposed coverage finding, connect the candidate to an operation the
+learner needs to perform. State that operation concretely: construct a double
+cover from branch data, compute a discrepancy, identify a cusp from an isotropic
+sublattice, recover a boundary component from a diagram, or check the hypotheses
+of a comparison theorem. "Relevant to moduli" does not identify an operation.
+
+Then distinguish the candidate's role and the recall target:
+
+- **Background assumed by the argument:** recall the usable definition,
+  theorem, calculation, or example, including hypotheses.
+- **A construction used in the research:** recall its inputs, operations,
+  output, and a recoverable example. ADE priming belongs here even though it
+  is specialized.
+- **A result or classification produced by the research:** decide which part
+  must be available for another argument. A construction rule or useful compact
+  classification can deserve a card; copying the entire output is not automatic.
+- **Incidental machinery or a separate research topic:** identify a task in the
+  research or an independent study subject before claiming a coverage gap.
+
+For example, the ADE construction is useful because §§6–7 use it to describe
+stable boundary components. A card should make that construction recoverable;
+memorizing an unexplained paper-local symbol does not achieve the same purpose.
+Conversely, finding a textbook application of lattice dicing establishes a use
+somewhere in mathematics, but does not establish a need in this construction.
+Trace that additional dependency before making an inclusion judgment.
+
+Evaluate relevance, existing coverage, and personal familiarity separately.
+Check current fronts and backs, equivalent terminology, and authored examples
+before declaring a gap. Authorship of a paper is evidence of research relevance,
+not a measurement of recall. Neither a missing card nor an unfamiliar-looking
+term proves what the user does or does not know. Use explicit learning goals or
+actual review evidence for claims about personal knowledge.
+
+Keep the supporting task and source location with the editorial judgment in
+the requested answer or change rationale. Do not create a separate coverage
+ledger. If the dependency or teaching purpose remains unresolved after checking
+the available sources, report that precise uncertainty and preserve existing
+material; do not convert it into a removal decision. These checks must also be
+applied to an audit's proposed replacements before remediation starts.
 
 ## Select knowledge within that remit
 

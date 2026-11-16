@@ -3,8 +3,12 @@
 `CONTRIBUTING.md` owns the concrete research context and teaching remit:
 Enriques–Coble surface compactifications, their K3 covers, and the geometric,
 lattice-theoretic, and combinatorial tools used to construct their boundaries.
-Read that context and its linked research sources before judging coverage or
-scope. The existing independent study subjects remain part of the collection.
+Use its "Understand the research before evaluating coverage" and "Evaluate
+usefulness through a mathematical task" sections before judging coverage or
+scope. They identify the published Enriques paper and trace its constructions
+to the knowledge the cards support. Establish a candidate's mathematical role,
+then assess coverage and personal familiarity separately. The existing
+independent study subjects remain part of the collection.
 Do not substitute a generic graduate curriculum or a cited author's complete
 research output for this remit.
 
