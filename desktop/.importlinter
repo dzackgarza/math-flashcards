@@ -1,0 +1,29 @@
+[importlinter]
+root_packages =
+    study
+    analysis
+include_external_packages = True
+
+[importlinter:contract:analysis-read-only]
+name = Analyses cannot depend on the study core or backend
+type = forbidden
+source_modules =
+    analysis
+forbidden_modules =
+    study
+    anki
+    backend
+
+[importlinter:contract:core-independent]
+name = The study core cannot depend on analyses
+type = forbidden
+source_modules =
+    study
+forbidden_modules =
+    analysis
+
+[importlinter:contract:independent-analyses]
+name = Analyses cannot depend on one another
+type = independence
+modules =
+    analysis.catalog.*

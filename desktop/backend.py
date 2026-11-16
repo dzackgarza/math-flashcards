@@ -30,6 +30,8 @@ from pathlib import Path
 from typing import Annotated, Literal
 from xml.etree import ElementTree
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
 try:
     import ankdown
     from filelock import FileLock, Timeout
