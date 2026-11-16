@@ -409,11 +409,11 @@ What is ${\operatorname{disc}}(\Lambda)$ for a lattice $(\Lambda, \beta)$?
 ::: {.back card-id="card-a9ed496009a79a9e"}
 ${\operatorname{disc}}(\Lambda) \coloneqq\operatorname{det}G(\beta)$ where $G(\beta)$ is the Gram matrix.
 
-Interpret as ${\operatorname{disc}}(\Lambda) = \operatorname{covol}(\Lambda)^2 \coloneqq\operatorname{vol}(V/\Lambda)^2$.
+For a positive-definite Euclidean lattice, ${\operatorname{disc}}\Lambda=\operatorname{covol}(\Lambda)^2=\operatorname{vol}(V/\Lambda)^2$. For an indefinite lattice, the determinant can be negative.
 
-When integral, ${\operatorname{disc}}(\Lambda ) = {\sharp}(\Lambda {}^{ \vee }/\Lambda)$.
+For a nondegenerate integral lattice, $|\operatorname{disc}\Lambda|=\#(\Lambda^\vee/\Lambda)$.
 
-Can compute by taking $M$ a generator matrix for $\Lambda$, then ${\operatorname{disc}}\Lambda = M^tM = (\operatorname{det}M)^2$.
+If the columns of $M$ are a lattice basis in ambient coordinates with pairing matrix $B$, then $G=M^tBM$ and $\operatorname{disc}\Lambda=\det(M^tBM)$. For a square basis matrix in an orthonormal Euclidean basis this is $(\det M)^2$.
 :::
 
 ::: {.front card-id="card-443490d362df78a6"}
@@ -431,9 +431,11 @@ What is an overlattice? Give an example.
 ::: {.back card-id="card-c987fae249683c99"}
 $\Lambda$ is an overlattice of $M$ iff $M\leq \Lambda$ is a sublattice and $[\Lambda: M] < \infty$, so $\operatorname{rank}_\ZZ\Lambda = \operatorname{rank}_\ZZ M$.
 
-$\Lambda {}^{ \vee }$ is always an overlattice of $\Lambda$,
+For nondegenerate integral lattices with the same rational pairing, an **integral** overlattice lies between $M$ and $M^\vee$. The dual is a finite-index supermodule but need not itself be integral: the dual generator of $\langle2\rangle$ has square $1/2$.
 
-$\Lambda$ is always an overlattice of $M\oplus M^\perp$ for any $M\leq \Lambda$.
+For a nondegenerate sublattice $M\leq\Lambda$, $M\oplus M^\perp$ has finite index in $\Lambda$. Nondegeneracy matters: an isotropic line in $U$ is contained in its own orthogonal complement.
+
+Example: in $U=\mathbb Ze\oplus\mathbb Zf$, the vectors $e+f,e-f$ span $\langle2\rangle\oplus\langle-2\rangle$ of index two; $U$ is its even overlattice.
 :::
 
 ::: {.front card-id="card-89fe712e79552f01"}
@@ -723,15 +725,20 @@ Discuss classification of 2-elementary lattices.
 :::
 
 ::: {.back card-id="card-3a514cb7f54c1e95"}
-Indefinite 2-elementary lattices classified by $(r, a,\delta)$:
+Even indefinite 2-elementary lattices are determined by signature, $a=\dim_{\mathbb F_2}A_L$, and coparity $\delta$. In the hyperbolic case the signature is $(1,r-1)$, so the data reduce to $(r,a,\delta)$.
 
-Rank, $\ZZ/2\ZZ\dash$rank, and coparity.
+For the invariant lattice of a nonsymplectic involution on a complex K3, set
+$$g=11-\frac{r+a}{2},\qquad k=\frac{r-a}{2}.$$
+The fixed locus is a genus-$g$ curve and $k$ rational curves, except:
 
-Alternatively: $(g,k,\delta)$ where $g= 11 - {r+a\over 2}$ and $k={r-a\over 2}$; $\mathrm{Fix}(\iota)$ has $k+1$ connected components of genera summing to $g$.
+| $(r,a,\delta)$ | Fixed locus |
+| --- | --- |
+| $(10,10,0)$ | Empty; quotient Enriques |
+| $(10,8,0)$ | Two elliptic curves |
 
-Nikulin's classifications: 75 K3 lattices
+Nikulin's list has 75 possible invariant-lattice types: even 2-elementary hyperbolic lattices admitting a primitive embedding into the K3 lattice. The definite cusp quotients require a separate classification.
 
-K3 = hyperbolic, admitting a primitive embedding into $\Lambda_{{\mathsf{K}}3}$.
+Reference: Alexeev–Engel, *Compactifications of moduli spaces of K3 surfaces with a nonsymplectic involution*, §2; AEGS, §3.
 :::
 
 ::: {.front card-id="card-270598bc626a9161"}
