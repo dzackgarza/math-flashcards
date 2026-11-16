@@ -1,21 +1,21 @@
 # Content work
 
-`CONTRIBUTING.md` owns the concrete research context and teaching remit:
-Enriques–Coble surface compactifications, their K3 covers, and the geometric,
-lattice-theoretic, and combinatorial tools used to construct their boundaries.
+`CONTRIBUTING.md` owns the teaching remit and the method for establishing
+research relevance from current sources.
 Use its "Understand the research before evaluating coverage" and "Evaluate
 usefulness through a mathematical task" sections before judging coverage or
-scope. They identify the published Enriques paper and trace its constructions
-to the knowledge the cards support. Establish a candidate's mathematical role,
+scope. Reconstruct the relevant arguments, including implicit operations and
+their hypotheses, before identifying prerequisites. Establish a candidate's mathematical role,
 then assess coverage and personal familiarity separately. The existing
 independent study subjects remain part of the collection.
 Do not substitute a generic graduate curriculum or a cited author's complete
 research output for this remit.
 
 A request to correct the editorial process targets these governing documents.
-Establish and encode the actual mathematical context and teaching boundary;
-a promise to investigate them later is not that correction. Keep card changes
-out of a process-only correction.
+Repair the method that produced the judgment. Verify the instructions require
+mathematical understanding of the current work, rather than a fixed inventory
+of topics from an earlier assessment. Keep card changes out of a process-only
+correction.
 
 # Durable documentation
 

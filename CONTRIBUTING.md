@@ -6,46 +6,19 @@ example, compute an invariant, or carry an argument forward.
 
 ## Research context and teaching remit
 
-The central algebraic-geometric research program is the explicit construction
-of compactifications of moduli of complex Enriques and Coble surfaces and the
-classification of their boundary strata. K3 covers and nonsymplectic
-involutions connect these surfaces to K3 moduli. Comparing KSBA stable-pair
-compactifications with Baily–Borel, toroidal, and semitoroidal compactifications
-connects the geometry of limiting surfaces to lattice arithmetic and combinatorics.
+Establish the research and study objectives from the current request and the
+active papers, manuscripts, and research notes. Recheck those sources for each
+coverage assessment; a previous assessment does not define the present scope.
 
-This gives the collection concrete uses:
-
-| Research task | Knowledge to recognize, recall, and use |
-| --- | --- |
-| Construct surfaces and their covers | Enriques, Coble, K3, rational and elliptic surfaces; branch data; blowups; pencils; intersection numbers; canonical classes; polarizations |
-| Describe stable limits | Singularities of pairs; KSBA stability; Kulikov and dlt models; anticanonical pairs; integral-affine surfaces; ADE and BC surface pairs, their toric shapes, priming, and folding |
-| Determine cusps and their incidence | Integral lattices; discriminant forms; primitive embeddings; isotropic vectors and sublattices; divisibility; orthogonal complements; arithmetic group orbits |
-| Construct and compare compactifications | Period domains; Hodge structures and monodromy; Torelli; cones and fans; reflection groups and Coxeter diagrams; recognizable divisors; morphisms of moduli spaces |
-| Carry out geometric arguments | Scheme and sheaf theory; deformation theory; adjunction; Riemann–Roch; vanishing; intersection theory; standard morphism theorems and their hypotheses |
-
-Nodal Enriques surfaces, Coble surfaces with several boundary components, and
-Halphen surfaces are connected directions in this program. Their relation to
-K3 covers, genus-one fibrations, and compactification problems gives a reason
-to learn their definitions and constructions. It does not make every result
-about these surfaces a recall requirement.
-
-The published paper anchoring this scope is Valery Alexeev, Philip Engel,
-D. Zack Garza, and Luca Schaffler,
-[*Compact moduli of Enriques surfaces of degree 2*](https://doi.org/10.1017/nmj.2025.10),
-Nagoya Mathematical Journal 259 (2025), 581–624, arXiv:2312.03638.
-It constructs the stable-pair compactification of numerically degree-two
-polarized Enriques surfaces and identifies its normalization with an explicit
-semitoroidal compactification. Sections 6–7 describe the boundary surfaces
-using ADE and BC constructions. This paper is the user's work, not merely a
-paper by authors whose bibliography is being surveyed.
-
-The broader program is described in the
+Starting points include the
 [research statement](../../research/writing/research-statement/ResearchStatement.md),
-especially its overview and compactification program, and the Coble manuscript's
-[surface constructions](../../research/writing/coble/surfaces-and-moduli/surface-types.md)
-and [compactification theory](../../research/writing/coble/compactifications/toroidal-and-semitoroidal.md).
-These sources establish the role of a topic; check mathematical claims against
-their cited literature rather than treating a draft as a correctness authority.
+the [Coble manuscript](../../research/writing/coble/surfaces-and-moduli/surface-types.md),
+and the user's coauthored paper, Alexeev–Engel–Garza–Schaffler,
+[*Compact moduli of Enriques surfaces of degree 2*](https://doi.org/10.1017/nmj.2025.10).
+Follow the work relevant to the current task from these sources, including newer
+work and changed objectives. Use drafts to establish intent; verify mathematical
+claims against their sources. Keep established results, draft claims, and proposed
+extensions distinct.
 
 The cards supply working knowledge for this research, not a substitute for
 doing it. They do not aim to reproduce entire papers, establish new comparison
@@ -64,44 +37,51 @@ not establish ignorance. No personal mastery profile is supplied by this remit.
 The collection also has independent algebra, analysis, topology, geometry,
 number theory, and other study subjects described in
 [the subject guide](docs/deck-subjects.md). Their existing authored material is
-not disposable because it falls outside the surface program. Conversely, a
+not disposable because it falls outside the current research task. Conversely, a
 tool's usefulness in an unrelated subject does not make it a missing
-prerequisite for the surface program.
+prerequisite for that task.
 
 ## Understand the research before evaluating coverage
 
-Use the published Enriques paper to understand the completed construction and
-the research statement and Coble manuscript to understand the larger program.
-Keep published theorems, draft claims, proposed extensions, and conjectures
-distinct. The Coble and Halphen directions must not silently acquire the status
-of the published Enriques theorem. Bibliography membership, a directory name,
-or a shared coauthor does not establish the user's research objective.
+Before classifying topics, reconstruct the mathematics of the work being
+evaluated. Read the relevant constructions and arguments, not just abstracts,
+definition lists, or search matches.
 
-Read an argument far enough to explain its mathematical input, operation, and
-output. An abstract identifies the objective; it does not identify all its
-prerequisites. Follow the definitions and cited results used in the relevant
-construction or proof. For the Enriques paper, the dependencies include:
+1. Establish the objective and the objects involved. Identify what the work
+   constructs, computes, classifies, or proves, and why the current study task
+   needs it. Distinguish the user's research from background literature and
+   independent study.
+2. Follow the argument from inputs to output. For each substantive step, recover
+   the objects, maps, operations, hypotheses, and conclusion. Work through the
+   equations and diagrams enough to explain why the step is valid. Follow cited
+   results when their role or hypotheses are unclear.
+3. Recover implicit dependencies from those operations. Translate local notation
+   and unnamed constructions into their standard mathematical forms. Ask what
+   knowledge lets a reader perform the step even if the paper never names that
+   knowledge. Check definitions, hypotheses, local models, and calculations;
+   keyword absence is not evidence that a tool is unused.
+4. Check the reconstruction mathematically. Explain how successive steps fit
+   together, what supplies each required hypothesis, and what changes when a
+   relevant hypothesis fails. Use a simple instance or local calculation where
+   it tests understanding. If a step cannot be explained, investigate it before
+   judging its prerequisites.
+5. Only then compare those dependencies with the cards. Search equivalent
+   terminology and inspect full answers and examples. Separate reusable inputs
+   from results produced by the paper, and determine what the learner needs to
+   recognize, reconstruct, or apply again.
 
-| Location | Mathematical role | Consequence for card selection |
-| --- | --- | --- |
-| §2, the surface diagram | Commuting involutions on a K3 double cover generate a Klein-four group; the three intermediate double covers form an abelian-cover diagram. | Abelian and bidouble covers, character eigensheaves, invariant subalgebras, branch data, and canonical-divisor calculations support the construction. On singular quotient bases, rank-one reflexive sheaves replace line bundles where needed. |
-| §3, cusps and Coxeter diagrams | Lattice and reflection data, including folding by involutions, determine cusp diagrams and their maps. | Primitive isotropic sublattices, discriminant forms, divisibility, reflection groups, and folding are working tools; the word "lattice" alone does not justify another lattice-related topic. |
-| §4, integral-affine models | Integral-affine spheres with involutions produce quotient dual complexes on a disk or real projective plane and describe dlt degenerations. | Kulikov models, dual complexes, integral-affine singularities, and quotient constructions have a specific geometric use. |
-| §5.3, Theorem 5.9 | Recognizability supplies a K3 compactification; extending the involution and taking quotients produces a family of stable Enriques pairs. Boundary geometry controls the comparison of compactifications. | Stable limits, families and classifying maps, normalization, finite maps, recognizable divisors, and semifans serve identifiable steps of the argument. |
-| §§6–7, boundary components | ADE surfaces, priming, and involution quotients supply components and their gluings in stable limits. | Learn how to recognize and construct these pairs, including the role of their boundaries and branch data. Their specialized names do not make them incidental. |
+For example, a diagram with commuting involutions calls for identifying the
+group they generate, the intermediate quotients, and the invariant algebras.
+That analysis reveals the covering theory in use even without the phrase
+“abelian cover.” Check the actual base and maps before applying a smooth or flat
+cover formula. This illustrates how to infer a dependency; it is not a topic
+list for future research.
 
-This is a map of mathematical uses, not a list of all cards that must exist.
-It also identifies background that a paper can leave implicit: for example,
-Riemann–Hurwitz is used in §6, equation (6.1), to relate the canonical divisors
-of the double-cover pairs. Its statement, hypotheses, and use deserve attention
-even though the paper does not introduce it as a new definition.
-
-For another paper or project, recover the same information from that work:
-the objects studied, the result sought, the constructions and arguments used,
-and the background those steps assume. Identify whether it is the user's own
-work, a tool used by that work, or a separate subject being studied. Do not
-extend this paper's scope to every topic in Alexeev's, Engel's, or Schaffler's
-other publications.
+The evidence for a coverage judgment is an explained mathematical use at a
+source location. A list of terms or citations does not establish understanding.
+Record that evidence in the requested assessment or change rationale. Keep
+paper-specific dependency inventories out of these instructions; derive them
+from the current sources when needed.
 
 ## Evaluate usefulness through a mathematical task
 
@@ -116,20 +96,17 @@ Then distinguish the candidate's role and the recall target:
 - **Background assumed by the argument:** recall the usable definition,
   theorem, calculation, or example, including hypotheses.
 - **A construction used in the research:** recall its inputs, operations,
-  output, and a recoverable example. ADE priming belongs here even though it
-  is specialized.
+  output, and a recoverable example, including specialized constructions.
 - **A result or classification produced by the research:** decide which part
   must be available for another argument. A construction rule or useful compact
   classification can deserve a card; copying the entire output is not automatic.
 - **Incidental machinery or a separate research topic:** identify a task in the
   research or an independent study subject before claiming a coverage gap.
 
-For example, the ADE construction is useful because §§6–7 use it to describe
-stable boundary components. A card should make that construction recoverable;
-memorizing an unexplained paper-local symbol does not achieve the same purpose.
-Conversely, finding a textbook application of lattice dicing establishes a use
-somewhere in mathematics, but does not establish a need in this construction.
-Trace that additional dependency before making an inclusion judgment.
+A construction card should make the operation recoverable; memorizing an
+unexplained paper-local symbol does not achieve the same purpose. A textbook
+application establishes a use somewhere in mathematics. Trace its dependency
+on the current research or study objective before claiming a coverage gap.
 
 Evaluate relevance, existing coverage, and personal familiarity separately.
 Check current fronts and backs, equivalent terminology, and authored examples
@@ -154,26 +131,19 @@ researcher needs to read papers and carry out arguments. Foundational material
 qualifies even when papers routinely assume it without citation. Include the
 prerequisites and practical calculations needed to use that knowledge.
 
-Specialized material belongs when its use serves this remit. ADE pairs and
-priming, for example, are construction tools in the Enriques–Coble program;
-their origin in a particular paper does not make them peripheral. Recognizable
-divisors serve the comparison between stable-pair and semitoroidal
-compactifications. These are direct research uses, not exceptions granted
-because a subject is popular or broadly taught.
+Specialized material belongs when its use serves the current research or study
+objective. Its origin in a particular paper does not make it peripheral.
+Establish its role through the argument that uses it.
 
 Use in another paper or textbook can establish that a tool is reusable, but
-does not by itself establish a reason to teach it here. For example, a use of
-the Tate diagonal in topological cyclic homology establishes a role in that
-subject; it does not establish a prerequisite for surface compactifications.
-Likewise, graph coedges or lattice dicings need a concrete role in a relevant
-construction or study objective. The words "graph" and "lattice" do not
-supply that role. Apply this relevance test equally to familiar and unfamiliar
-terminology.
+does not by itself establish a reason to teach it here. Shared vocabulary
+does not establish a mathematical dependency. Apply the same relevance test
+to familiar and unfamiliar terminology.
 
 A paper's newly defined object is not automatically a prerequisite for reading
 that paper. Determine whether it is the object being investigated, a tool
 needed in the user's work, or incidental machinery. A construction can become
-working knowledge through its use in the Enriques–Coble program even if it is
+working knowledge through its use in the current research even if it is
 rare elsewhere. A definition introduced to state one paper's particular result
 can remain in reading notes. Age, popularity, a citation, and the existence of
 a precise definition do not decide between these cases.
