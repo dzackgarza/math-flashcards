@@ -79,7 +79,8 @@ def main(artifacts: Path) -> None:
                 events = native_log.read_text()
                 assert "event=app-start" in events, events
                 assert "event=request-completed action=study-open outcome=ok" in events, events
-                assert "elapsed_ms=" in events and "release=0.1.0" in events, events
+                release = json.loads((desktop / "package.json").read_text())["version"]
+                assert "elapsed_ms=" in events and f"release={release}" in events, events
                 store = Path(opened["store"])
                 assert store.parent == root / "data" / "math-flashcards" / "study"
                 with closing(sqlite3.connect(opened["record"])) as record:
@@ -122,6 +123,16 @@ def main(artifacts: Path) -> None:
                     assert record.execute("select count(*) from writer").fetchone()[0] == writers + 1
                     assert record.execute("select kind from store_event").fetchall() == [("created",)]
                 children = psutil.Process(service.process.pid).children(recursive=True)
+                # WebDriver session deletion force-exits its browser process.
+                # Close through Tauri before releasing the automation session:
+                # https://github.com/WebKit/WebKit/blob/main/Source/WebDriver/glib/SessionHostGlib.cpp
+                driver.execute_script("""
+                    setTimeout(() => window.__TAURI_INTERNALS__.invoke(
+                        'plugin:window|destroy', {label: 'main'}), 100);
+                """)
+                WebDriverWait(driver, 10).until(
+                    lambda _: "event=app-exit" in native_log.read_text()
+                )
                 driver.quit()
                 driver = None
                 _, alive = psutil.wait_procs(children, timeout=10)

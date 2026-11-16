@@ -26,6 +26,9 @@ tauri-plugin-fs = { version = "*", features = ["watch"] }
 serde = { version = "*", features = ["derive"] }
 serde_json = "*"
 tokio = { version = "*", features = ["sync"] }
+tauri-plugin-log = "*"
+log = "*"
+dirs = "*"
 
 
 # Read the optimization guideline for more details: https://tauri.app/concept/size/#cargo-configuration

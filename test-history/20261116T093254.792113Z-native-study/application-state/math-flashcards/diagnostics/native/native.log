@@ -1,0 +1,34 @@
+[2026-11-16][09:32:55][desktop_lib][INFO] event=app-start release=0.1.0 pid=2533178 os=linux arch=x86_64
+[2026-11-16][09:32:56][desktop_lib][INFO] event=request-started action=study-open input_bytes=88
+[2026-11-16][09:32:56][desktop_lib][INFO] event=study-host-started pid=2533394 elapsed_ms=0.7099129999999999
+[2026-11-16][09:32:57][desktop_lib][INFO] event=request-started action=assets input_bytes=19
+[2026-11-16][09:32:57][desktop_lib][INFO] event=request-started action=cached-manifest input_bytes=105
+[2026-11-16][09:32:57][desktop_lib][INFO] event=backend-started action=assets
+[2026-11-16][09:32:57][desktop_lib][INFO] event=backend-started action=cached-manifest
+[2026-11-16][09:32:57][desktop_lib][INFO] event=request-completed action=study-open outcome=ok elapsed_ms=750.606543
+[2026-11-16][09:32:57][desktop_lib][INFO] event=request-started action=study-open input_bytes=88
+[2026-11-16][09:32:57][desktop_lib][INFO] event=request-completed action=study-open outcome=ok elapsed_ms=4.407754
+[2026-11-16][09:32:57][desktop_lib][INFO] event=backend-exited action=cached-manifest status=exit status: 0
+[2026-11-16][09:32:57][desktop_lib][INFO] event=request-completed action=cached-manifest outcome=ok elapsed_ms=617.219345
+[2026-11-16][09:32:57][desktop_lib][INFO] event=request-started action=manifest input_bytes=98
+[2026-11-16][09:32:57][desktop_lib][INFO] event=backend-started action=manifest
+[2026-11-16][09:32:57][desktop_lib][INFO] event=backend-exited action=assets status=exit status: 0
+[2026-11-16][09:32:57][desktop_lib][INFO] event=request-completed action=assets outcome=ok elapsed_ms=845.2869669999999
+[2026-11-16][09:32:58][desktop_lib][INFO] event=request-started action=study-open input_bytes=88
+[2026-11-16][09:32:58][desktop_lib][INFO] event=study-host-reaped pid=2533394
+[2026-11-16][09:32:58][desktop_lib][INFO] event=study-host-started pid=2533508 elapsed_ms=0.636319
+[2026-11-16][09:32:58][desktop_lib][INFO] event=backend-exited action=manifest status=exit status: 0
+[2026-11-16][09:32:58][desktop_lib][INFO] event=request-completed action=manifest outcome=ok elapsed_ms=886.7338139999999
+[2026-11-16][09:32:58][desktop_lib][INFO] event=request-started action=cache-manifest input_bytes=104
+[2026-11-16][09:32:58][desktop_lib][INFO] event=backend-started action=cache-manifest
+[2026-11-16][09:32:58][desktop_lib][INFO] event=request-started action=cached-checks input_bytes=239
+[2026-11-16][09:32:59][desktop_lib][INFO] event=backend-exited action=cache-manifest status=exit status: 0
+[2026-11-16][09:32:59][desktop_lib][INFO] event=request-completed action=cache-manifest outcome=ok elapsed_ms=446.33367699999997
+[2026-11-16][09:32:59][desktop_lib][INFO] event=backend-started action=cached-checks
+[2026-11-16][09:32:59][desktop_lib][INFO] event=request-completed action=study-open outcome=ok elapsed_ms=1061.059833
+[2026-11-16][09:32:59][desktop_lib][INFO] event=request-started action=study-attach input_bytes=171
+[2026-11-16][09:32:59][desktop_lib][ERROR] event=request-completed action=study-attach outcome=error elapsed_ms=7.310169 error={"kind":"UnknownStore","message":"Unknown store: 00000000-0000-0000-0000-000000000000"}
+[2026-11-16][09:32:59][desktop_lib][INFO] event=backend-exited action=cached-checks status=exit status: 0
+[2026-11-16][09:32:59][desktop_lib][INFO] event=request-completed action=cached-checks outcome=ok elapsed_ms=794.995883
+[2026-11-16][09:32:59][desktop_lib][INFO] event=study-host-closed pid=2533508 status=exit status: 0 elapsed_ms=230.08780000000002
+[2026-11-16][09:32:59][desktop_lib][INFO] event=app-exit pid=2533178

@@ -296,6 +296,17 @@ sync operations add undo steps, so Undo is unavailable after a sync until the ne
 
 ## R11. Test method
 
+The native shell uses [Tauri's logging plugin](https://v2.tauri.app/plugin/logging/)
+with a folder target at `math-flashcards/diagnostics/native` below
+[`dirs::state_dir()`](https://docs.rs/dirs/latest/dirs/fn.state_dir.html).
+The plugin's default Linux log target uses the data directory; the explicit folder
+target applies the constitution's state placement. `KeepAll` retains rotated logs.
+Native events record app release, process and platform context, host lifecycle,
+request action, elapsed wall time, and failures. Each completed request and app exit
+flushes the logger. Request timing includes queue and child-process waits; the Python
+host's profiles supply the nested Python costs. Native library internals remain outside
+these profiles.
+
 The Study host writes operation events and `cProfile` files under the library-resolved
 XDG state directory. Each process records its app and Anki versions, Python and platform,
 and source digests. Each operation records an input digest, start and completion times,
@@ -320,6 +331,12 @@ and a new writer is recorded after reopening.
 Singleton checks move keyboard focus away from the app and require the next launch to
 restore it with the same sole window. Direct X window unmapping is not a GTK hide
 operation and does not establish the application's visibility state.
+
+Normal-exit checks close the native window before deleting the WebDriver session.
+[WebKit's GLib session host](https://github.com/WebKit/WebKit/blob/main/Source/WebDriver/glib/SessionHostGlib.cpp)
+force-exits its browser subprocess during session teardown. Deleting that session
+cannot establish that Tauri's exit callback closed the Study host and flushed its logs.
+The native scenario requires those events before releasing the automation session.
 
 **Decision**: A Playwright scenario, `desktop/tests/study.py`, drives the real window
 served by `just desktop-web` with the real bridge, real deck files in a temporary

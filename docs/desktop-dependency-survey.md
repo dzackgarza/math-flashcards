@@ -23,6 +23,7 @@ the macro set track the main branches of ankdown-for-math and pandoc-config.
 | Source ranges and syntax | Zettlr-Pandoc's Lezer fork | Pandoc fenced divs, attributes, math, and source positions; shared parser for both editors and deck pairing |
 | External changes | [Tauri filesystem plugin](https://v2.tauri.app/plugin/file-system/) | Watch the selected workspace |
 | Process execution and output | [Tauri commands](https://v2.tauri.app/develop/calling-rust/) and Python subprocess | A typed bridge request; exporter completion and diagnostics |
+| Native diagnostics | [Tauri logging plugin](https://v2.tauri.app/plugin/logging/), `log`, and [`dirs::state_dir()`](https://docs.rs/dirs/latest/dirs/fn.state_dir.html) | Request outcomes, elapsed times, and process lifecycle in XDG state; retain rotated files |
 | Workspace selection | [Tauri dialog plugin](https://v2.tauri.app/plugin/dialog/) | Native folder picker |
 | Preferences | [Tauri store plugin](https://v2.tauri.app/plugin/store/) | Workspace path |
 | Generation records | Python SQLite and [platformdirs](https://platformdirs.readthedocs.io/) | Successful build fingerprints in the platform cache |
