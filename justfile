@@ -18,7 +18,7 @@ check-math: desktop-dependencies
 test-push: test
 
 # Commit gate entry point; installs the verified build so the menu app matches the commit
-test-commit: test desktop-frontend desktop-source-test desktop-editor-test desktop-test desktop-diagram-test desktop-organization-test desktop-update
+test-commit: test desktop-boundaries desktop-frontend desktop-source-test desktop-editor-test desktop-test desktop-diagram-test desktop-organization-test desktop-update
 
 # Install the desktop build dependencies
 desktop-dependencies:
@@ -99,6 +99,10 @@ desktop-test scenario="full":
 
 # Exercise Study with isolated learning data and cache directories
 desktop-study-test: (desktop-test "study")
+
+# Verify isolation of scheduling, analyses, and individual analysis modules
+desktop-boundaries:
+    uv run --no-project desktop/tests/boundaries.py
 
 # Exercise card organization and real multi-deck file changes
 desktop-organization-test:
