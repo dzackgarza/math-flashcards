@@ -6,6 +6,7 @@
 
 import json
 import os
+import pstats
 import shutil
 import sqlite3
 import tempfile
@@ -21,7 +22,7 @@ from evidence import evidence
 from playwright.sync_api import sync_playwright
 
 
-def main() -> None:
+def main(artifacts: Path) -> None:
     desktop = Path(__file__).resolve().parents[1]
     stores = Path(os.environ["XDG_DATA_HOME"]) / "math-flashcards" / "study"
     with tempfile.TemporaryDirectory(prefix="flashcards-study-") as temporary:
@@ -41,6 +42,19 @@ def main() -> None:
                 assert response.ok, response.text()
                 opened = response.json()
                 assert opened["state"] == "Open", opened
+                diagnostics = Path(os.environ["XDG_STATE_HOME"]) / "math-flashcards" / "diagnostics"
+                logs = list(diagnostics.glob("*/events.jsonl"))
+                assert logs, "Opening Study must retain its operation log in XDG state."
+                events = [json.loads(line) for line in logs[0].read_text().splitlines()]
+                completed = [event for event in events if event["event"] == "completed"]
+                opened_event = next(event for event in completed if event.get("action") == "study-open")
+                assert opened_event["outcome"] == "ok", opened_event
+                assert opened_event["workspace"] == str(workspace)
+                assert opened_event["elapsed_seconds"] > 0
+                context = json.loads((logs[0].parent / "context.json").read_text())
+                assert context["app_release"] == json.loads((desktop / "package.json").read_text())["version"]
+                assert context["sources"]["study/host.py"] == sha256((desktop / "study" / "host.py").read_bytes()).hexdigest()
+                pstats.Stats(str(logs[0].parent / opened_event["profile"]))
                 store = Path(opened["store"])
                 assert store.parent == stores, store
                 UUID(store.name)
@@ -230,7 +244,8 @@ def main() -> None:
                     },
                 )
                 assert not response.ok
-                assert response.json()["kind"] == "UnknownStore", response.text()
+                unknown = response.json()
+                assert unknown["kind"] == "UnknownStore", response.text()
                 assert set(stores.iterdir()) == before
 
                 for defect in (
@@ -289,10 +304,20 @@ def main() -> None:
                     assert {
                         path.name: path.read_bytes() for path in broken.iterdir()
                     } == files_before, defect
+                failures = [
+                    json.loads(line)
+                    for log in diagnostics.glob("*/events.jsonl")
+                    for line in log.read_text().splitlines()
+                    if json.loads(line).get("outcome") == "error"
+                ]
+                assert any(event["error_message"] == unknown["message"] and event["traceback"] for event in failures), failures
             finally:
                 api.dispose()
+                diagnostics = Path(os.environ["XDG_STATE_HOME"]) / "math-flashcards" / "diagnostics"
+                if diagnostics.is_dir():
+                    shutil.copytree(diagnostics, artifacts / "application")
 
 
 if __name__ == "__main__":
-    with evidence("study", Path(__file__).parent / "fixtures" / "study"):
-        main()
+    with evidence("study", Path(__file__).parent / "fixtures" / "study") as artifacts:
+        main(artifacts)

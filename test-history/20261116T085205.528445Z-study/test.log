@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/evidence.py", line 53, in evidence
+    yield directory
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study.py", line 322, in <module>
+    main(artifacts)
+    ~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study.py", line 47, in main
+    assert logs, "Opening Study must retain its operation log in XDG state."
+           ^^^^
+AssertionError: Opening Study must retain its operation log in XDG state.

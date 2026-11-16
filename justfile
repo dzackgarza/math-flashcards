@@ -91,6 +91,7 @@ desktop-test scenario="full":
     with tempfile.TemporaryDirectory(prefix="flashcards-browser-cache-") as directory:
         environment["XDG_CACHE_HOME"] = str(Path(directory) / "cache")
         environment["XDG_DATA_HOME"] = str(Path(directory) / "data")
+        environment["XDG_STATE_HOME"] = str(Path(directory) / "state")
         subprocess.run(
             ["bunx", "start-server-and-test", "just -f ../justfile desktop-web", "http-get://127.0.0.1:1420", "uv run --upgrade " + scenarios["{{scenario}}"]],
             cwd="desktop", check=True,
