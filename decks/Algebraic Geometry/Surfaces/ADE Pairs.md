@@ -2,6 +2,96 @@
 title: "Algebraic Geometry::Surfaces::ADE Pairs"
 ---
 
+::: {.front card-id="ade-weyl-parameter-spaces" tags="theorem comparison example"}
+Explain the torus/Weyl and elliptic/Weyl parameter spaces behind type III and type II ADE families. Specify the lattices and give rank-one examples.
+:::
+
+::: {.back card-id="ade-weyl-parameter-spaces"}
+Let $Q$ be an ADE root lattice of rank $r$, $P=Q^*$ its weight lattice, and $W$ its Weyl group.
+
+| Construction | Coarse quotient | Rank-one example |
+| --- | --- | --- |
+| Multiplicative: $T_P=\operatorname{Hom}(P,\mathbb C^\times)$ | $T_P/W\simeq\mathbb A^r$ | $t\mapsto t+t^{-1}$ identifies $\mathbb C^\times/(t\leftrightarrow t^{-1})$ with $\mathbb A^1$ |
+| Elliptic: $E\otimes Q^\vee=\operatorname{Hom}(P,E)$ | Weighted projective space with weights $(1,a_1^\vee,\ldots,a_r^\vee)$ | $E/(p\leftrightarrow-p)\simeq\mathbb P^1$ |
+
+Here $a_i^\vee$ are the coefficients of the coroot of the highest root in the simple-coroot basis. For simply-laced types they are the highest-root coefficients. The multiplicative invariant coordinates are the fundamental characters. Root, weight, and intermediate lattices give isogenous tori, not interchangeable moduli problems; shape symmetries can impose further finite quotients.
+
+The type III polynomial coefficients in the normalized ADE family are coordinates on the affine quotient. In type II, fix the boundary elliptic curve $E$; the polynomial coefficients are homogeneous coordinates with the following weights:
+
+| Type | Weighted projective parameter space |
+| --- | --- |
+| $\widetilde E_7$ | $\mathbb P(1,1,2,2,2,3,3,4)$ |
+| $\widetilde E_8$ | $\mathbb P(1,2,2,3,3,4,4,5,6)$ |
+| $\widetilde D_{2n}$ | $\mathbb P(1,1,1,1,2^{,2n-3})$ |
+
+In the last row $2^{,2n-3}$ denotes repeated weights. Varying $E$ adds the elliptic modulus. A weighted projective coarse space does not by itself identify a quotient stack or supply a universal family on that coarse space.
+
+Reference: Alexeev–Thompson, *ADE surfaces and their moduli*, §5; Looijenga, *Root systems and elliptic curves*; AEGS, §§6.1 and 6.3.
+:::
+
+::: {.front card-id="ade-theta-sections-elliptic-cone" tags="construction calculation"}
+Construct theta-function sections of an even-degree line bundle on $E_q=\mathbb C^\times/q^{\mathbb Z}$. How does inversion constrain an invariant branch section, and how does this enter the affine $A$ surface construction?
+:::
+
+::: {.back card-id="ade-theta-sections-elliptic-cone"}
+Fix $0<|q|<1$, a choice of its fractional powers, and even $d=2n>0$. For $i\in\mathbb Z/d$, put
+$$\theta_i(x)=\sum_{k\equiv i\ (d)}q^{k^2/(2d)}x^k.$$
+The series converge normally on compact subsets of $\mathbb C^\times$. Reindexing gives
+$$\theta_i(qx)=q^{-d/2}x^{-d}\theta_i(x),\qquad
+\theta_i(x^{-1})=\theta_{-i}(x).$$
+The common factor of automorphy defines a degree-$d$ line bundle $M$. Distinct residue classes give independent Laurent series; $h^0(E_q,M)=d$ by Riemann–Roch, so they form a basis. A section $g=\sum c_i\theta_i$ is invariant under the chosen inversion lift iff $c_i=c_{-i}$.
+
+Choose a square root $L$ of $M$, of degree $n$. On $\mathbb P_E(\mathcal O\oplus L)$, with $y$ the local fiber coordinate of $L$, the expression $y^2+g$ defines a quadratic section. Contract the negative section to the cone over $(E,L)$ and take the associated double cover, locally
+$$z^2+y^2+g(x)=0.$$
+The deck involution changes the sign of $z$; an additional involution requires a compatible lift on $L$ and the coefficient symmetry. General branch sections give the affine $A$ pairs; special sections must still satisfy the lc condition.
+
+This theta normalization makes the factor of automorphy explicit; multiplying by a nowhere-zero factor or changing the chosen line bundle changes the displayed series.
+
+Reference: AEGS, §6.3 and §6.6; analytic theta sections on an elliptic curve.
+:::
+
+::: {.front card-id="ade-geometric-folding-quotient-pairs" tags="construction comparison"}
+What data and calculations turn a symmetry of an ADE diagram into geometric folding of a surface pair? Compare a torus-sign involution with a polytope-reflection involution.
+:::
+
+::: {.back card-id="ade-geometric-folding-quotient-pairs"}
+Start with a polarized anticanonical ADE pair $(X,D+\epsilon R)$, its deck involution $d$, and a commuting nonsymplectic involution $a$ preserving $D,R$. Require the finite-fixed-locus conditions of the quotient construction, including the induced involution on $Y=X/d$. Then $b=da$ is symplectic and
+$$Z=X/a,\quad Z'=X/b,\quad W=X/\langle d,a\rangle.$$
+The quotient boundaries satisfy $D=q^*D_Z$, $R=q^*R_Z$ when there is no ramification along these divisors. The two log volume-form characters give
+$$2(K_Z+D_Z)\sim0,\quad K_Z+D_Z\not\sim0,\qquad K_{Z'}+D_{Z'}\sim0.$$
+For $\rho:Z\to W$, with boundary $C_W$ and branch divisor $B_W$:
+$$K_Z+D_Z+\epsilon R_Z=\rho^*\bigl(K_W+C_W+\tfrac{1+\epsilon}{2}B_W\bigr).$$
+
+| Involution in local toric coordinates | Computation |
+| --- | --- |
+| $a(x,y,z)=(-x,-y,-z)$ | Keep exponents with $i+j+k$ even; use the same polytope in this index-two character sublattice. Recompute primitive normals and boundary ramification. |
+| $a(x,y,z)=(x^{-1},-y,-z)$ | Require the Laurent equation to be invariant under $x\leftrightarrow x^{-1}$. Paired coefficients agree; solve the fixed-point equations and resolve their quotient singularities. |
+
+At an isolated fixed point of the base involution outside the branch curve, the two points in its double-cover fiber are either exchanged or both fixed by a lift. Multiplying by the deck involution exchanges these alternatives, explaining complementary isolated branch loci of $Z$ and $Z'$ over $W$.
+
+A folded graph records the lattice symmetry; the equation, fixed loci, Cartier indices, and branch calculations establish the quotient surface pair.
+
+Reference: AEGS, Proposition 6.1 and §§6.5–6.6.
+:::
+
+::: {.front card-id="ade-folded-quadric-worked-example" tags="application calculation"}
+For $Y=\mathbb P^1\times\mathbb P^1$, let $C$ be a fiber of each ruling and $B$ a smooth invariant $(2,2)$ curve avoiding torus-fixed points and the corner of $C$. Construct the anticanonical double cover and its two quotients above $W=Y/((x,y)\mapsto(-x,-y))$.
+:::
+
+::: {.back card-id="ade-folded-quadric-worked-example"}
+Here $K_Y+C=(-1,-1)$ and $B\sim-2(K_Y+C)$. The cover $X:z^2+f_{2,2}=0$ has $D=\pi^{-1}C$, ramification $R$, and
+$$K_X+D\sim0,\qquad R=\pi^*\mathcal O_Y(1,1),\qquad R^2=4.$$
+Choose $C$ as the two toric sides at the distinguished corner. Then $D$ has two rational components. Each meets $R$ in two points.
+
+The square polygon for $B$ has vertices $(0,0),(2,0),(0,2),(2,2)$. Passing from $\mathbb Z^2$ to $\{(i,j):i+j\text{ even}\}$ gives $W$. At each corner its local ring is $\mathbb C[s^2,st,t^2]$, hence $W$ has four $A_1$ points.
+
+The two lifts differ by $z\mapsto-z$. Their signs on the fiber change between toric charts because $z$ belongs to $\mathcal O_Y(1,1)$. Each lift fixes points over two of the four base corners and exchanges the points over the other two. The lifts have opposite log-volume characters; the nonsymplectic quotient $Z$ has log canonical index two, while the symplectic quotient $Z'$ has index one. Their isolated branch loci over $W$ are complementary pairs of corners.
+
+For either quotient $q:X\to Z$ or $Z'$, $q^*R_Z=R$ and $R_Z^2=2$. This is the basic folded $D_4$ construction: the index-two quotient is the $B_2$ surface shape. The shape describes the global pair, not one local $B_2$ singularity.
+
+Reference: AEGS, Example 6.3 and Proposition 6.1.
+:::
+
 ::: {.front card-id="ade-pairs-shapes-branch-cover" tags="definition construction comparison"}
 In Alexeev–Thompson's terminology, how do pure shapes, priming, and a branch divisor define an ADE or affine ADE pair? Distinguish this from an ADE surface singularity.
 :::
