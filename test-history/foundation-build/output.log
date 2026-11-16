@@ -1,0 +1,150 @@
+cd desktop && bunx tsc --noEmit
+cd desktop && bunx tauri build --no-bundle
+        Info Looking up installed tauri packages to check mismatched versions...
+     Running beforeBuildCommand `just -f ../justfile desktop-frontend`
+cd desktop && bunx tsc --noEmit
+cd desktop && bunx vite build
+vite v8.3.8 building client environment for production...
+transforming...
+✓ 7886 modules transformed.
+rendering chunks...
+[vite-plugin-static-copy] Copied 386 items.
+computing gzip size...
+dist/index.html                                                0.40 kB │ gzip:   0.27 kB
+dist/assets/inter-vietnamese-wght-normal-CBcvBZtf.woff2       10.25 kB
+dist/assets/inter-greek-ext-wght-normal-DlzME5K_.woff2        11.23 kB
+dist/assets/inter-cyrillic-wght-normal-DqGufNeO.woff2         18.74 kB
+dist/assets/inter-greek-wght-normal-CkhJZR-_.woff2            18.99 kB
+dist/assets/inter-cyrillic-ext-wght-normal-BOeWTOD4.woff2     25.96 kB
+dist/assets/inter-latin-wght-normal-Dx4kXJAl.woff2            48.25 kB
+dist/assets/inter-latin-ext-wght-normal-DO1Apj_S.woff2        85.06 kB
+dist/assets/editor-DhWhjdb4.css                                9.06 kB │ gzip:   2.21 kB
+dist/assets/index-BYQM_VcV.css                               269.91 kB │ gzip:  40.46 kB
+dist/assets/quiver-C7uFmNR4.js                                 6.14 kB │ gzip:   2.30 kB
+dist/assets/index-BEc7WHRV.js                                953.96 kB │ gzip: 299.24 kB
+dist/assets/editor-D186KN_d.js                             1,457.17 kB │ gzip: 496.33 kB
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 3.95s
+   Compiling futures-core v0.3.34
+   Compiling bitflags v2.13.2
+   Compiling slab v0.4.12
+   Compiling serde v1.0.229
+   Compiling glib-sys v0.18.1
+   Compiling zerofrom v0.1.8
+   Compiling winnow v1.0.5
+   Compiling parking v2.2.1
+   Compiling thiserror v2.0.21
+   Compiling tauri v2.12.5
+   Compiling fastrand v2.5.0
+   Compiling mio v1.2.5
+   Compiling futures-channel v0.3.34
+   Compiling yoke v0.8.4
+   Compiling event-listener v5.4.2
+   Compiling concurrent-queue v2.5.0
+   Compiling futures-util v0.3.34
+   Compiling gobject-sys v0.18.0
+   Compiling cairo-sys-rs v0.18.2
+   Compiling serde_with v3.24.0
+   Compiling zerovec v0.11.9
+   Compiling gio-sys v0.18.1
+   Compiling pango-sys v0.18.0
+   Compiling atk-sys v0.18.2
+   Compiling zerotrie v0.2.5
+   Compiling javascriptcore-rs-sys v1.1.1
+   Compiling dpi v0.1.2
+   Compiling jsonptr v0.7.1
+   Compiling plist v1.10.3
+   Compiling unicode-ident v1.0.27
+   Compiling proc-macro2 v1.0.107
+   Compiling event-listener-strategy v0.5.4
+   Compiling tinystr v0.8.5
+   Compiling potential_utf v0.1.6
+   Compiling icu_collections v2.4.0
+   Compiling futures-lite v2.6.1
+   Compiling linux-raw-sys v0.12.1
+   Compiling icu_locale_core v2.4.0
+   Compiling json-patch v4.2.0
+   Compiling gdk-pixbuf-sys v0.18.0
+   Compiling gdk-sys v0.18.2
+   Compiling futures-executor v0.3.34
+   Compiling soup3-sys v0.5.0
+   Compiling toml_parser v1.1.5+spec-1.1.0
+   Compiling rustix v1.1.6
+   Compiling quote v1.0.47
+   Compiling glib v0.18.5
+   Compiling icu_provider v2.4.0
+   Compiling gtk-sys v0.18.2
+   Compiling gdkx11-sys v0.18.2
+   Compiling gdkwayland-sys v0.18.2
+   Compiling keyboard-types v0.8.3
+   Compiling socket2 v0.6.5
+   Compiling icu_properties v2.4.0
+   Compiling icu_normalizer v2.4.0
+   Compiling toml v1.2.1+spec-1.1.0
+   Compiling serialize-to-javascript v0.1.2
+   Compiling tauri-macros v2.7.4
+   Compiling syn v3.0.10
+   Compiling tokio v1.54.1
+   Compiling errno v0.3.15
+   Compiling http-range v0.1.5
+   Compiling async-task v4.7.1
+   Compiling webkit2gtk-sys v2.0.2
+   Compiling idna_adapter v1.2.2
+   Compiling signal-hook-registry v1.4.8
+   Compiling idna v1.1.0
+   Compiling tauri-plugin-fs v2.7.1
+   Compiling inotify v0.11.5
+   Compiling url v2.5.8
+   Compiling async-channel v2.5.0
+   Compiling zcheapstr v1.2.0
+   Compiling notify-types v2.3.1
+   Compiling enumflags2 v0.7.12
+   Compiling atomic-waker v1.1.2
+   Compiling endi v1.1.1
+   Compiling piper v0.2.5
+   Compiling async-lock v3.5.0
+   Compiling tauri-plugin-store v2.5.1
+   Compiling blocking v1.7.0
+   Compiling tauri-plugin-dialog v2.8.4
+   Compiling async-executor v1.14.1
+   Compiling async-broadcast v0.7.2
+   Compiling urlpattern v0.6.0
+   Compiling notify v8.2.2
+   Compiling ordered-stream v0.2.0
+   Compiling hex v0.4.3
+   Compiling rfd v0.17.2
+   Compiling desktop v0.1.0 (/home/dzack/gitclones/math-flashcards/desktop/src-tauri)
+   Compiling notify-debouncer-full v0.6.0
+   Compiling zvariant_utils v4.2.0
+   Compiling tauri-utils v2.10.2
+   Compiling polling v3.11.0
+   Compiling async-io v2.6.0
+   Compiling zvariant v5.15.1
+   Compiling async-signal v0.2.14
+   Compiling async-process v2.5.0
+   Compiling gio v0.18.4
+   Compiling cairo-rs v0.18.5
+   Compiling atk v0.18.2
+   Compiling javascriptcore-rs v1.1.2
+   Compiling zbus_names v4.3.5
+   Compiling zbus v5.19.0
+   Compiling pango v0.18.3
+   Compiling gdk-pixbuf v0.18.5
+   Compiling soup3 v0.5.0
+   Compiling gdk v0.18.2
+   Compiling gtk v0.18.2
+   Compiling gdkx11 v0.18.2
+   Compiling webkit2gtk v2.0.2
+   Compiling tao v0.37.2
+   Compiling muda v0.20.0
+   Compiling tauri-runtime v2.12.2
+   Compiling wry v0.57.2
+   Compiling tauri-runtime-wry v2.12.3
+   Compiling tauri-plugin-single-instance v2.5.5
+    Finished `release` profile [optimized] target(s) in 8m 18s
+       Built application at: /home/dzack/gitclones/math-flashcards/desktop/src-tauri/target/release/desktop

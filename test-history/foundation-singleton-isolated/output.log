@@ -1,0 +1,100 @@
+xvfb-run -a -s '-screen 0 1600x1200x24' dbus-run-session -- uv run --upgrade desktop/tests/native.py --singleton
+dbus-daemon[2165116]: [session uid=1000 pid=2165116 pidfd=5] Activating service name='org.a11y.Bus' requested by ':1.0' (uid=1000 pid=2165583 comm="/home/dzack/gitclones/math-flashcards/desktop/src-")
+dbus-daemon[2165116]: [session uid=1000 pid=2165116 pidfd=5] Activating service name='org.gtk.vfs.Daemon' requested by ':1.1' (uid=1000 pid=2165594 comm="/usr/lib/at-spi-bus-launcher")
+dbus-daemon[2165116]: [session uid=1000 pid=2165116 pidfd=5] Successfully activated service 'org.gtk.vfs.Daemon'
+dbus-daemon[2165116]: [session uid=1000 pid=2165116 pidfd=5] Successfully activated service 'org.a11y.Bus'
+dbus-daemon[2165116]: [session uid=1000 pid=2165116 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.3' (uid=1000 pid=2165610 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[2165116]: [session uid=1000 pid=2165116 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[2165116]: [session uid=1000 pid=2165116 pidfd=5] Activating service name='org.freedesktop.portal.Desktop' requested by ':1.4' (uid=1000 pid=2165583 comm="/home/dzack/gitclones/math-flashcards/desktop/src-")
+dbus-daemon[2165116]: [session uid=1000 pid=2165116 pidfd=5] Activating service name='org.freedesktop.impl.portal.PermissionStore' requested by ':1.6' (uid=1000 pid=2165625 comm="/usr/lib/xdg-desktop-portal")
+dbus-daemon[2165116]: [session uid=1000 pid=2165116 pidfd=5] Successfully activated service 'org.freedesktop.impl.portal.PermissionStore'
+dbus-daemon[2165116]: [session uid=1000 pid=2165116 pidfd=5] Activating service name='org.freedesktop.portal.Documents' requested by ':1.6' (uid=1000 pid=2165625 comm="/usr/lib/xdg-desktop-portal")
+dbus-daemon[2165116]: [session uid=1000 pid=2165116 pidfd=5] Successfully activated service 'org.freedesktop.portal.Documents'
+
+(/usr/lib/xdg-desktop-portal:2165625): xdg-desktop-portal-WARNING **: 16:00:53.100: Choosing gtk.portal for org.freedesktop.impl.portal.Lockdown as a last-resort fallback
+dbus-daemon[2165116]: [session uid=1000 pid=2165116 pidfd=5] Activating service name='org.freedesktop.impl.portal.desktop.gtk' requested by ':1.6' (uid=1000 pid=2165625 comm="/usr/lib/xdg-desktop-portal")
+dbus-daemon[2165116]: [session uid=1000 pid=2165116 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.3' (uid=1000 pid=2165610 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[2165116]: [session uid=1000 pid=2165116 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+
+** (xdg-desktop-portal-gtk:2165651): WARNING **: 16:00:53.188: AT-SPI: Could not obtain desktop path or name
+
+dbus-daemon[2165116]: [session uid=1000 pid=2165116 pidfd=5] Successfully activated service 'org.freedesktop.impl.portal.desktop.gtk'
+dbus-daemon[2165116]: [session uid=1000 pid=2165116 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.3' (uid=1000 pid=2165610 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+
+(/usr/lib/xdg-desktop-portal:2165625): xdg-desktop-portal-WARNING **: 16:00:53.192: Choosing gtk.portal for org.freedesktop.impl.portal.Access as a last-resort fallback
+dbus-daemon[2165116]: [session uid=1000 pid=2165116 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+
+** (xdg-desktop-portal-gtk:2165651): WARNING **: 16:00:53.195: atk-bridge: GetRegisteredEvents returned message with unknown signature
+
+** (xdg-desktop-portal-gtk:2165651): WARNING **: 16:00:53.195: atk-bridge: get_device_events_reply: unknown signature
+
+(/usr/lib/xdg-desktop-portal:2165625): xdg-desktop-portal-WARNING **: 16:00:53.226: Choosing gtk.portal for org.freedesktop.impl.portal.Settings as a last-resort fallback
+
+(/usr/lib/xdg-desktop-portal:2165625): xdg-desktop-portal-WARNING **: 16:00:53.228: Choosing gtk.portal for org.freedesktop.impl.portal.FileChooser as a last-resort fallback
+
+(/usr/lib/xdg-desktop-portal:2165625): xdg-desktop-portal-WARNING **: 16:00:53.230: Choosing gtk.portal for org.freedesktop.impl.portal.AppChooser as a last-resort fallback
+
+(/usr/lib/xdg-desktop-portal:2165625): xdg-desktop-portal-WARNING **: 16:00:53.232: Choosing gtk.portal for org.freedesktop.impl.portal.Print as a last-resort fallback
+
+(/usr/lib/xdg-desktop-portal:2165625): xdg-desktop-portal-WARNING **: 16:00:53.234: Choosing gtk.portal for org.freedesktop.impl.portal.Notification as a last-resort fallback
+
+(/usr/lib/xdg-desktop-portal:2165625): xdg-desktop-portal-WARNING **: 16:00:53.237: Choosing gtk.portal for org.freedesktop.impl.portal.Inhibit as a last-resort fallback
+
+(/usr/lib/xdg-desktop-portal:2165625): xdg-desktop-portal-WARNING **: 16:00:53.242: Failed to connect to PipeWire: Couldn't connect to PipeWire
+
+(/usr/lib/xdg-desktop-portal:2165625): xdg-desktop-portal-WARNING **: 16:00:53.242: Choosing gtk.portal for org.freedesktop.impl.portal.Account as a last-resort fallback
+
+(/usr/lib/xdg-desktop-portal:2165625): xdg-desktop-portal-WARNING **: 16:00:53.245: Choosing gtk.portal for org.freedesktop.impl.portal.Email as a last-resort fallback
+
+(/usr/lib/xdg-desktop-portal:2165625): xdg-desktop-portal-WARNING **: 16:00:53.247: Choosing gtk.portal for org.freedesktop.impl.portal.DynamicLauncher as a last-resort fallback
+dbus-daemon[2165116]: [session uid=1000 pid=2165116 pidfd=5] Successfully activated service 'org.freedesktop.portal.Desktop'
+dbus-daemon[2165116]: [session uid=1000 pid=2165116 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.3' (uid=1000 pid=2165610 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[2165116]: [session uid=1000 pid=2165116 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[2165116]: [session uid=1000 pid=2165116 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.3' (uid=1000 pid=2165610 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[2165116]: [session uid=1000 pid=2165116 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+WM_CLASS(STRING) = "desktop", "Desktop"
+
+Native window: 4194308
+dbus-daemon[2165116]: [session uid=1000 pid=2165116 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.3' (uid=1000 pid=2165610 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[2165116]: [session uid=1000 pid=2165116 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[2165116]: [session uid=1000 pid=2165116 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.3' (uid=1000 pid=2165610 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[2165116]: [session uid=1000 pid=2165116 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/native.py", line 1566, in <module>
+    app()
+    ~~~^^
+  File "/home/dzack/.cache/uv/environments-v2/native-6c96489658ec1b3f/lib/python3.14/site-packages/cyclopts/core.py", line 2281, in __call__
+    result = _run_maybe_async_command(command, bound, resolved_backend)
+  File "/home/dzack/.cache/uv/environments-v2/native-6c96489658ec1b3f/lib/python3.14/site-packages/cyclopts/_run.py", line 44, in _run_maybe_async_command
+    return command(*bound.args, **bound.kwargs)
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/native.py", line 1130, in main
+    visible = subprocess.check_output(
+              ~~~~~~~~~~~~~~~~~~~~~~~^
+        [
+        ^
+    ...<8 lines>...
+        timeout=10,
+        ^^^^^^^^^^^
+    ).splitlines()
+    ^
+  File "/home/dzack/.local/share/uv/python/cpython-3.14.7-linux-x86_64-gnu/lib/python3.14/subprocess.py", line 473, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+               **kwargs).stdout
+               ^^^^^^^^^
+  File "/home/dzack/.local/share/uv/python/cpython-3.14.7-linux-x86_64-gnu/lib/python3.14/subprocess.py", line 557, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzack/.local/share/uv/python/cpython-3.14.7-linux-x86_64-gnu/lib/python3.14/subprocess.py", line 1221, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzack/.local/share/uv/python/cpython-3.14.7-linux-x86_64-gnu/lib/python3.14/subprocess.py", line 2154, in _communicate
+    self._check_timeout(endtime, orig_timeout, stdout, stderr)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzack/.local/share/uv/python/cpython-3.14.7-linux-x86_64-gnu/lib/python3.14/subprocess.py", line 1268, in _check_timeout
+    raise TimeoutExpired(
+    ...<2 lines>...
+            stderr=b''.join(stderr_seq) if stderr_seq else None)
+subprocess.TimeoutExpired: Command '['xdotool', 'search', '--sync', '--onlyvisible', '--name', 'Math Flashcards']' timed out after 10 seconds
+A connection to the bus can't be made
+error: recipe `desktop-native-test` failed on line 117 with exit code 1

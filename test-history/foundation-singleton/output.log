@@ -1,0 +1,60 @@
+xvfb-run -a -s '-screen 0 1600x1200x24' dbus-run-session -- uv run --upgrade desktop/tests/native.py --singleton
+WM_CLASS(STRING) = "desktop", "Desktop"
+
+Native window: 2097156
+dbus-daemon[2139623]: [session uid=1000 pid=2139623 pidfd=5] Activating service name='org.freedesktop.portal.Desktop' requested by ':1.0' (uid=1000 pid=2140202 comm="/home/dzack/gitclones/math-flashcards/desktop/src-")
+dbus-daemon[2139623]: [session uid=1000 pid=2139623 pidfd=5] Activating service name='org.freedesktop.impl.portal.PermissionStore' requested by ':1.1' (uid=1000 pid=2140219 comm="/usr/lib/xdg-desktop-portal")
+dbus-daemon[2139623]: [session uid=1000 pid=2139623 pidfd=5] Successfully activated service 'org.freedesktop.impl.portal.PermissionStore'
+dbus-daemon[2139623]: [session uid=1000 pid=2139623 pidfd=5] Activating service name='org.freedesktop.portal.Documents' requested by ':1.1' (uid=1000 pid=2140219 comm="/usr/lib/xdg-desktop-portal")
+dbus-daemon[2139623]: [session uid=1000 pid=2139623 pidfd=5] Successfully activated service 'org.freedesktop.portal.Documents'
+
+(/usr/lib/xdg-desktop-portal:2140219): xdg-desktop-portal-WARNING **: 15:57:54.125: Choosing gtk.portal for org.freedesktop.impl.portal.Lockdown as a last-resort fallback
+dbus-daemon[2139623]: [session uid=1000 pid=2139623 pidfd=5] Activating service name='org.freedesktop.impl.portal.desktop.gtk' requested by ':1.1' (uid=1000 pid=2140219 comm="/usr/lib/xdg-desktop-portal")
+dbus-daemon[2139623]: [session uid=1000 pid=2139623 pidfd=5] Activating service name='org.gtk.vfs.Daemon' requested by ':1.4' (uid=1000 pid=2140248 comm="/usr/lib/xdg-desktop-portal-gtk")
+dbus-daemon[2139623]: [session uid=1000 pid=2139623 pidfd=5] Successfully activated service 'org.gtk.vfs.Daemon'
+dbus-daemon[2139623]: [session uid=1000 pid=2139623 pidfd=5] Successfully activated service 'org.freedesktop.impl.portal.desktop.gtk'
+
+** (xdg-desktop-portal-gtk:2140248): WARNING **: 15:57:54.207: AT-SPI: Could not obtain desktop path or name
+
+
+(/usr/lib/xdg-desktop-portal:2140219): xdg-desktop-portal-WARNING **: 15:57:54.209: Choosing gtk.portal for org.freedesktop.impl.portal.Access as a last-resort fallback
+
+** (xdg-desktop-portal-gtk:2140248): WARNING **: 15:57:54.210: atk-bridge: GetRegisteredEvents returned message with unknown signature
+
+** (xdg-desktop-portal-gtk:2140248): WARNING **: 15:57:54.210: atk-bridge: get_device_events_reply: unknown signature
+fusermount3: failed to access mountpoint /home/dzack/.gvfs: Permission denied
+
+(/usr/lib/xdg-desktop-portal:2140219): xdg-desktop-portal-WARNING **: 15:57:54.234: Choosing gtk.portal for org.freedesktop.impl.portal.Settings as a last-resort fallback
+
+(/usr/lib/xdg-desktop-portal:2140219): xdg-desktop-portal-WARNING **: 15:57:54.236: Choosing gtk.portal for org.freedesktop.impl.portal.FileChooser as a last-resort fallback
+
+(/usr/lib/xdg-desktop-portal:2140219): xdg-desktop-portal-WARNING **: 15:57:54.238: Choosing gtk.portal for org.freedesktop.impl.portal.AppChooser as a last-resort fallback
+
+(/usr/lib/xdg-desktop-portal:2140219): xdg-desktop-portal-WARNING **: 15:57:54.240: Choosing gtk.portal for org.freedesktop.impl.portal.Print as a last-resort fallback
+
+(/usr/lib/xdg-desktop-portal:2140219): xdg-desktop-portal-WARNING **: 15:57:54.241: Choosing gtk.portal for org.freedesktop.impl.portal.Notification as a last-resort fallback
+
+(/usr/lib/xdg-desktop-portal:2140219): xdg-desktop-portal-WARNING **: 15:57:54.242: Choosing gtk.portal for org.freedesktop.impl.portal.Inhibit as a last-resort fallback
+
+(/usr/lib/xdg-desktop-portal:2140219): xdg-desktop-portal-WARNING **: 15:57:54.248: Failed to connect to PipeWire: Couldn't connect to PipeWire
+
+(/usr/lib/xdg-desktop-portal:2140219): xdg-desktop-portal-WARNING **: 15:57:54.248: Choosing gtk.portal for org.freedesktop.impl.portal.Account as a last-resort fallback
+
+(/usr/lib/xdg-desktop-portal:2140219): xdg-desktop-portal-WARNING **: 15:57:54.250: Choosing gtk.portal for org.freedesktop.impl.portal.Email as a last-resort fallback
+
+(/usr/lib/xdg-desktop-portal:2140219): xdg-desktop-portal-WARNING **: 15:57:54.252: Choosing gtk.portal for org.freedesktop.impl.portal.DynamicLauncher as a last-resort fallback
+dbus-daemon[2139623]: [session uid=1000 pid=2139623 pidfd=5] Successfully activated service 'org.freedesktop.portal.Desktop'
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/native.py", line 1566, in <module>
+    app()
+    ~~~^^
+  File "/home/dzack/.cache/uv/environments-v2/native-6c96489658ec1b3f/lib/python3.14/site-packages/cyclopts/core.py", line 2281, in __call__
+    result = _run_maybe_async_command(command, bound, resolved_backend)
+  File "/home/dzack/.cache/uv/environments-v2/native-6c96489658ec1b3f/lib/python3.14/site-packages/cyclopts/_run.py", line 44, in _run_maybe_async_command
+    return command(*bound.args, **bound.kwargs)
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/native.py", line 1129, in main
+    assert status == 0, f"Second launch failed with status {status}"
+           ^^^^^^^^^^^
+AssertionError: Second launch failed with status -6
+A connection to the bus can't be made
+error: recipe `desktop-native-test` failed on line 117 with exit code 1

@@ -1115,7 +1115,10 @@ def main(
                 assert '"desktop"' in wm_class
                 print("Native window:", window, flush=True)
                 if entry is None and not offline and not updates:
-                    subprocess.run(["xdotool", "windowunmap", window], check=True)
+                    subprocess.run(["xdotool", "windowfocus", "0"], check=True)
+                    assert subprocess.check_output(
+                        ["xdotool", "getwindowfocus", "-f"], text=True
+                    ).strip() != window
                     second = subprocess.Popen(
                         command, stdout=log, stderr=log, env=runtime_environment
                     )

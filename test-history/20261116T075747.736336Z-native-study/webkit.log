@@ -1,0 +1,27 @@
+MESA-EGL: warning: DRI3 error: Could not get DRI3 device
+MESA-EGL: warning: Ensure your X server supports DRI3 to get accelerated rendering
+
+** (desktop:2139737): WARNING **: 15:57:49.379: AT-SPI: Could not obtain desktop path or name
+
+
+** (desktop:2139737): WARNING **: 15:57:49.390: atk-bridge: GetRegisteredEvents returned message with unknown signature
+
+** (desktop:2139737): WARNING **: 15:57:49.390: atk-bridge: get_device_events_reply: unknown signature
+
+** (process:2139894): WARNING **: 15:57:50.324: Failed to get atspi registered event listeners: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.a11y.atspi.Registry': unit failed
+
+Backend request: assets
+Backend request: cached-manifest
+Backend result: assets exit status: 0
+Backend result: cached-manifest exit status: 0
+Backend request: manifest
+Backend result: manifest exit status: 0
+Backend request: cache-manifest
+
+(desktop:2139737): Gdk-WARNING **: 15:57:54.340: GdkWindow 0x200004 unexpectedly destroyed
+
+(desktop:2139737): GLib-GObject-CRITICAL **: 15:57:54.341: invalid (NULL) pointer instance
+
+(desktop:2139737): GLib-GObject-CRITICAL **: 15:57:54.341: g_signal_handler_disconnect: assertion 'G_TYPE_CHECK_INSTANCE (instance)' failed
+
+(desktop:2139737): Gdk-CRITICAL **: 15:57:54.341: gdk_frame_clock_end_updating: assertion 'GDK_IS_FRAME_CLOCK (frame_clock)' failed

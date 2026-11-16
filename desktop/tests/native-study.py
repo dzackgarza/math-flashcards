@@ -91,9 +91,16 @@ def main(artifacts: Path) -> None:
                 # A real process exit must restart the native bridge's host and reopen
                 # the same store, rather than leaving a dead route or creating data.
                 hosts[0].terminate()
-                hosts[0].wait(timeout=10)
+                # The native parent reaps the child on the next request. psutil.wait
+                # on a non-child waits for disappearance, not merely process exit:
+                # https://psutil.io/api/#psutil.Process.wait
+                WebDriverWait(driver, 10).until(
+                    lambda _: not hosts[0].is_running()
+                    or hosts[0].status() == psutil.STATUS_ZOMBIE
+                )
                 restarted = driver.execute_async_script(script, payload)
                 assert restarted == first, restarted
+                assert not hosts[0].is_running()
                 with closing(sqlite3.connect(opened["record"])) as record:
                     assert record.execute("select count(*) from writer").fetchone()[0] == writers + 1
                     assert record.execute("select kind from store_event").fetchall() == [("created",)]

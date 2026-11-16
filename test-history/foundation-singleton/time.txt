@@ -1,0 +1,24 @@
+Command exited with non-zero status 1
+	Command being timed: "just desktop-native-test --singleton"
+	User time (seconds): 1.41
+	System time (seconds): 0.40
+	Percent of CPU this job got: 16%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:11.18
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 80240
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 363
+	Minor (reclaiming a frame) page faults: 24564
+	Voluntary context switches: 1887
+	Involuntary context switches: 524
+	Swaps: 0
+	File system inputs: 59032
+	File system outputs: 2064
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

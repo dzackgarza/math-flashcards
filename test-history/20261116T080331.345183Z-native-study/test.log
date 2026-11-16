@@ -1,0 +1,51 @@
+Traceback (most recent call last):
+  File "/home/dzack/.cache/uv/environments-v2/native-study-ef6cfc3b8931cc93/lib/python3.14/site-packages/psutil/_psposix.py", line 168, in _waitpid
+    retpid, status = os.waitpid(pid, 0)
+                     ~~~~~~~~~~^^^^^^^^
+ChildProcessError: [Errno 10] No child processes
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/dzack/.cache/uv/environments-v2/native-study-ef6cfc3b8931cc93/lib/python3.14/site-packages/psutil/_psposix.py", line 144, in wait_pid_posix
+    retpid, status = os.waitpid(pid, flags)
+                     ~~~~~~~~~~^^^^^^^^^^^^
+ChildProcessError: [Errno 10] No child processes
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/dzack/.cache/uv/environments-v2/native-study-ef6cfc3b8931cc93/lib/python3.14/site-packages/psutil/__init__.py", line 1374, in wait
+    self._exitcode = self._proc.wait(timeout)
+                     ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/dzack/.cache/uv/environments-v2/native-study-ef6cfc3b8931cc93/lib/python3.14/site-packages/psutil/_pslinux.py", line 1593, in wrapper
+    return fun(self, *args, **kwargs)
+  File "/home/dzack/.cache/uv/environments-v2/native-study-ef6cfc3b8931cc93/lib/python3.14/site-packages/psutil/_pslinux.py", line 1846, in wait
+    return _psposix.wait_pid(self.pid, timeout)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/home/dzack/.cache/uv/environments-v2/native-study-ef6cfc3b8931cc93/lib/python3.14/site-packages/psutil/_psposix.py", line 304, in wait_pid
+    return wait_pid_pidfd_open(pid, timeout)
+  File "/home/dzack/.cache/uv/environments-v2/native-study-ef6cfc3b8931cc93/lib/python3.14/site-packages/psutil/_psposix.py", line 207, in wait_pid_pidfd_open
+    return _waitpid(pid, timeout)
+  File "/home/dzack/.cache/uv/environments-v2/native-study-ef6cfc3b8931cc93/lib/python3.14/site-packages/psutil/_psposix.py", line 171, in _waitpid
+    return wait_pid_posix(pid, timeout)
+  File "/home/dzack/.cache/uv/environments-v2/native-study-ef6cfc3b8931cc93/lib/python3.14/site-packages/psutil/_psposix.py", line 153, in wait_pid_posix
+    interval = sleep_or_timeout(interval)
+  File "/home/dzack/.cache/uv/environments-v2/native-study-ef6cfc3b8931cc93/lib/python3.14/site-packages/psutil/_psposix.py", line 137, in sleep_or_timeout
+    raise TimeoutExpired(timeout)
+psutil.TimeoutExpired: timeout after 10 seconds
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/evidence.py", line 53, in evidence
+    yield directory
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/native-study.py", line 129, in <module>
+    main(artifacts)
+    ~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/native-study.py", line 95, in main
+    hosts[0].wait(timeout=10)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/home/dzack/.cache/uv/environments-v2/native-study-ef6cfc3b8931cc93/lib/python3.14/site-packages/psutil/__init__.py", line 1377, in wait
+    raise exc from err
+psutil.TimeoutExpired: timeout after 10 seconds (pid=2182841)

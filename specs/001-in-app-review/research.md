@@ -144,6 +144,18 @@ workspace open, that scenario would write to the real history.
 
 ## R5. Deck mapping
 
+Native host-lifecycle checks wait for a terminated child to reach the exited state
+before sending the next bridge request. On Unix,
+[`psutil.Process.wait`](https://psutil.io/api/#psutil.Process.wait) waits for a non-child
+PID to disappear; the native parent reaps its child when the next request calls
+`try_wait`. Waiting for disappearance before that request creates a test dependency
+cycle. The test must still verify that the old PID is reaped, the store is unchanged,
+and a new writer is recorded after reopening.
+
+Singleton checks move keyboard focus away from the app and require the next launch to
+restore it with the same sole window. Direct X window unmapping is not a GTK hide
+operation and does not establish the application's visibility state.
+
 **Decision**: Each deck file maps to one Anki deck named from its workspace path:
 `Workspace::<folder>::…::<file stem>`. Folders are parent decks. `Workspace` is the root
 deck; studying the workspace selects it.
@@ -614,7 +626,7 @@ material.
 | A card graded Again comes back in the same session and at short intervals | FR-005, User Story 1 scenario 7 | `rawson2011`, `rawson2013`: relearning to a correct recall in later sessions gives durable retention at small cost. Their first-session criterion (3 correct recalls) is not Anki's default steps. | Supported in direction. The steps are Anki's defaults |
 | The app has no action that sets a card aside for the rest of a session | Assumptions | `kornell2008` | Inference from vocabulary experiments with short delays. Effects were not significant in every comparison; the paper does not establish a general prohibition on postponing mathematics cards. |
 | The answer is recalled in thought, and the person grades the recall | FR-003, Assumptions | `smith2013` finds no difference between retrieval in thought and a produced response. `tauber2017` finds a produced response better for definitions (d = 0.43), which is the material of many cards. `dunlosky2010` finds that students grade their own recalled definitions too high. | Contrary evidence for definition cards. See the consequences below |
-| Target probability of recall of 0.9 | R9 | None in the register | Default of Anki |
+| Target probability of recall of 0.9 | R9 | `ye2022` uses 90% as a comparison policy taken from SuperMemo; its model-based simulation does not establish an optimal target for adult mathematical learning. No learning-outcome evidence for this value is in the register. | Default of Anki |
 | Reviews in order of ascending retrievability | FR-044, R9 | None in the register. The source is the Anki manual. | Default, chosen in R9 from the manual |
 | A session mixes the cards of all subjects in its scope | FR-005 | `rohrer2007`, `brunmair2019` (g = 0.34 for mathematical tasks). The studies mix types of problem during practice. A review of cards that were learned separately is a different task. | Inference |
 | The record holds the time from the front to the reveal | FR-028 | `mettler2016`: response time with accuracy carries enough information about learning strength to set a schedule | Supported |

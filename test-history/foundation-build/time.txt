@@ -1,0 +1,23 @@
+	Command being timed: "just desktop-build"
+	User time (seconds): 1054.50
+	System time (seconds): 48.89
+	Percent of CPU this job got: 216%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 8:30.67
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 2051340
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 71004
+	Minor (reclaiming a frame) page faults: 4711908
+	Voluntary context switches: 92376
+	Involuntary context switches: 354038
+	Swaps: 0
+	File system inputs: 5353616
+	File system outputs: 2862648
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
