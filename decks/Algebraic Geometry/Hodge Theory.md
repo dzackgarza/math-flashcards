@@ -1153,3 +1153,28 @@ What is the definition of Zariski closure?
 ::: {.back card-id="card-ed88ff202aea0a6a"}
 For a subset $S$ of an algebraic variety $X$, the smallest Zariski-closed subset $\overline S$ containing $S$; equivalently the common zero set of all regular functions on $X$ that vanish on $S$.
 :::
+
+::: {.front card-id="nl-locus-hodge-locus" tags="definition comparison"}
+Define the Noether–Lefschetz locus for smooth degree-$d$ surfaces in $\mathbb P^3_{\mathbb C}$, $d\ge4$. How is an extra divisor class detected by periods in a smooth family?
+:::
+
+::: {.back card-id="nl-locus-hodge-locus"}
+In the parameter space $U_d$ of smooth degree-$d$ surfaces, with hyperplane class $H$:
+$$\operatorname{NL}_d=\{S\in U_d:\operatorname{Pic}(S)\ne\mathbb ZH\}.$$
+The Noether–Lefschetz theorem makes this a proper exceptional locus: the complement contains every very general surface. Here very general means outside a countable union of proper closed algebraic subsets, not necessarily outside a single closed subset.
+
+On a simply connected analytic patch in a smooth family, parallel-transport an integral class $\alpha\in H^2(S,\mathbb Z)$ independent of $H$. Its Hodge locus is where $\alpha$ has type $(1,1)$, equivalently
+$$\int_{S_t}\alpha_t\wedge\omega=0\quad\text{for every }\omega\in H^{2,0}(S_t).$$
+Lefschetz $(1,1)$ turns this into existence of a line bundle. The union over extra integral classes is the Noether–Lefschetz locus. It detects additional divisor classes, not singular surfaces.
+:::
+
+::: {.front card-id="nl-picard-jump-smooth-family" tags="application comparison"}
+A smooth family of quartic K3 surfaces contains a fiber with a line. Which invariants can jump, and why does smoothness not force the Picard rank to stay fixed?
+:::
+
+::: {.back card-id="nl-picard-jump-smooth-family"}
+Betti numbers and Hodge numbers remain constant; the integral lattice inside the moving $(1,1)$ subspace can change. A very general quartic has $\operatorname{Pic}=\mathbb ZH$, while a fiber with a line $L$ has
+$$\begin{pmatrix}H^2&H\cdot L\\H\cdot L&L^2\end{pmatrix}
+=\begin{pmatrix}4&1\\1&-2\end{pmatrix},\qquad\det=-9.$$
+Thus $H,L$ are independent and $\rho\ge2$, although $b_2=22$ and $h^{1,1}=20$ remain unchanged. An integral class becoming algebraic does not require a topological vanishing cycle or a singular fiber.
+:::
