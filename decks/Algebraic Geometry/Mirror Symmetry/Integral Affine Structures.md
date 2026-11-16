@@ -2,6 +2,88 @@
 title: "Algebraic Geometry::Mirror Symmetry::Integral Affine Structures"
 ---
 
+::: {.front card-id="ias-visible-roots-mirror-monodromy" tags="construction theorem formula"}
+How do visible cycles on an integral-affine sphere encode roots? State the mirror/monodromy identification and explain how root pairings control singularity collisions.
+:::
+
+::: {.back card-id="ias-visible-roots-mirror-monodromy"}
+For a Lagrangian torus fibration $\mu:(\widehat X,\omega)\to B$, a visible cycle is a base one-cycle with parallel integral tangent-vector coefficients, balanced at its vertices. The coefficient specifies a circle in each torus fiber; its sweep gives a two-cycle upstairs.
+
+A path between two $I_1$ points carrying the same parallel primitive vanishing direction gives a sphere of square $-2$. Successive paths between three such points give classes $\alpha,\beta$ with
+$$\alpha^2=\beta^2=-2,\qquad \alpha\beta=1.$$
+Thus their intersection matrix is negative $A_2$.
+
+For generic $B$ with a triangulation into lattice-volume-one triangles, suppose both a type III Kulikov model and a Lagrangian torus fibration have base $B$. The mirror/monodromy theorem identifies a nearby K3 fiber with $\widehat X$ by a diffeomorphism, sending
+$$[\text{torus fiber}]\mapsto e,\qquad [\omega]\mapsto\lambda\in(e^\perp/e)_\mathbb R.$$
+For the simple visible roots in the Symington construction, the affine separation parameter is $\ell_i=\lambda\alpha_i$. A vanishing pairing puts the symplectic class on a root wall and collapses the corresponding separation.
+
+For two parallel positive $I_1$ monodromies, choose the common basis so that their product is
+$$\begin{pmatrix}1&1\\0&1\end{pmatrix}^2=\begin{pmatrix}1&2\\0&1\end{pmatrix}.$$
+Their collision is $I_2$. Nonparallel vanishing directions do not justify this conclusion.
+
+Reference: Alexeev–Engel, *Compactifications of moduli spaces of K3 surfaces with a nonsymplectic involution*, Theorem 6.19 and §6G; AEGS, Proposition 4.5.
+:::
+
+::: {.front card-id="ias-realization-polarized-equivariant" tags="theorem construction"}
+What does the realization theorem for a triangulated integral-affine sphere produce? What additional work produces a polarized model with an involution?
+:::
+
+::: {.back card-id="ias-realization-polarized-equivariant"}
+Let $B\simeq S^2$ have integral-affine singularities obtained by the positive shear constructions for anticanonical pairs, all at vertices of a triangulation into triangles of lattice volume one (Euclidean area $1/2$). There exists a type III K3 degeneration with dual integral-affine complex $B$.
+
+Construction data: realize every vertex star as a pseudofan of an anticanonical pair $(V_i,D_i)$, glue the boundary curves, and choose the gluing so the normal-crossing surface is $d$-semistable. Along a smooth double curve with two triple points,
+$$D_{ij}^2|_{V_i}+D_{ji}^2|_{V_j}=-2.$$
+For a polarization, specify nef $L_i$ with matching boundary degrees, at least one big, and choose gluing isomorphisms so they form a line bundle and its chosen divisor avoids log canonical centers. Numerical matching alone does not eliminate the period obstruction.
+
+In the nonsymplectic-involution construction, start with an ample class on the mirror K3 and its Symington polygon $P$, double $P$ with opposite orientation, and choose an invariant lattice triangulation containing the equator. Invariant component choices and anti-invariant periods give an equivariant smoothing with the prescribed monodromy. Extend to nef wall classes by the singularity-collision construction.
+
+An order-$m$ refinement multiplies lengths by $m$ and area by $m^2$; geometrically $t=s^m$ gives $\log T'=m\log T$ and $\lambda'=m\lambda$. It clears rational lengths and permits compatible integral subdivisions.
+
+Reference: Alexeev–Engel–Thompson, *Stable pair compactification of moduli of K3 surfaces of degree 2*, Proposition 2.22 and §6; Alexeev–Engel, nonsymplectic-involution paper, Theorem 8.3.
+:::
+
+::: {.front card-id="ias-polygon-blowup-contraction-example" tags="application calculation"}
+Start with the toric triangle for $(\mathbb P^2,\mathcal O(2))$ and its three boundary lines. Blow up the two intersections of a smooth conic with one boundary line, away from the corners. Compute the affine surgery data, boundary intersections, and ample model of the strict transform of the conic.
+:::
+
+::: {.back card-id="ias-polygon-blowup-contraction-example"}
+The polygon is $\operatorname{conv}((0,0),(2,0),(0,2))$, normalized area $4$. Write $H$ for the pullback of a line, $E_1,E_2$ for the exceptional curves. The internal blowups give
+$$R'=2H-E_1-E_2,\qquad D'_1=H-E_1-E_2,\quad D'_2=D'_3=H.$$
+The last equality is equality of divisor classes. Also
+$$K=-3H+E_1+E_2,\quad D'_1+D'_2+D'_3=-K.$$
+Each blowup corresponds to a unit Symington surgery on the chosen edge. Two surgeries reduce its affine length $2$ to $0$, reduce normalized area from $4$ to $2$, and add total charge two.
+
+The decisive intersections are
+$$R'^2=2,\quad R'D'_1=0,\quad R'D'_2=R'D'_3=2,\quad (D'_1)^2=-1.$$
+The basepoint-free conics through the two points define $\operatorname{Bl}_{p_1,p_2}\mathbb P^2\to\mathbb P^1\times\mathbb P^1$, contracting $D'_1$. The ruling classes are $H-E_1$ and $H-E_2$; their sum is $R'$, so the descended polarization is $\mathcal O(1,1)$.
+
+The two remaining boundary curves have class $(1,1)$, self-intersection two, and meet in two points. Their sum is anticanonical. This computes the component and its boundary contraction from the polygon operations; a global Kulikov model additionally requires compatible neighboring components and gluings.
+
+Reference: Symington surgery and internal-blowup dictionary in Alexeev–Engel–Thompson, §2; the boundary-contraction operation used in AEGS, §§4 and 6.2.
+:::
+
+::: {.front card-id="anticanonical-period-torelli" tags="definition theorem application"}
+Define the period of an oriented rational anticanonical pair. State global Torelli in a form usable to recognize an isomorphism, and explain the ambiguity in realizing a lattice symmetry.
+:::
+
+::: {.back card-id="anticanonical-period-torelli"}
+Let $Y$ be a smooth projective rational surface and $D\in|-K_Y|$ a nodal rational cycle with ordered components and an orientation. Then
+$$D^\perp=\{L\in\operatorname{Pic}(Y):LD_i=0\ \forall i\},\qquad
+\phi_Y:D^\perp\to\operatorname{Pic}^0(D)\simeq\mathbb C^\times,\quad L\mapsto L|_D.$$
+For two such pairs and an intersection-lattice isomorphism $\mu:\operatorname{Pic}(Y_1)\to\operatorname{Pic}(Y_2)$, there is an isomorphism $f:(Y_2,D_2)\to(Y_1,D_1)$ with $f^*=\mu$ iff
+
+- $\mu[D_{1,i}]=[D_{2,i}]$;
+- $\mu(\operatorname{Nef}(Y_1))=\operatorname{Nef}(Y_2)$;
+- $\phi_{Y_2}\circ\mu=\phi_{Y_1}$ on $D_1^\perp$.
+
+The possibilities form a torsor under
+$$\operatorname{Hom}(N',\mathbb C^\times),\qquad
+N'=\operatorname{coker}\bigl[\operatorname{Pic}(Y_1)\to\mathbb Z^{\#D_i},\ L\mapsto(LD_i)_i\bigr].$$
+Thus preserving periods and the nef cone realizes a lattice symmetry, but its lift need not be unique. An order-two lattice map does not alone prove that a chosen geometric lift squares to the identity. Reversing the cycle orientation replaces the period by its inverse.
+
+Reference: Gross–Hacking–Keel, *Moduli of surfaces with an anti-canonical cycle*, Theorem 1.8 and its nef-cone formulation; AEGS, Corollary 4.9.
+:::
+
 ::: {.front card-id="ias-toric-model-corner-equivalence" tags="definition construction example"}
 Define a toric model of an anticanonical pair and corner-blowup equivalence. Distinguish internal and corner blowups in this construction.
 :::

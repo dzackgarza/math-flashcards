@@ -2,6 +2,23 @@
 title: "Algebraic Geometry::Singularities::Surface Singularities"
 ---
 
+::: {.front card-id="surface-double-crossing-involution-quotient" tags="application calculation"}
+Describe the normalization and conductor of $S=\{xz=0\}\subset\mathbb A^3_{x,y,z}$ modulo $(x,y,z)\mapsto(-x,-y,-z)$. Why is this quotient slc, and does the image of the origin become an isolated log canonical center?
+:::
+
+::: {.back card-id="surface-double-crossing-involution-quotient"}
+The action preserves each plane. Its normalization is the disjoint union of two $A_1$ surfaces:
+$$\mathbb A^2_{x,y}/\{\pm1\}=\operatorname{Spec}\mathbb C[u,v,w]/(uw-v^2),\qquad
+u=x^2,\ v=xy,\ w=y^2,$$
+and the analogous plane with $x$ replaced by $z$. The conductor on each is the image of $x=0$, respectively $z=0$; its coordinate is $w=y^2$. Glue these conductor lines by the identity.
+
+Upstairs the normalized pair is a smooth plane with one coefficient-one line, hence plt. The quotient is étale away from the origin, and the log canonical divisor pulls back to that of the plane pair. The quotient normalized pair is therefore plt as well. Its only lc center is the conductor curve, not the origin separately. Along its conductor, adjunction has different $\tfrac12[0]$, recording $y\mapsto y^2$.
+
+The glued surface is demi-normal: nodal in codimension one, and $S_2$ by the invariant direct-summand description of this Cohen–Macaulay double crossing. Its canonical class is $\mathbb Q$-Cartier of index at most two. The normalization criterion therefore gives slc. This permits a polarizing divisor through the image of the origin, provided it does not contain the double curve and its coefficient is sufficiently small for log canonicity.
+
+Reference: AEGS, Proposition 4.8 and equation (4.1); the finite crepant-cover discrepancy criterion.
+:::
+
 ::: {.front card-id="surface-resolution-graph-determinant" tags="definition computation"}
 Define the weighted dual graph and determinant of a resolved normal surface singularity. Compute a two-vertex chain.
 :::

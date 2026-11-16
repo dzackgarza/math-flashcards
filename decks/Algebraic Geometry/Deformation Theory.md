@@ -2,6 +2,22 @@
 title: "Algebraic Geometry::Deformation Theory"
 ---
 
+::: {.front card-id="deformation-finite-group-invariants" tags="theorem application"}
+For a smooth proper complex variety with a finite group action, what controls deformations carrying that action over a base with trivial group action? Apply this to an involution and a lattice polarization on a K3 surface.
+:::
+
+::: {.back card-id="deformation-finite-group-invariants"}
+For $G\curvearrowright X$, equivariant infinitesimal automorphisms, tangent directions, and an obstruction space are respectively
+$$H^0(X,T_X)^G,\qquad H^1(X,T_X)^G,\qquad H^2(X,T_X)^G.$$
+For a small extension with kernel $I$, tensor the obstruction group with $I$. Averaging $|G|^{-1}\sum_{g\in G}g$ makes invariants exact over $\mathbb C$, eliminating higher group-cohomology terms. For singular $X$, use the equivariant cotangent complex and $\operatorname{Ext}^i(L_X,\mathcal O_X)^G$; the tangent sheaf alone misses smoothing directions.
+
+For a K3 surface, $H^0(T_X)=H^2(T_X)=0$, so deformations preserving a given finite action are unobstructed. Under local Torelli, preserving a nonsymplectic involution means keeping the period in its $(-1)$-eigenspace. Preserving a specified Picard sublattice $S$ imposes
+$$\omega\perp S;\qquad \xi\mathbin{\lrcorner}c_1(L)=0\in H^2(\mathcal O_X)\quad(L\in S)$$
+on the period and first-order Kodaira–Spencer class respectively. At a Kulikov boundary, component actions, gluing, and invariant period data must also be supplied; a symmetric dual complex is not an equivariant deformation by itself.
+
+Reference: Lyu–Pan, *Remarks on Automorphism and Cohomology of Cyclic Coverings*, §3; AEGS, Theorem 4.6.
+:::
+
 ::: {.front card-id="deformation-perfect-obstruction-virtual-class" tags="definition comparison"}
 Define a two-term perfect obstruction theory and its virtual fundamental class. Why does expected dimension alone not define a curve-counting invariant?
 :::
