@@ -2,6 +2,34 @@
 title: "Algebraic Geometry::Surfaces::K3 Surfaces"
 ---
 
+::: {.front card-id="k3-constant-cycle-beauville-voisin" tags="definition theorem example"}
+Define a constant-cycle curve on a complex K3 surface and the Beauville–Voisin zero-cycle. What does a rational curve supply?
+:::
+
+::: {.back card-id="k3-constant-cycle-beauville-voisin"}
+A curve $C\subset X$ is **constant-cycle** if all its closed points have the same class in $\operatorname{CH}_0(X)$. Equivalently, the pushforward from $\operatorname{Pic}^0(\widetilde C)$ to $\operatorname{CH}_0(X)$ is zero, for the normalization $\widetilde C$.
+
+For projective K3 $X$, the Beauville–Voisin class $o_X\in\operatorname{CH}_0(X)$ is the degree-one class of a point on any rational curve. The theorem makes it independent of the point and rational curve, and gives
+$$D\cdot E=\deg(D\cdot E)o_X,\qquad c_2(X)=24o_X.$$
+A rational curve is constant-cycle because its normalization is $\mathbb P^1$ and any two points there are rationally equivalent. Positive-genus constant-cycle curves also exist; constant-cycle does not mean rational.
+
+Reference: Alexeev–Engel, *The flex divisor of a K3 surface*, §2; Beauville–Voisin, *On the Chow ring of a K3 surface*.
+:::
+
+::: {.front card-id="k3-flex-point-divisor" tags="definition construction example"}
+Define a flex point for a polarized K3 surface and the flex divisor on the locus where the construction is finite. What does the base-locus condition mean?
+:::
+
+::: {.back card-id="k3-flex-point-divisor"}
+For a polarized K3 $(X,L)$, a point $x$ is **flex** if a pencil $V\subset|L|$ has set-theoretic base locus $\{x\}$. It need not be a reduced basepoint: when $L^2=2d$, the intersection is a length-$2d$ zero-dimensional scheme supported at $x$.
+
+On the open locus used by Alexeev–Engel, $|L|$ is basepoint-free and the incidence of such pencils defines a divisor cycle on $X$ by sending a pencil to its unique basepoint, with incidence multiplicities. This is the flex divisor, rather than the reduced set of flex points.
+
+Example: two members of the pencil may meet only at $x$, with total intersection multiplicity $2d$. Replacing this by “they meet transversely at $x$” would contradict $L^2=2d$.
+
+Reference: Alexeev–Engel, *The flex divisor of a K3 surface*, Definitions 2.2 and 2.8.
+:::
+
 ::: {.front card-id="construction-k3-complete-intersections" tags="construction application"}
 Construct K3 surfaces as smooth complete intersections in ordinary complex projective space. After removing linear equations, which multidegrees work? How do you ensure smoothness and verify the K3 conditions?
 :::
