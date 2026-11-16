@@ -1,0 +1,77 @@
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/evidence.py", line 53, in evidence
+    yield directory
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study.py", line 520, in <module>
+    main(artifacts)
+    ~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study.py", line 189, in main
+    expect(page.get_by_role("status", name="Study")).to_have_text(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        "Study cards ready"
+        ^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/dzack/.cache/uv/environments-v2/study-2b228d10dd0cf191/lib/python3.14/site-packages/playwright/sync_api/_generated.py", line 15561, in to_have_text
+    self._sync(
+    ~~~~~~~~~~^
+        self._impl_obj.to_have_text(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        )
+        ^
+    )
+    ^
+  File "/home/dzack/.cache/uv/environments-v2/study-2b228d10dd0cf191/lib/python3.14/site-packages/playwright/_impl/_sync_base.py", line 124, in _sync
+    return task.result()
+           ~~~~~~~~~~~^^
+  File "/home/dzack/.cache/uv/environments-v2/study-2b228d10dd0cf191/lib/python3.14/site-packages/playwright/_impl/assertions.py", line 660, in to_have_text
+    await self._expect_impl(
+    ...<9 lines>...
+    )
+  File "/home/dzack/.cache/uv/environments-v2/study-2b228d10dd0cf191/lib/python3.14/site-packages/playwright/_impl/assertions.py", line 122, in _expect_impl
+    _record_soft_or_raise(
+    ~~~~~~~~~~~~~~~~~~~~~^
+        AssertionError(
+        ^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        self._is_soft,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/dzack/.cache/uv/environments-v2/study-2b228d10dd0cf191/lib/python3.14/site-packages/playwright/_impl/_assertions.py", line 50, in _record_soft_or_raise
+    raise error
+AssertionError: Locator expected to have text 'Study cards ready'
+Actual value: None
+Error: element(s) not found 
+Call log:
+  - Expect "to_have_text" get_by_role("status", name="Study") with timeout 5000ms
+  - waiting for get_by_role("status", name="Study")
+
+Aria snapshot:
+- complementary:
+  - heading "Math Flashcards" [level=1]
+  - button "Workspace":
+    - img
+    - text: workspace
+    - img
+  - button "Search Ctrl K":
+    - img
+    - text: Search Ctrl K
+  - tree:
+    - treeitem "Algebra":
+      - img
+      - text: Algebra
+    - treeitem "Basics The Anki package is out of date":
+      - img
+      - text: Basics
+  - status: Workspace checks complete
+  - button "Show problems":
+    - img
+    - text: Problems
+  - button "Review and update Anki packages": Update Anki packages 3
+  - button "New deck":
+    - img
+    - text: New deck
+- img
+- heading "Your decks, in one place" [level=2]
+- paragraph: Select a deck in the sidebar to edit its cards.

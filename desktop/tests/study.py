@@ -186,6 +186,25 @@ def main(artifacts: Path) -> None:
                     expect(
                         page.get_by_role("button", name="Workspace", exact=True)
                     ).to_have_text(workspace.name)
+                    expect(page.get_by_role("status", name="Study")).to_have_text(
+                        "Study cards ready"
+                    )
+                    with closing(sqlite3.connect(record_path)) as record:
+                        added = record.execute(
+                            "select card_id, to_deck, kind from card_change order by id"
+                        ).fetchall()
+                        assert len(added) == 12 and all(row[2] == "added" for row in added), added
+                        assert ("study-absolute-value", "Basics.md", "added") in added
+                        content = record.execute(
+                            "select c.front, c.back, c.assets from content c join card_change a on a.content=c.id where a.card_id='study-absolute-value'"
+                        ).fetchone()
+                        assert content[:2] == (r"Evaluate $\abs{-2}$.", r"$\abs{-2}=2$."), content
+                        assert (store / "record-assets" / (content[2] + ".json")).is_file()
+                        retained_image = record.execute(
+                            "select m.name, m.digest from media m join card_change a on a.content=m.content where a.card_id='study-image'"
+                        ).fetchone()
+                        assert retained_image == ("triangle.svg", sha256(image).hexdigest()), retained_image
+                        assert (store / "record-media" / retained_image[1]).read_bytes() == image
                     page.get_by_text("Basics", exact=True).click()
                     front = page.locator(".side-editor.front .cm-content")
                     expect(front).to_contain_text("Evaluate")
@@ -328,6 +347,9 @@ def main(artifacts: Path) -> None:
                     source.backup(copy)
                 collection = Collection(str(snapshot))
                 try:
+                    identities = collection.db.all("select guid, flds from notes")
+                    assert len(identities) == 12 and all(guid == fields for guid, fields in identities), identities
+                    assert [field["name"] for field in collection.get_note(collection.find_notes("CardId:study-absolute-value")[0]).note_type()["flds"]] == ["CardId"]
                     assert collection.get_config("fsrs") is True
                     assert collection.get_config("applyAllParentLimits") is True
                     preset = collection.decks.get_config(1)
@@ -355,7 +377,7 @@ def main(artifacts: Path) -> None:
                 assert summary[0]["store"] == store.name
                 assert summary[0]["paths"] == [str(workspace)]
                 assert summary[0]["last_used"]
-                assert summary[0]["cards"] == 0 and summary[0]["responses"] == 0
+                assert summary[0]["cards"] == 12 and summary[0]["responses"] == 0
                 assert set(stores.iterdir()) == before
 
                 response = api.post(
