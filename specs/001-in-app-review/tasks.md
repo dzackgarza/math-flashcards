@@ -64,7 +64,7 @@ the copy, and the analyses, and each phase lists its tasks in the order of work.
 - [X] T012 Implement the learning record database in `desktop/study/record.py` with Python's `sqlite3`: creation of `record.sqlite3` with the tables and the `review` view of `specs/001-in-app-review/data-model.md`, the write-ahead log, the `schema` row, one `writer` row for each host start, the common columns (`at_ms`, `utc_offset_min`, `writer`), and one insert function for each table as the only write path; cite R12 of `specs/001-in-app-review/research.md` in the module comment as the reference
 - [ ] T013 Implement the host loop in `desktop/study/host.py` and the `study-host` command in `desktop/backend.py`: accept native study values; one JSON request per input line, one `{"ok": …}` response per output line, store held until input closes, and the `study-open` and `study-attach` actions with the count tree from `deck_due_tree()`; keep command-specific dependencies local to their commands
 - [ ] T014 Add the study route to `desktop/src-tauri/src/lib.rs`: every `study-*` action goes to one host process that starts on first use, serves one request at a time, restarts after an early exit, and stops at app exit; add the store's media folder to the asset scope from the `study-open` result and enable the asset protocol in `desktop/src-tauri/tauri.conf.json`
-- [ ] T015 [P] Add the same study route and a media route to the middleware in `desktop/vite.config.ts`; the T007 and T008 steps pass
+- [X] T015 [P] Add the same study route and a media route to the middleware in `desktop/vite.config.ts`; the T007 and T008 steps pass
 
 **Checkpoint**: `just desktop-study-test` opens a real store with its record through the real bridge route
 

@@ -55,6 +55,11 @@ No action updates or deletes a row of the learning record.
   absolute paths of the store directory, `record-media/`, and the learning record. The
   native shell adds `record-media/` and `record-assets/` to the asset scope, as it adds
   the workspace for `list`.
+- The browser server grants the same scope after an `Open` result from either open or
+  attach. `GET /api/study-media?path=<absolute retained file>&name=<authored filename>`
+  returns the retained bytes and the authored filename's media type. Paths outside the
+  opened stores' media and asset directories return 403, missing files return 404, and
+  unknown media types return 415. Real paths determine scope, including symbolic links.
 - With stores on disk and none for the path, it returns `Unattached` with a summary of
   each store. It creates nothing.
 - A new store gets the settings in R9 before its first queue is built, and the first

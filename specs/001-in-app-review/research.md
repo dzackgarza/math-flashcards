@@ -213,6 +213,13 @@ diagram renderer as the editor.
 **Rationale**: A later file replacement must preserve the media shown in an earlier
 review. The content record owns this association (FR-030).
 
+The browser route uses [`mrmime`](https://github.com/lukeed/mrmime#lookupinput) to resolve
+the authored filename's standard MIME type. Its dictionary derives from `mime-db`;
+unknown extensions return no type and the route reports 415. A digest filename alone
+cannot recover that type. Vite's internal MIME lookup is private, and a second
+hand-maintained extension table would duplicate the dependency. Both browser and native
+routes grant access only after a store opens, to that store's retained media and assets.
+
 ## R8. Card display
 
 **Decision**: The study screen renders native card source with the shared editor

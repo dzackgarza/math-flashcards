@@ -4,12 +4,14 @@ import { viteStaticCopy } from "vite-plugin-static-copy";
 import { spawn } from "node:child_process";
 import { once } from "node:events";
 import { createInterface } from "node:readline";
-import { readFile } from "node:fs/promises";
+import { readFile, realpath } from "node:fs/promises";
 import { readFileSync } from "node:fs";
+import { isAbsolute, join, relative, resolve } from "node:path";
 import { createHash } from "node:crypto";
 import { text } from "node:stream/consumers";
 import { fileURLToPath } from "node:url";
 import pLimit from "p-limit";
+import { lookup } from "mrmime";
 import { z } from "zod";
 
 const checkerIdentity = createHash("sha256");
@@ -63,6 +65,54 @@ function workbenchBackend(): Plugin {
           }
         | undefined;
       server.httpServer?.on("close", () => host?.child.stdin?.end());
+      const mediaRoots = new Set<string>();
+      server.middlewares.use("/api/study-media", async (request, response) => {
+        if (request.method !== "GET" || !request.url) {
+          response.writeHead(405).end("Use GET to read retained Study media.");
+          return;
+        }
+        const query = z
+          .strictObject({ path: z.string().min(1), name: z.string().min(1) })
+          .safeParse(
+            Object.fromEntries(new URL(request.url, "http://localhost").searchParams),
+          );
+        if (!query.success) {
+          response.writeHead(400).end(query.error.message);
+          return;
+        }
+        const allowed = (path: string) =>
+          [...mediaRoots].some((root) => {
+            const inside = relative(root, path);
+            return inside !== "" && inside !== ".." && !inside.startsWith("../") && !isAbsolute(inside);
+          });
+        const path = resolve(query.data.path);
+        if (!allowed(path)) {
+          response.writeHead(403).end("The file is outside the opened Study stores' media.");
+          return;
+        }
+        // Retained filenames are digests. mrmime resolves the authored name:
+        // https://github.com/lukeed/mrmime#lookupinput
+        const type = lookup(query.data.name);
+        if (!type) {
+          response.writeHead(415).end(`Unknown media type: ${query.data.name}`);
+          return;
+        }
+        try {
+          const file = await realpath(path);
+          if (!allowed(file)) {
+            response.writeHead(403).end("The file resolves outside the opened Study stores' media.");
+            return;
+          }
+          const bytes = await readFile(file);
+          response.writeHead(200, {
+            "Content-Type": type,
+            "X-Content-Type-Options": "nosniff",
+          }).end(bytes);
+        } catch (error) {
+          const missing = z.object({ code: z.literal("ENOENT") }).safeParse(error).success;
+          response.writeHead(missing ? 404 : 500).end(String(error));
+        }
+      });
       const watched = new Set<string>();
       server.middlewares.use("/api/watch", async (request, response) => {
         if (
@@ -157,6 +207,15 @@ function workbenchBackend(): Plugin {
                   }),
                 ])
                 .parse(JSON.parse(line.value));
+              if (envelope.ok && (action === "study-open" || action === "study-attach")) {
+                const opened = z.object({
+                  state: z.literal("Open"), media: z.string(), store: z.string(),
+                }).safeParse(envelope.result);
+                if (opened.success) {
+                  mediaRoots.add(await realpath(opened.data.media));
+                  mediaRoots.add(await realpath(join(opened.data.store, "record-assets")));
+                }
+              }
               response.setHeader("Content-Type", "application/json");
               response
                 .writeHead(envelope.ok ? 200 : 422)
