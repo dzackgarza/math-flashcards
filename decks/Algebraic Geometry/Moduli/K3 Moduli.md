@@ -2,6 +2,119 @@
 title: "Algebraic Geometry::Moduli::K3 Moduli"
 ---
 
+::: {.front card-id="period-cusps-isotropic-flags-groups" tags="definition construction"}
+For a type-IV arithmetic quotient of dimension $n$, describe Baily–Borel cusps, their incidence, and the group acting on a zero-cusp cone. How does a primitive lattice inclusion induce cusp maps?
+:::
+
+::: {.back card-id="period-cusps-isotropic-flags-groups"}
+Let $N$ have signature $(2,n)$ and $\Gamma\subset O^+(N)$ be arithmetic.
+
+| Primitive isotropic sublattice | Boundary | Lattice used |
+| --- | --- | --- |
+| Line $J=\mathbb Ze$ | Point | $J^\perp/J$, signature $(1,n-1)$ |
+| Plane $I$ | Arithmetic quotient of a half-plane | $I^\perp/I$, negative definite |
+
+Take $\Gamma$-orbits, not just isometry classes of quotient lattices. Incidence means that representatives satisfy $J\subset I$; inequivalent embeddings can have isometric complements.
+
+The stabilizer of $J$ acts on $J^\perp/J$; its image is the cusp arithmetic group. With $e$ fixed, the kernel consists of the integral unipotent translations in the parabolic stabilizer. Neither its image nor its integral translation lattice should be replaced by the full orthogonal group without an extension calculation.
+
+For a primitive inclusion $N\subset N'$ of type-IV lattices and compatible arithmetic groups, send an isotropic flag to the same rational flag in $N'$, taking its integral saturation there. Divisibility can change since more pairings are available in $N'$. Orbit identifications are taken in the target group.
+
+Reference: AEGS, §§2.3, 3.1–3.3, 3.8–3.9.
+:::
+
+::: {.front card-id="period-arithmetic-group-gluing" tags="construction application"}
+How do discriminant gluing and centralizers determine the arithmetic group of a lattice-polarized or involution-marked K3 moduli problem?
+:::
+
+::: {.back card-id="period-arithmetic-group-gluing"}
+For primitive $S\subset L_{\mathrm{K3}}$, let $T=S^\perp$ and let $\gamma:A_S\to A_T$ be the gluing anti-isometry.
+
+- Marking $S$ pointwise: an isometry $g_T$ extends with identity on $S$ iff $\bar g_T=1$ on $A_T$. The period group is the subgroup of $\ker[O(T)\to O(q_T)]$ preserving the chosen domain component.
+- Allowing $H\subset O(S)$: admit $g_T$ iff $\bar g_T=\gamma\bar h\gamma^{-1}$ for some $h\in H$.
+- Marking an automorphism $\rho$ of $L_{\mathrm{K3}}$: allowed changes of marking commute with $\rho$. Restrict that centralizer to its period eigenspace and divide out any ineffective action.
+
+For an embedded period subdomain, first take its setwise stabilizer. To replace it by a claimed larger arithmetic group, prove integral extensions using the discriminant condition. A subgroup index can change the degree of the moduli map even when the domain is unchanged.
+
+Reference: AEGS, Lemmas 2.4 and 2.8; Nikulin, gluing of primitive sublattices.
+:::
+
+::: {.front card-id="period-compactification-restrict-fans" tags="theorem construction"}
+How do an inclusion of type-IV period domains and compatible arithmetic groups extend to Baily–Borel and toroidal compactifications? Which fan defines the normalized closure of the smaller quotient?
+:::
+
+::: {.back card-id="period-compactification-restrict-fans"}
+For a rational inclusion $\mathbb D_N\subset\mathbb D_{N'}$ induced by a primitive lattice inclusion, with arithmetic groups making the quotient map well-defined:
+
+1. The arithmetic-domain map extends to Baily–Borel; rational boundary components map by their isotropic flags.
+2. At a cusp $J\subset N$, include its positive cone in that for $J\subset N'$. Pull back a target admissible fan by intersecting each cone with the smaller cone space.
+3. With the induced arithmetic identifications, these fans define the toroidal compactification of the normalization of the image. A finer source fan also gives a morphism to the target compactification.
+
+If the open map is generically injective, this normalization compactifies the original smaller quotient. Otherwise it compactifies the quotient with the identifications induced by the target stabilizer. For semifans, also check compatibility at incident isotropic-plane cusps.
+
+In AEGS the restricted reflection walls are computed by folding; restriction of the ramification semifans then gives the candidate Enriques compactification.
+
+Reference: AEGS, §3.3, §5.1 and Definition 5.3; Baily–Borel and toroidal functoriality for arithmetic-domain embeddings.
+:::
+
+::: {.front card-id="period-wythoff-semifan-strata" tags="construction comparison"}
+Construct a generalized Coxeter semifan from relevant and irrelevant roots. Explain its strata and the test for toroidality in the AEGS construction.
+:::
+
+::: {.back card-id="period-wythoff-semifan-strata"}
+Let $W$ act on a hyperbolic lattice, with chamber $C$ and simple roots indexed by $I\sqcup J$ (relevant/irrelevant). Put
+$$W_J=\langle s_j:j\in J\rangle,\qquad C_{\mathrm{gen}}=\bigcup_{w\in W_J}wC.$$
+Its $W$-translates and their faces form the generalized Coxeter semifan. It coarsens the Coxeter fan by erasing walls internal to these unions. In a finite $A_2$ example, marking one simple root irrelevant joins two adjacent Weyl chambers along that root's wall.
+
+For a cusp lattice of rank $n$:
+
+| Chamber face | Diagram | Toroidal meaning |
+| --- | --- | --- |
+| Meeting the positive cone | Elliptic, rank $r$ | Cone dimension $n-r$, stratum codimension $n-r$ |
+| Isotropic ray | Maximal parabolic | Type II divisor over a Baily–Borel curve |
+
+For the generalized Coxeter construction used in AEGS, retain diagrams with no connected component consisting entirely of irrelevant vertices. Removing such components records the contraction of their moduli. A finite $W_J$ gives polyhedral unions of finitely many chambers; the infinite irrelevant groups in AEGS give genuinely nonpolyhedral cones. At a type II cusp, toroidality holds precisely when its maximal parabolic diagram has no wholly irrelevant connected component.
+
+Reference: AEGS, §§5.1–5.2, especially Lemmas 5.6–5.8.
+:::
+
+::: {.front card-id="period-semitoroidal-comparison-finiteness" tags="theorem application"}
+State the characterization of semitoroidal compactifications between toroidal and Baily–Borel compactifications. How does it help prove a KSBA comparison map finite?
+:::
+
+::: {.back card-id="period-semitoroidal-comparison-finiteness"}
+For a type-IV arithmetic quotient $F$, a normal compactification $Y$ is semitoroidal iff there are morphisms restricting to the identity on $F$:
+$$\overline F^{\Sigma}\longrightarrow Y\longrightarrow\overline F^{\mathrm{BB}},$$
+with $\overline F^{\Sigma}$ toroidal. The first map is encoded by coarsening the cusp fans to compatible semifans.
+
+Application to a proper comparison $B^\nu\to\overline F^{\mathrm{KSBA}}$ that is the identity on $F$:
+
+1. Prove that the normalized KSBA target maps to Baily–Borel, including recovery of type II elliptic moduli.
+2. The theorem makes this target semitoroidal, with a semifan coarser than that of $B^\nu$.
+3. Rule out strict coarsening by showing that the proposed contracted strata still vary as stable pairs. In AEGS, maximal double-curve configurations give this obstruction.
+4. Equality of the semifans identifies the normalizations; the resulting map to the KSBA closure is finite.
+
+Properness and generic injectivity alone do not prove finiteness: a blowup has both and has a positive-dimensional exceptional fiber.
+
+Reference: Alexeev–Engel, *Compact moduli of K3 surfaces*, published Theorem 7.18; AEGS, proof of Theorem 5.9.
+:::
+
+::: {.front card-id="k3-invariant-boundary-periods-models" tags="construction comparison"}
+How do orientation and boundary periods enter an involution-equivariant Kulikov smoothing? Why can an involution be regular on the stable model but only birational on a chosen Kulikov model?
+:::
+
+::: {.back card-id="k3-invariant-boundary-periods-models"}
+For an oriented type III dual sphere, the boundary period is $\psi:\Lambda\to\mathbb C^\times$. Reversing orientation inverts the identification $H^2(S^2,\mathbb C^\times)\simeq\mathbb C^\times$. Thus an orientation-reversing involution $J$ requires
+$$\psi(J\alpha)=\psi(\alpha)^{-1}.$$
+Invariant classes have period in $\{\pm1\}$. On the component of the period locus where the classes required for a lattice polarization remain Cartier, their periods are $1$. The signs on other components encode additional discrete data.
+
+In the AEGS construction, choose component moduli and gluing parameters with this symmetry; the corresponding smoothing preserving the specified Cartier lattice carries the Enriques involution. Symmetry of the dual graph alone does not supply the gluing action.
+
+Kulikov models are related by flops. An automorphism can exchange their nef chambers and hence fail to be regular on the chosen model. Contracting the invariant ADE configurations removes that chamber choice. On the KSBA model the log canonical ring gives a unique model, and an automorphism preserving the pair acts on this ring and therefore regularly on its Proj.
+
+Reference: AEGS, Theorem 4.6 and Remark 4.11; Alexeev–Engel, *Compactifications of moduli spaces of K3 surfaces with a nonsymplectic involution*, §8.
+:::
+
 ::: {.front card-id="k3-lattice-quasipolarization-small-cones" tags="definition comparison"}
 Define lattice quasipolarization with its chamber choice. What are the small cones in Alexeev–Engel's corrected definition?
 :::
@@ -332,7 +445,16 @@ How does an involution act on $H^2$?
 :::
 
 ::: {.back card-id="card-f1f9e680ce07e9ba"}
-Fixes $S_X$ and acts by $\cdot(-1)$ on $T_X$.
+For an involution $\sigma$ of a complex projective K3 surface, put $L=H^2(X,\mathbb Z)$ and $L^\pm=\ker(\sigma^*\mp1)$. These are primitive orthogonal sublattices, and
+$$L\otimes\mathbb Q=(L^+\otimes\mathbb Q)\oplus(L^-\otimes\mathbb Q).$$
+The integral sum can have nontrivial finite index, killed by two.
+
+- Nonsymplectic: $\sigma^*\omega=-\omega$, $L^+\subset\operatorname{NS}(X)$, and $\sigma^*=-1$ on $T_X=\operatorname{NS}(X)^\perp$. The Picard lattice can also contain anti-invariant classes.
+- Symplectic: $\sigma^*\omega=\omega$, and $\sigma^*=1$ on $T_X$. The action on the Picard lattice need not be trivial.
+
+For a nonsymplectic involution, $L^+$ equals $\operatorname{NS}(X)$ only on the locus without extra algebraic classes. An invariant lattice and the full Picard lattice are different objects.
+
+Reference: AEGS, §2.3, and its explicit three lattice involutions.
 :::
 
 ::: {.front card-id="card-f6dea11f91a6b646"}
