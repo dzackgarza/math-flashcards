@@ -455,7 +455,7 @@ What does "virtually" having a property $P$ mean?
 :::
 
 ::: {.back card-id="card-ace67f214e73cf15"}
-Admitting some finite index subgroup which has property $P$.
+$\exists H\le G:[G:H]<\infty$ and $H$ has property $P$.
 :::
 
 ::: {.front card-id="card-5f4e3322c228111a"}

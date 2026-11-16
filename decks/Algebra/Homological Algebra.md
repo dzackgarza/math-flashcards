@@ -736,7 +736,7 @@ What is the definition of Divisible group?
 :::
 
 ::: {.back card-id="card-9ea3a227686a8cdf"}
-An abelian group $D$ such that for every $d\in D$ and every positive integer $n$ there exists $x\in D$ with $nx=d$.
+An abelian group $D$ with $nD=D$ for every $n\in\mathbb Z_{>0}$; equivalently, $\forall n>0\ \forall d\in D\ \exists x\in D:nx=d$.
 :::
 
 ::: {.front card-id="card-6d4880586220f4e2" tags="definition"}

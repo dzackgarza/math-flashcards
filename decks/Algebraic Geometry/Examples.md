@@ -41,7 +41,7 @@ Define the order-$k$ osculating space to an embedded smooth curve over $\mathbb 
 ::: {.back card-id="projective-osculating-jets"}
 For a local nonzero vector lift $v(t)$ of $C\subset\mathbb P^r$ at $t_0$:
 $$\operatorname{Osc}^k_{t_0}(C)=\mathbb P\langle v(t_0),v'(t_0),\ldots,v^{(k)}(t_0)\rangle.$$
-Reparametrization and changing the lift preserve the span. Equivalently its annihilator consists of hyperplanes whose defining sections vanish to order at least $k+1$. Dimension is at most $\min(k,r)$; a drop records deficient jets.
+Reparametrization and changing the lift preserve the span. Its annihilator consists of hyperplane sections $s$ with $\operatorname{ord}_{t_0}(s|_C)\ge k+1$. One has $\dim\operatorname{Osc}^k_{t_0}(C)\le\min(k,r)$; a drop records deficient jets.
 
 For $v(t)=(1,t,\ldots,t^r)$, $\dim\operatorname{Osc}^k= k$ for $0\le k\le r$. At $t=0$, it is $X_{k+1}=\cdots=X_r=0$. The osculating hyperplane at finite $a$ has coefficients of $(t-a)^r$:
 $$\sum_{j=0}^r\binom rj(-a)^{r-j}X_j=0.$$
@@ -162,9 +162,9 @@ Over $\mathbb C$, give an equation and an isomorphism from $\mathbb P^1$ for a s
 :::
 
 ::: {.back card-id="example-plane-conic"}
-The conic $XZ-Y^2=0$ is the image of
+The conic $C=V(XZ-Y^2)$ is the image of
 $$[s:t]\longmapsto[s^2:st:t^2].$$
-This is the embedding defined by $|\mathcal O_{\mathbb P^1}(2)|$. Its degree is two and its genus is zero.
+This is the embedding defined by $|\mathcal O_{\mathbb P^1}(2)|$: $\deg C=2$, $g(C)=0$.
 :::
 
 ::: {.front card-id="example-rational-normal-curve" tags="example construction"}

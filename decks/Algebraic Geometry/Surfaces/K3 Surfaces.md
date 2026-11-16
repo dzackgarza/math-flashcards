@@ -102,7 +102,7 @@ Starting with a complex abelian surface $A$, construct a smooth K3 surface. What
 :::
 
 ::: {.back card-id="construction-k3-kummer-resolution"}
-Resolve the quotient $A/\langle-1\rangle$ minimally. Its $A_1$ singularities are du Val, so the resolution is crepant and their exceptional curves are disjoint smooth rational $(-2)$-curves. Inversion preserves the nowhere-vanishing two-form on $A$, which descends and extends without zeros. It acts as $-1$ on $H^1(A,\mathcal O_A)$, so the invariant part is zero. Finite-quotient cohomology and rationality of the singularities give $q(\operatorname{Km}(A))=0$.
+Resolve the quotient $A/\langle-1\rangle$ minimally. Its $A_1$ singularities are du Val, so the resolution is crepant and their exceptional curves are disjoint smooth rational $(-2)$-curves. Inversion preserves the nowhere-vanishing two-form on $A$, which descends and extends without zeros. Since $[-1]^*|_{H^1(A,\mathcal O_A)}=-\mathrm{id}$, $H^1(A,\mathcal O_A)^{\langle-1\rangle}=0$. Finite-quotient cohomology and rationality of the singularities give $q(\operatorname{Km}(A))=0$.
 :::
 
 ::: {.front card-id="construction-k3-product-kummer-equation" tags="construction application"}

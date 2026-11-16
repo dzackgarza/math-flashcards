@@ -171,7 +171,7 @@ $$E=L\oplus L^{-1},\qquad
 \theta=\begin{pmatrix}0&0\\1&0\end{pmatrix}:E\to E\otimes K_C.$$
 The lower-left entry uses $L\cong L^{-1}\otimes K_C$. The subbundle $L$ destabilizes $E$ but is not $\theta$-invariant.
 
-Over the function field, this nonzero nilpotent matrix has a unique invariant line: its kernel $L^{-1}$. Every invariant rank-one subsheaf therefore lies in $L^{-1}$ and has degree at most $-(g-1)<0=\mu(E)$. Thus $(E,\theta)$ is stable. Its rank is two, determinant trivial, and Higgs field trace-free.
+Over the function field, this nonzero nilpotent matrix has a unique invariant line: its kernel $L^{-1}$. Every invariant rank-one subsheaf $F$ therefore satisfies $F\subseteq L^{-1}$ and $\deg F\le-(g-1)<0=\mu(E)$. Thus $(E,\theta)$ is stable, with $\operatorname{rk}E=2$, $\det E\cong\mathcal O_C$, and $\operatorname{tr}\theta=0$.
 :::
 
 ::: {.front card-id="application-lefschetz-calabi-yau-hypersurface" tags="application"}
@@ -185,7 +185,7 @@ These establish the usual Calabi–Yau conditions. In top degree $h^d(\mathcal O
 :::
 
 ::: {.front card-id="application-lefschetz-curve-monodromy" tags="application"}
-Let $X$ be a smooth connected complex projective variety of dimension at least two, and let $C$ be a smooth curve obtained by successive general hyperplane sections. Can a nontrivial representation $\pi_1(X)\to\operatorname{GL}_r(\mathbb C)$ become trivial on $C$? Must every representation of $\pi_1(C)$ extend to $X$?
+Let $X$ be smooth connected complex projective with $\dim X\ge2$, and let $C$ be a smooth curve obtained by successive general hyperplane sections. Can a nontrivial representation $\pi_1(X)\to\operatorname{GL}_r(\mathbb C)$ become trivial on $C$? Must every representation of $\pi_1(C)$ extend to $X$?
 :::
 
 ::: {.back card-id="application-lefschetz-curve-monodromy"}
@@ -1137,7 +1137,7 @@ What is the definition of Hyperkähler manifold?
 :::
 
 ::: {.back card-id="card-6b2a61a9df86fe75"}
-A Riemannian manifold of dimension $4n$ whose holonomy is contained in $\operatorname{Sp}(n)$; equivalently a Kähler manifold carrying a holomorphic symplectic $2$-form $\sigma$ that is parallel, with $\sigma^n$ nowhere vanishing.
+A Riemannian manifold $(X,g)$ with $\dim_{\mathbb R}X=4n$ and $\operatorname{Hol}(g)\subseteq\operatorname{Sp}(n)$; equivalently a Kähler manifold carrying a holomorphic symplectic $2$-form $\sigma$ with $\nabla\sigma=0$ and $\sigma^n$ nowhere vanishing.
 :::
 
 ::: {.front card-id="card-f4991f604dc40dcf" tags="definition"}

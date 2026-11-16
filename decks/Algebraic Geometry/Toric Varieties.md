@@ -112,7 +112,7 @@ Distinguish dimension, lineality, pointedness, interior, and relative interior o
 :::
 
 ::: {.back card-id="convex-lineality-relative-interior"}
-For a convex cone $C$, $\dim C=\dim\operatorname{span}_{\mathbb R}C$ and its lineality space is $C\cap(-C)$. It is pointed when this space is zero, and full-dimensional when its span is the ambient space. Relative interior means interior in its span.
+For a convex cone $C\subset V$, $\dim C=\dim\operatorname{span}_{\mathbb R}C$ and its lineality space is $C\cap(-C)$. Pointed: $C\cap(-C)=\{0\}$. Full-dimensional: $\operatorname{span}_{\mathbb R}C=V$. Relative interior means interior in its span.
 
 The ray $\mathbb R_{\ge0}(1,0)$ is pointed of dimension one; its ambient interior is empty and its relative interior is $\mathbb R_{>0}(1,0)$. The half-plane $y\ge0$ is full-dimensional but not pointed: its lineality is the $x$-axis. For a closed convex cone, pointedness of $C$ is equivalent to full dimension of $C^\vee$, and full dimension of $C$ to pointedness of $C^\vee$.
 :::
@@ -126,7 +126,7 @@ A polyhedron is an intersection of finitely many closed affine half-spaces. A po
 
 Relative to a lattice, rational inequalities are equivalent to rational vertex and ray data; a lattice polytope has integral vertices, a stronger condition. For example $[0,1/2]$ is rational but not a lattice polytope for $\mathbb Z$. The recession cone of a nonempty polyhedron $P$ is
 $$\operatorname{rec}(P)=\{v:P+\mathbb R_{\ge0}v\subseteq P\}.$$
-It is zero exactly when $P$ is bounded. If $P=\{x:Ax\ge b\}$, then $\operatorname{rec}(P)=\{v:Av\ge0\}$.
+$\operatorname{rec}(P)=\{0\}\iff P$ bounded. If $P=\{x:Ax\ge b\}$, then $\operatorname{rec}(P)=\{v:Av\ge0\}$.
 :::
 
 ::: {.front card-id="convex-extremal-exposed-faces" tags="definition application"}
@@ -681,7 +681,7 @@ Equivalently, use weighted scaling $(x_i)\mapsto(\lambda^{q_i}x_i)$ on $\mathbb 
 
 The simplex mnemonic
 $$\operatorname{Conv}(0,k_1e_1,\ldots,k_ne_n)-(1,\ldots,1),\qquad k_i=\frac{\sum_jq_j}{q_i},$$
-is an integral anticanonical-polytope description when $q_0=1$ and every $q_i$ divides $\sum_jq_j$. It is not the construction for arbitrary weights.
+is an integral anticanonical-polytope description when $q_0=1$ and $q_i\mid\sum_jq_j$ for every $i$. It is not the construction for arbitrary weights.
 :::
 
 ::: {.front card-id="weighted-projective-charts-adjunction" tags="definition formula example"}
@@ -691,7 +691,7 @@ For weighted projective space, distinguish quotient charts, well-formedness, qua
 ::: {.back card-id="weighted-projective-charts-adjunction"}
 Over $\mathbb C$, the chart $x_i\ne0$ of $\mathbb P(q_0,\ldots,q_n)$ is $\mathbb A^n/\mu_{q_i}$, with weights $q_j$ on the other coordinates. The quotient stack retains these stabilizers; the coarse space does not.
 
-Well-formed weights satisfy $\gcd(q_0,\ldots,\widehat q_i,\ldots,q_n)=1$ for every $i$. For well-formed weighted projective space of dimension at least two,
+Well-formed weights satisfy $\gcd(q_0,\ldots,\widehat q_i,\ldots,q_n)=1$ for every $i$. For well-formed weighted projective space with $n\ge2$,
 $$\operatorname{Cl}(X)=\mathbb Z[\mathcal O_X(1)],\qquad
 \operatorname{Pic}(X)=\mathbb Z[\mathcal O_X(\operatorname{lcm}(q_i))].$$
 $\mathcal O_X(d)$ is generally rank-one reflexive, not necessarily invertible. For $H=c_1(\mathcal O_X(1))$ as a rational divisor class,
@@ -1076,7 +1076,7 @@ For each lattice polygon, recover the polarized surface, the number of sections,
 | B | $(\mathbb P^1\times\mathbb P^1,\mathcal O(2,1))$ | $6$ | $4$ | $0$ |
 | C | $(\mathbb F_2,2S+5F)$ | $2+4+6=12$ | $12$ | $2$ |
 
-Sections correspond to lattice points. The degree is normalized lattice area; the genus is the number of interior lattice points. In C, the inequalities are $x\ge0$, $y\ge0$, $-x+2y\ge-1$, $-y\ge-2$. They give $D=D_3+2D_4=F+2(S+2F)$. Its square is $4(-2)+20=12$; its interior lattice points are $(1,1),(2,1)$.
+Sections correspond to lattice points. The degree is normalized lattice area; the genus is the number of interior lattice points. In C, the inequalities are $x\ge0$, $y\ge0$, $-x+2y\ge-1$, $-y\ge-2$. They give $D=D_3+2D_4=F+2(S+2F)$, $D^2=4(-2)+20=12$; its interior lattice points are $(1,1),(2,1)$.
 
 A and B have the same degree and number of sections but different polarized surfaces. Recovering the normal fan distinguishes them.
 :::
@@ -1180,5 +1180,5 @@ For $m=(a,b)$, $\operatorname{div}(\chi^m)=aD_1+(a+rb)D_2$. Thus
 $$D_1+D_2=0,\quad rD_2=0,\qquad\operatorname{Cl}(U_\sigma)=\mathbb Z/r.$$
 Every line bundle on this affine toric chart is trivial, so $\operatorname{Pic}(U_\sigma)=0$. A local Cartier equation for $qD_2$ requires $(a,a+rb)=(0,q)$, hence $r\mid q$. Both prime divisors have Cartier index $r$.
 
-At $r=1$ the primitive generators form a lattice basis: the chart is $\mathbb A^2$, its class group is zero, and the divisors are Cartier. Simpliciality gives $\mathbb Q$-factoriality; smoothness gives integral Cartier divisors.
+At $r=1$ the primitive generators form a lattice basis: the chart is $\mathbb A^2$, $\operatorname{Cl}(\mathbb A^2)=0$, and the divisors are Cartier. Simpliciality gives $\mathbb Q$-factoriality; smoothness gives integral Cartier divisors.
 :::

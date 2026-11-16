@@ -55,9 +55,9 @@ $$E_0^{p,q}=\operatorname{gr}_F^pK^{p+q},\qquad
 E_1^{p,q}=H^{p+q}(\operatorname{gr}_F^pK),\qquad E_\infty^{p,q}=\operatorname{gr}_F^pH^{p+q}(K).$$
 Assume the filtration is finite in each degree and bounded in the range used for convergence.
 
-For commuting differentials $d_h,d_v$ on $C^{p,q}$, use $d_{\mathrm{Tot}}=d_h+(-1)^p d_v$. Filtering by columns gives
+For $d_hd_v=d_vd_h$ on $C^{p,q}$, use $d_{\mathrm{Tot}}=d_h+(-1)^p d_v$. Filtering by columns gives
 $$E_1^{p,q}=H_v^q(C^{p,\bullet}),\qquad E_2^{p,q}=H_h^pH_v^q(C),$$
-while filtering by rows takes horizontal cohomology first. Both converge to $H^{p+q}(\operatorname{Tot}C)$ in the first quadrant. For anticommuting differentials, use $d_h+d_v$ instead.
+while filtering by rows takes horizontal cohomology first. Both converge to $H^{p+q}(\operatorname{Tot}C)$ in the first quadrant. For $d_hd_v=-d_vd_h$, use $d_{\mathrm{Tot}}=d_h+d_v$.
 :::
 
 ::: {.front card-id="spectral-five-term-edges" tags="formula application"}
@@ -123,7 +123,7 @@ $$E_2^{p,q}=H^p(X,\mathcal E xt_X^q(F,G))\Longrightarrow\operatorname{Ext}^{p+q}
 In low degrees,
 $$0\to H^1(\mathcal H om(F,G))\to\operatorname{Ext}^1(F,G)\to H^0(\mathcal E xt^1(F,G))
 \to H^2(\mathcal H om(F,G))\to\operatorname{Ext}^2(F,G).$$
-If $F$ is locally free, higher sheaf Ext vanishes and $\operatorname{Ext}^n(F,G)=H^n(F^\vee\otimes G)$; global higher Ext need not vanish.
+If $F$ is locally free, $\mathcal E xt^{q}(F,G)=0$ for $q>0$, so $\operatorname{Ext}^n(F,G)=H^n(F^\vee\otimes G)$; global higher Ext need not vanish.
 
 For $F=\mathcal O(1)$, $G=\mathcal O(-1)$ on $\mathbb P^1$,
 $$\operatorname{Ext}^1(F,G)=H^1(\mathcal O(-2))=k.$$
@@ -151,7 +151,7 @@ Give sufficient degeneration tests for a convergent spectral sequence of finite-
 ::: {.back card-id="spectral-degeneration-tests"}
 | Test | Sufficient condition |
 | --- | --- |
-| Support | Every possible source or target of $d_s$ is zero for all $s\ge r$ |
+| Support | For all $s\ge r,p,q$, $E_s^{p,q}=0$ or $E_s^{p+s,q-s+1}=0$ (cohomological convention) |
 | One row or column at $E_2$ | All later differentials have zero source or target |
 | Parity | At one page, all nonzero entries have even total degree (or all odd); $d_s$ raises total degree by one |
 | Dimensions | For every $n$, $\sum_{p+q=n}\dim E_r^{p,q}=\dim H^n$, with finite diagonals and convergence |

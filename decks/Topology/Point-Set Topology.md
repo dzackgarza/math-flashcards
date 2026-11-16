@@ -50,7 +50,7 @@ Hausdorff Space
 :::
 
 ::: {.back card-id="card-33f04bfb88b19535"}
-A space $X$ is **Hausdorff** iff for every $x,y \in X$ there exist neighborhoods of $x$ and $y$ that are disjoint from each other.
+A space $X$ is **Hausdorff** iff $\forall x\ne y\in X$, $\exists U,V\subseteq X$ open with $x\in U$, $y\in V$, $U\cap V=\varnothing$.
 
 (Implies uniqueness of limits.)
 :::
@@ -180,7 +180,7 @@ Definition: Totally Bounded
 :::
 
 ::: {.back card-id="card-42173ddd8e85dad2"}
-A metric space $(M, d)$ is totally bounded iff $\forall \varepsilon$ there exists a *finite* collection of open balls of radius $\varepsilon$ whose union contains $M$.
+A metric space $(M,d)$ is totally bounded iff $\forall\varepsilon>0$, $\exists x_1,\ldots,x_N\in M$ with $M=\bigcup_{i=1}^N B_\varepsilon(x_i)$, $N<\infty$.
 :::
 
 ::: {.front card-id="card-d1667afc3614c99b"}

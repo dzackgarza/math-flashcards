@@ -397,7 +397,7 @@ What is $F_\rho^{\mathrm{ade}}$ when the nonsymplectic automorphism fixes a curv
 :::
 
 ::: {.back card-id="card-681a11bbc6a0be2c"}
-Start with a $\rho$-markable K3 surface $(X,\sigma)$ and its fixed curve $R$, with $R^2=2g-2>0$. Contract the $(-2)$-curves orthogonal to $R$:
+Start with a $\rho$-markable K3 surface $(X,\sigma)$ and its fixed curve $R$, with $R^2=2g-2>0$. Contract the curves $C\cong\mathbb P^1$ with $C^2=-2$ and $R\cdot C=0$:
 $$\pi:X\longrightarrow\overline X,\qquad \overline R=\pi_*R\ \text{ample}.$$
 The result is an ADE K3 surface with the induced automorphism. These models form the separated moduli space
 $$F_\rho^{\mathrm{ade}}=F_\rho^{\mathrm{sep}}\cong(\mathbb D_\rho\setminus\Delta_\rho)/\Gamma_\rho.$$
@@ -597,7 +597,7 @@ Let $S_0=\bigcup V_i$ be the central fibre in a semistable degeneration. Define 
 
 
 ::: {.front card-id="application-period-root-obstructs-ampleness" tags="application"}
-A K3 period $\omega$ is orthogonal to a primitive class $h$ with $h^2>0$ and to a class $\delta$ with $\delta^2=-2$ and $(h,\delta)=0$. Can a marked K3 with this period have $h$ as an ample polarization? Explain the obstruction, not just the period-domain exclusion.
+A K3 period $\omega$ satisfies $(\omega,h)=(\omega,\delta)=0$, where $h$ is primitive, $h^2>0$, $\delta^2=-2$, and $(h,\delta)=0$. Can a marked K3 with this period have $h$ as an ample polarization? Explain the obstruction, not just the period-domain exclusion.
 :::
 
 ::: {.back card-id="application-period-root-obstructs-ampleness"}

@@ -118,10 +118,10 @@ Descartes' Rule of Signs
 
 ::: {.back card-id="card-9c83862120c41169"}
 Let $p(x)$ be a real polynomial and let $n$ be the number of sign changes in its sequence of nonzero coefficients.
-The number $r^+$ of positive real roots (counted with multiplicity) of $p(x)$ is at most $n$.
+The number $r^+$ of positive real roots (counted with multiplicity) satisfies $r^+\le n$.
 Moreover, $r^+$ is *exactly* $n-2k$ for some $k\in \ZZ^{\geq 0}$; in particular $r^+ \equiv n \mod 2$.
 Similarly, the number $r^-$ of negative real roots is the same idea applied to $p(-x)$.
-If $p(0) \neq 0$ and $n^+, n^-$ are the numbers of sign changes of $p(x)$ and $p(-x)$, then at least $\deg p - (n^+ + n^-)$ roots of $p$ are nonreal.
+If $p(0)\ne0$ and $n^+,n^-$ count sign changes of $p(x),p(-x)$, then $r_{\mathrm{nonreal}}\ge\deg p-(n^++n^-)$, counting multiplicity.
 
 *Examples:*
 

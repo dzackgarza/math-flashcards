@@ -103,9 +103,9 @@ Give a projective cuspidal cubic over $\mathbb C$ and its normalization map. Wha
 :::
 
 ::: {.back card-id="example-cuspidal-cubic"}
-Take $Y^2Z=X^3$. Its normalization is
+Take $C=V(Y^2Z-X^3)$. Its normalization is
 $$\mathbb P^1\longrightarrow C,\qquad [s:t]\longmapsto[s^2t:s^3:t^3].$$
-On $Z=1$ this is $u\mapsto(u^2,u^3)$. The cusp $(0,0)$ has one branch, tangent cone $y^2=0$, and $\delta=1$. The arithmetic genus is one; the normalization has genus zero.
+On $Z=1$ this is $u\mapsto(u^2,u^3)$. The cusp $(0,0)$ has one branch, tangent cone $y^2=0$, and $\delta=1$. Thus $p_a(C)=1$ and $g(\widetilde C)=0$.
 :::
 
 ::: {.front card-id="example-nodal-cubic" tags="example construction"}
@@ -113,9 +113,9 @@ Give a projective nodal cubic over $\mathbb C$ and its normalization map. Which 
 :::
 
 ::: {.back card-id="example-nodal-cubic"}
-Take $Y^2Z=X^2(X+Z)$. Its normalization is
+Take $C=V(Y^2Z-X^2(X+Z))$. Its normalization is
 $$[s:t]\longmapsto[t(s^2-t^2):s(s^2-t^2):t^3].$$
-On $Z=1$, $x=u^2-1$ and $y=u(u^2-1)$. The points $u=1,-1$ lie above the node $(0,0)$. Its tangent cone is $(y-x)(y+x)=0$ and $\delta=1$. Its arithmetic genus is one and its normalization has genus zero.
+On $Z=1$, $x=u^2-1$ and $y=u(u^2-1)$. The points $u=1,-1$ lie above the node $(0,0)$. Its tangent cone is $(y-x)(y+x)=0$ and $\delta=1$. Thus $p_a(C)=1$ and $g(\widetilde C)=0$.
 :::
 
 ::: {.front card-id="example-cubic-degeneration" tags="example construction"}

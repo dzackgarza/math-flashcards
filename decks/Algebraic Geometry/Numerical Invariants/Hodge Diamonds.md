@@ -47,7 +47,7 @@ Give all Hodge numbers of a smooth complex quadric $Q^n$, $n\ge1$.
 :::
 
 ::: {.back card-id="standard-hodge-quadrics"}
-All off-diagonal Hodge numbers vanish. Each $h^{p,p}=1$ for $0\le p\le n$, except that $h^{n/2,n/2}=2$ when $n$ is even.
+$h^{p,q}=0$ for $p\ne q$. Each $h^{p,p}=1$ for $0\le p\le n$, except that $h^{n/2,n/2}=2$ when $n$ is even.
 :::
 
 ::: {.front card-id="standard-hodge-rational-surfaces" tags="formula"}

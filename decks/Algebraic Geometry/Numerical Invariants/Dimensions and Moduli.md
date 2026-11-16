@@ -27,7 +27,7 @@ Define linear general position for distinct points in $\mathbb P^n$. Does it imp
 :::
 
 ::: {.back card-id="numerical-general-position-versus-interpolation"}
-Every subset of at most $n+1$ points must be linearly independent; equivalently, no $r$-plane with $r<n$ contains more than $r+1$ of the points. In $\mathbb P^2$ this means no three are collinear.
+For the point set $Z$, every subset $I\subseteq Z$ with $|I|\le n+1$ must be linearly independent; equivalently, $|Z\cap\Lambda|\le r+1$ for every $r$-plane $\Lambda\subset\mathbb P^n$ with $r<n$. In $\mathbb P^2$ this means no three are collinear.
 
 Six distinct points on a smooth conic satisfy linear general position, but their conditions on conics are dependent: there is a nonzero conic through all six. For a reduced finite set $Z$, independence in degree $d$ means the evaluation map
 $$H^0(\mathbb P^n,\mathcal O(d))\longrightarrow H^0(Z,\mathcal O_Z(d))$$

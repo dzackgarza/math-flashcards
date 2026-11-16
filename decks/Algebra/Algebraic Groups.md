@@ -7,7 +7,7 @@ Definition: Reductive Group
 :::
 
 ::: {.back card-id="card-e5b732b2176f7d0c"}
-A connected smooth affine algebraic group $G$ over an algebraically closed field is reductive if its unipotent radical $R_u(G)$ is trivial. Equivalently, $G$ has no nontrivial connected normal unipotent subgroup.
+A connected smooth affine algebraic group $G$ over an algebraically closed field is reductive iff $R_u(G)=1$. Equivalently, $G$ has no nontrivial connected normal unipotent subgroup.
 :::
 
 ::: {.front card-id="card-d81d0c4e36265ee6" tags="definition"}

@@ -176,7 +176,7 @@ At a nonsingular vertex, the primitive outgoing directions satisfy
 $$\sum_jn_{ij}v_{ij}=0.$$
 At singular vertices, this ordinary vector equation does not replace the line-bundle data. At a single $I_1$ singularity with invariant primitive direction $v$, the corresponding condition is $\sum_jn_{ij}v_{ij}\in\mathbb Zv$.
 
-Effective means $n_{ij}\ge0$. Polarizing means every $L_i$ nef and at least one big; self-intersection is $\sum_iL_i^2$. Compatible with a triangulation means every graph edge is a union of triangulation edges.
+Effective means $n_{ij}\ge0$. Polarizing means every $L_i$ nef and $\sum_iL_i^2>0$; the sum is the self-intersection. Compatible with a triangulation means every graph edge is a union of triangulation edges.
 
 Example: the three unit-weight directions $(1,0),(0,1),(-1,-1)$ balance; they represent $\mathcal O_{\mathbb P^2}(1)$ on the toric vertex model.
 

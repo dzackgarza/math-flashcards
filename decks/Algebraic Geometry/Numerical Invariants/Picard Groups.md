@@ -38,7 +38,7 @@ In particular, $\operatorname{Pic}(\mathbb P^a\times\mathbb P^b)=\mathbb Z[\math
 :::
 
 ::: {.front card-id="standard-picard-blowups" tags="formula"}
-For a smooth connected complex variety $X$ and a smooth connected center $Z$ of codimension at least two, compute the Picard group of $\operatorname{Bl}_ZX$.
+For a smooth connected complex variety $X$ and a smooth connected center $Z$ with $\operatorname{codim}_XZ\ge2$, compute $\operatorname{Pic}(\operatorname{Bl}_ZX)$.
 :::
 
 ::: {.back card-id="standard-picard-blowups"}

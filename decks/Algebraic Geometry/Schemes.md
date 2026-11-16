@@ -11,7 +11,7 @@ For a Noetherian local ring $(A,\mathfrak m,k)$, $\dim A$ is its Krull dimension
 $$\operatorname{edim}A=\dim_k\mathfrak m/\mathfrak m^2.$$
 The latter is the minimal number of generators of $\mathfrak m$. One has $\dim A\le\operatorname{edim}A$, with equality exactly when $A$ is regular.
 
-At the point $(x)\in\operatorname{Spec}k[x,y]$, the local ring $k[x,y]_{(x)}$ has dimension and embedding dimension one, although the ambient irreducible component has dimension two. At the origin of $y^2=x^3$, the local ring has dimension one and embedding dimension two. At a closed point over an algebraically closed field, embedding dimension is the dimension of the Zariski tangent space.
+At $(x)\in\operatorname{Spec}k[x,y]$, $A=k[x,y]_{(x)}$ satisfies $\dim A=\operatorname{edim}A=1$, while $\dim\mathbb A^2=2$. At the cusp origin, $B=(k[x,y]/(y^2-x^3))_{(x,y)}$ satisfies $\dim B=1$, $\operatorname{edim}B=2$. At a closed point $p$ over an algebraically closed field, $\operatorname{edim}\mathcal O_{X,p}=\dim_kT_pX$.
 :::
 
 ::: {.front card-id="definition-hilbert-samuel-multiplicity" tags="definition application"}
@@ -2206,7 +2206,7 @@ What is the definition of Serre's conditions R_1 and S_2?
 :::
 
 ::: {.back card-id="card-3237a7d7b8acdbb3"}
-$R_1$: $\mathcal O_{X,x}$ is regular for every point $x$ of codimension at most one. $S_2$: $\operatorname{depth}\mathcal O_{X,x}\ge\min(2,\dim\mathcal O_{X,x})$ for every $x$. Serre's criterion states that a Noetherian scheme is normal if and only if it satisfies $R_1$ and $S_2$.
+$R_1$: $\mathcal O_{X,x}$ is regular whenever $\dim\mathcal O_{X,x}\le1$. $S_2$: $\operatorname{depth}\mathcal O_{X,x}\ge\min(2,\dim\mathcal O_{X,x})$ for every $x$. For Noetherian $X$, Serre's criterion is $X$ normal $\iff R_1+S_2$.
 :::
 
 ::: {.front card-id="card-bab9d4025ff960b8" tags="definition"}

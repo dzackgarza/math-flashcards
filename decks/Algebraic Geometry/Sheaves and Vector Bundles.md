@@ -190,10 +190,10 @@ For $E=\mathcal O_{\mathbb P^1}(a)\oplus\mathcal O_{\mathbb P^1}(b)$ with $a\ge 
 :::
 
 ::: {.back card-id="application-slope-p1-splitting"}
-The rank is two, the determinant is $\mathcal O(a+b)$, and
-$$\deg E=a+b,\qquad \mu(E)=\frac{a+b}{2},\qquad
+The invariants are
+$$\operatorname{rk}E=2,\qquad\det E=\mathcal O(a+b),\qquad\deg E=a+b,\qquad \mu(E)=\frac{a+b}{2},\qquad
 P_E(m)=2m+a+b+2,\qquad p_E(m)=m+1+\frac{a+b}{2}.$$
-The summand $\mathcal O(a)$ destabilizes when $a>b$. When $a=b$, every line subsheaf has degree at most $a$, so $E$ is semistable, but not stable because a summand has equal slope. Thus semistability holds exactly when $a=b$.
+The summand $\mathcal O(a)$ destabilizes when $a>b$. When $a=b$, every line subsheaf $L\subset E$ has $\deg L\le a$, so $E$ is semistable, but not stable because a summand has equal slope. Thus $E$ semistable $\iff a=b$.
 :::
 
 ::: {.front card-id="application-projective-morphism-sections" tags="application"}
@@ -1013,7 +1013,7 @@ $$\pi_*\mathcal O_{\mathbb P(E)}(m)=\operatorname{Sym}^mE,\qquad R^i\pi_*\mathca
 
 
 ::: {.front card-id="theorem-reflexive-hartogs" tags="theorem"}
-Let $X$ be a normal integral Noetherian scheme and $j:U\hookrightarrow X$ have complement of codimension at least two. State Hartogs extension for functions, reflexive coherent sheaves, and their morphisms.
+Let $X$ be a normal integral Noetherian scheme and $j:U\hookrightarrow X$ an open immersion with $\operatorname{codim}_X(X\setminus U)\ge2$. State Hartogs extension for functions, reflexive coherent sheaves, and their morphisms.
 :::
 
 ::: {.back card-id="theorem-reflexive-hartogs"}

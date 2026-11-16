@@ -99,7 +99,9 @@ Uniform Continuity
 :::
 
 ::: {.back card-id="card-ab45f41f8a332938"}
-For $f: (X, d_1) \to (Y, d_2)$, for every $\varepsilon > 0$ there exists $\delta(\varepsilon) > 0$ such that for every $x,y\in X$, $$x\in B_\delta(y) \implies f(x) \in B_\varepsilon(f(y)).$$
+For $f:(X,d_1)\to(Y,d_2)$:
+$$\forall\varepsilon>0\ \exists\delta>0\ \forall x,y\in X:\quad d_1(x,y)<\delta\Rightarrow d_2(f(x),f(y))<\varepsilon.$$
+The same $\delta$ works for every pair $x,y$.
 
 > Slogan: continuity, but $\delta$ can be chosen independent of $x$.
 :::
@@ -304,7 +306,7 @@ Uniform Convergence of a sequence of functions
 :::
 
 ::: {.back card-id="card-33d4bf2bf6fce3b5"}
-$\theset{f_n} \converges{u}\to f$ on $E$ iff for every $\varepsilon>0$ there exists an $N(\varepsilon)$ such that for all $n\geq N$ and for all $x\in E$, $\abs{f_n(x) - f(x)} < \varepsilon$.
+$f_n\to f$ uniformly on $E$ iff $\sup_{x\in E}|f_n(x)-f(x)|\to0$; equivalently, $\forall\varepsilon>0\ \exists N\ \forall n\ge N\ \forall x\in E:|f_n(x)-f(x)|<\varepsilon$.
 Equivalently,
 $$
 \norm{f_n - f}_\infty \definedas \sup_{x\in E}\abs{f_n(x) - f(x)} \converges{n\to\infty}\to 0

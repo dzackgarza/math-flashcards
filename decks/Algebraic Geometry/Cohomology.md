@@ -257,9 +257,9 @@ Write $\Gamma_*(\mathcal O_X)\coloneqq\bigoplus_{n\ge0}H^0(X;\mathcal O_X(n))$ f
 
 $H^i(X;\mathcal O_X(n))=0$ for $0<i<r$ and every $n$.
 
-$H^r(X;\mathcal O_X(-(r+1)))=A$. More generally, top cohomology is zero for $n>-r-1$; otherwise it is free over $A$ with basis
+$H^r(X;\mathcal O_X(-(r+1)))=A$. More generally, $H^r(X;\mathcal O_X(n))=0$ for $n>-r-1$; otherwise it is free over $A$ with basis
 $$x_0^{-a_0}\cdots x_r^{-a_r},\qquad a_i\ge1,\quad\sum_i a_i=-n.$$
-Its rank is $\binom{-n-1}{r}$, and cohomology above degree $r$ vanishes.
+Thus $\operatorname{rank}_A H^r(X;\mathcal O_X(n))=\binom{-n-1}{r}$ for $n\le-r-1$, and $H^i(X;\mathcal O_X(n))=0$ for $i>r$.
 Reference: [Stacks Project, cohomology of projective space](https://stacks.math.columbia.edu/tag/01XS).
 :::
 
@@ -654,7 +654,9 @@ Let $f:X\to\operatorname{Spec}A$ be proper, with $(A,\mathfrak m)$ Noetherian lo
 :::
 
 ::: {.back card-id="application-formal-functions-vanishing"}
-Formal functions identifies the $\mathfrak m$-adic completion of $H^1(X,\mathcal F)$ with the inverse limit of the zero groups, hence with zero. Proper coherence makes $H^1(X,\mathcal F)$ a finite $A$-module. A finite module over a Noetherian local ring with zero completion is zero, by Nakayama's lemma.
+Formal functions gives
+$$\widehat{H^1(X,\mathcal F)}\cong\varprojlim_n H^1(X,\mathcal F/\mathfrak m^n\mathcal F)=0.$$
+Proper coherence makes $M=H^1(X,\mathcal F)$ a finite $A$-module. Nakayama gives $\widehat M=0\Rightarrow M/\mathfrak mM=0\Rightarrow M=0$.
 :::
 
 ::: {.front card-id="application-grr-finite-etale-curves" tags="application"}

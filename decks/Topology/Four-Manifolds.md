@@ -58,7 +58,7 @@ For a connected handlebody with one zero-handle:
 
 - One-handles generate a free fundamental group.
 - Each two-handle imposes the relation represented by its attaching circle.
-- Handles of index at least three do not change $\pi_1$.
+- Handles of index $k\ge3$ do not change $\pi_1$.
 - The cellular chain group $C_k$ has one generator per $k$-handle. The boundary matrix records signed intersections of attaching spheres with belt spheres of the preceding index.
 $$H_k(X;\mathbb Z)=\ker\partial_k/\operatorname{im}\partial_{k+1},\qquad
 \chi(X)=\sum_{k=0}^4(-1)^k h_k.$$
@@ -294,7 +294,7 @@ Away from them it is a surface bundle. A path to a critical value collapses a si
 
 Over a disk, build the singular fibration from $\Sigma_g\times D^2$ by attaching a two-handle along each vanishing cycle in a boundary fiber, with framing $-1$ relative to the surface framing. For closed base $B$ and $N$ critical points,
 $$\chi(X)=\chi(B)(2-2g)+N.$$
-For a fibration over $S^2$, the ordered product of local monodromies is the identity in the mapping class group of the closed fiber.
+For a fibration over $S^2$, the ordered local monodromies satisfy $T_1\cdots T_N=1$ in $\operatorname{Mod}(\Sigma_g)$.
 
 A Lefschetz pencil is defined away from finitely many basepoints, with local model $[z_1:z_2]$ there and the same critical-point model elsewhere. Blowing up each basepoint resolves it to a fibration; each exceptional sphere is a section of square $-1$.
 :::
@@ -312,10 +312,10 @@ Graded commutativity makes $Q_X$ symmetric; integral Poincaré duality makes it 
 | Term | Meaning |
 | --- | --- |
 | Even | $Q_X(a,a)\in2\mathbb Z$ for every $a\in L_X$ |
-| Odd | Some $a$ has odd square |
+| Odd | $\exists a\in L_X:Q_X(a,a)\notin2\mathbb Z$ |
 | $b_2^\pm$ | Positive/negative inertia indices of $Q_X\otimes\mathbb R$ |
 | Signature | $\sigma(X)=b_2^+-b_2^-$ |
-| Definite | One of $b_2^+,b_2^-$ is zero |
+| Definite | $b_2^+=0$ or $b_2^-=0$ |
 
 For transverse oriented embedded surfaces, their signed intersection count equals the pairing of their Poincaré duals. Self-intersection is the Euler number of the oriented normal bundle, computed by intersecting with a small transverse push-off.
 

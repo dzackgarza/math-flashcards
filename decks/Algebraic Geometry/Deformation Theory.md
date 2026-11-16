@@ -214,7 +214,7 @@ Describe the Kuranishi germ of a compact complex manifold, its tangent space, an
 ::: {.back card-id="deformation-kuranishi-equations"}
 Locally the germ is the zero locus of a holomorphic map
 $$\kappa:(H^1(X,T_X),0)\to(H^2(X,T_X),0),\qquad \kappa(0)=0,\quad d\kappa_0=0.$$
-It carries a semiuniversal deformation. Its tangent space is $H^1(T_X)$; its local dimension is at least $h^1(T_X)-h^2(T_X)$. The choice of map and coordinates is not canonical.
+The germ $K=\kappa^{-1}(0)$ carries a semiuniversal deformation, with $T_0K=H^1(T_X)$ and $\dim_0K\ge h^1(T_X)-h^2(T_X)$. The choice of map and coordinates is not canonical.
 
 If $H^0(T_X)=0$, the family is universal as a germ. Finite automorphisms of the central fiber can still act on that germ when the marking is forgotten; the coarse moduli germ can be a quotient and can be singular even when the marked deformation space is smooth. Infinitesimal automorphisms and finite automorphisms are different issues.
 
@@ -294,7 +294,7 @@ Across a small extension with kernel $I$, tensor these groups with $I$; the none
 For a rank-$r>0$ vector bundle in characteristic zero,
 $$\mathcal E nd(E)=\mathcal O_X\,\mathrm{id}\oplus\mathcal E nd_0(E),\qquad
 \mathcal E nd_0(E)=\ker(\operatorname{tr}).$$
-With a fixed identification of the determinant, use $H^i(\mathcal E nd_0(E))$ for $i=0,1,2$. The splitting uses $1/r$; it is not automatic when the characteristic divides $r$.
+With a fixed identification of the determinant, use $H^i(\mathcal E nd_0(E))$ for $i=0,1,2$. The splitting uses $1/r$; it is not automatic when $\operatorname{char}k\mid r$.
 
 On a smooth projective curve $H^2(\mathcal E nd(E))=0$, so vector-bundle deformations are unobstructed. This concerns the deformation groupoid; a coarse moduli space can retain quotient singularities.
 :::

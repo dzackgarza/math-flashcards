@@ -278,8 +278,8 @@ What is the $E_8$ lattice?
 ::: {.back card-id="card-0afaf8bbc4fee730"}
 The unique positive-definite, even, unimodular lattice of rank 8.
 
-Points in ${\mathbf{R}}^8$ whose coordinates are either all integers or all half-integers and the sum of coordinates is even.
-
+With the Euclidean pairing,
+$$E_8=\left\{x\in\mathbb Z^8\cup(\mathbb Z+\tfrac12)^8:\sum_{i=1}^8x_i\in2\mathbb Z\right\}.$$
 Root lattice of $E_8$: with simple roots numbered along the chain $1-3-4-5-6-7-8$ and node $2$ attached to $4$, the positive-definite $E_8$ Gram matrix is
 $$\begin{pmatrix}2&0&-1&0&0&0&0&0\\0&2&0&-1&0&0&0&0\\-1&0&2&-1&0&0&0&0\\0&-1&-1&2&-1&0&0&0\\0&0&0&-1&2&-1&0&0\\0&0&0&0&-1&2&-1&0\\0&0&0&0&0&-1&2&-1\\0&0&0&0&0&0&-1&2\end{pmatrix}.$$
 :::
@@ -525,7 +525,7 @@ What is the importance of primitive sublattices?
 ::: {.back card-id="card-a9d006ec7e1731af"}
 If $H\leq\Lambda$ is primitive, it admits a complement as a free abelian group: $\Lambda\simeq H\oplus C$. The complement need not be orthogonal.
 
-If $H$ is also nondegenerate, $H\oplus H^\perp$ has finite index in $\Lambda$, but equality need not hold. In $U=\mathbb Ze+\mathbb Zf$, take $H=\mathbb Z(e+f)$. Then $H^\perp=\mathbb Z(e-f)$ and $[U:H\oplus H^\perp]=2$.
+If $H$ is also nondegenerate, $[\Lambda:H\oplus H^\perp]<\infty$, but $\Lambda=H\oplus H^\perp$ need not hold. In $U=\mathbb Ze+\mathbb Zf$, take $H=\mathbb Z(e+f)$. Then $H^\perp=\mathbb Z(e-f)$ and $[U:H\oplus H^\perp]=2$.
 :::
 
 ::: {.front card-id="card-7af7ca207863f1de"}
@@ -705,7 +705,7 @@ What is a reflective modular form?
 ::: {.back card-id="card-316531e731be6efa"}
 Modular form: $f\in \mathop{\mathrm{Hol}}(\Aff\Omega_{\Lambda}, \CC)$ where $f(tz) = t^{-k}f(z)$ for $t\in \CC^{\times}$ and $f(gz) = \chi(g) f(z)$ for $g\in \Gamma \leq {\operatorname{O}}^+(\Lambda)$ where $\Omega_{\Lambda}\coloneqq\left\{{z\in {\mathbf{P}}(\Lambda\otimes\CC)\st z^2 = 0, {\left\lVert {z} \right\rVert} < 0}\right\}$ and $\Aff$ is its affine cone.
 
-$f$ is reflective iff zeros of $f$ are contained in $\cup\gamma^\perp$ for $\gamma$ roots of $\Lambda$.
+$f$ is reflective iff $\operatorname{Supp}\operatorname{div}_0(f)\subseteq\bigcup_{\gamma\text{ root of }\Lambda}\gamma^\perp$.
 :::
 
 ::: {.front card-id="card-b28399c98a2e49fd"}

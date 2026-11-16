@@ -108,7 +108,7 @@ Define Schubert classes on $\operatorname{Gr}(k,n)$ and state Pieri and Giambell
 ::: {.back card-id="intersection-schubert-pieri-giambelli"}
 For a complete flag $F_\bullet$ and $n-k\ge\lambda_1\ge\cdots\ge\lambda_k\ge0$:
 $$\Omega_\lambda(F)=\{V:\dim(V\cap F_{n-k+i-\lambda_i})\ge i,\ 1\le i\le k\},\qquad\sigma_\lambda=[\Omega_\lambda].$$
-Its codimension is $|\lambda|$. If $Q$ is the tautological quotient bundle, $\sigma_r=c_r(Q)$, with $\sigma_0=1$ and out-of-range $\sigma_r=0$.
+$\operatorname{codim}\Omega_\lambda=|\lambda|$. If $Q$ is the tautological quotient bundle, $\sigma_r=c_r(Q)$, with $\sigma_0=1$ and out-of-range $\sigma_r=0$.
 
 Pieri:
 $$\sigma_\lambda\sigma_r=\sum_\mu\sigma_\mu,$$

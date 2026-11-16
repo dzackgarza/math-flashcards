@@ -180,7 +180,7 @@ $$X_c=\operatorname{Proj}\bigoplus_{m\ge0}
 H^0\!\left(X,\mathcal O_X\!\left(mN(K_X+\sum c_iD_i)\right)\right),$$
 where $N$ clears denominators and the divisor is big with finitely generated ring. Contract the curves on which the model map has degree zero; retain the images of the labeled divisors. Merely changing coefficients can destroy ampleness.
 
-For weighted curves, a rational tail carrying new total weight at most one contracts. For hyperplane arrangements the walls come from $\sum_{i\in I}b_i=k$, with $k$ an incidence codimension. Global reduction morphisms require the corresponding moduli construction; they are not asserted for arbitrary weight changes.
+For weighted curves, a rational tail carrying markings $I$ contracts when $\sum_{i\in I}b_i^{\mathrm{new}}\le1$. For hyperplane arrangements the walls come from $\sum_{i\in I}b_i=k$, with $k$ an incidence codimension. Global reduction morphisms require the corresponding moduli construction; they are not asserted for arbitrary weight changes.
 
 Reference: Alexeev, *Moduli of Weighted Hyperplane Arrangements*, Chapters 1 and 5.
 :::

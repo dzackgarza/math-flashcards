@@ -9,8 +9,8 @@ Eisenstein's Criterion
 ::: {.back card-id="card-1fae5c68a5b71e1a"}
 If $f(x) = \displaystyle\sum_{i=0}^n a_i x^i \in \ZZ[x]$ and there is a prime $p$ such that
 
-- $p$ divides every coefficient *except* $a_n$, i.e. $p \divides a_i$ for $i < n$ and $p \nmid a_n$, and
-- $p^2$ does not divide $a_0$,
+- $p\mid a_i$ for $0\le i<n$, $p\nmid a_n$, and
+- $p^2\nmid a_0$,
 
 then $f$ is irreducible in $\QQ[x]$.
 :::
@@ -197,9 +197,9 @@ Definition: perfect field.
 :::
 
 ::: {.back card-id="card-d1a999a8a78c28e7"}
-Every irreducible polynomial is separable.
+For a field $k$, every irreducible polynomial in $k[x]$ is separable.
 
-Equivalently, the characteristic is zero, or is $p$ where Frobenius is an automorphism.
+Equivalently, $\operatorname{char}k=0$, or $\operatorname{char}k=p>0$ and $F:k\xrightarrow{\sim}k$, $x\mapsto x^p$.
 
 > All characteristic zero or finite fields are perfect.
 :::

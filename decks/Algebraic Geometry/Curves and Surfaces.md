@@ -223,7 +223,9 @@ The diagrams show $I_0^*$, an $I_3^*$ representative, $IV^*$, $III^*$, and $II^*
 
 ![Asymmetric long arms](assets/kodaira/fiber-13.svg){width=500px}
 
-Every component is a smooth rational $(-2)$-curve. The fiber multiplicity vector is the primitive positive kernel vector of the intersection matrix: $F\cdot C_i=0$. Thus twice each multiplicity equals the sum of adjacent multiplicities. Normalize to greatest common divisor one; the section meets a multiplicity-one component.
+Every component is a smooth rational $(-2)$-curve. For $F=\sum_i m_iC_i$, the multiplicity vector is the primitive positive kernel vector of the intersection matrix:
+$$F\cdot C_i=0,\qquad2m_i=\sum_{j\text{ adjacent to }i}m_j,\qquad m_i>0,\quad\gcd_i m_i=1.$$
+The section meets a component with $m_i=1$.
 :::
 
 ::: {.front card-id="kodaira-minimal-orders" tags="formula application"}
@@ -458,7 +460,7 @@ Does blowing up nine plane points always give a rational elliptic surface? Compa
 ::: {.back card-id="blowup-nine-points-versus-pencil"}
 Always $K^2=0$, but that does not produce a pencil. For distinct base points of a cubic pencil, the proper transforms give a base-point-free $|-K|$, hence a rational elliptic surface; the exceptional curves are sections.
 
-For nine very general points there is a unique smooth cubic $C$. Its strict transform $C'=-K$ is nef with square zero, while
+For nine very general points there is a unique smooth cubic $C$. Its strict transform $C'=-K$ is nef with $(C')^2=0$, while
 $$\mathcal O_{C'}(C')=\mathcal O_C(3)(-p_1-\cdots-p_9)$$
 is a nontorsion degree-zero bundle. The exact sequence
 $$0\to\mathcal O((m-1)C')\to\mathcal O(mC')\to\mathcal O_{C'}(mC')\to0$$
@@ -508,7 +510,7 @@ For $\mathbb P^1$ it is one. An elliptic curve has gonality two: a degree-two li
 :::
 
 ::: {.front card-id="definition-clifford-index" tags="definition application"}
-Define the Clifford index of a smooth projective complex curve of genus at least four. How does it relate to special linear series and gonality?
+Define the Clifford index of a smooth projective complex curve $C$ with $g(C)\ge4$. How does it relate to special linear series and gonality?
 :::
 
 ::: {.back card-id="definition-clifford-index"}
@@ -543,14 +545,14 @@ For example, a smooth degree-$d$ surface in $\mathbb P^3$ with $d\ge5$ has $K_S=
 :::
 
 ::: {.front card-id="application-product-surface-classification" tags="application"}
-For smooth projective complex curves $C,D$ of genera at least one, classify $C\times D$ by Kodaira dimension. Compute $q,p_g,\chi(\mathcal O)$ and $K^2$.
+For smooth projective complex curves $C,D$ with $g(C),g(D)\ge1$, classify $C\times D$ by Kodaira dimension. Compute $q,p_g,\chi(\mathcal O)$ and $K^2$.
 :::
 
 ::: {.back card-id="application-product-surface-classification"}
 Künneth and $K=p_C^*K_C+p_D^*K_D$ give
 $$q=g(C)+g(D),\quad p_g=g(C)g(D),\quad
 \chi(\mathcal O)=(g(C)-1)(g(D)-1),\quad K^2=8(g(C)-1)(g(D)-1).$$
-If both genera are one, the product is an abelian surface and $\kappa=0$. If exactly one is one, projection to the higher-genus curve is the Iitaka fibration and $\kappa=1$. If both genera are at least two, $K$ is ample and $\kappa=2$. By contrast, $\mathbb P^1\times C$ is ruled and has $\kappa=-\infty$, even when projection to $\mathbb P^1$ has elliptic fibers.
+For $g(C)=g(D)=1$, the product is an abelian surface and $\kappa=0$. For $\min(g(C),g(D))=1<\max(g(C),g(D))$, projection to the higher-genus curve is the Iitaka fibration and $\kappa=1$. For $g(C),g(D)\ge2$, $K$ is ample and $\kappa=2$. By contrast, $\mathbb P^1\times C$ is ruled and has $\kappa=-\infty$, even when projection to $\mathbb P^1$ has elliptic fibers.
 :::
 
 ::: {.front card-id="numerical-kodaira-zero-surface-identification" tags="application"}
@@ -1314,7 +1316,7 @@ What is an exceptional curve of the first kind?
 :::
 
 ::: {.back card-id="card-39afa431b819ac1f"}
-Rational curves $C$ isomorphic to ${\mathbf{P}}^1$ with $C^2 = -1$.
+Curves $C\cong\mathbb P^1$ with $C^2=-1$.
 :::
 
 ::: {.front card-id="card-57428c9f80e11c05"}
@@ -1692,7 +1694,7 @@ For a general smooth complex curve $C$ of genus six, determine whether $W^1_4(C)
 ::: {.back card-id="application-brill-noether-general-genus-six"}
 Brill–Noether gives
 $$\rho(6,1,4)=6-2(6-4+1)=0,\qquad \rho(6,1,3)=6-2(6-3+1)=-2.$$
-Thus $W^1_4(C)$ is nonempty and zero-dimensional, while $W^1_3(C)$ is empty. The general-curve hypothesis is needed for the emptiness conclusion when $\rho<0$.
+Thus $W^1_4(C)\ne\varnothing$, $\dim W^1_4(C)=0$, and $W^1_3(C)=\varnothing$. The general-curve hypothesis is needed for the emptiness conclusion when $\rho<0$.
 :::
 
 ::: {.front card-id="application-brill-noether-special-curve" tags="application"}
@@ -1700,7 +1702,7 @@ Let $C$ be hyperelliptic of genus six and let $A$ be its degree-two pencil. For 
 :::
 
 ::: {.back card-id="application-brill-noether-special-curve"}
-The line bundle $A(p)$ has degree three and at least two sections, so it lies in $W^1_3(C)$. The number $\rho(6,1,3)=-2$ forces emptiness only for a general curve. This hyperelliptic curve is special; a degree-three linear series here can have a base point.
+Since $\deg A(p)=3$ and $h^0(A(p))\ge2$, $A(p)\in W^1_3(C)$. The number $\rho(6,1,3)=-2$ forces emptiness only for a general curve. This hyperelliptic curve is special; a degree-three linear series here can have a base point.
 :::
 
 ::: {.front card-id="application-clifford-equality-hyperelliptic" tags="application"}
@@ -2001,7 +2003,7 @@ For a smooth projective geometrically connected curve over $\mathbb C((t))$, com
 :::
 
 ::: {.back card-id="curves-semistable-reduction-models"}
-After a finite extension $\mathbb C((t))\subset\mathbb C((s))$, the curve has a proper flat regular model with reduced nodal special fiber. This is semistable reduction in the model-theoretic convention; it permits unstable rational components. For genus at least two, stabilization gives a stable model, unique once the generic fiber is identified.
+After a finite extension $\mathbb C((t))\subset\mathbb C((s))$, the curve has a proper flat regular model with reduced nodal special fiber. This is semistable reduction in the model-theoretic convention; it permits unstable rational components. For $g\ge2$, stabilization gives a stable model, unique once the generic fiber is identified.
 
 Semistable regular models are not unique: blow up a smooth point of the special fiber to add a rational tail. Stable total spaces need not be regular: $xy=t^r$ has nodal special fiber but a singular total space when $r>1$. Resolving inserts a chain of rational curves; stabilization contracts the chain again.
 

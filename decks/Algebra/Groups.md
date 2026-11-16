@@ -31,7 +31,7 @@ Writing $\abs{G} = \prod p_i^{n_i}$, there exist Sylow $p_i\dash$subgroups $P_i$
 **Sylow 2**
 All Sylows are conjugate.
 **Sylow 3**
-1. $n_p$ divides $m$
+1. $n_p\mid m$
 1. $n_p \equiv 1 \mod p$
 2. $n_p = [G: N_G(P)]$
 :::
@@ -73,7 +73,7 @@ Alternating Group
 :::
 
 ::: {.back card-id="card-4599c237f2075f09"}
-The kernel of the sign homomorphism, i.e. the set of even permutations (sign = 1).
+$A_n=\ker(\operatorname{sgn}:S_n\to\{\pm1\})=\{\sigma\in S_n:\operatorname{sgn}(\sigma)=1\}$: the even permutations.
 :::
 
 ::: {.front card-id="card-b75d2d555be43bd8" tags="definition"}

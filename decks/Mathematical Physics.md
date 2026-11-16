@@ -10,7 +10,7 @@ Compare the objects and discrete data in GW, ideal-sheaf DT, and PT curve counti
 | Theory | Object | Fixed data | Extra geometry |
 | --- | --- | --- | --- |
 | GW | Stable map $f:(C,p_i)\to X$ | $g,\beta=f_*[C]$, number of marks | Multiple covers, contracted components, nodal domains |
-| DT | Ideal sheaf $I_Z\subset\mathcal O_X$ of a subscheme of dimension at most one | $\beta=[Z]$, $n=\chi(\mathcal O_Z)$ | Embedded and isolated zero-dimensional components |
+| DT | Ideal sheaf $I_Z\subset\mathcal O_X$, $\dim Z\le1$ | $\beta=[Z]$, $n=\chi(\mathcal O_Z)$ | Embedded and isolated zero-dimensional components |
 | PT | Section $s:\mathcal O_X\to F$; $F$ pure one-dimensional, cokernel supported at finitely many points (possibly zero) | $\beta=[F]\ne0$, $n=\chi(F)$ | Cokernel on the supporting curve; no zero-dimensional subsheaf of $F$ |
 
 All require obstruction theory and a virtual class. GW uses a proper Deligne–Mumford stack; DT and PT here use projective moduli schemes. For threefolds their complex virtual dimensions are $\int_\beta c_1(TX)+m$ for GW with $m$ marks and $\int_\beta c_1(TX)$ for DT/PT. Zero virtual dimension permits integration of $1$.
@@ -163,7 +163,7 @@ F_A^+=0\iff *F_A=-F_A.$$
 The gauge group $\mathcal G(P)$ consists of bundle automorphisms over $\mathrm{id}_X$; locally,
 $$A\mapsto u^{-1}Au+u^{-1}du,\qquad F_A\mapsto u^{-1}F_Au,\qquad
 \mathcal M_{\mathrm{ASD}}(P,g)=\{A:F_A^+=0\}/\mathcal G(P).$$
-An irreducible connection has stabilizer equal to the center of the structure group; a larger stabilizer is reducible. For $\mathrm{SU}(2)$, reducibility means a parallel splitting into line bundles.
+An irreducible connection $A$ satisfies $\operatorname{Stab}_{\mathcal G}(A)=Z(G)$; a larger stabilizer is reducible. For $\mathrm{SU}(2)$, reducibility means a parallel splitting $E=L\oplus L^{-1}$.
 
 Orientation reversal exchanges self-dual and anti-self-dual forms. The star on two-forms in real dimension four is conformally invariant, so ASD depends on the conformal class of the metric. Since $d_AF_A=0$, ASD implies $d_A*F_A=0$, hence Yang–Mills.
 :::

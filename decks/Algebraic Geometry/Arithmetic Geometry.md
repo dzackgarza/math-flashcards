@@ -425,7 +425,7 @@ For $n$ prime to $\operatorname{char}k$,
 $$e_n:E[n]\times E[n]\to\mu_n$$
 is bilinear, alternating, perfect, and Galois equivariant. A basis $P,Q$ has $e_n(P,Q)$ a primitive $n$th root, so full rational $n$-torsion forces $\mu_n\subset k$.
 
-For $\ell\ne\operatorname{char}k$, $T_\ell E=\varprojlim E[\ell^r](\bar k)$ is free of rank two. The compatible pairings identify
+For $\ell\ne\operatorname{char}k$, $T_\ell E=\varprojlim E[\ell^r](\bar k)\cong\mathbb Z_\ell^2$ as a $\mathbb Z_\ell$-module. The compatible pairings identify
 $$\bigwedge^2T_\ell E\cong\mathbb Z_\ell(1),\qquad\det\rho_{E,\ell}=\chi_\ell.$$
 Thus an elliptic curve over $\mathbb Q$ cannot have full rational $3$-torsion: $\mathbb Q$ does not contain a primitive cube root of unity.
 :::
@@ -533,7 +533,7 @@ $$\mathbb Z/n\ (1\le n\le10\text{ or }n=12),\qquad
 \mathbb Z/2\times\mathbb Z/2m\ (1\le m\le4).$$
 At a prime of good reduction $p$, prime-to-$p$ rational torsion injects into $E(\mathbb F_p)$.
 
-For $E:y^2=x^3-x$, good primes $3,5$ give point counts $4,8$. The count at $5$ excludes rational $3$-primary torsion; the count at $3$ excludes $5$-primary torsion. Every other primary part injects at both primes, so the torsion order divides four. The visible points $O,(0,0),(1,0),(-1,0)$ therefore give exactly $(\mathbb Z/2)^2$. This argument does not compute the rank.
+For $E:y^2=x^3-x$, $\#E(\mathbb F_3)=4$ and $\#E(\mathbb F_5)=8$ at good primes $3,5$. The count at $5$ excludes rational $3$-primary torsion; the count at $3$ excludes $5$-primary torsion. Every other primary part injects at both primes, so $|E(\mathbb Q)_{\mathrm{tors}}|\mid4$. The visible points $O,(0,0),(1,0),(-1,0)$ therefore give $E(\mathbb Q)_{\mathrm{tors}}\cong(\mathbb Z/2)^2$. This argument does not compute the rank.
 :::
 
 ::: {.front card-id="elliptic-complex-uniformization-j" tags="construction formula"}
@@ -602,5 +602,5 @@ $$L(E,s)=\prod_pL_p(p^{-s})^{-1},\qquad
 L_p(T)=\begin{cases}1-a_pT+pT^2&\text{good},\\1-T&\text{split multiplicative},\\1+T&\text{nonsplit multiplicative},\\1&\text{additive},\end{cases}$$
 where $a_p=p+1-\#E(\mathbb F_p)$ at good primes. Modularity is a theorem: $L(E,s)=L(f,s)$ for a weight-two newform of level equal to the conductor. It gives analytic continuation and the functional equation.
 
-The analytic rank is $\operatorname{ord}_{s=1}L(E,s)$. The BSD rank conjecture asserts equality with $\operatorname{rank}E(\mathbb Q)$; this equality is not a formal consequence of modularity. The refined conjecture also predicts the leading coefficient using periods, regulator, Tamagawa factors, torsion, and the finite order of $\operatorname{Sha}$.
+The analytic rank is $r_{\mathrm{an}}(E)=\operatorname{ord}_{s=1}L(E,s)$. The BSD rank conjecture asserts $r_{\mathrm{an}}(E)=\operatorname{rank}E(\mathbb Q)$; this equality is not a formal consequence of modularity. The refined conjecture also predicts the leading coefficient using periods, regulator, Tamagawa factors, torsion, and the finite order of $\operatorname{Sha}$.
 :::

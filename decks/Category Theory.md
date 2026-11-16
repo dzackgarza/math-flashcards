@@ -225,7 +225,7 @@ What is the definition of Initial object?
 :::
 
 ::: {.back card-id="card-df511473d35130fc"}
-An initial object of a category is an object $I$ such that for every object $X$ there is exactly one morphism $I \to X$.
+$I$ is initial iff $|\operatorname{Hom}(I,X)|=1$ for every object $X$.
 :::
 
 ::: {.front card-id="card-9d68f09f357cdb2a" tags="definition"}
@@ -305,7 +305,7 @@ What is the definition of Terminal object?
 :::
 
 ::: {.back card-id="card-e38854feec65c1c7"}
-A terminal object of a category is an object $T$ such that for every object $X$ there is exactly one morphism $X \to T$.
+$T$ is terminal iff $|\operatorname{Hom}(X,T)|=1$ for every object $X$.
 :::
 
 ::: {.front card-id="card-81678eb151beb4dd" tags="definition"}

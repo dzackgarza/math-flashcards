@@ -26,7 +26,7 @@ Describe the integral Chow ring of a smooth connected projective complex curve $
 
 ::: {.back card-id="standard-chow-curves"}
 $$\operatorname{CH}^0(C)=\mathbb Z,\qquad\operatorname{CH}^1(C)=\operatorname{Pic}(C),\qquad\operatorname{CH}^i(C)=0\ (i>1).$$
-The product of any two positive-codimension classes is zero. The kernel of $\deg:\operatorname{CH}_0(C)\to\mathbb Z$ is $\operatorname{Jac}(C)$.
+$\alpha\beta=0$ for $\alpha,\beta\in\operatorname{CH}^{>0}(C)$, and $\ker(\deg:\operatorname{CH}_0(C)\to\mathbb Z)\cong\operatorname{Jac}(C)(\mathbb C)$.
 :::
 
 ::: {.front card-id="standard-chow-hirzebruch" tags="formula"}

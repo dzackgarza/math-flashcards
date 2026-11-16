@@ -65,7 +65,7 @@ $$X=(Y\times_{G_b}U_b^{ss})/\!/_{b}T,\qquad
 B_i=(Y\times_{G_b}(U_b^{ss}\cap\{z_i=0\}))/\!/_{b}T.$$
 This defines the labeled pair $(X,\sum b_iB_i)$, which is slc with ample log canonical divisor. For the normalized orbit closure of a subspace $V$ giving an lc arrangement, the construction recovers $\mathbb P V$ and its coordinate hyperplane sections.
 
-For $r=2$, the output is a weighted stable pointed rational curve: markings may coincide exactly when their total weight is at most one. This is the curve case of the same weighted stable-pair construction.
+For $r=2$, the output is a weighted stable pointed rational curve: coincident markings indexed by $I$ are allowed iff $\sum_{i\in I}b_i\le1$. This is the curve case of the same weighted stable-pair construction.
 
 Reference: Alexeev, [*Weighted Grassmannians and Stable Hyperplane Arrangements*, §§5–7](https://arxiv.org/html/0806.0881); *Moduli of Weighted Hyperplane Arrangements*, §5.3.
 :::

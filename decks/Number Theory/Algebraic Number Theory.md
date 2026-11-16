@@ -208,7 +208,7 @@ Describe the filtration on $D/T \cong \Gal(\widehat{L} / \widehat{K})$.
 :::
 
 ::: {.back card-id="card-78a6e1f24e6c7d1e"}
-$\sigma\in G_i \iff \sigma$ is the identity on $\widehat{B}/P^{i+1}$.
+$\sigma\in G_i\iff\bar\sigma=\mathrm{id}_{\widehat B/P^{i+1}}$.
 
 What this is doing: write $B\ni b = \sum b_i \pi^i$, then
 

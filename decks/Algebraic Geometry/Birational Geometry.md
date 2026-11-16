@@ -83,7 +83,7 @@ $$\overline\kappa(U)=\kappa(S,K_S+D),\qquad
 \frac{2h^0(S,m(K_S+D))}{m^2}.$$
 These are independent of the chosen SNC compactification. Log general type means $\overline\kappa(U)=2$, equivalently positive volume.
 
-For the Zariski decomposition $K_S+D=P+N$ of a big divisor, volume is $P^2$, not generally $(K_S+D)^2$. On the log canonical model it equals $(K_{S_{\mathrm{can}}}+D_{\mathrm{can}})^2$.
+For the Zariski decomposition $K_S+D=P+N$ of a big divisor, $\operatorname{vol}(K_S+D)=P^2$, not generally $(K_S+D)^2$. On the log canonical model, $\operatorname{vol}(K_S+D)=(K_{S_{\mathrm{can}}}+D_{\mathrm{can}})^2$.
 
 Example: $(\mathbb C^\times)^2=\mathbb P^2\setminus$ three coordinate lines has $K+D=0$, so $\overline\kappa=0$ and volume zero. The complement of four lines with no three concurrent has $K+D=H$, hence $\overline\kappa=2$ and volume one.
 
@@ -138,7 +138,7 @@ For a nef divisor $D$ on a smooth projective $n$-fold and an ample divisor $A$,
 $$\nu(D)=\max\{k\in\{0,\ldots,n\}:D^k\cdot A^{n-k}>0\}.$$
 It is independent of $A$ and depends only on the numerical class. It measures numerical positivity; $\nu(D)=n$ exactly when $D$ is big. This ordinary-intersection definition is for nef divisors; extensions to general pseudoeffective divisors require a specified definition using positive products or asymptotic growth.
 
-For $\mathcal O(1,0)$ on $\mathbb P^1\times\mathbb P^1$, $\nu=\kappa=1$ but volume is zero. On an elliptic curve every degree-zero line bundle has $\nu=0$ and volume zero. A torsion one has $\kappa=0$, whereas a nontorsion one has $\kappa=-\infty$: a degree-zero line bundle has a nonzero section only when trivial. Thus Iitaka dimension need not be a numerical invariant.
+For $L=\mathcal O(1,0)$ on $\mathbb P^1\times\mathbb P^1$, $\nu(L)=\kappa(L)=1$ but $\operatorname{vol}(L)=0$. On an elliptic curve, $\deg L=0$ gives $\nu(L)=\operatorname{vol}(L)=0$. A torsion $L$ has $\kappa(L)=0$, whereas a nontorsion $L$ has $\kappa(L)=-\infty$: $\deg L=0$ and $h^0(L)>0$ force $L\cong\mathcal O$. Thus Iitaka dimension need not be a numerical invariant.
 :::
 
 ::: {.front card-id="application-birational-invariants-blowup" tags="application"}
@@ -1007,7 +1007,7 @@ For a rational map $f:X\dashrightarrow Y$ with $X$ a normal integral variety and
 :::
 
 ::: {.back card-id="theorem-indeterminacy-codimension"}
-The map is defined at every codimension-one point, so its indeterminacy locus has codimension at least two. On a surface it is a finite set of closed points. At a codimension-one point, normality gives a discrete valuation ring, and properness extends the map by the valuative criterion.
+The map $f$ is defined at every codimension-one point, so $\operatorname{codim}_X\operatorname{Indet}(f)\ge2$. On a surface it is a finite set of closed points. At a codimension-one point, normality gives a discrete valuation ring, and properness extends the map by the valuative criterion.
 :::
 
 ::: {.front card-id="application-rational-map-curve-extension" tags="application"}

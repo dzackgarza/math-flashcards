@@ -50,7 +50,7 @@ Conformal Map
 :::
 
 ::: {.back card-id="card-d56e3e1aa8104309"}
-A holomorphic map with nowhere vanishing derivative (locally injective).
+A holomorphic map $f:U\to\mathbb C$ with $f'(z)\ne0$ for every $z\in U$ (locally injective).
 :::
 
 ::: {.front card-id="card-281605aabeb43de5" tags="definition"}
@@ -292,7 +292,7 @@ Dirichlet's Test
 If $\theset{a_n}, \theset{b_n}$ satisfy
 
 - $a_{n+1} \leq a_n$ and $a_n \to 0$ (i.e. $a_n \searrow 0$),
-- the partial sums of $b_n$ are uniformly bounded: there exists an $M$, independent of $N$, such that $\abs{\sum_{n=1}^N b_n} \leq M$ for all $N$,
+- uniformly bounded partial sums: $\sup_N\abs{\sum_{n=1}^N b_n}<\infty$,
 
 then $\sum_{n=1}^\infty a_n b_n$ converges.
 :::
