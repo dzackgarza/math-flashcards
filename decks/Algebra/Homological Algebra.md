@@ -317,7 +317,9 @@ How do deformations of $A$ arise?
 :::
 
 ::: {.back card-id="card-9d7da2c6912f809a"}
-From noncommutative Poisson structures: elements $x\in {\operatorname{HH}}^2(A)$ with $\left\{{a, a}\right\} = 0$.
+For an associative $k$-algebra in characteristic zero, write a formal multiplication $m_t=m+t\mu_1+t^2\mu_2+\cdots$. Associativity is the Maurer–Cartan equation in the shifted Hochschild cochain complex:
+$$d\mu+\tfrac12[\mu,\mu]=0,\qquad\mu=t\mu_1+t^2\mu_2+\cdots.$$
+First-order classes lie in $HH^2(A)$; the primary obstruction is $\tfrac12[\mu_1,\mu_1]\in HH^3(A)$. Its vanishing permits a second-order lift, but higher-order obstructions may remain. A noncommutative Poisson class with zero self-bracket does not by itself specify a full formal deformation.
 :::
 
 ::: {.front card-id="card-f9f24f8589e6554e"}
@@ -766,7 +768,7 @@ What is the definition of Formal deformation?
 :::
 
 ::: {.back card-id="card-d3bad92cf5729d54"}
-An algebra structure on $A[[t]]$ whose reduction modulo $t$ is the given algebra $A$.
+For an associative $k$-algebra $A$, a $t$-adically continuous $k[[t]]$-bilinear associative multiplication on the topologically free module $A[[t]]$, reducing modulo $t$ to the given multiplication on $A$. Equivalently, compatible such multiplications on $A\otimes_k k[t]/(t^{n+1})$ for every $n$. Formal power series need not converge analytically.
 :::
 
 ::: {.front card-id="card-d62dcdab878ce6b9" tags="definition"}
@@ -894,7 +896,7 @@ What is the definition of Square-zero extension?
 :::
 
 ::: {.back card-id="card-7698ba9e65e562d3"}
-A ring extension $0\to M\to B\to A\to 0$ in which $M$ is an ideal with $M^2=0$; equivalently, a ring structure on $A\oplus M$ for which $M$ is a square-zero ideal and $A$ is the quotient.
+A surjective ring map $B\twoheadrightarrow A$ whose kernel $M$ satisfies $M^2=0$. The ideal $M$ is naturally an $A$-module. A split extension is $A\oplus M$ with multiplication $(a,m)(b,n)=(ab,an+bm)$, but extensions need not split: $\mathbb Z/p^2\twoheadrightarrow\mathbb F_p$ has square-zero kernel and no ring section, nor an additive splitting.
 :::
 
 ::: {.front card-id="card-d2fbd86b043509b8" tags="definition"}

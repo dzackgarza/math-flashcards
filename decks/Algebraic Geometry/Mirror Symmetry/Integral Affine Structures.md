@@ -517,7 +517,7 @@ What is the definition of Semi-universal deformation?
 :::
 
 ::: {.back card-id="card-56810efcabc4bf7c"}
-A semi-universal (miniversal) deformation of $X$ is a deformation $\mathcal X\to S$ such that every deformation of $X$ is induced from it and the induced map on tangent spaces is unique; equivalently the Kodaira-Spencer map $T_0S\to\operatorname{Ext}^1(\Omega_X,\mathcal O_X)$ is an isomorphism.
+A semiuniversal (miniversal) deformation is versal and induces an isomorphism on tangent spaces. For the formal deformation functor $\operatorname{Def}_X$, its complete local base $R$ defines a smooth natural transformation $h_R\to\operatorname{Def}_X$ with tangent isomorphism; this is a hull. Here $h_R(A)=\operatorname{Hom}_{\mathrm{local},k}^{\mathrm{cont}}(R,A)$. Smoothness means compatible lifts exist across small extensions. The tangent space is $\operatorname{Ext}^1_X(L_{X/k},\mathcal O_X)$, or $H^1(X,T_X)$ for smooth $X$. A tangent isomorphism alone does not imply versality; inducing base maps need not be unique.
 :::
 
 ::: {.front card-id="card-2e3d766f0efeb706" tags="definition"}
@@ -581,7 +581,7 @@ What is the definition of Universal deformation?
 :::
 
 ::: {.back card-id="card-34e632bf729f4796"}
-A deformation $\mathcal X\to S$ of $X$ is universal if every deformation $\mathcal Y\to T$ of $X$ is induced from it by a unique base change $T\to S$. Equivalently the Kodaira-Spencer map is an isomorphism and the family is complete and rigid.
+A deformation $\mathcal X\to S$ of $X$ is universal if, in the chosen category of pointed local bases, every marked deformation is induced by a unique base map to $S$, up to isomorphism of marked families. Formally, a complete local base $R$ prorepresents the set-valued deformation functor when $h_R\xrightarrow{\sim}\operatorname{Def}_X$. A hull gives only a smooth transformation with tangent isomorphism. The tangent isomorphism does not supply uniqueness of base maps, and set-valued universality does not remove automorphisms of families.
 :::
 
 ::: {.front card-id="card-8934770be8e9010f" tags="definition"}

@@ -1222,7 +1222,7 @@ What is the cotangent complex?
 :::
 
 ::: {.back card-id="card-b18d26174d2423d1"}
-The nonabelian left-derived functor ${\mathbb{L}}_{{-}/A}: \mathsf{CRing}_A\to \mathbf{D}{  {}_{A}\Mod}$ of the functor $\Omega^1_{{-}/A}[0]$
+For an $A$-algebra $B$, $L_{B/A}\in D(B)$ is the nonabelian left-derived module of Kähler differentials. Choose a simplicial polynomial $A$-algebra resolution $P_\bullet\to B$ and normalize $\Omega^1_{P_\bullet/A}\otimes_{P_\bullet}B$, using nonpositive cohomological degrees. Then $H^0(L_{B/A})=\Omega^1_{B/A}$; if $B/A$ is smooth, $L_{B/A}\simeq\Omega^1_{B/A}[0]$. For schemes these complexes glue to $L_{X/S}\in D(\mathcal O_X)$.
 :::
 
 ::: {.front card-id="card-9129195c6fc4fa3d"}
@@ -1824,7 +1824,7 @@ What is the definition of Deformation functor?
 :::
 
 ::: {.back card-id="card-064c6ea6ad1e833b"}
-The functor $\operatorname{Def}_X$ from local Artinian $k$-algebras to sets that sends $A$ to the set of isomorphism classes of flat families over $\operatorname{Spec}A$ with special fiber $X$ (or the corresponding functor for algebras, sheaves, or subschemes). Its tangent space is the space of first-order deformations.
+The functor $\operatorname{Def}_X:\operatorname{Art}_k\to\mathrm{Sets}$ sends a local Artinian $k$-algebra with identified residue field $k$ to isomorphism classes of flat deformations $X_A\to\operatorname{Spec}A$ equipped with an identification $X_A\times_Ak\cong X$. Isomorphisms must respect this identification; ring maps act by base change. Its tangent space is $\operatorname{Def}_X(k[\varepsilon]/(\varepsilon^2))$. Keeping the isomorphisms themselves gives a deformation groupoid, which also records automorphisms.
 :::
 
 ::: {.front card-id="card-76ba15e3434da622" tags="definition"}
@@ -2020,7 +2020,7 @@ What is the definition of Kuranishi space?
 :::
 
 ::: {.back card-id="card-f4643284ba489fa1"}
-The analytic germ representing the deformation functor of a compact complex manifold or variety. For a compact Kähler manifold with trivial canonical bundle, Bogomolov–Tian–Todorov gives that it is smooth of dimension $h^1(X,T_X)$.
+For a compact complex manifold $X$, the base germ of a semiuniversal analytic deformation, with tangent space $H^1(X,T_X)$. It need not represent the deformation functor: inducing maps need not be unique. If $H^0(X,T_X)=0$, the Kuranishi family is universal as a germ. For compact Kähler $X$ with trivial canonical bundle, Bogomolov–Tian–Todorov makes the germ smooth of dimension $h^1(X,T_X)$.
 :::
 
 ::: {.front card-id="card-58271c784e2e4572" tags="definition"}
@@ -2084,7 +2084,9 @@ What is the definition of Obstruction class?
 :::
 
 ::: {.back card-id="card-bc4dba553e15303b"}
-A cohomology class in an obstruction space whose vanishing is necessary and sufficient for a deformation to lift to the next order. For a finite-type $k$-scheme $X$, obstructions lie in $\operatorname{Ext}^2_X(L_{X/k},\mathcal O_X)$; for a smooth proper variety, in $H^2(X,T_X)$.
+For a specified deformation $X_A$ and a surjection $A'\twoheadrightarrow A$ in $\operatorname{Art}_k$ with kernel $I$ annihilated by $\mathfrak m_{A'}$, the cotangent obstruction is
+$$o(X_A,A')\in\operatorname{Ext}^2_X(L_{X/k},\mathcal O_X)\otimes_k I.$$
+It vanishes iff a flat lift with an identification over $A$ exists. For smooth $X$, replace Ext by $H^2(X,T_X)$. An obstruction belongs to a particular lifting problem; the ambient vector space alone does not establish failure to lift.
 :::
 
 ::: {.front card-id="card-161e040434decdc9" tags="definition"}
@@ -2268,7 +2270,9 @@ What is the definition of Unobstructed?
 :::
 
 ::: {.back card-id="card-a6ec93b91a203181"}
-A deformation functor is unobstructed if every first-order deformation extends to all orders, equivalently if a chosen obstruction space vanishes (for example $H^2(X,T_X)=0$ for a smooth proper variety).
+A deformation functor $F:\operatorname{Art}_k\to\mathrm{Sets}$ is unobstructed (formally smooth) if $F(A')\to F(A)$ is surjective for every small extension $A'\twoheadrightarrow A$. Here a small extension has one-dimensional kernel annihilated by $\mathfrak m_{A'}$; testing all such extensions also gives lifting across arbitrary surjections in $\operatorname{Art}_k$.
+
+Vanishing of a complete obstruction space is sufficient, not necessary. A complex abelian surface has $h^2(T_X)=2$ but unobstructed deformations. One must lift every existing deformation, not merely exhibit some compatible lifts of first-order classes.
 :::
 
 ::: {.front card-id="card-fd7540dd2920ea02" tags="definition"}
