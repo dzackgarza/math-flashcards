@@ -88,7 +88,7 @@ desktop-test scenario="full":
     from pathlib import Path
     sys.path.insert(0, str(Path("desktop/tests").resolve()))
     from evidence import evidence
-    scenarios = {"full": "tests/workbench.py", "startup": "tests/workbench.py --startup", "study": "tests/study.py"}
+    scenarios = {"full": "uv run --upgrade tests/workbench.py", "startup": "uv run --upgrade tests/workbench.py --startup", "study": "xvfb-run -a uv run --upgrade tests/study.py"}
     environment = os.environ.copy()
     environment.setdefault("UV_CACHE_DIR", subprocess.check_output(["uv", "cache", "dir"], text=True).strip())
     environment.setdefault("PLAYWRIGHT_BROWSERS_PATH", str(Path(os.environ.get("XDG_CACHE_HOME", str(Path.home() / ".cache"))) / "ms-playwright"))
@@ -99,7 +99,7 @@ desktop-test scenario="full":
         try:
             with (artifacts / "server.log").open("w") as log:
                 subprocess.run(
-                    ["bunx", "start-server-and-test", "just -f ../justfile desktop-web", "http-get://127.0.0.1:1420", "uv run --upgrade " + scenarios["{{scenario}}"]],
+                    ["bunx", "start-server-and-test", "just -f ../justfile desktop-web", "http-get://127.0.0.1:1420", scenarios["{{scenario}}"]],
                     cwd="desktop", check=True, env=environment,
                     stdout=log, stderr=subprocess.STDOUT,
                 )

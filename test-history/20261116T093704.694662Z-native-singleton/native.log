@@ -1,0 +1,61 @@
+xvfb-run -a -s '-screen 0 1600x1200x24' dbus-run-session -- uv run --upgrade desktop/tests/native.py --singleton
+dbus-daemon[2547217]: [session uid=1000 pid=2547217 pidfd=5] Activating service name='org.a11y.Bus' requested by ':1.0' (uid=1000 pid=2547367 comm="/home/dzack/gitclones/math-flashcards/desktop/src-")
+dbus-daemon[2547217]: [session uid=1000 pid=2547217 pidfd=5] Activating service name='org.gtk.vfs.Daemon' requested by ':1.1' (uid=1000 pid=2547394 comm="/usr/lib/at-spi-bus-launcher")
+dbus-daemon[2547217]: [session uid=1000 pid=2547217 pidfd=5] Successfully activated service 'org.gtk.vfs.Daemon'
+dbus-daemon[2547217]: [session uid=1000 pid=2547217 pidfd=5] Successfully activated service 'org.a11y.Bus'
+dbus-daemon[2547217]: [session uid=1000 pid=2547217 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.3' (uid=1000 pid=2547410 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[2547217]: [session uid=1000 pid=2547217 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[2547217]: [session uid=1000 pid=2547217 pidfd=5] Activating service name='org.freedesktop.portal.Desktop' requested by ':1.4' (uid=1000 pid=2547367 comm="/home/dzack/gitclones/math-flashcards/desktop/src-")
+dbus-daemon[2547217]: [session uid=1000 pid=2547217 pidfd=5] Activating service name='org.freedesktop.impl.portal.PermissionStore' requested by ':1.6' (uid=1000 pid=2547421 comm="/usr/lib/xdg-desktop-portal")
+dbus-daemon[2547217]: [session uid=1000 pid=2547217 pidfd=5] Successfully activated service 'org.freedesktop.impl.portal.PermissionStore'
+dbus-daemon[2547217]: [session uid=1000 pid=2547217 pidfd=5] Activating service name='org.freedesktop.portal.Documents' requested by ':1.6' (uid=1000 pid=2547421 comm="/usr/lib/xdg-desktop-portal")
+dbus-daemon[2547217]: [session uid=1000 pid=2547217 pidfd=5] Successfully activated service 'org.freedesktop.portal.Documents'
+
+(/usr/lib/xdg-desktop-portal:2547421): xdg-desktop-portal-WARNING **: 17:37:09.915: Choosing gtk.portal for org.freedesktop.impl.portal.Lockdown as a last-resort fallback
+dbus-daemon[2547217]: [session uid=1000 pid=2547217 pidfd=5] Activating service name='org.freedesktop.impl.portal.desktop.gtk' requested by ':1.6' (uid=1000 pid=2547421 comm="/usr/lib/xdg-desktop-portal")
+dbus-daemon[2547217]: [session uid=1000 pid=2547217 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.3' (uid=1000 pid=2547410 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[2547217]: [session uid=1000 pid=2547217 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+
+** (xdg-desktop-portal-gtk:2547458): WARNING **: 17:37:09.989: AT-SPI: Could not obtain desktop path or name
+
+dbus-daemon[2547217]: [session uid=1000 pid=2547217 pidfd=5] Successfully activated service 'org.freedesktop.impl.portal.desktop.gtk'
+dbus-daemon[2547217]: [session uid=1000 pid=2547217 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.3' (uid=1000 pid=2547410 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+
+(/usr/lib/xdg-desktop-portal:2547421): xdg-desktop-portal-WARNING **: 17:37:09.992: Choosing gtk.portal for org.freedesktop.impl.portal.Access as a last-resort fallback
+dbus-daemon[2547217]: [session uid=1000 pid=2547217 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+
+** (xdg-desktop-portal-gtk:2547458): WARNING **: 17:37:09.994: atk-bridge: GetRegisteredEvents returned message with unknown signature
+
+** (xdg-desktop-portal-gtk:2547458): WARNING **: 17:37:09.994: atk-bridge: get_device_events_reply: unknown signature
+
+(/usr/lib/xdg-desktop-portal:2547421): xdg-desktop-portal-WARNING **: 17:37:10.029: Choosing gtk.portal for org.freedesktop.impl.portal.Settings as a last-resort fallback
+
+(/usr/lib/xdg-desktop-portal:2547421): xdg-desktop-portal-WARNING **: 17:37:10.033: Choosing gtk.portal for org.freedesktop.impl.portal.FileChooser as a last-resort fallback
+
+(/usr/lib/xdg-desktop-portal:2547421): xdg-desktop-portal-WARNING **: 17:37:10.036: Choosing gtk.portal for org.freedesktop.impl.portal.AppChooser as a last-resort fallback
+
+(/usr/lib/xdg-desktop-portal:2547421): xdg-desktop-portal-WARNING **: 17:37:10.038: Choosing gtk.portal for org.freedesktop.impl.portal.Print as a last-resort fallback
+
+(/usr/lib/xdg-desktop-portal:2547421): xdg-desktop-portal-WARNING **: 17:37:10.041: Choosing gtk.portal for org.freedesktop.impl.portal.Notification as a last-resort fallback
+
+(/usr/lib/xdg-desktop-portal:2547421): xdg-desktop-portal-WARNING **: 17:37:10.045: Choosing gtk.portal for org.freedesktop.impl.portal.Inhibit as a last-resort fallback
+
+(/usr/lib/xdg-desktop-portal:2547421): xdg-desktop-portal-WARNING **: 17:37:10.055: Failed to connect to PipeWire: Couldn't connect to PipeWire
+
+(/usr/lib/xdg-desktop-portal:2547421): xdg-desktop-portal-WARNING **: 17:37:10.055: Choosing gtk.portal for org.freedesktop.impl.portal.Account as a last-resort fallback
+
+(/usr/lib/xdg-desktop-portal:2547421): xdg-desktop-portal-WARNING **: 17:37:10.059: Choosing gtk.portal for org.freedesktop.impl.portal.Email as a last-resort fallback
+
+(/usr/lib/xdg-desktop-portal:2547421): xdg-desktop-portal-WARNING **: 17:37:10.062: Choosing gtk.portal for org.freedesktop.impl.portal.DynamicLauncher as a last-resort fallback
+dbus-daemon[2547217]: [session uid=1000 pid=2547217 pidfd=5] Successfully activated service 'org.freedesktop.portal.Desktop'
+dbus-daemon[2547217]: [session uid=1000 pid=2547217 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.3' (uid=1000 pid=2547410 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[2547217]: [session uid=1000 pid=2547217 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[2547217]: [session uid=1000 pid=2547217 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.3' (uid=1000 pid=2547410 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[2547217]: [session uid=1000 pid=2547217 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+WM_CLASS(STRING) = "desktop", "Desktop"
+
+Native window: 4194308
+Second launch exits and focuses the existing window.
+dbus-daemon[2547217]: [session uid=1000 pid=2547217 pidfd=5] Activating service name='org.freedesktop.systemd1' requested by ':1.3' (uid=1000 pid=2547410 comm="/usr/bin/dbus-broker-launch --config-file=/usr/sha")
+dbus-daemon[2547217]: [session uid=1000 pid=2547217 pidfd=5] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+A connection to the bus can't be made

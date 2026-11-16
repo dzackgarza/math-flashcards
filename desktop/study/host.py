@@ -7,6 +7,7 @@ from pathlib import Path
 from pydantic import TypeAdapter
 
 from diagnostics import Diagnostics
+from study.session import viewed
 from study.store import Stores
 from study.values import (
     AttachRequest,
@@ -14,6 +15,7 @@ from study.values import (
     New,
     Request,
     StudyFailure,
+    ViewedRequest,
     WorkspaceRequest,
 )
 
@@ -38,6 +40,8 @@ def main(*, release: str) -> None:
                                 result = stores.attach(workspace, identity)
                             case AttachRequest(choice=New()):
                                 result = stores.create(workspace).opened()
+                            case ViewedRequest():
+                                result = viewed(stores, request, workspace)
                             case _:
                                 raise NotImplementedError(
                                     f"Study action is not implemented: {request.action}"
@@ -49,7 +53,8 @@ def main(*, release: str) -> None:
                     )
                 else:
                     print(
-                        '{"ok":true,"result":' + result.model_dump_json() + "}", flush=True
+                        '{"ok":true,"result":' + result.model_dump_json() + "}",
+                        flush=True,
                     )
         finally:
             with diagnostics.operation("shutdown"):

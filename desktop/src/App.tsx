@@ -100,6 +100,7 @@ import {
 import { ReviewChanges } from "./review";
 import { ProblemDrawer, useProblems } from "./problem-drawer";
 import { useSearch } from "./search";
+import { useEditorViews } from "./study";
 import { previousPackage, refreshTargets } from "./packages";
 import { backgroundTurn, noteForegroundInput } from "./background";
 import {
@@ -272,6 +273,12 @@ export default function App() {
   const dirty = document !== null && document.source !== document.saved;
   const busy = task !== "Idle";
   const selected = ranges[index];
+  const finishEditorView = useEditorViews(
+    workspace,
+    document?.path ?? null,
+    selected?.id ?? null,
+    setError,
+  );
   // Mantine's Tree reinitializes its expansion state from a stale closure
   // whenever `data` changes identity, which can drop a folder the user has just
   // expanded. Republishing unchanged membership therefore keeps the same data.
@@ -1272,11 +1279,11 @@ export default function App() {
     let stop: (() => void) | undefined;
     window
       .onCloseRequested((event) => {
-        if (!dirty) return;
         event.preventDefault();
-        guard(() =>
-          window.destroy().catch((failure) => setError(String(failure))),
-        );
+        guard(async () => {
+          await finishEditorView();
+          await window.destroy();
+        });
       })
       .then((unlisten) => {
         if (disposed) unlisten();
@@ -1287,7 +1294,7 @@ export default function App() {
       disposed = true;
       stop?.();
     };
-  }, [dirty]);
+  }, [dirty, finishEditorView]);
 
   useEffect(() => {
     if (!workspace) return;

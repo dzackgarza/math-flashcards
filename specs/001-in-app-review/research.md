@@ -338,6 +338,13 @@ force-exits its browser subprocess during session teardown. Deleting that sessio
 cannot establish that Tauri's exit callback closed the Study host and flushed its logs.
 The native scenario requires those events before releasing the automation session.
 
+Focus timing uses a headed browser on an isolated X display. Playwright's Chromium
+driver enables focus emulation for each page; tests disable that emulation through
+[`Emulation.setFocusEmulationEnabled`](https://chromedevtools.github.io/devtools-protocol/tot/Emulation/#method-setFocusEmulationEnabled)
+before changing X window focus with `xdotool`. The test observes the document's focus
+state before measuring the interval away, then returns focus to the original window.
+Synthetic focus events would not establish the window's actual state.
+
 **Decision**: A Playwright scenario, `desktop/tests/study.py`, drives the real window
 served by `just desktop-web` with the real bridge, real deck files in a temporary
 workspace, and temporary `XDG_DATA_HOME` and `XDG_CACHE_HOME`. It is a recipe in
@@ -455,6 +462,15 @@ that published models run on the user's own history.
 | Scheduler day | `sched.today`, Anki's day number with its day boundary |
 
 The time sent to Anki is the sum of the two measured times. The record keeps both parts.
+
+Editor views use the same [monotonic clock](https://developer.mozilla.org/en-US/docs/Web/API/Performance/now).
+Each selected card has one view, closed when its identity, deck, or workspace changes.
+[React effect cleanup](https://react.dev/reference/react/useEffect) ends that view before
+the next begins. Visibility and [document focus](https://developer.mozilla.org/en-US/docs/Web/API/Document/hasFocus)
+determine the intervals without focus. The host appends the measured values only for
+the workspace's current store attachment. Native window close waits for the pending
+view write before destroying the window. These durations measure exposure, not proof
+that the user attended to or learned the content.
 
 ## R14. Parameter fitting
 

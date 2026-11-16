@@ -9,6 +9,7 @@ import os
 import pstats
 import shutil
 import sqlite3
+import subprocess
 import tempfile
 from contextlib import closing
 from hashlib import sha256
@@ -42,18 +43,30 @@ def main(artifacts: Path) -> None:
                 assert response.ok, response.text()
                 opened = response.json()
                 assert opened["state"] == "Open", opened
-                diagnostics = Path(os.environ["XDG_STATE_HOME"]) / "math-flashcards" / "diagnostics"
+                diagnostics = (
+                    Path(os.environ["XDG_STATE_HOME"])
+                    / "math-flashcards"
+                    / "diagnostics"
+                )
                 logs = list(diagnostics.glob("*/events.jsonl"))
                 assert logs, "Opening Study must retain its operation log in XDG state."
                 events = [json.loads(line) for line in logs[0].read_text().splitlines()]
                 completed = [event for event in events if event["event"] == "completed"]
-                opened_event = next(event for event in completed if event.get("action") == "study-open")
+                opened_event = next(
+                    event for event in completed if event.get("action") == "study-open"
+                )
                 assert opened_event["outcome"] == "ok", opened_event
                 assert opened_event["workspace"] == str(workspace)
                 assert opened_event["elapsed_seconds"] > 0
                 context = json.loads((logs[0].parent / "context.json").read_text())
-                assert context["app_release"] == json.loads((desktop / "package.json").read_text())["version"]
-                assert context["sources"]["study/host.py"] == sha256((desktop / "study" / "host.py").read_bytes()).hexdigest()
+                assert (
+                    context["app_release"]
+                    == json.loads((desktop / "package.json").read_text())["version"]
+                )
+                assert (
+                    context["sources"]["study/host.py"]
+                    == sha256((desktop / "study" / "host.py").read_bytes()).hexdigest()
+                )
                 pstats.Stats(str(logs[0].parent / opened_event["profile"]))
                 store = Path(opened["store"])
                 assert store.parent == stores, store
@@ -78,12 +91,19 @@ def main(artifacts: Path) -> None:
                 assert media.body() == image
                 forbidden = api.get(
                     "/api/study-media?"
-                    + urlencode({"path": str(store / "store.json"), "name": "store.json"})
+                    + urlencode(
+                        {"path": str(store / "store.json"), "name": "store.json"}
+                    )
                 )
                 assert forbidden.status == 403, forbidden.text()
                 missing = api.get(
                     "/api/study-media?"
-                    + urlencode({"path": str(retained.parent / ("0" * 64)), "name": "missing.svg"})
+                    + urlencode(
+                        {
+                            "path": str(retained.parent / ("0" * 64)),
+                            "name": "missing.svg",
+                        }
+                    )
                 )
                 assert missing.status == 404, missing.text()
                 assert opened["settings"] == {
@@ -116,9 +136,12 @@ def main(artifacts: Path) -> None:
                         "parameter_set",
                     } <= tables, tables
                     response_columns = {
-                        column[1] for column in record.execute("pragma table_info(response)")
+                        column[1]
+                        for column in record.execute("pragma table_info(response)")
                     }
-                    assert {"revlog_cid", "revlog_usn"} <= response_columns, response_columns
+                    assert {"revlog_cid", "revlog_usn"} <= response_columns, (
+                        response_columns
+                    )
                     assert record.execute(
                         'select version from "schema"'
                     ).fetchall() == [(1,)]
@@ -134,29 +157,147 @@ def main(artifacts: Path) -> None:
                     ).fetchall() == [("anki-default",)]
                     assert record.execute("select * from review").fetchall() == []
 
-                browser = playwright.chromium.launch()
-                page = browser.new_page()
+                browser = playwright.chromium.launch(headless=False)
+                context = browser.new_context()
+                page = context.new_page()
+                page.add_init_script("""
+                    window.observedFocus = [];
+                    for (const kind of ['focus', 'blur', 'visibilitychange']) {
+                      const target = kind === 'visibilitychange' ? document : window;
+                      target.addEventListener(kind, event => window.observedFocus.push({
+                        kind, at: event.timeStamp, handled: performance.now(),
+                        focused: document.hasFocus(), hidden: document.hidden
+                      }));
+                    }
+                """)
                 try:
                     page.goto("http://127.0.0.1:1420")
+                    # Disable Playwright's focus emulation on the loaded page;
+                    # native window focus must exercise the app's focus handling.
+                    # https://chromedevtools.github.io/devtools-protocol/tot/Emulation/#method-setFocusEmulationEnabled
+                    page.context.new_cdp_session(page).send(
+                        "Emulation.setFocusEmulationEnabled", {"enabled": False}
+                    )
                     page.get_by_role("button", name="Workspace", exact=True).click()
                     page.get_by_label("Workspace folder").fill(str(workspace))
-                    page.get_by_role("button", name="Open workspace", exact=True).click()
-                    expect(page.get_by_role("button", name="Workspace", exact=True)).to_have_text(workspace.name)
+                    page.get_by_role(
+                        "button", name="Open workspace", exact=True
+                    ).click()
+                    expect(
+                        page.get_by_role("button", name="Workspace", exact=True)
+                    ).to_have_text(workspace.name)
                     page.get_by_text("Basics", exact=True).click()
                     front = page.locator(".side-editor.front .cm-content")
                     expect(front).to_contain_text("Evaluate")
                     page.wait_for_timeout(2000)
                     page.locator(".card-row-label").nth(1).click()
                     expect(front).to_contain_text("Which shape")
-                    # The next bridge request is a barrier after the window's action.
-                    response = api.post("/api/request", data={"action": "study-open", "workspace": str(workspace)})
+                    # Inspect committed history after the window's navigation.
+                    response = api.post(
+                        "/api/request",
+                        data={"action": "study-open", "workspace": str(workspace)},
+                    )
                     assert response.ok, response.text()
                     with closing(sqlite3.connect(record_path)) as record:
-                        views = record.execute("select card_id, deck_path, shown_ms, unfocused_ms from editor_view").fetchall()
-                    assert len(views) == 1, f"Leaving a card in the editor must record its view: {views}"
+                        views = record.execute(
+                            "select card_id, deck_path, shown_ms, unfocused_ms from editor_view"
+                        ).fetchall()
+                    assert len(views) == 1, (
+                        f"Leaving a card in the editor must record its view: {views}"
+                    )
                     assert views[0][:2] == ("study-absolute-value", "Basics.md"), views
                     assert views[0][2] >= 2000, views
                     assert 0 <= views[0][3] <= views[0][2], views
+                    focused = subprocess.check_output(
+                        ["xdotool", "getwindowfocus"], text=True
+                    ).strip()
+                    assert page.evaluate("document.hasFocus()")
+                    # One native command owns the timed interval; browser-driver
+                    # round trips must not extend the time without focus.
+                    subprocess.run(
+                        [
+                            "xdotool",
+                            "windowfocus",
+                            "0",
+                            "sleep",
+                            "1",
+                            "windowfocus",
+                            focused,
+                        ],
+                        check=True,
+                    )
+                    assert page.evaluate("document.hasFocus()")
+                    page.locator(".card-row-label").nth(2).click()
+                    expect(
+                        front.get_by_role("img", name="3 squared, math", exact=True)
+                    ).to_be_visible()
+                    response = api.post(
+                        "/api/request",
+                        data={"action": "study-open", "workspace": str(workspace)},
+                    )
+                    assert response.ok, response.text()
+                    with closing(sqlite3.connect(record_path)) as record:
+                        views = record.execute(
+                            "select card_id, deck_path, shown_ms, unfocused_ms from editor_view order by id"
+                        ).fetchall()
+                    assert len(views) == 2, views
+                    assert views[1][:2] == ("study-image", "Basics.md"), views
+                    (artifacts / "focus-events.json").write_text(
+                        json.dumps(page.evaluate("window.observedFocus"), indent=2)
+                        + "\n"
+                    )
+                    assert abs(views[1][3] - 1000) <= 100, views
+                    (artifacts / "editor-views.json").write_text(
+                        json.dumps(views, indent=2) + "\n"
+                    )
+
+                    unattached_workspace = root / "unattached-workspace"
+                    shutil.copytree(workspace, unattached_workspace)
+                    page.get_by_role("button", name="Workspace", exact=True).click()
+                    page.get_by_label("Workspace folder").fill(
+                        str(unattached_workspace)
+                    )
+                    page.get_by_role(
+                        "button", name="Open workspace", exact=True
+                    ).click()
+                    expect(
+                        page.get_by_role("button", name="Workspace", exact=True)
+                    ).to_have_text(unattached_workspace.name)
+                    response = api.post(
+                        "/api/request",
+                        data={
+                            "action": "study-open",
+                            "workspace": str(unattached_workspace),
+                        },
+                    )
+                    assert response.ok and response.json()["state"] == "Unattached", (
+                        response.text()
+                    )
+                    with closing(sqlite3.connect(record_path)) as record:
+                        before_views = record.execute(
+                            "select * from editor_view order by id"
+                        ).fetchall()
+                    assert len(before_views) == 3, before_views
+                    page.get_by_text("Basics", exact=True).click()
+                    expect(front).to_contain_text("Evaluate")
+                    page.locator(".card-row-label").nth(1).click()
+                    expect(front).to_contain_text("Which shape")
+                    response = api.post(
+                        "/api/request",
+                        data={
+                            "action": "study-open",
+                            "workspace": str(unattached_workspace),
+                        },
+                    )
+                    assert response.ok, response.text()
+                    with closing(sqlite3.connect(record_path)) as record:
+                        assert (
+                            record.execute(
+                                "select * from editor_view order by id"
+                            ).fetchall()
+                            == before_views
+                        )
+                    assert list(stores.iterdir()) == [store]
                 finally:
                     browser.close()
 
@@ -337,10 +478,17 @@ def main(artifacts: Path) -> None:
                     for line in log.read_text().splitlines()
                     if json.loads(line).get("outcome") == "error"
                 ]
-                assert any(event["error_message"] == unknown["message"] and event["traceback"] for event in failures), failures
+                assert any(
+                    event["error_message"] == unknown["message"] and event["traceback"]
+                    for event in failures
+                ), failures
             finally:
                 api.dispose()
-                diagnostics = Path(os.environ["XDG_STATE_HOME"]) / "math-flashcards" / "diagnostics"
+                diagnostics = (
+                    Path(os.environ["XDG_STATE_HOME"])
+                    / "math-flashcards"
+                    / "diagnostics"
+                )
                 if diagnostics.is_dir():
                     shutil.copytree(diagnostics, artifacts / "application")
 

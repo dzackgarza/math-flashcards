@@ -254,5 +254,5 @@ before dependent work is accepted (constitution XI).
 | Principle | State | Reason | Closed by |
 | --- | --- | --- | --- |
 | VIII | Kept. The web view writes its cache under the data directory (R16). | The web view library of Tauri owns the placement. The cache holds no learning data. | A change in `wry`, or a web view data directory under the cache directory; the user decides (R16) |
-| X | Open. Each source has depth Abstract or Secondary, and two decisions rest on one paper each (`kornell2008`, `mettler2016`). | The full texts are not read. | T079, before Phase 3 |
+| X | Open. The research register records reading depth and limits for each cited source. | A learning decision needs its relevant full texts and a supported conclusion or explicit default. | T079 before implementing the learning decision that consumes it |
 | III and IX | Open. `anki` has no version pin, and a newer `anki` changes the core's behaviour with no change in this repository. | The two principles disagree for this dependency. | The user's decision |
