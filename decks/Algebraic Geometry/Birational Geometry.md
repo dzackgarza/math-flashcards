@@ -1063,7 +1063,11 @@ What is the definition of Plt?
 :::
 
 ::: {.back card-id="card-9972162b653b2027"}
-A log pair $(X,\Delta)$ is purely log terminal (plt) if every exceptional divisor $E$ over $X$ has discrepancy $a(E;X,\Delta)>-1$, and every $E$ with $a(E;X,\Delta)\le 0$ has center contained in the reduced boundary $\lfloor\Delta\rfloor$.
+Assume $X$ is normal over $\mathbb C$, $\Delta$ is an effective $\mathbb Q$-divisor with coefficients at most $1$, and $K_X+\Delta$ is $\mathbb Q$-Cartier. The log pair $(X,\Delta)$ is purely log terminal (plt) if every exceptional divisor $E$ over $X$ has discrepancy $a(E;X,\Delta)>-1$.
+
+Coefficient-one components on $X$ are allowed: a smooth variety with one smooth reduced boundary component is plt but not klt. The components of $\lfloor\Delta\rfloor$ in a plt pair are normal and pairwise disjoint. With zero boundary, plt is equivalent to klt; for example, the $A_1$ surface singularity is plt although its exceptional $(-2)$-curve has discrepancy zero.
+
+[Reference: Kollár, Definition 13](https://web.math.princeton.edu/~kollar/book/chap2.pdf).
 :::
 
 ::: {.front card-id="card-987c64ec26849bc7" tags="definition"}
