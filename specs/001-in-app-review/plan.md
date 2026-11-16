@@ -75,6 +75,7 @@ inside the app.
 | VII. One person, one running copy | The single-instance plugin gives the focus to the running window (R15). One host is the only writer of the store for the life of the running copy, and an update takes effect at the next launch. | Pass |
 | VIII. XDG Base Directory placement | R16 gives the directory of each file. The feature writes learning data under the data directory and results of analyses under the cache directory. One existing defect is outside the feature's own files: the web view writes its cache under the data directory. Tauri's web view library owns that placement and gives no setting for it (R16). | Pass for the feature's files; one existing defect, owned upstream |
 | IX. Three parts with a small blast radius | Core in `desktop/study/`, analyses in `desktop/analysis/`, interface in `desktop/src/` (R17). An analysis has a read-only connection, runs outside the host, and returns a generic table that the Statistics screen renders, so a new analysis is one module. Import Linter contracts in the commit gate forbid imports across the boundary. The record holds facts, not results, so an analysis change needs no migration. | Pass |
+| X. Learning decisions rest on published research | R19 gives, for each learning decision of the feature, its sources in `docs/learning-research.md` and a status. Supported: recall before reveal, spaced reviews, relearning, no setting aside, the recorded time to reveal. Inference: the adaptive schedule, and mixed subjects in a session. Default with no source: target recall 0.9, the learning steps, and the review order. Contrary evidence: recall in thought with a self-assigned grade, for definition cards; FR-059 and FR-060 state the limit in each analysis. Every source has depth Abstract or Secondary, so the statuses are provisional until T079. | Open: the full texts are not read |
 | Technical constraints | `uv` and `bun` only; no run-time network; releases stay immutable, and the running copy keeps its host on its own release. | Pass |
 
 **Post-design check**: The design in `research.md`, `data-model.md`, and `contracts/`
@@ -166,6 +167,7 @@ justfile                     # desktop-study-test, desktop-analysis-test, deskto
 docs/desktop-dependency-survey.md   # anki, single-instance, and Import Linter entries; the three parts
 docs/study-record.md                # new: every table and field of the learning record; research-format mapping
 docs/analyses.md                    # new: how to add an analysis, and the rules that it obeys
+docs/learning-research.md           # the register of research sources; T079 raises its depth to Full
 
 (ankdown-for-math repository)        # Card.id in the model and in ankdown.lua
 ```

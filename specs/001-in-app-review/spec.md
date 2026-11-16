@@ -60,6 +60,16 @@ does not copy the limit.
   is unlikely to change the core by accident (User Story 8, FR-052 to FR-057, SC-018,
   SC-019).
 
+### Session 2026-11-16, research basis stated by the user
+
+- The app is the person's own learning management system, and published research on
+  learning decides its learning features. The research must apply to an adult who learns
+  advanced mathematics: research on school children is not a basis. Later forms of study
+  (for example quizzes, and oral examinations that an AI component generates) need the
+  same basis in real papers. For this feature, `research.md` R19 gives the sources of
+  each learning decision and labels each decision that has none as a default (FR-059,
+  FR-060).
+
 ### Session 2026-11-16, defaults
 
 These answers are defaults taken from repository evidence. The user has not confirmed
@@ -554,6 +564,15 @@ record changes, and the earlier analyses give the same results.
 - **FR-057**: The project MUST check the boundaries between the interface, the core, and
   the analyses at each commit.
 
+**Basis in research**
+
+- **FR-059**: An analysis MUST name each measure that it computes from grades as
+  self-graded. A grade is the person's own judgement of a recall in thought, and
+  research finds that adults grade their own recalled definitions too high.
+- **FR-060**: An analysis that reports a subject as weak or fluent MUST state that the
+  result is about recall of the cards of that subject. Research finds weak transfer from
+  recall of tested material to other use of it.
+
 ### Key Entities
 
 - **Card**: One front and back pair in a deck, identified by its card ID. It has rendered
@@ -655,6 +674,12 @@ record changes, and the earlier analyses give the same results.
 - The app has no command that deletes any part of the learning record.
 - The grades, their keys, and the reveal key follow Anki's conventions: Space reveals,
   and 1 to 4 select Again, Hard, Good, and Easy.
+- The person recalls the answer in thought and grades the recall. The app does not check
+  an answer. Research on definitions favours a produced and checked answer (`research.md`
+  R19); a form of study with one is a later feature.
+- The target probability of recall, the learning steps, and the review order are
+  defaults of Anki or choices from its manual. No research source supports their values
+  (`research.md` R19).
 - Cards have one front and one back. Cloze deletions, typed answers, audio, and card
   templates are out of scope.
 - Filtered decks, custom study, burying, and manual rescheduling are out of scope for

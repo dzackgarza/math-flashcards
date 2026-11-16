@@ -1,0 +1,112 @@
+# Learning research register
+
+This file is the register of published research that the app's learning decisions cite
+(`.specify/memory/constitution.md`, principle X). A plan cites entries by their key. A
+plan that needs a source adds the entry here first.
+
+## Rules of an entry
+
+- The paper is peer-reviewed research, a meta-analysis, or a systematic review, and the
+  entry has its DOI. The record was retrieved from a bibliographic database, not written
+  from memory.
+- The participants are adults (university students or older), or the entry is a review
+  whose results hold for adults. Research on school children has no entry.
+- The entry gives the population, the material, and the result in the terms of the text
+  that was read. Where that text does not state a fact, the entry says "not stated".
+- **Depth** is how much of the paper was read:
+
+  | Depth | Meaning |
+  | --- | --- |
+  | Full | The full text was read. |
+  | Abstract | The abstract was read. The entry holds only what the abstract states. |
+  | Secondary | The record was verified. The result is known from other sources only. |
+
+- A decision that depends on one paper needs depth Full for that paper.
+
+## How the entries were found
+
+The entries are papers that an agent proposed and then verified one by one, by title and
+by DOI, in OpenAlex, ERIC, and Semantic Scholar on 2026-11-16. No systematic search of a
+topic was made. A topic with no entry here was not searched; the register says nothing
+about the literature of that topic.
+
+## Retrieval practice
+
+| Key | Source | Population and material | Result | Depth |
+| --- | --- | --- | --- | --- |
+| `roediger2006` | Roediger, Karpicke. Test-enhanced learning: taking memory tests improves long-term retention. *Psychological Science*, 2006. doi:10.1111/j.1467-9280.2006.01693.x | Students (level not stated); prose passages; free recall without feedback against restudy | After 5 minutes, restudy gave better recall. After 2 days and 1 week, testing gave substantially better retention. Restudy raised the students' confidence. | Abstract |
+| `karpicke2008` | Karpicke, Roediger. The critical importance of retrieval for learning. *Science*, 2008. doi:10.1126/science.1152408 | University students; foreign language vocabulary | After an item was recalled once, repeated testing had a large positive effect on delayed recall and repeated study had none. The students' predictions of their performance did not correlate with their performance. | Abstract |
+| `soderstrom2015` | Soderstrom, Kerr, Bjork. The critical importance of retrieval—and spacing—for learning. *Psychological Science*, 2015. doi:10.1177/0956797615617778 | Not stated | Replicated `karpicke2008`. With spacing controlled within subjects, repeated testing and restudy both improved learning. | Abstract |
+| `rowland2014` | Rowland. The effect of testing versus restudy on retention: a meta-analytic review of the testing effect. *Psychological Bulletin*, 2014. doi:10.1037/a0037559 | Meta-analysis; populations not stated | Testing gives better retention than restudy. Recall tests give larger benefits than recognition tests, which supports effortful processing as a cause. | Abstract |
+| `adesope2017` | Adesope, Trevisan, Sundararajan. Rethinking the use of tests: a meta-analysis of practice testing. *Review of Educational Research*, 2017. doi:10.3102/0034654316689306 | Meta-analysis; effect sizes moderated by participant and study characteristics | Practice tests are more beneficial than restudy and than all other comparison conditions. | Abstract |
+| `dunlosky2013` | Dunlosky, Rawson, Marsh, Nathan, Willingham. Improving students' learning with effective learning techniques. *Psychological Science in the Public Interest*, 2013. doi:10.1177/1529100612453266 | Review of ten techniques across ages, abilities, materials, and criterion tasks | Practice testing and distributed practice: high utility. Self-explanation, elaborative interrogation, and interleaved practice: moderate utility. | Abstract |
+
+## Spacing and long retention
+
+| Key | Source | Population and material | Result | Depth |
+| --- | --- | --- | --- | --- |
+| `cepeda2006` | Cepeda, Pashler, Vul, Wixted, Rohrer. Distributed practice in verbal recall tasks: a review and quantitative synthesis. *Psychological Bulletin*, 2006. doi:10.1037/0033-2909.132.3.354 | Meta-analysis: 839 assessments in 317 experiments; verbal recall | The interval between study episodes that gives the best retention increases as the retention interval increases. | Abstract |
+| `cepeda2008` | Cepeda, Vul, Rohrer, Wixted, Pashler. Spacing effects in learning: a temporal ridgeline of optimal retention. *Psychological Science*, 2008. doi:10.1111/j.1467-9280.2008.02209.x | More than 1,350 individuals; a set of facts; one review after a gap of up to 3.5 months; final test up to 1 year later | The best gap was about 20 to 40% of a 1-week test delay and about 5 to 10% of a 1-year test delay. | Abstract |
+| `bahrick1993` | Bahrick, Bahrick, Bahrick, Bahrick. Maintenance of foreign language vocabulary and the spacing effect. *Psychological Science*, 1993. doi:10.1111/j.1467-9280.1993.tb00571.x | 4 adults; 300 word pairs; 13 or 26 relearning sessions at 14, 28, or 56 days over 9 years; tests 1 to 5 years after the last session | Longer intervals slowed acquisition slightly and gave substantially higher retention. 13 sessions at 56 days gave retention comparable to 26 sessions at 14 days. | Abstract |
+| `bahrick1991` | Bahrick, Hall. Lifetime maintenance of high school mathematics content. *Journal of Experimental Psychology: General*, 1991. doi:10.1037/0096-3445.120.1.20 | Life-span study of recall and recognition of high school algebra and geometry. A news report gives 1,726 participants from students to senior citizens (<https://www.edweek.org/education/psychologist-examines-retention-of-mathematical-knowledge/1991/01>). | Reported in other sources, not read in the paper: people who took college mathematics at or above calculus kept most of their high school algebra for about 50 years, and people with equal school performance and no college mathematics fell to near chance. | Secondary |
+| `rohrer2006` | Rohrer, Taylor. The effects of overlearning and distributed practise on the retention of mathematics knowledge. *Applied Cognitive Psychology*, 2006. doi:10.1002/acp.1266 | 216 college students; one kind of mathematics problem | Practice distributed across two sessions 1 week apart: no benefit on a test 1 week later, a very large benefit 4 weeks later. Overlearning (9 problems against 3 in one session): no effect at 1 or 4 weeks. | Abstract |
+| `hopkins2016` | Hopkins, Lyle, Hieb, Ralston. Spaced retrieval practice increases college students' short- and long-term retention of mathematics knowledge. *Educational Psychology Review*, 2016. doi:10.1007/s10648-015-9349-8 | Engineering students in a precalculus course; a subset followed into calculus the next semester | Spaced content was retained better than massed content. Students with some spaced retrieval practice did better on the precalculus final examination and on examinations in the calculus course. | Abstract |
+| `lyle2020` | Lyle, Bego, Hopkins, Hieb, Ralston. How the amount and spacing of retrieval practice affect the short- and long-term retention of mathematics knowledge. *Educational Psychology Review*, 2020. doi:10.1007/s10648-019-09489-x | Engineering students in a precalculus course; within-subject crossing of amount and spacing of quiz questions | Retention inside the semester benefited from more practice and from more spacing. Retention at the start of calculus 4 weeks later benefited from spacing only. | Abstract |
+
+## Schedules that adapt, and relearning
+
+| Key | Source | Population and material | Result | Depth |
+| --- | --- | --- | --- | --- |
+| `mettler2016` | Mettler, Massey, Kellman. A comparison of adaptive and fixed schedules of practice. *Journal of Experimental Psychology: General*, 2016. doi:10.1037/xge0000170 | Not stated | A schedule that sets spacing from response time and accuracy gave better retention than fixed schedules, at immediate and delayed tests. Schedules copied from other learners showed that the gain came from adaptation to the item and to the learner. Expanding and equal fixed spacing did not differ. | Abstract |
+| `rawson2011` | Rawson, Dunlosky. Optimizing schedules of retrieval practice for durable and efficient learning: how much is enough? *Journal of Experimental Psychology: General*, 2011. doi:10.1037/a0023956 | 533 students; conceptual material; hand-scored short-answer recall; tests 1 to 4 months after practice | Relearning in later sessions had pronounced effects on long-term retention at small cost. The effect of a high first-session criterion became smaller as relearning increased. Prescription: 3 correct recalls in the first session, then relearning 3 times at widely spaced intervals. | Abstract |
+| `rawson2013` | Rawson, Dunlosky, Sciartelli. The power of successive relearning: improving performance on course exams and long-term retention. *Educational Psychology Review*, 2013. doi:10.1007/s10648-013-9240-4 | Students in a real course (two experiments) | Successive relearning (retrieval to a correct recall, repeated across days) improved course examination performance and long-term retention. | Abstract |
+| `ye2022` | Ye, Su, Cao. A stochastic shortest path algorithm for optimizing spaced repetition scheduling. *KDD*, 2022. doi:10.1145/3534678.3539081 | 220 million review logs of a language-learning app | A memory model fitted to the logs, and a scheduler that minimizes review cost under that model. The reported gain (12.6%) is against other schedulers on the same measure. It is not an experiment on learning outcomes. | Abstract |
+| `su2023` | Su, Ye, Nie, Cao, Chen. Optimizing spaced repetition schedule by capturing the dynamics of memory. *IEEE Transactions on Knowledge and Data Engineering*, 2023. doi:10.1109/tkde.2023.3251721 | Review logs of a language-learning app, and simulation | The same framework with a benchmark data set. Results are on logs and in simulation. | Abstract |
+
+The FSRS documentation lists `ye2022` and `su2023` at the head of its description of the
+algorithm and does not state how FSRS derives from them
+(<https://github.com/open-spaced-repetition/fsrs4anki/wiki/The-Algorithm>, read
+2026-11-16).
+
+## Order of practice
+
+| Key | Source | Population and material | Result | Depth |
+| --- | --- | --- | --- | --- |
+| `rohrer2007` | Rohrer, Taylor. The shuffling of mathematics problems improves learning. *Instructional Science*, 2007. doi:10.1007/s11251-007-9015-8 | College students; mathematics problems of several types | Practice problems mixed by type, against blocked by type: performance 1 week later was vastly superior after mixed practice. Practice spaced across sessions, against massed: much greater performance 1 week later. | Abstract |
+| `brunmair2019` | Brunmair, Richter. Similarity matters: a meta-analysis of interleaved learning and its moderators. *Psychological Bulletin*, 2019. doi:10.1037/bul0000209 | Meta-analysis: 59 studies, 238 effect sizes | Overall g = 0.42 for interleaved against blocked presentation. Mathematical tasks: g = 0.34. Words: g = −0.39, blocking is better. Expository texts: no significant effect. The effect is stronger when categories are similar to each other. | Abstract |
+
+## Form of the answer, and self-assessment
+
+| Key | Source | Population and material | Result | Depth |
+| --- | --- | --- | --- | --- |
+| `smith2013` | Smith, Roediger, Karpicke. Covert retrieval practice benefits retention as much as overt retrieval practice. *Journal of Experimental Psychology: Learning, Memory, and Cognition*, 2013. doi:10.1037/a0033569 | Not stated; four experiments | Retrieval in thought gave the same benefit as a produced response, also after 2 days, and more than restudy. | Abstract |
+| `tauber2017` | Tauber, Witherby, Dunlosky, Rawson, Putnam, Roediger. Does covert retrieval benefit learning of key-term definitions? *Journal of Applied Research in Memory and Cognition*, 2017. doi:10.1016/j.jarmac.2016.10.004 | Students; definitions of key terms; final test after 2 days | Recall was greater after a produced response than after retrieval in thought or restudy (pooled d = 0.43). The authors recommend a produced response for complex material. | Abstract |
+| `dunlosky2010` | Dunlosky, Hartwig, Rawson, Lipko. Improving college students' evaluation of text learning using idea-unit standards. *Quarterly Journal of Experimental Psychology*, 2010. doi:10.1080/17470218.2010.502239 | College students; recall of definitions of key terms | Students are overconfident in the quality of their recalled definitions, and often judge a response with wrong content as correct or partly correct. A check of the response against each idea of the correct answer reduced the overconfidence. | Abstract |
+| `kornell2008` | Kornell, Bjork. Optimising self-regulated study: the benefits—and costs—of dropping flashcards. *Memory*, 2008. doi:10.1080/09658210701763899 | Not stated; flashcards; four experiments | Permission to set aside cards that the student thinks are known had small, consistently negative effects on learning. | Abstract |
+
+## Limits: complex material and transfer
+
+| Key | Source | Population and material | Result | Depth |
+| --- | --- | --- | --- | --- |
+| `pan2018` | Pan, Rickard. Transfer of test-enhanced learning: meta-analytic review and synthesis. *Psychological Bulletin*, 2018. doi:10.1037/bul0000151 | Meta-analysis: 192 effect sizes, 122 experiments, N = 10,382 | Transfer against a re-exposure control: d = 0.40. Weakest transfer: to material that was studied and not tested, to rearranged items, and to problems with worked examples. Without the moderators (response congruency, elaborated retrieval practice, high first-test performance), the corrected estimates often show no transfer. | Abstract |
+| `vangog2015` | van Gog, Sweller. Not new, but nearly forgotten: the testing effect decreases or even disappears as the complexity of learning materials increases. *Educational Psychology Review*, 2015. doi:10.1007/s10648-015-9310-x | Review; introduction to a special issue | The testing effect becomes smaller as the number of interacting elements in the material increases, and may be absent for very complex material. | Abstract |
+| `karpicke2015` | Karpicke, Aue. The testing effect is alive and well with complex materials. *Educational Psychology Review*, 2015. doi:10.1007/s10648-015-9309-3 | Reply to `vangog2015` | The claim of `vangog2015` is incorrect: its measure of complexity is not defined, its review omits studies with complex material that show the effect, and the worked-example experiments used immediate, massed retrieval and still show a small positive effect. | Abstract |
+
+## Undergraduate mathematics: proof and oral assessment
+
+| Key | Source | Population and material | Result | Depth |
+| --- | --- | --- | --- | --- |
+| `hodds2014` | Hodds, Alcock, Inglis. Self-explanation training improves proof comprehension. *Journal for Research in Mathematics Education*, 2014. doi:10.5951/jresematheduc.45.1.0062 | Students (level not stated; the authors recommend the training for transition-to-proof courses); proofs; three experiments | Training to explain the logical relations in a proof to oneself gave better proof comprehension (d = 0.950 in Experiment 1). A 15-minute version in a lecture also worked, and the effect persisted. | Abstract |
+| `mejiaramos2012` | Mejía-Ramos, Fuller, Weber, Rhoads, Samkoff. An assessment model for proof comprehension in undergraduate mathematics. *Educational Studies in Mathematics*, 2012. doi:10.1007/s10649-011-9349-7 | Model for advanced undergraduate mathematics; no experiment | Understanding of a proof has these parts: the meaning, logical status, and logical chaining of its statements; its high-level ideas; its main components; its methods; and its relation to specific examples. The paper shows a question for each part. | Abstract |
+| `iannone2014` | Iannone, Simpson. Students' views of oral performance assessment in mathematics: straddling the 'assessment of' and 'assessment for' learning divide. *Assessment & Evaluation in Higher Education*, 2014. doi:10.1080/02602938.2014.961124 | Students of a first-year university mathematics module | Students report that an oral assessment encourages a focus on understanding and reacts to their needs, with concerns about anxiety and fairness. The data are views, not measured learning. | Abstract |
+
+## Topics with no entry
+
+No search was made for these topics. Each needs one before a feature decides on it.
+
+- Spaced retrieval of graduate-level mathematics (definitions, statements, proofs).
+- The target probability of recall that gives the best retention for the time spent.
+- The order of reviews when more are due than the person studies.
+- Measured learning from oral examination, and from questions that an AI component
+  generates.
+- Retention over more than 5 years under a review schedule.

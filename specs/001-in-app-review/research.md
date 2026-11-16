@@ -573,6 +573,61 @@ place that the user chose (another disk, a directory that a backup tool covers) 
 opens the collection, the last grade cannot be undone. The window shows Undo as
 unavailable, as after a sync (FR-021).
 
+## R19. Basis of the learning decisions in published research
+
+Constitution principle X. The keys refer to `docs/learning-research.md`. Each source
+there has depth Abstract or Secondary: no full text was read. The statuses below are
+therefore provisional, and task T079 reads the full texts and corrects this section.
+
+The distance from the studies to this person's case is the same for most rows. The
+experiments use word pairs, facts, text passages, definitions of key terms, and
+precalculus problems, with final tests after days to months. The person's cards hold
+definitions, statements, and proofs of research-level mathematics, and the retention
+interval is years. A status of Supported means that the direction of the effect has
+evidence for adults. It does not mean that the size of the effect is known for this
+material.
+
+| Learning decision | Requirement | Sources | Status |
+| --- | --- | --- | --- |
+| The person recalls the answer before the app shows it | FR-002 | `roediger2006`, `karpicke2008`, `rowland2014`, `adesope2017`, `dunlosky2013`. Qualification: `soderstrom2015` finds that restudy also improves learning when spacing is controlled. | Supported |
+| Reviews of a card are spread over increasing intervals | FR-005 | `cepeda2006`, `cepeda2008`, `bahrick1993`; for mathematics with college students, `rohrer2006`, `hopkins2016`, `lyle2020` | Supported up to 1 year. Beyond that: `bahrick1993` (4 people) and `bahrick1991` (not read) |
+| The schedule adapts to each card and to this person, and the person can fit it to their own history | FR-005, FR-046 | `mettler2016` shows the gain of adaptation to item and learner, with a different algorithm. `ye2022` and `su2023` evaluate their scheduler on logs and in simulation, with vocabulary. | Inference. No experiment on learning outcomes with FSRS is in the register |
+| A card graded Again comes back in the same session and at short intervals | FR-005, User Story 1 scenario 7 | `rawson2011`, `rawson2013`: relearning to a correct recall in later sessions gives durable retention at small cost. Their first-session criterion (3 correct recalls) is not Anki's default steps. | Supported in direction. The steps are Anki's defaults |
+| The app has no action that sets a card aside for the rest of a session | Assumptions | `kornell2008` | Supported |
+| The answer is recalled in thought, and the person grades the recall | FR-003, Assumptions | `smith2013` finds no difference between retrieval in thought and a produced response. `tauber2017` finds a produced response better for definitions (d = 0.43), which is the material of many cards. `dunlosky2010` finds that students grade their own recalled definitions too high. | Contrary evidence for definition cards. See the consequences below |
+| Target probability of recall of 0.9 | R9 | None in the register | Default of Anki |
+| Reviews in order of ascending retrievability | FR-044, R9 | None in the register. The source is the Anki manual. | Default, chosen in R9 from the manual |
+| A session mixes the cards of all subjects in its scope | FR-005 | `rohrer2007`, `brunmair2019` (g = 0.34 for mathematical tasks). The studies mix types of problem during practice. A review of cards that were learned separately is a different task. | Inference |
+| The record holds the time from the front to the reveal | FR-028 | `mettler2016`: response time with accuracy carries enough information about learning strength to set a schedule | Supported |
+
+**Consequences for this feature**
+
+- A grade is the person's own judgement, and the app does not check the answer. Each
+  measure that an analysis computes from grades is named as self-graded
+  (`contracts/analysis.md`). `dunlosky2010` gives the direction of the expected error:
+  too high.
+- Recall of a card is not competence with its content. `pan2018` finds the weakest
+  transfer to material that was studied and not tested and to problems with worked
+  examples, and `vangog2015` and `karpicke2015` dispute the size of the testing effect
+  for complex material. An analysis that calls a subject fluent states that it means
+  recall of the cards of that subject.
+
+**Consequences for later forms of study** (outside this feature)
+
+- A form of study in which the person produces the answer, and in which the answer is
+  checked against the parts of the correct answer, has support from `tauber2017` and
+  `dunlosky2010`. It also gives the record a measure that is not self-graded.
+- Questions about a proof have a published model of what to ask (`mejiaramos2012`) and
+  a tested method of study (`hodds2014`).
+- `iannone2014` holds students' views of oral assessment and no measured learning. The
+  register has no source on measured learning from oral examination or from generated
+  questions; a plan for either feature starts with that search.
+
+**How the record tests the decisions**: the `calibration` analysis compares the
+scheduler's predicted recall with the grades. It shows whether the adaptive schedule
+predicts this person's self-graded recall. It cannot show an error of the grades
+themselves; that needs a checked answer.
+
 ## Unmeasured
 
 - The smallest review history that Anki's fit (`compute_fsrs_params`) accepts in the

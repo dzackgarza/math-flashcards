@@ -45,6 +45,9 @@
   and analyses that change for the life of the project, apart from the core and the
   interface. FR-048 names the XDG Base Directory Specification because the user named
   it.
+- FR-059 and FR-060 come from a principle that the user stated: published research on
+  adult learning decides the learning features. The sources are in `research.md` (R19)
+  and `docs/learning-research.md`, read at the depth of the abstract.
 - FR-058 (a card open in the editor is recorded) is a design answer to the coverage
   requirement of FR-051. The user has not confirmed it.
 - FR-052 to FR-054 and FR-057 state the three parts and their boundaries as

@@ -55,8 +55,12 @@ A module of the catalog that fails to import is in the list with its name and it
 
 | Name | Result |
 | --- | --- |
-| `recall_by_folder` | For each folder and month: the number of presentations, the share graded Again, and the mean time to reveal, without undone grades. |
-| `calibration` | For review presentations, in bands of the scheduler's predicted recall: the number of grades, the mean predicted recall, and the share recalled. |
+| `recall_by_folder` | For each folder and month: the number of presentations, the share that the person graded Again, and the mean time to reveal, without undone grades. |
+| `calibration` | For review presentations, in bands of the scheduler's predicted recall: the number of grades, the mean predicted recall, and the share that the person graded Hard, Good, or Easy. |
+
+Measures from grades are self-graded (FR-059). The label of each such column and the
+summary of each analysis say so. The summary of an analysis that ranks subjects says
+that the result is about recall of the cards (FR-060).
 
 ## Window
 

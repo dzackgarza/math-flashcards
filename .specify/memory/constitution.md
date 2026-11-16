@@ -12,6 +12,11 @@ are fluent and need little review. The project adapts and reuses Anki for this p
 is not a copy of Anki and has no duty to behave as a general flashcard program for other
 people.
 
+The system is the person's own learning management system. Review of cards is its first
+form of study. Other forms can follow, for example quizzes, or oral examinations that an
+AI component generates. Published research on learning decides what each form of study
+does (principle X).
+
 ## Core Principles
 
 ### I. Markdown decks are the only authored source
@@ -126,6 +131,43 @@ the learning data and from the scheduling logic.
   core's own tests prove that the behaviour it did not mean to change is the same.
 - The commit gate checks the boundaries.
 
+### X. Learning decisions rest on published research
+
+A learning decision is a decision about how the person studies: what the app asks the
+person to do, when, in what order, with what feedback, and what an analysis concludes
+about the person's learning. Each learning decision of a feature rests on published
+research on learning and retention. This applies to the review of cards and to each
+later form of study.
+
+- **Real papers.** The basis is a peer-reviewed study, a meta-analysis, or a systematic
+  review, identified by its DOI. A blog, the documentation of a product, a popular book,
+  and an agent's general knowledge are not a basis. An agent retrieves the record of a
+  paper and reads the paper; it does not cite from memory.
+- **The person's population.** The person is an adult who learns research-level
+  mathematics alone. Admissible evidence is research on adults: university students and
+  older, mathematics education at the undergraduate level and above, and general
+  principles of learning that reviews show to hold for adults. A study of school children
+  is not a basis for a decision. Where a finding exists only for children, the plan says
+  so and the decision has no evidence.
+- **Stated for each source.** The population, the material, the design, the outcome with
+  its retention interval, the size of the effect, and how much of the paper was read
+  (abstract or full text). A decision that depends on one paper needs the full text.
+- **Applicability is argued.** Most experiments use simple material and delays of days
+  or weeks. The plan states the distance between the study and the person's case
+  (definitions, theorems, and proofs; delays of years) and labels a conclusion across
+  that distance as an inference.
+- **Contrary evidence is stated.** A dispute or a null result that bears on a decision
+  is in the plan with the evidence for the decision.
+- **No evidence is a result.** A decision for which no research was found is labelled a
+  default, with its true source (for example, a default of Anki). It is not presented as
+  a finding.
+- **The record tests the decision.** Where it is possible, the plan names how the
+  person's own record (principle VI) will show whether the decision works for this
+  person.
+
+`docs/learning-research.md` is the register of sources. A plan cites entries of the
+register for each learning decision and adds the entries that it needs.
+
 ## Technical Constraints
 
 - Python runs through `uv`; JavaScript tooling runs through `bun`. `npm` and `pip` are not used.
@@ -153,4 +195,4 @@ change: MAJOR for a removed or redefined principle, MINOR for an added principle
 section, PATCH for a clarification. Every plan records its check against these principles,
 and each violation it keeps is justified in that plan.
 
-**Version**: 1.2.0 | **Ratified**: 2026-11-16 | **Last Amended**: 2026-11-16
+**Version**: 1.3.0 | **Ratified**: 2026-11-16 | **Last Amended**: 2026-11-16
