@@ -212,6 +212,33 @@ hidden actors and actions, vague wording, and empty statements or misplaced
 emphasis. The consequences for flashcard review above are editorial reasoning
 for this collection; the article does not establish learning outcomes.
 
+### Make technical sentences interpretable
+
+The article's annotated Triton/CUDA example also shows failures that shortening
+alone cannot fix: unnamed comparison quantities, unexplained technical terms,
+hidden actions, and conclusions delayed behind implementation details. Apply
+the following rules to mathematical cards.
+
+| Failure | Required repair |
+| --- | --- |
+| A comparison omits what is compared | Name the invariant or relation and both objects. Replace “same numbers” with the actual equality, such as $h^i(X,\mathcal O_X)=h^i(Y,\mathcal O_Y)$ with its range of $i$. Equal dimensions do not mean that the cohomology groups have been canonically identified. |
+| A number has no stated meaning | Attach its quantity, normalization, reference value, or domain. “Degree $2$” must identify the map, divisor, or extension whose degree is meant. Numerical precision cannot supply a missing referent. |
+| A technical label hides the condition or mechanism | Replace unexplained compound labels with the condition itself. Use established technical terms, but define unfamiliar terms needed to understand the answer. An acronym or specialized noun does not explain its own role. |
+| The same object acquires several names | Keep notation and terminology stable. Introduce aliases explicitly; do not alternate between a construction, method, model, and strategy when it is unclear whether they denote the same object. |
+| A status description hides a mathematical operation | Replace “the sequence is now in dual form” with the functor applied and the resulting sequence. State the exactness conditions and any resulting Ext terms. |
+| A verb lacks its required objects or relation | “The change can be attributed” leaves the attribution unspecified. Name the operation and its effect: for a blowup of a smooth surface at a point, $K_{\widetilde X}=\pi^*K_X+E$ and $K_{\widetilde X}^2=K_X^2-1$. |
+| A metaphor assigns an action to the wrong subject | Replace claims that a parameter “fixes” or “unlocks” a result with the actual dependence: which choice satisfies which condition, and why. Keep a useful authored mnemonic beside the precise relation. |
+| Detail interrupts the main assertion | Complete the claim before adding examples, qualifications, or calculations. Keep hypotheses attached to the claim; move supporting detail into a following line, table, or aligned calculation. |
+| A decisive conclusion appears as an afterthought | State the conclusion in the answer's main position. If an example disproves an implication, name that implication and show the satisfied hypothesis and failed conclusion. |
+| Several claims are compressed into a sentence with unclear connections | Separate the clauses and label their logical roles: assumption, operation, result, reason, or counterexample. Preserve the relationships in the composite card. |
+
+Read the resulting sentence for meaning, not just grammatical correctness.
+Can the reader identify what changes, what is compared, what the verb asserts,
+and which condition supports the conclusion? If an omitted fact cannot be
+recovered from the card's stated context, verify and supply it. Do not guess a
+missing quantity, baseline, hypothesis, or causal explanation merely to produce
+a fluent rewrite.
+
 ## Ban mathematical hand-waving
 
 A card must give enough information to reconstruct the requested statement,
