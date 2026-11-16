@@ -39,6 +39,18 @@
   FR-046, SC-009 to SC-014) come from a requirement that the user stated. The three
   answers under "defaults" in the spec's Clarifications section come from repository
   evidence. The user has not confirmed them.
+- User Story 8, FR-047 to FR-058, and SC-015 to SC-019 come from four further
+  requirements that the user stated: one running copy for one user; historical data that
+  is easy to keep and that covers every action that bears on learning; XDG compliance;
+  and analyses that change for the life of the project, apart from the core and the
+  interface. FR-048 names the XDG Base Directory Specification because the user named
+  it.
+- FR-058 (a card open in the editor is recorded) is a design answer to the coverage
+  requirement of FR-051. The user has not confirmed it.
+- FR-052 to FR-054 and FR-057 state the three parts and their boundaries as
+  requirements. The user stated the separation and its purpose; the packages, the
+  read-only connection, and the import contracts are design choices in `research.md`
+  (R17).
 - FR-037 and SC-011 name "standard data tools" and "a standard database tool". The
   requirement is independence from this app and from Anki; the file format is a design
   choice in `research.md` (R12).

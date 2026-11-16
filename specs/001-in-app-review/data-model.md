@@ -1,8 +1,10 @@
 # Data Model: In-App Review
 
 This model fixes the vocabulary, the states, and the typed values before any task is
-ordered. The bridge declares the types as Pydantic models in `desktop/backend.py`; the
-frontend declares the same shapes as Zod schemas in `desktop/src/bridge.ts`.
+ordered. The core declares the study types as Pydantic models in
+`desktop/study/values.py`, and the analysis package declares the analysis types in
+`desktop/analysis/__init__.py`; the frontend declares the same shapes as Zod schemas in
+`desktop/src/bridge.ts`.
 
 ## Vocabulary
 
@@ -78,7 +80,9 @@ never reached.
 | `collection.anki2` | Created only when the directory does not exist. An existing directory without a readable collection is an error (FR-019). |
 | `collection.media/` | Anki's media folder. |
 | `backups/` | Anki `.colpkg` backups, each with a copy of `record.sqlite3` beside it. |
-| Lock file | Held by the host for its lifetime. |
+
+The directory is the whole of the learning data of one workspace (FR-049). A copy of it
+is a store.
 
 ### Learning record (`record.sqlite3`)
 
@@ -90,7 +94,8 @@ are only inserted. `docs/study-record.md` is the field reference for the user.
 | --- | --- |
 | `writer` | `app_release`, `anki_version`, `schema_version` |
 | `schema` | `version`, `added` (the tables and columns that the version added) |
-| `store_event` | `kind` (created, attached, backed-up), `path` |
+| `store_event` | `kind` (created, attached, backed-up, copied), `path` |
+| `editor_view` | `card_id`, `deck_path`, `shown_ms`, `unfocused_ms` (one row for each time a card was open in the editor, written when it leaves the editor) |
 | `session` | `scope_kind`, `scope_path` |
 | `session_end` | `session`, `cause` (left, finished, host-stopped, recovered) |
 | `content` | `digest` (`ContentDigest`, unique), `front`, `back` |
@@ -144,7 +149,8 @@ Rules for fields:
 2. A note whose `CardId` is in no deck is suspended and in `Removed`.
 3. Sync never changes a schedule or a review log row.
 4. No operation deletes a note that has a review log row.
-5. The store is opened by one process at a time.
+5. The host is the only process that opens the collection, and the only process that
+   writes the record. Every other reader of the record opens it read-only.
 6. An Anki deck under `Workspace` exists for each deck file and each folder, and for
    nothing else.
 7. The package build and its records are unchanged by study operations.
@@ -158,6 +164,16 @@ Rules for fields:
 12. A store is created only when no store exists, or when the user chose a new one.
 13. The schema of the learning record gains tables and nullable columns and loses
     nothing.
+14. An analysis changes no data of a store. Every row of the record is equal before and
+    after an analysis runs. The one file that a read-only connection can create is
+    SQLite's shared-memory file for the write-ahead log, which holds no data
+    (https://www.sqlite.org/wal.html, "Read-Only Databases").
+15. The analysis package imports neither the core package, nor `anki`, nor the entry
+    script. The core package does not import the analysis package. No analysis imports
+    another analysis.
+16. Every file that the app writes outside the workspace is under the XDG base directory
+    for its kind (R16).
+17. One copy of the app runs.
 
 ## Valid and invalid examples
 
@@ -172,7 +188,11 @@ Rules for fields:
 | A grade arrives for a card that is not at the top of the queue | Invalid. `StaleCard` error; the screen fetches the current card. |
 | A deck fails to render | Its cards keep their last synced content; the sync result lists the deck. |
 | The store directory exists but the collection does not open | Invalid. `StoreUnreadable` error with the path; nothing is created. |
-| A second running copy asks for the store | Invalid. `StoreInUse` error. |
+| The user starts the app while it runs | Valid. The running window gets the focus. No second copy and no second host start. |
+| An analysis runs while a session is open | Valid. The analysis reads the rows committed so far. The next grade is recorded. |
+| An analysis tries to write to the record | Invalid. Its connection is read-only; SQLite rejects the statement, and the analysis fails alone. |
+| The user saves a copy of the store during a session | Valid. The copy holds every row committed before it. Undo is unavailable until the next grade. |
+| A card is open in the editor for 40 s | Valid. One `editor_view` row with `shown_ms` near 40000, written when the card leaves the editor. |
 | `desired_retention` of 1.0 | Invalid. Rejected at the boundary. |
 | The user takes 200 s to grade | Valid. The record holds 200 s; Anki's `revlog` holds its own limited value. |
 | The user undoes a grade | Valid. Anki deletes its `revlog` row. The `response` row stays, and an `undo` row refers to it. |
@@ -215,8 +235,20 @@ Fit           = { parameters: float[], current: float[], reviews: int,
                   log_loss: float, rmse_bins: float,          # Anki's evaluation of the fitted set
                   current_log_loss: float, current_rmse_bins: float }
 
-StudyError    = { kind: "StoreInUse" | "StoreUnreadable" | "StaleCard" | "InvalidSettings"
-                        | "UnknownScope" | "UnknownStore" | "NotEnoughHistory",
+StoreCopy     = { path: str }                                 # the directory of the copy
+
+StudyError    = { kind: "StoreUnreadable" | "StaleCard" | "InvalidSettings"
+                        | "UnknownScope" | "UnknownStore" | "NotEnoughHistory"
+                        | "CopyFailed",
+                  message: str }
+
+# Analysis (contracts/analysis.md). These values do not pass through the study host.
+Analysis      = { name: str, title: str, summary: str,       # name is the module name
+                  failure: str | null }                       # set when the module does not import
+Column        = { name: str, unit: str | null }
+Cell          = str | int | float | null
+AnalysisTable = { analysis: Analysis, columns: Column[], rows: Cell[][] }
+AnalysisError = { kind: "UnknownAnalysis" | "AnalysisFailed" | "RecordUnreadable",
                   message: str }
 ```
 
@@ -235,7 +267,10 @@ StudyError    = { kind: "StoreInUse" | "StoreUnreadable" | "StaleCard" | "Invali
 | Queue, answer, undo, counts, settings | Effect (store, clock) | Anki calls in R10 |
 | Measure reveal, grade, and unfocused time | Effect (window clock and focus events) | card on screen → `Timing` |
 | Find the store of a workspace | Effect (files) | workspace path → `StoreId`, or the list of stores, or none |
-| Open the store, lock, backup | Effect (files) | `StoreId` → open collection and record, or `StudyError` |
+| Open the store, backup, copy | Effect (files) | `StoreId` → open collection and record, or `StudyError` |
+| List the analyses | Effect (files, read-only) | the catalog directory → `Analysis[]` |
+| Run an analysis | Effect (record, read-only) | read-only connection to the record → `AnalysisTable` |
+| Measure the time a card is open in the editor | Effect (window clock and focus events) | card in the editor → `shown_ms`, `unfocused_ms` |
 | Record row from Anki values | Pure | queued card, states, card after the answer, `revlog` row, `Timing` → `presentation` and `response` values |
 | Rows missing from the record | Pure | `revlog` IDs, `response` IDs → the `revlog` rows to recover |
 | Write a record row | Effect (record) | values → inserted row |
@@ -244,6 +279,18 @@ StudyError    = { kind: "StoreInUse" | "StoreUnreadable" | "StaleCard" | "Invali
 The sync plan and the conversion of Anki values to record rows are the only new logic
 that is not an Anki call or an existing bridge function. Each is a function of values
 and is tested with real rendered decks and a real store.
+
+## Parts
+
+| Part | Code | Holds | Must not hold |
+| --- | --- | --- | --- |
+| Core | `desktop/study/` | Store identity, the record's schema and its insert functions, the sync plan, sessions, settings, the fit, the host loop | Statistics over the record; text or layout for the window beyond error messages; an import of the analysis package |
+| Analysis | `desktop/analysis/`, one module for each analysis in `desktop/analysis/catalog/` | Queries and computations over the record; the `AnalysisTable` value | A write to any file of a store; an import of the core, of `anki`, or of another analysis; permanent data |
+| Interface | `desktop/src/` | The study screen, the Statistics screen, timing of what the user does | A scheduling rule; a query over the record |
+
+An analysis is a module with a title, a summary, and one function from a read-only
+record connection to an `AnalysisTable`. The catalog is the set of modules in the
+directory; no list names them.
 
 ## Boundary rules
 
@@ -261,5 +308,6 @@ and is tested with real rendered decks and a real store.
 | Idempotency | `study-sync` on an unchanged workspace changes nothing and returns zero counts. A repeated `study-answer` for an answered card returns `StaleCard`. |
 | Clock | Anki reads the system clock and its own day rollover. The app adds no clock. |
 | Time taken | The screen measures the time from showing the front to the grade and sends it with the grade. |
-| Conflict | A duplicate ID is reported, never merged. The store lock decides which running copy studies. |
+| Conflict | A duplicate ID is reported, never merged. |
+| Concurrency | One copy of the app, one host, one request at a time. The record has one writer and any number of read-only readers. |
 | Retry | No automatic retry. An error reaches the screen with its cause. |

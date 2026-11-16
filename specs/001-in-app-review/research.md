@@ -61,11 +61,11 @@ pairing filter passes the ID to it. Package GUIDs stay as they are (FR-025).
 
 ## R3. Process model
 
-**Decision**: One long-lived study process for each running copy of the app. The native
-shell starts `backend.py study-host` on the first study request and keeps it. The process
-holds the collection open, holds an exclusive file lock on the store, and answers one
-JSON request per line. All other bridge requests keep the current model: one new process
-for each request.
+**Decision**: One long-lived study process. The app runs as one copy (R15), so the app
+has one host. The native shell starts `backend.py study-host` on the first study request
+and keeps it. The process holds the collection open and answers one JSON request per
+line. It is the only process that opens the collection or writes the record. All other
+bridge requests keep the current model: one new process for each request.
 
 **Rationale**:
 
@@ -76,8 +76,10 @@ for each request.
   ("not at top of queue", read). A held collection keeps one queue for the session.
 - The FSRS switch is read when a queue is built. It must be set before the first queue
   build (probed). The host sets it when it creates the store.
-- An exclusive lock gives the second running copy a clear error (spec edge case) in
-  place of a SQLite lock failure.
+- Anki opens its collection with SQLite's exclusive locking mode
+  (`rslib/src/storage/sqlite.rs`, read). While the host runs, no other process reads the
+  collection. Every reader outside the host therefore reads the learning record (R12),
+  not the collection.
 - A grade is durable when `answer_card()` returns: after `SIGKILL` with no `close()`,
   the review log row and the new card state are in the store (probed, SC-005).
 
@@ -94,15 +96,15 @@ for each request.
 - `desktop/src-tauri/src/lib.rs` and `desktop/vite.config.ts` both route requests. Each
   gets one study route that owns the host process. Study requests run one at a time.
 - A release update leaves the running host on its own release environment, as for the
-  renderer assets.
-- When the store is in use or cannot be opened, each study request fails with a message
-  that names the store path and the cause.
+  renderer assets. The next launch uses the new release.
+- When the store cannot be opened, each study request fails with a message that names
+  the store path and the cause.
 
 ## R4. Store location and backups
 
 **Decision**: `platformdirs.user_data_path("math-flashcards") / "study" / <store ID>`.
 The store ID is a UUID made when the store is created. The directory holds
-`collection.anki2`, Anki's `collection.media`, the learning record (R12), the lock file,
+`collection.anki2`, Anki's `collection.media`, the learning record (R12),
 a `store.json` with the store ID and every workspace path the store was attached to, and
 `backups/`.
 
@@ -336,7 +338,8 @@ Anki's review log does not give one:
 | `content`, `media` | Version of a card's front and back; file that a version refers to |
 | `card_change` | Card added, content changed, tags changed, moved, removed, or restored |
 | `setting_change`, `parameter_set` | Change of a scheduling setting; set of scheduler parameters with its source |
-| `store_event` | Store created, attached to a path, backed up |
+| `store_event` | Store created, attached to a path, backed up, copied to a directory (R18) |
+| `editor_view` | Card open in the editor: the card, how long, and how long without focus (R18) |
 | `writer` | App release and Anki version that wrote rows |
 
 A view, `review`, joins each presentation with its response and its undo, so that one
@@ -415,6 +418,161 @@ current parameters when it has no training item).
 collection's backend object, as Anki's own deck-options page reaches it (read). The
 amount of history that Anki needs is decided by Anki's code and is not measured here.
 
+## R15. One running copy
+
+**Decision**: The app is a singleton (constitution, principle VII). The Tauri
+single-instance plugin enforces it in the shell. It is the first plugin that the builder
+registers. Its callback gives the focus to the main window.
+
+**Source**: https://v2.tauri.app/plugin/single-instance/ (read). On Linux the first copy
+owns a D-Bus name made from the app identifier (`org.dev_math_flashcards.SingleInstance`);
+a later launch sends its arguments to that name and exits. The plugin needs no
+capability and writes no file.
+
+**Consequences**:
+
+- One host process holds the store for the life of the running copy (R3), and it is the
+  only writer.
+- Two releases never run together. An update takes effect at the next launch.
+- The browser build (`just desktop-web`) is a development and test target, not the app.
+  The plugin does not cover it.
+
+Concurrency that remains is inside the one copy and has one rule for each resource: the
+host answers one request at a time; the record has one writer and any number of
+read-only readers (SQLite's write-ahead log, R12).
+
+## R16. File placement by the XDG Base Directory Specification
+
+**Source**: https://specifications.freedesktop.org/basedir/latest/ (read).
+`XDG_DATA_HOME` holds "user-specific data files"; `XDG_CONFIG_HOME` holds
+"user-specific configuration files"; `XDG_STATE_HOME` holds state "that should persist
+between (application) restarts, but that is not important or portable enough" for the
+data directory; `XDG_CACHE_HOME` holds "user-specific non-essential data files".
+
+**Decision**: Each file goes to the directory for its kind. Python resolves the
+directories with `platformdirs`; the shell resolves them with the Tauri path API.
+
+| File | Kind | Location |
+| --- | --- | --- |
+| Stores: collection, learning record, record media, `store.json`, backups | Data | `$XDG_DATA_HOME/math-flashcards/study/` |
+| Scheduling settings | Data | In the store. Each change is part of the history (FR-034). |
+| Installed releases, `active`, `launch` | Data | `$XDG_DATA_HOME/math-flashcards/` (existing) |
+| Preferences: the workspace path | Configuration | `$XDG_CONFIG_HOME/dev.math.flashcards/preferences.json` (existing, Tauri store plugin) |
+| Render output, check results, search records, results of analyses | Cache | `$XDG_CACHE_HOME/math-flashcards/` |
+| Launcher command | Executable | `$HOME/.local/bin`, the directory that the specification names for user executables (existing) |
+
+The feature writes no state file and no runtime file: the host talks through pipes, and
+the single-instance plugin uses a D-Bus name.
+
+**Existing state of the app, inspected on this machine**:
+
+| Observation | Conformance |
+| --- | --- |
+| The Python bridge writes only under `user_cache_path("math-flashcards")`. | Conforms. |
+| The installer derives its directories from `XDG_DATA_HOME`, with the specification's default. | Conforms. |
+| The app has two directory names: `math-flashcards` (bridge, installer) and `dev.math.flashcards` (Tauri identifier). | Conforms. Both are under the correct base directories. |
+| `$XDG_DATA_HOME/dev.math.flashcards/` holds `WebKitCache/` and `CacheStorage/`, written by the web view. `$XDG_CACHE_HOME/dev.math.flashcards/` does not exist. | Does not conform: regenerable web view cache is in the data directory. The web view layer of Tauri owns the placement. |
+
+**Owner of the defect**: The web view library of Tauri (`wry`). Its Linux code sets one
+directory for both kinds
+(https://github.com/tauri-apps/wry/blob/dev/src/webkitgtk/web_context.rs, read):
+`.base_cache_directory(data_directory)` and `.base_data_directory(data_directory)`, with
+the comment "TODO: Consider taking a cache_directory so this can be in XDG_CACHE_HOME".
+The Tauri window builder has `data_directory` and no cache setting
+(https://docs.rs/tauri/latest/tauri/webview/struct.WebviewWindowBuilder.html, read). The
+app cannot correct the placement with a setting. The web view cache holds no learning
+data. A report to the `wry` project is an action outside this repository; the user
+decides it.
+
+## R17. Three parts: interface, core, analysis
+
+**Requirement**: Analyses and views change for the whole life of the project; agents add
+them all the time. The learning data and the scheduling logic must be safe from those
+changes: a small blast radius, rare data migrations, and a small chance that a later
+version changes the core by accident (constitution, principle IX).
+
+**Alternatives considered**:
+
+| Alternative | Protection | Result |
+| --- | --- | --- |
+| A. Analyses as functions in the study host, in `desktop/backend.py` | None. An analysis shares the file, the process, and the write connection of the core. | Rejected. |
+| B. Separate Python packages for the core and the analyses; an analysis runs in a short-lived process with a read-only connection to the record; an import contract in the commit gate | A new analysis touches no core file. It cannot write the record through its connection. The gate rejects an import across the boundary. One prepared environment. | **Chosen.** |
+| C. As B, with a separate Python environment for the analyses | As B, and a dependency of an analysis cannot change the versions that the core resolves. | Not chosen now. It needs a second prepared runtime in each release. It becomes necessary when a dependency of an analysis conflicts with a dependency of the core. |
+
+**Decision**:
+
+| Part | Code | Process | Access to learning data |
+| --- | --- | --- | --- |
+| Core | `desktop/study/` (Python package) | The study host (R3) | The only writer of the store and the record |
+| Analysis | `desktop/analysis/` (Python package); one module for each analysis in `desktop/analysis/catalog/` | One new process for each request, as the other bridge actions | The record only, read-only |
+| Interface | `desktop/src/` (TypeScript); the study screen and the Statistics screen | The window | None. It calls bridge actions. |
+
+`desktop/backend.py` stays the entry script. It owns the deck render and gives it to the
+core as a function, so the core imports nothing from the entry script.
+
+**Measured on this machine** (a spike with two packages beside an entry script):
+
+| Question | Result |
+| --- | --- |
+| Does the entry script import a package beside it when Python runs with `-I`, as the shell runs it? | No. Isolated mode leaves the script's directory out of `sys.path`, and the import fails with "No module named". The entry script adds its own directory to `sys.path` before it imports the two packages; with that line the import succeeds. |
+| Does Import Linter find the two packages with no project file? | Yes. `uvx --from import-linter lint-imports` in the directory, with `root_packages` `study` and `analysis` and `include_external_packages = True` in `.importlinter`, reports three contracts kept. |
+| Does it report each forbidden import? | Yes. An analysis module that imports `study`, `anki`, `backend`, and another analysis breaks two contracts; the report names each import with its line, and the command exits with status 1. |
+
+**Rules that make the blast radius small**:
+
+| Rule | Mechanism | Source |
+| --- | --- | --- |
+| An analysis cannot change the record | `sqlite3.connect("file:<path>?mode=ro", uri=True)`; the record uses the write-ahead log, which gives readers a consistent view while the host writes | https://docs.python.org/3/library/sqlite3.html#sqlite3-uri-tricks, https://www.sqlite.org/wal.html |
+| An analysis cannot read or change Anki's collection | The host holds the collection in exclusive locking mode (R3). The record is complete without it (FR-036). | `rslib/src/storage/sqlite.rs` (read) |
+| The analysis package does not import the core, `anki`, or the entry script; the core does not import the analysis package; no analysis imports another | Import Linter contracts of type `forbidden` and `independence`, run by `just test-commit` | https://import-linter.readthedocs.io/en/stable/contract_types/forbidden/, https://import-linter.readthedocs.io/en/stable/contract_types/independence/ |
+| A new analysis needs no change to the interface | Each analysis returns one generic value (a table with named columns). The Statistics screen renders any table. The list of analyses is the content of `desktop/analysis/catalog/`. | Design |
+| An analysis keeps no permanent data | A result is returned to the window. A stored result is a cache file (R16). | Design |
+| A change to an analysis needs no migration | The record holds observed facts, not results. Analyses compute from the facts. | Principle VI |
+| A change to the core is visible | The core is one directory. Its tests (the study scenario, the first-version record fixture) are apart from the analysis tests. | Design |
+
+**The first analyses** (FR-056) are the first two queries of
+`contracts/learning-record.md`. Two analyses give the catalog its second caller.
+
+**What the alternatives do not solve**: Dependencies track their latest versions
+(principle III). A newer `anki` can change scheduling behaviour and upgrade the
+collection format without a change in this repository. The record names the Anki version
+on every row (`writer`), and the store has dated backups. This is a conflict between
+principle III and the stability of the core; the user decides it.
+
+## R18. Keeping the data: one directory, a copy, and what the record covers
+
+**Decision**:
+
+- All learning data of a workspace is the store directory (R4). It holds no file that
+  another directory needs, and it needs no file outside itself.
+- `study-copy` writes a complete copy of the store to a directory that the user chose.
+  The host closes the collection and the record, copies the store directory with
+  `shutil.copytree` to `<chosen>/math-flashcards-study-<time>/<store ID>/`, opens both
+  again, and writes a `store_event` row of kind `copied` with the destination. The app
+  is one copy with one host, so no other writer exists during the copy.
+- A copy has the layout of a store. Placed in `$XDG_DATA_HOME/math-flashcards/study/` on
+  any machine, it is in the attach list (R4). No restore function exists apart from
+  attach.
+- The record gains one fact that it did not cover: a card open in the editor (FR-058).
+  The window measures the time and sends it to the host when the card leaves the editor.
+
+**Rationale**: The dated backups (R4) are in the store directory, on the same disk as
+the store. They protect against a damaged file, not against a lost disk. A copy in a
+place that the user chose (another disk, a directory that a backup tool covers) does.
+
+**Alternatives considered**:
+
+| Alternative | Result |
+| --- | --- |
+| Copy the open collection file | Rejected. The host holds it in exclusive locking mode, and a file copy of an open SQLite database can be inconsistent. |
+| An Anki `.colpkg` and a record copy, as the dated backups | Rejected for this purpose. A copy in that form needs a restore function; a copy in the store's layout needs none. |
+| A second directory that receives every dated backup with no action by the user | Not chosen now. It is the stronger protection and adds a preference and a failure case (the directory is absent). The user decides. |
+| The record inside the workspace, tracked by git | Rejected in R4 and R12: a binary database in the deck repository. |
+
+**Undo after a copy**: Anki keeps undo steps in memory (R3). After the host closes and
+opens the collection, the last grade cannot be undone. The window shows Undo as
+unavailable, as after a sync (FR-021).
+
 ## Unmeasured
 
 - The smallest review history that Anki's fit (`compute_fsrs_params`) accepts in the
@@ -427,3 +585,6 @@ amount of history that Anki needs is decided by Anki's code and is not measured 
   preparation and the progress display.
 - The time from a save to the changed card in review (SC-003) for the largest deck.
 - Whether a retained earlier release opens a store that a newer `anki` upgraded (R1).
+- Whether the single-instance plugin works in the native test's display session, which
+  needs a D-Bus session bus (R15).
+- The time that `study-copy` takes for a store of the full workspace (R18).

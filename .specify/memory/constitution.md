@@ -74,16 +74,64 @@ is lost for all later analysis, so a feature MUST justify each observable fact i
 - **Open to analysis.** The person can read the whole record with standard data tools. A
   feature documents each field it records.
 - **Private.** The record stays on the person's machine. No feature sends it elsewhere.
+- **Easy to keep.** All learning data of a workspace is in one directory. The person
+  makes a complete copy of it in one step, and a copy works on any machine.
+- **Covers every act of learning.** Each action in the app that bears on the person's
+  learning can be extracted and understood later, from the git history of the workspace
+  or from the record. A feature states, for each such action, which of the two holds it.
 
 Scheduling serves long-term retention. Material that the record shows to be fluent gets
 less of the person's time, and material that it shows to be weak gets more.
+
+### VII. One person, one running copy
+
+One person uses the app, and one copy of the app runs on a machine. A second launch
+brings the running copy to the front and starts nothing. A feature MUST NOT add a lock,
+a merge rule, conflict handling, or an error state for a second running copy or a second
+user. Inside the running copy, each store of user data has one writer.
+
+### VIII. XDG Base Directory placement
+
+Every file that the app writes outside the workspace is under the XDG base directory for
+its kind, in a directory named for the app:
+
+| Kind | Base directory |
+| --- | --- |
+| Learning data and other data that cannot be regenerated | `XDG_DATA_HOME` |
+| Preferences | `XDG_CONFIG_HOME` |
+| State that persists between runs and is not learning data (logs, window layout) | `XDG_STATE_HOME` |
+| Data that the app can regenerate | `XDG_CACHE_HOME` |
+
+A library resolves each directory (`platformdirs` in Python, the Tauri path API in the
+shell). No path is fixed relative to the home directory. Removal of the cache and state
+directories loses no learning data.
+
+### IX. Three parts with a small blast radius
+
+The app has three parts. Analyses and the interface change often, for the whole life of
+the project. The core changes rarely. The boundaries keep a frequent change away from
+the learning data and from the scheduling logic.
+
+| Part | Owns | Rule |
+| --- | --- | --- |
+| Core | Scheduling, the Anki-based logic, the review store, and every write of learning data | The only writer of learning data. It contains no presentation and no statistics. It depends on neither other part. |
+| Analysis | Everything computed after the fact from recorded history: statistics, models, findings about the person's learning | It reads learning data and cannot change it. It keeps no permanent data: each result can be computed again from the record. Each analysis is one unit that depends on no other analysis. |
+| Interface | What the person sees and does | It shows what the core and the analyses return, and sends the person's input to them. It contains no scheduling rule and no computation over the record. |
+
+- A new or changed analysis, and a new or changed view, MUST NOT need a change to the
+  core, to the format of the record, or to stored data.
+- When an analysis needs a fact that the record does not hold, the core starts to record
+  that fact (principle VI, additive). No existing entry is rewritten.
+- A change to the core is deliberate: its plan names the change and the reason, and the
+  core's own tests prove that the behaviour it did not mean to change is the same.
+- The commit gate checks the boundaries.
 
 ## Technical Constraints
 
 - Python runs through `uv`; JavaScript tooling runs through `bun`. `npm` and `pip` are not used.
 - The installed app works from prepared local resources. Ordinary editing, review, and
   export do not fetch from the network.
-- An installed release is immutable. Earlier releases stay on disk for running windows.
+- An installed release is immutable. An earlier release stays on disk for the copy that runs it.
 - Deletion of user files goes through the system trash.
 - JSON and YAML files are changed with `jq`, `yq`, or a script.
 
@@ -105,4 +153,4 @@ change: MAJOR for a removed or redefined principle, MINOR for an added principle
 section, PATCH for a clarification. Every plan records its check against these principles,
 and each violation it keeps is justified in that plan.
 
-**Version**: 1.1.0 | **Ratified**: 2026-11-16 | **Last Amended**: 2026-11-16
+**Version**: 1.2.0 | **Ratified**: 2026-11-16 | **Last Amended**: 2026-11-16

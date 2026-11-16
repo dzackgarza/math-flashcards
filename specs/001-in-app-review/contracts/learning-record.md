@@ -1,7 +1,8 @@
 # Contract: Learning Record
 
-The learning record is the interface between the app and the user's own analysis tools.
-The reader is the user, with SQL, pandas, R, DuckDB, or a later feature of this app. The
+The learning record is the interface between the core, which writes it, and everything
+that analyses it. The reader is the user, with SQL, pandas, R, or DuckDB, and the
+analysis part of this app ([analysis.md](./analysis.md)). The
 tables and fields are defined in [data-model.md](../data-model.md). The field reference
 for the user is `docs/study-record.md`.
 
@@ -14,14 +15,16 @@ for the user is `docs/study-record.md`.
 | Reader | Any SQLite client. A reader opens the file read-only. A reader needs no part of this app and no part of Anki (FR-037). |
 | While the app runs | A reader sees every committed row. The app keeps working. |
 | Writer | The study host only. It inserts rows. It has no statement that updates or deletes a row (FR-031). |
-| Copy | A copy of the store directory, made while the app is stopped, is a complete copy of the record. The backups in `backups/` are complete copies made while the app runs (FR-040). |
+| Copy | **Save a copy** in the Study settings writes a complete copy of the store, with the record, to a directory that the user chose, while the app runs (FR-050). A copy of the store directory made while the app is stopped is also complete. The backups in `backups/` are complete copies of the record made while the app runs (FR-040). |
+| Facts, not results | The record holds what the app observed. It holds no result of an analysis. A change to an analysis changes no row and no table (FR-054). |
 | Network | No part of the record leaves the machine through the app (FR-043). |
 
 ## Guarantees to a reader
 
 1. **Complete.** Each card that the window showed is one `presentation` row. Each grade
    is one `response` row. Each grade in Anki's review log has a `response` row with
-   Anki's nine values (FR-036).
+   Anki's nine values (FR-036). Each time a card was open in the editor is one
+   `editor_view` row (FR-058).
 2. **Permanent.** A row, once committed, never changes and never disappears. An undo is
    an `undo` row; the undone `response` row stays.
 3. **Self-contained.** Each `presentation` row holds the deck path, folder, deck title,

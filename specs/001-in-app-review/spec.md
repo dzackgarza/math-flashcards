@@ -44,6 +44,22 @@ does not copy the limit.
   FR-028 to FR-046, and SC-009 to SC-014, and it changes FR-018, FR-021, and the handling
   of a workspace that moves to a new path.
 
+### Session 2026-11-16, four further requirements stated by the user
+
+- One copy of the app runs for one user. The requirements carry no case for a second
+  running copy and no concurrency case between copies (FR-047, SC-015).
+- Historical data about the user is the most valuable thing the app holds. It is easy to
+  keep durably, and every action in the app that bears on learning is recoverable from
+  the git history of the workspace or from the app's persistent data (FR-049 to FR-051,
+  FR-058, SC-017).
+- The app follows the XDG Base Directory Specification (FR-048, SC-016).
+- The analyses are not fixed. They change for the whole life of the project, and the
+  underlying data stays. The interface, the core logic (scheduling and the Anki-based
+  logic), and the analysis after the fact are separate parts, so that a change to a view
+  or an analysis has a small blast radius, data migrations are rare, and a later version
+  is unlikely to change the core by accident (User Story 8, FR-052 to FR-057, SC-018,
+  SC-019).
+
 ### Session 2026-11-16, defaults
 
 These answers are defaults taken from repository evidence. The user has not confirmed
@@ -276,6 +292,39 @@ earlier and the later parameters with their times.
 
 ---
 
+### User Story 8 - See statistics from my record and add new ones safely (Priority: P2)
+
+The user opens **Statistics**, selects an analysis from a list, and sees its result,
+computed from the learning record. The list is not fixed: over the years the user and
+their agents add, change, and remove analyses as the user's questions change. An
+analysis only reads the record. Adding or changing one changes nothing in study, in the
+scheduler, in the record, or in another analysis.
+
+**Why this priority**: The record exists to be analysed, and the analyses will change
+far more often than anything else in the app. The place for them, and the boundary that
+keeps them away from the learning data and the scheduling logic, must exist before the
+first analysis is added, or each new analysis puts the history at risk.
+
+**Independent Test**: Study several cards. Open Statistics and run each analysis; the
+numbers agree with the grades given. Add a new analysis; no part of study or of the
+record changes, and the earlier analyses give the same results.
+
+**Acceptance Scenarios**:
+
+1. **Given** review history, **When** the user opens Statistics, **Then** the app lists
+   the analyses, and the selected analysis shows a result computed from the record.
+2. **Given** a study session in progress, **When** an analysis runs, **Then** the
+   session continues, and the next grade is recorded.
+3. **Given** the record before an analysis runs, **When** the analysis completes or
+   fails, **Then** every entry of the record is unchanged.
+4. **Given** an analysis that fails, **When** the user selects it, **Then** the app
+   shows the failure for that analysis, and study and the other analyses work.
+5. **Given** the app with its analyses, **When** a new analysis is added, **Then** it
+   appears in the list, and no part of study, no entry of the record, and no result of
+   another analysis changes.
+
+---
+
 ### Edge Cases
 
 - A deck has unsaved edits when a review starts: the app saves first, as it does before
@@ -290,9 +339,8 @@ earlier and the later parameters with their times.
   both cards and does not attach either card to the other's history.
 - The card on screen is removed or edited by another program during the review: the app
   shows the current state of the card, or the next card when it no longer exists.
-- A second running copy of the app opens a workspace whose review history is in use: the
-  second copy states that review of this workspace is in use by another window. Its
-  editor keeps working, and no grade is lost or recorded twice.
+- The user starts the app while it runs: the running window comes to the front, and no
+  second copy starts.
 - A workspace moves to a new path, or the data moves to a new machine: the app finds no
   store for the path, lists the stores that exist, and asks the user to attach one or to
   start a new one. It never starts an empty history without that choice when a store
@@ -308,8 +356,13 @@ earlier and the later parameters with their times.
   and the editor remains usable.
 - The review store is damaged or missing: the app reports the error and does not create
   an empty history over an existing one.
-- The app is updated while a window is open: both the earlier and the later release can
-  read and write the review history, or the earlier release reports that it must restart.
+- The app is updated while it runs: the running copy keeps its release until it closes,
+  and the next launch uses the new release. The two releases never run together.
+- The cache directory or the state directory is removed: the app prepares its derived
+  data again, and no learning data is lost.
+- An analysis needs a fact that the record does not hold: the analysis cannot be
+  computed for the past. The core starts to record the fact, and the analysis covers the
+  time from then on.
 
 ## Requirements *(mandatory)*
 
@@ -443,6 +496,64 @@ earlier and the later parameters with their times.
   history with Anki's own fitting code, see Anki's measures of the fit, and accept or
   reject it.
 
+**One running copy and file placement**
+
+- **FR-047**: The app MUST run as one copy. A second launch MUST bring the running
+  window to the front and MUST NOT start a second copy.
+- **FR-048**: The system MUST follow the XDG Base Directory Specification. Each file it
+  writes outside the workspace MUST be under the base directory for its kind: learning
+  data under the data directory, preferences under the configuration directory, other
+  persistent state under the state directory, and data that the app can regenerate under
+  the cache directory. Removal of the cache and state directories MUST NOT lose learning
+  data.
+
+**Keeping the data**
+
+- **FR-049**: All learning data of a workspace MUST be in one directory. A copy of that
+  directory MUST be a complete store that the app attaches on any machine (FR-041).
+- **FR-050**: Users MUST be able to write a complete copy of a store to a directory they
+  choose, in one action, from inside the running app. The learning record MUST hold each
+  copy that was made, with its time and place.
+- **FR-051**: Every action in the app that bears on the user's learning MUST be
+  recoverable from the git history of the workspace or from the learning record. The
+  table below names the source for each action. An action in neither needs a stated
+  reason.
+
+| Action in the app | Git history of the workspace | Learning record |
+| --- | --- | --- |
+| Write, edit, tag, move, remove, or restore a card; rename, merge, or reorder decks | Each committed state of the deck files | Each saved state that reaches the review store, with its time and the content (FR-030, FR-033) |
+| Start, leave, or finish a study session | | FR-032 |
+| See a card in study, reveal it, grade it, or leave it ungraded | | FR-028 |
+| Undo a grade | | FR-031 |
+| Change a scheduling setting; accept a fit | | FR-034 |
+| Create, attach, or copy a store | | FR-041, FR-050 |
+| Open a card in the editor, outside study | | FR-058 |
+| Search for cards | | Not recorded. A search gives a list; the card that the user opens from it is recorded as a view (FR-058). |
+| Run an analysis or generate a package | | Not recorded. Neither is an act of learning or recall. |
+
+- **FR-058**: The system MUST record each time a card is open in the editor: the card,
+  the time, how long it was open, and how long the window was without focus. The user
+  sees the answer of a card there outside the schedule, and an analysis of recall needs
+  that fact.
+
+**Analysis and the three parts**
+
+- **FR-052**: The core (scheduling, the review store, and every write of the learning
+  record) MUST be the only part of the app that changes learning data.
+- **FR-053**: An analysis MUST read the learning record without the ability to change
+  it, MUST compute its result from recorded history, and MUST keep no permanent data of
+  its own.
+- **FR-054**: Adding, changing, or removing an analysis or a view MUST NOT require a
+  change to the core, to the format of the learning record, or to stored data.
+- **FR-055**: Users MUST be able to list the analyses in the app, run one, and see its
+  result, under the name **Statistics**. A failure of one analysis MUST NOT affect study
+  or another analysis.
+- **FR-056**: The first analyses MUST be: for each folder and month, the number of
+  presentations, the share graded Again, and the mean time to reveal; and the
+  scheduler's predicted recall against the recall observed.
+- **FR-057**: The project MUST check the boundaries between the interface, the core, and
+  the analyses at each commit.
+
 ### Key Entities
 
 - **Card**: One front and back pair in a deck, identified by its card ID. It has rendered
@@ -469,6 +580,11 @@ earlier and the later parameters with their times.
   changed, tags changed, moved, removed, or restored.
 - **Settings change**: One change of a scheduling setting or of the scheduler's
   parameters, with the earlier and later values.
+- **Core**: The part of the app that schedules, holds the review store, and writes the
+  learning record.
+- **Analysis**: One computation over the learning record that gives the user a result
+  about their learning. It has a name and a description, and it stands alone.
+- **Store copy**: A complete copy of a store in a directory that the user chose.
 
 ## Success Criteria *(mandatory)*
 
@@ -507,20 +623,35 @@ earlier and the later parameters with their times.
   every entry unchanged, by each later release.
 - **SC-014**: A recorded time above Anki's limit for answer time equals the measured
   time within 0.1 seconds.
+- **SC-015**: When the user starts the app while it runs, one copy runs afterward and
+  its window is in front, in 100% of attempts.
+- **SC-016**: After the whole test scenario in an empty home directory, every file that
+  the app wrote outside the workspace is under one of the four XDG base directories.
+  After the cache and state directories are removed, zero entries of the learning record
+  are lost.
+- **SC-017**: A copy made from inside the running app, placed in an empty data
+  directory, attaches to the workspace and gives the same counts and the same entries of
+  the learning record.
+- **SC-018**: Adding an analysis changes zero files of the core, zero entries and zero
+  format elements of the learning record, and zero results of the other analyses.
+- **SC-019**: After every analysis in the app has run, 100% of the entries of the
+  learning record are unchanged.
 
 ## Assumptions
 
-- One person uses the app on one desktop machine. Synchronization with AnkiWeb, review on
-  a phone, shared decks, and add-ons are out of scope.
+- One person uses one running copy of the app on one desktop machine. Synchronization
+  with AnkiWeb, review on a phone, shared decks, and add-ons are out of scope.
+- The workspace is a git repository, and the user or the user's agents commit it. The
+  app makes no commit.
 - The app is the only program that reviews these cards after this feature exists.
 - Scheduling uses Anki's current algorithm, FSRS, with Anki's default parameters until
   the user accepts a fit to their own history (User Story 7).
 - Each workspace has its own review history.
 - The subject of a card, for analysis, is its folder, its deck, and its tags. The system
   adds no separate subject classification.
-- Views inside the app that analyse the learning record, and recommendations of study
-  material from it, are later features. This feature produces the record they need and
-  makes it readable with external tools.
+- This feature makes the place for analyses and ships the two of FR-056. Further
+  analyses, charts, and recommendations of study material are later additions to the
+  analysis part. Each is added without a change to the core.
 - The app has no command that deletes any part of the learning record.
 - The grades, their keys, and the reveal key follow Anki's conventions: Space reveals,
   and 1 to 4 select Again, Hard, Good, and Easy.
@@ -528,6 +659,5 @@ earlier and the later parameters with their times.
   templates are out of scope.
 - Filtered decks, custom study, burying, and manual rescheduling are out of scope for
   this feature.
-- One running copy of the app studies a workspace at a time.
 - The card editor, package export, Problems list, and deck organization keep their
   current behaviour.

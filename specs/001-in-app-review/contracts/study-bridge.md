@@ -1,10 +1,12 @@
 # Contract: Study Bridge
 
-The study bridge is the interface between the window and the review store. It extends the
-existing bridge (`request()` in `desktop/src/bridge.ts`, the `Request` union in
-`desktop/backend.py`). Value types are defined in [data-model.md](../data-model.md). The
-learning record that these actions write is defined in
-[learning-record.md](./learning-record.md).
+The study bridge is the interface between the window and the core: the review store and
+the writer of the learning record. It extends the existing bridge (`request()` in
+`desktop/src/bridge.ts`). The core is the Python package `desktop/study/`; the entry
+script `desktop/backend.py` starts its host. Value types are defined in
+[data-model.md](../data-model.md). The learning record that these actions write is
+defined in [learning-record.md](./learning-record.md). Analyses have their own
+contract, [analysis.md](./analysis.md); no analysis action reaches the host.
 
 ## Transport
 
@@ -12,7 +14,7 @@ learning record that these actions write is defined in
 | --- | --- |
 | Entry | The window calls the existing `request` command with an action that starts with `study-`. |
 | Routing | The native shell (`lib.rs`) and the Vite middleware (`vite.config.ts`) send every `study-*` action to the host. No other action reaches the host. |
-| Host start | `backend.py study-host`, with the release's Python and `-I`, on the first `study-*` request. One host for each running copy of the app. |
+| Host start | `backend.py study-host`, with the release's Python and `-I`, on the first `study-*` request. The app runs as one copy (FR-047), so one host exists. |
 | Framing | One JSON request on one line of the host's standard input. One JSON response on one line of its standard output. Diagnostics go to standard error. |
 | Order | One request at a time, in arrival order. |
 | Response | `{"ok": true, "result": …}` or `{"ok": false, "error": StudyError}`. The shell returns the result as the command's value and the error as its rejection, as JSON. |
@@ -38,6 +40,8 @@ Every request has `action` and `workspace`. Unknown fields are rejected.
 | `study-set-settings` | `settings: Settings` | `Settings` | Preset | `setting_change` |
 | `study-fit` | | `Fit` | No | No |
 | `study-apply-fit` | `parameters: float[]` | `Settings` | Preset parameters | `parameter_set`, `setting_change` |
+| `study-copy` | `directory: str` | `StoreCopy` | Closed, copied, opened again | `store_event` |
+| `study-viewed` | `card_id: CardId`, `deck: DeckPath`, `shown_ms: int`, `unfocused_ms: int` | `{}` | No | `editor_view` |
 
 No action updates or deletes a row of the learning record.
 
@@ -60,7 +64,6 @@ No action updates or deletes a row of the learning record.
   for each session with none.
 - An existing directory whose collection or record does not open returns
   `StoreUnreadable`. The host creates nothing in it.
-- A store that another process holds returns `StoreInUse`.
 
 ### `study-attach`
 
@@ -134,11 +137,31 @@ No action updates or deletes a row of the learning record.
   source `fit` and the measures, and returns the settings. The user rejects a fit by not
   applying it.
 
+### `study-copy`
+
+- Writes a complete copy of the store to
+  `<directory>/math-flashcards-study-<time>/<store ID>/` (R18): the host closes the
+  collection and the record, copies the store directory, and opens both again.
+- The copy has the layout of a store. In the `study/` directory of any machine it is in
+  the attach list.
+- Writes a `store_event` row of kind `copied` with the destination, after the store is
+  open again.
+- A directory that does not exist or cannot be written returns `CopyFailed` with the
+  cause. The store is open and unchanged afterward.
+- After a copy, `undoable` is false until the next grade.
+
+### `study-viewed`
+
+- Writes one `editor_view` row for a card that was open in the editor and has left it
+  (FR-058). The window measures both times.
+- A card ID that the store does not hold is recorded as given: the card can be new and
+  not yet saved.
+
 ## Errors
 
 | Kind | Meaning | What the window shows |
 | --- | --- | --- |
-| `StoreInUse` | Another process holds the store. | Study of this workspace is in use by another window. |
+| `CopyFailed` | The copy could not be written. | The cause, with the directory. |
 | `StoreUnreadable` | The store exists and its collection or record cannot be opened. | The error, with the store path. |
 | `UnknownStore` | The store ID is not on disk. | The error; the list of stores refreshes. |
 | `StaleCard` | The request names a presentation, a session, or an undo that is no longer current. | The current card, fetched again. |
@@ -175,4 +198,6 @@ build ignores `id`, and package GUIDs do not change.
 | Finished | States that study for today is complete, the number graded today, and the time until a learning card returns when there is one. |
 | Session end | The window sends `study-end` when the user leaves the session and when the queue is finished. |
 | Attach | For `Unattached`, the window lists each store with its paths, whether its current path exists, its last use, and its numbers of cards and grades. The user attaches one or starts a new one. Study is unavailable until the choice; the editor keeps working. |
-| Settings | New cards per day, reviews per day, and target recall, with their bounds. The path of the learning record and of the store, with a command that opens the folder. A command that runs the fit, shows both sets of measures, and applies the fitted set on the user's choice. |
+| Settings | New cards per day, reviews per day, and target recall, with their bounds. The path of the learning record and of the store, with a command that opens the folder. A command that runs the fit, shows both sets of measures, and applies the fitted set on the user's choice. **Save a copy** opens the folder picker and writes a copy of the store there. |
+| Editor views | When a card leaves the editor (another card is selected, the deck closes, a study session starts, or the window closes), the window sends `study-viewed` with the time the card was open and the time without focus. With no open store, it sends nothing. |
+| No scheduling logic | The window shows the labels, counts, and states that the host returns. It computes no interval, no due date, and no order. |

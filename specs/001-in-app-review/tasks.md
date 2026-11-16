@@ -7,7 +7,7 @@ description: "Task list for in-app review"
 
 **Input**: Design documents from `/specs/001-in-app-review/`
 
-**Prerequisites**: plan.md, spec.md, research.md, data-model.md, contracts/study-bridge.md, contracts/learning-record.md, quickstart.md
+**Prerequisites**: plan.md, spec.md, research.md, data-model.md, contracts/study-bridge.md, contracts/learning-record.md, contracts/analysis.md, quickstart.md
 
 **Tests**: Included. Constitution principle V requires proof through the real application
 path, and each story's test is committed before its implementation and must fail for the
@@ -21,10 +21,17 @@ in full is lost for all later analysis. Each later story writes its own record r
 adds a statement that updates or deletes a record row, and no task removes or renames a
 table or column of the record.
 
+**Part rule for every task** (constitution, principle IX): Core code is in
+`desktop/study/`. Analysis code is in `desktop/analysis/`. Interface code is in
+`desktop/src/`. `desktop/backend.py` is the entry script. A task of the core changes no
+analysis file, and a task of an analysis changes no core file. Task IDs are permanent;
+T060 and later were added with the requirements for one running copy, file placement,
+the copy, and the analyses, and each phase lists its tasks in the order of work.
+
 ## Format: `[ID] [P?] [Story] Description`
 
 - **[P]**: Can run in parallel (different files, no dependency on an incomplete task)
-- **[Story]**: The user story the task belongs to (US1 to US7)
+- **[Story]**: The user story the task belongs to (US1 to US8)
 - Paths are relative to the repository root
 
 ## Phase 1: Setup (Shared Infrastructure)
@@ -34,25 +41,29 @@ table or column of the record.
 - [ ] T001 Add `anki` with no version pin to the PEP 723 dependency block of `desktop/backend.py`, and confirm that `just desktop-dependencies` prepares an environment in which `import anki` and `import ankdown` both succeed
 - [ ] T002 In the `ankdown-for-math` repository, add an `id` field to the card model in `ankdown/cli.py` and emit it from `ankdown/ankdown.lua` for each card that supplies one; the package build ignores `id` and package GUIDs stay `simple_hash(front + back)`; prove it with a test in that repository and commit there
 - [ ] T003 In `justfile`, make the `desktop-test` recipe set `XDG_DATA_HOME` to a temporary directory beside its `XDG_CACHE_HOME` override, add a `desktop-study-test` recipe that runs `desktop/tests/study.py` against `just desktop-web` with temporary `XDG_DATA_HOME` and `XDG_CACHE_HOME`, and add `desktop-study-test` to `test-commit`
+- [ ] T060 Create `desktop/tests/boundaries.py` and a `desktop-boundaries` recipe in `justfile` that runs it and is part of `test-commit`: the test runs `uvx --from import-linter lint-imports` on `desktop/` and requires status 0; then, in a temporary copy of `desktop/study/` and `desktop/analysis/` with `desktop/.importlinter`, it adds one violating import at a time (an analysis imports `study`; an analysis imports `anki`; an analysis imports `backend`; the core imports `analysis`; one analysis imports another) and requires status 1 with the import named in the report for each. The test fails first because the packages and the contract file do not exist
+- [ ] T061 Create the packages `desktop/study/` and `desktop/analysis/` with `desktop/analysis/catalog/`, and `desktop/.importlinter` with `root_packages` `study` and `analysis`, `include_external_packages = True`, and three contracts (R17 of `specs/001-in-app-review/research.md`): forbidden `analysis` to `study`, `anki`, `backend`; forbidden `study` to `analysis`; independence of `analysis.catalog.*`. Make `desktop/backend.py` add its own directory to `sys.path` before it imports either package; T060 passes
 - [ ] T004 [P] Add study fixture decks in `desktop/tests/fixtures/study/`: two decks in one folder and one deck at the top level, with a macro equation, a TikZ-cd diagram, an image, deck tags, card tags, and at least twelve cards in total
 
 ---
 
 ## Phase 2: Foundational (Blocking Prerequisites)
 
-**Purpose**: The card ID in the render output, the typed study values, the store with its identity, the record database, and the host route
+**Purpose**: One running copy, the card ID in the render output, the typed study values, the store with its identity, the record database, and the host route
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
+- [ ] T062 Add a failing step to `desktop/tests/native.py`: with the built app running, a second launch of the same executable exits, one window exists afterward, and that window has the focus (FR-047, SC-015). Measure whether the test's display session has a D-Bus session bus; when it has none, start one for the test in the `desktop-native-test` recipe of `justfile`, and replace the matching entry of the Unmeasured section of `specs/001-in-app-review/research.md` with the result
+- [ ] T063 Add `tauri-plugin-single-instance` with version `*` to `desktop/src-tauri/Cargo.toml` and register it as the first plugin in `desktop/src-tauri/src/lib.rs`, with a callback that shows the main window and gives it the focus (R15); T062 passes
 - [ ] T005 Add a failing case to `desktop/tests/paired-cards.test.ts`: the rendered deck of a paired-card source has, for each card, an `id` equal to its `card-id`, in front order
 - [ ] T006 Pass each `card-id` from `desktop/paired-cards.lua` to the exporter filter and make `id` a required, non-empty field of `Card` in `desktop/backend.py` (contract: Render output); T005 passes and `just desktop-test` still produces the same packages
-- [ ] T007 Create `desktop/tests/study.py` with the scenario harness (temporary workspace copied from `desktop/tests/fixtures/study/`, temporary data and cache directories, store inspection with the `anki` library, record inspection with Python's `sqlite3` alone) and failing steps for `study-open` through the bridge route: with no store on disk, a workspace gets a store directory named by a store ID with a `store.json` that lists the workspace path; the R9 settings hold (FSRS on, `applyAllParentLimits` on, `leechAction` 1, `reviewOrder` 7, `maxTaken` 9999); `record.sqlite3` uses the write-ahead log and has the tables and the `review` view of `specs/001-in-app-review/data-model.md`, a `schema` row, a `writer` row with the app release and the Anki version, a `store_event` row of kind `created`, and a `parameter_set` row with source `anki-default`; a second host on the same store gets `StoreInUse`; an unreadable `collection.anki2` gives `StoreUnreadable` with the path and stays unchanged
+- [ ] T007 Create `desktop/tests/study.py` with the scenario harness (temporary workspace copied from `desktop/tests/fixtures/study/`, temporary data and cache directories, store inspection with the `anki` library, record inspection with Python's `sqlite3` alone) and failing steps for `study-open` through the bridge route: with no store on disk, a workspace gets a store directory named by a store ID with a `store.json` that lists the workspace path; the R9 settings hold (FSRS on, `applyAllParentLimits` on, `leechAction` 1, `reviewOrder` 7, `maxTaken` 9999); `record.sqlite3` uses the write-ahead log and has the tables and the `review` view of `specs/001-in-app-review/data-model.md`, a `schema` row, a `writer` row with the app release and the Anki version, a `store_event` row of kind `created`, and a `parameter_set` row with source `anki-default`; an unreadable `collection.anki2` gives `StoreUnreadable` with the path and stays unchanged
 - [ ] T008 Add failing steps to `desktop/tests/study.py` for store identity through the bridge route: with one store on disk, `study-open` for a workspace at another path returns `Unattached` with that store's paths, last use, and numbers of cards and grades, and creates nothing; `study-attach` with `existing` opens that store, adds the path to `store.json`, and writes a `store_event` row of kind `attached`; `study-attach` with `new` creates a second store and leaves the first unchanged; an unknown store ID gives `UnknownStore`
-- [ ] T009 [P] Declare the study values and the twelve study requests of `specs/001-in-app-review/data-model.md` and `contracts/study-bridge.md` as Pydantic models in `desktop/backend.py`, with `extra="forbid"`, `limit` 1 to 8, each `Timing` field 0 or more with no upper bound, `new_per_day` 0 to 9999, `reviews_per_day` 0 to 9999, and `desired_retention` 0.70 to 0.99
+- [ ] T009 [P] Declare the study values and the fourteen study requests of `specs/001-in-app-review/data-model.md` and `contracts/study-bridge.md` as Pydantic models in `desktop/study/values.py`, with `extra="forbid"`, `limit` 1 to 8, each `Timing` field 0 or more with no upper bound, `new_per_day` 0 to 9999, `reviews_per_day` 0 to 9999, and `desired_retention` 0.70 to 0.99
 - [ ] T010 [P] Declare the same values and requests as Zod schemas and inferred types in `desktop/src/bridge.ts`, with a typed `StudyError` and the two states of `StudyOpen`; `bunx tsc --noEmit` passes with no `any` or `unknown`
-- [ ] T011 Implement the store in `desktop/backend.py`: directory `user_data_path("math-flashcards")/study/<store ID>`, `store.json` with the store ID and the attached paths, lookup of the store whose current path is the workspace path, creation only when no store exists or on `study-attach` with `new`, exclusive lock, the R9 settings before the first queue build, and the `StoreInUse`, `StoreUnreadable`, and `UnknownStore` errors
-- [ ] T012 Implement the learning record database in `desktop/backend.py` with Python's `sqlite3`: creation of `record.sqlite3` with the tables and the `review` view of `specs/001-in-app-review/data-model.md`, the write-ahead log, the `schema` row, one `writer` row for each host start, the common columns (`at_ms`, `utc_offset_min`, `writer`), and one insert function for each table as the only write path; cite R12 of `specs/001-in-app-review/research.md` in the module comment as the reference
-- [ ] T013 Implement the `study-host` command in `desktop/backend.py`: one JSON request per input line, one `{"ok": …}` response per output line, store held until input closes, and the `study-open` and `study-attach` actions with the count tree from `deck_due_tree()`
+- [ ] T011 Implement the store in `desktop/study/store.py`: directory `user_data_path("math-flashcards")/study/<store ID>`, `store.json` with the store ID and the attached paths, lookup of the store whose current path is the workspace path, creation only when no store exists or on `study-attach` with `new`, the R9 settings before the first queue build, and the `StoreUnreadable` and `UnknownStore` errors
+- [ ] T012 Implement the learning record database in `desktop/study/record.py` with Python's `sqlite3`: creation of `record.sqlite3` with the tables and the `review` view of `specs/001-in-app-review/data-model.md`, the write-ahead log, the `schema` row, one `writer` row for each host start, the common columns (`at_ms`, `utc_offset_min`, `writer`), and one insert function for each table as the only write path; cite R12 of `specs/001-in-app-review/research.md` in the module comment as the reference
+- [ ] T013 Implement the host loop in `desktop/study/host.py` and the `study-host` command in `desktop/backend.py` that starts it and gives it the deck render function: one JSON request per input line, one `{"ok": …}` response per output line, store held until input closes, and the `study-open` and `study-attach` actions with the count tree from `deck_due_tree()`
 - [ ] T014 Add the study route to `desktop/src-tauri/src/lib.rs`: every `study-*` action goes to one host process that starts on first use, serves one request at a time, restarts after an early exit, and stops at app exit; add the store's media folder to the asset scope from the `study-open` result and enable the asset protocol in `desktop/src-tauri/tauri.conf.json`
 - [ ] T015 [P] Add the same study route and a media route to the middleware in `desktop/vite.config.ts`; the T007 and T008 steps pass
 
@@ -75,21 +86,24 @@ table or column of the record.
 - [ ] T018 [US6] Add failing steps to `desktop/tests/study.py` for the record of a presentation (FR-028, SC-009): after the first sync the record has a `card_change` row of kind `added` and a `content` row for each card; a session start writes a `session` row with its scope; after a wait of 2 s, a reveal, a wait of 1 s, and a grade, the `review` row has the time and offset, card ID, deck path, folder, deck title, deck tags and card tags, the front and back shown, session and position, kind, scheduler day, `reveal_ms` within 100 ms of 2000, `grade_ms` within 100 ms of 1000, the grade, four offered intervals of which the selected one agrees with the interval after, empty memory state before the first grade of a new card and a set memory state after it, target recall, parameter set, the daily limits, and the writer; its `revlog_*` values equal the store's review log row; with the focus away from the window for 2 s, `unfocused_ms` is within 100 ms of 2000; with the page clock advanced by 3 hours between reveal and grade, `grade_ms` is the full time and `revlog_time_ms` is Anki's limited value (SC-014); Escape with a card on screen leaves a `presentation` row with no `response` row and writes a `session_end` row with cause `left`
 - [ ] T019 [US6] Add failing steps to `desktop/tests/study.py` for the record as an independent source: a second read-only `sqlite3` connection reads every row while the app runs, and the next grade succeeds (FR-037); the four queries of `specs/001-in-app-review/contracts/learning-record.md` give the numbers that the scenario's grades imply (SC-011, SC-012); with the app stopped, grades and due-date changes made with the `anki` library appear after the next open as `response` rows with `recovered` set and empty times, and every review log row has a `response` row with the same nine values (FR-036); a session that a `SIGKILL` left open gets a `session_end` row with cause `recovered`; every table and column of the record's schema is named in `docs/study-record.md` (FR-038); the Study screen shows the path of the record, and it is the file that the scenario reads (FR-042)
 - [ ] T020 [US6] Add failing steps to `desktop/tests/study.py` for a moved workspace through the window (FR-041): after the workspace folder is renamed and opened, the window lists the existing store with its earlier path, last use, and numbers of cards and grades, no store directory is created, and the editor works; after the user attaches the store, the counts and every record row are as before the rename; in a second workspace the user selects a new store and the first store is unchanged
+- [ ] T064 [US6] Add failing steps to `desktop/tests/study.py` for editor views (FR-058): a card that is open in the editor for 2 s, until another card is selected, has one `editor_view` row with its card ID, its deck path, and `shown_ms` within 100 ms of 2000; with the focus away from the window for 1 s of that time, `unfocused_ms` is within 100 ms of 1000; the card that is open when a study session starts has a row; a workspace in the `Unattached` state writes no row
 
 ### Implementation for User Stories 1 and 6
 
-- [ ] T021 [US1] Implement the add path of `study-sync` in `desktop/backend.py`: for at most `limit` decks that are not current, render with `render()`, create the Anki deck `Workspace::<folders>::<file stem>`, add the notes in one `add_notes` call with GUID `card-id` and the rendered `Front` and `Back`, copy media through `col.media`, write the deck record of `input_hashes()` to the collection config, write a `card_change` row of kind `added` for each note and a `content` row with its `media` rows and `record-media/` files for each new front and back pair, and return `SyncResult` with `pending`
-- [ ] T022 [US6] Implement in `desktop/backend.py` the pure conversion of R13 from Anki's values (queued card, current and next states, card statistics, card after the answer, review log row) and the window's `Timing` to the `presentation` and `response` values of `specs/001-in-app-review/data-model.md`, with an empty value for each fact that was not observed
-- [ ] T023 [US1] Implement `study-begin`, `study-next`, `study-answer`, and `study-end` in `desktop/backend.py` by the R10 call sequence: a `session` row at begin; the top card of the scope's queue with a `presentation` row written before the response; Anki's four labels; the three counts; `Finished` with `next_learning_seconds` from `congratulations_info()`; `StaleCard` when `presentation` is not the session's last presentation or its card is not the top card; `reveal_ms + grade_ms` as Anki's answer time; the `response` row after `answer_card()` returns; a `session_end` row at end and for each open session when the host's input closes
-- [ ] T024 [US6] Implement recovery at store open in `desktop/backend.py`: one `response` row with `recovered` set for each review log row that has none, and one `session_end` row with cause `recovered` for each session that has none, by the pure comparison of review log IDs with `response` rows
+- [ ] T021 [US1] Implement the add path of `study-sync` in `desktop/study/sync.py`: for at most `limit` decks that are not current, render with the render function that the entry script gave, create the Anki deck `Workspace::<folders>::<file stem>`, add the notes in one `add_notes` call with GUID `card-id` and the rendered `Front` and `Back`, copy media through `col.media`, write the deck record of `input_hashes()` to the collection config, write a `card_change` row of kind `added` for each note and a `content` row with its `media` rows and `record-media/` files for each new front and back pair, and return `SyncResult` with `pending`
+- [ ] T022 [US6] Implement in `desktop/study/session.py` the pure conversion of R13 from Anki's values (queued card, current and next states, card statistics, card after the answer, review log row) and the window's `Timing` to the `presentation` and `response` values of `specs/001-in-app-review/data-model.md`, with an empty value for each fact that was not observed
+- [ ] T023 [US1] Implement `study-begin`, `study-next`, `study-answer`, and `study-end` in `desktop/study/session.py` by the R10 call sequence: a `session` row at begin; the top card of the scope's queue with a `presentation` row written before the response; Anki's four labels; the three counts; `Finished` with `next_learning_seconds` from `congratulations_info()`; `StaleCard` when `presentation` is not the session's last presentation or its card is not the top card; `reveal_ms + grade_ms` as Anki's answer time; the `response` row after `answer_card()` returns; a `session_end` row at end and for each open session when the host's input closes
+- [ ] T024 [US6] Implement recovery at store open in `desktop/study/store.py`: one `response` row with `recovered` set for each review log row that has none, and one `session_end` row with cause `recovered` for each session that has none, by the pure comparison of review log IDs with `response` rows
 - [ ] T025 [P] [US1] Add element typesetting for rendered card HTML to `desktop/src/math.ts`, using the loaded MathJax and `texOptions(macros)` of the active asset set
 - [ ] T026 [P] [US1] Create `desktop/src/study.ts`: the session state (unattached, front, revealed, finished, error); the timing of each card with `performance.now()` for the time to reveal and the time to grade, and with the window's visibility and focus events for the time without focus; the sync loop that calls `study-sync` until `pending` is zero and reports progress; and the handling of `StaleCard` by fetching the current card
 - [ ] T027 [US1] Create `desktop/src/study.tsx` and its styles in `desktop/src/App.css`: card front and back from the note HTML, image sources resolved against `media`, four grade buttons with Anki's labels, session counts, the finished state, the store error states, the keys Space, 1 to 4, and Escape, and `study-end` when the user leaves and when the queue is finished
 - [ ] T028 [US1] Connect the screen in `desktop/src/App.tsx`: call `study-open` and run the sync loop at workspace open without blocking the editor, show sync progress, add **Study** to the workspace menu and the Ctrl-K commands, save pending edits before a session starts, and name the function **Study** everywhere (FR-027)
 - [ ] T029 [US6] Add to `desktop/src/study.tsx` and `desktop/src/App.tsx` the attach list for the `Unattached` state (each store with its paths, whether its current path exists, last use, and numbers of cards and grades; **Attach** and **Start new**), and the paths of the learning record and the store with a command that opens the folder
 - [ ] T030 [P] [US6] Write `docs/study-record.md`: the location of the record and how to open it read-only; for each table and each column its meaning, unit, value coding, and the case in which it is empty; the `review` view; the guarantees of `specs/001-in-app-review/contracts/learning-record.md`; the mapping to the columns of the `anki-revlogs-10k` research data set; and the example queries
+- [ ] T065 [US6] Implement `study-viewed` in `desktop/study/session.py` with its insert function for `editor_view` in `desktop/study/record.py`
+- [ ] T066 [US6] Measure editor views in `desktop/src/study.ts` (the time a card is open and the time without focus, with `performance.now()` and the window's visibility and focus events) and send `study-viewed` from `desktop/src/App.tsx` when the card leaves the editor: another card is selected, the deck closes, a study session starts, or the window closes
 
-**Checkpoint**: The T016 to T020 steps pass; the workspace can be studied end to end and each showing of a card is in the record. Use on the real data directory starts after this checkpoint, not before
+**Checkpoint**: The T016 to T020 and T064 steps pass; the workspace can be studied end to end and each showing of a card is in the record. Use on the real data directory starts after this checkpoint, not before
 
 ---
 
@@ -107,8 +121,8 @@ table or column of the record.
 
 ### Implementation for User Story 2
 
-- [ ] T034 [US2] Implement the sync plan in `desktop/backend.py` as one function of the rendered decks and a store snapshot (GUID to deck, sides, deck and card tags, scheduler tags, suspended): adds, field and tag updates, moves, removals, restores, and duplicates, by the R6 rules for current and not-current decks
-- [ ] T035 [US2] Apply the plan in `study-sync` in `desktop/backend.py`: `update_notes(skip_undo_entry=True)` with the scheduler's tags kept, `set_deck`, suspend then move to `Removed`, move back then unsuspend, removal of an Anki deck under `Workspace` only after its cards have left it, removal of the deck record of a deleted file, one `card_change` row for each applied change, one `content` row with its media for each new front and back pair, and `failed` and `duplicates` in the result
+- [ ] T034 [US2] Implement the sync plan in `desktop/study/sync.py` as one function of the rendered decks and a store snapshot (GUID to deck, sides, deck and card tags, scheduler tags, suspended): adds, field and tag updates, moves, removals, restores, and duplicates, by the R6 rules for current and not-current decks
+- [ ] T035 [US2] Apply the plan in `study-sync` in `desktop/study/sync.py`: `update_notes(skip_undo_entry=True)` with the scheduler's tags kept, `set_deck`, suspend then move to `Removed`, move back then unsuspend, removal of an Anki deck under `Workspace` only after its cards have left it, removal of the deck record of a deleted file, one `card_change` row for each applied change, one `content` row with its media for each new front and back pair, and `failed` and `duplicates` in the result
 - [ ] T036 [US2] Trigger the sync loop in `desktop/src/App.tsx` after each successful save, after each file-watch refresh, and before a session starts; when the card on screen changed or left, show the current card
 - [ ] T037 [P] [US2] Show each duplicate `card-id` as a problem that names both decks in `desktop/src/problems.ts` and `desktop/src/problem-drawer.tsx`
 
@@ -129,7 +143,7 @@ table or column of the record.
 
 ### Implementation for User Story 3
 
-- [ ] T040 [US3] Implement `study-counts` and the `UnknownScope` error in `desktop/backend.py`, and the pure mapping from `Scope` and `DeckPath` to Anki deck names
+- [ ] T040 [US3] Implement `study-counts` and the `UnknownScope` error in `desktop/study/store.py`, and the pure mapping from `Scope` and `DeckPath` to Anki deck names
 - [ ] T041 [US3] Show the three counts on each deck and folder of the tree in `desktop/src/App.tsx`, refresh them after each grade and each sync, and add **Study** to the deck and folder context menus with the matching scope, using the mapping in `desktop/src/study.ts`
 
 **Checkpoint**: The T038 and T039 cases pass
@@ -148,7 +162,7 @@ table or column of the record.
 
 ### Implementation for User Story 4
 
-- [ ] T043 [US4] Implement `study-undo` and the `undoable` value in `desktop/backend.py` from Anki's undo status: undo only when the last undo step is a grade, an `undo` row for the undone `response` row, `StaleCard` otherwise
+- [ ] T043 [US4] Implement `study-undo` and the `undoable` value in `desktop/study/session.py` from Anki's undo status: undo only when the last undo step is a grade, an `undo` row for the undone `response` row, `StaleCard` otherwise
 - [ ] T044 [US4] Add Undo (button and Ctrl-Z, with the disabled reason) and Edit (button and key E, with the return to the session) to `desktop/src/study.tsx`, and the editor round trip to `desktop/src/App.tsx`
 
 **Checkpoint**: The T042 steps pass
@@ -167,7 +181,7 @@ table or column of the record.
 
 ### Implementation for User Story 5
 
-- [ ] T046 [US5] Implement `study-set-settings` in `desktop/backend.py`: `new_per_day` 0 to 9999, `reviews_per_day` 0 to 9999, `desired_retention` 0.70 to 0.99, `InvalidSettings` outside a bound, the one preset that all decks share, and one `setting_change` row for each value that changed
+- [ ] T046 [US5] Implement `study-set-settings` in `desktop/study/settings.py`: `new_per_day` 0 to 9999, `reviews_per_day` 0 to 9999, `desired_retention` 0.70 to 0.99, `InvalidSettings` outside a bound, the one preset that all decks share, and one `setting_change` row for each value that changed
 - [ ] T047 [US5] Add the settings form to `desktop/src/study.tsx` with the three fields, their bounds, and the count refresh after a change
 
 **Checkpoint**: The T045 steps pass
@@ -187,24 +201,68 @@ table or column of the record.
 
 ### Implementation for User Story 7
 
-- [ ] T050 [US7] Implement `study-fit` and `study-apply-fit` in `desktop/backend.py` by R14: Anki's fit on the whole store, `evaluate_params_legacy` for both parameter sets, `NotEnoughHistory` for Anki's insufficient-data error and for a fit that used no review, the preset's `fsrsParams6` on apply, and the `parameter_set` and `setting_change` rows
+- [ ] T050 [US7] Implement `study-fit` and `study-apply-fit` in `desktop/study/settings.py` by R14: Anki's fit on the whole store, `evaluate_params_legacy` for both parameter sets, `NotEnoughHistory` for Anki's insufficient-data error and for a fit that used no review, the preset's `fsrsParams6` on apply, and the `parameter_set` and `setting_change` rows
 - [ ] T051 [US7] Add the fit command to the settings of `desktop/src/study.tsx`: progress while the fit runs, both sets of measures, **Apply** and **Close**, and the `NotEnoughHistory` statement
 
 **Checkpoint**: The T049 steps pass
 
 ---
 
-## Phase 9: Polish & Cross-Cutting Concerns
+## Phase 9: User Story 8 - See statistics from my record and add new ones safely (Priority: P2)
 
-**Purpose**: Backups, permanence across the whole scenario, the native path, installation, documentation, and measurements
+**Goal**: The user opens **Statistics**, selects an analysis, and sees its result from the learning record. An analysis only reads the record, and a new analysis is one new module that changes no core file and no stored data
 
-- [ ] T052 Add failing steps to `desktop/tests/study.py`, then make them pass in `desktop/backend.py`: the host writes an Anki backup to the store's `backups/` folder at open and at exit when Anki's backup interval allows, with a copy of the record made by `sqlite3.Connection.backup` under the same time, which `sqlite3` opens with the same number of rows in each table (FR-040); a record copy stays while the `.colpkg` of the same time stays; **Rebuild cached data** leaves the store, its review log, and the record unchanged; a review card whose lapse count is one below Anki's leech threshold, graded Again, stays unsuspended, returns in the session, and has the tag `leech` (FR-024, FR-045); Anki's database check (`fix_integrity()`) reports no problem at the end of the scenario; a package generated for a studied deck has the same content and status as before
+**Independent Test**: Study several cards. Open Statistics and run each analysis; the numbers agree with the grades given. Add a new analysis; no part of study or of the record changes, and the earlier analyses give the same results
+
+### Tests for User Story 8 ⚠️
+
+- [ ] T067 [US8] Add failing steps to `desktop/tests/study.py`: **Statistics** in the workspace menu lists the two analyses of `specs/001-in-app-review/contracts/analysis.md` with their titles and summaries; `recall_by_folder` shows, for each folder and month, the number of presentations, the share graded Again, and the mean time to reveal that the scenario's grades imply, equal to the first query of `contracts/learning-record.md`; `calibration` shows bands whose numbers of grades sum to the number of review grades that were not undone; with a session in progress, an analysis runs and the next grade is recorded; a dump of every record row is equal before and after each analysis runs (SC-019)
+- [ ] T068 [US8] Create `desktop/tests/analysis.py` and a `desktop-analysis-test` recipe in `justfile` that is part of `test-commit`. The test copies `desktop/backend.py`, `desktop/study/`, and `desktop/analysis/` to a temporary directory, calls the entry script there as the bridge does (one process and one JSON request for each action), and uses a record under a temporary `XDG_DATA_HOME`. Failing steps: `analysis-list` gives the catalog in the order of the titles; after one module is added to the temporary catalog, the list holds it, its result is the table that it returns, and the results of the earlier analyses are equal to those before (SC-018); a module that raises gives `AnalysisFailed` with its text, and the other analyses run; a module that executes an `INSERT` gives `AnalysisFailed` that names a read-only database, and every record row is equal afterward; a module that does not import is in the list with its `failure`; an unknown name gives `UnknownAnalysis`; a path outside the study data directory gives `RecordUnreadable`
+
+### Implementation for User Story 8
+
+- [ ] T069 [US8] Implement `desktop/analysis/__init__.py`: the `Analysis`, `Column`, `AnalysisTable`, and `AnalysisError` values of `specs/001-in-app-review/data-model.md` as Pydantic models; the path rule and the read-only connection of `contracts/analysis.md`; the list of the catalog with `pkgutil.iter_modules`, with a `failure` for a module that does not import; and the run of one analysis. Cite the `sqlite3` URI documentation and R17 in the module comment
+- [ ] T070 [P] [US8] Implement `desktop/analysis/catalog/recall_by_folder.py`: title, summary, and one function from the read-only connection to the table of FR-056 for folders and months
+- [ ] T071 [P] [US8] Implement `desktop/analysis/catalog/calibration.py`: title, summary, and one function from the read-only connection to the table of FR-056 for predicted against observed recall, in bands of `before_retrievability`
+- [ ] T072 [US8] Add the `analysis-list` and `analysis-run` requests to the entry script `desktop/backend.py` and their Zod schemas to `desktop/src/bridge.ts`; both use the existing route of one process for each request, and neither reaches the study host; the T068 steps pass
+- [ ] T073 [US8] Create `desktop/src/statistics.tsx` and its styles in `desktop/src/App.css`: the list of analyses, the run of the selected one, one table renderer for every `AnalysisTable` with column names and units, and the failure of an analysis in place of its table; add **Statistics** to the workspace menu and the Ctrl-K commands in `desktop/src/App.tsx`; the T067 steps pass
+- [ ] T074 [P] [US8] Write `docs/analyses.md`: what an analysis is; the rules of `specs/001-in-app-review/contracts/analysis.md`; how to add one (one module and its test, and no other file); where the field reference of the record is (`docs/study-record.md`); and what to do when the record does not hold a needed fact (a core change that adds a table or a nullable column, never an analysis that writes)
+
+**Checkpoint**: The T067 and T068 steps pass; `just desktop-boundaries` passes
+
+---
+
+## Phase 10: Keeping the data (FR-049, FR-050)
+
+**Goal**: The user writes a complete copy of a store to a directory of their choice from inside the running app, and a copy attaches on any machine
+
+**Independent Test**: Save a copy during a session. Start the app on an empty data directory, place the copy there, and attach it; the counts and every record row are those of the store at the time of the copy
+
+### Tests for the copy ⚠️
+
+- [ ] T075 Add failing steps to `desktop/tests/study.py`: with a session in progress, **Save a copy** in the Study settings, with a temporary directory, writes `math-flashcards-study-<time>/<store ID>/` with `store.json`, `collection.anki2`, `record.sqlite3`, and `record-media/`; `sqlite3` opens the copy's record and finds every row that was committed before the copy; the store's record has a `store_event` row of kind `copied` with that path; the next grade succeeds, and Undo is unavailable until it; a directory that does not exist gives `CopyFailed` with the cause, and the store is unchanged; after the app is stopped and started with an empty `XDG_DATA_HOME` in which the copy is placed under `math-flashcards/study/`, the window lists the copy, and after the user attaches it the counts and every record row equal those of the copy (SC-017)
+
+### Implementation for the copy
+
+- [ ] T076 Implement `study-copy` in `desktop/study/store.py` by R18: close the collection and the record, copy the store directory with `shutil.copytree`, open both again, write the `store_event` row, and return `CopyFailed` with the store open and unchanged when the copy cannot be written
+- [ ] T077 Add **Save a copy** to the Study settings in `desktop/src/study.tsx`, with the folder picker of the dialog plugin, progress while the copy runs, and the path of the finished copy
+
+**Checkpoint**: The T075 steps pass
+
+---
+
+## Phase 11: Polish & Cross-Cutting Concerns
+
+**Purpose**: Backups, permanence across the whole scenario, file placement, the native path, installation, documentation, and measurements
+
+- [ ] T078 Add a step to `desktop/tests/native.py`: the built app runs the study step with an empty directory as `HOME` and with `XDG_DATA_HOME`, `XDG_CONFIG_HOME`, `XDG_STATE_HOME`, and `XDG_CACHE_HOME` set to four directories inside it; afterward every file under that `HOME` is under one of the four directories; after the cache and state directories are removed and the app starts again, every record row is equal and the counts are as before (FR-048, SC-016). Add the same assertion for the bridge processes at the end of `desktop/tests/study.py`
+- [ ] T052 Add failing steps to `desktop/tests/study.py`, then make them pass in `desktop/study/store.py`: the host writes an Anki backup to the store's `backups/` folder at open and at exit when Anki's backup interval allows, with a copy of the record made by `sqlite3.Connection.backup` under the same time, which `sqlite3` opens with the same number of rows in each table (FR-040); a record copy stays while the `.colpkg` of the same time stays; **Rebuild cached data** leaves the store, its review log, and the record unchanged; a review card whose lapse count is one below Anki's leech threshold, graded Again, stays unsuspended, returns in the session, and has the tag `leech` (FR-024, FR-045); Anki's database check (`fix_integrity()`) reports no problem at the end of the scenario; a package generated for a studied deck has the same content and status as before
 - [ ] T053 Add a step at the end of `desktop/tests/study.py`: every record row that the scenario read at an earlier step is equal at the end, and no row is missing, across undo, edits, moves, removals, **Rebuild cached data**, and the change of the workspace path (SC-010)
-- [ ] T054 Save the record that the scenario produces as `desktop/tests/fixtures/study/record-v1.sqlite3` with a dump of its rows beside it, and add a step to `desktop/tests/study.py`: the host opens a store that holds this record, every row equals the dump, and the `review` view reads it (FR-039, SC-013); document in `docs/study-record.md` that this fixture is never regenerated
+- [ ] T054 Save the record that the scenario produces as `desktop/tests/fixtures/study/record-v1.sqlite3` with a dump of its rows beside it, and add a step to `desktop/tests/study.py`: the host opens a store that holds this record, every row equals the dump, and the `review` view reads it (FR-039, SC-013); add a step to `desktop/tests/analysis.py`: each analysis of the catalog runs on this record and returns a table; document in `docs/study-record.md` that this fixture is never regenerated
 - [ ] T055 [P] Add one study step to `desktop/tests/native.py`: in the built window, start a session, grade a card, and confirm the review log row and the `review` row in the isolated store, with an image card visible through the asset protocol
-- [ ] T056 [P] Make the release validation in `desktop/linux/install.py` import `anki` in the release environment and fail the candidate release when the import fails; extend `desktop/tests/installation.py` for it, and assert there that a store under the data directory, with its record, is unchanged by the installation of a new release (FR-017)
-- [ ] T057 [P] Document Study in `desktop/README.md` (use, keys, settings, the fit, store and record location, attaching a store after a move or on a new machine, backups, the one-window rule, test recipe) and record the `anki` dependency and the study boundary in `docs/desktop-dependency-survey.md`
-- [ ] T058 Run the manual table of `specs/001-in-app-review/quickstart.md` on the repository's `decks/` folder with a temporary `XDG_DATA_HOME`; replace the remaining entries of the Unmeasured section of `specs/001-in-app-review/research.md` with the measured first-sync time, save-to-review time, count time, and record size for each presentation; open an issue for each criterion that fails
+- [ ] T056 [P] Make `desktop/linux/install.py` copy `desktop/study/` and `desktop/analysis/` into the release beside the entry script, and make the release validation import `anki`, `study`, and `analysis` in the release environment and fail the candidate release when an import fails; extend `desktop/tests/installation.py` for it, and assert there that a store under the data directory, with its record, is unchanged by the installation of a new release (FR-017)
+- [ ] T057 [P] Document Study and Statistics in `desktop/README.md` (use, keys, settings, the fit, store and record location, saving a copy, attaching a store after a move or on a new machine, backups, the one running copy, where each kind of file is placed, test recipes) and record the `anki`, `tauri-plugin-single-instance`, and Import Linter dependencies and the three parts in `docs/desktop-dependency-survey.md`
+- [ ] T058 Run the manual table of `specs/001-in-app-review/quickstart.md` on the repository's `decks/` folder with a temporary `XDG_DATA_HOME`; replace the remaining entries of the Unmeasured section of `specs/001-in-app-review/research.md` with the measured first-sync time, save-to-review time, count time, copy time, and record size for each presentation; open an issue for each criterion that fails
 - [ ] T059 Run `just test-commit` and confirm that the whole suite stays under five minutes
 
 ---
@@ -213,17 +271,19 @@ table or column of the record.
 
 ### Phase Dependencies
 
-- **Setup (Phase 1)**: No dependencies. T002 is in another repository and must be pushed before T006.
-- **Foundational (Phase 2)**: Depends on Setup. Blocks every story.
+- **Setup (Phase 1)**: No dependencies. T002 is in another repository and must be pushed before T006. T060 comes before T061, and T061 comes before every task that names a file in `desktop/study/` or `desktop/analysis/`.
+- **Foundational (Phase 2)**: Depends on Setup. Blocks every story. T062 and T063 come first: the store's design depends on one running copy.
 - **US1 and US6 (Phase 3)**: Depends on Foundational.
 - **US2 to US5 and US7 (Phases 4 to 8)**: Each depends on Phase 3. None depends on another.
-- **Polish (Phase 9)**: Depends on the stories that are in the release. T053 and T054 need US2 and US4; T055 needs Phase 3; T058 needs US1 to US3.
+- **US8 (Phase 9)**: Depends on Phase 3 for a record with rows. It depends on no other story and changes no file of `desktop/study/`.
+- **Keeping the data (Phase 10)**: Depends on Phase 3.
+- **Polish (Phase 11)**: Depends on the stories that are in the release. T053 and T054 need US2 and US4; the analysis step of T054 needs US8; T055 and T078 need Phase 3; T058 needs US1 to US3 and Phase 10.
 
 ### Within Each Phase
 
 - A test task is committed and fails for its stated reason before the implementation tasks of its phase start.
 - Bridge values before bridge actions; bridge actions before window code that calls them.
-- `desktop/tests/study.py`, `desktop/backend.py`, and `desktop/src/App.tsx` are each changed by many tasks; tasks on the same file run in order.
+- `desktop/tests/study.py`, the modules of `desktop/study/`, and `desktop/src/App.tsx` are each changed by many tasks; tasks on the same file run in order.
 - In Phase 3, T022 comes before T023, which writes the rows that T022 builds.
 - T048 comes before T049: the fit test needs the measured history size.
 
@@ -233,18 +293,21 @@ table or column of the record.
 - T009 and T010; T015 beside T014.
 - T025, T026, and T030 beside T021 to T024.
 - T037 beside T034 to T036; T038 beside T039.
+- T070, T071, and T074 beside T069.
 - T055, T056, and T057.
-- After Phase 3, the phases US2 to US5 and US7 can proceed in parallel when their `desktop/backend.py` and `desktop/src/App.tsx` changes are merged in order.
+- After Phase 3, the phases US2 to US5 and US7 can proceed in parallel when their changes to `desktop/study/` and `desktop/src/App.tsx` are merged in order.
+- US8 proceeds in parallel with every core phase: it shares no Python file with them.
 
 ## Parallel Example: User Stories 1 and 6
 
 ```text
 After T016 to T020 are committed and failing:
-  Task: "T021 add path of study-sync in desktop/backend.py"   then T022, T023, T024 (same file)
+  Task: "T021 add path of study-sync in desktop/study/sync.py"
+  Task: "T022 conversion in desktop/study/session.py"          then T023 (same file), T024
   Task: "T025 element typesetting in desktop/src/math.ts"
   Task: "T026 session state, timing, and sync loop in desktop/src/study.ts"
   Task: "T030 field reference in docs/study-record.md"
-Then T027 (study.tsx), T028 (App.tsx), T029 (attach list and record location).
+Then T027 (study.tsx), T028 (App.tsx), T029 (attach list and record location), T065 and T066 (editor views).
 ```
 
 ## Implementation Strategy
@@ -262,18 +325,21 @@ therefore needs Phase 3 and US2.
 
 ### Incremental Delivery
 
-1. Setup and Foundational: a real store with its record opens through the real bridge route.
+1. Setup and Foundational: the three parts with their checked boundaries; one running copy; a real store with its record opens through the real bridge route.
 2. US1 and US6: the workspace can be studied, and every showing of a card is recorded.
 3. US2: editing and studying can alternate; the record holds each card change.
 4. US3: counts and deck or folder sessions.
 5. US4: Undo and Edit.
 6. US5: load settings.
 7. US7: fit to the user's own history.
-8. Polish: backups, permanence checks, the first-version record fixture, native proof, installation, documentation, measurements.
+8. US8: Statistics with the first two analyses. Every later analysis is one module.
+9. Keeping the data: a complete copy to a chosen directory.
+10. Polish: backups, permanence checks, the first-version record fixture, file placement, native proof, installation, documentation, measurements.
 
 ## Notes
 
 - Every test run uses temporary `XDG_DATA_HOME` and `XDG_CACHE_HOME`. The real review history and the real learning record are never a test target.
 - The store is user data. No task deletes a store, and no task adds a migration or an import of earlier history.
 - A change to the record's schema after T054 adds tables or nullable columns and a `schema` row. The T054 step is the proof that earlier rows stay readable.
+- An analysis that is added after this feature needs no task here: one module in `desktop/analysis/catalog/`, its test in `desktop/tests/analysis.py`, and `docs/analyses.md` as the guide.
 - Commit after each task. A failing test commit that a hook rejects uses the repository's sanctioned route for red commits.

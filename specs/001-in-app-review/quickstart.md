@@ -2,8 +2,9 @@
 
 These scenarios prove the feature through the real window, the real bridge, and a real
 store. Values and actions are defined in [data-model.md](./data-model.md),
-[contracts/study-bridge.md](./contracts/study-bridge.md), and
-[contracts/learning-record.md](./contracts/learning-record.md). The scenario reads the
+[contracts/study-bridge.md](./contracts/study-bridge.md),
+[contracts/learning-record.md](./contracts/learning-record.md), and
+[contracts/analysis.md](./contracts/analysis.md). The scenario reads the
 learning record with Python's `sqlite3`, with no part of the app and no part of Anki.
 
 ## Prerequisites
@@ -51,7 +52,13 @@ browser. `just test-commit` includes it.
 | Put one `card-id` in two decks | The sync result names both decks. The note stays with the first deck. |
 | Set new cards per day to 3 and study the workspace | Exactly 3 new cards are offered. The record has a `setting_change` row with the earlier and the later value. |
 | Set target recall to 1.0 | The field shows its bound; the stored setting is unchanged. |
-| Start a second bridge host on the same store | Its first request returns `StoreInUse`. |
+| Open a card in the editor for 2 s, then select another card | The record has one `editor_view` row for the first card with `shown_ms` within 100 ms of 2000. |
+| Open **Statistics** | The two analyses are listed with their titles and summaries. |
+| Run each analysis | `recall_by_folder` gives the numbers that the grades imply. The numbers of grades in the bands of `calibration` sum to the number of review grades that were not undone. |
+| Dump every record row, run each analysis, and dump again | The two dumps are equal. |
+| Run an analysis with a session in progress, then grade a card | The result shows. The grade is recorded. |
+| With a session in progress, select **Save a copy** with a temporary directory | The directory holds a store with `store.json`, the collection, and the record. The record has a `store_event` row of kind `copied`. The next grade succeeds. |
+| Stop the app; start it with an empty data directory that holds the copy; attach it | The counts and every record row equal those of the copy. |
 | Replace `collection.anki2` with an unreadable file and open the workspace | The window shows the error with the store path. The file is unchanged. |
 | Select **Rebuild cached data** | The store, its review log, and the record are unchanged. |
 | Open the Study settings | The path of the learning record shows and is the file that the scenario reads. |
@@ -64,8 +71,44 @@ browser. `just test-commit` includes it.
 | Stop the app and read `backups/` | Each `.colpkg` has a copy of the record with the same time in its name; `sqlite3` opens the copy and finds the same number of rows in each table. |
 | Compare every record row that the scenario read at an earlier step with the same row at the end | Each row is equal. No row is missing. |
 | Open a store that holds `desktop/tests/fixtures/study/record-v1.sqlite3` | Every row equals the committed dump, and the `review` view reads it. |
+| Run each analysis on `desktop/tests/fixtures/study/record-v1.sqlite3` | Each returns a table. |
+| List every file that the bridge processes wrote outside the workspace | Each is under the temporary data directory or the temporary cache directory. |
 | Run Anki's database check on the store | No problem is reported. |
 | Generate a package for a studied deck | The package and its status are as before this feature. |
+
+## Analysis catalog
+
+```bash
+just desktop-analysis-test
+```
+
+The recipe runs `desktop/tests/analysis.py`. The test works on a temporary copy of the
+entry script and the two packages, and calls the entry script as the bridge does.
+
+| Step | Expected result |
+| --- | --- |
+| List the catalog | The analyses, in the order of their titles. |
+| Add one module to the temporary catalog | The list holds it. Its result is the table that it returns. The results of the earlier analyses are equal to those before. |
+| Add a module that raises | Its run gives `AnalysisFailed` with the error text. The other analyses run. |
+| Add a module that executes an `INSERT` | Its run gives `AnalysisFailed` that names a read-only database. Every record row is equal afterward. |
+| Add a module that does not import | The list holds it with its `failure`. The other analyses are listed. |
+| Run a name that the catalog does not hold | `UnknownAnalysis`. |
+| Give a path outside the study data directory | `RecordUnreadable`. |
+
+## Part boundaries
+
+```bash
+just desktop-boundaries
+```
+
+The recipe runs `desktop/tests/boundaries.py`, which runs Import Linter on `desktop/`.
+
+| Step | Expected result |
+| --- | --- |
+| Check the repository | Three contracts are kept. |
+| In a temporary copy, an analysis imports `study`, `anki`, or `backend` | The check fails and names the import. |
+| In a temporary copy, the core imports `analysis` | The check fails and names the import. |
+| In a temporary copy, one analysis imports another | The check fails and names the import. |
 
 ## Manual check on the full workspace
 
@@ -83,6 +126,7 @@ Open `http://127.0.0.1:1420` and the repository's `decks/` folder.
 | Total of the tree's new counts | Equal to the number of cards in the decks, limited by the daily setting. | SC-006 |
 | Size of `record.sqlite3` after the 20 grades | Record the bytes for each presentation. | Purpose (career time scale) |
 | Open `record.sqlite3` with the `sqlite3` shell and with DuckDB while the app runs | Both read the `review` view. | SC-011 |
+| **Save a copy** of the store | Progress shows. Record the time. | SC-017 |
 
 ## Native check
 
@@ -90,6 +134,13 @@ Open `http://127.0.0.1:1420` and the repository's `decks/` folder.
 just desktop-native-test
 ```
 
-The native scenario gains one study step: start a session in the built window, grade a
-card, and confirm the review log row and the record's `review` row. It proves the host
-route in `lib.rs` and the media scope, which the browser scenario does not use.
+The native scenario gains three steps. They prove what the browser scenario does not
+use: the host route in `lib.rs`, the media scope, the single-instance plugin, and the
+files that the web view writes.
+
+| Step | Expected result | Criterion |
+| --- | --- | --- |
+| Start a session in the built window and grade a card | The store has the review log row, and the record has the `review` row. An image card shows. | SC-002 |
+| Start the app a second time while it runs | The second process exits. One window exists, and it has the focus. | SC-015 |
+| Run with an empty directory as `HOME` and the four XDG directories inside it; list every file under that `HOME` | Each file is under one of the four directories. | SC-016 |
+| Remove the cache and state directories; start the app | Every record row is equal. The counts are as before. | SC-016 |

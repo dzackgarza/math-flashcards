@@ -35,6 +35,27 @@ keep the answer in chat. Extend an existing owning document when a durable rule
 or explanation belongs there.
 
 <!-- agent-memory:start -->
+# Application architecture
+
+`.specify/memory/constitution.md` states these rules in full (principles VI to IX). They
+apply to every change of the desktop app.
+
+- **One person, one running copy.** The app is a singleton for one user. Do not add a
+  lock, conflict handling, or an error state for a second running copy or a second user.
+- **XDG placement.** Each file the app writes outside the workspace is under the XDG
+  base directory for its kind, resolved by a library. Learning data is under
+  `XDG_DATA_HOME`. Removal of the cache and state directories loses no learning data.
+- **Learning data is permanent.** No change deletes or rewrites a record of the user's
+  learning, and its format only grows. Each action that bears on the user's learning is
+  recoverable from the git history of the workspace or from the learning record.
+- **Three parts.** The core (scheduling, Anki-based logic, the review store, every write
+  of learning data) changes rarely. Analyses (everything computed from recorded history)
+  and the interface change often. An analysis reads learning data and cannot change it,
+  keeps no permanent data, and is one unit that depends on no other analysis. A new
+  analysis or view needs no change to the core, to the record's format, or to stored
+  data. When an analysis needs a fact that the record does not hold, the core starts to
+  record that fact; no existing entry is rewritten.
+
 # Agent memory
 
 This repository uses the central agent memory vault at `/home/dzack/.agent-memory-vault`.
