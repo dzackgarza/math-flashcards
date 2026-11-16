@@ -13,7 +13,7 @@ from anki.errors import BackendIOError, DBError
 from platformdirs import user_data_path
 from pydantic import ValidationError
 
-from study.record import TABLES, Record
+from study.record import TABLES, Record, Response
 from study.values import (
     Counts,
     DeckCounts,
@@ -110,6 +110,44 @@ class Store:
             self.record.store_event("created", metadata.paths[-1].path)
             self.record.parameter_set(preset["fsrsParams6"], "anki-default")
         else:
+            recorded = {
+                row[0]
+                for row in self.record.connection.execute(
+                    "select revlog_id from response"
+                )
+            }
+            for row in self.collection.db.all(
+                "select r.id,r.cid,r.usn,r.ease,r.ivl,r.lastIvl,r.factor,r.time,r.type,n.guid "
+                "from revlog r join cards c on c.id=r.cid join notes n on n.id=c.nid order by r.id"
+            ):
+                if row[0] in recorded:
+                    continue
+                # A later card state is not evidence for the state after an old
+                # review. Recover only the facts in Anki's durable review row.
+                self.record.response(
+                    Response(
+                        presentation=None,
+                        card_id=row[9],
+                        grade={1: "again", 2: "hard", 3: "good", 4: "easy"}.get(row[3]),
+                        reveal_ms=None,
+                        grade_ms=None,
+                        unfocused_ms=None,
+                        after_interval_days=None,
+                        after_due=None,
+                        after_stability=None,
+                        after_difficulty=None,
+                        recovered=True,
+                        revlog_id=row[0],
+                        revlog_cid=row[1],
+                        revlog_usn=row[2],
+                        revlog_ease=row[3],
+                        revlog_ivl=row[4],
+                        revlog_last_ivl=row[5],
+                        revlog_factor=row[6],
+                        revlog_time_ms=row[7],
+                        revlog_type=row[8],
+                    )
+                )
             unfinished = self.record.connection.execute(
                 "select id from session where id not in (select session from session_end)"
             ).fetchall()
