@@ -1386,7 +1386,11 @@ What is the definition of Thom–hirzebruch index theorem?
 :::
 
 ::: {.back card-id="card-d63e2330de347174"}
-For a compact oriented smooth $4$-manifold $X$, the signature of the intersection form equals $\frac13p_1(TX)=\frac13(c_1^2-2c_2)$. For a K3 surface this gives signature $(3,19)$.
+For a closed oriented smooth four-manifold,
+$$\sigma(X)=b_2^+-b_2^-=\frac13\langle p_1(TX),[X]\rangle.$$
+If $TX$ has an almost-complex structure inducing the orientation, $p_1=c_1^2-2c_2$, hence $\sigma=\frac13\langle c_1^2-2c_2,[X]\rangle$.
+
+For a complex K3, $c_1=0$ and $\int_Xc_2=24$, so $\sigma=-16$. Together with $b_2=22$, this gives $(b_2^+,b_2^-)=(3,19)$: the inertia pair, rather than the scalar signature.
 :::
 
 ::: {.front card-id="card-71e5b09d37500058" tags="definition"}

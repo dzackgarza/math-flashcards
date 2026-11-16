@@ -525,7 +525,11 @@ What is the definition of Stable map?
 :::
 
 ::: {.back card-id="card-5346ba4ab0a420de"}
-For a smooth projective variety $X$ and $\beta\in H_2(X;\mathbb Z)$, an $n$-pointed stable map of genus $g$ is a map $f:C\to X$ from a connected nodal projective curve of arithmetic genus $g$ with $n$ marked nonsingular points such that $(C,f)$ has finite automorphism group fixing the marked points. The moduli stack $\overline M_{g,n}(X,\beta)$ parametrizes stable maps and has virtual dimension $(1-g)(\dim X-3)-K_X\beta+n$.
+For a smooth projective complex variety $X$ and $\beta\in H_2(X;\mathbb Z)$, an $n$-pointed stable map of genus $g$ is a map $f:C\to X$ with $f_*[C]=\beta$, where $C$ is connected, nodal, projective, of arithmetic genus $g$, with $n$ distinct marked smooth points. Automorphisms commute with $f$ and fix the marks; their group must be finite.
+
+Equivalently, each contracted rational component has at least three special points, and each contracted genus-one component at least one; special points are markings and branches of nodes. Nonconstant rational components need not have three special points.
+
+The proper Deligne–Mumford stack $\overline{\mathcal M}_{g,n}(X,\beta)$ has complex virtual dimension $(1-g)(\dim X-3)-K_X\cdot\beta+n$. The source need not be stable after forgetting $f$.
 :::
 
 ::: {.front card-id="card-2b5c1c6d230a4fab" tags="definition"}

@@ -2,6 +2,41 @@
 title: "Algebraic Geometry::Deformation Theory"
 ---
 
+::: {.front card-id="deformation-perfect-obstruction-virtual-class" tags="definition comparison"}
+Define a two-term perfect obstruction theory and its virtual fundamental class. Why does expected dimension alone not define a curve-counting invariant?
+:::
+
+::: {.back card-id="deformation-perfect-obstruction-virtual-class"}
+For a finite-type Deligne–Mumford stack $M/\mathbb C$, a perfect obstruction theory is a morphism
+$$\phi:E^\bullet\longrightarrow L_M,\qquad
+E^\bullet\simeq[E^{-1}\to E^0]$$
+locally with vector bundles in degrees $-1,0$, such that $h^0(\phi)$ is an isomorphism and $h^{-1}(\phi)$ is surjective. At a point, $h^0((E^\bullet)^\vee)$ gives the tangent space and $h^1((E^\bullet)^\vee)$ an obstruction space.
+
+The intrinsic normal cone embeds in the vector-bundle stack $h^1/h^0((E^\bullet)^\vee)$; intersecting it with the zero section defines
+$$[M]^{\mathrm{vir}}\in A_v(M),\qquad v=\operatorname{rk}E^0-\operatorname{rk}E^{-1}.$$
+For stacks use rational Chow groups when stabilizers require them. Properness permits pushforward to a point after insertions of codimension $v$. The virtual class depends on the obstruction theory; a dimension formula does not supply its cone or multiplicities.
+
+Reference: Behrend–Fantechi, [The intrinsic normal cone](https://arxiv.org/abs/alg-geom/9601010).
+:::
+
+::: {.front card-id="deformation-virtual-zero-locus-example" tags="application comparison"}
+For a section of a vector bundle on a smooth variety, describe the natural obstruction theory. Compare a transverse section with the zero section.
+:::
+
+::: {.back card-id="deformation-virtual-zero-locus-example"}
+$V$ smooth, $B\to V$ of rank $r$, $s\in H^0(V,B)$, $Z=Z(s)$:
+$$[B^\vee|_Z\xrightarrow{ds}\Omega_V|_Z]\longrightarrow L_Z,\qquad
+\operatorname{vdim}Z=\dim V-r.$$
+Its virtual class is the refined intersection of $s(V)$ with the zero section; its pushforward to $V$ is $c_r(B)\cap[V]$.
+
+| Section | Actual zero locus | Virtual class |
+| --- | --- | --- |
+| Transverse $s$ | Smooth of codimension $r$ | $[Z]$ |
+| $s=0$ | All of $V$ | $c_r(B)\cap[V]$ |
+
+For $V=\mathbb P^1$ and $B=\mathcal O(2)$, a section with two simple zeros gives degree two. The zero section still has virtual degree two although its actual zero locus is a curve. The same scheme $V$ with its ordinary smooth obstruction theory instead has virtual dimension one and class $[V]$.
+:::
+
 ::: {.front card-id="deformation-stable-nodal-curve-parameters" tags="application comparison"}
 Separate the locally trivial and node-smoothing directions for a stable $n$-pointed nodal complex curve of genus $g$. Compute them for two copies of $\mathbb P^1$ meeting in three nodes, with no markings.
 :::

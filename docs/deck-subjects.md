@@ -31,6 +31,28 @@ Geometry deck. Vocabulary is a separate study subject.
 
 ## Subject boundaries
 
+- Mathematical Physics owns GW, ideal-sheaf DT, and PT curve counting and their
+  comparison, as well as gauge equations and ASD moduli. Deformation Theory owns
+  perfect obstruction theories and virtual classes. Hodge Theory owns Betti,
+  de Rham, Dolbeault, Hodge, and Deligne–Hitchin moduli and representation
+  quotients; Mathematical Physics retains the Hitchin-system applications.
+  PT sheaf-section pairs differ from the KSBA pairs in Moduli / Stable Pairs.
+  [Fulton–Pandharipande](https://arxiv.org/abs/alg-geom/9608011),
+  [Pandharipande–Thomas](https://people.math.ethz.ch/~rahul/pt.pdf), and
+  [Simpson](https://arxiv.org/abs/alg-geom/9604005) supply the moduli conventions.
+
+- Topology / Four-Manifolds owns intersection forms as topological invariants,
+  handles, smooth structures, spin and spin-c structures, and Seiberg–Witten
+  invariants. Lattices and Quadratic Forms keeps the algebra of forms; surface
+  decks retain their complex-geometric applications. Use complex orientation
+  on complex surfaces, positive-definite E8, scalar signature as the difference
+  of inertia indices, and the torsion-free quotient of integral cohomology for
+  an intersection lattice.
+  [Manolescu's course notes](https://web.stanford.edu/~cm5/4Mnotes.pdf),
+  Donaldson–Kronheimer, *The Geometry of Four-Manifolds*, and Morgan,
+  *The Seiberg–Witten Equations and Applications to the Topology of Smooth
+  Four-Manifolds*, supply the topology and gauge-theory conventions.
+
 - Deformation Theory owns marked Artinian lifting problems, obstruction classes,
   torsors of lifts, hulls, and deformation calculations for schemes, sheaves,
   maps, and pairs. Spectral Sequences supplies local-to-global machinery;

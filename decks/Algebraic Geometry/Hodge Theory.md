@@ -2,6 +2,145 @@
 title: "Algebraic Geometry::Hodge Theory"
 ---
 
+::: {.front card-id="hodge-representation-scheme-presentations" tags="definition application"}
+Construct a representation scheme from a group presentation. Compute it for a free group, a surface group, and rank-one representations of a closed surface.
+:::
+
+::: {.back card-id="hodge-representation-scheme-presentations"}
+For $\Gamma=\langle x_1,\ldots,x_m\mid R_1,\ldots,R_s\rangle$ and a complex affine algebraic group $G$,
+$$\operatorname{Rep}(\Gamma,G)=\{(g_1,\ldots,g_m)\in G^m:R_j(g_1,\ldots,g_m)=1\ \forall j\}.$$
+Use the scheme-theoretic equations. It represents $A\mapsto\operatorname{Hom}(\Gamma,G(A))$ for commutative $\mathbb C$-algebras $A$, independently of the chosen presentation.
+
+| Group | Representation scheme |
+| --- | --- |
+| Free group $F_m$ | $G^m$ |
+| $\pi_1(\Sigma_g)$ | $\{(A_i,B_i)\in G^{2g}:\prod_{i=1}^g[A_i,B_i]=1\}$ |
+| $\pi_1(\Sigma_g)$ into $\mathbb G_m$ | $(\mathbb C^*)^{2g}$ |
+
+Here $[A,B]=ABA^{-1}B^{-1}$. In rank one commutators are trivial, and conjugation is trivial, so the coarse character variety is the same torus. For $g=1$ and general $G$, the equation is $AB=BA$, not an unconstrained pair.
+:::
+
+::: {.front card-id="hodge-representation-quotients-jordan-example" tags="comparison application"}
+Distinguish a representation scheme, conjugacy classes, a character variety, and a quotient stack. Use a nontrivial unipotent representation of $\mathbb Z$ in $\mathrm{SL}_2$.
+:::
+
+::: {.back card-id="hodge-representation-quotients-jordan-example"}
+For $R=\operatorname{Hom}(\Gamma,G)$:
+
+| Object | Information retained |
+| --- | --- |
+| $R$ | Representation with chosen frame at the basepoint |
+| Set $R(\mathbb C)/G(\mathbb C)$ | Every conjugacy class separately |
+| $R/\!/G$ | Closed orbits; identifies each orbit with its closed-orbit limit |
+| Stack $[R/G]$ | Representations and their automorphisms; stabilizer at $\rho$ is $Z_G(\rho)$ |
+
+Send the generator of $\mathbb Z$ to $J=\begin{pmatrix}1&1\\0&1\end{pmatrix}$. Then
+$$\begin{pmatrix}t&0\\0&t^{-1}\end{pmatrix}
+J\begin{pmatrix}t^{-1}&0\\0&t\end{pmatrix}
+=\begin{pmatrix}1&t^2\\0&1\end{pmatrix}\longrightarrow I.$$
+$J$ and $I$ are not conjugate, but have the same GIT point. Indeed $\mathcal X(\mathbb Z,\mathrm{SL}_2)\cong\mathbb A^1$ via trace; both have trace two. The quotient stack distinguishes them and their different centralizers.
+:::
+
+::: {.front card-id="hodge-flat-connections-local-systems" tags="definition construction"}
+State the correspondence between flat bundles, local systems, and representations. Give both constructions and explain the role of the basepoint and frame.
+:::
+
+::: {.back card-id="hodge-flat-connections-local-systems"}
+$X$ connected smooth manifold, basepoint $x$, universal cover $\widetilde X$:
+$$\{\text{complex flat bundles }(E,\nabla),\ \nabla^2=0\}
+\simeq\{\text{finite-rank complex local systems}\}
+\simeq\{\text{representations of }\pi_1(X,x)\}.$$
+Maps are connection-preserving maps, local-system maps, and intertwiners, respectively. Horizontal sections give $\ker\nabla$; parallel transport gives monodromy after a frame of $E_x$ is chosen.
+
+Conversely $\rho$ gives $E_\rho=(\widetilde X\times\mathbb C^r)/\pi_1(X,x)$ with its descended trivial connection. Changing the frame conjugates $\rho$; retaining the frame gives the representation space. Taking isomorphism classes without a frame gives conjugacy classes, not automatically their GIT quotient.
+
+On a complex manifold, use holomorphic flat bundles; on a smooth projective complex variety, GAGA identifies these with algebraic integrable connections. For a nonproper algebraic variety, regular singularities at infinity are required for the algebraic Riemann–Hilbert equivalence.
+:::
+
+::: {.front card-id="hodge-harmonic-bundles-hitchin-equations" tags="definition construction"}
+On a compact Riemann surface, write the harmonic-metric equations that construct the nonabelian Hodge correspondence. Which connection is flat?
+:::
+
+::: {.back card-id="hodge-harmonic-bundles-hitchin-equations"}
+For a degree-zero polystable Higgs bundle $(E,\bar\partial_E,\theta)$, a Hermitian metric $h$ with Chern connection $D_h$ solves
+$$F_{D_h}+[\theta,\theta^{*h}]=0,\qquad
+\bar\partial_E\theta=0.$$
+The bracket includes wedge product of forms and composition of endomorphisms. On a curve $\theta\wedge\theta=0$ automatically. The associated complex connection
+$$D=D_h+\theta+\theta^{*h}$$
+is flat. Conversely a semisimple flat connection admits a harmonic metric, whose unitary and self-adjoint parts recover this Higgs bundle.
+
+The unitary connection $D_h$ generally has nonzero curvature; it is $D$ that is flat. For stable objects the harmonic metric is unique up to positive scalar; polystable objects permit rescaling on stable summands. Gauge-equivalent harmonic solutions give the same moduli point.
+
+Reference: Hitchin, *The self-duality equations on a Riemann surface*; Simpson, *Higgs bundles and local systems*.
+:::
+
+::: {.front card-id="hodge-unitary-and-rank-one" tags="comparison application"}
+Identify the unitary locus in nonabelian Hodge theory. Compute the Betti and Dolbeault moduli spaces in rank one on a genus-$g$ curve.
+:::
+
+::: {.back card-id="hodge-unitary-and-rank-one"}
+For a smooth projective complex curve $C$,
+$$M_B(C,1)=\operatorname{Hom}(\pi_1C,\mathbb C^*)=(\mathbb C^*)^{2g},\qquad
+M_{\mathrm{Dol}}(C,1)=\operatorname{Pic}^0(C)\times H^0(C,K_C)=T^*\operatorname{Pic}^0(C).$$
+Both have complex dimension $2g$. The Betti space is affine; for $g>0$ the Dolbeault space contains the positive-dimensional projective zero section, so they are not algebraically isomorphic. Nonabelian Hodge gives a homeomorphism.
+
+Unitary representations correspond exactly to $\theta=0$ and polystable degree-zero bundles (Narasimhan–Seshadri). In rank one,
+$$\operatorname{Hom}(\pi_1C,U(1))\cong\operatorname{Pic}^0(C)$$
+as real tori. Nonunitary monodromy, detected by its absolute values, corresponds to a nonzero Higgs field. For $g=0$, both rank-one moduli spaces are a point.
+:::
+
+::: {.front card-id="hodge-moduli-deformation-dimensions" tags="formula comparison"}
+Relate the tangent and obstruction theories of Betti, de Rham, and Dolbeault moduli on a smooth projective complex curve of genus $g\ge2$. Compute the dimension at an irreducible rank-$r$ point.
+:::
+
+::: {.back card-id="hodge-moduli-deformation-dimensions"}
+For a local system $L$, group cohomology uses the adjoint action $\operatorname{Ad}\rho$:
+
+| Description | Deformation complex |
+| --- | --- |
+| Betti | Group cochains $C^\bullet(\pi_1C,\operatorname{End}L)$ |
+| de Rham | $(\Omega^\bullet(C,\operatorname{End}E),d_\nabla)$ |
+| Dolbeault | $\operatorname{End}E\xrightarrow{[\theta,-]}\operatorname{End}E\otimes K_C$ and its hypercohomology |
+
+Degree zero gives infinitesimal automorphisms, degree one deformations modulo infinitesimal gauge, and degree two an obstruction space. For the framed representation scheme, the tangent space is $Z^1$; conjugation directions form $B^1$, so $Z^1/B^1=H^1$. At reducible points, $H^1$ is a deformation-space description, not automatically the Zariski tangent of the coarse GIT quotient.
+
+For $g\ge2$ and irreducible $\mathrm{GL}_r$ monodromy, $h^0=h^2=1$ and Euler characteristic is $(2-2g)r^2$:
+$$h^1=2r^2(g-1)+2.$$
+The scalar obstruction vanishes; the stable locus is smooth of this complex dimension. With determinant connection fixed, use trace-free endomorphisms: dimension $2(r^2-1)(g-1)$. These dimensions agree across the correspondences; the complex tangent spaces are not identified by a holomorphic Dolbeault–Betti map.
+:::
+
+::: {.front card-id="hodge-lambda-connections-and-twistor" tags="definition comparison"}
+Define a $\lambda$-connection, the Hodge moduli family, and the Deligne–Hitchin moduli space. Identify the special fibers.
+:::
+
+::: {.back card-id="hodge-lambda-connections-and-twistor"}
+For a holomorphic bundle on a smooth projective complex curve and $\lambda\in\mathbb C$, a $\lambda$-connection is a $\mathbb C$-linear map
+$$D_\lambda:E\to E\otimes K_C,\qquad
+D_\lambda(fs)=fD_\lambda s+\lambda s\otimes df.$$
+In higher dimension impose integrability $D_\lambda^2=0$ using the corresponding extension to forms. On a curve it is automatic.
+
+The degree-zero semistable Hodge moduli family $M_{\mathrm{Hod}}\to\mathbb A^1$ has
+$$M_{\mathrm{Hod},0}=M_{\mathrm{Dol}},\qquad
+M_{\mathrm{Hod},1}=M_{\mathrm{dR}},\qquad
+D_\lambda/\lambda\text{ flat for }\lambda\ne0.$$
+The action $t:(\lambda,D_\lambda)\mapsto(t\lambda,tD_\lambda)$ scales the Higgs field at zero.
+
+Glue the analytic Hodge families for $C$ and its conjugate curve $\bar C$ over $\mathbb C^*$, identifying the monodromy of $D_\lambda/\lambda$ and using parameter $\lambda^{-1}$ on the second chart. This gives the Deligne–Hitchin space over $\mathbb P^1$, with Dolbeault fibers for $C$ at zero and $\bar C$ at infinity. On the smooth harmonic-bundle locus it is the twistor space of the hyperkähler moduli metric.
+:::
+
+::: {.front card-id="hodge-stable-higgs-unstable-bundle-example" tags="application counterexample"}
+Exhibit a stable degree-zero Higgs bundle whose underlying bundle is unstable on a genus-$g\ge2$ curve.
+:::
+
+::: {.back card-id="hodge-stable-higgs-unstable-bundle-example"}
+Choose a square root $L$ of $K_C$, so $\deg L=g-1>0$. Set
+$$E=L\oplus L^{-1},\qquad
+\theta=\begin{pmatrix}0&0\\1&0\end{pmatrix}:E\to E\otimes K_C.$$
+The lower-left entry uses $L\cong L^{-1}\otimes K_C$. The subbundle $L$ destabilizes $E$ but is not $\theta$-invariant.
+
+Over the function field, this nonzero nilpotent matrix has a unique invariant line: its kernel $L^{-1}$. Every invariant rank-one subsheaf therefore lies in $L^{-1}$ and has degree at most $-(g-1)<0=\mu(E)$. Thus $(E,\theta)$ is stable. Its rank is two, determinant trivial, and Higgs field trace-free.
+:::
+
 ::: {.front card-id="application-lefschetz-calabi-yau-hypersurface" tags="application"}
 Let $X\subset\mathbb P^{d+1}_{\mathbb C}$ be a smooth hypersurface of degree $d+2$, with $d\ge2$. Determine $\omega_X$, $\pi_1(X)$, and $H^q(X,\mathcal O_X)$ for $0<q<d$. Which results give the conclusions?
 :::
@@ -72,7 +211,19 @@ What is nonabelian Hodge theory?
 :::
 
 ::: {.back card-id="card-32d30066fccb982b"}
-$\mcm_B$ is the moduli of irreducible reps of $\pi_1(X)$, $\mcm_{\mathrm{Dol}}$ of stable Higgs bundles, and $\mcm_{\mathrm{dR}}$ of stable flat connections:
+$X/\mathbb C$ smooth connected projective; fix rank $r$ and a polarization.
+
+| Coarse moduli | Closed points |
+| --- | --- |
+| $M_B(X,r)$, Betti | Semisimple $\pi_1(X,x)\to\mathrm{GL}_r(\mathbb C)$ up to conjugacy |
+| $M_{\mathrm{dR}}(X,r)$, de Rham | Semisimple integrable algebraic connections $(E,\nabla)$ up to isomorphism |
+| $M_{\mathrm{Dol}}(X,r)$, Dolbeault | Polystable Higgs bundles $(E,\theta)$ with vanishing rational Chern classes |
+
+Riemann–Hilbert gives $M_{\mathrm{dR}}^{\mathrm{an}}\cong M_B^{\mathrm{an}}$ by monodromy. Nonabelian Hodge theory gives a homeomorphism $M_{\mathrm{Dol}}^{\mathrm{an}}\cong M_B^{\mathrm{an}}$ via harmonic metrics, restricting to a diffeomorphism on smooth stable/irreducible loci. These comparisons are generally not algebraic; the Dolbeault–Betti comparison is generally not holomorphic.
+
+Stable Higgs bundles correspond to irreducible local systems; polystable bundles correspond to semisimple ones. On a curve the Chern-class condition is degree zero. The analytic correspondence also holds for compact Kähler $X$ with stability defined by its Kähler class.
+
+Reference: Simpson, [The Hodge filtration on nonabelian cohomology](https://arxiv.org/abs/alg-geom/9604005).
 :::
 
 ::: {.front card-id="card-af845a3fa43df735"}
@@ -80,13 +231,13 @@ What is a rigid representation?
 :::
 
 ::: {.back card-id="card-af845a3fa43df735"}
-Only trivial deformations, isolated point in character variety.
+Local rigidity: the conjugacy class is isolated in the relevant character variety. Cohomological rigidity: $H^1(X,\operatorname{End}L)=0$; with determinant fixed, use $\operatorname{End}_0L$. The latter kills all first-order deformations and implies local rigidity; an isolated nonreduced point need not have zero tangent space. State which determinant and boundary-monodromy constraints are held fixed.
 
-Conjecture: rigid representations are "motivic", of geometric origin.
+Simpson's geometric-origin conjecture, in the smooth complex projective setting: an irreducible rigid local system with finite-order determinant should be of geometric origin.
 
-E.g. irreducible rigid flat connections are subquotients of the Gauss-Manin connection on a family of smooth projective varieties over an open dense subvariety of $X$.
+The proposed geometric description is a subquotient of a Gauss–Manin local system from a smooth projective morphism over a dense open $U\subset X$; this is the conjectured conclusion, not an established example for every rigid connection.
 
-The underlying local system is a summand of ${\mathbf{R}}^if_* \underline{\CC}$ for $f:Y\to U$ a smooth projective morphism to a dense subvariety.
+Concretely, $L|_U$ should occur as a direct summand of $R^if_*\mathbb C$ for such an $f:Y\to U$ (these local systems are semisimple).
 :::
 
 ::: {.front card-id="card-8de617f146e6c753"}
@@ -414,7 +565,9 @@ What is a perverse sheaf?
 :::
 
 ::: {.back card-id="card-bd8193568fce0868"}
-An object of $D_{{\operatorname{const.}}}^b(X,   {}_{ \CC}\Mod)$ (complexes of sheaves of vector spaces with bounded constructible cohomology) isomorphic to $\mathrm{RH}(M)$ for some $M\in    {}_\mcd\Mod ^{\text{hol}}$ and $\mathrm{RH}({-}) \coloneqq\mathop{\mathrm{\mathbb{R}Hom}}({-}, {\mathcal{O}}_X)$ is the functor inducing the Riemann-Hilbert equivalence.
+For a complex algebraic variety $X$, a middle-perverse sheaf is a constructible complex $K\in D^b_c(X^{\mathrm{an}},\mathbb C)$ satisfying $\dim_{\mathbb C}\operatorname{Supp}\mathcal H^j(K)\le-j$ and $\dim_{\mathbb C}\operatorname{Supp}\mathcal H^j(\mathbb D K)\le-j$ for every $j$, where $\mathbb D$ is Verdier duality. These complexes form the heart of the middle-perverse t-structure.
+
+On smooth $X$ of complex dimension $d$, a local system $L[d]$ is perverse. Riemann–Hilbert identifies regular holonomic $D_X$-modules with perverse sheaves through the normalized de Rham functor; the normalized solution functor $R\mathcal Hom_{D_{X^{\mathrm{an}}}}(-,\mathcal O_{X^{\mathrm{an}}})[d]$ gives an anti-equivalence. Arbitrary bounded constructible complexes belong to the derived correspondence, not to this abelian heart.
 :::
 
 ::: {.front card-id="card-1ac89899346723e1"}
@@ -874,7 +1027,12 @@ What is the definition of Character variety?
 :::
 
 ::: {.back card-id="card-19c7492f4250dc0e"}
-For a finitely generated group $\Gamma$ and reductive group $G$, the affine quotient $\operatorname{Hom}(\Gamma,G)/\!/G$ of the representation scheme by simultaneous conjugation; its points parametrize isomorphism classes of semisimple representations.
+For a finitely presented group $\Gamma$ and complex reductive algebraic group $G$,
+$$\mathcal X(\Gamma,G)=\operatorname{Spec}\bigl(\mathbb C[\operatorname{Hom}(\Gamma,G)]^G\bigr)
+=\operatorname{Hom}(\Gamma,G)/\!/G.$$
+The action is simultaneous conjugation. Closed points correspond to closed orbits; each orbit closure contains a unique closed orbit. For $G=\mathrm{GL}_r$, closed orbits are precisely semisimple representations, and the quotient replaces a representation by its semisimplification. For general reductive $G$, use $G$-complete reducibility: containment in a parabolic implies containment in a Levi subgroup of that parabolic.
+
+The representation scheme records framed representations and can be nonreduced; its reduced scheme is often called the representation variety. Specify whether the scheme structure is retained.
 :::
 
 ::: {.front card-id="card-47e9f5f5ac4967f4" tags="definition"}
@@ -1050,7 +1208,13 @@ What is the definition of Riemann-hilbert correspondence?
 :::
 
 ::: {.back card-id="card-9408d7d0c684ef74"}
-The equivalence between regular holonomic $D_X$-modules and bounded constructible complexes of $\mathbb C$-vector spaces on $X$, sending $M\mapsto\mathbb R\mathcal H om_{D_X}(M,\mathcal O_X)$; it generalizes the correspondence between flat connections and local systems.
+For a smooth complex algebraic variety $X$ of complex dimension $d$, analytify and use the normalized de Rham functor
+$$\mathrm{DR}(M)=
+[M^{\mathrm{an}}\to\Omega^1_{X^{\mathrm{an}}}\otimes M^{\mathrm{an}}\to\cdots
+\to\Omega^d_{X^{\mathrm{an}}}\otimes M^{\mathrm{an}}][d].$$
+It gives a covariant equivalence from regular holonomic $D_X$-modules to algebraically constructible perverse sheaves, and a derived equivalence
+$$D^b_{\mathrm{rh}}(D_X)\simeq D^b_c(X^{\mathrm{an}},\mathbb C).$$
+The normalized solution functor $\mathrm{Sol}(M)=R\mathcal Hom_{D_{X^{\mathrm{an}}}}(M^{\mathrm{an}},\mathcal O_{X^{\mathrm{an}}})[d]$ is contravariant, giving the corresponding anti-equivalences. For a flat bundle with horizontal local system $L$, $\mathrm{DR}(E)=L[d]$ and $\mathrm{Sol}(E)=L^\vee[d]$. On nonproper $X$, the algebraic correspondence requires regularity at infinity.
 :::
 
 ::: {.front card-id="card-9049bc9b0d97b074" tags="definition"}
@@ -1074,7 +1238,12 @@ What is the definition of Stable higgs bundle?
 :::
 
 ::: {.back card-id="card-4f2a54667ed3078d"}
-A Higgs bundle $(E,\theta)$ with $\theta:E\to E\otimes\Omega^1_X$ and $\theta\wedge\theta=0$ is stable for a polarization if every proper $\theta$-invariant subsheaf $F\subset E$ satisfies $\mu(F)<\mu(E)$, where $\mu(F)=\deg F/\operatorname{rk}F$; semistable uses $\le$.
+On a smooth projective variety of dimension $d$ with ample class $H$, a Higgs bundle $(E,\theta)$ is stable if
+$$\mu_H(F)<\mu_H(E),\qquad
+\mu_H(F)=\frac{c_1(F)\cdot H^{d-1}}{\operatorname{rk}F}$$
+for every coherent $\theta$-invariant subsheaf with $0<\operatorname{rk}F<\operatorname{rk}E$. It suffices to test saturated subsheaves. Semistability uses $\le$; polystability means a direct sum of stable Higgs bundles of the same slope. S-equivalence identifies semistable objects with isomorphic polystable Jordan–Hölder graded objects.
+
+The underlying bundle need not be stable: the test is restricted to $\theta$-invariant subsheaves.
 :::
 
 ::: {.front card-id="card-59820f784bbd6226" tags="definition"}

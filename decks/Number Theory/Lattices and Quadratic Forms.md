@@ -747,11 +747,11 @@ What is Rokhlin's theorem?
 :::
 
 ::: {.back card-id="card-c0eec7c8ed8635df"}
-If $X$ is a smooth closed spin 4-manifold, $H^2(X)$ is an even lattice and $\operatorname{sgn}H^2(X) \equiv 0 \operatorname{mod}16$.
+If $X$ is a smooth closed oriented spin four-manifold, the intersection lattice $H^2(X,\mathbb Z)/\mathrm{torsion}$ is even and $\sigma(X)\equiv0\pmod{16}$.
 
-Converse: if $H^2(X)$ is even and $\pi_1 X = 1$, then $X$ is spin.
+For simply connected $X$, even intersection form is equivalent to $w_2(TX)=0$, hence to existence of a spin structure. This is a criterion for being spin, not a converse asserting that signature divisibility implies spin.
 
-Counterexample if $\pi_1 X\neq 1$: the Enriques surface has $\pi_1 X = C_2$ and $H^2 = E_8 \oplus H$ which has signature 8.
+Evenness alone need not imply spin when $\pi_1X\ne1$: a complex Enriques surface has $\pi_1X=C_2$, torsion subgroup $H^2(X,\mathbb Z)_{\mathrm{tors}}\cong\mathbb Z/2$, and free intersection lattice $E_8(-1)\oplus U$. Here $E_8$ is positive definite and $U=\begin{pmatrix}0&1\\1&0\end{pmatrix}$. Its complex orientation gives $\sigma=-8$, so Rokhlin excludes a spin structure.
 :::
 
 ::: {.front card-id="card-a7450e5dae597a93"}
