@@ -2,6 +2,64 @@
 title: "Number Theory::Lattices and Quadratic Forms"
 ---
 
+::: {.front card-id="lattice-divisibility-doubled-dual" tags="definition comparison example"}
+Distinguish primitivity and divisibility of a vector. Define the doubled dual of a 2-elementary lattice and coeven/coodd.
+:::
+
+::: {.back card-id="lattice-divisibility-doubled-dual"}
+For a nonzero vector $v$ in a nondegenerate integral lattice $L$:
+
+- Primitive: $L/\mathbb Zv$ torsion-free.
+- Divisibility: $(v,L)=\operatorname{div}(v)\mathbb Z$, with $\operatorname{div}(v)>0$.
+
+Example: in $U(2)$ with $e^2=f^2=0$, $(e,f)=2$, $e$ is primitive but $\operatorname{div}(e)=2$.
+
+For $2L^\vee\subset L$, define the **doubled dual**
+$$L^\dagger=L^\vee(2),\qquad (x,y)_\dagger=2(x,y).$$
+It is integral. Coeven means $L^\dagger$ even; coodd means odd. For even 2-elementary $L$, these correspond to coparity $\delta=0,1$. Thus $U(2)^\dagger\simeq U$ is coeven, while $\langle2\rangle^\dagger\simeq\langle1\rangle$ is coodd.
+
+Reference: Alexeev, *Reflective hyperbolic 2-elementary lattices*, §2.
+:::
+
+::: {.front card-id="lattice-coxeter-diagrams" tags="definition comparison example"}
+Read a hyperbolic Coxeter diagram using negative-square wall normals. Define elliptic and parabolic subdiagrams.
+:::
+
+::: {.back card-id="lattice-coxeter-diagrams"}
+Let $L$ have signature $(1,n)$ and take a chamber in one positive-cone component. Choose wall roots $\alpha_i^2<0$ with $(x,\alpha_i)\ge0$ on the chamber.
+
+| Facets | Diagram |
+| --- | --- |
+| Orthogonal | No edge |
+| Angle $\pi/m$ | Edge labeled $m$; omit label $3$ |
+| Parallel, meeting at infinity | Bold edge |
+| Disjoint in hyperbolic space and at infinity | Dotted/broken edge |
+
+For intersecting facets,
+$$\frac{(\alpha_i,\alpha_j)}{\sqrt{\alpha_i^2\alpha_j^2}}=\cos(\pi/m).$$
+An elliptic subdiagram has negative-definite Gram form. A connected parabolic subdiagram has negative-semidefinite Gram form with one-dimensional radical and is an affine Dynkin diagram in the crystallographic case. Its null direction gives an ideal boundary direction.
+
+Example: two $(-2)$-roots with pairing $1$ give $A_2$; pairing $2$ gives a parabolic two-wall diagram. Root-length colors and multiplicity arrows need their own stated convention.
+
+Reference: Alexeev, *Reflective hyperbolic 2-elementary lattices*, §2.
+:::
+
+::: {.front card-id="lattice-folding-diagram" tags="definition construction example"}
+What does folding a root or Coxeter diagram by a symmetry mean geometrically? Compute the $A_3$ involution example.
+:::
+
+::: {.back card-id="lattice-folding-diagram"}
+Let a finite group $H$ preserve the form and a reflection chamber in $V$. Intersect the chamber with $V^H$. Restrict its wall functionals to $V^H$; a normal is the nonzero projection
+$$\overline\alpha=\frac1{|H|}\sum_{h\in H}h\alpha.$$
+Remove redundant inequalities and identify proportional normals. The restricted Gram form determines angles and root-length ratios; multiplicities of diagram edges cannot simply be copied.
+
+For negative $A_3$, interchange $\alpha_1,\alpha_3$ and fix $\alpha_2$. Use $\beta=\alpha_1+\alpha_3$, $\gamma=\alpha_2$:
+$$\beta^2=-4,\qquad\gamma^2=-2,\qquad(\beta,\gamma)=2.$$
+Hence angle $\pi/4$ and a $B_2/C_2$ diagram. The primitive integral normal in the fixed lattice and the averaged rational normal can differ by a scalar.
+
+Reference: Alexeev–Engel–Garza–Schaffler, *Compact moduli of Enriques surfaces of degree 2*, §3.7.
+:::
+
 ::: {.front card-id="card-a11f16d91f65c85e"}
 Discuss Milnor's classification.
 :::
@@ -350,7 +408,9 @@ What is the importance of primitive sublattices?
 :::
 
 ::: {.back card-id="card-a9d006ec7e1731af"}
-If $H \leq \Lambda$ is primitive, then $H$ admits a complementary sublattice so $H \oplus H^\perp = \Lambda$.
+If $H\leq\Lambda$ is primitive, it admits a complement as a free abelian group: $\Lambda\simeq H\oplus C$. The complement need not be orthogonal.
+
+If $H$ is also nondegenerate, $H\oplus H^\perp$ has finite index in $\Lambda$, but equality need not hold. In $U=\mathbb Ze+\mathbb Zf$, take $H=\mathbb Z(e+f)$. Then $H^\perp=\mathbb Z(e-f)$ and $[U:H\oplus H^\perp]=2$.
 :::
 
 ::: {.front card-id="card-7af7ca207863f1de"}
@@ -396,7 +456,9 @@ What is a fundamental domain for $W(\Lambda)$ in $\Lambda_{\mathbf{R}}$?
 :::
 
 ::: {.back card-id="card-a4d459cfe34fe98a"}
-$$\Lambda_{\mathbf{R}}\setminus\bigcup_{\delta \in  W^{(2)}(\Lambda) }\delta^\perp$$
+For a hyperbolic lattice, choose a positive-cone component $\mathcal C$ and the roots whose reflections generate $W(\Lambda)$. Take **one connected component**
+$$\mathcal C\setminus\bigcup_{\delta\ \mathrm{root}}\delta^\perp.$$
+Its closure in $\mathcal C$ is a fundamental chamber. The union runs over roots, not group elements; the whole complement is the union of all chambers. For $W^{(2)}$, use only $(-2)$-roots.
 :::
 
 ::: {.front card-id="card-8a98615e2a813d40"}

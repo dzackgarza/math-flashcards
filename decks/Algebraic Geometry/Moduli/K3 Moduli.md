@@ -2,6 +2,80 @@
 title: "Algebraic Geometry::Moduli::K3 Moduli"
 ---
 
+::: {.front card-id="k3-lattice-quasipolarization-small-cones" tags="definition comparison"}
+Define lattice quasipolarization with its chamber choice. What are the small cones in Alexeev–Engel's corrected definition?
+:::
+
+::: {.back card-id="k3-lattice-quasipolarization-small-cones"}
+Fix a primitive hyperbolic sublattice $\Lambda\subset L_{\mathrm{K3}}$ and $h\in\Lambda_{\mathbb R}$, $h^2>0$, **very irrational**: it lies in no proper rational subspace of $\Lambda_{\mathbb R}$.
+
+A $(\Lambda,h)$-quasipolarized smooth K3 is $(X,j)$ with a primitive isometric embedding $j:\Lambda\hookrightarrow\operatorname{NS}(X)$ and $j(h)$ big and nef. Isomorphisms satisfy $j=f^*j'$.
+
+Small cones are the connected components of $\{x\in\Lambda_{\mathbb R}:x^2>0\}$ after removing
+$$\beta^\perp\cap\Lambda_{\mathbb R},\qquad
+\beta\in L_{\mathrm{K3}}\setminus\Lambda^\perp,\quad
+\beta^2=-2,\quad \langle\Lambda,\beta\rangle\text{ hyperbolic}.$$
+Roots outside $\Lambda$ can cut additional walls. For $\Lambda=U(2)$, $\Lambda$ has no $(-2)$-roots, but such additional walls exist. Using only its own Weyl chambers loses this data.
+
+The ample model is a K3 with ADE singularities, carrying $j:\Lambda\to\operatorname{Pic}(\overline X)$ with $j(h)$ ample; on the smooth resolution, contract the $(-2)$-curves orthogonal to $j(\Lambda)$. Rank one recovers ample versus big-and-nef polarization.
+
+Reference: Alexeev–Engel, *On lattice-polarized K3 surfaces*, Definitions 4.1, 4.2, 4.9, 5.1.
+:::
+
+::: {.front card-id="k3-heegner-unigonal-enriques" tags="definition comparison example"}
+Define a Heegner divisor and the unigonal locus for a primitive degree-two K3 polarization. Distinguish nodal and unnodal Enriques surfaces.
+:::
+
+::: {.back card-id="k3-heegner-unigonal-enriques"}
+For a lattice $N$ of signature $(2,n)$ and type-IV domain $\mathbb D_N$, a **Heegner divisor** is the image in $\mathbb D_N/\Gamma$ of
+$$v^\perp\cap\mathbb D_N,\qquad v\in N_{\mathbb Q},\quad v^2<0,$$
+or a specified union of such hyperplanes modulo $\Gamma$. This imposes an additional algebraic class in K3 moduli. The numerical square and discriminant-group class specify which divisor is meant.
+
+For a primitive big-and-nef degree-two class $h$, the **unigonal** case has a primitive nef isotropic class $E$ with $hE=1$. Then $h=2E+\Gamma$ with $\Gamma$ a $(-2)$-section, $E\Gamma=1$; $|h|$ has fixed component $\Gamma$. It is not the usual basepoint-free double-plane system.
+
+An Enriques surface is nodal iff it contains a smooth rational $(-2)$-curve; unnodal iff it has none. This concerns the smooth surface, even though its canonical polarized model may contract that curve to a node. In degree-two Enriques moduli, the unigonal locus is a separate Heegner locus, described by double covers of $\mathbb P(1,1,2)$.
+
+Reference: Alexeev–Engel, *The flex divisor of a K3 surface*, Definition 2.3; Alexeev–Engel–Garza–Schaffler, §2.
+:::
+
+::: {.front card-id="k3-nef-divisor-stable-models" tags="definition construction comparison"}
+Distinguish a nef model, divisor model, and stable model of a polarized K3 degeneration.
+:::
+
+::: {.back card-id="k3-nef-divisor-stable-models"}
+Start with a smooth K3 family $X^*\to C^*$, a relatively big-and-nef $L^*$, and an effective divisor $R^*\in|L^*|$ without vertical components.
+
+| Model over $(C,0)$ | Conditions |
+| --- | --- |
+| Nef model $(X,L)$ | $X$ Kulikov, $L$ extends $L^*$ and is relatively nef |
+| Divisor model $(X,R)$ | Nef model with $R=\overline{R^*}$ Cartier and containing no stratum of $X_0$ |
+| Stable model $(\overline X,\epsilon\overline R)$ | Relative ample model $\operatorname{Proj}_C\bigoplus_{m\ge0}\pi_*\mathcal O_X(mR)$, with boundary pushed forward |
+
+Strata include components, double curves, and triple points. On a divisor model, $R|_{V_i}$ is nef on each component and big on at least one. The ample model contracts the curves invisible to $R$ and has slc stable fibers for every sufficiently small positive rational $\epsilon$.
+
+Finite base change and modifications may be needed to obtain these models; a general Kulikov model need not extend the polarization nef.
+
+Reference: Alexeev–Engel, *Compact moduli of K3 surfaces*, Definitions 3.10–3.12.
+:::
+
+::: {.front card-id="k3-boundary-lattice-period" tags="definition construction"}
+For a Type III Kulikov surface, define numerically Cartier classes, its reduced lattice, and the boundary period. What prevents componentwise line bundles from gluing?
+:::
+
+::: {.back card-id="k3-boundary-lattice-period"}
+Write the normalization components $V_i$ and double curves $D_{ij}\subset V_i$. Set
+$$\widetilde\Lambda=\{(\alpha_i)\in\bigoplus_iH^2(V_i,\mathbb Z):
+\alpha_iD_{ij}=\alpha_jD_{ji}\},\qquad
+(\alpha,\beta)=\sum_i\alpha_i\beta_i.$$
+For a Kulikov total space, let $\xi_i$ be the tuple of restrictions of $\mathcal O_X(V_i)$; put $\Xi=\langle\xi_i\rangle$, $\Lambda=\widetilde\Lambda/\Xi$. These component classes form the radical; quotienting removes them.
+
+Each $\alpha_i$ determines a line bundle $L_i$ on rational $V_i$. Matching degrees identifies their restrictions on the double curves, but the identifications can fail the cocycle condition at triple points. Their obstruction lies in
+$$H^2(\Gamma(X_0),\mathbb C^\times)\cong\mathbb C^\times$$
+after orienting the dual sphere. This defines the boundary period homomorphism $\widetilde\psi:\widetilde\Lambda\to\mathbb C^\times$. Its kernel consists of gluable classes. For a $d$-semistable surface it descends to $\Lambda$; the reduced Picard group is $\operatorname{Pic}(X_0)/\Xi=\ker\psi$.
+
+Reference: Alexeev–Engel, *Compact moduli of K3 surfaces*, §§3C–4.
+:::
+
 ::: {.front card-id="card-b0772e9197fde462"}
 Discuss the moduli space of marked K3s.
 :::
@@ -183,6 +257,12 @@ What is a semitoroidal compactification?
 
 ::: {.back card-id="card-b1d78709d3678358"}
 Simultaneously generalizes BB and toroidal compactifications.
+
+For a type-IV arithmetic quotient, use a $\Gamma$-admissible semifan in the cusp positive cones: locally rational polyhedral cones may have infinitely many faces, and their data agree along rank-two isotropic cusps. Glue the cusp partial compactifications specified by these cones and divide by the cusp stabilizers. This is Looijenga's semitoroidal compactification.
+
+In the complex-ball case, the toroidal boundary at a cusp is an abelian variety $A$. A semifan specifies a subtorus $B\subset A$ from a primitive sublattice of the cusp lattice; replace the boundary by $A/B$. $B=0$ gives the toroidal boundary; $B=A$ contracts it to the Baily–Borel point.
+
+Reference: Alexeev–Engel–Han, *Compact moduli of K3 surfaces with a nonsymplectic automorphism*, §3E.
 :::
 
 ::: {.front card-id="card-858f92b97e0db0b0"}
@@ -486,7 +566,13 @@ What is the definition of Semifan?
 :::
 
 ::: {.back card-id="card-f67ebfdf6dac4a2b"}
-A collection of rational polyhedral cones in the boundary of a symmetric domain, closed under taking faces, used to construct a toroidal or semitoroidal compactification. A recognizable polarizing divisor determines a unique semifan.
+For a type-IV lattice $N$ of signature $(2,n)$, a $\Gamma$-admissible semifan assigns to each primitive isotropic line $J\subset N$ a convex rational locally polyhedral conical decomposition $\mathfrak F_J$ of the rational closure of a positive cone in $(J^\perp/J)_{\mathbb R}$. Cones meet along faces; they need not be finitely generated. Require $\Gamma$-invariance.
+
+Compatibility at a primitive isotropic plane $I$: for every $J\subset I$, intersect the kernels of the wall forms of $\mathfrak F_J$ whose walls contain $I/J$, intersect with $I^\perp/J$, and descend to $I^\perp/I$. The resulting rational subspace, or saturated lattice, must be independent of $J$.
+
+These data define semitoroidal compactifications. In the recognizable-divisor theorem, the stable-pair compactification determines a unique semifan.
+
+Reference: Alexeev–Engel–Han, Definitions 3.17–3.18.
 :::
 
 ::: {.front card-id="card-a6dd0db307a9ada3" tags="definition"}
@@ -494,7 +580,9 @@ What is the definition of Toroidal compactification?
 :::
 
 ::: {.back card-id="card-a6dd0db307a9ada3"}
-A compactification of $\Gamma\backslash D$ obtained by adding torus bundles over boundary components, using a fan or semifan of rational polyhedral cones. It depends on the fan and dominates the Baily–Borel compactification.
+A compactification of $\Gamma\backslash D$ built from torus embeddings at rational cusps. At each cusp, choose a rational polyhedral fan in the cone attached to the center of its unipotent radical. Require cusp-stabilizer invariance, finitely many cone orbits, and agreement at incident cusps.
+
+After quotienting by the integral central translations, replace each torus chart by the toric variety of its fan, glue the charts, and quotient by the remaining stabilizer. Full-support fans give a compactification; it depends on the fan and maps to Baily–Borel. A refinement gives a proper modification. Semifans allow the more general semitoroidal construction.
 :::
 
 ::: {.front card-id="card-da95f37a1b1f62ae" tags="definition"}
@@ -502,7 +590,11 @@ What is the definition of Type iv domain?
 :::
 
 ::: {.back card-id="card-da95f37a1b1f62ae"}
-A domain of the form $\mathbb D_N=\{[x]\in\mathbb P(N\otimes\mathbb C):x^2=0,\ |x|>0\}$ for a lattice $N$ with a quadratic form. For $N=\Lambda_{\mathrm{K3}}$ it is the $20$-dimensional period domain of K3 surfaces.
+For $N$ of signature $(2,n)$, choose one connected component of
+$$\mathbb D_N=\{[x]\in\mathbb P(N\otimes\mathbb C):(x,x)=0,\ (x,\bar x)>0\}.$$
+It has complex dimension $n$ and parametrizes oriented positive-definite real two-planes in $N_{\mathbb R}$.
+
+For polarized K3s, use $N=h^\perp\subset\Lambda_{\mathrm{K3}}$, signature $(2,19)$. The full K3 lattice has signature $(3,19)$: its $20$-dimensional period domain has the same equations but is not a type-IV Hermitian symmetric domain.
 :::
 
 ::: {.front card-id="card-af9f71bcc0ea225f" tags="definition"}
