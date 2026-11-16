@@ -24,6 +24,7 @@ export function SideEditor({
   onEditDiagram,
   workspace,
   path,
+  minHeight = "160px",
 }: {
   side: Side;
   value: string;
@@ -34,6 +35,7 @@ export function SideEditor({
   onEditDiagram?: (target: DiagramTarget) => void;
   workspace: string;
   path: string;
+  minHeight?: string;
 }) {
   const label = side === "front" ? "Front" : "Back";
   // @uiw/react-codemirror applies a changed `value` prop as an ExternalChange
@@ -142,7 +144,7 @@ export function SideEditor({
       {sourceMode || diagrams.length === 0 ? (
         <CodeMirror
           value={shown}
-          minHeight="160px"
+          minHeight={minHeight}
           extensions={extensions}
           basicSetup={basicSetup}
           editable={editable}

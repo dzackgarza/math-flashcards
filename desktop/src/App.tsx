@@ -8,6 +8,7 @@ import {
   useState,
   type MouseEvent,
 } from "react";
+import { z } from "zod";
 import {
   ActionIcon,
   Alert,
@@ -100,7 +101,7 @@ import {
 import { ReviewChanges } from "./review";
 import { ProblemDrawer, useProblems } from "./problem-drawer";
 import { useSearch } from "./search";
-import { useEditorViews, useStudySync } from "./study";
+import { syncSavedStudy, useEditorViews, useStudySync } from "./study";
 import { previousPackage, refreshTargets } from "./packages";
 import { backgroundTurn, noteForegroundInput } from "./background";
 import {
@@ -117,6 +118,9 @@ import {
   generatedSchema,
   organizedSchema,
   reviewSchema,
+  studyOpenSchema,
+  studyBegunSchema,
+  type StudyNext,
   type Change,
   type Document,
   type Pending,
@@ -138,6 +142,11 @@ const STALE = /changed on disk|changed during|changed before/;
 // serves this chunk locally, without an installer or network dependency.
 const SideEditor = lazy(() =>
   import("./editor").then(({ SideEditor }) => ({ default: SideEditor })),
+);
+const StudyScreen = lazy(() =>
+  import("./study-screen").then(({ StudyScreen }) => ({
+    default: StudyScreen,
+  })),
 );
 const QuiverEditor = lazy(() =>
   import("./quiver").then(({ QuiverEditor }) => ({ default: QuiverEditor })),
@@ -241,6 +250,14 @@ export default function App() {
   const [conflict, setConflict] = useState(false);
   const [log, setLog] = useState("");
   const [workspaceMenu, setWorkspaceMenu] = useState(false);
+  const [study, setStudy] = useState<{
+    session: number;
+    next: StudyNext;
+    record: string;
+    ended: boolean;
+  } | null>(null);
+  const studyCurrent = useRef(study);
+  studyCurrent.current = study;
   const [cardFilter, setCardFilter] = useState("");
   const [selection, setSelection] = useState<string[]>([]);
   const [notice, setNotice] = useState<Notice | null>(null);
@@ -283,7 +300,7 @@ export default function App() {
   const finishEditorView = useEditorViews(
     workspace,
     document?.path ?? null,
-    selected?.id ?? null,
+    study ? null : (selected?.id ?? null),
     setError,
   );
   // Mantine's Tree reinitializes its expansion state from a stale closure
@@ -1000,8 +1017,58 @@ export default function App() {
       });
   }
 
+  async function closeStudy() {
+    const active = studyCurrent.current;
+    if (!active) return;
+    if (!active.ended)
+      await request(
+        { action: "study-end", workspace, session: active.session },
+        z.strictObject({}),
+      );
+    studyCurrent.current = null;
+    setStudy(null);
+  }
+
+  async function updateStudy(next: StudyNext) {
+    const active = studyCurrent.current;
+    if (!active) return;
+    const ended = next.state === "Finished";
+    if (ended && !active.ended)
+      await request(
+        { action: "study-end", workspace, session: active.session },
+        z.strictObject({}),
+      );
+    const updated = { ...active, next, ended };
+    studyCurrent.current = updated;
+    setStudy(updated);
+  }
+
+  async function startStudy() {
+    setWorkspaceMenu(false);
+    if (studyCurrent.current) return;
+    const opened = await request(
+      { action: "study-open", workspace },
+      studyOpenSchema,
+    );
+    if (opened.state !== "Open")
+      throw new Error(
+        "Attach this workspace to a study store before starting Study.",
+      );
+    await syncSavedStudy(workspace, assetIdentity, reconciliation.current);
+    await finishEditorView();
+    const begun = await request(
+      { action: "study-begin", workspace, scope: { kind: "workspace" } },
+      studyBegunSchema,
+    );
+    const active = { ...begun, record: opened.record, ended: false };
+    studyCurrent.current = active;
+    setStudy(active);
+    if (begun.next.state === "Finished") await updateStudy(begun.next);
+  }
+
   const publishedField = useRef("");
   async function chooseWorkspace(root: string) {
+    await closeStudy();
     const token = ++workspaceNavigation.current;
     reviewRequest.current++;
     generationRequest.current++;
@@ -1145,6 +1212,7 @@ export default function App() {
     cardId?: string,
     selection: "required" | "preferred" = "required",
   ) {
+    await closeStudy();
     const token = ++navigation.current;
     const workspaceToken = workspaceNavigation.current;
     setTask("Loading");
@@ -1288,6 +1356,7 @@ export default function App() {
       .onCloseRequested((event) => {
         event.preventDefault();
         guard(async () => {
+          await closeStudy();
           await finishEditorView();
           await window.destroy();
         });
@@ -1301,7 +1370,7 @@ export default function App() {
       disposed = true;
       stop?.();
     };
-  }, [dirty, finishEditorView]);
+  }, [dirty, finishEditorView, workspace]);
 
   useEffect(() => {
     if (!workspace) return;
@@ -2058,6 +2127,12 @@ export default function App() {
         ...(workspace
           ? [
               {
+                id: "study",
+                label: "Study",
+                disabled: busy || studyStatus !== "Study cards ready",
+                onClick: () => guard(startStudy),
+              },
+              {
                 id: "review",
                 label: "Review changes not in Anki packages",
                 onClick: () => void openReview(null),
@@ -2196,6 +2271,14 @@ export default function App() {
           </Popover.Target>
           <Popover.Dropdown>
             <Stack gap="sm">
+              <Button
+                disabled={
+                  !workspace || busy || studyStatus !== "Study cards ready"
+                }
+                onClick={() => guard(startStudy)}
+              >
+                Study
+              </Button>
               <TextInput
                 label="Workspace folder"
                 placeholder="Folder containing your Markdown decks"
@@ -2514,7 +2597,25 @@ export default function App() {
             </Group>
           </Alert>
         )}
-        {!document ? (
+        {study ? (
+          <Suspense fallback={<Loader aria-label="Opening Study" />}>
+            <StudyScreen
+              workspace={workspace}
+              session={study.session}
+              next={study.next}
+              record={study.record}
+              mathjax={mathjax}
+              onNext={(next) =>
+                void updateStudy(next).catch((failure) =>
+                  setError(String(failure)),
+                )
+              }
+              onClose={() =>
+                void closeStudy().catch((failure) => setError(String(failure)))
+              }
+            />
+          </Suspense>
+        ) : !document ? (
           <Stack className="empty-state" align="center" justify="center">
             <IconCards size={40} stroke={1.25} className="empty-icon" />
             <Title order={2} fz={20}>

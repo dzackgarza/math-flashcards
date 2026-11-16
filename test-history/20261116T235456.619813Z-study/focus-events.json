@@ -1,0 +1,16 @@
+[
+  {
+    "kind": "blur",
+    "at": 5173.10000000149,
+    "handled": 5173.20000000298,
+    "focused": false,
+    "hidden": false
+  },
+  {
+    "kind": "focus",
+    "at": 6173.70000000298,
+    "handled": 6173.80000000447,
+    "focused": true,
+    "hidden": false
+  }
+]

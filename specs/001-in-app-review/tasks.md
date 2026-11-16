@@ -93,14 +93,14 @@ operation. Whole-run timing classification does not block a missing user capabil
 ### Implementation for User Stories 1 and 6
 
 - [X] T021 [US1] Implement the add path of `study-sync` in `desktop/study/sync.py`: validate each native deck batch against its saved-source digest; create the Anki deck `Workspace::<folders>::<file stem>`; add scheduling notes in one `add_notes` call with GUID and sole field `CardId` equal to the native ID; record source and media digests; write a `card_change` row of kind `added` and a `content` row holding native front and back source, retained `record-assets/` identity, media rows, and retained `record-media/` files; return `SyncResult` with `pending` against the full workspace inventory
-- [ ] T022 [US6] Implement in `desktop/study/session.py` the pure conversion of R13 from Anki's values (queued card, current and next states, card statistics, card after the answer, review log row) and the window's `Timing` to the `presentation` and `response` values of `specs/001-in-app-review/data-model.md`, with an empty value for each fact that was not observed
-- [ ] T023 [US1] Implement `study-begin`, `study-next`, `study-answer`, and `study-end` in `desktop/study/session.py` by the R10 call sequence: a `session` row at begin; the top card of the scope's queue with a `presentation` row written before the response; Anki's four labels; the three counts; `Finished` with `next_learning_seconds` from `congratulations_info()`; `StaleCard` when `presentation` is not the session's last presentation or its card is not the top card; `reveal_ms + grade_ms` as Anki's answer time; the `response` row after `answer_card()` returns; a `session_end` row at end and for each open session when the host's input closes
+- [X] T022 [US6] Implement in `desktop/study/session.py` the pure conversion of R13 from Anki's values (queued card, current and next states, card statistics, card after the answer, review log row) and the window's `Timing` to the `presentation` and `response` values of `specs/001-in-app-review/data-model.md`, with an empty value for each fact that was not observed
+- [X] T023 [US1] Implement `study-begin`, `study-next`, `study-answer`, and `study-end` in `desktop/study/session.py` by the R10 call sequence: a `session` row at begin; the top card of the scope's queue with a `presentation` row written before the response; Anki's four labels; the three counts; `Finished` with `next_learning_seconds` from `congratulations_info()`; `StaleCard` when `presentation` is not the session's last presentation or its card is not the top card; `reveal_ms + grade_ms` as Anki's answer time; the `response` row after `answer_card()` returns; a `session_end` row at end and for each open session when the host's input closes
 - [ ] T024 [US6] Implement recovery at store open in `desktop/study/store.py`: one `response` row with `recovered` set for each review log row that has none, and one `session_end` row with cause `recovered` for each session that has none, by the pure comparison of review log IDs with `response` rows
 - [ ] T025 [P] [US1] Share the native card face from `desktop/src/editor.tsx` with Study: read-only presentation of authored source, the existing MathJax configuration and diagram renderer, and image resolution through each content version's media mapping
 - [ ] T026 [P] [US1] Create `desktop/src/study.ts`: the session state (unattached, front, revealed, finished, error); the timing of each card with `performance.now()` for the time to reveal and the time to grade, and with the window's visibility and focus events for the time without focus; native deck batches from saved source, `cards()`, source digests, and existing deck metadata; the sync loop that calls `study-sync` until `pending` is zero and reports progress; and the handling of `StaleCard` by fetching the current card
-- [ ] T027 [US1] Create `desktop/src/study.tsx` and its styles in `desktop/src/App.css`: native front and back from the content record through the shared card face, four grade buttons with Anki's labels, session counts, the finished state, the store error states, the keys Space, 1 to 4, and Escape, and `study-end` when the user leaves and when the queue is finished
-- [ ] T028 [US1] Connect the screen in `desktop/src/App.tsx`: call `study-open` and run the sync loop at workspace open without blocking the editor, show sync progress, add **Study** to the workspace menu and the Ctrl-K commands, save pending edits before a session starts, and name the function **Study** everywhere (FR-027)
-- [ ] T029 [US6] Add to `desktop/src/study.tsx` and `desktop/src/App.tsx` the attach list for the `Unattached` state (each store with its paths, whether its current path exists, last use, and numbers of cards and grades; **Attach** and **Start new**), and the paths of the learning record and the store with a command that opens the folder
+- [ ] T027 [US1] Create `desktop/src/study-screen.tsx` and its styles in `desktop/src/App.css`: native front and back from the content record through the shared card face, four grade buttons with Anki's labels, session counts, the finished state, the store error states, the keys Space, 1 to 4, and Escape, and `study-end` when the user leaves and when the queue is finished
+- [X] T028 [US1] Connect the screen in `desktop/src/App.tsx`: call `study-open` and run the sync loop at workspace open without blocking the editor, show sync progress, add **Study** to the workspace menu and the Ctrl-K commands, save pending edits before a session starts, and name the function **Study** everywhere (FR-027)
+- [ ] T029 [US6] Add to `desktop/src/study-screen.tsx` and `desktop/src/App.tsx` the attach list for the `Unattached` state (each store with its paths, whether its current path exists, last use, and numbers of cards and grades; **Attach** and **Start new**), and the paths of the learning record and the store with a command that opens the folder
 - [ ] T030 [P] [US6] Write `docs/study-record.md`: the location of the record and how to open it read-only; for each table and each column its meaning, unit, value coding, and the case in which it is empty; the `review` view; the guarantees of `specs/001-in-app-review/contracts/learning-record.md`; the mapping to the columns of the `anki-revlogs-10k` research data set; and the example queries
 - [X] T065 [US6] Implement `study-viewed` in `desktop/study/session.py` with its insert function for `editor_view` in `desktop/study/record.py`
 - [ ] T066 [US6] Measure editor views in `desktop/src/study.ts` (the time a card is open and the time without focus, with `performance.now()` and the window's visibility and focus events) and send `study-viewed` from `desktop/src/App.tsx` when the card leaves the editor: another card is selected, the deck closes, a study session starts, or the window closes
@@ -165,7 +165,7 @@ operation. Whole-run timing classification does not block a missing user capabil
 ### Implementation for User Story 4
 
 - [ ] T043 [US4] Implement `study-undo` and the `undoable` value in `desktop/study/session.py` from Anki's undo status: undo only when the last undo step is a grade, an `undo` row for the undone `response` row, `StaleCard` otherwise
-- [ ] T044 [US4] Add Undo (button and Ctrl-Z, with the disabled reason) and Edit (button and key E, with the return to the session) to `desktop/src/study.tsx`, and the editor round trip to `desktop/src/App.tsx`
+- [ ] T044 [US4] Add Undo (button and Ctrl-Z, with the disabled reason) and Edit (button and key E, with the return to the session) to `desktop/src/study-screen.tsx`, and the editor round trip to `desktop/src/App.tsx`
 
 **Checkpoint**: The T042 steps pass
 
@@ -184,7 +184,7 @@ operation. Whole-run timing classification does not block a missing user capabil
 ### Implementation for User Story 5
 
 - [ ] T046 [US5] Implement `study-set-settings` in `desktop/study/settings.py`: `new_per_day` 0 to 9999, `reviews_per_day` 0 to 9999, `desired_retention` 0.70 to 0.99, `InvalidSettings` outside a bound, the one preset that all decks share, and one `setting_change` row for each value that changed
-- [ ] T047 [US5] Add the settings form to `desktop/src/study.tsx` with the three fields, their bounds, and the count refresh after a change
+- [ ] T047 [US5] Add the settings form to `desktop/src/study-screen.tsx` with the three fields, their bounds, and the count refresh after a change
 
 **Checkpoint**: The T045 steps pass
 
@@ -204,7 +204,7 @@ operation. Whole-run timing classification does not block a missing user capabil
 ### Implementation for User Story 7
 
 - [ ] T050 [US7] Implement `study-fit` and `study-apply-fit` in `desktop/study/settings.py` by R14: Anki's fit on the whole store, `evaluate_params_legacy` for both parameter sets, `NotEnoughHistory` for Anki's insufficient-data error and for a fit that used no review, the preset's `fsrsParams6` on apply, and the `parameter_set` and `setting_change` rows
-- [ ] T051 [US7] Add the fit command to the settings of `desktop/src/study.tsx`: progress while the fit runs, both sets of measures, **Apply** and **Close**, and the `NotEnoughHistory` statement
+- [ ] T051 [US7] Add the fit command to the settings of `desktop/src/study-screen.tsx`: progress while the fit runs, both sets of measures, **Apply** and **Close**, and the `NotEnoughHistory` statement
 
 **Checkpoint**: The T049 steps pass
 
@@ -247,7 +247,7 @@ operation. Whole-run timing classification does not block a missing user capabil
 ### Implementation for the copy
 
 - [ ] T076 Implement `study-copy` in `desktop/study/store.py` by R18: close the collection and the record, copy the store directory with `shutil.copytree`, open both again, write the `store_event` row, and return `CopyFailed` with the store open and unchanged when the copy cannot be written
-- [ ] T077 Add **Save a copy** to the Study settings in `desktop/src/study.tsx`, with the folder picker of the dialog plugin, progress while the copy runs, and the path of the finished copy
+- [ ] T077 Add **Save a copy** to the Study settings in `desktop/src/study-screen.tsx`, with the folder picker of the dialog plugin, progress while the copy runs, and the path of the finished copy
 
 **Checkpoint**: The T075 steps pass
 
@@ -309,7 +309,7 @@ After T016 to T020 are committed and failing:
   Task: "T025 element typesetting in desktop/src/math.ts"
   Task: "T026 session state, timing, and sync loop in desktop/src/study.ts"
   Task: "T030 field reference in docs/study-record.md"
-Then T027 (study.tsx), T028 (App.tsx), T029 (attach list and record location), T065 and T066 (editor views).
+Then T027 (study-screen.tsx), T028 (App.tsx), T029 (attach list and record location), T065 and T066 (editor views).
 ```
 
 ## Implementation Strategy

@@ -8,6 +8,8 @@ import {
   request,
   studyOpenSchema,
   syncResultSchema,
+  manifestSchema,
+  sourcesSchema,
   type StudyOpen,
   type StudyDeck,
   type SourceResult,
@@ -105,6 +107,53 @@ function nativeDeck(
       ],
     })),
   };
+}
+
+// A session starts from disk after the editor has saved. Background preparation
+// may still be publishing its final React state when the user selects Study.
+export async function syncSavedStudy(
+  workspace: string,
+  assets: string,
+  generation: number,
+) {
+  const manifest = await request(
+    { action: "manifest", workspace, generation },
+    manifestSchema,
+  );
+  const paths = manifest.entries.map((entry) => entry.path);
+  for (let offset = 0; offset < paths.length; offset += 8) {
+    const batch = await request(
+      {
+        action: "sources",
+        workspace,
+        generation,
+        paths: paths.slice(offset, offset + 8),
+      },
+      sourcesSchema,
+    );
+    const decks = batch.results.map((source) => {
+      if (source.state === "failed") throw new Error(source.message);
+      return nativeDeck(source);
+    });
+    const synced = await request(
+      { action: "study-sync", workspace, assets, paths, decks },
+      syncResultSchema,
+    );
+    if (synced.failed.length || synced.duplicates.length)
+      throw new Error(
+        [
+          ...synced.failed.map((item) => `${item.path}: ${item.message}`),
+          ...synced.duplicates.map(
+            (item) =>
+              `Duplicate card ${item.card_id}: ${item.paths.join(", ")}`,
+          ),
+        ].join("\n"),
+      );
+    if (offset + 8 >= paths.length && synced.pending)
+      throw new Error(
+        "The workspace changed while preparing Study. Start Study again to load the saved cards.",
+      );
+  }
 }
 
 export function useStudySync(

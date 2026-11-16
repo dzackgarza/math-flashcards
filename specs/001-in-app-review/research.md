@@ -283,6 +283,15 @@ store is created:
 
 ## R10. Session behaviour
 
+The window uses its existing Mantine controls and shared `SideEditor` for the
+Study presentation. The workspace menu and command search open the session after
+saving and synchronizing the source. Short read-only faces use their content height
+so the grading controls remain visible. Following the
+[GNOME button guidelines](https://developer.gnome.org/hig/patterns/controls/buttons.html),
+the reveal action is prominent and the four grade buttons have equal widths and
+equal visual weight. Anki supplies their interval labels; styling does not recommend
+a grade.
+
 **Decision**: The host follows Anki's reviewer sequence: `get_queued_cards(fetch_limit=1)`
 for the card and the three counts, `describe_next_states()` for the four labels,
 `build_answer()` and `answer_card()` for a grade, `undo()` for Undo, and

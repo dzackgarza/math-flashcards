@@ -442,6 +442,10 @@ export const syncResultSchema = z.strictObject({
     z.strictObject({ card_id: cardIdSchema, paths: z.array(deckPathSchema) }),
   ),
 });
+export const studyBegunSchema = z.strictObject({
+  session: rowIdSchema,
+  next: studyNextSchema,
+});
 export const storeSummarySchema = z.strictObject({
   store: z.string(),
   paths: z.array(z.string()),
