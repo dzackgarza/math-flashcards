@@ -139,7 +139,8 @@ def main(artifacts: Path) -> None:
                 hosts = [
                     process
                     for process in psutil.process_iter(["cmdline"])
-                    if "study-host" in process.info["cmdline"]
+                    if process.info["cmdline"] is not None
+                    and "study-host" in process.info["cmdline"]
                     and process.environ().get("XDG_DATA_HOME")
                     == os.environ["XDG_DATA_HOME"]
                 ]

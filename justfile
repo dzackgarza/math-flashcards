@@ -79,24 +79,34 @@ desktop-diagram-test:
 
 # Exercise the editor against its real backend with an isolated server
 desktop-test scenario="full":
-    #!/usr/bin/env python3
+    #!/usr/bin/env -S uv run --no-project --script
     import os
+    import shutil
     import subprocess
+    import sys
     import tempfile
     from pathlib import Path
+    sys.path.insert(0, str(Path("desktop/tests").resolve()))
+    from evidence import evidence
     scenarios = {"full": "tests/workbench.py", "startup": "tests/workbench.py --startup", "study": "tests/study.py"}
     environment = os.environ.copy()
     environment.setdefault("UV_CACHE_DIR", subprocess.check_output(["uv", "cache", "dir"], text=True).strip())
     environment.setdefault("PLAYWRIGHT_BROWSERS_PATH", str(Path(os.environ.get("XDG_CACHE_HOME", str(Path.home() / ".cache"))) / "ms-playwright"))
-    with tempfile.TemporaryDirectory(prefix="flashcards-browser-cache-") as directory:
+    with evidence("browser-{{scenario}}", Path("desktop/tests/fixtures")) as artifacts, tempfile.TemporaryDirectory(prefix="flashcards-browser-cache-") as directory:
         environment["XDG_CACHE_HOME"] = str(Path(directory) / "cache")
         environment["XDG_DATA_HOME"] = str(Path(directory) / "data")
         environment["XDG_STATE_HOME"] = str(Path(directory) / "state")
-        subprocess.run(
-            ["bunx", "start-server-and-test", "just -f ../justfile desktop-web", "http-get://127.0.0.1:1420", "uv run --upgrade " + scenarios["{{scenario}}"]],
-            cwd="desktop", check=True,
-            env=environment,
-        )
+        try:
+            with (artifacts / "server.log").open("w") as log:
+                subprocess.run(
+                    ["bunx", "start-server-and-test", "just -f ../justfile desktop-web", "http-get://127.0.0.1:1420", "uv run --upgrade " + scenarios["{{scenario}}"]],
+                    cwd="desktop", check=True, env=environment,
+                    stdout=log, stderr=subprocess.STDOUT,
+                )
+        finally:
+            state = Path(environment["XDG_STATE_HOME"])
+            if state.is_dir():
+                shutil.copytree(state, artifacts / "application-state")
 
 # Exercise Study with isolated learning data and cache directories
 desktop-study-test: (desktop-test "study")

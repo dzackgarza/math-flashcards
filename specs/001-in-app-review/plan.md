@@ -217,8 +217,10 @@ Study test runs retain evidence under `test-history/<UTC timestamp>-<scenario>/`
 records the revision, working source hashes, fixture hashes, environment, result, preparation
 time, and elapsed time; `python.pstats` records nested calls in the test process; `test.log`
 records failures; native runs also retain WebKit diagnostics and the executable hash. The
-Python profile includes waits for child processes but not their call stacks. T081 extends
-measurement and durable logs to those operations and the other test runners. A timing
+Python profile includes waits for child processes but not their call stacks. The Study
+host separately records operation events and nested Python profiles in XDG state; the
+browser runner retains that state and server output after shutdown. T081 extends
+measurement and durable logs to the other operations and test runners. A timing
 optimization starts with the cost table required by constitution XII, in the design that
 owns the operation.
 

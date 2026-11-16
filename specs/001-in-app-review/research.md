@@ -139,22 +139,10 @@ XDG specification describes it for data that is less important than user data.
 
 **Test rule**: Every test that starts the bridge sets `XDG_DATA_HOME` to a temporary
 directory. `desktop/tests/organization.py` and `desktop/tests/native.py` already do. The
-`desktop-test` recipe isolates `XDG_CACHE_HOME` only; once the window opens the store at
-workspace open, that scenario would write to the real history.
+`desktop-test` recipe isolates cache, data, and state directories so tests retain no
+learning or diagnostic data in the user's application directories.
 
 ## R5. Deck mapping
-
-Native host-lifecycle checks wait for a terminated child to reach the exited state
-before sending the next bridge request. On Unix,
-[`psutil.Process.wait`](https://psutil.io/api/#psutil.Process.wait) waits for a non-child
-PID to disappear; the native parent reaps its child when the next request calls
-`try_wait`. Waiting for disappearance before that request creates a test dependency
-cycle. The test must still verify that the old PID is reaped, the store is unchanged,
-and a new writer is recorded after reopening.
-
-Singleton checks move keyboard focus away from the app and require the next launch to
-restore it with the same sole window. Direct X window unmapping is not a GTK hide
-operation and does not establish the application's visibility state.
 
 **Decision**: Each deck file maps to one Anki deck named from its workspace path:
 `Workspace::<folder>::…::<file stem>`. Folders are parent decks. `Workspace` is the root
@@ -307,6 +295,31 @@ sync operations add undo steps, so Undo is unavailable after a sync until the ne
 (FR-021).
 
 ## R11. Test method
+
+The Study host writes operation events and `cProfile` files under the library-resolved
+XDG state directory. Each process records its app and Anki versions, Python and platform,
+and source digests. Each operation records an input digest, start and completion times,
+outcome, and a profile; errors include their traceback. The record of learning remains
+in the data directory. Removing diagnostic files cannot change that record.
+
+Python's standard [logging](https://docs.python.org/3/library/logging.html) and
+[profiling](https://docs.python.org/3/library/profile.html) libraries supply this capture.
+Profiles include nested Python work and the total time of calls into Anki's native
+library; they do not resolve the native library's internal call stacks. This limit must
+remain explicit in timing comparisons. Test runners retain the server output and state
+directory after server termination, before deleting the isolated directories.
+
+Native host-lifecycle checks wait for a terminated child to reach the exited state
+before sending the next bridge request. On Unix,
+[`psutil.Process.wait`](https://psutil.io/api/#psutil.Process.wait) waits for a non-child
+PID to disappear; the native parent reaps its child when the next request calls
+`try_wait`. Waiting for disappearance before that request creates a test dependency
+cycle. The test must still verify that the old PID is reaped, the store is unchanged,
+and a new writer is recorded after reopening.
+
+Singleton checks move keyboard focus away from the app and require the next launch to
+restore it with the same sole window. Direct X window unmapping is not a GTK hide
+operation and does not establish the application's visibility state.
 
 **Decision**: A Playwright scenario, `desktop/tests/study.py`, drives the real window
 served by `just desktop-web` with the real bridge, real deck files in a temporary

@@ -49,7 +49,8 @@
       "../active-assets.json": "active-assets.json",
       "../tikz-assets/": "tikz-assets/",
       "../study/": "study/",
-      "../analysis/": "analysis/"
+      "../analysis/": "analysis/",
+      "../diagnostics.py": "diagnostics.py"
     }
   }
 }
