@@ -14,10 +14,10 @@ of the user's learning. The purpose is a personal learning system for one person
 career (constitution, Purpose); Anki is adapted and reused for it, not copied.
 
 The bridge adds the PyPI `anki` wheel and one long-lived host process that holds an Anki
-collection for the workspace. A state-based sync keeps one Anki note for each `card-id`,
-so edits, moves, and renames keep review history. A new React screen shows the card, the
-four grades with Anki's interval labels, counts, and Undo. Package export does not
-change.
+collection for the workspace. A state-based sync keeps one scheduling note for each
+native `card-id`, so edits, moves, and renames keep review history. The app's existing
+card parser supplies native front and back source. The shared editor renderer displays
+it. A new React screen shows four grades with Anki's interval labels, counts, and Undo.
 
 Beside the collection, the host writes the learning record: an append-only SQLite
 database that the app owns. It holds each showing of a card with its content, subject,
@@ -42,7 +42,7 @@ inside the app.
 
 **Language/Version**: Python ≥ 3.12 (bridge; the prepared runtime is 3.14), TypeScript with React (window), Rust (Tauri 2 shell), Lua (Pandoc filters)
 
-**Primary Dependencies**: `anki` (PyPI wheel, new), Python's `sqlite3` (standard library, for the learning record and for the read-only connection of the analyses), `tauri-plugin-single-instance` (new), Import Linter (new, commit gate only, through `uvx`), `ankdown` from `ankdown-for-math`, Pydantic, filelock, platformdirs, Pandoc, MathJax 4, Mantine, Zod, Tauri 2
+**Primary Dependencies**: `anki` (PyPI wheel, new), Python's `sqlite3` (standard library, for the learning record and for the read-only connection of the analyses), `tauri-plugin-single-instance` (new), Import Linter (new, commit gate only, through `uvx`), Pydantic, filelock, platformdirs, `@dzack/pandoc-editor`, the existing Lezer Pandoc parser, MathJax 4, Mantine, Zod, Tauri 2
 
 **Storage**: One store for each workspace under `user_data_path("math-flashcards")/study/<store ID>/`: an Anki collection (SQLite) with its media folder, the learning record `record.sqlite3` (SQLite, schema owned by the app, rows only inserted) with `record-media/`, `store.json`, and `backups/` with Anki `.colpkg` files and record copies
 
@@ -66,8 +66,8 @@ inside the app.
 | --- | --- | --- |
 | Purpose | The feature is built for one person's learning over a career. It records more than Anki records, changes Anki's review order and answer-time limit for that purpose (R9), and omits Anki's sync, editor, add-ons, and sharing. | Pass |
 | I. Markdown decks are the only authored source | The store's notes are regenerated from the decks by `study-sync`. Review history and the learning record are user data: they live in the user data directory (R4), have backups, and are outside **Rebuild cached data**. The record keeps the content of each card as shown; it is a history of what the user saw, not a source of cards. | Pass |
-| II. Shared rendering sources | Notes hold the package render (`render()` with both filters). The study screen typesets with the app's MathJax and the active macro set. No new parser, macro, or renderer. | Pass |
-| III. Dependencies before hand-written code | Scheduling, queues, undo, counts, backups, the database check, and parameter fitting are Anki calls. Two parts are new code. The sync plan (deck render against store snapshot) has Anki's import-by-GUID update behaviour and the existing `sync()` input comparison as its reference. The learning record's schema is hand-written; SQLite owns storage, concurrent reads, and backup; the reference for its rules is the xAPI statement model (never changed, undone by a new statement), and the reference for its fields is Anki's review log and the public research data set (R12). No surveyed library stores this record. The `id` field is added in the exporter's repository, not in a vendored copy. `anki` has no version pin. | Pass, with the record schema for the user's approval |
+| II. Shared rendering sources | Study uses the native card source returned by `cards()` and the shared editor renderer, with the app's MathJax, active macros, diagrams, and recorded media. | Pass |
+| III. Dependencies before hand-written code | Scheduling, queues, undo, counts, backups, the database check, and parameter fitting are Anki calls. The sync plan compares native card IDs and source versions with the store. SQLite owns record storage, concurrent reads, and backup; the reference for permanence is the xAPI statement model, and the reference for scheduling fields is Anki's review log and the public research data set (R12). The editor's existing parser and renderer own card content. `anki` has no version pin. | Pass, with the record schema for the user's approval |
 | IV. Fail loudly | Unreadable store, failed copy, failed analysis, unknown store, stale card, invalid settings, too little history, and render failures each reach the window with their cause. No empty store replaces an unreadable one or an unattached one. No import path for earlier history. The record has no migration: its schema only grows, as principle VI requires. | Pass |
 | V. Proof through the real application path | `desktop/tests/study.py` drives the real window and bridge, reads the real store, and reads the real record with `sqlite3` alone. The native scenario proves the host route. Each story's test is committed before its implementation. | Pass |
 | VI. The learning record is complete, permanent, and open to analysis | Complete: each presentation, response, undo, session, card change, and settings change is a row (FR-028 to FR-035); rows that Anki has and the record lacks are recovered at open (FR-036). Permanent: the host has no update or delete statement; a store attaches to a new path (FR-041); backups include the record. Independent: a second database in a documented format, readable without the app and without Anki. Additive: a `schema` table and a committed first-version fixture that every later release must read. Open: SQLite, a `review` view, `docs/study-record.md`, and the mapping to the research data set. Private: no study action calls Anki's sync or opens a connection; this is established by inspection, not by a test. Scheduling: ascending retrievability and tag-only leeches (R9). | Pass |
@@ -98,7 +98,7 @@ each):
 | Keys and text in the editor between two saves | Each saved state of a card is recorded, and each time a card is open in the editor is recorded with its duration (FR-058). The text between saves is not a state that the user kept. |
 | Search text | A search gives a list. The card that the user opens from it is recorded as an editor view. |
 | Which analysis the user ran, and when | Reading a statistic is not an act of learning or recall. The analysis part cannot write the record, by design. |
-| The rendered pixels of a card | The front and back HTML with their media files reproduce the card. |
+| The rendered pixels of a card | Native front and back source, the asset identity, and retained media describe the presentation. |
 
 ## Project Structure
 
@@ -124,7 +124,7 @@ specs/001-in-app-review/
 
 ```text
 desktop/
-├── backend.py               # entry script: anki dependency, deck render, the study-host command, the analysis-list and analysis-run commands
+├── backend.py               # entry script: anki dependency, the study-host command, the analysis-list and analysis-run commands
 ├── study/                   # new: THE CORE. The only writer of learning data
 │   ├── values.py            #   typed study values and requests
 │   ├── store.py             #   store identity, open, attach, counts, recovery, backups, copy
@@ -139,13 +139,12 @@ desktop/
 │       ├── recall_by_folder.py
 │       └── calibration.py
 ├── .importlinter            # new: the import contracts between the parts
-├── paired-cards.lua         # passes each card-id to the exporter filter
 ├── src/                     # THE INTERFACE
 │   ├── bridge.ts            # Zod schemas and request types for the study and analysis actions
 │   ├── study.tsx            # new: study screen, attach list, settings, record location, copy, fit, finished state
 │   ├── study.ts             # new: session state, timing of reveal, grade, focus, and editor views, sync loop, count tree mapping
 │   ├── statistics.tsx       # new: list of analyses and one renderer for every result table
-│   ├── math.ts              # element typesetting for rendered card HTML
+│   ├── editor.tsx           # shared native card face for editing and study
 │   ├── App.tsx              # entry points, tree counts, sync triggers, editor round trip, editor views
 │   └── App.css
 ├── src-tauri/
@@ -169,7 +168,6 @@ docs/study-record.md                # new: every table and field of the learning
 docs/analyses.md                    # new: how to add an analysis, and the rules that it obeys
 docs/learning-research.md           # the register of research sources; T079 raises its depth to Full
 
-(ankdown-for-math repository)        # Card.id in the model and in ankdown.lua
 ```
 
 **Structure Decision**: The feature extends the existing desktop app in place, in three
@@ -177,9 +175,8 @@ parts (R17). The core is the package `desktop/study/`. The analyses are the pack
 `desktop/analysis/`. The interface is `desktop/src/`. `desktop/backend.py` stays the
 entry script of every bridge process: it adds its own directory to `sys.path`, because
 the shell runs it in isolated mode (R17), and it starts the host or runs one analysis.
-A later analysis is one new file in `desktop/analysis/catalog/` and its test. The
-exporter change is made in its own repository and reaches this one through the unpinned
-dependency.
+A later analysis is one new file in `desktop/analysis/catalog/` and its test.
+Native card input comes from `desktop/src/cards.ts`, through the saved-source bridge.
 
 ## Phases
 

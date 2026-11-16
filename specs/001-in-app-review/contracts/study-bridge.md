@@ -30,7 +30,7 @@ Every request has `action` and `workspace`. Unknown fields are rejected.
 | --- | --- | --- | --- | --- |
 | `study-open` | | `StudyOpen` | Created when no store exists | `store_event`; recovered rows |
 | `study-attach` | `choice: { kind: "existing", store: StoreId }` \| `{ kind: "new" }` | `StudyOpen` with state `Open` | Created for `new` | `store_event` |
-| `study-sync` | `assets: Digest`, `limit: int` (1 to 8) | `SyncResult` | Notes, decks, tags | `card_change`, `content`, `media` |
+| `study-sync` | `assets: Digest`, `decks: StudyDeck[]` (at most 8), `paths: DeckPath[]` (complete workspace inventory) | `SyncResult` | Scheduling identities, decks, tags | `card_change`, `content`, `media` |
 | `study-counts` | | `DeckCounts` | No | No |
 | `study-begin` | `scope: Scope` | `{ session: SessionId, next: StudyNext }` | No | `session`; `presentation` |
 | `study-next` | `session: SessionId` | `StudyNext` | No | `presentation` |
@@ -75,10 +75,13 @@ No action updates or deletes a row of the learning record.
 
 ### `study-sync`
 
-- Brings at most `limit` decks that are not current into agreement with their saved
-  files, then returns. `pending` is the number of decks still not current.
+- Takes native card values parsed from saved source by `cards()` in
+  `desktop/src/cards.ts`. Each deck includes its saved-source digest. The host checks
+  that digest against the file before accepting the batch. `pending` is the number
+  of paths whose saved source differs from the last accepted version.
 - With no deck out of date, it changes nothing and returns zero counts.
-- Renders with the asset set named by `assets`, by the package render path.
+- Records native front and back source with the asset identity named by `assets`.
+  Anki notes carry the `card-id`; the app's content record supplies presentation.
 - Never changes a schedule or a review log row (invariant 3).
 - Sets deck tags and card tags and keeps the tags that Anki's scheduler set (FR-045).
 - Writes one `card_change` row for each add, content change, tag change, move, removal,
@@ -172,17 +175,19 @@ No action updates or deletes a row of the learning record.
 Failures outside these kinds (a missing runtime, a Pandoc error, an Anki exception) keep
 the existing form: the request is rejected with the diagnostic text.
 
-## Render output
+## Native card input
 
-The rendered deck that `render()` returns gains the card ID:
+The editor's parser supplies saved card values:
 
 ```text
 Card = { id: CardId, front: str, back: str, tags: str[] }
+StudyDeck = { path: DeckPath, source_hash: Digest, title: str,
+              tags: str[], cards: Card[] }
 ```
 
-`id` is required and not empty in this app. The exporter fork (`ankdown-for-math`) owns
-the model and its Pandoc filter; `desktop/paired-cards.lua` supplies the ID. The package
-build ignores `id`, and package GUIDs do not change.
+`id` is required and not empty. `front` and `back` are the exact Markdown source
+slices returned by `cards()`. The host validates paths, saved-source digests, and
+workspace-wide identity before applying scheduling changes.
 
 ## Window
 
@@ -190,7 +195,7 @@ build ignores `id`, and package GUIDs do not change.
 | --- | --- |
 | Entry points | **Study** on the workspace, on each folder, and on each deck in the tree; a **Study** command in the Ctrl-K menu. |
 | Keys | Space reveals the answer. 1, 2, 3, 4 select Again, Hard, Good, Easy. Ctrl-Z undoes. E opens the card in the editor. Escape leaves the session. |
-| Card | The `front` HTML; after reveal, the `back` HTML below it. Both are typeset by the app's MathJax with the active macro set. Image sources resolve against `media`. |
+| Card | The native `front` source; after reveal, the `back` source below it. Both use the shared editor renderer in read-only mode, with the active macro set and recorded media. |
 | Grades | Four buttons, each with its `labels` text. Hidden until reveal. |
 | Timing | The window measures, with its monotonic clock, the time from the card on screen to the reveal, the time from the reveal to the grade, and the time in both that the window was hidden or without focus. It sends the three values with the grade. |
 | Counts | New, learning, and review counts of the scope, during the session and in the tree. |

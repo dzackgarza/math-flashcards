@@ -29,7 +29,8 @@ for the user is `docs/study-record.md`.
    an `undo` row; the undone `response` row stays.
 3. **Self-contained.** Each `presentation` row holds the deck path, folder, deck title,
    and tags of that moment as values, and refers to a `content` row with the front and
-   back shown. A later edit, move, or removal of the card does not change them.
+   back source shown, the retained rendering assets, and the recorded media mapping.
+   A later edit, move, or removal of the card does not change them.
 4. **Empty means not observed.** A field that the app could not observe is `NULL`, never
    zero and never a default. `docs/study-record.md` states, for each field, when it is
    empty.

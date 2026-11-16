@@ -41,23 +41,22 @@ The bridge drives Anki's `Collection` and its v3 scheduler with FSRS.
 
 ## R2. Card identity
 
-**Decision**: One Anki note for each card. The note GUID is the `card-id`. One notetype
-with fields `Front` and `Back` and one card template.
+**Decision**: One scheduling note for each native card. Its GUID and sole `CardId`
+field hold the native `card-id`; one template gives Anki one schedulable card.
+The app owns front and back source, rendering, and content history.
 
 **Rationale**: Anki accepts an arbitrary string as a GUID and finds the note by it
 (probed). The 3,278 front `card-id` values in 68 decks have no duplicate. Updating a
-note's fields after a review keeps the interval and the FSRS memory state (probed). The
-exporter's content hash (`simple_hash(front + back)`) changes on every edit and cannot
-carry history.
+note's fields after a review keeps the interval and the FSRS memory state (probed).
+Native IDs preserve identity across edits, moves, and reorders.
 
-**Alternatives considered**: Content-derived identity, as the package uses: rejected,
-it resets history on each edit. Identity by deck path and position: rejected, moves and
-reorders would reset history.
+**Alternatives considered**: Content-derived identity resets history on each edit.
+Identity by deck path and position resets history on moves and reorders.
 
-**Consequence**: The render output must carry the `card-id`. `desktop/paired-cards.lua`
-reads it and drops it; `ankdown.lua` emits `front`, `back`, `tags` by position. The card
-model of the exporter (`ankdown-for-math`, the user's fork) gains an `id` field, and the
-pairing filter passes the ID to it. Package GUIDs stay as they are (FR-025).
+**Consequence**: Study takes `id`, `front.value`, `back.value`, and tags from the
+editor's existing `cards()` parser. The front and back remain native Markdown.
+Anki supplies the scheduling identity and state; the learning record holds each
+content version and the latest `card_change` selects the current version.
 
 ## R3. Process model
 
@@ -161,15 +160,13 @@ follow the folder tree that the user selects from.
 
 **Decision**: One operation, `study-sync`, makes the store agree with the saved decks.
 It is state-based: it compares each deck's inputs with the inputs recorded at its last
-sync and renders only the decks that differ. The frontend calls it at workspace open,
+sync and reads only the decks that differ. The frontend calls it at workspace open,
 after a save, after a file-watch event, and before a session starts.
 
 **Rationale**:
 
-- The bridge already has this shape for packages: `input_hashes()` records the deck
-  source, its media, and the renderer assets, and `sync()` compares them. The store
-  keeps the same record for each deck in the collection's config, so the record and the
-  notes change together.
+- The source bridge supplies saved deck text and its digest. The store tracks that
+  digest, native media digests, and the shared editor asset identity for each deck.
 - A state comparison needs no event history. A missed file notification or a store that
   was in use is corrected by the next call.
 - The Anki operations exist: `add_notes` (batch), `update_notes(skip_undo_entry=True)`,
@@ -177,8 +174,12 @@ after a save, after a file-watch event, and before a session starts.
 
 **Rules**:
 
-- The render is the package render: `render()` with the pairing filter and the exporter
-  filter. The note fields hold the same HTML that the package holds (FR-009, SC-007).
+- The window reads saved source through the existing source bridge and parses cards
+  with `desktop/src/cards.ts`. It sends native cards, deck metadata, a source digest,
+  and the complete deck inventory. The host checks each source digest against disk
+  before accepting the batch. A changed file is read and parsed again.
+- Anki's `CardId` field identifies the native card. The learning record holds its
+  front and back source and media; the editor's shared renderer displays it.
 - One call syncs at most eight decks and reports how many decks remain, as the current
   batch requests do. The host stays free for a grade between calls, and the screen shows
   progress on the first sync.
@@ -197,37 +198,29 @@ after a save, after a file-watch event, and before a session starts.
 - A card ID in two decks is reported with both paths. The note stays with the deck that
   had it first.
 
-**Alternatives considered**: Import the generated `.apkg` into the collection: rejected,
-the package GUID is a content hash and review would depend on a current package
-(FR-025). Sync from frontend edit events: rejected, external edits bypass them.
+**Alternatives considered**: Sync from frontend edit events alone misses external edits.
+The file watcher and saved-source comparison cover both paths.
 
 ## R7. Media
 
-**Decision**: Images go to Anki's media folder of the store through `col.media`. The
-native shell serves the store's media folder through Tauri's asset protocol, and the
-Vite middleware serves it on a route. The study screen resolves each `img` source
-against that folder.
+**Decision**: The app resolves native image references relative to the saved deck and
+retains each referenced file under its digest in `record-media/`. The record maps the
+authored reference to those bytes for each content version. The native shell and Vite
+serve the recorded media to the shared editor renderer. TikZ-cd source uses the same
+diagram renderer as the editor.
 
-**Rationale**: The exporter rewrites each image source to a mangled file name and lists
-`source:name` pairs; `media_paths()` validates them. Five decks contain image links.
-TikZ-cd diagrams reach the card as SVG from the shared renderer.
-
-**Alternatives considered**: Data URIs inside the note fields: rejected, the exporter
-filter treats a non-HTTP source as a file path and mangles it.
+**Rationale**: A later file replacement must preserve the media shown in an earlier
+review. The content record owns this association (FR-030).
 
 ## R8. Card display
 
-**Decision**: The study screen inserts the note's `Front` and `Back` HTML and typesets
-the element with the app's local MathJax, configured by `texOptions(macros)` from the
-active asset set.
+**Decision**: The study screen renders native card source with the shared editor
+renderer in read-only mode. It uses the same local MathJax, macros, diagram rendering,
+and image handling as the editor, with media resolved from the content record.
 
-**Rationale**: The exporter emits math as `\(…\)` and `\[…\]` in HTML. The package
-template typesets the same HTML with MathJax 4 and the same macro set. The editor's
-`previewHtml()` is a summary renderer for card lists and does not render lists, tables,
-or nested divs.
-
-**Note**: Card HTML is the user's own authored content and is inserted without
-sanitizing, as Anki does.
+**Rationale**: `cards()` already provides the exact authored source of each side, and
+`SideEditor` already uses `@dzack/pandoc-editor`. The full card face, rather than the
+card-list summary, is the presentation owner (FR-009, SC-007).
 
 ## R9. Scheduling settings
 
@@ -396,7 +389,7 @@ that published models run on the user's own history.
 | Offered intervals | The next states of the four grades, as numbers, with Anki's labels |
 | State after | The card after `answer_card()`: `memory_state`, interval, due value |
 | Anki's row | The `revlog` row that `answer_card()` wrote |
-| Content version | A digest of the note's `Front` and `Back` |
+| Content version | A digest of native front and back source, retained media, and shared editor assets |
 | Subject | Deck path, folder, deck title, and tags from the sync |
 | Scheduler day | `sched.today`, Anki's day number with its day boundary |
 
@@ -507,8 +500,8 @@ version changes the core by accident (constitution, principle IX).
 | Analysis | `desktop/analysis/` (Python package); one module for each analysis in `desktop/analysis/catalog/` | One new process for each request, as the other bridge actions | The record only, read-only |
 | Interface | `desktop/src/` (TypeScript); the study screen and the Statistics screen | The window | None. It calls bridge actions. |
 
-`desktop/backend.py` stays the entry script. It owns the deck render and gives it to the
-core as a function, so the core imports nothing from the entry script.
+`desktop/backend.py` stays the entry script. It starts the host, which accepts native
+card values from the source bridge. The core imports nothing from the entry script.
 
 **Measured on this machine** (a spike with two packages beside an entry script):
 

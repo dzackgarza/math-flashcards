@@ -8,6 +8,8 @@
 
 **Input**: Review the cards with spaced repetition inside the desktop app, reusing Anki's
 own scheduling code, so that studying needs no package export and no import into Anki.
+The app's native card model and renderer own card content. Anki's library supplies
+scheduling and review history, keyed by the native `card-id`.
 The app adapts and reuses Anki as the base of a personal mathematics learning system for
 one person over a career. It records as much as it can observe about that person's
 learning, keeps the record permanently, and makes it available for statistical analysis.
@@ -117,7 +119,7 @@ their schedule and the remaining cards are still offered.
    the grade, schedules the card, and shows the next card.
 4. **Given** a card that contains equations with the collection's macros and a TikZ-cd
    diagram, **When** the card appears in review, **Then** it renders as it does in the
-   editor and in the exported package.
+   editor.
 5. **Given** a review in progress, **When** the app closes for any reason, **Then** every
    grade already selected is kept and the next launch continues from that state.
 6. **Given** no card is due and the daily limit of new cards is reached, **When** the
@@ -400,8 +402,8 @@ record changes, and the earlier analyses give the same results.
 
 **Card content**
 
-- **FR-009**: The system MUST render a card in review through the same rendering pipeline
-  as the editor and the exported package, including macros, diagrams, and images.
+- **FR-009**: The system MUST render the native card source in review through the
+  editor's shared renderer, including macros, diagrams, and images.
 - **FR-010**: The system MUST make every card of every saved deck available for review
   with no export or import step.
 - **FR-011**: The system MUST apply a saved change of a deck to review with no action by
@@ -448,8 +450,8 @@ record changes, and the earlier analyses give the same results.
 
 **Existing behaviour**
 
-- **FR-025**: Package export MUST keep working as it does now. Review MUST NOT depend on
-  a package and MUST NOT require one to be current.
+- **FR-025**: Study MUST consume the native card model and call Anki's library directly
+  for scheduling. The app owns card parsing, content, and presentation.
 - **FR-026**: Every card MUST start as a new card. The system imports no review history
   from an Anki collection.
 
@@ -625,8 +627,8 @@ record changes, and the earlier analyses give the same results.
 - **SC-006**: On the full collection of about 3,300 cards in 68 decks, every card of
   every saved deck is available for review, and the deck tree shows counts within
   2 seconds of opening the workspace after the first preparation.
-- **SC-007**: A card in review and the same card in the exported package show the same
-  rendered equations and diagrams.
+- **SC-007**: A card in review and the same card in the editor use the same native
+  source and shared renderer for text, equations, diagrams, and images.
 - **SC-008**: For 100% of grades, the interval that the app shows on the selected grade
   equals the interval that Anki's scheduler stores for the card, and Anki's own database
   check reports no problem in the review store.

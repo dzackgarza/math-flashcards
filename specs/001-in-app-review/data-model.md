@@ -31,7 +31,7 @@ ordered. The core declares the study types as Pydantic models in
 | `StoreId` | string | A UUID made when the store is created. Names the store directory. Independent of the workspace path. |
 | `SessionId` | integer | The row ID of a `session` row. Returned by `study-begin`. |
 | `PresentationId` | integer | The row ID of a `presentation` row. Returned with each card and sent back with its grade. |
-| `ContentDigest` | `Digest` | The existing digest type, applied to a card's rendered front and back. |
+| `ContentDigest` | `Digest` | The existing digest type, applied to a card's native front and back source, asset identity, and media digests. |
 
 ## Entities
 
@@ -40,7 +40,7 @@ ordered. The core declares the study types as Pydantic models in
 | Field | Source | Rule |
 | --- | --- | --- |
 | GUID | `CardId` | Never changes for a note. |
-| `Front`, `Back` | Rendered HTML of the card sides | Equal to the package render of the saved deck. |
+| `CardId` | Native card identity | The note's sole field; the app's learning record owns card content. |
 | Tags | Deck tags and card tags | Set on each sync. Tags that Anki's scheduler set (`leech`) are kept. |
 | Deck | From `DeckPath` | `Workspace::…` while the card is in a deck; `Removed` after removal. |
 | Schedule | Anki | Written only by Anki's scheduler and undo. Sync never writes it. |
@@ -77,6 +77,7 @@ never reached.
 | `store.json` | The `StoreId`, the creation time, and each workspace path the store was attached to, with the time. The last entry is the current path. |
 | `record.sqlite3` | The learning record. Created with the store. Rows are only inserted. |
 | `record-media/` | Files that content versions refer to, each named by its digest. |
+| `record-assets/` | Shared editor rendering assets retained by identity for content versions. |
 | `collection.anki2` | Created only when the directory does not exist. An existing directory without a readable collection is an error (FR-019). |
 | `collection.media/` | Anki's media folder. |
 | `backups/` | Anki `.colpkg` backups, each with a copy of `record.sqlite3` beside it. |
@@ -98,7 +99,7 @@ are only inserted. `docs/study-record.md` is the field reference for the user.
 | `editor_view` | `card_id`, `deck_path`, `shown_ms`, `unfocused_ms` (one row for each time a card was open in the editor, written when it leaves the editor) |
 | `session` | `scope_kind`, `scope_path` |
 | `session_end` | `session`, `cause` (left, finished, host-stopped, recovered) |
-| `content` | `digest` (`ContentDigest`, unique), `front`, `back` |
+| `content` | `digest` (`ContentDigest`, unique), `front` and `back` (native Markdown source), `assets` (renderer asset identity) |
 | `media` | `content` (the `content` row that refers to the file), `name` (the file name in the card), `digest` (the file is `record-media/<digest>`, stored once for all rows with that digest) |
 | `card_change` | `card_id`, `kind` (added, content, tags, moved, removed, restored), `from_deck`, `to_deck`, `content`, `tags` |
 | `presentation` | `session`, `position`, `card_id`, `content`, `deck_path`, `folder`, `deck_title`, `tags`, `kind` (new, learning, review, relearning), `scheduler_day`, `before_interval_days`, `before_due`, `before_reps`, `before_lapses`, `before_stability`, `before_difficulty`, `before_retrievability`, `offer_again_s`, `offer_hard_s`, `offer_good_s`, `offer_easy_s`, `labels`, `desired_retention`, `parameter_set`, `new_per_day`, `reviews_per_day` |
@@ -145,7 +146,8 @@ Rules for fields:
 ## Invariants
 
 1. For each `CardId` in a current deck, the store has exactly one note with that GUID,
-   in that deck's Anki deck, not suspended, with the rendered sides of the saved deck.
+   in that deck's Anki deck, not suspended. Its latest `card_change` refers to the
+   native content of the saved card in the learning record.
 2. A note whose `CardId` is in no deck is suspended and in `Removed`.
 3. Sync never changes a schedule or a review log row.
 4. No operation deletes a note that has a review log row.
@@ -179,7 +181,7 @@ Rules for fields:
 
 | Case | Result |
 | --- | --- |
-| A card's back text changes | Valid. Same note, new `Back`, same due date. |
+| A card's back text changes | Valid. Same scheduling note, new content row, same due date. |
 | A card moves from `A.md` to `B/C.md` and both decks are in one sync call | Valid. One move; no removal. |
 | The same move, with the two decks in different sync calls | Valid. Removed and restored, or moved, by the order of the calls; the schedule is the same at the end. |
 | `A.md` is renamed to `D.md` | Valid. Each card moves to the Anki deck of `D.md`; the Anki deck of `A.md` is removed when empty. |
@@ -262,8 +264,8 @@ AnalysisError = { kind: "UnknownAnalysis" | "AnalysisFailed" | "RecordUnreadable
 | --- | --- | --- |
 | Scope to Anki deck name | Pure | `Scope` → deck name |
 | Deck path to Anki deck name | Pure | `DeckPath` → deck name |
-| Sync plan | Pure | rendered decks, store snapshot (GUID → deck, sides, tags, suspended) → adds, updates, moves, removals, restores, duplicates |
-| Render a deck | Effect (Pandoc, LuaLaTeX) | `DeckPath` → rendered cards with IDs, media |
+| Sync plan | Pure | native decks, store snapshot (GUID → deck, content digest, tags, suspended) → adds, updates, moves, removals, restores, duplicates |
+| Read native cards | Pure | saved Markdown → `cards()` source slices and stable IDs |
 | Apply a sync plan | Effect (store) | plan → `SyncResult` |
 | Queue, answer, undo, counts, settings | Effect (store, clock) | Anki calls in R10 |
 | Measure reveal, grade, and unfocused time | Effect (window clock and focus events) | card on screen → `Timing` |
@@ -279,7 +281,7 @@ AnalysisError = { kind: "UnknownAnalysis" | "AnalysisFailed" | "RecordUnreadable
 
 The sync plan and the conversion of Anki values to record rows are the only new logic
 that is not an Anki call or an existing bridge function. Each is a function of values
-and is tested with real rendered decks and a real store.
+and is tested with saved native decks and a real store.
 
 ## Parts
 
