@@ -64,13 +64,25 @@ error disappear.
 Tests assert the intended end-to-end behaviour through the path the user takes: the real
 backend, real files, and the real rendered window. A bug fix starts with a committed test
 that fails for the reported reason. Mocks that supply the behaviour under test are not
-evidence. The whole suite stays under five minutes.
+evidence. Tests follow `test-guidelines` and the applicable code style skills; recheck
+them against those rules throughout development. Each acceptance test comes from a real
+user story in the specification. Replace internal-unit assertions and manipulation of
+internal state with actions and observable results through that story's real path,
+preserving the intended coverage. Mathematical library tests assert mathematics through
+public operations at the owner of each operation.
+
+Tests have named tiers. Tier 1 is the smallest set that establishes implementation
+correctness through happy paths and meaningful branches. Its total feedback time,
+including setup, MUST stay under five minutes. Higher tiers add evidence; the highest
+tier covers the long tail of examples, permutations, edge cases, and combinations.
 
 The local edit-and-check loop MUST return useful feedback in seconds or a few minutes
 at most. Use targeted checks and incremental builds for routine changes. Long-running
 checks and full builds belong at planned integration or release milestones. A plan MUST
 name those milestones and their checks before implementation. A slow local loop is a
 defect to fix; it does not justify weakening the checks or substituting a different path.
+When a push starts long checks, push at milestones and use fast commit checks for the
+ordinary feedback loop.
 
 ### VI. The learning record is complete, permanent, and open to analysis
 
@@ -197,8 +209,33 @@ Chat, tool output, source lists, and copied passages do not replace this synthes
 Use durable conclusions and their reasons; compute changing inventories from their
 sources, as `AGENTS.md` requires.
 
+### XII. Durable logs, timing history, and measured optimization
+
+Detailed application logging is part of each feature from its first implementation.
+Test runs also produce durable logs for historical review. Operational app logs use
+the XDG state directory; learning evidence belongs in the permanent record under
+principle VI.
+
+Record timings for every test and computation, including setup, fixtures, construction,
+and nested work. Retain those measurements and test logs with the repository from the
+first run. Each run identifies its revision, environment, inputs, result, and enclosing
+operations so later measurements can be compared. Plans name the record format and
+repository location; raw measurement records are evidence, not session reports.
+
+Before optimizing a timing issue, maintain a triage table at its owning design document.
+Include the operation, measured cost per call, actual multipliers (calls, examples,
+fixtures, repetitions), aggregate cost, priority, proposed remedy, and remaining measured
+cost. Select work from those costs. Small costs that compound and large individual costs
+take priority over unmeasured micro-optimizations.
+
+Construction of mathematical objects MUST be close to instant. Defer expensive work
+until it is queried unless an explicit option requests eager computation. Measure
+construction and internal setup separately and apply timing triage when they dominate.
+
 ## Technical Constraints
 
+- Linux is the supported platform. Support for another platform requires an explicit
+  user request.
 - Python runs through `uv`; JavaScript tooling runs through `bun`. `npm` and `pip` are not used.
 - The installed app works from prepared local resources. Ordinary editing, review, and
   export do not fetch from the network.
@@ -208,6 +245,12 @@ sources, as `AGENTS.md` requires.
 
 ## Development Workflow
 
+- Use the corresponding Spec Kit workflow for constitutions, specifications,
+  clarification, plans, tasks, analysis, implementation, and convergence. Instruction
+  and policy edits are verified by their source semantics and diff.
+- Maintain contribution lessons in `CONTRIBUTING.md`. Give each policy a stable
+  alphanumeric ID grouped by category. State the general class of contributions it
+  governs and, when possible, show a concrete bad contribution and its good replacement.
 - `just test-commit` is the commit gate and `just test-push` is the push gate. The gates run
   from the hooks; a change is complete when the gate passes.
 - Git history only moves forward. A correction is a new commit.
@@ -224,4 +267,4 @@ change: MAJOR for a removed or redefined principle, MINOR for an added principle
 section, PATCH for a clarification. Every plan records its check against these principles,
 and each violation it keeps is justified in that plan.
 
-**Version**: 2.1.0 | **Ratified**: 2026-11-16 | **Last Amended**: 2026-11-16
+**Version**: 2.2.0 | **Ratified**: 2026-11-16 | **Last Amended**: 2026-11-16
