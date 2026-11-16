@@ -31,6 +31,17 @@ Geometry deck. Vocabulary is a separate study subject.
 
 ## Subject boundaries
 
+- Deformation Theory owns marked Artinian lifting problems, obstruction classes,
+  torsors of lifts, hulls, and deformation calculations for schemes, sheaves,
+  maps, and pairs. Spectral Sequences supplies local-to-global machinery;
+  specialized moduli decks keep the global spaces and compactifications.
+  Hartshorne, *Deformation Theory*, and the
+  [Stacks Project's formal deformation theory](https://stacks.math.columbia.edu/tag/06G8)
+  supply the conventions. Small extensions here have one-dimensional kernel
+  annihilated by the maximal ideal. Use the cotangent complex for singular
+  schemes, and distinguish a complete obstruction space from the obstruction
+  class of a specified lifting problem.
+
 - Sheaves and Vector Bundles owns exact sequences of sheaves and the local
   operations that construct them. Cohomology owns their derived functors,
   vanishing theorems, duality, and global calculations. Spectral Sequences owns
