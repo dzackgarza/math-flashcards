@@ -221,13 +221,13 @@ Degenerates at $E_1$, yielding a decreasing filtration $\operatorname{Fil}^* H^d
 
 Puts a HS of pure weight $d$ on $H^d(M; \CC)$ with Hodge filtration $\operatorname{Fil}^*$.
 
-$H^{2n}(M; \CC)= \ZZ(-n)$.
+$M$ has complex dimension $n$: $H^{2n}(M;\mathbb Q)\cong\mathbb Q(-n)$ for connected compact $M$.
 
-For $\eta\in H^2(M; \QQ)$ a hyperplane class, $\eta$ is type $(1,1)$ and defines a Lefschetz operator $L({-}) \coloneqq\eta\cup({-})$.
+For a Kähler class $\eta\in H^2(M;\mathbb R)$, $\eta$ is type $(1,1)$ and defines $L({-})\coloneqq\eta\cup({-})$. In the projective case an ample hyperplane class is integral, so the construction is defined over $\mathbb Q$.
 
-Hard Lefschetz holds: $L^k: H^{n-k}(M; \QQ) { \, \xrightarrow{\sim}\, }H^{n+k}(M; \QQ)$ for all $n$.
-$$\bigoplus_{k=0}^n H_\prim^{n-k}(M; \QQ)\otimes_{\mathbf{R}}{\CC[L] \over \left\langle{L^{k+1}}\right\rangle} { \, \xrightarrow{\sim}\, }H^*(M; \CC)$$
-There is a polarization
+Hard Lefschetz holds: $L^k:H^{n-k}(M;\mathbb R)\xrightarrow{\sim}H^{n+k}(M;\mathbb R)$ for $0\le k\le n$; use $\mathbb Q$ for an ample rational class.
+$$\bigoplus_{k=0}^n H_\prim^{n-k}(M;\mathbb C)\otimes_{\mathbb C}\frac{\mathbb C[L]}{(L^{k+1})}\xrightarrow{\sim}H^*(M;\mathbb C).$$
+For an ample rational class there is a rational polarization (use real coefficients for a general Kähler class)
 $$\begin{align}I: H_\prim^{n-k}(M; \QQ){ {}^{ \scriptstyle\otimes_{}^{2} }  } &\to \QQ\\ a\otimes b &\mapsto(-1)^{(n-k)(n-k-1)\over 2} \int_M L^k(a\wedge b)\end{align}$$
 :::
 
@@ -337,11 +337,12 @@ What is a connection?
 :::
 
 ::: {.back card-id="card-749702f361b7071a"}
-For $L$ a local system on $Y$,parallel transport induces $\nabla_\eta: V_y\to V_y$ for $\eta\in T_y Y$ and $V\coloneqq{\mathcal{O}}_Y\otimes_\CC L$ the associated vector bundle.
+For a vector bundle $V$ on a complex manifold $Y$, a connection differentiates local sections in tangent directions. It is not an endomorphism of a single fiber: its value depends on the first derivative of the section.
 
 Satisfies $\nabla_\eta(fv) = \eta(f)v + f\nabla_\eta(v)$.
 
 View as an operator $\nabla: V\to \Omega^1_Y \otimes V$ satisfying $\nabla(fv) = df\otimes v + f\nabla(v)$.
+For a local system $L$, $V=\mathcal O_Y\otimes_\mathbb C L$ has a canonical flat connection $\nabla(f\otimes\ell)=df\otimes\ell$ for locally constant $\ell$; parallel transport recovers $L$.
 :::
 
 ::: {.front card-id="card-d405c897c5dcf46b"}
@@ -349,7 +350,7 @@ When is a connection integrable?
 :::
 
 ::: {.back card-id="card-d405c897c5dcf46b"}
-E.g. if $\nabla^2 = 0$; equivalent to having $\operatorname{rank}V$ solutions to $\nabla v = 0$.
+For a holomorphic connection on a complex manifold, integrable means $\nabla^2=0$. Equivalently, locally there is a frame of $\operatorname{rank}V$ linearly independent horizontal sections solving $\nabla v=0$. Global horizontal sections may have smaller dimension because of monodromy.
 :::
 
 ::: {.front card-id="card-13b2ac619d704015"}
@@ -357,7 +358,7 @@ What is the Gauss-Manin connection?
 :::
 
 ::: {.back card-id="card-13b2ac619d704015"}
-For $f:X\to Y$, the integrable connection on $V \coloneqq{\mathcal{O}}_Y \otimes_\CC{\mathbf{R}}^i f_* \underline{\CC}$, the vector bundle associated to the local system $L\coloneqq{\mathbf{R}}^1 f_* \underline{\CC}$.
+For a smooth proper morphism of complex varieties $f:X\to Y$, in the analytic topology $L=R^if_*\underline{\mathbb C}$ is a local system. Its associated bundle $V=\mathcal O_Y\otimes_\mathbb C L$ has the integrable Gauss–Manin connection; equivalently this is the connection on relative de Rham cohomology.
 
 Sections $L$ are precisely solutions to $\nabla v = 0$.
 :::
