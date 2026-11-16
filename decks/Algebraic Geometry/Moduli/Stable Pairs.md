@@ -2,6 +2,26 @@
 title: "Algebraic Geometry::Moduli::Stable Pairs"
 ---
 
+::: {.front card-id="ksba-boundary-psi-mixed" tags="definition comparison formula"}
+For a KSBA family, define boundary $\kappa$-classes, divisor-associated $\psi$-classes, and mixed classes. Which flatness and Cartier hypotheses make the formulas meaningful?
+:::
+
+::: {.back card-id="ksba-boundary-psi-mixed"}
+Let $f:(X,D=\sum a_iD_i)\to S$ be a KSBA family of pure relative dimension $d$, $L=K_{X/S}+D$. Use rational operational Chow classes and the flat proper Gysin pushforward; compute powers of a $\mathbb Q$-line bundle using Cartier multiples and divide by the corresponding powers of the multiple.
+
+| Class | Formula and hypotheses |
+| --- | --- |
+| Boundary $\kappa_r^{(I)}$ | $f_{I*}(c_1(L|_{X_I})^{d_I+r})$, where $X_I=\bigcap_{i\in I}D_i$ is a defined flat family of pure relative dimension $d_I$ |
+| $\psi_{i,r}$ | $(-1)^rf_*(D_i^{d+r})$, for $D_i$ relative $\mathbb Q$-Cartier |
+| Mixed $\mu(m,\mathbf m)$ | $f_*(c_1(L)^m\prod_iD_i^{m_i})$, for integers $m,m_i\ge0$, with $m_i=0$ unless $D_i$ relative $\mathbb Q$-Cartier |
+
+The first two have codimension $r\ge0$; the third has codimension $m+\sum m_i-d\ge0$.
+
+On the universal unweighted stable curve, $\psi_{i,r}=\psi_i^r$, since the marking is a section with normal bundle $L_i^{-1}$. For relative dimension $d\ge2$, $\psi_{i,r}$ need not equal $\psi_{i,1}^r$. Distinct marking sections are disjoint on $\overline{\mathcal M}_{g,n}$; weighted sections can meet, producing extra mixed classes.
+
+Reference: [Alexeev, *Tautological classes on KSBA spaces*, Definitions 2.4, 4.1, 4.4](https://arxiv.org/abs/2607.19251).
+:::
+
 ::: {.front card-id="pairs-log-positivity-comparison" tags="definition comparison example"}
 Compare log Fano, log Calabi–Yau, log general type, and stable pairs. Where does an auxiliary polarizing divisor enter?
 :::

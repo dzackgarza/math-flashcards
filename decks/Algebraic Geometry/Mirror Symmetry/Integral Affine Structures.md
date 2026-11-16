@@ -525,7 +525,12 @@ What is the definition of Special lagrangian?
 :::
 
 ::: {.back card-id="card-2e3d766f0efeb706"}
-A special Lagrangian submanifold of a Calabi-Yau manifold $(X,\omega,\Omega)$ is a Lagrangian submanifold $L\subset X$ (so $\omega|_L=0$ and $\dim_{\mathbb R}L=\dim_{\mathbb C}X$) with $\operatorname{Im}\Omega|_L=0$; equivalently $L$ is calibrated by $\operatorname{Re}\Omega$ and has minimal volume in its homology class.
+A special Lagrangian submanifold of phase $\theta$ in a Calabi–Yau manifold $(X,\omega,\Omega)$ is an oriented Lagrangian $L\subset X$ (so $\omega|_L=0$ and $\dim_{\mathbb R}L=\dim_{\mathbb C}X$) with
+$$\operatorname{Im}(e^{-i\theta}\Omega)|_L=0,\qquad
+\operatorname{Re}(e^{-i\theta}\Omega)|_L=\operatorname{vol}_L.$$
+Here $\Omega$ has the metric normalization making its real part a calibration. Equivalently, $L$ is calibrated by $\operatorname{Re}(e^{-i\theta}\Omega)$, hence a compact $L$ minimizes volume in its homology class. The orientation fixes the positive sign; the vanishing condition alone permits either orientation. Phase zero recovers $\operatorname{Im}\Omega|_L=0$ with positive real part.
+
+Example: $\mathbb R^n\subset\mathbb C^n$, $\Omega=dz_1\wedge\cdots\wedge dz_n$, has phase zero. Rotating each coordinate by $e^{i\alpha_j}$ gives phase $\sum_j\alpha_j$.
 :::
 
 ::: {.front card-id="card-50e0c6eeda83171e" tags="definition"}

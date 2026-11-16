@@ -2,6 +2,42 @@
 title: "Algebraic Geometry::Toric Varieties"
 ---
 
+::: {.front card-id="toric-cayley-twisted-sums" tags="definition construction example"}
+Define a Cayley sum, normal equivalence, and a twisted Cayley sum. Give a polygon whose associated toric surface is a ruled surface.
+:::
+
+::: {.back card-id="toric-cayley-twisted-sums"}
+For lattice polytopes $P_0,\ldots,P_r\subset M_{\mathbb R}$, the Cayley sum is
+$$\operatorname{Cayley}(P_0,\ldots,P_r)
+=\operatorname{conv}(P_0\times e_0,\ldots,P_r\times e_r),$$
+using the affine lattice where the last coordinates sum to one. Projection sends it to the standard simplex.
+
+Normally equivalent polytopes have the same normal fan after identifying their spaces of directions. They define the same toric variety with possibly different ample polarizations.
+
+For a surjective lattice map $\pi:M\to\Lambda$, a $\pi$-twisted Cayley sum is $R=\operatorname{conv}(R_1,\ldots,R_\ell)$, where the normally equivalent lattice polytopes $R_i$ lie in parallel fibers and their images $v_i$ are precisely the distinct vertices of $F=\pi(R)$. Dropping the requirement that each $v_i$ be a vertex gives a generalized twisted Cayley sum. The latter can yield reducible special fibers.
+
+Example: $P_0=[0,a]$, $P_1=[0,b]$, $a,b>0$. Their Cayley polygon is a trapezoid; its toric surface is $\mathbb F_{|a-b|}$, ruled over $\mathbb P^1$. If $a=b$, the rectangle gives $\mathbb P^1\times\mathbb P^1$.
+
+Reference: [Di Rocco–Schaffler, Definitions 1.1 and 2.2](https://arxiv.org/abs/2110.04842).
+:::
+
+::: {.front card-id="toric-quotient-fan-lattice-fibers" tags="definition construction comparison"}
+Describe the fan of a normalized toric Chow quotient by a subtorus. What lattice condition distinguishes reduced fibers from mere control of fiber dimensions?
+:::
+
+::: {.back card-id="toric-quotient-fan-lattice-fibers"}
+Let $X_\Sigma$ be projective toric, $H\subset T_N$ a subtorus with saturated cocharacter lattice $N_H$, and $q:N\to N'=N/N_H$. The fan of the normalization of $X_\Sigma\mathbin{/\!/}H$ is the common refinement of the projected cones $q(\sigma)$, $\sigma\in\Sigma$. This is the quotient fan; in polytope language it is the normal fan of the corresponding fiber polytope.
+
+For a toric morphism of fans, the combinatorial conditions for weak semistability are:
+
+- Every source cone $\sigma$ maps onto a target cone $\tau$.
+- $q(N\cap\operatorname{span}_{\mathbb R}\sigma)=N'\cap\operatorname{span}_{\mathbb R}\tau$ for every such cone.
+
+The first controls equidimensionality; the second excludes lattice multiplicities in fibers. Smooth target plus these conditions gives flatness with reduced fibers. Example: $\mathbb A^1\to\mathbb A^1$, $t=x^m$, has the same ray map over $\mathbb R$ as the identity but lattice image $m\mathbb Z$; its zero fiber is nonreduced for $m>1$.
+
+Reference: Di Rocco–Schaffler, *Families of pointed toric varieties and degenerations*, §§2–3.
+:::
+
 ::: {.front card-id="polyhedral-coherent-secondary" tags="definition construction example"}
 Define a coherent subdivision, secondary fan, and secondary polytope for a finite point configuration. Use a square to distinguish subdivisions.
 :::

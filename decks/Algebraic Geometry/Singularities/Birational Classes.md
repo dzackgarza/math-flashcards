@@ -2,6 +2,62 @@
 title: "Algebraic Geometry::Singularities::Birational Classes"
 ---
 
+::: {.front card-id="singularities-b-divisors-traces" tags="definition construction example"}
+Define a Weil $\mathbb Q$-$b$-divisor, its trace, Cartier descent, and $b$-nefness. Give a blowup example showing why one trace does not determine a $b$-divisor.
+:::
+
+::: {.back card-id="singularities-b-divisors-traces"}
+For normal $X$, a Weil $\mathbb Q$-$b$-divisor $\mathbf D$ assigns a $\mathbb Q$-Weil divisor $D_Y$ to each normal proper birational model $Y\to X$, with $g_*D_Z=D_Y$ for every $g:Z\to Y$. The divisor $D_Y$ is its trace on $Y$.
+
+$\mathbf D$ is $\mathbb Q$-$b$-Cartier if it descends to some model $Y$: $D_Y$ is $\mathbb Q$-Cartier and $D_Z=g^*D_Y$ on every higher model. This is the Cartier closure $\overline{D_Y}$. It is $b$-nef over $S$ if it descends to a divisor nef over $S$.
+
+Example: blow up a smooth surface at $p$, $f:Y\to X$, exceptional $E$. The Cartier closure $\overline E$ has trace $E$ on $Y$ but trace $f_*E=0$ on $X$. It differs from the zero $b$-divisor.
+
+Reference: Engel et al., *Boundedness of fibered varieties with trivial canonical bundle*, Definition 2.8.
+:::
+
+::: {.front card-id="singularities-generalized-pairs" tags="definition comparison formula"}
+Define a generalized pair and its log discrepancies. How does it recover an ordinary pair?
+:::
+
+::: {.back card-id="singularities-generalized-pairs"}
+Over $\mathbb C$, data $(X,B,\mathbf M)/S$:
+
+- $X$ normal, projective over $S$; $B\ge0$ an $\mathbb R$-Weil divisor.
+- $\mathbf M$ an $\mathbb R$-$b$-Cartier $b$-divisor descending to an $S$-nef divisor on a birational model.
+- $K_X+B+M_X$ is $\mathbb R$-Cartier.
+
+On a higher model $f:Y\to X$ where $\mathbf M$ descends, define $B_Y$ by
+$$K_Y+B_Y+M_Y=f^*(K_X+B+M_X),\qquad
+A(E;X,B,\mathbf M)=1-\operatorname{coeff}_E B_Y.$$
+Generalized klt: $A(E)>0$ for every prime divisor over $X$. Generalized lc: $A(E)\ge0$ for every such divisor. Allowing signed $B$ gives a generalized subpair.
+
+$\mathbf M=0$ recovers ordinary pairs. If $\mathbf M=\overline{M_X}$ already descends to $X$, its pullbacks cancel, so discrepancies equal those of $(X,B)$; descent only on a higher model need not have this property.
+
+Reference: Engel et al., Definition 2.9.
+:::
+
+::: {.front card-id="singularities-lc-trivial-canonical-bundle" tags="definition formula example"}
+State the definition of an lc-trivial fibration and identify the discriminant and moduli divisors in its canonical bundle formula.
+:::
+
+::: {.back card-id="singularities-lc-trivial-canonical-bundle"}
+Let $f:(X,B)\to Y$ be a projective surjection of normal complex varieties with connected fibers, $B$ a rational subboundary and $K_X+B$ $\mathbb Q$-Cartier. Lc-trivial means:
+
+1. $(X,B)$ is sub-lc over the generic point of $Y$.
+2. The sheaf defined by $f_*\mathcal O_X(\lceil\mathbf A^*(X,B)\rceil)$ has rank one. Here $\mathbf A$ is the discrepancy $b$-divisor and $\mathbf A^*$ is obtained by deleting its coefficient-$-1$ components; compute this sheaf on a resolution by pushforward.
+3. $K_X+B\sim_{\mathbb Q}f^*D$ for a $\mathbb Q$-Cartier divisor $D$ on $Y$.
+
+For a prime divisor $P\subset Y$, with threshold taken over $\eta_P$:
+$$t_P=\sup\{t:(X,B+t f^*P)\text{ is sub-lc over }\eta_P\},\qquad
+B_Y=\sum_P(1-t_P)P,\qquad M_Y=D-K_Y-B_Y.$$
+Thus $K_X+B\sim_{\mathbb Q}f^*(K_Y+B_Y+M_Y)$. Taking these data on higher bases gives the moduli $b$-divisor, which is $b$-nef and $\mathbb Q$-$b$-Cartier under the lc-trivial fibration theorem.
+
+Example: a smooth elliptic product $E\times Y\to Y$ has $B_Y=M_Y=0$. A smooth multiple fiber $mF$ contributes $1-1/m$ to $B_Y$, since its lc threshold is $1/m$.
+
+Reference: Engel et al., §2.3. The rank-one condition is automatic when $B$ is effective over the generic point.
+:::
+
 ::: {.front card-id="singularity-mld-epsilon-lt" tags="definition comparison example"}
 Define minimal log discrepancy along a closed set and compare $\epsilon$-lt with $\epsilon$-lc. Compute the smooth-point example.
 :::

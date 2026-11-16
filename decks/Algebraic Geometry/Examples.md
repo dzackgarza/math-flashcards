@@ -2,6 +2,54 @@
 title: "Algebraic Geometry::Examples"
 ---
 
+::: {.front card-id="projective-gale-self-duality" tags="definition construction example"}
+Construct the Gale dual of an ordered point configuration. State the non-degeneracy needed and the matrix criterion for self-duality.
+:::
+
+::: {.back card-id="projective-gale-self-duality"}
+Represent $n$ points of $\mathbb P^{r-1}$ by the columns of a rank-$r$ matrix $A$, with $n>r$. Strong non-degeneracy: deleting any column leaves rank $r$; equivalently every hyperplane misses at least two points.
+
+Choose a basis of $\ker(A:k^n\to k^r)$ as the rows of an $(n-r)\times n$ matrix $B$. Then $AB^t=0$. Its columns are nonzero by strong non-degeneracy and define the Gale dual in $\mathbb P^{n-r-1}$. Changing the kernel basis changes only projective coordinates; rescaling columns of $A$ inversely rescales columns of $B$. Dualizing twice returns the original projective configuration.
+
+For $n=2r$, ordered self-duality means $B=GA D$ for invertible $G$ and invertible diagonal $D$, equivalently
+$$A D A^t=0.$$
+Example: $A=[I_r\mid I_r]$, $B=[I_r\mid-I_r]$. Both represent the configuration with each coordinate point repeated twice; $D=\operatorname{diag}(I_r,-I_r)$ proves self-duality.
+
+References: [Caminata et al., §4](https://arxiv.org/abs/1711.06286); [Gallardo–Schaffler, §3](https://arxiv.org/abs/2610.35060).
+:::
+
+::: {.front card-id="projective-evaluation-determinantal-loci" tags="definition construction example"}
+How do evaluation matrices express the condition that a point configuration lies on a degree-$d$ hypersurface? Define its determinantal rank loci.
+:::
+
+::: {.back card-id="projective-evaluation-determinantal-loci"}
+For $n$ points $p_i\in\mathbb P^r$, choose homogeneous representatives and a monomial basis of $H^0(\mathbb P^r,\mathcal O(d))$, of size $N=\binom{r+d}{d}$. The $n\times N$ matrix
+$$E_d=(m_j(p_i))$$
+represents evaluation after trivializing the fibers $\mathcal O(d)|_{p_i}$. Its kernel consists of degree-$d$ equations through all the points. Rescaling point representatives rescales rows and does not change rank.
+
+Rank $\le s$ is cut out scheme-theoretically by all $(s+1)$-minors. A nonzero equation exists iff $\operatorname{rank}E_d<N$. If $n<N$, this is automatic. Independent conditions means rank $\min(n,N)$.
+
+Examples: three plane points collinear iff the $3\times3$ coordinate determinant vanishes. Six plane points lie on a conic, possibly reducible or nonreduced, iff the determinant of their quadratic $6\times6$ evaluation matrix vanishes.
+
+Reference: Caminata–Moon–Schaffler, *On a new class of determinantal varieties*, §2.
+:::
+
+::: {.front card-id="projective-osculating-jets" tags="definition construction example"}
+Define the order-$k$ osculating space to an embedded smooth curve over $\mathbb C$. Compute it for a rational normal curve, including its osculating hyperplane.
+:::
+
+::: {.back card-id="projective-osculating-jets"}
+For a local nonzero vector lift $v(t)$ of $C\subset\mathbb P^r$ at $t_0$:
+$$\operatorname{Osc}^k_{t_0}(C)=\mathbb P\langle v(t_0),v'(t_0),\ldots,v^{(k)}(t_0)\rangle.$$
+Reparametrization and changing the lift preserve the span. Equivalently its annihilator consists of hyperplanes whose defining sections vanish to order at least $k+1$. Dimension is at most $\min(k,r)$; a drop records deficient jets.
+
+For $v(t)=(1,t,\ldots,t^r)$, $\dim\operatorname{Osc}^k= k$ for $0\le k\le r$. At $t=0$, it is $X_{k+1}=\cdots=X_r=0$. The osculating hyperplane at finite $a$ has coefficients of $(t-a)^r$:
+$$\sum_{j=0}^r\binom rj(-a)^{r-j}X_j=0.$$
+It meets the curve at $a$ with multiplicity $r$. For the twisted cubic: points, tangent lines, osculating planes, then all of $\mathbb P^3$.
+
+Reference: Carlini–Catalisano–Schaffler, *On osculating simplices of curves*, §2.
+:::
+
 ::: {.front card-id="construction-delpezzo-weighted-low-degree" tags="construction application"}
 Construct smooth complex del Pezzo surfaces of degrees two and one by equations. Recover their degrees and anticanonical maps.
 :::

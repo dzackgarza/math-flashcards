@@ -2,6 +2,40 @@
 title: "Algebraic Geometry::Abelian Varieties"
 ---
 
+::: {.front card-id="abelian-minimal-hodge-classes" tags="definition comparison formula example"}
+For a complex principally polarized abelian $g$-fold $(A,\Theta)$, define the minimal class in codimension $k$. Compare integral algebraicity, rational algebraicity, and effective representability.
+:::
+
+::: {.back card-id="abelian-minimal-hodge-classes"}
+Write $\theta=c_1(\Theta)$ and $0\le k\le g$:
+$$\theta_k=\frac{\theta^k}{k!}\in H^{2k}(A,\mathbb Z)\cap H^{k,k}(A).$$
+This class is integral and primitive: in a symplectic basis $\theta=\sum_i a_i\wedge b_i$, division by $k!$ leaves a sum of distinct basis wedges with coefficient one.
+
+- Integral algebraic: in the image of $\operatorname{CH}^k(A)\to H^{2k}(A,\mathbb Z)$; cycles allow negative coefficients.
+- Rational algebraic: in the image after tensoring with $\mathbb Q$. Here $k!\theta_k=\theta^k$ is algebraic, so rational algebraicity is automatic.
+- Effective representability asks for a cycle with nonnegative integral coefficients; it is stronger.
+
+The integers $m$ with $m\theta_k$ algebraic form $a_k\mathbb Z$, where $a_k>0$ and $a_k\mid k!$. For a smooth genus-$g$ curve embedded in its Jacobian, $[C]=\theta_{g-1}$. Hence $\Theta\cdot C=g$; in general a curve class $m\theta_{g-1}$ has theta degree $mg$.
+
+References: Engel–de Gaay Fortman–Schreieder, *Matroids and the integral Hodge conjecture for abelian varieties*, §1; Engel–Sertöz, *On the degree of subvarieties of abelian varieties*, §1.
+:::
+
+::: {.front card-id="abelian-monodromy-cone-nilpotent-orbit" tags="definition construction example"}
+For a family of principally polarized abelian varieties over $(\Delta^*)^r$ with unipotent monodromy, define the monodromy cone and describe the nilpotent-orbit approximation in Siegel coordinates.
+:::
+
+::: {.back card-id="abelian-monodromy-cone-nilpotent-orbit"}
+Choose an adapted symplectic basis so the commuting monodromies act on period matrices by $\tau\mapsto\tau+B_i$, with $B_i$ integral symmetric positive semidefinite. The monodromy cone is
+$$\sigma=\sum_i\mathbb R_{\ge0}B_i,$$
+defined up to simultaneous integral change of basis $B_i\mapsto AB_iA^t$. Coordinate-free: $B_i(x,y)=L(N_ix,y)$ on the weight-zero quotient of the homology lattice, where $N_i=\log T_i$ and $L$ is the polarization pairing.
+
+Put $t_i=e^{2\pi iz_i}$. The untwisted period map $\Psi(t)=\tau(z)-\sum_i z_iB_i$ extends to the origin in the compact dual. The nilpotent orbit replaces it by its limit:
+$$\tau_{\mathrm{nilp}}(z)=\Psi(0)+\sum_i z_iB_i.$$
+It lies in Siegel space when every $\operatorname{Im}z_i$ is large enough. For a one-node curve degeneration, $B=e^*\otimes e^*$, with $e^*$ the graph coedge. A separating node has $e^*=0$ and contributes no abelian monodromy.
+
+Reference: Engel–de Gaay Fortman–Schreieder, *A survey of the Mumford construction*, Definitions 2.6–2.8.
+:::
+
 ::: {.front card-id="abelian-polarization-type" tags="definition comparison example"}
 Define a polarization, its type, and a principal polarization on a complex abelian variety. Distinguish a polarization from a chosen theta divisor.
 :::

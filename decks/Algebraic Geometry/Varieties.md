@@ -366,7 +366,17 @@ What is a projectively normal morphism?
 :::
 
 ::: {.back card-id="card-ded86dc8399712bb"}
-The restriction $H^0\left(\mathbf{P}^{g-1}, \mathcal{O}(k)\right) \longrightarrow H^0\left(C, \omega_C^k\right)$ is surjective for all $k$.
+For an integral projective embedding $X\hookrightarrow\mathbb P^N$, projectively normal means its homogeneous coordinate ring is integrally closed. Equivalently, $X$ is normal and
+$$H^0(\mathbb P^N,\mathcal O(k))\longrightarrow H^0(X,\mathcal O_X(k))$$
+is surjective for every integer $k\ge0$.
+
+For a smooth non-hyperelliptic curve in its canonical embedding, this is the restriction
+$$H^0\left(\mathbf{P}^{g-1},\mathcal O(k)\right)\longrightarrow H^0(C,\omega_C^k),$$
+surjective for every $k\ge0$ by Max Noether's theorem. Normality of $C$ is automatic here.
+
+$d$-normality asks for just the degree-$d$ restriction to be surjective. Linear normality is $1$-normality. For $d\ge0$, $d$-normality is equivalent to $H^1(\mathbb P^N,I_X(d))=0$. Normality of the variety alone does not imply normality of its homogeneous coordinate ring.
+
+Reference: Caminata–Moon–Schaffler, *On a theorem of L. G. Roberts*, Appendix A.
 :::
 
 ::: {.front card-id="formula-cyclic-cover-pushforward-canonical" tags="formula"}

@@ -2,6 +2,23 @@
 title: "Algebraic Geometry::Arithmetic Geometry"
 ---
 
+::: {.front card-id="arithmetic-zero-cycle-degree-index" tags="definition comparison example"}
+Define the degree of a closed point, degree of a zero-cycle, and index of a proper variety over $k$. Compare a rational point with a degree-one zero-cycle.
+:::
+
+::: {.back card-id="arithmetic-zero-cycle-degree-index"}
+For a closed point $p$, $\deg(p)=[k(p):k]$. For $z=\sum_p n_p[p]$ with $n_p\in\mathbb Z$:
+$$\deg z=\sum_p n_p[k(p):k],\qquad
+\operatorname{ind}(X)=\gcd\{[k(p):k]:p\in X\text{ closed}\}.$$
+Properness makes degree descend to $\operatorname{CH}_0(X)$, with image $\operatorname{ind}(X)\mathbb Z$.
+
+Rational point $\Rightarrow$ effective degree-one cycle $\iff$ rational point. A possibly signed degree-one cycle is equivalent only to index one: closed points of degrees two and three give $[p_3]-[p_2]$ of degree one. This subtraction does not construct a rational point; any conclusion of that kind needs a theorem for the variety in question.
+
+For finite $K/k$, proper pushforward $\operatorname{CH}_0(X_K)\to\operatorname{CH}_0(X)$ multiplies degree by $[K:k]$; flat pullback preserves degree measured over the respective fields. Their composite on $\operatorname{CH}_0(X)$ is multiplication by $[K:k]$.
+
+Reference: Alexeev–Schreieder, *Two proofs of the Cassels–Swinnerton-Dyer conjecture for cubic surfaces*, introduction; Fulton, *Intersection Theory*, §1.4.
+:::
+
 ::: {.front card-id="card-cba9b3434509cac6"}
 What are Witt vectors?
 :::

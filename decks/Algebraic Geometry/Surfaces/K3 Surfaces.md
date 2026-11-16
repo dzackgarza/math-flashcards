@@ -2,6 +2,24 @@
 title: "Algebraic Geometry::Surfaces::K3 Surfaces"
 ---
 
+::: {.front card-id="k3-even-eight-nikulin-cover" tags="definition construction formula"}
+Define an even set of disjoint rational curves on a complex K3 surface. Construct the double cover from an even eight and relate it to a Nikulin involution.
+:::
+
+::: {.back card-id="k3-even-eight-nikulin-cover"}
+For disjoint smooth rational curves $R_i$, an even set means
+$$B=\sum_{i=1}^mR_i\sim2L\quad\text{in }\operatorname{Pic}(X)=\operatorname{NS}(X).$$
+A nonempty even set has $m=8$ or $16$; an even eight has $m=8$. Divisibility in $\operatorname{NS}(X)\otimes\mathbb Q$ would impose no condition and is insufficient.
+
+For an even eight, a section with zero divisor $B$ gives
+$$\pi:\widetilde Y=\operatorname{Spec}_X(\mathcal O_X\oplus\mathcal O_X(-L))\to X.$$
+Locally $z^2=s_B$; disjoint smooth branch curves make $\widetilde Y$ smooth. If $E_i$ is the ramification curve, $\pi^*R_i=2E_i$ and
+$$4E_i^2=2R_i^2=-4,\qquad K_{\widetilde Y}=\pi^*L=\sum_iE_i.$$
+Contract the eight $(-1)$-curves $E_i$: the result $Y$ is K3. The deck involution descends to a symplectic involution on $Y$ with eight isolated fixed points, a **Nikulin involution**. Conversely its quotient has eight $A_1$ points; resolving produces the even eight on $X$.
+
+Reference: [Schaffler, *K3 surfaces with $\mathbb Z_2^2$ symplectic action*, §2.4](https://arxiv.org/abs/1707.09732).
+:::
+
 ::: {.front card-id="k3-constant-cycle-beauville-voisin" tags="definition theorem example"}
 Define a constant-cycle curve on a complex K3 surface and the Beauville–Voisin zero-cycle. What does a rational curve supply?
 :::
