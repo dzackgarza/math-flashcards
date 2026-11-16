@@ -188,6 +188,7 @@ Rules for fields:
 | A grade arrives for a card that is not at the top of the queue | Invalid. `StaleCard` error; the screen fetches the current card. |
 | A deck fails to render | Its cards keep their last synced content; the sync result lists the deck. |
 | The store directory exists but the collection does not open | Invalid. `StoreUnreadable` error with the path; nothing is created. |
+| The store directory has `store.json` and lacks `collection.anki2` or `record.sqlite3` | Invalid. `StoreUnreadable` error with the path of the absent file; nothing is created. Both files are created only with the store directory. |
 | The user starts the app while it runs | Valid. The running window gets the focus. No second copy and no second host start. |
 | An analysis runs while a session is open | Valid. The analysis reads the rows committed so far. The next grade is recorded. |
 | An analysis tries to write to the record | Invalid. Its connection is read-only; SQLite rejects the statement, and the analysis fails alone. |

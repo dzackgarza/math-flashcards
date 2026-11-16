@@ -604,6 +604,10 @@ record changes, and the earlier analyses give the same results.
 - **Analysis**: One computation over the learning record that gives the user a result
   about their learning. It has a name and a description, and it stands alone.
 - **Store copy**: A complete copy of a store in a directory that the user chose.
+- **Editor view**: One time that a card was open in the editor outside study, with its
+  duration and the time without focus (FR-058).
+- **Parameter set**: One set of the scheduler's parameters, with its source (Anki's
+  default or a fit) and the time it applied from.
 
 ## Success Criteria *(mandatory)*
 
