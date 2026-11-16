@@ -306,6 +306,173 @@ supports the clarity rules. The distinctions between theorem, heuristic, and
 prediction, and the whole-card checks, are editorial applications to this
 collection.
 
+### Worked replacements for whole-card clarity
+
+These examples demonstrate the preceding rules. “Before” text is deliberately
+defective; “after” text supplies the answer to the stated prompt. Preserve the
+mathematical information and useful reasoning when making comparable edits.
+
+**Match the organization to the prompt.**
+
+Front: “Define a $\mathbb Q$-Cartier divisor. How does this differ from
+$\mathbb Q$-factoriality of a variety?”
+
+Before:
+
+> A smooth variety is locally factorial. Multiples of divisors are relevant
+> here. For a normal variety, one considers whether every Weil divisor has a
+> positive multiple that is Cartier. An individual Weil divisor is called
+> $\mathbb Q$-Cartier when it has such a multiple.
+
+After:
+
+> $X$ normal; $D$ a Weil divisor.
+>
+> | Notion | Condition |
+> | --- | --- |
+> | $D$ $\mathbb Q$-Cartier | $\exists m\in\mathbb Z_{>0}:mD$ Cartier |
+> | $X$ $\mathbb Q$-factorial | $\forall D,\ \exists m_D\in\mathbb Z_{>0}:m_DD$ Cartier |
+>
+> Smooth $X$: locally factorial, hence $\mathbb Q$-factorial.
+
+The comparison now displays the change of quantifier. The supporting smooth
+example follows it.
+
+**Move the requested conclusion ahead of supporting detail.**
+
+Front: “For the blowup $\pi:\widetilde S\to S$ of a smooth projective complex
+surface at a point, how does $K^2$ change?”
+
+Before:
+
+> The exceptional curve $E$ has square $-1$. Also $\pi^*K_S\cdot E=0$ and
+> $K_{\widetilde S}=\pi^*K_S+E$. Expanding this square shows that the canonical
+> self-intersection decreases by one.
+
+After:
+
+> $K_{\widetilde S}^2=K_S^2-1$.
+>
+> Calculation:
+> $$K_{\widetilde S}=\pi^*K_S+E,\qquad
+> (\pi^*K_S)\cdot E=0,\qquad E^2=-1,$$
+> hence
+> $$K_{\widetilde S}^2=(\pi^*K_S+E)^2=K_S^2-1.$$
+
+The calculation survives; its conclusion is immediately available for checking.
+
+**Choose the subject according to the question.**
+
+Shared setup: $\pi:\operatorname{Bl}_pS\to S$, with exceptional curve $E$.
+
+Before, for either prompt:
+
+> The occurrence of contraction of the exceptional locus is effected by the
+> blowdown morphism.
+
+After:
+
+| Front | Back |
+| --- | --- |
+| “What does $\pi$ contract?” | “$\pi$ contracts $E$ to $p$.” |
+| “What happens to $E$ under $\pi$?” | “$E$ is contracted to $p$ by $\pi$.” |
+
+Both voices are clear. Each sentence begins with the object the prompt asks about.
+
+**Separate calculations from universal claims.**
+
+Front: “Does checking $n=0,1$ establish that $n^2+n+41$ is prime for every
+integer $n\ge0$?”
+
+Before:
+
+> The values are $41$ and $43$, both prime, so the expression always produces
+> primes.
+
+After:
+
+> No.
+>
+> - Checked cases: $f(0)=41$, $f(1)=43$.
+> - Universal claim: $\forall n\ge0,\ f(n)$ prime.
+> - Counterexample: $f(41)=41^2+41+41=41\cdot43$.
+
+The computed cases remain true; they do not establish the universal claim.
+When a conjecture remains unresolved, label it as a conjecture instead of
+inventing either a proof or a counterexample.
+
+**Remove invented disputes; retain the actual contrast.**
+
+Front: “Does normality imply smoothness for a complex variety?”
+
+Before:
+
+> Normality is not the villain here. The real story is that smoothness asks
+> for something stronger, and the quadratic cone illustrates that distinction.
+
+After:
+
+> No. $X=V(xy-z^2)\subset\mathbb A^3_{\mathbb C}$ is normal but singular.
+>
+> - Hypersurface $\Rightarrow$ Cohen–Macaulay $\Rightarrow S_2$.
+> - Singular locus: $\{0\}$, of codimension $2$ $\Rightarrow R_1$.
+> - $R_1+S_2\Rightarrow$ normal; the vertex is singular.
+
+The replacement answers the actual implication question and checks both
+properties of the counterexample.
+
+**Untangle references and attach each qualification to its object.**
+
+Front: “For coordinate axes $D_1,D_2\subset\mathbb A^2_{\mathbb C}$, compare
+$(\mathbb A^2,D_1)$ and $(\mathbb A^2,D_1+D_2)$ as plt and dlt pairs.”
+
+Before:
+
+> With the second added it is still dlt, although this is no longer plt since
+> blowing it up gives discrepancy $-1$, unlike the first, where it is $0$.
+
+After:
+
+> Let $E$ be the exceptional divisor of the blowup of the origin.
+>
+> | Boundary $\Delta$ | $a(E,\mathbb A^2,\Delta)$ | Classification |
+> | --- | --- | --- |
+> | $D_1$ | $0$ | plt, hence dlt |
+> | $D_1+D_2$ | $-1$ | dlt, not plt |
+>
+> Both boundaries are SNC. The identity is a log resolution with no exceptional
+> divisors, so both pairs are dlt. The smooth coefficient-one component gives
+> a plt pair; with both components present, $E$ violates the plt inequality.
+
+The blowup center, pair, divisor, and discrepancy are explicit. The table
+compares the examples; the explanation distinguishes witnessing dlt from
+disproving plt.
+
+**Repair a disorganized answer whose sentences are individually clear.**
+
+Front: “Dualize a short exact sequence of vector bundles
+$0\to\mathcal A\to\mathcal B\to\mathcal C\to0$. Why is the dual sequence exact?”
+
+Before:
+
+> $\mathcal C$ is locally free. The dual sequence ends in $\mathcal A^\vee$.
+> The sheaf $\mathcal Ext^1(\mathcal C,\mathcal O_X)$ vanishes.
+> Apply $\mathcal Hom(-,\mathcal O_X)$. This functor is left exact.
+> The dual sequence begins with $\mathcal C^\vee\to\mathcal B^\vee$.
+
+After:
+
+> Apply $\mathcal Hom(-,\mathcal O_X)$:
+> $$0\to\mathcal C^\vee\to\mathcal B^\vee\to\mathcal A^\vee
+> \to\mathcal Ext^1(\mathcal C,\mathcal O_X).$$
+> $\mathcal C$ locally free $\Rightarrow
+> \mathcal Ext^1(\mathcal C,\mathcal O_X)=0$. Therefore
+> $$0\to\mathcal C^\vee\to\mathcal B^\vee\to\mathcal A^\vee\to0.$$
+
+The replacement preserves how to obtain the sequence. It orders the operation,
+the resulting exact sequence, the vanishing reason, and the conclusion.
+The Ext here is the sheaf Ext; global Ext need not vanish.
+
 ## Ban mathematical hand-waving
 
 A card must give enough information to reconstruct the requested statement,
