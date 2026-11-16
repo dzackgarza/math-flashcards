@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 690 215" role="img" aria-labelledby="title desc">
+  <title id="title">A two-handle slide</title>
+  <desc id="desc">On the left are unlinked unknots with coefficients zero and plus one. A slide of the first over a positive framing push-off of the second gives the Hopf link on the right, with both coefficients plus one. Orient the right components to have linking number plus one.</desc>
+  <rect width="690" height="215" fill="white"/>
+  <g fill="none" stroke="#111" stroke-width="3">
+    <circle cx="85" cy="100" r="40"/><circle cx="215" cy="100" r="40"/>
+    <path d="M300 100 H390 m-12 -7 l12 7 -12 7"/>
+  </g>
+  <g transform="translate(390 5)" fill="none">
+    <circle cx="110" cy="95" r="42" stroke="#111" stroke-width="3"/>
+    <circle cx="165" cy="95" r="42" stroke="white" stroke-width="9"/>
+    <circle cx="165" cy="95" r="42" stroke="#111" stroke-width="3"/>
+    <path d="M128.2 57.2 A42 42 0 0 1 144.4 70.9" stroke="white" stroke-width="9"/>
+    <path d="M128.2 57.2 A42 42 0 0 1 144.4 70.9" stroke="#111" stroke-width="3"/>
+  </g>
+  <g fill="#111" font-family="sans-serif" font-size="22" text-anchor="middle">
+    <text x="85" y="180">0</text><text x="215" y="180">+1</text>
+    <text x="500" y="180">+1</text><text x="555" y="180">+1</text>
+    <text x="345" y="72" font-size="17">slide</text>
+  </g>
+</svg>

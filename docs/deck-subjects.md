@@ -42,8 +42,17 @@ Geometry deck. Vocabulary is a separate study subject.
   [Simpson](https://arxiv.org/abs/alg-geom/9604005) supply the moduli conventions.
 
 - Topology / Four-Manifolds owns intersection forms as topological invariants,
-  handles, smooth structures, spin and spin-c structures, and Seiberg–Witten
-  invariants. Lattices and Quadratic Forms keeps the algebra of forms; surface
+  embedded surfaces, handle attachments, Kirby moves, surgery boundaries,
+  plumbings, fiber sums, Lefschetz fibrations, smooth structures, spin and
+  spin-c structures, and Seiberg–Witten invariants. Foundational cards require
+  constructions and diagram computations as well as invariant formulas:
+  recover a boundary, fundamental group, or intersection form from attaching
+  data, and distinguish moves of a four-manifold from moves of its boundary.
+  Editable Kirby figures live in decks/Topology/assets/kirby/.
+  Gompf–Stipsicz, *4-Manifolds and Kirby Calculus*, Chapters 1–6, supplies
+  the differential-topological and handlebody foundations; Chapter 8 supplies
+  the Lefschetz fibration conventions.
+  Lattices and Quadratic Forms keeps the algebra of forms; surface
   decks retain their complex-geometric applications. Use complex orientation
   on complex surfaces, positive-definite E8, scalar signature as the difference
   of inertia indices, and the torsion-free quotient of integral cohomology for

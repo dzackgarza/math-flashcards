@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 210" role="img" aria-labelledby="title desc">
+  <title id="title">Three handlebody recognition problems</title>
+  <desc id="desc">A is a zero-framed unknot. B is a Hopf link with both coefficients zero. C is a Hopf link with one component dotted and the other zero-framed. Opposite components pass over at the two crossings of each Hopf link.</desc>
+  <rect width="760" height="210" fill="white"/>
+  <g fill="#111" font-family="sans-serif" font-size="22" text-anchor="middle">
+    <text x="120" y="30">A</text><text x="365" y="30">B</text><text x="625" y="30">C</text>
+    <text x="120" y="180">0</text>
+    <text x="335" y="180">0</text><text x="390" y="180">0</text>
+    <text x="650" y="180">0</text>
+  </g>
+  <circle cx="120" cy="100" r="43" fill="none" stroke="#111" stroke-width="3"/>
+  <g transform="translate(225 5)" fill="none">
+    <circle cx="110" cy="95" r="42" stroke="#111" stroke-width="3"/>
+    <circle cx="165" cy="95" r="42" stroke="white" stroke-width="9"/>
+    <circle cx="165" cy="95" r="42" stroke="#111" stroke-width="3"/>
+    <path d="M128.2 57.2 A42 42 0 0 1 144.4 70.9" stroke="white" stroke-width="9"/>
+    <path d="M128.2 57.2 A42 42 0 0 1 144.4 70.9" stroke="#111" stroke-width="3"/>
+  </g>
+  <g transform="translate(485 5)" fill="none">
+    <circle cx="110" cy="95" r="42" stroke="#111" stroke-width="3"/>
+    <circle cx="165" cy="95" r="42" stroke="white" stroke-width="9"/>
+    <circle cx="165" cy="95" r="42" stroke="#111" stroke-width="3"/>
+    <path d="M128.2 57.2 A42 42 0 0 1 144.4 70.9" stroke="white" stroke-width="9"/>
+    <path d="M128.2 57.2 A42 42 0 0 1 144.4 70.9" stroke="#111" stroke-width="3"/>
+    <circle cx="68" cy="95" r="6" fill="#111"/>
+  </g>
+</svg>

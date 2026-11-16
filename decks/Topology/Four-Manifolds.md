@@ -2,6 +2,303 @@
 title: "Topology::Four-Manifolds"
 ---
 
+::: {.front card-id="four-manifold-transverse-surfaces-whitney" tags="definition comparison"}
+What does general position give for surfaces in a smooth four-manifold? Why does a pair of oppositely signed intersections not automatically cancel?
+:::
+
+::: {.back card-id="four-manifold-transverse-surfaces-whitney"}
+Transverse submanifolds of dimensions $p,q$ in an $n$-manifold meet in dimension $p+q-n$. Two surfaces in dimension four therefore meet in isolated points. A generic immersion of a surface has transverse double points; an embedding has none. The sign of an intersection compares the ordered tangent planes with the ambient orientation.
+
+A Whitney disk pairs oppositely signed intersections: its boundary consists of one arc on each sheet, joining the two points. A smooth Whitney move needs an embedded disk whose interior misses the sheets and whose normal framing extends the boundary Whitney framing. The move then removes the pair.
+
+In dimension four, a disk and a surface have complementary dimensions, so putting the disk in general position still leaves intersections. Null-homotopy of the Whitney circle alone does not supply a framed embedded disk with disjoint interior. Thus algebraic intersection zero does not by itself let one isotope the surfaces apart.
+:::
+
+::: {.front card-id="four-manifold-isotopy-normal-neighborhood" tags="definition construction"}
+Distinguish isotopy of embeddings from homotopy. Describe a tubular neighborhood of an oriented embedded surface and its boundary.
+:::
+
+::: {.back card-id="four-manifold-isotopy-normal-neighborhood"}
+An isotopy $f_t:\Sigma\hookrightarrow X$ is a smooth family of embeddings; a homotopy permits singular maps and self-intersections. For compact $\Sigma$, isotopy extension realizes $f_t$ by ambient diffeomorphisms $\Phi_t$ with $\Phi_0=\mathrm{id}$ and $f_t=\Phi_t f_0$. A homotopy need not extend this way.
+
+The tubular neighborhood theorem identifies a neighborhood of $\Sigma$ with its oriented rank-two normal disk bundle $\nu\Sigma$. Its Euler number is $\Sigma^2$; its boundary is the associated circle bundle. Over a closed oriented surface, this Euler number classifies oriented two-plane bundles.
+$$\Sigma^2=0\ \Longrightarrow\ \nu\Sigma\cong\Sigma\times D^2,$$
+but choosing such a trivialization is extra data: its homotopy classes form a torsor for $H^1(\Sigma;\mathbb Z)$. These choices matter in gluing constructions. A normal circle is a meridian of $\Sigma$.
+:::
+
+::: {.front card-id="four-manifold-morse-handle-duality" tags="definition construction"}
+Explain the passage from a Morse critical point to a handle attachment. Identify the core, cocore, attaching sphere, belt sphere, and dual handle.
+:::
+
+::: {.back card-id="four-manifold-morse-handle-duality"}
+At an index-$k$ nondegenerate critical point,
+$$f=f(p)-x_1^2-\cdots-x_k^2+x_{k+1}^2+\cdots+x_4^2.$$
+Crossing its critical value attaches $h^k=D^k\times D^{4-k}$ along $S^{k-1}\times D^{4-k}$ to the preceding regular level.
+
+| Part | Subspace |
+| --- | --- |
+| Core | $D^k\times\{0\}$ |
+| Cocore | $\{0\}\times D^{4-k}$ |
+| Attaching sphere | $S^{k-1}\times\{0\}$ |
+| Belt sphere in new boundary | $\{0\}\times S^{3-k}$ |
+
+The attaching map includes its normal framing. Turning a cobordism upside down exchanges cores with cocores and replaces index $k$ by $4-k$. A two-handle is dual to a two-handle; its dual attaching circle is the belt circle, viewed in the outgoing boundary.
+
+Between critical values the cobordism is a product. A handle decomposition carries more data than the number of critical points: attaching maps and framings determine the manifold.
+
+Reference: Gompf–Stipsicz, *4-Manifolds and Kirby Calculus*, §§4.1–4.2.
+:::
+
+::: {.front card-id="four-manifold-handles-fundamental-homology" tags="application construction"}
+How does a handle decomposition compute $\pi_1$, homology, and Euler characteristic? Work out a one-handle and a two-handle whose attaching word is $x^m$.
+:::
+
+::: {.back card-id="four-manifold-handles-fundamental-homology"}
+For a connected handlebody with one zero-handle:
+
+- One-handles generate a free fundamental group.
+- Each two-handle imposes the relation represented by its attaching circle.
+- Handles of index at least three do not change $\pi_1$.
+- The cellular chain group $C_k$ has one generator per $k$-handle. The boundary matrix records signed intersections of attaching spheres with belt spheres of the preceding index.
+$$H_k(X;\mathbb Z)=\ker\partial_k/\operatorname{im}\partial_{k+1},\qquad
+\chi(X)=\sum_{k=0}^4(-1)^k h_k.$$
+With one one-handle, one two-handle of word $x^m$, and no higher handles,
+$$\pi_1(X)=\langle x\mid x^m\rangle,\qquad
+C_2=\mathbb Z\xrightarrow{\ m\ }C_1=\mathbb Z\xrightarrow{0}C_0=\mathbb Z.$$
+For $m\ne0$, $H_1=\mathbb Z/m$ and $H_2=0$; for $m=0$, $H_1=H_2=\mathbb Z$. In both cases $\chi=1$. Algebraic passage number $m=1$ does not prove geometric handle cancellation: the attaching circle must meet the belt sphere geometrically once.
+:::
+
+::: {.front card-id="four-manifold-knot-linking-framing" tags="definition application"}
+Define meridian, preferred longitude, linking number, and integer framing for a knot in $S^3$. How do Seifert and blackboard framings differ?
+:::
+
+::: {.back card-id="four-manifold-knot-linking-framing"}
+For an oriented knot $K$, let $N(K)\cong S^1\times D^2$ be a tubular neighborhood. On its boundary:
+
+- $\mu$ bounds a normal disk and has linking number $+1$ with $K$.
+- The preferred longitude $\lambda$ is parallel to $K$ and bounds a Seifert surface in the exterior; it has linking number zero.
+- For disjoint oriented knots, $\operatorname{lk}(K,J)=F\cdot J$ for an oriented Seifert surface $\partial F=K$; equivalently half the signed sum of crossings between the two components.
+
+A normal framing of $K$ gives a push-off $K'$. Its integer coefficient is $\operatorname{lk}(K,K')$ relative to the Seifert zero framing. The corresponding push-off slope is $\lambda+n\mu$.
+
+Blackboard framing pushes within the projection plane; its coefficient is the diagram's writhe, the signed sum of self-crossings. A Reidemeister-I curl changes blackboard framing by one, even though it preserves the unframed knot type. A framed isotopy must account for that change.
+
+Reference: Gompf–Stipsicz, §4.5.
+:::
+
+::: {.front card-id="four-manifold-boundary-surgery-trace" tags="definition application"}
+Relate a two-handle attachment to Dehn surgery on the boundary. Define a surgery trace and compute it for a framed unknot.
+:::
+
+::: {.back card-id="four-manifold-boundary-surgery-trace"}
+Attach $D^2\times D^2$ to an oriented four-manifold $W$ along $S^1\times D^2\subset\partial W$ with coefficient $n$. On the boundary this replaces the attaching solid torus by $D^2\times S^1$; the meridian of the replacement is glued to $\lambda+n\mu$.
+
+More generally, $p/q$ Dehn surgery on a knot exterior fills its torus boundary so that the new meridian represents $p\mu+q\lambda$, with $\gcd(p,q)=1$. Integral $n$ means $p=n,q=1$. Specify the orientation convention when naming a lens space.
+
+The trace $W_n(K)=D^4\cup h^2_K$ has boundary $S^3_n(K)$. For the unknot $U$, $W_n(U)$ is the oriented disk bundle over $S^2$ of Euler number $n$, with intersection matrix $(n)$. For $n=0$,
+$$W_0(U)=S^2\times D^2,\qquad \partial W_0(U)=S^2\times S^1.$$
+For $n=\pm1$ the boundary is $S^3$ and capping with a four-handle gives $\mathbb{CP}^2$ or $\overline{\mathbb{CP}}^{\,2}$. Diffeomorphic boundaries do not imply diffeomorphic traces.
+:::
+
+::: {.front card-id="four-manifold-link-matrix-boundary" tags="formula application"}
+Given an integral framed link in $S^3$, compute the homology of its surgery boundary and the intersection form of its trace. What information is lost?
+:::
+
+::: {.back card-id="four-manifold-link-matrix-boundary"}
+For an $r$-component link, let $A_{ii}$ be its framings and $A_{ij}=\operatorname{lk}(K_i,K_j)$ for $i\ne j$. The trace has one zero-handle and $r$ two-handles, hence
+$$\pi_1(W)=1,\quad H_2(W;\mathbb Z)\cong\mathbb Z^r,\quad Q_W=A.$$
+The capped Seifert surfaces give the basis. If $Y=\partial W$, meridians generate a presentation
+$$H_1(Y;\mathbb Z)\cong\operatorname{coker}(A:\mathbb Z^r\to\mathbb Z^r).$$
+Thus $\det A\ne0$ gives a rational homology sphere with $|H_1(Y)|=|\det A|$.
+
+| Link | $A$ | $H_1(Y)$ |
+| --- | --- | --- |
+| $n$-framed unknot | $(n)$ | $\mathbb Z/n$ |
+| Zero-framed Hopf link | $\begin{pmatrix}0&1\\1&0\end{pmatrix}$ | $0$ |
+| Unlinked zero-framed unknots | $\begin{pmatrix}0&0\\0&0\end{pmatrix}$ | $\mathbb Z^2$ |
+
+The matrix forgets knotting and much of the attaching geometry. A determinant of $\pm1$ proves that $Y$ is an integral homology sphere, not that $Y\cong S^3$; one cannot infer that a four-handle caps it.
+:::
+
+::: {.front card-id="four-manifold-diagram-recognition" tags="application diagram"}
+Each diagram starts from a zero-handle. Identify the four-manifold with boundary, its boundary, and its homology. A filled dot marks a one-handle.
+
+![Three framed-link diagrams, labelled A, B, and C.](assets/kirby/basic-handles.svg)
+:::
+
+::: {.back card-id="four-manifold-diagram-recognition"}
+| Diagram | Handlebody | Boundary | Reduced integral homology |
+| --- | --- | --- | --- |
+| A: zero-framed unknot | $S^2\times D^2$ | $S^2\times S^1$ | $H_2=\mathbb Z$ |
+| B: zero-framed Hopf link | $(S^2\times S^2)\setminus\operatorname{int}D^4$ | $S^3$ | $H_2=\mathbb Z^2$, form $U$ |
+| C: dotted unknot and its zero-framed meridian | $D^4$ after a one/two-handle cancellation | $S^3$ | Zero |
+
+B has two two-handles; C has one one-handle and one two-handle. Changing a zero label to a dot changes the four-manifold. In C the two-handle passes geometrically once through the one-handle, so cancellation is geometric, not just a homology calculation.
+:::
+
+::: {.front card-id="four-manifold-handle-slides-example" tags="construction application diagram"}
+The arrow indicates a two-handle slide of the zero-framed component over the $+1$ component along a short untwisted band. Compute the new intersection matrix and decide what the move preserves.
+
+![An unlink with coefficients zero and plus one, followed by a Hopf link with both coefficients plus one.](assets/kirby/slide.svg)
+:::
+
+::: {.back card-id="four-manifold-handle-slides-example"}
+A slide replaces $K_1$ by its band sum with a framing push-off of $K_2$. With the orientations chosen in the figure, its homology class becomes $e'_1=e_1+e_2$, while $e'_2=e_2$.
+$$A=\begin{pmatrix}0&0\\0&1\end{pmatrix},\qquad
+P=\begin{pmatrix}1&0\\1&1\end{pmatrix},\qquad
+A'=P^TAP=\begin{pmatrix}1&1\\1&1\end{pmatrix}.$$
+In general the new framing is $a+b+2\ell$ when the slid handles have framings $a,b$ and mutual linking $\ell$; linking with a third component adds the two old linking numbers.
+
+The slide preserves the diffeomorphism type of the handlebody and its boundary. Both matrices have rank one and cokernel $\mathbb Z$; the boundary here is $S^1\times S^2$. A matrix congruence is the algebraic effect of this geometric move, not a proof that arbitrary links with congruent matrices give diffeomorphic handlebodies.
+:::
+
+::: {.front card-id="four-manifold-kirby-moves-boundary-versus-trace" tags="theorem comparison"}
+Which Kirby moves preserve a four-dimensional handlebody, and which preserve only its surgery boundary? Explain the role of blowups and cancellation.
+:::
+
+::: {.back card-id="four-manifold-kirby-moves-boundary-versus-trace"}
+| Move | Effect |
+| --- | --- |
+| Framed attaching-link isotopy | Same handlebody |
+| Handle slide | Same handlebody |
+| Creation/cancellation of a geometrically cancelling adjacent-index pair | Same handlebody |
+| Add an isolated $\varepsilon$-framed unknot, $\varepsilon=\pm1$ | Same surgery three-manifold; trace acquires an interior connected sum with the corresponding $\pm\mathbb{CP}^2$ |
+
+Kirby's theorem: integral framed links in $S^3$ present orientation-preservingly diffeomorphic closed oriented three-manifolds iff related by handle slides and additions/deletions of isolated $\pm1$-framed unknots.
+
+A blowdown can remove a $\varepsilon$-framed unknot linked with other components, but must twist its strands. Algebraically, for linking vector $v$,
+$$\begin{pmatrix}\varepsilon&v^T\\v&B\end{pmatrix}
+\quad\leadsto\quad B-\varepsilon vv^T.$$
+It preserves the boundary, not the four-dimensional trace. For example blowing down either component of the $+1,+1$ Hopf link yields a zero-framed unknot.
+
+A one/two-handle cancellation requires one geometric passage through the one-handle, with the attaching data arranged for cancellation. Algebraic passage number one with extra opposite passages does not suffice.
+
+Reference: Gompf–Stipsicz, §§5.1–5.4.
+:::
+
+::: {.front card-id="four-manifold-heegaard-relative-handles" tags="definition comparison"}
+What are a Heegaard splitting and a relative handle decomposition? How do they help interpret four-dimensional Kirby diagrams?
+:::
+
+::: {.back card-id="four-manifold-heegaard-relative-handles"}
+A Heegaard splitting of a closed oriented three-manifold is $Y=H_g\cup_\varphi H_g$, where each $H_g$ is a three-dimensional genus-$g$ handlebody and the gluing identifies their boundary surfaces. A Heegaard diagram records the meridian systems of both handlebodies on the common surface. The gluing map is essential.
+
+The genus-zero splitting gives $S^3$; gluing two solid tori gives genus-one examples including lens spaces and $S^1\times S^2$.
+
+A relative handle decomposition of a cobordism $W:Y_-\to Y_+$ begins with $Y_-\times[0,1]$ and attaches handles along the outgoing boundary. With boundary orientation, $\partial W=\overline{Y_-}\sqcup Y_+$. A diagram drawn in $Y_-$ needs a specified presentation of that three-manifold and the attaching link in it.
+
+The boundary of a four-dimensional zero-handle with $g$ one-handles is $\#^g(S^1\times S^2)$. Dotted-circle notation presents those one-handles; replacing the dots by zero framings computes the boundary surgery presentation, but changes the four-dimensional handlebody.
+:::
+
+::: {.front card-id="four-manifold-spin-characteristic-sublinks" tags="definition application"}
+How does an integral surgery diagram encode spin structures on its boundary? When does the surgery trace admit a spin structure?
+:::
+
+::: {.back card-id="four-manifold-spin-characteristic-sublinks"}
+Let $A$ be the linking matrix of an integral framed link in $S^3$. A sublink with indicator vector $s\in(\mathbb Z/2)^r$ is characteristic iff
+$$As=\operatorname{diag}(A)\pmod2.$$
+Equivalently, each component's linking with the sublink equals its framing modulo two, counting its framing as self-linking when it belongs to the sublink. Characteristic sublinks correspond to spin structures on the surgery boundary. Differences of solutions lie in $\ker(A\bmod2)\cong H^1(\partial W;\mathbb Z/2)$.
+
+The trace, built from $D^4$ by two-handles, is simply connected. It is spin iff every framing is even; the extending boundary spin structure is represented by the empty characteristic sublink.
+
+Examples:
+
+- Zero-framed unknot: $0s=0$ has two solutions; the boundary $S^1\times S^2$ has two spin structures, only the empty-sublink one extends over $S^2\times D^2$.
+- $+1$-framed unknot: $s=1$ is the unique solution. Its boundary $S^3$ is spin, but the odd trace is not.
+:::
+
+::: {.front card-id="four-manifold-surgery-log-transform" tags="definition construction"}
+Define surgery on a framed embedded sphere and a logarithmic transform along a square-zero torus. What gluing data must be retained?
+:::
+
+::: {.back card-id="four-manifold-surgery-log-transform"}
+Surgery on a framed $S^k\subset X^n$ removes $S^k\times\operatorname{int}D^{n-k}$ and replaces it by $D^{k+1}\times S^{n-k-1}$ along their common boundary. Its trace is an $(n+1)$-dimensional cobordism with one index-$(k+1)$ handle. This differs from attaching a handle to the boundary of $X$ itself.
+
+For an embedded torus $T\subset X^4$ of square zero, choose $\nu T\cong T^2\times D^2$ and a basis $(a,b,\mu)$ of $H_1(\partial\nu T;\mathbb Z)$, where $\mu$ is the normal meridian. A logarithmic transform removes $\nu T$ and reglues $T^2\times D^2$. Record the image of the new meridian,
+$$\mu'\longmapsto qa+rb+p\mu,\qquad \gcd(p,q,r)=1,$$
+and the full boundary diffeomorphism when needed. The multiplicity is $|p|$ in this convention; it alone need not determine the result.
+
+Euler characteristic and signature are unchanged. Van Kampen imposes the new meridian relation on the complement group, so the fundamental group and smooth structure can change.
+:::
+
+::: {.front card-id="four-manifold-double-branched-cover" tags="construction application"}
+Describe a smooth double cover of an oriented four-manifold branched over a surface. Compute its Euler characteristic and apply the construction to a smooth plane sextic.
+:::
+
+::: {.back card-id="four-manifold-double-branched-cover"}
+For an oriented embedded surface $B\subset X$, start with a double cover of $X\setminus B$ whose monodromy sends each meridian to the nonidentity element of $\mathbb Z/2$. Fill over $B$ with local model
+$$\pi:\mathbb C^2\to\mathbb C^2,\qquad (z,w)\mapsto(z^2,w).$$
+The branch locus is $B$ downstairs; the ramification surface upstairs maps diffeomorphically to it. Existence and choice of the complement cover are part of the construction.
+
+For closed $X$,
+$$\chi(\widetilde X)=2\chi(X)-\chi(B),\qquad
+\sigma(\widetilde X)=2\sigma(X)-\tfrac12 B^2.$$
+The first identity separates the singly covered branch stratum from the doubly covered complement; the second is the signature formula for a smooth double branched cover.
+
+For a smooth sextic $B\subset\mathbb{CP}^2$, $g(B)=10$ and $B^2=36$, so $\chi(\widetilde X)=24$ and $\sigma(\widetilde X)=-16$. The algebraic double cover is a K3: its canonical bundle is $\pi^*(K_{\mathbb{CP}^2}+3H)\cong\mathcal O$, and it is simply connected. These calculations connect the branched-cover construction to the K3 example.
+:::
+
+::: {.front card-id="four-manifold-plumbing-disk-bundles" tags="construction application"}
+Define plumbing of oriented disk bundles over surfaces. Compute the form and boundary homology of a linear plumbing of two Euler-number $-2$ disk bundles over $S^2$.
+:::
+
+::: {.back card-id="four-manifold-plumbing-disk-bundles"}
+Choose product charts $D^2_{\mathrm{base}}\times D^2_{\mathrm{fiber}}$ in each bundle and identify them by exchanging base and fiber, with orientations chosen to give a positive transverse intersection of the zero sections.
+
+A weighted plumbing graph records the base genera and Euler numbers at vertices and the intersections along edges. For a tree of sphere bundles, the Kirby diagram has a framed unknot for each vertex and a Hopf clasp for each edge.
+$$Q=\begin{pmatrix}-2&1\\1&-2\end{pmatrix},\qquad
+\det Q=3,\qquad H_1(\partial W)\cong\mathbb Z/3.$$
+Its eigenvalues are $-1,-3$, so it is negative definite. The two zero sections are $(-2)$-spheres intersecting once; this is the resolution plumbing of an $A_2$ surface singularity. The boundary is a lens space, with orientation fixed by the plumbing.
+
+For a chain with weights $-b_1,\ldots,-b_r$, the continued fraction $[b_1,\ldots,b_r]^-=b_1-1/(b_2-\cdots-1/b_r)$ computes its rational surgery coefficient up to the stated orientation convention.
+:::
+
+::: {.front card-id="four-manifold-surface-smoothing-blowup" tags="construction application"}
+Compare smoothing a transverse positive intersection of surfaces with blowing up an intersection. Compute the genus of a smooth plane curve by smoothing a line arrangement.
+:::
+
+::: {.back card-id="four-manifold-surface-smoothing-blowup"}
+An oriented smoothing replaces the crossing disks by an annulus and represents the sum of their homology classes. For connected surfaces of genera $g_1,g_2$ meeting positively in $m>0$ points, smoothing all crossings gives a connected surface with
+$$g=g_1+g_2+m-1,\qquad [\Sigma]=[\Sigma_1]+[\Sigma_2].$$
+Blowing up instead replaces the point by an exceptional sphere $E$ of square $-1$. The proper transforms of two transverse branches become disjoint there, each meeting $E$ once; a surface of multiplicity $m$ has transform $\pi^*[\Sigma]-m[E]$ and square $\Sigma^2-m^2$.
+
+Take $d$ projective lines with no triple intersection. There are $N=d(d-1)/2$ nodes. Smoothing the connected arrangement gives class $dH$, square $d^2$, and
+$$\chi=2d-2N,\qquad g=1-d+N=\frac{(d-1)(d-2)}2.$$
+For a complex smooth degree-$d$ plane curve this is its genus. The smoothing constructs representatives; the assertion that no smooth representative of $dH$ has smaller genus is the Thom conjecture theorem, a separate smooth-topological result.
+:::
+
+::: {.front card-id="four-manifold-fiber-sum-elliptic-examples" tags="construction application"}
+Define a fiber sum along square-zero surfaces. Construct $E(1)$ from a cubic pencil and compute Euler characteristics and signatures of its iterated fiber sums.
+:::
+
+::: {.back card-id="four-manifold-fiber-sum-elliptic-examples"}
+For embedded oriented genus-$g$ surfaces $\Sigma_i\subset X_i$ with trivialized normal bundles, remove $\Sigma_i\times\operatorname{int}D^2$ and glue their boundaries by a map covering an orientation-preserving surface identification and reversing the normal circle. Denote the result $X_1\#_\Sigma X_2$; the boundary gluing is part of the data.
+$$\chi(X_1\#_\Sigma X_2)=\chi(X_1)+\chi(X_2)+4(g-1),\qquad
+\sigma(X_1\#_\Sigma X_2)=\sigma(X_1)+\sigma(X_2).$$
+Use van Kampen on the complements to compute $\pi_1$; it cannot be read from these two numbers.
+
+A generic pencil of plane cubics has nine simple basepoints. Blowing them up gives
+$$E(1)=\mathbb{CP}^2\#9\overline{\mathbb{CP}}^{\,2},\qquad
+F=3H-E_1-\cdots-E_9,\qquad F^2=0.$$
+The exceptional curves are sections, and a regular fiber is a torus. The standard repeated fiber sum $E(n)$ of $n$ copies of $E(1)$ has $\chi=12n$ and $\sigma=-8n$. It is simply connected; thus $b_2=12n-2$ and $(b_2^+,b_2^-)=(2n-1,10n-1)$. The standard $E(2)$ is a K3 surface.
+:::
+
+::: {.front card-id="four-manifold-lefschetz-fibration-handle" tags="definition construction"}
+Define a positive Lefschetz fibration and a pencil. Relate vanishing cycles to Dehn twists, two-handles, and Euler characteristic.
+:::
+
+::: {.back card-id="four-manifold-lefschetz-fibration-handle"}
+A positive Lefschetz fibration $f:X^4\to B^2$ has isolated critical points with orientation-compatible complex charts in which
+$$f(z_1,z_2)=z_1^2+z_2^2\quad\text{(equivalently }z_1z_2\text{)}.$$
+Away from them it is a surface bundle. A path to a critical value collapses a simple closed curve in the regular fiber, the vanishing cycle. Positive local monodromy is a right-handed Dehn twist about that curve.
+
+Over a disk, build the singular fibration from $\Sigma_g\times D^2$ by attaching a two-handle along each vanishing cycle in a boundary fiber, with framing $-1$ relative to the surface framing. For closed base $B$ and $N$ critical points,
+$$\chi(X)=\chi(B)(2-2g)+N.$$
+For a fibration over $S^2$, the ordered product of local monodromies is the identity in the mapping class group of the closed fiber.
+
+A Lefschetz pencil is defined away from finitely many basepoints, with local model $[z_1:z_2]$ there and the same critical-point model elsewhere. Blowing up each basepoint resolves it to a fibration; each exceptional sphere is a section of square $-1$.
+:::
+
 ::: {.front card-id="four-manifold-intersection-form" tags="definition comparison"}
 Define the integral intersection form of a closed oriented four-manifold. Explain unimodularity, parity, signature, and its geometric meaning.
 :::
