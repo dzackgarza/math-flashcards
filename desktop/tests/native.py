@@ -995,8 +995,15 @@ def main(
     timings: bool = False,
     profile: bool = False,
     diagrams: bool = False,
+    singleton: bool = False,
 ) -> None:
     """Exercise a built app, or launch an installed desktop entry through Gio."""
+    if singleton and (
+        entry is not None or offline or updates or timings or profile or diagrams
+    ):
+        raise ValueError(
+            "The singleton scenario launches the built executable directly."
+        )
     if diagrams:
         if offline or updates or timings or profile:
             raise ValueError(
@@ -1107,6 +1114,58 @@ def main(
                 print(wm_class, flush=True)
                 assert '"desktop"' in wm_class
                 print("Native window:", window, flush=True)
+                if entry is None and not offline and not updates:
+                    subprocess.run(["xdotool", "windowunmap", window], check=True)
+                    second = subprocess.Popen(
+                        command, stdout=log, stderr=log, env=runtime_environment
+                    )
+                    try:
+                        try:
+                            status = second.wait(timeout=10)
+                        except subprocess.TimeoutExpired:
+                            raise AssertionError(
+                                "A second launch must exit; it is still running."
+                            ) from None
+                        assert status == 0, f"Second launch failed with status {status}"
+                        visible = subprocess.check_output(
+                            [
+                                "xdotool",
+                                "search",
+                                "--sync",
+                                "--onlyvisible",
+                                "--name",
+                                "Math Flashcards",
+                            ],
+                            text=True,
+                            timeout=10,
+                        ).splitlines()
+                        assert visible == [window], visible
+                        windows = subprocess.check_output(
+                            ["xdotool", "search", "--name", "Math Flashcards"],
+                            text=True,
+                        ).splitlines()
+                        assert windows == [window], windows
+                        focused = subprocess.check_output(
+                            ["xdotool", "getwindowfocus"], text=True
+                        ).strip()
+                        assert focused == window, (focused, window)
+                    finally:
+                        if second.poll() is None:
+                            children = psutil.Process(second.pid).children(
+                                recursive=True
+                            )
+                            second.terminate()
+                            second.wait(timeout=10)
+                            for child in children:
+                                with suppress(psutil.NoSuchProcess):
+                                    child.terminate()
+                            psutil.wait_procs(children, timeout=10)
+                    print(
+                        "Second launch exits and focuses the existing window.",
+                        flush=True,
+                    )
+                    if singleton:
+                        return
                 time.sleep(2)
                 preferences_path = (
                     environment / "config" / "dev.math.flashcards" / "preferences.json"

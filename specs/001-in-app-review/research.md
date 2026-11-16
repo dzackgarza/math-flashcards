@@ -435,6 +435,13 @@ Concurrency that remains is inside the one copy and has one rule for each resour
 host answers one request at a time; the record has one writer and any number of
 read-only readers (SQLite's write-ahead log, R12).
 
+The native test's Xvfb environment supplies no `DBUS_SESSION_BUS_ADDRESS`.
+`dbus-run-session` supplies a working private session bus, verified by querying
+`org.freedesktop.DBus.ListNames`. The native recipe uses it so test launches share one
+bus and remain separate from the user's running app. The second-launch scenario hides
+the first window, requires the new process to exit, and checks that the original window
+is the only app window and has the focus.
+
 ## R16. File placement by the XDG Base Directory Specification
 
 **Source**: https://specifications.freedesktop.org/basedir/latest/ (read).
@@ -634,6 +641,4 @@ themselves; that needs a checked answer.
   preparation and the progress display.
 - The time from a save to the changed card in review (SC-003) for the largest deck.
 - Whether a retained earlier release opens a store that a newer `anki` upgraded (R1).
-- Whether the single-instance plugin works in the native test's display session, which
-  needs a D-Bus session bus (R15).
 - The time that `study-copy` takes for a store of the full workspace (R18).

@@ -11,14 +11,14 @@ test: check-math
     uv run --upgrade scripts/check-decks.py
 
 # Reject TeX that MathJax cannot render, such as an undefined macro
-check-math: desktop-dependencies
+check-math:
     cd desktop && bun scripts/check-math.ts ../decks
 
 # Push gate entry point
 test-push: test
 
-# Commit gate entry point; installs the verified build so the menu app matches the commit
-test-commit: test desktop-boundaries desktop-frontend desktop-source-test desktop-editor-test desktop-test desktop-diagram-test desktop-organization-test desktop-update
+# Commit gate entry point using prepared dependencies
+test-commit: test desktop-boundaries desktop-frontend desktop-source-test desktop-editor-test desktop-test desktop-diagram-test desktop-organization-test
 
 # Install the desktop build dependencies
 desktop-dependencies:
@@ -114,7 +114,7 @@ desktop-source-test:
 
 # Capture and exercise the built native window on an isolated display
 desktop-native-test *arguments:
-    xvfb-run -a -s '-screen 0 1600x1200x24' uv run --upgrade desktop/tests/native.py {{arguments}}
+    xvfb-run -a -s '-screen 0 1600x1200x24' dbus-run-session -- uv run --upgrade desktop/tests/native.py {{arguments}}
 
 # Launch the installed desktop entry and exercise its native export
 desktop-installed-test *arguments:
