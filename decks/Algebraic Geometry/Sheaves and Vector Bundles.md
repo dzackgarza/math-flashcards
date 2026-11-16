@@ -2,6 +2,37 @@
 title: "Algebraic Geometry::Sheaves and Vector Bundles"
 ---
 
+::: {.front card-id="sequence-relative-tangent-kodaira-spencer" tags="formula construction application"}
+For a smooth morphism $f:X\to S$ of smooth complex varieties, state the relative cotangent and tangent sequences. How does restriction to a proper fiber define the Kodaira–Spencer map? Compare a product family with a varying family of elliptic curves.
+:::
+
+::: {.back card-id="sequence-relative-tangent-kodaira-spencer"}
+$$0\to f^*\Omega_S^1\to\Omega_X^1\to\Omega_{X/S}^1\to0,\qquad
+0\to T_{X/S}\to T_X\to f^*T_S\to0.$$
+The cotangent quotient is locally free, so dualization remains exact. On a proper fiber $X_s$, the connecting homomorphism gives
+$$T_sS\longrightarrow H^1(X_s,T_{X_s}),$$
+by sending $v$ to the boundary of the constant section $1\otimes v$ of $\mathcal O_{X_s}\otimes T_sS$. It measures the first-order variation of complex structure.
+
+For $X=C\times S$, the sequences split and this map is zero. For a smooth elliptic family where $dj_s\ne0$ and $j(s)\notin\{0,1728\}$, the Kodaira–Spencer map is nonzero: the coarse $j$-coordinate is a local deformation parameter there. At the special automorphism values, $dj=0$ alone does not prove infinitesimal triviality.
+:::
+
+::: {.front card-id="sequence-cotangent-complex-transitivity" tags="formula comparison"}
+State cotangent-complex transitivity and explain how it corrects the ordinary conormal sequence. Give a singular hypersurface example where the left conormal map is injective.
+:::
+
+::: {.back card-id="sequence-cotangent-complex-transitivity"}
+For $X\xrightarrow fY\to S$,
+$$Lf^*L_{Y/S}\to L_{X/S}\to L_{X/Y}\to Lf^*L_{Y/S}[1].$$
+For a regular closed immersion $i:Z\hookrightarrow X$ with $X/S$ smooth,
+$$L_{Z/S}\simeq[I/I^2\xrightarrow{d}\Omega^1_{X/S}|_Z]$$
+in degrees $-1,0$. Its degree-zero cohomology is $\Omega^1_{Z/S}$; its degree-minus-one cohomology is the kernel of the conormal map.
+
+For the cusp $Z=(y^2-x^3)\subset\mathbb A^2_{\mathbb C}$,
+$$\mathcal O_Z\longrightarrow\mathcal O_Z\,dx\oplus\mathcal O_Z\,dy,\qquad
+1\longmapsto-3x^2dx+2y\,dy$$
+is injective because $\mathcal O_Z$ is a domain. Yet $Z$ is singular at the origin: $\Omega_Z^1$ is not locally free there. Left injectivity does not characterize smoothness.
+:::
+
 ::: {.front card-id="sequence-ideal-divisor-tor" tags="formula comparison application"}
 State the ideal-sheaf and effective-Cartier-divisor sequences. What happens after tensoring by a coherent sheaf $F$? Test restriction to the divisor itself.
 :::
@@ -81,7 +112,7 @@ For a morphism of ringed spaces $f:X\to Y$, state pullback–pushforward and ten
 :::
 
 ::: {.back card-id="sheaf-adjunction-formula-table"}
-For modules $E$ on $Y$ and $F,G$ on $X$,
+For modules $E$ on $Y$ and $F,G,H$ on $X$,
 $$\operatorname{Hom}_X(f^*E,F)=\operatorname{Hom}_Y(E,f_*F),\qquad
 \mathcal H om_X(F\otimes G,H)=\mathcal H om_X(F,\mathcal H om_X(G,H)).$$
 Global Hom is $\Gamma(X,\mathcal H om_X(F,G))$. For finite locally free $F$,
@@ -888,7 +919,8 @@ How is the **inverse image sheaf** defined? What are its stalks?
 :::
 
 ::: {.back card-id="card-5fb0674e6ef318ad"}
-$f^{-1}\mcg(U) \coloneqq\colim_{V\supseteq f(U)} \mcg(V)$. Stalks: $\mcg_p  { \, \xrightarrow{\sim}\, }(f^{-1}\mcg)_p$.
+For $f:X\to Y$, sheafify the presheaf $U\mapsto\operatorname*{colim}_{V\supseteq f(U)}\mathcal G(V)$, where $V$ runs through open subsets of $Y$. At $x\in X$,
+$$(f^{-1}\mathcal G)_x\cong\mathcal G_{f(x)}.$$
 :::
 
 ::: {.front card-id="card-7253757c78a0c001"}

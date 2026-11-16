@@ -818,7 +818,7 @@ What is the definition of Relative canonical sheaf?
 :::
 
 ::: {.back card-id="card-019bda55018f2843"}
-For a smooth morphism $f:X\to Y$ of relative dimension $n$, $\omega_{X/Y}=\det\Omega^1_{X/Y}\cong\omega_X\otimes f^*\omega_Y^{-1}$. Grothendieck duality gives $f^!\mathcal O_Y\cong\omega_{X/Y}[n]$.
+For a smooth morphism $f:X\to Y$ of relative dimension $n$, $\omega_{X/Y}=\det\Omega^1_{X/Y}$. If $X,Y$ are smooth over a common field, $\omega_{X/Y}\cong\omega_X\otimes f^*\omega_Y^{-1}$. In the Grothendieck-duality setting, $f^!\mathcal O_Y\cong\omega_{X/Y}[n]$.
 :::
 
 ::: {.front card-id="card-88b7b071a0ca4f33" tags="definition"}
