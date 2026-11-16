@@ -410,7 +410,9 @@ What is the definition of J-invariant?
 :::
 
 ::: {.back card-id="card-1de60a8a7a9e9277"}
-The $j$-invariant of an elliptic curve $E$ is $j(E)=1728\,4a_4^3/(4a_4^3+27a_6^2)$ for a short Weierstrass model $y^2=x^3+a_4x+a_6$. Over an algebraically closed field, two elliptic curves are isomorphic if and only if they have the same $j$-invariant.
+For a short Weierstrass model $y^2=x^3+a_4x+a_6$ over a field of characteristic different from $2,3$,
+$$j(E)=1728\,\frac{4a_4^3}{4a_4^3+27a_6^2}.$$
+In arbitrary characteristic, use $j=c_4^3/\Delta$ from a generalized Weierstrass equation. Over an algebraically closed field, two elliptic curves are isomorphic as pointed curves iff their $j$-invariants agree. Over a nonclosed field, twists can share $j$ without being isomorphic.
 :::
 
 ::: {.front card-id="card-cbddcb3e60505698" tags="definition"}

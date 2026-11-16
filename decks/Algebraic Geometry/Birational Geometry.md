@@ -1182,11 +1182,11 @@ For a projective $\mathbb Q$-factorial klt pair $(X,\Delta)/\mathbb C$, what do 
 
 Existence of a terminating choice is weaker than termination of every possible sequence. Finite generation of a canonical ring does not by itself prove abundance at a nef endpoint.
 
-Reference: Birkar–Cascini–Hacon–McKernan, *Existence of minimal models for varieties of log general type*, Theorem 1.2 and Corollaries 1.3.2–1.3.3.
+Reference: Birkar–Cascini–Hacon–McKernan, [*Existence of minimal models for varieties of log general type*](https://arxiv.org/html/math/0610203), Theorem 1.2 and Corollaries 1.3.2, 1.4.1–1.4.2.
 :::
 
 ::: {.front card-id="mmp-scaling-algorithm" tags="construction application"}
-Define MMP with scaling of an ample $\mathbb Q$-divisor $A$ for a projective $\mathbb Q$-factorial klt pair, starting with $K_X+\Delta+A$ nef. What happens to the scaling numbers?
+Define MMP with scaling of an effective ample $\mathbb Q$-divisor $A$ for a projective $\mathbb Q$-factorial klt pair, assuming $(X,\Delta+A)$ is klt and $K_X+\Delta+A$ is nef. What happens to the scaling numbers?
 :::
 
 ::: {.back card-id="mmp-scaling-algorithm"}
@@ -1196,7 +1196,7 @@ If $K_{X_i}+\Delta_i$ is not nef, choose a negative extremal ray $R_i$ satisfyin
 $$(K_{X_i}+\Delta_i+\lambda_iA_i)\cdot R_i=0.$$
 Contract it; stop in the fiber-type case, otherwise perform the divisorial contraction or flip and repeat. The transforms $A_i$ need not stay ample. The numbers satisfy $\lambda_{i+1}\le\lambda_i$; monotonicity alone does not prove finitely many steps.
 
-For $\mathbb P^2$, $A=4H$ gives $\lambda_0=3/4$ and the contraction to a point. The output is a Mori fiber space, not a nef canonical model.
+For $\mathbb P^2$ with $\Delta=0$, take $A=\tfrac12 C$ for a smooth plane octic $C$, so $A\sim_{\mathbb Q}4H$. Then $\lambda_0=3/4$ and the contraction is to a point. The output is a Mori fiber space, not a nef canonical model.
 :::
 
 ::: {.front card-id="mmp-special-termination" tags="definition comparison"}

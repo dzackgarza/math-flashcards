@@ -31,6 +31,28 @@ Geometry deck. Vocabulary is a separate study subject.
 
 ## Subject boundaries
 
+- Algebraic Geometry / Intersection Theory owns cycle equivalences, intersection
+  operations, moving and excess intersection, and enumerative constructions.
+  Numerical Invariants keeps standard ring presentations and numerical formulas;
+  a worked enumerative problem belongs with the intersection method it exercises.
+  The [Stacks Project, Intersection Theory](https://stacks.math.columbia.edu/tag/0AZ7)
+  develops the operations, and Eisenbud–Harris, *3264 and All That*, develops
+  their enumerative applications.
+
+- Arithmetic Geometry includes elliptic curves over finite, local, and number
+  fields, their group laws and isogenies, and modular curves. Curves and Surfaces
+  owns geometric curve theory and elliptic surfaces; Kodaira fiber configurations
+  belong there. Silverman, *The Arithmetic of Elliptic Curves*, supplies the
+  arithmetic conventions; [Sutherland's lectures](https://math.mit.edu/classes/18.783/2023/lectures.html)
+  connect models, isogenies, finite fields, and modular curves.
+
+- Toric Varieties owns fan and polytope constructions together with their worked
+  calculations. Its figures live in `decks/Algebraic Geometry/assets/toric/` as
+  editable SVG sources. Ray labels are primitive lattice generators; polygons
+  show lattice points in the specified lattice. Normal fans use inward normals.
+  [Cox–Little–Schenck, Toric Varieties](https://dacox.people.amherst.edu/toric.html)
+  supplies the fan, divisor, and homogeneous-coordinate conventions.
+
 - Algebraic Geometry / Moduli / Tautological Classes studies classes constructed
   from the universal curve. Its intersection formulas use the moduli stack;
   each comparison with topological MMM classes states the sign convention.

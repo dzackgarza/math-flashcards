@@ -827,7 +827,9 @@ A smooth family of quartic surfaces has a very general fiber of Picard rank one 
 :::
 
 ::: {.back card-id="application-smooth-family-picard-jump"}
-No. Ehresmann gives locally diffeomorphic fibers, so $b_2=22$ remains constant. The integral cohomology forms a local system, but its Hodge decomposition varies. By Lefschetz $(1,1)$, extra integral classes of type $(1,1)$ become algebraic on the special fiber. Picard rank can increase without changing the topological cohomology group.
+No. Ehresmann gives locally diffeomorphic fibers, so $b_2=22$ remains constant; smooth properness also keeps $h^{1,1}=20$ fixed. The integral cohomology forms a local system, but its Hodge decomposition varies. By Lefschetz $(1,1)$, extra integral classes of type $(1,1)$ become algebraic on the special fiber.
+
+For its hyperplane class $H$ and line $L$, the intersection matrix is $\left(\begin{smallmatrix}4&1\\1&-2\end{smallmatrix}\right)$, with determinant $-9$. Thus $H,L$ are independent and $\rho\ge2$. Picard rank can increase without changing the topological cohomology group or creating a singular fiber.
 :::
 
 ::: {.front card-id="application-picard-lefschetz-parity" tags="application"}
@@ -1166,15 +1168,4 @@ The Noether–Lefschetz theorem makes this a proper exceptional locus: the compl
 On a simply connected analytic patch in a smooth family, parallel-transport an integral class $\alpha\in H^2(S,\mathbb Z)$ independent of $H$. Its Hodge locus is where $\alpha$ has type $(1,1)$, equivalently
 $$\int_{S_t}\alpha_t\wedge\omega=0\quad\text{for every }\omega\in H^{2,0}(S_t).$$
 Lefschetz $(1,1)$ turns this into existence of a line bundle. The union over extra integral classes is the Noether–Lefschetz locus. It detects additional divisor classes, not singular surfaces.
-:::
-
-::: {.front card-id="nl-picard-jump-smooth-family" tags="application comparison"}
-A smooth family of quartic K3 surfaces contains a fiber with a line. Which invariants can jump, and why does smoothness not force the Picard rank to stay fixed?
-:::
-
-::: {.back card-id="nl-picard-jump-smooth-family"}
-Betti numbers and Hodge numbers remain constant; the integral lattice inside the moving $(1,1)$ subspace can change. A very general quartic has $\operatorname{Pic}=\mathbb ZH$, while a fiber with a line $L$ has
-$$\begin{pmatrix}H^2&H\cdot L\\H\cdot L&L^2\end{pmatrix}
-=\begin{pmatrix}4&1\\1&-2\end{pmatrix},\qquad\det=-9.$$
-Thus $H,L$ are independent and $\rho\ge2$, although $b_2=22$ and $h^{1,1}=20$ remain unchanged. An integral class becoming algebraic does not require a topological vanishing cycle or a singular fiber.
 :::

@@ -1211,7 +1211,7 @@ What is the scheme-theoretic definition of an elliptic curve over $R$?
 ::: {.back card-id="card-a20232b0e49681e4"}
 A smooth proper morphism $\pi: E\to \operatorname{Spec}R$ with a section $0: \operatorname{Spec}R\to E$ where the geometric fibers of $\pi$ are connected genus 1 curves.
 
-Implies $h^0(E; \Omega_{E/R}) =1$.
+The Hodge bundle $\pi_*\Omega^1_{E/R}$ is an invertible $R$-module, compatible with base change. Over a field, this says $h^0(E,\Omega^1_E)=1$; over a general ring it need not be free with a chosen generator.
 :::
 
 
