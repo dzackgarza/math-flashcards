@@ -43,9 +43,13 @@ Define a divisorially log terminal pair $(X,\Delta)$ over $\mathbb C$.
 :::
 
 ::: {.back card-id="singularity-dlt-definition"}
-Assume $X$ normal, $\Delta$ an effective $\mathbb Q$-divisor with coefficients at most $1$, and $K_X+\Delta$ $\mathbb Q$-Cartier. The pair is dlt if there is a log resolution $f:Y\to X$ for which every $f$-exceptional prime divisor has discrepancy greater than $-1$.
+Assume $X$ normal, $\Delta$ an effective $\mathbb Q$-divisor with coefficients at most $1$, and $K_X+\Delta$ $\mathbb Q$-Cartier. The pair is dlt if there exists a proper birational morphism $f:Y\to X$ such that:
 
-The resolution is existential. For two coefficient-one coordinate axes on $\mathbb A^2$, the identity is a suitable log resolution, but blowing up their intersection produces discrepancy $-1$. The pair remains dlt. Requiring the inequality for every exceptional divisor over $X$ would instead give plt.
+- $Y$ is smooth;
+- the exceptional locus is a divisor (possibly empty), and its union with the support of the strict transform $f_*^{-1}\Delta$ has simple normal crossings;
+- every $f$-exceptional prime divisor $E$ satisfies $a(E,X,\Delta)>-1$.
+
+The first two conditions say that $f$ is a log resolution. The last condition is required on at least one such resolution. For two coefficient-one coordinate axes on $\mathbb A^2$, the identity meets all three conditions: the axes have simple normal crossings and there are no exceptional divisors to test. Blowing up their intersection produces discrepancy $-1$, so that resolution fails the last condition. The pair remains dlt. Requiring the inequality for every exceptional divisor over $X$ would instead give plt.
 :::
 
 ::: {.front card-id="singularity-snc-pair-example" tags="application"}
@@ -138,6 +142,8 @@ $$\mathrm{klt}\ \Longrightarrow\ \mathrm{plt}\ \Longrightarrow\ \mathrm{dlt}\ \L
 | Purely log terminal (plt) | $A(E)>0$ for every exceptional prime divisor over $X$ |
 | Divisorially log terminal (dlt) | Some log resolution has $A(E)>0$ for every exceptional divisor on that resolution |
 | Log canonical (lc) | $A(E)\ge0$ for every prime divisor over $X$, including divisors on $X$ |
+
+Here a log resolution is a proper birational $f:Y\to X$ with $Y$ smooth and exceptional locus a divisor (possibly empty), whose union with the support of $f_*^{-1}\Delta$ has simple normal crossings.
 
 - **plt, not klt:** $(\mathbb A^2,D_1)$ for a coordinate axis $D_1$; $A(D_1)=0$.
 - **dlt, not plt:** $(\mathbb A^2,D_1+D_2)$ for both axes; the identity witnesses dlt, but blowing up their intersection gives $A(E)=0$.
@@ -264,7 +270,7 @@ For normal Gorenstein varieties, rational, canonical, and klt are equivalent: Ca
 - The cone over a smooth plane cubic is Gorenstein and CM, but not rational.
 - The $A_1$ surface germ has local class group $\mathbb Z/2$: it is Gorenstein and $\mathbb Q$-factorial, but not factorial.
 - The threefold node $xy-zw=0$ is Gorenstein, terminal, and rational, but not $\mathbb Q$-factorial: its local class group is $\mathbb Z$.
-- A cone over an Enriques surface with sufficiently ample polarization is rational and $\mathbb Q$-Gorenstein but not klt. Rationality does not reverse the klt implication even after imposing the rational Cartier hypothesis.
+- A cone over an Enriques surface embedded by a very ample line bundle with projectively normal image is rational and $\mathbb Q$-Gorenstein but not klt. Rationality does not reverse the klt implication even after imposing the rational Cartier hypothesis.
 
 [Reference: Popa, rational singularities and Gorenstein comparison](https://people.math.harvard.edu/~mpopa/265/Math265-notes.pdf).
 :::
@@ -297,7 +303,7 @@ Use cones over familiar surfaces with torsion canonical bundle to separate lc, r
 :::
 
 ::: {.back card-id="singularity-torsion-canonical-cones"}
-Let $V$ be one of these smooth complex surfaces and $L$ a sufficiently ample, projectively normal polarization. Set
+Let $V$ be one of these smooth complex surfaces and $L$ a very ample line bundle whose complete linear system embeds $V$ as a projectively normal variety. Set
 $$X=\operatorname{Spec}\bigoplus_{m\ge0}H^0(V,L^m).$$
 Blowing up the vertex gives the total space of $L^{-1}$ with exceptional divisor $V$. Since $K_V$ is torsion, $K_X$ is $\mathbb Q$-Cartier and the exceptional discrepancy is $-1$: these cones are lc, not klt, and therefore Du Bois.
 
