@@ -19,6 +19,7 @@ from uuid import UUID, uuid4
 
 import psutil
 from anki.collection import Collection
+from anki.scheduler.v3 import CardAnswer
 from evidence import evidence
 from playwright.sync_api import expect, sync_playwright
 
@@ -466,6 +467,16 @@ def main(artifacts: Path) -> None:
 
                 # Anki owns the collection exclusively. Stop this isolated test host
                 # before inspecting its committed state with Anki's own library.
+                response = api.post(
+                    "/api/request",
+                    data={
+                        "action": "study-begin",
+                        "workspace": str(workspace),
+                        "scope": {"kind": "workspace"},
+                    },
+                )
+                assert response.ok, response.text()
+                interrupted_session = response.json()["session"]
                 hosts = [
                     process
                     for process in psutil.process_iter(["cmdline"])
@@ -475,7 +486,7 @@ def main(artifacts: Path) -> None:
                     == os.environ["XDG_DATA_HOME"]
                 ]
                 assert len(hosts) == 1, hosts
-                hosts[0].terminate()
+                hosts[0].kill()
                 hosts[0].wait(timeout=10)
                 # SQLite's backup includes committed WAL contents after the stop:
                 # https://docs.python.org/3/library/sqlite3.html#sqlite3.Connection.backup
@@ -510,6 +521,45 @@ def main(artifacts: Path) -> None:
                 finally:
                     collection.close()
 
+                collection = Collection(str(store / "collection.anki2"))
+                try:
+                    queued = collection.sched.get_queued_cards(fetch_limit=1).cards[0]
+                    card = collection.get_card(queued.card.id)
+                    card.start_timer()
+                    collection.sched.answer_card(
+                        collection.sched.build_answer(
+                            card=card, states=queued.states, rating=CardAnswer.EASY
+                        )
+                    )
+                    collection.sched.set_due_date([card.id], "7")
+                    revlogs = [
+                        tuple(row)
+                        for row in collection.db.all(
+                            "select id,cid,usn,ease,ivl,lastIvl,factor,time,type from revlog order by id"
+                        )
+                    ]
+                    assert len(revlogs) == 7, revlogs
+                finally:
+                    collection.close()
+                response = api.post(
+                    "/api/request",
+                    data={"action": "study-open", "workspace": str(workspace)},
+                )
+                assert response.ok, response.text()
+                with closing(sqlite3.connect(record_path)) as record:
+                    recorded = record.execute(
+                        "select revlog_id,revlog_cid,revlog_usn,revlog_ease,revlog_ivl,revlog_last_ivl,revlog_factor,revlog_time_ms,revlog_type from response order by revlog_id"
+                    ).fetchall()
+                    assert recorded == revlogs, (recorded, revlogs)
+                    recovered = record.execute(
+                        "select presentation,reveal_ms,grade_ms,unfocused_ms,after_interval_days,after_due,after_stability,after_difficulty from response where recovered=1"
+                    ).fetchall()
+                    assert recovered == [(None,) * 8, (None,) * 8], recovered
+                    assert record.execute(
+                        "select cause from session_end where session=?",
+                        (interrupted_session,),
+                    ).fetchone() == ("recovered",)
+
                 other = root / "other"
                 other.mkdir()
                 before = set(stores.iterdir())
@@ -528,7 +578,7 @@ def main(artifacts: Path) -> None:
                 assert summary[0]["store"] == store.name
                 assert summary[0]["paths"] == [str(workspace)]
                 assert summary[0]["last_used"]
-                assert summary[0]["cards"] == 12 and summary[0]["responses"] == 5
+                assert summary[0]["cards"] == 12 and summary[0]["responses"] == 7
                 assert set(stores.iterdir()) == before
 
                 response = api.post(
