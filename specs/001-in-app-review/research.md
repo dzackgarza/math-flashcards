@@ -297,6 +297,17 @@ results, reads the learning record with Python's `sqlite3`, and prepares due car
 `sched.set_due_date()` while the app is stopped. `set_due_date()` writes a `revlog` row
 of type 4 (probed); the host records it at the next open as a recovered row (R12).
 
+Anki's open collection holds an exclusive database connection. Inspect its committed
+state after stopping the isolated test host, then use SQLite's backup API to include
+committed WAL contents in a disposable copy before opening that copy with Anki. The
+app's separate record supports concurrent SQL readers throughout the scenario. This
+keeps the test on the real storage path without sharing Anki's connection.
+
+The host receives the app version from its launcher: Tauri's package information in the
+native shell and the package manifest in Vite. Installed resources need no source-tree
+manifest. The study command selects its imports before the other bridge commands load
+their dependencies.
+
 **Rationale**: This is how `desktop/tests/workbench.py` proves package generation. Anki
 has no supported clock override for other processes (`PYTHON_UNIT_TESTS` only shifts
 the day rollover, read), so a test changes due dates, not the clock.

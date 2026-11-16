@@ -101,6 +101,7 @@ export const packageOperationRequestSchema = z.discriminatedUnion("action", [
 ]);
 
 export type Request =
+  | StudyRequest
   | z.infer<typeof packageOperationRequestSchema>
   | z.infer<typeof discoveryRequestSchema>
   | z.infer<typeof problemCacheRequestSchema>
@@ -355,10 +356,223 @@ export type Document = z.infer<typeof documentSchema> & {
 };
 export type Macros = z.infer<typeof workspaceSchema>["macros"];
 
+const rowIdSchema = z.number().int().positive();
+const millisecondsSchema = z.number().int().nonnegative();
+const cardIdSchema = z.string().min(1);
+const gradeSchema = z.enum(["again", "hard", "good", "easy"]);
+export const studyCardSourceSchema = z.strictObject({
+  id: cardIdSchema,
+  front: z.string(),
+  back: z.string(),
+  tags: z.array(z.string()),
+});
+export const studyDeckSchema = z.strictObject({
+  path: deckPathSchema,
+  source_hash: digestSchema,
+  title: z.string(),
+  tags: z.array(z.string()),
+  cards: z.array(studyCardSourceSchema),
+});
+export const studyScopeSchema = z.discriminatedUnion("kind", [
+  z.strictObject({ kind: z.literal("workspace") }),
+  z.strictObject({ kind: z.literal("folder"), path: z.string() }),
+  z.strictObject({ kind: z.literal("deck"), path: deckPathSchema }),
+]);
+export const timingSchema = z.strictObject({
+  reveal_ms: millisecondsSchema,
+  grade_ms: millisecondsSchema,
+  unfocused_ms: millisecondsSchema,
+});
+export const studySettingsSchema = z.strictObject({
+  new_per_day: z.number().int().min(0).max(9999),
+  reviews_per_day: z.number().int().min(0).max(9999),
+  desired_retention: z.number().min(0.7).max(0.99),
+});
+export const studyCountsSchema = z.strictObject({
+  new: z.number().int(),
+  learning: z.number().int(),
+  review: z.number().int(),
+});
+export const deckCountsSchema = z.strictObject({
+  path: z.string(),
+  kind: z.enum(["workspace", "folder", "deck"]),
+  counts: studyCountsSchema,
+  get children(): z.ZodArray<typeof deckCountsSchema> {
+    return z.array(deckCountsSchema);
+  },
+});
+export const gradeLabelsSchema = z.strictObject({
+  again: z.string(),
+  hard: z.string(),
+  good: z.string(),
+  easy: z.string(),
+});
+export const studyNextSchema = z.discriminatedUnion("state", [
+  z.strictObject({
+    state: z.literal("Card"),
+    presentation: rowIdSchema,
+    card_id: cardIdSchema,
+    deck: deckPathSchema,
+    front: z.string(),
+    back: z.string(),
+    labels: gradeLabelsSchema,
+    counts: studyCountsSchema,
+    undoable: z.boolean(),
+  }),
+  z.strictObject({
+    state: z.literal("Finished"),
+    graded_today: z.number().int(),
+    next_learning_seconds: z.number().int().nullable(),
+    counts: studyCountsSchema,
+    undoable: z.boolean(),
+  }),
+]);
+export const syncResultSchema = z.strictObject({
+  added: z.number().int(),
+  updated: z.number().int(),
+  moved: z.number().int(),
+  removed: z.number().int(),
+  restored: z.number().int(),
+  pending: z.number().int(),
+  failed: z.array(
+    z.strictObject({ path: deckPathSchema, message: z.string() }),
+  ),
+  duplicates: z.array(
+    z.strictObject({ card_id: cardIdSchema, paths: z.array(deckPathSchema) }),
+  ),
+});
+export const storeSummarySchema = z.strictObject({
+  store: z.string(),
+  paths: z.array(z.string()),
+  path_exists: z.boolean(),
+  created: z.string(),
+  last_used: z.string(),
+  cards: z.number().int(),
+  responses: z.number().int(),
+});
+export const studyOpenSchema = z.discriminatedUnion("state", [
+  z.strictObject({
+    state: z.literal("Open"),
+    store: z.string(),
+    media: z.string(),
+    record: z.string(),
+    settings: studySettingsSchema,
+    counts: deckCountsSchema,
+  }),
+  z.strictObject({
+    state: z.literal("Unattached"),
+    stores: z.array(storeSummarySchema),
+  }),
+]);
+export const studyFitSchema = z.strictObject({
+  parameters: z.array(z.number()),
+  current: z.array(z.number()),
+  reviews: z.number().int(),
+  log_loss: z.number(),
+  rmse_bins: z.number(),
+  current_log_loss: z.number(),
+  current_rmse_bins: z.number(),
+});
+export const storeCopySchema = z.strictObject({ path: z.string() });
+export const studyErrorSchema = z.strictObject({
+  kind: z.enum([
+    "StoreUnreadable",
+    "StaleCard",
+    "InvalidSettings",
+    "UnknownScope",
+    "UnknownStore",
+    "NotEnoughHistory",
+    "CopyFailed",
+  ]),
+  message: z.string(),
+});
+export const studyRequestSchema = z.discriminatedUnion("action", [
+  z.strictObject({
+    action: z.enum(["study-open", "study-counts", "study-fit"]),
+    workspace: z.string(),
+  }),
+  z.strictObject({
+    action: z.literal("study-attach"),
+    workspace: z.string(),
+    choice: z.discriminatedUnion("kind", [
+      z.strictObject({ kind: z.literal("existing"), store: z.string() }),
+      z.strictObject({ kind: z.literal("new") }),
+    ]),
+  }),
+  z.strictObject({
+    action: z.literal("study-sync"),
+    workspace: z.string(),
+    assets: digestSchema,
+    decks: z.array(studyDeckSchema).max(8),
+    paths: z.array(deckPathSchema),
+  }),
+  z.strictObject({
+    action: z.literal("study-begin"),
+    workspace: z.string(),
+    scope: studyScopeSchema,
+  }),
+  z.strictObject({
+    action: z.enum(["study-next", "study-undo", "study-end"]),
+    workspace: z.string(),
+    session: rowIdSchema,
+  }),
+  z.strictObject({
+    action: z.literal("study-answer"),
+    workspace: z.string(),
+    session: rowIdSchema,
+    presentation: rowIdSchema,
+    grade: gradeSchema,
+    timing: timingSchema,
+  }),
+  z.strictObject({
+    action: z.literal("study-set-settings"),
+    workspace: z.string(),
+    settings: studySettingsSchema,
+  }),
+  z.strictObject({
+    action: z.literal("study-apply-fit"),
+    workspace: z.string(),
+    parameters: z.array(z.number()),
+  }),
+  z.strictObject({
+    action: z.literal("study-copy"),
+    workspace: z.string(),
+    directory: z.string(),
+  }),
+  z.strictObject({
+    action: z.literal("study-viewed"),
+    workspace: z.string(),
+    card_id: cardIdSchema,
+    deck: deckPathSchema,
+    shown_ms: millisecondsSchema,
+    unfocused_ms: millisecondsSchema,
+  }),
+]);
+export type StudyRequest = z.infer<typeof studyRequestSchema>;
+export type StudyOpen = z.infer<typeof studyOpenSchema>;
+export type StudyNext = z.infer<typeof studyNextSchema>;
+export type StudyDeck = z.infer<typeof studyDeckSchema>;
+export type StudyScope = z.infer<typeof studyScopeSchema>;
+export type StudySettings = z.infer<typeof studySettingsSchema>;
+export type DeckCounts = z.infer<typeof deckCountsSchema>;
+export type SyncResult = z.infer<typeof syncResultSchema>;
+export type StudyFit = z.infer<typeof studyFitSchema>;
+export type StudyErrorValue = z.infer<typeof studyErrorSchema>;
+
+export class StudyError extends Error {
+  readonly kind: StudyErrorValue["kind"];
+  constructor(value: StudyErrorValue) {
+    super(value.message);
+    this.name = "StudyError";
+    this.kind = value.kind;
+  }
+}
+
 export async function request<Schema extends z.ZodType>(
   payload: Request,
   schema: Schema,
 ): Promise<z.output<Schema>> {
+  if (payload.action.startsWith("study-")) studyRequestSchema.parse(payload);
   const body = JSON.stringify(payload);
   if (isTauri()) {
     return schema.parse(
@@ -370,7 +584,11 @@ export async function request<Schema extends z.ZodType>(
     headers: { "Content-Type": "application/json", "x-flashcards": "1" },
     body,
   });
-  if (!response.ok) throw new Error(await response.text());
+  if (!response.ok) {
+    if (payload.action.startsWith("study-") && response.status === 422)
+      throw new StudyError(studyErrorSchema.parse(await response.json()));
+    throw new Error(await response.text());
+  }
   return schema.parse(await response.json());
 }
 

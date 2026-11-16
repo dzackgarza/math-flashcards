@@ -1,6 +1,6 @@
 # /// script
 # requires-python = ">=3.12"
-# dependencies = ["anki", "playwright"]
+# dependencies = ["anki", "playwright", "psutil"]
 # ///
 """Exercise Study through the real bridge with disposable learning data."""
 
@@ -13,6 +13,7 @@ from contextlib import closing
 from pathlib import Path
 from uuid import UUID, uuid4
 
+import psutil
 from anki.collection import Collection
 from playwright.sync_api import sync_playwright
 
@@ -75,6 +76,10 @@ def main() -> None:
                         "setting_change",
                         "parameter_set",
                     } <= tables, tables
+                    response_columns = {
+                        column[1] for column in record.execute("pragma table_info(response)")
+                    }
+                    assert {"revlog_cid", "revlog_usn"} <= response_columns, response_columns
                     assert record.execute(
                         'select version from "schema"'
                     ).fetchall() == [(1,)]
@@ -90,16 +95,30 @@ def main() -> None:
                     ).fetchall() == [("anki-default",)]
                     assert record.execute("select * from review").fetchall() == []
 
-                # SQLite's online backup reads a consistent snapshot while the host owns
-                # the collection: https://docs.python.org/3/library/sqlite3.html#sqlite3.Connection.backup
+                # Anki owns the collection exclusively. Stop this isolated test host
+                # before inspecting its committed state with Anki's own library.
+                hosts = [
+                    process
+                    for process in psutil.process_iter(["cmdline"])
+                    if "study-host" in process.info["cmdline"]
+                    and process.environ().get("XDG_DATA_HOME")
+                    == os.environ["XDG_DATA_HOME"]
+                ]
+                assert len(hosts) == 1, hosts
+                hosts[0].terminate()
+                hosts[0].wait(timeout=10)
+                # SQLite's backup includes committed WAL contents after the stop:
+                # https://docs.python.org/3/library/sqlite3.html#sqlite3.Connection.backup
                 snapshot = root / "snapshot.anki2"
-                with closing(
-                    sqlite3.connect(
-                        f"file:{store / 'collection.anki2'}?mode=ro", uri=True
-                    )
-                ) as source:
-                    with closing(sqlite3.connect(snapshot)) as copy:
-                        source.backup(copy)
+                with (
+                    closing(
+                        sqlite3.connect(
+                            f"file:{store / 'collection.anki2'}?mode=ro", uri=True
+                        )
+                    ) as source,
+                    closing(sqlite3.connect(snapshot)) as copy,
+                ):
+                    source.backup(copy)
                 collection = Collection(str(snapshot))
                 try:
                     assert collection.get_config("fsrs") is True
@@ -244,7 +263,7 @@ def main() -> None:
                     assert str(broken / expected) in failure["message"], failure
                     assert {
                         path.name: path.read_bytes() for path in broken.iterdir()
-                    } == files_before
+                    } == files_before, defect
             finally:
                 api.dispose()
 

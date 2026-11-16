@@ -2,6 +2,8 @@ import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 import { spawn } from "node:child_process";
+import { once } from "node:events";
+import { createInterface } from "node:readline";
 import { readFile } from "node:fs/promises";
 import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
@@ -45,6 +47,22 @@ function workbenchBackend(): Plugin {
       const foreground = pLimit(1);
       const background = pLimit(1);
       const diagram = pLimit(1);
+      const study = pLimit(1);
+      const release = z
+        .object({ version: z.string() })
+        .parse(
+          JSON.parse(
+            readFileSync(new URL("./package.json", import.meta.url), "utf8"),
+          ),
+        ).version;
+      let host:
+        | {
+            child: ReturnType<typeof spawn>;
+            lines: AsyncIterableIterator<string>;
+            diagnostics: Promise<string>;
+          }
+        | undefined;
+      server.httpServer?.on("close", () => host?.child.stdin?.end());
       const watched = new Set<string>();
       server.middlewares.use("/api/watch", async (request, response) => {
         if (
@@ -90,6 +108,69 @@ function workbenchBackend(): Plugin {
           return;
         }
         const { action } = scope.data;
+        if (action.startsWith("study-")) {
+          await study(async () => {
+            try {
+              if (
+                !host ||
+                host.child.exitCode !== null ||
+                host.child.signalCode !== null
+              ) {
+                const python = (
+                  await readFile(
+                    new URL("./runtime.txt", import.meta.url),
+                    "utf8",
+                  )
+                ).trim();
+                const child = spawn(python, [
+                  "-I",
+                  script,
+                  "study-host",
+                  "--release",
+                  release,
+                ]);
+                const lines = createInterface({ input: child.stdout })[
+                  Symbol.asyncIterator
+                ]();
+                const diagnostics = text(child.stderr);
+                await once(child, "spawn");
+                host = { child, lines, diagnostics };
+              }
+              if (!host.child.stdin)
+                throw new Error("Study host input is closed.");
+              host.child.stdin.write(body + "\n");
+              const line = await host.lines.next();
+              if (line.done)
+                throw new Error(
+                  (await host.diagnostics) ||
+                    "Study host exited without a response.",
+                );
+              const envelope = z
+                .discriminatedUnion("ok", [
+                  z.strictObject({ ok: z.literal(true), result: z.json() }),
+                  z.strictObject({
+                    ok: z.literal(false),
+                    error: z.strictObject({
+                      kind: z.string(),
+                      message: z.string(),
+                    }),
+                  }),
+                ])
+                .parse(JSON.parse(line.value));
+              response.setHeader("Content-Type", "application/json");
+              response
+                .writeHead(envelope.ok ? 200 : 422)
+                .end(
+                  JSON.stringify(
+                    envelope.ok ? envelope.result : envelope.error,
+                  ),
+                );
+            } catch (error) {
+              response.writeHead(500).end(String(error));
+            }
+          });
+          return;
+        }
         const queue =
           action === "render-diagram"
             ? diagram

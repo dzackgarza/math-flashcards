@@ -32,6 +32,16 @@ from xml.etree import ElementTree
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+if __name__ == "__main__" and sys.argv[1:2] == ["study-host"]:
+    import cyclopts
+
+    from study.host import main as study_host
+
+    app = cyclopts.App()
+    app.command(study_host, name="study-host")
+    app()
+    raise SystemExit(0)
+
 try:
     import ankdown
     from filelock import FileLock, Timeout
