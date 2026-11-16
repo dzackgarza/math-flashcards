@@ -121,6 +121,11 @@ class StudyFinished(Value):
 type StudyNext = Annotated[StudyCard | StudyFinished, Field(discriminator="state")]
 
 
+class Begun(Value):
+    session: RowId
+    next: StudyNext
+
+
 class FailedDeck(Value):
     path: DeckPath
     message: str

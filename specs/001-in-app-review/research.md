@@ -298,6 +298,13 @@ the `response` row after `answer_card()` returns and before it returns the next 
 session has explicit `study-begin` and `study-end` requests, so that the record holds
 the start, the scope, and the end of each session (FR-032).
 
+The wheel's `anki/scheduler/v3.py` and `scheduler_pb2.pyi` define the call inputs
+and state units: learning and relearning offers use seconds; review offers use
+days. The host selects the scope's Anki deck before queue access and reads each
+grade's committed `revlog` row. Import `anki.collection` before `anki.cards` or
+`anki.models`: those modules otherwise enter a circular import through Anki's
+generated hooks. These are library integration rules, not learning policies.
+
 **Undo rule**: Undo is offered when Anki's `undo_status().undo` names the answer
 operation. Deck sync writes notes with `skip_undo_entry=True` where Anki offers it; other
 sync operations add undo steps, so Undo is unavailable after a sync until the next grade
@@ -480,6 +487,12 @@ determine the intervals without focus. The host appends the measured values only
 the workspace's current store attachment. Native window close waits for the pending
 view write before destroying the window. These durations measure exposure, not proof
 that the user attended to or learned the content.
+
+Use the focus event's [timestamp](https://developer.mozilla.org/en-US/docs/Web/API/Event/timeStamp)
+for each transition. It has the same time origin as `performance.now()` and records
+event creation. Reading the clock inside a delayed event handler includes unrelated
+work in the measured interval. Clamp a transition to the start of its presentation
+when the event was queued before that presentation began.
 
 ## R14. Parameter fitting
 

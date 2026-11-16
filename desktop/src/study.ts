@@ -207,8 +207,11 @@ export function useEditorViews(
     const started = performance.now();
     let unfocused = 0;
     let away = document.hidden || !document.hasFocus() ? started : null;
-    const focus = () => {
-      const now = performance.now();
+    const focus = (event: Event) => {
+      // Event timestamps share performance.now()'s origin and precede slow
+      // listeners. Measure the transition, not when its handler gets CPU time.
+      // https://developer.mozilla.org/en-US/docs/Web/API/Event/timeStamp
+      const now = Math.max(started, event.timeStamp);
       if (document.hidden || !document.hasFocus()) {
         away ??= now;
       } else if (away !== null) {

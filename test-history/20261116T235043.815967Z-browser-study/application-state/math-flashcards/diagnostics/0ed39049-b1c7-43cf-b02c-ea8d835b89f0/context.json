@@ -1,0 +1,24 @@
+{
+  "label": "study-host",
+  "started_at": "2026-11-16T23:50:50.051687+00:00",
+  "pid": 2661461,
+  "parent_pid": 2661116,
+  "app_release": "0.1.0",
+  "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+  "platform": "Linux-7.2.14-zen1-1-zen-x86_64-with-glibc2.44",
+  "anki_version": "26.09.4",
+  "sources": {
+    "analysis/__init__.py": "a509882643c4ad0b38e0a94994c5fd03b9fcf768b589274c5425de052ecfb368",
+    "analysis/catalog/__init__.py": "4b92d7b69eb4f53c8aa8dc6729cb297751c231d3e476ee5986918e87b0423625",
+    "backend.py": "f96e8965b468de9777f0cccf6c9374c4d696160a0b2f3b6a928703018528df24",
+    "diagnostics.py": "a188b30de6c7fecb81ba7b1831a9ff471c04b428c115e41df0db9079461a2fa2",
+    "rendering.py": "47c5c96ca0d32b108dec8bf96bc3bb036576ab519974318508ae82f243c47f53",
+    "study/__init__.py": "7b08aca1b181d05f568e28be027ce30e1fcaa2e0042b6db912429a4abaa5d77c",
+    "study/host.py": "e238902bf1e0d548b2015a86242fa1a071ed26b16b5f6bd6f919db9cad6823a8",
+    "study/record.py": "a7ad9d9ae49e95d01394f8ae803deb6b8c950d5b190051520ef64091dbd26257",
+    "study/session.py": "d1c29f0deda3c6b18efae481a18b722627f440a05f01eea23f164bf58f0ff584",
+    "study/store.py": "592fe253689eb4733e60f727ae291d7774820a92239328e94c3ccba38cb8393f",
+    "study/sync.py": "b67757110214f08dd337bfeaea99586706098504e7bdcf47b68be6c7ed49e627",
+    "study/values.py": "250d20fa1a690d76d8eef74cd573a602a2b83c9c445006db7df58d5045acdf2c"
+  }
+}

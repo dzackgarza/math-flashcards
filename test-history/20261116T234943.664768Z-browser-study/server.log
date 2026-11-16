@@ -1,0 +1,14 @@
+1: starting server using command "just -f ../justfile desktop-web"
+and when url "[ 'http-get://127.0.0.1:1420' ]" is responding with HTTP status code 200
+running tests using command "xvfb-run -a uv run --upgrade tests/study.py"
+
+cd desktop && bunx vite --host 127.0.0.1
+
+  VITE v8.3.8  ready in 228 ms
+
+  ➜  Local:   http://127.0.0.1:1420/
+[vite-plugin-static-copy] Collected 386 items.
+editor-focus {"kind":"blur","at":5522.30000000447,"now":5522.60000000149,"away":null,"cardId":"study-image","focused":false,"hidden":false}
+editor-focus {"kind":"focus","at":6522.30000000447,"now":6565.70000000298,"away":5522.60000000149,"cardId":"study-image","focused":true,"hidden":false}
+Test evidence: /home/dzack/gitclones/math-flashcards/test-history/20261116T234949.397187Z-study
+error: recipe `desktop-web` was terminated on line 60 by signal 2

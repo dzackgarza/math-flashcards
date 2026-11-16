@@ -4,19 +4,22 @@ import sys
 from contextlib import closing
 from pathlib import Path
 
+from diagnostics import Diagnostics
 from pydantic import TypeAdapter
 
-from diagnostics import Diagnostics
-from study.session import viewed
+from study.session import answer, begin, end, next_card, viewed
 from study.store import Stores
 from study.sync import sync
 from study.values import (
+    AnswerRequest,
     AttachRequest,
+    BeginRequest,
     Existing,
     New,
     Request,
-    StudyFailure,
+    SessionRequest,
     StudyError,
+    StudyFailure,
     SyncRequest,
     ViewedRequest,
     WorkspaceRequest,
@@ -45,7 +48,12 @@ def main(*, release: str) -> None:
                                 result = stores.create(workspace).opened()
                             case ViewedRequest():
                                 result = viewed(stores, request, workspace)
-                            case SyncRequest():
+                            case (
+                                SyncRequest()
+                                | BeginRequest()
+                                | AnswerRequest()
+                                | SessionRequest()
+                            ):
                                 store = stores.attached(workspace)
                                 if store is None:
                                     raise StudyFailure(
@@ -54,7 +62,19 @@ def main(*, release: str) -> None:
                                             message="Attach a study store before synchronizing cards.",
                                         )
                                     )
-                                result = sync(store, Path(workspace), request)
+                                match request:
+                                    case SyncRequest():
+                                        result = sync(store, Path(workspace), request)
+                                    case BeginRequest():
+                                        result = begin(store, request.scope)
+                                    case AnswerRequest():
+                                        result = answer(store, request)
+                                    case SessionRequest(action="study-next"):
+                                        result = next_card(store, request.session)
+                                    case SessionRequest(action="study-end"):
+                                        result = end(store, request.session)
+                                    case _:
+                                        raise NotImplementedError(request.action)
                             case _:
                                 raise NotImplementedError(
                                     f"Study action is not implemented: {request.action}"
