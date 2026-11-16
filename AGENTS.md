@@ -1,3 +1,18 @@
+# Content work
+
+`CONTRIBUTING.md` owns the concrete research context and teaching remit:
+Enriques–Coble surface compactifications, their K3 covers, and the geometric,
+lattice-theoretic, and combinatorial tools used to construct their boundaries.
+Read that context and its linked research sources before judging coverage or
+scope. The existing independent study subjects remain part of the collection.
+Do not substitute a generic graduate curriculum or a cited author's complete
+research output for this remit.
+
+A request to correct the editorial process targets these governing documents.
+Establish and encode the actual mathematical context and teaching boundary;
+a promise to investigate them later is not that correction. Keep card changes
+out of a process-only correction.
+
 # Durable documentation
 
 Repository documentation should explain maintained behavior, mathematical

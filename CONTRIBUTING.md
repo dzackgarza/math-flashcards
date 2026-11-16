@@ -4,33 +4,103 @@ This collection supports mathematical research. Prioritize knowledge that helps
 the researcher recognize a useful result, check its hypotheses, construct an
 example, compute an invariant, or carry an argument forward.
 
-## Select foundational and reusable knowledge
+## Research context and teaching remit
+
+The central algebraic-geometric research program is the explicit construction
+of compactifications of moduli of complex Enriques and Coble surfaces and the
+classification of their boundary strata. K3 covers and nonsymplectic
+involutions connect these surfaces to K3 moduli. Comparing KSBA stable-pair
+compactifications with Baily–Borel, toroidal, and semitoroidal compactifications
+connects the geometry of limiting surfaces to lattice arithmetic and combinatorics.
+
+This gives the collection concrete uses:
+
+| Research task | Knowledge to recognize, recall, and use |
+| --- | --- |
+| Construct surfaces and their covers | Enriques, Coble, K3, rational and elliptic surfaces; branch data; blowups; pencils; intersection numbers; canonical classes; polarizations |
+| Describe stable limits | Singularities of pairs; KSBA stability; Kulikov and dlt models; anticanonical pairs; integral-affine surfaces; ADE and BC surface pairs, their toric shapes, priming, and folding |
+| Determine cusps and their incidence | Integral lattices; discriminant forms; primitive embeddings; isotropic vectors and sublattices; divisibility; orthogonal complements; arithmetic group orbits |
+| Construct and compare compactifications | Period domains; Hodge structures and monodromy; Torelli; cones and fans; reflection groups and Coxeter diagrams; recognizable divisors; morphisms of moduli spaces |
+| Carry out geometric arguments | Scheme and sheaf theory; deformation theory; adjunction; Riemann–Roch; vanishing; intersection theory; standard morphism theorems and their hypotheses |
+
+Nodal Enriques surfaces, Coble surfaces with several boundary components, and
+Halphen surfaces are connected directions in this program. Their relation to
+K3 covers, genus-one fibrations, and compactification problems gives a reason
+to learn their definitions and constructions. It does not make every result
+about these surfaces a recall requirement.
+
+Sources for this scope are the
+[research statement](../../research/writing/research-statement/ResearchStatement.md),
+especially its overview and compactification program, and the Coble manuscript's
+[surface constructions](../../research/writing/coble/surfaces-and-moduli/surface-types.md)
+and [compactification theory](../../research/writing/coble/compactifications/toroidal-and-semitoroidal.md).
+These sources establish the role of a topic; check mathematical claims against
+their cited literature rather than treating a draft as a correctness authority.
+
+The cards supply working knowledge for this research, not a substitute for
+doing it. They do not aim to reproduce entire papers, establish new comparison
+theorems, solve open classification problems, retain every computed orbit or
+boundary table, or teach every research program pursued by a cited author.
+The papers and research notes own those arguments and results. Cards may retain
+a construction, theorem, compact table, or derivation from them when it is a
+repeatedly needed tool or an authored way to recover that tool.
+
+The audience is a graduate-level mathematical researcher. Explanations need
+not start from elementary mathematics, but basic definitions and calculations
+remain legitimate recall targets. A topic appearing in the user's own work
+does not establish mastery of every prerequisite; absence from the decks does
+not establish ignorance. No personal mastery profile is supplied by this remit.
+
+The collection also has independent algebra, analysis, topology, geometry,
+number theory, and other study subjects described in
+[the subject guide](docs/deck-subjects.md). Their existing authored material is
+not disposable because it falls outside the surface program. Conversely, a
+tool's usefulness in an unrelated subject does not make it a missing
+prerequisite for the surface program.
+
+## Select knowledge within that remit
 
 Select material before deciding how to present it as cards. Give priority to
-the shared working knowledge of the relevant research field: definitions,
+the working knowledge needed for the research and study subjects above: definitions,
 constructions, theorem statements, formulas, examples, and techniques that a
 researcher needs to read papers and carry out arguments. Foundational material
 qualifies even when papers routinely assume it without citation. Include the
 prerequisites and practical calculations needed to use that knowledge.
 
-Specialized material belongs when it has demonstrated use beyond its original
-exposition or serves an identified need in the user's research. Evidence can
-include applications in other papers, established use in research texts, or a
-concrete task in the user's project. Explain the mathematical use when selecting
-the material; citation counts and the prominence of a source do not establish
-that use.
+Specialized material belongs when its use serves this remit. ADE pairs and
+priming, for example, are construction tools in the Enriques–Coble program;
+their origin in a particular paper does not make them peripheral. Recognizable
+divisors serve the comparison between stable-pair and semitoroidal
+compactifications. These are direct research uses, not exceptions granted
+because a subject is popular or broadly taught.
 
-A concept newly defined in a paper is normally material for reading notes,
-not a flashcard candidate merely because it has a name or a precise definition.
-Include it when other work uses it as a tool, or when its role in the user's
-research has been identified. A citation or a repeated definition alone is not
-evidence of reuse. Recent material can qualify immediately through a specific
-research need; age and popularity are not prerequisites.
+Use in another paper or textbook can establish that a tool is reusable, but
+does not by itself establish a reason to teach it here. For example, a use of
+the Tate diagonal in topological cyclic homology establishes a role in that
+subject; it does not establish a prerequisite for surface compactifications.
+Likewise, graph coedges or lattice dicings need a concrete role in a relevant
+construction or study objective. The words "graph" and "lattice" do not
+supply that role. Apply this relevance test equally to familiar and unfamiliar
+terminology.
+
+A paper's newly defined object is not automatically a prerequisite for reading
+that paper. Determine whether it is the object being investigated, a tool
+needed in the user's work, or incidental machinery. A construction can become
+working knowledge through its use in the Enriques–Coble program even if it is
+rare elsewhere. A definition introduced to state one paper's particular result
+can remain in reading notes. Age, popularity, a citation, and the existence of
+a precise definition do not decide between these cases.
 
 Assess a proposed addition by what the learner will need to recognize,
 reconstruct, or apply again. Do not turn a paper's sequence of definitions into
 a deck by default, or treat every concept absent from the collection as a gap.
 These selection criteria apply to concepts and results as well as examples.
+
+Before calling existing material out of scope, check its role in the research
+sources above, the independent subject scope, and its authored context. Failure
+to find a use is an unresolved relevance question, not evidence for removal.
+An audit must distinguish that uncertainty from a supported exclusion. A request
+to remediate an audit does not supply missing evidence for its judgments.
 
 ## Choose prompts by research use
 
