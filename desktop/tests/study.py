@@ -337,6 +337,92 @@ def main(artifacts: Path) -> None:
                 finally:
                     browser.close()
 
+                response = api.post(
+                    "/api/request",
+                    data={
+                        "action": "study-begin",
+                        "workspace": str(workspace),
+                        "scope": {"kind": "workspace"},
+                    },
+                )
+                assert response.ok, response.text()
+                session = response.json()["session"]
+                offered = response.json()["next"]
+                assert offered["state"] == "Card", offered
+                first_presentation = offered["presentation"]
+                for grade in ("good", "again", "hard", "easy"):
+                    assert offered["state"] == "Card", offered
+                    assert set(offered["labels"]) == {"again", "hard", "good", "easy"}
+                    response = api.post(
+                        "/api/request",
+                        data={
+                            "action": "study-answer",
+                            "workspace": str(workspace),
+                            "session": session,
+                            "presentation": offered["presentation"],
+                            "grade": grade,
+                            "timing": {
+                                "reveal_ms": 2000,
+                                "grade_ms": 1000,
+                                "unfocused_ms": 0,
+                            },
+                        },
+                    )
+                    assert response.ok, response.text()
+                    with closing(sqlite3.connect(record_path)) as record:
+                        record.row_factory = sqlite3.Row
+                        review = record.execute(
+                            "select * from review where id=?",
+                            (offered["presentation"],),
+                        ).fetchone()
+                        assert review["card_id"] == offered["card_id"]
+                        assert (review["front"], review["back"]) == (
+                            offered["front"],
+                            offered["back"],
+                        )
+                        assert review["grade"] == grade
+                        assert (
+                            review["reveal_ms"],
+                            review["grade_ms"],
+                            review["unfocused_ms"],
+                        ) == (2000, 1000, 0)
+                        assert review["before_stability"] is None
+                        assert review["after_stability"] > 0
+                        interval = review["revlog_ivl"]
+                        assert review["offer_" + grade + "_s"] == (
+                            interval * 86400 if interval > 0 else -interval
+                        )
+                        assert review["revlog_time_ms"] == 3000
+                    offered = response.json()
+                stale = api.post(
+                    "/api/request",
+                    data={
+                        "action": "study-answer",
+                        "workspace": str(workspace),
+                        "session": session,
+                        "presentation": first_presentation,
+                        "grade": "easy",
+                        "timing": {"reveal_ms": 0, "grade_ms": 0, "unfocused_ms": 0},
+                    },
+                )
+                assert not stale.ok and "StaleCard" in stale.text(), stale.text()
+                response = api.post(
+                    "/api/request",
+                    data={
+                        "action": "study-end",
+                        "workspace": str(workspace),
+                        "session": session,
+                    },
+                )
+                assert response.ok, response.text()
+                with closing(sqlite3.connect(record_path)) as record:
+                    assert record.execute(
+                        "select count(*) from response"
+                    ).fetchone() == (4,)
+                    assert record.execute(
+                        "select cause from session_end where session=?", (session,)
+                    ).fetchone() == ("left",)
+
                 # Anki owns the collection exclusively. Stop this isolated test host
                 # before inspecting its committed state with Anki's own library.
                 hosts = [
@@ -401,7 +487,7 @@ def main(artifacts: Path) -> None:
                 assert summary[0]["store"] == store.name
                 assert summary[0]["paths"] == [str(workspace)]
                 assert summary[0]["last_used"]
-                assert summary[0]["cards"] == 12 and summary[0]["responses"] == 0
+                assert summary[0]["cards"] == 12 and summary[0]["responses"] == 4
                 assert set(stores.iterdir()) == before
 
                 response = api.post(

@@ -1,0 +1,50 @@
+1: starting server using command "just -f ../justfile desktop-web"
+and when url "[ 'http-get://127.0.0.1:1420' ]" is responding with HTTP status code 200
+running tests using command "xvfb-run -a uv run --upgrade tests/study.py"
+
+cd desktop && bunx vite --host 127.0.0.1
+
+  VITE v8.3.8  ready in 228 ms
+
+  ➜  Local:   http://127.0.0.1:1420/
+[vite-plugin-static-copy] Collected 386 items.
+Test evidence: /home/dzack/gitclones/math-flashcards/test-history/20261116T234648.751916Z-study
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study.py", line 630, in <module>
+    main(artifacts)
+    ~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study.py", line 348, in main
+    assert response.ok, response.text()
+           ^^^^^^^^^^^
+AssertionError: Error: Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/backend.py", line 52, in <module>
+    app()
+    ~~~^^
+  File "/home/dzack/.cache/uv/environments-v2/backend-bd261e903a9711ce/lib/python3.14/site-packages/cyclopts/core.py", line 2281, in __call__
+    result = _run_maybe_async_command(command, bound, resolved_backend)
+  File "/home/dzack/.cache/uv/environments-v2/backend-bd261e903a9711ce/lib/python3.14/site-packages/cyclopts/_run.py", line 44, in _run_maybe_async_command
+    return command(*bound.args, **bound.kwargs)
+  File "/home/dzack/gitclones/math-flashcards/desktop/study/host.py", line 59, in main
+    raise NotImplementedError(
+        f"Study action is not implemented: {request.action}"
+    )
+NotImplementedError: Study action is not implemented: study-begin
+
+Error: Command failed with exit code 1: xvfb-run -a uv run --upgrade tests/study.py
+    at makeError (/home/dzack/gitclones/math-flashcards/desktop/node_modules/execa/lib/error.js:60:11)
+    at handlePromise (/home/dzack/gitclones/math-flashcards/desktop/node_modules/execa/index.js:118:26)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  shortMessage: 'Command failed with exit code 1: xvfb-run -a uv run --upgrade tests/study.py',
+  command: 'xvfb-run -a uv run --upgrade tests/study.py',
+  escapedCommand: '"xvfb-run -a uv run --upgrade tests/study.py"',
+  exitCode: 1,
+  signal: undefined,
+  signalDescription: undefined,
+  stdout: undefined,
+  stderr: undefined,
+  failed: true,
+  timedOut: false,
+  isCanceled: false,
+  killed: false
+}
+error: recipe `desktop-web` was terminated on line 60 by signal 2
