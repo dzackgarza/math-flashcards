@@ -1,0 +1,99 @@
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/evidence.py", line 53, in evidence
+    yield directory
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study.py", line 949, in <module>
+    main(artifacts)
+    ~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study.py", line 231, in main
+    expect(editor_image).to_be_visible()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/dzack/.cache/uv/environments-v2/study-2b228d10dd0cf191/lib/python3.14/site-packages/playwright/sync_api/_generated.py", line 14844, in to_be_visible
+    self._sync(
+    ~~~~~~~~~~^
+        self._impl_obj.to_be_visible(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            timeout=to_milliseconds(timeout), visible=visible
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        )
+        ^
+    )
+    ^
+  File "/home/dzack/.cache/uv/environments-v2/study-2b228d10dd0cf191/lib/python3.14/site-packages/playwright/_impl/_sync_base.py", line 124, in _sync
+    return task.result()
+           ~~~~~~~~~~~^^
+  File "/home/dzack/.cache/uv/environments-v2/study-2b228d10dd0cf191/lib/python3.14/site-packages/playwright/_impl/assertions.py", line 869, in to_be_visible
+    await self._expect_impl(
+    ...<5 lines>...
+    )
+  File "/home/dzack/.cache/uv/environments-v2/study-2b228d10dd0cf191/lib/python3.14/site-packages/playwright/_impl/assertions.py", line 122, in _expect_impl
+    _record_soft_or_raise(
+    ~~~~~~~~~~~~~~~~~~~~~^
+        AssertionError(
+        ^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        self._is_soft,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/dzack/.cache/uv/environments-v2/study-2b228d10dd0cf191/lib/python3.14/site-packages/playwright/_impl/_assertions.py", line 50, in _record_soft_or_raise
+    raise error
+AssertionError: Locator expected to be visible
+Actual value: None
+Error: element(s) not found 
+Call log:
+  - Expect "to_be_visible" get_by_role("img", name="A triangle", exact=True) with timeout 5000ms
+  - waiting for get_by_role("img", name="A triangle", exact=True)
+
+Aria snapshot:
+- complementary:
+  - heading "Math Flashcards" [level=1]
+  - button "Workspace":
+    - img
+    - text: workspace
+    - img
+  - button "Search Ctrl K":
+    - img
+    - text: Search Ctrl K
+  - tree:
+    - treeitem "Algebra":
+      - img
+      - text: Algebra
+    - treeitem "Basics The Anki package is out of date":
+      - img
+      - text: Basics
+  - status "Study": Study cards ready
+  - status: Workspace checks complete
+  - button "Show problems":
+    - img
+    - text: Problems
+  - button "Review and update Anki packages": Update Anki packages 3
+  - button "New deck":
+    - img
+    - text: New deck
+- heading "Basics" [level=2]
+- paragraph: 4 cards
+- button "Add card":
+  - img
+- img
+- textbox "Find a card"
+- 'button "Evaluate $\\abs{-2}$."': Evaluate | − 2 | . | − 2 | = 2 . New
+- button "Which shape is shown?" [pressed]: Which shape is shown? A triangle. New
+- button "Evaluate $3^2$.": Evaluate 3 2 . 9 . New
+- button "Evaluate $2\\cdot 3$.": Evaluate 2 ⋅ 3 . 6 . New
+- paragraph: Drag cards to reorder them, or onto a deck to move them. Ctrl-click or Shift-click selects several.
+- main:
+  - button "4 changes not in the Anki package"
+  - button "Deck actions":
+    - img
+  - paragraph: Card 2 of 4
+  - button "Delete card":
+    - img
+    - text: Delete card
+  - heading "Front" [level=3]
+  - button "New diagram"
+  - textbox
+  - heading "Back" [level=3]
+  - button "New diagram"
+  - textbox
+  - text: Tags image
+  - combobox "Tags"
