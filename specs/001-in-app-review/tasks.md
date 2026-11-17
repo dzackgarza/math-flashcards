@@ -126,7 +126,7 @@ operation. Whole-run timing classification does not block a missing user capabil
 - [ ] T034 [US2] Implement the sync plan in `desktop/study/sync.py` as one function of native decks and a store snapshot (GUID to deck, content digest, deck and card tags, scheduler tags, suspended): adds, content and tag updates, moves, removals, restores, and duplicates, by the R6 rules for current and not-current decks
 - [ ] T035 [US2] Apply the plan in `study-sync` in `desktop/study/sync.py`: `update_notes(skip_undo_entry=True)` with the scheduler's tags kept, `set_deck`, suspend then move to `Removed`, move back then unsuspend, removal of an Anki deck under `Workspace` only after its cards have left it, removal of the deck record of a deleted file, one `card_change` row for each applied change, one `content` row with its media for each new front and back pair, and `failed` and `duplicates` in the result
 - [ ] T036 [US2] Trigger the sync loop in `desktop/src/App.tsx` after each successful save, after each file-watch refresh, and before a session starts; when the card on screen changed or left, show the current card
-- [ ] T037 [P] [US2] Show each duplicate `card-id` as a problem that names both decks in `desktop/src/problems.ts` and `desktop/src/problem-drawer.tsx`
+- [x] T037 [P] [US2] Show each duplicate `card-id` as a problem that names both decks in `desktop/src/problems.ts` and `desktop/src/problem-drawer.tsx`
 
 **Checkpoint**: The T031 to T033 steps pass; editing and studying can alternate
 

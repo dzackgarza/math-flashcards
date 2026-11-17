@@ -10,7 +10,7 @@ import {
 } from "@mantine/core";
 import { previewHtml, type MathJaxRuntime } from "./math";
 import { deckName } from "./organize";
-import { problemBatches, type Problem } from "./problems";
+import { duplicateProblems, problemBatches, type Problem } from "./problems";
 import { backgroundTurn } from "./background";
 import {
   request,
@@ -23,6 +23,7 @@ const colors = {
   LaTeX: "red",
   "Card structure": "red",
   "Empty answer": "orange",
+  "Duplicate card": "red",
 } as const;
 
 // Completed deck checks are valid for their source and asset identity.
@@ -215,11 +216,21 @@ export function useProblems(
       result.source === deck.source &&
       result.assetIdentity === assetIdentity &&
       result.cacheEpoch === cacheEpoch
-      ? [result]
+      ? [{ ...result, path: deck.path }]
       : [];
   });
   return {
-    problems: valid.flatMap((result) => result.problems),
+    problems: [
+      ...valid.flatMap((result) => result.problems),
+      ...duplicateProblems(
+        valid.filter(
+          (result) =>
+            !result.problems.some(
+              (problem) => problem.kind === "Card structure",
+            ),
+        ),
+      ),
+    ],
     checked: valid.length,
     error: failure?.root === root ? failure.message : "",
     cacheFailure: failure?.root === root && failure.kind === "CacheFailure",

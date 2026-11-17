@@ -147,7 +147,7 @@ class Problem(BaseModel):
     card: str | None
     label: str | None
     side: Literal["front", "back"] | None
-    kind: Literal["LaTeX", "Card structure", "Empty answer"]
+    kind: Literal["LaTeX", "Card structure", "Empty answer", "Duplicate card"]
     message: str
     source: str | None
 

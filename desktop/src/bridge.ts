@@ -192,7 +192,7 @@ export const problemSchema = z.object({
   card: z.string().nullable(),
   label: z.string().nullable(),
   side: z.enum(["front", "back"]).nullable(),
-  kind: z.enum(["LaTeX", "Card structure", "Empty answer"]),
+  kind: z.enum(["LaTeX", "Card structure", "Empty answer", "Duplicate card"]),
   message: z.string(),
   source: z.string().nullable(),
 });

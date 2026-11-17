@@ -5,6 +5,33 @@ export type { Problem } from "./bridge";
 
 type Checker = Pick<MathJaxRuntime, "tex2mml">;
 
+// Cross-deck identity depends on the current workspace, not a single deck's
+// cache entry. Call this on structurally valid, current source checks.
+export function duplicateProblems(
+  decks: { path: string; source: string }[],
+): Problem[] {
+  const identities = new Map<string, { path: string; card: CardRange }[]>();
+  for (const deck of decks)
+    for (const card of cards(deck.source))
+      identities.set(card.id, [
+        ...(identities.get(card.id) ?? []),
+        { path: deck.path, card },
+      ]);
+  return [...identities].flatMap(([identity, occurrences]) => {
+    if (occurrences.length < 2) return [];
+    const paths = occurrences.map(({ path }) => path).sort();
+    return occurrences.map(({ path, card }) => ({
+      path,
+      card: identity,
+      label: card.label,
+      side: null,
+      kind: "Duplicate card" as const,
+      message: `Card ${identity} occurs in ${paths.join(", ")}. Each card needs its own ID.`,
+      source: null,
+    }));
+  });
+}
+
 // The equations of one side, found as the editor finds them.
 function sideProblems(
   mathjax: Checker,

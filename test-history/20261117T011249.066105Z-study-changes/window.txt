@@ -1,0 +1,23 @@
+Math Flashcards
+flashcards-study-changes-rlbz08js
+Search
+Ctrl K
+A
+C
+
+Study preparation failed
+
+Workspace checks need attention
+
+Problems
+1
+Update Anki packages
+1
+New deck
+Action failed
+
+Error: A deck must contain Front and Back pairs.
+
+Your decks, in one place
+
+Select a deck in the sidebar to edit its cards.
