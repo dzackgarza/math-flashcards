@@ -5,6 +5,7 @@
 """Keep scheduling and recorded history through native deck file changes."""
 
 import os
+import re
 import sqlite3
 import tempfile
 from contextlib import closing
@@ -173,6 +174,36 @@ def main(artifacts: Path) -> None:
                         "select c.back from content c join card_change a on a.content=c.id where a.card_id='moving' order by a.id desc limit 1"
                     ).fetchone() == ("M revised",)
                 page.screenshot(path=str(artifacts / "restored-study.png"))
+                study.get_by_role(
+                    "button", name="Return to editor", exact=False
+                ).click()
+                c.write_text(other + changed)
+                page.get_by_role("button", name=re.compile("^Problems")).click()
+                problems = page.get_by_role("dialog")
+                expect(problems).to_contain_text("Duplicate card", timeout=10000)
+                expect(problems).to_contain_text("moving")
+                expect(problems).to_contain_text("A.md")
+                expect(problems).to_contain_text("C.md")
+                page.screenshot(path=str(artifacts / "duplicate-card.png"))
+                page.keyboard.press("Escape")
+                c.write_text("This deck is temporarily incomplete.\n")
+                a.write_text(kept + changed + card("new", "New answer"))
+                study = start_study(page)
+                expect(study).to_contain_text("Recall new.", timeout=10000)
+                a.write_text(
+                    kept
+                    + changed
+                    + card("new", "Updated answer").replace(
+                        "Recall new.", "Recall updated new."
+                    )
+                )
+                expect(study).to_contain_text("Recall updated new.", timeout=10000)
+                study.get_by_role("button", name="Show answer", exact=False).click()
+                expect(study).to_contain_text("Updated answer", timeout=10000)
+                a.write_text(kept + changed)
+                expect(
+                    study.get_by_role("heading", name="Study complete for now")
+                ).to_be_visible(timeout=10000)
             finally:
                 (artifacts / "window.txt").write_text(page.locator("body").inner_text())
                 browser.close()
@@ -181,7 +212,7 @@ def main(artifacts: Path) -> None:
             try:
                 assert (
                     collection.db.all(
-                        "select id,nid,type,queue,due,ivl,factor,reps,lapses,odue,odid from cards order by id"
+                        "select id,nid,type,queue,due,ivl,factor,reps,lapses,odue,odid from cards where nid in (select id from notes where guid != 'new') order by id"
                     )
                     == before
                 )
@@ -190,7 +221,8 @@ def main(artifacts: Path) -> None:
                     collection.get_note(collection.find_notes("CardId:moving")[0]).tags
                 ) == {"leech", "revised"}
                 assert collection.find_cards("deck:Workspace::A CardId:moving")
-                assert not collection.find_cards("deck:Removed")
+                assert collection.find_cards("deck:Removed CardId:new")
+                assert collection.find_cards("deck:Workspace::C CardId:other")
             finally:
                 collection.close()
             api.dispose()
