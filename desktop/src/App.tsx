@@ -29,6 +29,7 @@ import {
   Tooltip,
   Tree,
   UnstyledButton,
+  VisuallyHidden,
   useTree,
   type TreeNodeData,
 } from "@mantine/core";
@@ -126,6 +127,9 @@ import {
   studyOpenSchema,
   studyBegunSchema,
   studyNextSchema,
+  deckCountsSchema,
+  type DeckCounts,
+  type StudyScope,
   type StudyNext,
   type StudyOpen,
   type Change,
@@ -139,6 +143,35 @@ import {
 
 type Task = "Idle" | "Loading" | "Generating" | "Organizing";
 type Notice = { label: string; undo: Change[] | null };
+
+function StudyCounts({
+  path,
+  counts,
+}: {
+  path: string;
+  counts: DeckCounts["counts"];
+}) {
+  return (
+    <span
+      className="study-counts"
+      aria-label={`Study counts for ${path}`}
+      title={`New: ${counts.new}, Learning: ${counts.learning}, Review: ${counts.review}`}
+    >
+      <span className="study-count-new">
+        <VisuallyHidden>New: </VisuallyHidden>
+        {counts.new}{" "}
+      </span>
+      <span className="study-count-learning">
+        <VisuallyHidden>Learning: </VisuallyHidden>
+        {counts.learning}{" "}
+      </span>
+      <span className="study-count-review">
+        <VisuallyHidden>Review: </VisuallyHidden>
+        {counts.review}
+      </span>
+    </span>
+  );
+}
 // `scope` is one deck path, or null for every deck.
 type Review = { scope: string | null; decks: Pending[] | null };
 
@@ -262,6 +295,16 @@ export default function App() {
   const [conflict, setConflict] = useState(false);
   const [log, setLog] = useState("");
   const [workspaceMenu, setWorkspaceMenu] = useState(false);
+  const [studyCounts, setStudyCounts] = useState<DeckCounts | null>(null);
+  const countsByPath = useMemo(() => {
+    const entries = new Map<string, DeckCounts>();
+    function visit(node: DeckCounts) {
+      entries.set(node.path, node);
+      node.children.forEach(visit);
+    }
+    if (studyCounts) visit(studyCounts);
+    return entries;
+  }, [studyCounts]);
   const [study, setStudy] = useState<{
     session: number;
     next: StudyNext;
@@ -353,6 +396,12 @@ export default function App() {
   const refreshStudy = useCallback(
     async (changed: string[]) => {
       if (workspaceRoot.current !== workspace) return;
+      const counts = await request(
+        { action: "study-counts", workspace },
+        deckCountsSchema,
+      );
+      if (workspaceRoot.current !== workspace) return;
+      setStudyCounts(counts);
       const active = studyCurrent.current;
       if (
         !active ||
@@ -1124,9 +1173,12 @@ export default function App() {
     const updated = { ...active, next, ended };
     studyCurrent.current = updated;
     setStudy(updated);
+    setStudyCounts(
+      await request({ action: "study-counts", workspace }, deckCountsSchema),
+    );
   }
 
-  async function startStudy() {
+  async function startStudy(scope: StudyScope = { kind: "workspace" }) {
     setWorkspaceMenu(false);
     if (studyCurrent.current) return;
     const opened = await request(
@@ -1140,7 +1192,7 @@ export default function App() {
     await syncSavedStudy(workspace, assetIdentity, reconciliation.current);
     await finishEditorView();
     const begun = await request(
-      { action: "study-begin", workspace, scope: { kind: "workspace" } },
+      { action: "study-begin", workspace, scope },
       studyBegunSchema,
     );
     const active = { ...begun, record: opened.record, ended: false };
@@ -1152,6 +1204,7 @@ export default function App() {
   const publishedField = useRef("");
   async function chooseWorkspace(root: string) {
     await closeStudy();
+    setStudyCounts(null);
     setAttachment(null);
     dismissedAttachment.current = null;
     const token = ++workspaceNavigation.current;
@@ -2443,6 +2496,7 @@ export default function App() {
             levelOffset={16}
             renderNode={({ node, expanded, hasChildren, elementProps }) => {
               const path = node.value.slice(1);
+              const count = countsByPath.get(path);
               const check = packageRecords.get(path);
               const previous = previousPackage(check);
               const checkTitle =
@@ -2493,6 +2547,9 @@ export default function App() {
                         />
                       )}
                       <span className="tree-label">{node.label}</span>
+                      {count && (
+                        <StudyCounts path={path} counts={count.counts} />
+                      )}
                       {!hasChildren && problemDecks.has(path) && (
                         <span
                           className="tree-dot problem"
@@ -2519,6 +2576,24 @@ export default function App() {
                     </TreeRow>
                   </Menu.ContextMenu>
                   <Menu.Dropdown>
+                    <Menu.Item
+                      leftSection={<IconCards size={16} />}
+                      disabled={
+                        busy ||
+                        !!study ||
+                        studyStatus === "Preparing study cards"
+                      }
+                      onClick={() =>
+                        guard(() =>
+                          startStudy({
+                            kind: hasChildren ? "folder" : "deck",
+                            path,
+                          }),
+                        )
+                      }
+                    >
+                      Study
+                    </Menu.Item>
                     {hasChildren ? (
                       <Menu.Item
                         leftSection={<IconPlus size={16} />}
@@ -2544,6 +2619,14 @@ export default function App() {
             )}
         </div>
         <Stack gap={4}>
+          {studyCounts && (
+            <Group justify="space-between" px="xs" gap="xs">
+              <Text size="xs" c="dimmed">
+                New · Learning · Review
+              </Text>
+              <StudyCounts path="workspace" counts={studyCounts.counts} />
+            </Group>
+          )}
           {workspace && (
             <Text size="xs" c="dimmed" px="xs" role="status" aria-label="Study">
               {studyStatus}

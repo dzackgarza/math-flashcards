@@ -8,7 +8,7 @@ from anki.scheduler.v3 import CardAnswer, SchedulingState
 from pydantic import TypeAdapter
 
 from study.record import Presentation, Response
-from study.store import Store, Stores
+from study.store import Store, Stores, deck_name
 from study.sync import DeckState
 from study.values import (
     AnswerRequest,
@@ -36,15 +36,15 @@ def stale() -> StudyFailure:
 
 
 def select_scope(store: Store, kind: str, path: str | None) -> None:
-    name = "Workspace"
-    if kind == "deck":
-        assert path is not None
-        name += "::" + "::".join(PurePosixPath(path).with_suffix("").parts)
-    elif kind == "folder":
-        assert path is not None
-        name += "::" + "::".join(PurePosixPath(path).parts)
+    name = deck_name(path or "")
+    paths = store.collection.get_config("native_decks", {})
+    known = kind == "workspace" or (
+        path in paths
+        if kind == "deck"
+        else any(p.startswith(path + "/") for p in paths)
+    )
     deck = store.collection.decks.by_name(name)
-    if deck is None:
+    if deck is None or not known:
         raise StudyFailure(
             StudyError(
                 kind="UnknownScope",

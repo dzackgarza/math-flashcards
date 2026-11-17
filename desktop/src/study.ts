@@ -227,7 +227,7 @@ export function useStudySync(
               `Duplicate card ${item.card_id}: ${item.paths.join(", ")}`,
           ),
         );
-        if (result.changed_cards.length) await onChanged(result.changed_cards);
+        await onChanged(result.changed_cards);
         pending = result.pending;
       }
       if (cancelled) return;

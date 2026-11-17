@@ -279,9 +279,9 @@ def main(artifacts: Path) -> None:
                 assert set(
                     collection.get_note(collection.find_notes("CardId:moving")[0]).tags
                 ) == {"leech", "revised"}
-                assert collection.find_cards("deck:Workspace::A CardId:moving")
+                assert collection.find_cards("deck:Workspace::412e6d64 CardId:moving")
                 assert collection.find_cards("deck:Removed CardId:new")
-                assert collection.find_cards("deck:Workspace::A CardId:other")
+                assert collection.find_cards("deck:Workspace::412e6d64 CardId:other")
                 collection.sched.set_due_date(
                     collection.find_cards("CardId:moving"), "0"
                 )

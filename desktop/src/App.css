@@ -689,3 +689,20 @@ button.change-row:hover {
   border: 1px solid var(--hairline);
   border-radius: 6px;
 }
+.study-counts {
+  display: inline-flex;
+  flex-shrink: 0;
+  gap: 0.45rem;
+  font-size: 0.7rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.study-count-new {
+  color: var(--mantine-color-blue-7);
+}
+.study-count-learning {
+  color: var(--mantine-color-orange-8);
+}
+.study-count-review {
+  color: var(--mantine-color-teal-8);
+}

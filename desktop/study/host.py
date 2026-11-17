@@ -53,6 +53,7 @@ def main(*, release: str) -> None:
                                 | BeginRequest()
                                 | AnswerRequest()
                                 | SessionRequest()
+                                | WorkspaceRequest(action="study-counts")
                             ):
                                 store = stores.attached(workspace)
                                 if store is None:
@@ -65,6 +66,8 @@ def main(*, release: str) -> None:
                                 match request:
                                     case SyncRequest():
                                         result = sync(store, Path(workspace), request)
+                                    case WorkspaceRequest(action="study-counts"):
+                                        result = store.counts()
                                     case BeginRequest():
                                         result = begin(store, request.scope)
                                     case AnswerRequest():

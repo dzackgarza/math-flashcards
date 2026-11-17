@@ -11,7 +11,7 @@ from anki.collection import AddNoteRequest
 from pydantic import TypeAdapter
 from rendering import InvalidAssetsError, asset_set, digest
 
-from study.store import Store
+from study.store import Store, deck_name
 from study.values import Duplicate, FailedDeck, SyncRequest, SyncResult, Value
 
 
@@ -118,6 +118,7 @@ def sync(store: Store, workspace: Path, request: SyncRequest) -> SyncResult:
                 previous is not None
                 and current(previous, request.assets)
                 and references_current
+                and collection.decks.by_name(deck_name(deck.path)) is not None
             ):
                 continue
             inputs = {str(source_path): deck.source_hash}
@@ -160,9 +161,7 @@ def sync(store: Store, workspace: Path, request: SyncRequest) -> SyncResult:
             for identity, data in media.values():
                 retain(store.directory / "record-media" / identity, data)
 
-            deck_id = collection.decks.id(
-                "Workspace::" + deck.path[:-3].replace("/", "::")
-            )
+            deck_id = collection.decks.id(deck_name(deck.path))
             additions = []
             changed = []
             versions = []
@@ -221,7 +220,14 @@ def sync(store: Store, workspace: Path, request: SyncRequest) -> SyncResult:
                     )
                     if "tags" in kinds:
                         changed.append(note)
-                    if "moved" in kinds or "restored" in kinds:
+                    if (
+                        "moved" in kinds
+                        or "restored" in kinds
+                        or any(
+                            collection.get_card(identity).did != deck_id
+                            for identity in note.card_ids()
+                        )
+                    ):
                         collection.set_deck(note.card_ids(), deck_id)
                         if "restored" in kinds:
                             collection.sched.unsuspend_cards(note.card_ids())
@@ -298,7 +304,7 @@ def sync(store: Store, workspace: Path, request: SyncRequest) -> SyncResult:
             result.removed += 1
             result.changed_cards.append(identity)
     for path in deleted:
-        name = "Workspace::" + path[:-3].replace("/", "::")
+        name = deck_name(path)
         deck = collection.decks.by_name(name)
         if deck is not None and not collection.find_cards("deck:" + json.dumps(name)):
             collection.decks.remove([deck["id"]])

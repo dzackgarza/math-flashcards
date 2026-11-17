@@ -145,14 +145,26 @@ learning or diagnostic data in the user's application directories.
 ## R5. Deck mapping
 
 **Decision**: Each deck file maps to one Anki deck named from its workspace path:
-`Workspace::<folder>::…::<file stem>`. Folders are parent decks. `Workspace` is the root
-deck; studying the workspace selects it.
+`Workspace::<hex folder>::…::<hex filename>`. Encode each complete path component's
+UTF-8 bytes with Python's [bytes.hex()](https://docs.python.org/3/library/stdtypes.html#bytes.hex),
+including the filename extension. Folders are parent decks. `Workspace` is the root
+deck; studying the workspace selects it. The window and learning record use native
+paths, never these internal names.
 
 **Rationale**: The app's tree shows folders and files, and the spec's scopes are deck,
 folder, and workspace. `deck_due_tree()` returns nested new, learning, and review counts
 for `A::B` names (probed). Anki has no command that studies every deck; a root deck
 gives one. The collection is internal, so its deck names need not equal the deck titles
 in the packages.
+
+[Anki's name parser](https://github.com/ankitects/anki/blob/main/rslib/src/decks/name.rs)
+splits `::`, normalizes Unicode, and trims whitespace and colons. Encoding preserves
+the identity of native path components through those operations. Keeping the extension
+also distinguishes `Algebra.md` from the folder `Algebra/`. Removing it puts the
+standalone deck's cards inside the folder's study scope. Counts use Anki's due tree
+and the synchronized native paths to recover the window's folder and file hierarchy.
+An unchanged sync checks that its scheduling deck exists; reconciliation moves existing
+cards to that deck with `set_deck`, preserving their identity and learning history.
 
 **Alternatives considered**: Names from the `title` metadata: rejected, titles need not
 follow the folder tree that the user selects from.

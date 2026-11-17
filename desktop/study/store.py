@@ -4,11 +4,12 @@ import sqlite3
 from contextlib import closing
 from datetime import UTC, datetime
 from importlib.metadata import version
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from uuid import uuid4
 
 from anki.collection import Collection
 from anki.decks import DeckConfigId
+from anki.decks_pb2 import DeckTreeNode
 from anki.errors import BackendIOError, DBError
 from platformdirs import user_data_path
 from pydantic import ValidationError
@@ -36,6 +37,14 @@ class Metadata(Value):
     id: str
     created: str
     paths: list[Attachment]
+
+
+def deck_name(path: str) -> str:
+    # Encode complete UTF-8 components with Python's reversible bytes.hex().
+    # Anki normalizes names and splits "::": research.md R5.
+    return "::".join(
+        ["Workspace", *(part.encode().hex() for part in path.split("/") if part)]
+    )
 
 
 def unreadable(path: Path, cause: str) -> StudyFailure:
@@ -157,8 +166,6 @@ class Store:
     def opened(self) -> Open:
         preset = self.collection.decks.get_config(DeckConfigId(1))
         assert preset is not None
-        tree = self.collection.sched.deck_due_tree()
-        workspace = next(child for child in tree.children if child.name == "Workspace")
         return Open(
             store=str(self.directory),
             media=str(self.directory / "record-media"),
@@ -168,17 +175,43 @@ class Store:
                 reviews_per_day=preset["rev"]["perDay"],
                 desired_retention=preset["desiredRetention"],
             ),
-            counts=DeckCounts(
-                path="",
-                kind="workspace",
-                counts=Counts(
-                    new=workspace.new_count,
-                    learning=workspace.learn_count,
-                    review=workspace.review_count,
-                ),
-                children=[],
-            ),
+            counts=self.counts(),
         )
+
+    def counts(self) -> DeckCounts:
+        paths = set(self.collection.get_config("native_decks", {}))
+        folders = {
+            str(parent)
+            for path in paths
+            for parent in PurePosixPath(path).parents
+            if str(parent) != "."
+        }
+        names = {deck_name(path): path for path in paths | folders | {""}}
+
+        def visit(node: DeckTreeNode, name: str) -> DeckCounts | None:
+            path = names.get(name)
+            if path is None:
+                return None
+            return DeckCounts(
+                path=path,
+                kind="workspace" if not path else "deck" if path in paths else "folder",
+                counts=Counts(
+                    new=node.new_count,
+                    learning=node.learn_count,
+                    review=node.review_count,
+                ),
+                children=[
+                    result
+                    for child in node.children
+                    if (result := visit(child, name + "::" + child.name)) is not None
+                ],
+            )
+
+        tree = self.collection.sched.deck_due_tree()
+        workspace = next(child for child in tree.children if child.name == "Workspace")
+        result = visit(workspace, "Workspace")
+        assert result is not None
+        return result
 
     def summary(self) -> StoreSummary:
         used = self.record.connection.execute(

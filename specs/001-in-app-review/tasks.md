@@ -92,7 +92,7 @@ operation. Whole-run timing classification does not block a missing user capabil
 
 ### Implementation for User Stories 1 and 6
 
-- [X] T021 [US1] Implement the add path of `study-sync` in `desktop/study/sync.py`: validate each native deck batch against its saved-source digest; create the Anki deck `Workspace::<folders>::<file stem>`; add scheduling notes in one `add_notes` call with GUID and sole field `CardId` equal to the native ID; record source and media digests; write a `card_change` row of kind `added` and a `content` row holding native front and back source, retained `record-assets/` identity, media rows, and retained `record-media/` files; return `SyncResult` with `pending` against the full workspace inventory
+- [X] T021 [US1] Implement the add path of `study-sync` in `desktop/study/sync.py`: validate each native deck batch against its saved-source digest; create the Anki deck using the native path encoding in R5; add scheduling notes in one `add_notes` call with GUID and sole field `CardId` equal to the native ID; record source and media digests; write a `card_change` row of kind `added` and a `content` row holding native front and back source, retained `record-assets/` identity, media rows, and retained `record-media/` files; return `SyncResult` with `pending` against the full workspace inventory
 - [X] T022 [US6] Implement in `desktop/study/session.py` the pure conversion of R13 from Anki's values (queued card, current and next states, card statistics, card after the answer, review log row) and the window's `Timing` to the `presentation` and `response` values of `specs/001-in-app-review/data-model.md`, with an empty value for each fact that was not observed
 - [X] T023 [US1] Implement `study-begin`, `study-next`, `study-answer`, and `study-end` in `desktop/study/session.py` by the R10 call sequence: a `session` row at begin; the top card of the scope's queue with a `presentation` row written before the response; Anki's four labels; the three counts; `Finished` with `next_learning_seconds` from `congratulations_info()`; `StaleCard` when `presentation` is not the session's last presentation or its card is not the top card; `reveal_ms + grade_ms` as Anki's answer time; the `response` row after `answer_card()` returns; a `session_end` row at end and for each open session when the host's input closes
 - [X] T024 [US6] Implement recovery at store open in `desktop/study/store.py`: one `response` row with `recovered` set for each review log row that has none, and one `session_end` row with cause `recovered` for each session that has none, by the pure comparison of review log IDs with `response` rows
@@ -140,13 +140,13 @@ operation. Whole-run timing classification does not block a missing user capabil
 
 ### Tests for User Story 3 ⚠️
 
-- [ ] T038 [P] [US3] Add failing units in `desktop/tests/study.test.ts`: a workspace, folder, or deck scope maps to its entry of the count tree, and a deck path with nested folders maps to nested entries
-- [ ] T039 [US3] Add failing steps to `desktop/tests/study.py`: with cards made due through the `anki` library while the app is stopped, the tree shows the new, learning, and review counts on each deck and folder within 2 s of opening; a grade updates the deck and every folder above it; **Study** on a deck offers only its cards; **Study** on a folder offers the cards of every deck below it; the `session` row of each holds its scope
+- [x] T038 [US3] Add failing public-path steps in `desktop/tests/study-scopes.py`: workspace, folder, and deck counts preserve the native path hierarchy, including a file and folder with the same stem
+- [x] T039 [US3] Add failing steps to `desktop/tests/study-scopes.py`: with cards made due through the `anki` library while the app is stopped, the tree shows the new, learning, and review counts on each deck and folder within 2 s of opening; a grade updates the deck and every folder above it; **Study** on a deck offers only its cards; **Study** on a folder offers the cards of every deck below it; the `session` row of each holds its scope
 
 ### Implementation for User Story 3
 
-- [ ] T040 [US3] Implement `study-counts` and the `UnknownScope` error in `desktop/study/store.py`, and the pure mapping from `Scope` and `DeckPath` to Anki deck names
-- [ ] T041 [US3] Show the three counts on each deck and folder of the tree in `desktop/src/App.tsx`, refresh them after each grade and each sync, and add **Study** to the deck and folder context menus with the matching scope, using the mapping in `desktop/src/study.ts`
+- [x] T040 [US3] Implement `study-counts` and the `UnknownScope` error in `desktop/study/store.py` and `desktop/study/session.py`, and the pure mapping from `Scope` and `DeckPath` to Anki deck names
+- [x] T041 [US3] Show the three counts on each deck and folder of the tree in `desktop/src/App.tsx`, refresh them after each grade and each sync, and add **Study** to the deck and folder context menus with the matching scope
 
 **Checkpoint**: The T038 and T039 cases pass
 

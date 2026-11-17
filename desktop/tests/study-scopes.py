@@ -113,8 +113,14 @@ def main(artifacts: Path) -> None:
                 collection.close()
             browser, page = open_window()
             try:
-                page.locator('[data-path="Algebra"]').click()
-                page.locator('[data-path="Analysis"]').click()
+
+                def tree_row(path: str):
+                    return page.locator(".tree-row").filter(
+                        has=page.get_by_label(f"Study counts for {path}", exact=True)
+                    )
+
+                tree_row("Algebra").click()
+                tree_row("Analysis").click()
                 for path, text in {
                     "workspace": "New: 4 Learning: 1 Review: 1",
                     "Algebra": "New: 2 Learning: 1 Review: 1",
@@ -128,7 +134,7 @@ def main(artifacts: Path) -> None:
                     ).to_have_text(text, timeout=2000)
 
                 def study_scope(kind: str, path: str, expected: set[str]):
-                    page.locator(f'[data-path="{path}"]').click(button="right")
+                    tree_row(path).click(button="right")
                     page.get_by_role("menuitem", name="Study", exact=True).click()
                     study = page.get_by_role("region", name="Study session")
                     seen = set()
