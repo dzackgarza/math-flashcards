@@ -218,6 +218,19 @@ def main(artifacts: Path) -> None:
                 seen = set()
                 for remaining in range(12, 0, -1):
                     wait.until(
+                        lambda window: (
+                            " ".join(
+                                window.find_element(
+                                    By.CSS_SELECTOR,
+                                    '[aria-label="Study counts for workspace"]',
+                                )
+                                .get_attribute("textContent")
+                                .split()
+                            )
+                            == f"New: {remaining} Learning: 0 Review: 0"
+                        )
+                    )
+                    wait.until(
                         conditions.text_to_be_present_in_element(
                             (By.CSS_SELECTOR, '[aria-label="Remaining cards"]'),
                             f"New: {remaining}",
