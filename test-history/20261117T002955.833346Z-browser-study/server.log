@@ -1,0 +1,101 @@
+1: starting server using command "just -f ../justfile desktop-web"
+and when url "[ 'http-get://127.0.0.1:1420' ]" is responding with HTTP status code 200
+running tests using command "xvfb-run -a uv run --upgrade tests/study.py"
+
+cd desktop && bunx vite --host 127.0.0.1
+
+  VITE v8.3.8  ready in 236 ms
+
+  ➜  Local:   http://127.0.0.1:1420/
+[vite-plugin-static-copy] Collected 386 items.
+8:30:29 AM [vite] (client) [Unhandled error] Error: No retained media for image: ![A triangle][shape]
+ > Object.createWidget src/card-images.ts:103:14
+    101 |        }
+    102 |        if (name === undefined || media[name] === undefined)
+    103 |          throw new Error(
+        |                ^
+    104 |            `No retained media for image: ${state.sliceDoc(node.from, node.to)}`,
+    105 |          );
+ > handleNode node_modules/@dzack/pandoc-editor/src/renderers/base-renderer.ts:330:34
+ > Tree.iterate node_modules/@lezer/common/dist/index.js:503:80
+ > renderWidgets node_modules/@dzack/pandoc-editor/src/renderers/base-renderer.ts:353:24
+ > Object.decorate node_modules/@dzack/pandoc-editor/src/renderers/base-renderer.ts:431:4
+ > build node_modules/@dzack/pandoc-editor/src/util/incremental-node-decorations.ts:182:39
+ > create node_modules/@dzack/pandoc-editor/src/util/incremental-node-decorations.ts:192:23
+ > StateField.create node_modules/@codemirror/state/dist/index.js:1774:91
+ > Object.create node_modules/@codemirror/state/dist/index.js:1783:41
+ > EditorState.computeSlot node_modules/@codemirror/state/dist/index.js:2768:128
+
+8:30:29 AM [vite] (client) [console.warn] An error occurred in the <CodeMirror> component.
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries.
+
+Test evidence: /home/dzack/gitclones/math-flashcards/test-history/20261117T003002.028426Z-study
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study.py", line 882, in <module>
+    main(artifacts)
+    ~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study.py", line 683, in main
+    expect(study.get_by_label("Remaining cards")).to_contain_text(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        f"New: {remaining}"
+        ^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/dzack/.cache/uv/environments-v2/study-2b228d10dd0cf191/lib/python3.14/site-packages/playwright/sync_api/_generated.py", line 14994, in to_contain_text
+    self._sync(
+    ~~~~~~~~~~^
+        self._impl_obj.to_contain_text(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        )
+        ^
+    )
+    ^
+  File "/home/dzack/.cache/uv/environments-v2/study-2b228d10dd0cf191/lib/python3.14/site-packages/playwright/_impl/_sync_base.py", line 124, in _sync
+    return task.result()
+           ~~~~~~~~~~~^^
+  File "/home/dzack/.cache/uv/environments-v2/study-2b228d10dd0cf191/lib/python3.14/site-packages/playwright/_impl/assertions.py", line 306, in to_contain_text
+    await self._expect_impl(
+    ...<9 lines>...
+    )
+  File "/home/dzack/.cache/uv/environments-v2/study-2b228d10dd0cf191/lib/python3.14/site-packages/playwright/_impl/assertions.py", line 122, in _expect_impl
+    _record_soft_or_raise(
+    ~~~~~~~~~~~~~~~~~~~~~^
+        AssertionError(
+        ^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        self._is_soft,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/dzack/.cache/uv/environments-v2/study-2b228d10dd0cf191/lib/python3.14/site-packages/playwright/_impl/_assertions.py", line 50, in _record_soft_or_raise
+    raise error
+AssertionError: Locator expected to contain text 'New: 3'
+Actual value: None
+Error: element(s) not found 
+Call log:
+  - Expect "to_contain_text" get_by_role("region", name="Study session").get_by_label("Remaining cards") with timeout 5000ms
+  - waiting for get_by_role("region", name="Study session").get_by_label("Remaining cards")
+    2 × locator resolved to <div aria-label="Remaining cards" class="m_4081bf90 mantine-Group-root">…</div>
+      - unexpected value "New: 4Learning: 0Review: 0"
+
+Error: Command failed with exit code 1: xvfb-run -a uv run --upgrade tests/study.py
+    at makeError (/home/dzack/gitclones/math-flashcards/desktop/node_modules/execa/lib/error.js:60:11)
+    at handlePromise (/home/dzack/gitclones/math-flashcards/desktop/node_modules/execa/index.js:118:26)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  shortMessage: 'Command failed with exit code 1: xvfb-run -a uv run --upgrade tests/study.py',
+  command: 'xvfb-run -a uv run --upgrade tests/study.py',
+  escapedCommand: '"xvfb-run -a uv run --upgrade tests/study.py"',
+  exitCode: 1,
+  signal: undefined,
+  signalDescription: undefined,
+  stdout: undefined,
+  stderr: undefined,
+  failed: true,
+  timedOut: false,
+  isCanceled: false,
+  killed: false
+}
+error: recipe `desktop-web` was terminated on line 64 by signal 2

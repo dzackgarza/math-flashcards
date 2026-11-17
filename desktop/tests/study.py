@@ -385,6 +385,7 @@ def main(artifacts: Path) -> None:
                     page.keyboard.press("Escape")
                     expect(study).to_have_count(0)
                 finally:
+                    (artifacts / "initial-window.txt").write_text(page.locator("body").inner_text())
                     browser.close()
 
                 response = api.post(
@@ -725,6 +726,11 @@ def main(artifacts: Path) -> None:
                             expect(study.locator("mjx-container")).to_have_count(1)
                             page.screenshot(path=str(artifacts / "study-macro.png"))
                         page.keyboard.press("Space")
+                        if identity == "study-image":
+                            referenced = study.get_by_role("img", name="Collapsed triangle", exact=True)
+                            expect(referenced).to_be_visible()
+                            expect(referenced).to_have_js_property("complete", True)
+                            assert referenced.evaluate("image => image.naturalWidth > 0")
                         expect(
                             study.get_by_role("button", name="Easy", exact=False)
                         ).to_be_visible()

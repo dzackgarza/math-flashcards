@@ -14,11 +14,16 @@ $\abs{-2}=2$.
 ::: {.front card-id="study-image" tags="image"}
 Which shape is shown?
 
-![A triangle](triangle.svg)
+![A triangle][shape]
 :::
 
 ::: {.back card-id="study-image"}
 A triangle.
+
+![Collapsed triangle][]
+
+[shape]: triangle.svg
+[Collapsed triangle]: triangle.svg
 :::
 
 ::: {.front card-id="study-square" tags="calculation"}

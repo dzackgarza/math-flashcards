@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/evidence.py", line 53, in evidence
+    yield directory
+  File "/tmp/just-FR3ET9/desktop-test", line 105, in <module>
+    subprocess.run(
+    ~~~~~~~~~~~~~~^
+        ["bunx", "start-server-and-test", "just -f ../justfile desktop-web", "http-get://127.0.0.1:1420", scenarios["study"]],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        cwd="desktop", check=True, env=environment,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        stdout=log, stderr=subprocess.STDOUT,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/dzack/.local/share/uv/python/cpython-3.13-linux-x86_64-gnu/lib/python3.13/subprocess.py", line 577, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['bunx', 'start-server-and-test', 'just -f ../justfile desktop-web', 'http-get://127.0.0.1:1420', 'xvfb-run -a uv run --upgrade tests/study.py']' returned non-zero exit status 1.
