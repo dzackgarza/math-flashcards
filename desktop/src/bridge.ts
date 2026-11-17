@@ -102,6 +102,8 @@ export const packageOperationRequestSchema = z.discriminatedUnion("action", [
 
 export type Request =
   | StudyRequest
+  | { action: "analysis-list" }
+  | { action: "analysis-run"; record: string; name: string }
   | z.infer<typeof packageOperationRequestSchema>
   | z.infer<typeof discoveryRequestSchema>
   | z.infer<typeof problemCacheRequestSchema>
@@ -484,6 +486,30 @@ export const studyFitSchema = z.strictObject({
   current_rmse_bins: z.number(),
 });
 export const storeCopySchema = z.strictObject({ path: z.string() });
+export const analysisSchema = z.strictObject({
+  name: z.string(),
+  title: z.string(),
+  summary: z.string(),
+  failure: z.string().nullable(),
+});
+export const analysisListSchema = z.array(analysisSchema);
+export const analysisTableSchema = z.strictObject({
+  analysis: analysisSchema,
+  columns: z.array(
+    z.strictObject({ name: z.string(), unit: z.string().nullable() }),
+  ),
+  rows: z.array(z.array(z.union([z.string(), z.number(), z.null()]))),
+});
+export const analysisErrorSchema = z.strictObject({
+  kind: z.enum(["UnknownAnalysis", "AnalysisFailed", "RecordUnreadable"]),
+  message: z.string(),
+});
+export const analysisResultSchema = z.union([
+  analysisTableSchema,
+  analysisErrorSchema,
+]);
+export type Analysis = z.infer<typeof analysisSchema>;
+export type AnalysisTable = z.infer<typeof analysisTableSchema>;
 export const studyErrorSchema = z.strictObject({
   kind: z.enum([
     "StoreUnreadable",

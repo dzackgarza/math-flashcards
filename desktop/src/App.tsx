@@ -189,6 +189,9 @@ const StudyScreen = lazy(() =>
     default: StudyScreen,
   })),
 );
+const Statistics = lazy(() =>
+  import("./statistics").then(({ Statistics }) => ({ default: Statistics })),
+);
 const QuiverEditor = lazy(() =>
   import("./quiver").then(({ QuiverEditor }) => ({ default: QuiverEditor })),
 );
@@ -315,6 +318,7 @@ export default function App() {
     undoReason: string;
   } | null>(null);
   const [studyEditing, setStudyEditing] = useState(false);
+  const [statisticsRecord, setStatisticsRecord] = useState<string | null>(null);
   const studyCurrent = useRef(study);
   studyCurrent.current = study;
   const [attachment, setAttachment] = useState<Extract<
@@ -1255,6 +1259,16 @@ export default function App() {
     if (begun.next.state === "Finished") await updateStudy(begun.next);
   }
 
+  async function openStatistics() {
+    setWorkspaceMenu(false);
+    const opened = await request(
+      { action: "study-open", workspace },
+      studyOpenSchema,
+    );
+    if (opened.state === "Open") setStatisticsRecord(opened.record);
+    else setAttachment(opened);
+  }
+
   async function undoStudy() {
     let active = studyCurrent.current;
     if (!active || !active.next.undoable) return;
@@ -1332,6 +1346,7 @@ export default function App() {
   const publishedField = useRef("");
   async function chooseWorkspace(root: string) {
     await closeStudy();
+    setStatisticsRecord(null);
     setStudyCounts(null);
     setAttachment(null);
     dismissedAttachment.current = null;
@@ -2400,6 +2415,14 @@ export default function App() {
                 onClick: () => guard(startStudy, { allowInvalidDraft: true }),
               },
               {
+                id: "statistics",
+                label: "Statistics",
+                onClick: () =>
+                  void openStatistics().catch((failure) =>
+                    setError(String(failure)),
+                  ),
+              },
+              {
                 id: "review",
                 label: "Review changes not in Anki packages",
                 onClick: () => void openReview(null),
@@ -2509,6 +2532,14 @@ export default function App() {
 
   return (
     <div className={study && !studyEditing ? "app studying" : "app"}>
+      {statisticsRecord && (
+        <Suspense fallback={<Loader aria-label="Opening Statistics" />}>
+          <Statistics
+            record={statisticsRecord}
+            onClose={() => setStatisticsRecord(null)}
+          />
+        </Suspense>
+      )}
       {attachment && (
         <Suspense fallback={<Loader aria-label="Opening study stores" />}>
           <StudyStoreChoice
@@ -2562,6 +2593,16 @@ export default function App() {
                 onClick={() => guard(startStudy, { allowInvalidDraft: true })}
               >
                 Study
+              </Button>
+              <Button
+                disabled={!workspace || busy}
+                onClick={() =>
+                  void openStatistics().catch((failure) =>
+                    setError(String(failure)),
+                  )
+                }
+              >
+                Statistics
               </Button>
               <TextInput
                 label="Workspace folder"
@@ -2939,6 +2980,7 @@ export default function App() {
               onUndo={undoStudy}
               onEdit={editStudy}
               onSettings={refreshStudySettings}
+              shortcuts={statisticsRecord === null}
               onNext={(next) =>
                 void updateStudy(next).catch((failure) =>
                   setError(String(failure)),

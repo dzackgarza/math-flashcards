@@ -1,0 +1,52 @@
+Math Flashcards
+flashcards-statistics-vay16ynf
+Search
+Ctrl K
+Algebra
+New:
+0
+Learning:
+0
+Review:
+0
+
+New · Learning · Review
+
+New:
+0
+Learning:
+0
+Review:
+0
+
+Study cards ready
+
+Workspace checks complete
+
+Problems
+Update Anki packages
+1
+New deck
+Study
+Study settings
+Undo
+Ctrl Z
+Return to editor
+Esc
+
+New: 0
+
+Learning: 0
+
+Review: 0
+
+Study complete for now
+
+Graded today: 3
+
+Study store: /tmp/flashcards-browser-cache-vdva_2qo/data/math-flashcards/study/d86e41ab-a958-44c9-929d-a2f21e514f95
+
+Learning record: /tmp/flashcards-browser-cache-vdva_2qo/data/math-flashcards/study/d86e41ab-a958-44c9-929d-a2f21e514f95/record.sqlite3
+
+Statistics
+Statistics

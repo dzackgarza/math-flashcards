@@ -26,28 +26,44 @@ type LogScalar = str | int | float | bool | None
 
 
 class Diagnostics:
-    def __init__(self, label: str, release: str):
+    def __init__(self, label: str, release: str | None):
         root = Path(__file__).parent
-        self.directory = user_state_path("math-flashcards") / "diagnostics" / str(uuid4())
+        self.directory = (
+            user_state_path("math-flashcards") / "diagnostics" / str(uuid4())
+        )
         self.directory.mkdir(parents=True)
-        sources = [*root.glob("*.py"), *root.joinpath("study").rglob("*.py"), *root.joinpath("analysis").rglob("*.py")]
-        (self.directory / "context.json").write_text(json.dumps({
-            "label": label,
-            "started_at": datetime.now(UTC).isoformat(),
-            "pid": os.getpid(),
-            "parent_pid": os.getppid(),
-            "app_release": release,
-            "python": sys.version,
-            "platform": platform.platform(),
-            "anki_version": version("anki"),
-            "sources": {
-                str(path.relative_to(root)): sha256(path.read_bytes()).hexdigest()
-                for path in sorted(sources)
-            },
-        }, indent=2) + "\n")
+        sources = [
+            *root.glob("*.py"),
+            *root.joinpath("study").rglob("*.py"),
+            *root.joinpath("analysis").rglob("*.py"),
+        ]
+        (self.directory / "context.json").write_text(
+            json.dumps(
+                {
+                    "label": label,
+                    "started_at": datetime.now(UTC).isoformat(),
+                    "pid": os.getpid(),
+                    "parent_pid": os.getppid(),
+                    "app_release": release,
+                    "python": sys.version,
+                    "platform": platform.platform(),
+                    "anki_version": version("anki"),
+                    "sources": {
+                        str(path.relative_to(root)): sha256(
+                            path.read_bytes()
+                        ).hexdigest()
+                        for path in sorted(sources)
+                    },
+                },
+                indent=2,
+            )
+            + "\n"
+        )
         self.handler = logging.FileHandler(self.directory / "events.jsonl")
         self.handler.setFormatter(logging.Formatter("%(message)s"))
-        self.logger = logging.Logger(label, level=logging.INFO)
+        self.logger = logging.getLogger(f"{label}.{self.directory.name}")
+        self.logger.setLevel(logging.INFO)
+        self.logger.propagate = False
         self.logger.addHandler(self.handler)
 
     @contextmanager
@@ -58,9 +74,15 @@ class Diagnostics:
             "operation": name,
             "input_sha256": sha256(inputs.encode()).hexdigest(),
         }
-        self.logger.info(json.dumps({
-            **details, "event": "started", "at": datetime.now(UTC).isoformat(),
-        }))
+        self.logger.info(
+            json.dumps(
+                {
+                    **details,
+                    "event": "started",
+                    "at": datetime.now(UTC).isoformat(),
+                }
+            )
+        )
         profile = cProfile.Profile()
         started = perf_counter()
         outcome = "ok"
@@ -78,14 +100,19 @@ class Diagnostics:
             elapsed = perf_counter() - started
             filename = identity + ".pstats"
             profile.dump_stats(str(self.directory / filename))
-            self.logger.info(json.dumps({
-                **details,
-                "event": "completed",
-                "at": datetime.now(UTC).isoformat(),
-                "outcome": outcome,
-                "elapsed_seconds": elapsed,
-                "profile": filename,
-            }))
+            self.logger.info(
+                json.dumps(
+                    {
+                        **details,
+                        "event": "completed",
+                        "at": datetime.now(UTC).isoformat(),
+                        "outcome": outcome,
+                        "elapsed_seconds": elapsed,
+                        "profile": filename,
+                    }
+                )
+            )
 
     def close(self) -> None:
+        self.logger.removeHandler(self.handler)
         self.handler.close()

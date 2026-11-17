@@ -706,3 +706,10 @@ button.change-row:hover {
 .study-count-review {
   color: var(--mantine-color-teal-8);
 }
+/* Statistics shares one renderer for independently supplied analysis tables. */
+.statistics td,
+.statistics th {
+  vertical-align: top;
+  overflow-wrap: anywhere;
+  font-variant-numeric: tabular-nums;
+}

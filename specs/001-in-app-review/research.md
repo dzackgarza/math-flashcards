@@ -770,8 +770,13 @@ card values from the source bridge. The core imports nothing from the entry scri
 | A change to an analysis needs no migration | The record holds observed facts, not results. Analyses compute from the facts. | Principle VI |
 | A change to the core is visible | The core is one directory. Its tests (the study scenario, the first-version record fixture) are apart from the analysis tests. | Design |
 
-**The first analyses** (FR-056) are the first two queries of
+**The first analyses** (FR-056) use the folder/month and calibration queries of
 `contracts/learning-record.md`. Two analyses give the catalog its second caller.
+The folder count includes ungraded presentations; its averages exclude missing
+values. Calibration uses probability bands of width 0.1 and keeps missing
+predictions in a named band. These bins summarize recorded predictions and
+self-grades; their width is a display default, not a learning intervention.
+`docs/analyses.md` owns module authoring and the treatment of missing observations.
 
 **What the alternatives do not solve**: Dependencies track their latest versions
 (principle III). A newer `anki` can change scheduling behaviour and upgrade the

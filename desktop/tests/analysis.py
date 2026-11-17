@@ -6,7 +6,7 @@ import shutil
 import sqlite3
 import subprocess
 import tempfile
-from contextlib import closing
+from contextlib import ExitStack, closing
 from pathlib import Path
 
 from evidence import evidence
@@ -15,8 +15,15 @@ from evidence import evidence
 def main(artifacts: Path) -> None:
     desktop = Path(__file__).resolve().parents[1]
     runtime = (desktop / "runtime.txt").read_text().strip()
-    with tempfile.TemporaryDirectory(prefix="flashcards-analyses-") as directory:
+    with (
+        tempfile.TemporaryDirectory(prefix="flashcards-analyses-") as directory,
+        ExitStack() as cleanup,
+    ):
         root = Path(directory)
+        (root / "state").mkdir()
+        cleanup.callback(
+            shutil.copytree, root / "state", artifacts / "application-state"
+        )
         for name in ("backend.py", "rendering.py", "diagnostics.py"):
             shutil.copy2(desktop / name, root / name)
         for name in ("study", "analysis"):
@@ -35,7 +42,7 @@ def main(artifacts: Path) -> None:
 
         def request(action: str, **values):
             result = subprocess.run(
-                [runtime, str(root / "backend.py")],
+                [runtime, "-I", str(root / "backend.py")],
                 input=json.dumps({"action": action, **values}) + "\n",
                 text=True,
                 capture_output=True,

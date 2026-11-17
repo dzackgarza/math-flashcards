@@ -165,6 +165,12 @@ def main(artifacts: Path) -> None:
                     assert record.execute(
                         "select count(*) from response"
                     ).fetchone() == (4,)
+                page.keyboard.press("Control+k")
+                page.get_by_placeholder("Search decks, cards, and commands").fill(
+                    "Statistics"
+                )
+                page.get_by_role("button", name="Statistics", exact=True).click()
+                expect(page.get_by_role("dialog", name="Statistics")).to_be_visible()
             finally:
                 (artifacts / "window.txt").write_text(page.locator("body").inner_text())
                 browser.close()

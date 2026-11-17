@@ -579,6 +579,7 @@ export function StudyScreen({
   onEdit,
   undoReason,
   onSettings,
+  shortcuts,
 }: {
   workspace: string;
   session: number;
@@ -591,6 +592,7 @@ export function StudyScreen({
   onEdit: () => Promise<void>;
   undoReason: string;
   onSettings: () => Promise<void>;
+  shortcuts: boolean;
 }) {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [folderError, setFolderError] = useState("");
@@ -613,7 +615,7 @@ export function StudyScreen({
   }
   useEffect(() => {
     function key(event: KeyboardEvent) {
-      if (settingsOpen || event.repeat || event.altKey) return;
+      if (!shortcuts || settingsOpen || event.repeat || event.altKey) return;
       if (
         (event.ctrlKey || event.metaKey) &&
         event.key.toLowerCase() === "z" &&
@@ -634,9 +636,9 @@ export function StudyScreen({
     }
     window.addEventListener("keydown", key);
     return () => window.removeEventListener("keydown", key);
-  }, [next, onUndo, onEdit, settingsOpen]);
+  }, [next, onUndo, onEdit, settingsOpen, shortcuts]);
   useEffect(() => {
-    if (next.state !== "Finished" || settingsOpen) return;
+    if (next.state !== "Finished" || settingsOpen || !shortcuts) return;
     function key(event: KeyboardEvent) {
       if (event.key === "Escape") {
         event.preventDefault();
@@ -645,7 +647,7 @@ export function StudyScreen({
     }
     window.addEventListener("keydown", key);
     return () => window.removeEventListener("keydown", key);
-  }, [next.state, onClose, settingsOpen]);
+  }, [next.state, onClose, settingsOpen, shortcuts]);
   return (
     <Stack
       component="section"
@@ -701,7 +703,7 @@ export function StudyScreen({
           mathjax={mathjax}
           onNext={onNext}
           onClose={onClose}
-          shortcuts={!settingsOpen}
+          shortcuts={!settingsOpen && shortcuts}
         />
       ) : (
         <Stack align="center" py="xl">

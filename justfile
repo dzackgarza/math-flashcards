@@ -18,7 +18,7 @@ check-math:
 test-push: test
 
 # Commit gate entry point using prepared dependencies
-test-commit: test desktop-boundaries desktop-frontend desktop-source-test desktop-editor-test desktop-test desktop-study-test desktop-diagram-test desktop-organization-test
+test-commit: test desktop-boundaries desktop-frontend desktop-source-test desktop-editor-test desktop-test desktop-study-test desktop-analysis-test desktop-diagram-test desktop-organization-test
 
 # Install the desktop build dependencies
 desktop-dependencies:
@@ -95,6 +95,7 @@ desktop-test scenario="full":
     scenarios = {"full": "uv run --upgrade tests/workbench.py", "startup": "uv run --upgrade tests/workbench.py --startup", "study": "xvfb-run -a uv run --upgrade tests/study.py", "study-changes": "xvfb-run -a uv run --upgrade tests/study-changes.py", "study-timing": "xvfb-run -a uv run --upgrade tests/study-timing.py", "study-scopes": "xvfb-run -a uv run --upgrade tests/study-scopes.py", "study-corrections": "xvfb-run -a uv run --upgrade tests/study-corrections.py", "study-draft": "xvfb-run -a uv run --upgrade tests/study-draft.py", "study-settings": "xvfb-run -a uv run --upgrade tests/study-settings.py"}
     environment = os.environ.copy()
     scenarios["study-fit"] = "xvfb-run -a uv run --upgrade tests/study-fit.py"
+    scenarios["study-statistics"] = "xvfb-run -a uv run --upgrade tests/study-statistics.py"
     environment.setdefault("UV_CACHE_DIR", subprocess.check_output(["uv", "cache", "dir"], text=True).strip())
     environment.setdefault("PLAYWRIGHT_BROWSERS_PATH", str(Path(os.environ.get("XDG_CACHE_HOME", str(Path.home() / ".cache"))) / "ms-playwright"))
     with evidence("browser-{{scenario}}", Path("desktop/tests/fixtures")) as artifacts, tempfile.TemporaryDirectory(prefix="flashcards-browser-cache-") as directory:
@@ -115,6 +116,10 @@ desktop-test scenario="full":
 
 # Exercise Study with isolated learning data and cache directories
 desktop-study-test: (desktop-test "study")
+
+# Run independent analyses through the public backend process
+desktop-analysis-test:
+    uv run --no-project python desktop/tests/analysis.py
 
 # Verify isolation of scheduling, analyses, and individual analysis modules
 desktop-boundaries:

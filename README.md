@@ -51,6 +51,9 @@ learning record.
 **Fit scheduler** in Study settings evaluates Anki's parameters against the stored
 review history. It shows the current and fitted values and their accuracy measures.
 **Apply fit** records the accepted parameters; **Close fit** leaves them unchanged.
+**Statistics** in the workspace menu or Ctrl-K shows recall by folder and scheduler
+calibration from the permanent record. It can remain open during a Study session.
+The [analysis guide](docs/analyses.md) explains how to add an independent analysis.
 An unattached workspace offers its existing learning
 stores or **Start new**. The [learning-record reference](docs/study-record.md)
 explains the permanent data, its fields, and read-only queries.

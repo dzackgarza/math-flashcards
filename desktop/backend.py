@@ -31,6 +31,9 @@ from xml.etree import ElementTree
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+from analysis import Analysis, AnalysisError, AnalysisTable, list_analyses
+from analysis import run as run_analysis
+from diagnostics import Diagnostics
 from rendering import (
     AssetSet,
     Digest,
@@ -58,6 +61,7 @@ try:
         BaseModel,
         ConfigDict,
         Field,
+        RootModel,
         TypeAdapter,
         ValidationError,
         field_validator,
@@ -80,6 +84,18 @@ TIKZ_ENVIRONMENT = re.compile(
 class AssetsInput(BaseModel):
     model_config = ConfigDict(extra="forbid")
     action: Literal["assets"]
+
+
+class AnalysisListInput(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    action: Literal["analysis-list"]
+
+
+class AnalysisRunInput(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    action: Literal["analysis-run"]
+    record: str
+    name: str
 
 
 class AssetVersionInput(BaseModel):
@@ -286,6 +302,8 @@ class Organized(BaseModel):
 
 type Request = Annotated[
     AssetsInput
+    | AnalysisListInput
+    | AnalysisRunInput
     | AssetVersionInput
     | ListInput
     | LoadInput
@@ -1476,7 +1494,14 @@ def dispatch(
     | ManifestCache
     | SearchCache
     | CachedChecks
+    | RootModel[list[Analysis]]
+    | AnalysisTable
+    | AnalysisError
 ):
+    if isinstance(request, AnalysisListInput):
+        return list_analyses()
+    if isinstance(request, AnalysisRunInput):
+        return run_analysis(request.name, request.record)
     if isinstance(request, AssetsInput):
         return installed_assets()
     if isinstance(request, AssetVersionInput):
@@ -1708,7 +1733,19 @@ def main() -> None:
     """Read one typed request from stdin and write its result as JSON."""
     request = TypeAdapter(Request).validate_json(sys.stdin.readline())
     try:
-        result = dispatch(request)
+        if isinstance(request, (AnalysisListInput, AnalysisRunInput)):
+            with (
+                closing(Diagnostics("analysis", None)) as diagnostics,
+                diagnostics.operation(
+                    request.action, request.model_dump_json()
+                ) as details,
+            ):
+                result = dispatch(request)
+                if isinstance(result, AnalysisError):
+                    details["failure"] = result.kind
+                    details["message"] = result.message
+        else:
+            result = dispatch(request)
     except subprocess.CalledProcessError as error:
         print(error.stderr, file=sys.stderr)
         sys.exit(error.returncode)
