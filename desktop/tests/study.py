@@ -617,6 +617,7 @@ def main(artifacts: Path) -> None:
                 )
                 assert response.ok, response.text()
                 assert response.json()["store"] != str(store)
+                fresh_record = Path(response.json()["record"])
                 assert (store / "store.json").read_bytes() == metadata_before
                 with closing(sqlite3.connect(record_path)) as record:
                     assert (
@@ -638,6 +639,80 @@ def main(artifacts: Path) -> None:
                 unknown = response.json()
                 assert unknown["kind"] == "UnknownStore", response.text()
                 assert set(stores.iterdir()) == before
+
+                browser = playwright.chromium.launch(headless=False)
+                page = browser.new_page()
+                try:
+                    page.goto("http://127.0.0.1:1420")
+                    page.get_by_role("button", name="Workspace", exact=True).click()
+                    page.get_by_label("Workspace folder").fill(str(workspace))
+                    page.get_by_role(
+                        "button", name="Open workspace", exact=True
+                    ).click()
+                    expect(page.get_by_role("status", name="Study")).to_have_text(
+                        "Study cards ready"
+                    )
+                    page.get_by_role("button", name="Workspace", exact=True).click()
+                    page.get_by_role("button", name="Study", exact=True).click()
+                    study = page.get_by_role("region", name="Study session")
+                    seen = set()
+                    for remaining in range(12, 0, -1):
+                        expect(study.get_by_label("Remaining cards")).to_contain_text(
+                            f"New: {remaining}"
+                        )
+                        expect(
+                            study.get_by_role("button", name="Show answer", exact=False)
+                        ).to_be_visible()
+                        with closing(sqlite3.connect(fresh_record)) as record:
+                            identity = record.execute(
+                                "select card_id from presentation order by id desc limit 1"
+                            ).fetchone()[0]
+                        seen.add(identity)
+                        if identity == "study-image":
+                            picture = study.get_by_role(
+                                "img", name="A triangle", exact=True
+                            )
+                            expect(picture).to_be_visible()
+                            assert picture.evaluate(
+                                "image => image.complete && image.naturalWidth > 0"
+                            )
+                            page.screenshot(path=str(artifacts / "study-image.png"))
+                        if identity == "study-diagram":
+                            expect(
+                                study.get_by_role(
+                                    "img", name="Rendered commutative diagram"
+                                )
+                            ).to_be_visible(timeout=15000)
+                            page.screenshot(path=str(artifacts / "study-diagram.png"))
+                        if identity == "study-absolute-value":
+                            expect(study.locator("mjx-container")).to_have_count(1)
+                            page.screenshot(path=str(artifacts / "study-macro.png"))
+                        page.keyboard.press("Space")
+                        expect(
+                            study.get_by_role("button", name="Easy", exact=False)
+                        ).to_be_visible()
+                        page.keyboard.press("4")
+                    expect(
+                        study.get_by_role("heading", name="Study complete for now")
+                    ).to_be_visible()
+                    expect(study).to_contain_text("Graded today: 12")
+                    assert {
+                        "study-image",
+                        "study-diagram",
+                        "study-absolute-value",
+                    } <= seen
+                    page.screenshot(path=str(artifacts / "study-finished.png"))
+                    with closing(sqlite3.connect(fresh_record)) as record:
+                        assert record.execute(
+                            "select count(*) from response"
+                        ).fetchone() == (12,)
+                        assert record.execute(
+                            "select cause from session_end"
+                        ).fetchall() == [("finished",)]
+                    page.keyboard.press("Escape")
+                    expect(study).to_have_count(0)
+                finally:
+                    browser.close()
 
                 for defect in (
                     "corrupt-collection",
