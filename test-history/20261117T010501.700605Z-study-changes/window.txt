@@ -1,0 +1,22 @@
+Math Flashcards
+flashcards-study-changes-52mep7c4
+Search
+Ctrl K
+A
+B
+
+Study cards ready
+
+Workspace checks complete
+
+Problems
+Update Anki packages
+2
+New deck
+Action failed
+
+Error: Duplicate card moving: A.md, B.md
+
+Your decks, in one place
+
+Select a deck in the sidebar to edit its cards.
