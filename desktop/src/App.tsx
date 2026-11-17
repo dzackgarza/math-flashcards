@@ -2264,7 +2264,7 @@ export default function App() {
   }
 
   return (
-    <div className="app">
+    <div className={study ? "app studying" : "app"}>
       {attachment && (
         <Suspense fallback={<Loader aria-label="Opening study stores" />}>
           <StudyStoreChoice

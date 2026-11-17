@@ -624,6 +624,14 @@ button.change-row:hover {
   .card-scroll {
     max-height: 18rem;
   }
+  .app.studying {
+    grid-template-columns: 14rem minmax(0, 1fr);
+    height: 100vh;
+  }
+  .app.studying .sidebar {
+    border-right: 1px solid var(--hairline);
+    border-bottom: 0;
+  }
 }
 
 /* Quiver is the actual editor, installed as part of this release. Its iframe
