@@ -433,6 +433,7 @@ export const studyNextSchema = z.discriminatedUnion("state", [
   }),
 ]);
 export const syncResultSchema = z.strictObject({
+  changed_cards: z.array(cardIdSchema),
   added: z.number().int(),
   updated: z.number().int(),
   moved: z.number().int(),

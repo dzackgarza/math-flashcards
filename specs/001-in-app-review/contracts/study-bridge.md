@@ -90,6 +90,10 @@ No action updates or deletes a row of the learning record.
   authored names. YAML metadata uses the same parser's metadata boundaries and the
   `yaml` library for values.
 - With no deck out of date, it changes nothing and returns zero counts.
+- `changed_cards` lists the native IDs changed by this call. The window fetches a
+  new presentation when this list contains the card on screen. A completed sync
+  still delivers this list when another source refresh has begun; changing the
+  workspace prevents it from affecting the new workspace's session.
 - Records native front and back source with the asset identity named by `assets`.
   Anki notes carry the `card-id`; the app's content record supplies presentation.
 - Never changes a schedule or a review log row (invariant 3).

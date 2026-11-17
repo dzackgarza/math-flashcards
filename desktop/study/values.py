@@ -149,6 +149,7 @@ class SyncResult(Value):
     failed: list[FailedDeck]
     duplicates: list[Duplicate]
     pending: int
+    changed_cards: list[CardId]
 
 
 class StoreSummary(Value):

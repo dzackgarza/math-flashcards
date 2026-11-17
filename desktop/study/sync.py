@@ -54,6 +54,7 @@ def sync(store: Store, workspace: Path, request: SyncRequest) -> SyncResult:
         failed=[],
         duplicates=[],
         pending=0,
+        changed_cards=[],
     )
     collection = store.collection
     states = TypeAdapter(dict[str, DeckState]).validate_python(
@@ -245,6 +246,7 @@ def sync(store: Store, workspace: Path, request: SyncRequest) -> SyncResult:
             if changed:
                 collection.update_notes(changed, skip_undo_entry=True)
             for identity, kinds, content, tags, from_deck in versions:
+                result.changed_cards.append(identity)
                 for kind in kinds:
                     store.record.card_change(
                         identity,
@@ -294,6 +296,7 @@ def sync(store: Store, workspace: Path, request: SyncRequest) -> SyncResult:
             )
             owners.pop(identity)
             result.removed += 1
+            result.changed_cards.append(identity)
     for path in deleted:
         name = "Workspace::" + path[:-3].replace("/", "::")
         deck = collection.decks.by_name(name)
@@ -308,4 +311,5 @@ def sync(store: Store, workspace: Path, request: SyncRequest) -> SyncResult:
         path not in states or not current(states[path], request.assets)
         for path in request.paths
     )
+    result.changed_cards = sorted(set(result.changed_cards))
     return result

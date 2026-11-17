@@ -177,6 +177,7 @@ export function useStudySync(
   reportError: (message: string) => void,
   onUnattached: (opened: Extract<StudyOpen, { state: "Unattached" }>) => void,
   attachmentEpoch: number,
+  onChanged: (cards: string[]) => Promise<void>,
 ) {
   const [status, setStatus] = useState("Preparing study cards");
   useEffect(() => {
@@ -223,6 +224,7 @@ export function useStudySync(
               `Duplicate card ${item.card_id}: ${item.paths.join(", ")}`,
           ),
         );
+        if (result.changed_cards.length) await onChanged(result.changed_cards);
         pending = result.pending;
       }
       if (cancelled) return;
@@ -247,6 +249,7 @@ export function useStudySync(
     reportError,
     onUnattached,
     attachmentEpoch,
+    onChanged,
   ]);
   return status;
 }

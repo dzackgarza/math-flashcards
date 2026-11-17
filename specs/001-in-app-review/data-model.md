@@ -227,6 +227,7 @@ DeckCounts    = { path: str, kind: "workspace" | "folder" | "deck",
                   counts: Counts, children: DeckCounts[] }
 
 SyncResult    = { added: int, updated: int, moved: int, removed: int, restored: int,
+                  changed_cards: CardId[],
                   failed: { path: DeckPath, message: str }[],
                   duplicates: { card_id: CardId, paths: DeckPath[] }[],
                   pending: int }                                    # decks not yet current

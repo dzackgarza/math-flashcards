@@ -4,6 +4,7 @@
 # ///
 """Keep scheduling and recorded history through native deck file changes."""
 
+import json
 import os
 import sqlite3
 import tempfile
@@ -214,6 +215,53 @@ def main(artifacts: Path) -> None:
                 expect(
                     study.get_by_role("heading", name="Study complete for now")
                 ).to_be_visible(timeout=10000)
+                study.get_by_role(
+                    "button", name="Return to editor", exact=False
+                ).click()
+                a.write_text(other + changed + kept)
+                c.rename(workspace / "C.retired")
+                study = start_study(page)
+                expect(
+                    study.get_by_role("heading", name="Study complete for now")
+                ).to_be_visible()
+                expect(page.get_by_role("status", name="Study")).to_have_text(
+                    "Study cards ready"
+                )
+                with closing(sqlite3.connect(record_path)) as record:
+                    tables = [
+                        row[0]
+                        for row in record.execute(
+                            "select name from sqlite_master where type='table'"
+                        )
+                    ]
+                    rows_before = {
+                        table: record.execute(
+                            f'SELECT * FROM "{table}" ORDER BY id'
+                        ).fetchall()
+                        for table in tables
+                    }
+                assets = json.loads(
+                    (Path(__file__).resolve().parents[1] / "assets.json").read_text()
+                )["identity"]
+                noop = request("study-sync", assets=assets, paths=["A.md"], decks=[])
+                assert noop == {
+                    "added": 0,
+                    "updated": 0,
+                    "moved": 0,
+                    "removed": 0,
+                    "restored": 0,
+                    "failed": [],
+                    "duplicates": [],
+                    "pending": 0,
+                    "changed_cards": [],
+                }, noop
+                with closing(sqlite3.connect(record_path)) as record:
+                    assert {
+                        table: record.execute(
+                            f'SELECT * FROM "{table}" ORDER BY id'
+                        ).fetchall()
+                        for table in tables
+                    } == rows_before
             finally:
                 (artifacts / "window.txt").write_text(page.locator("body").inner_text())
                 browser.close()
@@ -232,7 +280,7 @@ def main(artifacts: Path) -> None:
                 ) == {"leech", "revised"}
                 assert collection.find_cards("deck:Workspace::A CardId:moving")
                 assert collection.find_cards("deck:Removed CardId:new")
-                assert collection.find_cards("deck:Workspace::C CardId:other")
+                assert collection.find_cards("deck:Workspace::A CardId:other")
             finally:
                 collection.close()
             api.dispose()

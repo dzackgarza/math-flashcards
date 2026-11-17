@@ -120,6 +120,7 @@ import {
   reviewSchema,
   studyOpenSchema,
   studyBegunSchema,
+  studyNextSchema,
   type StudyNext,
   type StudyOpen,
   type Change,
@@ -308,6 +309,25 @@ export default function App() {
   const dirty = document !== null && document.source !== document.saved;
   const busy = task !== "Idle";
   const selected = ranges[index];
+  const refreshStudy = useCallback(
+    async (changed: string[]) => {
+      if (workspaceRoot.current !== workspace) return;
+      const active = studyCurrent.current;
+      if (
+        !active ||
+        active.ended ||
+        active.next.state !== "Card" ||
+        !changed.includes(active.next.card_id)
+      )
+        return;
+      const next = await request(
+        { action: "study-next", workspace, session: active.session },
+        studyNextSchema,
+      );
+      if (studyCurrent.current === active) await updateStudy(next);
+    },
+    [workspace],
+  );
   const studyStatus = useStudySync(
     workspace,
     decks,
@@ -316,6 +336,7 @@ export default function App() {
     setError,
     showAttachment,
     attachmentEpoch,
+    refreshStudy,
   );
   const finishEditorView = useEditorViews(
     workspace,
