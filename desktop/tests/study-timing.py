@@ -63,9 +63,44 @@ def main(artifacts: Path) -> None:
                 expect(page.get_by_role("button", name="Show problems")).to_have_text(
                     "Problems1"
                 )
+                page.get_by_text("Timing", exact=True).click()
+                page.get_by_text("Checks", exact=True).click()
+                editor = page.locator(".editor-column .side-editor.front .cm-content")
+                expect(editor).to_contain_text("Measure elapsed time.")
                 page.clock.pause_at(
                     page.evaluate("new Date(Date.now() + 10).toISOString()")
                 )
+                page.locator(".card-row-label").filter(
+                    has_text="Measure time without focus."
+                ).click()
+                page.clock.run_for(16)
+                expect(editor).to_contain_text("Measure time without focus.")
+                page.clock.fast_forward(1000)
+                focused = subprocess.check_output(
+                    ["xdotool", "getwindowfocus"], text=True
+                ).strip()
+                subprocess.run(["xdotool", "windowfocus", "0"], check=True)
+                assert not page.evaluate("document.hasFocus()")
+                page.clock.fast_forward(1000)
+                subprocess.run(["xdotool", "windowfocus", focused], check=True)
+                with page.expect_response(
+                    lambda response: (
+                        response.url.endswith("/api/request")
+                        and response.request.post_data_json.get("action")
+                        == "study-viewed"
+                        and response.request.post_data_json.get("card_id") == "focus"
+                    )
+                ) as viewed:
+                    page.locator(".card-row-label").filter(has_text="Unknown").click()
+                    page.clock.run_for(16)
+                assert viewed.value.ok, viewed.value.text()
+                with closing(sqlite3.connect(record_path)) as record:
+                    editor_view = record.execute(
+                        "select card_id,deck_path,shown_ms,unfocused_ms from editor_view order by id desc limit 1"
+                    ).fetchone()
+                assert editor_view[:2] == ("focus", "Timing/Checks.md"), editor_view
+                assert abs(editor_view[2] - 2000) <= 100, editor_view
+                assert abs(editor_view[3] - 1000) <= 100, editor_view
                 # Keep an actual read-only transaction open throughout the grades.
                 with closing(
                     sqlite3.connect(f"file:{record_path}?mode=ro", uri=True)
@@ -132,6 +167,10 @@ def main(artifacts: Path) -> None:
                         study.get_by_role("heading", name="Study complete for now")
                     ).to_be_visible()
                     assert seen == set(faces)
+                    with closing(sqlite3.connect(record_path)) as record:
+                        assert record.execute(
+                            "select card_id from editor_view order by id desc limit 1"
+                        ).fetchone() == ("long",)
                     assert reader.execute(
                         "select count(*) from response"
                     ).fetchone() == (0,)

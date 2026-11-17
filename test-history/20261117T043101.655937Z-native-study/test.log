@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/evidence.py", line 53, in evidence
+    yield directory
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/native-study.py", line 478, in <module>
+    main(artifacts)
+    ~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/native-study.py", line 419, in main
+    assert not web_cache, web_cache
+           ^^^^^^^^^^^^^
+AssertionError: ['data/dev.math.flashcards/WebKitCache/Version 17/salt', 'data/dev.math.flashcards/CacheStorage/salt']

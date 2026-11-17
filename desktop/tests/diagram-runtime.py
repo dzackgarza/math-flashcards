@@ -47,6 +47,7 @@ def main(artifacts: Path) -> None:
             text=True,
             capture_output=True,
             env=environment,
+            check=False,
         )
         (artifacts / "bridge.log").write_text(result.stderr)
         assert result.returncode == 0, result.stderr

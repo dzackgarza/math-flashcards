@@ -288,7 +288,7 @@ def main(artifacts: Path) -> None:
                             )
                         )
                         diagram_wait.until(
-                            lambda _: driver.execute_script(
+                            lambda _, diagram=diagram: driver.execute_script(
                                 "return arguments[0].complete && arguments[0].naturalWidth > 0",
                                 diagram,
                             )
