@@ -1,0 +1,61 @@
+Math Flashcards
+flashcards-study-draft-4buqlns9
+Search
+Ctrl K
+Draft
+New:
+1
+Learning:
+0
+Review:
+0
+
+New · Learning · Review
+
+New:
+1
+Learning:
+0
+Review:
+0
+
+Study cards ready
+
+Workspace checks complete
+
+Problems
+Update Anki packages
+1
+New deck
+Action failed
+
+Error: The open deck has edits that are not saved. Resolve them first.
+
+Draft
+
+0 cards
+
+Drag cards to reorder them, or onto a deck to move them. Ctrl-click or Shift-click selects several.
+
+Not saved: the card structure is invalid
+Invalid card
+Error: A deck must contain Front and Back pairs.
+
+Card 1 of 0
+
+Delete card
+Image preview unavailable
+Error: A deck must contain Front and Back pairs.
+FRONT
+New diagram
+Unfinished draft.
+:::
+Unpaired text.
+BACK
+New diagram
+Saved answer.
+Tags
+Study
+Workspace folder
+Refresh workspace
+Open workspace
