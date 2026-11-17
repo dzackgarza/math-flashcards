@@ -316,6 +316,13 @@ def main(artifacts: Path) -> None:
                             "select * from editor_view order by id"
                         ).fetchall()
                     assert len(before_views) == 3, before_views
+                    chooser = page.get_by_role("dialog", name="Choose a study store")
+                    expect(chooser).to_be_visible()
+                    expect(chooser).to_contain_text(str(workspace))
+                    page.screenshot(path=str(artifacts / "study-store-choice.png"))
+                    chooser.get_by_role(
+                        "button", name="Keep editing", exact=True
+                    ).click()
                     page.get_by_text("Basics", exact=True).click()
                     expect(front).to_contain_text("Evaluate")
                     page.locator(".card-row-label").nth(1).click()
@@ -716,6 +723,48 @@ def main(artifacts: Path) -> None:
                         ).fetchall() == [("finished",)]
                     page.keyboard.press("Escape")
                     expect(study).to_have_count(0)
+                    with closing(sqlite3.connect(fresh_record)) as record:
+                        tables = [
+                            row[0]
+                            for row in record.execute(
+                                "select name from sqlite_master where type='table'"
+                            )
+                        ]
+                        before_rows = {
+                            table: record.execute(
+                                f'select * from "{table}" order by id'
+                            ).fetchall()
+                            for table in tables
+                        }
+                    moved_workspace = root / "moved-workspace"
+                    workspace.rename(moved_workspace)
+                    before_stores = set(stores.iterdir())
+                    page.get_by_role("button", name="Workspace", exact=True).click()
+                    page.get_by_label("Workspace folder").fill(str(moved_workspace))
+                    page.get_by_role(
+                        "button", name="Open workspace", exact=True
+                    ).click()
+                    chooser = page.get_by_role("dialog", name="Choose a study store")
+                    expect(chooser).to_be_visible()
+                    expect(chooser).to_contain_text("Grades: 12")
+                    chooser.get_by_role(
+                        "button", name=f"Attach {workspace}", exact=True
+                    ).click()
+                    expect(chooser).to_have_count(0)
+                    expect(page.get_by_role("status", name="Study")).to_have_text(
+                        "Study cards ready"
+                    )
+                    assert set(stores.iterdir()) == before_stores
+                    metadata = json.loads(
+                        (fresh_record.parent / "store.json").read_text()
+                    )
+                    assert metadata["paths"][-1]["path"] == str(moved_workspace)
+                    with closing(sqlite3.connect(fresh_record)) as record:
+                        for table, rows in before_rows.items():
+                            after = record.execute(
+                                f'select * from "{table}" order by id'
+                            ).fetchall()
+                            assert after[: len(rows)] == rows, table
                 finally:
                     browser.close()
 
