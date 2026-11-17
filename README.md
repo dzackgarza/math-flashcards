@@ -54,6 +54,10 @@ review history. It shows the current and fitted values and their accuracy measur
 **Statistics** in the workspace menu or Ctrl-K shows recall by folder and scheduler
 calibration from the permanent record. It can remain open during a Study session.
 The [analysis guide](docs/analyses.md) explains how to add an independent analysis.
+**Save a copy** in Study settings writes the complete learning store to a chosen
+folder while the app runs. To use it on another machine, place its store-ID folder
+under `$XDG_DATA_HOME/math-flashcards/study/`, open the card workspace, and attach
+the listed store. Keep the authored Markdown workspace with the copy.
 An unattached workspace offers its existing learning
 stores or **Start new**. The [learning-record reference](docs/study-record.md)
 explains the permanent data, its fields, and read-only queries.

@@ -111,10 +111,8 @@ def instant() -> tuple[int, int]:
 
 class Record:
     def __init__(self, path: Path, *, create: bool, release: str, anki_version: str):
-        self.connection = sqlite3.connect(
-            path if create else f"file:{path}?mode=rw", uri=not create
-        )
-        self.connection.execute("pragma foreign_keys=on")
+        self.path = path
+        self.reopen(create=create)
         if create:
             self.connection.execute("pragma journal_mode=wal")
             for table, fields in TABLES.items():
@@ -275,3 +273,10 @@ class Record:
 
     def close(self) -> None:
         self.connection.close()
+
+    def reopen(self, *, create: bool = False) -> None:
+        self.connection = sqlite3.connect(
+            self.path if create else self.path.resolve().as_uri() + "?mode=rw",
+            uri=not create,
+        )
+        self.connection.execute("pragma foreign_keys=on")

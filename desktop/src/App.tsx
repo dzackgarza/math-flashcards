@@ -1295,11 +1295,13 @@ export default function App() {
     setStudyEditing(true);
   }
 
-  async function refreshStudySettings() {
+  async function refreshStudyQueue(cause: "settings" | "copy" = "settings") {
     let active = studyCurrent.current;
     if (!active) return;
     let next: StudyNext;
-    if (active.ended) {
+    if (active.ended && cause === "copy") {
+      next = { ...active.next, undoable: false };
+    } else if (active.ended) {
       const begun = await request(
         { action: "study-begin", workspace, scope: active.scope },
         studyBegunSchema,
@@ -1315,7 +1317,12 @@ export default function App() {
       );
     }
     if (studyCurrent.current === active)
-      await updateStudy(next, "Settings changed. Grade a card to enable Undo.");
+      await updateStudy(
+        next,
+        cause === "copy"
+          ? "Store copied. Grade a card to enable Undo."
+          : "Settings changed. Grade a card to enable Undo.",
+      );
   }
 
   async function resumeStudy() {
@@ -2979,7 +2986,8 @@ export default function App() {
               undoReason={study.undoReason}
               onUndo={undoStudy}
               onEdit={editStudy}
-              onSettings={refreshStudySettings}
+              onSettings={refreshStudyQueue}
+              onCopied={() => refreshStudyQueue("copy")}
               shortcuts={statisticsRecord === null}
               onNext={(next) =>
                 void updateStudy(next).catch((failure) =>

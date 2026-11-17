@@ -1,0 +1,2 @@
+{"id": "ee1690ea-55e8-4d83-94a2-1e0e7b60aa0f", "operation": "analysis-run", "input_sha256": "3c1876d9725190a3ceed9f3ff2acf58c51f6488302e4ef275170883f9739ea90", "event": "started", "at": "2026-11-17T04:01:42.491409+00:00"}
+{"id": "ee1690ea-55e8-4d83-94a2-1e0e7b60aa0f", "operation": "analysis-run", "input_sha256": "3c1876d9725190a3ceed9f3ff2acf58c51f6488302e4ef275170883f9739ea90", "event": "completed", "at": "2026-11-17T04:01:42.520942+00:00", "outcome": "ok", "elapsed_seconds": 0.02638128900434822, "profile": "ee1690ea-55e8-4d83-94a2-1e0e7b60aa0f.pstats"}

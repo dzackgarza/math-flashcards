@@ -818,6 +818,20 @@ place that the user chose (another disk, a directory that a backup tool covers) 
 opens the collection, the last grade cannot be undone. The window shows Undo as
 unavailable, as after a sync (FR-021).
 
+Copy closes and reopens the existing collection and record objects. It does not
+call `Store.close`, which ends active sessions, or construct a new `Store`, which
+performs interrupted-session recovery. The record keeps its writer identity and
+open session. After copying, the window requests a fresh presentation from Anki's
+reopened queue before accepting another grade. A finished session stays finished.
+The copied record holds exactly the facts committed before copying; the source
+then appends the copied event and any later presentations.
+
+The destination must exist and be outside the live Study data directory, so that
+copying cannot recurse into the source or create an invalid registry entry. An
+incomplete destination created by a failed copy goes to the trash; the original
+store reopens. Attaching a completed copy on a fresh data directory preserves all
+earlier rows and appends normal writer, recovery, and attachment facts.
+
 ## R19. Basis of the learning decisions in published research
 
 Constitution principle X. The keys refer to `docs/learning-research.md`. Each source

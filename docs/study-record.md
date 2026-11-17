@@ -30,6 +30,22 @@ adds tables or nullable columns and records the addition in `schema`. An analysi
 reads the record and stores no permanent result here. These rules are specified in
 the [learning-record contract](../specs/001-in-app-review/contracts/learning-record.md).
 
+## Copying a learning store
+
+**Save a copy** in Study settings accepts an existing destination folder and writes
+`math-flashcards-study-<UTC time>/<store ID>/`. The directory contains the collection,
+record, retained media and rendering assets, attachment metadata, and backups.
+The host closes both databases for copying, then reopens them and continues the
+session. The copy contains the committed record before the source's new `copied`
+event. Undo becomes available again after the next grade.
+
+The destination must be outside the live Study data directory. To attach a copy
+on another machine, place its store-ID directory under
+`$XDG_DATA_HOME/math-flashcards/study/`, open the authored card workspace, and select
+the store in the attachment dialog. Existing rows remain unchanged; opening and
+attaching add their own facts. The store holds historical card content, but the
+authored Markdown workspace remains the source for future edits.
+
 ## Common columns
 
 The immutable `desktop/tests/fixtures/study/record-v1.sqlite3` fixture and its

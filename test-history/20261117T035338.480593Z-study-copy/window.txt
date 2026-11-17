@@ -1,0 +1,81 @@
+Math Flashcards
+workspace
+Search
+Ctrl K
+Copy
+New:
+1
+Learning:
+0
+Review:
+0
+
+New · Learning · Review
+
+New:
+1
+Learning:
+0
+Review:
+0
+
+Study cards ready
+
+Workspace checks complete
+
+Problems
+Update Anki packages
+1
+New deck
+Study
+Study settings
+Undo
+Ctrl Z
+Edit
+E
+Return to editor
+Esc
+
+New: 1
+
+Learning: 0
+
+Review: 0
+
+Copy.md
+
+FRONT
+Recall 1.
+Show answer
+Space
+
+Study store: /tmp/flashcards-browser-cache-nlslubic/data/math-flashcards/study/ce447cc8-be5d-45aa-95c6-1534969a0d5e
+
+Learning record: /tmp/flashcards-browser-cache-nlslubic/data/math-flashcards/study/ce447cc8-be5d-45aa-95c6-1534969a0d5e/record.sqlite3
+
+Study settings
+
+These settings apply to the whole workspace. Initial values are Anki defaults.
+
+New cards per day
+
+Whole number from 0 to 9999
+
+Reviews per day
+
+Whole number from 0 to 9999
+
+Target recall
+
+0.70 to 0.99. A higher target schedules reviews sooner.
+
+Save settings
+Fit scheduler
+Save a copy
+
+Copy the complete learning store to a chosen folder. This includes scheduling, recorded history, and retained images.
+
+Copy destination
+Save a copy
+
+Copy saved: /tmp/flashcards-study-copy-4j0ycknl/copies/math-flashcards-study-20261117T035343.145643Z/ce447cc8-be5d-45aa-95c6-1534969a0d5e

@@ -1,0 +1,47 @@
+1: starting server using command "just -f ../justfile desktop-web"
+and when url "[ 'http-get://127.0.0.1:1420' ]" is responding with HTTP status code 200
+running tests using command "xvfb-run -a uv run --upgrade tests/study-copy.py"
+
+cd desktop && bunx vite --host 127.0.0.1
+
+  VITE v8.3.8  ready in 245 ms
+
+  ➜  Local:   http://127.0.0.1:1420/
+[vite-plugin-static-copy] Collected 386 items.
+Test evidence: /home/dzack/gitclones/math-flashcards/test-history/20261117T035756.470025Z-study-copy
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-copy.py", line 311, in <module>
+    (main if mode == "copy" else restore)(artifacts)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-copy.py", line 284, in main
+    subprocess.run(
+    ~~~~~~~~~~~~~~^
+        [
+        ^
+    ...<10 lines>...
+        check=True,
+        ^^^^^^^^^^^
+    )
+    ^
+  File "/home/dzack/.local/share/uv/python/cpython-3.14.7-linux-x86_64-gnu/lib/python3.14/subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['bunx', 'start-server-and-test', 'bunx vite --host 127.0.0.1 --port 1421 --strictPort', 'http-get://127.0.0.1:1421', 'uv run --upgrade tests/study-copy.py restore']' returned non-zero exit status 1.
+Error: Command failed with exit code 1: xvfb-run -a uv run --upgrade tests/study-copy.py
+    at makeError (/home/dzack/gitclones/math-flashcards/desktop/node_modules/execa/lib/error.js:60:11)
+    at handlePromise (/home/dzack/gitclones/math-flashcards/desktop/node_modules/execa/index.js:118:26)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  shortMessage: 'Command failed with exit code 1: xvfb-run -a uv run --upgrade tests/study-copy.py',
+  command: 'xvfb-run -a uv run --upgrade tests/study-copy.py',
+  escapedCommand: '"xvfb-run -a uv run --upgrade tests/study-copy.py"',
+  exitCode: 1,
+  signal: undefined,
+  signalDescription: undefined,
+  stdout: undefined,
+  stderr: undefined,
+  failed: true,
+  timedOut: false,
+  isCanceled: false,
+  killed: false
+}
+error: recipe `desktop-web` was terminated on line 64 by signal 2

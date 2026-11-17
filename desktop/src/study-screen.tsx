@@ -12,12 +12,14 @@ import {
   Title,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
+import { useHotkeys } from "@mantine/hooks";
 import {
   request,
   studyNextSchema,
   studyOpenSchema,
   studySettingsSchema,
   studyFitSchema,
+  storeCopySchema,
   type StudyFit,
   type StudyNext,
   type StudyOpen,
@@ -27,6 +29,7 @@ import type { MathJaxRuntime } from "./math";
 import { isTauri } from "@tauri-apps/api/core";
 import { revealItemInDir } from "@tauri-apps/plugin-opener";
 import { dirname } from "pathe";
+import { open } from "@tauri-apps/plugin-dialog";
 
 type Grade = "again" | "hard" | "good" | "easy";
 const grades: Grade[] = ["again", "hard", "good", "easy"];
@@ -35,10 +38,12 @@ function StudySettings({
   workspace,
   onSaved,
   onClose,
+  onCopied,
 }: {
   workspace: string;
   onSaved: () => Promise<void>;
   onClose: () => void;
+  onCopied: () => Promise<void>;
 }) {
   const form = useForm({
     initialValues: {
@@ -50,8 +55,29 @@ function StudySettings({
   const [ready, setReady] = useState(false);
   const [fit, setFit] = useState<StudyFit | null>(null);
   const [fitting, setFitting] = useState(false);
+  const [destination, setDestination] = useState("");
+  const [copying, setCopying] = useState(false);
+  const [copied, setCopied] = useState("");
+  const copyStatus = useRef<HTMLParagraphElement>(null);
+  useEffect(() => {
+    if (copied && !copying)
+      copyStatus.current?.scrollIntoView({ block: "nearest" });
+  }, [copied, copying]);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
+  useHotkeys(
+    [
+      [
+        "Escape",
+        (event) => {
+          event.stopPropagation();
+          if (!pending) onClose();
+        },
+      ],
+    ],
+    [],
+    true,
+  );
   useEffect(() => {
     let active = true;
     request({ action: "study-open", workspace }, studyOpenSchema)
@@ -146,19 +172,32 @@ function StudySettings({
       setPending(false);
     }
   }
+
+  async function saveCopy() {
+    setPending(true);
+    setCopying(true);
+    setCopied("");
+    setError("");
+    try {
+      const result = await request(
+        { action: "study-copy", workspace, directory: destination },
+        storeCopySchema,
+      );
+      setCopied(result.path);
+      await onCopied();
+    } catch (failure) {
+      setError(String(failure));
+    } finally {
+      setPending(false);
+      setCopying(false);
+    }
+  }
   return (
     <Modal
       opened
       title="Study settings"
       onClose={onClose}
       closeOnEscape={false}
-      onKeyDown={(event) => {
-        if (event.key === "Escape") {
-          event.preventDefault();
-          event.stopPropagation();
-          if (!pending) onClose();
-        }
-      }}
       closeOnClickOutside={!pending}
       withCloseButton={!pending}
     >
@@ -268,6 +307,55 @@ function StudySettings({
                 </Button>
               </Group>
             </Stack>
+          )}
+          <Title order={3}>Save a copy</Title>
+          <Text size="sm">
+            Copy the complete learning store to a chosen folder. This includes
+            scheduling, recorded history, and retained images.
+          </Text>
+          <TextInput
+            label="Copy destination"
+            value={destination}
+            onChange={(event) => setDestination(event.currentTarget.value)}
+            disabled={pending}
+          />
+          {isTauri() && (
+            <Button
+              variant="default"
+              disabled={pending}
+              onClick={async () => {
+                try {
+                  const directory = await open({
+                    directory: true,
+                    multiple: false,
+                    title: "Choose a destination for the learning store",
+                  });
+                  if (directory) setDestination(directory);
+                } catch (failure) {
+                  setError(String(failure));
+                }
+              }}
+            >
+              Choose copy folder
+            </Button>
+          )}
+          <Button
+            disabled={pending || !destination.trim()}
+            loading={copying}
+            onClick={() => void saveCopy()}
+          >
+            Save a copy
+          </Button>
+          {copying && <Text role="status">Saving the learning store…</Text>}
+          {copied && !copying && (
+            <Text
+              ref={copyStatus}
+              role="status"
+              size="sm"
+              style={{ overflowWrap: "anywhere" }}
+            >
+              Copy saved: {copied}
+            </Text>
           )}
         </Stack>
       </form>
@@ -586,6 +674,7 @@ export function StudyScreen({
   onEdit,
   undoReason,
   onSettings,
+  onCopied,
   shortcuts,
 }: {
   workspace: string;
@@ -599,6 +688,7 @@ export function StudyScreen({
   onEdit: () => Promise<void>;
   undoReason: string;
   onSettings: () => Promise<void>;
+  onCopied: () => Promise<void>;
   shortcuts: boolean;
 }) {
   const [settingsOpen, setSettingsOpen] = useState(false);
@@ -749,6 +839,7 @@ export function StudyScreen({
         <StudySettings
           workspace={workspace}
           onSaved={onSettings}
+          onCopied={onCopied}
           onClose={() => setSettingsOpen(false)}
         />
       )}

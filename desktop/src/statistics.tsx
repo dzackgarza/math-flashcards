@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useHotkeys } from "@mantine/hooks";
 import {
   Alert,
   Button,
@@ -33,6 +34,19 @@ export function Statistics({
   const [pending, setPending] = useState(true);
   const [selected, setSelected] = useState("");
   const generation = useRef(0);
+  useHotkeys(
+    [
+      [
+        "Escape",
+        (event) => {
+          event.stopPropagation();
+          onClose();
+        },
+      ],
+    ],
+    [],
+    true,
+  );
   useEffect(() => {
     let active = true;
     request({ action: "analysis-list" }, analysisListSchema)
@@ -87,13 +101,6 @@ export function Statistics({
       onClose={onClose}
       size="xl"
       closeOnEscape={false}
-      onKeyDown={(event) => {
-        if (event.key === "Escape") {
-          event.preventDefault();
-          event.stopPropagation();
-          onClose();
-        }
-      }}
     >
       <Stack className="statistics">
         {analyses.map((analysis) => (

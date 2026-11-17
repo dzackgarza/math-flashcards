@@ -246,12 +246,12 @@ before Study resumes. Both session start and the in-session editor return use th
 
 ### Tests for the copy ⚠️
 
-- [ ] T075 Add failing steps to `desktop/tests/study.py`: with a session in progress, **Save a copy** in the Study settings, with a temporary directory, writes `math-flashcards-study-<time>/<store ID>/` with `store.json`, `collection.anki2`, `record.sqlite3`, `record-media/`, and `record-assets/`; `sqlite3` opens the copy's record and finds every row that was committed before the copy, and every retained media and rendering asset matches its recorded digest; the store's record has a `store_event` row of kind `copied` with that path; the next grade succeeds, and Undo is unavailable until it; a directory that does not exist gives `CopyFailed` with the cause, and the store is unchanged; after the app is stopped and started with an empty `XDG_DATA_HOME` in which the copy is placed under `math-flashcards/study/`, the window lists the copy, and after the user attaches it the counts and every record row equal those of the copy (SC-017)
+- [X] T075 Add failing steps to `desktop/tests/study-copy.py`: with a session in progress, **Save a copy** in the Study settings, with a temporary directory, writes `math-flashcards-study-<time>/<store ID>/` with `store.json`, `collection.anki2`, `record.sqlite3`, `record-media/`, and `record-assets/`; `sqlite3` opens the copy's record and finds every row that was committed before the copy, and every retained media and rendering asset matches its recorded digest; the store's record has a `store_event` row of kind `copied` with that path; the next grade succeeds, and Undo is unavailable until it; a directory that does not exist gives `CopyFailed` with the cause, and the store is unchanged; after the app is stopped and started with an empty `XDG_DATA_HOME` in which the copy is placed under `math-flashcards/study/`, the window lists the copy, and after the user attaches it the counts and every record row equal those of the copy (SC-017)
 
 ### Implementation for the copy
 
-- [ ] T076 Implement `study-copy` in `desktop/study/store.py` by R18: close the collection and the record, copy the store directory with `shutil.copytree`, open both again, write the `store_event` row, and return `CopyFailed` with the store open and unchanged when the copy cannot be written
-- [ ] T077 Add **Save a copy** to the Study settings in `desktop/src/study-screen.tsx`, with the folder picker of the dialog plugin, progress while the copy runs, and the path of the finished copy
+- [X] T076 Implement `study-copy` in `desktop/study/store.py` by R18: close the collection and the record, copy the store directory with `shutil.copytree`, open both again, write the `store_event` row, and return `CopyFailed` with the store open and unchanged when the copy cannot be written
+- [X] T077 Add **Save a copy** to the Study settings in `desktop/src/study-screen.tsx`, with the folder picker of the dialog plugin, progress while the copy runs, and the path of the finished copy
 
 **Checkpoint**: The T075 steps pass
 

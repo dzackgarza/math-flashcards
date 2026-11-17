@@ -1,5 +1,6 @@
 """Workspace stores using Anki's collection API and the app's permanent record."""
 
+import shutil
 import sqlite3
 from contextlib import closing
 from datetime import UTC, datetime
@@ -13,6 +14,7 @@ from anki.decks_pb2 import DeckTreeNode
 from anki.errors import BackendIOError, DBError
 from platformdirs import user_data_path
 from pydantic import ValidationError
+from send2trash import send2trash
 
 from study.record import TABLES, Record, Response
 from study.values import (
@@ -21,6 +23,7 @@ from study.values import (
     Fit,
     Open,
     Settings,
+    StoreCopy,
     StoreSummary,
     StudyError,
     StudyFailure,
@@ -243,6 +246,43 @@ class Store:
         temporary = self.directory / "store.json.tmp"
         temporary.write_text(self.metadata.model_dump_json())
         temporary.replace(self.directory / "store.json")
+
+    def copy(self, directory: str) -> StoreCopy:
+        try:
+            destination = Path(directory).resolve(strict=True)
+            if not destination.is_dir():
+                raise NotADirectoryError(f"Not a directory: {destination}")
+            if destination.is_relative_to(self.directory.parent.resolve()):
+                raise ValueError(
+                    "Choose a copy destination outside the live Study data directory."
+                )
+            parent = destination / datetime.now(UTC).strftime(
+                "math-flashcards-study-%Y%m%dT%H%M%S.%fZ"
+            )
+            parent.mkdir()
+        except (OSError, ValueError) as error:
+            raise StudyFailure(
+                StudyError(kind="CopyFailed", message=str(error))
+            ) from error
+        copied = parent / self.metadata.id
+        # Closing both SQLite owners checkpoints their WALs. Reopen the same
+        # objects to preserve the active session and writer (research.md R18).
+        self.collection.close()
+        self.record.close()
+        try:
+            try:
+                shutil.copytree(self.directory, copied)
+            finally:
+                self.collection.reopen()
+                self.record.reopen()
+                self.grade_responses.clear()
+        except OSError as error:
+            send2trash(str(parent))
+            raise StudyFailure(
+                StudyError(kind="CopyFailed", message=str(error))
+            ) from error
+        self.record.store_event("copied", str(copied))
+        return StoreCopy(path=str(copied))
 
     def close(self) -> None:
         sessions = self.record.connection.execute(

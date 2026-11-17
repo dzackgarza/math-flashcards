@@ -16,6 +16,7 @@ from study.values import (
     ApplyFitRequest,
     AttachRequest,
     BeginRequest,
+    CopyRequest,
     Existing,
     New,
     Request,
@@ -58,6 +59,7 @@ def main(*, release: str) -> None:
                                 | SessionRequest()
                                 | SettingsRequest()
                                 | ApplyFitRequest()
+                                | CopyRequest()
                                 | WorkspaceRequest(action="study-counts")
                                 | WorkspaceRequest(action="study-fit")
                             ):
@@ -82,6 +84,8 @@ def main(*, release: str) -> None:
                                         result = fit(store)
                                     case ApplyFitRequest():
                                         result = apply_fit(store, request.parameters)
+                                    case CopyRequest():
+                                        result = store.copy(request.directory)
                                     case AnswerRequest():
                                         result = answer(store, request)
                                     case SessionRequest(action="study-next"):

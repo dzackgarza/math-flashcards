@@ -27,7 +27,9 @@
 - **EDIT002 — Let a dialog consume its closing key.** Close a dialog on Escape and
   allow the same event to leave Study => stop propagation before closing the dialog.
   Changing the open-state flag alone can enable the underlying shortcut during
-  that same event.
+  that same event. A completed operation can leave focus on the document after
+  disabling a control; use Mantine's document-level hotkey hook while the dialog
+  is mounted, including input and editable targets.
 
 This collection supports mathematical research. Prioritize knowledge that helps
 the researcher recognize a useful result, check its hypotheses, construct an
