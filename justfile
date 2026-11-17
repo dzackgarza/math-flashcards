@@ -47,6 +47,10 @@ desktop-deploy:
 desktop-install-test:
     uv run --upgrade desktop/tests/installation.py
 
+# Check the installed Study runtime and preservation of learning data on update
+desktop-install-study-test:
+    uv run --upgrade desktop/tests/installation.py --study
+
 # Run the native desktop app
 desktop-dev:
     cd desktop && bunx tauri dev

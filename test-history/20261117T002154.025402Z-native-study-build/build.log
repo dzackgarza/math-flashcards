@@ -1,0 +1,40 @@
+cd desktop && bunx tsc --noEmit
+cd desktop && bunx tauri build --no-bundle
+        Info Looking up installed tauri packages to check mismatched versions...
+     Running beforeBuildCommand `just -f ../justfile desktop-frontend`
+cd desktop && bunx tsc --noEmit
+cd desktop && bunx vite build
+vite v8.3.8 building client environment for production...
+transforming...
+✓ 7967 modules transformed.
+rendering chunks...
+[vite-plugin-static-copy] Copied 386 items.
+computing gzip size...
+dist/index.html                                                0.40 kB │ gzip:   0.27 kB
+dist/assets/inter-vietnamese-wght-normal-CBcvBZtf.woff2       10.25 kB
+dist/assets/inter-greek-ext-wght-normal-DlzME5K_.woff2        11.23 kB
+dist/assets/inter-cyrillic-wght-normal-DqGufNeO.woff2         18.74 kB
+dist/assets/inter-greek-wght-normal-CkhJZR-_.woff2            18.99 kB
+dist/assets/inter-cyrillic-ext-wght-normal-BOeWTOD4.woff2     25.96 kB
+dist/assets/inter-latin-wght-normal-Dx4kXJAl.woff2            48.25 kB
+dist/assets/inter-latin-ext-wght-normal-DO1Apj_S.woff2        85.06 kB
+dist/assets/editor-DhWhjdb4.css                                9.06 kB │ gzip:   2.21 kB
+dist/assets/index-C1vLUGh6.css                               270.33 kB │ gzip:  40.56 kB
+dist/assets/quiver-Mx4CRAYq.js                                 6.16 kB │ gzip:   2.32 kB
+dist/assets/study-screen-BuTmCq4S.js                           6.48 kB │ gzip:   2.37 kB
+dist/assets/index-BS6784oY.js                              1,057.77 kB │ gzip: 332.21 kB
+dist/assets/editor-BFWKmBnI.js                             1,470.01 kB │ gzip: 500.52 kB
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 1.12s
+   Compiling tauri-plugin-opener v2.7.3
+   Compiling is-docker v0.2.0
+   Compiling is-wsl v0.4.0
+   Compiling open v5.4.5
+   Compiling desktop v0.1.0 (/home/dzack/gitclones/math-flashcards/desktop/src-tauri)
+    Finished `release` profile [optimized] target(s) in 2m 06s
+       Built application at: /home/dzack/gitclones/math-flashcards/desktop/src-tauri/target/release/desktop

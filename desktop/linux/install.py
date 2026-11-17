@@ -1,11 +1,10 @@
 # /// script
 # requires-python = ">=3.12"
-# dependencies = ["cyclopts", "pydantic"]
+# dependencies = ["cyclopts", "pydantic", "platformdirs"]
 # ///
 """Install the native app and its desktop entry in user directories."""
 
 import configparser
-import json
 import os
 import shlex
 import shutil
@@ -14,6 +13,7 @@ import tempfile
 from pathlib import Path
 
 import cyclopts
+from platformdirs import user_data_path
 from pydantic import BaseModel, Field, field_validator
 
 APP_ID = "dev.math.flashcards"
@@ -33,21 +33,17 @@ class Installation(BaseModel):
         return value
 
 
+class Bundle(BaseModel):
+    resources: dict[str, str]
+
+
 class TauriConfiguration(BaseModel):
     productName: str
+    bundle: Bundle
 
 
 class RendererResource(BaseModel):
     identity: str = Field(pattern="^[a-f0-9]{64}$")
-
-
-def data_home() -> Path:
-    # The standard defines unset, empty and relative values:
-    # https://specifications.freedesktop.org/basedir/latest/
-    value = os.environ.get("XDG_DATA_HOME")
-    if value and Path(value).is_absolute():
-        return Path(value)
-    return Path.home() / ".local" / "share"
 
 
 def exec_argument(path: Path) -> str:
@@ -71,10 +67,28 @@ def publish(source: Path, destination: Path) -> None:
 
 def install(spec: Installation) -> Path:
     binary = spec.build_dir / "desktop"
-    resources = [
-        spec.build_dir / name
-        for name in ("backend.py", "paired-cards.lua", "assets.json")
-    ]
+    configuration = TauriConfiguration.model_validate_json(
+        (SOURCES.parent / "src-tauri" / "tauri.conf.json").read_bytes()
+    )
+    resources: list[Path] = []
+    # Tauri's resource map owns the packaged layout. The installer regenerates
+    # only its interpreter pointer and active-renderer link for the new release.
+    for destination in configuration.bundle.resources.values():
+        if destination in {"runtime.txt", "active-assets.json"}:
+            continue
+        path = spec.build_dir / destination
+        if destination.endswith("/"):
+            if not path.is_dir():
+                raise FileNotFoundError(f"Build the desktop resources first: {path}")
+            resources.extend(
+                sorted(
+                    file
+                    for file in path.rglob("*")
+                    if file.is_file() and "__pycache__" not in file.parts
+                )
+            )
+        else:
+            resources.append(path)
     archive = spec.build_dir / "asset-sets"
     assets = RendererResource.model_validate_json(
         (spec.build_dir / "assets.json").read_bytes()
@@ -82,14 +96,6 @@ def install(spec: Installation) -> Path:
     archived_assets = archive / (assets.identity + ".json")
     if not archived_assets.is_file():
         raise FileNotFoundError(f"Prepare renderer assets first: {archived_assets}")
-    resources = [*sorted(archive.glob("*.json")), *resources]
-    resources.extend(
-        sorted(
-            path
-            for path in (spec.build_dir / "tikz-assets").rglob("*")
-            if path.is_file()
-        )
-    )
     if not any(path.name == "tikzcd.lua" for path in resources):
         raise FileNotFoundError("Prepare the bundled TikZ renderer first.")
     for source in (binary, *resources):
@@ -103,9 +109,6 @@ def install(spec: Installation) -> Path:
         dependency_directories.append(str(Path(executable).parent))
 
     application = spec.data_dir / "math-flashcards"
-    configuration = TauriConfiguration.model_validate(
-        json.loads((SOURCES.parent / "src-tauri" / "tauri.conf.json").read_text())
-    )
     releases = application / "releases"
     releases.mkdir(parents=True, exist_ok=True)
     release = Path(tempfile.mkdtemp(prefix="release-", dir=releases))
@@ -147,6 +150,16 @@ def install(spec: Installation) -> Path:
         )
         subprocess.run(
             [str(interpreter), "-I", "-c", "from ankdown.cli import RendererAssets"],
+            check=True,
+        )
+        subprocess.run(
+            [
+                str(interpreter),
+                "-I",
+                "-c",
+                "import sys; sys.path.insert(0, sys.argv[1]); import anki.collection, study.host, analysis",
+                str(resource_directory),
+            ],
             check=True,
         )
         validated = RendererResource.model_validate_json(
@@ -255,7 +268,7 @@ def main(
     """
     spec = Installation(
         build_dir=build_dir.resolve(strict=True),
-        data_dir=data_home() if data_dir is None else data_dir,
+        data_dir=user_data_path() if data_dir is None else data_dir,
         bin_dir=Path.home() / ".local" / "bin" if bin_dir is None else bin_dir,
     )
     print(install(spec))

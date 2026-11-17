@@ -3,8 +3,8 @@
 # ///
 """Check installation and update with real build files and desktop tools."""
 
-import configparser
 import argparse
+import configparser
 import hashlib
 import json
 import os
@@ -13,6 +13,7 @@ import subprocess
 import tempfile
 import zipfile
 from pathlib import Path
+
 from evidence import evidence
 
 
@@ -127,13 +128,17 @@ def study_installation(artifacts: Path) -> None:
 def prepare_asset_update(build: Path, candidate: Path, resources: Path) -> None:
     """Prepare a changed renderer set with the real bridge's asset model."""
     candidate.mkdir()
-    for name in ("desktop", "backend.py", "paired-cards.lua", "assets.json"):
-        shutil.copy2(build / name, candidate / name)
-    shutil.copytree(build / "asset-sets", candidate / "asset-sets")
-    # A test update must be a *complete* candidate. Omitting the newly
-    # prepared TikZ renderer would make its failure an installation-input
-    # failure instead of exercising the intended disconnected upgrade.
-    shutil.copytree(build / "tikz-assets", candidate / "tikz-assets")
+    configuration = json.loads(
+        (Path(__file__).resolve().parents[1] / "src-tauri" / "tauri.conf.json").read_text()
+    )
+    shutil.copy2(build / "desktop", candidate / "desktop")
+    for name in configuration["bundle"]["resources"].values():
+        if name in {"runtime.txt", "active-assets.json"}:
+            continue
+        if name.endswith("/"):
+            shutil.copytree(build / name, candidate / name)
+        else:
+            shutil.copy2(build / name, candidate / name)
     python = (resources / "runtime.txt").read_text().strip()
     subprocess.run(
         [
