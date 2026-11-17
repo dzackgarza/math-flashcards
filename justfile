@@ -97,6 +97,7 @@ desktop-test scenario="full":
     scenarios["study-fit"] = "xvfb-run -a uv run --upgrade tests/study-fit.py"
     scenarios["study-statistics"] = "xvfb-run -a uv run --upgrade tests/study-statistics.py"
     scenarios["study-copy"] = "xvfb-run -a uv run --upgrade tests/study-copy.py"
+    scenarios["study-preservation"] = "xvfb-run -a uv run --upgrade tests/study-preservation.py"
     environment.setdefault("UV_CACHE_DIR", subprocess.check_output(["uv", "cache", "dir"], text=True).strip())
     environment.setdefault("PLAYWRIGHT_BROWSERS_PATH", str(Path(os.environ.get("XDG_CACHE_HOME", str(Path.home() / ".cache"))) / "ms-playwright"))
     with evidence("browser-{{scenario}}", Path("desktop/tests/fixtures")) as artifacts, tempfile.TemporaryDirectory(prefix="flashcards-browser-cache-") as directory:

@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/evidence.py", line 53, in evidence
+    yield directory
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-preservation.py", line 178, in <module>
+    main(artifacts)
+    ~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-preservation.py", line 74, in main
+    first_backup = paired(store)
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-preservation.py", line 40, in paired
+    assert event is not None, "Opening or closing Study must record an Anki backup."
+           ^^^^^^^^^^^^^^^^^
+AssertionError: Opening or closing Study must record an Anki backup.
