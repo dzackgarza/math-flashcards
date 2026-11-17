@@ -618,7 +618,28 @@ current parameters when it has no training item).
 (probed for presence, not called). The Python library has a public wrapper only for
 `compute_fsrs_params_from_items`; the search-based call is reached through the
 collection's backend object, as Anki's own deck-options page reaches it (read). The
-amount of history that Anki needs is decided by Anki's code and is not measured here.
+amount of history that Anki needs is decided by Anki's code.
+
+`desktop/tests/fit_history.py` measures a minimal dated history against the installed
+wheel. One initial learning row produces no training item. Adding a review on the
+next day produces one item; the fit accepts it and both evaluations are finite.
+In this fixture Anki retains the current parameters, so acceptance is not evidence
+of a useful personal fit. The UI must display the actual candidate and measures,
+including equality with the current set.
+
+| Synthetic history | Training items | Fit time |
+| --- | ---: | ---: |
+| Empty | 0 | 0.002 s |
+| Initial learning row | 0 | <0.001 s |
+| Initial learning row and next-day review | 1 | 0.104 s |
+
+The reproducible probe retains full parameters, log loss, RMSE, revision,
+environment, and timing under `test-history/*-fit-history`. These observations
+establish the minimum for this dated fixture, not a universal sufficient sample
+for personal scheduling. [Anki's fit implementation](https://github.com/ankitects/anki/blob/main/rslib/src/scheduler/fsrs/params.rs)
+returns the current parameters when there are no items and can retain them when
+they evaluate at least as well as the candidate. Its `fsrs_items` counts training
+observations, not every raw review-log row.
 
 ## R15. One running copy
 
@@ -846,9 +867,6 @@ themselves; that needs a checked answer.
 
 ## Unmeasured
 
-- The smallest review history that Anki's fit (`compute_fsrs_params`) accepts in the
-  wheel.
-- The time that the fit takes.
 - The size of the learning record over years. An estimate from the row contents is about
   1 kB for each presentation.
 - The time to render all 68 decks for the first sync. It bounds SC-006's first
