@@ -1,0 +1,23 @@
+The commutative diagram did not compile through the shared TikZ-cd renderer. Error running filter '/home/dzack/gitclones/math-flashcards/desktop/tikz-assets/tikzcd.lua':
+...gitclones/math-flashcards/desktop/tikz-assets/tikzcd.lua:5: module 'utilities' not found:
+	no field package.preload['utilities']
+	no file '/usr/local/share/lua/5.4/utilities.lua'
+	no file '/usr/local/share/lua/5.4/utilities/init.lua'
+	no file '/usr/share/lua/5.4/utilities.lua'
+	no file '/usr/share/lua/5.4/utilities/init.lua'
+	no file '/usr/local/lib/lua/5.4/utilities.lua'
+	no file '/usr/local/lib/lua/5.4/utilities/init.lua'
+	no file '/usr/lib/lua/5.4/utilities.lua'
+	no file '/usr/lib/lua/5.4/utilities/init.lua'
+	no file './utilities.lua'
+	no file './utilities/init.lua'
+	no file '/tmp/flashcards-diagram-runtime-2j0jqa3h/home/.pandoc/filters/utilities.lua'
+	no file ''
+	no file '/usr/local/lib/lua/5.4/utilities.so'
+	no file '/usr/lib/lua/5.4/utilities.so'
+	no file '/usr/local/lib/lua/5.4/loadall.so'
+	no file '/usr/lib/lua/5.4/loadall.so'
+	no file './utilities.so'
+stack traceback:
+	...gitclones/math-flashcards/desktop/tikz-assets/tikzcd.lua:5: in main chunk
+
