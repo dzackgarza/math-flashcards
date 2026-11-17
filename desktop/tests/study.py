@@ -144,7 +144,7 @@ def main(artifacts: Path) -> None:
                     ).fetchone()
                     assert writer[0] and writer[1] and writer[2] == 2, writer
                     assert record.execute(
-                        "select kind, path from store_event"
+                        "select kind, path from store_event where kind!='backed-up'"
                     ).fetchall() == [("created", str(workspace))]
                     assert record.execute(
                         "select source from parameter_set"
@@ -616,7 +616,7 @@ def main(artifacts: Path) -> None:
                 ]
                 with closing(sqlite3.connect(record_path)) as record:
                     assert record.execute(
-                        "select kind, path from store_event order by id"
+                        "select kind, path from store_event where kind!='backed-up' order by id"
                     ).fetchall() == [
                         ("created", str(workspace)),
                         ("attached", str(other)),

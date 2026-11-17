@@ -1,6 +1,6 @@
 # /// script
 # requires-python = ">=3.12"
-# dependencies = ["selenium", "psutil"]
+# dependencies = ["selenium", "psutil", "send2trash"]
 # ///
 """Open and restart Study through the built app's actual native command."""
 
@@ -21,18 +21,21 @@ from selenium.webdriver.support import expected_conditions as conditions
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.webkitgtk.options import Options
 from selenium.webdriver.webkitgtk.service import Service
+from send2trash import send2trash
 
 
 def main(artifacts: Path) -> None:
     desktop = Path(__file__).resolve().parents[1]
     with tempfile.TemporaryDirectory(prefix="flashcards-native-study-") as temporary:
-        root = Path(temporary)
-        workspace = root / "workspace"
+        root = Path(temporary) / "home"
+        root.mkdir()
+        workspace = Path(temporary) / "workspace"
         shutil.copytree(desktop / "tests" / "fixtures" / "study", workspace)
         preferences = root / "config" / "dev.math.flashcards" / "preferences.json"
         preferences.parent.mkdir(parents=True)
         preferences.write_text(json.dumps({"workspace": str(workspace)}))
         environment = os.environ | {
+            "HOME": str(root),
             "TAURI_WEBVIEW_AUTOMATION": "true",
             "GDK_BACKEND": "x11",
             "XDG_CONFIG_HOME": str(root / "config"),
@@ -166,8 +169,14 @@ def main(artifacts: Path) -> None:
                         == writers + 1
                     )
                     assert record.execute(
-                        "select kind from store_event"
+                        "select kind from store_event where kind!='backed-up'"
                     ).fetchall() == [("created",)]
+                    backup = record.execute(
+                        "select path from store_event where kind='backed-up' order by id limit 1"
+                    ).fetchone()
+                    assert backup is not None
+                    assert Path(backup[0]).is_file()
+                    assert Path(backup[0]).with_suffix(".sqlite3").is_file()
                 wait.until(
                     conditions.element_to_be_clickable(
                         (By.XPATH, '//span[@class="tree-label" and text()="Basics"]')
@@ -313,6 +322,45 @@ def main(artifacts: Path) -> None:
                     alive
                 )
                 assert "event=app-exit" in native_log.read_text()
+                with closing(sqlite3.connect(opened["record"])) as record:
+                    tables = record.execute(
+                        "select name from sqlite_master where type='table'"
+                    ).fetchall()
+                    retained = {
+                        name: record.execute(f'select * from "{name}" order by id').fetchall()
+                        for (name,) in tables
+                    }
+                misplaced = [
+                    str(path.relative_to(root)) for path in root.rglob("*")
+                    if path.is_file() and path.relative_to(root).parts[0]
+                    not in {"config", "cache", "data", "state"}
+                ]
+                assert not misplaced, misplaced
+                shutil.copytree(root / "state", artifacts / "application-state-before-removal")
+                send2trash(str(root / "cache"))
+                send2trash(str(root / "state"))
+                driver = webdriver.Remote(command_executor=service.service_url, options=options)
+                wait = WebDriverWait(driver, 30)
+                wait.until(conditions.text_to_be_present_in_element(
+                    (By.CSS_SELECTOR, '[role="status"][aria-label="Study"]'),
+                    "Study cards ready",
+                ))
+                restored = driver.execute_async_script(script, payload)
+                assert restored["ok"], restored
+                assert restored["result"]["store"] == opened["store"]
+                assert restored["result"]["counts"]["counts"] == {
+                    "new": 0, "learning": 0, "review": 0,
+                }
+                with closing(sqlite3.connect(opened["record"])) as record:
+                    for name, previous in retained.items():
+                        current = record.execute(f'select * from "{name}" order by id').fetchall()
+                        assert current[:len(previous)] == previous, name
+                misplaced = [
+                    str(path.relative_to(root)) for path in root.rglob("*")
+                    if path.is_file() and path.relative_to(root).parts[0]
+                    not in {"config", "cache", "data", "state"}
+                ]
+                assert not misplaced, misplaced
             finally:
                 assert service.process is not None
                 children = psutil.Process(service.process.pid).children(recursive=True)
