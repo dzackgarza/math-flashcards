@@ -1,11 +1,130 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { Alert, Button, Group, Kbd, Stack, Text, Title } from "@mantine/core";
-import { request, studyNextSchema, type StudyNext } from "./bridge";
+import {
+  Alert,
+  Button,
+  Group,
+  Kbd,
+  Modal,
+  Stack,
+  Text,
+  Title,
+} from "@mantine/core";
+import {
+  request,
+  studyNextSchema,
+  studyOpenSchema,
+  type StudyNext,
+  type StudyOpen,
+} from "./bridge";
 import { SideEditor } from "./editor";
 import type { MathJaxRuntime } from "./math";
+import { isTauri } from "@tauri-apps/api/core";
+import { revealItemInDir } from "@tauri-apps/plugin-opener";
+import { dirname } from "pathe";
 
 type Grade = "again" | "hard" | "good" | "easy";
 const grades: Grade[] = ["again", "hard", "good", "easy"];
+
+export function StudyStoreChoice({
+  workspace,
+  stores,
+  onAttached,
+  onClose,
+}: {
+  workspace: string;
+  stores: Extract<StudyOpen, { state: "Unattached" }>["stores"];
+  onAttached: () => void;
+  onClose: () => void;
+}) {
+  const [pending, setPending] = useState(false);
+  const [error, setError] = useState("");
+  async function attach(store: string | null) {
+    if (pending) return;
+    setPending(true);
+    setError("");
+    try {
+      const opened = await request(
+        {
+          action: "study-attach",
+          workspace,
+          choice:
+            store === null ? { kind: "new" } : { kind: "existing", store },
+        },
+        studyOpenSchema,
+      );
+      if (opened.state !== "Open")
+        throw new Error("The study store did not attach.");
+      onAttached();
+    } catch (failure) {
+      setError(String(failure));
+    } finally {
+      setPending(false);
+    }
+  }
+  return (
+    <Modal
+      opened
+      title="Choose a study store"
+      onClose={onClose}
+      size="lg"
+      closeOnClickOutside={!pending}
+      closeOnEscape={!pending}
+      withCloseButton={!pending}
+    >
+      <Stack>
+        <Text>
+          Attach the learning history for this workspace, or start a new store.
+        </Text>
+        {error && <Alert color="red">{error}</Alert>}
+        {stores.map((store) => (
+          <Stack
+            key={store.store}
+            gap="xs"
+            component="section"
+            aria-label={store.paths.at(-1)}
+          >
+            <Text fw={600} style={{ overflowWrap: "anywhere" }}>
+              {store.paths.at(-1)}
+            </Text>
+            <Text size="sm">
+              {store.path_exists
+                ? "Folder exists"
+                : "Folder moved or unavailable"}
+            </Text>
+            <Text size="sm">
+              Last used: {new Date(store.last_used).toLocaleString()}
+            </Text>
+            <Group>
+              <Text>Cards: {store.cards}</Text>
+              <Text>Grades: {store.responses}</Text>
+            </Group>
+            {store.paths.length > 1 && (
+              <Text size="sm" c="dimmed">
+                Earlier paths: {store.paths.slice(0, -1).join(", ")}
+              </Text>
+            )}
+            <Button
+              variant="default"
+              aria-label={`Attach ${store.paths.at(-1)}`}
+              disabled={pending}
+              onClick={() => void attach(store.store)}
+            >
+              Attach
+            </Button>
+          </Stack>
+        ))}
+        <Group justify="space-between">
+          <Button variant="subtle" disabled={pending} onClick={onClose}>
+            Keep editing
+          </Button>
+          <Button disabled={pending} onClick={() => void attach(null)}>
+            Start new
+          </Button>
+        </Group>
+      </Stack>
+    </Modal>
+  );
+}
 
 function Presentation({
   workspace,
@@ -217,6 +336,7 @@ export function StudyScreen({
   onNext: (next: StudyNext) => void;
   onClose: () => void;
 }) {
+  const [folderError, setFolderError] = useState("");
   useEffect(() => {
     if (next.state !== "Finished") return;
     function key(event: KeyboardEvent) {
@@ -268,9 +388,27 @@ export function StudyScreen({
           )}
         </Stack>
       )}
-      <Text size="sm" c="dimmed" className="study-record">
-        Learning record: {record}
-      </Text>
+      <Stack gap="xs" className="study-record">
+        <Text size="sm" c="dimmed">
+          Study store: {dirname(record)}
+        </Text>
+        <Text size="sm" c="dimmed">
+          Learning record: {record}
+        </Text>
+        {isTauri() && (
+          <Button
+            variant="subtle"
+            onClick={() =>
+              void revealItemInDir(record).catch((failure) =>
+                setFolderError(String(failure)),
+              )
+            }
+          >
+            Open learning folder
+          </Button>
+        )}
+        {folderError && <Alert color="red">{folderError}</Alert>}
+      </Stack>
     </Stack>
   );
 }

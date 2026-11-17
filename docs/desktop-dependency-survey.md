@@ -94,6 +94,22 @@ collection require a separate identity/import design if requested.
 
 ## Architecture decision
 
+### Native Study
+
+The Study function uses the `anki` Python library directly for scheduling. Native
+card IDs become Anki scheduling identities; retained Markdown and the shared editor
+renderer own the presentation. The choices and source API references are maintained
+in [the Study research](../specs/001-in-app-review/research.md).
+
+The [Tauri opener plugin](https://v2.tauri.app/plugin/opener/) supplies
+`revealItemInDir` for the learning-record location. It opens the platform file
+manager and selects the record. This replaces the need to write a Linux process
+launcher or choose a file-manager executable. The shell grants the reveal command;
+the interface passes the record path returned by the opened store. Browser
+development shows the paths without a native folder command.
+
+### Authoring and package generation
+
 Selected: side-by-side Front and Back editors with math rendered in place, built
 under `desktop/` in this repository for the personal flashcard collection.
 

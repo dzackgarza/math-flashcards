@@ -308,6 +308,7 @@ pub fn run() {
             diagram: Arc::new(Semaphore::new(1)),
         })
         .plugin(tauri_plugin_dialog::init())
+        .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_store::Builder::default().build())
         .plugin(tauri_plugin_fs::init())
         .setup(|app| {

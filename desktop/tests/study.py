@@ -615,13 +615,27 @@ def main(artifacts: Path) -> None:
                         "select * from store_event order by id"
                     ).fetchall()
                 metadata_before = (store / "store.json").read_bytes()
+                browser = playwright.chromium.launch(headless=False)
+                page = browser.new_page()
+                try:
+                    page.goto("http://127.0.0.1:1420")
+                    page.get_by_role("button", name="Workspace", exact=True).click()
+                    page.get_by_label("Workspace folder").fill(str(workspace))
+                    page.get_by_role(
+                        "button", name="Open workspace", exact=True
+                    ).click()
+                    chooser = page.get_by_role("dialog", name="Choose a study store")
+                    expect(chooser).to_be_visible()
+                    chooser.get_by_role("button", name="Start new", exact=True).click()
+                    expect(chooser).to_have_count(0)
+                    expect(page.get_by_role("status", name="Study")).to_have_text(
+                        "Study cards ready"
+                    )
+                finally:
+                    browser.close()
                 response = api.post(
                     "/api/request",
-                    data={
-                        "action": "study-attach",
-                        "workspace": str(workspace),
-                        "choice": {"kind": "new"},
-                    },
+                    data={"action": "study-open", "workspace": str(workspace)},
                 )
                 assert response.ok, response.text()
                 assert response.json()["store"] != str(store)
@@ -689,6 +703,11 @@ def main(artifacts: Path) -> None:
                                 "image => image.complete && image.naturalWidth > 0"
                             )
                             page.screenshot(path=str(artifacts / "study-image.png"))
+                            page.set_viewport_size({"width": 760, "height": 620})
+                            page.screenshot(
+                                path=str(artifacts / "study-image-small.png")
+                            )
+                            page.set_viewport_size({"width": 1280, "height": 720})
                         if identity == "study-diagram":
                             expect(
                                 study.get_by_role(
@@ -747,6 +766,7 @@ def main(artifacts: Path) -> None:
                     chooser = page.get_by_role("dialog", name="Choose a study store")
                     expect(chooser).to_be_visible()
                     expect(chooser).to_contain_text("Grades: 12")
+                    page.screenshot(path=str(artifacts / "study-store-moved.png"))
                     chooser.get_by_role(
                         "button", name=f"Attach {workspace}", exact=True
                     ).click()

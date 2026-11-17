@@ -162,6 +162,8 @@ export function useStudySync(
   sources: Map<string, SourceResult>,
   assets: string,
   reportError: (message: string) => void,
+  onUnattached: (opened: Extract<StudyOpen, { state: "Unattached" }>) => void,
+  attachmentEpoch: number,
 ) {
   const [status, setStatus] = useState("Preparing study cards");
   useEffect(() => {
@@ -176,6 +178,7 @@ export function useStudySync(
       if (cancelled) return;
       if (opened.state === "Unattached") {
         setStatus("Choose a study store");
+        onUnattached(opened);
         return;
       }
       const paths = entries.map((entry) => entry.path);
@@ -225,7 +228,15 @@ export function useStudySync(
     return () => {
       cancelled = true;
     };
-  }, [workspace, entries, sources, assets, reportError]);
+  }, [
+    workspace,
+    entries,
+    sources,
+    assets,
+    reportError,
+    onUnattached,
+    attachmentEpoch,
+  ]);
   return status;
 }
 
@@ -236,6 +247,7 @@ export function useEditorViews(
   deck: string | null,
   cardId: string | null,
   reportError: (message: string) => void,
+  attachmentEpoch: number,
 ) {
   const opening = useRef<Promise<StudyOpen> | null>(null);
   const writing = useRef<Promise<void>>(Promise.resolve());
@@ -246,7 +258,7 @@ export function useEditorViews(
       ? request({ action: "study-open", workspace }, studyOpenSchema)
       : null;
     void opening.current?.catch((failure) => reportError(String(failure)));
-  }, [workspace, reportError]);
+  }, [workspace, reportError, attachmentEpoch]);
 
   useEffect(() => {
     const ready = opening.current;
@@ -300,7 +312,7 @@ export function useEditorViews(
     };
     finish.current = end;
     return end;
-  }, [workspace, deck, cardId, reportError]);
+  }, [workspace, deck, cardId, reportError, attachmentEpoch]);
 
   return useCallback(() => {
     finish.current?.();

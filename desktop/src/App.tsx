@@ -121,6 +121,7 @@ import {
   studyOpenSchema,
   studyBegunSchema,
   type StudyNext,
+  type StudyOpen,
   type Change,
   type Document,
   type Pending,
@@ -150,6 +151,11 @@ const StudyScreen = lazy(() =>
 );
 const QuiverEditor = lazy(() =>
   import("./quiver").then(({ QuiverEditor }) => ({ default: QuiverEditor })),
+);
+const StudyStoreChoice = lazy(() =>
+  import("./study-screen").then(({ StudyStoreChoice }) => ({
+    default: StudyStoreChoice,
+  })),
 );
 
 function preferences() {
@@ -258,6 +264,18 @@ export default function App() {
   } | null>(null);
   const studyCurrent = useRef(study);
   studyCurrent.current = study;
+  const [attachment, setAttachment] = useState<Extract<
+    StudyOpen,
+    { state: "Unattached" }
+  > | null>(null);
+  const [attachmentEpoch, setAttachmentEpoch] = useState(0);
+  const dismissedAttachment = useRef<string | null>(null);
+  const showAttachment = useCallback(
+    (opened: Extract<StudyOpen, { state: "Unattached" }>) => {
+      if (dismissedAttachment.current !== workspace) setAttachment(opened);
+    },
+    [workspace],
+  );
   const [cardFilter, setCardFilter] = useState("");
   const [selection, setSelection] = useState<string[]>([]);
   const [notice, setNotice] = useState<Notice | null>(null);
@@ -296,12 +314,15 @@ export default function App() {
     sourceRecords,
     assetIdentity,
     setError,
+    showAttachment,
+    attachmentEpoch,
   );
   const finishEditorView = useEditorViews(
     workspace,
     document?.path ?? null,
     study ? null : (selected?.id ?? null),
     setError,
+    attachmentEpoch,
   );
   // Mantine's Tree reinitializes its expansion state from a stale closure
   // whenever `data` changes identity, which can drop a folder the user has just
@@ -1050,10 +1071,10 @@ export default function App() {
       { action: "study-open", workspace },
       studyOpenSchema,
     );
-    if (opened.state !== "Open")
-      throw new Error(
-        "Attach this workspace to a study store before starting Study.",
-      );
+    if (opened.state !== "Open") {
+      setAttachment(opened);
+      return;
+    }
     await syncSavedStudy(workspace, assetIdentity, reconciliation.current);
     await finishEditorView();
     const begun = await request(
@@ -1069,6 +1090,8 @@ export default function App() {
   const publishedField = useRef("");
   async function chooseWorkspace(root: string) {
     await closeStudy();
+    setAttachment(null);
+    dismissedAttachment.current = null;
     const token = ++workspaceNavigation.current;
     reviewRequest.current++;
     generationRequest.current++;
@@ -2129,7 +2152,7 @@ export default function App() {
               {
                 id: "study",
                 label: "Study",
-                disabled: busy || studyStatus !== "Study cards ready",
+                disabled: busy || studyStatus === "Preparing study cards",
                 onClick: () => guard(startStudy),
               },
               {
@@ -2242,6 +2265,23 @@ export default function App() {
 
   return (
     <div className="app">
+      {attachment && (
+        <Suspense fallback={<Loader aria-label="Opening study stores" />}>
+          <StudyStoreChoice
+            workspace={workspace}
+            stores={attachment.stores}
+            onClose={() => {
+              dismissedAttachment.current = workspace;
+              setAttachment(null);
+            }}
+            onAttached={() => {
+              dismissedAttachment.current = workspace;
+              setAttachment(null);
+              setAttachmentEpoch((epoch) => epoch + 1);
+            }}
+          />
+        </Suspense>
+      )}
       <aside className="sidebar">
         <Group justify="space-between" wrap="nowrap" className="sidebar-head">
           <Title order={1} className="app-title">
@@ -2273,7 +2313,7 @@ export default function App() {
             <Stack gap="sm">
               <Button
                 disabled={
-                  !workspace || busy || studyStatus !== "Study cards ready"
+                  !workspace || busy || studyStatus === "Preparing study cards"
                 }
                 onClick={() => guard(startStudy)}
               >

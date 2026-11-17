@@ -417,6 +417,7 @@ export default defineConfig({
       "@codemirror/view",
       "@dzack/pandoc-editor/renderers/base-renderer",
       "mrmime",
+      "@tauri-apps/plugin-opener",
     ],
   },
   server: {

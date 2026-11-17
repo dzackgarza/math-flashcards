@@ -11,6 +11,7 @@
     "store:default",
     "fs:allow-watch",
     "fs:allow-unwatch",
-    "core:window:allow-destroy"
+    "core:window:allow-destroy",
+    "opener:allow-reveal-item-in-dir"
   ]
 }

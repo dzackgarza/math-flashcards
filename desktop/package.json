@@ -33,6 +33,7 @@
     "@tauri-apps/api": "latest",
     "@tauri-apps/plugin-dialog": "latest",
     "@tauri-apps/plugin-fs": "latest",
+    "@tauri-apps/plugin-opener": "^2.7.3",
     "@tauri-apps/plugin-store": "latest",
     "@uiw/react-codemirror": "latest",
     "mathjax": "latest",
