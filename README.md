@@ -36,6 +36,12 @@ The editor supports card search, side-by-side Front and Back editing through
 Zettlr's shared Pandoc editor, and adding and deleting cards. Edits save automatically, and
 the open deck follows changes that other programs make to its file.
 
+**Study** in the workspace menu reviews the saved native cards with Anki's
+scheduler. Space reveals the answer; keys 1–4 select Again, Hard, Good, and Easy.
+Escape returns to the editor. An unattached workspace offers its existing learning
+stores or **Start new**. The [learning-record reference](docs/study-record.md)
+explains the permanent data, its fields, and read-only queries.
+
 Drag a card in the card list to reorder it, or onto a deck in the tree to move it.
 Ctrl-click or Shift-click selects several cards to drag together. Drag a deck onto
 another deck to merge them. Right-click a deck to update its package, rename it,
