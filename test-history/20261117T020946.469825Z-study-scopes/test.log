@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/evidence.py", line 53, in evidence
+    yield directory
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-scopes.py", line 200, in <module>
+    main(artifacts)
+    ~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-scopes.py", line 73, in main
+    assert {
+           ^
+    ...<5 lines>...
+    }, root
+    ^
+AssertionError: {'path': '', 'kind': 'workspace', 'counts': {'new': 6, 'learning': 0, 'review': 0}, 'children': []}
