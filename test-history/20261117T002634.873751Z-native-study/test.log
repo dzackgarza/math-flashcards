@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/evidence.py", line 53, in evidence
+    yield directory
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/native-study.py", line 213, in <module>
+    main(artifacts)
+    ~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/native-study.py", line 174, in main
+    assert collection.execute(
+           ~~~~~~~~~~~~~~~~~~^
+        "select id,cid,usn,ease,ivl,lastIvl,factor,time,type from revlog order by id"
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ).fetchall() == recorded
+    ^
+sqlite3.OperationalError: database is locked
