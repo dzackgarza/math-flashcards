@@ -625,7 +625,7 @@ def deck_paths(root: Path) -> list[Path]:
                 and not resolved.is_relative_to(root / "apkg")
             ):
                 paths.append(path)
-    return sorted(paths)
+    return sorted(paths, key=lambda path: str(path.relative_to(root)))
 
 
 def package_path(root: Path, path: Path) -> Path:
