@@ -66,6 +66,12 @@ def main(artifacts: Path) -> None:
                 study = page.get_by_role("region", name="Study session")
                 study.get_by_role("button", name="Study settings", exact=True).click()
                 dialog = page.get_by_role("dialog", name="Study settings")
+                page.keyboard.press("Escape")
+                expect(dialog).not_to_be_visible()
+                expect(
+                    study.get_by_role("button", name="Show answer", exact=False)
+                ).to_be_visible()
+                study.get_by_role("button", name="Study settings", exact=True).click()
                 dialog.get_by_label("New cards per day", exact=True).fill("3")
                 dialog.get_by_label("Target recall", exact=True).fill("1.0")
                 dialog.get_by_role("button", name="Save settings", exact=True).click()
