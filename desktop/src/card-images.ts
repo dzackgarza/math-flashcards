@@ -60,6 +60,21 @@ class CardImage extends WidgetType {
   }
 }
 
+class ImageError extends WidgetType {
+  constructor(readonly message: string) {
+    super();
+  }
+  eq(other: ImageError) {
+    return other.message === this.message;
+  }
+  toDOM() {
+    const message = document.createElement("span");
+    message.setAttribute("role", "alert");
+    message.textContent = this.message;
+    return message;
+  }
+}
+
 export function cardImages(
   media: Record<string, string>,
   references: Record<string, string>,
@@ -70,43 +85,49 @@ export function cardImages(
     ["Image"],
     (node) => node.name === "Image",
     (state, ref) => {
-      const node = ref.node;
-      const marks = node.getChildren("LinkMark");
-      const alt = decodeString(state.sliceDoc(marks[0].to, marks[1].from));
-      const target = node.getChild("URL");
-      let name: string | undefined;
-      if (target) {
-        const raw = state.sliceDoc(target.from, target.to);
-        name = decodeString(raw.startsWith("<") ? raw.slice(1, -1) : raw);
-      } else {
-        const labelNode = node.getChild("LinkLabel");
-        const label = (text: string) =>
-          decodeString(text).trim().replace(/\s+/g, " ").toUpperCase();
-        const reference = label(
-          labelNode && labelNode.to > labelNode.from + 2
-            ? state.sliceDoc(labelNode.from + 1, labelNode.to - 1)
-            : alt,
-        );
-        name = references[reference];
+      try {
+        const node = ref.node;
+        const marks = node.getChildren("LinkMark");
+        const alt = decodeString(state.sliceDoc(marks[0].to, marks[1].from));
+        const target = node.getChild("URL");
+        let name: string | undefined;
+        if (target) {
+          const raw = state.sliceDoc(target.from, target.to);
+          name = decodeString(raw.startsWith("<") ? raw.slice(1, -1) : raw);
+        } else {
+          const labelNode = node.getChild("LinkLabel");
+          const label = (text: string) =>
+            decodeString(text).trim().replace(/\s+/g, " ").toUpperCase();
+          const reference = label(
+            labelNode && labelNode.to > labelNode.from + 2
+              ? state.sliceDoc(labelNode.from + 1, labelNode.to - 1)
+              : alt,
+          );
+          name = references[reference];
+        }
+        if (name === undefined || media[name] === undefined)
+          // A new edit reaches the renderer before its onChange updates the
+          // whole-card media map. An error must not abort that transaction.
+          return new ImageError(
+            `Image preview unavailable: ${state.sliceDoc(node.from, node.to)}`,
+          );
+        const filename = decodeURIComponent(new URL(name, "file:///").pathname);
+        const mime = lookup(filename);
+        if (!mime) return new ImageError(`Unknown image type: ${name}`);
+        const url = isTauri()
+          ? convertFileSrc(media[name]) +
+            "?revision=" +
+            encodeURIComponent(revision)
+          : `/api/${scope}-media?` +
+            new URLSearchParams({
+              path: media[name],
+              name: filename,
+              revision,
+            });
+        return new CardImage(url, alt, mime);
+      } catch (failure) {
+        return new ImageError(`Image preview unavailable: ${String(failure)}`);
       }
-      if (name === undefined || media[name] === undefined)
-        throw new Error(
-          `No retained media for image: ${state.sliceDoc(node.from, node.to)}`,
-        );
-      const filename = decodeURIComponent(new URL(name, "file:///").pathname);
-      const mime = lookup(filename);
-      if (!mime) throw new Error(`Unknown image type: ${name}`);
-      const url = isTauri()
-        ? convertFileSrc(media[name]) +
-          "?revision=" +
-          encodeURIComponent(revision)
-        : `/api/${scope}-media?` +
-          new URLSearchParams({
-            path: media[name],
-            name: filename,
-            revision,
-          });
-      return new CardImage(url, alt, mime);
     },
   );
 }

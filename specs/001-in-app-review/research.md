@@ -255,6 +255,10 @@ the native asset protocol and the browser media route read access to that worksp
 Browser media routes check both the requested path and its resolved filesystem path.
 A source revision in image URLs refreshes previews after a file change. An incomplete
 image reference gives an editor diagnostic while its source remains editable.
+Image widgets report resolution and decoding errors in their visible content. They
+must not throw from the editor's transaction: the transaction runs before `onChange`
+can supply the new source and its media mapping. Once that mapping arrives, the shared
+renderer replaces the diagnostic with the resolved image.
 
 The browser route uses [`mrmime`](https://github.com/lukeed/mrmime#lookupinput) to resolve
 the authored filename's standard MIME type. Its dictionary derives from `mime-db`;

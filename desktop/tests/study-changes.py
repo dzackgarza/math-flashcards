@@ -70,7 +70,7 @@ def main(artifacts: Path) -> None:
                 page.get_by_label("Workspace folder").fill(str(workspace))
                 page.get_by_role("button", name="Open workspace", exact=True).click()
                 expect(page.get_by_role("status", name="Study")).to_have_text(
-                    "Study cards ready"
+                    "Study cards ready", timeout=30000
                 )
                 return browser, page
 

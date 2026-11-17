@@ -104,6 +104,14 @@ No action updates or deletes a row of the learning record.
 - A deck whose source, media, or rendering assets cannot be validated or retained is
   listed in `failed` and counts as not current, with the cause shown in the window.
 
+### `study-counts`
+
+- Returns the workspace root with nested folder and deck entries, keyed by native paths.
+- Reads each entry's new, learning, and review counts from Anki's due tree. The window
+  refreshes them after synchronization and grading.
+- A file and folder with the same stem are separate scopes. Internal scheduling names
+  follow the path encoding in R5; the window and record retain the native names.
+
 ### `study-begin`, `study-next`, `study-end`
 
 - `study-begin` writes a `session` row and returns the first card of the scope, or

@@ -17,6 +17,10 @@
   limits, and the resulting decision in the maintained document that owns the topic.
   Leave a decision in search output or chat => update the feature research, research
   register, or dependency survey before accepting work that relies on it.
+- **EDIT001 — Keep input transactions writable.** Preview failures must remain visible
+  without preventing the editor from publishing text changes. Throw from an image
+  widget while its media map is being refreshed => render the error as a widget,
+  accept the edit, and refresh the preview from the resulting source.
 
 This collection supports mathematical research. Prioritize knowledge that helps
 the researcher recognize a useful result, check its hypotheses, construct an

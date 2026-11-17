@@ -14,7 +14,6 @@
 
 from __future__ import annotations
 
-
 import json
 import os
 import re
@@ -44,7 +43,6 @@ from rendering import (
 
 if __name__ == "__main__" and sys.argv[1:2] == ["study-host"]:
     import cyclopts
-
     from study.host import main as study_host
 
     app = cyclopts.App()
