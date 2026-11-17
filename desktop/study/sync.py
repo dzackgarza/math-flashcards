@@ -86,6 +86,17 @@ def sync(store: Store, workspace: Path, request: SyncRequest) -> SyncResult:
     owners = {
         identity: path for path, state in states.items() for identity in state.cards
     }
+    previous_cards = {path: list(state.cards) for path, state in states.items()}
+    current_paths = {
+        path
+        for path, state in states.items()
+        if path in request.paths and current(state, request.assets)
+    }
+    incoming: dict[str, list[str]] = {}
+    for deck in request.decks:
+        for card in deck.cards:
+            incoming.setdefault(card.id, []).append(deck.path)
+    applied: set[str] = set()
     for deck in request.decks:
         previous = states.get(deck.path)
         try:
@@ -130,11 +141,15 @@ def sync(store: Store, workspace: Path, request: SyncRequest) -> SyncResult:
             duplicates = []
             for card in deck.cards:
                 owner = owners.get(card.id)
-                if card.id in seen or (owner is not None and owner != deck.path):
+                owner_retains = owner in current_paths or owner in incoming.get(
+                    card.id, []
+                )
+                first = owner if owner_retains else incoming[card.id][0]
+                if card.id in seen or (first != deck.path):
                     duplicates.append(
                         Duplicate(
                             card_id=card.id,
-                            paths=sorted({deck.path, owner or deck.path}),
+                            paths=sorted({*incoming[card.id], first}),
                         )
                     )
                 seen.add(card.id)
@@ -180,7 +195,7 @@ def sync(store: Store, workspace: Path, request: SyncRequest) -> SyncResult:
                     content_id = content[0]
                 tags = sorted(set(deck.tags + card.tags))
                 latest = store.record.connection.execute(
-                    "select content, tags from card_change where card_id=? order by id desc limit 1",
+                    "select content, tags, to_deck from card_change where card_id=? order by id desc limit 1",
                     (card.id,),
                 ).fetchone()
                 kinds = []
@@ -191,6 +206,10 @@ def sync(store: Store, workspace: Path, request: SyncRequest) -> SyncResult:
                         kinds.append("content")
                     if json.loads(latest[1]) != tags:
                         kinds.append("tags")
+                    if latest[2] is None:
+                        kinds.append("restored")
+                    elif latest[2] != deck.path:
+                        kinds.append("moved")
                 if not kinds:
                     continue
                 notes = collection.find_notes("CardId:" + json.dumps(card.id))
@@ -199,31 +218,51 @@ def sync(store: Store, workspace: Path, request: SyncRequest) -> SyncResult:
                     note.tags = sorted(
                         set(tags + [tag for tag in note.tags if tag == "leech"])
                     )
-                    changed.append(note)
+                    if "tags" in kinds:
+                        changed.append(note)
+                    if "moved" in kinds or "restored" in kinds:
+                        collection.set_deck(note.card_ids(), deck_id)
+                        if "restored" in kinds:
+                            collection.sched.unsuspend_cards(note.card_ids())
+                        old_path = owners.get(card.id)
+                        if old_path is not None and old_path != deck.path:
+                            states[old_path].cards = [
+                                identity
+                                for identity in states[old_path].cards
+                                if identity != card.id
+                            ]
                 else:
                     note = collection.new_note(model)
                     note.guid = card.id
                     note["CardId"] = card.id
                     note.tags = tags
                     additions.append(AddNoteRequest(note=note, deck_id=deck_id))
-                versions.append((card.id, kinds, content_id, tags))
+                versions.append(
+                    (card.id, kinds, content_id, tags, latest[2] if latest else None)
+                )
             if additions:
                 collection.add_notes(additions)
             if changed:
                 collection.update_notes(changed, skip_undo_entry=True)
-            for identity, kinds, content, tags in versions:
+            for identity, kinds, content, tags, from_deck in versions:
                 for kind in kinds:
                     store.record.card_change(
                         identity,
                         kind,
-                        None if kind == "added" else deck.path,
+                        from_deck,
                         deck.path,
                         content,
                         tags,
                     )
                 owners[identity] = deck.path
-            result.added += sum("added" in kinds for _, kinds, _, _ in versions)
-            result.updated += sum("added" not in kinds for _, kinds, _, _ in versions)
+            result.added += sum("added" in kinds for _, kinds, _, _, _ in versions)
+            result.updated += sum(
+                bool({"content", "tags"} & set(kinds)) for _, kinds, _, _, _ in versions
+            )
+            result.moved += sum("moved" in kinds for _, kinds, _, _, _ in versions)
+            result.restored += sum(
+                "restored" in kinds for _, kinds, _, _, _ in versions
+            )
             states[deck.path] = DeckState(
                 inputs=inputs,
                 assets=request.assets,
@@ -231,12 +270,40 @@ def sync(store: Store, workspace: Path, request: SyncRequest) -> SyncResult:
                 tags=deck.tags,
                 cards=[card.id for card in deck.cards],
             )
-            collection.set_config(
-                "native_decks",
-                {path: state.model_dump() for path, state in states.items()},
-            )
+            applied.add(deck.path)
         except (OSError, ValueError) as error:
             result.failed.append(FailedDeck(path=deck.path, message=str(error)))
+    deleted = set(states) - set(request.paths)
+    for path in applied | deleted:
+        retained = set(states[path].cards) if path in request.paths else set()
+        for identity in set(previous_cards.get(path, [])) - retained:
+            if owners.get(identity) != path or identity in incoming:
+                continue
+            latest = store.record.connection.execute(
+                "select content, tags, to_deck from card_change where card_id=? order by id desc limit 1",
+                (identity,),
+            ).fetchone()
+            if latest is None or latest[2] is None:
+                continue
+            notes = collection.find_notes("CardId:" + json.dumps(identity))
+            note = collection.get_note(notes[0])
+            collection.sched.suspend_cards(note.card_ids())
+            collection.set_deck(note.card_ids(), collection.decks.id("Removed"))
+            store.record.card_change(
+                identity, "removed", path, None, latest[0], json.loads(latest[1])
+            )
+            owners.pop(identity)
+            result.removed += 1
+    for path in deleted:
+        name = "Workspace::" + path[:-3].replace("/", "::")
+        deck = collection.decks.by_name(name)
+        if deck is not None and not collection.find_cards("deck:" + json.dumps(name)):
+            collection.decks.remove([deck["id"]])
+        states.pop(path)
+    if applied or deleted:
+        collection.set_config(
+            "native_decks", {path: state.model_dump() for path, state in states.items()}
+        )
     result.pending = sum(
         path not in states or not current(states[path], request.assets)
         for path in request.paths
