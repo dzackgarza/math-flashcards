@@ -1,0 +1,74 @@
+1: starting server using command "just -f ../justfile desktop-web"
+and when url "[ 'http-get://127.0.0.1:1420' ]" is responding with HTTP status code 200
+running tests using command "xvfb-run -a uv run --upgrade tests/study-settings.py"
+
+cd desktop && bunx vite --host 127.0.0.1
+
+  VITE v8.3.8  ready in 262 ms
+
+  ➜  Local:   http://127.0.0.1:1420/
+[vite-plugin-static-copy] Collected 386 items.
+Installed 16 packages in 9ms
+Test evidence: /home/dzack/gitclones/math-flashcards/test-history/20261117T031055.510409Z-study-settings
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-settings.py", line 109, in <module>
+    main(artifacts)
+    ~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-settings.py", line 62, in main
+    study.get_by_role("button", name="Study settings", exact=True).click()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/dzack/.cache/uv/environments-v2/study-settings-b0f2b10df62bfa06/lib/python3.14/site-packages/playwright/sync_api/_generated.py", line 11045, in click
+    self._sync(
+    ~~~~~~~~~~^
+        self._impl_obj.click(
+        ^^^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+        )
+        ^
+    )
+    ^
+  File "/home/dzack/.cache/uv/environments-v2/study-settings-b0f2b10df62bfa06/lib/python3.14/site-packages/playwright/_impl/_sync_base.py", line 124, in _sync
+    return task.result()
+           ~~~~~~~~~~~^^
+  File "/home/dzack/.cache/uv/environments-v2/study-settings-b0f2b10df62bfa06/lib/python3.14/site-packages/playwright/_impl/locator.py", line 222, in click
+    return await self._frame.click(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<13 lines>...
+    )
+    ^
+  File "/home/dzack/.cache/uv/environments-v2/study-settings-b0f2b10df62bfa06/lib/python3.14/site-packages/playwright/_impl/frame.py", line 587, in click
+    return await self._channel.click(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<13 lines>...
+    )
+    ^
+  File "/home/dzack/.cache/uv/environments-v2/study-settings-b0f2b10df62bfa06/lib/python3.14/site-packages/playwright/_impl/channel_owner.py", line 387, in finish
+    raise e from None
+  File "/home/dzack/.cache/uv/environments-v2/study-settings-b0f2b10df62bfa06/lib/python3.14/site-packages/playwright/_impl/channel_owner.py", line 352, in finish
+    result = await zone.run_async(lambda: awaitable)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzack/.cache/uv/environments-v2/study-settings-b0f2b10df62bfa06/lib/python3.14/site-packages/playwright/_impl/utils/zones.py", line 58, in run_async
+    return await func()
+           ^^^^^^^^^^^^
+playwright._impl._errors.TimeoutError: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for get_by_role("region", name="Study session").get_by_role("button", name="Study settings", exact=True)
+
+Error: Command failed with exit code 1: xvfb-run -a uv run --upgrade tests/study-settings.py
+    at makeError (/home/dzack/gitclones/math-flashcards/desktop/node_modules/execa/lib/error.js:60:11)
+    at handlePromise (/home/dzack/gitclones/math-flashcards/desktop/node_modules/execa/index.js:118:26)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  shortMessage: 'Command failed with exit code 1: xvfb-run -a uv run --upgrade tests/study-settings.py',
+  command: 'xvfb-run -a uv run --upgrade tests/study-settings.py',
+  escapedCommand: '"xvfb-run -a uv run --upgrade tests/study-settings.py"',
+  exitCode: 1,
+  signal: undefined,
+  signalDescription: undefined,
+  stdout: undefined,
+  stderr: undefined,
+  failed: true,
+  timedOut: false,
+  isCanceled: false,
+  killed: false
+}
+error: recipe `desktop-web` was terminated on line 64 by signal 2
