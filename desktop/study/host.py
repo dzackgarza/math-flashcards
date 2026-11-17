@@ -8,11 +8,12 @@ from diagnostics import Diagnostics
 from pydantic import TypeAdapter, ValidationError
 
 from study.session import answer, begin, end, next_card, undo, viewed
-from study.settings import set_settings
+from study.settings import apply_fit, fit, set_settings
 from study.store import Stores
 from study.sync import sync
 from study.values import (
     AnswerRequest,
+    ApplyFitRequest,
     AttachRequest,
     BeginRequest,
     Existing,
@@ -56,7 +57,9 @@ def main(*, release: str) -> None:
                                 | AnswerRequest()
                                 | SessionRequest()
                                 | SettingsRequest()
+                                | ApplyFitRequest()
                                 | WorkspaceRequest(action="study-counts")
+                                | WorkspaceRequest(action="study-fit")
                             ):
                                 store = stores.attached(workspace)
                                 if store is None:
@@ -75,6 +78,10 @@ def main(*, release: str) -> None:
                                         result = begin(store, request.scope)
                                     case SettingsRequest():
                                         result = set_settings(store, request.settings)
+                                    case WorkspaceRequest(action="study-fit"):
+                                        result = fit(store)
+                                    case ApplyFitRequest():
+                                        result = apply_fit(store, request.parameters)
                                     case AnswerRequest():
                                         result = answer(store, request)
                                     case SessionRequest(action="study-next"):

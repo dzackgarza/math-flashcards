@@ -48,6 +48,9 @@ in the editor. The Problems list identifies the unsaved draft and opens it for r
 recall. Anki counts new-card introductions toward the review limit. A higher target
 recall schedules reviews sooner. Settings persist, and each change stays in the
 learning record.
+**Fit scheduler** in Study settings evaluates Anki's parameters against the stored
+review history. It shows the current and fitted values and their accuracy measures.
+**Apply fit** records the accepted parameters; **Close fit** leaves them unchanged.
 An unattached workspace offers its existing learning
 stores or **Start new**. The [learning-record reference](docs/study-record.md)
 explains the permanent data, its fields, and read-only queries.

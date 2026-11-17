@@ -167,6 +167,10 @@ session's finished screen. The completed session remains in the record.
 - `study-apply-fit` sets the preset's parameters, writes a `parameter_set` row with
   source `fit` and the measures, and returns the settings. The user rejects a fit by not
   applying it.
+- `reviews` is Anki's count of training observations, which excludes an initial
+  learning row without a later recall observation. The candidate may equal the
+  current parameters. Apply accepts the candidate held by the current host; after
+  a host restart, run the fit again. Repeated apply returns `InvalidSettings`.
 
 ### `study-copy`
 

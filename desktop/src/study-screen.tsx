@@ -6,6 +6,7 @@ import {
   Kbd,
   Modal,
   Stack,
+  Table,
   Text,
   TextInput,
   Title,
@@ -16,6 +17,8 @@ import {
   studyNextSchema,
   studyOpenSchema,
   studySettingsSchema,
+  studyFitSchema,
+  type StudyFit,
   type StudyNext,
   type StudyOpen,
 } from "./bridge";
@@ -45,6 +48,8 @@ function StudySettings({
     },
   });
   const [ready, setReady] = useState(false);
+  const [fit, setFit] = useState<StudyFit | null>(null);
+  const [fitting, setFitting] = useState(false);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
   useEffect(() => {
@@ -54,11 +59,13 @@ function StudySettings({
         if (!active) return;
         if (opened.state !== "Open")
           throw new Error("Attach a study store before changing settings.");
-        form.setValues({
+        const values = {
           new_per_day: String(opened.settings.new_per_day),
           reviews_per_day: String(opened.settings.reviews_per_day),
           desired_retention: String(opened.settings.desired_retention),
-        });
+        };
+        form.setValues(values);
+        form.resetDirty(values);
         setReady(true);
       })
       .catch((failure) => {
@@ -106,6 +113,39 @@ function StudySettings({
       setPending(false);
     }
   }
+
+  async function fitScheduler() {
+    setPending(true);
+    setFitting(true);
+    setFit(null);
+    setError("");
+    try {
+      setFit(await request({ action: "study-fit", workspace }, studyFitSchema));
+    } catch (failure) {
+      setError(String(failure));
+    } finally {
+      setPending(false);
+      setFitting(false);
+    }
+  }
+
+  async function applyFit() {
+    if (!fit) return;
+    setPending(true);
+    setError("");
+    try {
+      await request(
+        { action: "study-apply-fit", workspace, parameters: fit.parameters },
+        studySettingsSchema,
+      );
+      await onSaved();
+      onClose();
+    } catch (failure) {
+      setError(String(failure));
+    } finally {
+      setPending(false);
+    }
+  }
   return (
     <Modal
       opened
@@ -143,9 +183,85 @@ function StudySettings({
             disabled={!ready || pending}
             {...form.getInputProps("desired_retention")}
           />
-          <Button type="submit" disabled={!ready} loading={pending}>
+          <Button type="submit" disabled={!ready || pending}>
             Save settings
           </Button>
+          {form.isDirty() && (
+            <Text size="sm">Save changed settings before fitting.</Text>
+          )}
+          <Button
+            variant="default"
+            disabled={!ready || pending || form.isDirty()}
+            loading={fitting}
+            onClick={() => void fitScheduler()}
+          >
+            Fit scheduler
+          </Button>
+          {fitting && (
+            <Text role="status">Fitting scheduler to stored reviews…</Text>
+          )}
+          {fit && (
+            <Stack component="section" aria-label="Scheduler fit">
+              <Title order={3}>Scheduler fit</Title>
+              <Text size="sm">Review observations used: {fit.reviews}</Text>
+              <Text size="sm">
+                Lower log loss and RMSE mean closer predictions of the stored
+                self-graded recall. These measures describe the history used for
+                fitting.
+              </Text>
+              <Table>
+                <Table.Thead>
+                  <Table.Tr>
+                    <Table.Th>Measure</Table.Th>
+                    <Table.Th>Current</Table.Th>
+                    <Table.Th>Fitted</Table.Th>
+                  </Table.Tr>
+                </Table.Thead>
+                <Table.Tbody>
+                  <Table.Tr>
+                    <Table.Th>Log loss</Table.Th>
+                    <Table.Td>{fit.current_log_loss.toPrecision(6)}</Table.Td>
+                    <Table.Td>{fit.log_loss.toPrecision(6)}</Table.Td>
+                  </Table.Tr>
+                  <Table.Tr>
+                    <Table.Th>RMSE</Table.Th>
+                    <Table.Td>{fit.current_rmse_bins.toPrecision(6)}</Table.Td>
+                    <Table.Td>{fit.rmse_bins.toPrecision(6)}</Table.Td>
+                  </Table.Tr>
+                </Table.Tbody>
+              </Table>
+              {fit.parameters.every(
+                (value, index) => value === Math.fround(fit.current[index]),
+              ) && <Text size="sm">Anki retained the current parameters.</Text>}
+              <details>
+                <summary>Current parameters</summary>
+                <Text size="xs" style={{ overflowWrap: "anywhere" }}>
+                  {fit.current.join(", ")}
+                </Text>
+              </details>
+              <details>
+                <summary>Fitted parameters</summary>
+                <Text size="xs" style={{ overflowWrap: "anywhere" }}>
+                  {fit.parameters.join(", ")}
+                </Text>
+              </details>
+              <Group>
+                <Button
+                  disabled={pending || form.isDirty()}
+                  onClick={() => void applyFit()}
+                >
+                  Apply fit
+                </Button>
+                <Button
+                  variant="default"
+                  disabled={pending}
+                  onClick={() => setFit(null)}
+                >
+                  Close fit
+                </Button>
+              </Group>
+            </Stack>
+          )}
         </Stack>
       </form>
     </Modal>

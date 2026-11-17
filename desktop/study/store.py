@@ -18,6 +18,7 @@ from study.record import TABLES, Record, Response
 from study.values import (
     Counts,
     DeckCounts,
+    Fit,
     Open,
     Settings,
     StoreSummary,
@@ -77,6 +78,7 @@ class Store:
         self.directory = directory
         self.metadata = metadata
         self.grade_responses: dict[int, int] = {}
+        self.pending_fit: Fit | None = None
         collection_path = directory / "collection.anki2"
         record_path = directory / "record.sqlite3"
         if not create:

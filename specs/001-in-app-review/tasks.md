@@ -202,13 +202,13 @@ before Study resumes. Both session start and the in-session editor return use th
 
 ### Tests for User Story 7 ⚠️
 
-- [ ] T048 [US7] Call `compute_fsrs_params` and `evaluate_params_legacy` of the `anki` wheel on a collection in a temporary directory with dated review log rows written through the `anki` library's database handle, find the smallest history that Anki's fit accepts and the time the fit takes, and replace the two fit entries of the Unmeasured section of `specs/001-in-app-review/research.md` with the results
-- [ ] T049 [US7] Add failing steps to `desktop/tests/study.py`: the fit on a store with no review states that the history is too small and changes nothing; with the history of T048 added while the app is stopped, the fit shows the fitted parameters, the number of reviews used, and Anki's two measures for the fitted and the current set; closing the fit without accepting changes nothing; accepting sets the preset's parameters, writes a `parameter_set` row with source `fit` and its measures and a `setting_change` row, and later `presentation` rows refer to the new set (FR-046)
+- [X] T048 [US7] Call `compute_fsrs_params` and `evaluate_params_legacy` of the `anki` wheel on a collection in a temporary directory with dated review log rows written through the `anki` library's database handle, find the smallest history that Anki's fit accepts and the time the fit takes, and replace the two fit entries of the Unmeasured section of `specs/001-in-app-review/research.md` with the results
+- [X] T049 [US7] Add failing steps to `desktop/tests/study-fit.py`: the fit on a store with no review states that the history is too small and changes nothing; with the history of T048 added while the app is stopped, the fit shows the fitted parameters, the number of reviews used, and Anki's two measures for the fitted and the current set; closing the fit without accepting changes nothing; accepting sets the preset's parameters, writes a `parameter_set` row with source `fit` and its measures and a `setting_change` row, and later `presentation` rows refer to the new set (FR-046)
 
 ### Implementation for User Story 7
 
-- [ ] T050 [US7] Implement `study-fit` and `study-apply-fit` in `desktop/study/settings.py` by R14: Anki's fit on the whole store, `evaluate_params_legacy` for both parameter sets, `NotEnoughHistory` for Anki's insufficient-data error and for a fit that used no review, the preset's `fsrsParams6` on apply, and the `parameter_set` and `setting_change` rows
-- [ ] T051 [US7] Add the fit command to the settings of `desktop/src/study-screen.tsx`: progress while the fit runs, both sets of measures, **Apply** and **Close**, and the `NotEnoughHistory` statement
+- [X] T050 [US7] Implement `study-fit` and `study-apply-fit` in `desktop/study/settings.py` by R14: Anki's fit on the whole store, `evaluate_params_legacy` for both parameter sets, `NotEnoughHistory` for Anki's insufficient-data error and for a fit that used no review, the preset's `fsrsParams6` on apply, and the `parameter_set` and `setting_change` rows
+- [X] T051 [US7] Add the fit command to the settings of `desktop/src/study-screen.tsx`: progress while the fit runs, both sets of measures, **Apply** and **Close**, and the `NotEnoughHistory` statement
 
 **Checkpoint**: The T049 steps pass
 

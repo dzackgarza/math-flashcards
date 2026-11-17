@@ -14,6 +14,7 @@ from pathlib import Path
 import psutil
 from anki.collection import Collection
 from anki.decks import DeckConfigId
+from anki.scheduler_pb2 import ComputeFsrsParamsResponse
 from evidence import evidence
 from fit_history import add_history
 from playwright.sync_api import expect, sync_playwright
@@ -102,13 +103,26 @@ def main(artifacts: Path) -> None:
                 before = record_dump()
                 fit = request("study-fit")
                 assert fit["reviews"] == 1, fit
+                assert fit["current"] == original
+                with closing(sqlite3.connect(opened["record"])) as record:
+                    initial = record.execute(
+                        "select id,parameters,source,reviews,log_loss,rmse_bins from parameter_set"
+                    ).fetchone()
                 page.get_by_role("button", name="Fit scheduler", exact=True).click()
                 result = page.get_by_role("region", name="Scheduler fit")
                 expect(result).to_be_visible()
                 expect(result).to_contain_text("Review observations used: 1")
                 for value in ("Current", "Fitted", "Log loss", "RMSE", "parameters"):
                     expect(result).to_contain_text(value)
+                for label, old, new in (
+                    ("Log loss", "current_log_loss", "log_loss"),
+                    ("RMSE", "current_rmse_bins", "rmse_bins"),
+                ):
+                    row = result.get_by_role("row").filter(has_text=label)
+                    expect(row).to_contain_text(format(fit[old], ".6g"))
+                    expect(row).to_contain_text(format(fit[new], ".6g"))
                 assert record_dump() == before
+                result.get_by_role("table").scroll_into_view_if_needed()
                 page.screenshot(path=str(artifacts / "fit.png"))
                 result.get_by_role("button", name="Close fit", exact=True).click()
                 expect(result).not_to_be_visible()
@@ -127,10 +141,7 @@ def main(artifacts: Path) -> None:
                         "select id,parameters,source,reviews,log_loss,rmse_bins from parameter_set order by id"
                     ).fetchall()
                     assert len(rows) == 2, rows
-                    assert (
-                        json.loads(rows[0][1]) == original
-                        and rows[0][2] == "anki-default"
-                    )
+                    assert rows[0] == initial and rows[0][2] == "anki-default", rows
                     assert json.loads(rows[1][1]) == fit["parameters"]
                     assert rows[1][2:] == (
                         "fit",
@@ -162,8 +173,11 @@ def main(artifacts: Path) -> None:
             stop_host()
             collection = Collection(str(Path(opened["store"]) / "collection.anki2"))
             try:
+                # The legacy JSON preset prints shorter decimals for protobuf
+                # float32 fields; compare in Anki's declared numeric type.
+                stored = collection.decks.get_config(DeckConfigId(1))["fsrsParams6"]
                 assert (
-                    collection.decks.get_config(DeckConfigId(1))["fsrsParams6"]
+                    list(ComputeFsrsParamsResponse(params=stored).params)
                     == fit["parameters"]
                 )
             finally:

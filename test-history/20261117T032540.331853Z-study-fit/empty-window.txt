@@ -1,0 +1,74 @@
+Math Flashcards
+flashcards-study-fit-wrhjhp1g
+Search
+Ctrl K
+Fit
+New:
+1
+Learning:
+0
+Review:
+0
+
+New · Learning · Review
+
+New:
+1
+Learning:
+0
+Review:
+0
+
+Study cards ready
+
+Workspace checks complete
+
+Problems
+Update Anki packages
+1
+New deck
+Study
+Study settings
+Undo
+Ctrl Z
+Edit
+E
+Return to editor
+Esc
+
+New: 1
+
+Learning: 0
+
+Review: 0
+
+Fit.md
+
+FRONT
+Recall.
+Show answer
+Space
+
+Study store: /tmp/flashcards-browser-cache-bq6vref6/data/math-flashcards/study/90a37e9d-6f42-4b43-b4d9-6fb11ce12d39
+
+Learning record: /tmp/flashcards-browser-cache-bq6vref6/data/math-flashcards/study/90a37e9d-6f42-4b43-b4d9-6fb11ce12d39/record.sqlite3
+
+Study settings
+
+These settings apply to the whole workspace. Initial values are Anki defaults.
+
+StudyError: Insufficient review history to perform this operation.
+New cards per day
+
+Whole number from 0 to 9999
+
+Reviews per day
+
+Whole number from 0 to 9999
+
+Target recall
+
+0.70 to 0.99. A higher target schedules reviews sooner.
+
+Save settings
+Fit scheduler

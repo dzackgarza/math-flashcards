@@ -641,6 +641,16 @@ returns the current parameters when there are no items and can retain them when
 they evaluate at least as well as the candidate. Its `fsrs_items` counts training
 observations, not every raw review-log row.
 
+Anki's Python wrapper has no distinct insufficient-data exception. Its
+[error mapping](https://github.com/ankitects/anki/blob/main/rslib/src/error/mod.rs)
+uses the `deck_config_not_enough_history` translation for `FsrsInsufficientData`.
+The app matches that exact translated message; other backend errors remain errors.
+The candidate and its evaluation remain in host memory until acceptance. Apply
+accepts that candidate, appends its parameters and measures, and records the
+previous and applied parameter arrays. Closing the form writes no learning data.
+If the host restarts, the user runs the fit again before applying it. The estimates
+describe the fitting history, not performance on an independent later sample.
+
 ## R15. One running copy
 
 **Decision**: The app is a singleton (constitution, principle VII). The Tauri
