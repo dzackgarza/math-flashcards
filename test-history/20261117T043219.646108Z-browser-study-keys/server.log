@@ -1,0 +1,89 @@
+1: starting server using command "just -f ../justfile desktop-web"
+and when url "[ 'http-get://127.0.0.1:1420' ]" is responding with HTTP status code 200
+running tests using command "xvfb-run -a uv run --upgrade tests/study-keys.py"
+
+cd desktop && bunx vite --host 127.0.0.1
+
+  VITE v8.3.8  ready in 223 ms
+
+  ➜  Local:   http://127.0.0.1:1420/
+[vite-plugin-static-copy] Collected 386 items.
+Test evidence: /home/dzack/gitclones/math-flashcards/test-history/20261117T043225.598256Z-study-keys
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-keys.py", line 141, in <module>
+    main(artifacts)
+    ~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-keys.py", line 110, in main
+    expect(study).not_to_be_visible()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/dzack/.cache/uv/environments-v2/study-keys-c92dd0db3ad58558/lib/python3.14/site-packages/playwright/sync_api/_generated.py", line 13952, in not_to_be_visible
+    self._sync(
+    ~~~~~~~~~~^
+        self._impl_obj.not_to_be_visible(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            timeout=to_milliseconds(timeout), visible=visible
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        )
+        ^
+    )
+    ^
+  File "/home/dzack/.cache/uv/environments-v2/study-keys-c92dd0db3ad58558/lib/python3.14/site-packages/playwright/_impl/_sync_base.py", line 124, in _sync
+    return task.result()
+           ~~~~~~~~~~~^^
+  File "/home/dzack/.cache/uv/environments-v2/study-keys-c92dd0db3ad58558/lib/python3.14/site-packages/playwright/_impl/assertions.py", line 883, in not_to_be_visible
+    await self._not.to_be_visible(visible=visible, timeout=timeout)
+  File "/home/dzack/.cache/uv/environments-v2/study-keys-c92dd0db3ad58558/lib/python3.14/site-packages/playwright/_impl/assertions.py", line 869, in to_be_visible
+    await self._expect_impl(
+    ...<5 lines>...
+    )
+  File "/home/dzack/.cache/uv/environments-v2/study-keys-c92dd0db3ad58558/lib/python3.14/site-packages/playwright/_impl/assertions.py", line 122, in _expect_impl
+    _record_soft_or_raise(
+    ~~~~~~~~~~~~~~~~~~~~~^
+        AssertionError(
+        ^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        self._is_soft,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/dzack/.cache/uv/environments-v2/study-keys-c92dd0db3ad58558/lib/python3.14/site-packages/playwright/_impl/_assertions.py", line 50, in _record_soft_or_raise
+    raise error
+AssertionError: Locator expected not to be visible
+Actual value: visible 
+Call log:
+  - Expect "not_to_be_visible" get_by_role("region", name="Study session") with timeout 5000ms
+  - waiting for get_by_role("region", name="Study session")
+    14 × locator resolved to <section aria-label="Study session" class="study-screen m_6d731127 mantine-Stack-root">…</section>
+       - unexpected value "visible"
+
+Aria snapshot:
+- region "Study session":
+  - heading "Study" [level=2]
+  - button "Study settings"
+  - button "Undo": Undo Ctrl Z
+  - button "Return to editor Esc"
+  - paragraph: "New: 0"
+  - paragraph: "Learning: 0"
+  - paragraph: "Review: 0"
+  - heading "Study complete for now" [level=3]
+  - paragraph: "Graded today: 4"
+  - paragraph: "Study store: /tmp/flashcards-browser-cache-_voh30e_/data/math-flashcards/study/e5484ccb-1ea0-473a-93b6-d0a8de70dec4"
+  - paragraph: "Learning record: /tmp/flashcards-browser-cache-_voh30e_/data/math-flashcards/study/e5484ccb-1ea0-473a-93b6-d0a8de70dec4/record.sqlite3"
+Error: Command failed with exit code 1: xvfb-run -a uv run --upgrade tests/study-keys.py
+    at makeError (/home/dzack/gitclones/math-flashcards/desktop/node_modules/execa/lib/error.js:60:11)
+    at handlePromise (/home/dzack/gitclones/math-flashcards/desktop/node_modules/execa/index.js:118:26)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  shortMessage: 'Command failed with exit code 1: xvfb-run -a uv run --upgrade tests/study-keys.py',
+  command: 'xvfb-run -a uv run --upgrade tests/study-keys.py',
+  escapedCommand: '"xvfb-run -a uv run --upgrade tests/study-keys.py"',
+  exitCode: 1,
+  signal: undefined,
+  signalDescription: undefined,
+  stdout: undefined,
+  stderr: undefined,
+  failed: true,
+  timedOut: false,
+  isCanceled: false,
+  killed: false
+}
+error: recipe `desktop-web` was terminated on line 64 by signal 2

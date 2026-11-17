@@ -30,6 +30,11 @@
   that same event. A completed operation can leave focus on the document after
   disabling a control; use Mantine's document-level hotkey hook while the dialog
   is mounted, including input and editable targets.
+- **EDIT003 — Focus the new action surface.** Open Study from a deck menu while
+  leaving focus on the navigation tree => focus **Show answer** when the card
+  mounts. Mantine's tree consumes Space for expansion; a visible card alone does
+  not transfer keyboard control. Test the shortcut immediately after the real
+  menu action, without inserting a focus click in the test.
 
 This collection supports mathematical research. Prioritize knowledge that helps
 the researcher recognize a useful result, check its hypotheses, construct an

@@ -89,6 +89,14 @@ def main(artifacts: Path) -> None:
                     ) as answered:
                         page.keyboard.press(str(number))
                     assert answered.value.ok, answered.value.text()
+                    if answered.value.json()["state"] == "Finished":
+                        expect(
+                            study.get_by_role("heading", name="Study complete for now")
+                        ).to_be_visible()
+                    else:
+                        expect(
+                            study.get_by_role("button", name="Show answer", exact=False)
+                        ).to_be_visible()
                     with closing(sqlite3.connect(store["record"])) as record:
                         record.row_factory = sqlite3.Row
                         review = record.execute(

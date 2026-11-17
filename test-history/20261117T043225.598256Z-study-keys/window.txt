@@ -1,0 +1,74 @@
+Math Flashcards
+flashcards-study-keys-s2gf3id0
+Search
+Ctrl K
+again
+New:
+0
+Learning:
+1
+Review:
+0
+easy
+New:
+0
+Learning:
+0
+Review:
+0
+good
+New:
+0
+Learning:
+1
+Review:
+0
+hard
+New:
+0
+Learning:
+1
+Review:
+0
+
+New · Learning · Review
+
+New:
+0
+Learning:
+3
+Review:
+0
+
+Study cards ready
+
+Workspace checks complete
+
+Problems
+Update Anki packages
+4
+New deck
+Action failed
+
+StudyError: This presentation is no longer current. Fetch the current card.
+
+Study
+Study settings
+Undo
+Ctrl Z
+Return to editor
+Esc
+
+New: 0
+
+Learning: 0
+
+Review: 0
+
+Study complete for now
+
+Graded today: 4
+
+Study store: /tmp/flashcards-browser-cache-_voh30e_/data/math-flashcards/study/e5484ccb-1ea0-473a-93b6-d0a8de70dec4
+
+Learning record: /tmp/flashcards-browser-cache-_voh30e_/data/math-flashcards/study/e5484ccb-1ea0-473a-93b6-d0a8de70dec4/record.sqlite3

@@ -653,7 +653,7 @@ function Presentation({
             </Button>
           ))
         ) : (
-          <Button size="md" onClick={(event) => reveal(event.timeStamp)}>
+          <Button autoFocus size="md" onClick={(event) => reveal(event.timeStamp)}>
             Show answer <Kbd ml="sm">Space</Kbd>
           </Button>
         )}

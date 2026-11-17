@@ -1,0 +1,75 @@
+Math Flashcards
+flashcards-study-keys-2wvqr8q0
+Search
+Ctrl K
+again
+New:
+1
+Learning:
+0
+Review:
+0
+easy
+New:
+1
+Learning:
+0
+Review:
+0
+good
+New:
+1
+Learning:
+0
+Review:
+0
+hard
+New:
+1
+Learning:
+0
+Review:
+0
+
+New · Learning · Review
+
+New:
+4
+Learning:
+0
+Review:
+0
+
+Study cards ready
+
+Workspace checks complete
+
+Problems
+Update Anki packages
+4
+New deck
+Study
+Study settings
+Undo
+Ctrl Z
+Edit
+E
+Return to editor
+Esc
+
+New: 1
+
+Learning: 0
+
+Review: 0
+
+again.md
+
+FRONT
+Recall again.
+Show answer
+Space
+
+Study store: /tmp/flashcards-browser-cache-lakjtq6g/data/math-flashcards/study/d32c9cf5-45e1-4350-b379-c142e66d54e9
+
+Learning record: /tmp/flashcards-browser-cache-lakjtq6g/data/math-flashcards/study/d32c9cf5-45e1-4350-b379-c142e66d54e9/record.sqlite3
