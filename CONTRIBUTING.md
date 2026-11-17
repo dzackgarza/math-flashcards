@@ -13,6 +13,9 @@
   including setup, and retain logs and nested timing evidence with revision and input
   context. Rebuild the release after every small edit => check the affected path with
   prepared dependencies and build the release at the plan's milestones.
+- **TEST003 — Select the active editing surface.** Study and the editor share card
+  faces. Locate matching front text and type immediately after E => wait for
+  **Return to Study** and locate the face inside the editor column before typing.
 - **RESEARCH001 — Synthesize at the owner.** State findings, sources, alternatives,
   limits, and the resulting decision in the maintained document that owns the topic.
   Leave a decision in search output or chat => update the feature research, research

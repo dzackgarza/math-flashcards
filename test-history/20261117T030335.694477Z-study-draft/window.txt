@@ -1,0 +1,47 @@
+Math Flashcards
+flashcards-study-draft-1aub4nqn
+Search
+Ctrl K
+Draft
+New:
+0
+Learning:
+0
+Review:
+0
+
+New · Learning · Review
+
+New:
+0
+Learning:
+0
+Review:
+0
+
+Study cards ready
+
+Checking 0 of 1 decks…
+
+Problems (0/1 checked)
+Update Anki packages
+New deck
+Study
+Undo
+Ctrl Z
+Return to editor
+Esc
+
+New: 0
+
+Learning: 0
+
+Review: 0
+
+Study complete for now
+
+Graded today: 1
+
+Study store: /tmp/flashcards-browser-cache-i_d_gzcn/data/math-flashcards/study/2fbec595-093c-42e4-87ee-a9b8b48be6cb
+
+Learning record: /tmp/flashcards-browser-cache-i_d_gzcn/data/math-flashcards/study/2fbec595-093c-42e4-87ee-a9b8b48be6cb/record.sqlite3

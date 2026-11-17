@@ -92,6 +92,10 @@ operation. Whole-run timing classification does not block a missing user capabil
 
 ### Implementation for User Stories 1 and 6
 
+The invalid-draft edge case is exercised by `desktop/tests/study-draft.py`: Study
+reads saved content, Problems opens the retained draft, and a repaired draft saves
+before Study resumes. Both session start and the in-session editor return use this path.
+
 - [X] T021 [US1] Implement the add path of `study-sync` in `desktop/study/sync.py`: validate each native deck batch against its saved-source digest; create the Anki deck using the native path encoding in R5; add scheduling notes in one `add_notes` call with GUID and sole field `CardId` equal to the native ID; record source and media digests; write a `card_change` row of kind `added` and a `content` row holding native front and back source, retained `record-assets/` identity, media rows, and retained `record-media/` files; return `SyncResult` with `pending` against the full workspace inventory
 - [X] T022 [US6] Implement in `desktop/study/session.py` the pure conversion of R13 from Anki's values (queued card, current and next states, card statistics, card after the answer, review log row) and the window's `Timing` to the `presentation` and `response` values of `specs/001-in-app-review/data-model.md`, with an empty value for each fact that was not observed
 - [X] T023 [US1] Implement `study-begin`, `study-next`, `study-answer`, and `study-end` in `desktop/study/session.py` by the R10 call sequence: a `session` row at begin; the top card of the scope's queue with a `presentation` row written before the response; Anki's four labels; the three counts; `Finished` with `next_learning_seconds` from `congratulations_info()`; `StaleCard` when `presentation` is not the session's last presentation or its card is not the top card; `reveal_ms + grade_ms` as Anki's answer time; the `response` row after `answer_card()` returns; a `session_end` row at end and for each open session when the host's input closes

@@ -42,6 +42,8 @@ Right-click a deck or folder to study that scope. The tree shows new, learning, 
 review counts. Ctrl-Z undoes the last grade while keeping it in the learning record.
 E opens the current card for editing; **Return to Study** saves it and resumes the
 session. A source change disables Undo until the next grade. Escape leaves Study.
+If card structure is invalid, Study uses the last saved content and keeps the draft
+in the editor. The Problems list identifies the unsaved draft and opens it for repair.
 An unattached workspace offers its existing learning
 stores or **Start new**. The [learning-record reference](docs/study-record.md)
 explains the permanent data, its fields, and read-only queries.

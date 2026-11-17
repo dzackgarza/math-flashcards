@@ -215,6 +215,12 @@ after a save, after a file-watch event, and before a session starts.
 - A card ID in two decks is reported with both paths. The note stays with the deck that
   had it first.
 
+Study saves valid pending edits before reading the saved decks. An invalid structural
+draft stays in the editor while Study reads the last saved source. The Problems list
+includes that live draft error without caching it under the saved file's digest; its
+row returns to the existing draft. Other operations that require saving still reject
+an unsaved deck. The draft's known card identity continues to identify its editor view.
+
 **Alternatives considered**: Sync from frontend edit events alone misses external edits.
 The file watcher and saved-source comparison cover both paths.
 

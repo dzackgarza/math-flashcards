@@ -1,0 +1,123 @@
+1: starting server using command "just -f ../justfile desktop-web"
+and when url "[ 'http-get://127.0.0.1:1420' ]" is responding with HTTP status code 200
+running tests using command "xvfb-run -a uv run --upgrade tests/study-draft.py"
+
+cd desktop && bunx vite --host 127.0.0.1
+
+  VITE v8.3.8  ready in 174 ms
+
+  ➜  Local:   http://127.0.0.1:1420/
+[vite-plugin-static-copy] Collected 386 items.
+Test evidence: /home/dzack/gitclones/math-flashcards/test-history/20261117T025915.081683Z-study-draft
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-draft.py", line 127, in <module>
+    main(artifacts)
+    ~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-draft.py", line 82, in main
+    ).to_be_visible()
+      ~~~~~~~~~~~~~^^
+  File "/home/dzack/.cache/uv/environments-v2/study-draft-ddae63d79419bb02/lib/python3.14/site-packages/playwright/sync_api/_generated.py", line 14844, in to_be_visible
+    self._sync(
+    ~~~~~~~~~~^
+        self._impl_obj.to_be_visible(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            timeout=to_milliseconds(timeout), visible=visible
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        )
+        ^
+    )
+    ^
+  File "/home/dzack/.cache/uv/environments-v2/study-draft-ddae63d79419bb02/lib/python3.14/site-packages/playwright/_impl/_sync_base.py", line 124, in _sync
+    return task.result()
+           ~~~~~~~~~~~^^
+  File "/home/dzack/.cache/uv/environments-v2/study-draft-ddae63d79419bb02/lib/python3.14/site-packages/playwright/_impl/assertions.py", line 869, in to_be_visible
+    await self._expect_impl(
+    ...<5 lines>...
+    )
+  File "/home/dzack/.cache/uv/environments-v2/study-draft-ddae63d79419bb02/lib/python3.14/site-packages/playwright/_impl/assertions.py", line 122, in _expect_impl
+    _record_soft_or_raise(
+    ~~~~~~~~~~~~~~~~~~~~~^
+        AssertionError(
+        ^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        self._is_soft,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/dzack/.cache/uv/environments-v2/study-draft-ddae63d79419bb02/lib/python3.14/site-packages/playwright/_impl/_assertions.py", line 50, in _record_soft_or_raise
+    raise error
+AssertionError: Locator expected to be visible
+Actual value: None
+Error: element(s) not found 
+Call log:
+  - Expect "to_be_visible" get_by_role("alert").filter(has_text="Invalid card") with timeout 5000ms
+  - waiting for get_by_role("alert").filter(has_text="Invalid card")
+
+Aria snapshot:
+- complementary:
+  - heading "Math Flashcards" [level=1]
+  - button "Workspace":
+    - img
+    - text: flashcards-study-draft-wlbabucr
+    - img
+  - button "Search Ctrl K":
+    - img
+    - text: Search Ctrl K
+  - tree:
+    - treeitem "Draft Study counts for Draft.md The Anki package is out of date":
+      - img
+      - text: "Draft New: 1 Learning: 0 Review: 0"
+  - paragraph: New · Learning · Review
+  - text: "New: 1 Learning: 0 Review: 0"
+  - status "Study": Study cards ready
+  - status: Workspace checks complete
+  - button "Show problems":
+    - img
+    - text: Problems
+  - button "Review and update Anki packages": Update Anki packages 1
+  - button "New deck":
+    - img
+    - text: New deck
+- button "Return to Study"
+- heading "Draft" [level=2]
+- paragraph: 1 card
+- button "Add card":
+  - img
+- img
+- textbox "Find a card"
+- button "Corrected question.": Corrected question. Saved answer. New
+- paragraph: Drag cards to reorder them, or onto a deck to move them. Ctrl-click or Shift-click selects several.
+- main:
+  - button "1 change not in the Anki package"
+  - button "Deck actions":
+    - img
+  - paragraph: Card 1 of 1
+  - button "Delete card":
+    - img
+    - text: Delete card
+  - heading "Front" [level=3]
+  - button "New diagram"
+  - textbox
+  - heading "Back" [level=3]
+  - button "New diagram"
+  - textbox
+  - text: Tags
+  - combobox "Tags"
+Error: Command failed with exit code 1: xvfb-run -a uv run --upgrade tests/study-draft.py
+    at makeError (/home/dzack/gitclones/math-flashcards/desktop/node_modules/execa/lib/error.js:60:11)
+    at handlePromise (/home/dzack/gitclones/math-flashcards/desktop/node_modules/execa/index.js:118:26)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  shortMessage: 'Command failed with exit code 1: xvfb-run -a uv run --upgrade tests/study-draft.py',
+  command: 'xvfb-run -a uv run --upgrade tests/study-draft.py',
+  escapedCommand: '"xvfb-run -a uv run --upgrade tests/study-draft.py"',
+  exitCode: 1,
+  signal: undefined,
+  signalDescription: undefined,
+  stdout: undefined,
+  stderr: undefined,
+  failed: true,
+  timedOut: false,
+  isCanceled: false,
+  killed: false
+}
+error: recipe `desktop-web` was terminated on line 64 by signal 2

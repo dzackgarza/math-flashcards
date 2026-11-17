@@ -132,6 +132,7 @@ import {
   type StudyScope,
   type StudyNext,
   type StudyOpen,
+  type Problem,
   type Change,
   type Document,
   type Pending,
@@ -361,7 +362,7 @@ export default function App() {
   const busy = task !== "Idle";
   const selected = ranges[index];
   const previewImages = useMemo(() => {
-    if (!document || !draft) return null;
+    if (!document || !draft || parsed.error) return null;
     try {
       const card = nativeDeck({
         path: document.path,
@@ -395,6 +396,7 @@ export default function App() {
     document?.hash,
     document?.session.root,
     draft?.card.id,
+    parsed.error,
   ]);
   const refreshStudy = useCallback(
     async (changed: string[]) => {
@@ -444,7 +446,7 @@ export default function App() {
   const finishEditorView = useEditorViews(
     workspace,
     document?.path ?? null,
-    study && !studyEditing ? null : (selected?.id ?? null),
+    study && !studyEditing ? null : (selected?.id ?? draft?.card.id ?? null),
     setError,
     attachmentEpoch,
   );
@@ -572,7 +574,7 @@ export default function App() {
     searchInvalid.size > 0 ||
     decks.some((deck) => sourceRecords.get(deck.path)?.state === "failed");
   const {
-    problems,
+    problems: savedProblems,
     checked: problemCoverage,
     error: problemCacheError,
     cacheFailure: problemCacheFailure,
@@ -584,6 +586,21 @@ export default function App() {
     reconciliation.current,
     cacheEpoch,
   );
+  const problems = useMemo<Problem[]>(() => {
+    if (!document || !dirty || !parsed.error) return savedProblems;
+    return [
+      ...savedProblems,
+      {
+        path: document.path,
+        card: null,
+        label: null,
+        side: null,
+        kind: "Card structure",
+        message: `Unsaved draft: ${parsed.error}`,
+        source: null,
+      },
+    ];
+  }, [savedProblems, document?.path, dirty, parsed.error]);
   const derivedCacheError =
     navigationCacheFailure?.root === workspace
       ? navigationCacheFailure.message
@@ -1141,19 +1158,30 @@ export default function App() {
   const autosave = useDebouncedCallback(() => void persist(), 600);
 
   // Every operation that reads the deck from disk first writes pending edits.
-  async function flush() {
+  async function flush(allowInvalidDraft = false) {
     autosave.cancel();
     await persist();
     const open = current.current;
-    if (open && open.source !== open.saved)
+    if (open && open.source !== open.saved) {
+      if (allowInvalidDraft) {
+        try {
+          cards(open.source);
+        } catch {
+          return;
+        }
+      }
       throw new Error(
         "The open deck has edits that are not saved. Resolve them first.",
       );
+    }
   }
 
-  function guard(action: () => void | Promise<void>) {
+  function guard(
+    action: () => void | Promise<void>,
+    { allowInvalidDraft = false } = {},
+  ) {
     const token = workspaceNavigation.current;
-    flush()
+    flush(allowInvalidDraft)
       .then(() => {
         if (token === workspaceNavigation.current) return action();
       })
@@ -2346,7 +2374,7 @@ export default function App() {
                 id: "study",
                 label: "Study",
                 disabled: busy || studyStatus === "Preparing study cards",
-                onClick: () => guard(startStudy),
+                onClick: () => guard(startStudy, { allowInvalidDraft: true }),
               },
               {
                 id: "review",
@@ -2508,7 +2536,7 @@ export default function App() {
                 disabled={
                   !workspace || busy || studyStatus === "Preparing study cards"
                 }
-                onClick={() => guard(startStudy)}
+                onClick={() => guard(startStudy, { allowInvalidDraft: true })}
               >
                 Study
               </Button>
@@ -2662,11 +2690,13 @@ export default function App() {
                         studyStatus === "Preparing study cards"
                       }
                       onClick={() =>
-                        guard(() =>
-                          startStudy({
-                            kind: hasChildren ? "folder" : "deck",
-                            path,
-                          }),
+                        guard(
+                          () =>
+                            startStudy({
+                              kind: hasChildren ? "folder" : "deck",
+                              path,
+                            }),
+                          { allowInvalidDraft: true },
                         )
                       }
                     >
@@ -2867,7 +2897,11 @@ export default function App() {
         )}
         {study && studyEditing && (
           <Group justify="flex-end">
-            <Button onClick={() => guard(resumeStudy)}>Return to Study</Button>
+            <Button
+              onClick={() => guard(resumeStudy, { allowInvalidDraft: true })}
+            >
+              Return to Study
+            </Button>
           </Group>
         )}
         {study && !studyEditing ? (
@@ -3030,7 +3064,9 @@ export default function App() {
                     <>
                       <Group justify="space-between">
                         <Text size="sm" c="dimmed">
-                          Card {index + 1} of {ranges.length}
+                          {parsed.error
+                            ? "Unsaved card"
+                            : `Card ${index + 1} of ${ranges.length}`}
                         </Text>
                         <Button
                           color="red"
@@ -3199,6 +3235,10 @@ export default function App() {
         close={() => setProblemsOpen(false)}
         open={(problem) => {
           setProblemsOpen(false);
+          if (problem.path === current.current?.path && parsed.error) {
+            void closeStudy().catch((failure) => setError(String(failure)));
+            return;
+          }
           guard(() => chooseDeck(problem.path, problem.card ?? undefined));
         }}
       />

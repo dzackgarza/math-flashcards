@@ -38,10 +38,11 @@ def main(artifacts: Path) -> None:
                     "Study cards ready", timeout=30000
                 )
                 page.locator('[data-deck="Draft.md"]').click()
-                front = page.locator(".side-editor.front .cm-content")
+                front = page.locator(".editor-column .side-editor.front .cm-content")
                 expect(front).to_have_text("Saved question.")
 
                 def edit(text: str):
+                    expect(front).to_be_editable()
                     front.click()
                     page.keyboard.press("Control+a")
                     page.keyboard.insert_text(text)
@@ -74,6 +75,9 @@ def main(artifacts: Path) -> None:
                 saved = deck.read_text()
                 assert "Corrected question." in saved
                 page.keyboard.press("e")
+                expect(
+                    page.get_by_role("button", name="Return to Study", exact=True)
+                ).to_be_visible()
                 expect(front).to_have_text("Corrected question.")
                 edit(invalid)
                 expect(

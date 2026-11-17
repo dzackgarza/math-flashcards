@@ -1,0 +1,62 @@
+[
+  {
+    "input": "Unfinished draft.\n:::\nUnpaired text.",
+    "before": {
+      "text": "Saved question.",
+      "editable": true,
+      "study": false,
+      "focused": true
+    },
+    "after": {
+      "text": "Unfinished draft.\n:::\nUnpaired text.",
+      "editable": true,
+      "study": false,
+      "focused": true
+    }
+  },
+  {
+    "input": "Corrected question.",
+    "before": {
+      "text": "Unfinished draft.\n:::\nUnpaired text.",
+      "editable": true,
+      "study": false,
+      "focused": true
+    },
+    "after": {
+      "text": "Corrected question.",
+      "editable": true,
+      "study": false,
+      "focused": true
+    }
+  },
+  {
+    "input": "Unfinished draft.\n:::\nUnpaired text.",
+    "before": {
+      "text": "Corrected question.",
+      "editable": true,
+      "study": false,
+      "focused": true
+    },
+    "after": {
+      "text": "Unfinished draft.\n:::\nUnpaired text.",
+      "editable": true,
+      "study": false,
+      "focused": true
+    }
+  },
+  {
+    "input": "Final question.",
+    "before": {
+      "text": "Unfinished draft.\n:::\nUnpaired text.",
+      "editable": true,
+      "study": false,
+      "focused": true
+    },
+    "after": {
+      "text": "Final question.",
+      "editable": true,
+      "study": false,
+      "focused": true
+    }
+  }
+]
