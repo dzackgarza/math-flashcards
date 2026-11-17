@@ -704,6 +704,8 @@ def main(artifacts: Path) -> None:
                             )
                             page.screenshot(path=str(artifacts / "study-image.png"))
                             page.set_viewport_size({"width": 760, "height": 620})
+                            expect(picture).to_be_in_viewport()
+                            expect(study.get_by_role("button", name="Show answer", exact=False)).to_be_in_viewport()
                             page.screenshot(
                                 path=str(artifacts / "study-image-small.png")
                             )
