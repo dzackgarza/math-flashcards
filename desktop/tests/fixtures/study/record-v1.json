@@ -1,0 +1,169 @@
+{
+  "card_change": [
+    [
+      1,
+      1794875740794,
+      480,
+      1,
+      "schema-one-card",
+      "added",
+      null,
+      "Basics.md",
+      1,
+      "[]"
+    ]
+  ],
+  "content": [
+    [
+      1,
+      1794875740784,
+      480,
+      1,
+      "fd139a0183c3363f10dcbb6f90b0771f5716cceab023dcbc31feb02897f07be6",
+      "Evaluate $2+2$.",
+      "$4$.",
+      "a3db599709b7187c3b7a38e972c8d038713765345cad8f9a8c9b29708879aa84"
+    ]
+  ],
+  "editor_view": [
+    [
+      1,
+      1794875740840,
+      480,
+      1,
+      "schema-one-card",
+      "Basics.md",
+      3000,
+      500
+    ]
+  ],
+  "media": [],
+  "parameter_set": [
+    [
+      1,
+      1794875740765,
+      480,
+      1,
+      "[0.21199999749660492, 1.2930999994277954, 2.30649995803833, 8.295599937438965, 6.413300037384033, 0.8334000110626221, 3.019399881362915, 0.0010000000474974513, 1.8722000122070312, 0.16660000383853912, 0.7960000038146973, 1.4835000038146973, 0.061400000005960464, 0.2628999948501587, 1.648300051689148, 0.6014000177383423, 1.8729000091552734, 0.5425000190734863, 0.09120000153779984, 0.0658000037074089, 0.1542000025510788]",
+      "anki-default",
+      null,
+      null,
+      null
+    ]
+  ],
+  "presentation": [
+    [
+      1,
+      1794875740819,
+      480,
+      1,
+      1,
+      1,
+      "schema-one-card",
+      1,
+      "Basics.md",
+      "",
+      "Basics",
+      "[]",
+      "new",
+      0,
+      0,
+      1,
+      0,
+      0,
+      null,
+      null,
+      null,
+      60,
+      330,
+      600,
+      777600,
+      "{\"again\":\"<\u20681\u2069m\",\"hard\":\"<\u20686\u2069m\",\"good\":\"<\u206810\u2069m\",\"easy\":\"\u20689\u2069d\"}",
+      0.9,
+      1,
+      20,
+      200
+    ]
+  ],
+  "response": [
+    [
+      1,
+      1794875740830,
+      480,
+      1,
+      1,
+      "schema-one-card",
+      "easy",
+      1200,
+      800,
+      0,
+      9,
+      9,
+      8.295599937438965,
+      1.0,
+      0,
+      1794875740825,
+      1794875740790,
+      -1,
+      4,
+      9,
+      0,
+      100,
+      2000,
+      0
+    ]
+  ],
+  "schema": [
+    [
+      1,
+      1794875740756,
+      480,
+      1,
+      1,
+      "{\"writer\": \"app_release text not null, anki_version text not null, schema_version integer not null\", \"schema\": \"version integer not null unique, added text not null\", \"store_event\": \"kind text not null, path text not null\", \"editor_view\": \"card_id text not null, deck_path text not null, shown_ms integer not null, unfocused_ms integer not null\", \"session\": \"scope_kind text not null, scope_path text\", \"session_end\": \"session integer not null references session(id), cause text not null\", \"content\": \"digest text not null unique, front text not null, back text not null, assets text not null\", \"media\": \"content integer not null references content(id), name text not null, digest text not null\", \"card_change\": \"card_id text not null, kind text not null, from_deck text, to_deck text, content integer references content(id), tags text not null\", \"presentation\": \"session integer not null references session(id), position integer not null,\\n        card_id text not null, content integer not null references content(id), deck_path text not null,\\n        folder text not null, deck_title text not null, tags text not null, kind text not null,\\n        scheduler_day integer not null, before_interval_days integer not null, before_due integer not null,\\n        before_reps integer not null, before_lapses integer not null, before_stability real,\\n        before_difficulty real, before_retrievability real, offer_again_s integer not null,\\n        offer_hard_s integer not null, offer_good_s integer not null, offer_easy_s integer not null,\\n        labels text not null, desired_retention real not null,\\n        parameter_set integer not null references parameter_set(id),\\n        new_per_day integer not null, reviews_per_day integer not null\", \"response\": \"presentation integer references presentation(id), card_id text not null,\\n        grade text, reveal_ms integer, grade_ms integer, unfocused_ms integer,\\n        after_interval_days integer, after_due integer, after_stability real, after_difficulty real,\\n        recovered integer not null, revlog_id integer not null unique,\\n        revlog_cid integer not null, revlog_usn integer not null, revlog_ease integer not null,\\n        revlog_ivl integer not null, revlog_last_ivl integer not null, revlog_factor integer not null,\\n        revlog_time_ms integer not null, revlog_type integer not null\", \"undo\": \"response integer not null references response(id)\", \"setting_change\": \"key text not null, \\\"before\\\" text not null, \\\"after\\\" text not null\", \"parameter_set\": \"parameters text not null, source text not null, reviews integer, log_loss real, rmse_bins real\"}"
+    ]
+  ],
+  "session": [
+    [
+      1,
+      1794875740809,
+      480,
+      1,
+      "workspace",
+      null
+    ]
+  ],
+  "session_end": [
+    [
+      1,
+      1794875740835,
+      480,
+      1,
+      1,
+      "finished"
+    ]
+  ],
+  "setting_change": [],
+  "store_event": [
+    [
+      1,
+      1794875740761,
+      480,
+      1,
+      "created",
+      "/tmp/flashcards-schema-one-x7tf9q98/workspace"
+    ]
+  ],
+  "undo": [],
+  "writer": [
+    [
+      1,
+      1794875740752,
+      480,
+      1,
+      "98c28602-schema-one-fixture",
+      "26.09.4",
+      1
+    ]
+  ]
+}

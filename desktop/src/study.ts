@@ -82,30 +82,32 @@ function nativeDeck(
     source_hash: source.revision,
     title,
     tags,
-    cards: cards(source.source).map((card) => ({
-      id: card.id,
-      front: card.front.value,
-      back: card.back.value,
-      tags: card.tags.split(/\s+/).filter(Boolean),
-      media: [
-        ...new Set(
-          images
-            .filter(
-              (image) =>
-                (image.from >= card.front.contentFrom &&
-                  image.from < card.front.contentTo) ||
-                (image.from >= card.back.contentFrom &&
-                  image.from < card.back.contentTo),
-            )
-            .map((image) => {
-              const resolved = image.url ?? references.get(image.label);
-              if (resolved === undefined)
-                throw new Error(`Unresolved image reference: ${image.label}`);
-              return resolved;
-            }),
-        ),
-      ],
-    })),
+    cards: cards(source.source).map((card) => {
+      const cardImages = images.filter(
+        (image) =>
+          (image.from >= card.front.contentFrom &&
+            image.from < card.front.contentTo) ||
+          (image.from >= card.back.contentFrom &&
+            image.from < card.back.contentTo),
+      );
+      const resolvedReferences: Record<string, string> = {};
+      const media = cardImages.map((image) => {
+        if (image.url !== null) return image.url;
+        const resolved = references.get(image.label);
+        if (resolved === undefined)
+          throw new Error(`Unresolved image reference: ${image.label}`);
+        resolvedReferences[image.label] = resolved;
+        return resolved;
+      });
+      return {
+        id: card.id,
+        front: card.front.value,
+        back: card.back.value,
+        tags: card.tags.split(/\s+/).filter(Boolean),
+        media: [...new Set(media)],
+        references: resolvedReferences,
+      };
+    }),
   };
 }
 

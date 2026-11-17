@@ -48,6 +48,8 @@ TABLES = {
     "parameter_set": "parameters text not null, source text not null, reviews integer, log_loss real, rmse_bins real",
 }
 
+IMAGE_REFERENCE = "content integer not null references content(id), label text not null, name text not null"
+
 
 class Presentation(Value):
     session: int
@@ -131,6 +133,15 @@ class Record:
         self.writer = self.add_writer(release, anki_version)
         if create:
             self.schema(1, json.dumps(TABLES))
+        if (
+            self.connection.execute('select 1 from "schema" where version=2').fetchone()
+            is None
+        ):
+            with self.connection:
+                self.connection.execute(
+                    f"create table image_reference ({COMMON}, {IMAGE_REFERENCE})"
+                )
+                self.schema(2, json.dumps({"image_reference": IMAGE_REFERENCE}))
 
     def add_writer(self, release: str, anki_version: str) -> int:
         writer = self.connection.execute(
@@ -140,7 +151,7 @@ class Record:
         with self.connection:
             self.connection.execute(
                 "insert into writer values (?, ?, ?, ?, ?, ?, ?)",
-                (writer, at_ms, offset, writer, release, anki_version, 1),
+                (writer, at_ms, offset, writer, release, anki_version, 2),
             )
         return writer
 
@@ -199,6 +210,12 @@ class Record:
         return self.insert(
             "insert into media (at_ms, utc_offset_min, writer, content, name, digest) values (?, ?, ?, ?, ?, ?)",
             (content, name, digest),
+        )
+
+    def image_reference(self, content: int, label: str, name: str) -> int:
+        return self.insert(
+            "insert into image_reference (at_ms, utc_offset_min, writer, content, label, name) values (?, ?, ?, ?, ?, ?)",
+            (content, label, name),
         )
 
     def card_change(

@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/evidence.py", line 53, in evidence
+    yield directory
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study.py", line 909, in <module>
+    main(artifacts)
+    ~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study.py", line 875, in main
+    assert response.ok, response.text()
+           ^^^^^^^^^^^
+AssertionError: Error: ENOENT: no such file or directory, realpath '/tmp/flashcards-browser-cache-rfp6v1gk/data/math-flashcards/study/ab7f8f4d-6b55-4579-aeb4-da1a3ee023be/record-media'

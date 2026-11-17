@@ -366,6 +366,7 @@ export const studyCardSourceSchema = z.strictObject({
   back: z.string(),
   tags: z.array(z.string()),
   media: z.array(z.string()),
+  references: z.record(z.string(), z.string()),
 });
 export const studyDeckSchema = z.strictObject({
   path: deckPathSchema,
@@ -418,6 +419,7 @@ export const studyNextSchema = z.discriminatedUnion("state", [
     back: z.string(),
     assets: digestSchema,
     media: z.record(z.string(), z.string()),
+    references: z.record(z.string(), z.string()),
     labels: gradeLabelsSchema,
     counts: studyCountsSchema,
     undoable: z.boolean(),

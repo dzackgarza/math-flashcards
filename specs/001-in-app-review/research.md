@@ -222,6 +222,16 @@ diagram renderer as the editor.
 **Rationale**: A later file replacement must preserve the media shown in an earlier
 review. The content record owns this association (FR-030).
 
+[CommonMark image references](https://spec.commonmark.org/0.31.2/#images) resolve
+through definitions in the containing document, including explicit, collapsed,
+and shortcut labels. A front can use a definition authored on the back or another
+card. Parsing a face alone loses that context. The native deck parser therefore
+resolves references before splitting the display into faces; `image_reference`
+retains the labels and authored URLs used by each content version. The shared
+face receives this mapping alongside the retained file paths. The face text stays
+exactly as authored. Schema version 2 adds the mapping table; historical rows
+remain intact, and newly resolved context creates a new content version.
+
 The browser route uses [`mrmime`](https://github.com/lukeed/mrmime#lookupinput) to resolve
 the authored filename's standard MIME type. Its dictionary derives from `mime-db`;
 unknown extensions return no type and the route reports 415. A digest filename alone
@@ -233,8 +243,8 @@ The face fetches retained bytes and creates a Blob with the MIME type resolved f
 the authored filename. Tauri's `tauri-utils/src/mime_type.rs` cannot infer SVG from
 bytes and uses the path extension; a digest path therefore needs an explicit type.
 The image widget releases its object URL on destruction. The shell permits asset
-fetches and Blob images in its content security policy. Native validation must
-exercise SVG through this path when the next native milestone is built.
+fetches and Blob images in its content security policy. The native Study scenario
+exercises SVG through this path and compares the completed grades with both stores.
 
 ## R8. Card display
 

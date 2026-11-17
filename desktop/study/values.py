@@ -37,6 +37,7 @@ class Card(Value):
     back: str
     tags: list[str]
     media: list[str]
+    references: dict[str, str]
 
 
 class StudyDeck(Value):
@@ -107,6 +108,7 @@ class StudyCard(Value):
     back: str
     assets: Digest
     media: dict[str, str]
+    references: dict[str, str]
     labels: GradeLabels
     counts: Counts
     undoable: bool

@@ -188,6 +188,11 @@ def next_card(store: Store, session: int) -> StudyNext:
         back=back,
         assets=assets,
         media=media,
+        references=dict(
+            store.record.connection.execute(
+                "select label, name from image_reference where content=?", (content,)
+            )
+        ),
         labels=labels,
         counts=counts,
         undoable=False,

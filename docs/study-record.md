@@ -32,6 +32,14 @@ the [learning-record contract](../specs/001-in-app-review/contracts/learning-rec
 
 ## Common columns
 
+The immutable `desktop/tests/fixtures/study/record-v1.sqlite3` fixture and its
+`record-v1.json` row dump were produced through the public Study host from the
+native build at `98c28602f409071be8bbece5cbe21abee03126aa`. The companion
+`collection-v1.anki2` holds the matching scheduling state. The fixture includes
+a completed Easy review and an editor view. Never regenerate these files. The
+Study scenario opens a copy through the current host, compares every historical
+row with the dump, and reads the historical grade through `review`.
+
 Every table below has these columns. Row IDs belong to their own table. Unless a
 row below states otherwise, a field is required and cannot be `NULL`.
 
@@ -53,7 +61,7 @@ attention or learning.
 | --- | --- |
 | `writer.app_release` | Application release string. |
 | `writer.anki_version` | Version of the Anki Python distribution used by this writer. |
-| `writer.schema_version` | Record schema version understood by this writer. The initial schema is version 1. A writer row's common `writer` column refers to itself. |
+| `writer.schema_version` | Record schema version understood by this writer. The current schema is version 2. A writer row's common `writer` column refers to itself. |
 | `schema.version` | Unique integer schema version. |
 | `schema.added` | Text describing the additions. Version 1 stores a JSON object from table names to their SQL field definitions. |
 | `store_event.kind` | Store event name: `created`, `attached`, `backed-up`, or `copied`, as applicable to the operation. |
@@ -62,6 +70,11 @@ attention or learning.
 `store.json` beside the database contains the store UUID, creation time, and
 ordered workspace attachment history. It is current store metadata, distinct
 from the append-only learning record.
+
+Version 2 adds `image_reference`. Opening a version 1 record creates this table
+and appends a schema row. Existing rows remain unchanged. Reference mappings are
+recorded on the next synchronization as new content versions; an empty mapping
+on an older version means that context was not recorded.
 
 ## Editor views and sessions
 
@@ -84,13 +97,16 @@ editor views.
 
 | Table.column | Meaning and empty case |
 | --- | --- |
-| `content.digest` | Unique SHA-256 identity of the native front and back, rendering identity, and retained media mapping. |
+| `content.digest` | Unique SHA-256 identity of the native front and back, rendering identity, retained media mapping, and image reference mapping. |
 | `content.front` | Exact saved Markdown source of the front div body. |
 | `content.back` | Exact saved Markdown source of the back div body. |
 | `content.assets` | Rendering descriptor identity. Its retained file is `record-assets/<identity>.json`. |
 | `media.content` | Foreign key to the content version that uses this file. |
 | `media.name` | Authored image URL resolved relative to that version's source deck. |
 | `media.digest` | SHA-256 of the retained bytes, stored as `record-media/<digest>`. |
+| `image_reference.content` | Foreign key to the content version that uses the reference. |
+| `image_reference.label` | Normalized Markdown reference label. |
+| `image_reference.name` | Authored URL of the reference definition; names a `media` row for this content. |
 | `card_change.card_id` | Native card identity; content edits do not change it. |
 | `card_change.kind` | Change name: `added`, `content`, `tags`, `moved`, `removed`, or `restored`. |
 | `card_change.from_deck` | Earlier relative deck path; `NULL` for a newly added card. |

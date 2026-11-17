@@ -138,11 +138,11 @@ def main(artifacts: Path) -> None:
                     )
                     assert record.execute(
                         'select version from "schema"'
-                    ).fetchall() == [(1,)]
+                    ).fetchall() == [(1,), (2,)]
                     writer = record.execute(
                         "select app_release, anki_version, schema_version from writer"
                     ).fetchone()
-                    assert writer[0] and writer[1] and writer[2] == 1, writer
+                    assert writer[0] and writer[1] and writer[2] == 2, writer
                     assert record.execute(
                         "select kind, path from store_event"
                     ).fetchall() == [("created", str(workspace))]
@@ -385,7 +385,9 @@ def main(artifacts: Path) -> None:
                     page.keyboard.press("Escape")
                     expect(study).to_have_count(0)
                 finally:
-                    (artifacts / "initial-window.txt").write_text(page.locator("body").inner_text())
+                    (artifacts / "initial-window.txt").write_text(
+                        page.locator("body").inner_text()
+                    )
                     browser.close()
 
                 response = api.post(
@@ -727,10 +729,14 @@ def main(artifacts: Path) -> None:
                             page.screenshot(path=str(artifacts / "study-macro.png"))
                         page.keyboard.press("Space")
                         if identity == "study-image":
-                            referenced = study.get_by_role("img", name="Collapsed triangle", exact=True)
+                            referenced = study.get_by_role(
+                                "img", name="Collapsed triangle", exact=True
+                            )
                             expect(referenced).to_be_visible()
                             expect(referenced).to_have_js_property("complete", True)
-                            assert referenced.evaluate("image => image.naturalWidth > 0")
+                            assert referenced.evaluate(
+                                "image => image.naturalWidth > 0"
+                            )
                         expect(
                             study.get_by_role("button", name="Easy", exact=False)
                         ).to_be_visible()
@@ -856,6 +862,63 @@ def main(artifacts: Path) -> None:
                     assert {
                         path.name: path.read_bytes() for path in broken.iterdir()
                     } == files_before, defect
+                historical_workspace = root / "schema-one-workspace"
+                historical_workspace.mkdir()
+                historical = stores / str(uuid4())
+                historical.mkdir()
+                for folder in ("record-media", "record-assets", "backups"):
+                    (historical / folder).mkdir()
+                fixtures = desktop / "tests" / "fixtures" / "study"
+                shutil.copyfile(
+                    fixtures / "record-v1.sqlite3", historical / "record.sqlite3"
+                )
+                shutil.copyfile(
+                    fixtures / "collection-v1.anki2", historical / "collection.anki2"
+                )
+                (historical / "store.json").write_text(
+                    json.dumps(
+                        {
+                            "id": historical.name,
+                            "created": metadata["created"],
+                            "paths": [
+                                {
+                                    "path": str(historical_workspace),
+                                    "at": metadata["created"],
+                                }
+                            ],
+                        }
+                    )
+                )
+                expected_rows = json.loads((fixtures / "record-v1.json").read_text())
+                response = api.post(
+                    "/api/request",
+                    data={
+                        "action": "study-open",
+                        "workspace": str(historical_workspace),
+                    },
+                )
+                assert response.ok, response.text()
+                assert response.json()["store"] == str(historical)
+                with closing(sqlite3.connect(historical / "record.sqlite3")) as record:
+                    for table, rows in expected_rows.items():
+                        actual = [
+                            list(row)
+                            for row in record.execute(
+                                f'SELECT * FROM "{table}" ORDER BY id'
+                            )
+                        ]
+                        assert actual[: len(rows)] == rows, table
+                        if table not in {"writer", "schema"}:
+                            assert actual == rows, table
+                    assert record.execute(
+                        'select version from "schema" order by version'
+                    ).fetchall() == [(1,), (2,)]
+                    assert record.execute(
+                        "select count(*) from image_reference"
+                    ).fetchone() == (0,)
+                    assert record.execute(
+                        "select card_id, grade from review"
+                    ).fetchall() == [("schema-one-card", "easy")]
                 failures = [
                     json.loads(line)
                     for log in diagnostics.glob("*/events.jsonl")

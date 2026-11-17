@@ -27,6 +27,7 @@ export function SideEditor({
   path,
   minHeight = "160px",
   media,
+  references,
 }: {
   side: Side;
   value: string;
@@ -39,6 +40,7 @@ export function SideEditor({
   path: string;
   minHeight?: string;
   media?: Record<string, string>;
+  references?: Record<string, string>;
 }) {
   const label = side === "front" ? "Front" : "Back";
   // @uiw/react-codemirror applies a changed `value` prop as an ExternalChange
@@ -96,7 +98,7 @@ export function SideEditor({
   const extensions = useMemo(
     () => [
       previewConfig.of({ previewModeShowSyntaxWhenCursorIsAdjacent: false }),
-      ...(media ? [retainedImages(media)] : []),
+      ...(media && references ? [retainedImages(media, references)] : []),
       markdownEditor({
         math: mathjax
           ? {
@@ -111,7 +113,7 @@ export function SideEditor({
           : undefined,
       }),
     ],
-    [mathjax, media],
+    [mathjax, media, references],
   );
   return (
     <Box className={"side-editor card-face " + side}>

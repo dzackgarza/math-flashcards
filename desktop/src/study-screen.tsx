@@ -268,6 +268,7 @@ function Presentation({
         key={card.presentation + "front"}
         minHeight="0"
         media={card.media}
+        references={card.references}
         side="front"
         value={card.front}
         mathjax={mathjax}
@@ -281,6 +282,7 @@ function Presentation({
           key={card.presentation + "back"}
           minHeight="0"
           media={card.media}
+          references={card.references}
           side="back"
           value={card.back}
           mathjax={mathjax}

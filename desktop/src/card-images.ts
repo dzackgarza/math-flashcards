@@ -2,7 +2,6 @@ import { EditorView, WidgetType } from "@codemirror/view";
 import { renderBlockWidgets } from "@dzack/pandoc-editor/renderers/base-renderer";
 import { decodeString } from "micromark-util-decode-string";
 import { convertFileSrc, isTauri } from "@tauri-apps/api/core";
-import { deckParser } from "./cards";
 import { lookup } from "mrmime";
 
 // The shared editor's render-math.ts supplies this WidgetType/renderBlockWidgets
@@ -61,7 +60,10 @@ class CardImage extends WidgetType {
   }
 }
 
-export function retainedImages(media: Record<string, string>) {
+export function retainedImages(
+  media: Record<string, string>,
+  references: Record<string, string>,
+) {
   return renderBlockWidgets(
     ["Image"],
     (node) => node.name === "Image",
@@ -83,21 +85,7 @@ export function retainedImages(media: Record<string, string>) {
             ? state.sliceDoc(labelNode.from + 1, labelNode.to - 1)
             : alt,
         );
-        deckParser.parse(state.doc.toString()).iterate({
-          enter(ref) {
-            if (ref.name !== "LinkReference") return;
-            const key = ref.node.getChild("LinkLabel");
-            const url = ref.node.getChild("URL");
-            if (
-              key &&
-              url &&
-              label(state.sliceDoc(key.from + 1, key.to - 1)) === reference
-            ) {
-              const raw = state.sliceDoc(url.from, url.to);
-              name = decodeString(raw.startsWith("<") ? raw.slice(1, -1) : raw);
-            }
-          },
-        });
+        name = references[reference];
       }
       if (name === undefined || media[name] === undefined)
         throw new Error(

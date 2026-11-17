@@ -9,8 +9,8 @@ from urllib.parse import unquote, urlsplit
 
 from anki.collection import AddNoteRequest
 from pydantic import TypeAdapter
-
 from rendering import InvalidAssetsError, asset_set, digest
+
 from study.store import Store
 from study.values import Duplicate, FailedDeck, SyncRequest, SyncResult, Value
 
@@ -92,11 +92,29 @@ def sync(store: Store, workspace: Path, request: SyncRequest) -> SyncResult:
             source_path = (workspace / deck.path).resolve(strict=True)
             if digest(source_path.read_bytes()) != deck.source_hash:
                 raise ValueError(f"The saved source changed: {deck.path}")
-            if previous is not None and current(previous, request.assets):
+            references_current = all(
+                dict(
+                    store.record.connection.execute(
+                        "select label, name from image_reference where content=(select content from card_change where card_id=? order by id desc limit 1)",
+                        (card.id,),
+                    )
+                )
+                == card.references
+                for card in deck.cards
+            )
+            if (
+                previous is not None
+                and current(previous, request.assets)
+                and references_current
+            ):
                 continue
             inputs = {str(source_path): deck.source_hash}
             media: dict[str, tuple[str, bytes]] = {}
             for card in deck.cards:
+                if not set(card.references.values()) <= set(card.media):
+                    raise ValueError(
+                        f"Image references must name retained media: {card.id}"
+                    )
                 for name in card.media:
                     target = urlsplit(name)
                     if target.scheme or target.netloc:
@@ -136,7 +154,13 @@ def sync(store: Store, workspace: Path, request: SyncRequest) -> SyncResult:
                 retained = {name: media[name][0] for name in card.media}
                 identity = digest(
                     json.dumps(
-                        [card.front, card.back, request.assets, retained],
+                        [
+                            card.front,
+                            card.back,
+                            request.assets,
+                            retained,
+                            card.references,
+                        ],
                         sort_keys=True,
                         separators=(",", ":"),
                     ).encode()
@@ -150,6 +174,8 @@ def sync(store: Store, workspace: Path, request: SyncRequest) -> SyncResult:
                     )
                     for name, media_digest in retained.items():
                         store.record.media(content_id, name, media_digest)
+                    for label, name in card.references.items():
+                        store.record.image_reference(content_id, label, name)
                 else:
                     content_id = content[0]
                 tags = sorted(set(deck.tags + card.tags))
