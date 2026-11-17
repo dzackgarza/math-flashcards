@@ -1,0 +1,54 @@
+Math Flashcards
+flashcards-statistics-o4abbr78
+Search
+Ctrl K
+Algebra
+New:
+0
+Learning:
+0
+Review:
+3
+
+New · Learning · Review
+
+New:
+0
+Learning:
+0
+Review:
+3
+
+Study cards ready
+
+Workspace checks complete
+
+Problems
+Update Anki packages
+1
+New deck
+Study
+Study settings
+Undo
+Ctrl Z
+Edit
+E
+Return to editor
+Esc
+
+New: 0
+
+Learning: 0
+
+Review: 3
+
+Algebra/Recall.md
+
+FRONT
+Recall 2.
+Show answer
+Space
+
+Study store: /tmp/flashcards-browser-cache-sbd0di6w/data/math-flashcards/study/564a72a9-7601-424f-a65c-92f263dd7c7d
+
+Learning record: /tmp/flashcards-browser-cache-sbd0di6w/data/math-flashcards/study/564a72a9-7601-424f-a65c-92f263dd7c7d/record.sqlite3

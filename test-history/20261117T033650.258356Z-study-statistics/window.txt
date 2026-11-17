@@ -1,0 +1,74 @@
+Math Flashcards
+flashcards-statistics-bsaht55p
+Search
+Ctrl K
+Algebra
+New:
+0
+Learning:
+0
+Review:
+1
+
+New · Learning · Review
+
+New:
+0
+Learning:
+0
+Review:
+1
+
+Study cards ready
+
+Workspace checks complete
+
+Problems
+Update Anki packages
+1
+New deck
+Study
+Study settings
+Undo
+Ctrl Z
+Edit
+E
+Return to editor
+Esc
+
+New: 0
+
+Learning: 0
+
+Review: 1
+
+Algebra/Recall.md
+
+FRONT
+Recall 0.
+BACK
+Answer 0.
+Again 1
+
+<⁨10⁩m
+
+Hard 2
+
+⁨25⁩d
+
+Good 3
+
+⁨1.2⁩mo
+
+Easy 4
+
+⁨1.8⁩mo
+
+Study store: /tmp/flashcards-browser-cache-uib2s1bb/data/math-flashcards/study/ea83beeb-9a39-429d-8ad0-cb3840c7dfba
+
+Learning record: /tmp/flashcards-browser-cache-uib2s1bb/data/math-flashcards/study/ea83beeb-9a39-429d-8ad0-cb3840c7dfba/record.sqlite3
+
+Study
+Workspace folder
+Refresh workspace
+Open workspace
