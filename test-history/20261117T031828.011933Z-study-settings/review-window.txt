@@ -1,0 +1,49 @@
+Math Flashcards
+Reviews
+Search
+Ctrl K
+Settings
+New:
+0
+Learning:
+0
+Review:
+0
+
+New · Learning · Review
+
+New:
+0
+Learning:
+0
+Review:
+0
+
+Study cards ready
+
+Workspace checks complete
+
+Problems
+Update Anki packages
+1
+New deck
+Study
+Study settings
+Undo
+Ctrl Z
+Return to editor
+Esc
+
+New: 0
+
+Learning: 0
+
+Review: 0
+
+Study complete for now
+
+Graded today: 5
+
+Study store: /tmp/flashcards-browser-cache-hlce7d09/data/math-flashcards/study/3746f261-686f-41d8-b596-b3a3bf65fb1c
+
+Learning record: /tmp/flashcards-browser-cache-hlce7d09/data/math-flashcards/study/3746f261-686f-41d8-b596-b3a3bf65fb1c/record.sqlite3

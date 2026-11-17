@@ -7,12 +7,15 @@ import {
   Modal,
   Stack,
   Text,
+  TextInput,
   Title,
 } from "@mantine/core";
+import { useForm } from "@mantine/form";
 import {
   request,
   studyNextSchema,
   studyOpenSchema,
+  studySettingsSchema,
   type StudyNext,
   type StudyOpen,
 } from "./bridge";
@@ -24,6 +27,130 @@ import { dirname } from "pathe";
 
 type Grade = "again" | "hard" | "good" | "easy";
 const grades: Grade[] = ["again", "hard", "good", "easy"];
+
+function StudySettings({
+  workspace,
+  onSaved,
+  onClose,
+}: {
+  workspace: string;
+  onSaved: () => Promise<void>;
+  onClose: () => void;
+}) {
+  const form = useForm({
+    initialValues: {
+      new_per_day: "",
+      reviews_per_day: "",
+      desired_retention: "",
+    },
+  });
+  const [ready, setReady] = useState(false);
+  const [pending, setPending] = useState(false);
+  const [error, setError] = useState("");
+  useEffect(() => {
+    let active = true;
+    request({ action: "study-open", workspace }, studyOpenSchema)
+      .then((opened) => {
+        if (!active) return;
+        if (opened.state !== "Open")
+          throw new Error("Attach a study store before changing settings.");
+        form.setValues({
+          new_per_day: String(opened.settings.new_per_day),
+          reviews_per_day: String(opened.settings.reviews_per_day),
+          desired_retention: String(opened.settings.desired_retention),
+        });
+        setReady(true);
+      })
+      .catch((failure) => {
+        if (active) setError(String(failure));
+      });
+    return () => {
+      active = false;
+    };
+  }, [workspace]);
+  async function save(values: typeof form.values) {
+    const parsed = studySettingsSchema.safeParse({
+      new_per_day: values.new_per_day.trim() ? Number(values.new_per_day) : NaN,
+      reviews_per_day: values.reviews_per_day.trim()
+        ? Number(values.reviews_per_day)
+        : NaN,
+      desired_retention: values.desired_retention.trim()
+        ? Number(values.desired_retention)
+        : NaN,
+    });
+    if (!parsed.success) {
+      form.setErrors(
+        Object.fromEntries(
+          parsed.error.issues.map((issue) => [
+            issue.path[0],
+            issue.path[0] === "desired_retention"
+              ? "Enter a target from 0.70 to 0.99."
+              : "Enter a whole number from 0 to 9999.",
+          ]),
+        ),
+      );
+      return;
+    }
+    setPending(true);
+    setError("");
+    try {
+      await request(
+        { action: "study-set-settings", workspace, settings: parsed.data },
+        studySettingsSchema,
+      );
+      await onSaved();
+      onClose();
+    } catch (failure) {
+      setError(String(failure));
+    } finally {
+      setPending(false);
+    }
+  }
+  return (
+    <Modal
+      opened
+      title="Study settings"
+      onClose={onClose}
+      closeOnEscape={!pending}
+      closeOnClickOutside={!pending}
+      withCloseButton={!pending}
+    >
+      <form onSubmit={form.onSubmit(save)}>
+        <Stack>
+          <Text size="sm">
+            These settings apply to the whole workspace. Initial values are Anki
+            defaults.
+          </Text>
+          {error && <Alert color="red">{error}</Alert>}
+          <TextInput
+            label="New cards per day"
+            description="Whole number from 0 to 9999"
+            inputMode="numeric"
+            disabled={!ready || pending}
+            {...form.getInputProps("new_per_day")}
+          />
+          <TextInput
+            label="Reviews per day"
+            description="Whole number from 0 to 9999"
+            inputMode="numeric"
+            disabled={!ready || pending}
+            {...form.getInputProps("reviews_per_day")}
+          />
+          <TextInput
+            label="Target recall"
+            description="0.70 to 0.99. A higher target schedules reviews sooner."
+            inputMode="decimal"
+            disabled={!ready || pending}
+            {...form.getInputProps("desired_retention")}
+          />
+          <Button type="submit" disabled={!ready} loading={pending}>
+            Save settings
+          </Button>
+        </Stack>
+      </form>
+    </Modal>
+  );
+}
 
 export function StudyStoreChoice({
   workspace,
@@ -133,6 +260,7 @@ function Presentation({
   mathjax,
   onNext,
   onClose,
+  shortcuts,
 }: {
   workspace: string;
   session: number;
@@ -140,6 +268,7 @@ function Presentation({
   mathjax: MathJaxRuntime | null;
   onNext: (next: StudyNext) => void;
   onClose: () => void;
+  shortcuts: boolean;
 }) {
   const clock = useRef({
     started: 0,
@@ -230,6 +359,7 @@ function Presentation({
   useEffect(() => {
     function key(event: KeyboardEvent) {
       if (
+        !shortcuts ||
         event.repeat ||
         event.altKey ||
         event.ctrlKey ||
@@ -332,6 +462,7 @@ export function StudyScreen({
   onUndo,
   onEdit,
   undoReason,
+  onSettings,
 }: {
   workspace: string;
   session: number;
@@ -343,7 +474,9 @@ export function StudyScreen({
   onUndo: () => Promise<void>;
   onEdit: () => Promise<void>;
   undoReason: string;
+  onSettings: () => Promise<void>;
 }) {
+  const [settingsOpen, setSettingsOpen] = useState(false);
   const [folderError, setFolderError] = useState("");
   const [actionError, setActionError] = useState("");
   const [pending, setPending] = useState(false);
@@ -364,7 +497,7 @@ export function StudyScreen({
   }
   useEffect(() => {
     function key(event: KeyboardEvent) {
-      if (event.repeat || event.altKey) return;
+      if (settingsOpen || event.repeat || event.altKey) return;
       if (
         (event.ctrlKey || event.metaKey) &&
         event.key.toLowerCase() === "z" &&
@@ -385,9 +518,9 @@ export function StudyScreen({
     }
     window.addEventListener("keydown", key);
     return () => window.removeEventListener("keydown", key);
-  }, [next, onUndo, onEdit]);
+  }, [next, onUndo, onEdit, settingsOpen]);
   useEffect(() => {
-    if (next.state !== "Finished") return;
+    if (next.state !== "Finished" || settingsOpen) return;
     function key(event: KeyboardEvent) {
       if (event.key === "Escape") {
         event.preventDefault();
@@ -396,7 +529,7 @@ export function StudyScreen({
     }
     window.addEventListener("keydown", key);
     return () => window.removeEventListener("keydown", key);
-  }, [next.state, onClose]);
+  }, [next.state, onClose, settingsOpen]);
   return (
     <Stack
       component="section"
@@ -407,6 +540,13 @@ export function StudyScreen({
       <Group justify="space-between">
         <Title order={2}>Study</Title>
         <Group gap="xs">
+          <Button
+            variant="default"
+            disabled={pending}
+            onClick={() => setSettingsOpen(true)}
+          >
+            Study settings
+          </Button>
           <Button
             variant="default"
             aria-label="Undo"
@@ -445,6 +585,7 @@ export function StudyScreen({
           mathjax={mathjax}
           onNext={onNext}
           onClose={onClose}
+          shortcuts={!settingsOpen}
         />
       ) : (
         <Stack align="center" py="xl">
@@ -479,6 +620,13 @@ export function StudyScreen({
         )}
         {folderError && <Alert color="red">{folderError}</Alert>}
       </Stack>
+      {settingsOpen && (
+        <StudySettings
+          workspace={workspace}
+          onSaved={onSettings}
+          onClose={() => setSettingsOpen(false)}
+        />
+      )}
     </Stack>
   );
 }

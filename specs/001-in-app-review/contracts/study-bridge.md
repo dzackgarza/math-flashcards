@@ -155,6 +155,8 @@ session's finished screen. The completed session remains in the record.
 - Applies the values to the one preset that all decks share.
 - Writes one `setting_change` row for each value that changed, with the earlier and the
   later value.
+- An unchanged value writes nothing. The next presentation reads the updated preset;
+  the window refreshes its queue and counts after saving. Changes invalidate grade Undo.
 
 ### `study-fit`, `study-apply-fit`
 

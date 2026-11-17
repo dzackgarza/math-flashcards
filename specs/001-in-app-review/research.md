@@ -330,13 +330,32 @@ store is created:
   (https://docs.ankiweb.net/deck-options.html, read 2026-11-16). FR-044 asks for that
   order whenever the due reviews exceed the day's study: the cards the user knows best
   wait longest. When the user finishes every due card, the order changes no schedule.
-  `reviewOrder` is the preset key and 7 the proto value (probed key, read value; the
-  effect on the queue is not probed).
+  `reviewOrder` is the preset key and 7 the proto value. The real-window scenario
+  `desktop/tests/study-settings.py` prepares five dated review states with distinct
+  FSRS stability through Anki's library. Their recorded `before_retrievability`
+  values increase strictly in the offered order, including across a daily-limit
+  increase. This establishes the queue behaviour for that fixture, not a learning
+  outcome for advanced mathematics.
 - Anki limits the answer time it records to `maxTaken`, 60 s by default: an answer of
   200 s was stored as 60 s (probed). The manual states that the time does not affect
   scheduling. Anki accepts 1 to 9999 (read). The store sets 9999 so that Anki's own log
   loses less; the learning record keeps the measured time with no limit (R13).
 - The 100-year maximum interval fits the time scale of the purpose and stays.
+
+The form updates preset 1 with `decks.update_config`; Anki invalidates its own
+queues after the operation (`anki/decks.py`, `anki/scheduler/v3.py`, installed
+wheel). It refreshes the current presentation so its offered intervals and recorded
+settings agree. A finished session starts a new session when settings make cards
+available. Unchanged values create no `setting_change` rows. Invalid values return
+`InvalidSettings` without changing the preset or record.
+
+The [Anki deck-options manual](https://docs.ankiweb.net/manual/deck-options)
+describes shared presets, daily limits, and target recall. New-card introductions
+also consume the review limit with the default configuration; the UI preserves
+this rule. The settings scenario isolates due-review limits in a separate store
+and proves that increasing target recall shortens the Good interval for an
+unchanged card state. These are scheduler semantics, not evidence that the default
+limits or target are optimal for this user's learning.
 
 ## R10. Session behaviour
 
@@ -830,7 +849,6 @@ themselves; that needs a checked answer.
 - The smallest review history that Anki's fit (`compute_fsrs_params`) accepts in the
   wheel.
 - The time that the fit takes.
-- The effect of `reviewOrder` 7 on the queue (R9).
 - The size of the learning record over years. An estimate from the row contents is about
   1 kB for each presentation.
 - The time to render all 68 decks for the first sync. It bounds SC-006's first

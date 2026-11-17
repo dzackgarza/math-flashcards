@@ -44,6 +44,10 @@ E opens the current card for editing; **Return to Study** saves it and resumes t
 session. A source change disables Undo until the next grade. Escape leaves Study.
 If card structure is invalid, Study uses the last saved content and keeps the draft
 in the editor. The Problems list identifies the unsaved draft and opens it for repair.
+**Study settings** sets the workspace's daily new-card and review limits and target
+recall. Anki counts new-card introductions toward the review limit. A higher target
+recall schedules reviews sooner. Settings persist, and each change stays in the
+learning record.
 An unattached workspace offers its existing learning
 stores or **Start new**. The [learning-record reference](docs/study-record.md)
 explains the permanent data, its fields, and read-only queries.

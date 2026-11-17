@@ -5,9 +5,10 @@ from contextlib import closing
 from pathlib import Path
 
 from diagnostics import Diagnostics
-from pydantic import TypeAdapter
+from pydantic import TypeAdapter, ValidationError
 
 from study.session import answer, begin, end, next_card, undo, viewed
+from study.settings import set_settings
 from study.store import Stores
 from study.sync import sync
 from study.values import (
@@ -18,6 +19,7 @@ from study.values import (
     New,
     Request,
     SessionRequest,
+    SettingsRequest,
     StudyError,
     StudyFailure,
     SyncRequest,
@@ -53,6 +55,7 @@ def main(*, release: str) -> None:
                                 | BeginRequest()
                                 | AnswerRequest()
                                 | SessionRequest()
+                                | SettingsRequest()
                                 | WorkspaceRequest(action="study-counts")
                             ):
                                 store = stores.attached(workspace)
@@ -70,6 +73,8 @@ def main(*, release: str) -> None:
                                         result = store.counts()
                                     case BeginRequest():
                                         result = begin(store, request.scope)
+                                    case SettingsRequest():
+                                        result = set_settings(store, request.settings)
                                     case AnswerRequest():
                                         result = answer(store, request)
                                     case SessionRequest(action="study-next"):
@@ -84,6 +89,17 @@ def main(*, release: str) -> None:
                                 raise NotImplementedError(
                                     f"Study action is not implemented: {request.action}"
                                 )
+                except ValidationError as error:
+                    if not all(
+                        item["loc"][:2] == ("study-set-settings", "settings")
+                        for item in error.errors()
+                    ):
+                        raise
+                    invalid = StudyError(kind="InvalidSettings", message=str(error))
+                    print(
+                        '{"ok":false,"error":' + invalid.model_dump_json() + "}",
+                        flush=True,
+                    )
                 except StudyFailure as error:
                     print(
                         '{"ok":false,"error":' + error.error.model_dump_json() + "}",

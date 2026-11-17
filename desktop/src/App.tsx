@@ -1281,6 +1281,29 @@ export default function App() {
     setStudyEditing(true);
   }
 
+  async function refreshStudySettings() {
+    let active = studyCurrent.current;
+    if (!active) return;
+    let next: StudyNext;
+    if (active.ended) {
+      const begun = await request(
+        { action: "study-begin", workspace, scope: active.scope },
+        studyBegunSchema,
+      );
+      active = { ...active, ...begun, ended: false };
+      studyCurrent.current = active;
+      setStudy(active);
+      next = begun.next;
+    } else {
+      next = await request(
+        { action: "study-next", workspace, session: active.session },
+        studyNextSchema,
+      );
+    }
+    if (studyCurrent.current === active)
+      await updateStudy(next, "Settings changed. Grade a card to enable Undo.");
+  }
+
   async function resumeStudy() {
     const changed = await syncSavedStudy(
       workspace,
@@ -2915,6 +2938,7 @@ export default function App() {
               undoReason={study.undoReason}
               onUndo={undoStudy}
               onEdit={editStudy}
+              onSettings={refreshStudySettings}
               onNext={(next) =>
                 void updateStudy(next).catch((failure) =>
                   setError(String(failure)),

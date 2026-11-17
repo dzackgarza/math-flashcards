@@ -1,0 +1,81 @@
+1: starting server using command "just -f ../justfile desktop-web"
+and when url "[ 'http-get://127.0.0.1:1420' ]" is responding with HTTP status code 200
+running tests using command "xvfb-run -a uv run --upgrade tests/study-settings.py"
+
+cd desktop && bunx vite --host 127.0.0.1
+
+  VITE v8.3.8  ready in 305 ms
+
+  ➜  Local:   http://127.0.0.1:1420/
+[vite-plugin-static-copy] Collected 386 items.
+Test evidence: /home/dzack/gitclones/math-flashcards/test-history/20261117T031447.229951Z-study-settings
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-settings.py", line 253, in <module>
+    main(artifacts)
+    ~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-settings.py", line 160, in main
+    expect(study.get_by_label("Remaining cards")).to_have_text(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        "New: 0Learning: 0Review: 2"
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/dzack/.cache/uv/environments-v2/study-settings-b0f2b10df62bfa06/lib/python3.14/site-packages/playwright/sync_api/_generated.py", line 15561, in to_have_text
+    self._sync(
+    ~~~~~~~~~~^
+        self._impl_obj.to_have_text(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        )
+        ^
+    )
+    ^
+  File "/home/dzack/.cache/uv/environments-v2/study-settings-b0f2b10df62bfa06/lib/python3.14/site-packages/playwright/_impl/_sync_base.py", line 124, in _sync
+    return task.result()
+           ~~~~~~~~~~~^^
+  File "/home/dzack/.cache/uv/environments-v2/study-settings-b0f2b10df62bfa06/lib/python3.14/site-packages/playwright/_impl/assertions.py", line 660, in to_have_text
+    await self._expect_impl(
+    ...<9 lines>...
+    )
+  File "/home/dzack/.cache/uv/environments-v2/study-settings-b0f2b10df62bfa06/lib/python3.14/site-packages/playwright/_impl/assertions.py", line 122, in _expect_impl
+    _record_soft_or_raise(
+    ~~~~~~~~~~~~~~~~~~~~~^
+        AssertionError(
+        ^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        self._is_soft,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/dzack/.cache/uv/environments-v2/study-settings-b0f2b10df62bfa06/lib/python3.14/site-packages/playwright/_impl/_assertions.py", line 50, in _record_soft_or_raise
+    raise error
+AssertionError: Locator expected to have text 'New: 0Learning: 0Review: 2'
+Actual value: New: 0Learning: 0Review: 0 
+Call log:
+  - Expect "to_have_text" get_by_role("region", name="Study session").get_by_label("Remaining cards") with timeout 5000ms
+  - waiting for get_by_role("region", name="Study session").get_by_label("Remaining cards")
+    14 × locator resolved to <div aria-label="Remaining cards" class="m_4081bf90 mantine-Group-root">…</div>
+       - unexpected value "New: 0Learning: 0Review: 0"
+
+Aria snapshot:
+- paragraph: "New: 0"
+- paragraph: "Learning: 0"
+- paragraph: "Review: 0"
+Error: Command failed with exit code 1: xvfb-run -a uv run --upgrade tests/study-settings.py
+    at makeError (/home/dzack/gitclones/math-flashcards/desktop/node_modules/execa/lib/error.js:60:11)
+    at handlePromise (/home/dzack/gitclones/math-flashcards/desktop/node_modules/execa/index.js:118:26)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  shortMessage: 'Command failed with exit code 1: xvfb-run -a uv run --upgrade tests/study-settings.py',
+  command: 'xvfb-run -a uv run --upgrade tests/study-settings.py',
+  escapedCommand: '"xvfb-run -a uv run --upgrade tests/study-settings.py"',
+  exitCode: 1,
+  signal: undefined,
+  signalDescription: undefined,
+  stdout: undefined,
+  stderr: undefined,
+  failed: true,
+  timedOut: false,
+  isCanceled: false,
+  killed: false
+}
+error: recipe `desktop-web` was terminated on line 64 by signal 2

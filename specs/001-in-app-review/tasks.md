@@ -183,12 +183,12 @@ before Study resumes. Both session start and the in-session editor return use th
 
 ### Tests for User Story 5 ⚠️
 
-- [ ] T045 [US5] Add failing steps to `desktop/tests/study.py`: with new cards per day set to 3, a workspace session offers exactly 3 new cards and the root count shows 3; with reviews per day set to 2 and five cards made due through the `anki` library, a workspace session offers exactly 2 review cards; a higher target recall gives a shorter Good interval for a card in the same state; a target recall of 1.0 shows its bound and leaves the stored value; the settings remain after a restart; each change has a `setting_change` row with the earlier and the later value, and later `presentation` rows hold the later values (FR-034); three due review cards whose estimated recall differs are offered in ascending order of `before_retrievability` (FR-044); replace the `reviewOrder` entry of the Unmeasured section of `specs/001-in-app-review/research.md` with the result
+- [X] T045 [US5] Add failing steps to `desktop/tests/study-settings.py`: with new cards per day set to 3, a workspace session offers exactly 3 new cards and the root count shows 3; with reviews per day set to 2 and five cards made due through the `anki` library, a workspace session offers exactly 2 review cards; a higher target recall gives a shorter Good interval for a card in the same state; a target recall of 1.0 shows its bound and leaves the stored value; the settings remain after a restart; each change has a `setting_change` row with the earlier and the later value, and later `presentation` rows hold the later values (FR-034); three due review cards whose estimated recall differs are offered in ascending order of `before_retrievability` (FR-044); replace the `reviewOrder` entry of the Unmeasured section of `specs/001-in-app-review/research.md` with the result
 
 ### Implementation for User Story 5
 
-- [ ] T046 [US5] Implement `study-set-settings` in `desktop/study/settings.py`: `new_per_day` 0 to 9999, `reviews_per_day` 0 to 9999, `desired_retention` 0.70 to 0.99, `InvalidSettings` outside a bound, the one preset that all decks share, and one `setting_change` row for each value that changed
-- [ ] T047 [US5] Add the settings form to `desktop/src/study-screen.tsx` with the three fields, their bounds, and the count refresh after a change
+- [X] T046 [US5] Implement `study-set-settings` in `desktop/study/settings.py`: `new_per_day` 0 to 9999, `reviews_per_day` 0 to 9999, `desired_retention` 0.70 to 0.99, `InvalidSettings` outside a bound, the one preset that all decks share, and one `setting_change` row for each value that changed
+- [X] T047 [US5] Add the settings form to `desktop/src/study-screen.tsx` with the three fields, their bounds, and the count refresh after a change
 
 **Checkpoint**: The T045 steps pass
 
