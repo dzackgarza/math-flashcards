@@ -10,6 +10,7 @@ import "@dzack/pandoc-editor/editor.css";
 import { type MathJaxRuntime } from "./math";
 import { diagramTargets, type DiagramTarget } from "./diagrams";
 import { QuiverPreview } from "./quiver";
+import { retainedImages } from "./card-images";
 
 export const cardLanguage = markdownParser();
 export type Side = "front" | "back";
@@ -25,6 +26,7 @@ export function SideEditor({
   workspace,
   path,
   minHeight = "160px",
+  media,
 }: {
   side: Side;
   value: string;
@@ -36,6 +38,7 @@ export function SideEditor({
   workspace: string;
   path: string;
   minHeight?: string;
+  media?: Record<string, string>;
 }) {
   const label = side === "front" ? "Front" : "Back";
   // @uiw/react-codemirror applies a changed `value` prop as an ExternalChange
@@ -93,6 +96,7 @@ export function SideEditor({
   const extensions = useMemo(
     () => [
       previewConfig.of({ previewModeShowSyntaxWhenCursorIsAdjacent: false }),
+      ...(media ? [retainedImages(media)] : []),
       markdownEditor({
         math: mathjax
           ? {
@@ -107,7 +111,7 @@ export function SideEditor({
           : undefined,
       }),
     ],
-    [mathjax],
+    [mathjax, media],
   );
   return (
     <Box className={"side-editor card-face " + side}>
@@ -120,7 +124,7 @@ export function SideEditor({
           {label}
         </Text>
         <Group gap="xs">
-          {diagrams.length > 0 && (
+          {editable && diagrams.length > 0 && (
             <Button
               variant="subtle"
               size="compact-xs"
@@ -155,7 +159,8 @@ export function SideEditor({
         <div className="diagram-flow">
           {textParts.map((part, i) => (
             <div key={"part-" + i}>
-              {(part.text.trim() !== "" || i === diagrams.length) && (
+              {(part.text.trim() !== "" ||
+                (editable && i === diagrams.length)) && (
                 <CodeMirror
                   value={part.text}
                   minHeight="48px"

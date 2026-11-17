@@ -416,6 +416,8 @@ export const studyNextSchema = z.discriminatedUnion("state", [
     deck: deckPathSchema,
     front: z.string(),
     back: z.string(),
+    assets: digestSchema,
+    media: z.record(z.string(), z.string()),
     labels: gradeLabelsSchema,
     counts: studyCountsSchema,
     undoable: z.boolean(),

@@ -229,6 +229,13 @@ cannot recover that type. Vite's internal MIME lookup is private, and a second
 hand-maintained extension table would duplicate the dependency. Both browser and native
 routes grant access only after a store opens, to that store's retained media and assets.
 
+The face fetches retained bytes and creates a Blob with the MIME type resolved from
+the authored filename. Tauri's `tauri-utils/src/mime_type.rs` cannot infer SVG from
+bytes and uses the path extension; a digest path therefore needs an explicit type.
+The image widget releases its object URL on destruction. The shell permits asset
+fetches and Blob images in its content security policy. Native validation must
+exercise SVG through this path when the next native milestone is built.
+
 ## R8. Card display
 
 **Decision**: The study screen renders native card source with the shared editor
@@ -238,6 +245,12 @@ and image handling as the editor, with media resolved from the content record.
 **Rationale**: `cards()` already provides the exact authored source of each side, and
 `SideEditor` already uses `@dzack/pandoc-editor`. The full card face, rather than the
 card-list summary, is the presentation owner (FR-009, SC-007).
+
+The image widget uses the shared editor's `renderBlockWidgets` service and the
+`WidgetType` construction of its `render-math.ts`. Source syntax remains owned by
+the shared parser. Vite explicitly pre-bundles the lazy face's deep renderer import
+and image dependencies: [dependency discovery](https://vite.dev/config/dep-optimization-options#optimizedeps-include)
+must not reload a window during a session.
 
 ## R9. Scheduling settings
 

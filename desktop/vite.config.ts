@@ -74,7 +74,9 @@ function workbenchBackend(): Plugin {
         const query = z
           .strictObject({ path: z.string().min(1), name: z.string().min(1) })
           .safeParse(
-            Object.fromEntries(new URL(request.url, "http://localhost").searchParams),
+            Object.fromEntries(
+              new URL(request.url, "http://localhost").searchParams,
+            ),
           );
         if (!query.success) {
           response.writeHead(400).end(query.error.message);
@@ -83,11 +85,18 @@ function workbenchBackend(): Plugin {
         const allowed = (path: string) =>
           [...mediaRoots].some((root) => {
             const inside = relative(root, path);
-            return inside !== "" && inside !== ".." && !inside.startsWith("../") && !isAbsolute(inside);
+            return (
+              inside !== "" &&
+              inside !== ".." &&
+              !inside.startsWith("../") &&
+              !isAbsolute(inside)
+            );
           });
         const path = resolve(query.data.path);
         if (!allowed(path)) {
-          response.writeHead(403).end("The file is outside the opened Study stores' media.");
+          response
+            .writeHead(403)
+            .end("The file is outside the opened Study stores' media.");
           return;
         }
         // Retained filenames are digests. mrmime resolves the authored name:
@@ -100,16 +109,22 @@ function workbenchBackend(): Plugin {
         try {
           const file = await realpath(path);
           if (!allowed(file)) {
-            response.writeHead(403).end("The file resolves outside the opened Study stores' media.");
+            response
+              .writeHead(403)
+              .end("The file resolves outside the opened Study stores' media.");
             return;
           }
           const bytes = await readFile(file);
-          response.writeHead(200, {
-            "Content-Type": type,
-            "X-Content-Type-Options": "nosniff",
-          }).end(bytes);
+          response
+            .writeHead(200, {
+              "Content-Type": type,
+              "X-Content-Type-Options": "nosniff",
+            })
+            .end(bytes);
         } catch (error) {
-          const missing = z.object({ code: z.literal("ENOENT") }).safeParse(error).success;
+          const missing = z
+            .object({ code: z.literal("ENOENT") })
+            .safeParse(error).success;
           response.writeHead(missing ? 404 : 500).end(String(error));
         }
       });
@@ -207,13 +222,22 @@ function workbenchBackend(): Plugin {
                   }),
                 ])
                 .parse(JSON.parse(line.value));
-              if (envelope.ok && (action === "study-open" || action === "study-attach")) {
-                const opened = z.object({
-                  state: z.literal("Open"), media: z.string(), store: z.string(),
-                }).safeParse(envelope.result);
+              if (
+                envelope.ok &&
+                (action === "study-open" || action === "study-attach")
+              ) {
+                const opened = z
+                  .object({
+                    state: z.literal("Open"),
+                    media: z.string(),
+                    store: z.string(),
+                  })
+                  .safeParse(envelope.result);
                 if (opened.success) {
                   mediaRoots.add(await realpath(opened.data.media));
-                  mediaRoots.add(await realpath(join(opened.data.store, "record-assets")));
+                  mediaRoots.add(
+                    await realpath(join(opened.data.store, "record-assets")),
+                  );
                 }
               }
               response.setHeader("Content-Type", "application/json");
@@ -386,6 +410,15 @@ export default defineConfig({
     }),
   ],
   clearScreen: false,
+  // Lazy card faces must not trigger a dependency discovery reload mid-session.
+  // https://vite.dev/config/dep-optimization-options#optimizedeps-include
+  optimizeDeps: {
+    include: [
+      "@codemirror/view",
+      "@dzack/pandoc-editor/renderers/base-renderer",
+      "mrmime",
+    ],
+  },
   server: {
     port: 1420,
     strictPort: true,

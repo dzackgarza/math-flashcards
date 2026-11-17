@@ -1,0 +1,84 @@
+1: starting server using command "just -f ../justfile desktop-web"
+and when url "[ 'http-get://127.0.0.1:1420' ]" is responding with HTTP status code 200
+running tests using command "xvfb-run -a uv run --upgrade tests/study.py"
+
+cd desktop && bunx vite --host 127.0.0.1
+
+  VITE v8.3.8  ready in 234 ms
+
+  ➜  Local:   http://127.0.0.1:1420/
+[vite-plugin-static-copy] Collected 386 items.
+8:02:30 AM [vite] (client) [optimizer] bundling dependencies...
+8:02:30 AM [vite] (client) dependencies optimized: @codemirror/view, @dzack/pandoc-editor/renderers/base-renderer
+8:02:30 AM [vite] (client) optimized dependencies changed. reloading
+Test evidence: /home/dzack/gitclones/math-flashcards/test-history/20261117T000226.791334Z-study
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study.py", line 796, in <module>
+    main(artifacts)
+    ~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study.py", line 182, in main
+    expect(page.get_by_role("status", name="Study")).to_have_text(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        "Study cards ready"
+        ^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/dzack/.cache/uv/environments-v2/study-2b228d10dd0cf191/lib/python3.14/site-packages/playwright/sync_api/_generated.py", line 15561, in to_have_text
+    self._sync(
+    ~~~~~~~~~~^
+        self._impl_obj.to_have_text(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        )
+        ^
+    )
+    ^
+  File "/home/dzack/.cache/uv/environments-v2/study-2b228d10dd0cf191/lib/python3.14/site-packages/playwright/_impl/_sync_base.py", line 124, in _sync
+    return task.result()
+           ~~~~~~~~~~~^^
+  File "/home/dzack/.cache/uv/environments-v2/study-2b228d10dd0cf191/lib/python3.14/site-packages/playwright/_impl/assertions.py", line 660, in to_have_text
+    await self._expect_impl(
+    ...<9 lines>...
+    )
+  File "/home/dzack/.cache/uv/environments-v2/study-2b228d10dd0cf191/lib/python3.14/site-packages/playwright/_impl/assertions.py", line 122, in _expect_impl
+    _record_soft_or_raise(
+    ~~~~~~~~~~~~~~~~~~~~~^
+        AssertionError(
+        ^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        self._is_soft,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/dzack/.cache/uv/environments-v2/study-2b228d10dd0cf191/lib/python3.14/site-packages/playwright/_impl/_assertions.py", line 50, in _record_soft_or_raise
+    raise error
+AssertionError: Locator expected to have text 'Study cards ready'
+Actual value: Choose a study store 
+Call log:
+  - Expect "to_have_text" get_by_role("status", name="Study") with timeout 5000ms
+  - waiting for get_by_role("status", name="Study")
+    6 × locator resolved to <p role="status" data-size="xs" aria-label="Study" class="mantine-focus-auto m_b6d8b162 mantine-Text-root">Preparing study cards</p>
+      - unexpected value "Preparing study cards"
+    5 × locator resolved to <p role="status" data-size="xs" aria-label="Study" class="mantine-focus-auto m_b6d8b162 mantine-Text-root">Choose a study store</p>
+      - unexpected value "Choose a study store"
+
+Aria snapshot:
+- status "Study": Choose a study store
+Error: Command failed with exit code 1: xvfb-run -a uv run --upgrade tests/study.py
+    at makeError (/home/dzack/gitclones/math-flashcards/desktop/node_modules/execa/lib/error.js:60:11)
+    at handlePromise (/home/dzack/gitclones/math-flashcards/desktop/node_modules/execa/index.js:118:26)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  shortMessage: 'Command failed with exit code 1: xvfb-run -a uv run --upgrade tests/study.py',
+  command: 'xvfb-run -a uv run --upgrade tests/study.py',
+  escapedCommand: '"xvfb-run -a uv run --upgrade tests/study.py"',
+  exitCode: 1,
+  signal: undefined,
+  signalDescription: undefined,
+  stdout: undefined,
+  stderr: undefined,
+  failed: true,
+  timedOut: false,
+  isCanceled: false,
+  killed: false
+}
+error: recipe `desktop-web` was terminated on line 60 by signal 2

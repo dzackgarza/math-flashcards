@@ -120,9 +120,15 @@ def next_card(store: Store, session: int) -> StudyNext:
         "select content, tags from card_change where card_id=? order by id desc limit 1",
         (card_id,),
     ).fetchone()
-    front, back = store.record.connection.execute(
-        "select front, back from content where id=?", (content,)
+    front, back, assets = store.record.connection.execute(
+        "select front, back, assets from content where id=?", (content,)
     ).fetchone()
+    media = {
+        name: str(store.directory / "record-media" / digest)
+        for name, digest in store.record.connection.execute(
+            "select name, digest from media where content=?", (content,)
+        )
+    }
     labels = GradeLabels(
         **dict(
             zip(
@@ -180,6 +186,8 @@ def next_card(store: Store, session: int) -> StudyNext:
         deck=path,
         front=front,
         back=back,
+        assets=assets,
+        media=media,
         labels=labels,
         counts=counts,
         undoable=False,

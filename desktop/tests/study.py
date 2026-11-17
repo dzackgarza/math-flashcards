@@ -7,6 +7,7 @@
 import json
 import os
 import pstats
+import re
 import shutil
 import sqlite3
 import subprocess
@@ -673,6 +674,10 @@ def main(artifacts: Path) -> None:
                                 "img", name="A triangle", exact=True
                             )
                             expect(picture).to_be_visible()
+                            expect(picture).to_have_attribute(
+                                "src", re.compile("^blob:")
+                            )
+                            expect(picture).to_have_js_property("complete", True)
                             assert picture.evaluate(
                                 "image => image.complete && image.naturalWidth > 0"
                             )

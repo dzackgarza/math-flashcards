@@ -105,6 +105,8 @@ class StudyCard(Value):
     deck: DeckPath
     front: str
     back: str
+    assets: Digest
+    media: dict[str, str]
     labels: GradeLabels
     counts: Counts
     undoable: bool

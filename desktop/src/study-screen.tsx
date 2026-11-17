@@ -148,6 +148,7 @@ function Presentation({
       <SideEditor
         key={card.presentation + "front"}
         minHeight="0"
+        media={card.media}
         side="front"
         value={card.front}
         mathjax={mathjax}
@@ -160,6 +161,7 @@ function Presentation({
         <SideEditor
           key={card.presentation + "back"}
           minHeight="0"
+          media={card.media}
           side="back"
           value={card.back}
           mathjax={mathjax}

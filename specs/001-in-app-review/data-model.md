@@ -213,7 +213,8 @@ Rules for fields:
 Counts        = { new: int, learning: int, review: int }
 GradeLabels   = { again: str, hard: str, good: str, easy: str }     # Anki's text, shown as given
 StudyCard     = { presentation: PresentationId, card_id: CardId, deck: DeckPath,
-                  front: str, back: str, labels: GradeLabels, counts: Counts,
+                  front: str, back: str, assets: Digest,
+                  media: { authored_url: retained_file_path }, labels: GradeLabels, counts: Counts,
                   undoable: bool }
 Timing        = { reveal_ms: int, grade_ms: int, unfocused_ms: int }   # measured by the window
 StudyFinished = { graded_today: int, next_learning_seconds: int | null,

@@ -173,6 +173,14 @@ mjx-merror {
 .study-record {
   overflow-wrap: anywhere;
 }
+.card-image {
+  max-width: 100%;
+  max-height: 28rem;
+  height: auto;
+}
+.study-screen .quiver-compiled-image {
+  max-height: 12rem;
+}
 .empty-state {
   flex: 1;
   gap: 12px;
