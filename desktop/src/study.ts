@@ -111,6 +111,23 @@ function nativeDeck(
   };
 }
 
+function nativeDecks(sources: SourceResult[]) {
+  const decks: StudyDeck[] = [];
+  const failed: { path: string; message: string }[] = [];
+  for (const source of sources) {
+    if (source.state === "failed") {
+      failed.push({ path: source.path, message: source.message });
+      continue;
+    }
+    try {
+      decks.push(nativeDeck(source));
+    } catch (failure) {
+      failed.push({ path: source.path, message: String(failure) });
+    }
+  }
+  return { decks, failed };
+}
+
 // A session starts from disk after the editor has saved. Background preparation
 // may still be publishing its final React state when the user selects Study.
 export async function syncSavedStudy(
@@ -123,35 +140,29 @@ export async function syncSavedStudy(
     manifestSchema,
   );
   const paths = manifest.entries.map((entry) => entry.path);
-  for (let offset = 0; offset < paths.length; offset += 8) {
-    const batch = await request(
-      {
-        action: "sources",
-        workspace,
-        generation,
-        paths: paths.slice(offset, offset + 8),
-      },
-      sourcesSchema,
-    );
-    const decks = batch.results.map((source) => {
-      if (source.state === "failed") throw new Error(source.message);
-      return nativeDeck(source);
-    });
+  const rejected = new Set<string>();
+  for (let offset = 0; offset < Math.max(paths.length, 1); offset += 8) {
+    const batch = paths.length
+      ? await request(
+          {
+            action: "sources",
+            workspace,
+            generation,
+            paths: paths.slice(offset, offset + 8),
+          },
+          sourcesSchema,
+        )
+      : { results: [] };
+    const { decks, failed } = nativeDecks(batch.results);
+    for (const failure of failed) rejected.add(failure.path);
     const synced = await request(
       { action: "study-sync", workspace, assets, paths, decks },
       syncResultSchema,
     );
-    if (synced.failed.length || synced.duplicates.length)
-      throw new Error(
-        [
-          ...synced.failed.map((item) => `${item.path}: ${item.message}`),
-          ...synced.duplicates.map(
-            (item) =>
-              `Duplicate card ${item.card_id}: ${item.paths.join(", ")}`,
-          ),
-        ].join("\n"),
-      );
-    if (offset + 8 >= paths.length && synced.pending)
+    for (const failure of synced.failed) rejected.add(failure.path);
+    for (const duplicate of synced.duplicates)
+      for (const path of duplicate.paths) rejected.add(path);
+    if (offset + 8 >= paths.length && synced.pending > rejected.size)
       throw new Error(
         "The workspace changed while preparing Study. Start Study again to load the saved cards.",
       );
@@ -184,14 +195,16 @@ export function useStudySync(
         return;
       }
       const paths = entries.map((entry) => entry.path);
-      const decks = paths.flatMap((path) => {
-        const source = sources.get(path);
-        if (source === undefined) return [];
-        if (source.state === "failed") throw new Error(source.message);
-        return [nativeDeck(source)];
-      });
+      const { decks, failed } = nativeDecks(
+        paths.flatMap((path) => {
+          const source = sources.get(path);
+          if (source === undefined) return [];
+          return [source];
+        }),
+      );
+      const issues = failed.map((item) => `${item.path}: ${item.message}`);
       let pending = paths.length;
-      for (let offset = 0; offset < decks.length; offset += 8) {
+      for (let offset = 0; offset < Math.max(decks.length, 1); offset += 8) {
         if (cancelled) return;
         const result = await request(
           {
@@ -203,24 +216,20 @@ export function useStudySync(
           },
           syncResultSchema,
         );
-        if (result.failed.length)
-          throw new Error(
-            result.failed
-              .map((item) => `${item.path}: ${item.message}`)
-              .join("\n"),
-          );
-        if (result.duplicates.length)
-          throw new Error(
-            result.duplicates
-              .map(
-                (item) =>
-                  `Duplicate card ${item.card_id}: ${item.paths.join(", ")}`,
-              )
-              .join("\n"),
-          );
+        issues.push(
+          ...result.failed.map((item) => `${item.path}: ${item.message}`),
+          ...result.duplicates.map(
+            (item) =>
+              `Duplicate card ${item.card_id}: ${item.paths.join(", ")}`,
+          ),
+        );
         pending = result.pending;
       }
-      if (!cancelled && pending === 0) setStatus("Study cards ready");
+      if (cancelled) return;
+      if (issues.length) {
+        setStatus("Study needs attention");
+        reportError(issues.join("\n"));
+      } else if (pending === 0) setStatus("Study cards ready");
     }
     void prepare().catch((failure) => {
       if (cancelled) return;

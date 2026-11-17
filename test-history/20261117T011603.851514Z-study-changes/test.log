@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/evidence.py", line 53, in evidence
+    yield directory
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-changes.py", line 234, in <module>
+    main(artifacts)
+    ~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-changes.py", line 160, in main
+    assert changes == [
+           ^^^^^^^^^^^^
+    ...<7 lines>...
+    ], changes
+    ^
+AssertionError: [('added',), ('moved',), ('removed',), ('restored',), ('content',), ('tags',), ('removed',), ('restored',)]

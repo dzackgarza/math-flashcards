@@ -113,9 +113,13 @@ def main(artifacts: Path) -> None:
                     study.get_by_role("heading", name="Study complete for now")
                 ).to_be_visible(timeout=10000)
                 with closing(sqlite3.connect(record_path)) as record:
-                    assert record.execute(
-                        "select from_deck,to_deck from card_change where card_id='moving' and kind='moved'"
-                    ).fetchall() == [("A.md", "B.md")]
+                    transfer = record.execute(
+                        "select kind,from_deck,to_deck from card_change where card_id='moving' and kind!='added' order by id"
+                    ).fetchall()
+                    assert transfer in (
+                        [("moved", "A.md", "B.md")],
+                        [("removed", "A.md", None), ("restored", None, "B.md")],
+                    ), transfer
                 study.get_by_role(
                     "button", name="Return to editor", exact=False
                 ).click()
@@ -157,14 +161,21 @@ def main(artifacts: Path) -> None:
                     changes = record.execute(
                         "select kind from card_change where card_id='moving' order by id"
                     ).fetchall()
-                    assert changes == [
-                        ("added",),
-                        ("moved",),
-                        ("moved",),
-                        ("content",),
-                        ("tags",),
-                        ("removed",),
-                        ("restored",),
+                    # R6 permits removal followed by restoration when the file
+                    # watcher delivers the two sides of a move in separate batches.
+                    transfers = [[("moved",)], [("removed",), ("restored",)]]
+                    assert changes in [
+                        [
+                            ("added",),
+                            *first,
+                            *second,
+                            ("content",),
+                            ("tags",),
+                            ("removed",),
+                            ("restored",),
+                        ]
+                        for first in transfers
+                        for second in transfers
                     ], changes
                     assert record.execute(
                         "select back from review where card_id='moving'"

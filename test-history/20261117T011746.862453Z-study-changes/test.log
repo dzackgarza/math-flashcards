@@ -1,0 +1,59 @@
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/evidence.py", line 53, in evidence
+    yield directory
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-changes.py", line 236, in <module>
+    main(artifacts)
+    ~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-changes.py", line 201, in main
+    expect(study).to_contain_text("Recall updated new.", timeout=10000)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzack/.cache/uv/environments-v2/study-changes-0558c912b980f764/lib/python3.14/site-packages/playwright/sync_api/_generated.py", line 14994, in to_contain_text
+    self._sync(
+    ~~~~~~~~~~^
+        self._impl_obj.to_contain_text(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        )
+        ^
+    )
+    ^
+  File "/home/dzack/.cache/uv/environments-v2/study-changes-0558c912b980f764/lib/python3.14/site-packages/playwright/_impl/_sync_base.py", line 124, in _sync
+    return task.result()
+           ~~~~~~~~~~~^^
+  File "/home/dzack/.cache/uv/environments-v2/study-changes-0558c912b980f764/lib/python3.14/site-packages/playwright/_impl/assertions.py", line 306, in to_contain_text
+    await self._expect_impl(
+    ...<9 lines>...
+    )
+  File "/home/dzack/.cache/uv/environments-v2/study-changes-0558c912b980f764/lib/python3.14/site-packages/playwright/_impl/assertions.py", line 122, in _expect_impl
+    _record_soft_or_raise(
+    ~~~~~~~~~~~~~~~~~~~~~^
+        AssertionError(
+        ^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        self._is_soft,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/dzack/.cache/uv/environments-v2/study-changes-0558c912b980f764/lib/python3.14/site-packages/playwright/_impl/_assertions.py", line 50, in _record_soft_or_raise
+    raise error
+AssertionError: Locator expected to contain text 'Recall updated new.'
+Actual value: StudyReturn to editor EscNew: 1Learning: 0Review: 0A.mdFrontRecall new.Show answer SpaceStudy store: /tmp/flashcards-browser-cache-9fv3vz_f/data/math-flashcards/study/9b7e687d-d8d3-4918-bc6b-c8626fb7fc71Learning record: /tmp/flashcards-browser-cache-9fv3vz_f/data/math-flashcards/study/9b7e687d-d8d3-4918-bc6b-c8626fb7fc71/record.sqlite3 
+Call log:
+  - Expect "to_contain_text" get_by_role("region", name="Study session") with timeout 10000ms
+  - waiting for get_by_role("region", name="Study session")
+    24 × locator resolved to <section aria-label="Study session" class="study-screen m_6d731127 mantine-Stack-root">…</section>
+       - unexpected value "StudyReturn to editor EscNew: 1Learning: 0Review: 0A.mdFrontRecall new.Show answer SpaceStudy store: /tmp/flashcards-browser-cache-9fv3vz_f/data/math-flashcards/study/9b7e687d-d8d3-4918-bc6b-c8626fb7fc71Learning record: /tmp/flashcards-browser-cache-9fv3vz_f/data/math-flashcards/study/9b7e687d-d8d3-4918-bc6b-c8626fb7fc71/record.sqlite3"
+
+Aria snapshot:
+- region "Study session":
+  - heading "Study" [level=2]
+  - button "Return to editor Esc"
+  - paragraph: "New: 1"
+  - paragraph: "Learning: 0"
+  - paragraph: "Review: 0"
+  - paragraph: A.md
+  - heading "Front" [level=3]
+  - textbox
+  - button "Show answer Space"
+  - paragraph: "Study store: /tmp/flashcards-browser-cache-9fv3vz_f/data/math-flashcards/study/9b7e687d-d8d3-4918-bc6b-c8626fb7fc71"
+  - paragraph: "Learning record: /tmp/flashcards-browser-cache-9fv3vz_f/data/math-flashcards/study/9b7e687d-d8d3-4918-bc6b-c8626fb7fc71/record.sqlite3"

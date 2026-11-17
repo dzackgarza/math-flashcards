@@ -1,0 +1,40 @@
+Math Flashcards
+flashcards-study-changes-ba90gqyy
+Search
+Ctrl K
+A
+C
+
+Study needs attention
+
+Workspace checks need attention
+
+Problems
+1
+Update Anki packages
+1
+New deck
+Action failed
+
+C.md: Error: A deck must contain Front and Back pairs.
+
+Study
+Return to editor
+Esc
+
+New: 1
+
+Learning: 0
+
+Review: 0
+
+A.md
+
+FRONT
+Recall new.
+Show answer
+Space
+
+Study store: /tmp/flashcards-browser-cache-9fv3vz_f/data/math-flashcards/study/9b7e687d-d8d3-4918-bc6b-c8626fb7fc71
+
+Learning record: /tmp/flashcards-browser-cache-9fv3vz_f/data/math-flashcards/study/9b7e687d-d8d3-4918-bc6b-c8626fb7fc71/record.sqlite3

@@ -1,0 +1,36 @@
+Math Flashcards
+flashcards-study-changes-wsj89tm6
+Search
+Ctrl K
+A
+C
+
+Study needs attention
+
+Checking 0 of 2 decks…
+
+Problems (0/2 checked)
+Update Anki packages
+New deck
+Action failed
+
+A.md: The saved source changed: A.md
+C.md: The saved source changed: C.md
+
+Study
+Return to editor
+Esc
+
+New: 0
+
+Learning: 0
+
+Review: 0
+
+Study complete for now
+
+Graded today: 3
+
+Study store: /tmp/flashcards-browser-cache-iu1kjdga/data/math-flashcards/study/813008a2-7357-479f-beaf-b852b1e01186
+
+Learning record: /tmp/flashcards-browser-cache-iu1kjdga/data/math-flashcards/study/813008a2-7357-479f-beaf-b852b1e01186/record.sqlite3
