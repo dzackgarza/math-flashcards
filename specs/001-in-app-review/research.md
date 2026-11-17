@@ -370,6 +370,20 @@ operation. Deck sync writes notes with `skip_undo_entry=True` where Anki offers 
 sync operations add undo steps, so Undo is unavailable after a sync until the next grade
 (FR-021).
 
+Anki's [operation labels](https://github.com/ankitects/anki/blob/main/rslib/src/ops.rs)
+map the answer operation to `actions_answer_card()`. Compare against that translation,
+not a hard-coded English label. Its [undo manager](https://github.com/ankitects/anki/blob/main/rslib/src/undo/mod.rs)
+returns the operation's counter from `undo()`. `undo_status().last_step` is the sequence
+counter, not the current top entry after an undo. The host associates each newly graded
+operation counter with its response row, then uses the returned counter to append the
+matching `undo` row. These associations last only for the open host and are cleared
+when a sync changes cards. Anki owns the undo stack and the restored schedule.
+
+The finished screen has already ended its session. Undo from that screen begins a new
+session with the same scope before restoring the card. Both session boundaries remain
+in the record. Editing from an unfinished session keeps that session open; returning
+saves the edit, synchronizes native source, and fetches its current presentation.
+
 ## R11. Test method
 
 The native shell uses [Tauri's logging plugin](https://v2.tauri.app/plugin/logging/)
