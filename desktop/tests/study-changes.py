@@ -5,7 +5,6 @@
 """Keep scheduling and recorded history through native deck file changes."""
 
 import os
-import re
 import sqlite3
 import tempfile
 from contextlib import closing
@@ -178,7 +177,7 @@ def main(artifacts: Path) -> None:
                     "button", name="Return to editor", exact=False
                 ).click()
                 c.write_text(other + changed)
-                page.get_by_role("button", name=re.compile("^Problems")).click()
+                page.get_by_role("button", name="Show problems", exact=True).click()
                 problems = page.get_by_role("dialog")
                 expect(problems).to_contain_text("Duplicate card", timeout=10000)
                 expect(problems).to_contain_text("moving")
