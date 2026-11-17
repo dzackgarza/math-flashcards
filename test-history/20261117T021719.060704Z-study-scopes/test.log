@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/evidence.py", line 53, in evidence
+    yield directory
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-scopes.py", line 209, in <module>
+    main(artifacts)
+    ~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-scopes.py", line 72, in main
+    assert cached["state"] == "cached", cached
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'session': {'root': '/tmp/flashcards-study-scopes-ufvs2fda', 'generation': 1}, 'state': 'failed', 'kind': 'CacheFailure', 'message': 'Saved navigation is damaged. Rebuild cached data.'}

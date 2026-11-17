@@ -68,6 +68,9 @@ def main(artifacts: Path) -> None:
             browser, page = open_window()
             try:
                 opened = request("study-open")
+                cached = request("cache-manifest", generation=1)
+                assert cached["state"] == "cached", cached
+                assert request("cached-manifest", generation=1) == cached
                 root = opened["counts"]
                 assert root["counts"] == {"new": 6, "learning": 0, "review": 0}, root
                 assert {
