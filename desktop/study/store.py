@@ -76,6 +76,7 @@ class Store:
     ):
         self.directory = directory
         self.metadata = metadata
+        self.grade_responses: dict[int, int] = {}
         collection_path = directory / "collection.anki2"
         record_path = directory / "record.sqlite3"
         if not create:

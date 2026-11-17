@@ -318,4 +318,6 @@ def sync(store: Store, workspace: Path, request: SyncRequest) -> SyncResult:
         for path in request.paths
     )
     result.changed_cards = sorted(set(result.changed_cards))
+    if result.changed_cards:
+        store.grade_responses.clear()
     return result

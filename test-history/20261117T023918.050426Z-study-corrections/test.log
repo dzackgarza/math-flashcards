@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/evidence.py", line 53, in evidence
+    yield directory
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-corrections.py", line 163, in <module>
+    main(artifacts)
+    ~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-corrections.py", line 74, in main
+    before = schedule(first)
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-corrections.py", line 69, in schedule
+    return collection.execute(
+           ~~~~~~~~~~~~~~~~~~^
+        "select c.type,c.queue,c.due,c.ivl,c.factor,c.reps,c.lapses,c.data from cards c join notes n on c.nid=n.id where n.guid=?",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        (identity,),
+        ^^^^^^^^^^^^
+    ).fetchone()
+    ^
+sqlite3.OperationalError: database is locked

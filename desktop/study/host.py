@@ -7,7 +7,7 @@ from pathlib import Path
 from diagnostics import Diagnostics
 from pydantic import TypeAdapter
 
-from study.session import answer, begin, end, next_card, viewed
+from study.session import answer, begin, end, next_card, undo, viewed
 from study.store import Stores
 from study.sync import sync
 from study.values import (
@@ -74,6 +74,8 @@ def main(*, release: str) -> None:
                                         result = answer(store, request)
                                     case SessionRequest(action="study-next"):
                                         result = next_card(store, request.session)
+                                    case SessionRequest(action="study-undo"):
+                                        result = undo(store, request.session)
                                     case SessionRequest(action="study-end"):
                                         result = end(store, request.session)
                                     case _:

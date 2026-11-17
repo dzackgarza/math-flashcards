@@ -160,12 +160,12 @@ operation. Whole-run timing classification does not block a missing user capabil
 
 ### Tests for User Story 4 ⚠️
 
-- [ ] T042 [US4] Add failing steps to `desktop/tests/study.py`: Ctrl-Z after a grade removes the review log row and returns the card with its earlier state; the record still has the `response` row, has an `undo` row that refers to it, shows `undone_at_ms` in the `review` view, and has a new `presentation` row for the returned card (FR-031); key E opens that card in its deck in the editor; after an edit and a return the same card shows the new text; after that sync Undo is disabled and its tooltip gives the reason, and it is enabled again after the next grade
+- [x] T042 [US4] Add failing steps to `desktop/tests/study-corrections.py`: Ctrl-Z after a grade removes the review log row and returns the card with its earlier state; the record still has the `response` row, has an `undo` row that refers to it, shows `undone_at_ms` in the `review` view, and has a new `presentation` row for the returned card (FR-031); key E opens that card in its deck in the editor; after an edit and a return the same card shows the new text; after that sync Undo is disabled and its tooltip gives the reason, and it is enabled again after the next grade; Undo also works after completion and on successive grades
 
 ### Implementation for User Story 4
 
-- [ ] T043 [US4] Implement `study-undo` and the `undoable` value in `desktop/study/session.py` from Anki's undo status: undo only when the last undo step is a grade, an `undo` row for the undone `response` row, `StaleCard` otherwise
-- [ ] T044 [US4] Add Undo (button and Ctrl-Z, with the disabled reason) and Edit (button and key E, with the return to the session) to `desktop/src/study-screen.tsx`, and the editor round trip to `desktop/src/App.tsx`
+- [x] T043 [US4] Implement `study-undo` and the `undoable` value in `desktop/study/session.py` from Anki's undo status: undo only when the last undo step is a grade, an `undo` row for the undone `response` row, `StaleCard` otherwise
+- [x] T044 [US4] Add Undo (button and Ctrl-Z, with the disabled reason) and Edit (button and key E, with the return to the session) to `desktop/src/study-screen.tsx`, and the editor round trip to `desktop/src/App.tsx`
 
 **Checkpoint**: The T042 steps pass
 

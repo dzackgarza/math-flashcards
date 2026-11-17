@@ -141,6 +141,9 @@ No action updates or deletes a row of the learning record.
 
 ### `study-undo`
 
+The window starts a new session with the same scope before undoing from an ended
+session's finished screen. The completed session remains in the record.
+
 - Reverses the last grade in the collection when Anki's last undo step is a grade,
   writes an `undo` row that refers to the `response` row, and returns the restored card.
   The `response` row stays (FR-031). Otherwise it returns `StaleCard` and changes

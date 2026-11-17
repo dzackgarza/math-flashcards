@@ -86,6 +86,23 @@ def begin(store: Store, scope: Scope) -> Begun:
     return Begun(session=session, next=next_card(store, session))
 
 
+def undoable(store: Store) -> bool:
+    return (
+        bool(store.grade_responses)
+        and store.collection.undo_status().undo
+        == store.collection.tr.actions_answer_card()
+    )
+
+
+def undo(store: Store, session: int) -> StudyNext:
+    select_session(store, session)
+    if not undoable(store):
+        raise stale()
+    restored = store.collection.undo()
+    store.record.undo(store.grade_responses.pop(restored.counter))
+    return next_card(store, session)
+
+
 def next_card(store: Store, session: int) -> StudyNext:
     select_session(store, session)
     collection = store.collection
@@ -105,7 +122,7 @@ def next_card(store: Store, session: int) -> StudyNext:
             if info.learn_remaining
             else None,
             counts=counts,
-            undoable=False,
+            undoable=undoable(store),
         )
     queued = queue.cards[0]
     card = collection.get_card(AnkiCardId(queued.card.id))
@@ -195,7 +212,7 @@ def next_card(store: Store, session: int) -> StudyNext:
         ),
         labels=labels,
         counts=counts,
-        undoable=False,
+        undoable=undoable(store),
     )
 
 
@@ -239,7 +256,7 @@ def answer(store: Store, request: AnswerRequest) -> StudyNext:
     )
     assert row is not None
     memory = after.memory_state
-    store.record.response(
+    response = store.record.response(
         Response(
             presentation=request.presentation,
             card_id=latest[1],
@@ -263,6 +280,7 @@ def answer(store: Store, request: AnswerRequest) -> StudyNext:
             revlog_type=row[8],
         )
     )
+    store.grade_responses[collection.undo_status().last_step] = response
     return next_card(store, request.session)
 
 

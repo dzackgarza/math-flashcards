@@ -329,6 +329,9 @@ export function StudyScreen({
   record,
   onNext,
   onClose,
+  onUndo,
+  onEdit,
+  undoReason,
 }: {
   workspace: string;
   session: number;
@@ -337,8 +340,52 @@ export function StudyScreen({
   record: string;
   onNext: (next: StudyNext) => void;
   onClose: () => void;
+  onUndo: () => Promise<void>;
+  onEdit: () => Promise<void>;
+  undoReason: string;
 }) {
   const [folderError, setFolderError] = useState("");
+  const [actionError, setActionError] = useState("");
+  const [pending, setPending] = useState(false);
+  const running = useRef(false);
+  async function act(action: () => Promise<void>) {
+    if (running.current) return;
+    running.current = true;
+    setPending(true);
+    setActionError("");
+    try {
+      await action();
+    } catch (failure) {
+      setActionError(String(failure));
+    } finally {
+      running.current = false;
+      setPending(false);
+    }
+  }
+  useEffect(() => {
+    function key(event: KeyboardEvent) {
+      if (event.repeat || event.altKey) return;
+      if (
+        (event.ctrlKey || event.metaKey) &&
+        event.key.toLowerCase() === "z" &&
+        !event.shiftKey &&
+        next.undoable
+      ) {
+        event.preventDefault();
+        void act(onUndo);
+      } else if (
+        !event.ctrlKey &&
+        !event.metaKey &&
+        event.key.toLowerCase() === "e" &&
+        next.state === "Card"
+      ) {
+        event.preventDefault();
+        void act(onEdit);
+      }
+    }
+    window.addEventListener("keydown", key);
+    return () => window.removeEventListener("keydown", key);
+  }, [next, onUndo, onEdit]);
   useEffect(() => {
     if (next.state !== "Finished") return;
     function key(event: KeyboardEvent) {
@@ -359,10 +406,31 @@ export function StudyScreen({
     >
       <Group justify="space-between">
         <Title order={2}>Study</Title>
-        <Button variant="default" onClick={onClose}>
-          Return to editor <Kbd ml="sm">Esc</Kbd>
-        </Button>
+        <Group gap="xs">
+          <Button
+            variant="default"
+            aria-label="Undo"
+            title={next.undoable ? "Undo the last grade" : undoReason}
+            disabled={pending || !next.undoable}
+            onClick={() => void act(onUndo)}
+          >
+            Undo <Kbd ml="sm">Ctrl Z</Kbd>
+          </Button>
+          {next.state === "Card" && (
+            <Button
+              variant="default"
+              disabled={pending}
+              onClick={() => void act(onEdit)}
+            >
+              Edit <Kbd ml="sm">E</Kbd>
+            </Button>
+          )}
+          <Button variant="default" onClick={onClose}>
+            Return to editor <Kbd ml="sm">Esc</Kbd>
+          </Button>
+        </Group>
       </Group>
+      {actionError && <Alert color="red">{actionError}</Alert>}
       <Group gap="lg" aria-label="Remaining cards">
         <Text>New: {next.counts.new}</Text>
         <Text>Learning: {next.counts.learning}</Text>

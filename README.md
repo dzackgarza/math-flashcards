@@ -38,7 +38,11 @@ the open deck follows changes that other programs make to its file.
 
 **Study** in the workspace menu reviews the saved native cards with Anki's
 scheduler. Space reveals the answer; keys 1–4 select Again, Hard, Good, and Easy.
-Escape returns to the editor. An unattached workspace offers its existing learning
+Right-click a deck or folder to study that scope. The tree shows new, learning, and
+review counts. Ctrl-Z undoes the last grade while keeping it in the learning record.
+E opens the current card for editing; **Return to Study** saves it and resumes the
+session. A source change disables Undo until the next grade. Escape leaves Study.
+An unattached workspace offers its existing learning
 stores or **Start new**. The [learning-record reference](docs/study-record.md)
 explains the permanent data, its fields, and read-only queries.
 

@@ -144,6 +144,7 @@ export async function syncSavedStudy(
   );
   const paths = manifest.entries.map((entry) => entry.path);
   const rejected = new Set<string>();
+  const changed = new Set<string>();
   for (let offset = 0; offset < Math.max(paths.length, 1); offset += 8) {
     const batch = paths.length
       ? await request(
@@ -163,6 +164,7 @@ export async function syncSavedStudy(
       syncResultSchema,
     );
     for (const failure of synced.failed) rejected.add(failure.path);
+    for (const identity of synced.changed_cards) changed.add(identity);
     for (const duplicate of synced.duplicates)
       for (const path of duplicate.paths) rejected.add(path);
     if (offset + 8 >= paths.length && synced.pending > rejected.size)
@@ -170,6 +172,7 @@ export async function syncSavedStudy(
         "The workspace changed while preparing Study. Start Study again to load the saved cards.",
       );
   }
+  return [...changed];
 }
 
 export function useStudySync(
@@ -177,16 +180,17 @@ export function useStudySync(
   entries: Entry[],
   sources: Map<string, SourceResult>,
   assets: string,
-  reportError: (message: string) => void,
   onUnattached: (opened: Extract<StudyOpen, { state: "Unattached" }>) => void,
   attachmentEpoch: number,
   onChanged: (cards: string[]) => Promise<void>,
 ) {
   const [status, setStatus] = useState("Preparing study cards");
+  const [error, setError] = useState("");
   useEffect(() => {
     if (!workspace || !assets) return;
     let cancelled = false;
     setStatus("Preparing study cards");
+    setError("");
     async function prepare() {
       const opened = await request(
         { action: "study-open", workspace },
@@ -233,13 +237,13 @@ export function useStudySync(
       if (cancelled) return;
       if (issues.length) {
         setStatus("Study needs attention");
-        reportError(issues.join("\n"));
+        setError(issues.join("\n"));
       } else if (pending === 0) setStatus("Study cards ready");
     }
     void prepare().catch((failure) => {
       if (cancelled) return;
       setStatus("Study preparation failed");
-      reportError(String(failure));
+      setError(String(failure));
     });
     return () => {
       cancelled = true;
@@ -249,12 +253,11 @@ export function useStudySync(
     entries,
     sources,
     assets,
-    reportError,
     onUnattached,
     attachmentEpoch,
     onChanged,
   ]);
-  return status;
+  return { status, error };
 }
 
 // React effect cleanup closes the previous view before the next one starts:

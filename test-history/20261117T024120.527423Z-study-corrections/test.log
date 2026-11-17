@@ -1,0 +1,52 @@
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/evidence.py", line 53, in evidence
+    yield directory
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-corrections.py", line 185, in <module>
+    main(artifacts)
+    ~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-corrections.py", line 112, in main
+    expect(undo).to_have_attribute(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        "title", "A card changed. Grade a card to enable Undo."
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/dzack/.cache/uv/environments-v2/study-corrections-f107fa02161c033a/lib/python3.14/site-packages/playwright/sync_api/_generated.py", line 15155, in to_have_attribute
+    self._sync(
+    ~~~~~~~~~~^
+        self._impl_obj.to_have_attribute(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        )
+        ^
+    )
+    ^
+  File "/home/dzack/.cache/uv/environments-v2/study-corrections-f107fa02161c033a/lib/python3.14/site-packages/playwright/_impl/_sync_base.py", line 124, in _sync
+    return task.result()
+           ~~~~~~~~~~~^^
+  File "/home/dzack/.cache/uv/environments-v2/study-corrections-f107fa02161c033a/lib/python3.14/site-packages/playwright/_impl/assertions.py", line 357, in to_have_attribute
+    await self._expect_impl(
+    ...<7 lines>...
+    )
+  File "/home/dzack/.cache/uv/environments-v2/study-corrections-f107fa02161c033a/lib/python3.14/site-packages/playwright/_impl/assertions.py", line 122, in _expect_impl
+    _record_soft_or_raise(
+    ~~~~~~~~~~~~~~~~~~~~~^
+        AssertionError(
+        ^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        self._is_soft,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/dzack/.cache/uv/environments-v2/study-corrections-f107fa02161c033a/lib/python3.14/site-packages/playwright/_impl/_assertions.py", line 50, in _record_soft_or_raise
+    raise error
+AssertionError: Locator expected to have attribute 'A card changed. Grade a card to enable Undo.'
+Actual value: Grade a card to enable Undo. 
+Call log:
+  - Expect "to_have_attribute" get_by_role("region", name="Study session").get_by_role("button", name="Undo", exact=True) with timeout 5000ms
+  - waiting for get_by_role("region", name="Study session").get_by_role("button", name="Undo", exact=True)
+    14 × locator resolved to <button disabled type="button" aria-label="Undo" data-disabled="true" data-variant="default" title="Grade a card to enable Undo." class="mantine-focus-auto m_77c9d27d mantine-Button-root m_87cf2631 mantine-UnstyledButton-root">…</button>
+       - unexpected value "Grade a card to enable Undo."
+
+Aria snapshot:
+- button "Undo" [disabled]: Undo Ctrl Z

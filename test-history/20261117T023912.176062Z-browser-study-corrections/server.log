@@ -1,0 +1,45 @@
+1: starting server using command "just -f ../justfile desktop-web"
+and when url "[ 'http-get://127.0.0.1:1420' ]" is responding with HTTP status code 200
+running tests using command "xvfb-run -a uv run --upgrade tests/study-corrections.py"
+
+cd desktop && bunx vite --host 127.0.0.1
+
+  VITE v8.3.8  ready in 350 ms
+
+  ➜  Local:   http://127.0.0.1:1420/
+[vite-plugin-static-copy] Collected 386 items.
+Test evidence: /home/dzack/gitclones/math-flashcards/test-history/20261117T023918.050426Z-study-corrections
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-corrections.py", line 163, in <module>
+    main(artifacts)
+    ~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-corrections.py", line 74, in main
+    before = schedule(first)
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-corrections.py", line 69, in schedule
+    return collection.execute(
+           ~~~~~~~~~~~~~~~~~~^
+        "select c.type,c.queue,c.due,c.ivl,c.factor,c.reps,c.lapses,c.data from cards c join notes n on c.nid=n.id where n.guid=?",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        (identity,),
+        ^^^^^^^^^^^^
+    ).fetchone()
+    ^
+sqlite3.OperationalError: database is locked
+Error: Command failed with exit code 1: xvfb-run -a uv run --upgrade tests/study-corrections.py
+    at makeError (/home/dzack/gitclones/math-flashcards/desktop/node_modules/execa/lib/error.js:60:11)
+    at handlePromise (/home/dzack/gitclones/math-flashcards/desktop/node_modules/execa/index.js:118:26)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  shortMessage: 'Command failed with exit code 1: xvfb-run -a uv run --upgrade tests/study-corrections.py',
+  command: 'xvfb-run -a uv run --upgrade tests/study-corrections.py',
+  escapedCommand: '"xvfb-run -a uv run --upgrade tests/study-corrections.py"',
+  exitCode: 1,
+  signal: undefined,
+  signalDescription: undefined,
+  stdout: undefined,
+  stderr: undefined,
+  failed: true,
+  timedOut: false,
+  isCanceled: false,
+  killed: false
+}
+error: recipe `desktop-web` was terminated on line 64 by signal 2

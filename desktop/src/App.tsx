@@ -307,10 +307,13 @@ export default function App() {
   }, [studyCounts]);
   const [study, setStudy] = useState<{
     session: number;
+    scope: StudyScope;
     next: StudyNext;
     record: string;
     ended: boolean;
+    undoReason: string;
   } | null>(null);
+  const [studyEditing, setStudyEditing] = useState(false);
   const studyCurrent = useRef(study);
   studyCurrent.current = study;
   const [attachment, setAttachment] = useState<Extract<
@@ -396,6 +399,17 @@ export default function App() {
   const refreshStudy = useCallback(
     async (changed: string[]) => {
       if (workspaceRoot.current !== workspace) return;
+      const reason = "A card changed. Grade a card to enable Undo.";
+      const previous = studyCurrent.current;
+      if (previous && changed.length) {
+        const updated = {
+          ...previous,
+          next: { ...previous.next, undoable: false },
+          undoReason: reason,
+        };
+        studyCurrent.current = updated;
+        setStudy(updated);
+      }
       const counts = await request(
         { action: "study-counts", workspace },
         deckCountsSchema,
@@ -403,8 +417,8 @@ export default function App() {
       if (workspaceRoot.current !== workspace) return;
       setStudyCounts(counts);
       const active = studyCurrent.current;
+      if (!active || !changed.length) return;
       if (
-        !active ||
         active.ended ||
         active.next.state !== "Card" ||
         !changed.includes(active.next.card_id)
@@ -414,16 +428,15 @@ export default function App() {
         { action: "study-next", workspace, session: active.session },
         studyNextSchema,
       );
-      if (studyCurrent.current === active) await updateStudy(next);
+      if (studyCurrent.current === active) await updateStudy(next, reason);
     },
     [workspace],
   );
-  const studyStatus = useStudySync(
+  const { status: studyStatus, error: studyError } = useStudySync(
     workspace,
     decks,
     sourceRecords,
     assetIdentity,
-    setError,
     showAttachment,
     attachmentEpoch,
     refreshStudy,
@@ -431,7 +444,7 @@ export default function App() {
   const finishEditorView = useEditorViews(
     workspace,
     document?.path ?? null,
-    study ? null : (selected?.id ?? null),
+    study && !studyEditing ? null : (selected?.id ?? null),
     setError,
     attachmentEpoch,
   );
@@ -1159,9 +1172,13 @@ export default function App() {
       );
     studyCurrent.current = null;
     setStudy(null);
+    setStudyEditing(false);
   }
 
-  async function updateStudy(next: StudyNext) {
+  async function updateStudy(
+    next: StudyNext,
+    undoReason = "Grade a card to enable Undo.",
+  ) {
     const active = studyCurrent.current;
     if (!active) return;
     const ended = next.state === "Finished";
@@ -1170,7 +1187,7 @@ export default function App() {
         { action: "study-end", workspace, session: active.session },
         z.strictObject({}),
       );
-    const updated = { ...active, next, ended };
+    const updated = { ...active, next, ended, undoReason };
     studyCurrent.current = updated;
     setStudy(updated);
     setStudyCounts(
@@ -1180,7 +1197,10 @@ export default function App() {
 
   async function startStudy(scope: StudyScope = { kind: "workspace" }) {
     setWorkspaceMenu(false);
-    if (studyCurrent.current) return;
+    if (studyCurrent.current) {
+      if (studyEditing) await resumeStudy();
+      return;
+    }
     const opened = await request(
       { action: "study-open", workspace },
       studyOpenSchema,
@@ -1195,10 +1215,67 @@ export default function App() {
       { action: "study-begin", workspace, scope },
       studyBegunSchema,
     );
-    const active = { ...begun, record: opened.record, ended: false };
+    const active = {
+      ...begun,
+      scope,
+      record: opened.record,
+      ended: false,
+      undoReason: "Grade a card to enable Undo.",
+    };
     studyCurrent.current = active;
     setStudy(active);
     if (begun.next.state === "Finished") await updateStudy(begun.next);
+  }
+
+  async function undoStudy() {
+    let active = studyCurrent.current;
+    if (!active || !active.next.undoable) return;
+    if (active.ended) {
+      const begun = await request(
+        { action: "study-begin", workspace, scope: active.scope },
+        studyBegunSchema,
+      );
+      active = { ...active, ...begun, ended: false };
+      studyCurrent.current = active;
+      setStudy(active);
+    }
+    const next = await request(
+      { action: "study-undo", workspace, session: active.session },
+      studyNextSchema,
+    );
+    if (studyCurrent.current === active) await updateStudy(next);
+  }
+
+  async function editStudy() {
+    const active = studyCurrent.current;
+    if (!active || active.next.state !== "Card") return;
+    await chooseDeck(active.next.deck, active.next.card_id, "required", true);
+    setStudyEditing(true);
+  }
+
+  async function resumeStudy() {
+    const changed = await syncSavedStudy(
+      workspace,
+      assetIdentity,
+      reconciliation.current,
+    );
+    await finishEditorView();
+    const active = studyCurrent.current;
+    if (!active) return;
+    if (!active.ended) {
+      const next = await request(
+        { action: "study-next", workspace, session: active.session },
+        studyNextSchema,
+      );
+      if (studyCurrent.current === active)
+        await updateStudy(
+          next,
+          changed.length
+            ? "A card changed. Grade a card to enable Undo."
+            : active.undoReason,
+        );
+    }
+    setStudyEditing(false);
   }
 
   const publishedField = useRef("");
@@ -1349,8 +1426,9 @@ export default function App() {
     path: string,
     cardId?: string,
     selection: "required" | "preferred" = "required",
+    keepStudy = false,
   ) {
-    await closeStudy();
+    if (!keepStudy) await closeStudy();
     const token = ++navigation.current;
     const workspaceToken = workspaceNavigation.current;
     setTask("Loading");
@@ -2379,7 +2457,7 @@ export default function App() {
   }
 
   return (
-    <div className={study ? "app studying" : "app"}>
+    <div className={study && !studyEditing ? "app studying" : "app"}>
       {attachment && (
         <Suspense fallback={<Loader aria-label="Opening study stores" />}>
           <StudyStoreChoice
@@ -2782,7 +2860,17 @@ export default function App() {
             </Group>
           </Alert>
         )}
-        {study ? (
+        {studyError && (
+          <Alert color="red" title="Study needs attention">
+            {studyError}
+          </Alert>
+        )}
+        {study && studyEditing && (
+          <Group justify="flex-end">
+            <Button onClick={() => guard(resumeStudy)}>Return to Study</Button>
+          </Group>
+        )}
+        {study && !studyEditing ? (
           <Suspense fallback={<Loader aria-label="Opening Study" />}>
             <StudyScreen
               workspace={workspace}
@@ -2790,6 +2878,9 @@ export default function App() {
               next={study.next}
               record={study.record}
               mathjax={mathjax}
+              undoReason={study.undoReason}
+              onUndo={undoStudy}
+              onEdit={editStudy}
               onNext={(next) =>
                 void updateStudy(next).catch((failure) =>
                   setError(String(failure)),

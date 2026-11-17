@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/evidence.py", line 53, in evidence
+    yield directory
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-corrections.py", line 185, in <module>
+    main(artifacts)
+    ~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-corrections.py", line 88, in main
+    len(reviews) == 1
+    and reviews[0][:2] == (first, "easy")
+    and reviews[0][2] is not None
+AssertionError: [('first', 'easy', 1794883226689), ('second', None, None), ('first', None, None)]

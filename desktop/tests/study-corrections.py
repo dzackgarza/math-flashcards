@@ -1,14 +1,16 @@
 # /// script
 # requires-python = ">=3.12"
-# dependencies = ["playwright"]
+# dependencies = ["playwright", "psutil"]
 # ///
 """Correct a Study grade and edit a card without losing recorded history."""
 
+import os
 import sqlite3
 import tempfile
 from contextlib import closing
 from pathlib import Path
 
+import psutil
 from evidence import evidence
 from playwright.sync_api import expect, sync_playwright
 
@@ -31,7 +33,7 @@ def main(artifacts: Path) -> None:
                 extra_http_headers={"x-flashcards": "1"},
             )
             browser = playwright.chromium.launch(headless=False)
-            page = browser.new_page()
+            page = browser.new_page(viewport={"width": 900, "height": 700})
             errors: list[str] = []
             page.on("pageerror", lambda error: errors.append(str(error)))
             try:
@@ -62,12 +64,10 @@ def main(artifacts: Path) -> None:
 
                 def schedule(identity: str):
                     with closing(
-                        sqlite3.connect(
-                            f"file:{store['store']}/collection.anki2?mode=ro", uri=True
-                        )
-                    ) as collection:
-                        return collection.execute(
-                            "select c.type,c.queue,c.due,c.ivl,c.factor,c.reps,c.lapses,c.data from cards c join notes n on c.nid=n.id where n.guid=?",
+                        sqlite3.connect(f"file:{store['record']}?mode=ro", uri=True)
+                    ) as record:
+                        return record.execute(
+                            "select before_interval_days,before_due,before_reps,before_lapses,before_stability,before_difficulty from presentation where card_id=? order by id desc limit 1",
                             (identity,),
                         ).fetchone()
 
@@ -82,7 +82,7 @@ def main(artifacts: Path) -> None:
                 assert schedule(first) == before
                 with closing(sqlite3.connect(store["record"])) as record:
                     reviews = record.execute(
-                        "select card_id,grade,undone_at_ms from review order by id"
+                        "select card_id,grade,undone_at_ms from review where grade is not null order by id"
                     ).fetchall()
                     assert (
                         len(reviews) == 1
@@ -106,6 +106,7 @@ def main(artifacts: Path) -> None:
                 back.click()
                 page.keyboard.press("Control+a")
                 page.keyboard.insert_text(f"Corrected {first}.")
+                page.screenshot(path=str(artifacts / "editor-return.png"))
                 page.get_by_role("button", name="Return to Study", exact=True).click()
                 expect(show).to_be_visible()
                 expect(undo).to_be_disabled()
@@ -135,7 +136,7 @@ def main(artifacts: Path) -> None:
                 assert schedule(second) == second_before
                 with closing(sqlite3.connect(store["record"])) as record:
                     rows = record.execute(
-                        "select card_id,back,undone_at_ms from review order by id"
+                        "select card_id,back,undone_at_ms from review where grade is not null order by id"
                     ).fetchall()
                     assert [(row[0], row[1], row[2] is not None) for row in rows] == [
                         (first, f"Original {first}.", True),
@@ -148,12 +149,49 @@ def main(artifacts: Path) -> None:
                     assert record.execute(
                         "select count(*) from session"
                     ).fetchone() == (2,)
+                    kept = record.execute(
+                        "select revlog_id from review where undone_at_ms is null and revlog_id is not null"
+                    ).fetchall()
                 page.screenshot(path=str(artifacts / "corrected-study.png"))
+                # Successive undos use Anki's returned operation counter, not
+                # UndoStatus.last_step, which is a sequence counter.
+                page.keyboard.press("Control+z")
+                expect(study).to_contain_text(f"Recall {first}.")
+                expect(undo).to_be_disabled()
+                assert schedule(first) == before
+                with closing(sqlite3.connect(store["record"])) as record:
+                    assert record.execute("select count(*) from undo").fetchone() == (
+                        3,
+                    )
+                    kept = record.execute(
+                        "select revlog_id from review where undone_at_ms is null and revlog_id is not null"
+                    ).fetchall()
+                    assert kept == []
+                expect(page.get_by_role("alert")).to_have_count(0)
                 assert not errors, errors
             finally:
                 (artifacts / "window.txt").write_text(page.locator("body").inner_text())
                 browser.close()
                 api.dispose()
+            hosts = [
+                p
+                for p in psutil.process_iter(["cmdline"])
+                if p.info["cmdline"] is not None
+                and "study-host" in p.info["cmdline"]
+                and p.environ().get("XDG_DATA_HOME") == os.environ["XDG_DATA_HOME"]
+            ]
+            assert len(hosts) == 1
+            hosts[0].terminate()
+            hosts[0].wait(timeout=10)
+            with closing(
+                sqlite3.connect(
+                    f"file:{store['store']}/collection.anki2?mode=ro", uri=True
+                )
+            ) as collection:
+                assert (
+                    collection.execute("select id from revlog order by id").fetchall()
+                    == kept
+                )
 
 
 if __name__ == "__main__":

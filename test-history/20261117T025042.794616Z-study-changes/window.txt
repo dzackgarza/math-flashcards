@@ -1,0 +1,48 @@
+Math Flashcards
+flashcards-study-changes-x638updh
+Search
+Ctrl K
+A
+New:
+0
+Learning:
+0
+Review:
+0
+
+New · Learning · Review
+
+New:
+0
+Learning:
+0
+Review:
+0
+
+Study cards ready
+
+Checking 1 of 1 decks…
+
+Problems (0/1 checked)
+Update Anki packages
+1
+New deck
+Study
+Undo
+Ctrl Z
+Return to editor
+Esc
+
+New: 0
+
+Learning: 0
+
+Review: 0
+
+Study complete for now
+
+Graded today: 3
+
+Study store: /tmp/flashcards-browser-cache-pbkwkf9q/data/math-flashcards/study/2fe46965-a492-4927-9777-5827bb21e67b
+
+Learning record: /tmp/flashcards-browser-cache-pbkwkf9q/data/math-flashcards/study/2fe46965-a492-4927-9777-5827bb21e67b/record.sqlite3
