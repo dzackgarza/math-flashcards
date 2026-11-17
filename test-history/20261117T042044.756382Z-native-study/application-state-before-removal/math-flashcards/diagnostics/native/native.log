@@ -1,0 +1,195 @@
+[2026-11-17][04:20:45][desktop_lib][INFO] event=app-start release=0.1.0 pid=3599166 os=linux arch=x86_64
+[2026-11-17][04:20:45][desktop_lib][INFO] event=request-started action=assets input_bytes=19
+[2026-11-17][04:20:45][desktop_lib][INFO] event=request-started action=cached-manifest input_bytes=105
+[2026-11-17][04:20:45][desktop_lib][INFO] event=backend-started action=assets
+[2026-11-17][04:20:45][desktop_lib][INFO] event=backend-started action=cached-manifest
+[2026-11-17][04:20:46][desktop_lib][INFO] event=backend-exited action=assets status=exit status: 0
+[2026-11-17][04:20:46][desktop_lib][INFO] event=request-completed action=assets outcome=ok elapsed_ms=236.414398
+[2026-11-17][04:20:46][desktop_lib][INFO] event=backend-exited action=cached-manifest status=exit status: 0
+[2026-11-17][04:20:46][desktop_lib][INFO] event=request-completed action=cached-manifest outcome=ok elapsed_ms=291.22683900000004
+[2026-11-17][04:20:46][desktop_lib][INFO] event=request-started action=manifest input_bytes=98
+[2026-11-17][04:20:46][desktop_lib][INFO] event=backend-started action=manifest
+[2026-11-17][04:20:46][desktop_lib][INFO] event=backend-exited action=manifest status=exit status: 0
+[2026-11-17][04:20:46][desktop_lib][INFO] event=request-completed action=manifest outcome=ok elapsed_ms=247.359859
+[2026-11-17][04:20:46][desktop_lib][INFO] event=request-started action=cache-manifest input_bytes=104
+[2026-11-17][04:20:46][desktop_lib][INFO] event=backend-started action=cache-manifest
+[2026-11-17][04:20:46][desktop_lib][INFO] event=request-started action=cached-checks input_bytes=239
+[2026-11-17][04:20:46][desktop_lib][INFO] event=request-started action=study-open input_bytes=85
+[2026-11-17][04:20:46][desktop_lib][INFO] event=request-started action=study-open input_bytes=85
+[2026-11-17][04:20:46][desktop_lib][INFO] event=study-host-started pid=3599428 elapsed_ms=0.226672
+[2026-11-17][04:20:46][desktop_lib][INFO] event=backend-exited action=cache-manifest status=exit status: 0
+[2026-11-17][04:20:46][desktop_lib][INFO] event=request-completed action=cache-manifest outcome=ok elapsed_ms=251.30471300000002
+[2026-11-17][04:20:46][desktop_lib][INFO] event=backend-started action=cached-checks
+[2026-11-17][04:20:47][desktop_lib][INFO] event=backend-exited action=cached-checks status=exit status: 0
+[2026-11-17][04:20:47][desktop_lib][INFO] event=request-completed action=cached-checks outcome=ok elapsed_ms=450.84326699999997
+[2026-11-17][04:20:47][desktop_lib][INFO] event=request-started action=sources input_bytes=157
+[2026-11-17][04:20:47][desktop_lib][INFO] event=backend-started action=sources
+[2026-11-17][04:20:47][desktop_lib][INFO] event=backend-exited action=sources status=exit status: 0
+[2026-11-17][04:20:47][desktop_lib][INFO] event=request-completed action=sources outcome=ok elapsed_ms=178.197417
+[2026-11-17][04:20:47][desktop_lib][INFO] event=request-started action=checks input_bytes=232
+[2026-11-17][04:20:47][desktop_lib][INFO] event=backend-started action=checks
+[2026-11-17][04:20:47][desktop_lib][INFO] event=request-started action=study-open input_bytes=85
+[2026-11-17][04:20:47][desktop_lib][INFO] event=request-started action=search input_bytes=497
+[2026-11-17][04:20:47][desktop_lib][INFO] event=request-started action=problems input_bytes=575
+[2026-11-17][04:20:47][desktop_lib][INFO] event=request-completed action=study-open outcome=ok elapsed_ms=657.2061500000001
+[2026-11-17][04:20:47][desktop_lib][INFO] event=request-completed action=study-open outcome=ok elapsed_ms=658.645406
+[2026-11-17][04:20:47][desktop_lib][INFO] event=request-completed action=study-open outcome=ok elapsed_ms=30.977196
+[2026-11-17][04:20:47][desktop_lib][INFO] event=request-started action=study-sync input_bytes=2928
+[2026-11-17][04:20:47][desktop_lib][INFO] event=request-completed action=study-sync outcome=ok elapsed_ms=308.095797
+[2026-11-17][04:20:47][desktop_lib][INFO] event=request-started action=study-counts input_bytes=87
+[2026-11-17][04:20:47][desktop_lib][INFO] event=request-completed action=study-counts outcome=ok elapsed_ms=1.570303
+[2026-11-17][04:20:47][desktop_lib][INFO] event=backend-exited action=checks status=exit status: 0
+[2026-11-17][04:20:47][desktop_lib][INFO] event=request-completed action=checks outcome=ok elapsed_ms=498.063247
+[2026-11-17][04:20:47][desktop_lib][INFO] event=backend-started action=search
+[2026-11-17][04:20:47][desktop_lib][INFO] event=backend-exited action=search status=exit status: 0
+[2026-11-17][04:20:47][desktop_lib][INFO] event=request-completed action=search outcome=ok elapsed_ms=662.083184
+[2026-11-17][04:20:47][desktop_lib][INFO] event=backend-started action=problems
+[2026-11-17][04:20:47][desktop_lib][INFO] event=request-started action=store-search input_bytes=1147
+[2026-11-17][04:20:47][desktop_lib][INFO] event=request-started action=study-open input_bytes=88
+[2026-11-17][04:20:47][desktop_lib][INFO] event=request-completed action=study-open outcome=ok elapsed_ms=2.1206739999999997
+[2026-11-17][04:20:47][desktop_lib][INFO] event=request-started action=study-open input_bytes=88
+[2026-11-17][04:20:47][desktop_lib][INFO] event=request-completed action=study-open outcome=ok elapsed_ms=1.9585610000000002
+[2026-11-17][04:20:48][desktop_lib][INFO] event=backend-exited action=problems status=exit status: 0
+[2026-11-17][04:20:48][desktop_lib][INFO] event=request-completed action=problems outcome=ok elapsed_ms=841.1810939999999
+[2026-11-17][04:20:48][desktop_lib][INFO] event=backend-started action=store-search
+[2026-11-17][04:20:48][desktop_lib][INFO] event=request-started action=store-problems input_bytes=391
+[2026-11-17][04:20:48][desktop_lib][INFO] event=backend-exited action=store-search status=exit status: 0
+[2026-11-17][04:20:48][desktop_lib][INFO] event=request-completed action=store-search outcome=ok elapsed_ms=360.601503
+[2026-11-17][04:20:48][desktop_lib][INFO] event=backend-started action=store-problems
+[2026-11-17][04:20:48][desktop_lib][INFO] event=request-started action=store-search input_bytes=1173
+[2026-11-17][04:20:48][desktop_lib][INFO] event=backend-exited action=store-problems status=exit status: 0
+[2026-11-17][04:20:48][desktop_lib][INFO] event=request-completed action=store-problems outcome=ok elapsed_ms=266.054011
+[2026-11-17][04:20:48][desktop_lib][INFO] event=backend-started action=store-search
+[2026-11-17][04:20:48][desktop_lib][INFO] event=request-started action=study-open input_bytes=88
+[2026-11-17][04:20:48][desktop_lib][INFO] event=study-host-reaped pid=3599428
+[2026-11-17][04:20:48][desktop_lib][INFO] event=study-host-started pid=3599515 elapsed_ms=0.195216
+[2026-11-17][04:20:48][desktop_lib][INFO] event=request-started action=store-problems input_bytes=389
+[2026-11-17][04:20:48][desktop_lib][INFO] event=backend-exited action=store-search status=exit status: 0
+[2026-11-17][04:20:48][desktop_lib][INFO] event=request-completed action=store-search outcome=ok elapsed_ms=419.629567
+[2026-11-17][04:20:48][desktop_lib][INFO] event=backend-started action=store-problems
+[2026-11-17][04:20:48][desktop_lib][INFO] event=request-started action=store-search input_bytes=904
+[2026-11-17][04:20:48][desktop_lib][INFO] event=request-completed action=study-open outcome=ok elapsed_ms=300.456887
+[2026-11-17][04:20:48][desktop_lib][INFO] event=request-started action=study-attach input_bytes=171
+[2026-11-17][04:20:48][desktop_lib][ERROR] event=request-completed action=study-attach outcome=error elapsed_ms=2.8794329999999997 error={"kind":"UnknownStore","message":"Unknown store: 00000000-0000-0000-0000-000000000000"}
+[2026-11-17][04:20:48][desktop_lib][INFO] event=request-started action=load input_bytes=113
+[2026-11-17][04:20:48][desktop_lib][INFO] event=backend-started action=load
+[2026-11-17][04:20:48][desktop_lib][INFO] event=backend-exited action=store-problems status=exit status: 0
+[2026-11-17][04:20:48][desktop_lib][INFO] event=request-completed action=store-problems outcome=ok elapsed_ms=344.824117
+[2026-11-17][04:20:48][desktop_lib][INFO] event=backend-started action=store-search
+[2026-11-17][04:20:49][desktop_lib][INFO] event=backend-exited action=load status=exit status: 0
+[2026-11-17][04:20:49][desktop_lib][INFO] event=request-completed action=load outcome=ok elapsed_ms=206.45300799999998
+[2026-11-17][04:20:49][desktop_lib][INFO] event=request-started action=checks input_bytes=194
+[2026-11-17][04:20:49][desktop_lib][INFO] event=request-started action=search input_bytes=285
+[2026-11-17][04:20:49][desktop_lib][INFO] event=request-started action=problems input_bytes=363
+[2026-11-17][04:20:49][desktop_lib][INFO] event=backend-exited action=store-search status=exit status: 0
+[2026-11-17][04:20:49][desktop_lib][INFO] event=request-completed action=store-search outcome=ok elapsed_ms=473.3251
+[2026-11-17][04:20:49][desktop_lib][INFO] event=backend-started action=checks
+[2026-11-17][04:20:49][desktop_lib][INFO] event=request-started action=study-viewed input_bytes=171
+[2026-11-17][04:20:49][desktop_lib][INFO] event=request-completed action=study-viewed outcome=ok elapsed_ms=5.700418
+[2026-11-17][04:20:49][desktop_lib][INFO] event=backend-exited action=checks status=exit status: 0
+[2026-11-17][04:20:49][desktop_lib][INFO] event=request-completed action=checks outcome=ok elapsed_ms=574.456713
+[2026-11-17][04:20:49][desktop_lib][INFO] event=backend-started action=search
+[2026-11-17][04:20:49][desktop_lib][INFO] event=backend-exited action=search status=exit status: 0
+[2026-11-17][04:20:49][desktop_lib][INFO] event=request-completed action=search outcome=ok elapsed_ms=762.88119
+[2026-11-17][04:20:49][desktop_lib][INFO] event=backend-started action=problems
+[2026-11-17][04:20:50][desktop_lib][INFO] event=backend-exited action=problems status=exit status: 0
+[2026-11-17][04:20:50][desktop_lib][INFO] event=request-completed action=problems outcome=ok elapsed_ms=962.245123
+[2026-11-17][04:20:50][desktop_lib][INFO] event=request-started action=store-problems input_bytes=383
+[2026-11-17][04:20:50][desktop_lib][INFO] event=backend-started action=store-problems
+[2026-11-17][04:20:50][desktop_lib][INFO] event=request-started action=study-open input_bytes=85
+[2026-11-17][04:20:50][desktop_lib][INFO] event=request-completed action=study-open outcome=ok elapsed_ms=2.0161290000000003
+[2026-11-17][04:20:50][desktop_lib][INFO] event=request-started action=manifest input_bytes=98
+[2026-11-17][04:20:50][desktop_lib][INFO] event=backend-started action=manifest
+[2026-11-17][04:20:50][desktop_lib][INFO] event=backend-exited action=store-problems status=exit status: 0
+[2026-11-17][04:20:50][desktop_lib][INFO] event=request-completed action=store-problems outcome=ok elapsed_ms=222.9061
+[2026-11-17][04:20:50][desktop_lib][INFO] event=backend-exited action=manifest status=exit status: 0
+[2026-11-17][04:20:50][desktop_lib][INFO] event=request-completed action=manifest outcome=ok elapsed_ms=231.333888
+[2026-11-17][04:20:50][desktop_lib][INFO] event=request-started action=sources input_bytes=157
+[2026-11-17][04:20:50][desktop_lib][INFO] event=backend-started action=sources
+[2026-11-17][04:20:50][desktop_lib][INFO] event=backend-exited action=sources status=exit status: 0
+[2026-11-17][04:20:50][desktop_lib][INFO] event=request-completed action=sources outcome=ok elapsed_ms=185.457347
+[2026-11-17][04:20:50][desktop_lib][INFO] event=request-started action=study-sync input_bytes=2928
+[2026-11-17][04:20:50][desktop_lib][INFO] event=request-completed action=study-sync outcome=ok elapsed_ms=6.745496
+[2026-11-17][04:20:50][desktop_lib][INFO] event=request-started action=study-viewed input_bytes=163
+[2026-11-17][04:20:50][desktop_lib][INFO] event=request-completed action=study-viewed outcome=ok elapsed_ms=13.121311
+[2026-11-17][04:20:50][desktop_lib][INFO] event=request-started action=study-begin input_bytes=115
+[2026-11-17][04:20:50][desktop_lib][INFO] event=request-completed action=study-begin outcome=ok elapsed_ms=29.089181
+[2026-11-17][04:20:51][desktop_lib][INFO] event=request-started action=study-answer input_bytes=189
+[2026-11-17][04:20:51][desktop_lib][INFO] event=request-completed action=study-answer outcome=ok elapsed_ms=118.503853
+[2026-11-17][04:20:51][desktop_lib][INFO] event=request-started action=study-counts input_bytes=87
+[2026-11-17][04:20:51][desktop_lib][INFO] event=request-completed action=study-counts outcome=ok elapsed_ms=1.741356
+[2026-11-17][04:20:51][desktop_lib][INFO] event=request-started action=study-answer input_bytes=189
+[2026-11-17][04:20:51][desktop_lib][INFO] event=request-completed action=study-answer outcome=ok elapsed_ms=30.010379
+[2026-11-17][04:20:51][desktop_lib][INFO] event=request-started action=study-counts input_bytes=87
+[2026-11-17][04:20:51][desktop_lib][INFO] event=request-completed action=study-counts outcome=ok elapsed_ms=1.827417
+[2026-11-17][04:20:52][desktop_lib][INFO] event=request-started action=study-answer input_bytes=189
+[2026-11-17][04:20:52][desktop_lib][INFO] event=request-completed action=study-answer outcome=ok elapsed_ms=28.392003
+[2026-11-17][04:20:52][desktop_lib][INFO] event=request-started action=study-counts input_bytes=87
+[2026-11-17][04:20:52][desktop_lib][INFO] event=request-completed action=study-counts outcome=ok elapsed_ms=1.617998
+[2026-11-17][04:20:52][desktop_lib][INFO] event=request-started action=study-answer input_bytes=189
+[2026-11-17][04:20:53][desktop_lib][INFO] event=request-completed action=study-answer outcome=ok elapsed_ms=28.290518000000002
+[2026-11-17][04:20:53][desktop_lib][INFO] event=request-started action=study-counts input_bytes=87
+[2026-11-17][04:20:53][desktop_lib][INFO] event=request-completed action=study-counts outcome=ok elapsed_ms=1.6234730000000002
+[2026-11-17][04:20:53][desktop_lib][INFO] event=request-started action=render-diagram input_bytes=181
+[2026-11-17][04:20:53][desktop_lib][INFO] event=backend-started action=render-diagram
+[2026-11-17][04:20:53][desktop_lib][INFO] event=backend-exited action=render-diagram status=exit status: 1
+[2026-11-17][04:20:53][desktop_lib][ERROR] event=request-completed action=render-diagram outcome=error elapsed_ms=265.84634 error=The commutative diagram did not compile through the shared TikZ-cd renderer. Error running filter '/home/dzack/gitclones/math-flashcards/desktop/src-tauri/target/release/tikz-assets/tikzcd.lua':
+.../desktop/src-tauri/target/release/tikz-assets/tikzcd.lua:5: module 'utilities' not found:
+	no field package.preload['utilities']
+	no file '/usr/local/share/lua/5.4/utilities.lua'
+	no file '/usr/local/share/lua/5.4/utilities/init.lua'
+	no file '/usr/share/lua/5.4/utilities.lua'
+	no file '/usr/share/lua/5.4/utilities/init.lua'
+	no file '/usr/local/lib/lua/5.4/utilities.lua'
+	no file '/usr/local/lib/lua/5.4/utilities/init.lua'
+	no file '/usr/lib/lua/5.4/utilities.lua'
+	no file '/usr/lib/lua/5.4/utilities/init.lua'
+	no file './utilities.lua'
+	no file './utilities/init.lua'
+	no file '/tmp/flashcards-native-study-cphbud5k/home/.pandoc/filters/utilities.lua'
+	no file ''
+	no file '/usr/local/lib/lua/5.4/utilities.so'
+	no file '/usr/lib/lua/5.4/utilities.so'
+	no file '/usr/local/lib/lua/5.4/loadall.so'
+	no file '/usr/lib/lua/5.4/loadall.so'
+	no file './utilities.so'
+stack traceback:
+	.../desktop/src-tauri/target/release/tikz-assets/tikzcd.lua:5: in main chunk
+
+
+[2026-11-17][04:20:53][desktop_lib][INFO] event=request-started action=study-answer input_bytes=189
+[2026-11-17][04:20:53][desktop_lib][INFO] event=request-completed action=study-answer outcome=ok elapsed_ms=35.013982999999996
+[2026-11-17][04:20:53][desktop_lib][INFO] event=request-started action=study-counts input_bytes=87
+[2026-11-17][04:20:53][desktop_lib][INFO] event=request-completed action=study-counts outcome=ok elapsed_ms=1.835658
+[2026-11-17][04:20:54][desktop_lib][INFO] event=request-started action=study-answer input_bytes=189
+[2026-11-17][04:20:54][desktop_lib][INFO] event=request-completed action=study-answer outcome=ok elapsed_ms=31.146411
+[2026-11-17][04:20:54][desktop_lib][INFO] event=request-started action=study-counts input_bytes=87
+[2026-11-17][04:20:54][desktop_lib][INFO] event=request-completed action=study-counts outcome=ok elapsed_ms=1.496346
+[2026-11-17][04:20:54][desktop_lib][INFO] event=request-started action=study-answer input_bytes=189
+[2026-11-17][04:20:54][desktop_lib][INFO] event=request-completed action=study-answer outcome=ok elapsed_ms=32.496776
+[2026-11-17][04:20:54][desktop_lib][INFO] event=request-started action=study-counts input_bytes=87
+[2026-11-17][04:20:54][desktop_lib][INFO] event=request-completed action=study-counts outcome=ok elapsed_ms=1.8772140000000002
+[2026-11-17][04:20:55][desktop_lib][INFO] event=request-started action=study-answer input_bytes=189
+[2026-11-17][04:20:55][desktop_lib][INFO] event=request-completed action=study-answer outcome=ok elapsed_ms=30.469541999999997
+[2026-11-17][04:20:55][desktop_lib][INFO] event=request-started action=study-counts input_bytes=87
+[2026-11-17][04:20:55][desktop_lib][INFO] event=request-completed action=study-counts outcome=ok elapsed_ms=1.504103
+[2026-11-17][04:20:55][desktop_lib][INFO] event=request-started action=study-answer input_bytes=189
+[2026-11-17][04:20:55][desktop_lib][INFO] event=request-completed action=study-answer outcome=ok elapsed_ms=29.902411999999998
+[2026-11-17][04:20:55][desktop_lib][INFO] event=request-started action=study-counts input_bytes=87
+[2026-11-17][04:20:55][desktop_lib][INFO] event=request-completed action=study-counts outcome=ok elapsed_ms=1.446398
+[2026-11-17][04:20:56][desktop_lib][INFO] event=request-started action=study-answer input_bytes=190
+[2026-11-17][04:20:56][desktop_lib][INFO] event=request-completed action=study-answer outcome=ok elapsed_ms=26.160926
+[2026-11-17][04:20:56][desktop_lib][INFO] event=request-started action=study-counts input_bytes=87
+[2026-11-17][04:20:56][desktop_lib][INFO] event=request-completed action=study-counts outcome=ok elapsed_ms=1.926402
+[2026-11-17][04:20:57][desktop_lib][INFO] event=request-started action=study-answer input_bytes=190
+[2026-11-17][04:20:57][desktop_lib][INFO] event=request-completed action=study-answer outcome=ok elapsed_ms=35.087434
+[2026-11-17][04:20:57][desktop_lib][INFO] event=request-started action=study-counts input_bytes=87
+[2026-11-17][04:20:57][desktop_lib][INFO] event=request-completed action=study-counts outcome=ok elapsed_ms=1.549871
+[2026-11-17][04:20:57][desktop_lib][INFO] event=request-started action=study-answer input_bytes=190
+[2026-11-17][04:20:57][desktop_lib][INFO] event=request-completed action=study-answer outcome=ok elapsed_ms=11.500262000000001
+[2026-11-17][04:20:57][desktop_lib][INFO] event=request-started action=study-end input_bytes=96
+[2026-11-17][04:20:57][desktop_lib][INFO] event=request-completed action=study-end outcome=ok elapsed_ms=11.625558
+[2026-11-17][04:20:57][desktop_lib][INFO] event=request-started action=study-counts input_bytes=87
+[2026-11-17][04:20:57][desktop_lib][INFO] event=request-completed action=study-counts outcome=ok elapsed_ms=1.796672
+[2026-11-17][04:20:58][desktop_lib][INFO] event=study-host-closed pid=3599515 status=exit status: 0 elapsed_ms=79.77545599999999
+[2026-11-17][04:20:58][desktop_lib][INFO] event=app-exit pid=3599166

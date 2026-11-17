@@ -717,16 +717,37 @@ directories with `platformdirs`; the shell resolves them with the Tauri path API
 | Installed releases, `active`, `launch` | Data | `$XDG_DATA_HOME/math-flashcards/` (existing) |
 | Preferences: the workspace path | Configuration | `$XDG_CONFIG_HOME/dev.math.flashcards/preferences.json` (existing, Tauri store plugin) |
 | Render output, check results, search records, results of analyses | Cache | `$XDG_CACHE_HOME/math-flashcards/` |
+| LuaTeX font and runtime caches | Cache | `$XDG_CACHE_HOME/math-flashcards/texmf/`, supplied through `TEXMFVAR` and `TEXMFCACHE` |
+| Native, Study host, and analysis diagnostics | State | `$XDG_STATE_HOME/math-flashcards/diagnostics/` |
 | Launcher command | Executable | `$HOME/.local/bin`, the directory that the specification names for user executables (existing) |
 
-The feature writes no state file and no runtime file: the host talks through pipes, and
-the single-instance plugin uses a D-Bus name.
+The host talks through pipes, and the single-instance plugin uses a D-Bus name.
+Operational logs and timing profiles are disposable state; the learning record is data.
+
+The shared TikZ filter imports `utilities.lua`. Stage both files from the maintained
+Pandoc renderer and point Lua's module path to that release directory. The
+[Lua module-path contract](https://www.lua.org/manual/5.4/manual.html#pdf-package.path)
+gives the version-specific environment variable precedence. Both module-path variables
+therefore name the packaged directory. The bridge requires both files before rendering.
+The [TeX Live guide](https://tug.org/texlive/doc/texlive-en/texlive-en.html) identifies
+`TEXMFVAR` and `TEXMFCACHE` as runtime caches. Resolve their directory through
+`platformdirs`. `desktop/tests/diagram-runtime.py` renders real SVG through the public
+bridge with an empty HOME, checks all generated paths, and preserves the authored source.
+
+For native close acceptance under Xvfb, send the client's `WM_DELETE_WINDOW`
+message through Python Xlib, following
+[ICCCM window deletion](https://www.x.org/releases/current/doc/xorg-docs/icccm/icccm.pdf).
+This reaches the normal Tauri close handler and its awaited learning-record writes.
+Xvfb alone has no window manager to handle `xdotool windowquit`'s
+[`_NET_CLOSE_WINDOW` request](https://github.com/jordansissel/xdotool/blob/master/xdo.c).
+WebDriver session deletion force-exits the process and cannot establish close-handler
+behavior.
 
 **Existing state of the app, inspected on this machine**:
 
 | Observation | Conformance |
 | --- | --- |
-| The Python bridge writes only under `user_cache_path("math-flashcards")`. | Conforms. |
+| The Python bridge separates learning data, diagnostic state, and regenerable cache through `platformdirs`. | The empty-home native and diagram scenarios check placement and learning preservation. |
 | The installer derives its directories from `XDG_DATA_HOME`, with the specification's default. | Conforms. |
 | The app has two directory names: `math-flashcards` (bridge, installer) and `dev.math.flashcards` (Tauri identifier). | Conforms. Both are under the correct base directories. |
 | `$XDG_DATA_HOME/dev.math.flashcards/` holds `WebKitCache/` and `CacheStorage/`, written by the web view. `$XDG_CACHE_HOME/dev.math.flashcards/` does not exist. | Does not conform: regenerable web view cache is in the data directory. The web view layer of Tauri owns the placement. |

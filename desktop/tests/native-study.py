@@ -1,6 +1,6 @@
 # /// script
 # requires-python = ">=3.12"
-# dependencies = ["selenium", "psutil", "send2trash"]
+# dependencies = ["selenium", "psutil", "send2trash", "python-xlib"]
 # ///
 """Open and restart Study through the built app's actual native command."""
 
@@ -8,6 +8,7 @@ import json
 import os
 import shutil
 import sqlite3
+import subprocess
 import tempfile
 from contextlib import closing, suppress
 from hashlib import file_digest
@@ -22,6 +23,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.webkitgtk.options import Options
 from selenium.webdriver.webkitgtk.service import Service
 from send2trash import send2trash
+from Xlib import X, display, protocol
 
 
 def main(artifacts: Path) -> None:
@@ -227,7 +229,7 @@ def main(artifacts: Path) -> None:
                 seen = set()
                 for remaining in range(12, 0, -1):
                     wait.until(
-                        lambda window: (
+                        lambda window, remaining=remaining: (
                             " ".join(
                                 window.find_element(
                                     By.CSS_SELECTOR,
@@ -265,7 +267,7 @@ def main(artifacts: Path) -> None:
                             )
                         )
                         wait.until(
-                            lambda _: driver.execute_script(
+                            lambda _, picture=picture: driver.execute_script(
                                 "return arguments[0].complete && arguments[0].naturalWidth > 0",
                                 picture,
                             )
@@ -273,6 +275,26 @@ def main(artifacts: Path) -> None:
                         assert picture.get_attribute("src").startswith("blob:")
                         driver.save_screenshot(
                             str(artifacts / "native-study-image.png")
+                        )
+                    if identity == "study-diagram":
+                        # A fresh TeX font cache is part of this milestone scenario.
+                        diagram_wait = WebDriverWait(driver, 120)
+                        diagram = diagram_wait.until(
+                            conditions.visibility_of_element_located(
+                                (
+                                    By.CSS_SELECTOR,
+                                    'section[aria-label="Study session"] img[alt="Rendered commutative diagram"]',
+                                )
+                            )
+                        )
+                        diagram_wait.until(
+                            lambda _: driver.execute_script(
+                                "return arguments[0].complete && arguments[0].naturalWidth > 0",
+                                diagram,
+                            )
+                        )
+                        driver.save_screenshot(
+                            str(artifacts / "native-study-diagram.png")
                         )
                     reveal.click()
                     wait.until(
@@ -297,14 +319,49 @@ def main(artifacts: Path) -> None:
                         "select revlog_id,revlog_cid,revlog_usn,revlog_ease,revlog_ivl,revlog_last_ivl,revlog_factor,revlog_time_ms,revlog_type from response order by revlog_id"
                     ).fetchall()
                 driver.save_screenshot(str(artifacts / "native-study-finished.png"))
+                driver.find_element(
+                    By.XPATH, '//button[contains(., "Return to editor")]'
+                ).click()
+                wait.until(
+                    conditions.visibility_of_element_located(
+                        (By.CSS_SELECTOR, ".editor-column .side-editor.front")
+                    )
+                )
+                with closing(sqlite3.connect(opened["record"])) as record:
+                    views_before_close = record.execute(
+                        "select count(*) from editor_view"
+                    ).fetchone()[0]
                 children = psutil.Process(service.process.pid).children(recursive=True)
                 # WebDriver session deletion force-exits its browser process.
-                # Close through Tauri before releasing the automation session:
+                # Xvfb has no window manager to route _NET_CLOSE_WINDOW. Send
+                # its normal WM_DELETE_WINDOW request to the client instead:
+                # https://www.x.org/releases/current/doc/xorg-docs/icccm/icccm.pdf
                 # https://github.com/WebKit/WebKit/blob/main/Source/WebDriver/glib/SessionHostGlib.cpp
-                driver.execute_script("""
-                    setTimeout(() => window.__TAURI_INTERNALS__.invoke(
-                        'plugin:window|destroy', {label: 'main'}), 100);
-                """)
+                app = [
+                    child
+                    for child in children
+                    if child.exe() == options.binary_location
+                ]
+                assert len(app) == 1, app
+                windows = subprocess.check_output(
+                    ["xdotool", "search", "--onlyvisible", "--pid", str(app[0].pid)],
+                    text=True,
+                ).splitlines()
+                assert len(windows) == 1, windows
+                with closing(display.Display()) as connection:
+                    window = connection.create_resource_object(
+                        "window", int(windows[0])
+                    )
+                    delete = connection.intern_atom("WM_DELETE_WINDOW")
+                    assert delete in window.get_wm_protocols()
+                    window.send_event(
+                        protocol.event.ClientMessage(
+                            window=window,
+                            client_type=connection.intern_atom("WM_PROTOCOLS"),
+                            data=(32, [delete, X.CurrentTime, 0, 0, 0]),
+                        )
+                    )
+                    connection.sync()
                 WebDriverWait(driver, 10).until(
                     lambda _: "event=app-exit" in native_log.read_text()
                 )
@@ -314,6 +371,18 @@ def main(artifacts: Path) -> None:
                             "select id,cid,usn,ease,ivl,lastIvl,factor,time,type from revlog order by id"
                         ).fetchall()
                         == recorded
+                    )
+                with closing(sqlite3.connect(opened["record"])) as record:
+                    assert (
+                        record.execute("select count(*) from editor_view").fetchone()[0]
+                        == views_before_close + 1
+                    )
+                    last_view = record.execute(
+                        "select card_id,shown_ms,unfocused_ms from editor_view order by id desc limit 1"
+                    ).fetchone()
+                    assert last_view[0] == "study-image", last_view
+                    assert last_view[1] > 0 and 0 <= last_view[2] <= last_view[1], (
+                        last_view
                     )
                 driver.quit()
                 driver = None
@@ -327,37 +396,61 @@ def main(artifacts: Path) -> None:
                         "select name from sqlite_master where type='table'"
                     ).fetchall()
                     retained = {
-                        name: record.execute(f'select * from "{name}" order by id').fetchall()
+                        name: record.execute(
+                            f'select * from "{name}" order by id'
+                        ).fetchall()
                         for (name,) in tables
                     }
                 misplaced = [
-                    str(path.relative_to(root)) for path in root.rglob("*")
-                    if path.is_file() and path.relative_to(root).parts[0]
+                    str(path.relative_to(root))
+                    for path in root.rglob("*")
+                    if path.is_file()
+                    and path.relative_to(root).parts[0]
                     not in {"config", "cache", "data", "state"}
                 ]
                 assert not misplaced, misplaced
-                shutil.copytree(root / "state", artifacts / "application-state-before-removal")
+                web_cache = [
+                    str(path.relative_to(root))
+                    for name in ("WebKitCache", "CacheStorage")
+                    for directory in (root / "data").rglob(name)
+                    for path in directory.rglob("*")
+                    if path.is_file()
+                ]
+                assert not web_cache, web_cache
+                shutil.copytree(
+                    root / "state", artifacts / "application-state-before-removal"
+                )
                 send2trash(str(root / "cache"))
                 send2trash(str(root / "state"))
-                driver = webdriver.Remote(command_executor=service.service_url, options=options)
+                driver = webdriver.Remote(
+                    command_executor=service.service_url, options=options
+                )
                 wait = WebDriverWait(driver, 30)
-                wait.until(conditions.text_to_be_present_in_element(
-                    (By.CSS_SELECTOR, '[role="status"][aria-label="Study"]'),
-                    "Study cards ready",
-                ))
+                wait.until(
+                    conditions.text_to_be_present_in_element(
+                        (By.CSS_SELECTOR, '[role="status"][aria-label="Study"]'),
+                        "Study cards ready",
+                    )
+                )
                 restored = driver.execute_async_script(script, payload)
                 assert restored["ok"], restored
                 assert restored["result"]["store"] == opened["store"]
                 assert restored["result"]["counts"]["counts"] == {
-                    "new": 0, "learning": 0, "review": 0,
+                    "new": 0,
+                    "learning": 0,
+                    "review": 0,
                 }
                 with closing(sqlite3.connect(opened["record"])) as record:
                     for name, previous in retained.items():
-                        current = record.execute(f'select * from "{name}" order by id').fetchall()
-                        assert current[:len(previous)] == previous, name
+                        current = record.execute(
+                            f'select * from "{name}" order by id'
+                        ).fetchall()
+                        assert current[: len(previous)] == previous, name
                 misplaced = [
-                    str(path.relative_to(root)) for path in root.rglob("*")
-                    if path.is_file() and path.relative_to(root).parts[0]
+                    str(path.relative_to(root))
+                    for path in root.rglob("*")
+                    if path.is_file()
+                    and path.relative_to(root).parts[0]
                     not in {"config", "cache", "data", "state"}
                 ]
                 assert not misplaced, misplaced

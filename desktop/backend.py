@@ -1030,7 +1030,9 @@ def producer_files() -> dict[str, Path]:
 @cache
 def tikz_renderer_identity() -> str:
     files = sorted(file for file in TIKZ_ASSETS.rglob("*") if file.is_file())
-    if not all((TIKZ_ASSETS / name).is_file() for name in ("tikzcd.lua", "utilities.lua")):
+    if not all(
+        (TIKZ_ASSETS / name).is_file() for name in ("tikzcd.lua", "utilities.lua")
+    ):
         raise InstallationError(
             "The prepared TikZ-cd renderer is missing. Run just desktop-install."
         )
@@ -1060,11 +1062,17 @@ def render_tikzcd_svg(source: str, path: Path) -> str:
     identity = tikz_renderer_identity()
     output_dir = user_cache_path("math-flashcards") / "tikz-images"
     output_dir.mkdir(parents=True, exist_ok=True)
+    tex_cache = user_cache_path("math-flashcards") / "texmf"
+    tex_cache.mkdir(parents=True, exist_ok=True)
     env = os.environ | {
         # Lua's version-specific module path takes precedence over LUA_PATH.
         # https://www.lua.org/manual/5.4/manual.html#pdf-package.path
         "LUA_PATH_5_4": str(TIKZ_ASSETS / "?.lua") + ";;",
         "LUA_PATH": str(TIKZ_ASSETS / "?.lua") + ";;",
+        # TeX Live's per-user runtime data is disposable derived state.
+        # https://tug.org/texlive/doc/texlive-en/texlive-en.html
+        "TEXMFVAR": str(tex_cache),
+        "TEXMFCACHE": str(tex_cache),
         "FIGURE_STYLES_DIR": str(TIKZ_ASSETS / "styles"),
         "FIGURE_TEMPLATE_FILE": str(TIKZ_ASSETS / "standalone-tikz.tex"),
         "FIGURES_SOURCE_DIR": str(path.parent),
