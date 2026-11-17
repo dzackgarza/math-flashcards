@@ -46,6 +46,20 @@ the store in the attachment dialog. Existing rows remain unchanged; opening and
 attaching add their own facts. The store holds historical card content, but the
 authored Markdown workspace remains the source for future edits.
 
+## Automatic backups
+
+Opening a store and closing the app request an Anki backup. Anki decides whether
+the collection changed and whether its backup interval has elapsed. Each package
+in `backups/backup-<local time>.colpkg` has a matching `.sqlite3` learning-record
+snapshot made through SQLite's online backup API. The snapshot includes the
+`backed-up` event. Anki controls package retention; the matching record snapshot
+stays until that package is removed.
+
+These pairs are in the same data directory as the live store. Use **Save a copy**
+to retain the complete store, including media, on another disk or in a folder
+covered by your backup tool. A process crash cannot run the exit backup; committed
+learning remains in the live databases and their write-ahead logs.
+
 ## Common columns
 
 The immutable `desktop/tests/fixtures/study/record-v1.sqlite3` fixture and its

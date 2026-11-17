@@ -133,6 +133,24 @@ the folder is renamed or the data moves to another machine. Over decades both oc
   writes `backup-YYYY-MM-DD-HH.MM.SS.colpkg` (probed). Anki's backup limits control how
   many are kept.
 
+**Backup lifecycle**: On first load and graceful host shutdown, call
+`create_backup(force=False, wait_for_completion=True)`. Anki skips unchanged
+collections and enforces its minimum interval. Its
+[backup implementation](https://github.com/ankitects/anki/blob/main/rslib/src/collection/backup.rs)
+uses local time to name the package and can replace a package within the same second.
+Compare file metadata before and after the call to identify its output. Do not
+construct a second timestamp. Append the `backed-up` event and use
+[SQLite's online backup](https://docs.python.org/3/library/sqlite3.html#sqlite3.Connection.backup)
+to write the record to a temporary file, then replace the matching `.sqlite3` snapshot.
+The host processes requests sequentially, so grades cannot interleave with this pair.
+Anki thins its packages; send only record snapshots whose matching package is absent
+to the trash. Backup failures propagate and remain in the host diagnostics.
+
+`desktop/tests/study-preservation.py` exercises open and EOF shutdown through the
+real host, compares every snapshot row, and lets Anki remove an expired pair. It also
+checks that cache rebuilding preserves the live store and that a leech review stays
+available. A forced process termination is not evidence for graceful exit backups.
+
 **Alternatives considered**: A folder inside the workspace: rejected, it puts a binary
 database in the deck repository and in deck discovery. `XDG_STATE_HOME`: rejected, the
 XDG specification describes it for data that is less important than user data.

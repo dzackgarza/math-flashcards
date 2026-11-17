@@ -6,6 +6,7 @@
 
 import json
 import os
+import shutil
 import sqlite3
 import subprocess
 import tempfile
@@ -58,7 +59,8 @@ def main(artifacts: Path) -> None:
         )
         with sync_playwright() as playwright:
             api = playwright.request.new_context(
-                base_url="http://127.0.0.1:1420", extra_http_headers={"x-flashcards": "1"}
+                base_url="http://127.0.0.1:1420",
+                extra_http_headers={"x-flashcards": "1"},
             )
 
             def request(action: str, **values):
@@ -89,7 +91,9 @@ def main(artifacts: Path) -> None:
                 }
                 request("rebuild-cache", generation=1)
                 assert rows(store / "record.sqlite3") == before
-                assert all(path.read_bytes() == data for path, data in collection_files.items())
+                assert all(
+                    path.read_bytes() == data for path, data in collection_files.items()
+                )
                 assert first_backup.is_file()
                 assert first_backup.with_suffix(".sqlite3").is_file()
             finally:
@@ -98,17 +102,28 @@ def main(artifacts: Path) -> None:
 
         # Prepare a due review at Anki's leech threshold with the isolated host stopped.
         hosts = [
-            p for p in psutil.process_iter(["cmdline"])
-            if p.info["cmdline"] and "study-host" in p.info["cmdline"]
+            p
+            for p in psutil.process_iter(["cmdline"])
+            if p.info["cmdline"]
+            and "study-host" in p.info["cmdline"]
             and p.environ().get("XDG_DATA_HOME") == os.environ["XDG_DATA_HOME"]
         ]
         assert len(hosts) == 1
         hosts[0].terminate()
         hosts[0].wait(timeout=10)
+        # Seed an expired pair, then let Anki's real retention policy remove it.
+        expired = store / "backups/backup-2000-01-01-00.00.00.colpkg"
+        shutil.copy2(first_backup, expired)
+        shutil.copy2(
+            first_backup.with_suffix(".sqlite3"), expired.with_suffix(".sqlite3")
+        )
         collection = Collection(str(store / "collection.anki2"))
         try:
             preferences = collection._backend.get_preferences()
             preferences.backups.minimum_interval_mins = 0
+            preferences.backups.daily = 0
+            preferences.backups.weekly = 0
+            preferences.backups.monthly = 0
             collection._backend.set_preferences(preferences)
             preset = collection.decks.get_config(DeckConfigId(1))
             card = collection.get_card(collection.find_cards("")[0])
@@ -126,12 +141,27 @@ def main(artifacts: Path) -> None:
 
         with (artifacts / "host.log").open("w") as log:
             host = subprocess.Popen(
-                [runtime, str(desktop / "backend.py"), "study-host", "--release", "preservation-test"],
-                stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=log, text=True,
+                [
+                    runtime,
+                    str(desktop / "backend.py"),
+                    "study-host",
+                    "--release",
+                    "preservation-test",
+                ],
+                stdin=subprocess.PIPE,
+                stdout=subprocess.PIPE,
+                stderr=log,
+                text=True,
             )
             try:
+
                 def send(action: str, **values):
-                    host.stdin.write(json.dumps({"action": action, "workspace": str(workspace), **values}) + "\n")
+                    host.stdin.write(
+                        json.dumps(
+                            {"action": action, "workspace": str(workspace), **values}
+                        )
+                        + "\n"
+                    )
                     host.stdin.flush()
                     line = host.stdout.readline()
                     assert line, "Study host exited without a response; see host.log."
@@ -141,12 +171,18 @@ def main(artifacts: Path) -> None:
 
                 send("study-open")
                 paired(store)
+                assert not expired.exists()
+                assert not expired.with_suffix(".sqlite3").exists()
+                assert first_backup.is_file()
+                assert first_backup.with_suffix(".sqlite3").is_file()
                 begun = send("study-begin", scope={"kind": "workspace"})
                 offered = begun["next"]
                 assert offered["card_id"] == "leech-card"
                 following = send(
-                    "study-answer", session=begun["session"],
-                    presentation=offered["presentation"], grade="again",
+                    "study-answer",
+                    session=begun["session"],
+                    presentation=offered["presentation"],
+                    grade="again",
                     timing={"reveal_ms": 1000, "grade_ms": 2000, "unfocused_ms": 0},
                 )
                 assert following["card_id"] == "leech-card", following
@@ -158,9 +194,9 @@ def main(artifacts: Path) -> None:
         paired(store)
         final = rows(store / "record.sqlite3")
         for name, earlier in original.items():
-            assert final[name][:len(earlier)] == earlier, name
+            assert final[name][: len(earlier)] == earlier, name
         for name, earlier in before.items():
-            assert final[name][:len(earlier)] == earlier, name
+            assert final[name][: len(earlier)] == earlier, name
         collection = Collection(str(store / "collection.anki2"))
         try:
             card = collection.get_card(identity)
@@ -174,5 +210,7 @@ def main(artifacts: Path) -> None:
 
 
 if __name__ == "__main__":
-    with evidence("study-preservation", Path(__file__).parent / "fixtures/study") as artifacts:
+    with evidence(
+        "study-preservation", Path(__file__).parent / "fixtures/study"
+    ) as artifacts:
         main(artifacts)

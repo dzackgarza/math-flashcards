@@ -168,6 +168,12 @@ class Store:
             ).fetchall()
             for (session,) in unfinished:
                 self.record.session_end(session, "recovered")
+        try:
+            self.backup()
+        except Exception:
+            self.collection.close()
+            self.record.close()
+            raise
 
     def opened(self) -> Open:
         preset = self.collection.decks.get_config(DeckConfigId(1))
@@ -284,14 +290,46 @@ class Store:
         self.record.store_event("copied", str(copied))
         return StoreCopy(path=str(copied))
 
+    def backup(self) -> None:
+        directory = self.directory / "backups"
+        before = {path: path.stat() for path in directory.glob("backup-*.colpkg")}
+        if self.collection.create_backup(
+            backup_folder=str(directory), force=False, wait_for_completion=True
+        ):
+            # Anki owns filenames and may replace a same-second backup. Compare
+            # file metadata rather than reconstructing its local timestamp (R4).
+            changed = [
+                path
+                for path in directory.glob("backup-*.colpkg")
+                if path not in before or path.stat() != before[path]
+            ]
+            if len(changed) != 1:
+                raise RuntimeError(
+                    f"Cannot identify the completed Anki backup: {changed}"
+                )
+            package = changed[0]
+            self.record.store_event("backed-up", str(package))
+            temporary = package.with_suffix(".sqlite3.tmp")
+            with closing(sqlite3.connect(temporary)) as snapshot:
+                self.record.connection.backup(snapshot)
+            temporary.replace(package.with_suffix(".sqlite3"))
+        # Anki's retention policy removes collection backups. Keep each record
+        # snapshot for exactly as long as its matching collection backup remains.
+        for snapshot in directory.glob("backup-*.sqlite3"):
+            if not snapshot.with_suffix(".colpkg").exists():
+                send2trash(str(snapshot))
+
     def close(self) -> None:
         sessions = self.record.connection.execute(
             "select id from session where id not in (select session from session_end)"
         ).fetchall()
         for (session,) in sessions:
             self.record.session_end(session, "host-stopped")
-        self.collection.close()
-        self.record.close()
+        try:
+            self.backup()
+        finally:
+            self.collection.close()
+            self.record.close()
 
 
 class Stores:
