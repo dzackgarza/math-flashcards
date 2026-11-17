@@ -245,6 +245,9 @@ async fn request(
                 let root: WorkspaceScope =
                     serde_json::from_slice(&output.stdout).map_err(|e| e.to_string())?;
                 app.fs_scope()
+                    .allow_directory(root.root.clone(), true)
+                    .map_err(|e| e.to_string())?;
+                app.asset_protocol_scope()
                     .allow_directory(root.root, true)
                     .map_err(|e| e.to_string())?;
             }
@@ -252,6 +255,9 @@ async fn request(
                 let manifest: ManifestScope =
                     serde_json::from_slice(&output.stdout).map_err(|e| e.to_string())?;
                 app.fs_scope()
+                    .allow_directory(manifest.session.root.clone(), true)
+                    .map_err(|e| e.to_string())?;
+                app.asset_protocol_scope()
                     .allow_directory(manifest.session.root, true)
                     .map_err(|e| e.to_string())?;
             }

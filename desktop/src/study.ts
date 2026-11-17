@@ -24,8 +24,11 @@ const metadataSchema = z.object({
 // Lezer owns Markdown syntax; YAML and micromark decode its metadata and URLs.
 // https://eemeli.org/yaml/#parsing-documents
 // https://github.com/micromark/micromark/tree/main/packages/micromark-util-decode-string
-function nativeDeck(
-  source: Extract<SourceResult, { state: "ready" }>,
+export function nativeDeck(
+  source: Pick<
+    Extract<SourceResult, { state: "ready" }>,
+    "source" | "path" | "revision"
+  >,
 ): StudyDeck {
   const tree = deckParser.parse(source.source);
   let title = basename(source.path, ".md");

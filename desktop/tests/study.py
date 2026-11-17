@@ -227,10 +227,13 @@ def main(artifacts: Path) -> None:
                     page.wait_for_timeout(2000)
                     page.locator(".card-row-label").nth(1).click()
                     expect(front).to_contain_text("Which shape")
-                    editor_image = page.get_by_role("img", name="A triangle", exact=True)
+                    editor_image = page.get_by_role(
+                        "img", name="A triangle", exact=True
+                    )
                     expect(editor_image).to_be_visible()
                     expect(editor_image).to_have_js_property("complete", True)
                     assert editor_image.evaluate("image => image.naturalWidth > 0")
+                    page.screenshot(path=str(artifacts / "editor-reference-image.png"))
                     # Inspect committed history after the window's navigation.
                     response = api.post(
                         "/api/request",

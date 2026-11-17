@@ -10,7 +10,7 @@ import "@dzack/pandoc-editor/editor.css";
 import { type MathJaxRuntime } from "./math";
 import { diagramTargets, type DiagramTarget } from "./diagrams";
 import { QuiverPreview } from "./quiver";
-import { retainedImages } from "./card-images";
+import { cardImages } from "./card-images";
 
 export const cardLanguage = markdownParser();
 export type Side = "front" | "back";
@@ -28,6 +28,8 @@ export function SideEditor({
   minHeight = "160px",
   media,
   references,
+  mediaScope = "study",
+  mediaRevision = "",
 }: {
   side: Side;
   value: string;
@@ -41,6 +43,8 @@ export function SideEditor({
   minHeight?: string;
   media?: Record<string, string>;
   references?: Record<string, string>;
+  mediaScope?: "study" | "workspace";
+  mediaRevision?: string;
 }) {
   const label = side === "front" ? "Front" : "Back";
   // @uiw/react-codemirror applies a changed `value` prop as an ExternalChange
@@ -98,7 +102,9 @@ export function SideEditor({
   const extensions = useMemo(
     () => [
       previewConfig.of({ previewModeShowSyntaxWhenCursorIsAdjacent: false }),
-      ...(media && references ? [retainedImages(media, references)] : []),
+      ...(media && references
+        ? [cardImages(media, references, mediaScope, mediaRevision)]
+        : []),
       markdownEditor({
         math: mathjax
           ? {
@@ -113,7 +119,7 @@ export function SideEditor({
           : undefined,
       }),
     ],
-    [mathjax, media, references],
+    [mathjax, media, references, mediaScope, mediaRevision],
   );
   return (
     <Box className={"side-editor card-face " + side}>

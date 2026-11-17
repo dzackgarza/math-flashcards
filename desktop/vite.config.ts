@@ -66,68 +66,80 @@ function workbenchBackend(): Plugin {
         | undefined;
       server.httpServer?.on("close", () => host?.child.stdin?.end());
       const mediaRoots = new Set<string>();
-      server.middlewares.use("/api/study-media", async (request, response) => {
-        if (request.method !== "GET" || !request.url) {
-          response.writeHead(405).end("Use GET to read retained Study media.");
-          return;
-        }
-        const query = z
-          .strictObject({ path: z.string().min(1), name: z.string().min(1) })
-          .safeParse(
-            Object.fromEntries(
-              new URL(request.url, "http://localhost").searchParams,
-            ),
-          );
-        if (!query.success) {
-          response.writeHead(400).end(query.error.message);
-          return;
-        }
-        const allowed = (path: string) =>
-          [...mediaRoots].some((root) => {
-            const inside = relative(root, path);
-            return (
-              inside !== "" &&
-              inside !== ".." &&
-              !inside.startsWith("../") &&
-              !isAbsolute(inside)
-            );
-          });
-        const path = resolve(query.data.path);
-        if (!allowed(path)) {
-          response
-            .writeHead(403)
-            .end("The file is outside the opened Study stores' media.");
-          return;
-        }
-        // Retained filenames are digests. mrmime resolves the authored name:
-        // https://github.com/lukeed/mrmime#lookupinput
-        const type = lookup(query.data.name);
-        if (!type) {
-          response.writeHead(415).end(`Unknown media type: ${query.data.name}`);
-          return;
-        }
-        try {
-          const file = await realpath(path);
-          if (!allowed(file)) {
-            response
-              .writeHead(403)
-              .end("The file resolves outside the opened Study stores' media.");
+      const workspaceRoots = new Set<string>();
+      for (const [route, roots] of [
+        ["/api/study-media", mediaRoots],
+        ["/api/workspace-media", workspaceRoots],
+      ] as const) {
+        server.middlewares.use(route, async (request, response) => {
+          if (request.method !== "GET" || !request.url) {
+            response.writeHead(405).end("Use GET to read media.");
             return;
           }
-          const bytes = await readFile(file);
-          response
-            .writeHead(200, {
-              "Content-Type": type,
-              "X-Content-Type-Options": "nosniff",
+          const query = z
+            .strictObject({
+              path: z.string().min(1),
+              name: z.string().min(1),
+              revision: z.string().optional(),
             })
-            .end(bytes);
-        } catch (error) {
-          const missing = z
-            .object({ code: z.literal("ENOENT") })
-            .safeParse(error).success;
-          response.writeHead(missing ? 404 : 500).end(String(error));
-        }
-      });
+            .safeParse(
+              Object.fromEntries(
+                new URL(request.url, "http://localhost").searchParams,
+              ),
+            );
+          if (!query.success) {
+            response.writeHead(400).end(query.error.message);
+            return;
+          }
+          const allowed = (path: string) =>
+            [...roots].some((root) => {
+              const inside = relative(root, path);
+              return (
+                inside !== "" &&
+                inside !== ".." &&
+                !inside.startsWith("../") &&
+                !isAbsolute(inside)
+              );
+            });
+          const path = resolve(query.data.path);
+          if (!allowed(path)) {
+            response
+              .writeHead(403)
+              .end("The file is outside the opened media directories.");
+            return;
+          }
+          // Retained filenames are digests. mrmime resolves the authored name:
+          // https://github.com/lukeed/mrmime#lookupinput
+          const type = lookup(query.data.name);
+          if (!type) {
+            response
+              .writeHead(415)
+              .end(`Unknown media type: ${query.data.name}`);
+            return;
+          }
+          try {
+            const file = await realpath(path);
+            if (!allowed(file)) {
+              response
+                .writeHead(403)
+                .end("The file resolves outside the opened media directories.");
+              return;
+            }
+            const bytes = await readFile(file);
+            response
+              .writeHead(200, {
+                "Content-Type": type,
+                "X-Content-Type-Options": "nosniff",
+              })
+              .end(bytes);
+          } catch (error) {
+            const missing = z
+              .object({ code: z.literal("ENOENT") })
+              .safeParse(error).success;
+            response.writeHead(missing ? 404 : 500).end(String(error));
+          }
+        });
+      }
       const watched = new Set<string>();
       server.middlewares.use("/api/watch", async (request, response) => {
         if (
@@ -304,6 +316,25 @@ function workbenchBackend(): Plugin {
               }
               const result = await stdout;
               const diagnostics = await stderr;
+              if (
+                code === 0 &&
+                ["list", "manifest", "cached-manifest"].includes(action)
+              ) {
+                try {
+                  const parsed = JSON.parse(result);
+                  const root =
+                    action === "list"
+                      ? z.object({ root: z.string() }).parse(parsed).root
+                      : z
+                          .object({ session: z.object({ root: z.string() }) })
+                          .parse(parsed).session.root;
+                  workspaceRoots.add(await realpath(root));
+                } catch (error) {
+                  response.writeHead(500).end(String(error));
+                  resolve();
+                  return;
+                }
+              }
               response.setHeader(
                 "Content-Type",
                 code === 0 ? "application/json" : "text/plain",

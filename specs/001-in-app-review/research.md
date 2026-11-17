@@ -236,6 +236,14 @@ face receives this mapping alongside the retained file paths. The face text stay
 exactly as authored. Schema version 2 adds the mapping table; historical rows
 remain intact, and newly resolved context creates a new content version.
 
+The editable face and Study use the same image widget and native reference parser.
+The editor resolves authored URLs against its open workspace and deck directory;
+Study resolves them through the retained content mapping. Opening a workspace grants
+the native asset protocol and the browser media route read access to that workspace.
+Browser media routes check both the requested path and its resolved filesystem path.
+A source revision in image URLs refreshes previews after a file change. An incomplete
+image reference gives an editor diagnostic while its source remains editable.
+
 The browser route uses [`mrmime`](https://github.com/lukeed/mrmime#lookupinput) to resolve
 the authored filename's standard MIME type. Its dictionary derives from `mime-db`;
 unknown extensions return no type and the route reports 415. A digest filename alone

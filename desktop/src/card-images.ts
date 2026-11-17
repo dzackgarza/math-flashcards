@@ -60,9 +60,11 @@ class CardImage extends WidgetType {
   }
 }
 
-export function retainedImages(
+export function cardImages(
   media: Record<string, string>,
   references: Record<string, string>,
+  scope: "study" | "workspace",
+  revision: string,
 ) {
   return renderBlockWidgets(
     ["Image"],
@@ -95,11 +97,14 @@ export function retainedImages(
       const mime = lookup(filename);
       if (!mime) throw new Error(`Unknown image type: ${name}`);
       const url = isTauri()
-        ? convertFileSrc(media[name])
-        : "/api/study-media?" +
+        ? convertFileSrc(media[name]) +
+          "?revision=" +
+          encodeURIComponent(revision)
+        : `/api/${scope}-media?` +
           new URLSearchParams({
             path: media[name],
             name: filename,
+            revision,
           });
       return new CardImage(url, alt, mime);
     },

@@ -65,7 +65,16 @@ def main(artifacts: Path) -> None:
                         "return typeof window.__TAURI_INTERNALS__?.invoke === 'function'"
                     )
                 )
-                payload = json.dumps({"action": "study-open", "workspace": str(workspace)})
+                wait = WebDriverWait(driver, 30)
+                wait.until(
+                    conditions.text_to_be_present_in_element(
+                        (By.CSS_SELECTOR, '[role="status"][aria-label="Study"]'),
+                        "Study cards ready",
+                    )
+                )
+                payload = json.dumps(
+                    {"action": "study-open", "workspace": str(workspace)}
+                )
                 script = """
                     const done = arguments[arguments.length - 1];
                     window.__TAURI_INTERNALS__.invoke('request', {payload: arguments[0]})
@@ -76,21 +85,38 @@ def main(artifacts: Path) -> None:
                 assert first["ok"], first
                 opened = first["result"]
                 assert opened["state"] == "Open", opened
-                native_log = root / "state" / "math-flashcards" / "diagnostics" / "native" / "native.log"
-                assert native_log.is_file(), "Native request diagnostics were not retained in XDG state"
+                native_log = (
+                    root
+                    / "state"
+                    / "math-flashcards"
+                    / "diagnostics"
+                    / "native"
+                    / "native.log"
+                )
+                assert native_log.is_file(), (
+                    "Native request diagnostics were not retained in XDG state"
+                )
                 events = native_log.read_text()
                 assert "event=app-start" in events, events
-                assert "event=request-completed action=study-open outcome=ok" in events, events
+                assert (
+                    "event=request-completed action=study-open outcome=ok" in events
+                ), events
                 release = json.loads((desktop / "package.json").read_text())["version"]
-                assert "elapsed_ms=" in events and f"release={release}" in events, events
+                assert "elapsed_ms=" in events and f"release={release}" in events, (
+                    events
+                )
                 store = Path(opened["store"])
                 assert store.parent == root / "data" / "math-flashcards" / "study"
                 with closing(sqlite3.connect(opened["record"])) as record:
-                    writers = record.execute("select count(*) from writer").fetchone()[0]
+                    writers = record.execute("select count(*) from writer").fetchone()[
+                        0
+                    ]
                 assert service.process is not None
                 hosts = [
                     child
-                    for child in psutil.Process(service.process.pid).children(recursive=True)
+                    for child in psutil.Process(service.process.pid).children(
+                        recursive=True
+                    )
                     if "study-host" in child.cmdline()
                 ]
                 assert len(hosts) == 1, hosts
@@ -104,69 +130,147 @@ def main(artifacts: Path) -> None:
                 # on a non-child waits for disappearance, not merely process exit:
                 # https://psutil.io/api/#psutil.Process.wait
                 WebDriverWait(driver, 10).until(
-                    lambda _: not hosts[0].is_running()
-                    or hosts[0].status() == psutil.STATUS_ZOMBIE
+                    lambda _: (
+                        not hosts[0].is_running()
+                        or hosts[0].status() == psutil.STATUS_ZOMBIE
+                    )
                 )
                 restarted = driver.execute_async_script(script, payload)
                 assert restarted == first, restarted
                 assert not hosts[0].is_running()
-                failure = driver.execute_async_script(script, json.dumps({
-                    "action": "study-attach",
-                    "workspace": str(workspace),
-                    "choice": {"kind": "existing", "store": "00000000-0000-0000-0000-000000000000"},
-                }))
+                failure = driver.execute_async_script(
+                    script,
+                    json.dumps(
+                        {
+                            "action": "study-attach",
+                            "workspace": str(workspace),
+                            "choice": {
+                                "kind": "existing",
+                                "store": "00000000-0000-0000-0000-000000000000",
+                            },
+                        }
+                    ),
+                )
                 assert not failure["ok"], failure
                 assert "UnknownStore" in failure["error"], failure
                 events = native_log.read_text()
                 assert "event=study-host-reaped" in events, events
-                assert "event=request-completed action=study-attach outcome=error" in events, events
+                assert (
+                    "event=request-completed action=study-attach outcome=error"
+                    in events
+                ), events
                 assert "UnknownStore" in events, events
                 with closing(sqlite3.connect(opened["record"])) as record:
-                    assert record.execute("select count(*) from writer").fetchone()[0] == writers + 1
-                    assert record.execute("select kind from store_event").fetchall() == [("created",)]
-                wait = WebDriverWait(driver, 30)
-                wait.until(conditions.text_to_be_present_in_element(
-                    (By.CSS_SELECTOR, '[role="status"][aria-label="Study"]'),
-                    "Study cards ready",
-                ))
-                driver.find_element(By.CSS_SELECTOR, 'button[aria-label="Workspace"]').click()
-                wait.until(conditions.element_to_be_clickable(
-                    (By.XPATH, '//button[normalize-space()="Study"]')
-                )).click()
+                    assert (
+                        record.execute("select count(*) from writer").fetchone()[0]
+                        == writers + 1
+                    )
+                    assert record.execute(
+                        "select kind from store_event"
+                    ).fetchall() == [("created",)]
+                wait.until(
+                    conditions.element_to_be_clickable(
+                        (By.XPATH, '//span[@class="tree-label" and text()="Basics"]')
+                    )
+                ).click()
+                wait.until(
+                    conditions.element_to_be_clickable(
+                        (
+                            By.XPATH,
+                            '//*[contains(@class, "card-row-label") and contains(., "Which shape")]',
+                        )
+                    )
+                ).click()
+                picture = wait.until(
+                    conditions.visibility_of_element_located(
+                        (By.CSS_SELECTOR, '.side-editor.front img[alt="A triangle"]')
+                    )
+                )
+                wait.until(
+                    lambda _: driver.execute_script(
+                        "return arguments[0].complete && arguments[0].naturalWidth > 0",
+                        picture,
+                    )
+                )
+                back_picture = wait.until(
+                    conditions.visibility_of_element_located(
+                        (
+                            By.CSS_SELECTOR,
+                            '.side-editor.back img[alt="Collapsed triangle"]',
+                        )
+                    )
+                )
+                wait.until(
+                    lambda _: driver.execute_script(
+                        "return arguments[0].complete && arguments[0].naturalWidth > 0",
+                        back_picture,
+                    )
+                )
+                driver.save_screenshot(str(artifacts / "native-editor-image.png"))
+                driver.find_element(
+                    By.CSS_SELECTOR, 'button[aria-label="Workspace"]'
+                ).click()
+                wait.until(
+                    conditions.element_to_be_clickable(
+                        (By.XPATH, '//button[normalize-space()="Study"]')
+                    )
+                ).click()
                 seen = set()
                 for remaining in range(12, 0, -1):
-                    wait.until(conditions.text_to_be_present_in_element(
-                        (By.CSS_SELECTOR, '[aria-label="Remaining cards"]'),
-                        f"New: {remaining}",
-                    ))
-                    reveal = wait.until(conditions.element_to_be_clickable(
-                        (By.XPATH, '//button[contains(., "Show answer")]')
-                    ))
+                    wait.until(
+                        conditions.text_to_be_present_in_element(
+                            (By.CSS_SELECTOR, '[aria-label="Remaining cards"]'),
+                            f"New: {remaining}",
+                        )
+                    )
+                    reveal = wait.until(
+                        conditions.element_to_be_clickable(
+                            (By.XPATH, '//button[contains(., "Show answer")]')
+                        )
+                    )
                     with closing(sqlite3.connect(opened["record"])) as record:
                         identity = record.execute(
                             "select card_id from presentation order by id desc limit 1"
                         ).fetchone()[0]
                     seen.add(identity)
                     if identity == "study-image":
-                        picture = wait.until(conditions.visibility_of_element_located(
-                            (By.CSS_SELECTOR, 'section[aria-label="Study session"] img[alt="A triangle"]')
-                        ))
-                        wait.until(lambda _: driver.execute_script(
-                            "return arguments[0].complete && arguments[0].naturalWidth > 0", picture
-                        ))
+                        picture = wait.until(
+                            conditions.visibility_of_element_located(
+                                (
+                                    By.CSS_SELECTOR,
+                                    'section[aria-label="Study session"] img[alt="A triangle"]',
+                                )
+                            )
+                        )
+                        wait.until(
+                            lambda _: driver.execute_script(
+                                "return arguments[0].complete && arguments[0].naturalWidth > 0",
+                                picture,
+                            )
+                        )
                         assert picture.get_attribute("src").startswith("blob:")
-                        driver.save_screenshot(str(artifacts / "native-study-image.png"))
+                        driver.save_screenshot(
+                            str(artifacts / "native-study-image.png")
+                        )
                     reveal.click()
-                    wait.until(conditions.element_to_be_clickable(
-                        (By.XPATH, '//button[contains(., "Easy")]')
-                    )).click()
-                wait.until(conditions.visibility_of_element_located(
-                    (By.XPATH, '//*[text()="Study complete for now"]')
-                ))
+                    wait.until(
+                        conditions.element_to_be_clickable(
+                            (By.XPATH, '//button[contains(., "Easy")]')
+                        )
+                    ).click()
+                wait.until(
+                    conditions.visibility_of_element_located(
+                        (By.XPATH, '//*[text()="Study complete for now"]')
+                    )
+                )
                 assert "study-image" in seen and len(seen) == 12, seen
                 with closing(sqlite3.connect(opened["record"])) as record:
-                    assert record.execute("select count(*) from response").fetchone() == (12,)
-                    assert record.execute("select count(*) from review where response is not null").fetchone() == (12,)
+                    assert record.execute(
+                        "select count(*) from response"
+                    ).fetchone() == (12,)
+                    assert record.execute(
+                        "select count(*) from review where response is not null"
+                    ).fetchone() == (12,)
                     recorded = record.execute(
                         "select revlog_id,revlog_cid,revlog_usn,revlog_ease,revlog_ivl,revlog_last_ivl,revlog_factor,revlog_time_ms,revlog_type from response order by revlog_id"
                     ).fetchall()
@@ -183,13 +287,18 @@ def main(artifacts: Path) -> None:
                     lambda _: "event=app-exit" in native_log.read_text()
                 )
                 with closing(sqlite3.connect(store / "collection.anki2")) as collection:
-                    assert collection.execute(
-                        "select id,cid,usn,ease,ivl,lastIvl,factor,time,type from revlog order by id"
-                    ).fetchall() == recorded
+                    assert (
+                        collection.execute(
+                            "select id,cid,usn,ease,ivl,lastIvl,factor,time,type from revlog order by id"
+                        ).fetchall()
+                        == recorded
+                    )
                 driver.quit()
                 driver = None
                 _, alive = psutil.wait_procs(children, timeout=10)
-                assert all(child.status() == psutil.STATUS_ZOMBIE for child in alive), alive
+                assert all(child.status() == psutil.STATUS_ZOMBIE for child in alive), (
+                    alive
+                )
                 assert "event=app-exit" in native_log.read_text()
             finally:
                 assert service.process is not None
@@ -209,5 +318,7 @@ def main(artifacts: Path) -> None:
 
 
 if __name__ == "__main__":
-    with evidence("native-study", Path(__file__).parent / "fixtures" / "study") as artifacts:
+    with evidence(
+        "native-study", Path(__file__).parent / "fixtures" / "study"
+    ) as artifacts:
         main(artifacts)

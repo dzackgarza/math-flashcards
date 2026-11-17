@@ -1,0 +1,43 @@
+Using CPython 3.13.5 interpreter at: /home/dzack/.local/bin/python3.13
+Creating virtual environment at: /tmp/flashcards-installed-study-pj3bc1zi/data/math-flashcards/releases/release-tmf9zwo6/environment
+Activate with: source /tmp/flashcards-installed-study-pj3bc1zi/data/math-flashcards/releases/release-tmf9zwo6/environment/bin/activate
+Using script environment at: /tmp/flashcards-installed-study-pj3bc1zi/data/math-flashcards/releases/release-tmf9zwo6/environment
+Resolved 34 packages in 6.31s
+Prepared 34 packages in 8ms
+Installed 34 packages in 128ms
+Bytecode compiled 1129 files in 393ms
+ + ankdown==0.4.0 (from git+https://github.com/dzackgarza/ankdown-for-math@560c69287b8825732ada09c4c6b6da6369d1fc47)
+ + anki==26.9.4
+ + annotated-types==0.8.0
+ + attrs==26.1.0
+ + cached-property==2.0.1
+ + certifi==2026.10.23
+ + charset-normalizer==3.5.2
+ + chevron==0.14.0
+ + cyclopts==5.5.2
+ + decorator==5.3.1
+ + distro==1.9.0
+ + docstring-parser==0.18.0
+ + filelock==4.2.10
+ + frozendict==2.5.1
+ + genanki==0.13.1
+ + idna==3.20
+ + markdown==3.11.3
+ + markdown-it-py==4.3.0
+ + mdurl==0.1.2
+ + orjson==3.13.0
+ + platformdirs==4.14.5
+ + protobuf==7.36.2
+ + pydantic==2.14.3
+ + pydantic-core==2.50.4
+ + pygments==2.21.0
+ + pysocks==1.7.1
+ + pyyaml==6.0.3
+ + requests==2.34.2
+ + rich==15.0.0
+ + rich-rst==2.2.0
+ + send2trash==2.2.0
+ + typing-extensions==4.16.0
+ + typing-inspection==0.4.5
+ + urllib3==2.8.0
+/tmp/flashcards-installed-study-pj3bc1zi/data/applications/dev.math.flashcards.desktop

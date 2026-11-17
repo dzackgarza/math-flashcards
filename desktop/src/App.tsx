@@ -54,7 +54,7 @@ import {
   IconSearch,
   IconTrash,
 } from "@tabler/icons-react";
-import { basename } from "pathe";
+import { basename, dirname } from "pathe";
 import {
   monitorForElements,
   type ElementEventPayloadMap,
@@ -101,7 +101,12 @@ import {
 import { ReviewChanges } from "./review";
 import { ProblemDrawer, useProblems } from "./problem-drawer";
 import { useSearch } from "./search";
-import { syncSavedStudy, useEditorViews, useStudySync } from "./study";
+import {
+  nativeDeck,
+  syncSavedStudy,
+  useEditorViews,
+  useStudySync,
+} from "./study";
 import { previousPackage, refreshTargets } from "./packages";
 import { backgroundTurn, noteForegroundInput } from "./background";
 import {
@@ -309,6 +314,42 @@ export default function App() {
   const dirty = document !== null && document.source !== document.saved;
   const busy = task !== "Idle";
   const selected = ranges[index];
+  const previewImages = useMemo(() => {
+    if (!document || !draft) return null;
+    try {
+      const card = nativeDeck({
+        path: document.path,
+        source: document.source,
+        revision: document.hash,
+      }).cards.find((card) => card.id === draft.card.id);
+      if (!card)
+        throw new Error("The selected card is not in the current source.");
+      const base = new URL("file:///");
+      base.pathname =
+        document.session.root + "/" + dirname(document.path) + "/";
+      const media = Object.fromEntries(
+        card.media.map((name) => {
+          const url = new URL(name, base);
+          if (url.protocol !== "file:" || url.hostname)
+            throw new Error(`Images must refer to local files: ${name}`);
+          return [name, decodeURIComponent(url.pathname)];
+        }),
+      );
+      return { media, references: card.references, error: "" };
+    } catch (failure) {
+      return {
+        media: undefined,
+        references: undefined,
+        error: String(failure),
+      };
+    }
+  }, [
+    document?.source,
+    document?.path,
+    document?.hash,
+    document?.session.root,
+    draft?.card.id,
+  ]);
   const refreshStudy = useCallback(
     async (changed: string[]) => {
       if (workspaceRoot.current !== workspace) return;
@@ -2829,6 +2870,11 @@ export default function App() {
                         </Button>
                       </Group>
                       <Suspense fallback={<Text>Loading card editors…</Text>}>
+                        {previewImages?.error && (
+                          <Alert color="red" title="Image preview unavailable">
+                            {previewImages.error}
+                          </Alert>
+                        )}
                         <div className="side-editors">
                           {(["front", "back"] as const).map((side) => (
                             <SideEditor
@@ -2841,6 +2887,12 @@ export default function App() {
                               value={draft[side]}
                               mathjax={mathjax}
                               editable={!busy}
+                              media={previewImages?.media}
+                              references={previewImages?.references}
+                              mediaScope="workspace"
+                              mediaRevision={
+                                document.hash + ":" + reconciliation.current
+                              }
                               onChange={(value) => editCard(side, value)}
                               onNewDiagram={() => {
                                 const active = latestDraft.current;

@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/evidence.py", line 53, in evidence
+    yield directory
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/native-study.py", line 324, in <module>
+    main(artifacts)
+    ~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/native-study.py", line 117, in main
+    assert again == first, again
+           ^^^^^^^^^^^^^^
+AssertionError: {'ok': True, 'result': {'settings': {'reviews_per_day': 200, 'desired_retention': 0.9, 'new_per_day': 20}, 'media': '/tmp/flashcards-native-study-qymel7wj/data/math-flashcards/study/5b0b05ab-2c9e-44ef-967a-22efa25faa0d/record-media', 'record': '/tmp/flashcards-native-study-qymel7wj/data/math-flashcards/study/5b0b05ab-2c9e-44ef-967a-22efa25faa0d/record.sqlite3', 'state': 'Open', 'counts': {'path': '', 'children': [], 'kind': 'workspace', 'counts': {'new': 12, 'review': 0, 'learning': 0}}, 'store': '/tmp/flashcards-native-study-qymel7wj/data/math-flashcards/study/5b0b05ab-2c9e-44ef-967a-22efa25faa0d'}}
