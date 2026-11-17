@@ -196,6 +196,10 @@ after a save, after a file-watch event, and before a session starts.
   Removing an Anki deck deletes its cards; suspended cards that were moved out first
   survive the removal (probed). A card ID that returns is moved back and unsuspended.
 - A deck that fails to render keeps its last synced cards. The result lists the deck.
+- The complete inventory includes paths whose source cannot be parsed. Only valid
+  native deck values enter a batch. This distinction preserves a failed deck's
+  recorded cards while allowing other decks to sync; an absent inventory path
+  means the deck was removed.
 - A card ID in two decks is reported with both paths. The note stays with the deck that
   had it first.
 

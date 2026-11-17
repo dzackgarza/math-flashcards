@@ -9,6 +9,7 @@ import os
 import sqlite3
 import tempfile
 from contextlib import closing
+from hashlib import sha256
 from pathlib import Path
 
 import psutil
@@ -281,6 +282,194 @@ def main(artifacts: Path) -> None:
                 assert collection.find_cards("deck:Workspace::A CardId:moving")
                 assert collection.find_cards("deck:Removed CardId:new")
                 assert collection.find_cards("deck:Workspace::A CardId:other")
+                collection.sched.set_due_date(
+                    collection.find_cards("CardId:moving"), "0"
+                )
+                scheduled = collection.get_card(
+                    collection.find_cards("CardId:moving")[0]
+                )
+                schedule_before_edit = (
+                    scheduled.ivl,
+                    scheduled.due,
+                    scheduled.reps,
+                    scheduled.lapses,
+                )
+            finally:
+                collection.close()
+            with closing(sqlite3.connect(record_path)) as record:
+                retained_rows = {
+                    table: record.execute(
+                        f'SELECT * FROM "{table}" ORDER BY id'
+                    ).fetchall()
+                    for table in tables
+                }
+            original_image = (
+                Path(__file__).parent / "fixtures/study/triangle.svg"
+            ).read_bytes()
+            revised_image = original_image.replace(b"#dbeafe", b"#fee2e2").replace(
+                b"#1e40af", b"#b91c1c"
+            )
+            assert original_image != revised_image
+            picture = workspace / "shape.svg"
+            picture.write_bytes(original_image)
+            edited_back = "M edited in the editor.\n\n![Recorded shape](shape.svg)"
+            browser, page = open_window()
+            try:
+                page.get_by_text("A", exact=True).click()
+                page.locator(".card-row-label").filter(
+                    has_text="Recall moving."
+                ).click()
+                back = page.locator(".side-editor.back .cm-content")
+                with page.expect_response(
+                    lambda response: (
+                        response.url.endswith("/api/request")
+                        and response.request.post_data_json.get("action")
+                        == "study-sync"
+                        and response.ok
+                        and "moving" in response.json()["changed_cards"]
+                    ),
+                    timeout=10000,
+                ):
+                    back.click()
+                    page.keyboard.press("Control+a")
+                    page.keyboard.insert_text("M autosaved")
+                with closing(sqlite3.connect(record_path)) as record:
+                    assert record.execute(
+                        "select c.back from content c join card_change a on a.content=c.id where a.card_id='moving' order by a.id desc limit 1"
+                    ).fetchone() == ("M autosaved",)
+                back.click()
+                page.keyboard.press("Control+a")
+                page.keyboard.insert_text(edited_back)
+                # Starting Study must flush this editor input before it reads source.
+                study = start_study(page)
+                expect(study).to_contain_text("Recall moving.")
+                with closing(sqlite3.connect(record_path)) as record:
+                    assert (
+                        record.execute(
+                            "select before_interval_days,before_due,before_reps,before_lapses from presentation where card_id='moving' order by id desc limit 1"
+                        ).fetchone()
+                        == schedule_before_edit
+                    )
+                study.get_by_role("button", name="Show answer", exact=False).click()
+                expect(study).to_contain_text("M edited in the editor.")
+                image = study.get_by_role("img", name="Recorded shape")
+                expect(image).to_be_visible()
+                expect(image).to_have_js_property("complete", True)
+                assert image.evaluate("image => image.naturalWidth > 0")
+                study.get_by_role("button", name="Good", exact=False).click()
+                expect(
+                    study.get_by_role("heading", name="Study complete for now")
+                ).to_be_visible()
+            finally:
+                browser.close()
+            stop_host()
+            collection = Collection(str(store / "collection.anki2"))
+            try:
+                collection.sched.set_due_date(
+                    collection.find_cards("CardId:moving"), "0"
+                )
+            finally:
+                collection.close()
+            picture.write_bytes(revised_image)
+            browser, page = open_window()
+            try:
+                study = start_study(page)
+                expect(study).to_contain_text("Recall moving.")
+                study.get_by_role("button", name="Show answer", exact=False).click()
+                image = study.get_by_role("img", name="Recorded shape")
+                expect(image).to_be_visible()
+                expect(image).to_have_js_property("complete", True)
+                assert image.evaluate("image => image.naturalWidth > 0")
+                study.get_by_role("button", name="Easy", exact=False).click()
+                expect(
+                    study.get_by_role("heading", name="Study complete for now")
+                ).to_be_visible()
+                with closing(sqlite3.connect(record_path)) as record:
+                    reviews = record.execute(
+                        "select back,content from review where card_id='moving' and response is not null order by id"
+                    ).fetchall()
+                    assert [row[0] for row in reviews] == [
+                        "M",
+                        edited_back,
+                        edited_back,
+                    ], reviews
+                    media = [
+                        record.execute(
+                            "select digest from media where content=?", (content,)
+                        ).fetchall()
+                        for _, content in reviews
+                    ]
+                    assert media == [
+                        [],
+                        [(sha256(original_image).hexdigest(),)],
+                        [(sha256(revised_image).hexdigest(),)],
+                    ], media
+                    for table, rows in retained_rows.items():
+                        assert (
+                            record.execute(
+                                f'SELECT * FROM "{table}" ORDER BY id'
+                            ).fetchall()[: len(rows)]
+                            == rows
+                        ), table
+                assert (
+                    store / "record-media" / sha256(original_image).hexdigest()
+                ).read_bytes() == original_image
+                assert (
+                    store / "record-media" / sha256(revised_image).hexdigest()
+                ).read_bytes() == revised_image
+                study.get_by_role(
+                    "button", name="Return to editor", exact=False
+                ).click()
+                a.rename(workspace / "A.retired")
+                study = start_study(page)
+                expect(
+                    study.get_by_role("heading", name="Study complete for now")
+                ).to_be_visible()
+                expect(study.get_by_label("Remaining cards")).to_have_text(
+                    "New: 0Learning: 0Review: 0"
+                )
+                with closing(sqlite3.connect(record_path)) as record:
+                    for identity in ("kept", "moving", "other", "new"):
+                        assert record.execute(
+                            "select kind,to_deck from card_change where card_id=? order by id desc limit 1",
+                            (identity,),
+                        ).fetchone() == ("removed", None)
+            finally:
+                browser.close()
+            stop_host()
+            # Anki owns its SQL collations, including unicase. Use its reader
+            # for complete table snapshots after the host releases the store.
+            collection = Collection(str(store / "collection.anki2"))
+            try:
+                collection_tables = collection.db.list(
+                    "select name from sqlite_master where type='table'"
+                )
+                collection_before = {
+                    table: collection.db.all(f'SELECT * FROM "{table}"')
+                    for table in collection_tables
+                }
+            finally:
+                collection.close()
+            request("study-open")
+            noop = request("study-sync", assets=assets, paths=[], decks=[])
+            assert noop == {
+                "added": 0,
+                "updated": 0,
+                "moved": 0,
+                "removed": 0,
+                "restored": 0,
+                "failed": [],
+                "duplicates": [],
+                "pending": 0,
+                "changed_cards": [],
+            }, noop
+            stop_host()
+            collection = Collection(str(store / "collection.anki2"))
+            try:
+                assert {
+                    table: collection.db.all(f'SELECT * FROM "{table}"')
+                    for table in collection_tables
+                } == collection_before
             finally:
                 collection.close()
             api.dispose()
