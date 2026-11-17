@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/tmp/flashcards-installed-study-91cmxsgb/data/math-flashcards/releases/release-kqkr6eal/lib/Math Flashcards/backend.py", line 38, in <module>
+    from study.host import main as study_host
+ModuleNotFoundError: No module named 'study'

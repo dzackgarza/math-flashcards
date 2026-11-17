@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/evidence.py", line 53, in evidence
+    yield directory
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/installation.py", line 480, in <module>
+    study_installation(artifacts)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/installation.py", line 81, in study_installation
+    assert result.returncode == 0, result.stderr
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Traceback (most recent call last):
+  File "/tmp/flashcards-installed-study-91cmxsgb/data/math-flashcards/releases/release-kqkr6eal/lib/Math Flashcards/backend.py", line 38, in <module>
+    from study.host import main as study_host
+ModuleNotFoundError: No module named 'study'
+

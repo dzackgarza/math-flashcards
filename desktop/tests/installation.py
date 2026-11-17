@@ -4,6 +4,7 @@
 """Check installation and update with real build files and desktop tools."""
 
 import configparser
+import argparse
 import hashlib
 import json
 import os
@@ -12,6 +13,115 @@ import subprocess
 import tempfile
 import zipfile
 from pathlib import Path
+from evidence import evidence
+
+
+def study_installation(artifacts: Path) -> None:
+    """Install and update a real release while preserving isolated learning data."""
+    desktop = Path(__file__).resolve().parents[1]
+    with tempfile.TemporaryDirectory(prefix="flashcards-installed-study-") as directory:
+        root = Path(directory)
+        data = root / "data"
+        workspace = root / "workspace"
+        shutil.copytree(desktop / "tests" / "fixtures" / "study", workspace)
+        environment = os.environ | {
+            "XDG_DATA_HOME": str(data),
+            "XDG_STATE_HOME": str(root / "state"),
+            "XDG_CACHE_HOME": str(root / "cache"),
+        }
+        command = [
+            "uv",
+            "run",
+            "--upgrade",
+            str(desktop / "linux" / "install.py"),
+            str(desktop / "src-tauri" / "target" / "release"),
+            "--data-dir",
+            str(data),
+            "--bin-dir",
+            str(root / "bin"),
+        ]
+        with (artifacts / "installation.log").open("w") as log:
+            subprocess.run(
+                command,
+                env=environment,
+                stdout=log,
+                stderr=subprocess.STDOUT,
+                check=True,
+            )
+        resources = (
+            data / "math-flashcards" / "active" / "lib" / "Math Flashcards"
+        ).resolve(strict=True)
+        python = (resources / "runtime.txt").read_text().strip()
+        requests = [
+            {"action": "study-open", "workspace": str(workspace)},
+            {
+                "action": "study-viewed",
+                "workspace": str(workspace),
+                "deck": "Basics.md",
+                "card_id": "study-absolute-value",
+                "shown_ms": 2000,
+                "unfocused_ms": 0,
+            },
+        ]
+        result = subprocess.run(
+            [
+                python,
+                "-I",
+                str(resources / "backend.py"),
+                "study-host",
+                "--release",
+                "installation-test",
+            ],
+            input="".join(json.dumps(request) + "\n" for request in requests),
+            env=environment,
+            text=True,
+            capture_output=True,
+        )
+        (artifacts / "installed-host.log").write_text(result.stdout + result.stderr)
+        assert result.returncode == 0, result.stderr
+        replies = [json.loads(line) for line in result.stdout.splitlines()]
+        assert all(reply["ok"] for reply in replies), replies
+        store = Path(replies[0]["result"]["store"])
+        before = {
+            str(path.relative_to(store)): path.read_bytes()
+            for path in store.rglob("*")
+            if path.is_file()
+        }
+        with (artifacts / "update.log").open("w") as log:
+            subprocess.run(
+                command,
+                env=environment,
+                stdout=log,
+                stderr=subprocess.STDOUT,
+                check=True,
+            )
+        assert {
+            str(path.relative_to(store)): path.read_bytes()
+            for path in store.rglob("*")
+            if path.is_file()
+        } == before
+        updated = (
+            data / "math-flashcards" / "active" / "lib" / "Math Flashcards"
+        ).resolve(strict=True)
+        assert updated != resources
+        python = (updated / "runtime.txt").read_text().strip()
+        result = subprocess.run(
+            [
+                python,
+                "-I",
+                str(updated / "backend.py"),
+                "study-host",
+                "--release",
+                "installation-test",
+            ],
+            input=json.dumps(requests[0]) + "\n",
+            env=environment,
+            text=True,
+            capture_output=True,
+        )
+        assert result.returncode == 0, result.stderr
+        assert json.loads(result.stdout)["result"]["store"] == str(store)
+        shutil.copytree(root / "state", artifacts / "application-state")
 
 
 def prepare_asset_update(build: Path, candidate: Path, resources: Path) -> None:
@@ -357,4 +467,16 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--study",
+        action="store_true",
+        help="Check native Study installation and retained learning data.",
+    )
+    if parser.parse_args().study:
+        with evidence(
+            "installed-study", Path(__file__).parent / "fixtures" / "study"
+        ) as artifacts:
+            study_installation(artifacts)
+    else:
+        main()
