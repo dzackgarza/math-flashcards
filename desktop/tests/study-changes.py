@@ -340,6 +340,7 @@ def main(artifacts: Path) -> None:
                 back.click()
                 page.keyboard.press("Control+a")
                 page.keyboard.insert_text(edited_back)
+                expect(back).to_contain_text("M edited in the editor.")
                 # Starting Study must flush this editor input before it reads source.
                 study = start_study(page)
                 expect(study).to_contain_text("Recall moving.")

@@ -1,0 +1,72 @@
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/evidence.py", line 53, in evidence
+    yield directory
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-changes.py", line 483, in <module>
+    main(artifacts)
+    ~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-changes.py", line 355, in main
+    expect(study).to_contain_text("M edited in the editor.")
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzack/.cache/uv/environments-v2/study-changes-0558c912b980f764/lib/python3.14/site-packages/playwright/sync_api/_generated.py", line 14994, in to_contain_text
+    self._sync(
+    ~~~~~~~~~~^
+        self._impl_obj.to_contain_text(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        )
+        ^
+    )
+    ^
+  File "/home/dzack/.cache/uv/environments-v2/study-changes-0558c912b980f764/lib/python3.14/site-packages/playwright/_impl/_sync_base.py", line 124, in _sync
+    return task.result()
+           ~~~~~~~~~~~^^
+  File "/home/dzack/.cache/uv/environments-v2/study-changes-0558c912b980f764/lib/python3.14/site-packages/playwright/_impl/assertions.py", line 306, in to_contain_text
+    await self._expect_impl(
+    ...<9 lines>...
+    )
+  File "/home/dzack/.cache/uv/environments-v2/study-changes-0558c912b980f764/lib/python3.14/site-packages/playwright/_impl/assertions.py", line 122, in _expect_impl
+    _record_soft_or_raise(
+    ~~~~~~~~~~~~~~~~~~~~~^
+        AssertionError(
+        ^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        self._is_soft,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/dzack/.cache/uv/environments-v2/study-changes-0558c912b980f764/lib/python3.14/site-packages/playwright/_impl/_assertions.py", line 50, in _record_soft_or_raise
+    raise error
+AssertionError: Locator expected to contain text 'M edited in the editor.'
+Actual value: StudyReturn to editor EscNew: 0Learning: 0Review: 1A.mdFrontRecall moving.BackM autosavedAgain 1<⁨10⁩mHard 2⁨9⁩dGood 3⁨11⁩dEasy 4⁨14⁩dStudy store: /tmp/flashcards-browser-cache-0hri0t03/data/math-flashcards/study/0311244c-4819-40ba-aeb8-28d30f87d6e9Learning record: /tmp/flashcards-browser-cache-0hri0t03/data/math-flashcards/study/0311244c-4819-40ba-aeb8-28d30f87d6e9/record.sqlite3 
+Call log:
+  - Expect "to_contain_text" get_by_role("region", name="Study session") with timeout 5000ms
+  - waiting for get_by_role("region", name="Study session")
+    14 × locator resolved to <section aria-label="Study session" class="study-screen m_6d731127 mantine-Stack-root">…</section>
+       - unexpected value "StudyReturn to editor EscNew: 0Learning: 0Review: 1A.mdFrontRecall moving.BackM autosavedAgain 1<⁨10⁩mHard 2⁨9⁩dGood 3⁨11⁩dEasy 4⁨14⁩dStudy store: /tmp/flashcards-browser-cache-0hri0t03/data/math-flashcards/study/0311244c-4819-40ba-aeb8-28d30f87d6e9Learning record: /tmp/flashcards-browser-cache-0hri0t03/data/math-flashcards/study/0311244c-4819-40ba-aeb8-28d30f87d6e9/record.sqlite3"
+
+Aria snapshot:
+- region "Study session":
+  - heading "Study" [level=2]
+  - button "Return to editor Esc"
+  - paragraph: "New: 0"
+  - paragraph: "Learning: 0"
+  - paragraph: "Review: 1"
+  - paragraph: A.md
+  - heading "Front" [level=3]
+  - textbox
+  - heading "Back" [level=3]
+  - textbox
+  - button "Again 1 <⁨10⁩m":
+    - text: Again 1
+    - paragraph: <⁨10⁩m
+  - button "Hard 2 ⁨9⁩d":
+    - text: Hard 2
+    - paragraph: ⁨9⁩d
+  - button "Good 3 ⁨11⁩d":
+    - text: Good 3
+    - paragraph: ⁨11⁩d
+  - button "Easy 4 ⁨14⁩d":
+    - text: Easy 4
+    - paragraph: ⁨14⁩d
+  - paragraph: "Study store: /tmp/flashcards-browser-cache-0hri0t03/data/math-flashcards/study/0311244c-4819-40ba-aeb8-28d30f87d6e9"
+  - paragraph: "Learning record: /tmp/flashcards-browser-cache-0hri0t03/data/math-flashcards/study/0311244c-4819-40ba-aeb8-28d30f87d6e9/record.sqlite3"
