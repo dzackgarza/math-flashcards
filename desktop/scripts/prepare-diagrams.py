@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 import shutil
+import subprocess
 import tempfile
 from pathlib import Path
 from urllib.request import urlopen
@@ -46,6 +47,7 @@ def main() -> None:
         stage.mkdir()
         shutil.copytree(shared / "styles", stage / "styles")
         shutil.copy2(shared / "filters" / "tikzcd.lua", stage / "tikzcd.lua")
+        shutil.copy2(shared / "filters" / "utilities.lua", stage / "utilities.lua")
         shutil.copy2(
             shared / "templates" / "standalone-tikz.tex",
             stage / "standalone-tikz.tex",
@@ -59,7 +61,7 @@ def main() -> None:
             + "\n"
         )
         if target.exists():
-            shutil.rmtree(target)
+            subprocess.run(["trash", str(target)], check=True)
         stage.replace(target)
     print(f"Prepared Quiver {commit} and the shared Pandoc TikZ renderer.")
 

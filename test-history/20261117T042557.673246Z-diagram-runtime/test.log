@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/evidence.py", line 53, in evidence
+    yield directory
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/diagram-runtime.py", line 62, in <module>
+    main(artifacts)
+    ~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/diagram-runtime.py", line 57, in main
+    assert not misplaced, misplaced
+           ^^^^^^^^^^^^^
+AssertionError: ['.config/texlive/2026/texmf-var/luatex-cache/generic/names/luaotfload-names.luc.gz', '.config/texlive/2026/texmf-var/luatex-cache/generic/names/luaotfload-lookup-cache.lua', '.config/texlive/2026/texmf-var/luatex-cache/generic/names/luaotfload-names.lua.gz', '.config/texlive/2026/texmf-var/luatex-cache/generic/names/luaotfload-lookup-cache.luc', '.config/texlive/2026/texmf-var/luatex-cache/generic/fonts/otl/lmroman10-regular.luc', '.config/texlive/2026/texmf-var/luatex-cache/generic/fonts/otl/lmroman10-regular.lua']
