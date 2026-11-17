@@ -1,0 +1,30 @@
+Math Flashcards
+flashcards-study-timing-eo3lhrff
+Search
+Ctrl K
+Timing
+
+Study cards ready
+
+Checking 0 of 1 decks…
+
+Problems (0/1 checked)
+Update Anki packages
+New deck
+Study
+Return to editor
+Esc
+
+New: 0
+
+Learning: 0
+
+Review: 0
+
+Study complete for now
+
+Graded today: 3
+
+Study store: /tmp/flashcards-browser-cache-hrh374l_/data/math-flashcards/study/21b3fcda-30ac-4f62-b4f0-c30f07f743a6
+
+Learning record: /tmp/flashcards-browser-cache-hrh374l_/data/math-flashcards/study/21b3fcda-30ac-4f62-b4f0-c30f07f743a6/record.sqlite3

@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/evidence.py", line 53, in evidence
+    yield directory
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-timing.py", line 180, in <module>
+    main(artifacts)
+    ~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-timing.py", line 132, in main
+    assert abs(reveal - 2000) <= 100, (identity, reveal)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('elapsed', 2486)

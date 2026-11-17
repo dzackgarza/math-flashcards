@@ -538,6 +538,17 @@ event creation. Reading the clock inside a delayed event handler includes unrela
 work in the measured interval. Clamp a transition to the start of its presentation
 when the event was queued before that presentation began.
 
+The focused window scenario uses [Playwright Clock](https://playwright.dev/python/docs/clock)
+to advance browser time while keeping the host's wall clock real. Its
+[clock API](https://playwright.dev/python/docs/api/class-clock) replaces both
+`performance.now()` and `Event.timeStamp`; install it before navigation so the
+application uses one clock throughout. Advance rendering timers before operating
+an animated menu. `fast_forward` runs each due timer at most once, which permits
+the three-hour response case without replaying every periodic callback. This
+establishes the window's elapsed-time accounting and Anki's answer-time cap; it
+does not represent three hours of physical study. The record retains the full
+reveal and grade durations while Anki limits their sum to the preset's `maxTaken`.
+
 ## R14. Parameter fitting
 
 **Decision**: The fit (User Story 7) calls Anki's backend: `compute_fsrs_params` to fit,

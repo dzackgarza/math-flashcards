@@ -1,0 +1,35 @@
+Math Flashcards
+flashcards-study-timing-e23g8u12
+Search
+Ctrl K
+Timing
+
+Study cards ready
+
+Workspace checks complete
+
+Problems
+1
+Update Anki packages
+1
+New deck
+Study
+Return to editor
+Esc
+
+New: 2
+
+Learning: 0
+
+Review: 0
+
+Timing/Checks.md
+
+FRONT
+Measure time without focus.
+Show answer
+Space
+
+Study store: /tmp/flashcards-browser-cache-g33ihn0t/data/math-flashcards/study/428cc941-1179-44b5-9a3f-af14ba5ee0b6
+
+Learning record: /tmp/flashcards-browser-cache-g33ihn0t/data/math-flashcards/study/428cc941-1179-44b5-9a3f-af14ba5ee0b6/record.sqlite3
