@@ -30,6 +30,25 @@ the macro set track the main branches of ankdown-for-math and pandoc-config.
 | Card HTML and APKG | [ankdown-for-math](https://github.com/dzackgarza/ankdown-for-math), [Pandoc Lua filters](https://pandoc.org/lua-filters.html) | Reuse the filter's front/back JSON and exporter CLI |
 | Math rendering | Zettlr's shared equation renderer and [MathJax 4](https://docs.mathjax.org/en/v4.0/web/typeset.html) | The host supplies MathJax and the exporter's macros; the shared editor owns widgets and source selection |
 | Status controls | Mantine Badge, Button, Alert, Loader, Drawer | Visible build state and the Problems drawer |
+| Native scheduling and collection backups | [Anki's Python library](https://github.com/ankitects/anki/tree/main/pylib/anki), PyPI `anki` | One persistent host owns the collection; native card identities enter its scheduling API directly |
+| One running desktop copy | [Tauri single-instance plugin](https://v2.tauri.app/plugin/single-instance/) | First shell plugin; activates the existing window |
+| Core and analysis boundaries | [Import Linter](https://import-linter.readthedocs.io/) | `.importlinter` forbids core imports from analyses and imports between analysis modules; `desktop-boundaries` tests both accepted and rejected imports |
+
+## Study ownership
+
+The Study integration has three parts. `desktop/study/` owns Anki scheduling and
+every learning-data write in one persistent process. `desktop/analysis/` computes
+each analysis independently in a fresh bridge process with a read-only record
+connection. `desktop/src/` renders the interface and sends typed requests. A new
+analysis module or view requires no core schema change. The source and alternative
+survey, API measurements, and boundary probes are maintained in
+[Study research](../specs/001-in-app-review/research.md), especially R1, R3, and R17.
+
+The Anki wheel supplies its Rust scheduling implementation through Python bindings.
+The persistent host preserves its queue and undo state across requests. SQLite's
+online backup API snapshots the separate permanent learning record beside each
+Anki collection backup. These stores belong to XDG data; removing cache or logs
+must not remove a learning fact.
 
 ## Alternatives
 

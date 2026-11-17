@@ -1,0 +1,52 @@
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/evidence.py", line 53, in evidence
+    yield directory
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-changes.py", line 526, in <module>
+    main(artifacts)
+    ~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-changes.py", line 107, in main
+    expect(study.locator(".side-editor.front")).to_have_text(front)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/home/dzack/.cache/uv/environments-v2/study-changes-0558c912b980f764/lib/python3.14/site-packages/playwright/sync_api/_generated.py", line 15561, in to_have_text
+    self._sync(
+    ~~~~~~~~~~^
+        self._impl_obj.to_have_text(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        )
+        ^
+    )
+    ^
+  File "/home/dzack/.cache/uv/environments-v2/study-changes-0558c912b980f764/lib/python3.14/site-packages/playwright/_impl/_sync_base.py", line 124, in _sync
+    return task.result()
+           ~~~~~~~~~~~^^
+  File "/home/dzack/.cache/uv/environments-v2/study-changes-0558c912b980f764/lib/python3.14/site-packages/playwright/_impl/assertions.py", line 660, in to_have_text
+    await self._expect_impl(
+    ...<9 lines>...
+    )
+  File "/home/dzack/.cache/uv/environments-v2/study-changes-0558c912b980f764/lib/python3.14/site-packages/playwright/_impl/assertions.py", line 122, in _expect_impl
+    _record_soft_or_raise(
+    ~~~~~~~~~~~~~~~~~~~~~^
+        AssertionError(
+        ^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        self._is_soft,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/dzack/.cache/uv/environments-v2/study-changes-0558c912b980f764/lib/python3.14/site-packages/playwright/_impl/_assertions.py", line 50, in _record_soft_or_raise
+    raise error
+AssertionError: Locator expected to have text 'FRONT
+Recall kept.'
+Actual value: FrontRecall kept. 
+Call log:
+  - Expect "to_have_text" get_by_role("region", name="Study session").locator(".side-editor.front") with timeout 5000ms
+  - waiting for get_by_role("region", name="Study session").locator(".side-editor.front")
+    - locator resolved to <div class="side-editor card-face front">…</div>
+    - unexpected value "FrontRecall moving."
+    13 × locator resolved to <div class="side-editor card-face front">…</div>
+       - unexpected value "FrontRecall kept."
+
+Aria snapshot:
+- heading "Front" [level=3]
+- textbox

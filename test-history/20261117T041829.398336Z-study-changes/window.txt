@@ -1,0 +1,57 @@
+Math Flashcards
+workspace
+Search
+Ctrl K
+A
+New:
+0
+Learning:
+0
+Review:
+0
+C
+New:
+0
+Learning:
+0
+Review:
+0
+
+New · Learning · Review
+
+New:
+0
+Learning:
+0
+Review:
+0
+
+Study needs attention
+
+Checking 0 of 2 decks…
+
+Problems (0/2 checked)
+Update Anki packages
+New deck
+Study needs attention
+A.md: The saved source changed: A.md C.md: The saved source changed: C.md
+Study
+Study settings
+Undo
+Ctrl Z
+Return to editor
+Esc
+
+New: 0
+
+Learning: 0
+
+Review: 0
+
+Study complete for now
+
+Graded today: 3
+
+Study store: /tmp/flashcards-browser-cache-iiebwmoy/data/math-flashcards/study/bf6e6020-73a2-4997-a1b0-dd117c736f9e
+
+Learning record: /tmp/flashcards-browser-cache-iiebwmoy/data/math-flashcards/study/bf6e6020-73a2-4997-a1b0-dd117c736f9e/record.sqlite3

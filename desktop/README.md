@@ -65,6 +65,62 @@ refreshes the installation from an existing build.
 
 ## Use
 
+### Study and the learning record
+
+Open the workspace menu and select **Study**. The app reads saved Markdown through
+the editor's parser and renderer and schedules its native card identities with
+Anki's library. Study saves a valid draft before starting. A structurally invalid
+draft stays in the editor while Study uses the last valid saved content.
+
+| Control | Action |
+| --- | --- |
+| Space | Reveal the answer |
+| 1, 2, 3, 4 | Again, Hard, Good, Easy after revealing |
+| Ctrl-Z | Undo the latest grade while Undo is available |
+| E | Edit the current card; **Return to Study** saves and reloads it |
+| Escape | Leave Study; in a dialog, close the dialog first |
+| Deck or folder menu → Study | Study only that part of the workspace |
+
+The grade buttons show Anki's proposed intervals. Sidebar counts and the session
+counts use Anki's due queue and daily limits. Study settings changes new and review
+limits and target recall. **Fit scheduler** computes candidate parameters from
+recorded reviews; inspect the metrics, then apply or discard them. These metrics
+describe self-graded card recall. They do not measure mathematical understanding.
+
+The permanent learning store is under
+`$XDG_DATA_HOME/math-flashcards/study/<store ID>/`. It contains the Anki collection,
+the append-only `record.sqlite3`, retained source and media, and attachment metadata.
+The Study screen shows the record path; **Open learning folder** opens its location.
+Cache rebuilding preserves learning data. Detailed logs are under
+`$XDG_STATE_HOME/math-flashcards/diagnostics/`; derived caches are under
+`$XDG_CACHE_HOME/math-flashcards/`. The app runs as one copy for one person.
+
+**Statistics**, in the workspace menu or Ctrl-K, reads the permanent record through
+independent analyses. It shows recall by folder and month and scheduler calibration,
+including missing predictions. Analyses use a read-only connection. See
+[Adding an analysis](../docs/analyses.md) for the module contract and evidence limits.
+
+**Save a copy** in Study settings writes the complete store to an existing folder.
+The displayed path is the completed copy. To use it on another machine, place its
+store-ID folder under that machine's Study data directory. Open the authored
+workspace and select the existing store in the attachment dialog. The same dialog
+reattaches a store after moving a workspace. **Start new** creates a separate history.
+
+Opening and closing the store request automatic backups according to Anki's interval
+and retention rules. Each `.colpkg` in the store's `backups/` folder has a matching
+SQLite record snapshot. For recovery details and the record schema, see
+[Reading the learning record](../docs/study-record.md).
+
+Focused checks use `just desktop-test study`, `study-changes`, `study-timing`,
+`study-scopes`, `study-corrections`, `study-draft`, `study-settings`, `study-fit`,
+`study-statistics`, `study-copy`, or `study-preservation`. Each scenario retains
+logs, revision context, and timings in `test-history/`. `just desktop-analysis-test`
+checks independent analyses. At a release milestone, build once and use
+`just desktop-native-study-test` and `just desktop-install-study-test` for the
+native executable and installed runtime.
+
+### Editing and workspace navigation
+
 Ctrl-K searches deck names, card fronts, card backs, tags, and commands across
 the workspace. Cards become searchable as background source reads finish.
 The search field shows incomplete coverage until the reads finish, and shows

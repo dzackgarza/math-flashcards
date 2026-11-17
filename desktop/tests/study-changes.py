@@ -40,7 +40,8 @@ def stop_host() -> None:
 
 def main(artifacts: Path) -> None:
     with tempfile.TemporaryDirectory(prefix="flashcards-study-changes-") as directory:
-        workspace = Path(directory)
+        workspace = Path(directory) / "workspace"
+        workspace.mkdir()
         a, b, c = [workspace / name for name in ("A.md", "B.md", "C.md")]
         kept, moving, other = card("kept", "K"), card("moving", "M"), card("other", "O")
         a.write_text(kept + moving)
@@ -62,13 +63,30 @@ def main(artifacts: Path) -> None:
             opened = request("study-open")
             store, record_path = Path(opened["store"]), Path(opened["record"])
 
-            def open_window():
+            def snapshot():
+                with closing(sqlite3.connect(record_path)) as record:
+                    return {
+                        name: record.execute(
+                            f'select * from "{name}" order by id'
+                        ).fetchall()
+                        for (name,) in record.execute(
+                            "select name from sqlite_master where type='table'"
+                        ).fetchall()
+                    }
+
+            retained_snapshots = [snapshot()]
+
+            def open_window(attach_from: Path | None = None):
                 browser = playwright.chromium.launch(headless=False)
                 page = browser.new_page()
                 page.goto("http://127.0.0.1:1420")
                 page.get_by_role("button", name="Workspace", exact=True).click()
                 page.get_by_label("Workspace folder").fill(str(workspace))
                 page.get_by_role("button", name="Open workspace", exact=True).click()
+                if attach_from is not None:
+                    page.get_by_role("dialog", name="Choose a study store").get_by_role(
+                        "button", name=f"Attach {attach_from}", exact=True
+                    ).click()
                 expect(page.get_by_role("status", name="Study")).to_have_text(
                     "Study cards ready", timeout=30000
                 )
@@ -82,6 +100,18 @@ def main(artifacts: Path) -> None:
             browser, page = open_window()
             try:
                 study = start_study(page)
+                front = study.locator(".side-editor.front .cm-content").inner_text()
+                study.get_by_role("button", name="Show answer", exact=False).click()
+                study.get_by_role("button", name="Easy", exact=False).click()
+                expect(
+                    study.get_by_role("button", name="Undo", exact=True)
+                ).to_be_enabled()
+                retained_snapshots.append(snapshot())
+                study.get_by_role("button", name="Undo", exact=True).click()
+                expect(study.locator(".side-editor.front .cm-content")).to_have_text(
+                    front
+                )
+                retained_snapshots.append(snapshot())
                 for _ in range(3):
                     study.get_by_role("button", name="Show answer", exact=False).click()
                     study.get_by_role("button", name="Easy", exact=False).click()
@@ -180,7 +210,7 @@ def main(artifacts: Path) -> None:
                         for second in transfers
                     ], changes
                     assert record.execute(
-                        "select back from review where card_id='moving'"
+                        "select back from review where card_id='moving' and undone_at_ms is null"
                     ).fetchone() == ("M",)
                     assert record.execute(
                         "select c.back from content c join card_change a on a.content=c.id where a.card_id='moving' order by a.id desc limit 1"
@@ -241,6 +271,7 @@ def main(artifacts: Path) -> None:
                         ).fetchall()
                         for table in tables
                     }
+                    retained_snapshots.append(rows_before)
                 assets = json.loads(
                     (Path(__file__).resolve().parents[1] / "assets.json").read_text()
                 )["identity"]
@@ -303,6 +334,7 @@ def main(artifacts: Path) -> None:
                     ).fetchall()
                     for table in tables
                 }
+                retained_snapshots.append(retained_rows)
             original_image = (
                 Path(__file__).parent / "fixtures/study/triangle.svg"
             ).read_bytes()
@@ -387,7 +419,7 @@ def main(artifacts: Path) -> None:
                 ).to_be_visible()
                 with closing(sqlite3.connect(record_path)) as record:
                     reviews = record.execute(
-                        "select back,content from review where card_id='moving' and response is not null order by id"
+                        "select back,content from review where card_id='moving' and response is not null and undone_at_ms is null order by id"
                     ).fetchall()
                     assert [row[0] for row in reviews] == [
                         "M",
@@ -473,6 +505,23 @@ def main(artifacts: Path) -> None:
                 } == collection_before
             finally:
                 collection.close()
+            retained_snapshots.append(snapshot())
+            old_workspace = workspace
+            workspace = Path(directory) / "moved-workspace"
+            old_workspace.rename(workspace)
+            browser, page = open_window(attach_from=old_workspace)
+            try:
+                assert request("study-open")["store"] == str(store)
+                before_rebuild = snapshot()
+                retained_snapshots.append(before_rebuild)
+                request("rebuild-cache", generation=100)
+                assert snapshot() == before_rebuild
+                final_rows = snapshot()
+                for earlier in retained_snapshots:
+                    for table, previous in earlier.items():
+                        assert final_rows[table][: len(previous)] == previous, table
+            finally:
+                browser.close()
             api.dispose()
 
 
