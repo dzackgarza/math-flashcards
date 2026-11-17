@@ -151,7 +151,14 @@ function StudySettings({
       opened
       title="Study settings"
       onClose={onClose}
-      closeOnEscape={!pending}
+      closeOnEscape={false}
+      onKeyDown={(event) => {
+        if (event.key === "Escape") {
+          event.preventDefault();
+          event.stopPropagation();
+          if (!pending) onClose();
+        }
+      }}
       closeOnClickOutside={!pending}
       withCloseButton={!pending}
     >

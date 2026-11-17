@@ -24,6 +24,10 @@
   without preventing the editor from publishing text changes. Throw from an image
   widget while its media map is being refreshed => render the error as a widget,
   accept the edit, and refresh the preview from the resulting source.
+- **EDIT002 — Let a dialog consume its closing key.** Close a dialog on Escape and
+  allow the same event to leave Study => stop propagation before closing the dialog.
+  Changing the open-state flag alone can enable the underlying shortcut during
+  that same event.
 
 This collection supports mathematical research. Prioritize knowledge that helps
 the researcher recognize a useful result, check its hypotheses, construct an
