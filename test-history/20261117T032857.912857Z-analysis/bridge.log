@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "/tmp/flashcards-analyses-1s2vxih2/backend.py", line 1723, in <module>
+    main()
+    ~~~~^^
+  File "/tmp/flashcards-analyses-1s2vxih2/backend.py", line 1709, in main
+    request = TypeAdapter(Request).validate_json(sys.stdin.readline())
+  File "/home/dzack/.cache/uv/environments-v2/backend-bd261e903a9711ce/lib/python3.14/site-packages/pydantic/type_adapter.py", line 466, in validate_json
+    return self.validator.validate_json(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        data,
+        ^^^^^
+    ...<5 lines>...
+        by_name=by_name,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+pydantic_core._pydantic_core.ValidationError: 1 validation error for tagged-union[AssetsInput,AssetVersionInput,ListInput,LoadInput,LoadInput,SaveInput,GenerateInput,DiagramPreviewInput,OrganizeInput,ReviewInput,ManifestInput,ManifestCacheInput,ManifestCacheInput,SourcesInput,ChecksInput,CachedChecksInput,ReadProblemsInput,StoreProblemsInput,ReadSearchInput,StoreSearchInput,RebuildCacheInput]
+  Input tag 'analysis-list' found using 'action' does not match any of the expected tags: 'assets', 'asset-version', 'list', 'load', 'validate', 'save', 'generate', 'render-diagram', 'organize', 'review', 'manifest', 'cached-manifest', 'cache-manifest', 'sources', 'checks', 'cached-checks', 'problems', 'store-problems', 'search', 'store-search', 'rebuild-cache' [type=union_tag_invalid, input_value={'action': 'analysis-list'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/union_tag_invalid
