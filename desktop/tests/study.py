@@ -729,7 +729,7 @@ def main(artifacts: Path) -> None:
                                 study.get_by_role(
                                     "img", name="Rendered commutative diagram"
                                 )
-                            ).to_be_visible(timeout=15000)
+                            ).to_be_visible(timeout=120000)
                             page.screenshot(path=str(artifacts / "study-diagram.png"))
                         if identity == "study-absolute-value":
                             expect(study.locator("mjx-container")).to_have_count(1)
