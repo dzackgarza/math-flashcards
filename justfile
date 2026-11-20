@@ -18,6 +18,10 @@ check-math:
 check-citations:
     uv run --upgrade scripts/check-citations.py
 
+# List card lines that may cite a source in prose. A shortlist to read, not a proof
+lint-prose-citations:
+    uv run --upgrade scripts/lint-prose-citations.py
+
 # Push gate entry point
 test-push: test
 

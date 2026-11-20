@@ -282,7 +282,10 @@ extracting the answer from an expository paragraph.
   `::: {.front card-id="…" cite="[@AEGS25, §3.7; @Nik80, Prop. 1.4.1]"}`.
   Write no `Reference:` paragraph or prose citation in a card face. Add a
   missing work to Zotero first; `just check-citations` checks every key
-  against the running Zotero library. A remark that a paragraph attaches to a
+  against the running Zotero library. `just lint-prose-citations` lists lines
+  that may still cite in prose. It misses citations in other wordings and
+  lists named theorems, so it starts a reading of the cards and does not
+  replace it. A remark that a paragraph attaches to a
   citation is mathematics: keep it in the answer.
 
 Compact presentation is compatible with substantial composite cards. Organize
