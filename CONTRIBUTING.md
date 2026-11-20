@@ -277,6 +277,13 @@ extracting the answer from an expository paragraph.
   repeated summaries, and commentary announcing the importance of the material.
 - Keep references secondary to the answer. Source discussion belongs on a card
   only when identifying or comparing sources is itself the retrieval task.
+- Record a card's sources in the `cite` attribute of its front div, in Pandoc
+  citation syntax with Zotero's Better BibTeX citation keys:
+  `::: {.front card-id="…" cite="[@AEGS25, §3.7; @Nik80, Prop. 1.4.1]"}`.
+  Write no `Reference:` paragraph or prose citation in a card face. Add a
+  missing work to Zotero first; `just check-citations` checks every key
+  against the running Zotero library. A remark that a paragraph attaches to a
+  citation is mathematics: keep it in the answer.
 
 Compact presentation is compatible with substantial composite cards. Organize
 their connected content so the structure and the points of comparison are visible;
@@ -744,8 +751,8 @@ requires retrieval [1, 2].
 
 Test mathematical content, not a source's theorem, proposition, or definition
 number. Use the mathematical object, hypotheses, conclusion sought, or standard
-name to identify the task. Source numbers may appear only in identifiable
-citations on the back, separate from the answer. Remove bare source numbers;
+name to identify the task. Source numbers may appear only as locators in the
+card's `cite` attribute, separate from the answer. Remove bare source numbers;
 moving an unexplained number from the front into the answer does not fix the card.
 For example, replace “Thm 4.3.1 (fundamental)” with “How does the lattice
 exponential $e_L(ax)$ depend on $e_L(x)$ and $a^{-1}L/L$?” Preserve the formula

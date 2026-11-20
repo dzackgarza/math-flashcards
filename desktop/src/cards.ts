@@ -16,6 +16,8 @@ export interface CardRange {
   front: FieldRange;
   back: FieldRange;
   tags: string;
+  // Pandoc citation syntax keyed by Zotero citation keys: "[@AEGS25, §3.7; @Nik80]".
+  cite: string;
 }
 
 export const deckParser = parser.configure(Pandoc());
@@ -26,7 +28,7 @@ export function cards(source: string): CardRange[] {
   const document = Text.of(source.split("\n"));
   const pairs = new Map<
     string,
-    { front?: FieldRange; back?: FieldRange; tags: string }
+    { front?: FieldRange; back?: FieldRange; tags: string; cite: string }
   >();
   const order: string[] = [];
   for (
@@ -65,16 +67,17 @@ export function cards(source: string): CardRange[] {
       contentTo,
       value: source.slice(contentFrom, contentTo),
     };
-    const pair = pairs.get(id) ?? { tags: "" };
+    const pair = pairs.get(id) ?? { tags: "", cite: "" };
     const side = sides[0].value as "front" | "back";
     if (pair[side]) throw new Error(`Card ${id} has a duplicate ${side}.`);
     pair[side] = field;
     if (side === "front") {
       order.push(id);
-      pair.tags =
-        tokens.find(
-          (token) => token.kind === "key-value" && token.key === "tags",
-        )?.value ?? "";
+      const value = (key: string) =>
+        tokens.find((token) => token.kind === "key-value" && token.key === key)
+          ?.value ?? "";
+      pair.tags = value("tags");
+      pair.cite = value("cite");
     }
     pairs.set(id, pair);
   }
@@ -89,6 +92,7 @@ export function cards(source: string): CardRange[] {
       front: pair.front!,
       back: pair.back!,
       tags: pair.tags,
+      cite: pair.cite,
       label:
         pair.front!.value.split("\n").find((line) => line.trim()) ?? "New card",
     };
@@ -110,6 +114,24 @@ export function replaceTags(
   card: CardRange,
   tags: string[],
 ): string {
+  return replaceAttribute(source, card, "tags", tags.join(", "));
+}
+
+export function replaceCite(
+  source: string,
+  card: CardRange,
+  cite: string,
+): string {
+  return replaceAttribute(source, card, "cite", cite);
+}
+
+// Pandoc attribute syntax: https://pandoc.org/MANUAL.html#extension-attributes
+function replaceAttribute(
+  source: string,
+  card: CardRange,
+  key: string,
+  value: string,
+): string {
   const node = deckParser.parse(source).resolve(card.front.from, 1);
   let div = node;
   while (div.name !== "PandocDiv" && div.parent) div = div.parent;
@@ -120,15 +142,15 @@ export function replaceTags(
   );
   if (scan.status !== "match") throw new Error("Invalid card attributes.");
   const token = scan.value.tokens.find(
-    (item) => item.kind === "key-value" && item.key === "tags",
+    (item) => item.kind === "key-value" && item.key === key,
   );
   const from = token ? attribute.from + token.from : attribute.to - 1;
   const to = token ? attribute.from + token.to : from;
-  const value = tags.join(", ").replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+  const escaped = value.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
   return (
     source.slice(0, from) +
     (token ? "" : " ") +
-    `tags="${value}"` +
+    `${key}="${escaped}"` +
     source.slice(to)
   );
 }
@@ -274,7 +296,8 @@ export function cardChanges(
     else if (
       old.front.value !== card.front.value ||
       old.back.value !== card.back.value ||
-      old.tags !== card.tags
+      old.tags !== card.tags ||
+      old.cite !== card.cite
     )
       changes.push({ id: card.id, kind: "edited", before: old, after: card });
     before.delete(card.id);

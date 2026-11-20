@@ -1,5 +1,12 @@
 import { expect, test } from "bun:test";
-import { cards, replaceField, removeCard, newCard } from "../src/cards";
+import {
+  cardChanges,
+  cards,
+  replaceCite,
+  replaceField,
+  removeCard,
+  newCard,
+} from "../src/cards";
 import { diagramTargets, replaceDiagram, EMPTY_TIKZCD } from "../src/diagrams";
 
 test("card sides pair by ID and edit independently without changing authored math", () => {
@@ -20,6 +27,22 @@ test("card sides pair by ID and edit independently without changing authored mat
   expect(remaining.map((card) => card.id)).toEqual(["second"]);
   const added = cards(edited + "\n" + newCard("third"));
   expect(added[2].id).toBe("third");
+});
+
+test("a card's sources are front-side metadata that edit without changing its faces", () => {
+  const source = `::: {.front card-id="one" tags="definition"}\nQuestion\n:::\n\n::: {.back card-id="one"}\nAnswer\n:::\n`;
+  const [card] = cards(source);
+  expect(card.cite).toBe("");
+  const cited = replaceCite(source, card, "[@AEGS25, §3.7; @Nik80]");
+  const [after] = cards(cited);
+  expect(after.cite).toBe("[@AEGS25, §3.7; @Nik80]");
+  expect(after.tags).toBe("definition");
+  expect(after.front.value).toBe("Question");
+  expect(after.back.value).toBe("Answer");
+  expect(cards(replaceCite(cited, after, "[@KM98]"))[0].cite).toBe("[@KM98]");
+  expect(cardChanges(source, cited).map((change) => change.kind)).toEqual([
+    "edited",
+  ]);
 });
 
 test("a deck rejects unpaired, duplicate, and unclosed card sides", () => {

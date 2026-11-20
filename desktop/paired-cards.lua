@@ -1,5 +1,19 @@
 -- Pair Pandoc Divs, then delegate rendering and media handling to Ankdown.
 -- https://pandoc.org/lua-filters.html#type-div
+-- A cite attribute holds only Pandoc citations: https://pandoc.org/MANUAL.html#citation-syntax
+local function check_cite(id, cite)
+  local blocks = pandoc.read(cite, 'markdown').blocks
+  local valid = #blocks == 1 and blocks[1].t == 'Para'
+  if valid then
+    for _, inline in ipairs(blocks[1].content) do
+      if inline.t ~= 'Cite' and inline.t ~= 'Space' then valid = false end
+    end
+  end
+  if not valid then
+    error('Card ' .. id .. ' has a cite attribute that is not Pandoc citations: ' .. cite)
+  end
+end
+
 function Pandoc(doc)
   local pairs_by_id, front_order = {}, {}
   for _, block in ipairs(doc.blocks) do
@@ -10,6 +24,7 @@ function Pandoc(doc)
     local id = block.attributes['card-id']
     if not id or id == '' then error('Each card side needs a card ID.') end
     local side = front and 'front' or 'back'
+    if block.attributes.cite then check_cite(id, block.attributes.cite) end
     local pair = pairs_by_id[id] or {}
     if pair[side] then error('Duplicate ' .. side .. ' for card ' .. id) end
     pair[side] = block

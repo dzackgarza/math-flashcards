@@ -79,6 +79,7 @@ import {
   cards,
   replaceField,
   replaceTags,
+  replaceCite,
   removeCard,
   newCard,
   reorderCards,
@@ -3225,6 +3226,27 @@ export default function App() {
                             document.source,
                             selected,
                             tags,
+                          );
+                          updateDraft({
+                            ...draft,
+                            source,
+                            card: cards(source)[index],
+                          });
+                          edit(source);
+                        }}
+                        disabled={busy || !!parsed.error}
+                      />
+                      <TextInput
+                        label="Sources"
+                        description="Pandoc citations with Zotero citation keys"
+                        placeholder="[@AEGS25, §3.7; @Nik80]"
+                        value={selected?.cite ?? draft.card.cite}
+                        onChange={(event) => {
+                          if (!selected) return;
+                          const source = replaceCite(
+                            document.source,
+                            selected,
+                            event.currentTarget.value,
                           );
                           updateDraft({
                             ...draft,

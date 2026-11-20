@@ -14,6 +14,10 @@ test: check-math
 check-math:
     cd desktop && bun scripts/check-math.ts ../decks
 
+# Check that every card citation key names an item in the running Zotero library
+check-citations:
+    uv run --upgrade scripts/check-citations.py
+
 # Push gate entry point
 test-push: test
 

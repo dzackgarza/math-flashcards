@@ -94,8 +94,10 @@ function ChangeRow({
       ))}
       {change.kind === "edited" && sides.length === 0 && (
         <Text size="sm" c="dimmed">
-          Tags changed: {change.before!.tags || "none"} →{" "}
-          {change.after!.tags || "none"}
+          {change.before!.tags !== change.after!.tags &&
+            `Tags changed: ${change.before!.tags || "none"} → ${change.after!.tags || "none"}. `}
+          {change.before!.cite !== change.after!.cite &&
+            `Sources changed: ${change.before!.cite || "none"} → ${change.after!.cite || "none"}.`}
         </Text>
       )}
     </Stack>
