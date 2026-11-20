@@ -72,6 +72,21 @@ does not copy the limit.
   each learning decision and labels each decision that has none as a default (FR-059,
   FR-060).
 
+### Session 2026-11-20, requirements stated by the user
+
+- The time limit of SC-002 is a requirement, and it applies to each card, with or
+  without a diagram. No card waits for a diagram to compile when it is shown. The app
+  compiles diagrams when it starts, or in a background pass that the user can start,
+  which finds changed diagrams and compiles them again. Study and the editor show the
+  cached SVG.
+- One place owns diagram compilation, the cache, recompilation, and macros: the TikZ
+  filter of the user's Pandoc configuration, through which all other diagram work
+  goes. The preferred design keeps the diagram files themselves in the figures tree of
+  that configuration.
+- A question of the interface that this specification does not settle takes the
+  behaviour of Anki's own interface. Anki is open source; read its source and use its
+  answer. FR-006 is one such question.
+
 ### Session 2026-11-16, defaults
 
 These answers are defaults taken from repository evidence. The user has not confirmed
@@ -394,8 +409,8 @@ record changes, and the earlier analyses give the same results.
   and the day boundary with Anki's own scheduling code. The system MUST NOT contain a
   second implementation of these rules.
 - **FR-006**: The system MUST state when the review for today is complete and MUST show
-  the number of different cards that the user graded on the current scheduler day in
-  the workspace.
+  how many cards the user graded, as Anki's own statement of the cards studied today
+  gives it.
 - **FR-007**: Users MUST be able to operate a review with the keyboard alone: reveal the
   answer and select each grade.
 - **FR-008**: The system MUST show the remaining counts of new, learning, and due cards
