@@ -269,7 +269,7 @@ Null Set
 A set $A$ is *null* iff for every $\varepsilon>0$ there exists a cover $\theset{U_j}\covers A$ such that $\sum \mu(U_j) < \varepsilon$, i.e. $\mu(A) = 0$.
 :::
 
-::: {.front card-id="card-034794991fef7f7d" tags="fact"}
+::: {.front card-id="card-034794991fef7f7d" tags="fact" cite="[@Leb09]"}
 Characterizations of $D_f$, the set of discontinuities of functions
 :::
 
