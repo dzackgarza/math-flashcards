@@ -4,7 +4,7 @@
 
 **Created**: 2026-11-16
 
-**Status**: Draft
+**Status**: In implementation
 
 **Input**: Review the cards with spaced repetition inside the desktop app, reusing Anki's
 own scheduling code, so that studying needs no package export and no import into Anki.

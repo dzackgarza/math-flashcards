@@ -26,7 +26,10 @@ table or column of the record.
 `desktop/src/`. `desktop/backend.py` is the entry script. A task of the core changes no
 analysis file, and a task of an analysis changes no core file. Task IDs are permanent;
 T060 and later were added with the requirements for one running copy, file placement,
-the copy, and the analyses, and each phase lists its tasks in the order of work.
+the copy, and the analyses. A task ID does not give the order of work. An open task
+blocks a later task only when the later task uses its result; T079 and T081 block no
+story task. The test steps that a task puts in `desktop/tests/study.py` can be in a
+`desktop/tests/study-*.py` scenario or in `desktop/tests/native-study.py`.
 
 ## Format: `[ID] [P?] [Story] Description`
 
@@ -84,11 +87,11 @@ operation. Whole-run timing classification does not block a missing user capabil
 ### Tests for User Stories 1 and 6 ⚠️
 
 - [ ] T016 [US1] Add failing steps to `desktop/tests/study.py`: every fixture card is a new note whose GUID is its `card-id` after the window opens the workspace; the first card is reached from the open workspace in at most two actions (SC-001); **Study** shows a front with the back and grades hidden; Space reveals the back and four labelled grades; key 3 records one review log row and the stored interval agrees with the Good label; on later cards the keys 1, 2, and 4 each record their grade, and the stored interval agrees with the label of that grade (FR-007, SC-008); with an unsaved edit in the editor, **Study** saves the deck first and the session shows the saved text; the next card shows within 0.5 s; counts decrease; a card graded Again returns after its learning delay; after the last card the screen states that study is complete and gives the number graded; a restart keeps every grade
-- [ ] T017 [US1] Add failing steps to `desktop/tests/study.py`: after a grade, `SIGKILL` of the host loses no review log row and no committed record row, and the next request starts a new host; a card with a macro equation, a TikZ-cd diagram, and an image renders all three through the shared editor renderer, with a screenshot in `desktop/test-artifacts/`; each studied side uses the same native source as the editor (SC-007); the content record holds the exact saved front and back source, while the Anki note's GUID and sole `CardId` field equal the native card ID (FR-025); an equation with an undefined macro shows the TeX error
+- [X] T017 [US1] Add failing steps to `desktop/tests/study.py`: after a grade, `SIGKILL` of the host loses no review log row and no committed record row, and the next request starts a new host; a card with a macro equation, a TikZ-cd diagram, and an image renders all three through the shared editor renderer, with a screenshot in `desktop/test-artifacts/`; each studied side uses the same native source as the editor (SC-007); the content record holds the exact saved front and back source, while the Anki note's GUID and sole `CardId` field equal the native card ID (FR-025); an equation with an undefined macro shows the TeX error
 - [ ] T018 [US6] Add failing steps to `desktop/tests/study.py` for the record of a presentation (FR-028, SC-009): after the first sync the record has a `card_change` row of kind `added` and a `content` row for each card; a session start writes a `session` row with its scope; after a wait of 2 s, a reveal, a wait of 1 s, and a grade, the `review` row has the time and offset, card ID, deck path, folder, deck title, deck tags and card tags, the front and back shown, session and position, kind, scheduler day, `reveal_ms` within 100 ms of 2000, `grade_ms` within 100 ms of 1000, the grade, four offered intervals of which the selected one agrees with the interval after, empty memory state before the first grade of a new card and a set memory state after it, target recall, parameter set, the daily limits, and the writer; its `revlog_*` values equal the store's review log row; with the focus away from the window for 2 s, `unfocused_ms` is within 100 ms of 2000; with the page clock advanced by 3 hours between reveal and grade, `grade_ms` is the full time and `revlog_time_ms` is Anki's limited value (SC-014); Escape with a card on screen leaves a `presentation` row with no `response` row and writes a `session_end` row with cause `left`
 - [ ] T019 [US6] Add failing steps to `desktop/tests/study.py` for the record as an independent source: a second read-only `sqlite3` connection reads every row while the app runs, and the next grade succeeds (FR-037); the four queries of `specs/001-in-app-review/contracts/learning-record.md` give the numbers that the scenario's grades imply (SC-011, SC-012); with the app stopped, grades and due-date changes made with the `anki` library appear after the next open as `response` rows with `recovered` set and empty times, and every review log row has a `response` row with the same nine values (FR-036); a session that a `SIGKILL` left open gets a `session_end` row with cause `recovered`; every table and column of the record's schema is named in `docs/study-record.md` (FR-038); the Study screen shows the path of the record, and it is the file that the scenario reads (FR-042)
-- [ ] T020 [US6] Add failing steps to `desktop/tests/study.py` for a moved workspace through the window (FR-041): after the workspace folder is renamed and opened, the window lists the existing store with its earlier path, last use, and numbers of cards and grades, no store directory is created, and the editor works; after the user attaches the store, the counts and every record row are as before the rename; in a second workspace the user selects a new store and the first store is unchanged
-- [ ] T064 [US6] Add failing steps to `desktop/tests/study.py` for editor views (FR-058): a card that is open in the editor for 2 s, until another card is selected, has one `editor_view` row with its card ID, its deck path, and `shown_ms` within 100 ms of 2000; with the focus away from the window for 1 s of that time, `unfocused_ms` is within 100 ms of 1000; the card that is open when a study session starts has a row; a workspace in the `Unattached` state writes no row
+- [X] T020 [US6] Add failing steps to `desktop/tests/study.py` for a moved workspace through the window (FR-041): after the workspace folder is renamed and opened, the window lists the existing store with its earlier path, last use, and numbers of cards and grades, no store directory is created, and the editor works; after the user attaches the store, the counts and every record row are as before the rename; in a second workspace the user selects a new store and the first store is unchanged
+- [X] T064 [US6] Add failing steps to `desktop/tests/study.py` for editor views (FR-058): a card that is open in the editor for 2 s, until another card is selected, has one `editor_view` row with its card ID, its deck path, and `shown_ms` within 100 ms of 2000; with the focus away from the window for 1 s of that time, `unfocused_ms` is within 100 ms of 1000; the card that is open when a study session starts has a row; a workspace in the `Unattached` state writes no row
 
 ### Implementation for User Stories 1 and 6
 
@@ -101,13 +104,13 @@ before Study resumes. Both session start and the in-session editor return use th
 - [X] T023 [US1] Implement `study-begin`, `study-next`, `study-answer`, and `study-end` in `desktop/study/session.py` by the R10 call sequence: a `session` row at begin; the top card of the scope's queue with a `presentation` row written before the response; Anki's four labels; the three counts; `Finished` with `next_learning_seconds` from `congratulations_info()`; `StaleCard` when `presentation` is not the session's last presentation or its card is not the top card; `reveal_ms + grade_ms` as Anki's answer time; the `response` row after `answer_card()` returns; a `session_end` row at end and for each open session when the host's input closes
 - [X] T024 [US6] Implement recovery at store open in `desktop/study/store.py`: one `response` row with `recovered` set for each review log row that has none, and one `session_end` row with cause `recovered` for each session that has none, by the pure comparison of review log IDs with `response` rows
 - [x] T025 [P] [US1] Share the native card face from `desktop/src/editor.tsx` with Study: read-only presentation of authored source, the existing MathJax configuration and diagram renderer, and image resolution through each content version's media mapping
-- [ ] T026 [P] [US1] Create `desktop/src/study.ts`: the session state (unattached, front, revealed, finished, error); the timing of each card with `performance.now()` for the time to reveal and the time to grade, and with the window's visibility and focus events for the time without focus; native deck batches from saved source, `cards()`, source digests, and existing deck metadata; the sync loop that calls `study-sync` until `pending` is zero and reports progress; and the handling of `StaleCard` by fetching the current card
-- [ ] T027 [US1] Create `desktop/src/study-screen.tsx` and its styles in `desktop/src/App.css`: native front and back from the content record through the shared card face, four grade buttons with Anki's labels, session counts, the finished state, the store error states, the keys Space, 1 to 4, and Escape, and `study-end` when the user leaves and when the queue is finished
+- [X] T026 [P] [US1] Create `desktop/src/study.ts`: the session state (unattached, front, revealed, finished, error); the timing of each card with `performance.now()` for the time to reveal and the time to grade, and with the window's visibility and focus events for the time without focus; native deck batches from saved source, `cards()`, source digests, and existing deck metadata; the sync loop that calls `study-sync` until `pending` is zero and reports progress; and the handling of `StaleCard` by fetching the current card
+- [X] T027 [US1] Create `desktop/src/study-screen.tsx` and its styles in `desktop/src/App.css`: native front and back from the content record through the shared card face, four grade buttons with Anki's labels, session counts, the finished state, the store error states, the keys Space, 1 to 4, and Escape, and `study-end` when the user leaves and when the queue is finished
 - [X] T028 [US1] Connect the screen in `desktop/src/App.tsx`: call `study-open` and run the sync loop at workspace open without blocking the editor, show sync progress, add **Study** to the workspace menu and the Ctrl-K commands, save pending edits before a session starts, and name the function **Study** everywhere (FR-027)
 - [X] T029 [US6] Add to `desktop/src/study-screen.tsx` and `desktop/src/App.tsx` the attach list for the `Unattached` state (each store with its paths, whether its current path exists, last use, and numbers of cards and grades; **Attach** and **Start new**), and the paths of the learning record and the store with a command that opens the folder
 - [X] T030 [P] [US6] Write `docs/study-record.md`: the location of the record and how to open it read-only; for each table and each column its meaning, unit, value coding, and the case in which it is empty; the `review` view; the guarantees of `specs/001-in-app-review/contracts/learning-record.md`; the mapping to the columns of the `anki-revlogs-10k` research data set; and the example queries
 - [X] T065 [US6] Implement `study-viewed` in `desktop/study/session.py` with its insert function for `editor_view` in `desktop/study/record.py`
-- [ ] T066 [US6] Measure editor views in `desktop/src/study.ts` (the time a card is open and the time without focus, with `performance.now()` and the window's visibility and focus events) and send `study-viewed` from `desktop/src/App.tsx` when the card leaves the editor: another card is selected, the deck closes, a study session starts, or the window closes
+- [X] T066 [US6] Measure editor views in `desktop/src/study.ts` (the time a card is open and the time without focus, with `performance.now()` and the window's visibility and focus events) and send `study-viewed` from `desktop/src/App.tsx` when the card leaves the editor: another card is selected, the deck closes, a study session starts, or the window closes
 
 **Checkpoint**: The T016 to T020 and T064 steps pass; the workspace can be studied end to end and each showing of a card is in the record. Use on the real data directory starts after this checkpoint, not before
 
@@ -262,6 +265,7 @@ before Study resumes. Both session start and the in-session editor return use th
 **Purpose**: Backups, permanence across the whole scenario, file placement, the native path, installation, documentation, and measurements
 
 - [ ] T078 Add a step to `desktop/tests/native.py`: the built app runs the study step with an empty directory as `HOME` and with `XDG_DATA_HOME`, `XDG_CONFIG_HOME`, `XDG_STATE_HOME`, and `XDG_CACHE_HOME` set to four directories inside it; afterward every file under that `HOME` is under one of the four directories; after the cache and state directories are removed and the app starts again, every record row is equal and the counts are as before (FR-048, SC-016). Add the same assertion for the bridge processes at the end of `desktop/tests/study.py`
+- [X] T082 Create the main window in `desktop/src-tauri/src/lib.rs` with its webview data directory at `webview/` under the XDG cache directory, and set `"create": false` for the window in `desktop/src-tauri/tauri.conf.json`; `desktop/tests/native-study.py` finds no web cache file under the data directory (FR-048, R16 of `research.md`)
 - [X] T052 Add failing steps to `desktop/tests/study-preservation.py`, then make them pass in `desktop/study/store.py`: the host writes an Anki backup to the store's `backups/` folder at open and at exit when Anki's backup interval allows, with a copy of the record made by `sqlite3.Connection.backup` under the same time, which `sqlite3` opens with the same rows in each table (FR-040); a record copy stays while the `.colpkg` of the same time stays and follows Anki's retention; **Rebuild cached data** leaves the store, its review log, and the record unchanged; a review card whose lapse count is one below Anki's leech threshold, graded Again, stays unsuspended, returns in the session, and has the tag `leech` (FR-024, FR-045); Anki's database check (`fix_integrity()`) reports no problem at the end of the scenario
 - [X] T053 Extend `desktop/tests/study-changes.py`: every record row captured at the initial open and subsequent action boundaries is equal at the end, and no row is missing, across undo, edits, moves, removals, **Rebuild cached data**, and attachment after changing the workspace path (SC-010)
 - [X] T054 Save the record that the scenario produces as `desktop/tests/fixtures/study/record-v1.sqlite3` with a dump of its rows beside it, and add a step to `desktop/tests/study.py`: the host opens a store that holds this record, every row equals the dump, and the `review` view reads it (FR-039, SC-013); add a step to `desktop/tests/analysis.py`: each analysis of the catalog runs on this record and returns a table; document in `docs/study-record.md` that this fixture is never regenerated
@@ -272,6 +276,47 @@ before Study resumes. Both session start and the in-session editor return use th
 - [ ] T059 Run `just test-commit` and confirm that the whole suite stays under five minutes
 
 ---
+
+## Requirement coverage
+
+The task texts above do not name these requirements. This table gives the tasks that
+implement and test each one.
+
+| Requirement | Tasks |
+| --- | --- |
+| FR-001 | T028, T041 (test T039) |
+| FR-002 | T027 (test T016) |
+| FR-003 | T023, T027 (test T016) |
+| FR-004 | T023 (tests T016, T018) |
+| FR-005 | T011, T023 |
+| FR-006 | T023, T027 (test T016), T093 |
+| FR-008 | T023, T027 (test T016) |
+| FR-009 | T025 (test T017) |
+| FR-010 | T021 (test T016) |
+| FR-011 | T036 (test T031) |
+| FR-012 | T021, T089 |
+| FR-013 | T021 (tests T016, T017) |
+| FR-014 | T034, T035 (test T031) |
+| FR-015 | T034, T037 (test T031) |
+| FR-016 | T035 (test T031) |
+| FR-018 | T011, T052 |
+| FR-020 | T041 (test T039) |
+| FR-021 | T043, T044 (test T042) |
+| FR-022 | T044 (test T042) |
+| FR-023 | T045, T046, T047, T092 |
+| FR-026 | T021 (test T016) |
+| FR-029 | T023 (test T018) |
+| FR-032 | T023, T024 (test T018) |
+| FR-035 | T012 (test T018) |
+| FR-043 | T090 |
+| FR-051 | T008, T018, T032, T042, T046, T050, T064, T065, T066, T075 |
+| FR-052 | T012, T060, T061 |
+| FR-053 | T068, T069, T074, T091 |
+| FR-054 | T068, T073, T074 |
+| FR-055 | T067, T072, T073 |
+| FR-057 | T060, T061, T083 |
+| SC-003 | T036 (test T031) |
+| SC-005 | T024 (test T017) |
 
 ## Dependencies & Execution Order
 
@@ -349,3 +394,18 @@ therefore needs Phase 3 and US2.
 - A change to the record's schema after T054 adds tables or nullable columns and a `schema` row. The T054 step is the proof that earlier rows stay readable.
 - An analysis that is added after this feature needs no task here: one module in `desktop/analysis/catalog/`, its test in `desktop/tests/analysis.py`, and `docs/analyses.md` as the guide.
 - Commit after each task. A failing test commit that a hook rejects uses the repository's sanctioned route for red commits.
+
+## Phase 12: Convergence
+
+- [ ] T083 Run the `desktop-boundaries` check at each commit of this repository, not only in `just test-commit`, and add a check that no file under `desktop/src/` writes learning data except through the bridge requests per FR-057 (partial)
+- [ ] T084 Record in the learning record the fact that the scheduler marked a card as a leech, as a new kind of entry that the core writes when the tag appears, and name the field in `docs/study-record.md` per FR-045 (partial)
+- [ ] T085 Add steps to the Study scenarios: a card graded Again is shown again in the same session after its learning delay, and the next card is readable within 0.5 s of a grade per T016, SC-002 (missing)
+- [ ] T086 Add steps to the Study scenarios: the `review` row of a grade has the expected time zone offset, deck path, folder, deck title, tags, session, position, kind, scheduler day, target recall, parameter set, daily limits, and writer; Escape with a card on screen leaves its `presentation` row with no `response` row per T018, FR-028 (partial)
+- [ ] T087 Add steps to the Study scenarios: every table and column of the record's schema is named in `docs/study-record.md`; the Study screen shows the path of the record and it is the file that the scenario reads; the calibration query and a query by deck of `contracts/learning-record.md` give the numbers that the grades imply per T019, FR-038, FR-042, SC-011 (missing)
+- [ ] T088 Add the file placement assertion of `desktop/tests/native-study.py` to the end of `desktop/tests/study.py` for the bridge processes per T078, SC-016 (missing)
+- [ ] T089 Add a scenario: a new store that is synchronized from the same decks has the same notes, deck placement, and content records as the first store per FR-012 (missing)
+- [ ] T090 Add a step to the offline native scenario: with Study open and a card graded, no process of the app opens a network connection per FR-043 (missing)
+- [ ] T091 Add a step to `desktop/tests/analysis.py`: a run of each analysis leaves the data, state, and cache directories with no new file other than logs, and a write to the record from an analysis fails per FR-053 (partial)
+- [ ] T092 Add a step to `desktop/tests/study-settings.py`: a session of one deck obeys the daily limits per FR-023 (partial)
+- [ ] T093 Decide from the spec whether the finished screen counts cards or grades and whether it counts the session or the day, then make `desktop/study/session.py` and its test agree; the count is now every grade of the day in the whole store per FR-006 (partial)
+- [ ] T094 Find the cause of the intermittent failure of `just desktop-test study-timing` (the Study screen did not open; 1 failure in 6 runs at revision 720f869, evidence in `test-history/20261120T075735.992939Z-study-timing/`) and correct it with a failing test first per T018, SC-014 (partial)
