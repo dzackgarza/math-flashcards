@@ -26,6 +26,7 @@ struct RequestSlots {
     foreground: Arc<Semaphore>,
     background: Arc<Semaphore>,
     diagram: Arc<Semaphore>,
+    diagram_job: Arc<Semaphore>,
 }
 
 struct StudyHost {
@@ -185,6 +186,8 @@ async fn request(
         }
         let queue = match scope.action.as_str() {
             "render-diagram" => &slots.diagram,
+            // The diagram job can run for minutes; it must not hold another slot.
+            "compile-diagrams" => &slots.diagram_job,
             "assets" | "asset-version" | "sources" | "checks" | "cached-checks" | "review"
             | "generate" | "list" | "problems" | "store-problems" | "cache-manifest" | "search"
             | "store-search" => &slots.background,
@@ -312,6 +315,7 @@ pub fn run() {
             foreground: Arc::new(Semaphore::new(1)),
             background: Arc::new(Semaphore::new(1)),
             diagram: Arc::new(Semaphore::new(1)),
+            diagram_job: Arc::new(Semaphore::new(1)),
         })
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_opener::init())

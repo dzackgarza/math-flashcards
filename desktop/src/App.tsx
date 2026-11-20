@@ -89,6 +89,12 @@ import {
 } from "./cards";
 import type { Side } from "./editor";
 import { replaceDiagram, type DiagramTarget } from "./diagrams";
+import {
+  diagramsCompiled,
+  diagramsPending,
+  replaceCompiledDiagrams,
+  type ShownDiagram,
+} from "./quiver";
 import { loadMathJax, previewHtml, type MathJaxRuntime } from "./math";
 import {
   CardRow,
@@ -121,6 +127,7 @@ import {
   cachedChecksSchema,
   assetVersionSchema,
   cacheRebuiltSchema,
+  diagramsCompiledSchema,
   documentSchema,
   generatedSchema,
   organizedSchema,
@@ -247,6 +254,15 @@ export default function App() {
     },
   });
   const [workspace, setWorkspace] = useState("");
+  const [diagramStatus, setDiagramStatus] = useState("");
+  // The diagram job: one run at a time; a request during a run queues one
+  // more run for the latest workspace (SC-002, Clarifications 2026-11-20).
+  const diagramJob = useRef<{ running: boolean; next: string | null }>({
+    running: false,
+    next: null,
+  });
+  // Shown diagrams that no saved deck holds, by workspace and key.
+  const shownDiagrams = useRef(new Map<string, ShownDiagram>());
   const [decks, setDecks] = useState<Entry[]>([]);
   const [sourceRecords, setSourceRecords] = useState(
     new Map<string, SourceResult>(),
@@ -1145,6 +1161,7 @@ export default function App() {
           );
           setConflict(false);
         }
+        scheduleDiagrams(open.session.root);
         void checkPaths(
           open.session.root,
           reconciliation.current,
@@ -1367,6 +1384,7 @@ export default function App() {
     workspaceRoot.current = null;
     changedPaths.current.clear();
     pendingSources.current.clear();
+    shownDiagrams.current.clear();
     const navigationToken = ++navigation.current;
     const generation = ++reconciliation.current;
     setTask("Loading");
@@ -1388,6 +1406,7 @@ export default function App() {
       setDecks(result.entries);
       if (published) return;
       published = true;
+      void compileDiagrams(result.session.root);
       // Release timing reads this mark to separate page work from launch.
       if (!performance.getEntriesByName("flashcards:tree-published").length)
         performance.mark("flashcards:tree-published");
@@ -2375,6 +2394,63 @@ export default function App() {
     refresh().catch((failure) => setError(String(failure)));
   }
 
+  async function compileDiagrams(root: string) {
+    const job = diagramJob.current;
+    job.next = root;
+    if (job.running) return;
+    job.running = true;
+    try {
+      while (job.next !== null) {
+        const target = job.next;
+        job.next = null;
+        setDiagramStatus("Compiling diagrams");
+        try {
+          const result = await request(
+            {
+              action: "compile-diagrams",
+              workspace: target,
+              shown: [...shownDiagrams.current.values()],
+            },
+            diagramsCompiledSchema,
+          );
+          if (target === workspaceRoot.current)
+            replaceCompiledDiagrams(result.diagrams);
+          setDiagramStatus(
+            result.failures.length
+              ? `Diagrams that did not compile: ${[...new Set(result.failures.map((failure) => failure.path))].join(", ")}`
+              : "Diagrams compiled",
+          );
+        } catch (failure) {
+          setDiagramStatus("Diagram job failed");
+          setError(String(failure));
+        }
+        diagramsCompiled.dispatchEvent(new Event("compiled"));
+      }
+    } finally {
+      job.running = false;
+    }
+  }
+
+  // An edit ends when saves stop for this interval (a default, not a finding).
+  const scheduleDiagrams = useDebouncedCallback(
+    (root: string) => void compileDiagrams(root),
+    2000,
+  );
+
+  useEffect(() => {
+    const add = (event: Event) => {
+      const root = workspaceRoot.current;
+      if (root === null) return;
+      const shown = (event as CustomEvent<ShownDiagram>).detail;
+      const key = JSON.stringify([shown.path, shown.source]);
+      if (shownDiagrams.current.has(key)) return;
+      shownDiagrams.current.set(key, shown);
+      scheduleDiagrams(root);
+    };
+    diagramsPending.addEventListener("pending", add);
+    return () => diagramsPending.removeEventListener("pending", add);
+  }, [scheduleDiagrams]);
+
   async function rebuildCache() {
     try {
       await request(
@@ -2398,6 +2474,15 @@ export default function App() {
     {
       group: "Actions",
       actions: [
+        ...(workspace
+          ? [
+              {
+                id: "compile-diagrams",
+                label: "Compile diagrams",
+                onClick: () => void compileDiagrams(workspace),
+              },
+            ]
+          : []),
         ...(document
           ? [
               {
@@ -2810,6 +2895,17 @@ export default function App() {
           {workspace && (
             <Text size="xs" c="dimmed" px="xs" role="status" aria-label="Study">
               {studyStatus}
+            </Text>
+          )}
+          {workspace && diagramStatus && (
+            <Text
+              size="xs"
+              c="dimmed"
+              px="xs"
+              role="status"
+              aria-label="Diagrams"
+            >
+              {diagramStatus}
             </Text>
           )}
           {workspace && (

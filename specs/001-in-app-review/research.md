@@ -314,6 +314,24 @@ the shared parser. Vite explicitly pre-bundles the lazy face's deep renderer imp
 and image dependencies: [dependency discovery](https://vite.dev/config/dep-optimization-options#optimizedeps-include)
 must not reload a window during a session.
 
+Diagrams are compiled before display (SC-002, Clarifications 2026-11-20). One job,
+`compile-diagrams` (`just compile-diagrams <workspace>` with the app closed), parses
+each deck with Pandoc, takes its TikZ-cd raw blocks, and compiles each through the
+TikZ filter of pandoc-config. The filter owns the cache and its key, so the job
+compiles only a diagram whose key has no SVG. The parse uses `--preserve-tabs`:
+Pandoc's Markdown reader otherwise expands tabs, and the job would compile a text
+that differs from the authored source the viewer looks up. The app starts the job
+when a workspace opens, from the "Compile diagrams" action, and 2 s after the last
+save (a default, not a finding). The job returns every SVG; the viewer shows the
+SVG of the last job from memory. A backend request costs about 0.8 s, most of it
+the Python start, so a request would exceed SC-002. For a source that the last job
+did not compile, the viewer sends `render-diagram`, which runs the filter with
+`TIKZ_CACHE_ONLY=1`: a cache hit returns the SVG, and a miss returns no SVG and
+shows "Diagram not compiled yet". The app then adds that source to the next job,
+because a source such as the TikZ-cd that Quiver's importer gives for a legacy
+Quiver link is in no saved deck. Requests of the job have their own queue in the
+Vite and Tauri bridges, so a long compile holds no other request.
+
 ## R9. Scheduling settings
 
 **Decision**: One Anki deck-options preset for all decks, with these values set when the

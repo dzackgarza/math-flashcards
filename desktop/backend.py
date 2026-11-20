@@ -275,6 +275,19 @@ class DiagramPreviewInput(DeckInput):
     source: str = Field(min_length=27, max_length=100_000)
 
 
+class DiagramSource(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    path: str
+    source: str = Field(min_length=27, max_length=100_000)
+
+
+class CompileDiagramsInput(Input):
+    action: Literal["compile-diagrams"]
+    # Diagrams that a view shows but no saved deck holds, such as the TikZ-cd
+    # that Quiver's importer gives for a legacy Quiver link.
+    shown: list[DiagramSource] = Field(default_factory=list)
+
+
 class ReviewInput(Input):
     action: Literal["review"]
     assets: Digest
@@ -310,6 +323,7 @@ type Request = Annotated[
     | SaveInput
     | GenerateInput
     | DiagramPreviewInput
+    | CompileDiagramsInput
     | OrganizeInput
     | ReviewInput
     | ManifestInput
@@ -347,7 +361,25 @@ class RenderedDeck(BaseModel):
 class RenderedDiagram(BaseModel):
     path: str
     source: str
+    # None: the diagram job has not compiled this source yet.
+    svg: str | None
+
+
+class DiagramFailure(BaseModel):
+    path: str
+    message: str
+
+
+class CompiledDiagram(BaseModel):
+    path: str
+    source: str
     svg: str
+
+
+class DiagramsCompiled(BaseModel):
+    # Every cached diagram of the workspace, so a viewer shows it at once.
+    diagrams: list[CompiledDiagram]
+    failures: list[DiagramFailure]
 
 
 class BuildRecord(BaseModel):
@@ -1047,7 +1079,7 @@ def tikz_renderer_identity() -> str:
     )
 
 
-def render_tikzcd_svg(source: str, path: Path) -> str:
+def render_tikzcd_svg(source: str, path: Path, cache_only: bool = False) -> str | None:
     """Compile the authored diagram with the *same* renderer as Anki export.
 
     The Quiver UI paints many independently transformed SVG layers. Its CSS
@@ -1080,6 +1112,9 @@ def render_tikzcd_svg(source: str, path: Path) -> str:
         "SVG_DIR": str(output_dir),
         "TIKZ_RENDER_CONTEXT_HASH": identity,
     }
+    if cache_only:
+        # The filter returns a cached figure or reports a miss without a compile.
+        env["TIKZ_CACHE_ONLY"] = "1"
 
     process = subprocess.run(
         [
@@ -1098,6 +1133,8 @@ def render_tikzcd_svg(source: str, path: Path) -> str:
         capture_output=True,
         check=False,
     )
+    if cache_only and "[tikzcd-cache-miss]" in process.stderr:
+        return None
     image = re.search(r"<svg\b[\s\S]*?</svg>", process.stdout)
     if process.returncode or image is None:
         raise ValueError(
@@ -1117,16 +1154,34 @@ def render_diagrams(source: str, path: Path) -> tuple[str, str]:
     # Work on Pandoc's actual RawBlock nodes: a code fence illustrating
     # TikZ-cd, or a quotation containing it, must not become a diagram.
     parsed = subprocess.run(
-        ["pandoc", "-f", "markdown", "-t", "json"],
+        # The diagram text must stay as authored: it is the cache key.
+        # https://pandoc.org/MANUAL.html#option--preserve-tabs
+        ["pandoc", "-f", "markdown", "-t", "json", "--preserve-tabs"],
         input=source,
         text=True,
         capture_output=True,
         check=True,
     )
     document = json.loads(parsed.stdout)
+    blocks = diagram_blocks(document)
+    for node in blocks:
+        svg = render_tikzcd_svg(node["c"][1], path)
+        assert svg is not None
+        node["c"] = [
+            "html",
+            '<div class="anki-commutative-diagram">\n' + svg + "\n</div>",
+        ]
+    return (
+        ("json", json.dumps(document, ensure_ascii=False))
+        if blocks
+        else ("markdown", source)
+    )
 
+
+def diagram_blocks(document: object) -> list[dict]:
+    """Pandoc's TikZ-cd RawBlock nodes of a parsed document, in any nesting."""
+    blocks: list[dict] = []
     pending: list[object] = [document]
-    converted = 0
     while pending:
         node = pending.pop()
         if isinstance(node, dict):
@@ -1139,22 +1194,53 @@ def render_diagrams(source: str, path: Path) -> tuple[str, str]:
                 and isinstance(content[1], str)
                 and TIKZ_ENVIRONMENT.fullmatch(content[1].strip())
             ):
-                node["c"] = [
-                    "html",
-                    '<div class="anki-commutative-diagram">\n'
-                    + render_tikzcd_svg(content[1], path)
-                    + "\n</div>",
-                ]
-                converted += 1
+                blocks.append(node)
             else:
                 pending.extend(node.values())
         elif isinstance(node, list):
             pending.extend(node)
-    return (
-        ("json", json.dumps(document, ensure_ascii=False))
-        if converted
-        else ("markdown", source)
-    )
+    return blocks
+
+
+def compile_diagrams(
+    root: Path, shown: list[tuple[Path, str]] | None = None
+) -> DiagramsCompiled:
+    """Compile every TikZ-cd diagram of a workspace into the shared cache.
+
+    This is the one compile job. The viewer shows the SVGs it returns, or
+    reads the cache only (`render-diagram`), so a card never waits for lualatex.
+    `shown` adds diagrams that a view shows but no saved deck holds.
+    """
+    diagrams: list[tuple[Path, str]] = []
+    for path in deck_paths(root):
+        source = path.read_text()
+        if not TIKZ_ENVIRONMENT.search(source):
+            continue
+        parsed = subprocess.run(
+            # The diagram text must stay as authored: it is the cache key.
+            # https://pandoc.org/MANUAL.html#option--preserve-tabs
+            ["pandoc", "-f", "markdown", "-t", "json", "--preserve-tabs"],
+            input=source,
+            text=True,
+            capture_output=True,
+            check=True,
+        )
+        diagrams += [
+            (path, node["c"][1]) for node in diagram_blocks(json.loads(parsed.stdout))
+        ]
+    result = DiagramsCompiled(diagrams=[], failures=[])
+    for path, source in dict.fromkeys(diagrams + (shown or [])):
+        relative = str(path.relative_to(root))
+        try:
+            svg = render_tikzcd_svg(source, path)
+        except ValueError as error:
+            result.failures.append(DiagramFailure(path=relative, message=str(error)))
+        else:
+            assert svg is not None
+            result.diagrams.append(
+                CompiledDiagram(path=relative, source=source, svg=svg)
+            )
+    return result
 
 
 @cache
@@ -1493,6 +1579,7 @@ def dispatch(
     | Document
     | Generated
     | RenderedDiagram
+    | DiagramsCompiled
     | Organized
     | Review
     | Manifest
@@ -1526,7 +1613,12 @@ def dispatch(
         return RenderedDiagram(
             path=request.path,
             source=request.source,
-            svg=render_tikzcd_svg(request.source, path),
+            svg=render_tikzcd_svg(request.source, path, cache_only=True),
+        )
+    if isinstance(request, CompileDiagramsInput):
+        return compile_diagrams(
+            root,
+            [(deck_path(root, shown.path), shown.source) for shown in request.shown],
         )
     if isinstance(request, ManifestCacheInput):
         return manifest_cache(root, request)
@@ -1741,6 +1833,16 @@ def build(workspace: Path) -> None:
         print(result.package)
 
 
+def diagrams(workspace: Path) -> None:
+    """Compile every TikZ-cd diagram of a workspace; exit 1 if one fails."""
+    result = compile_diagrams(workspace_path(str(workspace)))
+    print(f"Compiled {len(result.diagrams)} diagrams.")
+    for failure in result.failures:
+        print(f"{failure.path}: {failure.message}", file=sys.stderr)
+    if result.failures:
+        sys.exit(1)
+
+
 def main() -> None:
     """Read one typed request from stdin and write its result as JSON."""
     request = TypeAdapter(Request).validate_json(sys.stdin.readline())
@@ -1776,4 +1878,5 @@ if __name__ == "__main__":
         app = cyclopts.App()
         app.command(prepare)
         app.command(build)
+        app.command(diagrams)
         app()

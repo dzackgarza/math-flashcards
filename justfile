@@ -6,6 +6,10 @@ default:
 build: desktop-dependencies
     "$(uv python find --script desktop/backend.py)" desktop/backend.py build decks
 
+# Compile every TikZ-cd diagram of a workspace into the app's diagram cache; the app need not run
+compile-diagrams workspace="decks":
+    "$(uv python find --script desktop/backend.py)" desktop/backend.py diagrams "{{workspace}}"
+
 # Sanity-check that every deck is well-formed new-format Markdown
 test: check-math
     uv run --upgrade scripts/check-decks.py
@@ -89,12 +93,10 @@ desktop-frontend:
     cd desktop && bunx vite build
 
 # Verify the shared editor's rendering, wrapping, and source edits
-desktop-editor-test: desktop-browser
-    cd desktop && bunx start-server-and-test 'just -f ../justfile desktop-web' http-get://127.0.0.1:1420 'uv run --upgrade tests/editor.py'
+desktop-editor-test: (desktop-test "editor")
 
 # Graphical Quiver import/creation and offline SVG export through real backend
-desktop-diagram-test: desktop-browser
-    cd desktop && bunx start-server-and-test 'just -f ../justfile desktop-web' http-get://127.0.0.1:1420 'uv run --upgrade tests/quiver.py'
+desktop-diagram-test: (desktop-test "quiver")
 
 # Exercise the editor against its real backend with an isolated server
 desktop-test scenario="full": desktop-browser
@@ -117,6 +119,8 @@ desktop-test scenario="full": desktop-browser
     scenarios["study-copy"] = "xvfb-run -a uv run --upgrade tests/study-copy.py"
     scenarios["study-preservation"] = "xvfb-run -a uv run --upgrade tests/study-preservation.py"
     scenarios["study-keys"] = "xvfb-run -a uv run --upgrade tests/study-keys.py"
+    scenarios["editor"] = "uv run --upgrade tests/editor.py"
+    scenarios["quiver"] = "uv run --upgrade tests/quiver.py"
     environment.setdefault("UV_CACHE_DIR", subprocess.check_output(["uv", "cache", "dir"], text=True).strip())
     environment.setdefault("PLAYWRIGHT_BROWSERS_PATH", str(Path(os.environ.get("XDG_CACHE_HOME", str(Path.home() / ".cache"))) / "ms-playwright"))
     with evidence("browser-{{scenario}}", Path("desktop/tests/fixtures")) as artifacts, tempfile.TemporaryDirectory(prefix="flashcards-browser-cache-") as directory:

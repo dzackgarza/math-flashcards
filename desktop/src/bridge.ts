@@ -113,6 +113,11 @@ export type Request =
   | { action: "rebuild-cache"; workspace: string; generation: number }
   | { action: "list"; workspace: string }
   | {
+      action: "compile-diagrams";
+      workspace: string;
+      shown: { path: string; source: string }[];
+    }
+  | {
       action: "render-diagram";
       workspace: string;
       path: string;
@@ -348,7 +353,18 @@ export const generatedSchema = z.object({
 export const renderedDiagramSchema = z.object({
   path: deckPathSchema,
   source: z.string(),
-  svg: z.string().startsWith("<svg"),
+  // null: the diagram job has not compiled this source yet.
+  svg: z.string().startsWith("<svg").nullable(),
+});
+export const diagramsCompiledSchema = z.object({
+  diagrams: z.array(
+    z.object({
+      path: deckPathSchema,
+      source: z.string(),
+      svg: z.string().startsWith("<svg"),
+    }),
+  ),
+  failures: z.array(z.object({ path: deckPathSchema, message: z.string() })),
 });
 export type Summary = z.infer<typeof summarySchema>;
 export type Pending = z.infer<typeof reviewSchema>["decks"][number];

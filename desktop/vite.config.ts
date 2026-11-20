@@ -49,6 +49,8 @@ function workbenchBackend(): Plugin {
       const foreground = pLimit(1);
       const background = pLimit(1);
       const diagram = pLimit(1);
+      // The diagram job can run for minutes; it must not hold another queue.
+      const diagramJob = pLimit(1);
       const study = pLimit(1);
       const release = z
         .object({ version: z.string() })
@@ -269,23 +271,25 @@ function workbenchBackend(): Plugin {
         const queue =
           action === "render-diagram"
             ? diagram
-            : [
-                  "assets",
-                  "asset-version",
-                  "problems",
-                  "store-problems",
-                  "search",
-                  "store-search",
-                  "cache-manifest",
-                  "sources",
-                  "checks",
-                  "cached-checks",
-                  "review",
-                  "generate",
-                  "list",
-                ].includes(action)
-              ? background
-              : foreground;
+            : action === "compile-diagrams"
+              ? diagramJob
+              : [
+                    "assets",
+                    "asset-version",
+                    "problems",
+                    "store-problems",
+                    "search",
+                    "store-search",
+                    "cache-manifest",
+                    "sources",
+                    "checks",
+                    "cached-checks",
+                    "review",
+                    "generate",
+                    "list",
+                  ].includes(action)
+                ? background
+                : foreground;
         await queue(async () => {
           let python: string;
           try {

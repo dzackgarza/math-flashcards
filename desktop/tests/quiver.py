@@ -139,27 +139,42 @@ def main() -> None:
                 assert saved.count(r"\begin{tikzcd}") == 2
                 authored = re.search(r"\\begin\{tikzcd\}[\s\S]*?\\end\{tikzcd\}", saved)
                 assert authored is not None
+                # The diagram job compiles the saved diagram; the preview then
+                # shows exactly the job's SVG for the authored source.
                 compiled = page.request.post(
                     "http://127.0.0.1:1420/api/request",
                     headers={"x-flashcards": "1", "content-type": "application/json"},
                     data=json.dumps(
                         {
-                            "action": "render-diagram",
+                            "action": "compile-diagrams",
                             "workspace": str(root),
-                            "path": "Diagrams.md",
-                            "source": authored.group(),
+                            "shown": [],
                         }
                     ),
                     timeout=120000,
                 )
                 assert compiled.ok, compiled.text()
                 response = compiled.json()
-                assert response["source"] == authored.group()
+                assert response["failures"] == [], response["failures"]
+                svgs = [
+                    diagram["svg"]
+                    for diagram in response["diagrams"]
+                    if diagram["path"] == "Diagrams.md"
+                    and diagram["source"].strip() == authored.group().strip()
+                ]
+                assert len(svgs) == 1, (
+                    authored.group(),
+                    [diagram["source"] for diagram in response["diagrams"]],
+                )
                 now = back.get_by_role("img", name="Rendered commutative diagram")
                 expect(now).to_be_visible(timeout=120000)
-                assert (
-                    unquote(now.get_attribute("src").split(",", 1)[1])
-                    == response["svg"]
+                page.wait_for_function(
+                    """svg => [...document.querySelectorAll(
+                        '.side-editor.back img[alt="Rendered commutative diagram"]'
+                    )].some(image => decodeURIComponent(
+                        image.src.split(",", 2)[1]) === svg)""",
+                    arg=svgs[0],
+                    timeout=120000,
                 )
                 expect(back.get_by_role("button", name="Edit in Quiver")).to_have_count(
                     1

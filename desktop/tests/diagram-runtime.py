@@ -33,25 +33,35 @@ def main(artifacts: Path) -> None:
             "XDG_CONFIG_HOME": str(home / "config"),
             "XDG_STATE_HOME": str(home / "state"),
         }
-        result = subprocess.run(
-            [runtime, "-I", str(desktop / "backend.py")],
-            input=json.dumps(
-                {
-                    "action": "render-diagram",
-                    "workspace": str(workspace),
-                    "path": "Diagram.md",
-                    "source": diagram,
-                }
+        def bridge(request: dict[str, str]) -> dict:
+            result = subprocess.run(
+                [runtime, "-I", str(desktop / "backend.py")],
+                input=json.dumps(request) + "\n",
+                text=True,
+                capture_output=True,
+                env=environment,
+                check=False,
             )
-            + "\n",
-            text=True,
-            capture_output=True,
-            env=environment,
-            check=False,
-        )
-        (artifacts / "bridge.log").write_text(result.stderr)
-        assert result.returncode == 0, result.stderr
-        svg = json.loads(result.stdout)["svg"]
+            with (artifacts / "bridge.log").open("a") as log:
+                log.write(result.stderr)
+            assert result.returncode == 0, result.stderr
+            return json.loads(result.stdout)
+
+        preview = {
+            "action": "render-diagram",
+            "workspace": str(workspace),
+            "path": "Diagram.md",
+            "source": diagram,
+        }
+        # The preview reads the cache only; the diagram job compiles.
+        assert bridge(preview)["svg"] is None
+        job = bridge({"action": "compile-diagrams", "workspace": str(workspace)})
+        assert job["failures"] == [], job["failures"]
+        assert [(d["path"], d["source"].strip()) for d in job["diagrams"]] == [
+            ("Diagram.md", diagram.strip())
+        ], job["diagrams"]
+        svg = bridge(preview)["svg"]
+        assert svg == job["diagrams"][0]["svg"]
         tree = ElementTree.fromstring(svg)
         assert tree.tag == "{http://www.w3.org/2000/svg}svg"
         assert tree.findall(".//{http://www.w3.org/2000/svg}path")

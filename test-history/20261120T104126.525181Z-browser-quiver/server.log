@@ -1,0 +1,36 @@
+1: starting server using command "just -f ../justfile desktop-web"
+and when url "[ 'http-get://127.0.0.1:1420' ]" is responding with HTTP status code 200
+running tests using command "uv run --upgrade tests/quiver.py"
+
+cd desktop && bunx vite --host 127.0.0.1
+
+  VITE v8.3.8  ready in 220 ms
+
+  ➜  Local:   http://127.0.0.1:1420/
+[vite-plugin-static-copy] Collected 386 items.
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/quiver.py", line 258, in <module>
+    main()
+    ~~~~^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/quiver.py", line 165, in main
+    assert len(svgs) == 1, (
+           ^^^^^^^^^^^^^^
+AssertionError: ('\\begin{tikzcd}\n\t{} &&&&&& {\\forall L} && \\\\\n\t\\vdots \\\\\n\t{A_{i+1}} &&&&&& {\\underset{\\longleftarrow}{\\mathrm{lim}}\\, F } \\\\\n\t\\vdots &&&& \\cdots & {F(A_{i-1})} & \\cdots & {F(A_{i+1})} & \\cdots \\\\\n\t{A_{i-1}} &&&&&& {\\underset{\\longrightarrow}{\\mathrm{colim}}\\, F} \\\\\n\t\\vdots \\\\\n\t&&&&&& {\\forall C}\n\t\\arrow["{\\exists !}"\', dashed, from=1-7, to=3-7]\n\t\\arrow[curve={height=12pt}, from=1-7, to=4-6]\n\t\\arrow[curve={height=-12pt}, from=1-7, to=4-8]\n\t\\arrow[from=3-1, to=2-1]\n\t\\arrow[from=3-7, to=4-6]\n\t\\arrow[from=3-7, to=4-8]\n\t\\arrow[""{name=0, anchor=center, inner sep=0}, from=4-1, to=3-1]\n\t\\arrow[""{name=1, anchor=center, inner sep=0}, from=4-5, to=4-6]\n\t\\arrow[from=4-6, to=4-7]\n\t\\arrow[from=4-6, to=5-7]\n\t\\arrow[curve={height=12pt}, from=4-6, to=7-7]\n\t\\arrow[from=4-7, to=4-8]\n\t\\arrow[from=4-8, to=4-9]\n\t\\arrow[from=4-8, to=5-7]\n\t\\arrow[curve={height=-12pt}, from=4-8, to=7-7]\n\t\\arrow[from=5-1, to=4-1]\n\t\\arrow["{\\exists !}", dashed, from=5-7, to=7-7]\n\t\\arrow[from=6-1, to=5-1]\n\t\\arrow["F", curve={height=-18pt}, between={0.2}{0.8}, Rightarrow, nfold, from=0, to=1]\n\\end{tikzcd}', ['\\begin{tikzcd}\n    {} &&&&&& {\\forall L} && \\\\\n    \\vdots \\\\\n    {A_{i+1}} &&&&&& {\\underset{\\longleftarrow}{\\mathrm{lim}}\\, F } \\\\\n    \\vdots &&&& \\cdots & {F(A_{i-1})} & \\cdots & {F(A_{i+1})} & \\cdots \\\\\n    {A_{i-1}} &&&&&& {\\underset{\\longrightarrow}{\\mathrm{colim}}\\, F} \\\\\n    \\vdots \\\\\n    &&&&&& {\\forall C}\n    \\arrow["{\\exists !}"\', dashed, from=1-7, to=3-7]\n    \\arrow[curve={height=12pt}, from=1-7, to=4-6]\n    \\arrow[curve={height=-12pt}, from=1-7, to=4-8]\n    \\arrow[from=3-1, to=2-1]\n    \\arrow[from=3-7, to=4-6]\n    \\arrow[from=3-7, to=4-8]\n    \\arrow[""{name=0, anchor=center, inner sep=0}, from=4-1, to=3-1]\n    \\arrow[""{name=1, anchor=center, inner sep=0}, from=4-5, to=4-6]\n    \\arrow[from=4-6, to=4-7]\n    \\arrow[from=4-6, to=5-7]\n    \\arrow[curve={height=12pt}, from=4-6, to=7-7]\n    \\arrow[from=4-7, to=4-8]\n    \\arrow[from=4-8, to=4-9]\n    \\arrow[from=4-8, to=5-7]\n    \\arrow[curve={height=-12pt}, from=4-8, to=7-7]\n    \\arrow[from=5-1, to=4-1]\n    \\arrow["{\\exists !}", dashed, from=5-7, to=7-7]\n    \\arrow[from=6-1, to=5-1]\n    \\arrow["F", curve={height=-18pt}, between={0.2}{0.8}, Rightarrow, nfold, from=0, to=1]\n\\end{tikzcd}'])
+Error: Command failed with exit code 1: uv run --upgrade tests/quiver.py
+    at makeError (/home/dzack/gitclones/math-flashcards/desktop/node_modules/execa/lib/error.js:60:11)
+    at handlePromise (/home/dzack/gitclones/math-flashcards/desktop/node_modules/execa/index.js:118:26)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  shortMessage: 'Command failed with exit code 1: uv run --upgrade tests/quiver.py',
+  command: 'uv run --upgrade tests/quiver.py',
+  escapedCommand: '"uv run --upgrade tests/quiver.py"',
+  exitCode: 1,
+  signal: undefined,
+  signalDescription: undefined,
+  stdout: undefined,
+  stderr: undefined,
+  failed: true,
+  timedOut: false,
+  isCanceled: false,
+  killed: false
+}
+error: recipe `desktop-web` was terminated on line 83 by signal 2

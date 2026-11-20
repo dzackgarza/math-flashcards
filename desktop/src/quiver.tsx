@@ -4,6 +4,32 @@ import { z } from "zod";
 import { request, assetsSchema, renderedDiagramSchema } from "./bridge";
 import { EMPTY_TIKZCD, type DiagramTarget } from "./diagrams";
 
+// The app's diagram job dispatches "compiled" after each run; a preview
+// that found no cached SVG asks the cache again.
+export const diagramsCompiled = new EventTarget();
+
+// A preview with no cached SVG dispatches "pending" with its deck path and
+// source; the app adds it to the next run of the diagram job.
+export const diagramsPending = new EventTarget();
+export type ShownDiagram = { path: string; source: string };
+
+// The SVGs of the latest diagram job, by deck path and authored source. A
+// preview shows one at once; a request costs a backend start (about 0.8 s).
+const compiledDiagrams = new Map<string, string>();
+const diagramKey = (path: string, source: string) =>
+  JSON.stringify([path, source.trim()]);
+
+export function replaceCompiledDiagrams(
+  diagrams: { path: string; source: string; svg: string }[],
+) {
+  compiledDiagrams.clear();
+  for (const diagram of diagrams)
+    compiledDiagrams.set(diagramKey(diagram.path, diagram.source), diagram.svg);
+}
+
+const svgImage = (svg: string) =>
+  "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+
 const messageSchema = z.object({
   type: z.string().optional(),
   event: z.string().optional(),
@@ -121,6 +147,14 @@ export function QuiverPreview({
     image: string;
   } | null>(null);
   const [expanded, setExpanded] = useState(false);
+  const [pending, setPending] = useState(false);
+  const [compiledRuns, setCompiledRuns] = useState(0);
+  useEffect(() => {
+    if (!pending) return;
+    const ask = () => setCompiledRuns((runs) => runs + 1);
+    diagramsCompiled.addEventListener("compiled", ask);
+    return () => diagramsCompiled.removeEventListener("compiled", ask);
+  }, [pending]);
   useEffect(() => {
     setSource(target.kind === "tikzcd" ? target.source : null);
     setError("");
@@ -134,8 +168,14 @@ export function QuiverPreview({
   useEffect(() => {
     if (source === null) return;
     let current = true;
-    setRendered(null);
+    setPending(false);
     setError("");
+    const compiled = compiledDiagrams.get(diagramKey(path, source));
+    if (compiled !== undefined) {
+      setRendered({ source, image: svgImage(compiled) });
+      return;
+    }
+    setRendered(null);
     void request(
       { action: "render-diagram", workspace, path, source },
       renderedDiagramSchema,
@@ -146,12 +186,16 @@ export function QuiverPreview({
           setError("The diagram preview belongs to another document revision.");
           return;
         }
-        setRendered({
-          source,
-          image:
-            "data:image/svg+xml;charset=utf-8," +
-            encodeURIComponent(result.svg),
-        });
+        if (result.svg === null) {
+          setPending(true);
+          diagramsPending.dispatchEvent(
+            new CustomEvent<ShownDiagram>("pending", {
+              detail: { path, source },
+            }),
+          );
+          return;
+        }
+        setRendered({ source, image: svgImage(result.svg) });
       },
       (failure) => {
         if (current) setError(String(failure));
@@ -160,7 +204,7 @@ export function QuiverPreview({
     return () => {
       current = false;
     };
-  }, [source, workspace, path]);
+  }, [source, workspace, path, compiledRuns]);
   return (
     <>
       {target.kind === "quiver-url" && source === null && !error && (
@@ -175,7 +219,9 @@ export function QuiverPreview({
       {error && <Alert color="red">{error}</Alert>}
       {source !== null && !rendered && !error && (
         <Text size="xs" c="dimmed">
-          Compiling diagram…
+          {pending
+            ? "Diagram not compiled yet. The diagram job compiles it."
+            : "Loading diagram…"}
         </Text>
       )}
       {source !== null && rendered?.source === source && !error && (
