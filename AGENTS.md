@@ -100,7 +100,6 @@ follow. Constitution principle X governs each of them.
 - **No evidence is a result.** Label a decision without research as a default and name
   its true source. Do not present it as a finding.
 
-||||||| 5610723
 <!-- agent-memory:start -->
 # Agent memory
 
