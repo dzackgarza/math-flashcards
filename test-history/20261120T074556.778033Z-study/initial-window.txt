@@ -1,0 +1,76 @@
+Math Flashcards
+workspace
+Search
+Ctrl K
+Algebra
+New:
+8
+Learning:
+0
+Review:
+0
+Basics
+New:
+4
+Learning:
+0
+Review:
+0
+
+New · Learning · Review
+
+New:
+12
+Learning:
+0
+Review:
+0
+
+Study cards ready
+
+Workspace checks complete
+
+Problems
+Update Anki packages
+3
+New deck
+Basics
+
+4 cards
+
+Evaluate |−2|.
+|−2| =2.
+New
+Which shape is shown?
+A triangle.
+New
+Evaluate 32.
+9.
+New
+Evaluate 2 ⋅3.
+6.
+New
+
+Drag cards to reorder them, or onto a deck to move them. Ctrl-click or Shift-click selects several.
+
+4 changes not in the Anki package
+
+Card 2 of 4
+
+Delete card
+FRONT
+New diagram
+Which shape is shown?
+
+
+BACK
+New diagram
+A triangle.
+
+
+
+
+[shape]: triangle.svg
+[Collapsed triangle]: triangle.svg
+Tags
+image

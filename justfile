@@ -94,6 +94,9 @@ desktop-test scenario="full":
     from evidence import evidence
     scenarios = {"full": "uv run --upgrade tests/workbench.py", "startup": "uv run --upgrade tests/workbench.py --startup", "study": "xvfb-run -a uv run --upgrade tests/study.py", "study-changes": "xvfb-run -a uv run --upgrade tests/study-changes.py", "study-timing": "xvfb-run -a uv run --upgrade tests/study-timing.py", "study-scopes": "xvfb-run -a uv run --upgrade tests/study-scopes.py", "study-corrections": "xvfb-run -a uv run --upgrade tests/study-corrections.py", "study-draft": "xvfb-run -a uv run --upgrade tests/study-draft.py", "study-settings": "xvfb-run -a uv run --upgrade tests/study-settings.py"}
     environment = os.environ.copy()
+    # A window must open on the display that xvfb-run supplies. Chromium and GTK
+    # use the caller's Wayland session when this variable is set.
+    environment.pop("WAYLAND_DISPLAY", None)
     scenarios["study-fit"] = "xvfb-run -a uv run --upgrade tests/study-fit.py"
     scenarios["study-statistics"] = "xvfb-run -a uv run --upgrade tests/study-statistics.py"
     scenarios["study-copy"] = "xvfb-run -a uv run --upgrade tests/study-copy.py"
@@ -138,19 +141,19 @@ desktop-source-test:
 
 # Capture and exercise the built native window on an isolated display
 desktop-native-test *arguments:
-    xvfb-run -a -s '-screen 0 1600x1200x24' dbus-run-session -- uv run --upgrade desktop/tests/native.py {{arguments}}
+    env -u WAYLAND_DISPLAY xvfb-run -a -s '-screen 0 1600x1200x24' dbus-run-session -- uv run --upgrade desktop/tests/native.py {{arguments}}
 
 # Verify the Study host lifecycle through the built native bridge
 desktop-native-study-test:
-    xvfb-run -a -s '-screen 0 1600x1200x24' dbus-run-session -- uv run desktop/tests/native-study.py
+    env -u WAYLAND_DISPLAY xvfb-run -a -s '-screen 0 1600x1200x24' dbus-run-session -- uv run desktop/tests/native-study.py
 
 # Launch the installed desktop entry and exercise its native export
 desktop-installed-test *arguments:
-    xvfb-run -a -s '-screen 0 1600x1200x24' uv run --upgrade desktop/tests/native.py --entry '{{env_var_or_default("XDG_DATA_HOME", env_var("HOME") / ".local/share")}}/applications/dev.math.flashcards.desktop' {{arguments}}
+    env -u WAYLAND_DISPLAY xvfb-run -a -s '-screen 0 1600x1200x24' uv run --upgrade desktop/tests/native.py --entry '{{env_var_or_default("XDG_DATA_HOME", env_var("HOME") / ".local/share")}}/applications/dev.math.flashcards.desktop' {{arguments}}
 
 # Update a running temporary installation and verify both native sessions offline
 desktop-update-test:
-    xvfb-run -a -s '-screen 0 1600x1200x24' dbus-run-session -- uv run --upgrade desktop/tests/native.py --updates --offline
+    env -u WAYLAND_DISPLAY xvfb-run -a -s '-screen 0 1600x1200x24' dbus-run-session -- uv run --upgrade desktop/tests/native.py --updates --offline
 
 # Apply the canonical formatters to desktop sources
 desktop-format:
