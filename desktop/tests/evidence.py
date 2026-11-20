@@ -31,7 +31,17 @@ def evidence(label: str, fixtures: Path) -> Iterator[Path]:
         ["git", "diff", "HEAD", "--", "desktop", "justfile"], cwd=repository
     )
     paths = subprocess.check_output(
-        ["git", "ls-files", "-z", "--cached", "--others", "--exclude-standard", "--", "desktop", "justfile"],
+        [
+            "git",
+            "ls-files",
+            "-z",
+            "--cached",
+            "--others",
+            "--exclude-standard",
+            "--",
+            "desktop",
+            "justfile",
+        ],
         cwd=repository,
         text=True,
     ).split("\0")
@@ -85,6 +95,42 @@ def evidence(label: str, fixtures: Path) -> Iterator[Path]:
                     ),
                 },
                 indent=2,
-            ) + "\n"
+            )
+            + "\n"
         )
         print(f"Test evidence: {directory}", flush=True)
+
+
+def main() -> None:
+    """Run one test command in a child process and retain its evidence.
+
+    Usage: evidence.py LABEL FIXTURES -- COMMAND...
+    The command's output goes to command.log; its wall time is the run's
+    elapsed time, and its exit status is the run's result.
+    """
+    label, fixtures, separator, *command = sys.argv[1:]
+    assert separator == "--" and command, main.__doc__
+    with evidence(label, Path(fixtures)) as directory:
+        with (directory / "command.log").open("w") as log:
+            started = time.perf_counter()
+            status = subprocess.run(
+                command, stdout=log, stderr=subprocess.STDOUT
+            ).returncode
+            (directory / "command.json").write_text(
+                json.dumps(
+                    {
+                        "command": command,
+                        "status": status,
+                        "seconds": time.perf_counter() - started,
+                    },
+                    indent=2,
+                )
+                + "\n"
+            )
+        if status:
+            sys.stdout.write((directory / "command.log").read_text()[-4000:])
+            raise SystemExit(status)
+
+
+if __name__ == "__main__":
+    main()

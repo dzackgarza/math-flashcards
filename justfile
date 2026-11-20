@@ -155,23 +155,23 @@ desktop-analysis-test:
 
 # Verify isolation of scheduling, analyses, and individual analysis modules
 desktop-boundaries:
-    uv run --no-project desktop/tests/boundaries.py
+    uv run --no-project desktop/tests/evidence.py boundaries desktop/tests/fixtures -- uv run --no-project desktop/tests/boundaries.py
 
 # Exercise card organization and real multi-deck file changes
 desktop-organization-test: desktop-browser
-    uv run --upgrade desktop/tests/organization.py
+    uv run --no-project desktop/tests/evidence.py organization desktop/tests/fixtures -- uv run --upgrade desktop/tests/organization.py
 
 # Verify source preservation and card boundaries against Pandoc
 desktop-source-test:
-    cd desktop && bun test tests/source-roundtrip.test.ts tests/paired-cards.test.ts tests/organization.test.ts tests/workspace.test.ts
+    uv run --no-project desktop/tests/evidence.py source desktop/tests/fixtures -- bun test --cwd desktop tests/source-roundtrip.test.ts tests/paired-cards.test.ts tests/organization.test.ts tests/workspace.test.ts
 
 # Capture and exercise the built native window on an isolated display
 desktop-native-test *arguments:
-    env -u WAYLAND_DISPLAY xvfb-run -a -s '-screen 0 1600x1200x24' dbus-run-session -- uv run --upgrade desktop/tests/native.py {{arguments}}
+    uv run --no-project desktop/tests/evidence.py native desktop/tests/fixtures -- env -u WAYLAND_DISPLAY xvfb-run -a -s '-screen 0 1600x1200x24' dbus-run-session -- uv run --upgrade desktop/tests/native.py {{arguments}}
 
 # Verify the Study host lifecycle through the built native bridge
 desktop-native-study-test:
-    env -u WAYLAND_DISPLAY xvfb-run -a -s '-screen 0 1600x1200x24' dbus-run-session -- uv run desktop/tests/native-study.py
+    uv run --no-project desktop/tests/evidence.py native-study desktop/tests/fixtures -- env -u WAYLAND_DISPLAY xvfb-run -a -s '-screen 0 1600x1200x24' dbus-run-session -- uv run desktop/tests/native-study.py
 
 # Launch the installed desktop entry and exercise its native export
 desktop-installed-test *arguments:
@@ -179,7 +179,7 @@ desktop-installed-test *arguments:
 
 # Update a running temporary installation and verify both native sessions offline
 desktop-update-test:
-    env -u WAYLAND_DISPLAY xvfb-run -a -s '-screen 0 1600x1200x24' dbus-run-session -- uv run --upgrade desktop/tests/native.py --updates --offline
+    uv run --no-project desktop/tests/evidence.py native-update desktop/tests/fixtures -- env -u WAYLAND_DISPLAY xvfb-run -a -s '-screen 0 1600x1200x24' dbus-run-session -- uv run --upgrade desktop/tests/native.py --updates --offline
 
 # Apply the canonical formatters to desktop sources
 desktop-format:

@@ -1,0 +1,60 @@
+bun test v1.4.4 (38afee6c8)
+
+tests/workspace.test.ts:
+36 |   const process = Bun.spawnSync(
+37 |     [find.stdout.toString().trim(), "-S", backend],
+38 |     { stdin: Buffer.from('{"action":"assets"}\n') },
+39 |   );
+40 |   expect(process.exitCode).not.toBe(0);
+41 |   expect(process.stderr.toString()).toContain(
+                                         ^
+error: expect(received).toContain(expected)
+
+Expected to contain: "The installed Python runtime is incomplete."
+Received: "Traceback (most recent call last):\n  File \"/home/dzack/gitclones/math-flashcards/desktop/backend.py\", line 34, in <module>\n    from analysis import Analysis, AnalysisError, AnalysisTable, list_analyses\n  File \"/home/dzack/gitclones/math-flashcards/desktop/analysis/__init__.py\", line 15, in <module>\n    from platformdirs import user_data_path\nModuleNotFoundError: No module named 'platformdirs'\n"
+
+      at <anonymous> (/home/dzack/gitclones/math-flashcards/desktop/tests/workspace.test.ts:41:37)
+(fail) the bridge identifies an incomplete prepared runtime [78.14ms]
+77 |           XDG_CACHE_HOME: join(workspace, "cache"),
+78 |           UV_OFFLINE: "1",
+79 |         },
+80 |       },
+81 |     );
+82 |     expect(process.exitCode, process.stderr.toString()).toBe(0);
+                                                             ^
+error: Traceback (most recent call last):
+  File "/tmp/flashcards-package-history-uYOWSv/updated-runtime/backend.py", line 34, in <module>
+    from analysis import Analysis, AnalysisError, AnalysisTable, list_analyses
+ModuleNotFoundError: No module named 'analysis'
+
+
+Expected: 0
+Received: 1
+
+      at call (/home/dzack/gitclones/math-flashcards/desktop/tests/workspace.test.ts:82:57)
+      at <anonymous> (/home/dzack/gitclones/math-flashcards/desktop/tests/workspace.test.ts:179:21)
+(fail) package history remains pending until exact inputs are rechecked [3294.60ms]
+449 |         env: { ...Bun.env, XDG_CACHE_HOME: join(workspace, "cache") },
+450 |       },
+451 |     );
+452 |     const output = await new Response(process.stdout).text();
+453 |     const error = await new Response(process.stderr).text();
+454 |     expect(await process.exited, error).toBe(0);
+                                              ^
+error: Traceback (most recent call last):
+  File "/tmp/flashcards-offline-export-Bm9NLJ/runtime/backend.py", line 34, in <module>
+    from analysis import Analysis, AnalysisError, AnalysisTable, list_analyses
+ModuleNotFoundError: No module named 'analysis'
+
+
+Expected: 0
+Received: 1
+
+      at <anonymous> (/home/dzack/gitclones/math-flashcards/desktop/tests/workspace.test.ts:454:41)
+      at async <anonymous> (/home/dzack/gitclones/math-flashcards/desktop/tests/workspace.test.ts:457:43)
+(fail) generation bundles the prepared renderer pair without network access [191.85ms]
+
+ 13 pass
+ 3 fail
+ 7358 expect() calls
+Ran 16 tests across 4 files. [54.41s]
