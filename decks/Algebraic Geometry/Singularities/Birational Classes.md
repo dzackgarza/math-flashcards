@@ -109,7 +109,7 @@ This set is DCC, not ACC; $1-1/m$ increases to $1$. It arises from tame ramifica
 $\operatorname{Acc}(S)$ consists of limits of sequences of **distinct** elements of $S$; the limit need not belong to $S$. Put $\operatorname{Acc}^0(S)=S$ and $\operatorname{Acc}^{k+1}(S)=\operatorname{Acc}(\operatorname{Acc}^k(S))$. Here $\operatorname{Acc}(\mathcal C_{\mathrm{std}})=\{1\}$ and its second accumulation set is empty.
 :::
 
-::: {.front card-id="singularity-embedded-snc-qlc" tags="definition construction" cite="[@AH12, §2]"}
+::: {.front card-id="singularity-embedded-snc-qlc" tags="definition construction" cite="[@AH12, §2, Definitions 2.6 and 2.10 and Proposition 2.11]"}
 Define a globally embedded SNC pair and a quasi-log canonical structure. State the sheaf condition and the strata.
 :::
 
@@ -475,7 +475,7 @@ Equivalently, every finite birational extension inside its normalization that is
 - **Cone over a smooth plane quartic:** normal, hence seminormal, and Gorenstein, but not lc, hence not Du Bois. Thus seminormality is strictly weaker than the Du Bois condition.
 :::
 
-::: {.front card-id="singularity-epsilon-lc-definition-use" tags="definition application" cite="[@Bir21]"}
+::: {.front card-id="singularity-epsilon-lc-definition-use" tags="definition application" cite="[@Bir21, Theorem 1.1]"}
 Define $\epsilon$-lc and compare it with lc and klt. Test it on coordinate-axis boundaries. Why is a fixed positive $\epsilon$ useful in boundedness questions?
 :::
 
@@ -513,7 +513,7 @@ The class name supplies only the singularity hypothesis. Projectivity, Cartier c
 :::
 
 
-::: {.front card-id="singularities-quotient-age-criterion" tags="theorem criterion example" cite="[@Rei87, §4; @KM98, Proposition 5.20; @MS84; @Whi64]"}
+::: {.front card-id="singularities-quotient-age-criterion" tags="theorem criterion example" cite="[@Rei87, §4; @KM98, Proposition 5.20; @MS84; @Whi64; @Sta79, Corollaries 8.2 and 8.3]"}
 For a finite $G\subset\mathrm{GL}_n(\mathbb C)$, how do you decide whether $\mathbb C^n/G$ is klt, canonical, terminal, or Gorenstein? State the reduction to small groups and the age criterion. Test $\frac12(1,1,1)$, $\frac13(1,1,1)$, and $\frac1r(1,a)$.
 :::
 
@@ -527,7 +527,7 @@ For a finite $G\subset\mathrm{GL}_n(\mathbb C)$, how do you decide whether $\mat
 **Reid–Tai criterion.** For small $G$:
 $$\mathbb C^n/G\ \text{canonical}\iff\operatorname{age}(g)\ge1\ \ \forall g\ne1,\qquad
 \text{terminal}\iff\operatorname{age}(g)>1\ \ \forall g\ne1.$$
-$\mathbb C^n/G$ is Gorenstein iff $G\subset\mathrm{SL}_n$ (Watanabe), and then every age is an integer, so it is canonical.
+For small $G$, $\mathbb C^n/G$ is Gorenstein iff $G\subset\mathrm{SL}_n$ (Watanabe), and then every age is an integer, so it is canonical.
 
 | Quotient | Ages of $g\ne1$ | Result |
 | --- | --- | --- |
@@ -538,7 +538,7 @@ $\mathbb C^n/G$ is Gorenstein iff $G\subset\mathrm{SL}_n$ (Watanabe), and then e
 **Terminal cyclic threefolds.** $\frac1r(a_1,a_2,a_3)$ with isolated fixed point is terminal iff it is, after permutation and change of generator, $\frac1r(1,-1,a)$ with $\gcd(a,r)=1$ (the terminal lemma). For example, $\frac12(1,1,1)=\frac12(1,-1,1)$.
 :::
 
-::: {.front card-id="singularities-threefold-terminal-canonical" tags="theorem definition comparison" cite="[@Rei80; @Rei83a; @KM98, §§5.2–5.3; @KM98, Theorem 5.22 and Corollary 5.24]"}
+::: {.front card-id="singularities-threefold-terminal-canonical" tags="theorem definition comparison" cite="[@Rei80; @Rei83a; @KM98, §§5.2–5.3; @KM98, Theorem 5.22 and Corollary 5.24; @Rei83a, Theorem (1.1); @Elk81]"}
 What general facts hold for terminal and canonical singularities in all dimensions? Define compound Du Val points and the index-one cover, and state how they describe terminal threefold singularities.
 :::
 

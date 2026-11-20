@@ -29,7 +29,7 @@ $$\dim X=(n-1)-(n-r)=r-1.$$
 The facets $x_i=1$ of $\Delta(r,n)$ supply the labeled boundary divisors on $X$; the facets $x_i=0$ do not meet $X$.
 :::
 
-::: {.front card-id="arrangement-weighted-grassmannian" tags="definition construction" cite="[@Ale08b, Definition 5.2]"}
+::: {.front card-id="arrangement-weighted-grassmannian" tags="definition construction" cite="[@Ale08b, Definitions 1.2 and 5.2 and the remark after Theorem 5.3]"}
 Define Alexeev's weighted Grassmannian from the Plücker ring. Which grading and weight restriction enter?
 :::
 

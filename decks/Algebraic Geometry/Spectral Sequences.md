@@ -17,7 +17,7 @@ $$H^0(\{0,\infty\},\mathbb Q)(-1)=\mathbb Q(-1)^2
 Its kernel gives $H^1(U,\mathbb Q)=\mathbb Q(-1)$ of weight two, despite having cohomological degree one.
 :::
 
-::: {.front card-id="spectral-leray-geometric-degeneration" tags="theorem comparison application"}
+::: {.front card-id="spectral-leray-geometric-degeneration" tags="theorem comparison application" cite="[@Del68, Proposition 2.1 and (2.6.3)]"}
 State geometric degeneration of rational Leray for a smooth projective morphism of complex varieties. How does it differ from a coherent Leray collapse? Compute the Betti numbers of a product of two smooth projective curves.
 :::
 
@@ -177,7 +177,7 @@ For quasi-compact quasi-separated morphisms of schemes and quasi-coherent $F$, t
 Affineness of the base does not imply $R^{q>0}f_*F=0$: $\mathbb P^1\to\operatorname{Spec}k$ with $F=\mathcal O(-2)$ has $R^1f_*F=k$.
 :::
 
-::: {.front card-id="spectral-hodge-degeneration-hypotheses" tags="comparison theorem" cite="[@DI87]"}
+::: {.front card-id="spectral-hodge-degeneration-hypotheses" tags="comparison theorem" cite="[@DI87, 2.4]"}
 Compare Hodge–de Rham degeneration in the compact Kähler, characteristic-zero algebraic, and Deligne–Illusie settings. Does degeneration alone canonically split the Hodge filtration?
 :::
 

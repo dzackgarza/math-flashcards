@@ -257,7 +257,7 @@ What is the definition of Homotopy fixed point?
 For a group $G$ acting on a space $X$, the homotopy fixed points $X^{hG}=\operatorname{Map}^G(EG,X)$, the space of $G$-equivariant maps from a contractible free $G$-space $EG$ to $X$.
 :::
 
-::: {.front card-id="card-1f242f1dd4b0c491" tags="definition"}
+::: {.front card-id="card-1f242f1dd4b0c491" tags="definition" cite="[@Fal83]"}
 What is the definition of Hyperbolic curve?
 :::
 

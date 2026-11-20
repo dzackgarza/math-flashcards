@@ -173,7 +173,7 @@ $$\operatorname{Aut}(X)\cong\{g\in O_{\mathrm{Hdg}}(H^2(X,\mathbb Z)):g(\mathcal
 as groups via $f\mapsto(f^{-1})^*$.
 :::
 
-::: {.front card-id="card-5bb9c6a0085b74b6"}
+::: {.front card-id="card-5bb9c6a0085b74b6" cite="[@Muk88, (0.1) and Proposition (1.2); @Nik79, §5, (5.2)]"}
 Discuss the number of fixed points of a symplectic automorphism with finite order $n$.
 :::
 
@@ -191,7 +191,7 @@ $$\chi(X) - {\sharp} \mathrm{Fix}(\sigma) = p\cdot \chi(Y)- p^2\cdot {\sharp} \m
 since $Y$ is also a K3 and thus $\chi(X) = \chi(Y) = 24$.
 :::
 
-::: {.front card-id="card-ae6984def8dbe005"}
+::: {.front card-id="card-ae6984def8dbe005" cite="[@Nik79, Theorem 4.5 b); @Muk88, Theorem (0.3) and Example (0.4); @Xia96, §2; @Huy16, Chapter 15, §3]"}
 Discuss the classification of symplectic actions.
 :::
 
@@ -210,15 +210,15 @@ $C_2^4$.
 
 Arbitrary finite $G\curvearrowright X$ symplectically (Mukai): $G$ is a subgroup of the Mathieu group $M_{23}$ with at least 5 orbits on $\left\{{1, \cdots, 24}\right\}$, so ${\sharp}G \leq 960$, with equality if $G = M_{20}$.
 
-Xiao: 80 possible groups, maximal size of 960.
+Xiao: 79 possible non-trivial groups (80 with the trivial group), maximal size of 960.
 :::
 
-::: {.front card-id="card-4c8504ee4f1a1bdb"}
-Why does every K3 contain a rational curve?
+::: {.front card-id="card-4c8504ee4f1a1bdb" cite="[@MM83a, Appendix, Theorem (Bogomolov–Mumford)]"}
+Why does every projective K3 surface contain a rational curve?
 :::
 
 ::: {.back card-id="card-4c8504ee4f1a1bdb"}
-Bogomolov-Mumford: degenerate to a Kummer which is a product of two special elliptic curves
+Bogomolov–Mumford, for projective K3 surfaces: degenerate to a Kummer which is a product of two special elliptic curves
 
 Construct a configuration of rational curves there
 
@@ -580,7 +580,7 @@ Generically trivial when $\operatorname{Pic}(X) = \left\langle{L}\right\rangle_\
 If $\sigma$ preserves an ample class then it must have finite order.
 :::
 
-::: {.front card-id="card-9689dd1d644fe056"}
+::: {.front card-id="card-9689dd1d644fe056" cite="[@Nik79, Lemma 4.2 and Proposition 10.1]"}
 What is a symplectic automorphism?
 :::
 
@@ -648,7 +648,7 @@ $\iota: F_4\to F_4$ where ${\left[ {x_0:x_1:x_2:x_3} \right]}\mapsto {\left[ {x_
 Set $\omega\coloneqq({\partial}_0 f_4)^{-1}\,dx_2 \wedge \,dx_3$, then $\omega\mapsto -\omega$, so non-symplectic but not purely non-symplectic.
 :::
 
-::: {.front card-id="card-6ebe9be6d49b919e"}
+::: {.front card-id="card-6ebe9be6d49b919e" cite="[@Nik79, §5, (5.2)]"}
 Describe symplectic automorphisms locally.
 :::
 
@@ -692,12 +692,12 @@ If ${\left\lvert {\sigma} \right\rvert} = p = 11$ then ${\sharp} \mathrm{Fix}(\s
 This contradicts $\operatorname{sgn}H^2 = (3, 19)$.
 :::
 
-::: {.front card-id="card-d03dc5ca2d69bd48"}
+::: {.front card-id="card-d03dc5ca2d69bd48" cite="[@Kon99; @Huy16, Chapter 15, Remark 3.3]"}
 Discuss $G\in \Fin\Grp\curvearrowright X$ not necessarily symplectically.
 :::
 
 ::: {.back card-id="card-d03dc5ca2d69bd48"}
-Kondo: ${\sharp}G \leq 3840$, proved using isometries of lattices.
+Kondo, for complex projective $X$: ${\sharp}G \leq 3840$, proved using isometries of lattices.
 
 Equality if $M_{20}\hookrightarrow G\twoheadrightarrow C_4$.
 :::
@@ -722,7 +722,7 @@ Satisfies $\rho(X) = 20$.
 Given by $X\hookrightarrow{\mathbf{P}}^3$ by $\sum x_i^4 - 12\prod x_i$.
 :::
 
-::: {.front card-id="card-4213492c4d415591"}
+::: {.front card-id="card-4213492c4d415591" cite="[@Nik79, Lemma 4.2]"}
 Discuss $(H^2(X; \ZZ)^\sigma)^\perp$.
 :::
 

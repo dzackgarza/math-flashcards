@@ -148,7 +148,7 @@ $$\beta^2=-4,\qquad\gamma^2=-2,\qquad(\beta,\gamma)=2.$$
 Hence angle $\pi/4$ and a $B_2/C_2$ diagram. The primitive integral normal in the fixed lattice and the averaged rational normal can differ by a scalar.
 :::
 
-::: {.front card-id="card-a11f16d91f65c85e"}
+::: {.front card-id="card-a11f16d91f65c85e" cite="[@MH73, Chapter II, §§4–5]"}
 Discuss Milnor's classification.
 :::
 
@@ -688,7 +688,7 @@ Modular form: $f\in \mathop{\mathrm{Hol}}(\Aff\Omega_{\Lambda}, \CC)$ where $f(t
 $f$ is reflective iff $\operatorname{Supp}\operatorname{div}_0(f)\subseteq\bigcup_{\gamma\text{ root of }\Lambda}\gamma^\perp$.
 :::
 
-::: {.front card-id="card-b28399c98a2e49fd"}
+::: {.front card-id="card-b28399c98a2e49fd" cite="[@MH73, Chapter II, §§4–5, Theorem (4.3); @Nik80, Corollary 1.13.3 and Theorem 1.14.2]"}
 Discuss classification of lattices.
 :::
 
@@ -697,14 +697,14 @@ Discuss classification of lattices.
 - Unimodular, indefinite, integral: classified by Milnor.
 - Odd: $\Lambda \cong \left\langle{1}\right\rangle^{n_+} \oplus \left\langle{-1}\right\rangle^{n_-}$.
 - Even: Exist $\iff \operatorname{sgn}\Lambda \equiv 0 \operatorname{mod}8$; if indefinite, classified by $\operatorname{sgn}\Lambda$.
-- Indefinite, integral: Nikulin, using discriminant forms.
+- Even, indefinite, $\operatorname{rank}\Lambda\ge\ell(A_\Lambda)+2$: determined by signature and discriminant form (Nikulin).
 - Even:
 - Indefinite, unimodular, nondegenerate: determined by $\operatorname{sgn}\Lambda = (n_+, n_-)$
 - (Negative) definite ($n_+ = 0$), unimodular, nondegenerate: Only in ranks $r\equiv 0 \operatorname{mod}8$, not unique for $r\neq 8$.
 - Indefinite, $\mathop{\mathrm{len}}\Lambda \leq\operatorname{rank}\Lambda - 2$: determined by $(\operatorname{sgn}\Lambda, q_\Lambda)$.
 :::
 
-::: {.front card-id="card-3a514cb7f54c1e95" cite="[@AE22, §2; @AEGS25, §3]"}
+::: {.front card-id="card-3a514cb7f54c1e95" cite="[@AE22, §2; @AEGS25, §3; @Nik80, Theorem 3.6.2; @Nik79a, §4 and Remark 4.5.3]"}
 Discuss classification of 2-elementary lattices.
 :::
 
@@ -802,14 +802,14 @@ The unique even unimodular negative definite lattice with no elements of square 
 Conway's group ${\operatorname{O}}(N)$ the isometries of the Leech lattice, contains the Mathieu group $M_{23}$
 :::
 
-::: {.front card-id="card-ddf5b9166ecf9426"}
+::: {.front card-id="card-ddf5b9166ecf9426" cite="[@Nie73; @CS10, Preface to First Edition]"}
 Discuss Niemeier lattices.
 :::
 
 ::: {.back card-id="card-ddf5b9166ecf9426"}
 Niemeier classifies definite even unimodular lattices of rank 24.
 
-All obtained as primitive sublattices of $\Pi_{1, 25} =U \oplus E_8(-1){ {}^{ \scriptscriptstyle\oplus^{3} }  }$ by specifying a primitive isotropic vector.
+All are obtained from $\Pi_{1, 25} =U \oplus E_8(-1){ {}^{ \scriptscriptstyle\oplus^{3} }  }$ as subquotients $w^\perp/\langle w\rangle$ for suitable primitive isotropic vectors $w$; they are not sublattices of $\Pi_{1,25}$.
 :::
 
 ::: {.front card-id="card-03d51c1a3802b2e9"}

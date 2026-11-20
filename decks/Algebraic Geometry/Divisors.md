@@ -438,7 +438,7 @@ Give an example of a Weil divisor that is not Cartier.
 Take $X = V(xy-z^2) \subseteq {\mathbf{A}}^3$ and let $Y$ be its ruling $\left\{{ p\in Y\st y=z=0}\right\}$. Then $Y$ can not be locally principal in a neighborhood of the cone point. However, $2Y$ is locally principal and in fact principal. The divisor $D=V(x,z)$ is not of the form $V = (f)$ for any $f\in K(X)$ near the origin.
 :::
 
-::: {.front card-id="card-15ea337ffea63d93" tags="definition"}
+::: {.front card-id="card-15ea337ffea63d93" tags="definition" cite="[@Ser55, n° 55, Théorème 1]"}
 What are **ample** and **very ample** invertible sheaves (divisors)?
 :::
 

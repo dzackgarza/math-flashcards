@@ -526,7 +526,7 @@ What is a **very ample** invertible sheaf?
 For $X$ over $Y$, $\mcl\in \operatorname{Pic}(X)$ is very ample relative to $Y$ iff there is an immersion $\iota: X\to {\mathbf{P}}^n_{/ {Y}}$ over $Y$ for some $n$ such that $\iota^* {\mathcal{O}}(1) \cong \mcl$. For $Y = \operatorname{Spec}A$, this is equivalent to the existence of sections $\left\{{s_0,\cdots, s_n}\right\}\subseteq H^0(X; \mcl)$ generating $\mcl$ such that $x\mapsto {\left[ {s_0(x): \cdots : s_n(x)} \right]}$ is an immersion.
 :::
 
-::: {.front card-id="card-6434f1ec713aa932"}
+::: {.front card-id="card-6434f1ec713aa932" cite="[@Har77, Appendix B, Example 3.4.1]"}
 Why is a scheme $X$ over a Noetherian scheme $Y$ projective iff it is proper and admits a very ample invertible sheaf relative to $Y$?
 :::
 

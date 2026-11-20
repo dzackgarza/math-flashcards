@@ -2,7 +2,7 @@
 title: "Algebraic Geometry::Mirror Symmetry::Integral Affine Structures"
 ---
 
-::: {.front card-id="ias-visible-roots-mirror-monodromy" tags="construction theorem formula" cite="[@AE22, Theorem 6.19 and §6G; @AEGS25, Proposition 4.5]"}
+::: {.front card-id="ias-visible-roots-mirror-monodromy" tags="construction theorem formula" cite="[@AE22, Theorem 6.19 and §6G; @AEGS25, Proposition 4.5; @Sym03, §5.4 and §6.1]"}
 How do visible cycles on an integral-affine sphere encode roots? State the mirror/monodromy identification and explain how root pairings control singularity collisions.
 :::
 
@@ -232,7 +232,7 @@ What is **Looijenga's conjecture**?
 Known: If $\widehat{D}$ contracts to a smoothable cusp singularity $\widehat{p}$, then $D$ is the anticanonical divisor of some rational surface. Conjecture: the converse, i.e. if $D$ is the anticanonical divisor of some rational surface, then the cusp singularity associated to $\widehat{D}$ is smoothable.
 :::
 
-::: {.front card-id="card-428498c896e7e4e6"}
+::: {.front card-id="card-428498c896e7e4e6" cite="[@Loo81, Chapter III, Corollary (2.3); @Eng18, Theorem 2.1]"}
 Why is the converse to Looijenga's conjecture true?
 :::
 
@@ -649,12 +649,12 @@ Untwisting multivalued flat sections by $e^{-zN}$ gives a frame for Deligne's ca
 This is a mixed Hodge structure on **nearby cohomology**, not $H^m(X_0)$. Specialization maps $H^m(X_0)\to H^m_{\lim}$ and need not be an isomorphism. If $N=0$, the limit is pure of weight $m$, even when the central fiber is reducible: two smooth curves meeting at a separating node give the compact-type example.
 :::
 
-::: {.front card-id="card-02b0355c3650e92b" tags="definition"}
+::: {.front card-id="card-02b0355c3650e92b" tags="definition" cite="[@GS82, Theorem 4; @Ati82]"}
 What is the definition of Moment polytope?
 :::
 
 ::: {.back card-id="card-02b0355c3650e92b"}
-For a Hamiltonian torus action on a compact symplectic manifold $(X,\omega)$ with moment map $\mu:X\to\mathfrak t^*$, the moment polytope is the convex polytope $\mu(X)\subset\mathfrak t^*$ (Atiyah-Guillemin-Sternberg). For a toric variety it is the polytope $P_D$ of an ample torus-invariant divisor.
+For a Hamiltonian torus action on a compact connected symplectic manifold $(X,\omega)$ with moment map $\mu:X\to\mathfrak t^*$, the moment polytope is the convex polytope $\mu(X)\subset\mathfrak t^*$ (Atiyah-Guillemin-Sternberg). For a toric variety it is the polytope $P_D$ of an ample torus-invariant divisor.
 :::
 
 ::: {.front card-id="card-1fd74048e90db1c2" tags="definition"}

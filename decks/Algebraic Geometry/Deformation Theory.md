@@ -199,7 +199,7 @@ H2 supplies the natural vector-space structure on $t_F$. H1–H3 are equivalent 
 H1 concerns existence of gluing; H4 adds uniqueness at the level of isomorphism classes. Automorphisms can obstruct that uniqueness after passing from a groupoid to a set, but their mere presence does not by itself disprove prorepresentability.
 :::
 
-::: {.front card-id="deformation-kuranishi-equations" tags="theorem comparison"}
+::: {.front card-id="deformation-kuranishi-equations" tags="theorem comparison" cite="[@Tia87; @Tod89]"}
 Describe the Kuranishi germ of a compact complex manifold, its tangent space, and its equations. How do automorphisms affect universality and comparison with a coarse moduli space?
 :::
 

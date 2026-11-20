@@ -101,7 +101,7 @@ is flat. Conversely a semisimple flat connection admits a harmonic metric, whose
 The unitary connection $D_h$ generally has nonzero curvature; it is $D$ that is flat. For stable objects the harmonic metric is unique up to positive scalar; polystable objects permit rescaling on stable summands. Gauge-equivalent harmonic solutions give the same moduli point.
 :::
 
-::: {.front card-id="hodge-unitary-and-rank-one" tags="comparison application"}
+::: {.front card-id="hodge-unitary-and-rank-one" tags="comparison application" cite="[@NS65]"}
 Identify the unitary locus in nonabelian Hodge theory. Compute the Betti and Dolbeault moduli spaces in rank one on a genus-$g$ curve.
 :::
 
@@ -251,14 +251,14 @@ Riemann–Hilbert gives $M_{\mathrm{dR}}^{\mathrm{an}}\cong M_B^{\mathrm{an}}$ b
 Stable Higgs bundles correspond to irreducible local systems; polystable bundles correspond to semisimple ones. On a curve the Chern-class condition is degree zero. The analytic correspondence also holds for compact Kähler $X$ with stability defined by its Kähler class.
 :::
 
-::: {.front card-id="card-af845a3fa43df735"}
+::: {.front card-id="card-af845a3fa43df735" cite="[@Sim92, Introduction, Conjecture]"}
 What is a rigid representation?
 :::
 
 ::: {.back card-id="card-af845a3fa43df735"}
 Local rigidity: the conjugacy class is isolated in the relevant character variety. Cohomological rigidity: $H^1(X,\operatorname{End}L)=0$; with determinant fixed, use $\operatorname{End}_0L$. The latter kills all first-order deformations and implies local rigidity; an isolated nonreduced point need not have zero tangent space. State which determinant and boundary-monodromy constraints are held fixed.
 
-Simpson's geometric-origin conjecture, in the smooth complex projective setting: an irreducible rigid local system with finite-order determinant should be of geometric origin.
+Simpson's geometric-origin conjecture, in the smooth complex projective setting: an irreducible rigid local system should be of geometric origin.
 
 The proposed geometric description is a subquotient of a Gauss–Manin local system from a smooth projective morphism over a dense open $U\subset X$; this is the conjectured conclusion, not an established example for every rigid connection.
 
@@ -605,7 +605,7 @@ For singular spaces, only allow chains which meet the singular strata with appro
 Always a perverse sheaf.
 :::
 
-::: {.front card-id="card-fd276d037dd8cb3f"}
+::: {.front card-id="card-fd276d037dd8cb3f" cite="[@Sai88, Théorème 5.3.1 and Introduction, Corollaire 3]"}
 What is Saito's theorem?
 :::
 
@@ -1136,7 +1136,7 @@ What is the definition of Intersection cohomology?
 The cohomology $IH^k(X;\mathbb Q)=H^k(X;IC_X(\mathbb Q))$ of the intersection complex; for a projective variety of dimension $n$ it satisfies Poincaré duality and hard Lefschetz, and it agrees with ordinary cohomology when $X$ is smooth.
 :::
 
-::: {.front card-id="card-b91684e8cd33e85f" tags="definition"}
+::: {.front card-id="card-b91684e8cd33e85f" tags="definition" cite="[@BBD82, Proposition 2.1.11]"}
 What is the definition of Intersection complex?
 :::
 

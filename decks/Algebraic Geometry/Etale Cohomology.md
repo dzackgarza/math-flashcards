@@ -1257,12 +1257,12 @@ What is the definition of Topos?
 A category equivalent to the category of sheaves of sets on a site; a Grothendieck topos is locally presentable and has a geometric morphism to $\mathbf{Set}$, and sheaf cohomology is computed in it.
 :::
 
-::: {.front card-id="card-d94c96a2b29fcc69" tags="definition"}
+::: {.front card-id="card-d94c96a2b29fcc69" tags="definition" cite="[@Del74, Théorème 1.6]"}
 What is the definition of Weil conjecture?
 :::
 
 ::: {.back card-id="card-d94c96a2b29fcc69"}
-The Weil conjectures, proved by Deligne, predict that for a smooth projective variety $X$ over $\mathbb F_q$ the zeta function $Z(X,t)=\prod_i\det(1-tF\mid H^i_{\mathrm{\acute et}}(X;\mathbb Q_\ell))^{(-1)^{i+1}}$ is rational, satisfies a functional equation, and has zeros of absolute value $q^{i/2}$ (Riemann hypothesis).
+For a smooth projective variety $X$ over $\mathbb F_q$, the Weil conjectures predict that the zeta function $Z(X,t)=\prod_i\det(1-tF\mid H^i_{\mathrm{\acute et}}(X;\mathbb Q_\ell))^{(-1)^{i+1}}$ is rational, satisfies a functional equation, and (Riemann hypothesis) every eigenvalue of $F$ on $H^i$ is an algebraic integer whose complex absolute values all equal $q^{i/2}$. Rationality is due to Dwork, and also follows from Grothendieck's cohomological formula; Deligne proved the Riemann hypothesis.
 :::
 
 ::: {.front card-id="card-136b308d47ad79fd" tags="definition"}

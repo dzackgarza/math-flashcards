@@ -21,7 +21,7 @@ $e_C(\ell z) = C_\ell(e_C(z))$ where $C_\ell$ is an additive polynomial: analog 
 - Has "rank" 1.
 :::
 
-::: {.front card-id="card-678431dcdb3f4394"}
+::: {.front card-id="card-678431dcdb3f4394" cite="[@Dri74]"}
 Drinfeld generalizes in 74: general exponentials of higher rank, for arbitrary function fields and choices of infinite places.
 :::
 
@@ -251,7 +251,7 @@ where $\overline{w}$ is an point over $w$ in $\kbar$ and $I_{\overline{w}}$ is i
 $$L_V(s) \coloneqq\prod_{w\in {\left\lvert {X} \right\rvert}} f_w({\left\lVert {w} \right\rVert}^{-s})^{-1},\qquad {\left\lVert {w} \right\rVert} \coloneqq{\sharp}\kappa(w)$$
 :::
 
-::: {.front card-id="card-998ffc9f1e45a806"}
+::: {.front card-id="card-998ffc9f1e45a806" cite="[@Yu86; @Gos98, Theorem 8.18.8]"}
 For $A={\mathbf F}_r[T]$, what does Yu's theorem say about transcendence of $\zeta_A(i)$ and $\zeta_A(i)/\varepsilon^i$ for positive integers $i$?
 :::
 
@@ -261,7 +261,7 @@ $\zeta_A(i)$ is transcendental over $k$ for every positive integer $i$. If $r-1\
 - Here $\zeta_A(s) = \sum_{I\subseteq A} I^{-s}$.
 :::
 
-::: {.front card-id="card-370ac2c151e43eba"}
+::: {.front card-id="card-370ac2c151e43eba" cite="[@Wan96; @Gos98, Theorem 8.24.5]"}
 Define the completed Riemann zeta function and its entire normalization. State RH and compare its zero-location assertion with Wan's function-field result.
 :::
 
@@ -404,7 +404,7 @@ What is the definition of Rigid analytic geometry?
 Rigid analytic geometry is Tate's theory of analytic spaces over a nonarchimedean field, built from affinoid algebras (quotients of Tate algebras) and admissible open coverings. It provides a nonarchimedean analogue of complex analytic geometry and is used to uniformize Drinfeld moduli spaces.
 :::
 
-::: {.front card-id="card-4972336cd57309b4" tags="definition"}
+::: {.front card-id="card-4972336cd57309b4" tags="definition" cite="[@Dri87; @Gos98, §6.2]"}
 What is the definition of Shtuka?
 :::
 
@@ -412,12 +412,12 @@ What is the definition of Shtuka?
 A shtuka (Drinfeld) is a vector bundle $\mathcal{E}$ on $X\times S$ together with an isomorphism $\mathcal{E}^{(p)}\to\mathcal{E}$ away from a divisor, where $\mathcal{E}^{(p)}$ is the Frobenius pullback. Shtukas are function-field analogues of motives with Frobenius structure and are used to realize Galois representations.
 :::
 
-::: {.front card-id="card-6aa5244a68396c66" tags="definition"}
+::: {.front card-id="card-6aa5244a68396c66" tags="definition" cite="[@And86; @Gos98, Definition 5.4.5]"}
 What is the definition of T-module?
 :::
 
 ::: {.back card-id="card-6aa5244a68396c66"}
-A $T$-module (in the sense of Anderson) over a field $k$ is a pair $(E,\phi)$ consisting of a vector group $E\cong\mathbb{G}_a^d$ and an $\mathbb{F}_q$-linear ring homomorphism $\phi:\mathbb{F}_q[T]\to\operatorname{End}(E)$. Drinfeld modules are the dimension-one case ($d=1$), of arbitrary rank; $T$-modules are function-field analogues of abelian varieties.
+A $T$-module (in the sense of Anderson) over a field $k$ is a pair $(E,\phi)$ consisting of a vector group $E\cong\mathbb{G}_a^d$ and an $\mathbb{F}_q$-linear ring homomorphism $\phi:\mathbb{F}_q[T]\to\operatorname{End}(E)$ such that $d\phi(T)-\theta$ is nilpotent on $\operatorname{Lie}(E)$, where $\theta\in k$ is the image of $T$. Drinfeld modules are the dimension-one case ($d=1$), of arbitrary rank; $T$-modules are function-field analogues of abelian varieties.
 :::
 
 ::: {.front card-id="card-2e6db27fb7b674d9" tags="definition"}

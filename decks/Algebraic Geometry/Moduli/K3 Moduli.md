@@ -277,14 +277,14 @@ What is a Kulikov surface?
 $X_0$ the central fiber of a Kulikov model.
 :::
 
-::: {.front card-id="card-34ee9fdbfea0ed5c"}
+::: {.front card-id="card-34ee9fdbfea0ed5c" cite="[@KKMS73, Chapter II; @Kul77, Theorem I; @Huy16, Chapter 6, §5 and Theorem 5.1]"}
 What is Kulikov's key result on degenerations of K3s?
 :::
 
 ::: {.back card-id="card-34ee9fdbfea0ed5c"}
-Any degeneration of K3s can be converted to a Kulikov model after a base change and birational modification.
+Two steps. Mumford's semistable reduction: after a finite base change $z\mapsto z^m$, a degeneration of K3 surfaces over a disk has a semistable modification (smooth total space, reduced normal-crossings central fiber).
 
-For $Y^*\to C^*$ a family of algebraic K3s, there is a finite base change $(C', 0) \to (C, 0)$ and a birational modification of its pullback $Y'\dashrightarrow X$ such that $X$ has smooth total space, $K_X \sim_{C'} 0$, and $X_0$ is reduced normal crossings.
+Kulikov: a semistable degeneration $X\to\Delta$ of K3 surfaces whose central-fiber components are algebraic (or Kähler) admits a modification $X'\to\Delta$ with $K_{X'}\sim0$, still semistable. This is a Kulikov model.
 :::
 
 ::: {.front card-id="card-000de75a6010754a"}
@@ -344,14 +344,14 @@ What is the change-of-markings group?
 $\Gamma_\rho \coloneqq\left\{{\gamma\in {\operatorname{O}}(L) \st\gamma\circ \rho = \rho \circ \gamma}\right\}$.
 :::
 
-::: {.front card-id="card-b1d78709d3678358" cite="[@AEH24, §3E]"}
+::: {.front card-id="card-b1d78709d3678358" cite="[@AEH24, §3E; @Loo02, §6 and Definition 6.1]"}
 What is a semitoroidal compactification?
 :::
 
 ::: {.back card-id="card-b1d78709d3678358"}
 Simultaneously generalizes BB and toroidal compactifications.
 
-For a type-IV arithmetic quotient, use a $\Gamma$-admissible semifan in the cusp positive cones: locally rational polyhedral cones may have infinitely many faces, and their data agree along rank-two isotropic cusps. Glue the cusp partial compactifications specified by these cones and divide by the cusp stabilizers. This is Looijenga's semitoroidal compactification.
+For a type-IV arithmetic quotient, use a $\Gamma$-admissible semifan in the cusp positive cones: locally rational polyhedral cones may have infinitely many faces, and their data agree along rank-two isotropic cusps. Glue the cusp partial compactifications specified by these cones and divide by the cusp stabilizers. This is Looijenga's compactification; he calls it semitoric.
 
 In the complex-ball case, the toroidal boundary at a cusp is an abelian variety $A$. A semifan specifies a subtorus $B\subset A$ from a primitive sublattice of the cusp lattice; replace the boundary by $A/B$. $B=0$ gives the toroidal boundary; $B=A$ contracts it to the Baily–Borel point.
 :::
@@ -427,7 +427,7 @@ The integral sum can have nontrivial finite index, killed by two.
 For a nonsymplectic involution, $L^+$ equals $\operatorname{NS}(X)$ only on the locus without extra algebraic classes. An invariant lattice and the full Picard lattice are different objects.
 :::
 
-::: {.front card-id="card-f6dea11f91a6b646"}
+::: {.front card-id="card-f6dea11f91a6b646" cite="[@Nik80, Theorem 3.6.2; @Nik79a, §4]"}
 Classify $(X, \sigma)$ with $\sigma$ a nonsymplectic involution, up to deformation.
 :::
 
@@ -474,7 +474,7 @@ Algebraic (projective) K3s: 19-dimensional, since one has to vary periods in the
 :::
 
 
-::: {.front card-id="card-e5204c524e5af7fb" tags="theorem"}
+::: {.front card-id="card-e5204c524e5af7fb" tags="theorem" cite="[@Tod80; @Loo81a; @Siu81; @Huy16, Chapter 6, Remark 3.2]"}
 Describe the period domain for marked complex K3 surfaces and its dimension. Which of its points occur as periods? How does fixing a polarization change the domain?
 :::
 
@@ -583,12 +583,12 @@ What is the definition of Arithmetic quotient?
 A quotient $\Gamma\backslash D$ of a symmetric domain $D$ by a discrete subgroup $\Gamma$ commensurable with an arithmetic lattice. Moduli spaces of polarized K3 surfaces are arithmetic quotients of type IV domains.
 :::
 
-::: {.front card-id="card-bc716af8baef6126" tags="definition"}
+::: {.front card-id="card-bc716af8baef6126" tags="definition" cite="[@KKMS73, Chapter II; @Kul77, Theorem I; @Huy16, Chapter 6, §5]"}
 What is the definition of Birational modification?
 :::
 
 ::: {.back card-id="card-bc716af8baef6126"}
-A birational map between varieties, usually resolved by a sequence of blowups and blowdowns. Kulikov's theorem allows a birational modification after finite base change to obtain a semistable model.
+A birational map between varieties, usually resolved by a sequence of blowups and blowdowns. After a finite base change, semistable reduction (Mumford) gives a semistable model by a birational modification; Kulikov's theorem then modifies a semistable K3 degeneration to one with trivial canonical bundle.
 :::
 
 ::: {.front card-id="card-223d21f6a7d001e5" tags="definition"}

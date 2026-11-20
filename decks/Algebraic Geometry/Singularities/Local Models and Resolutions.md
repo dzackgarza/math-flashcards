@@ -46,7 +46,7 @@ What does an embedded resolution of a reduced divisor $D$ in a smooth complex va
 A proper birational morphism $f:Y\to X$, an isomorphism over $X\setminus D$, with $Y$ smooth and the reduced total transform $(f^{-1}D)_{\mathrm{red}}$ a simple normal crossings divisor. The strict transform must also meet the exceptional divisor with normal crossings.
 :::
 
-::: {.front card-id="card-8c26bb201aefe21c" tags="definition"}
+::: {.front card-id="card-8c26bb201aefe21c" tags="definition" cite="[@BKR01, Theorem 1.2]"}
 What is a crepant resolution? Which singularities can have one? Give examples where one exists and where none exists.
 :::
 

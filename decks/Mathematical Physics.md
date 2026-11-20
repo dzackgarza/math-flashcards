@@ -93,7 +93,7 @@ Pairs whose sheaf has generic rank one and scheme-theoretic support exactly this
 DT permits $Z=C\sqcup Q$ with a disjoint length-$d$ subscheme $Q$: then $\chi(\mathcal O_Z)=1-g+d$ too. PT excludes $F=i_*\mathcal O_C\oplus\mathcal O_Q$, because $\mathcal O_Q$ is a zero-dimensional subsheaf. Equal numerical data do not identify the moduli problems.
 :::
 
-::: {.front card-id="curve-counting-behrend-weight" tags="definition application" cite="[@Beh09]"}
+::: {.front card-id="curve-counting-behrend-weight" tags="definition application" cite="[@Beh09, Definition 1.4 and Theorem 4.18]"}
 How does the Behrend function recover numerical DT/PT invariants on a proper Calabi–Yau threefold moduli space? Compute the one-point DT invariant.
 :::
 
@@ -273,16 +273,14 @@ On a curve $C$, $\theta\wedge\theta=0$ is automatic and $\theta\in H^0(C,\operat
 On a compact Kähler manifold, polystable Higgs bundles with vanishing rational Chern classes correspond to semisimple complex representations of $\pi_1(X)$ up to conjugacy. Stable bundles correspond to irreducible representations. On a curve the Chern-class condition is $\deg E=0$; stability tests only $\theta$-invariant subbundles. Harmonic metrics construct the correspondence.
 :::
 
-::: {.front card-id="card-5ab68700993ee9f6"}
+::: {.front card-id="card-5ab68700993ee9f6" cite="[@BB96, Theorem 4.15; @BB96a, Theorem 7.1]"}
 What is Batyrev-Borisov's mirror symmetry?
 :::
 
 ::: {.back card-id="card-5ab68700993ee9f6"}
-For e.g. complete intersections in Fanos, $H^1(X; {\mathbf{T}} {}^{ \vee }X) \cong H^1(X {}^{ \vee }; {\mathbf{T}}X {}^{ \vee })$.
+Let $X$ be a Calabi–Yau complete intersection of dimension $d$ given by a nef-partition of a reflexive polytope, in a Gorenstein toric Fano variety. The dual nef-partition gives $X^\vee$, and the stringy Hodge numbers satisfy $h^{p,q}_{\mathrm{st}}(X)=h^{d-p,q}_{\mathrm{st}}(X^\vee)$.
 
-LHS: variations of $\omega_X$ a symplectic form (A-model)
-
-RHS: variations of complex structure (B-model)
+For $p=1$ and smooth $X$, $X^\vee$: $h^{1,1}(X)$ counts Kähler classes (A-model) and $h^{d-1,1}(X^\vee)=h^1(X^\vee,T_{X^\vee})$ counts complex deformations (B-model).
 :::
 
 ::: {.front card-id="card-6b4152564621a373"}

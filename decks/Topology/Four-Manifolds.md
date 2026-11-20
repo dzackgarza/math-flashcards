@@ -402,7 +402,7 @@ A Kirby diagram records one-handles by dotted circles and two-handles by framed 
 Handle slides change the basis of two-handle classes and act by integral congruence on the matrix. Cancellation removes an adjacent-index pair when the attaching sphere meets the belt sphere once with the required framing. With one-handles present, compute the handle chain complex; the raw two-handle linking matrix alone need not be the form on $H_2$.
 :::
 
-::: {.front card-id="four-manifold-freedman-donaldson-rokhlin" tags="theorem comparison" cite="[@Fre82; @Don83]"}
+::: {.front card-id="four-manifold-freedman-donaldson-rokhlin" tags="theorem comparison" cite="[@Fre82, Theorems 1.5 and 1.7; @Don83, Theorem 1]"}
 Compare Freedman's classification, Donaldson's diagonalization theorem, and Rokhlin's theorem. Apply them to an $E_8$ intersection form.
 :::
 
@@ -420,7 +420,7 @@ Freedman produces a simply connected closed topological manifold with form $E_8$
 Even $E_8\oplus E_8$ has $\mathrm{ks}=0$ and signature divisible by sixteen, but Donaldson still excludes a smooth structure. The theorems impose different restrictions.
 :::
 
-::: {.front card-id="four-manifold-exotic-smooth-structures" tags="definition comparison"}
+::: {.front card-id="four-manifold-exotic-smooth-structures" tags="definition comparison" cite="[@Fre82, Theorem 1.5]"}
 What is an exotic smooth structure? What do the intersection form and smooth invariants distinguish? Contrast exotic $\mathbb R^4$ with the smooth four-dimensional Poincaré problem.
 :::
 

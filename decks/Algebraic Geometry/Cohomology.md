@@ -347,7 +347,7 @@ For schemes this applies to the underlying Zariski sheaves, including quasi-cohe
 $$H^p(Y,R^qf_*\mathbb Q)\Longrightarrow H^{p+q}(X,\mathbb Q).$$
 :::
 
-::: {.front card-id="card-69f6f29eb7bd975c" tags="theorem"}
+::: {.front card-id="card-69f6f29eb7bd975c" tags="theorem" cite="[@Del68, Proposition 2.1 and (2.6.3)]"}
 For a smooth projective morphism $f:X\to Y$ of complex varieties, at which page does the rational singular-cohomology Leray spectral sequence degenerate?
 :::
 
@@ -415,7 +415,7 @@ $$H^{> 0}(L\otimes\omega_X) = 0$$
 Since $H^1(\omega_X\otimes L) {}^{ \vee }\cong H^1(L {}^{ \vee })$ by Serre duality, this is a vanishing theorem for $L {}^{ \vee }$ with sufficient "positivity".
 :::
 
-::: {.front card-id="card-ff488447828ff571"}
+::: {.front card-id="card-ff488447828ff571" cite="[@DI87]"}
 Does Kodaira vanishing hold in positive characteristic?
 :::
 

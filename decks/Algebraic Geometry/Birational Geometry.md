@@ -966,7 +966,7 @@ Let $X\to Y$ be a surjective morphism of smooth complex projective varieties wit
 No. The general fiber has Kodaira dimension $-\infty$, so Iitaka's easy addition theorem gives $\kappa(X)=-\infty$. Thus $H^0(X,mK_X)=0$ for every $m>0$.
 :::
 
-::: {.front card-id="application-canonical-model-general-type" tags="application"}
+::: {.front card-id="application-canonical-model-general-type" tags="application" cite="[@BCHM10, Corollary 1.1.1(3)]"}
 Let $X$ be a smooth complex projective $n$-fold of general type. Which results give a projective canonical model and show that its dimension is $n$?
 :::
 
@@ -1280,7 +1280,7 @@ $$(K_X+\Delta)|_S=K_S+\operatorname{Diff}_S(\Delta-S).$$
 It relates birational changes along $S$ to lower-dimensional log birational geometry. This is the inductive role of special termination. Its definition does not assume that an arbitrary sequence has this property.
 :::
 
-::: {.front card-id="mmp-termination-adjunction" tags="definition theorem application" cite="[@Cor95, §2; @BDPP12]"}
+::: {.front card-id="mmp-termination-adjunction" tags="definition theorem application" cite="[@Cor95, §2; @BDPP12, Corollary 0.3]"}
 Define classical termination of adjunction on a smooth projective complex variety. Relate it to pseudoeffectivity and uniruledness, and compare $\mathbb P^2$ with a K3 surface.
 :::
 

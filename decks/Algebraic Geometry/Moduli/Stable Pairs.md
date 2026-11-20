@@ -14,7 +14,7 @@ The central fiber is the stable replacement. Separatedness makes two such extens
 A naive limit of equations may lose slc singularities or log ampleness. A GIT limit depends on its linearization. Neither is automatically the KSBA limit. The comparison requires a family construction and a check of singularities and positivity.
 :::
 
-::: {.front card-id="pairs-automorphism-extension-quotient-family" tags="theorem construction" cite="[@Kol23a, separatedness and stable families; @AEGS25, proof of Theorem 5.9]"}
+::: {.front card-id="pairs-automorphism-extension-quotient-family" tags="theorem construction" cite="[@Kol23a, Definition 8.7, (8.7.2) and (8.7.4); @AEGS25, proof of Theorem 5.9]"}
 When does an automorphism of a generic stable pair extend over a degeneration? What must be checked when its quotient family is used to define a morphism to KSBA moduli?
 :::
 
@@ -136,7 +136,7 @@ Over a $\mathbb Q$-scheme $S$, fix labeled $\Delta=\sum a_iD_i$, $a_i\in\mathbb 
 The last condition controls infinitesimal families and specialization of pluricanonical sheaves. Fiberwise slc and ampleness do not impose it. Brackets mean reflexive/divisorial extension of the tensor power from the relative Gorenstein locus.
 :::
 
-::: {.front card-id="pairs-qg-deformations-index-cover" tags="definition construction example" cite="[@Ale25, §2; @Hac04, §3]"}
+::: {.front card-id="pairs-qg-deformations-index-cover" tags="definition construction example" cite="[@Ale25, Definition 2.8; @Hac04, §3]"}
 Define an index-one cover and a $\mathbb Q$-Gorenstein deformation. How does the index-one covering stack organize the construction?
 :::
 

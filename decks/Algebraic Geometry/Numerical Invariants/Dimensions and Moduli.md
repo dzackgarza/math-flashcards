@@ -111,7 +111,7 @@ What is the dimension of moduli of Enriques surfaces?
 10-dimensional.
 :::
 
-::: {.front card-id="formula-surface-hilbert-points-dimension" tags="theorem"}
+::: {.front card-id="formula-surface-hilbert-points-dimension" tags="theorem" cite="[@Fog68; @Leh04, Theorems 2.1 and 3.3; @Ser06, Theorem 4.6.9]"}
 For a smooth connected complex quasi-projective surface $S$, state Fogarty's theorem about $\operatorname{Hilb}^n(S)$ and the Hilbert–Chow morphism.
 :::
 

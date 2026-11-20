@@ -1729,7 +1729,7 @@ A smooth genus-$g$ curve over the fraction field of a complex DVR has $g\ge2$. A
 Stable reduction supplies a stable model after a suitable finite field extension. For the two models over the same extended DVR, the identity on the identified generic fiber extends uniquely to an isomorphism of stable models. Their special fibers are therefore isomorphic. The fixed generic identification is part of this uniqueness statement.
 :::
 
-::: {.front card-id="application-hilbert-two-points-diagonal" tags="application"}
+::: {.front card-id="application-hilbert-two-points-diagonal" tags="application" cite="[@Fog68; @Leh04, Theorems 2.1 and 3.3]"}
 For a smooth complex surface $S$, compare $\operatorname{Hilb}^2(S)$ and $\operatorname{Sym}^2(S)$ near the cycle $2p$. What replaces that cycle under the Hilbert–Chow resolution?
 :::
 

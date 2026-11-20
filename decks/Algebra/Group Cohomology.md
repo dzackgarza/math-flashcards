@@ -304,14 +304,14 @@ What is Brauer's theorem on representations of finite groups?
 For $G\in \Fin\Grp$, any $V\in \Rep(G)^\fd_{/ {\CC}}$ is a $\ZZ\dash$linear combinations of $\mathrm{Ind}^{H}_{G} W$ where $H\leq G$ is an elementary subgroup, so $H\cong C\times P$ with $C$ cyclic and $P$ a $p\dash$group, and $W$ is a character.
 :::
 
-::: {.front card-id="card-c6daf2e47c2b6cf7"}
+::: {.front card-id="card-c6daf2e47c2b6cf7" cite="[@Bra47; @BDST01]"}
 What is Artin's holomorphy conjecture?
 :::
 
 ::: {.back card-id="card-c6daf2e47c2b6cf7"}
 Every Artin $L\dash$function attached to a nontrivial representation of a finite group has a holomorphic continuation to $\CC$.
 
-Shown recently for $A_5$ using Langlands.
+Known for some odd icosahedral ($A_5$) representations, through their modularity; not for all of them.
 
 Brauer shows *meromorphic* continuation as an easy corollary of his induction theorem.
 :::

@@ -432,7 +432,7 @@ What is the virtual cohomology dimension?
 $\mathrm{vcohdim}_p(G) \coloneqq\inf_{U \leq G \text{ open}}\operatorname{cohdim}_p(U)$, and $\mathrm{vcohdim}(G) \coloneqq\sup_p \mathrm{vcohdim}_p(G)$.
 :::
 
-::: {.front card-id="card-04eb0883ac6aed5c"}
+::: {.front card-id="card-04eb0883ac6aed5c" cite="[@Ser65]"}
 What explains $\mathrm{vcohdim}_p G < \infty$ but $\operatorname{cohdim}_p G = \infty$?
 :::
 
