@@ -407,7 +407,7 @@ therefore needs Phase 3 and US2.
 - [X] T088 Add the file placement assertion of `desktop/tests/native-study.py` to the end of `desktop/tests/study.py` for the bridge processes per T078, SC-016 (missing)
 - [ ] T089 Add a scenario: a new store that is synchronized from the same decks has the same notes, deck placement, and content records as the first store per FR-012 (missing)
 - [ ] T090 Add a step to the offline native scenario: with Study open and a card graded, no process of the app opens a network connection per FR-043 (missing)
-- [ ] T091 Add a step to `desktop/tests/analysis.py`: a run of each analysis leaves the data, state, and cache directories with no new file other than logs, and a write to the record from an analysis fails per FR-053 (partial)
+- [X] T091 Add a step to `desktop/tests/analysis.py`: a run of each analysis leaves the data, state, and cache directories with no new file other than logs, and a write to the record from an analysis fails per FR-053 (partial)
 - [X] T092 Add a step to `desktop/tests/study-settings.py`: a session of one deck obeys the daily limits per FR-023 (partial)
 - [X] T093 Make the finished screen show Anki's own statement of the cards studied today, from `Collection.studied_today()`, in place of the count that `desktop/study/session.py` computes with its own query; add the failing step to `desktop/tests/study.py` first per FR-006, Clarifications 2026-11-20 (partial)
 - [ ] T094 Find the cause of the intermittent failure of `just desktop-test study-timing` (the Study screen did not open; 1 failure in 6 runs at revision 720f869, evidence in `test-history/20261120T075735.992939Z-study-timing/`) and correct it with a failing test first per T018, SC-014 (partial)

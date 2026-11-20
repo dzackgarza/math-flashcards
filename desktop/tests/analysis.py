@@ -38,7 +38,16 @@ def main(artifacts: Path) -> None:
         environment = os.environ | {
             "XDG_DATA_HOME": str(root / "data"),
             "XDG_STATE_HOME": str(root / "state"),
+            "XDG_CACHE_HOME": str(root / "cache"),
         }
+
+        def files():
+            return {
+                path.relative_to(root)
+                for name in ("data", "state", "cache")
+                for path in (root / name).rglob("*")
+                if path.is_file()
+            }
 
         def request(action: str, **values):
             result = subprocess.run(
@@ -59,6 +68,7 @@ def main(artifacts: Path) -> None:
                 return list(connection.iterdump())
 
         before = snapshot()
+        before_files = files()
         catalog = request("analysis-list")
         assert [item["name"] for item in catalog] == [
             "calibration",
@@ -73,6 +83,10 @@ def main(artifacts: Path) -> None:
             for item in catalog
         }
         assert snapshot() == before
+        # A run keeps no data: its only new files are the request logs (FR-053).
+        logs = Path("state/math-flashcards/diagnostics")
+        kept = [path for path in files() - before_files if logs not in path.parents]
+        assert not kept, kept
         for name, result in baseline.items():
             assert result["analysis"]["name"] == name and "rows" in result, result
         extra = root / "analysis/catalog/extra.py"
