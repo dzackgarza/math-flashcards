@@ -31,29 +31,31 @@ from xml.etree import ElementTree
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from analysis import Analysis, AnalysisError, AnalysisTable, list_analyses
-from analysis import run as run_analysis
-from diagnostics import Diagnostics
-from rendering import (
-    AssetSet,
-    Digest,
-    InvalidAssetsError,
-    MacroDefinition,
-    asset_identity,
-    asset_set,
-    digest,
-)
-
-if __name__ == "__main__" and sys.argv[1:2] == ["study-host"]:
-    import cyclopts
-    from study.host import main as study_host
-
-    app = cyclopts.App()
-    app.command(study_host, name="study-host")
-    app()
-    raise SystemExit(0)
-
+# The bundled modules import the runtime's packages, so they load inside the
+# check that names an incomplete runtime.
 try:
+    from analysis import Analysis, AnalysisError, AnalysisTable, list_analyses
+    from analysis import run as run_analysis
+    from diagnostics import Diagnostics
+    from rendering import (
+        AssetSet,
+        Digest,
+        InvalidAssetsError,
+        MacroDefinition,
+        asset_identity,
+        asset_set,
+        digest,
+    )
+
+    if __name__ == "__main__" and sys.argv[1:2] == ["study-host"]:
+        import cyclopts
+        from study.host import main as study_host
+
+        app = cyclopts.App()
+        app.command(study_host, name="study-host")
+        app()
+        raise SystemExit(0)
+
     import ankdown
     from filelock import FileLock, Timeout
     from platformdirs import user_cache_path

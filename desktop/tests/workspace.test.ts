@@ -1,5 +1,5 @@
 import { afterEach, expect, test } from "bun:test";
-import { mkdtemp, mkdir } from "node:fs/promises";
+import { cp, mkdtemp, mkdir } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { z } from "zod";
@@ -20,6 +20,16 @@ import {
   workspaceSchema,
   type Request,
 } from "../src/bridge";
+
+// The bridge's Python sources among the bundle resources of
+// src-tauri/tauri.conf.json; a relocated runtime needs each of them.
+const BRIDGE_MODULES = [
+  "backend.py",
+  "diagnostics.py",
+  "rendering.py",
+  "analysis",
+  "study",
+];
 
 const temporaryWorkspaces: string[] = [];
 afterEach(() => {
@@ -42,7 +52,8 @@ test("the bridge identifies an incomplete prepared runtime", () => {
     "The installed Python runtime is incomplete.",
   );
   expect(process.stderr.toString()).toContain("Run just desktop-install.");
-  expect(process.stderr.toString()).toContain("ankdown");
+  // The message names the first package that the runtime lacks.
+  expect(process.stderr.toString()).toMatch(/No module named '[a-z_]+'/);
 });
 
 test("package history remains pending until exact inputs are rechecked", async () => {
@@ -163,11 +174,10 @@ test("package history remains pending until exact inputs are rechecked", async (
   await Bun.write(generated.package, bytes);
   const resources = join(workspace, "updated-runtime");
   await mkdir(join(resources, "asset-sets"), { recursive: true });
-  for (const name of ["backend.py", "assets.json"])
-    await Bun.write(
-      join(resources, name),
-      Bun.file(resolve(import.meta.dir, "..", name)),
-    );
+  for (const name of [...BRIDGE_MODULES, "assets.json"])
+    await cp(resolve(import.meta.dir, "..", name), join(resources, name), {
+      recursive: true,
+    });
   const filter = await Bun.file(
     resolve(import.meta.dir, "../paired-cards.lua"),
   ).text();
@@ -416,11 +426,10 @@ test("generation bundles the prepared renderer pair without network access", asy
   expect(find.exitCode).toBe(0);
   const resources = join(workspace, "runtime");
   await mkdir(join(resources, "asset-sets"), { recursive: true });
-  for (const name of ["backend.py", "paired-cards.lua", "assets.json"])
-    await Bun.write(
-      join(resources, name),
-      Bun.file(resolve(import.meta.dir, "..", name)),
-    );
+  for (const name of [...BRIDGE_MODULES, "paired-cards.lua", "assets.json"])
+    await cp(resolve(import.meta.dir, "..", name), join(resources, name), {
+      recursive: true,
+    });
   const initialAssets = assetsSchema.parse(
     await Bun.file(join(resources, "assets.json")).json(),
   );
