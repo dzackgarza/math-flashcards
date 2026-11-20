@@ -404,12 +404,12 @@ What is the definition of Rigid analytic geometry?
 Rigid analytic geometry is Tate's theory of analytic spaces over a nonarchimedean field, built from affinoid algebras (quotients of Tate algebras) and admissible open coverings. It provides a nonarchimedean analogue of complex analytic geometry and is used to uniformize Drinfeld moduli spaces.
 :::
 
-::: {.front card-id="card-4972336cd57309b4" tags="definition" cite="[@Dri87; @Gos98, §6.2]"}
+::: {.front card-id="card-4972336cd57309b4" tags="definition" cite="[@Dri87; @Gos98, Example 6.2.13 and Remarks 6.2.14]"}
 What is the definition of Shtuka?
 :::
 
 ::: {.back card-id="card-4972336cd57309b4"}
-A shtuka (Drinfeld) is a vector bundle $\mathcal{E}$ on $X\times S$ together with an isomorphism $\mathcal{E}^{(p)}\to\mathcal{E}$ away from a divisor, where $\mathcal{E}^{(p)}$ is the Frobenius pullback. Shtukas are function-field analogues of motives with Frobenius structure and are used to realize Galois representations.
+A (right) shtuka of rank $d$ over a field $L$, on a smooth projective curve $X$ over $\mathbb{F}_r$, is a diagram of locally free rank-$d$ sheaves on $X_L$: injections $\beta:\mathcal{F}_0\to\mathcal{F}_1$ and $\alpha:\tilde\sigma^*\mathcal{F}_0\to\mathcal{F}_1$, where $\tilde\sigma$ is the Frobenius on $X_L$, such that both cokernels have length 1. The support of $\operatorname{coker}\alpha$ is the *pole*, the support of $\operatorname{coker}\beta$ the *zero*. A rank-$d$ Drinfeld module gives a shtuka; shtukas are the function-field objects used to realize Galois representations.
 :::
 
 ::: {.front card-id="card-6aa5244a68396c66" tags="definition" cite="[@And86; @Gos98, Definition 5.4.5]"}
