@@ -142,7 +142,7 @@ editor views.
 | `card_change.from_deck` | Earlier relative deck path; `NULL` for a newly added card. |
 | `card_change.to_deck` | Later relative deck path; `NULL` when removed from the workspace. |
 | `card_change.content` | Foreign key to the applicable content version; nullable when no version was observed. |
-| `card_change.tags` | JSON array of the tags associated with the card at the change. |
+| `card_change.tags` | JSON array of the tags associated with the card at the change: the deck and card tags, and `leech` while Anki's scheduler marks the card as a leech. The answer that makes Anki add `leech`, and the undo that removes it, each write a row of kind `tags` with the deck unchanged. |
 
 Anki notes hold scheduling identity in their GUID and sole `CardId` field. The
 record holds authored source. Retained media bytes and rendering descriptors
@@ -164,7 +164,7 @@ describe the offer at that moment, not the card's current mutable Anki state.
 | `deck_path` | Relative Markdown path at presentation. |
 | `folder` | Relative parent folder, or the empty string for a root-level deck. |
 | `deck_title` | Deck title at presentation. |
-| `tags` | JSON array of the deck and card tags in effect. |
+| `tags` | JSON array of the tags in effect: the deck and card tags, and `leech` while Anki marks the card as a leech. |
 | `kind` | Anki state: `new`, `learning`, `review`, or `relearning`. |
 | `scheduler_day` | Anki's integer day number, using its own day boundary. It is not a Unix day or a local calendar date. |
 | `before_interval_days` | Card interval before the answer, in days. |

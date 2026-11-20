@@ -1,5 +1,6 @@
 """Study actions that append to the learning record (research.md R12 and R13)."""
 
+import json
 from pathlib import PurePosixPath
 
 import anki.collection  # noqa: F401 -- initialize Anki before its cyclic card imports
@@ -86,6 +87,21 @@ def begin(store: Store, scope: Scope) -> Begun:
     return Begun(session=session, next=next_card(store, session))
 
 
+def record_scheduler_tags(store: Store, card_id: str, note_tags: list[str]) -> None:
+    """Write a tags change when Anki's scheduler adds or removes `leech` (FR-045)."""
+    deck, content, recorded = store.record.connection.execute(
+        "select to_deck, content, tags from card_change where card_id=? order by id desc limit 1",
+        (card_id,),
+    ).fetchone()
+    before = json.loads(recorded)
+    tags = sorted(
+        {tag for tag in before if tag != "leech"}
+        | ({"leech"} if "leech" in note_tags else set())
+    )
+    if tags != before:
+        store.record.card_change(card_id, "tags", deck, deck, content, tags)
+
+
 def undoable(store: Store) -> bool:
     return (
         bool(store.grade_responses)
@@ -99,7 +115,14 @@ def undo(store: Store, session: int) -> StudyNext:
     if not undoable(store):
         raise stale()
     restored = store.collection.undo()
-    store.record.undo(store.grade_responses.pop(restored.counter))
+    response = store.grade_responses.pop(restored.counter)
+    store.record.undo(response)
+    (card_id, revlog_cid) = store.record.connection.execute(
+        "select card_id, revlog_cid from response where id=?", (response,)
+    ).fetchone()
+    record_scheduler_tags(
+        store, card_id, store.collection.get_card(AnkiCardId(revlog_cid)).note().tags
+    )
     return next_card(store, session)
 
 
@@ -278,6 +301,7 @@ def answer(store: Store, request: AnswerRequest) -> StudyNext:
         )
     )
     store.grade_responses[collection.undo_status().last_step] = response
+    record_scheduler_tags(store, latest[1], after.note().tags)
     return next_card(store, request.session)
 
 

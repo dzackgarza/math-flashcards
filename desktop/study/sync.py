@@ -193,7 +193,13 @@ def sync(store: Store, workspace: Path, request: SyncRequest) -> SyncResult:
                         store.record.image_reference(content_id, label, name)
                 else:
                     content_id = content[0]
-                tags = sorted(set(deck.tags + card.tags))
+                notes = collection.find_notes("CardId:" + json.dumps(card.id))
+                note = collection.get_note(notes[0]) if notes else None
+                # The record keeps the tag that Anki's scheduler set (FR-045).
+                tags = sorted(
+                    set(deck.tags + card.tags)
+                    | ({"leech"} if note is not None and "leech" in note.tags else set())
+                )
                 latest = store.record.connection.execute(
                     "select content, tags, to_deck from card_change where card_id=? order by id desc limit 1",
                     (card.id,),
@@ -212,12 +218,8 @@ def sync(store: Store, workspace: Path, request: SyncRequest) -> SyncResult:
                         kinds.append("moved")
                 if not kinds:
                     continue
-                notes = collection.find_notes("CardId:" + json.dumps(card.id))
-                if notes:
-                    note = collection.get_note(notes[0])
-                    note.tags = sorted(
-                        set(tags + [tag for tag in note.tags if tag == "leech"])
-                    )
+                if note is not None:
+                    note.tags = tags
                     if "tags" in kinds:
                         changed.append(note)
                     if (
