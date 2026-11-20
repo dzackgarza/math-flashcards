@@ -621,7 +621,7 @@ record changes, and the earlier analyses give the same results.
 - **SC-001**: From a running app, the user reaches the first card of a review in at most
   two actions, with no export and no second program.
 - **SC-002**: After the user selects a grade, the next card is readable within 0.5 seconds
-  in 95% of cases. The cases are all the grades of a session on the full collection.
+  in 95% of cases.
 - **SC-003**: After a deck is saved, its changed cards show the new content in review
   within 10 seconds, with no action by the user.
 - **SC-004**: Across edits of text, moves between decks, deck renames, deck merges, and
