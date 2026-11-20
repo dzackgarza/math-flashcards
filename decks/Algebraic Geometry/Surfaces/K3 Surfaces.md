@@ -191,7 +191,7 @@ $$\chi(X) - {\sharp} \mathrm{Fix}(\sigma) = p\cdot \chi(Y)- p^2\cdot {\sharp} \m
 since $Y$ is also a K3 and thus $\chi(X) = \chi(Y) = 24$.
 :::
 
-::: {.front card-id="card-ae6984def8dbe005" cite="[@Nik79, Theorem 4.5 b); @Muk88, Theorem (0.3) and Example (0.4); @Xia96, §2; @Huy16, Chapter 15, §3]"}
+::: {.front card-id="card-ae6984def8dbe005" cite="[@Nik79, Theorem 4.5 b); @Muk88, Theorem (0.3) and Example (0.4); @Xia96, §2, Theorem 3 and Table 2; @Huy16, Chapter 15, §3; @Kon20, Remark 11.20]"}
 Discuss the classification of symplectic actions.
 :::
 
@@ -210,7 +210,7 @@ $C_2^4$.
 
 Arbitrary finite $G\curvearrowright X$ symplectically (Mukai): $G$ is a subgroup of the Mathieu group $M_{23}$ with at least 5 orbits on $\left\{{1, \cdots, 24}\right\}$, so ${\sharp}G \leq 960$, with equality if $G = M_{20}$.
 
-Xiao: 79 possible non-trivial groups (80 with the trivial group), maximal size of 960.
+Xiao: 81 types of symplectic action (the configurations of quotient singularities), given by 79 non-trivial groups: $Q_8$ and $T_{24}$ each have two types. Maximal order 960.
 :::
 
 ::: {.front card-id="card-4c8504ee4f1a1bdb" cite="[@MM83a, Appendix, Theorem (Bogomolov–Mumford)]"}
