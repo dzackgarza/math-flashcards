@@ -1,0 +1,57 @@
+Math Flashcards
+flashcards-study-timing-k6qkce4x
+Search
+Ctrl K
+Timing
+New:
+0
+Learning:
+0
+Review:
+0
+Checks
+New:
+0
+Learning:
+0
+Review:
+0
+
+New · Learning · Review
+
+New:
+0
+Learning:
+0
+Review:
+0
+
+Study cards ready
+
+Diagrams compiled
+
+Checking 0 of 1 decks…
+
+Problems (0/1 checked)
+Update Anki packages
+New deck
+Study
+Study settings
+Undo
+Ctrl Z
+Return to editor
+Esc
+
+New: 0
+
+Learning: 0
+
+Review: 0
+
+Study complete for now
+
+Studied ⁨3⁩ cards ⁨in ⁨166.75⁩ minutes⁩ today (⁨3335.02⁩s/card)
+
+Study store: /tmp/flashcards-browser-cache-5e2uysa5/data/math-flashcards/study/4ab9d651-07cf-445e-a527-a3dd5696edb7
+
+Learning record: /tmp/flashcards-browser-cache-5e2uysa5/data/math-flashcards/study/4ab9d651-07cf-445e-a527-a3dd5696edb7/record.sqlite3
