@@ -116,7 +116,7 @@ class StudyCard(Value):
 
 class StudyFinished(Value):
     state: Literal["Finished"] = "Finished"
-    graded_today: int
+    studied_today: str
     next_learning_seconds: int | None
     counts: Counts
     undoable: bool

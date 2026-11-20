@@ -752,9 +752,10 @@ def main(artifacts: Path) -> None:
                         study.get_by_role("heading", name="Study complete for now")
                     ).to_be_visible()
                     # Anki's Collection.studied_today() wraps each value in
-                    # Unicode isolation marks (U+2068, U+2069).
+                    # Unicode isolation marks (U+2068, U+2069) and breaks
+                    # its statement into lines.
                     expect(study).to_contain_text(
-                        re.compile("Studied ⁨12⁩ cards .*today")
+                        re.compile("Studied ⁨12⁩ cards\\s.*today", re.S)
                     )
                     assert {
                         "study-image",

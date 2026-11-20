@@ -428,7 +428,7 @@ export const studyNextSchema = z.discriminatedUnion("state", [
   }),
   z.strictObject({
     state: z.literal("Finished"),
-    graded_today: z.number().int(),
+    studied_today: z.string(),
     next_learning_seconds: z.number().int().nullable(),
     counts: studyCountsSchema,
     undoable: z.boolean(),

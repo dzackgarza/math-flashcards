@@ -805,7 +805,7 @@ export function StudyScreen({
       ) : (
         <Stack align="center" py="xl">
           <Title order={3}>Study complete for now</Title>
-          <Text>Graded today: {next.graded_today}</Text>
+          <Text>{next.studied_today}</Text>
           {next.next_learning_seconds !== null && (
             <Text>
               Next learning card in {Math.ceil(next.next_learning_seconds / 60)}{" "}

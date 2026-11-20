@@ -219,7 +219,7 @@ StudyCard     = { presentation: PresentationId, card_id: CardId, deck: DeckPath,
                   labels: GradeLabels, counts: Counts,
                   undoable: bool }
 Timing        = { reveal_ms: int, grade_ms: int, unfocused_ms: int }   # measured by the window
-StudyFinished = { graded_today: int, next_learning_seconds: int | null,
+StudyFinished = { studied_today: str, next_learning_seconds: int | null,   # studied_today: Anki's Collection.studied_today()
                   counts: Counts, undoable: bool }
 StudyNext     = { state: "Card", ...StudyCard } | { state: "Finished", ...StudyFinished }
 

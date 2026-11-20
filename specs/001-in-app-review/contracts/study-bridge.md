@@ -232,7 +232,7 @@ workspace-wide identity before applying scheduling changes.
 | Timing | The window measures, with its monotonic clock, the time from the card on screen to the reveal, the time from the reveal to the grade, and the time in both that the window was hidden or without focus. It sends the three values with the grade. |
 | Counts | New, learning, and review counts of the scope, during the session and in the tree. |
 | Undo | Enabled when `undoable` is true. When false, its tooltip gives the reason. |
-| Finished | States that study for today is complete, the number graded today, and the time until a learning card returns when there is one. |
+| Finished | States that study for today is complete, Anki's own statement of the cards studied today (`Collection.studied_today()`), and the time until a learning card returns when there is one. |
 | Session end | The window sends `study-end` when the user leaves the session and when the queue is finished. |
 | Attach | For `Unattached`, the window lists each store with its paths, whether its current path exists, its last use, and its numbers of cards and grades. The user attaches one or starts a new one. Study is unavailable until the choice; the editor keeps working. |
 | Settings | New cards per day, reviews per day, and target recall, with their bounds. The path of the learning record and of the store, with a command that opens the folder. A command that runs the fit, shows both sets of measures, and applies the fitted set on the user's choice. **Save a copy** opens the folder picker and writes a copy of the store there. |

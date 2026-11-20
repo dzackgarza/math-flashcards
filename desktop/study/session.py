@@ -112,12 +112,9 @@ def next_card(store: Store, session: int) -> StudyNext:
     )
     if not queue.cards:
         info = collection.sched.congratulations_info()
-        graded = collection.db.scalar(
-            "select count(*) from revlog where id>=? and ease>0",
-            (collection.sched.day_cutoff - 86400) * 1000,
-        )
         return StudyFinished(
-            graded_today=graded,
+            # Anki's deck overview shows this statement (FR-006).
+            studied_today=collection.studied_today(),
             next_learning_seconds=info.secs_until_next_learn
             if info.learn_remaining
             else None,
