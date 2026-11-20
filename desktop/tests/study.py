@@ -915,8 +915,15 @@ def main(artifacts: Path) -> None:
                             )
                         ]
                         assert actual[: len(rows)] == rows, table
-                        if table not in {"writer", "schema"}:
-                            assert actual == rows, table
+                        added = actual[len(rows) :]
+                        if table == "store_event":
+                            # Opening a store with no backup writes one (FR-040).
+                            (package,) = (historical / "backups").glob("*.colpkg")
+                            assert [row[4:] for row in added] == [
+                                ["backed-up", str(package)]
+                            ], added
+                        elif table not in {"writer", "schema"}:
+                            assert not added, (table, added)
                     assert record.execute(
                         'select version from "schema" order by version'
                     ).fetchall() == [(1,), (2,)]
