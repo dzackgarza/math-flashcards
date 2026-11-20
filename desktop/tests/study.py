@@ -684,6 +684,11 @@ def main(artifacts: Path) -> None:
                     expect(page.get_by_role("status", name="Study")).to_have_text(
                         "Study cards ready"
                     )
+                    # The app starts the diagram job when the workspace opens
+                    # (SC-002, Clarifications 2026-11-20). Its end is the start pass.
+                    expect(
+                        page.get_by_role("status", name="Diagrams")
+                    ).to_have_text("Diagrams compiled", timeout=120000)
                     page.get_by_role("button", name="Workspace", exact=True).click()
                     page.get_by_role("button", name="Study", exact=True).click()
                     study = page.get_by_role("region", name="Study session")
@@ -729,7 +734,7 @@ def main(artifacts: Path) -> None:
                                 study.get_by_role(
                                     "img", name="Rendered commutative diagram"
                                 )
-                            ).to_be_visible(timeout=120000)
+                            ).to_be_visible(timeout=500)
                             page.screenshot(path=str(artifacts / "study-diagram.png"))
                         if identity == "study-absolute-value":
                             expect(study.locator("mjx-container")).to_have_count(1)
