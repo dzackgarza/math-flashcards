@@ -1,0 +1,55 @@
+Math Flashcards
+workspace
+Search
+Ctrl K
+A
+New:
+0
+Learning:
+0
+Review:
+0
+B
+New:
+0
+Learning:
+0
+Review:
+0
+
+New · Learning · Review
+
+New:
+0
+Learning:
+0
+Review:
+0
+
+Study cards ready
+
+Checking 0 of 2 decks…
+
+Problems (0/2 checked)
+Update Anki packages
+New deck
+Study
+Study settings
+Undo
+Ctrl Z
+Return to editor
+Esc
+
+New: 0
+
+Learning: 0
+
+Review: 0
+
+Study complete for now
+
+Studied ⁨3⁩ cards ⁨in ⁨0.34⁩ seconds⁩ today (⁨0.11⁩s/card)
+
+Study store: /tmp/flashcards-browser-cache-a7_im4wd/data/math-flashcards/study/ac551df7-6c9b-4f5f-ae95-30f5d7c67395
+
+Learning record: /tmp/flashcards-browser-cache-a7_im4wd/data/math-flashcards/study/ac551df7-6c9b-4f5f-ae95-30f5d7c67395/record.sqlite3

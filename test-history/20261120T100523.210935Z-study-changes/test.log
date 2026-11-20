@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/evidence.py", line 53, in evidence
+    yield directory
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-changes.py", line 532, in <module>
+    main(artifacts)
+    ~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-changes.py", line 151, in main
+    assert transfer in (
+           ^^^^^^^^^^^^^
+    ...<2 lines>...
+    ), transfer
+    ^
+AssertionError: [('tags', 'A.md', 'B.md'), ('moved', 'A.md', 'B.md')]

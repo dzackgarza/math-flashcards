@@ -1,0 +1,53 @@
+Math Flashcards
+workspace
+Search
+Ctrl K
+A
+New:
+0
+Learning:
+0
+Review:
+0
+
+New · Learning · Review
+
+New:
+0
+Learning:
+0
+Review:
+0
+
+Study cards ready
+
+Checking 1 of 1 decks…
+
+Problems (0/1 checked)
+Update Anki packages
+1
+New deck
+Action failed
+
+StudyError: This presentation is no longer current. Fetch the current card.
+
+Study
+Study settings
+Undo
+Ctrl Z
+Return to editor
+Esc
+
+New: 0
+
+Learning: 0
+
+Review: 0
+
+Study complete for now
+
+Studied ⁨3⁩ cards ⁨in ⁨0.35⁩ seconds⁩ today (⁨0.12⁩s/card)
+
+Study store: /tmp/flashcards-browser-cache-hywj1tot/data/math-flashcards/study/a48b5629-1870-4b44-8f57-cf72e7795601
+
+Learning record: /tmp/flashcards-browser-cache-hywj1tot/data/math-flashcards/study/a48b5629-1870-4b44-8f57-cf72e7795601/record.sqlite3
