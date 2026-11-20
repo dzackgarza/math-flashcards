@@ -1,0 +1,38 @@
+1: starting server using command "just -f ../justfile desktop-web"
+and when url "[ 'http-get://127.0.0.1:1420' ]" is responding with HTTP status code 200
+running tests using command "xvfb-run -a uv run --upgrade tests/study-preservation.py"
+
+cd desktop && bunx vite --host 127.0.0.1
+
+  VITE v8.3.8  ready in 270 ms
+
+  ➜  Local:   http://127.0.0.1:1420/
+[vite-plugin-static-copy] Collected 386 items.
+Installed 16 packages in 14ms
+Test evidence: /home/dzack/gitclones/math-flashcards/test-history/20261120T100309.982679Z-study-preservation
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-preservation.py", line 264, in <module>
+    main(artifacts)
+    ~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-preservation.py", line 219, in main
+    assert changes[-1][0] == "tags", changes
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [('added', '[]')]
+Error: Command failed with exit code 1: xvfb-run -a uv run --upgrade tests/study-preservation.py
+    at makeError (/home/dzack/gitclones/math-flashcards/desktop/node_modules/execa/lib/error.js:60:11)
+    at handlePromise (/home/dzack/gitclones/math-flashcards/desktop/node_modules/execa/index.js:118:26)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  shortMessage: 'Command failed with exit code 1: xvfb-run -a uv run --upgrade tests/study-preservation.py',
+  command: 'xvfb-run -a uv run --upgrade tests/study-preservation.py',
+  escapedCommand: '"xvfb-run -a uv run --upgrade tests/study-preservation.py"',
+  exitCode: 1,
+  signal: undefined,
+  signalDescription: undefined,
+  stdout: undefined,
+  stderr: undefined,
+  failed: true,
+  timedOut: false,
+  isCanceled: false,
+  killed: false
+}
+error: recipe `desktop-web` was terminated on line 75 by signal 2

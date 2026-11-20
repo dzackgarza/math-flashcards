@@ -208,6 +208,54 @@ def main(artifacts: Path) -> None:
         finally:
             collection.close()
 
+        # The record holds the tag that Anki's scheduler added (FR-045).
+        def leech_changes():
+            with closing(sqlite3.connect(store / "record.sqlite3")) as record:
+                return record.execute(
+                    "select kind, tags from card_change where card_id='leech-card' order by id"
+                ).fetchall()
+
+        changes = leech_changes()
+        assert changes[-1][0] == "tags", changes
+        assert "leech" in json.loads(changes[-1][1]), changes
+        with closing(sqlite3.connect(store / "record.sqlite3")) as record:
+            (shown,) = record.execute(
+                "select tags from presentation where id=?",
+                (following["presentation"],),
+            ).fetchone()
+        assert "leech" in json.loads(shown), shown
+
+        with sync_playwright() as playwright:
+            browser = playwright.chromium.launch(headless=False)
+            page = browser.new_page()
+            try:
+
+                def open_workspace():
+                    page.goto("http://127.0.0.1:1420")
+                    page.get_by_role("button", name="Workspace", exact=True).click()
+                    page.get_by_label("Workspace folder").fill(str(workspace))
+                    page.get_by_role(
+                        "button", name="Open workspace", exact=True
+                    ).click()
+                    expect(page.get_by_role("status", name="Study")).to_have_text(
+                        "Study cards ready", timeout=30000
+                    )
+
+                # A sync of unchanged decks adds no tag change for the leech.
+                open_workspace()
+                assert leech_changes() == changes
+                # A later card change of the leech keeps the tag.
+                (workspace / "Leech.md").write_text(
+                    '::: {.front card-id="leech-card"}\nRecall this.\n:::\n\n'
+                    '::: {.back card-id="leech-card"}\nA corrected answer.\n:::\n'
+                )
+                open_workspace()
+                later = leech_changes()
+                assert [kind for kind, _ in later[len(changes) :]] == ["content"]
+                assert "leech" in json.loads(later[-1][1]), later
+            finally:
+                browser.close()
+
 
 if __name__ == "__main__":
     with evidence(
