@@ -72,8 +72,9 @@ apply to every change of the desktop app.
   learning, and its format only grows. Each action that bears on the user's learning is
   recoverable from the git history of the workspace or from the learning record.
 - **Diagrams are compiled before display.** The TikZ filter of the Pandoc configuration
-  owns diagram compilation, its cache, recompilation, and macros. The app compiles at
-  start or in a background pass. A card shows a cached SVG and never waits for a compile.
+  owns diagram compilation, its cache, recompilation, and macros. Compilation is one
+  script job that runs without the app. The app only starts it: at its start, on
+  request, and after a card edit ends (debounced). A card shows a cached SVG and never waits for a compile.
 - **Anki's interface settles open interface questions.** When a specification does not
   say what a Study screen counts, shows, or names, read Anki's source and do what Anki
   does. Do not ask the user and do not invent a rule.

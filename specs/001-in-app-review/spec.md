@@ -75,9 +75,11 @@ does not copy the limit.
 ### Session 2026-11-20, requirements stated by the user
 
 - The time limit of SC-002 is a requirement, and it applies to each card, with or
-  without a diagram. No card waits for a diagram to compile when it is shown. The app
-  compiles diagrams when it starts, or in a background pass that the user can start,
-  which finds changed diagrams and compiles them again. Study and the editor show the
+  without a diagram. No card waits for a diagram to compile when it is shown. The
+  compilation of all diagrams that the cards refer to is a script job, separate from
+  the app, that the user can run with the app closed; it finds changed diagrams and
+  compiles them again. The app only starts that job: at its start, on request, and
+  after the edit of a card ends, with debounce. Study and the editor show the
   cached SVG.
 - One place owns diagram compilation, the cache, recompilation, and macros: the TikZ
   filter of the user's Pandoc configuration, through which all other diagram work

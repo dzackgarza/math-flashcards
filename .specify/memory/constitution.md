@@ -42,9 +42,11 @@ or diagram renderer.
 The TikZ filter of the user's Pandoc configuration is the one owner of diagram
 compilation, the cache of compiled diagrams, recompilation, and diagram macros. The
 preferred design keeps the diagram files themselves in the figures tree of that
-configuration. A diagram MUST NOT compile when a card is shown. The app compiles
-diagrams when it starts, or in a background pass that the person can start, which finds
-changed diagrams and compiles them again. To show a diagram is to show a cached SVG, so
+configuration. A diagram MUST NOT compile when a card is shown. Compilation of
+every diagram that the cards refer to is one script job, separate from the app: it runs
+with the app closed, and the person can run it directly. It finds changed diagrams and
+compiles them again. The app only starts that job at set times: at its start, on the
+person's request, and after the edit of a card ends, with the usual debounce. To show a diagram is to show a cached SVG, so
 a time limit on showing a card has no exception for diagrams.
 
 The core MUST call Anki's library directly for scheduling, queues, grades, undo, and
@@ -281,4 +283,4 @@ change: MAJOR for a removed or redefined principle, MINOR for an added principle
 section, PATCH for a clarification. Every plan records its check against these principles,
 and each violation it keeps is justified in that plan.
 
-**Version**: 2.3.0 | **Ratified**: 2026-11-16 | **Last Amended**: 2026-11-20
+**Version**: 2.3.1 | **Ratified**: 2026-11-16 | **Last Amended**: 2026-11-20
