@@ -38,7 +38,7 @@ Hahn-Banach Theorem
 If $p: V\to \RR$ is a sublinear function and $\phi: U\to \RR$ a linear functional on a subspace $U\leq V$ with $\phi \leq p$ on $U$, then there exists a linear extension $\tilde \phi: V\to \RR$ with $\tilde \phi\mid_U = \phi$ and $\tilde \phi \leq p$ on $V$.
 :::
 
-::: {.front card-id="card-bbc73d2319c2d35e" tags="definition" cite="[@Enf73]"}
+::: {.front card-id="card-bbc73d2319c2d35e" tags="definition" cite="[@Enf73, Theorem 1]"}
 Compact Operator
 :::
 
