@@ -79,12 +79,12 @@ What are the dimensions of moduli for $S_{2,3}, S_{2,2,2}$, and the double plane
 All 19.
 :::
 
-::: {.front card-id="card-b5a57050c6bdb637"}
+::: {.front card-id="card-b5a57050c6bdb637" cite="[@GS07, §5]"}
 Compute the dimension of moduli of K3s with an order 3 symplectic automorphism.
 :::
 
 ::: {.back card-id="card-b5a57050c6bdb637"}
-For algebraic complex K3 surfaces, the dimension is $7$. An order-three symplectic automorphism has six fixed points. The Lefschetz formula gives $6=2+\operatorname{tr}(\sigma^*|H^2)$; with eigenvalue multiplicities $a$ for $1$ and $b$ for each primitive cube root, $a-b=4$ and $a+2b=22$. Thus $a=10$, $b=6$, and the coinvariant lattice has rank $12$ in $\operatorname{NS}(X)$. An invariant ample class raises the generic Picard rank to $13$, leaving $20-13=7$ moduli. Families attain this bound (Garbagnati–Sarti, *Symplectic automorphisms of prime order on K3 surfaces*, §5).
+For algebraic complex K3 surfaces, the dimension is $7$. An order-three symplectic automorphism has six fixed points. The Lefschetz formula gives $6=2+\operatorname{tr}(\sigma^*|H^2)$; with eigenvalue multiplicities $a$ for $1$ and $b$ for each primitive cube root, $a-b=4$ and $a+2b=22$. Thus $a=10$, $b=6$, and the coinvariant lattice has rank $12$ in $\operatorname{NS}(X)$. An invariant ample class raises the generic Picard rank to $13$, leaving $20-13=7$ moduli. Families attain this bound.
 :::
 
 ::: {.front card-id="formula-k3-stable-sheaf-tangent" tags="formula"}

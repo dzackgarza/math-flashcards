@@ -513,7 +513,7 @@ The class name supplies only the singularity hypothesis. Projectivity, Cartier c
 :::
 
 
-::: {.front card-id="singularities-quotient-age-criterion" tags="theorem criterion example" cite="[@Rei87, §4; @KM98, Proposition 5.20]"}
+::: {.front card-id="singularities-quotient-age-criterion" tags="theorem criterion example" cite="[@Rei87, §4; @KM98, Proposition 5.20; @MS84; @Whi64]"}
 For a finite $G\subset\mathrm{GL}_n(\mathbb C)$, how do you decide whether $\mathbb C^n/G$ is klt, canonical, terminal, or Gorenstein? State the reduction to small groups and the age criterion. Test $\frac12(1,1,1)$, $\frac13(1,1,1)$, and $\frac1r(1,a)$.
 :::
 
@@ -535,7 +535,7 @@ $\mathbb C^n/G$ is Gorenstein iff $G\subset\mathrm{SL}_n$ (Watanabe), and then e
 | $\frac13(1,1,1)$ | $1,2$ | canonical, Gorenstein, not terminal |
 | $\frac1r(1,a)$, $g=\zeta$ | $\frac{1+a}r$ | canonical iff $a=r-1$; matches the log discrepancy $A$ of the first exceptional curve |
 
-**Terminal cyclic threefolds.** $\frac1r(a_1,a_2,a_3)$ with isolated fixed point is terminal iff it is, after permutation and change of generator, $\frac1r(1,-1,a)$ with $\gcd(a,r)=1$ (terminal lemma: Morrison–Stevens, White). For example, $\frac12(1,1,1)=\frac12(1,-1,1)$.
+**Terminal cyclic threefolds.** $\frac1r(a_1,a_2,a_3)$ with isolated fixed point is terminal iff it is, after permutation and change of generator, $\frac1r(1,-1,a)$ with $\gcd(a,r)=1$ (the terminal lemma). For example, $\frac12(1,1,1)=\frac12(1,-1,1)$.
 :::
 
 ::: {.front card-id="singularities-threefold-terminal-canonical" tags="theorem definition comparison" cite="[@Rei80; @Rei83a; @KM98, §§5.2–5.3]"}

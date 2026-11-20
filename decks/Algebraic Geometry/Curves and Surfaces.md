@@ -62,7 +62,7 @@ Remove the component met by the zero section. The remaining component classes fo
 The full fiber intersection matrix is negative semidefinite and has the fiber multiplicity vector in its kernel. Removing the identity component makes the matrix negative definite and gives rank one less than the component count. It is this finite root rank that enters Shioda–Tate.
 :::
 
-::: {.front card-id="kodaira-scope-models" tags="definition"}
+::: {.front card-id="kodaira-scope-models" tags="definition" cite="[@SS10, §§4–6]"}
 What does Kodaira classify for a relatively minimal complex elliptic surface with section? Which surface should a fiber picture depict?
 :::
 
@@ -71,7 +71,7 @@ It classifies the fibers of the smooth relatively minimal surface $f:S\to B$, wh
 
 The Weierstrass model contracts the fiber components not meeting the section. Its special plane cubic is often nodal or cuspidal even when the resolved fiber has many components. Thus a picture of the cubic alone does not identify the Kodaira type on $S$. For example an $II^*$ fiber has nine components on $S$, while its Weierstrass model has an $E_8$ surface singularity.
 
-All visual cards here use schematic curves or weighted graphs, not literal embeddings of complex curves in a real plane. In weighted graphs each vertex is a component, its number is its fiber multiplicity, and a double rim marks the identity component. Reference: [Schütt–Shioda, §§4–6](https://arxiv.org/abs/0907.0298).
+All visual cards here use schematic curves or weighted graphs, not literal embeddings of complex curves in a real plane. In weighted graphs each vertex is a component, its number is its fiber multiplicity, and a double rim marks the identity component.
 :::
 
 ::: {.front card-id="kodaira-recognize-smooth" tags="application visual"}
