@@ -28,7 +28,8 @@ for the user is `docs/study-record.md`.
 2. **Permanent.** A row, once committed, never changes and never disappears. An undo is
    an `undo` row; the undone `response` row stays.
 3. **Self-contained.** Each `presentation` row holds the deck path, folder, deck title,
-   and tags of that moment as values, and refers to a `content` row with the front and
+   and tags of that moment as values (the union of the deck tags, the card tags, and
+   the tags that the scheduler set, such as `leech`), and refers to a `content` row with the front and
    back source shown, the retained rendering assets, and the recorded media mapping.
    A later edit, move, or removal of the card does not change them.
 4. **Empty means not observed.** A field that the app could not observe is `NULL`, never

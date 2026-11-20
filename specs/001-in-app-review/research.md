@@ -219,7 +219,7 @@ after a save, after a file-watch event, and before a session starts.
 - A card that leaves a deck in one call and enters another deck in a later call is
   removed, then restored. Its schedule is the same at the end.
 - Sync sets the deck tags and card tags of a note and keeps the tags that Anki's
-  scheduler set (`leech`) (FR-045).
+  scheduler set (`leech`) (FR-045). The recorded `tags` of the card include them.
 - Each add, content change, tag change, move, removal, and restore is one `card_change`
   row in the learning record, and each new front or back is one `content` row (R12).
 - A removed card is suspended and moved to the deck `Removed`, outside `Workspace`.

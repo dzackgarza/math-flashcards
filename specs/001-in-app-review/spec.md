@@ -394,7 +394,8 @@ record changes, and the earlier analyses give the same results.
   and the day boundary with Anki's own scheduling code. The system MUST NOT contain a
   second implementation of these rules.
 - **FR-006**: The system MUST state when the review for today is complete and MUST show
-  how many cards the user graded.
+  the number of different cards that the user graded on the current scheduler day in
+  the workspace.
 - **FR-007**: Users MUST be able to operate a review with the keyboard alone: reveal the
   answer and select each grade.
 - **FR-008**: The system MUST show the remaining counts of new, learning, and due cards
@@ -409,7 +410,9 @@ record changes, and the earlier analyses give the same results.
 - **FR-011**: The system MUST apply a saved change of a deck to review with no action by
   the user.
 - **FR-012**: The Markdown decks MUST remain the only authored source of card content. The
-  review store MUST be reproducible from the decks, except for the review history.
+  review store MUST be reproducible from the decks, except for the review history. The
+  review history is the schedule of each card, Anki's review log, and the learning
+  record.
 
 **Identity and history**
 
@@ -618,7 +621,7 @@ record changes, and the earlier analyses give the same results.
 - **SC-001**: From a running app, the user reaches the first card of a review in at most
   two actions, with no export and no second program.
 - **SC-002**: After the user selects a grade, the next card is readable within 0.5 seconds
-  in 95% of cases.
+  in 95% of cases. The cases are all the grades of a session on the full collection.
 - **SC-003**: After a deck is saved, its changed cards show the new content in review
   within 10 seconds, with no action by the user.
 - **SC-004**: Across edits of text, moves between decks, deck renames, deck merges, and

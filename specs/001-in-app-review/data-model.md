@@ -41,7 +41,7 @@ ordered. The core declares the study types as Pydantic models in
 | --- | --- | --- |
 | GUID | `CardId` | Never changes for a note. |
 | `CardId` | Native card identity | The note's sole field; the app's learning record owns card content. |
-| Tags | Deck tags and card tags | Set on each sync. Tags that Anki's scheduler set (`leech`) are kept. |
+| Tags | Deck tags and card tags | Set on each sync. Tags that Anki's scheduler set (`leech`) are kept. The record holds them too: the answer that adds `leech` writes a `card_change` row of kind `tags`, and each later `tags` value of the card includes it (FR-045). |
 | Deck | From `DeckPath` | `Workspace::…` while the card is in a deck; `Removed` after removal. |
 | Schedule | Anki | Written only by Anki's scheduler and undo. Sync never writes it. |
 
