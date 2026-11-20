@@ -135,7 +135,7 @@ def startup() -> None:
 
 def main() -> None:
     cache_root = Path(os.environ["XDG_CACHE_HOME"])
-    assert cache_root.name.startswith("flashcards-browser-cache-"), (
+    assert cache_root.parent.name.startswith("flashcards-browser-cache-"), (
         "Run this scenario through just desktop-test."
     )
     repo = Path(__file__).resolve().parents[1]
@@ -179,6 +179,11 @@ def main() -> None:
                 page.get_by_role("button", name="Workspace", exact=True)
             ).to_have_text(root.name, timeout=30000)
             tree_seconds = time.monotonic() - workspace_started
+            # The default workspace already has a store, so a second workspace
+            # asks which store it uses (FR-041).
+            chooser = page.get_by_role("dialog", name="Choose a study store")
+            chooser.get_by_role("button", name="Start new", exact=True).click()
+            expect(chooser).to_have_count(0)
             page.get_by_text("Analysis", exact=True).click()
             selected = time.monotonic()
             page.get_by_text("Precalculus", exact=True).click()
@@ -865,6 +870,9 @@ def main() -> None:
                 expect(
                     page.get_by_role("button", name="Workspace", exact=True)
                 ).to_have_text(next_workspace.name)
+                chooser = page.get_by_role("dialog", name="Choose a study store")
+                chooser.get_by_role("button", name="Start new", exact=True).click()
+                expect(chooser).to_have_count(0)
                 page.get_by_text("Fresh", exact=True).click()
                 expect(page.locator(".side-editor.front .cm-content")).to_contain_text(
                     "New workspace question"
