@@ -260,6 +260,17 @@ def main(artifacts: Path) -> None:
                     assert [row[1:] for row in reviews] == [(2, 0.98)] * 2 + [
                         (5, 0.98)
                     ] * 3, reviews
+                    # The calibration query of the record's contract: each
+                    # prediction with its result; every grade was Good.
+                    calibration = record.execute(
+                        "SELECT before_retrievability, grade != 'again' AS recalled "
+                        "FROM review "
+                        "WHERE kind = 'review' AND grade IS NOT NULL AND undone_at_ms IS NULL"
+                    ).fetchall()
+                    assert sorted(calibration) == sorted(
+                        (probability, 1) for probability in probabilities
+                    ), calibration
+                    assert all(0 < p < 1 for p, _ in calibration), calibration
                     (artifacts / "review-order.json").write_text(
                         json.dumps(reviews, indent=2)
                     )

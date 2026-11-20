@@ -82,6 +82,12 @@ FROM review
 WHERE undone_at_ms IS NULL
 GROUP BY folder, month;
 
+-- The same by deck.
+SELECT deck_path, count(*), avg(grade = 'again'), avg(reveal_ms)
+FROM review
+WHERE undone_at_ms IS NULL
+GROUP BY deck_path;
+
 -- The same by tag.
 SELECT tag.value AS tag, count(*), avg(grade = 'again'), avg(reveal_ms)
 FROM review, json_each(review.tags) AS tag

@@ -52,6 +52,26 @@ def authored_facts(workspace: Path, card_id: str) -> dict[str, str]:
     raise AssertionError(f"No fixture card {card_id}")
 
 
+def documented_columns(document: Path) -> set[tuple[str, str]]:
+    """Read (table, column) from the field tables; '*' is a common column."""
+    columns = set()
+    table = None
+    for line in document.read_text().splitlines():
+        if line.startswith("## Common columns"):
+            table = "*"
+        heading = re.match(r"\| Column in `(\w+)` \|", line)
+        if heading:
+            table = heading.group(1)
+        if line.startswith("| Table.column |"):
+            table = None
+        cell = re.match(r"\| `(\w+)(?:\.(\w+))?` \|", line)
+        if cell and cell.group(2):
+            columns.add((cell.group(1), cell.group(2)))
+        elif cell and table:
+            columns.add((table, cell.group(1)))
+    return columns
+
+
 def main(artifacts: Path) -> None:
     desktop = Path(__file__).resolve().parents[1]
     stores = Path(os.environ["XDG_DATA_HOME"]) / "math-flashcards" / "study"
@@ -869,10 +889,49 @@ def main(artifacts: Path) -> None:
                         "study-absolute-value",
                     } <= seen
                     page.screenshot(path=str(artifacts / "study-finished.png"))
+                    # The screen names the file that this scenario reads (FR-042).
+                    expect(study).to_contain_text(f"Learning record: {fresh_record}")
                     with closing(sqlite3.connect(fresh_record)) as record:
                         assert record.execute(
                             "select count(*) from response"
                         ).fetchone() == (13,)
+                        # Every column of every table is documented (FR-038).
+                        documented = documented_columns(
+                            desktop.parent / "docs" / "study-record.md"
+                        )
+                        undocumented = [
+                            f"{table}.{column}"
+                            for (table,) in record.execute(
+                                "select name from sqlite_master where type='table'"
+                            )
+                            for (column,) in record.execute(
+                                f"select name from pragma_table_info('{table}')"
+                            )
+                            if (table, column) not in documented
+                            and ("*", column) not in documented
+                        ]
+                        assert not undocumented, undocumented
+                        # The query by deck of the record's contract (SC-011):
+                        # each card once, and the Again card a second time.
+                        by_deck = record.execute(
+                            "SELECT deck_path, count(*), avg(grade = 'again'), avg(reveal_ms) "
+                            "FROM review WHERE undone_at_ms IS NULL GROUP BY deck_path"
+                        ).fetchall()
+                        again_deck = authored_facts(workspace, again)["deck_path"]
+                        expected = {
+                            deck.relative_to(
+                                workspace
+                            ).as_posix(): deck.read_text().count("{.front card-id=")
+                            for deck in workspace.rglob("*.md")
+                        }
+                        expected[again_deck] += 1
+                        assert {
+                            path: (count, share) for path, count, share, _ in by_deck
+                        } == {
+                            path: (count, 1 / count if path == again_deck else 0.0)
+                            for path, count in expected.items()
+                        }, by_deck
+                        assert all(reveal > 0 for *_, reveal in by_deck), by_deck
                         assert record.execute(
                             "select cause from session_end"
                         ).fetchall() == [("finished",)]

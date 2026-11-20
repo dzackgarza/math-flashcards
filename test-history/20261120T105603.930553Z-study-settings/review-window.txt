@@ -1,0 +1,51 @@
+Math Flashcards
+Reviews
+Search
+Ctrl K
+Settings
+New:
+0
+Learning:
+0
+Review:
+0
+
+New · Learning · Review
+
+New:
+0
+Learning:
+0
+Review:
+0
+
+Study cards ready
+
+Diagrams compiled
+
+Workspace checks complete
+
+Problems
+Update Anki packages
+1
+New deck
+Study
+Study settings
+Undo
+Ctrl Z
+Return to editor
+Esc
+
+New: 0
+
+Learning: 0
+
+Review: 0
+
+Study complete for now
+
+Studied ⁨5⁩ cards ⁨in ⁨0.7⁩ seconds⁩ today (⁨0.14⁩s/card)
+
+Study store: /tmp/flashcards-browser-cache-mui_fwv3/data/math-flashcards/study/a69daf75-00fb-4dd3-a592-36e36d057aff
+
+Learning record: /tmp/flashcards-browser-cache-mui_fwv3/data/math-flashcards/study/a69daf75-00fb-4dd3-a592-36e36d057aff/record.sqlite3
