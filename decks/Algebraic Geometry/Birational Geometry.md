@@ -502,11 +502,13 @@ Any pair $p,q\in X$ can be connected by a chain of rational curves, or equivalen
 :::
 
 ::: {.front card-id="card-70053316f342a559"}
-What is a $\QQ\dash$Gorenstein variety?
+What is a $\mathbb Q$-Gorenstein variety, and what is the index of $K_X$?
 :::
 
 ::: {.back card-id="card-70053316f342a559"}
-$K_X \in \QQ\dash\operatorname{CDiv}(X)$.
+$X$ normal, and $K_X$ is $\mathbb Q$-Cartier: $\exists m\in\mathbb Z_{>0}$ with $mK_X$ Cartier. The least such $m$ near $x$ is the (local) index of $K_X$.
+
+Example: $\frac14(1,1)$ is $\mathbb Q$-Gorenstein of index $2$, not Gorenstein. The cone over $\mathbb P^1\times\mathbb P^1$ in $\mathcal O(1,2)$ is not $\mathbb Q$-Gorenstein.
 :::
 
 ::: {.front card-id="card-0f10ef5a77d3c549"}
@@ -1151,7 +1153,7 @@ Two divisor classes $D_1,D_2\in N^1(X)_{\mathbb R}$ are numerically equivalent i
 :::
 
 ::: {.front card-id="card-9972162b653b2027" tags="definition"}
-What is the definition of Plt?
+Define a purely log terminal (plt) pair. How does it differ from klt, and what does it force on $\lfloor\Delta\rfloor$?
 :::
 
 ::: {.back card-id="card-9972162b653b2027"}

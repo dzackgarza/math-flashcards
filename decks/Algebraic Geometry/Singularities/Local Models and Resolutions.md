@@ -47,11 +47,15 @@ A proper birational morphism $f:Y\to X$, an isomorphism over $X\setminus D$, wit
 :::
 
 ::: {.front card-id="card-8c26bb201aefe21c" tags="definition"}
-What is: crepant resolutions
+What is a crepant resolution? Which singularities can have one? Give examples where one exists and where none exists.
 :::
 
 ::: {.back card-id="card-8c26bb201aefe21c"}
 A resolution $f:Y\to X$ of a normal $\mathbb Q$-Gorenstein variety is crepant if $K_Y=f^*K_X$ as $\mathbb Q$-divisors, equivalently if all exceptional discrepancies are zero.
+
+- Necessary: $X$ canonical and $K_X$ Cartier. Since $K_Y$ is Cartier, $f^*K_X$ is Cartier, and $a(E)=0$ for every exceptional divisor of $Y$.
+- Exists: the minimal resolution of a Du Val surface germ (all $(-2)$-curves). A small resolution of the threefold node $xy=zw$, with exceptional curve $\mathbb P^1$ and no exceptional divisor. $\mathbb C^3/G$ for finite $G\subset\mathrm{SL}_3$ (Bridgeland–King–Reid: $G$-Hilb).
+- None: a singular terminal $X$, since every exceptional divisor has $a(E)>0$; e.g. $\frac12(1,1,1)$. Any klt non-canonical germ, e.g. $\frac13(1,1)$.
 :::
 
 ::: {.front card-id="card-3ee6736250e4d3aa"}

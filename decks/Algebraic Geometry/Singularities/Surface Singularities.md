@@ -167,3 +167,91 @@ What is a cusp singularity of a complex normal surface?
 Its minimal resolution has exceptional divisor a negative-definite cycle of smooth rational curves, or an irreducible rational curve with one node. This is a surface germ; the plane-curve cusp $y^2=x^3$ is a different, one-dimensional singularity.
 :::
 
+
+::: {.front card-id="surface-cyclic-quotient-decoding" tags="construction calculation example"}
+Decode the cyclic quotient germ $\frac1r(1,a)$, $\gcd(r,a)=1$: action, isomorphic labels, toric cone, minimal resolution, discrepancies, and index of $K_X$. Work out $\frac14(1,1)$ and $\frac15(1,2)$.
+:::
+
+::: {.back card-id="surface-cyclic-quotient-decoding"}
+**Action.** $X=\mathbb C^2/\mu_r$, $\zeta\cdot(u,v)=(\zeta u,\zeta^a v)$. Since $\gcd(r,a)=1$, no $\zeta^k\ne1$ fixes a line, so $\mu_r$ has no pseudoreflections and $0$ is the only singular point.
+
+**Labels.** $\frac1r(1,a)\cong\frac1r(1,a')$ iff $a'=a$ or $aa'\equiv1\pmod r$. Reason: swap $u,v$ and use the generator $\zeta^{a}$; the weights become $(1,a^{-1})$.
+
+**Toric cone.** In $N=\mathbb Z^2$: $\sigma=\operatorname{Cone}(e_2,\ re_1-ae_2)$. Equivalently, $\sigma=\mathbb R^2_{\ge0}$ in $N'=\mathbb Z^2+\mathbb Z\cdot\frac1r(1,a)$.
+
+**Resolution.** Hirzebruch–Jung continued fraction
+$$\frac ra=b_1-\cfrac{1}{b_2-\cfrac{1}{\ddots-\cfrac1{b_k}}}=[b_1,\dots,b_k],\qquad b_i\ge2.$$
+The minimal resolution is a chain $E_1-\cdots-E_k$ of smooth rational curves with $E_i^2=-b_i$. Its determinant is $r$. The rays of the resolved fan are the lattice points of $N'$ on the boundary of $\operatorname{conv}(\sigma\cap N'\setminus0)$.
+
+**Discrepancies.** In $N'$ coordinates, $K_X$ pulls back by the linear function $\varphi(x,y)=x+y$, which is $1$ on $e_1,e_2$. The divisor of a primitive ray $v$ has log discrepancy $A(E_v)=\varphi(v)$. For example, $v=\frac1r(1,a)$ gives $A=\frac{1+a}r$. Equivalently, solve $\sum_j a_jE_jE_i=-K_Y E_i=2-b_i$ for $K_Y=\pi^*K_X+\sum a_jE_j$.
+
+- Every $A(E_i)\in(0,1]$, so cyclic quotients are klt.
+- Canonical $\iff$ every $a_i=0\iff$ all $b_i=2\iff a\equiv-1$: the germ is $A_{r-1}$.
+
+**Index.** $du\wedge dv\mapsto\zeta^{1+a}du\wedge dv$, so the index of $K_X$ is $r/\gcd(r,1+a)$.
+
+| Germ | $r/a$ | Chain | Discrepancies | Index |
+| --- | --- | --- | --- | --- |
+| $\frac1r(1,r-1)$ | $[2,\dots,2]$ | $r-1$ curves $(-2)$ | all $0$ | $1$ ($A_{r-1}$) |
+| $\frac1r(1,1)$ | $[r]$ | one $(-r)$-curve | $\frac2r-1$ | $r/\gcd(r,2)$ |
+| $\frac14(1,1)$ | $[4]$ | one $(-4)$-curve | $-\frac12$ | $2$ |
+| $\frac15(1,2)$ | $[3,2]$ | $(-3)-(-2)$ | $-\frac25,-\frac15$ | $5$ |
+
+Check for $\frac15(1,2)$: $3-\frac12=\frac52$. The rays $\frac15(1,2)$ and $\frac15(3,1)$ give $A=\frac35,\frac45$. The linear system $-3a_1+a_2=1$, $a_1-2a_2=0$ gives the same values.
+
+Reference: Cox–Little–Schenck, *Toric Varieties*, §10.1–10.2 and Example 11.4.6; Kollár–Mori, *Birational Geometry of Algebraic Varieties*, §4.1.
+:::
+
+::: {.front card-id="surface-klt-lc-graph-classification" tags="theorem classification"}
+Which complex normal surface germs are klt? Classify klt and strictly lc germs by the dual graph of the minimal resolution.
+:::
+
+::: {.back card-id="surface-klt-lc-graph-classification"}
+**klt $\iff$ quotient.** A normal surface germ $(X,x)$ is klt iff it is analytically $\mathbb C^2/G$ for a finite $G\subset\mathrm{GL}_2(\mathbb C)$. One can take $G$ with no pseudoreflections.
+
+In the graphs below, every exceptional curve is a smooth rational curve with $E^2\le-2$. For a branch chain, $d_i$ is its determinant: the $r$ of its $\frac{r}{a}$.
+
+| Class | Minimal-resolution graph | Origin |
+| --- | --- | --- |
+| klt | chain | cyclic $\frac1r(1,a)$ |
+| klt | one central curve with three branch chains, $(d_1,d_2,d_3)\in\{(2,2,n),(2,3,3),(2,3,4),(2,3,5)\}$, i.e. $\sum1/d_i>1$ | dihedral, tetrahedral, octahedral, icosahedral quotients |
+| lc, not klt | one smooth elliptic curve | simple elliptic |
+| lc, not klt | a cycle of rational curves, or one nodal rational curve | cusp |
+| lc, not klt | a central curve with four $(-2)$-branches | $\mathbb Z/2$ quotient of simple elliptic |
+| lc, not klt | a chain with two $(-2)$-curves attached at each end | $\mathbb Z/2$ quotient of a cusp |
+| lc, not klt | a central curve with three branches, $(d_i)\in\{(3,3,3),(2,4,4),(2,3,6)\}$, i.e. $\sum1/d_i=1$ | $\mathbb Z/3,\mathbb Z/4,\mathbb Z/6$ quotients of simple elliptic |
+
+Du Val germs are the klt rows with all $b_i=2$: chains give $A_n$; $(2,2,n)$ gives $D_{n+2}$; $(2,3,3),(2,3,4),(2,3,5)$ give $E_6,E_7,E_8$.
+
+Reading test: the graph $(-3)-(-2)$ is a chain, hence $\frac15(1,2)$, klt. A single $(-4)$-curve is $\frac14(1,1)$. An elliptic curve of any negative square is simple elliptic, hence lc but not klt.
+
+Reference: Kollár–Mori, Theorem 4.7 and Proposition 4.18.
+:::
+
+::: {.front card-id="surface-t-wahl-singularities" tags="definition construction example"}
+Define T-singularities and Wahl singularities. Give the cyclic family, its index-one cover, a $\mathbb Q$-Gorenstein smoothing, and the examples $\frac14(1,1)$ and $\frac19(1,2)$. Why do they matter for KSBA limits?
+:::
+
+::: {.back card-id="surface-t-wahl-singularities"}
+**T-singularity:** a quotient surface singularity with a $\mathbb Q$-Gorenstein smoothing, i.e. a smoothing over a disc on which $K$ of the total space is $\mathbb Q$-Cartier. Classification: Du Val germs, or
+$$\frac1{dn^2}(1,\,dna-1),\qquad n\ge2,\ d\ge1,\ \gcd(n,a)=1.$$
+**Wahl singularity:** the case $d=1$, $\frac1{n^2}(1,na-1)$. Its smoothing has Milnor fibre a rational homology ball ($\mu=0$).
+
+**Construction.** The index of $K_X$ is $n$. The index-one cover is $A_{dn-1}=\{xy=z^{dn}\}$ with
+$$X=\{xy=z^{dn}\}/\mu_n,\qquad\zeta\cdot(x,y,z)=(\zeta x,\zeta^{-1}y,\zeta^az).$$
+The $\mu_n$-invariant deformation
+$$xy=z^{dn}+\sum_{k=0}^{d-1}t_kz^{kn}$$
+descends to a $\mathbb Q$-Gorenstein smoothing of $X$. Its Milnor number is $d-1$.
+
+| Germ | $(d,n,a)$ | Resolution chain | Index |
+| --- | --- | --- | --- |
+| $\frac14(1,1)$ | $(1,2,1)$ | $[4]$ | $2$ |
+| $\frac19(1,2)$ | $(1,3,1)$ | $[5,2]$ | $3$ |
+| $\frac18(1,3)$ | $(2,2,1)$ | $[3,3]$ | $2$ |
+
+Check: $\frac92=5-\frac12$, so $[5,2]$; $\frac83=3-\frac13$, so $[3,3]$.
+
+**KSBA use.** A $\mathbb Q$-Gorenstein family keeps $K^2$ and $\chi(\mathcal O)$ constant. In a $\mathbb Q$-Gorenstein family of surfaces with smooth general fibre, each quotient singularity of the special fibre is a T-singularity. Example: in the Coble quotient of a surface with a node, the composite action on the node is $\mathbb A^2/\mu_4$, $(u,v)\mapsto(\zeta u,\zeta v)$. The image is a $\frac14(1,1)$ point, and its minimal resolution contains a $(-4)$-curve. Restoring the constant term killed by the quotient gives the local smoothing.
+
+Reference: Kollár–Shepherd-Barron, *Threefolds and deformations of surface singularities*, Invent. Math. 91 (1988), Proposition 3.10; Wahl, *Smoothings of normal surface singularities*, Topology 20 (1981).
+:::
