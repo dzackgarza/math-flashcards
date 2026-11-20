@@ -2,7 +2,7 @@
 title: "Algebraic Geometry::Abelian Varieties"
 ---
 
-::: {.front card-id="abelian-minimal-hodge-classes" tags="definition comparison formula example"}
+::: {.front card-id="abelian-minimal-hodge-classes" tags="definition comparison formula example" cite="[@EFS25a, §1; @ES26, §1]"}
 For a complex principally polarized abelian $g$-fold $(A,\Theta)$, define the minimal class in codimension $k$. Compare integral algebraicity, rational algebraicity, and effective representability.
 :::
 
@@ -16,11 +16,9 @@ This class is integral and primitive: in a symplectic basis $\theta=\sum_i a_i\w
 - Effective representability asks for a cycle with nonnegative integral coefficients; it is stronger.
 
 The integers $m$ with $m\theta_k$ algebraic form $a_k\mathbb Z$, where $a_k>0$ and $a_k\mid k!$. For a smooth genus-$g$ curve embedded in its Jacobian, $[C]=\theta_{g-1}$. Hence $\Theta\cdot C=g$; in general a curve class $m\theta_{g-1}$ has theta degree $mg$.
-
-References: Engel–de Gaay Fortman–Schreieder, *Matroids and the integral Hodge conjecture for abelian varieties*, §1; Engel–Sertöz, *On the degree of subvarieties of abelian varieties*, §1.
 :::
 
-::: {.front card-id="abelian-monodromy-cone-nilpotent-orbit" tags="definition construction example"}
+::: {.front card-id="abelian-monodromy-cone-nilpotent-orbit" tags="definition construction example" cite="[@EFS25, Definitions 2.6–2.8]"}
 For a family of principally polarized abelian varieties over $(\Delta^*)^r$ with unipotent monodromy, define the monodromy cone and describe the nilpotent-orbit approximation in Siegel coordinates.
 :::
 
@@ -32,8 +30,6 @@ defined up to simultaneous integral change of basis $B_i\mapsto AB_iA^t$. Coordi
 Put $t_i=e^{2\pi iz_i}$. The untwisted period map $\Psi(t)=\tau(z)-\sum_i z_iB_i$ extends to the origin in the compact dual. The nilpotent orbit replaces it by its limit:
 $$\tau_{\mathrm{nilp}}(z)=\Psi(0)+\sum_i z_iB_i.$$
 It lies in Siegel space when every $\operatorname{Im}z_i$ is large enough. For a one-node curve degeneration, orient its edge $e$ in the dual graph $\Gamma$. The functional $e^*:H_1(\Gamma,\mathbb Z)\to\mathbb Z$ reads the coefficient of $e$ in a cycle; $B=e^*\otimes e^*$. If the node separates the curve, $e$ lies in no cycle, so $e^*=0$ and contributes no abelian monodromy. For an irreducible one-nodal curve, the graph is one loop and $B=(1)$.
-
-Reference: Engel–de Gaay Fortman–Schreieder, *A survey of the Mumford construction*, Definitions 2.6–2.8.
 :::
 
 ::: {.front card-id="abelian-polarization-type" tags="definition comparison example"}
@@ -54,7 +50,7 @@ Principal means $\lambda_L$ is an isomorphism, equivalently all $d_i=1$. A theta
 On an elliptic curve, $\mathcal O_E(d[0])$ has type $(d)$; $\mathcal O_E([0])$ is principal.
 :::
 
-::: {.front card-id="abelian-siegel-torelli" tags="definition construction"}
+::: {.front card-id="abelian-siegel-torelli" tags="definition construction" cite="[@AB12, §§1–2]"}
 Define Siegel upper half-space, $\mathcal A_g$, and the Torelli morphism. What does the polarization contribute?
 :::
 
@@ -69,11 +65,9 @@ The Torelli morphism sends
 $$\mathcal M_g\longrightarrow\mathcal A_g,\qquad
 C\longmapsto(\operatorname{Pic}^0C,\Theta_C).$$
 Here $\Theta_C$ is the translate of the effective degree-$(g-1)$ locus in $\operatorname{Pic}^{g-1}C$. Torelli recovers $C$ from the principally polarized Jacobian, not from an unspecified unpolarized torus.
-
-Reference: Alexeev–Brunyate, *Extending the Torelli map to toroidal compactifications of Siegel space*, §§1–2.
 :::
 
-::: {.front card-id="abelian-semiabelic-stability" tags="definition comparison example"}
+::: {.front card-id="abelian-semiabelic-stability" tags="definition comparison example" cite="[@Ale02, §1]"}
 Define a semiabelian variety and a stable semiabelic pair. Where does the theta divisor enter the stability condition?
 :::
 
@@ -91,11 +85,9 @@ A stable semiabelic pair $(G\curvearrowright P,\Theta)$ consists of:
 Its degree is $h^0(P,\mathcal O_P(\Theta))$; degree one is the principal case.
 
 Example: identify $0$ and $\infty$ in $\mathbb P^1$. The resulting nodal genus-one curve has a $\mathbb G_m$-action; a single smooth point gives its degree-one theta divisor. Placing that point at the node fails the orbit condition.
-
-Reference: [Alexeev, *Complete moduli in the presence of semiabelian group action*](https://annals.math.princeton.edu/2002/155-3/p01), §1.
 :::
 
-::: {.front card-id="abelian-admissible-cones" tags="definition construction"}
+::: {.front card-id="abelian-admissible-cones" tags="definition construction" cite="[@AB12, §2]"}
 Which cone and lattice data define toroidal compactifications of $\mathcal A_g$? State admissibility, including the rational-radical condition.
 :::
 
@@ -107,11 +99,9 @@ $$C^{\mathrm{rat}}=\{Q\ge0:\ker Q\text{ is spanned by rational vectors}\}.$$
 An admissible fan consists of rational polyhedral cones, closed under faces, intersecting along common faces, covering $C^{\mathrm{rat}}$, invariant under $\operatorname{GL}(\Lambda)$, with finitely many cone orbits. It specifies the toric charts at the cusps.
 
 The rational closure is smaller than the ordinary closed semidefinite cone: a rank-one form in dimension two can have an irrational kernel.
-
-Reference: Alexeev–Brunyate, *Extending the Torelli map to toroidal compactifications of Siegel space*, §2.
 :::
 
-::: {.front card-id="abelian-three-toroidal-fans" tags="definition comparison example"}
+::: {.front card-id="abelian-three-toroidal-fans" tags="definition comparison example" cite="[@AB12, §2]"}
 Distinguish the perfect-cone, second-Voronoi, and central-cone fans. Define the Delaunay decomposition used in the second.
 :::
 
@@ -129,6 +119,4 @@ $$\operatorname{conv}\{v\in\mathbb Z^g:q(v-c)=\min_{w\in\mathbb Z^g}q(w-c)\}$$
 for some center $c$. These cells tile $\mathbb R^g$ periodically. For $g=1$ they are unit intervals, and the three fans agree.
 
 The central-cone compactification is the normalization of the Igusa blowup. In higher genus the three constructions need not agree.
-
-Reference: Alexeev–Brunyate, *Extending the Torelli map to toroidal compactifications of Siegel space*, §2.
 :::

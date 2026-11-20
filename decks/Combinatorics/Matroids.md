@@ -2,7 +2,7 @@
 title: "Combinatorics::Matroids"
 ---
 
-::: {.front card-id="matroid-independent-bases-rank" tags="definition comparison example"}
+::: {.front card-id="matroid-independent-bases-rank" tags="definition comparison example" cite="[@Ale15, Chapter 3]"}
 Define a finite matroid by independent sets. Recover bases, circuits, and rank; give a vector example and the uniform matroid.
 :::
 
@@ -21,8 +21,6 @@ $M=(E,\mathcal I)$, $E$ finite:
 Columns $(v_e)_{e\in E}$ of a matrix define a representable matroid: $I$ independent iff $(v_e)_{e\in I}$ are linearly independent. The field is part of a representation.
 
 $U_{r,n}$: $|E|=n$, $\mathcal I=\{I\subseteq E:|I|\le r\}$. For $U_{2,3}$ use $e_1,e_2,e_1+e_2$; bases are the pairs, and the whole set is its only circuit.
-
-Reference: Alexeev, *Moduli of Weighted Hyperplane Arrangements*, Chapter 3.
 :::
 
 ::: {.front card-id="matroid-flats-components" tags="definition example"}
@@ -100,7 +98,7 @@ Weighted matroid polytopes are nonempty intersections $P(M)\cap\Delta_b$.
 $\Delta(2,3)$ is the triangle with vertices $(1,1,0),(1,0,1),(0,1,1)$. More generally $\dim P(M)=n-c(M)$, where $c(M)$ counts connected components, including singleton loops and coloops.
 :::
 
-::: {.front card-id="matroid-subdivision-realization" tags="definition construction example"}
+::: {.front card-id="matroid-subdivision-realization" tags="definition construction example" cite="[@Ale15, Chapters 3–4]"}
 What is a matroid subdivision? Relate a realizable matroid polytope to a torus orbit in a Grassmannian.
 :::
 
@@ -112,6 +110,4 @@ $$P(V)=\operatorname{conv}\{e_I:p_I(V)\ne0\}.$$
 This is the weight polytope of the Plücker-polarized orbit closure $\overline{T\cdot V}$. A representable rank-two matroid with parallel first and second columns has $p_{12}=0$: its polytope omits $e_1+e_2$.
 
 “Matroid subdivision” is combinatorial; realizability of its cells over a given field and coherence of the subdivision are additional conditions.
-
-Reference: Alexeev, *Moduli of Weighted Hyperplane Arrangements*, Chapters 3–4.
 :::

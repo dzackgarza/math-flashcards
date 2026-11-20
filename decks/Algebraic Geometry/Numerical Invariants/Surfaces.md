@@ -14,7 +14,7 @@ $$F=\pi^*L-\sum_i m_iE_i,\qquad 0=F^2=L^2-\sum_i m_i^2.$$
 Thus $\sum_i m_i^2=L^2$. For the local pencil $(x^2,y)$, the base scheme has length two at one point; resolution has two successive base points of multiplicity one. This differs from the jet-condition count $\binom{m+1}{2}$ used for interpolation.
 :::
 
-::: {.front card-id="numerical-del-pezzo-general-position" tags="definition application"}
+::: {.front card-id="numerical-del-pezzo-general-position" tags="definition application" cite="[@Lui08]"}
 For $r\le8$ distinct points of $\mathbb P^2_{\mathbb C}$, state the precise general-position conditions making their blowup del Pezzo. Explain the numerical obstruction behind each condition.
 :::
 
@@ -24,8 +24,6 @@ No three points lie on a line, no six lie on a conic, and no eight lie on a cubi
 For a strict transform $C=eH-\sum m_iE_i$,
 $$(-K)C=3e-\sum m_i.$$
 The forbidden line, conic, and cubic give respectively $3-3=0$, $6-6=0$, and $9-(2+7)=0$, contradicting ampleness. The cubic condition is additional to the line and conic conditions.
-
-Reference: [Van Luijk, Del Pezzo Surfaces](https://samirsiksek.github.io/siksek.github.io/arith/notes/delpezzo.pdf).
 :::
 
 ::: {.front card-id="numerical-del-pezzo-exceptional-counts" tags="formula"}

@@ -104,7 +104,7 @@ $$0\longrightarrow\mathcal O(-5)\longrightarrow\mathcal O(-2)\oplus\mathcal O(-3
 Intermediate cohomology of line bundles on $\mathbb P^3$ vanishes, so $H^1(\mathcal I_C(m))=0$ and restriction is surjective. In degree two the only relation is the defining quadric, giving $10-1=9$ sections. In degree three the relations are its four linear multiples and the defining cubic, giving $20-4-1=15$.
 :::
 
-::: {.front card-id="formula-bott-projective-differentials" tags="formula"}
+::: {.front card-id="formula-bott-projective-differentials" tags="formula" cite="[@Mov21, Theorem 7.1]"}
 For $n\ge1$, $0\le p\le n$, and $k\in\mathbb Z$, compute $h^q(\mathbb P^n_{\mathbb C},\Omega^p(k))$. Which twists have cohomology?
 :::
 
@@ -118,8 +118,6 @@ $$h^q(\mathbb P^n,\Omega^p(k))=
 0&\text{otherwise}.
 \end{cases}$$
 For example, $\Omega^1_{\mathbb P^3}(1)$ is acyclic, $h^0(\Omega^1_{\mathbb P^3}(2))=6$, and $h^1(\Omega^1_{\mathbb P^3})=1$.
-
-Reference: [Movasati, A Course in Hodge Theory, Theorem 7.1](https://w3.impa.br/~hossein/myarticles/hodgetheoryII-beforepublication.pdf).
 :::
 
 ::: {.front card-id="card-dc50c39867acc702"}
@@ -248,7 +246,7 @@ Discuss cohomology for $\QCoh(\operatorname{Spec}A)$.
 $H^{i\geq 1}(\operatorname{Spec}A, \mcf) = 0$ for any $\mcf\in \QCoh(\operatorname{Spec}A)$. Why: let $M = {{\Gamma}\qty{X; \mcf} }$ and take $M\hookrightarrow I$ an injective resolution in ${}_{A}\Mod$ to get an exact sequence $\tilde M \hookrightarrow\tilde I \in \QCoh(X)$. Check $\mcf\cong \tilde M$ by an early result and each $\tilde I^i$ is flasque thus $\Gamma\dash$acyclic, so use it to compute cohomology. Apply ${{\Gamma}\qty{X; {-}} }$ to $0\to \tilde M\to \tilde I$ to get $0\to M\to I\in   {}_{A}\Mod$ and thus $H^0(\mcf) = M$ and $H^i(\mcf) = 0$ for $i\geq 1$.
 :::
 
-::: {.front card-id="card-81d3dee3bf3d5a16"}
+::: {.front card-id="card-81d3dee3bf3d5a16" cite="[@The25, tag 01XS]"}
 What is $H^i(X;\mathcal O_X(n))$ for $X\coloneqq\mathbb P^r_A$, with $r\ge1$?
 :::
 
@@ -260,7 +258,6 @@ $H^i(X;\mathcal O_X(n))=0$ for $0<i<r$ and every $n$.
 $H^r(X;\mathcal O_X(-(r+1)))=A$. More generally, $H^r(X;\mathcal O_X(n))=0$ for $n>-r-1$; otherwise it is free over $A$ with basis
 $$x_0^{-a_0}\cdots x_r^{-a_r},\qquad a_i\ge1,\quad\sum_i a_i=-n.$$
 Thus $\operatorname{rank}_A H^r(X;\mathcal O_X(n))=\binom{-n-1}{r}$ for $n\le-r-1$, and $H^i(X;\mathcal O_X(n))=0$ for $i>r$.
-Reference: [Stacks Project, cohomology of projective space](https://stacks.math.columbia.edu/tag/01XS).
 :::
 
 ::: {.front card-id="card-847e440e17d15caf" tags="theorem"}
@@ -689,7 +686,7 @@ $$H^0(\mathcal F(t))\otimes H^0(\mathcal O(1))\twoheadrightarrow H^0(\mathcal F(
 All higher twists remain regular in their corresponding degrees.
 :::
 
-::: {.front card-id="theorem-flat-base-change-qcoh" tags="theorem"}
+::: {.front card-id="theorem-flat-base-change-qcoh" tags="theorem" cite="[@The25, tag 02KH]"}
 Let $f:X\to S$ be quasi-compact and quasi-separated, $g:S'\to S$ flat, and $\mathcal F$ quasi-coherent. Set $X'=X\times_S S'$ with projections $g':X'\to X$ and $f':X'\to S'$. State flat base change.
 :::
 
@@ -697,8 +694,6 @@ Let $f:X\to S$ be quasi-compact and quasi-separated, $g:S'\to S$ flat, and $\mat
 The natural maps are isomorphisms for all $i\ge0$:
 $$g^*R^if_*\mathcal F\xrightarrow{\sim}R^if'_*g'^*\mathcal F.$$
 For $S=\operatorname{Spec}A$ and $S'=\operatorname{Spec}B$, this gives $H^i(X,\mathcal F)\otimes_A B\simeq H^i(X',g'^*\mathcal F)$.
-
-[Stacks Project, Tag 02KH](https://stacks.math.columbia.edu/tag/02KH).
 :::
 
 ::: {.front card-id="application-base-change-localization-or-fiber" tags="application"}

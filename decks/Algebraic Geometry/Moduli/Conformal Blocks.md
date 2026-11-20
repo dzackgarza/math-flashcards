@@ -2,7 +2,7 @@
 title: "Algebraic Geometry::Moduli::Conformal Blocks"
 ---
 
-::: {.front card-id="conformal-affine-level-weights" tags="definition construction example"}
+::: {.front card-id="conformal-affine-level-weights" tags="definition construction example" cite="[@AGS14, §3.1]"}
 Define the affine current algebra, level, and allowed highest weights used for conformal blocks. Specialize to $\mathfrak{sl}_2$.
 :::
 
@@ -13,11 +13,9 @@ $$[x\otimes f,y\otimes g]=[x,y]\otimes fg+(x,y)\operatorname{Res}(g\,df)K.$$
 Level $\ell\in\mathbb Z_{\ge0}$ means $K$ acts by $\ell$. The integrable highest-weight modules $\mathcal H_{\lambda,\ell}$ are indexed by dominant integral weights with $\langle\lambda,\theta^\vee\rangle\le\ell$, where $\theta$ is the highest root.
 
 For $\mathfrak{sl}_2$, write $\lambda=a\omega$; the allowed labels are $a=0,1,\ldots,\ell$. The zero-mode highest-weight space has dimension $a+1$; the affine module is generally infinite-dimensional.
-
-Reference: Alexeev–Gibney–Swinarski, *Higher-level $\mathfrak{sl}_2$ conformal blocks divisors on $\overline M_{0,n}$*, §3.1.
 :::
 
-::: {.front card-id="conformal-coinvariants-bundles" tags="definition construction"}
+::: {.front card-id="conformal-coinvariants-bundles" tags="definition construction" cite="[@AGS14, §3.1]"}
 Define conformal-block coinvariants on a pointed curve and the associated divisor. Specify the duality convention.
 :::
 
@@ -31,11 +29,9 @@ The associated conformal-block divisor is
 $$\mathbb D_{\mathfrak g,\ell,\vec\lambda}
 =c_1(\mathbb V)=c_1(\det\mathbb V).$$
 Here $\mathbb V$ denotes coinvariants, as in Alexeev–Gibney–Swinarski. Another common convention calls $\mathbb V^\vee$ the space of conformal blocks; dualizing changes the sign of $c_1$.
-
-Reference: Alexeev–Gibney–Swinarski, §3.1.
 :::
 
-::: {.front card-id="conformal-factorization-fusion" tags="definition formula application"}
+::: {.front card-id="conformal-factorization-fusion" tags="definition formula application" cite="[@AGS14, §3.2]"}
 Define fusion coefficients and state factorization at a node. Compute the rank for four $\mathfrak{sl}_2$ labels all equal to one at levels one and two.
 :::
 
@@ -52,11 +48,9 @@ For a nonseparating node, use one normalization component with both inserted lab
 For $\mathfrak{sl}_2$, labels $a,b,c\in\{0,\ldots,\ell\}$ are self-dual; the three-point rank is one iff
 $$a+b+c\ \text{even},\qquad |a-b|\le c\le\min(a+b,2\ell-a-b),$$
 and zero otherwise. Four labels $1$ have intermediate label $0$ at level one, and $0$ or $2$ at level two: ranks one and two.
-
-Reference: Alexeev–Gibney–Swinarski, §3.2.
 :::
 
-::: {.front card-id="conformal-quasiparabolic-bundles" tags="definition comparison example"}
+::: {.front card-id="conformal-quasiparabolic-bundles" tags="definition comparison example" cite="[@AGS14, §3.1]"}
 Define a quasiparabolic principal bundle on a pointed curve. Distinguish its flags from parabolic weights.
 :::
 
@@ -66,6 +60,4 @@ Fix a connected reductive complex group $G$ and parabolic subgroups $P_i\subset 
 For $G=\operatorname{GL}_r$, this is a rank-$r$ vector bundle with prescribed partial flags in the marked fibers. For $r=2$, a full flag is a chosen line in each fiber.
 
 A parabolic bundle additionally assigns ordered real weights to the flag steps. These weights enter parabolic degree and stability; the flag alone does not specify them. In the geometric construction of conformal blocks, the labels specify flag/character data and the level specifies the determinant-line power.
-
-Reference: Alexeev–Gibney–Swinarski, §3.1.
 :::

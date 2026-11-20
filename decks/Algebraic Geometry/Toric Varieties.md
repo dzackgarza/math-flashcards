@@ -2,7 +2,7 @@
 title: "Algebraic Geometry::Toric Varieties"
 ---
 
-::: {.front card-id="toric-cayley-twisted-sums" tags="definition construction example"}
+::: {.front card-id="toric-cayley-twisted-sums" tags="definition construction example" cite="[@DS21, Definition 1.1]"}
 Define a Cayley sum, normal equivalence, and a twisted Cayley sum. Give a polygon whose associated toric surface is a ruled surface.
 :::
 
@@ -17,11 +17,9 @@ Normally equivalent polytopes have the same normal fan after identifying their s
 For a surjective lattice map $\pi:M\to\Lambda$, a $\pi$-twisted Cayley sum is $R=\operatorname{conv}(R_1,\ldots,R_\ell)$, where the normally equivalent lattice polytopes $R_i$ lie in parallel fibers and their images $v_i$ are precisely the distinct vertices of $F=\pi(R)$.
 
 Example: $P_0=[0,a]$, $P_1=[0,b]$, $a,b>0$. Their Cayley polygon is a trapezoid; its toric surface is $\mathbb F_{|a-b|}$, ruled over $\mathbb P^1$. If $a=b$, the rectangle gives $\mathbb P^1\times\mathbb P^1$.
-
-Reference: [Di Rocco–Schaffler, Definition 1.1](https://arxiv.org/abs/2110.04842).
 :::
 
-::: {.front card-id="toric-quotient-fan-lattice-fibers" tags="definition construction comparison"}
+::: {.front card-id="toric-quotient-fan-lattice-fibers" tags="definition construction comparison" cite="[@DS21, §§2–3]"}
 Describe the fan of a normalized toric Chow quotient by a subtorus. What lattice condition distinguishes reduced fibers from mere control of fiber dimensions?
 :::
 
@@ -34,11 +32,9 @@ For a toric morphism of fans, the combinatorial conditions for weak semistabilit
 - $q(N\cap\operatorname{span}_{\mathbb R}\sigma)=N'\cap\operatorname{span}_{\mathbb R}\tau$ for every such cone.
 
 The first controls equidimensionality; the second excludes lattice multiplicities in fibers. Smooth target plus these conditions gives flatness with reduced fibers. Example: $\mathbb A^1\to\mathbb A^1$, $t=x^m$, has the same ray map over $\mathbb R$ as the identity but lattice image $m\mathbb Z$; its zero fiber is nonreduced for $m>1$.
-
-Reference: Di Rocco–Schaffler, *Families of pointed toric varieties and degenerations*, §§2–3.
 :::
 
-::: {.front card-id="polyhedral-coherent-secondary" tags="definition construction example"}
+::: {.front card-id="polyhedral-coherent-secondary" tags="definition construction example" cite="[@GKZ08, Chapter 7; @Ale15, §2.7]"}
 Define a coherent subdivision, secondary fan, and secondary polytope for a finite point configuration. Use a square to distinguish subdivisions.
 :::
 
@@ -50,11 +46,9 @@ $A\subset\mathbb R^d$ finite, affinely spanning; $P=\operatorname{conv}A$.
 - For a triangulation $T$ using vertices in $A$, set $\phi_T(a)=\sum_{\sigma\in T,\ a\in\sigma}\operatorname{vol}(\sigma)$, summing over maximal simplices with one fixed volume normalization. The **secondary polytope** is $\operatorname{conv}\{\phi_T\}$; its normal fan, with the lower-height convention, is the secondary fan.
 
 For the four vertices of a square, compare $h_{00}+h_{11}$ with $h_{10}+h_{01}$. A strict inequality selects one diagonal; equality gives the unsubdivided square. The secondary polytope is a segment. A general subdivision need not be coherent.
-
-Reference: Gel'fand–Kapranov–Zelevinsky, *Discriminants, Resultants, and Multidimensional Determinants*, Chapter 7; Alexeev, *Moduli of Weighted Hyperplane Arrangements*, §2.7.
 :::
 
-::: {.front card-id="polyhedral-fiber-polytope" tags="definition construction example"}
+::: {.front card-id="polyhedral-fiber-polytope" tags="definition construction example" cite="[@BS92; @AP23, §4]"}
 Define the fiber polytope of a projection of polytopes. What does its normal fan record?
 :::
 
@@ -66,11 +60,9 @@ The Minkowski integral is the set of averages $\operatorname{vol}(Q)^{-1}\int_Qs
 Its normal fan records the coherent subdivisions of $Q$ induced by minimizing a linear functional on each fiber of $\pi$.
 
 Example: projecting the unit square onto its first coordinate gives vertical interval fibers. Their average is $\{1/2\}\times[0,1]$. Secondary polytopes arise from projecting a simplex with vertices indexed by $A$ onto $\operatorname{conv}A$.
-
-Reference: Billera–Sturmfels, *Fiber polytopes*; Alexeev–Pardini, *Explicit compactifications of moduli spaces of Campedelli and Burniat surfaces*, §4.
 :::
 
-::: {.front card-id="toric-stable-polarized-gluing" tags="definition comparison example"}
+::: {.front card-id="toric-stable-polarized-gluing" tags="definition comparison example" cite="[@Ale15, §2.2]"}
 Define a polarized stable toric variety. What extra data are needed beyond its complex of polytopes?
 :::
 
@@ -86,11 +78,9 @@ Normalization components are polarized toric varieties. Their lattice polytopes 
 Face gluings also require torus translations $t_{ij}$: on triple overlaps $t_{ij}t_{jk}t_{ki}=1$, modulo changes of origins on components. The complex alone need not determine $X$.
 
 Example: two copies of $\mathbb P^1$ glued at torus-fixed endpoints, each with $\mathcal O(1)$, correspond to two unit intervals meeting at an endpoint.
-
-Reference: Alexeev, *Moduli of Weighted Hyperplane Arrangements*, §2.2.
 :::
 
-::: {.front card-id="toric-stable-over-target-pair" tags="definition comparison"}
+::: {.front card-id="toric-stable-over-target-pair" tags="definition comparison" cite="[@Ale15, §§2.4–2.7]"}
 Distinguish a stable toric variety over a projective target from a stable toric pair.
 :::
 
@@ -103,8 +93,6 @@ Fix a projective $T$-scheme $V$ with linearized ample $\mathcal O_V(1)$.
 | Stable toric pair $(X,B)$ | Effective ample Cartier divisor $B$, containing no $T$-orbit |
 
 $B$ is not required to be invariant. For $\mathbb P^1$ with its standard torus action, a point of $\mathbb G_m$ gives such a divisor; either fixed point fails the orbit condition.
-
-Reference: Alexeev, *Moduli of Weighted Hyperplane Arrangements*, §§2.4–2.7.
 :::
 
 ::: {.front card-id="convex-lineality-relative-interior" tags="definition application"}
@@ -684,7 +672,7 @@ $$\operatorname{Conv}(0,k_1e_1,\ldots,k_ne_n)-(1,\ldots,1),\qquad k_i=\frac{\sum
 is an integral anticanonical-polytope description when $q_0=1$ and $q_i\mid\sum_jq_j$ for every $i$. It is not the construction for arbitrary weights.
 :::
 
-::: {.front card-id="weighted-projective-charts-adjunction" tags="definition formula example"}
+::: {.front card-id="weighted-projective-charts-adjunction" tags="definition formula example" cite="[@GPSZ22, §2 and its weighted-projective references]"}
 For weighted projective space, distinguish quotient charts, well-formedness, quasismoothness, and Cartier twists. Compute the canonical class of a weighted hypersurface.
 :::
 
@@ -699,11 +687,9 @@ $$H^n=\frac1{\prod_iq_i},\qquad K_X\sim-\Bigl(\sum_iq_i\Bigr)H.$$
 A hypersurface $V(F_d)$ is quasismooth if its affine cone is smooth away from the origin. If it is also well formed (its intersection with the ambient singular locus has codimension at least two in it), adjunction gives
 $$K_{V(F_d)}\sim_{\mathbb Q}(d-\sum_iq_i)H|_{V(F_d)}.$$
 Quasismooth need not mean smooth on the coarse space. Example: $\mathbb P(1,1,2)$ has an $A_1$ quotient chart at $[0:0:1]$, $H^2=1/2$, and $\mathcal O(2)$ is Cartier.
-
-Reference: Gallardo–Pearlstein–Schaffler–Zhang, *Unimodal singularities and boundary divisors in the KSBA moduli of a class of Horikawa surfaces*, §2 and its weighted-projective references.
 :::
 
-::: {.front card-id="weighted-blowup-initial-form" tags="construction example"}
+::: {.front card-id="weighted-blowup-initial-form" tags="construction example" cite="[@GPSZ22, §2.4]"}
 Define the weighted blowup of $\mathbb A^n$ at the origin. How do its weights determine the exceptional divisor and the strict transform of a hypersurface?
 :::
 
@@ -717,8 +703,6 @@ then quotient by $\mu_{a_i}$ acting with weights $1,-a_j$ on $u,y_j$. Quotient s
 If $f$ has lowest weighted degree $d$, divide its pullback by $u^d$ to obtain the strict transform. Its intersection with the exceptional divisor is the lowest-weight form $\operatorname{in}_a(f)=0$.
 
 Weights $(1,\ldots,1)$ recover the ordinary blowup. For weights $(1,2)$ and $f=y-x^2$, the first chart gives $f=u^2(v-1)$; the strict transform is $v=1$ and meets the exceptional curve at one point.
-
-Reference: Gallardo–Pearlstein–Schaffler–Zhang, §2.4.
 :::
 
 ::: {.front card-id="card-e1a99de59c6e75bf" tags="unsorted"}

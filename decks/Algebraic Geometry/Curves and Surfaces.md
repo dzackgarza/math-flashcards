@@ -2,7 +2,7 @@
 title: "Algebraic Geometry::Curves and Surfaces"
 ---
 
-::: {.front card-id="surfaces-i-horikawa-canonical-model" tags="definition construction calculation"}
+::: {.front card-id="surfaces-i-horikawa-canonical-model" tags="definition construction calculation" cite="[@GPSZ22, §§1–2]"}
 What is an I-surface? Give its canonical weighted-hypersurface model, recover its invariants, and identify its bicanonical map.
 :::
 
@@ -17,8 +17,6 @@ H^0(K_X)=\langle x,y\rangle.$$
 The bicanonical coordinates $x^2,xy,y^2,z$ give a degree-two map onto the quadric cone $\mathbb P(1,1,2)\subset\mathbb P^3$. Forgetting $w$ is the cover, branched along $F_{10}=0$ away from the cone vertex.
 
 The canonical model contracts any $K$-trivial $(-2)$-curves of the smooth minimal surface. A singular equation limit with worse singularities need not be the KSBA limit.
-
-Reference: Gallardo–Pearlstein–Schaffler–Zhang, *Unimodal singularities and boundary divisors in the KSBA moduli of a class of Horikawa surfaces*, §§1–2.
 :::
 
 ::: {.front card-id="kodaira-draw-unstarred" tags="application visual"}
@@ -228,7 +226,7 @@ $$F\cdot C_i=0,\qquad2m_i=\sum_{j\text{ adjacent to }i}m_j,\qquad m_i>0,\quad\gc
 The section meets a component with $m_i=1$.
 :::
 
-::: {.front card-id="kodaira-minimal-orders" tags="formula application"}
+::: {.front card-id="kodaira-minimal-orders" tags="formula application" cite="[@Mir89, III.4]"}
 For a minimal short Weierstrass equation $y^2=x^3+a(t)x+b(t)$ over $\mathbb C[[t]]$, identify the Kodaira type from the vanishing orders of $a,b,\Delta$. What must be checked first?
 :::
 
@@ -249,8 +247,6 @@ Use $\Delta=-16(4a^3+27b^2)$ and require $\Delta\not\equiv0$. If $\operatorname{
 | $II^*$ | $\ge4$ | 5 | 10 |
 
 The three orders are used together: cancellation can increase the discriminant order. In characteristic zero, $\operatorname{ord}\Delta=e(F)$ for the minimal model. The table needs modification in residue characteristics two and three.
-
-Reference: [Miranda, The Basic Theory of Elliptic Surfaces, III.4](https://www.math.colostate.edu/~miranda/BTES-Miranda.pdf).
 :::
 
 ::: {.front card-id="kodaira-equations-ambiguous-discriminant" tags="application"}
@@ -310,7 +306,7 @@ $$\operatorname{contr}_v(P)=\frac{i(n-i)}n.$$
 For $I_5$ and $i=2$ this is $6/5$. At $I_0^*$, deleting an outer identity component gives $D_4(-1)$; the inverse Cartan diagonal at each of the other outer vertices is one. Thus a section meeting any nonidentity component contributes one. It cannot meet the central multiplicity-two component.
 :::
 
-::: {.front card-id="kodaira-monodromy-table" tags="formula"}
+::: {.front card-id="kodaira-monodromy-table" tags="formula" cite="[@BT03]"}
 Give local monodromy representatives for Kodaira fibers. Fix the positive-loop convention with $I_1$ represented by $T=\begin{pmatrix}1&1\\0&1\end{pmatrix}$.
 :::
 
@@ -329,8 +325,6 @@ On integral first homology, after a choice of symplectic basis, the representati
 | $II^*$ | $\begin{pmatrix}0&-1\\1&1\end{pmatrix}$ |
 
 Changing basis conjugates the matrices; reversing the loop inverts them. The starred exceptional matrices are the inverses of their unstarred partners of the same Roman numeral. The finite orders are respectively $6,4,3,3,4,6$; $I_0^*$ has order two. The $I_n$ and $I_n^*$ cases with $n>0$ have infinite order.
-
-Reference: [Bogomolov–Tschinkel, Monodromy of elliptic surfaces](https://math.nyu.edu/~tschinke/papers/yuri/03monodromy/monodromy21.pdf).
 :::
 
 ::: {.front card-id="kodaira-base-change-twist" tags="application"}
@@ -483,7 +477,7 @@ The surface stays rational, with $\kappa=-\infty$, $p_g=q=0$, and Picard lattice
 For the first row, choose the first nine with unique cubic and nontorsion normal bundle, so every degree-$3m$ curve with multiplicity at least $m$ there is $mC$. A further point outside $C$ rules this out. For the last row, multiplying by the section of $mL'$ embeds $H^0(2mH)$ into $H^0(-mK)$, giving quadratic growth. Negative square rules out nefness, not bigness of a nonnef divisor.
 :::
 
-::: {.front card-id="blowup-finite-affine-indefinite" tags="application"}
+::: {.front card-id="blowup-finite-affine-indefinite" tags="application" cite="[@Fer10]"}
 How do the canonical orthogonal complement and the curve cone change across $r=8,9,10$ for plane blowups?
 :::
 
@@ -495,8 +489,6 @@ $$K^\perp/\mathbb ZK\cong E_8(-1).$$
 This is the affine $E_8$ transition. For $r\ge10$, $K^2<0$ and $K^\perp$ has signature $(1,r-1)$, so it is indefinite.
 
 For very general complex point configurations with $r\ge9$, there are infinitely many $(-1)$-curves and the curve cone is not rational polyhedral. This is not a statement about every special configuration. On a rational elliptic surface, sections are $(-1)$-curves, and positive Mordell–Weil rank supplies infinitely many.
-
-Reference: [de Fernex, Mori cones of plane blowups](https://arxiv.org/abs/1001.5243).
 :::
 
 ::: {.front card-id="definition-gonality-pencil" tags="definition application"}
@@ -836,7 +828,7 @@ For $D+P$: take $\mcl(-p)\hookrightarrow{\mathcal{O}}_X \twoheadrightarrow\iota^
 Twist by $\mcl(D+p)$ to get $\mcl(D) \hookrightarrow\mcl(D+p) \twoheadrightarrow\iota^p_* k$ and $\chi(\mcl(D+p)) = \chi(\mcl(D)) + \chi(\iota^p_* k) = \chi(\mcl(D)) + 1$ and conclude using $\deg(D+p) = \deg D + 1$.
 :::
 
-::: {.front card-id="card-19de812341c2379c" tags="definition"}
+::: {.front card-id="card-19de812341c2379c" tags="definition" cite="[@The25, tag 0C1B]"}
 What is the **Riemann–Hurwitz** theorem for curves?
 :::
 
@@ -848,8 +840,6 @@ $$R=\sum_{P\in X}\operatorname{length}_{\mathcal O_{X,P}}(\Omega_{X/Y,P})[P]$$
 is the ramification divisor; its coefficients are the different exponents. Then $\deg R\ge\sum_P(e_P-1)$, with equality iff $f$ is tamely ramified (e.g. in characteristic zero), so
 $$2g_X-2=\deg(f)(2g_Y-2)+\sum_{P\in X}(e_P-1)\qquad\text{(tame case)}.$$
 For a purely inseparable morphism over the stated algebraically closed field, $g(X)=g(Y)$; the separable ramification formula does not apply.
-
-Reference: [Stacks Project, Riemann–Hurwitz](https://stacks.math.columbia.edu/tag/0C1B).
 :::
 
 ::: {.front card-id="card-698d5032f513e86a"}
@@ -1998,7 +1988,7 @@ In the stable range $2g-2+n>0$, contract rational components of logarithmic dual
 Example: insert an unmarked $\mathbb P^1$ between two elliptic components. The bridge has degree zero and a $\mathbb G_m$ of automorphisms; each elliptic component has degree one. Contracting the bridge yields two elliptic curves meeting at a node, a stable genus-two curve.
 :::
 
-::: {.front card-id="curves-semistable-reduction-models" tags="theorem comparison application"}
+::: {.front card-id="curves-semistable-reduction-models" tags="theorem comparison application" cite="[@The25, Semistable Reduction and §109.24]"}
 For a smooth projective geometrically connected curve over $\mathbb C((t))$, compare semistable reduction, stable reduction, regularity of the total space, and uniqueness. What does $xy=t^r$ illustrate?
 :::
 
@@ -2006,8 +1996,6 @@ For a smooth projective geometrically connected curve over $\mathbb C((t))$, com
 After a finite extension $\mathbb C((t))\subset\mathbb C((s))$, the curve has a proper flat regular model with reduced nodal special fiber. This is semistable reduction in the model-theoretic convention; it permits unstable rational components. For $g\ge2$, stabilization gives a stable model, unique once the generic fiber is identified.
 
 Semistable regular models are not unique: blow up a smooth point of the special fiber to add a rational tail. Stable total spaces need not be regular: $xy=t^r$ has nodal special fiber but a singular total space when $r>1$. Resolving inserts a chain of rational curves; stabilization contracts the chain again.
-
-Reference: Stacks Project, *Semistable Reduction* and §109.24.
 :::
 
 ::: {.front card-id="curves-pointed-moduli-boundary-example" tags="application"}

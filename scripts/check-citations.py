@@ -27,9 +27,11 @@ def zotero_keys() -> set[str]:
     start = 0
     while True:
         with urllib.request.urlopen(
-            f"{ZOTERO}?limit=100&start={start}&format=json"
+            # A fixed sort keeps pages disjoint; the default order shifts between pages.
+            f"{ZOTERO}/top?limit=100&start={start}&format=json&sort=dateAdded&direction=asc"
         ) as response:
-            page = json.load(response)
+            # Zotero emits raw control characters inside some field strings.
+            page = json.loads(response.read().decode(), strict=False)
         if not page:
             return keys
         keys.update(

@@ -2,7 +2,7 @@
 title: "Algebraic Geometry::Examples"
 ---
 
-::: {.front card-id="projective-gale-self-duality" tags="definition construction example"}
+::: {.front card-id="projective-gale-self-duality" tags="definition construction example" cite="[@CGMS17, §4; @GS26, §3]"}
 Construct the Gale dual of an ordered point configuration. State the non-degeneracy needed and the matrix criterion for self-duality.
 :::
 
@@ -14,11 +14,9 @@ Choose a basis of $\ker(A:k^n\to k^r)$ as the rows of an $(n-r)\times n$ matrix 
 For $n=2r$, ordered self-duality means $B=GA D$ for invertible $G$ and invertible diagonal $D$, equivalently
 $$A D A^t=0.$$
 Example: $A=[I_r\mid I_r]$, $B=[I_r\mid-I_r]$. Both represent the configuration with each coordinate point repeated twice; $D=\operatorname{diag}(I_r,-I_r)$ proves self-duality.
-
-References: [Caminata et al., §4](https://arxiv.org/abs/1711.06286); [Gallardo–Schaffler, §3](https://arxiv.org/abs/2610.35060).
 :::
 
-::: {.front card-id="projective-evaluation-determinantal-loci" tags="definition construction example"}
+::: {.front card-id="projective-evaluation-determinantal-loci" tags="definition construction example" cite="[@CMS22, §2]"}
 How do evaluation matrices express the condition that a point configuration lies on a degree-$d$ hypersurface? Define its determinantal rank loci.
 :::
 
@@ -30,11 +28,9 @@ represents evaluation after trivializing the fibers $\mathcal O(d)|_{p_i}$. Its 
 Rank $\le s$ is cut out scheme-theoretically by all $(s+1)$-minors. A nonzero equation exists iff $\operatorname{rank}E_d<N$. If $n<N$, this is automatic. Independent conditions means rank $\min(n,N)$.
 
 Examples: three plane points collinear iff the $3\times3$ coordinate determinant vanishes. Six plane points lie on a conic, possibly reducible or nonreduced, iff the determinant of their quadratic $6\times6$ evaluation matrix vanishes.
-
-Reference: Caminata–Moon–Schaffler, *Determinantal varieties from point configurations on hypersurfaces*, §2.
 :::
 
-::: {.front card-id="projective-osculating-jets" tags="definition construction example"}
+::: {.front card-id="projective-osculating-jets" tags="definition construction example" cite="[@CCS24, §2]"}
 Define the order-$k$ osculating space to an embedded smooth curve over $\mathbb C$. Compute it for a rational normal curve, including its osculating hyperplane.
 :::
 
@@ -46,8 +42,6 @@ Reparametrization and changing the lift preserve the span. Its annihilator consi
 For $v(t)=(1,t,\ldots,t^r)$, $\dim\operatorname{Osc}^k= k$ for $0\le k\le r$. At $t=0$, it is $X_{k+1}=\cdots=X_r=0$. The osculating hyperplane at finite $a$ has coefficients of $(t-a)^r$:
 $$\sum_{j=0}^r\binom rj(-a)^{r-j}X_j=0.$$
 It meets the curve at $a$ with multiplicity $r$. For the twisted cubic: points, tangent lines, osculating planes, then all of $\mathbb P^3$.
-
-Reference: Caminata–Carlini–Schaffler, *Simplices osculating rational normal curves*, §2.
 :::
 
 ::: {.front card-id="construction-delpezzo-weighted-low-degree" tags="construction application"}
@@ -101,7 +95,7 @@ The gradients of $F,G$ are independent at each point. Blowing them up resolves t
 The singular members are $F$, $G$, and $F-G=z(y-x)$: the three pairings of the four base points into pairs of lines. Each resolved singular fiber consists of two $(-1)$-curves meeting once. There are no others: the determinant of the symmetric matrix of $\lambda F+\mu G$ is a nonzero scalar times $\lambda\mu(\lambda+\mu)$.
 :::
 
-::: {.front card-id="example-cubic-pencil-elliptic-surface" tags="example application"}
+::: {.front card-id="example-cubic-pencil-elliptic-surface" tags="example application" cite="[@Vak01]"}
 A general pencil of plane cubics over $\mathbb C$ has nine distinct base points. What surface and fibration result from blowing them up? Compute the fiber class, canonical class, sections, and number of singular fibers.
 :::
 
@@ -111,8 +105,6 @@ $$F=3H-\sum_{i=1}^9E_i=-K_S,\qquad F^2=0,\qquad K_SF=0.$$
 Adjunction gives genus one for a smooth fiber. Each $E_i$ has $E_iF=1$ and is a section, so the fibration has a section as well as genus-one fibers.
 
 For a general pencil all singular fibers are irreducible nodal cubics. Since $e(S)=e(\mathbb P^2)+9=12$, smooth elliptic fibers have Euler characteristic zero, and each nodal fiber contributes one, there are twelve singular fibers. Distinct base points alone do not guarantee this fiber type; special pencils can have reducible or cuspidal fibers.
-
-Reference: [Vakil, Twelve points on the projective line, branched covers, and rational elliptic fibrations](https://arxiv.org/abs/math/9910077).
 :::
 
 ::: {.front card-id="example-conic-system-discriminant" tags="example application"}

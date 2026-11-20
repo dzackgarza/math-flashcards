@@ -2,7 +2,7 @@
 title: "Algebraic Geometry::Birational Geometry"
 ---
 
-::: {.front card-id="birational-cox-mori-dream" tags="definition comparison example"}
+::: {.front card-id="birational-cox-mori-dream" tags="definition comparison example" cite="[@HK00, Definition 1.10 and Proposition 2.9]"}
 Define the Cox ring when $\operatorname{Pic}(X)$ is free. State the Mori dream space conditions and their relation to finite generation.
 :::
 
@@ -18,11 +18,9 @@ Multiplication comes from tensor product of sections. These hypotheses make the 
 A small modification is an isomorphism outside subsets of codimension at least two on both sides. The effective cone has finitely many Mori chambers recording section-ring models and fixed divisors.
 
 Examples: $\operatorname{Cox}(\mathbb P^n)=\mathbb C[x_0,\ldots,x_n]$, all degrees one; $\operatorname{Cox}(\mathbb P^1\times\mathbb P^1)=\mathbb C[x_0,x_1,y_0,y_1]$, bidegrees $(1,0)$ and $(0,1)$.
-
-Reference: [Hu–Keel, Definition 1.10 and Proposition 2.9](https://arxiv.org/abs/math/0004017).
 :::
 
-::: {.front card-id="birational-q-factorialization" tags="definition comparison example"}
+::: {.front card-id="birational-q-factorialization" tags="definition comparison example" cite="[@GS25, Definition 5.3]"}
 Define a $\mathbb Q$-factorialization. Distinguish it from a resolution and from an arbitrary small modification.
 :::
 
@@ -34,11 +32,9 @@ For normal $X$, a $\mathbb Q$-factorialization is a projective birational morphi
 - Every $\mathbb Q$-factorialization is small; existence is a theorem under hypotheses, not part of normality alone. Complex quasi-projective klt varieties admit one.
 
 Example: the threefold node $xy-zw=0$ has projective small resolutions over the node, replacing its vertex by $\mathbb P^1$. Blowing up the vertex instead extracts a quadric surface and is not small.
-
-Reference: Gallardo–Schaffler, *Wall-crossing of the moduli space of hyperplane arrangements*, Definition 5.3.
 :::
 
-::: {.front card-id="birational-boundedness-hierarchy" tags="definition comparison example"}
+::: {.front card-id="birational-boundedness-hierarchy" tags="definition comparison example" cite="[@EFG+25, Definitions 2.25–2.29]"}
 Compare boundedness, boundedness in codimension one, and birational boundedness of projective varieties. Give a simple separating family.
 :::
 
@@ -53,11 +49,9 @@ A collection $\{X_i\}$ is bounded if there is a projective morphism $\mathcal X\
 Thus bounded $\Rightarrow$ bounded in codimension one $\Rightarrow$ birationally bounded. Bounded morphisms $X_i\to Y_i$ require a finite-type family of commuting diagrams, not just bounded sources and targets separately.
 
 The Hirzebruch surfaces $\mathbb F_n$, $n\ge0$, are all rational, hence birationally bounded by $\mathbb P^2$. They are not bounded: $h^1(\mathbb F_n,T_{\mathbb F_n})=n-1$ for $n\ge2$, unbounded in this collection, whereas these dimensions are bounded in a finite-type smooth projective family.
-
-Reference: [Engel et al., *Boundedness of fibered varieties with trivial canonical bundle*, Definitions 2.25–2.29](https://arxiv.org/abs/2507.00973).
 :::
 
-::: {.front card-id="moduli-isotrivial-variation" tags="definition comparison example"}
+::: {.front card-id="moduli-isotrivial-variation" tags="definition comparison example" cite="[@Ale26, Definition 3.10; @ELT24]"}
 For a family with coarse moduli map $\mu:S\to M$, define variation, maximal variation, and isotriviality. Distinguish isotrivial from a product family.
 :::
 
@@ -68,11 +62,9 @@ $$\operatorname{Var}(f)=\dim\overline{\mu(S)},\qquad
 An isotrivial family has isomorphic geometric fibers; on a dense open base this means a constant coarse moduli map. For polarized varieties with finite automorphism groups in characteristic zero, such a family becomes a product after a finite étale cover of that open base. A constant coarse map does not choose a trivialization.
 
 Example: for an étale double cover $S'\to S$ and a smooth curve $C$ with involution $\iota$, the diagonal quotient $(C\times S')/\langle(\iota,\sigma)\rangle\to S$ has constant moduli, with monodromy $\iota$; pulling back to $S'$ gives a product. In contrast, elliptic curves with varying $j$ have positive variation.
-
-Reference: Alexeev, *Tautological classes on KSBA spaces*, Definition 3.10; Engel–Lin–Tayou, *On the Shafarevich conjecture for families of hypersurfaces*.
 :::
 
-::: {.front card-id="birational-open-log-invariants" tags="definition construction example"}
+::: {.front card-id="birational-open-log-invariants" tags="definition construction example" cite="[@AL19b, §1]"}
 Define logarithmic Kodaira dimension and volume of a smooth open complex surface. When is volume a self-intersection?
 :::
 
@@ -86,11 +78,9 @@ These are independent of the chosen SNC compactification. Log general type means
 For the Zariski decomposition $K_S+D=P+N$ of a big divisor, $\operatorname{vol}(K_S+D)=P^2$, not generally $(K_S+D)^2$. On the log canonical model, $\operatorname{vol}(K_S+D)=(K_{S_{\mathrm{can}}}+D_{\mathrm{can}})^2$.
 
 Example: $(\mathbb C^\times)^2=\mathbb P^2\setminus$ three coordinate lines has $K+D=0$, so $\overline\kappa=0$ and volume zero. The complement of four lines with no three concurrent has $K+D=H$, hence $\overline\kappa=2$ and volume one.
-
-Reference: Alexeev–Liu, *Open surfaces of small volume*, §1.
 :::
 
-::: {.front card-id="cones-nonpolyhedral-abelian-example" tags="example application"}
+::: {.front card-id="cones-nonpolyhedral-abelian-example" tags="example application" cite="[@Tot12]"}
 Give a concrete nonpolyhedral nef cone and distinguish irrational boundary rays from merely having infinitely many rational extremal rays.
 :::
 
@@ -101,8 +91,6 @@ a\ge0,\ c\ge0,\ ac-b^2\ge0.$$
 The rank-one rays $vv^t$ are extremal. They form a continuous family; choosing $v=(1,\sqrt2)$ gives an irrational ray. Thus the cone is not polyhedral.
 
 Infinite rational extremal rays can instead occur for plane blowups at very general points. Neither behavior contradicts the cone theorem: it controls the $K$-negative region, and here $K_A=0$.
-
-Reference: [Totaro, Algebraic surfaces and hyperbolic geometry](https://library.slmath.org/books/Book59/files/68totaro.pdf).
 :::
 
 ::: {.front card-id="cones-mori-chamber-surface-example" tags="application"}
@@ -154,7 +142,7 @@ K_{\widetilde S}^2=K_S^2-1,\quad e(\widetilde S)=e(S)+1.$$
 The last two changes cancel in Noether's formula $12\chi(\mathcal O)=K^2+e$. A degree also requires a chosen polarization, so it is not an invariant of an unpolarized birational class.
 :::
 
-::: {.front card-id="application-blowup-base-ideal-map" tags="application"}
+::: {.front card-id="application-blowup-base-ideal-map" tags="application" cite="[@The25, tag 01OF]"}
 Let $V=\langle s_0,\ldots,s_r\rangle\subset H^0(X,L)$ on an integral projective variety. How does its base ideal resolve the rational map $[s_0:\cdots:s_r]$? Identify the line bundle defining the resolved map and the relation with the graph.
 :::
 
@@ -162,8 +150,6 @@ Let $V=\langle s_0,\ldots,s_r\rangle\subset H^0(X,L)$ on an integral projective 
 Define $\mathcal I$ by $\operatorname{im}(V\otimes L^{-1}\to\mathcal O_X)=\mathcal I$. On $\pi:\widetilde X=\operatorname{Bl}_{\mathcal I}X\to X$,
 $$\mathcal I\mathcal O_{\widetilde X}=\mathcal O_{\widetilde X}(-E),\qquad M=\pi^*L\otimes\mathcal O_{\widetilde X}(-E).$$
 The pulled-back sections, with their common exceptional factor removed, generate $M$ and give $\widetilde X\to\mathbb P^r$. The combined map to $X\times\mathbb P^r$ identifies $\widetilde X$ with the scheme-theoretic closure of the graph. The blowup resolves the rational map but need not be smooth. A fixed Cartier divisor can first be removed from the system without changing the rational map.
-
-Reference: [Stacks Project, blowing up](https://stacks.math.columbia.edu/tag/01OF).
 :::
 
 ::: {.front card-id="application-infinitely-near-exceptional-basis" tags="application"}
@@ -1020,14 +1006,13 @@ Compare rational maps from a smooth projective curve to a proper variety with th
 Every rational map from a smooth projective curve to a proper variety extends uniquely: a curve has no nonempty closed subset of codimension at least two. The function $1/t$ does not extend as a morphism to $\mathbb A^1$ at $t=0$. Its target is not proper; regarded as a map to $\mathbb P^1$, it extends by taking the value infinity there.
 :::
 
-::: {.front card-id="theorem-miyaoka-mori-bend-break" tags="theorem"}
+::: {.front card-id="theorem-miyaoka-mori-bend-break" tags="theorem" cite="[@MM86, Theorem 5; @JLR26, introduction]"}
 Let $X$ be a smooth projective $n$-fold over an algebraically closed field, $C\subset X$ an integral curve with $K_X\cdot C<0$, and $H$ a nef Cartier divisor. State the classical Miyaoka–Mori bend-and-break conclusion through a closed point $x\in C$, with its $H$-degree bound.
 :::
 
 ::: {.back card-id="theorem-miyaoka-mori-bend-break"}
 There is an integral rational curve $R\subset X$ through $x$ with
 $$H\cdot R\le 2n\,\frac{H\cdot C}{-K_X\cdot C}.$$
-See Miyaoka–Mori, Theorem 5, as recalled in the [introduction to Optimal bounds in Bend-and-Break](https://doi.org/10.1017/fmp.2026.10033).
 :::
 
 ::: {.front card-id="theorem-deformations-maps-curves" tags="theorem"}
@@ -1152,7 +1137,7 @@ What is the definition of Numerical equivalence?
 Two divisor classes $D_1,D_2\in N^1(X)_{\mathbb R}$ are numerically equivalent if $D_1\cdot C=D_2\cdot C$ for every irreducible curve $C\subset X$; two curve classes are numerically equivalent if they have the same intersection number with every divisor. The numerical class of a divisor is its image in $N^1(X)_{\mathbb R}=(\mathrm{Div}(X)/\equiv)\otimes\mathbb R$.
 :::
 
-::: {.front card-id="card-9972162b653b2027" tags="definition"}
+::: {.front card-id="card-9972162b653b2027" tags="definition" cite="[@KK13, Definition 13]"}
 Define a purely log terminal (plt) pair. How does it differ from klt, and what does it force on $\lfloor\Delta\rfloor$?
 :::
 
@@ -1160,8 +1145,6 @@ Define a purely log terminal (plt) pair. How does it differ from klt, and what d
 Assume $X$ is normal over $\mathbb C$, $\Delta$ is an effective $\mathbb Q$-divisor with coefficients at most $1$, and $K_X+\Delta$ is $\mathbb Q$-Cartier. The log pair $(X,\Delta)$ is purely log terminal (plt) if every exceptional divisor $E$ over $X$ has discrepancy $a(E;X,\Delta)>-1$.
 
 Coefficient-one components on $X$ are allowed: a smooth variety with one smooth reduced boundary component is plt but not klt. The components of $\lfloor\Delta\rfloor$ in a plt pair are normal and pairwise disjoint. With zero boundary, plt is equivalent to klt; for example, the $A_1$ surface singularity is plt although its exceptional $(-2)$-curve has discrepancy zero.
-
-[Reference: Kollár, Definition 13](https://web.math.princeton.edu/~kollar/book/chap2.pdf).
 :::
 
 ::: {.front card-id="card-987c64ec26849bc7" tags="definition"}
@@ -1204,7 +1187,7 @@ What is the definition of Valuative criterion?
 The valuative criterion for properness: a morphism $f:X\to Y$ of finite type is proper if and only if for every DVR $R$ with fraction field $K$, every commutative square $\operatorname{Spec}K\to X$, $\operatorname{Spec}R\to Y$ admits a unique lifting $\operatorname{Spec}R\to X$. Separatedness requires only uniqueness.
 :::
 
-::: {.front card-id="mmp-program-and-termination" tags="definition comparison"}
+::: {.front card-id="mmp-program-and-termination" tags="definition comparison" cite="[@Bir07, §§4.2, 5.2]"}
 For a projective $\mathbb Q$-factorial klt pair $(X,\Delta)/\mathbb C$, describe the steps and possible endpoints of a $(K_X+\Delta)$-MMP. What does termination assert, and why do divisorial contractions not cause the difficulty?
 :::
 
@@ -1219,8 +1202,6 @@ At each stage choose a $(K_{X_i}+\Delta_i)$-negative extremal ray.
 | No negative ray | Stop with $K_{X_i}+\Delta_i$ nef: a minimal model |
 
 Termination of flips: every sequence of flips of the specified pair is finite. Existence of each flip does not assert this. Divisorial contractions decrease the nonnegative integer $\rho(X_i)$; flips preserve it. Thus an infinite MMP would eventually consist only of flips. A nef endpoint need not be semiample by definition.
-
-Reference: Birkar, *Birational geometry*, §§4.2, 5.2.
 :::
 
 ::: {.front card-id="mmp-flip-flop-models" tags="definition comparison"}
@@ -1259,7 +1240,7 @@ For nef $D$, abundance predicts $\kappa(D)=\nu(D)$ as well as the morphism defin
 The conjectural formulations are not blanket theorems in arbitrary dimension. Surface abundance and the big-boundary existence results are separate theorems with stronger hypotheses.
 :::
 
-::: {.front card-id="mmp-known-existence-boundaries" tags="theorem comparison"}
+::: {.front card-id="mmp-known-existence-boundaries" tags="theorem comparison" cite="[@BCHM10, Theorem 1.2 and Corollaries 1.3.2, 1.4.1–1.4.2]"}
 For a projective $\mathbb Q$-factorial klt pair $(X,\Delta)/\mathbb C$, what do the characteristic-zero existence results provide when $\Delta$ is big, or when $K_X+\Delta$ is not pseudoeffective? What do they not say about an arbitrary flip sequence?
 :::
 
@@ -1271,8 +1252,6 @@ For a projective $\mathbb Q$-factorial klt pair $(X,\Delta)/\mathbb C$, what do 
 | A klt flipping contraction in characteristic zero | Its flip exists |
 
 Existence of a terminating choice is weaker than termination of every possible sequence. Finite generation of a canonical ring does not by itself prove abundance at a nef endpoint.
-
-Reference: Birkar–Cascini–Hacon–McKernan, [*Existence of minimal models for varieties of log general type*](https://arxiv.org/html/math/0610203), Theorem 1.2 and Corollaries 1.3.2, 1.4.1–1.4.2.
 :::
 
 ::: {.front card-id="mmp-scaling-algorithm" tags="construction application"}
@@ -1301,7 +1280,7 @@ $$(K_X+\Delta)|_S=K_S+\operatorname{Diff}_S(\Delta-S).$$
 It relates birational changes along $S$ to lower-dimensional log birational geometry. This is the inductive role of special termination. Its definition does not assume that an arbitrary sequence has this property.
 :::
 
-::: {.front card-id="mmp-termination-adjunction" tags="definition theorem application"}
+::: {.front card-id="mmp-termination-adjunction" tags="definition theorem application" cite="[@Cor95, §1]"}
 Define classical termination of adjunction on a smooth projective complex variety. Relate it to pseudoeffectivity and uniruledness, and compare $\mathbb P^2$ with a K3 surface.
 :::
 
@@ -1310,7 +1289,7 @@ Adjunction terminates if for every Cartier divisor $D$ there is $m_0(D)$ such th
 $$H^0(X,\mathcal O_X(D+mK_X))=0\qquad(m\ge m_0(D)).$$
 For smooth projective $X/\mathbb C$:
 $$\text{adjunction terminates}\iff K_X\text{ is not pseudoeffective}\iff X\text{ is uniruled}.$$
-The last equivalence is BDPP. The first is the classical adjunction criterion (see Corti, *The minimal model program*, §1).
+The last equivalence is BDPP. The first is the classical adjunction criterion.
 
 | $X$ | Calculation |
 | --- | --- |

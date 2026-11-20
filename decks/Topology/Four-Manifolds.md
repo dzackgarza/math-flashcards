@@ -26,7 +26,7 @@ $$\Sigma^2=0\ \Longrightarrow\ \nu\Sigma\cong\Sigma\times D^2,$$
 but choosing such a trivialization is extra data: its homotopy classes form a torsor for $H^1(\Sigma;\mathbb Z)$. These choices matter in gluing constructions. A normal circle is a meridian of $\Sigma$.
 :::
 
-::: {.front card-id="four-manifold-morse-handle-duality" tags="definition construction"}
+::: {.front card-id="four-manifold-morse-handle-duality" tags="definition construction" cite="[@GS99, §§4.1–4.2]"}
 Explain the passage from a Morse critical point to a handle attachment. Identify the core, cocore, attaching sphere, belt sphere, and dual handle.
 :::
 
@@ -45,8 +45,6 @@ Crossing its critical value attaches $h^k=D^k\times D^{4-k}$ along $S^{k-1}\time
 The attaching map includes its normal framing. Turning a cobordism upside down exchanges cores with cocores and replaces index $k$ by $4-k$. A two-handle is dual to a two-handle; its dual attaching circle is the belt circle, viewed in the outgoing boundary.
 
 Between critical values the cobordism is a product. A handle decomposition carries more data than the number of critical points: attaching maps and framings determine the manifold.
-
-Reference: Gompf–Stipsicz, *4-Manifolds and Kirby Calculus*, §§4.1–4.2.
 :::
 
 ::: {.front card-id="four-manifold-handles-fundamental-homology" tags="application construction"}
@@ -68,7 +66,7 @@ C_2=\mathbb Z\xrightarrow{\ m\ }C_1=\mathbb Z\xrightarrow{0}C_0=\mathbb Z.$$
 For $m\ne0$, $H_1=\mathbb Z/m$ and $H_2=0$; for $m=0$, $H_1=H_2=\mathbb Z$. In both cases $\chi=1$. Algebraic passage number $m=1$ does not prove geometric handle cancellation: the attaching circle must meet the belt sphere geometrically once.
 :::
 
-::: {.front card-id="four-manifold-knot-linking-framing" tags="definition application"}
+::: {.front card-id="four-manifold-knot-linking-framing" tags="definition application" cite="[@GS99, §4.5]"}
 Define meridian, preferred longitude, linking number, and integer framing for a knot in $S^3$. How do Seifert and blackboard framings differ?
 :::
 
@@ -82,8 +80,6 @@ For an oriented knot $K$, let $N(K)\cong S^1\times D^2$ be a tubular neighborhoo
 A normal framing of $K$ gives a push-off $K'$. Its integer coefficient is $\operatorname{lk}(K,K')$ relative to the Seifert zero framing. The corresponding push-off slope is $\lambda+n\mu$.
 
 Blackboard framing pushes within the projection plane; its coefficient is the diagram's writhe, the signed sum of self-crossings. A Reidemeister-I curl changes blackboard framing by one, even though it preserves the unframed knot type. A framed isotopy must account for that change.
-
-Reference: Gompf–Stipsicz, §4.5.
 :::
 
 ::: {.front card-id="four-manifold-boundary-surgery-trace" tags="definition application"}
@@ -152,7 +148,7 @@ In general the new framing is $a+b+2\ell$ when the slid handles have framings $a
 The slide preserves the diffeomorphism type of the handlebody and its boundary. Both matrices have rank one and cokernel $\mathbb Z$; the boundary here is $S^1\times S^2$. A matrix congruence is the algebraic effect of this geometric move, not a proof that arbitrary links with congruent matrices give diffeomorphic handlebodies.
 :::
 
-::: {.front card-id="four-manifold-kirby-moves-boundary-versus-trace" tags="theorem comparison"}
+::: {.front card-id="four-manifold-kirby-moves-boundary-versus-trace" tags="theorem comparison" cite="[@GS99, §§5.1–5.4]"}
 Which Kirby moves preserve a four-dimensional handlebody, and which preserve only its surgery boundary? Explain the role of blowups and cancellation.
 :::
 
@@ -172,8 +168,6 @@ $$\begin{pmatrix}\varepsilon&v^T\\v&B\end{pmatrix}
 It preserves the boundary, not the four-dimensional trace. For example blowing down either component of the $+1,+1$ Hopf link yields a zero-framed unknot.
 
 A one/two-handle cancellation requires one geometric passage through the one-handle, with the attaching data arranged for cancellation. Algebraic passage number one with extra opposite passages does not suffice.
-
-Reference: Gompf–Stipsicz, §§5.1–5.4.
 :::
 
 ::: {.front card-id="four-manifold-heegaard-relative-handles" tags="definition comparison"}
@@ -408,7 +402,7 @@ A Kirby diagram records one-handles by dotted circles and two-handles by framed 
 Handle slides change the basis of two-handle classes and act by integral congruence on the matrix. Cancellation removes an adjacent-index pair when the attaching sphere meets the belt sphere once with the required framing. With one-handles present, compute the handle chain complex; the raw two-handle linking matrix alone need not be the form on $H_2$.
 :::
 
-::: {.front card-id="four-manifold-freedman-donaldson-rokhlin" tags="theorem comparison"}
+::: {.front card-id="four-manifold-freedman-donaldson-rokhlin" tags="theorem comparison" cite="[@Fre82; @Don83]"}
 Compare Freedman's classification, Donaldson's diagonalization theorem, and Rokhlin's theorem. Apply them to an $E_8$ intersection form.
 :::
 
@@ -424,8 +418,6 @@ The Kirby–Siebenmann class obstructs a PL structure; smooth manifolds have $\m
 Freedman produces a simply connected closed topological manifold with form $E_8$. It has $\sigma=8$ and $\mathrm{ks}=1$, so it is not smoothable. Donaldson also excludes its even definite non-diagonal form from the smooth category; if smooth it would be spin, contradicting Rokhlin.
 
 Even $E_8\oplus E_8$ has $\mathrm{ks}=0$ and signature divisible by sixteen, but Donaldson still excludes a smooth structure. The theorems impose different restrictions.
-
-Reference: Freedman, *The topology of four-dimensional manifolds*; Donaldson, *An application of gauge theory to four-dimensional topology*.
 :::
 
 ::: {.front card-id="four-manifold-exotic-smooth-structures" tags="definition comparison"}
@@ -456,7 +448,7 @@ $$u\cdot(A,\psi)=(A-2u^{-1}du,\ u\psi).$$
 The factor two reflects that $A$ is the determinant connection. The moduli space is the solution set modulo this action. Reducible solutions have $\psi=0$; their curvature equation is $F_A^+=i\eta$. Irreducible solutions have trivial gauge stabilizer.
 :::
 
-::: {.front card-id="four-manifold-seiberg-witten-invariant" tags="definition formula"}
+::: {.front card-id="four-manifold-seiberg-witten-invariant" tags="definition formula" cite="[@Mor14]"}
 Define the numerical Seiberg–Witten invariant in expected dimension zero. State the dimension, orientation, metric-independence, and chamber conditions.
 :::
 
@@ -468,8 +460,6 @@ This is the real expected dimension. Choose a homology orientation, an orientati
 For $b_2^+>1$, a generic metric and perturbation avoiding reducibles give a compact regular moduli space. If $d=0$, its signed count is $\mathrm{SW}_X(\mathfrak s)\in\mathbb Z$ and is independent of these generic choices. Positive-dimensional invariants require cohomology insertions of total degree $d$; they are not counts of points. A nonzero invariant makes $c$ a basic class (possibly with distinct $\mathrm{Spin}^c$ structures sharing $c$ when there is two-torsion).
 
 For $b_2^+=1$, paths can cross reducible walls, so an invariant requires a chamber in the metric/perturbation space. For $b_2^+=0$, this metric-independence statement does not apply. A dimension-zero space alone does not define an invariant without compactness, regularity, and orientations.
-
-Reference: Morgan, *The Seiberg–Witten Equations and Applications to the Topology of Smooth Four-Manifolds*.
 :::
 
 ::: {.front card-id="four-manifold-sw-applications" tags="application theorem"}

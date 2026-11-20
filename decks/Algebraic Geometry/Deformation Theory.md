@@ -2,7 +2,7 @@
 title: "Algebraic Geometry::Deformation Theory"
 ---
 
-::: {.front card-id="deformation-finite-group-invariants" tags="theorem application"}
+::: {.front card-id="deformation-finite-group-invariants" tags="theorem application" cite="[@LP21, §3; @AEGS25, Theorem 4.6]"}
 For a smooth proper complex variety with a finite group action, what controls deformations carrying that action over a base with trivial group action? Apply this to an involution and a lattice polarization on a K3 surface.
 :::
 
@@ -14,11 +14,9 @@ For a small extension with kernel $I$, tensor the obstruction group with $I$. Av
 For a K3 surface, $H^0(T_X)=H^2(T_X)=0$, so deformations preserving a given finite action are unobstructed. Under local Torelli, preserving a nonsymplectic involution means keeping the period in its $(-1)$-eigenspace. Preserving a specified Picard sublattice $S$ imposes
 $$\omega\perp S;\qquad \xi\mathbin{\lrcorner}c_1(L)=0\in H^2(\mathcal O_X)\quad(L\in S)$$
 on the period and first-order Kodaira–Spencer class respectively. At a Kulikov boundary, component actions, gluing, and invariant period data must also be supplied; a symmetric dual complex is not an equivariant deformation by itself.
-
-Reference: Lyu–Pan, *Remarks on Automorphism and Cohomology of Cyclic Coverings*, §3; AEGS, Theorem 4.6.
 :::
 
-::: {.front card-id="deformation-perfect-obstruction-virtual-class" tags="definition comparison"}
+::: {.front card-id="deformation-perfect-obstruction-virtual-class" tags="definition comparison" cite="[@BF97]"}
 Define a two-term perfect obstruction theory and its virtual fundamental class. Why does expected dimension alone not define a curve-counting invariant?
 :::
 
@@ -31,8 +29,6 @@ locally with vector bundles in degrees $-1,0$, such that $h^0(\phi)$ is an isomo
 The intrinsic normal cone embeds in the vector-bundle stack $h^1/h^0((E^\bullet)^\vee)$; intersecting it with the zero section defines
 $$[M]^{\mathrm{vir}}\in A_v(M),\qquad v=\operatorname{rk}E^0-\operatorname{rk}E^{-1}.$$
 For stacks use rational Chow groups when stabilizers require them. Properness permits pushforward to a point after insertions of codimension $v$. The virtual class depends on the obstruction theory; a dimension formula does not supply its cone or multiplicities.
-
-Reference: Behrend–Fantechi, [The intrinsic normal cone](https://arxiv.org/abs/alg-geom/9601010).
 :::
 
 ::: {.front card-id="deformation-virtual-zero-locus-example" tags="application comparison"}
@@ -115,7 +111,7 @@ The identification $X_{A'}\times_{A'}A\cong X_A$ is part of the lift. For $A'=k[
 The map $k[t]/t^{n+1}\twoheadrightarrow k[t]/t^n$ is small, with kernel $k\cdot t^n$ for $n\ge1$.
 :::
 
-::: {.front card-id="deformation-obstruction-torsor-package" tags="theorem comparison"}
+::: {.front card-id="deformation-obstruction-torsor-package" tags="theorem comparison" cite="[@The25, tag 08UX]"}
 For a finite-type $k$-scheme $X$, a marked deformation $X_A$, and a small extension $A'\twoheadrightarrow A$ with kernel $I$, state the cotangent obstruction, classification of lifts, and infinitesimal automorphisms. Why is the set of lifts a torsor?
 :::
 
@@ -131,8 +127,6 @@ Set $T_X^i=\operatorname{Ext}^i_X(L_{X/k},\mathcal O_X)$.
 The obstruction vanishes iff a lift exists. Two lifts have a difference in $T_X^1\otimes I$, but no lift is distinguished as zero. Choosing one lift identifies the torsor with the vector space. Forgetting the identification over $A$ can further quotient by automorphisms of $X_A$.
 
 For smooth $X$, $L_{X/k}=\Omega_X^1[0]$ and $T_X^i=H^i(X,T_X)$. These are global Ext groups, not merely sections of sheaf Ext.
-
-Reference: [Stacks, cotangent deformation theory](https://stacks.math.columbia.edu/tag/08UX).
 :::
 
 ::: {.front card-id="deformation-gluing-cech" tags="construction explanation"}
@@ -185,7 +179,7 @@ for every small extension $A'\twoheadrightarrow A$. Thus a prescribed inducing m
 A tangent isomorphism alone is insufficient. The quotient $k[x]/x^3\twoheadrightarrow k[x]/x^2$ induces $h_{k[x]/x^2}\to h_{k[x]/x^3}$ with a tangent isomorphism. Over $A=k[t]/t^2$, the map $x\mapsto t$ cannot lift through $k[x]/x^2$ to $A'=k[t]/t^3$, although it lifts through $k[x]/x^3$: $(t+ct^2)^2=t^2\ne0$. Thus this transformation is not smooth. Hulls need not give unique inducing maps.
 :::
 
-::: {.front card-id="deformation-schlessinger-criteria" tags="theorem"}
+::: {.front card-id="deformation-schlessinger-criteria" tags="theorem" cite="[@The25, tag 06G8]"}
 State Schlessinger's criteria for a functor $F:\operatorname{Art}_k\to\mathrm{Sets}$ with $F(k)$ a singleton. Which conditions give a hull, and which give prorepresentability?
 :::
 
@@ -203,8 +197,6 @@ $$\theta:F(A'\times_A A'')\to F(A')\times_{F(A)}F(A'').$$
 H2 supplies the natural vector-space structure on $t_F$. H1–H3 are equivalent to existence of a hull. H1–H4 are equivalent to prorepresentability by a complete Noetherian local $k$-algebra.
 
 H1 concerns existence of gluing; H4 adds uniqueness at the level of isomorphism classes. Automorphisms can obstruct that uniqueness after passing from a groupoid to a set, but their mere presence does not by itself disprove prorepresentability.
-
-Reference: [Stacks, formal deformation theory](https://stacks.math.columbia.edu/tag/06G8).
 :::
 
 ::: {.front card-id="deformation-kuranishi-equations" tags="theorem comparison"}
@@ -327,7 +319,7 @@ A line bundle $L$ extends iff $\delta(L)=0$. With a fixed identification of the 
 For the product first-order thickening, $J=\mathcal O_X\varepsilon$, so the Picard tangent is $H^1(\mathcal O_X)$ and a complete obstruction space is $H^2(\mathcal O_X)$. On a smooth projective curve this obstruction space vanishes; on an abelian surface it does not, although the characteristic-zero Picard scheme is smooth.
 :::
 
-::: {.front card-id="deformation-atiyah-varying-base" tags="construction formula"}
+::: {.front card-id="deformation-atiyah-varying-base" tags="construction formula" cite="[@HT13]"}
 Given a vector bundle $E$ on a smooth complex variety $X$ and a first-order deformation of $X$ with Kodaira–Spencer class $\xi$, what obstructs extending $E$? Specialize to a line bundle.
 :::
 
@@ -343,8 +335,6 @@ in $\operatorname{Ext}^2(E,E)$, up to the common sign convention for the Kodaira
 For a line bundle $L$, $\operatorname{At}(L)$ is its $d\log$ Chern class in $H^1(\Omega_X^1)$. The obstruction is
 $$\xi\mathbin{\lrcorner}c_1(L)\in H^2(\mathcal O_X).$$
 Deforming $L$ on a fixed $X$ and extending $L$ while $X$ moves are different lifting problems.
-
-Reference: Huybrechts–Thomas, [deformation-obstruction theory via Atiyah and Kodaira–Spencer classes](https://arxiv.org/abs/0805.3527).
 :::
 
 ::: {.front card-id="deformation-polarized-k3" tags="formula application"}
@@ -394,7 +384,7 @@ $$H^0(T_C)\to H^0(f^*T_Y)\to\mathbb H^1(\mathcal K_f)
 For constant $f$, $df=0$: source deformations and moving the image point occur separately at first order. Quotienting fixed-source maps by reparametrization is not the same as allowing the complex structure of the source to vary.
 :::
 
-::: {.front card-id="deformation-formal-algebraic-analytic" tags="definition theorem comparison"}
+::: {.front card-id="deformation-formal-algebraic-analytic" tags="definition theorem comparison" cite="[@The25, tag 089A]"}
 Distinguish an infinitesimal deformation, a formal deformation, an effective formal deformation, and analytic convergence. State a useful algebraization criterion with a polarization.
 :::
 
@@ -409,8 +399,6 @@ For a complete Noetherian local $k$-algebra $(R,\mathfrak m)$:
 Grothendieck algebraization: a compatible proper flat system $X_n$ equipped with compatible line bundles $L_n$, with $L_0$ ample, comes from a flat projective $R$-scheme with an ample line bundle. The polarization must extend through all orders; ampleness of a line bundle on $X_0$ alone does not supply those lifts.
 
 For $xy=t$ the displayed polynomial already gives an algebraic family. In contrast, $\sum_{n\ge0}n!t^n$ defines a formal map to $\mathbb A^1$ over $\mathbb C[[t]]$ but has zero analytic radius of convergence. Algebraization over a complete ring and descent to a finite-type $k$-base are distinct assertions.
-
-Reference: [Stacks, Grothendieck algebraization](https://stacks.math.columbia.edu/tag/089A).
 :::
 
 ::: {.front card-id="deformation-dg-lie-maurer-cartan" tags="definition formula application"}

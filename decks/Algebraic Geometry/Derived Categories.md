@@ -2,7 +2,7 @@
 title: "Algebraic Geometry::Derived Categories"
 ---
 
-::: {.front card-id="derived-exceptional-full-strong" tags="definition comparison example"}
+::: {.front card-id="derived-exceptional-full-strong" tags="definition comparison example" cite="[@AO13, §3]"}
 Define exceptional objects and collections in a $k$-linear triangulated category. Distinguish full and strong; give the projective-space example.
 :::
 
@@ -17,8 +17,6 @@ Define exceptional objects and collections in a $k$-linear triangulated category
 Full concerns generation; strong concerns higher morphisms. Neither word substitutes for the other.
 
 On $\mathbb P^n$, $(\mathcal O,\mathcal O(1),\ldots,\mathcal O(n))$ is full and strong. For a line bundle $L$ on smooth projective $X$, $\operatorname{Ext}^m(L,L)=H^m(X,\mathcal O_X)$: on a surface with $p_g=q=0$ it is exceptional; on a K3 it is not, since $H^2(\mathcal O_X)=k$.
-
-Reference: Alexeev–Orlov, *Derived categories of Burniat surfaces and exceptional collections*, §3.
 :::
 
 ::: {.front card-id="derived-sod-admissible" tags="definition comparison"}
@@ -36,7 +34,7 @@ Admissible means the inclusion has both left and right adjoints.
 For an exceptional collection on smooth projective $X$, its generated subcategory $\mathcal B$ is admissible. One has $\mathcal D^b(X)=\langle\mathcal B^\perp,\mathcal B\rangle$; fullness is exactly $\mathcal B^\perp=0$. Numerical length alone does not prove fullness.
 :::
 
-::: {.front card-id="derived-dg-enhancement-formality" tags="definition construction comparison"}
+::: {.front card-id="derived-dg-enhancement-formality" tags="definition construction comparison" cite="[@AO13, §§3 and 5]"}
 Define a DG enhancement, the DG algebra of a collection, and formality. What does strong exceptionality simplify?
 :::
 
@@ -50,11 +48,9 @@ Its perfect module category $\operatorname{Perf}(B)$ is the thick subcategory ge
 **Formal:** $B$ is connected to $H^*(B)$ with zero differential by a zigzag of DG-algebra quasi-isomorphisms. Equality of graded cohomology algebras alone is not formality.
 
 Strong exceptionality concentrates cohomology in degree zero; $B$ is then quasi-isomorphic to the ordinary algebra $\operatorname{End}(T)$.
-
-Reference: Alexeev–Orlov, *Derived categories of Burniat surfaces and exceptional collections*, §§3 and 5.
 :::
 
-::: {.front card-id="derived-phantom-quasiphantom" tags="definition comparison"}
+::: {.front card-id="derived-phantom-quasiphantom" tags="definition comparison" cite="[@AO13, Theorem 4.3]"}
 Define phantom and quasiphantom categories. Why can an exceptional collection of maximal numerical length fail to be full?
 :::
 
@@ -69,6 +65,4 @@ For a **nonzero** admissible subcategory $\mathcal A\subset D^b(X)$ of a smooth 
 When distinguishing the two names, “quasiphantom” usually means finite nonzero $K_0$.
 
 Hochschild homology and $K_0$ split over semiorthogonal decompositions. Exceptional objects contribute one copy of $k$ to $HH_0$ and one copy of $\mathbb Z$ to $K_0$. A residual category can therefore have zero Hochschild homology and zero rational $K$-theory while still being nonzero. Fullness requires the residual category itself to vanish.
-
-Reference: Alexeev–Orlov, *Derived categories of Burniat surfaces and exceptional collections*, Theorem 4.3.
 :::

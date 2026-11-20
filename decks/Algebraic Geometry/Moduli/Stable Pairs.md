@@ -2,7 +2,7 @@
 title: "Algebraic Geometry::Moduli::Stable Pairs"
 ---
 
-::: {.front card-id="pairs-stable-replacement-family" tags="definition comparison"}
+::: {.front card-id="pairs-stable-replacement-family" tags="definition comparison" cite="[@MS18, §§3 and 5; @GPSZ22, §3]"}
 What is a KSBA stable replacement of a punctured family? Distinguish it from a naive equation limit and from a GIT limit.
 :::
 
@@ -12,11 +12,9 @@ Start with a family of stable pairs over the punctured spectrum of a DVR, in a p
 The central fiber is the stable replacement. Separatedness makes two such extensions isomorphic when their generic-fiber identification is fixed. A semistable or dlt model is an intermediate model; take its relative log canonical model to obtain the stable one.
 
 A naive limit of equations may lose slc singularities or log ampleness. A GIT limit depends on its linearization. Neither is automatically the KSBA limit. The comparison requires a family construction and a check of singularities and positivity.
-
-Reference: Moon–Schaffler, §§3 and 5; Gallardo–Pearlstein–Schaffler–Zhang, §3.
 :::
 
-::: {.front card-id="pairs-automorphism-extension-quotient-family" tags="theorem construction"}
+::: {.front card-id="pairs-automorphism-extension-quotient-family" tags="theorem construction" cite="[@Kol23a, separatedness and stable families; @AEGS25, proof of Theorem 5.9]"}
 When does an automorphism of a generic stable pair extend over a degeneration? What must be checked when its quotient family is used to define a morphism to KSBA moduli?
 :::
 
@@ -36,11 +34,9 @@ $$K_X+\epsilon R=q^*\left(K_Y+\frac{1+\epsilon}{2}B\right).$$
 When these divisors are $\mathbb Q$-Cartier, the pairs are lc simultaneously, and log ampleness is equivalent under the finite surjective map. For nonnormal fibers, use normalization and include the conductor before applying this comparison.
 
 Such a family gives $S\to\mathcal M_{\mathrm{KSBA}}$ and then its coarse-space map. A universal family generally lives over the moduli stack, not its coarse space.
-
-Reference: Kollár, *Families of varieties of general type*, separatedness and stable families; AEGS, proof of Theorem 5.9.
 :::
 
-::: {.front card-id="pairs-normalization-conductor-gluing" tags="theorem construction"}
+::: {.front card-id="pairs-normalization-conductor-gluing" tags="theorem construction" cite="[@KK13, Theorem 5.13; @AEGS25, §§4.4 and 7]"}
 State the normalization-and-gluing description of stable pairs in characteristic zero. What compatibility is required of the conductor involution and of a chosen polarizing divisor?
 :::
 
@@ -54,11 +50,9 @@ $$\nu^*(K_X+\Delta)=K_{\bar X}+\bar D+\bar\Delta.$$
 For a Cartier polarization specified separately, identify its restrictions on paired conductor branches and impose the cocycle conditions at multiple intersections. For a divisor section, its restrictions must agree under those identifications. Matching intersection numbers alone is only numerical compatibility.
 
 Example: two smooth components glued along $D\simeq\mathbb P^1$ may have degree-two restricted line bundles on both sides, but their two marked intersection points with the polarizing divisors must also be identified. Different configurations need not define the same polarized gluing.
-
-Reference: Kollár, *Singularities of the Minimal Model Program*, Theorem 5.13; AEGS, §§4.4 and 7.
 :::
 
-::: {.front card-id="pairs-self-gluing-pinch-point" tags="application calculation"}
+::: {.front card-id="pairs-self-gluing-pinch-point" tags="application calculation" cite="[@KK13, pinch points and §5; @AEGS25, Example 4.16]"}
 Self-glue the line $D=(u=0)$ in $\mathbb A^2_{u,v}$ by $v\mapsto-v$. Compute the resulting affine surface and its conductor. Contrast the fixed points of this involution with translation by nonzero two-torsion on an elliptic conductor.
 :::
 
@@ -70,11 +64,9 @@ $$\operatorname{Spec}A=\{x^2=y^2z\}\subset\mathbb A^3.$$
 This is the pinch point. Its normalization is $\mathbb A^2$, conductor ideal upstairs $(u)$, and conductor downstairs $(x,y)$. The map on conductors is $v\mapsto z=v^2$; the fixed point $v=0$ produces the pinch point, while elsewhere the gluing gives ordinary double crossings.
 
 On a smooth elliptic curve $E$, translation $t_\eta$ by $0\ne\eta\in E[2]$ is fixed-point-free. The conductor map $E\to E/\langle\eta\rangle$ is an étale double isogeny, so this local pinch-point mechanism is absent. Such self-gluing occurs when an involution exchanges the two components of a type II K3 limit.
-
-Reference: Kollár, *Singularities of the Minimal Model Program*, pinch points and §5; AEGS, Example 4.16.
 :::
 
-::: {.front card-id="pairs-type-two-elliptic-modulus" tags="application formula"}
+::: {.front card-id="pairs-type-two-elliptic-modulus" tags="application formula" cite="[@AEGS25, Proposition 4.8, Example 4.16, and proof of Theorem 5.9]"}
 How can the type II Baily–Borel elliptic modulus be recovered from an Enriques stable limit? Distinguish the fixed-point and translation quotients of an elliptic double curve.
 :::
 
@@ -94,8 +86,6 @@ The six cross-ratio transforms give the same $j$, so an ordering is unnecessary.
 In the translation/self-gluing case, recover the normalized conductor and its involution from the surface's normalization data. The elliptic curve in that data is the original $E$; using only $j(E/\langle\eta\rangle)$ would lose the isogeny information.
 
 This recovery is the geometric input for extending the period map over type II points in the AEGS compactification comparison. The existence of the global extension also uses the degeneration/normalization argument, not just the formula for $j$.
-
-Reference: AEGS, Proposition 4.8, Example 4.16, and proof of Theorem 5.9.
 :::
 
 ::: {.front card-id="pairs-log-positivity-comparison" tags="definition comparison example"}
@@ -120,7 +110,7 @@ A boundary-polarized log Calabi–Yau pair adds an effective ample $\mathbb Q$-C
 Example: $(\mathbb P^1,\{0\}+\{\infty\})$ is log Calabi–Yau; adding $\epsilon\{1\}$ gives log-canonical degree $\epsilon>0$.
 :::
 
-::: {.front card-id="pairs-mumford-kflat" tags="definition comparison"}
+::: {.front card-id="pairs-mumford-kflat" tags="definition comparison" cite="[@Kol23a, Definitions 4.68 and 7.1]"}
 For a flat projective family with reduced $S_2$ fibers, define a relative Mumford divisor and give a precise K-flatness test in characteristic zero.
 :::
 
@@ -128,11 +118,9 @@ For a flat projective family with reduced $S_2$ fibers, define a relative Mumfor
 A relative Mumford divisor $D$ is the scheme-theoretic closure of a relative effective Cartier divisor on $U\subset X$, where $\operatorname{codim}_{X_s}(X_s\setminus U_s)\ge2$ for all $s$; $X_s$ is smooth at every generic point of $D_s$. Divisorial base change takes this closure again.
 
 For local $S$ with infinite residue field and pure relative dimension $n$, test **every** finite $\pi:X\to\mathbb P^n_S$ whose restriction on reduced $D$ is birational onto its image and which is étale at the generic points of $D_s$. K-flatness means each scheme-theoretic image $\pi(D)$ is a relative Cartier divisor. For general $S$, test after localization; finite residue fields require a flat local extension with infinite residue field.
-
-Reference: [Kollár, *Families of varieties of general type*, Definitions 4.68 and 7.1](https://web.math.princeton.edu/~kollar/FromMyHomePage/modbook-final.pdf).
 :::
 
-::: {.front card-id="pairs-ksba-family-kollar" tags="definition comparison"}
+::: {.front card-id="pairs-ksba-family-kollar" tags="definition comparison" cite="[@Kol23a, §8.2, Definition 8.7]"}
 State the family conditions for rational-coefficient KSBA pairs, including Kollár's condition. Why is checking the geometric fibers alone insufficient?
 :::
 
@@ -146,11 +134,9 @@ Over a $\mathbb Q$-scheme $S$, fix labeled $\Delta=\sum a_iD_i$, $a_i\in\mathbb 
 - For every $m\in N\mathbb Z$ and $B=\sum_{j\in J}D_j$ with $a_j=1$, the divisorial sheaf $\omega_{X/S}^{[m]}(m\Delta-B)$ is $S$-flat and its formation commutes with every base change.
 
 The last condition controls infinitesimal families and specialization of pluricanonical sheaves. Fiberwise slc and ampleness do not impose it. Brackets mean reflexive/divisorial extension of the tensor power from the relative Gorenstein locus.
-
-Reference: [Kollár, *Families of varieties of general type*, §8.2, Definition 8.7](https://web.math.princeton.edu/~kollar/FromMyHomePage/modbook-final.pdf).
 :::
 
-::: {.front card-id="pairs-qg-deformations-index-cover" tags="definition construction example"}
+::: {.front card-id="pairs-qg-deformations-index-cover" tags="definition construction example" cite="[@Ale25, §2; @Hac04, §3]"}
 Define an index-one cover and a $\mathbb Q$-Gorenstein deformation. How does the index-one covering stack organize the construction?
 :::
 
@@ -164,11 +150,9 @@ A $\mathbb Q$-Gorenstein deformation is locally induced by a $\mu_r$-equivariant
 The local stacks $[\widetilde X/\mu_r]$ glue to the **index-one covering stack**. A family is “almost lci” in Alexeev's usage when its index-one covering stack is lci over the base.
 
 Example: $\frac13(1,1)=\mathbb A^2/\mu_3$ has index three and canonical cover $\mathbb A^2$.
-
-Reference: Alexeev, *Kappa classes on KSBA spaces*, §2; Hacking, *Compact moduli of plane curves*, §3.
 :::
 
-::: {.front card-id="pairs-weight-chambers-models" tags="definition construction example"}
+::: {.front card-id="pairs-weight-chambers-models" tags="definition construction example" cite="[@Ale15, Chapters 1 and 5]"}
 Define a chamber for varying stable-pair coefficients and describe reduction to smaller weights. Why is the contraction part of the operation?
 :::
 
@@ -181,11 +165,9 @@ H^0\!\left(X,\mathcal O_X\!\left(mN(K_X+\sum c_iD_i)\right)\right),$$
 where $N$ clears denominators and the divisor is big with finitely generated ring. Contract the curves on which the model map has degree zero; retain the images of the labeled divisors. Merely changing coefficients can destroy ampleness.
 
 For weighted curves, a rational tail carrying markings $I$ contracts when $\sum_{i\in I}b_i^{\mathrm{new}}\le1$. For hyperplane arrangements the walls come from $\sum_{i\in I}b_i=k$, with $k$ an incidence codimension. Global reduction morphisms require the corresponding moduli construction; they are not asserted for arbitrary weight changes.
-
-Reference: Alexeev, *Moduli of Weighted Hyperplane Arrangements*, Chapters 1 and 5.
 :::
 
-::: {.front card-id="ksba-kappa-cycle-cm" tags="definition formula example"}
+::: {.front card-id="ksba-kappa-cycle-cm" tags="definition formula example" cite="[@Ale25, Definitions 2.3–2.6]"}
 Define higher-dimensional $\kappa$-classes of a KSBA family as Chow cycles. Identify $\kappa_0$ and the CM class, with a normalization.
 :::
 
@@ -200,11 +182,9 @@ Compute using an invertible multiple $NL$, dividing its $(d+i)$th power by $N^{d
 - Canonical-polarization normalization: $c_1(\lambda_{\mathrm{CM}})=\kappa_1$. The rational line bundle can be constructed by the $(d+1)$-fold Deligne pairing of $L$. Other CM conventions may multiply by a constant.
 
 Example: for a constant family with boundary pulled back from its fiber, $\kappa_i=0$ for $i>0$, since powers above the fiber dimension vanish.
-
-Reference: Alexeev, *Kappa classes on KSBA spaces*, Definitions 2.3–2.6.
 :::
 
-::: {.front card-id="ksba-operational-chow-gysin" tags="definition comparison construction"}
+::: {.front card-id="ksba-operational-chow-gysin" tags="definition comparison construction" cite="[@Ale25, Definitions 2.6–2.8]"}
 Distinguish Chow cycles, operational Chow classes, and the cohomological $\kappa$ construction. What changes when the base is singular?
 :::
 
@@ -220,11 +200,9 @@ $$H^{2(d+i)}(X,\mathbb Q)\xrightarrow{\cap[X]}
 H^{\mathrm{BM}}_{2s-2i}(X,\mathbb Q)\xrightarrow{f_*}
 H^{\mathrm{BM}}_{2s-2i}(S,\mathbb Q)\cong H^{2i}(S,\mathbb Q).$$
 Apply it to $c_1(K_{X/S}+D)^{d+i}$. The final isomorphism uses smoothness of $S$. Arbitrary-base-change compatibility does not follow just from writing this formula; lci families provide refined Gysin tools for that question.
-
-Reference: Alexeev, *Kappa classes on KSBA spaces*, Definitions 2.6–2.8.
 :::
 
-::: {.front card-id="ksba-generalized-hodge-line" tags="definition formula"}
+::: {.front card-id="ksba-generalized-hodge-line" tags="definition formula" cite="[@Ale25, Definition 2.9]"}
 Define the generalized Hodge line bundle for a log Calabi–Yau family. Relate it to the CM class after adding a small polarization.
 :::
 
@@ -237,6 +215,4 @@ Write $d=\dim X_s$, $v_B=B_s^d$. Expanding the $(d+1)$th power and pushing forwa
 $$\kappa_1(\epsilon)
 =(d+1)\epsilon^d v_B\,c_1(\lambda)+\epsilon^{d+1}f_*(B^{d+1}).$$
 Terms with fewer than $d$ fiber-divisor factors push forward to zero. This relates the Hodge class to the CM class without identifying the two normalizations.
-
-Reference: Alexeev, *Kappa classes on KSBA spaces*, Definition 2.9.
 :::

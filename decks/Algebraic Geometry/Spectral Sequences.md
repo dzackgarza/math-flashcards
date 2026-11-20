@@ -73,7 +73,7 @@ $$0\to H^1(Y,f_*F)\to H^1(X,F)\to H^0(Y,R^1f_*F)
 A section of $R^1f_*F$ lifts to global $H^1(X,F)$ precisely when its transgression $d_2$ vanishes. The five-term sequence alone does not make the last displayed map surjective.
 :::
 
-::: {.front card-id="spectral-grothendieck-composition" tags="theorem comparison"}
+::: {.front card-id="spectral-grothendieck-composition" tags="theorem comparison" cite="[@The25, tag 015N]"}
 State Grothendieck's spectral sequence for a composition of left exact functors. Explain the acyclicity hypothesis and recover Leray.
 :::
 
@@ -83,8 +83,6 @@ $$E_2^{p,q}=R^pG(R^qF(A))\Longrightarrow R^{p+q}(G\circ F)(A).$$
 The hypothesis means $R^{p>0}G(F(I))=0$; left exactness alone is insufficient to identify the derived composite.
 
 Take $F=f_*$ and $G=\Gamma(Y,-)$ on abelian sheaves. Since $f^{-1}$ is exact, $f_*$ preserves injectives, so the hypothesis holds and yields Leray.
-
-Reference: [Stacks, Grothendieck spectral sequence](https://stacks.math.columbia.edu/tag/015N).
 :::
 
 ::: {.front card-id="spectral-hypercohomology-pair" tags="formula comparison application"}
@@ -179,7 +177,7 @@ For quasi-compact quasi-separated morphisms of schemes and quasi-coherent $F$, t
 Affineness of the base does not imply $R^{q>0}f_*F=0$: $\mathbb P^1\to\operatorname{Spec}k$ with $F=\mathcal O(-2)$ has $R^1f_*F=k$.
 :::
 
-::: {.front card-id="spectral-hodge-degeneration-hypotheses" tags="comparison theorem"}
+::: {.front card-id="spectral-hodge-degeneration-hypotheses" tags="comparison theorem" cite="[@DI87]"}
 Compare Hodge–de Rham degeneration in the compact Kähler, characteristic-zero algebraic, and Deligne–Illusie settings. Does degeneration alone canonically split the Hodge filtration?
 :::
 
@@ -194,8 +192,6 @@ Sufficient hypotheses for $E_1$ degeneration:
 In the last case the truncated Frobenius-pushforward de Rham complex splits; the dimension bound covers the whole complex. A lift without the dimension bound is not this full-degeneration criterion.
 
 Degeneration gives $\operatorname{gr}_F^pH^n\cong H^{n-p}(\Omega_X^p)$ and equality of dimensions. The canonical complex Hodge decomposition in the compact Kähler case uses the additional opposed complex-conjugate filtration; it does not follow from formal degeneration alone.
-
-Reference: Deligne–Illusie, *Relèvements modulo $p^2$ et décomposition du complexe de de Rham* (1987).
 :::
 
 ::: {.front card-id="spectral-elliptic-hodge-example" tags="application comparison"}

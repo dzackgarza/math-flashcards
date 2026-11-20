@@ -2,7 +2,7 @@
 title: "Algebraic Geometry::Singularities::Birational Classes"
 ---
 
-::: {.front card-id="singularities-b-divisors-traces" tags="definition construction example"}
+::: {.front card-id="singularities-b-divisors-traces" tags="definition construction example" cite="[@EFG+25, Definition 2.8]"}
 Define a Weil $\mathbb Q$-$b$-divisor, its trace, Cartier descent, and $b$-nefness. Give a blowup example showing why one trace does not determine a $b$-divisor.
 :::
 
@@ -12,11 +12,9 @@ For normal $X$, a Weil $\mathbb Q$-$b$-divisor $\mathbf D$ assigns a $\mathbb Q$
 $\mathbf D$ is $\mathbb Q$-$b$-Cartier if it descends to some model $Y$: $D_Y$ is $\mathbb Q$-Cartier and $D_Z=g^*D_Y$ on every higher model. This is the Cartier closure $\overline{D_Y}$. It is $b$-nef over $S$ if it descends to a divisor nef over $S$.
 
 Example: blow up a smooth surface at $p$, $f:Y\to X$, exceptional $E$. The Cartier closure $\overline E$ has trace $E$ on $Y$ but trace $f_*E=0$ on $X$. It differs from the zero $b$-divisor.
-
-Reference: Engel et al., *Boundedness of fibered varieties with trivial canonical bundle*, Definition 2.8.
 :::
 
-::: {.front card-id="singularities-generalized-pairs" tags="definition comparison formula"}
+::: {.front card-id="singularities-generalized-pairs" tags="definition comparison formula" cite="[@EFG+25, Definition 2.9]"}
 Define a generalized pair and its log discrepancies. How does it recover an ordinary pair?
 :::
 
@@ -33,11 +31,9 @@ A(E;X,B,\mathbf M)=1-\operatorname{coeff}_E B_Y.$$
 Generalized klt: $A(E)>0$ for every prime divisor over $X$. Generalized lc: $A(E)\ge0$ for every such divisor. Allowing signed $B$ gives a generalized subpair.
 
 $\mathbf M=0$ recovers ordinary pairs. If $\mathbf M=\overline{M_X}$ already descends to $X$, its pullbacks cancel, so discrepancies equal those of $(X,B)$; descent only on a higher model need not have this property.
-
-Reference: Engel et al., Definition 2.9.
 :::
 
-::: {.front card-id="singularities-lc-trivial-canonical-bundle" tags="definition formula example"}
+::: {.front card-id="singularities-lc-trivial-canonical-bundle" tags="definition formula example" cite="[@EFG+25, §2.3]"}
 State the definition of an lc-trivial fibration and identify the discriminant and moduli divisors in its canonical bundle formula.
 :::
 
@@ -55,10 +51,10 @@ Thus $K_X+B\sim_{\mathbb Q}f^*(K_Y+B_Y+M_Y)$. Taking these data on higher bases 
 
 Example: a smooth elliptic product $E\times Y\to Y$ has $B_Y=M_Y=0$. A smooth multiple fiber $mF$ contributes $1-1/m$ to $B_Y$, since its lc threshold is $1/m$.
 
-Reference: Engel et al., §2.3. The rank-one condition is automatic when $B$ is effective over the generic point.
+The rank-one condition is automatic when $B$ is effective over the generic point.
 :::
 
-::: {.front card-id="singularity-mld-epsilon-lt" tags="definition comparison example"}
+::: {.front card-id="singularity-mld-epsilon-lt" tags="definition comparison example" cite="[@AB14, §1]"}
 Define minimal log discrepancy along a closed set and compare $\epsilon$-lt with $\epsilon$-lc. Compute the smooth-point example.
 :::
 
@@ -74,11 +70,9 @@ Include divisors on $X$, not only exceptional divisors; specify $W$. At a point 
 | $\epsilon$-lt | $A(E,X,\Delta)>\epsilon$ |
 
 For a smooth closed point of an $n$-fold with zero boundary, mld is $n$. At an SNC point with coordinate boundary coefficients $b_1,\ldots,b_r\le1$, it is $n-\sum b_i$. Along the generic point of a divisor of coefficient $b$, it is $1-b$. A strict inequality for every valuation should not be replaced by a strict inequality for an infimum without checking attainment.
-
-Reference: Alexeev–Borisov, *On the log discrepancies in toric Mori contractions*, §1.
 :::
 
-::: {.front card-id="singularity-dlt-modification" tags="definition construction comparison"}
+::: {.front card-id="singularity-dlt-modification" tags="definition construction comparison" cite="[@AL19a, Definition 2.1]"}
 Define a dlt modification of an lc pair. State the generalized surface convention for a boundary that is not lc.
 :::
 
@@ -96,11 +90,9 @@ For a normal surface with $B=\sum b_jB_j\ge0$, possibly non-lc, define $B_Y$ by 
 - $B_Y\ge f_*^{-1}B+\sum E$, equivalently extracted discrepancies $\le-1$.
 
 An arbitrary log resolution is not a dlt modification: it may extract divisors of positive discrepancy. The blowup of a smooth point of a surface with zero boundary extracts discrepancy $1$.
-
-Reference: Alexeev–Liu, *On accumulation points of volumes of log surfaces*, Definition 2.1.
 :::
 
-::: {.front card-id="singularity-dcc-standard-coefficients" tags="definition comparison example"}
+::: {.front card-id="singularity-dcc-standard-coefficients" tags="definition comparison example" cite="[@AL19a, §§2 and 6]"}
 Define ACC and DCC for subsets of $\mathbb R$, the standard coefficient set, and iterated accumulation sets. Give examples separating the conditions.
 :::
 
@@ -115,11 +107,9 @@ $$\mathcal C_{\mathrm{std}}=\{1-1/m:m\in\mathbb Z_{>0}\}\cup\{1\}.$$
 This set is DCC, not ACC; $1-1/m$ increases to $1$. It arises from tame ramification of order $m$. The set $\{1/m:m\ge1\}$ is ACC, not DCC.
 
 $\operatorname{Acc}(S)$ consists of limits of sequences of **distinct** elements of $S$; the limit need not belong to $S$. Put $\operatorname{Acc}^0(S)=S$ and $\operatorname{Acc}^{k+1}(S)=\operatorname{Acc}(\operatorname{Acc}^k(S))$. Here $\operatorname{Acc}(\mathcal C_{\mathrm{std}})=\{1\}$ and its second accumulation set is empty.
-
-Reference: Alexeev–Liu, *On accumulation points of volumes of log surfaces*, §§2 and 6.
 :::
 
-::: {.front card-id="singularity-embedded-snc-qlc" tags="definition construction"}
+::: {.front card-id="singularity-embedded-snc-qlc" tags="definition construction" cite="[@AH12, §2]"}
 Define a globally embedded SNC pair and a quasi-log canonical structure. State the sheaf condition and the strata.
 :::
 
@@ -134,11 +124,9 @@ Here $B_Y^{<1}$ retains exactly the components with coefficient $<1$; $\omega$ i
 On the normalization $\nu:Y^\nu\to Y$, define $\Theta$ by $K_{Y^\nu}+\Theta=\nu^*(K_Y+B_Y)$. Strata are components of $Y$ and images of lc centers of $(Y^\nu,\Theta)$. Their images under $f$ are qlc strata; those not irreducible components of $X$ are usually called qlc centers. Alexeev–Hacon includes components in its “qlc centers.”
 
 An lc pair gives $\omega=K_X+\Delta$ and strata $X$ together with its lc centers.
-
-Reference: Alexeev–Hacon, *Non-rational centers of log canonical singularities*, §2.
 :::
 
-::: {.front card-id="definition-log-canonical-threshold" tags="definition application"}
+::: {.front card-id="definition-log-canonical-threshold" tags="definition application" cite="[@Pop21, §2.6]"}
 Define the log canonical threshold of an effective divisor on a smooth complex variety. How do discrepancies compute it? Compare a node and a cusp.
 :::
 
@@ -150,8 +138,6 @@ $$\operatorname{lct}_p(X,D)=\min_{\substack{b_i>0\\p\in\pi(E_i)}}\frac{a_i+1}{b_
 The numerator is the log discrepancy. This gives a threshold for how much boundary can be added before log canonicity fails.
 
 At the origin, $x^ay^b=0$ has threshold $\min(1/a,1/b)$ for positive integers $a,b$. A node $xy=0$ therefore has threshold one; the cusp $y^2-x^3=0$ has threshold $5/6$. Multiplicity alone does not distinguish these singularities.
-
-[Reference: log resolutions and thresholds, §2.6](https://people.math.harvard.edu/~mpopa/notes/DMBG-posted.pdf).
 :::
 
 ::: {.front card-id="singularity-pair-discrepancies" tags="definition"}
@@ -266,7 +252,7 @@ For the normalization $\nu:\bar X\to X$, reduced conductor divisor $B$, and stri
 $$K_{\bar X}+B+\bar\Delta=\nu^*(K_X+\Delta).$$
 :::
 
-::: {.front card-id="singularity-pair-hierarchy" tags="definition application"}
+::: {.front card-id="singularity-pair-hierarchy" tags="definition application" cite="[@KK13, Definition 13 and discussion]"}
 Organize klt, plt, dlt, and lc pairs into an implication chain. Compare their discrepancy tests and give a simple example separating each adjacent class.
 :::
 
@@ -288,8 +274,6 @@ Here a log resolution is a proper birational $f:Y\to X$ with $Y$ smooth and exce
 - **lc, not dlt:** the affine cone over a smooth plane cubic, with zero boundary; its exceptional elliptic curve has $A(E)=0$.
 
 For $\Delta=0$, klt, plt, and dlt coincide. The differences between them concern how coefficient-one boundary components meet and behave.
-
-[Reference: Kollár, Definition 13 and discussion](https://web.math.princeton.edu/~kollar/book/chap2.pdf).
 :::
 
 ::: {.front card-id="singularity-variety-hierarchy" tags="definition application"}
@@ -319,7 +303,7 @@ Terminal surfaces are smooth. This equivalence is special to surfaces: the three
 Divisors already on $X$ have $a=0$ when $\Delta=0$, so terminality must test exceptional divisors. For pairs with boundary, use the separate klt–plt–dlt–lc chain; the zero-boundary implication canonical $\Rightarrow$ klt must not be applied to arbitrary boundary pairs. For example $(\mathbb A^2,D_1)$ has nonnegative exceptional discrepancies but is not klt.
 :::
 
-::: {.front card-id="singularity-log-resolution-test" tags="definition application"}
+::: {.front card-id="singularity-log-resolution-test" tags="definition application" cite="[@KK13, Lemma 15 and Corollary 17]"}
 What is a log resolution of a complex pair? How does it turn the klt/lc conditions into a finite calculation? Give the discrepancy formula for blowing up a smooth center, including boundary contributions.
 :::
 
@@ -342,8 +326,6 @@ $$K_Y=f^*K_X+(c-1)E,\qquad f^*D_i=D_i'+m_iE,\qquad m_i=\operatorname{mult}_Z D_i
 so
 $$a(E,X,\Delta)=c-1-\sum_i b_im_i,\qquad A(E,X,\Delta)=c-\sum_i b_im_i.$$
 The axes give $a(E)=1-a-b$. This calculation detects a violating divisor immediately; passing it alone is not sufficient unless the chosen morphism resolves the whole pair.
-
-[Reference: Kollár, Lemma 15 and Corollary 17](https://web.math.princeton.edu/~kollar/book/chap2.pdf).
 :::
 
 ::: {.front card-id="singularity-plane-cone-repertoire" tags="application"}
@@ -365,7 +347,7 @@ $$(a+1)E^2=(K_Y+E)E=2g(C_d)-2=d(d-3),\qquad a=2-d.$$
 For $d\ge3$, $H^1(C_d,\mathcal O_{C_d})\ne0$ obstructs rational singularities of the cone. Thus a normal Gorenstein, Cohen–Macaulay singularity need not be rational or lc. Changing the degree of the same construction supplies both counterexamples.
 :::
 
-::: {.front card-id="singularity-adjunction-boundary-comparison" tags="theorem application"}
+::: {.front card-id="singularity-adjunction-boundary-comparison" tags="theorem application" cite="[@KK13, Adjunction]"}
 How do adjunction and inversion of adjunction compare ambient plt/lc pairs with singularities on a boundary divisor? Compute the boundary for coordinate axes and for a cyclic quotient.
 :::
 
@@ -381,11 +363,9 @@ For a nonnormal $S$, lc inversion of adjunction uses its normalization and the d
 
 - For smooth $X$ and $S$, $B_S=\Delta|_S$. On $\mathbb A^2$, take $S=(x=0)$ and $\Delta=b(y=0)$. Then $B_S=b[0]$: plt holds for $b<1$, lc for $b\le1$.
 - For $X=\mathbb A^2/\mu_r$, with $\zeta(u,v)=(\zeta u,\zeta v)$ and $r\ge2$, let $S$ be the image of $(u=0)$. Then $S\cong\mathbb A^1$ and $\operatorname{Diff}_S(0)=(1-1/r)[0]$. On the cover of $S$, $t=v^r$ has ramification order $r-1$, so $r\,\operatorname{coeff}_0 B_S=r-1$. Even with $\Delta=0$, the different records the ambient quotient singularity.
-
-[Reference: Kollár, Adjunction](https://web.math.princeton.edu/~kollar/book/chap2.pdf).
 :::
 
-::: {.front card-id="singularity-local-algebra-comparison" tags="definition application"}
+::: {.front card-id="singularity-local-algebra-comparison" tags="definition application" cite="[@Pop24, rational singularities and Gorenstein comparison]"}
 For a normal complex variety, compare Cohen–Macaulay, Gorenstein, $\mathbb Q$-Gorenstein, factorial, and $\mathbb Q$-factorial. How do rational and canonical singularities connect to them? Give counterexamples to tempting converses.
 :::
 
@@ -409,8 +389,6 @@ For normal Gorenstein varieties, rational, canonical, and klt are equivalent: Ca
 - The $A_1$ surface germ has local class group $\mathbb Z/2$: it is Gorenstein and $\mathbb Q$-factorial, but not factorial.
 - The threefold node $xy-zw=0$ is Gorenstein, terminal, and rational, but not $\mathbb Q$-factorial: its local class group is $\mathbb Z$.
 - A cone over an Enriques surface embedded by a very ample line bundle with projectively normal image is rational and $\mathbb Q$-Gorenstein but not klt. Rationality does not reverse the klt implication even after imposing the rational Cartier hypothesis.
-
-[Reference: Popa, rational singularities and Gorenstein comparison](https://people.math.harvard.edu/~mpopa/265/Math265-notes.pdf).
 :::
 
 ::: {.front card-id="singularity-cone-cartier-comparison" tags="application"}
@@ -436,7 +414,7 @@ The canonical class is represented by $K_V=(-2,-2)$. Hence $X_L$ is $\mathbb Q$-
 Both class groups have positive rank, so neither cone is $\mathbb Q$-factorial. Thus rationality alone does not even guarantee that the usual zero-boundary discrepancy classes are defined. The $\mathbb Q$-Cartier hypothesis must be checked.
 :::
 
-::: {.front card-id="singularity-torsion-canonical-cones" tags="application"}
+::: {.front card-id="singularity-torsion-canonical-cones" tags="application" cite="[@KK13, Example 50]"}
 Use cones over familiar surfaces with torsion canonical bundle to separate lc, rational, Cohen–Macaulay, and Gorenstein singularities. Compare a product of elliptic curves, a K3 surface, and an Enriques surface.
 :::
 
@@ -456,11 +434,9 @@ Kodaira vanishing removes higher cohomology of $L^m$ for $m>0$. The remaining de
 For these surface bases, CM requires $H^1(V,L^m)=0$ for all integers $m$; Serre duality handles negative $m$. Rationality additionally requires vanishing of $H^2(V,L^m)$ for $m\ge0$. Thus lc and Du Bois need not imply CM, while rational and $\mathbb Q$-Gorenstein need not imply klt.
 
 This is the same cone construction as the simple elliptic example, with the base replaced by a familiar surface.
-
-[Reference: Kollár, Example 50](https://web.math.princeton.edu/~kollar/book/chap2.pdf).
 :::
 
-::: {.front card-id="singularity-du-bois-definition-use" tags="definition theorem application"}
+::: {.front card-id="singularity-du-bois-definition-use" tags="definition theorem application" cite="[@KS11, Du Bois survey]"}
 Define Du Bois singularities. Place them relative to rational, lc/slc, and seminormal singularities, and state a cohomological use for proper varieties.
 :::
 
@@ -483,11 +459,9 @@ Du Bois does not require normality: a nodal curve is Du Bois. The cone over a sm
 For proper Du Bois $X$, Hodge theory gives
 $$\operatorname{Gr}_F^0H^i(X^{\mathrm{an}},\mathbb C)\cong H^i(X,\mathcal O_X).$$
 In particular, the natural map from singular cohomology to coherent cohomology is surjective. This is a useful bridge when studying cohomology of singular fibers and stable varieties.
-
-[Reference: Kovács–Schwede, Du Bois survey](https://sites.math.washington.edu/~kovacs/2013/papers/Kovacs_Schwede__Du_Bois_survey.pdf).
 :::
 
-::: {.front card-id="singularity-seminormal-node-cusp" tags="definition application"}
+::: {.front card-id="singularity-seminormal-node-cusp" tags="definition application" cite="[@Pop24, §3.2; @KS11, Gorenstein Du Bois criterion]"}
 Define seminormality for a reduced complex affine variety. Use a node, a cusp, and a familiar normal cone to distinguish normality, seminormality, and Du Bois singularities.
 :::
 
@@ -499,11 +473,9 @@ Equivalently, every finite birational extension inside its normalization that is
 - **Node:** $\mathbb C[x,y]/(xy)$ is seminormal but not normal. Inside its normalization $\mathbb C[x]\oplus\mathbb C[y]$, it consists of pairs $(f,g)$ with $f(0)=g(0)$. Equality of both squares and cubes of the constant terms forces equality of the terms themselves. The node is also slc and Du Bois.
 - **Cusp:** $\mathbb C[t^2,t^3]$ is not seminormal: $t^2,t^3$ lie in the ring but $t$ does not. Hence the cusp is not Du Bois. Its normalization being smooth does not suffice.
 - **Cone over a smooth plane quartic:** normal, hence seminormal, and Gorenstein, but not lc, hence not Du Bois. Thus seminormality is strictly weaker than the Du Bois condition.
-
-[References: Popa, §3.2](https://people.math.harvard.edu/~mpopa/265/Math265-notes.pdf); [Kovács–Schwede, Gorenstein Du Bois criterion](https://sites.math.washington.edu/~kovacs/2013/papers/Kovacs_Schwede__Du_Bois_survey.pdf).
 :::
 
-::: {.front card-id="singularity-epsilon-lc-definition-use" tags="definition application"}
+::: {.front card-id="singularity-epsilon-lc-definition-use" tags="definition application" cite="[@Bir21]"}
 Define $\epsilon$-lc and compare it with lc and klt. Test it on coordinate-axis boundaries. Why is a fixed positive $\epsilon$ useful in boundedness questions?
 :::
 
@@ -519,8 +491,6 @@ $$\epsilon\le\min(1-a,1-b).$$
 The axes give these bounds; further divisors over their intersection have log discrepancies at least their sum. In particular, $(\mathbb A^2,(1-1/m)D_1)$ is klt for every integer $m\ge1$, but its largest allowed $\epsilon$ is $1/m$.
 
 Birkar's boundedness theorem fixes dimension $d$ and $\epsilon>0$: normal projective $\epsilon$-lc Fano varieties of dimension $d$ form a bounded family. The quantitative margin is part of the hypothesis.
-
-[Reference: Birkar, Singularities of linear systems and boundedness of Fano varieties](https://arxiv.org/abs/1609.05543).
 :::
 
 ::: {.front card-id="singularity-research-hypothesis-map" tags="application"}
@@ -543,7 +513,7 @@ The class name supplies only the singularity hypothesis. Projectivity, Cartier c
 :::
 
 
-::: {.front card-id="singularities-quotient-age-criterion" tags="theorem criterion example"}
+::: {.front card-id="singularities-quotient-age-criterion" tags="theorem criterion example" cite="[@Rei87, §4; @KM98, Proposition 5.20]"}
 For a finite $G\subset\mathrm{GL}_n(\mathbb C)$, how do you decide whether $\mathbb C^n/G$ is klt, canonical, terminal, or Gorenstein? State the reduction to small groups and the age criterion. Test $\frac12(1,1,1)$, $\frac13(1,1,1)$, and $\frac1r(1,a)$.
 :::
 
@@ -566,11 +536,9 @@ $\mathbb C^n/G$ is Gorenstein iff $G\subset\mathrm{SL}_n$ (Watanabe), and then e
 | $\frac1r(1,a)$, $g=\zeta$ | $\frac{1+a}r$ | canonical iff $a=r-1$; matches the log discrepancy $A$ of the first exceptional curve |
 
 **Terminal cyclic threefolds.** $\frac1r(a_1,a_2,a_3)$ with isolated fixed point is terminal iff it is, after permutation and change of generator, $\frac1r(1,-1,a)$ with $\gcd(a,r)=1$ (terminal lemma: Morrison–Stevens, White). For example, $\frac12(1,1,1)=\frac12(1,-1,1)$.
-
-Reference: Reid, *Young person's guide to canonical singularities*, Proc. Symp. Pure Math. 46 (1987), §4; Kollár–Mori, Proposition 5.20.
 :::
 
-::: {.front card-id="singularities-threefold-terminal-canonical" tags="theorem definition comparison"}
+::: {.front card-id="singularities-threefold-terminal-canonical" tags="theorem definition comparison" cite="[@Rei80; @Rei83a; @KM98, §§5.2–5.3]"}
 What general facts hold for terminal and canonical singularities in all dimensions? Define compound Du Val points and the index-one cover, and state how they describe terminal threefold singularities.
 :::
 
@@ -593,6 +561,4 @@ This $\mu_r$-cover is étale in codimension one, and $K_{\widetilde X}$ is Carti
 - Terminal threefold germ = $\mu_r$-quotient of an isolated cDV germ (or of a smooth germ) by its index-one cover. The smooth case gives $\frac1r(1,-1,a)$.
 - Canonical Gorenstein is weaker than cDV. Example: the cone over a smooth cubic surface. Its hyperplane sections through the vertex are cones over cubic curves, which are lc and not Du Val.
 - The node $xy-zw=0$ is cDV of type $cA_1$: $xy-z^2+t^2=0$ with section $t=0$.
-
-Reference: Reid, *Canonical 3-folds* (1980) and *Minimal models of canonical 3-folds* (1983); Kollár–Mori, §5.2–5.3.
 :::

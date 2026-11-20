@@ -60,7 +60,7 @@ $$0\longrightarrow H^0(Q)\longrightarrow H^1(\mathcal O_C)\longrightarrow H^1(\m
 Here $h^1(\mathcal O_C)=p_a(C)=3$ and $h^0(Q)=2$, so $g(\widetilde C)=1$. The same sequence gives $p_a(C)-g(\widetilde C)=\sum_p\delta_p$ for any integral projective complex curve.
 :::
 
-::: {.front card-id="application-normalization-lift-map" tags="application"}
+::: {.front card-id="application-normalization-lift-map" tags="application" cite="[@The25, tag 035E]"}
 Let $C=V(y^2-x^2(x+1))$ over $\mathbb C$. A dominant map $f:Z\to C$ comes from a normal integral variety $Z$. How do you find its lift to $\mathbb A^1_t=C^\nu$? What happens for maps whose image is the node?
 :::
 
@@ -68,8 +68,6 @@ Let $C=V(y^2-x^2(x+1))$ over $\mathbb C$. A dominant map $f:Z\to C$ comes from a
 The rational function $t=f^*y/f^*x$ satisfies $t^2=f^*x+1$. It is integral over the regular functions on each affine open of $Z$, so normality makes it regular there. These functions glue to the unique lift.
 
 A map from a point to the node has two lifts, $t=1$ and $t=-1$. Thus dominance is essential for this uniqueness statement. Conversely, the identity $C\to C$ has no lift to $C^\nu$, illustrating the need for a normal source.
-
-Reference: [Stacks Project, normalization](https://stacks.math.columbia.edu/tag/035E).
 :::
 
 ::: {.front card-id="application-normalization-versus-resolution" tags="application"}

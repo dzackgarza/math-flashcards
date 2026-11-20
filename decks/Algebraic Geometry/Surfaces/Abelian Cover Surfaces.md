@@ -2,7 +2,7 @@
 title: "Algebraic Geometry::Surfaces::Abelian Cover Surfaces"
 ---
 
-::: {.front card-id="surfaces-classical-campedelli" tags="definition construction example"}
+::: {.front card-id="surfaces-classical-campedelli" tags="definition construction example" cite="[@AP23, §3]"}
 Construct a classical Campedelli surface as an abelian cover. Distinguish the construction from the numerical invariants.
 :::
 
@@ -15,11 +15,9 @@ $$K_X=\pi^*\!\left(-3H+\tfrac72H\right)=\tfrac12\pi^*H,\qquad K_X^2=8/4=2.$$
 Also $\pi_*\mathcal O_X=\mathcal O\oplus\mathcal O(-2)^{\oplus7}$, so $p_g=q=0$.
 
 A numerical Campedelli surface is a minimal surface of general type with $p_g=q=0$, $K^2=2$. These invariants alone do not identify the classical cover construction.
-
-Reference: Alexeev–Pardini, *Explicit compactifications of moduli spaces of Campedelli and Burniat surfaces*, §3.
 :::
 
-::: {.front card-id="surfaces-primary-burniat" tags="definition construction"}
+::: {.front card-id="surfaces-primary-burniat" tags="definition construction" cite="[@Ale14, §1; @AH23, §2]"}
 Give explicit branch data for a primary Burniat surface. Recover $K^2$ from the bidouble cover.
 :::
 
@@ -32,11 +30,9 @@ Require distinct lines and no triple intersection away from the $p_i$. Each $D_i
 $$D_1+D_2+D_3\sim-3K_Y,\qquad
 K_X=\pi^*(K_Y+\tfrac12D)=-\tfrac12\pi^*K_Y,\qquad K_X^2=6.$$
 This is the primary Burniat construction; $p_g=q=0$. The branch configuration, not just these invariants, defines the family.
-
-Reference: Alexeev, *Divisors on Burniat surfaces*, §1; Alexeev–Hu, *Explicit KSBA compactifications of moduli spaces of secondary and tertiary Burniat surfaces*, §2.
 :::
 
-::: {.front card-id="surfaces-secondary-tertiary-burniat" tags="definition construction comparison"}
+::: {.front card-id="surfaces-secondary-tertiary-burniat" tags="definition construction comparison" cite="[@AH23, §2]"}
 How do secondary and tertiary Burniat surfaces arise from the primary branch arrangement? What distinguishes nodal degree four?
 :::
 
@@ -51,11 +47,9 @@ $$D'\sim-3K_{Y'},\qquad K_{X'}=-\tfrac12\pi^*K_{Y'},\qquad K_{X'}^2=6-n.$$
 | $3$ | Tertiary | $3$ |
 
 An interior curve passing through two blown-up triple points has strict-transform square $-2$. Its reduced preimage is also a $(-2)$-curve; contract these curves to obtain the canonical model. For degree four, the two triple points lying on one interior branch curve give the nodal family; otherwise the family is nonnodal.
-
-Reference: Alexeev–Hu, *Explicit KSBA compactifications of moduli spaces of secondary and tertiary Burniat surfaces*, §2.
 :::
 
-::: {.front card-id="surfaces-index-two-involution-pairs" tags="definition comparison construction"}
+::: {.front card-id="surfaces-index-two-involution-pairs" tags="definition comparison construction" cite="[@AT17, §2]"}
 Define the index-at-most-two log del Pezzo pairs used in ADE degenerations and their associated polarized involution pairs.
 :::
 
@@ -72,6 +66,4 @@ $$K_X+D\sim0\ \text{Cartier},\qquad R\ \text{ample Cartier},\qquad
 The fixed locus is $R$ together with possibly isolated points. The construction uses the reflexive rank-one sheaf $\mathcal O_Y(K_Y+C)$ with its square identified with $\mathcal O_Y(-B)$; form its double-cover algebra. This works even when $K_Y+C$ is not Cartier.
 
 “Index at most two” concerns Cartier divisibility of $K_Y+C$, not the Fano index of $Y$.
-
-Reference: Alexeev–Thompson, *ADE surfaces and their moduli*, §2.
 :::

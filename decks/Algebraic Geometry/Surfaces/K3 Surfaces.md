@@ -2,7 +2,7 @@
 title: "Algebraic Geometry::Surfaces::K3 Surfaces"
 ---
 
-::: {.front card-id="k3-pseudoelliptic-contraction" tags="definition construction example"}
+::: {.front card-id="k3-pseudoelliptic-contraction" tags="definition construction example" cite="[@ABE22, §2C]"}
 What is a pseudoelliptic surface? For an elliptic K3 with section $S$ and fiber $F$, explain the contraction using $S+2F$ and its effect on a ramification polarization.
 :::
 
@@ -15,11 +15,9 @@ L=S+2F,\quad L^2=2,\quad LS=0.$$
 $L$ is nef and big. Its section ring contracts $S$ and the fiber components disjoint from $S$, giving a degree-two polarized surface with du Val singularities. Use a sufficiently divisible multiple of $L$: the degree-one linear system $|S+2F|$ itself has fixed component $S$.
 
 The elliptic involution fixes $S$ and the closure $R'$ of the nonzero two-torsion points. On the minimal elliptic K3 with no reducible fibers, $R'\sim3(S+2F)$. Thus $S+R'$ is not nef, since $(S+R')S=-2$. After contracting $S$, the image of $R'$ is ample. With reducible fibers, first pass to the Weierstrass model by contracting the components disjoint from $S$.
-
-Reference: Alexeev–Brunyate–Engel, *Compactifications of moduli of elliptic K3 surfaces: stable pair and toroidal*, §2C.
 :::
 
-::: {.front card-id="k3-eight-points-order-four" tags="construction example"}
+::: {.front card-id="k3-eight-points-order-four" tags="construction example" cite="[@MS18, §2.1]"}
 Construct a K3 surface with a purely nonsymplectic order-four automorphism from eight distinct points of $\mathbb P^1$, partitioned into two sets of four.
 :::
 
@@ -33,11 +31,9 @@ Resolve them to obtain a K3: the covering line bundle is $\mathcal O(2,2)=-K_{\m
 The lift $(y_0,y_1,w)\mapsto(y_0,-y_1,iw)$ has order four; its square is the deck involution. On an affine chart $\omega=dx\wedge dy/w$, it acts by $i$, so every nontrivial power is nonsymplectic.
 
 Relabeling preserves the unordered partition into two blocks: the group is $(S_4\times S_4)\rtimes S_2$, not all of $S_8$. The eight points modulo $\operatorname{PGL}_2$ give dimension five.
-
-Reference: Moon–Schaffler, *KSBA compactification of the moduli space of K3 surfaces with purely non-symplectic automorphism of order four*, §2.1.
 :::
 
-::: {.front card-id="k3-even-eight-nikulin-cover" tags="definition construction formula"}
+::: {.front card-id="k3-even-eight-nikulin-cover" tags="definition construction formula" cite="[@Sch17c, §2.4]"}
 Define an even set of disjoint rational curves on a complex K3 surface. Construct the double cover from an even eight and relate it to a Nikulin involution.
 :::
 
@@ -51,11 +47,9 @@ $$\pi:\widetilde Y=\operatorname{Spec}_X(\mathcal O_X\oplus\mathcal O_X(-L))\to 
 Locally $z^2=s_B$; disjoint smooth branch curves make $\widetilde Y$ smooth. If $E_i$ is the ramification curve, $\pi^*R_i=2E_i$ and
 $$4E_i^2=2R_i^2=-4,\qquad K_{\widetilde Y}=\pi^*L=\sum_iE_i.$$
 Contract the eight $(-1)$-curves $E_i$: the result $Y$ is K3. The deck involution descends to a symplectic involution on $Y$ with eight isolated fixed points, a **Nikulin involution**. Conversely its quotient has eight $A_1$ points; resolving produces the even eight on $X$.
-
-Reference: [Schaffler, *K3 surfaces with $\mathbb Z_2^2$ symplectic action*, §2.4](https://arxiv.org/abs/1707.09732).
 :::
 
-::: {.front card-id="k3-constant-cycle-beauville-voisin" tags="definition theorem example"}
+::: {.front card-id="k3-constant-cycle-beauville-voisin" tags="definition theorem example" cite="[@AE23a, §2; @BV04]"}
 Define a constant-cycle curve on a complex K3 surface and the Beauville–Voisin zero-cycle. What does a rational curve supply?
 :::
 
@@ -65,11 +59,9 @@ A curve $C\subset X$ is **constant-cycle** if all its closed points have the sam
 For projective K3 $X$, the Beauville–Voisin class $o_X\in\operatorname{CH}_0(X)$ is the degree-one class of a point on any rational curve. The theorem makes it independent of the point and rational curve, and gives
 $$D\cdot E=\deg(D\cdot E)o_X,\qquad c_2(X)=24o_X.$$
 A rational curve is constant-cycle because its normalization is $\mathbb P^1$ and any two points there are rationally equivalent. Positive-genus constant-cycle curves also exist; constant-cycle does not mean rational.
-
-Reference: Alexeev–Engel, *The flex divisor of a K3 surface*, §2; Beauville–Voisin, *On the Chow ring of a K3 surface*.
 :::
 
-::: {.front card-id="k3-flex-point-divisor" tags="definition construction example"}
+::: {.front card-id="k3-flex-point-divisor" tags="definition construction example" cite="[@AE23a, §1 and Definitions 2.2 and 2.8]"}
 Define a flex point for a polarized K3 surface. On smooth surfaces for which no pencil in $|L|$ has a base curve, construct the flex divisor with its multiplicities. What is its role in stable-pair compactifications?
 :::
 
@@ -83,8 +75,6 @@ The inverse image and intersection are scheme-theoretic; $\operatorname{supp}:P_
 Example: two members of the pencil may meet only at $x$, with total intersection multiplicity $2d$. Replacing this by “they meet transversely at $x$” would contradict $L^2=2d$.
 
 Use: an algebraically varying canonical polarizing divisor gives pairs $(X,\epsilon R_{\mathrm{flex}})$ whose closure defines a stable-pair compactification. Identifying its normalization as semitoroidal requires recognizability as an additional theorem; the cited paper constructs the divisor and investigates this question.
-
-Reference: Alexeev–Engel, *The flex divisor of a K3 surface*, §1 and Definitions 2.2 and 2.8.
 :::
 
 ::: {.front card-id="construction-k3-complete-intersections" tags="construction application"}
@@ -115,7 +105,7 @@ $$z^2=f_1(x_1)f_2(x_2).$$
 Compactify as a double cover of $\mathbb P^1\times\mathbb P^1$. The branch divisor consists of the four vertical and four horizontal fibers over the branch points of the elliptic double covers, including infinity. Their crossings give $A_1$ singularities; the minimal resolution is the Kummer K3. Thus a reducible $(4,4)$ branch divisor can produce a K3 after resolution, although the double cover is not smooth.
 :::
 
-::: {.front card-id="construction-k3-weierstrass" tags="construction application"}
+::: {.front card-id="construction-k3-weierstrass" tags="construction application" cite="[@SS10]"}
 Construct a complex elliptic K3 surface with section by a Weierstrass equation over $\mathbb P^1$. Specify the coefficient bundles and the conditions to check, including at infinity.
 :::
 
@@ -123,21 +113,17 @@ Construct a complex elliptic K3 surface with section by a Weierstrass equation o
 Take $L=\mathcal O_{\mathbb P^1}(2)$ and the relative Weierstrass equation
 $$y^2z=x^3+a_4xz^2+a_6z^3,\qquad a_4\in H^0(\mathcal O(8)),\quad a_6\in H^0(\mathcal O(12)).$$
 Require $\Delta=-16(4a_4^3+27a_6^2)\not\equiv0$ and minimality: at no point are both $\operatorname{ord}(a_4)\ge4$ and $\operatorname{ord}(a_6)\ge6$. Check this in local trivializations also at infinity. Resolve the Weierstrass model to its smooth relatively minimal elliptic surface $f:S\to\mathbb P^1$. The canonical bundle formula gives $\omega_S=f^*(\omega_{\mathbb P^1}\otimes L)\cong\mathcal O_S$; Leray gives $q(S)=0$ since $H^1(\mathcal O_{\mathbb P^1})=H^0(L^{-1})=0$. The discriminant is a section of $\mathcal O(24)$.
-
-Reference: [Schütt–Shioda, Elliptic Surfaces, elliptic K3 surfaces](https://arxiv.org/abs/0907.0298).
 :::
 
-::: {.front card-id="construction-k3-quadratic-base-change" tags="construction application"}
+::: {.front card-id="construction-k3-quadratic-base-change" tags="construction application" cite="[@SS10, quadratic base change]"}
 Let $f:R\to\mathbb P^1_{\mathbb C}$ be a relatively minimal rational elliptic surface with section. How can a quadratic base change produce a K3? Choose branch points that make the construction straightforward and describe the singular fibers afterward.
 :::
 
 ::: {.back card-id="construction-k3-quadratic-base-change"}
 Choose a double cover $g:\mathbb P^1\to\mathbb P^1$ branched over two distinct smooth fibers of $f$, and form $S=R\times_{\mathbb P^1}\mathbb P^1$. The surface is smooth: over singular fibers the base change is étale, and over branch points $f$ is smooth. The section pulls back. The fundamental line bundle changes from $\mathcal O(1)$ to $g^*\mathcal O(1)=\mathcal O(2)$, so the canonical bundle formula and Leray give $\omega_S\cong\mathcal O_S$ and $q(S)=0$. Each singular fiber of $R$ occurs twice with the same Kodaira type; the branch fibers remain smooth.
-
-Reference: [Schütt–Shioda, Elliptic Surfaces, quadratic base change](https://arxiv.org/abs/0907.0298).
 :::
 
-::: {.front card-id="construction-k3-anticanonical" tags="construction application"}
+::: {.front card-id="construction-k3-anticanonical" tags="construction application" cite="[@Bea02]"}
 Let $V$ be a smooth complex Fano threefold and $S\in|-K_V|$ smooth. Determine whether $S$ is K3. Use this construction to give examples in $\mathbb P^1\times\mathbb P^2$ and $(\mathbb P^1)^3$.
 :::
 
@@ -145,8 +131,6 @@ Let $V$ be a smooth complex Fano threefold and $S\in|-K_V|$ smooth. Determine wh
 Adjunction gives $\omega_S\cong\mathcal O_S$. Kodaira vanishing gives $H^i(V,\mathcal O_V)=0$ for $i>0$; Serre duality gives $H^2(V,K_V)=0$. The sequence
 $$0\longrightarrow\mathcal O_V(K_V)\longrightarrow\mathcal O_V\longrightarrow\mathcal O_S\longrightarrow0$$
 then gives $H^0(S,\mathcal O_S)=\mathbb C$ and $H^1(S,\mathcal O_S)=0$. Thus $S$ is K3. In the products, take a general equation of bidegree $(2,3)$ or tridegree $(2,2,2)$, respectively. These anticanonical systems are base-point-free, so Bertini supplies smooth members.
-
-Reference: [Beauville, Fano threefolds and K3 surfaces](https://arxiv.org/abs/math/0211313).
 :::
 
 ::: {.front card-id="construction-k3-enriques-cover" tags="construction application"}
@@ -570,7 +554,7 @@ Discuss $\operatorname{Pic}(X)$ for a generic projective K3.
 Generically $\operatorname{Pic}(X) = \left\langle{L}\right\rangle_\ZZ$ for $L$ associated to the hyperplane section.
 :::
 
-::: {.front card-id="card-cf4969638484b2a6"}
+::: {.front card-id="card-cf4969638484b2a6" cite="[@Mor88a, projective models]"}
 Let $L$ be a base-point-free line bundle with $L^2>0$ on a complex projective K3 surface. What is the dimension of $|L|$, and when can its morphism fail to be an embedding? Describe the very ample models of degrees four, six, and eight.
 :::
 
@@ -578,8 +562,6 @@ Let $L$ be a base-point-free line bundle with $L^2>0$ on a complex projective K3
 Riemann–Roch and vanishing give $h^0(L)=2+L^2/2$, so $|L|$ maps to $\mathbb P^{1+L^2/2}$. The morphism can have degree two onto a surface of degree $L^2/2$, or be birational onto a surface of degree $L^2$. It contracts precisely the curves $C$ with $L\cdot C=0$.
 
 For $L$ very ample, degree four gives a quartic in $\mathbb P^3$, and degree six gives a $(2,3)$ complete intersection in $\mathbb P^4$. In degree eight, the model in $\mathbb P^5$ is an intersection of three quadrics exactly when its general hyperplane section is not trigonal. Equivalently, the trigonal exception has an elliptic pencil $E$ with $L\cdot E=3$.
-
-Reference: [Morrison, The geometry of K3 surfaces, projective models](https://web.math.ucsb.edu/~drm/conferences/ITP99/morrison/cortona.pdf).
 :::
 
 ::: {.front card-id="card-dfe46593dd91df51"}
@@ -1179,7 +1161,7 @@ Is the Hodge structure on a K3 polarizable?
 If algebraic, always. If not, there are counterexamples.
 :::
 
-::: {.front card-id="card-a75c71cf2709c1cd"}
+::: {.front card-id="card-a75c71cf2709c1cd" cite="[@GPSZ22, §6.2]"}
 What is the transcendental part of a Hodge structure of K3 type?
 :::
 
@@ -1191,8 +1173,6 @@ The primitivity, i.e. the condition that $V / T$ is torsion free, has to be add
 More generally, for a polarizable rational Hodge structure $A$ of weight two with $F^3A=0$, let $T[A]$ be its smallest rational sub-Hodge structure containing $F^2A$. This also applies when $h^{2,0}>1$ and satisfies
 $$T[A\oplus B]=T[A]\oplus T[B].$$
 For a projective surface, it is the orthogonal complement of the rational $(1,1)$-classes under a polarization. In an integral lattice take the primitive intersection with this rational subspace. This is the version used to split the transcendental parts of components in a finite-monodromy surface limit.
-
-Reference: Gallardo–Pearlstein–Schaffler–Zhang, §6.2.
 :::
 
 ::: {.front card-id="card-14234c9dd775e812"}

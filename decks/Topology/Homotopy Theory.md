@@ -188,7 +188,7 @@ Define the topologically enriched category $O$ used to define orthogonal spectra
 Inner product spaces, homs are $O(V, W)$, composition is the smash product $(w, \phi) \wedge(v, \psi) \mapsto (w + \phi(v), \phi\circ \psi)$.
 :::
 
-::: {.front card-id="card-e1ec65255712c855"}
+::: {.front card-id="card-e1ec65255712c855" cite="[@Sch18, §3.1]"}
 What is an orthogonal spectrum? A $G\dash$spectrum?
 :::
 
@@ -198,8 +198,6 @@ A based $X\in \Fun^\text{cts}(O, \Top_*)$ into based spaces.
 For $G\dash$spectra: $X\in \Fun^\text{cts}(O, G\dash\Top_*)$ into based $G\dash$spaces.
 
 This model encodes suspension by representation spheres and supports genuine equivariant stable homotopy theory when stable equivalences are tested on equivariant homotopy groups in a complete universe.
-
-Reference: Schwede, *Global Homotopy Theory*, §3.1.
 :::
 
 ::: {.front card-id="card-f6b5c945918010b8"}

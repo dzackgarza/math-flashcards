@@ -2,7 +2,7 @@
 title: "Algebraic Geometry::Mirror Symmetry::Integral Affine Structures"
 ---
 
-::: {.front card-id="ias-visible-roots-mirror-monodromy" tags="construction theorem formula"}
+::: {.front card-id="ias-visible-roots-mirror-monodromy" tags="construction theorem formula" cite="[@AE22, Theorem 6.19 and §6G; @AEGS25, Proposition 4.5]"}
 How do visible cycles on an integral-affine sphere encode roots? State the mirror/monodromy identification and explain how root pairings control singularity collisions.
 :::
 
@@ -20,11 +20,9 @@ For the simple visible roots in the Symington construction, the affine separatio
 For two parallel positive $I_1$ monodromies, choose the common basis so that their product is
 $$\begin{pmatrix}1&1\\0&1\end{pmatrix}^2=\begin{pmatrix}1&2\\0&1\end{pmatrix}.$$
 Their collision is $I_2$. Nonparallel vanishing directions do not justify this conclusion.
-
-Reference: Alexeev–Engel, *Compactifications of moduli spaces of K3 surfaces with a nonsymplectic involution*, Theorem 6.19 and §6G; AEGS, Proposition 4.5.
 :::
 
-::: {.front card-id="ias-realization-polarized-equivariant" tags="theorem construction"}
+::: {.front card-id="ias-realization-polarized-equivariant" tags="theorem construction" cite="[@AET23, Proposition 2.22 and §6; @AE22, Theorem 8.3]"}
 What does the realization theorem for a triangulated integral-affine sphere produce? What additional work produces a polarized model with an involution?
 :::
 
@@ -38,11 +36,9 @@ For a polarization, specify nef $L_i$ with matching boundary degrees, at least o
 In the nonsymplectic-involution construction, start with an ample class on the mirror K3 and its Symington polygon $P$, double $P$ with opposite orientation, and choose an invariant lattice triangulation containing the equator. Invariant component choices and anti-invariant periods give an equivariant smoothing with the prescribed monodromy. Extend to nef wall classes by the singularity-collision construction.
 
 An order-$m$ refinement multiplies lengths by $m$ and area by $m^2$; geometrically $t=s^m$ gives $\log T'=m\log T$ and $\lambda'=m\lambda$. It clears rational lengths and permits compatible integral subdivisions.
-
-Reference: Alexeev–Engel–Thompson, *Stable pair compactification of moduli of K3 surfaces of degree 2*, Proposition 2.22 and §6; Alexeev–Engel, nonsymplectic-involution paper, Theorem 8.3.
 :::
 
-::: {.front card-id="ias-polygon-blowup-contraction-example" tags="application calculation"}
+::: {.front card-id="ias-polygon-blowup-contraction-example" tags="application calculation" cite="[@AET23, §2, Symington surgery and internal-blowup dictionary; @AEGS25, §§4 and 6.2, boundary-contraction operation]"}
 Start with the toric triangle for $(\mathbb P^2,\mathcal O(2))$ and its three boundary lines. Blow up the two intersections of a smooth conic with one boundary line, away from the corners. Compute the affine surgery data, boundary intersections, and ample model of the strict transform of the conic.
 :::
 
@@ -58,11 +54,9 @@ $$R'^2=2,\quad R'D'_1=0,\quad R'D'_2=R'D'_3=2,\quad (D'_1)^2=-1.$$
 The basepoint-free conics through the two points define $\operatorname{Bl}_{p_1,p_2}\mathbb P^2\to\mathbb P^1\times\mathbb P^1$, contracting $D'_1$. The ruling classes are $H-E_1$ and $H-E_2$; their sum is $R'$, so the descended polarization is $\mathcal O(1,1)$.
 
 The two remaining boundary curves have class $(1,1)$, self-intersection two, and meet in two points. Their sum is anticanonical. This computes the component and its boundary contraction from the polygon operations; a global Kulikov model additionally requires compatible neighboring components and gluings.
-
-Reference: Symington surgery and internal-blowup dictionary in Alexeev–Engel–Thompson, §2; the boundary-contraction operation used in AEGS, §§4 and 6.2.
 :::
 
-::: {.front card-id="anticanonical-period-torelli" tags="definition theorem application"}
+::: {.front card-id="anticanonical-period-torelli" tags="definition theorem application" cite="[@GHK12, Theorem 1.8 and its nef-cone formulation; @AEGS25, Corollary 4.9]"}
 Define the period of an oriented rational anticanonical pair. State global Torelli in a form usable to recognize an isomorphism, and explain the ambiguity in realizing a lattice symmetry.
 :::
 
@@ -80,11 +74,9 @@ The possibilities form a torsor under
 $$\operatorname{Hom}(N',\mathbb C^\times),\qquad
 N'=\operatorname{coker}\bigl[\operatorname{Pic}(Y_1)\to\mathbb Z^{\#D_i},\ L\mapsto(LD_i)_i\bigr].$$
 Thus preserving periods and the nef cone realizes a lattice symmetry, but its lift need not be unique. An order-two lattice map does not alone prove that a chosen geometric lift squares to the identity. Reversing the cycle orientation replaces the period by its inverse.
-
-Reference: Gross–Hacking–Keel, *Moduli of surfaces with an anti-canonical cycle*, Theorem 1.8 and its nef-cone formulation; AEGS, Corollary 4.9.
 :::
 
-::: {.front card-id="anticanonical-generic-cone-roots" tags="definition comparison application"}
+::: {.front card-id="anticanonical-generic-cone-roots" tags="definition comparison application" cite="[@EF21, §§1 and 9]"}
 For an anticanonical pair, distinguish the present nef cone, generic ample cone, admissible isometries, and Looijenga roots. How does the period detect internal $(-2)$-curves?
 :::
 
@@ -98,11 +90,9 @@ Use a marking in a deformation family of rational anticanonical pairs $(Y,D)$, w
 The period $\phi_Y(L)=L|_D\in\operatorname{Pic}^0(D)\simeq\mathbb C^\times$ of an internal curve class is $1$: its divisor is disjoint from $D$. Root hyperplanes in period coordinates are therefore $\phi_Y(\alpha)=1$. On these loci the nef chamber determines which signs and simple roots are effective; a root need not be an irreducible curve on the present surface.
 
 Negative-definite configurations of internal $(-2)$-curves contract to ADE singularities, with Dynkin diagram given by their intersections. This connects lattice roots, periods, cone walls, and actual surface contractions.
-
-Reference: Engel–Friedman, *Smoothings and rational double point adjacencies for cusp singularities*, §§1 and 9.
 :::
 
-::: {.front card-id="anticanonical-open-monodromy" tags="definition formula application"}
+::: {.front card-id="anticanonical-open-monodromy" tags="definition formula application" cite="[@EF21, §§0 and 3]"}
 For a Type III degeneration of negative-definite rational anticanonical pairs, where does nontrivial monodromy live? Define its invariant and describe base change.
 :::
 
@@ -119,11 +109,9 @@ $$\lambda\in B_{\rm gen}:=\operatorname{Int}_{\Lambda_{\mathbb R}}
 The invariant is the orbit of $\lambda$ under admissible isometries, with
 $$\lambda^2=\#\{\text{triple points in the Type III central fiber}\}.$$
 Base change $t=s^m$: $(T,\lambda)\mapsto(T^m,m\lambda)$. Hence $\mathbb Q_{>0}\lambda$, modulo admissible isometries, is unchanged. Do not infer trivial degeneration from trivial monodromy on the compact surface alone.
-
-Reference: Engel–Friedman, §§0 and 3.
 :::
 
-::: {.front card-id="degeneration-elementary-modifications" tags="construction comparison"}
+::: {.front card-id="degeneration-elementary-modifications" tags="construction comparison" cite="[@EF21, §4; @AE23, §7]"}
 Compare Type 0, I, and II modifications of a Type III normal-crossing surface degeneration. Where is the flopped curve, and how do the components change?
 :::
 
@@ -137,11 +125,9 @@ For a flop in the smooth total space, centered on $C$ in the central fiber:
 | Type II | Double curve with self-intersection $-1$ on both adjacent components | Blow it down on both; blow up the two triple points on the opposite components |
 
 Type I transfers an **internal** blowup. Type II transfers **corner** blowups and changes the diagonal of the corresponding quadrilateral in the dual triangulation. The operation preserves the general fiber. These modification labels describe birational operations; they are not the Kulikov Types I, II, and III.
-
-Reference: Engel–Friedman, §4; Alexeev–Engel, *Compact moduli of K3 surfaces*, §7.
 :::
 
-::: {.front card-id="ias-toric-model-corner-equivalence" tags="definition construction example"}
+::: {.front card-id="ias-toric-model-corner-equivalence" tags="definition construction example" cite="[@AET23, §2]"}
 Define a toric model of an anticanonical pair and corner-blowup equivalence. Distinguish internal and corner blowups in this construction.
 :::
 
@@ -157,11 +143,9 @@ where the first map is a sequence of corner blowups and the second is a sequence
 Both preserve the anticanonical condition. Corner blowups refine the pseudofan without changing its singularity; an internal blowup changes the singularity and increases charge by one.
 
 Example: start with the coordinate triangle in $\mathbb P^2$. Blowing up a vertex is toric; blowing up a nonvertex boundary point is an internal blowup.
-
-Reference: Alexeev–Engel–Thompson, *Stable pair compactification of moduli of K3 surfaces of degree 2*, §2.
 :::
 
-::: {.front card-id="ias-divisor-balancing-polarization" tags="definition comparison application"}
+::: {.front card-id="ias-divisor-balancing-polarization" tags="definition comparison application" cite="[@AET23, Definitions 2.30–2.36]"}
 Define an integral-affine divisor on an integral-affine sphere. State the extra data at singular vertices, balancing, and polarization.
 :::
 
@@ -179,11 +163,9 @@ At singular vertices, this ordinary vector equation does not replace the line-bu
 Effective means $n_{ij}\ge0$. Polarizing means every $L_i$ nef and $\sum_iL_i^2>0$; the sum is the self-intersection. Compatible with a triangulation means every graph edge is a union of triangulation edges.
 
 Example: the three unit-weight directions $(1,0),(0,1),(-1,-1)$ balance; they represent $\mathcal O_{\mathbb P^2}(1)$ on the toric vertex model.
-
-Reference: Alexeev–Engel–Thompson, Definitions 2.30–2.36.
 :::
 
-::: {.front card-id="ias-nodal-slide-symington" tags="definition construction comparison"}
+::: {.front card-id="ias-nodal-slide-symington" tags="definition construction comparison" cite="[@AET23, Definitions 2.27 and 2.38]"}
 Distinguish a nodal slide from Symington surgery on an almost-toric base. State the cut-and-glue operation.
 :::
 
@@ -194,8 +176,6 @@ An $I_1$ affine singularity has monodromy conjugate to $\left(\begin{smallmatrix
 - **Symington surgery:** remove a triangle with base of lattice length $a$ on a boundary edge and primitive height $a$, then identify its two remaining sides by the integral shear fixing the apex and matching their primitive tangent vectors. The apex becomes an $I_1$ singularity.
 
 In coordinates, remove the triangle with vertices $(0,0),(a,0),(0,a)$; the affine shear $(x,y)\mapsto(x+y-a,y)$ fixes $(0,a)$ and maps $(a,0)$ to $(0,0)$, identifying the two nonbase sides. The boundary shortens by $a$. This models a symplectic blowup of size $a$ at a smooth point of an anticanonical boundary component; the normalized area drops by $a^2$.
-
-Reference: Alexeev–Engel–Thompson, Definitions 2.27 and 2.38.
 :::
 
 

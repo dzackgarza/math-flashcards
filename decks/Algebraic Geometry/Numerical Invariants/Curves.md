@@ -34,7 +34,7 @@ The vector space of cubics has dimension $10$.
 In the last case the ideal in degree three is spanned by the two defining cubics. Cayley–Bacharach says every cubic through any eight of the nine points passes through the ninth. Thus the ninth condition is dependent. Nine points arising as the base locus of a cubic pencil are not nine independently general points.
 :::
 
-::: {.front card-id="numerical-theta-characteristics-bitangents" tags="formula application"}
+::: {.front card-id="numerical-theta-characteristics-bitangents" tags="formula application" cite="[@Kai19]"}
 For a smooth complex curve of genus $g\ge1$, count theta characteristics and their even and odd parts. What does this give for bitangents of a smooth plane quartic?
 :::
 
@@ -48,8 +48,6 @@ A theta characteristic is a line bundle $\theta$ with $\theta^{\otimes2}\cong\om
 | Odd | $2^{g-1}(2^g-1)$ |
 
 For a plane quartic, $g=3$ and each odd theta characteristic has a unique effective divisor $D$ of degree two. The line cutting out $2D$ is a bitangent, including a hyperflex when $D=2p$. Hence there are $28$ bitangents, and $36$ even theta characteristics.
-
-Reference: [Kailasa, Bitangents and Theta Characteristics on a Smooth Plane Quartic](https://websites.umich.edu/~kailasas/quart28-fin.pdf).
 :::
 
 ::: {.front card-id="numerical-branch-count-versus-ramification" tags="application"}

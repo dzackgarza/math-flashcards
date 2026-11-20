@@ -2,7 +2,7 @@
 title: "Algebraic Geometry::Surfaces::Enriques Surfaces"
 ---
 
-::: {.front card-id="enriques-bidouble-six-fibers" tags="construction calculation"}
+::: {.front card-id="enriques-bidouble-six-fibers" tags="construction calculation" cite="[@Sch22, §2.1]"}
 Construct an Enriques surface as a bidouble cover of $\operatorname{Bl}_3\mathbb P^2$ using pairs of fibers. Compute its eigensheaves and numerical invariants.
 :::
 
@@ -18,11 +18,9 @@ $$\chi(\mathcal O_S)=4\chi(\mathcal O_Y)+\frac12\sum_iL_i(L_i+K_Y)
 Here $K_Y+L_i=-H+E_i$ has no sections, so $p_g(S)=0$ and then $q(S)=0$. Thus $K_S$ is nontrivial two-torsion and $S$ is Enriques.
 
 For a branch fiber $C\in|F_i|$, write $\pi^*C=2R_C$. The connected smooth curve $R_C$ is genus one, and pulling back the pencil gives $|2R_C|$: its branch fibers yield half-fibers. Each exceptional $E_i$ splits into two disjoint $(-2)$-curves upstairs.
-
-Reference: Schaffler, *The KSBA compactification of the moduli space of $D_{1,6}$-polarized Enriques surfaces*, §2.1.
 :::
 
-::: {.front card-id="enriques-d16-polarization" tags="definition construction"}
+::: {.front card-id="enriques-d16-polarization" tags="definition construction" cite="[@Sch22, §2.1]"}
 Define $D_{p,q}$ and the geometric conditions on a $D_{1,6}$-polarization of an Enriques surface.
 :::
 
@@ -37,11 +35,9 @@ $$e_1\pm e_2,\quad e_3\pm e_4,\quad e_5\pm e_6$$
 are represented by six irreducible $(-2)$-curves. They are mutually orthogonal. Thus an abstract embedding without nefness and effective curve representatives is insufficient.
 
 In the bidouble-cover construction, $2e_0$ is the pullback of a line in $\mathbb P^2$, with square four; the six curves are the two lifts of each exceptional curve.
-
-Reference: Schaffler, §2.1, geometric polarization description.
 :::
 
-::: {.front card-id="enriques-quotient-dual-complex" tags="construction comparison"}
+::: {.front card-id="enriques-quotient-dual-complex" tags="construction comparison" cite="[@AEGS25, Proposition 4.8 and §7.3]"}
 How do the involution on a Kulikov dual complex and its action on components determine the topology and singularities of an Enriques quotient degeneration?
 :::
 
@@ -60,11 +56,9 @@ For an exchanged pair, the normalization of its quotient is one of the component
 A nontrivial involution of $\mathbb P^1$ is conjugate to $t\mapsto-t$ and has two fixed points. On an elliptic double curve, preserving its one-form gives translation by nonzero two-torsion; negating the form gives $p\mapsto a-p$ with four fixed points. Opposite residues on the two branches determine which action is compatible with a nonsymplectic involution that exchanges, or preserves, the adjacent components.
 
 The quotient complex records incidence, not the gluing isomorphisms or the singularities on each normalized component; retain those separately.
-
-Reference: AEGS, Proposition 4.8 and §7.3.
 :::
 
-::: {.front card-id="enriques-affine-to-stable-example" tags="application calculation"}
+::: {.front card-id="enriques-affine-to-stable-example" tags="application calculation" cite="[@AEGS25, Example 4.14, Corollary 4.9, and §6.5]"}
 Recover the stable Enriques limit from the following divisor-model construction: the mirror polygon has successive edge vectors $(2,0),(-1,1),(-1,0),(0,-1)$, with a unit Symington surgery on the diagonal edge. The doubled sphere yields four invariant components with ramification squares $(0,8,4,4)$; the first is ruled, the others are a $D_8$ pair and two $D_4$ pairs. Determine the surviving quotient components and polarization degree.
 :::
 
@@ -86,11 +80,9 @@ $$R_Z^2=4+2+2=8,$$
 as required for the square of the degree-two numerical polarization. On each surviving component, contract any remaining $R_i$-orthogonal curves and retain the induced conductor gluing.
 
 Square zero alone would not specify the contraction: here the restricted polarization is nontrivial and semiample with one-dimensional image. A numerically trivial restriction would instead contract the component to a point.
-
-Reference: AEGS, Example 4.14, Corollary 4.9, and §6.5.
 :::
 
-::: {.front card-id="enriques-degree-two-projective-model" tags="construction comparison formula"}
+::: {.front card-id="enriques-degree-two-projective-model" tags="construction comparison formula" cite="[@AEGS25, Introduction and §§2.1–2.2, with Cossec's classification of Enriques linear systems cited there]"}
 For an ADE Enriques surface with an ample numerical polarization of square two, which line bundle defines its quartic del Pezzo model? Distinguish the ordinary and special cases.
 :::
 
@@ -105,11 +97,9 @@ The complete system $|M|$ is basepoint-free and gives a degree-two map to a quar
 | Special Heegner locus | $\mathbb P(1,1,2)$ | $A_3+2A_1$ |
 
 The reduced ramification divisor $R_Z\in|M|$ supplies the stable-pair polarization. On a smooth resolution with only big and nef polarization, first contract the orthogonal $(-2)$-curves to obtain the ADE polarized model. Numerical equivalence does not select one of the two lifts $L$, but it does select $M$.
-
-Reference: AEGS, Introduction and §§2.1–2.2; Cossec's classification of Enriques linear systems cited there.
 :::
 
-::: {.front card-id="enriques-horikawa-involutions-residue" tags="construction calculation"}
+::: {.front card-id="enriques-horikawa-involutions-residue" tags="construction calculation" cite="[@AEGS25, §2.1]"}
 Construct a smooth Enriques surface from an invariant $(4,4)$ curve on $\mathbb P^1\times\mathbb P^1$. Identify all three involutions of its K3 covering diagram, their fixed loci, and their actions on the two-form.
 :::
 
@@ -125,11 +115,9 @@ Take $Y=\mathbb P^1\times\mathbb P^1$, $\tau(x,y)=(-x,-y)$, and a smooth invaria
 Use the residue $\omega=\operatorname{Res}(dx\wedge dy\wedge dz/(z^2+f))=dx\wedge dy/(2z)$. The product of the coordinate signs gives the character. The equation is invariant under each map. At a fixed point of $\tau$, $f\ne0$, so the two points above it have $z\ne0$: $a$ exchanges them and $b$ fixes them.
 
 Thus $Z=X/a$ is Enriques, $X/b$ has eight $A_1$ singularities and K3 minimal resolution, and $W=Y/\tau=X/\langle d,a\rangle$. The invariant monomials have $i+j$ even. In bidegree $(4,4)$ there are $3^2+2^2=13$ of them; projectivizing and dividing by the two-dimensional connected coordinate torus gives dimension $12-2=10$.
-
-Reference: AEGS, §2.1.
 :::
 
-::: {.front card-id="enriques-half-fibers" tags="definition construction example"}
+::: {.front card-id="enriques-half-fibers" tags="definition construction example" cite="[@MRS22, §2.2]"}
 For a complex Enriques surface $S$, relate primitive nef isotropic classes, half-fibers, and genus-one pencils. Why need the pencil have no section?
 :::
 
@@ -140,11 +128,9 @@ $\operatorname{Num}(S)=\operatorname{Pic}(S)/\langle K_S\rangle\simeq U\oplus E_
 - Its two multiple fibers are $2F$ and $2F'$, with $F'\sim F+K_S$. Thus $F\equiv F'$ but $F\not\sim F'$.
 - “Half” means division of the fiber divisor by two. Over $\mathbb C$, half-fibers are reduced: smooth genus-one curves or multiplicative Kodaira fibers. General reducible fibers must still be read with their Kodaira component multiplicities.
 - A section $C$ would satisfy $C\cdot(2F)=1$, impossible since $C\cdot F\in\mathbb Z$. “Genus-one fibration” does not assume a section; the associated Jacobian fibration has one.
-
-Reference: [Moschetti–Rota–Schaffler, §2.2](https://arxiv.org/abs/2202.01775).
 :::
 
-::: {.front card-id="enriques-isotropic-sequences-nd" tags="definition comparison formula"}
+::: {.front card-id="enriques-isotropic-sequences-nd" tags="definition comparison formula" cite="[@MRS22, Definitions 2.6–2.11]"}
 Define isotropic and non-degenerate isotropic sequences on a complex Enriques surface. Define $\mathrm{nd}(S)$ and distinguish lattice existence from nef realization.
 :::
 
@@ -156,6 +142,4 @@ $$\mathrm{nd}(S)=\max\{n:\text{a non-degenerate isotropic sequence of length }n\
 The Gram matrix is $J_n-I_n$: eigenvalues $n-1,-1,\ldots,-1$ for $n>1$. The signature $(1,9)$ gives $n\le10$.
 
 The abstract Enriques lattice admits length-ten sequences. On a specified surface, intersections with effective $(-2)$-curves can obstruct nefness. Unnodal surfaces have $\mathrm{nd}(S)=10$; the numerical lattice alone does not determine the non-degeneracy invariant.
-
-Reference: [Moschetti–Rota–Schaffler, Definitions 2.6–2.11](https://arxiv.org/abs/2202.01775).
 :::

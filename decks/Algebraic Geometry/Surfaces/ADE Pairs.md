@@ -2,7 +2,7 @@
 title: "Algebraic Geometry::Surfaces::ADE Pairs"
 ---
 
-::: {.front card-id="ade-weyl-parameter-spaces" tags="theorem comparison example"}
+::: {.front card-id="ade-weyl-parameter-spaces" tags="theorem comparison example" cite="[@AT17, §5; @Loo76; @AEGS25, §§6.1 and 6.3]"}
 Explain the torus/Weyl and elliptic/Weyl parameter spaces behind type III and type II ADE families. Specify the lattices and give rank-one examples.
 :::
 
@@ -25,11 +25,9 @@ The type III polynomial coefficients in the normalized ADE family are coordinate
 | $\widetilde D_{2n}$ | $\mathbb P(1,1,1,1,2^{,2n-3})$ |
 
 In the last row $2^{,2n-3}$ denotes repeated weights. Varying $E$ adds the elliptic modulus. A weighted projective coarse space does not by itself identify a quotient stack or supply a universal family on that coarse space.
-
-Reference: Alexeev–Thompson, *ADE surfaces and their moduli*, §5; Looijenga, *Root systems and elliptic curves*; AEGS, §§6.1 and 6.3.
 :::
 
-::: {.front card-id="ade-theta-sections-elliptic-cone" tags="construction calculation"}
+::: {.front card-id="ade-theta-sections-elliptic-cone" tags="construction calculation" cite="[@AEGS25, §6.3 and §6.6, with analytic theta sections on an elliptic curve]"}
 Construct theta-function sections of an even-degree line bundle on $E_q=\mathbb C^\times/q^{\mathbb Z}$. How does inversion constrain an invariant branch section, and how does this enter the affine $A$ surface construction?
 :::
 
@@ -46,11 +44,9 @@ $$z^2+y^2+g(x)=0.$$
 The deck involution changes the sign of $z$; an additional involution requires a compatible lift on $L$ and the coefficient symmetry. General branch sections give the affine $A$ pairs; special sections must still satisfy the lc condition.
 
 This theta normalization makes the factor of automorphy explicit; multiplying by a nowhere-zero factor or changing the chosen line bundle changes the displayed series.
-
-Reference: AEGS, §6.3 and §6.6; analytic theta sections on an elliptic curve.
 :::
 
-::: {.front card-id="ade-geometric-folding-quotient-pairs" tags="construction comparison"}
+::: {.front card-id="ade-geometric-folding-quotient-pairs" tags="construction comparison" cite="[@AEGS25, Proposition 6.1 and §§6.5–6.6]"}
 What data and calculations turn a symmetry of an ADE diagram into geometric folding of a surface pair? Compare a torus-sign involution with a polytope-reflection involution.
 :::
 
@@ -70,11 +66,9 @@ $$K_Z+D_Z+\epsilon R_Z=\rho^*\bigl(K_W+C_W+\tfrac{1+\epsilon}{2}B_W\bigr).$$
 At an isolated fixed point of the base involution outside the branch curve, the two points in its double-cover fiber are either exchanged or both fixed by a lift. Multiplying by the deck involution exchanges these alternatives, explaining complementary isolated branch loci of $Z$ and $Z'$ over $W$.
 
 A folded graph records the lattice symmetry; the equation, fixed loci, Cartier indices, and branch calculations establish the quotient surface pair.
-
-Reference: AEGS, Proposition 6.1 and §§6.5–6.6.
 :::
 
-::: {.front card-id="ade-folded-quadric-worked-example" tags="application calculation"}
+::: {.front card-id="ade-folded-quadric-worked-example" tags="application calculation" cite="[@AEGS25, Example 6.3 and Proposition 6.1]"}
 For $Y=\mathbb P^1\times\mathbb P^1$, let $C$ be a fiber of each ruling and $B$ a smooth invariant $(2,2)$ curve avoiding torus-fixed points and the corner of $C$. Construct the anticanonical double cover and its two quotients above $W=Y/((x,y)\mapsto(-x,-y))$.
 :::
 
@@ -88,11 +82,9 @@ The square polygon for $B$ has vertices $(0,0),(2,0),(0,2),(2,2)$. Passing from 
 The two lifts differ by $z\mapsto-z$. Their signs on the fiber change between toric charts because $z$ belongs to $\mathcal O_Y(1,1)$. Each lift fixes points over two of the four base corners and exchanges the points over the other two. The lifts have opposite log-volume characters; the nonsymplectic quotient $Z$ has log canonical index two, while the symplectic quotient $Z'$ has index one. Their isolated branch loci over $W$ are complementary pairs of corners.
 
 For either quotient $q:X\to Z$ or $Z'$, $q^*R_Z=R$ and $R_Z^2=2$. This is the basic folded $D_4$ construction: the index-two quotient is the $B_2$ surface shape. The shape describes the global pair, not one local $B_2$ singularity.
-
-Reference: AEGS, Example 6.3 and Proposition 6.1.
 :::
 
-::: {.front card-id="ade-pairs-shapes-branch-cover" tags="definition construction comparison"}
+::: {.front card-id="ade-pairs-shapes-branch-cover" tags="definition construction comparison" cite="[@AT17, Definitions 3.1–3.2 and Lemma 2.3; @AEGS25, §6, equation (6.1), and §7]"}
 In Alexeev–Thompson's terminology, how do pure shapes, priming, and a branch divisor define an ADE or affine ADE pair? Distinguish this from an ADE surface singularity.
 :::
 
@@ -108,11 +100,9 @@ Example: shape $A_1$ has $Y=\mathbb P^2$, $C$ two distinct lines, and $B$ a coni
 For the cover $\pi:X\to Y$ with ramification divisor $R$:
 $K_X+D+\epsilon R=\pi^*\!\left(K_Y+C+\tfrac{1+\epsilon}{2}B\right).$
 Thus the branch pair and its anticanonical double cover give the two descriptions of the same component used in stable degenerations.
-
-Reference: Alexeev–Thompson, *ADE surfaces and their moduli*, Definitions 3.1–3.2 and Lemma 2.3; Alexeev–Engel–Garza–Schaffler, *Compact moduli of Enriques surfaces of degree 2*, §6, equation (6.1), and §7.
 :::
 
-::: {.front card-id="ade-pure-toric-polygons" tags="construction definition"}
+::: {.front card-id="ade-pure-toric-polygons" tags="construction definition" cite="[@AT17, Table 1 and Definitions 3.5–3.6]"}
 Give the polygon construction of the pure toric ADE shapes, including the distinguished point and boundary. What changes for affine shapes?
 :::
 
@@ -136,11 +126,9 @@ Let $Y_P$ be the normal projective toric surface polarized by the lattice polygo
 For type III, $p_*$ is a vertex and $C$ has two sides. For the affine rows, $p_*$ lies inside an edge and $C$ has one side. The special shape $\widetilde D_4$ is instead $(\mathbb P^1\times\mathbb P^1,C)$ with $C$ a smooth $(1,1)$ curve, or a quadric cone with a smooth conic section avoiding the vertex.
 
 Type III sides have $L\cdot C_i=2$ (long) or $1$ (short); type II sides have degree $4$ (long) or $3$ (short). A minus on the corresponding end of a symbol marks a short side. For instance $A_1$ uses $2\Delta_2$, giving $Y=\mathbb P^2$, $L=2H$, and two lines as boundary.
-
-Reference: Alexeev–Thompson, Table 1 and Definitions 3.5–3.6.
 :::
 
-::: {.front card-id="ade-pure-nontoric-affine-shapes" tags="construction definition"}
+::: {.front card-id="ade-pure-nontoric-affine-shapes" tags="construction definition" cite="[@AT17, §3B]"}
 Construct the nontoric pure affine $A$ shapes. Specify the surface, boundary, and branch system.
 :::
 
@@ -154,11 +142,9 @@ In each case $B\in|-2(K_Y+C)|$ must satisfy the log-canonicity condition for the
 | $\widetilde A_0^{-}$ | $Y=\mathbb P(1,1,2)$. On its resolution $\mathbb F_2$, with negative section $s$ and fiber $f$, the strict transform of $C$ is a smooth member of $|s+3f|$. Thus $C$ passes through the vertex. Take $B$ a hyperplane section of the quadric cone avoiding the vertex. |
 
 For $\widetilde A_1^*$ with smooth $B$, the double cover is $\mathbb P^1\times\mathbb P^1$. For $\widetilde A_0^{-}$ it is $\mathbb P^2$ with involution $[x:y:z]\mapsto[x:-y:z]$ and a smooth invariant cubic as boundary. Smoothing the corner of the two boundary lines in shape $A_1$ gives the conic boundary of $\widetilde A_1^*$.
-
-Reference: Alexeev–Thompson, §3B.
 :::
 
-::: {.front card-id="ade-priming-operation" tags="definition construction"}
+::: {.front card-id="ade-priming-operation" tags="definition construction" cite="[@AT17, Definition 3.13 and §3C]"}
 Define priming of an ADE surface–boundary pair. Which infinitesimal data are chosen, and which positivity condition permits the final contraction?
 :::
 
@@ -172,6 +158,4 @@ $$\overline Y'=\operatorname{Proj}\bigoplus_{m\ge0}H^0(Y',mL'),\qquad \overline 
 The pair $(\overline Y',\overline C')$ is the priming. Thus choosing arbitrary points and blowing up once is not the operation.
 
 For a pair with branch curve $B$, choose $P_i\in B\cap C$ and the tangent direction of $B$; transversality makes the direction admissible. On the double cover this corresponds to blowing up the associated boundary–ramification points, then taking the ample model.
-
-Reference: Alexeev–Thompson, Definition 3.13 and §3C.
 :::

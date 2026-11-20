@@ -2,7 +2,7 @@
 title: "Algebraic Geometry::Singularities::Surface Singularities"
 ---
 
-::: {.front card-id="singularity-smoothing-adjacency-resolution" tags="definition comparison example"}
+::: {.front card-id="singularity-smoothing-adjacency-resolution" tags="definition comparison example" cite="[@EF21, introduction, with the simultaneous resolution of du Val singularities]"}
 Distinguish a smoothing, a smoothing component, an adjacency, and a simultaneous resolution of a complex surface singularity. Use an $A_1$ example.
 :::
 
@@ -15,11 +15,9 @@ Distinguish a smoothing, a smoothing component, an adjacency, and a simultaneous
 Example: $xy-z^2=t$ smooths $A_1$. After $t=s^2$, write $xy=(z+is)(z-is)$. Blowing up the ideal $(x,z+is)$ gives a simultaneous resolution: an isomorphism for $s\ne0$, and the minimal resolution with one $(-2)$-curve at $s=0$.
 
 For a nontrivial adjacency, $xy=z^3+t z^2$ has an $A_2$ singularity at $t=0$ and an $A_1$ singularity at the origin for $t\ne0$. Thus $A_2$ deforms to $A_1$; this family is not itself a smoothing.
-
-Reference: Engel–Friedman, *Smoothings and rational double point adjacencies for cusp singularities*, introduction; the simultaneous resolution of du Val singularities.
 :::
 
-::: {.front card-id="hypersurface-milnor-tjurina-modality-suspension" tags="definition comparison example"}
+::: {.front card-id="hypersurface-milnor-tjurina-modality-suspension" tags="definition comparison example" cite="[@GPSZ22, §2.3, with Arnold's hypersurface classification]"}
 For an isolated complex hypersurface germ, compare Milnor number, Tjurina number, and modality. What does suspension preserve? Compute the example $x^2+y^3+z^7$.
 :::
 
@@ -34,11 +32,9 @@ For Arnold's function-germ classification, right equivalence means an analytic c
 Suspension replaces $f$ by $f+u^2$. Stable right equivalence allows adding nondegenerate quadratic variables; $\mu$ and the Arnold type are unchanged, while the hypersurface dimension increases.
 
 Example: $x^2+y^3+z^7$ is the $E_{12}$ surface germ. Its Jacobian algebra has basis $y^a z^b$ for $0\le a<2$, $0\le b<6$, so $\mu=\tau=12$. It is unimodal, unlike the simple du Val $E_6,E_7,E_8$. The branch-curve germ $y^3+z^7$ has the same stable label but is a curve, not a surface.
-
-Reference: Gallardo–Pearlstein–Schaffler–Zhang, §2.3; Arnold's hypersurface classification.
 :::
 
-::: {.front card-id="surface-double-crossing-involution-quotient" tags="application calculation"}
+::: {.front card-id="surface-double-crossing-involution-quotient" tags="application calculation" cite="[@AEGS25, Proposition 4.8 and equation (4.1), with the finite crepant-cover discrepancy criterion]"}
 Describe the normalization and conductor of $S=\{xz=0\}\subset\mathbb A^3_{x,y,z}$ modulo $(x,y,z)\mapsto(-x,-y,-z)$. Why is this quotient slc, and does the image of the origin become an isolated log canonical center?
 :::
 
@@ -51,11 +47,9 @@ and the analogous plane with $x$ replaced by $z$. The conductor on each is the i
 Upstairs the normalized pair is a smooth plane with one coefficient-one line, hence plt. The quotient is étale away from the origin, and the log canonical divisor pulls back to that of the plane pair. The quotient normalized pair is therefore plt as well. Its only lc center is the conductor curve, not the origin separately. Along its conductor, adjunction has different $\tfrac12[0]$, recording $y\mapsto y^2$.
 
 The glued surface is demi-normal: nodal in codimension one, and $S_2$ by the invariant direct-summand description of this Cohen–Macaulay double crossing. Its canonical class is $\mathbb Q$-Cartier of index at most two. The normalization criterion therefore gives slc. This permits a polarizing divisor through the image of the origin, provided it does not contain the double curve and its coefficient is sufficiently small for log canonicity.
-
-Reference: AEGS, Proposition 4.8 and equation (4.1); the finite crepant-cover discrepancy criterion.
 :::
 
-::: {.front card-id="surface-resolution-graph-determinant" tags="definition computation"}
+::: {.front card-id="surface-resolution-graph-determinant" tags="definition computation" cite="[@AL19, §2]"}
 Define the weighted dual graph and determinant of a resolved normal surface singularity. Compute a two-vertex chain.
 :::
 
@@ -68,8 +62,6 @@ A rational chain with self-intersections $-b_1,-b_2$ has
 $$-Q=\begin{pmatrix}b_1&-1\\-1&b_2\end{pmatrix},\qquad
 \det(\Gamma)=b_1b_2-1.$$
 For an $A_2$ singularity, $b_1=b_2=2$, so the determinant is three. For a rational tree whose plumbing boundary is a rational homology sphere, this determinant is the order of its first homology. Genus and graph cycles cannot be omitted when deciding that hypothesis.
-
-Reference: Alexeev–Liu, *Log surfaces of Picard rank one from four lines in the plane*, §2.
 :::
 
 ::: {.front card-id="card-8f343de9852359e9" tags="definition"}
@@ -168,7 +160,7 @@ Its minimal resolution has exceptional divisor a negative-definite cycle of smoo
 :::
 
 
-::: {.front card-id="surface-cyclic-quotient-decoding" tags="construction calculation example"}
+::: {.front card-id="surface-cyclic-quotient-decoding" tags="construction calculation example" cite="[@CLS11, §10.1–10.2 and Example 11.4.6; @KM98, §4.1]"}
 Decode the cyclic quotient germ $\frac1r(1,a)$, $\gcd(r,a)=1$: action, isomorphic labels, toric cone, minimal resolution, discrepancies, and index of $K_X$. Work out $\frac14(1,1)$ and $\frac15(1,2)$.
 :::
 
@@ -198,11 +190,9 @@ The minimal resolution is a chain $E_1-\cdots-E_k$ of smooth rational curves wit
 | $\frac15(1,2)$ | $[3,2]$ | $(-3)-(-2)$ | $-\frac25,-\frac15$ | $5$ |
 
 Check for $\frac15(1,2)$: $3-\frac12=\frac52$. The rays $\frac15(1,2)$ and $\frac15(3,1)$ give $A=\frac35,\frac45$. The linear system $-3a_1+a_2=1$, $a_1-2a_2=0$ gives the same values.
-
-Reference: Cox–Little–Schenck, *Toric Varieties*, §10.1–10.2 and Example 11.4.6; Kollár–Mori, *Birational Geometry of Algebraic Varieties*, §4.1.
 :::
 
-::: {.front card-id="surface-klt-lc-graph-classification" tags="theorem classification"}
+::: {.front card-id="surface-klt-lc-graph-classification" tags="theorem classification" cite="[@KM98, Theorem 4.7 and Proposition 4.18]"}
 Which complex normal surface germs are klt? Classify klt and strictly lc germs by the dual graph of the minimal resolution.
 :::
 
@@ -224,11 +214,9 @@ In the graphs below, every exceptional curve is a smooth rational curve with $E^
 Du Val germs are the klt rows with all $b_i=2$: chains give $A_n$; $(2,2,n)$ gives $D_{n+2}$; $(2,3,3),(2,3,4),(2,3,5)$ give $E_6,E_7,E_8$.
 
 Reading test: the graph $(-3)-(-2)$ is a chain, hence $\frac15(1,2)$, klt. A single $(-4)$-curve is $\frac14(1,1)$. An elliptic curve of any negative square is simple elliptic, hence lc but not klt.
-
-Reference: Kollár–Mori, Theorem 4.7 and Proposition 4.18.
 :::
 
-::: {.front card-id="surface-t-wahl-singularities" tags="definition construction example"}
+::: {.front card-id="surface-t-wahl-singularities" tags="definition construction example" cite="[@KS88, Proposition 3.10; @Wah81]"}
 Define T-singularities and Wahl singularities. Give the cyclic family, its index-one cover, a $\mathbb Q$-Gorenstein smoothing, and the examples $\frac14(1,1)$ and $\frac19(1,2)$. Why do they matter for KSBA limits?
 :::
 
@@ -252,6 +240,4 @@ descends to a $\mathbb Q$-Gorenstein smoothing of $X$. Its Milnor number is $d-1
 Check: $\frac92=5-\frac12$, so $[5,2]$; $\frac83=3-\frac13$, so $[3,3]$.
 
 **KSBA use.** A $\mathbb Q$-Gorenstein family keeps $K^2$ and $\chi(\mathcal O)$ constant. In a $\mathbb Q$-Gorenstein family of surfaces with smooth general fibre, each quotient singularity of the special fibre is a T-singularity. Example: in the Coble quotient of a surface with a node, the composite action on the node is $\mathbb A^2/\mu_4$, $(u,v)\mapsto(\zeta u,\zeta v)$. The image is a $\frac14(1,1)$ point, and its minimal resolution contains a $(-4)$-curve. Restoring the constant term killed by the quotient gives the local smoothing.
-
-Reference: Kollár–Shepherd-Barron, *Threefolds and deformations of surface singularities*, Invent. Math. 91 (1988), Proposition 3.10; Wahl, *Smoothings of normal surface singularities*, Topology 20 (1981).
 :::

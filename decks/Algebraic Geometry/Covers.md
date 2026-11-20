@@ -2,7 +2,7 @@
 title: "Algebraic Geometry::Covers"
 ---
 
-::: {.front card-id="covers-reflexive-torsion-twists" tags="construction example"}
+::: {.front card-id="covers-reflexive-torsion-twists" tags="construction example" cite="[@AEGS25, Remark 2.2 and Proposition 6.1]"}
 How does a rank-one reflexive sheaf define a double cover of a normal variety? How can two covers have the same divisorial branch locus but differ over singular points?
 :::
 
@@ -14,11 +14,9 @@ On the locus where $A$ is invertible this is $z^2=s$; the deck involution acts b
 For a two-torsion class $T\in\operatorname{Cl}(Y)$, a chosen isomorphism $\mathcal O_Y(2T)\simeq\mathcal O_Y$ gives a cover unramified in codimension one. Twisting $A$ by $\mathcal O_Y(T)$, with reflexive tensor product, leaves $A^{[2]}$ unchanged but can alter the cover above the singular locus.
 
 In the Enriques diagram, $\operatorname{Tors}\operatorname{Cl}(W)=\langle T\rangle\simeq\mathbb Z/2$. The sheaves $\mathcal O_W(K_W)$ and $\mathcal O_W(K_W+T)$, with multiplication given by $B_W\in|-2K_W|$, yield the K3 and Enriques intermediate covers. The torsion cover uses $\mathcal O_W\oplus\mathcal O_W(T)$.
-
-Reference: AEGS, Remark 2.2 and Proposition 6.1.
 :::
 
-::: {.front card-id="covers-canonical-character-norm" tags="formula application"}
+::: {.front card-id="covers-canonical-character-norm" tags="formula application" cite="[@AEGS25, Proposition 6.1, especially its eigensheaf and norm argument]"}
 Let $\pi:(X,D)\to(Y,D_Y)$ be a connected double quotient of a proper normal log Calabi–Yau pair, unramified in codimension one, with $D=\pi^*D_Y$ reduced. How does the character on a log volume form decide the log canonical index downstairs?
 :::
 
@@ -35,11 +33,9 @@ where $A$ is the nontrivial eigensheaf. On the étale locus $A^{\otimes2}\simeq\
 For the second row, $A\not\simeq\mathcal O_Y$: otherwise its global section would give a nonconstant anti-invariant regular function on proper connected $X$. The divisor norm also gives $2(K_Y+D_Y)\sim0$ from $\pi^*(K_Y+D_Y)\sim0$; the character decides whether the order is one or two.
 
 For a finite surjective map of degree $d$, a $\mathbb Q$-Cartier divisor $H$ is ample, respectively nef, iff $\pi^*H$ is. On surfaces $(\pi^*H)^2=dH^2$. These formulas descend the polarization in the covering diagram.
-
-Reference: AEGS, Proposition 6.1, especially its eigensheaf and norm argument.
 :::
 
-::: {.front card-id="covers-galois-flat-inertia" tags="definition comparison example"}
+::: {.front card-id="covers-galois-flat-inertia" tags="definition comparison example" cite="[@AP12, §1; @AP13, §2]"}
 Define an abelian $G$-cover and its branch inertia data. Which extra assumption makes its character eigensheaves line bundles?
 :::
 
@@ -52,11 +48,9 @@ The character decomposition is
 $$\pi_*\mathcal O_X=\bigoplus_{\chi\in G^*}\mathcal F_\chi,\qquad
 \mathcal F_1=\mathcal O_Y.$$
 The $\mathcal F_\chi$ have generic rank one. Finite flatness makes them invertible; write $\mathcal F_\chi=L_\chi^{-1}$. Normality of $Y$ alone does not imply flatness.
-
-Reference: Alexeev–Pardini, *Non-normal abelian covers*, §1; *On the existence of ramified abelian covers*, §2.
 :::
 
-::: {.front card-id="covers-building-data-standard" tags="definition construction"}
+::: {.front card-id="covers-building-data-standard" tags="definition construction" cite="[@AP12, §1.2]"}
 State the building data and fundamental relations of a standard abelian cover. How do they define the covering algebra?
 :::
 
@@ -76,11 +70,9 @@ The **standard cover** is $\operatorname{Spec}_Y\bigoplus_\chi L_\chi^{-1}$ with
 For $G=\mathbb Z/2$: $L^2\simeq\mathcal O_Y(D)$ and the algebra is $\mathcal O_Y\oplus L^{-1}$ with local equation $z^2=s_D$.
 
 Example over $\mathbb C$: a smooth conic $D=(q_2=0)\subset\mathbb P^2$ has $L=\mathcal O(1)$. The double cover is the smooth quadric $w^2=q_2(x,y,z)$ in $\mathbb P^3$, hence $\mathbb P^1\times\mathbb P^1$.
-
-Reference: Alexeev–Pardini, *Non-normal abelian covers*, §1.2.
 :::
 
-::: {.front card-id="covers-bidouble-data" tags="construction application"}
+::: {.front card-id="covers-bidouble-data" tags="construction application" cite="[@AP23, §2]"}
 Construct a bidouble cover from three branch divisors. Write its line-bundle relations and local equations.
 :::
 
@@ -93,11 +85,9 @@ $$z_i^2=d_jd_k,\qquad z_iz_j=d_kz_k.$$
 The rank-four algebra is $\mathcal O_Y\oplus L_1^{-1}\oplus L_2^{-1}\oplus L_3^{-1}$.
 
 On a smooth surface, reduced SNC branch with distinct labels at each crossing and no triple points gives a smooth cover. Locally at a crossing of two labels, the map is $(u,v)\mapsto(u^2,v^2)$. At a collision of equal labels, this local smoothness test fails.
-
-Reference: Alexeev–Pardini, *Explicit compactifications of moduli spaces of Campedelli and Burniat surfaces*, §2.
 :::
 
-::: {.front card-id="covers-commuting-involutions-quotients" tags="construction application comparison"}
+::: {.front card-id="covers-commuting-involutions-quotients" tags="construction application comparison" cite="[@AEGS25, §§2.1–2.2 and 6.4]"}
 Two distinct commuting involutions act faithfully on a normal complex variety $X$. Recover the three intermediate double covers and their algebras from the character decomposition. Identify these quotients in the AEGS surface diagram. Must the eigensheaves be line bundles?
 :::
 
@@ -118,11 +108,9 @@ Z'=X/\langle\iota_{\mathrm{Nik}}\rangle.$$
 Here $Z$ is Enriques; all three intermediate surfaces map to $W=X/G$. The del Pezzo and Enriques involutions act by $-1$ on the holomorphic two-form, so their product acts by $+1$. The same commuting-involution construction organizes the ADE boundary quotients.
 
 On a normal singular base, the character summands are rank-one reflexive sheaves; they need not be invertible. Finite flatness makes them line bundles. In AEGS, the cover algebras on $W$ use divisorial sheaves such as $\mathcal O_W(K_W)$ and $\mathcal O_W(K_W+A)$, with $A$ the nonzero torsion class in $\operatorname{Cl}(W)$; the smooth-base line-bundle recipe alone does not cover this case.
-
-Reference: Alexeev–Engel–Garza–Schaffler, *Compact moduli of Enriques surfaces of degree 2*, §§2.1–2.2 and 6.4.
 :::
 
-::: {.front card-id="covers-total-ramification-hurwitz" tags="definition formula example"}
+::: {.front card-id="covers-total-ramification-hurwitz" tags="definition formula example" cite="[@AP13, §2; @AP12, §2.1]"}
 Define total ramification for an abelian cover and its Hurwitz boundary. Distinguish total ramification from ramification at every point.
 :::
 
@@ -137,11 +125,9 @@ The equality is of rational divisors after compatible canonical choices, when th
 A connected étale isogeny of positive degree is not totally ramified. A connected double cover with a nonempty branch divisor is totally ramified, although most points are unramified.
 
 For nonnormal standard covers, the coefficient along $D$ is instead the sum $\sum_i(1-1/m_i)\operatorname{mult}_D D_i$ over the building divisors; coincident branch components matter.
-
-Reference: Alexeev–Pardini, *On the existence of ramified abelian covers*, §2; *Non-normal abelian covers*, §2.1.
 :::
 
-::: {.front card-id="covers-toric-lattice" tags="definition construction example"}
+::: {.front card-id="covers-toric-lattice" tags="definition construction example" cite="[@AP13, §3]"}
 What is a finite toric cover? Recover its group and branch orders from an inclusion of lattices.
 :::
 
@@ -153,6 +139,4 @@ For dual lattices $M\subset M'$, the kernel on dense tori is the diagonalizable 
 If $v_\rho$ is primitive in $N$ and $v'_\rho=e_\rho v_\rho$ primitive in $N'$, the ramification order along the invariant divisor for $\rho$ is $e_\rho$.
 
 Example: $N'=m\mathbb Z\subset\mathbb Z$ and the complete one-dimensional fan give $\mathbb P^1\to\mathbb P^1$, $z\mapsto z^m$, branched at $0,\infty$ with order $m$.
-
-Reference: Alexeev–Pardini, *On the existence of ramified abelian covers*, §3.
 :::

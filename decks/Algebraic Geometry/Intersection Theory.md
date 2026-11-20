@@ -19,7 +19,7 @@ $Z_k(X)$ is the free abelian group on integral $k$-dimensional closed subvarieti
 Rational $\Rightarrow$ algebraic $\Rightarrow$ rational homological $\Rightarrow$ numerical. On an elliptic curve, $[P]-[O]$ has degree zero, hence is algebraically, homologically, and numerically trivial. It is rationally trivial iff $P=O$, by $E\cong\operatorname{Pic}^0(E)$.
 :::
 
-::: {.front card-id="intersection-moving-product" tags="theorem construction application"}
+::: {.front card-id="intersection-moving-product" tags="theorem construction application" cite="[@The25, tag 0B0D]"}
 State the moving lemma on a smooth projective variety and explain how it permits intersection products. Does it say every effective cycle moves in an effective family?
 :::
 
@@ -29,8 +29,6 @@ Over an algebraically closed field, a cycle is rationally equivalent to one meet
 On smooth $X$, this yields a well-defined product
 $$\operatorname{CH}^p(X)\times\operatorname{CH}^q(X)\to\operatorname{CH}^{p+q}(X).$$
 Move a representative, then intersect with intersection multiplicities. A replacement may have negative coefficients: the lemma does not assert movement in a basepoint-free linear system. An exceptional curve $E$ on a blown-up surface has $E^2=-1$ and is rigid; its self-intersection is still defined.
-
-Reference: [Stacks Project, Moving Lemma](https://stacks.math.columbia.edu/tag/0B0D).
 :::
 
 ::: {.front card-id="intersection-operations-projection" tags="formula comparison application"}
@@ -158,7 +156,7 @@ $$\int H^5=1,\quad\int H^4E=\int H^3E^2=0,\quad
 The signs come from $\mathcal O_E(E)=\mathcal O_E(-1)$, not from treating $E$ as a positive hyperplane class.
 :::
 
-::: {.front card-id="intersection-3264-complete-conics" tags="application construction"}
+::: {.front card-id="intersection-3264-complete-conics" tags="application construction" cite="[@EH16, complete conics; @Koc02]"}
 How many smooth plane conics over $\mathbb C$ are tangent to five general smooth conics? Explain the failure of naive Bézout and compute the corrected intersection on the space of complete conics.
 :::
 
@@ -170,6 +168,4 @@ $$\int(H^5,H^4E,H^3E^2,H^2E^3,HE^4,E^5)=(1,0,0,4,18,51),$$
 one obtains
 $$\int(6H-2E)^5=7776-11520+8640-1632=3264.$$
 Naive $6^5$ counts a nonproper intersection with the shared double-line locus. The blowup removes that excess contribution while recording limiting tangency data.
-
-Reference: Eisenbud–Harris, *3264 and All That*, complete conics; Kock, *Enumerative geometry and intersection theory*.
 :::

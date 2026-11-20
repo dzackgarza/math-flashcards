@@ -2,7 +2,7 @@
 title: "Algebraic Geometry::Arithmetic Geometry"
 ---
 
-::: {.front card-id="arithmetic-zero-cycle-degree-index" tags="definition comparison example"}
+::: {.front card-id="arithmetic-zero-cycle-degree-index" tags="definition comparison example" cite="[@AS26, introduction; @Ful98, §1.4]"}
 Define the degree of a closed point, degree of a zero-cycle, and index of a proper variety over $k$. Compare a rational point with a degree-one zero-cycle.
 :::
 
@@ -15,8 +15,6 @@ Properness makes degree descend to $\operatorname{CH}_0(X)$, with image $\operat
 Rational point $\Rightarrow$ effective degree-one cycle $\iff$ rational point. A possibly signed degree-one cycle is equivalent only to index one: closed points of degrees two and three give $[p_3]-[p_2]$ of degree one. This subtraction does not construct a rational point; any conclusion of that kind needs a theorem for the variety in question.
 
 For finite $K/k$, proper pushforward $\operatorname{CH}_0(X_K)\to\operatorname{CH}_0(X)$ multiplies degree by $[K:k]$; flat pullback preserves degree measured over the respective fields. Their composite on $\operatorname{CH}_0(X)$ is multiplication by $[K:k]$.
-
-Reference: Alexeev–Schreieder, *Two proofs of the Cassels–Swinnerton-Dyer conjecture for cubic surfaces*, introduction; Fulton, *Intersection Theory*, §1.4.
 :::
 
 ::: {.front card-id="card-cba9b3434509cac6"}
@@ -331,7 +329,7 @@ What is the definition of Semisimple lie group?
 A Lie group whose Lie algebra is semisimple, i.e. a direct sum of simple Lie algebras with no nonzero solvable ideal; equivalently its Killing form is nondegenerate. Connected semisimple Lie groups have finite centre.
 :::
 
-::: {.front card-id="elliptic-weierstrass-invariants" tags="construction formula"}
+::: {.front card-id="elliptic-weierstrass-invariants" tags="construction formula" cite="[@Sil09, III.1]"}
 For an elliptic curve over a field, give a Weierstrass equation valid in every characteristic, its invariant differential, and $b_i,c_i,\Delta,j$. How do the invariants change under rescaling?
 :::
 
@@ -347,8 +345,6 @@ c_4&=b_2^2-24b_4,&c_6&=-b_2^3+36b_2b_4-216b_6,\\
 \Delta&=-b_2^2b_8-8b_4^3-27b_6^2+9b_2b_4b_6,&j&=c_4^3/\Delta.
 \end{aligned}$$
 Smoothness is $\Delta\ne0$; $c_4^3-c_6^2=1728\Delta$. Admissible changes have $x=u^2x'+r$, $y=u^3y'+u^2sx'+t$, $u\ne0$. Then $c_4=u^4c'_4$, $c_6=u^6c'_6$, $\Delta=u^{12}\Delta'$, so $j=j'$.
-
-Reference: Silverman, *The Arithmetic of Elliptic Curves*, III.1.
 :::
 
 ::: {.front card-id="elliptic-rr-weierstrass" tags="construction"}

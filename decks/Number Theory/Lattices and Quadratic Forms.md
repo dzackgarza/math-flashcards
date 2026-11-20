@@ -2,7 +2,7 @@
 title: "Number Theory::Lattices and Quadratic Forms"
 ---
 
-::: {.front card-id="lattice-overlattice-discriminant-gluing" tags="construction formula example"}
+::: {.front card-id="lattice-overlattice-discriminant-gluing" tags="construction formula example" cite="[@Nik80, Proposition 1.4.1]"}
 Classify even overlattices of an even nondegenerate lattice $M$ using its discriminant form. Construct $U$ as an overlattice of $\langle2\rangle\oplus\langle-2\rangle$.
 :::
 
@@ -12,11 +12,9 @@ $$M\subset L\subset M^\vee\text{ even}\ \longleftrightarrow\ H=L/M\subset A_M,\q
 Recover $L$ as the inverse image of $H$. Then
 $$[L:M]=|H|,\qquad |\det L|=|\det M|/|H|^2,\qquad (A_L,q_L)=(H^\perp/H,\bar q_M).$$
 For $M=\mathbb Za\oplus\mathbb Zb$, $a^2=2$, $b^2=-2$, $ab=0$, the class of $(a+b)/2$ is isotropic of order two. Adjoin it. The basis $e=(a+b)/2$, $f=(a-b)/2$ has $e^2=f^2=0$, $ef=1$, hence $L=U$.
-
-Reference: Nikulin, *Integral symmetric bilinear forms*, Proposition 1.4.1.
 :::
 
-::: {.front card-id="lattice-complement-isometry-extension" tags="theorem construction application"}
+::: {.front card-id="lattice-complement-isometry-extension" tags="theorem construction application" cite="[@Nik80, §§1.5–1.6; @AEGS25, Lemmas 2.4 and 3.11]"}
 How are primitive orthogonal complements glued in an even unimodular lattice? When does a pair of isometries extend to the whole lattice?
 :::
 
@@ -30,11 +28,9 @@ $$\bar g_T\gamma=\gamma\bar g_S.$$
 The extension is unique because it is already fixed on $L\otimes\mathbb Q$. Thus an abstract rational extension need not be integral.
 
 If $O(T)\to O(q_T)$ is surjective, every isometry of $S$ extends with some action on $T$. Requiring the extension to be the identity on $T$ instead requires $\bar g_S=1$.
-
-Reference: Nikulin, §§1.5–1.6; AEGS, Lemmas 2.4 and 3.11.
 :::
 
-::: {.front card-id="lattice-primitive-embedding-complement-test" tags="theorem application"}
+::: {.front card-id="lattice-primitive-embedding-complement-test" tags="theorem application" cite="[@Nik80, Corollary 1.6.2 and Theorem 1.14.2; @AEGS25, Lemma 2.4]"}
 What complement data decide primitive embedding into an even unimodular lattice? How can they prove uniqueness of the embedding?
 :::
 
@@ -45,12 +41,10 @@ Glue $S\oplus T$ along an anti-isometry to obtain an even unimodular lattice of 
 
 If such $T$ is indefinite and $\operatorname{rank}T\ge\ell(A_T)+2$, its signature and discriminant form determine it, and $O(T)\to O(q_T)$ is onto. All gluing choices are then equivalent: the primitive embedding of the fixed $S$ is unique up to $O(L)$.
 
-The existence of $T$ is a separate requirement; uniqueness of a genus does not prove that the genus is nonempty. This is the complement-and-gluing method behind the embedding argument in AEGS Lemma 2.4.
-
-Reference: Nikulin, Corollary 1.6.2 and Theorem 1.14.2.
+The existence of $T$ is a separate requirement; uniqueness of a genus does not prove that the genus is nonempty. This is the complement-and-gluing method.
 :::
 
-::: {.front card-id="lattice-isotropic-cusp-quotient" tags="construction formula example"}
+::: {.front card-id="lattice-isotropic-cusp-quotient" tags="construction formula example" cite="[@AEGS25, §§3.1–3.3; @Nik80, discriminant-form calculus]"}
 For a primitive isotropic vector $e$ in an even lattice $L$ of signature $(2,n)$, determine the rank, signature, and determinant of $e^\perp/\mathbb Ze$. Compare $L=U(m)\oplus M$ for $m=1,2$.
 :::
 
@@ -63,11 +57,9 @@ The class $e/d\in A_L$ generates an isotropic subgroup $H$ of order $d$, and $q_
 For $U(m)=\mathbb Ze+\mathbb Zf$, $ef=m$, $e^2=f^2=0$, one has $d=m$, $e^\perp=\mathbb Ze\oplus M$, and $K=M$. Thus the same quotient lattice can arise from different divisibilities.
 
 For a primitive isotropic plane $I$, $I^\perp/I$ instead has signature $(0,n-2)$. It is definite: the indefinite uniqueness criterion cannot classify it.
-
-Reference: AEGS, §§3.1–3.3; Nikulin, discriminant-form calculus.
 :::
 
-::: {.front card-id="lattice-reflections-null-roots-saturation" tags="formula construction example"}
+::: {.front card-id="lattice-reflections-null-roots-saturation" tags="formula construction example" cite="[@AEGS25, §§3.4–3.8]"}
 Test whether a primitive negative vector gives an integral reflection. How do affine Dynkin null roots and saturation enter cusp calculations?
 :::
 
@@ -82,11 +74,9 @@ $$G(a_i)=0,\qquad a_i>0,\qquad\gcd_i a_i=1.$$
 The null root is $\delta=\sum a_i\alpha_i$. For $\widetilde A_1$, $G=\left(\begin{smallmatrix}-2&2\\2&-2\end{smallmatrix}\right)$, so $\delta=\alpha_0+\alpha_1$.
 
 These coefficients are primitive in the root span, not necessarily in the ambient lattice. Compute $R^{\mathrm{sat}}=(R\otimes\mathbb Q)\cap L$; $\delta/2$ may be integral there. Parabolic components at one cusp share the same ambient isotropic ray, so their null roots can impose relations rather than independent generators.
-
-Reference: AEGS, §§3.4–3.8.
 :::
 
-::: {.front card-id="lattice-folding-integral-fixed-lattice" tags="construction example"}
+::: {.front card-id="lattice-folding-integral-fixed-lattice" tags="construction example" cite="[@AEGS25, Lemmas 3.8–3.11]"}
 For the involution exchanging the two factors of $M\oplus M$, compute the invariant and anti-invariant lattices and their index. What extra checks does a folded Coxeter diagram require?
 :::
 
@@ -104,11 +94,9 @@ For folding, restrict the chamber inequalities to $L^+_\mathbb R$. The normal of
 4. If an action must lift from a cusp quotient or orthogonal summand, check discriminant gluing.
 
 A graph automorphism alone does not settle these integral questions.
-
-Reference: AEGS, Lemmas 3.8–3.11.
 :::
 
-::: {.front card-id="lattice-divisibility-doubled-dual" tags="definition comparison example"}
+::: {.front card-id="lattice-divisibility-doubled-dual" tags="definition comparison example" cite="[@Ale22, §2]"}
 Distinguish primitivity and divisibility of a vector. Define the doubled dual of a 2-elementary lattice and coeven/coodd.
 :::
 
@@ -123,11 +111,9 @@ Example: in $U(2)$ with $e^2=f^2=0$, $(e,f)=2$, $e$ is primitive but $\operatorn
 For $2L^\vee\subset L$, define the **doubled dual**
 $$L^\dagger=L^\vee(2),\qquad (x,y)_\dagger=2(x,y).$$
 It is integral. Coeven means $L^\dagger$ even; coodd means odd. For even 2-elementary $L$, these correspond to coparity $\delta=0,1$. Thus $U(2)^\dagger\simeq U$ is coeven, while $\langle2\rangle^\dagger\simeq\langle1\rangle$ is coodd.
-
-Reference: Alexeev, *Reflective hyperbolic 2-elementary lattices*, §2.
 :::
 
-::: {.front card-id="lattice-coxeter-diagrams" tags="definition comparison example"}
+::: {.front card-id="lattice-coxeter-diagrams" tags="definition comparison example" cite="[@Ale22, §2]"}
 Read a hyperbolic Coxeter diagram using negative-square wall normals. Define elliptic and parabolic subdiagrams.
 :::
 
@@ -146,11 +132,9 @@ $$\frac{(\alpha_i,\alpha_j)}{\sqrt{\alpha_i^2\alpha_j^2}}=\cos(\pi/m).$$
 An elliptic subdiagram has negative-definite Gram form. A connected parabolic subdiagram has negative-semidefinite Gram form with one-dimensional radical and is an affine Dynkin diagram in the crystallographic case. Its null direction gives an ideal boundary direction.
 
 Example: two $(-2)$-roots with pairing $1$ give $A_2$; pairing $2$ gives a parabolic two-wall diagram. Root-length colors and multiplicity arrows need their own stated convention.
-
-Reference: Alexeev, *Reflective hyperbolic 2-elementary lattices*, §2.
 :::
 
-::: {.front card-id="lattice-folding-diagram" tags="definition construction example"}
+::: {.front card-id="lattice-folding-diagram" tags="definition construction example" cite="[@AEGS25, §3.7]"}
 What does folding a root or Coxeter diagram by a symmetry mean geometrically? Compute the $A_3$ involution example.
 :::
 
@@ -162,8 +146,6 @@ Remove redundant inequalities and identify proportional normals. The restricted 
 For negative $A_3$, interchange $\alpha_1,\alpha_3$ and fix $\alpha_2$. Use $\beta=\alpha_1+\alpha_3$, $\gamma=\alpha_2$:
 $$\beta^2=-4,\qquad\gamma^2=-2,\qquad(\beta,\gamma)=2.$$
 Hence angle $\pi/4$ and a $B_2/C_2$ diagram. The primitive integral normal in the fixed lattice and the averaged rational normal can differ by a scalar.
-
-Reference: Alexeev–Engel–Garza–Schaffler, *Compact moduli of Enriques surfaces of degree 2*, §3.7.
 :::
 
 ::: {.front card-id="card-a11f16d91f65c85e"}
@@ -378,7 +360,7 @@ $$\tau_z(x)=x-\frac{\beta(x,z)}{Q(z)}z.$$
 Thus $\tau_z(z)=-z$ and $\tau_z|_{z^\perp}=\mathrm{id}$. With lattice pairing $(\ ,\ )=\beta$ and $z^2=2Q(z)$, this is $x-2(x,z)z/z^2$. Over a ring $R$, require $Q(z)\in R^\times$, or check that the displayed formula preserves the module.
 :::
 
-::: {.front card-id="card-fddde22020cafe92"}
+::: {.front card-id="card-fddde22020cafe92" cite="[@LS09, Cartan–Dieudonné theorem]"}
 State the Cartan–Dieudonné theorem for a quadratic space.
 :::
 
@@ -386,8 +368,6 @@ State the Cartan–Dieudonné theorem for a quadratic space.
 For a nondegenerate quadratic space $(V,Q)$ over a field $k$, with $\operatorname{char}k\ne2$ and $\dim_kV=n<\infty$:
 $$\forall g\in O(V,Q),\quad g=\tau_{v_1}\cdots\tau_{v_r},\qquad 0\le r\le n,\quad Q(v_i)\ne0.$$
 The empty product is $\mathrm{id}$; hence $O(V,Q)=\langle\tau_v:Q(v)\ne0\rangle$.
-
-Reference: [Lundholm–Svensson, *Clifford algebra, geometric algebra, and applications*, Cartan–Dieudonné theorem](https://www.math.lmu.de/~lundholm/clifford.pdf).
 :::
 
 ::: {.front card-id="card-4abe9b7ef41fa2f1"}
@@ -724,7 +704,7 @@ Discuss classification of lattices.
 - Indefinite, $\mathop{\mathrm{len}}\Lambda \leq\operatorname{rank}\Lambda - 2$: determined by $(\operatorname{sgn}\Lambda, q_\Lambda)$.
 :::
 
-::: {.front card-id="card-3a514cb7f54c1e95"}
+::: {.front card-id="card-3a514cb7f54c1e95" cite="[@AE22, §2; @AEGS25, §3]"}
 Discuss classification of 2-elementary lattices.
 :::
 
@@ -741,11 +721,9 @@ The fixed locus is a genus-$g$ curve and $k$ rational curves, except:
 | $(10,8,0)$ | Two elliptic curves |
 
 Nikulin's list has 75 possible invariant-lattice types: even 2-elementary hyperbolic lattices admitting a primitive embedding into the K3 lattice. The definite cusp quotients require a separate classification.
-
-Reference: Alexeev–Engel, *Compactifications of moduli spaces of K3 surfaces with a nonsymplectic involution*, §2; AEGS, §3.
 :::
 
-::: {.front card-id="card-270598bc626a9161"}
+::: {.front card-id="card-270598bc626a9161" cite="[@Nik80, Theorem 1.14.2; @AEGS25, §§2.3–3.3]"}
 What is Nikulin's theorem on lattices?
 :::
 
@@ -755,8 +733,6 @@ $$\operatorname{rank}\Lambda\ge\ell(A_\Lambda)+2,$$
 its genus has one isometry class, and $O(\Lambda)\to O(q_\Lambda)$ is surjective. Here $A_\Lambda=\Lambda^\vee/\Lambda$, $q_\Lambda(x)=x^2\bmod2\mathbb Z$, and $\ell$ is the minimum number of generators.
 
 Definiteness cannot replace indefiniteness: $E_8\oplus E_8$ and $D_{16}^+$ are distinct positive-definite even unimodular lattices of rank $16$, distinguished by their root systems.
-
-Reference: Nikulin, *Integral symmetric bilinear forms and some of their applications*, Theorem 1.14.2; AEGS, §§2.3–3.3.
 :::
 
 ::: {.front card-id="card-24ce2bd142183187"}

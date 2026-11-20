@@ -2,7 +2,7 @@
 title: "Algebraic Geometry::Moduli::Hurwitz and Prym"
 ---
 
-::: {.front card-id="hurwitz-data-monodromy" tags="definition construction example"}
+::: {.front card-id="hurwitz-data-monodromy" tags="definition construction example" cite="[@ADF+20, §1]"}
 What data specify a Hurwitz space of covers of $\mathbb P^1$? Express connectedness and branching through monodromy.
 :::
 
@@ -17,11 +17,9 @@ Simultaneous conjugation relabels sheets; braiding the branch points changes the
 Riemann–Hurwitz gives
 $$2g(C)-2=-2d+\sum_i\bigl(d-\#\text{cycles}(\sigma_i)\bigr).$$
 For the $W(E_6)$ degree-$27$ action, a reflection has six transpositions and fifteen fixed points. With $24$ such branch points, $2g-2=-54+144=90$, hence $g=46$.
-
-Reference: Alexeev–Donagi–Farkas–Izadi–Ortega, *The uniformization of the moduli space of principally polarized abelian 6-folds*, §1.
 :::
 
-::: {.front card-id="hurwitz-admissible-cover" tags="definition local-model"}
+::: {.front card-id="hurwitz-admissible-cover" tags="definition local-model" cite="[@ADF+20, admissible-cover compactification]"}
 Define an admissible cover of nodal curves over $\mathbb C$. State the node condition and its family equation.
 :::
 
@@ -34,11 +32,9 @@ A finite map $\pi:C\to P$ of connected nodal projective curves, with stable mark
 $$k[[x,y]]/(xy)\longrightarrow k[[u,v]]/(uv),\qquad x\mapsto u^e,\quad y\mapsto v^e.$$
 
 In a smoothing, $uv=s$, $xy=t$, and $t=s^e$. Thus one branch cannot have index two and the other index three. A Galois admissible cover additionally carries the specified deck-group action.
-
-Reference: Alexeev–Donagi–Farkas–Izadi–Ortega, *The uniformization of the moduli space of principally polarized abelian 6-folds*, admissible-cover compactification.
 :::
 
-::: {.front card-id="prym-correspondence-exponent" tags="definition comparison example"}
+::: {.front card-id="prym-correspondence-exponent" tags="definition comparison example" cite="[@ADF+20, §1]"}
 Define the endomorphism induced by a curve correspondence, a Prym variety, and a Prym–Tyurin variety of exponent $e$.
 :::
 
@@ -56,10 +52,9 @@ A Prym–Tyurin variety of exponent $e$ is an abelian subvariety $P\subset JC$ w
 
 In the $E_6$ construction, $(D-1)(D+5)=0$ and
 $$P=\operatorname{im}(D-1)=\ker(D+5)^0,\qquad \Theta_C|_P=6\Xi.$$
-Reference: Alexeev–Donagi–Farkas–Izadi–Ortega, *The uniformization of the moduli space of principally polarized abelian 6-folds*, §1.
 :::
 
-::: {.front card-id="hurwitz-isotypical-hodge" tags="definition construction"}
+::: {.front card-id="hurwitz-isotypical-hodge" tags="definition construction" cite="[@ADF+21, §3]"}
 Define the isotypical Hodge bundles for a family of Galois covers. Distinguish an isotypical summand from its multiplicity bundle.
 :::
 
@@ -70,6 +65,4 @@ $$\mathbb E_\rho=\operatorname{Hom}_G(V_\rho,\widetilde{\mathbb E}),\qquad
 $\mathbb E_\rho$ is the multiplicity bundle; $V_\rho\otimes\mathbb E_\rho$ is the isotypical summand. Define $\lambda_\rho=c_1(\mathbb E_\rho)$, so
 $$c_1(\widetilde{\mathbb E})=\sum_\rho(\dim V_\rho)\lambda_\rho.$$
 For a double cover this is the invariant/anti-invariant splitting; the anti-invariant part corresponds to Prym differentials. Stable curves use the relative dualizing sheaf.
-
-Reference: Alexeev–Donagi–Farkas–Izadi–Ortega, *Hodge classes on the moduli space of $W(E_6)$-covers and the geometry of $\mathcal A_6$*, §3.
 :::

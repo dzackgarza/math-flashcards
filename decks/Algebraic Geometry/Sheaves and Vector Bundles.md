@@ -196,7 +196,7 @@ P_E(m)=2m+a+b+2,\qquad p_E(m)=m+1+\frac{a+b}{2}.$$
 The summand $\mathcal O(a)$ destabilizes when $a>b$. When $a=b$, every line subsheaf $L\subset E$ has $\deg L\le a$, so $E$ is semistable, but not stable because a summand has equal slope. Thus $E$ semistable $\iff a=b$.
 :::
 
-::: {.front card-id="application-projective-morphism-sections" tags="application"}
+::: {.front card-id="application-projective-morphism-sections" tags="application" cite="[@The25, tag 01ND]"}
 How do an invertible sheaf $L$ and sections $s_0,\ldots,s_n$ on a $k$-scheme $X$ define a morphism $f:X\to\mathbb P^n_k$? What condition must hold everywhere, and how do you recover $L$ from $f$?
 :::
 
@@ -204,8 +204,6 @@ How do an invertible sheaf $L$ and sections $s_0,\ldots,s_n$ on a $k$-scheme $X$
 The sections must generate $L$ at every point, giving a surjection $\mathcal O_X^{n+1}\to L$. Locally trivialize $L$ and send $x$ to $[s_0(x):\cdots:s_n(x)]$; changes of trivialization multiply all coordinates by the same unit, so these maps glue. Then $L\cong f^*\mathcal O(1)$ and $s_i=f^*x_i$ under that isomorphism. Isomorphic line bundles with the corresponding ordered sections give the same morphism.
 
 Generation gives a morphism; a closed immersion requires the chosen linear system to be very ample. For homogeneous forms of the same degree on projective space, the generation condition is that they have no common geometric zero.
-
-Reference: [Stacks Project, projective space](https://stacks.math.columbia.edu/tag/01ND).
 :::
 
 ::: {.front card-id="application-projective-plane-pencil-basepoint" tags="application"}

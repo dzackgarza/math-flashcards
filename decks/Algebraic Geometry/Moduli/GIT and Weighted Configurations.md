@@ -2,7 +2,7 @@
 title: "Algebraic Geometry::Moduli::GIT and Weighted Configurations"
 ---
 
-::: {.front card-id="git-kirwan-partial-desingularization" tags="construction example"}
+::: {.front card-id="git-kirwan-partial-desingularization" tags="construction example" cite="[@MS18, §4; @Kir85]"}
 What does Kirwan partial desingularization do to a projective GIT problem? Use eight equally weighted points on $\mathbb P^1$ to identify its first centers.
 :::
 
@@ -20,8 +20,6 @@ For $(\mathbb P^1)^8$ with diagonal $\operatorname{SL}_2$ action and symmetric w
 - Closed strictly semistable orbit: four points at $0$ and four at $\infty$, with a one-dimensional torus stabilizer.
 
 The unordered $4+4$ partitions index the first centers. Blowing up the coarse quotient without changing the linearization is not this construction.
-
-Reference: Moon–Schaffler, §4; Kirwan, *Partial desingularisations of quotients of nonsingular varieties and their Betti numbers*.
 :::
 
 ::: {.front card-id="git-linearization-stability" tags="definition comparison example"}
@@ -55,7 +53,7 @@ $$\mu([\sum x_iv_i],\lambda)=-\min\{a_i:x_i\ne0\}.$$
 For a torus this says: zero belongs to the convex hull of the active weights. Stability requires zero in its interior in the full real character space. Opposite definitions of $\mu$ reverse the inequalities.
 :::
 
-::: {.front card-id="git-good-geometric-chow" tags="definition comparison"}
+::: {.front card-id="git-good-geometric-chow" tags="definition comparison" cite="[@Ale15, Chapters 2 and 5]"}
 Distinguish a good quotient, a geometric quotient, and a Chow quotient. Which orbit data does each retain?
 :::
 
@@ -71,8 +69,6 @@ For an invariant surjection $q:X\to Y$:
 In GIT, $X^{ss}\to X/\!/G$ is good; two points map together iff their orbit closures in $X^{ss}$ meet. Each fiber has one closed orbit. Its restriction over the stable locus is geometric.
 
 A Chow quotient records limiting **orbit cycles**, including components and multiplicities. It is not defined by selecting a linearization. Authors may then normalize the Chow quotient; state that extra operation.
-
-Reference: Alexeev, *Moduli of Weighted Hyperplane Arrangements*, Chapters 2 and 5.
 :::
 
 ::: {.front card-id="weighted-curves-hassett" tags="definition application"}
@@ -92,7 +88,7 @@ Thus a rational tail with one attaching node needs total marking weight $>1$; a 
 Example: two weight-$1/2$ points may collide; a weight-$1$ point cannot collide with any other positive-weight marking.
 :::
 
-::: {.front card-id="weighted-chambers-reduction-git" tags="definition comparison construction"}
+::: {.front card-id="weighted-chambers-reduction-git" tags="definition comparison construction" cite="[@AS12]"}
 Compare Hassett weight chambers and GIT chambers. Describe the reduction map when curve weights decrease and the GIT test for weighted points on $\mathbb P^1$.
 :::
 
@@ -106,8 +102,6 @@ GIT-equivalent linearizations have the same semistable locus; their regions form
 For $(\mathbb P^1)^n$ with diagonal $\operatorname{SL}_2$ action and weights $w_i>0$:
 $$\text{semistable}\iff\sum_{p_i=p}w_i\le\tfrac12\sum_iw_i\quad\forall p;$$
 replace $\le$ by $<$ for stability. For four equal weights, two coincident points are semistable but not stable; three are unstable.
-
-Reference: Alexeev–Swinarski, *Nef divisors on $\overline M_{0,n}$ from GIT*.
 :::
 
 ::: {.front card-id="moduli-f-curves-stable-graphs" tags="definition construction example"}

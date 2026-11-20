@@ -2,7 +2,7 @@
 title: "Algebraic Geometry::Moduli::K3 Moduli"
 ---
 
-::: {.front card-id="period-cusps-isotropic-flags-groups" tags="definition construction"}
+::: {.front card-id="period-cusps-isotropic-flags-groups" tags="definition construction" cite="[@AEGS25, §§2.3, 3.1–3.3, 3.8–3.9]"}
 For a type-IV arithmetic quotient of dimension $n$, describe Baily–Borel cusps, their incidence, and the group acting on a zero-cusp cone. How does a primitive lattice inclusion induce cusp maps?
 :::
 
@@ -19,11 +19,9 @@ Take $\Gamma$-orbits, not just isometry classes of quotient lattices. Incidence 
 The stabilizer of $J$ acts on $J^\perp/J$; its image is the cusp arithmetic group. With $e$ fixed, the kernel consists of the integral unipotent translations in the parabolic stabilizer. Neither its image nor its integral translation lattice should be replaced by the full orthogonal group without an extension calculation.
 
 For a primitive inclusion $N\subset N'$ of type-IV lattices and compatible arithmetic groups, send an isotropic flag to the same rational flag in $N'$, taking its integral saturation there. Divisibility can change since more pairings are available in $N'$. Orbit identifications are taken in the target group.
-
-Reference: AEGS, §§2.3, 3.1–3.3, 3.8–3.9.
 :::
 
-::: {.front card-id="period-arithmetic-group-gluing" tags="construction application"}
+::: {.front card-id="period-arithmetic-group-gluing" tags="construction application" cite="[@AEGS25, Lemmas 2.4 and 2.8; @Nik80, gluing of primitive sublattices]"}
 How do discriminant gluing and centralizers determine the arithmetic group of a lattice-polarized or involution-marked K3 moduli problem?
 :::
 
@@ -35,11 +33,9 @@ For primitive $S\subset L_{\mathrm{K3}}$, let $T=S^\perp$ and let $\gamma:A_S\to
 - Marking an automorphism $\rho$ of $L_{\mathrm{K3}}$: allowed changes of marking commute with $\rho$. Restrict that centralizer to its period eigenspace and divide out any ineffective action.
 
 For an embedded period subdomain, first take its setwise stabilizer. To replace it by a claimed larger arithmetic group, prove integral extensions using the discriminant condition. A subgroup index can change the degree of the moduli map even when the domain is unchanged.
-
-Reference: AEGS, Lemmas 2.4 and 2.8; Nikulin, gluing of primitive sublattices.
 :::
 
-::: {.front card-id="period-compactification-restrict-fans" tags="theorem construction"}
+::: {.front card-id="period-compactification-restrict-fans" tags="theorem construction" cite="[@AEGS25, §3.3, §5.1 and Definition 5.3, with Baily–Borel and toroidal functoriality for arithmetic-domain embeddings]"}
 How do an inclusion of type-IV period domains and compatible arithmetic groups extend to Baily–Borel and toroidal compactifications? Which fan defines the normalized closure of the smaller quotient?
 :::
 
@@ -53,11 +49,9 @@ For a rational inclusion $\mathbb D_N\subset\mathbb D_{N'}$ induced by a primiti
 If the open map is generically injective, this normalization compactifies the original smaller quotient. Otherwise it compactifies the quotient with the identifications induced by the target stabilizer. For semifans, also check compatibility at incident isotropic-plane cusps.
 
 In AEGS the restricted reflection walls are computed by folding; restriction of the ramification semifans then gives the candidate Enriques compactification.
-
-Reference: AEGS, §3.3, §5.1 and Definition 5.3; Baily–Borel and toroidal functoriality for arithmetic-domain embeddings.
 :::
 
-::: {.front card-id="period-wythoff-semifan-strata" tags="construction comparison"}
+::: {.front card-id="period-wythoff-semifan-strata" tags="construction comparison" cite="[@AEGS25, §§5.1–5.2, especially Lemmas 5.6–5.8]"}
 Construct a generalized Coxeter semifan from relevant and irrelevant roots. Explain its strata and the test for toroidality in the AEGS construction.
 :::
 
@@ -74,11 +68,9 @@ For a cusp lattice of rank $n$:
 | Isotropic ray | Maximal parabolic | Type II divisor over a Baily–Borel curve |
 
 For the generalized Coxeter construction used in AEGS, retain diagrams with no connected component consisting entirely of irrelevant vertices. Removing such components records the contraction of their moduli. A finite $W_J$ gives polyhedral unions of finitely many chambers; the infinite irrelevant groups in AEGS give genuinely nonpolyhedral cones. At a type II cusp, toroidality holds precisely when its maximal parabolic diagram has no wholly irrelevant connected component.
-
-Reference: AEGS, §§5.1–5.2, especially Lemmas 5.6–5.8.
 :::
 
-::: {.front card-id="period-semitoroidal-comparison-finiteness" tags="theorem application"}
+::: {.front card-id="period-semitoroidal-comparison-finiteness" tags="theorem application" cite="[@AE23, published Theorem 7.18; @AEGS25, proof of Theorem 5.9]"}
 State the characterization of semitoroidal compactifications between toroidal and Baily–Borel compactifications. How does it help prove a KSBA comparison map finite?
 :::
 
@@ -95,11 +87,9 @@ Application to a proper comparison $B^\nu\to\overline F^{\mathrm{KSBA}}$ that is
 4. Equality of the semifans identifies the normalizations; the resulting map to the KSBA closure is finite.
 
 Properness and generic injectivity alone do not prove finiteness: a blowup has both and has a positive-dimensional exceptional fiber.
-
-Reference: Alexeev–Engel, *Compact moduli of K3 surfaces*, published Theorem 7.18; AEGS, proof of Theorem 5.9.
 :::
 
-::: {.front card-id="k3-invariant-boundary-periods-models" tags="construction comparison"}
+::: {.front card-id="k3-invariant-boundary-periods-models" tags="construction comparison" cite="[@AEGS25, Theorem 4.6 and Remark 4.11; @AE22, §8]"}
 How do orientation and boundary periods enter an involution-equivariant Kulikov smoothing? Why can an involution be regular on the stable model but only birational on a chosen Kulikov model?
 :::
 
@@ -111,11 +101,9 @@ Invariant classes have period in $\{\pm1\}$. On the component of the period locu
 In the AEGS construction, choose component moduli and gluing parameters with this symmetry; the corresponding smoothing preserving the specified Cartier lattice carries the Enriques involution. Symmetry of the dual graph alone does not supply the gluing action.
 
 Kulikov models are related by flops. An automorphism can exchange their nef chambers and hence fail to be regular on the chosen model. Contracting the invariant ADE configurations removes that chamber choice. On the KSBA model the log canonical ring gives a unique model, and an automorphism preserving the pair acts on this ring and therefore regularly on its Proj.
-
-Reference: AEGS, Theorem 4.6 and Remark 4.11; Alexeev–Engel, *Compactifications of moduli spaces of K3 surfaces with a nonsymplectic involution*, §8.
 :::
 
-::: {.front card-id="k3-lattice-quasipolarization-small-cones" tags="definition comparison"}
+::: {.front card-id="k3-lattice-quasipolarization-small-cones" tags="definition comparison" cite="[@AE25, Definitions 4.1, 4.2, 4.9, 5.1]"}
 Define lattice quasipolarization with its chamber choice. What are the small cones in Alexeev–Engel's corrected definition?
 :::
 
@@ -131,11 +119,9 @@ $$\beta^\perp\cap\Lambda_{\mathbb R},\qquad
 Roots outside $\Lambda$ can cut additional walls. For $\Lambda=U(2)$, $\Lambda$ has no $(-2)$-roots, but such additional walls exist. Using only its own Weyl chambers loses this data.
 
 The ample model is a K3 with ADE singularities, carrying $j:\Lambda\to\operatorname{Pic}(\overline X)$ with $j(h)$ ample; on the smooth resolution, contract the $(-2)$-curves orthogonal to $j(\Lambda)$. Rank one recovers ample versus big-and-nef polarization.
-
-Reference: Alexeev–Engel, *On lattice-polarized K3 surfaces*, Definitions 4.1, 4.2, 4.9, 5.1.
 :::
 
-::: {.front card-id="k3-heegner-unigonal-enriques" tags="definition comparison example"}
+::: {.front card-id="k3-heegner-unigonal-enriques" tags="definition comparison example" cite="[@AE23a, Definition 2.3; @AEGS25, §2]"}
 Define a Heegner divisor and the unigonal locus for a primitive degree-two K3 polarization. Distinguish nodal and unnodal Enriques surfaces.
 :::
 
@@ -147,11 +133,9 @@ or a specified union of such hyperplanes modulo $\Gamma$. This imposes an additi
 For a primitive big-and-nef degree-two class $h$, the **unigonal** case has a primitive nef isotropic class $E$ with $hE=1$. Then $h=2E+\Gamma$ with $\Gamma$ a $(-2)$-section, $E\Gamma=1$; $|h|$ has fixed component $\Gamma$. It is not the usual basepoint-free double-plane system.
 
 An Enriques surface is nodal iff it contains a smooth rational $(-2)$-curve; unnodal iff it has none. This concerns the smooth surface, even though its canonical polarized model may contract that curve to a node. In degree-two Enriques moduli, the unigonal locus is a separate Heegner locus, described by double covers of $\mathbb P(1,1,2)$.
-
-Reference: Alexeev–Engel, *The flex divisor of a K3 surface*, Definition 2.3; Alexeev–Engel–Garza–Schaffler, §2.
 :::
 
-::: {.front card-id="k3-nef-divisor-stable-models" tags="definition construction comparison"}
+::: {.front card-id="k3-nef-divisor-stable-models" tags="definition construction comparison" cite="[@AE23, Definitions 3.10–3.12]"}
 Distinguish a nef model, divisor model, and stable model of a polarized K3 degeneration.
 :::
 
@@ -167,11 +151,9 @@ Start with a smooth K3 family $X^*\to C^*$, a relatively big-and-nef $L^*$, and 
 Strata include components, double curves, and triple points. On a divisor model, $R|_{V_i}$ is nef on each component and big on at least one. The ample model contracts the curves invisible to $R$ and has slc stable fibers for every sufficiently small positive rational $\epsilon$.
 
 Finite base change and modifications may be needed to obtain these models; a general Kulikov model need not extend the polarization nef.
-
-Reference: Alexeev–Engel, *Compact moduli of K3 surfaces*, Definitions 3.10–3.12.
 :::
 
-::: {.front card-id="k3-boundary-lattice-period" tags="definition construction"}
+::: {.front card-id="k3-boundary-lattice-period" tags="definition construction" cite="[@AE23, §§3C–4]"}
 For a Type III Kulikov surface, define numerically Cartier classes, its reduced lattice, and the boundary period. What prevents componentwise line bundles from gluing?
 :::
 
@@ -185,8 +167,6 @@ For a Kulikov total space, let $\xi_i$ be the tuple of restrictions of $\mathcal
 Each $\alpha_i$ determines a line bundle $L_i$ on rational $V_i$. Matching degrees identifies their restrictions on the double curves, but the identifications can fail the cocycle condition at triple points. Their obstruction lies in
 $$H^2(\Gamma(X_0),\mathbb C^\times)\cong\mathbb C^\times$$
 after orienting the dual sphere. This defines the boundary period homomorphism $\widetilde\psi:\widetilde\Lambda\to\mathbb C^\times$. Its kernel consists of gluable classes. For a $d$-semistable surface it descends to $\Lambda$; the reduced Picard group is $\operatorname{Pic}(X_0)/\Xi=\ker\psi$.
-
-Reference: Alexeev–Engel, *Compact moduli of K3 surfaces*, §§3C–4.
 :::
 
 ::: {.front card-id="card-b0772e9197fde462"}
@@ -364,7 +344,7 @@ What is the change-of-markings group?
 $\Gamma_\rho \coloneqq\left\{{\gamma\in {\operatorname{O}}(L) \st\gamma\circ \rho = \rho \circ \gamma}\right\}$.
 :::
 
-::: {.front card-id="card-b1d78709d3678358"}
+::: {.front card-id="card-b1d78709d3678358" cite="[@AEH24, §3E]"}
 What is a semitoroidal compactification?
 :::
 
@@ -374,8 +354,6 @@ Simultaneously generalizes BB and toroidal compactifications.
 For a type-IV arithmetic quotient, use a $\Gamma$-admissible semifan in the cusp positive cones: locally rational polyhedral cones may have infinitely many faces, and their data agree along rank-two isotropic cusps. Glue the cusp partial compactifications specified by these cones and divide by the cusp stabilizers. This is Looijenga's semitoroidal compactification.
 
 In the complex-ball case, the toroidal boundary at a cusp is an abelian variety $A$. A semifan specifies a subtorus $B\subset A$ from a primitive sublattice of the cusp lattice; replace the boundary by $A/B$. $B=0$ gives the toroidal boundary; $B=A$ contracts it to the Baily–Borel point.
-
-Reference: Alexeev–Engel–Han, *Compact moduli of K3 surfaces with a nonsymplectic automorphism*, §3E.
 :::
 
 ::: {.front card-id="card-858f92b97e0db0b0"}
@@ -392,7 +370,7 @@ An arithmetic quotient of a type IV domain, i.e. a Shimura variety for $\SO_{2, 
 Quasiprojective, $\dim F_{2d} = 19$ for each $d$.
 :::
 
-::: {.front card-id="card-681a11bbc6a0be2c"}
+::: {.front card-id="card-681a11bbc6a0be2c" cite="[@AEH24, §3B, Remark 3.6]"}
 What is $F_\rho^{\mathrm{ade}}$ when the nonsymplectic automorphism fixes a curve $R$ of genus $g\ge2$? How is its surface model obtained?
 :::
 
@@ -402,11 +380,9 @@ $$\pi:X\longrightarrow\overline X,\qquad \overline R=\pi_*R\ \text{ample}.$$
 The result is an ADE K3 surface with the induced automorphism. These models form the separated moduli space
 $$F_\rho^{\mathrm{ade}}=F_\rho^{\mathrm{sep}}\cong(\mathbb D_\rho\setminus\Delta_\rho)/\Gamma_\rho.$$
 Here $\mathbb D_\rho$ is the period domain for the chosen action on $H^{2,0}$, $\Gamma_\rho$ the change-of-markings group, and $\Delta_\rho$ the root discriminant orthogonal to the invariant lattice.
-
-Reference: Alexeev–Engel–Han, *Compact moduli of K3 surfaces with a nonsymplectic automorphism*, §3B, Remark 3.6.
 :::
 
-::: {.front card-id="card-6e339cb955627865"}
+::: {.front card-id="card-6e339cb955627865" cite="[@AEH24, §§3B and 3F]"}
 How is $\overline F_\rho^{\mathrm{slc}}$ constructed from K3 surfaces with a nonsymplectic automorphism fixing a curve $R$ with $g(R)\ge2$?
 :::
 
@@ -416,11 +392,9 @@ $$\psi:(X,\sigma)\longmapsto(\overline X,\epsilon\overline R).$$
 Take the reduced closure of $\operatorname{im}\psi$ in the projective moduli space of stable slc pairs with these numerical invariants, then normalize:
 $$\overline F_\rho^{\mathrm{slc}}=\left(\overline{\operatorname{im}\psi}\right)^\nu.$$
 Its open part is $F_\rho^{\mathrm{ade}}$. The normalization can retain finite data over a stable pair. The compactification is semitoroidal; the fixed-curve divisor supplies the recognizable polarizing divisor.
-
-Reference: Alexeev–Engel–Han, *Compact moduli of K3 surfaces with a nonsymplectic automorphism*, §§3B and 3F.
 :::
 
-::: {.front card-id="card-ac88b51027b8331a"}
+::: {.front card-id="card-ac88b51027b8331a" cite="[@ADH24, §2.1]"}
 For K3 surfaces with a finite-order nonsymplectic automorphism acting as $\rho$ on the K3 lattice, which root hyperplanes form the discriminant in its period domain?
 :::
 
@@ -436,11 +410,9 @@ $S_\rho \coloneqq T_\rho^\perp$, $T_\rho \coloneqq L^\prim_\CC\cap L$ generic Pi
 $L^\prim_\CC$ the sum of primitive eigenspaces of $\rho$.
 
 The condition $(\omega,\delta)=0$ makes the root $\delta$ algebraic. These hyperplanes exclude roots orthogonal to the invariant lattice; they do not exclude every possible Picard-rank jump.
-
-Reference: Alexeev–Deopurkar–Han, *Compactifications of moduli spaces of K3 surfaces with a higher-order nonsymplectic automorphism*, §2.1.
 :::
 
-::: {.front card-id="card-f1f9e680ce07e9ba"}
+::: {.front card-id="card-f1f9e680ce07e9ba" cite="[@AEGS25, §2.3, and its explicit three lattice involutions]"}
 How does an involution act on $H^2$?
 :::
 
@@ -453,8 +425,6 @@ The integral sum can have nontrivial finite index, killed by two.
 - Symplectic: $\sigma^*\omega=\omega$, and $\sigma^*=1$ on $T_X$. The action on the Picard lattice need not be trivial.
 
 For a nonsymplectic involution, $L^+$ equals $\operatorname{NS}(X)$ only on the locus without extra algebraic classes. An invariant lattice and the full Picard lattice are different objects.
-
-Reference: AEGS, §2.3, and its explicit three lattice involutions.
 :::
 
 ::: {.front card-id="card-f6dea11f91a6b646"}
@@ -695,7 +665,7 @@ A boundary stratum added to a symmetric domain in the Baily–Borel compactifica
 :::
 
 
-::: {.front card-id="card-f67ebfdf6dac4a2b" tags="definition"}
+::: {.front card-id="card-f67ebfdf6dac4a2b" tags="definition" cite="[@AEH24, Definitions 3.17–3.18]"}
 What is the definition of Semifan?
 :::
 
@@ -705,8 +675,6 @@ For a type-IV lattice $N$ of signature $(2,n)$, a $\Gamma$-admissible semifan as
 Compatibility at a primitive isotropic plane $I$: for every $J\subset I$, intersect the kernels of the wall forms of $\mathfrak F_J$ whose walls contain $I/J$, intersect with $I^\perp/J$, and descend to $I^\perp/I$. The resulting rational subspace, or saturated lattice, must be independent of $J$.
 
 These data define semitoroidal compactifications. In the recognizable-divisor theorem, the stable-pair compactification determines a unique semifan.
-
-Reference: Alexeev–Engel–Han, Definitions 3.17–3.18.
 :::
 
 ::: {.front card-id="card-a6dd0db307a9ada3" tags="definition"}
@@ -739,7 +707,7 @@ What is the definition of Weak torelli theorem?
 Two complex K3 surfaces $X$ and $X'$ are isomorphic iff there is an isometry $H^2(X;\mathbb Z)\to H^2(X';\mathbb Z)$ whose $\mathbb C$-linear extension preserves the Hodge decompositions.
 :::
 
-::: {.front card-id="nl-polarized-k3-divisors" tags="definition construction"}
+::: {.front card-id="nl-polarized-k3-divisors" tags="definition construction" cite="[@MP12a, §1]"}
 Define Noether–Lefschetz divisors in the moduli space of primitively polarized complex K3 surfaces of degree $2d$. Describe their period equations and the numerical data of an extra class.
 :::
 
@@ -751,8 +719,6 @@ Nonempty such hyperplane sections descend, after grouping by the monodromy actio
 Writing $h\beta=m$, $\beta^2=2s$, the generated lattice has Gram matrix
 $$\begin{pmatrix}2d&m\\m&2s\end{pmatrix},\qquad D=m^2-4ds>0.$$
 The positivity of $D$ expresses signature $(1,1)$. To distinguish components, retain the primitive saturation and embedding data; this matrix alone does not assert existence or uniqueness of a divisor. For ample polarization omit periods orthogonal to a root $\delta$ with $\delta^2=-2$ and $h\delta=0$.
-
-Reference: Maulik–Pandharipande, *Gromov–Witten theory and Noether–Lefschetz theory*, §1.
 :::
 
 ::: {.front card-id="nl-quartic-line-dimension" tags="application"}

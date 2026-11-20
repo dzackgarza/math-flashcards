@@ -2,7 +2,7 @@
 title: "Algebraic Geometry::Hodge Theory"
 ---
 
-::: {.front card-id="hodge-clemens-schmid-surface-specialization" tags="theorem comparison example"}
+::: {.front card-id="hodge-clemens-schmid-surface-specialization" tags="theorem comparison example" cite="[@GPSZ22, §6; @Mor84a]"}
 For a projective semistable degeneration of surfaces, how does Clemens–Schmid relate central-fiber cohomology to limiting cohomology? What follows when monodromy is finite?
 :::
 
@@ -17,11 +17,9 @@ The first map comes from duality and restriction; $\mathrm{sp}$ is specializatio
 Thus $\operatorname{im}(\mathrm{sp})=\ker N$. If monodromy is finite, a finite base change kills it; after semistable reduction $N=0$, $H^2_{\lim}$ is pure of weight two, and specialization is surjective. It can still have a kernel from central-fiber component classes.
 
 Simple comparison in degree one: two smooth curves joined at a separating node have trivial monodromy and pure limiting $H^1$. An irreducible one-nodal curve has a nonzero vanishing-cycle monodromy. Reducibility alone does not determine the weight filtration.
-
-Reference: Gallardo–Pearlstein–Schaffler–Zhang, §6; Morrison, *The Clemens–Schmid exact sequence and applications*.
 :::
 
-::: {.front card-id="hodge-v-manifold-purity" tags="definition comparison"}
+::: {.front card-id="hodge-v-manifold-purity" tags="definition comparison" cite="[@GPSZ22, Remark 1.6 and §6; @PS08]"}
 What is a complex V-manifold? What Hodge-theoretic conclusion holds for a projective V-manifold?
 :::
 
@@ -31,8 +29,6 @@ A complex analytic space locally isomorphic to $U/G$, where $U$ is smooth and $G
 For a projective V-manifold, $H^k(X,\mathbb Q)$ carries a pure Hodge structure of weight $k$, with the usual Hodge decomposition. This applies to ordinary rational cohomology of the quotient space; it does not assert smoothness or an integral torsion-free cohomology lattice.
 
 For a reducible stable surface, apply this fact to quotient-singular components where appropriate, then analyze the gluing. Purity of the components alone does not make the whole central fiber's cohomology pure.
-
-Reference: Gallardo–Pearlstein–Schaffler–Zhang, Remark 1.6 and §6; Peters–Steenbrink, *Mixed Hodge Structures*.
 :::
 
 ::: {.front card-id="hodge-representation-scheme-presentations" tags="definition application"}
@@ -90,7 +86,7 @@ Conversely $\rho$ gives $E_\rho=(\widetilde X\times\mathbb C^r)/\pi_1(X,x)$ with
 On a complex manifold, use holomorphic flat bundles; on a smooth projective complex variety, GAGA identifies these with algebraic integrable connections. For a nonproper algebraic variety, regular singularities at infinity are required for the algebraic Riemann–Hilbert equivalence.
 :::
 
-::: {.front card-id="hodge-harmonic-bundles-hitchin-equations" tags="definition construction"}
+::: {.front card-id="hodge-harmonic-bundles-hitchin-equations" tags="definition construction" cite="[@Hit87; @Sim92]"}
 On a compact Riemann surface, write the harmonic-metric equations that construct the nonabelian Hodge correspondence. Which connection is flat?
 :::
 
@@ -103,8 +99,6 @@ $$D=D_h+\theta+\theta^{*h}$$
 is flat. Conversely a semisimple flat connection admits a harmonic metric, whose unitary and self-adjoint parts recover this Higgs bundle.
 
 The unitary connection $D_h$ generally has nonzero curvature; it is $D$ that is flat. For stable objects the harmonic metric is unique up to positive scalar; polystable objects permit rescaling on stable summands. Gauge-equivalent harmonic solutions give the same moduli point.
-
-Reference: Hitchin, *The self-duality equations on a Riemann surface*; Simpson, *Higgs bundles and local systems*.
 :::
 
 ::: {.front card-id="hodge-unitary-and-rank-one" tags="comparison application"}
@@ -239,7 +233,7 @@ $$\operatorname{sgn}H^2(X; \ZZ) = (2h^{2, 0} + 1,\, h^{1,1} -1), \qquad \operato
 Equivalently, if $L\in \NS(X)^\amp$ (or even $L^2 \gt 0$) then the intersection form is negative definite on $L^\perp$.
 :::
 
-::: {.front card-id="card-32d30066fccb982b"}
+::: {.front card-id="card-32d30066fccb982b" cite="[@Sim97]"}
 What is nonabelian Hodge theory?
 :::
 
@@ -255,8 +249,6 @@ $X/\mathbb C$ smooth connected projective; fix rank $r$ and a polarization.
 Riemann–Hilbert gives $M_{\mathrm{dR}}^{\mathrm{an}}\cong M_B^{\mathrm{an}}$ by monodromy. Nonabelian Hodge theory gives a homeomorphism $M_{\mathrm{Dol}}^{\mathrm{an}}\cong M_B^{\mathrm{an}}$ via harmonic metrics, restricting to a diffeomorphism on smooth stable/irreducible loci. These comparisons are generally not algebraic; the Dolbeault–Betti comparison is generally not holomorphic.
 
 Stable Higgs bundles correspond to irreducible local systems; polystable bundles correspond to semisimple ones. On a curve the Chern-class condition is degree zero. The analytic correspondence also holds for compact Kähler $X$ with stability defined by its Kähler class.
-
-Reference: Simpson, [The Hodge filtration on nonabelian cohomology](https://arxiv.org/abs/alg-geom/9604005).
 :::
 
 ::: {.front card-id="card-af845a3fa43df735"}
@@ -877,7 +869,7 @@ $$H_i(H,\mathbb Z)\longrightarrow H_i(X,\mathbb Z)$$
 is likewise an isomorphism for $i<n-1$ and surjective for $i=n-1$.
 :::
 
-::: {.front card-id="proof-weak-lefschetz-affine-complement" tags="proof"}
+::: {.front card-id="proof-weak-lefschetz-affine-complement" tags="proof" cite="[@Pop20, §1]"}
 Let $H$ be a smooth ample divisor in a smooth complex projective $n$-fold $X$. Prove the integral cohomology form of weak Lefschetz using the topology of $X\setminus H$. State the topological theorem used.
 :::
 
@@ -889,8 +881,6 @@ $$H^k(X,H;\mathbb Z)\cong H_c^k(U,\mathbb Z)\cong H_{2n-k}(U,\mathbb Z)=0\qquad(
 In the exact sequence
 $$H^k(X,H;\mathbb Z)\longrightarrow H^k(X,\mathbb Z)\longrightarrow H^k(H,\mathbb Z)\longrightarrow H^{k+1}(X,H;\mathbb Z),$$
 both outer groups vanish for $k<n-1$, and the left group vanishes for $k=n-1$. Restriction is therefore an isomorphism below degree $n-1$ and injective in degree $n-1$.
-
-Reference: [Popa, topology of algebraic varieties, §1](https://people.math.harvard.edu/~mpopa/571/chapter1.pdf).
 :::
 
 ::: {.front card-id="application-weak-lefschetz-boundary-cubic" tags="application"}
@@ -917,7 +907,7 @@ $$\pi_1(D)=1\longrightarrow\pi_1(X)\cong\pi_1(C)$$
 is not surjective. Both conclusions required in boundary degree one fail. Smoothness of the divisor alone is insufficient.
 :::
 
-::: {.front card-id="application-weak-lefschetz-complete-intersections" tags="application"}
+::: {.front card-id="application-weak-lefschetz-complete-intersections" tags="application" cite="[@Cat15, Lefschetz theorems]"}
 Let $Y\subset\mathbb P^N_{\mathbb C}$ be a smooth complete intersection of dimension $m\ge2$, and let $h=c_1(\mathcal O_Y(1))$. Determine $\pi_1(Y)$ and $H^k(Y,\mathbb Z)$ for $0\le k<m$. Explain how weak Lefschetz applies repeatedly and what it gives in degree $m$.
 :::
 
@@ -927,8 +917,6 @@ $$\pi_1(Y)=1,\qquad H^k(Y,\mathbb Z)=\begin{cases}\mathbb Z\,h^{k/2}&k\text{ eve
 For an arbitrary smooth complete intersection of the same multidegree, deform the equations through the connected smooth parameter locus to a general choice. Ehresmann's theorem preserves the topology and the restricted hyperplane class.
 
 In degree $m$, restriction $H^m(\mathbb P^N,\mathbb Z)\to H^m(Y,\mathbb Z)$ is injective; additional middle cohomology can occur.
-
-Reference: [Catanese, Topological methods in moduli theory, Lefschetz theorems](https://link.springer.com/article/10.1007/s13373-015-0070-1).
 :::
 
 ::: {.front card-id="application-weak-lefschetz-complete-intersection-irregularity" tags="application"}

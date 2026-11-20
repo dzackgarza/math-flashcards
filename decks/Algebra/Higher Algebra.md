@@ -94,7 +94,7 @@ What motivates construction of the Tate diagonal?
 ${\mathsf{Sp}}$ does not have a diagonal map, $X\to X{ {}^{ \scriptstyle\otimes_{}^{2} }  }$ which factors through homotopy fixed points $(X{ {}^{ \scriptstyle\otimes_{}^{2} }  })^{hC_2}\to X{ {}^{ \scriptstyle\otimes_{}^{2} }  }$ (i.e. is symmetric), although this does exist for $\Sigma_+^\infty X$ for $X\in \Top$ induced by the diagonal of spaces.
 :::
 
-::: {.front card-id="card-99e54636d46d62ff"}
+::: {.front card-id="card-99e54636d46d62ff" cite="[@NS18, Definition III.1.4 and §III.2]"}
 Define the Tate diagonal for a prime $p$. Where is it used?
 :::
 
@@ -108,11 +108,9 @@ $$\mathbb{S} \rightarrow T_p(\mathbb{S})=\mathbb{S}^{t C_p}$$
 which is the composition $\mathbb{S} \rightarrow \mathbb{S}^{h C_p} \rightarrow \mathbb{S}^{t C_p}$.
 
 Use: constructs the cyclotomic Frobenius $\varphi_p:\operatorname{THH}(A)\to\operatorname{THH}(A)^{tC_p}$ for topological Hochschild homology, hence the cyclotomic structure used to define topological cyclic homology.
-
-Reference: Nikolaus–Scholze, *On topological cyclic homology*, Definition III.1.4 and §III.2.
 :::
 
-::: {.front card-id="card-7f04f673834a95af"}
+::: {.front card-id="card-7f04f673834a95af" cite="[@NS18, Remark III.1.6]"}
 What is the $p$-complete sphere, and how does it compare with $\mathbb S^{tC_p}$ and $H\mathbb Z^{tC_p}$ for trivial $C_p$-actions?
 :::
 
@@ -120,8 +118,6 @@ What is the $p$-complete sphere, and how does it compare with $\mathbb S^{tC_p}$
 The $p$-completion $\mathbb S_p^\wedge$ of the sphere is the spectral analogue of completing $\mathbb Z$ at $p$. The Segal conjecture for $C_p$ identifies
 $$\mathbb S_p^\wedge\simeq\mathbb S^{tC_p}.$$
 It is connective. In contrast, $H\mathbb Z^{tC_p}$ is not connective, so applying the Tate construction to $H\mathbb Z$ does not give the $p$-complete sphere.
-
-Reference: Nikolaus–Scholze, *On topological cyclic homology*, Remark III.1.6.
 :::
 
 ::: {.front card-id="card-d66a92114e3de17e"}

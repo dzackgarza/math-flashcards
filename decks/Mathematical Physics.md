@@ -58,7 +58,7 @@ If $\int_\beta c_1(TX)=0$, define $\mathrm{DT}_{n,\beta}=\deg[I_n(X,\beta)]^{\ma
 This is rank-one curve-counting DT theory. Higher-rank DT theory instead fixes Chern data and a stability condition for sheaves or complexes; strictly semistable objects require additional theory.
 :::
 
-::: {.front card-id="curve-counting-pt-definition" tags="definition comparison"}
+::: {.front card-id="curve-counting-pt-definition" tags="definition comparison" cite="[@PT09, §§1–2]"}
 Define a PT stable pair, its moduli space, and its invariant. Distinguish PT stability from KSBA stability.
 :::
 
@@ -75,8 +75,6 @@ $$\mathrm{PT}_{n,\beta}=\deg[P_n(X,\beta)]^{\mathrm{vir}}
 This includes $K_X\cong\mathcal O_X$; other dimensions require insertions.
 
 KSBA pairs are varieties with boundary $(Y,\Delta)$ satisfying semi-log-canonicity and ampleness of $K_Y+\Delta$. They are different objects.
-
-Reference: Pandharipande–Thomas, [Curve counting via stable pairs](https://people.math.ethz.ch/~rahul/pt.pdf), §§1–2.
 :::
 
 ::: {.front card-id="curve-counting-pairs-on-smooth-curve" tags="application comparison"}
@@ -95,7 +93,7 @@ Pairs whose sheaf has generic rank one and scheme-theoretic support exactly this
 DT permits $Z=C\sqcup Q$ with a disjoint length-$d$ subscheme $Q$: then $\chi(\mathcal O_Z)=1-g+d$ too. PT excludes $F=i_*\mathcal O_C\oplus\mathcal O_Q$, because $\mathcal O_Q$ is a zero-dimensional subsheaf. Equal numerical data do not identify the moduli problems.
 :::
 
-::: {.front card-id="curve-counting-behrend-weight" tags="definition application"}
+::: {.front card-id="curve-counting-behrend-weight" tags="definition application" cite="[@Beh09]"}
 How does the Behrend function recover numerical DT/PT invariants on a proper Calabi–Yau threefold moduli space? Compute the one-point DT invariant.
 :::
 
@@ -109,11 +107,9 @@ For $X$ a smooth projective threefold with $K_X\cong\mathcal O_X$,
 $$I_1(X,0)=\operatorname{Hilb}^1(X)=X,\qquad
 \mathrm{DT}_{1,0}=-\chi(X).$$
 This is not the ordinary number of points of $X$. PT has no nonzero pure one-dimensional sheaf of class zero on projective $X$; the constant term $1$ used in PT partition functions is a convention for the empty configuration.
-
-Reference: Behrend, [Donaldson–Thomas invariants via microlocal geometry](https://arxiv.org/abs/math/0507523).
 :::
 
-::: {.front card-id="curve-counting-local-rational-pt" tags="application"}
+::: {.front card-id="curve-counting-local-rational-pt" tags="application" cite="[@PT09, §4.1]"}
 Compute the primitive-class PT invariants of the local $(-1,-1)$ rational curve.
 :::
 
@@ -127,11 +123,9 @@ These moduli are proper despite noncompact $X$. The compactly supported Calabi�
 $$\mathrm{PT}_{n,\beta}=(-1)^{n-1}\chi(\mathbb P^{n-1})=(-1)^{n-1}n,\qquad
 \sum_n\mathrm{PT}_{n,\beta}q^n=\frac{q}{(1+q)^2}.$$
 The first terms are $q-2q^2+3q^3$. The sign comes from the Behrend function, not from the Euler characteristic alone.
-
-Reference: Pandharipande–Thomas, [Curve counting via stable pairs](https://people.math.ethz.ch/~rahul/pt.pdf), §4.1.
 :::
 
-::: {.front card-id="curve-counting-correspondence-normalizations" tags="comparison"}
+::: {.front card-id="curve-counting-correspondence-normalizations" tags="comparison" cite="[@Bri11, for the DT/PT theorem]"}
 What normalization and change of variables enter the GW/DT/PT correspondences for a projective Calabi–Yau threefold?
 :::
 
@@ -148,8 +142,6 @@ For GW, first form the disconnected partition function from connected invariants
 $$Z'_{\mathrm{GW}}=\exp\left(\sum_{\beta\ne0,g\ge0}
 N_{g,\beta}u^{2g-2}Q^\beta\right).$$
 The GW/PT correspondence predicts $Z'_{\mathrm{GW}}=Z_{\mathrm{PT}}$ after $q=-e^{iu}$, interpreted through rational functions and their expansions, not termwise substitution into arbitrary formal Laurent series. GW/PT is a theorem in important classes such as toric threefolds with the required equivariant conventions; do not assert the unrestricted correspondence for every threefold. Raw GW, DT, and PT coefficients are not equal.
-
-Reference: Bridgeland, [Hall algebras and curve-counting invariants](https://arxiv.org/abs/1002.4374), for the DT/PT theorem.
 :::
 
 ::: {.front card-id="gauge-asd-equation-and-quotient" tags="definition comparison"}
@@ -168,7 +160,7 @@ An irreducible connection $A$ satisfies $\operatorname{Stab}_{\mathcal G}(A)=Z(G
 Orientation reversal exchanges self-dual and anti-self-dual forms. The star on two-forms in real dimension four is conformally invariant, so ASD depends on the conformal class of the metric. Since $d_AF_A=0$, ASD implies $d_A*F_A=0$, hence Yang–Mills.
 :::
 
-::: {.front card-id="gauge-asd-energy-and-charge" tags="formula application"}
+::: {.front card-id="gauge-asd-energy-and-charge" tags="formula application" cite="[@Lot22, §6.3]"}
 For an $\mathrm{SU}(2)$ connection on a closed oriented Riemannian four-manifold, relate instanton number, Yang–Mills energy, and ASD. Fix all sign and energy conventions.
 :::
 
@@ -180,8 +172,6 @@ Orthogonality of the two star eigenspaces gives
 $$8\pi^2k=\|F_A^-\|^2-\|F_A^+\|^2,\qquad
 \mathrm{YM}(A)=8\pi^2k+2\|F_A^+\|^2\ge8\pi^2k.$$
 Thus ASD minimizes energy in a fixed bundle and has energy $8\pi^2k$. In general $\mathrm{YM}\ge8\pi^2|k|$, with equality for the corresponding duality sign. An ASD connection with $k=0$ is flat; with $k<0$ none exists. A charge-one ASD instanton on the round $S^4$ has energy $8\pi^2$.
-
-Reference: Lotay, [Calibrated Geometry and Gauge Theory](https://people.maths.ox.ac.uk/lotay/cggt2022.pdf), §6.3.
 :::
 
 ::: {.front card-id="gauge-asd-deformation-complex" tags="definition formula"}
@@ -583,7 +573,7 @@ What is the definition of Genus?
 (1) The number of handles of a compact surface; for a Riemann surface $C$, $\dim H^0(C,K_C)$. (2) For a closed connected orientable surface $\Sigma$, the genus $g$ is the number of handles: $\Sigma \cong \#^g T^2$ and $\chi(\Sigma) = 2 - 2g$. For a closed connected nonorientable surface $M$, the nonorientable genus $k$ satisfies $M \cong \#^k \mathbb{RP}^2$ and $\chi(M) = 2 - k$.
 :::
 
-::: {.front card-id="card-707a9eb2b4510716" tags="definition"}
+::: {.front card-id="card-707a9eb2b4510716" tags="definition" cite="[@FP97a]"}
 What is the definition of Gromov-witten invariant?
 :::
 
@@ -595,8 +585,6 @@ $$\left\langle\prod_{i=1}^n\tau_{a_i}(\gamma_i)\right\rangle^X_{g,\beta}
 Here $\operatorname{ev}_i([f:C\to X,p_1,\ldots,p_n])=f(p_i)$ and $\psi_i=c_1(L_i)$, with $(L_i)_{[f,C,p]}=T^*_{p_i}C$. The complex virtual dimension is
 $$v=(1-g)(\dim X-3)+\int_\beta c_1(TX)+n.$$
 A numerical integral requires $\sum_i(2a_i+\deg_{\mathbb R}\gamma_i)=2v$; incompatible degrees give zero. Primary invariants have all $a_i=0$. The virtual class includes obstruction multiplicities; stack stabilizers can give rational weights. These are not generally literal counts of embedded curves.
-
-Reference: Fulton–Pandharipande, [Notes on stable maps and quantum cohomology](https://arxiv.org/abs/alg-geom/9608011).
 :::
 
 ::: {.front card-id="card-18f8e402fe607f20" tags="definition"}
