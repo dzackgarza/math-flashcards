@@ -1,0 +1,55 @@
+Math Flashcards
+flashcards-study-timing-8u6iv6qk
+Search
+Ctrl K
+Timing
+New:
+0
+Learning:
+0
+Review:
+0
+Checks
+New:
+0
+Learning:
+0
+Review:
+0
+
+New · Learning · Review
+
+New:
+0
+Learning:
+0
+Review:
+0
+
+Study cards ready
+
+Checking 0 of 1 decks…
+
+Problems (0/1 checked)
+Update Anki packages
+New deck
+Study
+Study settings
+Undo
+Ctrl Z
+Return to editor
+Esc
+
+New: 0
+
+Learning: 0
+
+Review: 0
+
+Study complete for now
+
+Graded today: 3
+
+Study store: /tmp/flashcards-browser-cache-w21m5qc7/data/math-flashcards/study/85ed33f2-b798-42d2-a091-bea880d704fd
+
+Learning record: /tmp/flashcards-browser-cache-w21m5qc7/data/math-flashcards/study/85ed33f2-b798-42d2-a091-bea880d704fd/record.sqlite3

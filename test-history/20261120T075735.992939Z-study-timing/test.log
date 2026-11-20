@@ -1,0 +1,111 @@
+Traceback (most recent call last):
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/evidence.py", line 53, in evidence
+    yield directory
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-timing.py", line 231, in <module>
+    main(artifacts)
+    ~~~~^^^^^^^^^^^
+  File "/home/dzack/gitclones/math-flashcards/desktop/tests/study-timing.py", line 132, in main
+    expect(show).to_be_visible()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/dzack/.cache/uv/environments-v2/study-timing-5201d208e21c0db2/lib/python3.14/site-packages/playwright/sync_api/_generated.py", line 14844, in to_be_visible
+    self._sync(
+    ~~~~~~~~~~^
+        self._impl_obj.to_be_visible(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            timeout=to_milliseconds(timeout), visible=visible
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        )
+        ^
+    )
+    ^
+  File "/home/dzack/.cache/uv/environments-v2/study-timing-5201d208e21c0db2/lib/python3.14/site-packages/playwright/_impl/_sync_base.py", line 124, in _sync
+    return task.result()
+           ~~~~~~~~~~~^^
+  File "/home/dzack/.cache/uv/environments-v2/study-timing-5201d208e21c0db2/lib/python3.14/site-packages/playwright/_impl/assertions.py", line 869, in to_be_visible
+    await self._expect_impl(
+    ...<5 lines>...
+    )
+  File "/home/dzack/.cache/uv/environments-v2/study-timing-5201d208e21c0db2/lib/python3.14/site-packages/playwright/_impl/assertions.py", line 122, in _expect_impl
+    _record_soft_or_raise(
+    ~~~~~~~~~~~~~~~~~~~~~^
+        AssertionError(
+        ^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        self._is_soft,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/dzack/.cache/uv/environments-v2/study-timing-5201d208e21c0db2/lib/python3.14/site-packages/playwright/_impl/_assertions.py", line 50, in _record_soft_or_raise
+    raise error
+AssertionError: Locator expected to be visible
+Actual value: None
+Error: element(s) not found 
+Call log:
+  - Expect "to_be_visible" get_by_role("region", name="Study session").get_by_role("button", name="Show answer") with timeout 5000ms
+  - waiting for get_by_role("region", name="Study session").get_by_role("button", name="Show answer")
+
+Aria snapshot:
+- complementary:
+  - heading "Math Flashcards" [level=1]
+  - button "Workspace" [expanded]:
+    - img
+    - text: flashcards-study-timing-dhp7d6um
+    - img
+  - button "Search Ctrl K":
+    - img
+    - text: Search Ctrl K
+  - tree:
+    - treeitem "Timing Study counts for Timing" [expanded]:
+      - img
+      - text: "Timing New: 3 Learning: 0 Review: 0"
+      - group:
+        - treeitem "Checks Study counts for Timing/Checks.md The deck has problems The Anki package is out of date":
+          - img
+          - text: "Checks New: 3 Learning: 0 Review: 0"
+  - paragraph: New · Learning · Review
+  - text: "New: 3 Learning: 0 Review: 0"
+  - status "Study": Study cards ready
+  - status: Workspace checks complete
+  - button "Show problems":
+    - img
+    - text: Problems 1
+  - button "Review and update Anki packages": Update Anki packages 1
+  - button "New deck":
+    - img
+    - text: New deck
+- heading "Checks" [level=2]
+- paragraph: Timing · 3 cards
+- button "Add card":
+  - img
+- img
+- textbox "Find a card"
+- button "Measure elapsed time.": Measure elapsed time. Elapsed answer. New
+- button "Measure time without focus.": Measure time without focus. Focus answer. New
+- button "Unknown $\\undefinedmacro x$." [pressed]: Unknown Undefined control sequence \undefinedmacro . Long answer. Problem New
+- paragraph: Drag cards to reorder them, or onto a deck to move them. Ctrl-click or Shift-click selects several.
+- main:
+  - button "3 changes not in the Anki package"
+  - button "Deck actions":
+    - img
+  - paragraph: Card 3 of 3
+  - button "Delete card":
+    - img
+    - text: Delete card
+  - heading "Front" [level=3]
+  - button "New diagram"
+  - textbox:
+    - img ", math"
+  - heading "Back" [level=3]
+  - button "New diagram"
+  - textbox
+  - text: Tags elapsed
+  - combobox "Tags"
+- dialog "Workspace":
+  - button "Study"
+  - button "Statistics"
+  - text: Workspace folder
+  - textbox "Workspace folder":
+    - /placeholder: Folder containing your Markdown decks
+    - text: /tmp/flashcards-study-timing-dhp7d6um
+  - button "Refresh workspace"
+  - button "Open workspace"

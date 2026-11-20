@@ -1,0 +1,73 @@
+Math Flashcards
+flashcards-study-timing-dhp7d6um
+Search
+Ctrl K
+Timing
+New:
+3
+Learning:
+0
+Review:
+0
+Checks
+New:
+3
+Learning:
+0
+Review:
+0
+
+New · Learning · Review
+
+New:
+3
+Learning:
+0
+Review:
+0
+
+Study cards ready
+
+Workspace checks complete
+
+Problems
+1
+Update Anki packages
+1
+New deck
+Checks
+
+Timing · 3 cards
+
+Measure elapsed time.
+Elapsed answer.
+New
+Measure time without focus.
+Focus answer.
+New
+Unknown Undefined control sequence \undefinedmacro.
+Long answer.
+Problem
+New
+
+Drag cards to reorder them, or onto a deck to move them. Ctrl-click or Shift-click selects several.
+
+3 changes not in the Anki package
+
+Card 3 of 3
+
+Delete card
+FRONT
+New diagram
+Unknown Undefined control sequence \undefinedmacro
+.
+BACK
+New diagram
+Long answer.
+Tags
+elapsed
+Study
+Statistics
+Workspace folder
+Refresh workspace
+Open workspace
