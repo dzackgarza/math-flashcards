@@ -428,12 +428,12 @@ What is a **nodal trade**?
 Alternative terminology for node smoothing.
 :::
 
-::: {.front card-id="card-4110e677dd492db8"}
+::: {.front card-id="card-4110e677dd492db8" cite="[@Gro09, Conjecture 0.2]"}
 What is the **SYZ conjecture**?
 :::
 
 ::: {.back card-id="card-4110e677dd492db8"}
-Gross, 2008: If $X, X {}^{ \vee }$ are mirror CYs, they admit a common cospanning fibration $X\to B \leftarrow X {}^{ \vee }$ whose fibers are special Lagrangians and the general fiber is a torus. There should also be a canonical map $X {}^{ \vee }_t { \, \xrightarrow{\sim}\, }H^1(X_t; {\mathbf{R}}/\ZZ)$ and $X_t { \, \xrightarrow{\sim}\, }H^1(X {}^{ \vee }_t; {\mathbf{R}}/\ZZ)$ (likely too strong to be true)
+If $X, X {}^{ \vee }$ are mirror CYs, they admit a common cospanning fibration $X\to B \leftarrow X {}^{ \vee }$ whose fibers are special Lagrangians and the general fiber is a torus. There should also be a canonical map $X {}^{ \vee }_t { \, \xrightarrow{\sim}\, }H^1(X_t; {\mathbf{R}}/\ZZ)$ and $X_t { \, \xrightarrow{\sim}\, }H^1(X {}^{ \vee }_t; {\mathbf{R}}/\ZZ)$ (likely too strong to be true)
 :::
 
 ::: {.front card-id="card-23688564458dd17f"}

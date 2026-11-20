@@ -158,7 +158,7 @@ for some $N \geqslant 1$. Set $X_G^{+}=X^{+}:=G(\mathbb{R})^{+} / C$. Then, a sp
 This is generally an orbifold since $\Gamma$ may contain torsion.
 :::
 
-::: {.front card-id="card-323c8a1d1fa7cc8a"}
+::: {.front card-id="card-323c8a1d1fa7cc8a" cite="[@Con12, Proposition 2.1]"}
 What is a locally symmetric space?
 :::
 
@@ -168,7 +168,7 @@ Let $G$ be a reductive group over $\mathbb{Q}$. Let us fix a maximal compact sub
 - $K_{\infty}$ to be a compact subgroup of $G(\mathbb{R})$ such that $C \subseteq K_{\infty} \subseteq K_{\infty}^{\max }$
 - $A_G$ is the maximal $\mathbb{Q}$-split subtorus of $Z(G)$. Then, for any compact open subgroup $K_f \subseteq G\left(\mathbb{A}_f\right)$ we set
 $$S_G\left(K_f\right):=G(\mathbb{Q}) \backslash G(\mathbb{A}) /\left(K_{\infty} K_f A_G(\mathbb{R})^{+}\right)$$
-A space of the form $S_G\left(K_f\right)$ is called a locally symmetric space for $G$. Here we are denoting by $\mathbb{A}=\left(\widehat{\mathbb{Z}} \otimes_{\mathbb{Z}} \mathbb{Q}\right) \times \mathbb{R}$ the adele ring for $\mathbb{Q}$ and by $\mathbb{A}_f$ its subring of finite adeles $\widehat{\mathbb{Z}} \otimes \mathbb{\mathbb { Z }} \mathbb{Q}$. We topologize this by the restricted direct topology and topologize $G(\mathbb{A})$ and $G\left(\mathbb{A}_f\right)$ in the usual way (e.g. see \[Con12\]).
+A space of the form $S_G\left(K_f\right)$ is called a locally symmetric space for $G$. Here we are denoting by $\mathbb{A}=\left(\widehat{\mathbb{Z}} \otimes_{\mathbb{Z}} \mathbb{Q}\right) \times \mathbb{R}$ the adele ring for $\mathbb{Q}$ and by $\mathbb{A}_f$ its subring of finite adeles $\widehat{\mathbb{Z}} \otimes \mathbb{\mathbb { Z }} \mathbb{Q}$. We topologize this by the restricted direct topology and topologize $G(\mathbb{A})$ and $G\left(\mathbb{A}_f\right)$ in the usual way.
 :::
 
 ::: {.front card-id="card-5c5663f6f10fe152"}

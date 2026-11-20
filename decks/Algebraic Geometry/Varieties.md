@@ -2,12 +2,12 @@
 title: "Algebraic Geometry::Varieties"
 ---
 
-::: {.front card-id="card-155c7a1001d2816c" tags="algebraic-geometry"}
+::: {.front card-id="card-155c7a1001d2816c" tags="algebraic-geometry" cite="[@Har77, II, §4]"}
 What is a variety in scheme-theoretic terms?
 :::
 
 ::: {.back card-id="card-155c7a1001d2816c"}
-A separated integral scheme of finite type over a field $k$ (Hartshorne's convention). Some authors drop integrality and call any separated scheme of finite type over $k$ a variety.
+A separated integral scheme of finite type over an algebraically closed field $k$ (Hartshorne's abstract variety). Some authors allow any field $k$, and some drop integrality and call any separated scheme of finite type over $k$ a variety.
 
 Another convention requires geometric integrality over $k$.
 :::
@@ -302,12 +302,12 @@ $Y \subseteq X$ of the form $Y = X\cap H$ for $X\hookrightarrow{\mathbf{P}}^N$ a
 Any hypersurface is an example.
 :::
 
-::: {.front card-id="card-5bd745bf9fb39e79"}
+::: {.front card-id="card-5bd745bf9fb39e79" cite="[@Cho49]"}
 What is Chow's theorem for complex projective varieties?
 :::
 
 ::: {.back card-id="card-5bd745bf9fb39e79"}
-Chow 1949: The functor $X \rightsquigarrow X(\mathbb{C})$ from nonsingular projective algebraic varieties to projective complex manifolds is an equivalence of categories. This remains true when singularities are allowed.
+The functor $X \rightsquigarrow X(\mathbb{C})$ from nonsingular projective algebraic varieties to projective complex manifolds is an equivalence of categories. This remains true when singularities are allowed.
 :::
 
 ::: {.front card-id="card-24176e569cb28a19"}
@@ -540,10 +540,10 @@ Equivalently, each contracted rational component has at least three special poin
 The proper Deligne–Mumford stack $\overline{\mathcal M}_{g,n}(X,\beta)$ has complex virtual dimension $(1-g)(\dim X-3)-K_X\cdot\beta+n$. The source need not be stable after forgetting $f$.
 :::
 
-::: {.front card-id="card-2b5c1c6d230a4fab" tags="definition"}
+::: {.front card-id="card-2b5c1c6d230a4fab" tags="definition" cite="[@Har77, II, §4]"}
 What is the definition of Variety?
 :::
 
 ::: {.back card-id="card-2b5c1c6d230a4fab"}
-A separated integral scheme of finite type over a field $k$ (Hartshorne's convention); classically, an irreducible algebraic subset of $\mathbb A^n$ or $\mathbb P^n$ over an algebraically closed field, with its sheaf of regular functions.
+A separated integral scheme of finite type over an algebraically closed field $k$ (Hartshorne's abstract variety); classically, an irreducible algebraic subset of $\mathbb A^n$ or $\mathbb P^n$ over an algebraically closed field, with its sheaf of regular functions.
 :::

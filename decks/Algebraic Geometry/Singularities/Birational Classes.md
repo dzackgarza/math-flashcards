@@ -538,7 +538,7 @@ $\mathbb C^n/G$ is Gorenstein iff $G\subset\mathrm{SL}_n$ (Watanabe), and then e
 **Terminal cyclic threefolds.** $\frac1r(a_1,a_2,a_3)$ with isolated fixed point is terminal iff it is, after permutation and change of generator, $\frac1r(1,-1,a)$ with $\gcd(a,r)=1$ (the terminal lemma). For example, $\frac12(1,1,1)=\frac12(1,-1,1)$.
 :::
 
-::: {.front card-id="singularities-threefold-terminal-canonical" tags="theorem definition comparison" cite="[@Rei80; @Rei83a; @KM98, §§5.2–5.3]"}
+::: {.front card-id="singularities-threefold-terminal-canonical" tags="theorem definition comparison" cite="[@Rei80; @Rei83a; @KM98, §§5.2–5.3; @KM98, Theorem 5.22 and Corollary 5.24]"}
 What general facts hold for terminal and canonical singularities in all dimensions? Define compound Du Val points and the index-one cover, and state how they describe terminal threefold singularities.
 :::
 
@@ -546,8 +546,8 @@ What general facts hold for terminal and canonical singularities in all dimensio
 Over $\mathbb C$, with $X$ normal and $K_X$ $\mathbb Q$-Cartier:
 
 - Terminal $\Rightarrow\operatorname{codim}\operatorname{Sing}X\ge3$. Canonical surfaces are Du Val, so a canonical $X$ is Du Val times smooth at a general point of a codimension-two singular stratum.
-- klt $\Rightarrow$ rational (Elkik; Kollár–Mori 5.22) $\Rightarrow$ Cohen–Macaulay.
-- For Gorenstein $X$: rational $\iff$ canonical (Kollár–Mori 5.24).
+- klt $\Rightarrow$ rational (Elkik) $\Rightarrow$ Cohen–Macaulay.
+- For Gorenstein $X$: rational $\iff$ canonical.
 
 **Compound Du Val (cDV).** A threefold germ $\{f(x,y,z)+tg(x,y,z,t)=0\}\subset(\mathbb C^4,0)$ with $f=0$ a Du Val surface germ. Equivalently, some hyperplane section through the point is Du Val. cDV germs are canonical and Gorenstein.
 

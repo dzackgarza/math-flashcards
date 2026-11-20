@@ -202,13 +202,11 @@ So a $p\dash$chain is a collection of elements $\alpha_{i_1,\cdots, i_p} \in \mc
 $$(d \alpha)_{i_0, \ldots, i_{p+1}}=\sum_{k=0}^{p+1}(-1)^k \alpha_{i_0}, \ldots, \widehat{i}_k, \ldots, i_{p+1} \mathrel{\Big|}_{U_{i_0, \ldots, i_{p+1}}}$$
 :::
 
-::: {.front card-id="card-e0452aa13f84cac6"}
+::: {.front card-id="card-e0452aa13f84cac6" cite="[@Har77, III, Examples 4.0.3 and 4.0.4]"}
 Give an example of a computation with Cech cohomology.
 :::
 
 ::: {.back card-id="card-e0452aa13f84cac6"}
-See example 4.0.3 on page 219 and example 4.0.4 for $S^1$.
-
 $H^*({\mathbf{P}}^1; \Omega_{{\mathbf{P}}^1/k})$ over $k$: let $\mcu= \left\{{H_0, H_\infty}\right\}$ with coordinates $x$ and $1/x$, then:
 $$\begin{align} 0 \to C^0 &\to C^1\to 0 \\ 0 \to {{\Gamma}\qty{H_0; \Omega} } \times {{\Gamma}\qty{H_\infty;\Omega} } &\to {{\Gamma}\qty{H_0\cap H_\infty;\Omega} } \\ 0 \to k[x]\,dx\times k[y]\,dy&\xrightarrow{d: x\mapsto x, y\mapsto 1/x, dy\mapsto -x^{-2}\,dx} k[x, x^{-1}]\,dx\to 0\end{align}$$
 Then $\ker d = \left\langle{f(x)\,dx, g(y)\,dy}\right\rangle$ such that $f(x) = -x^{-2} g(x^{-1}) \implies f=g=0$ since one side is a polynomial in $x$ and the other is a polynomial in $1/x$ with no constant term, so $H^0 = 0$.

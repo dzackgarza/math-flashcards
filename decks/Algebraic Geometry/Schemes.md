@@ -1267,7 +1267,7 @@ We say a variety $X$ is separated if the image of the diagonal map $\Delta: X \r
 For instance, $\mathbb{C}^n$ is separated because the image of the diagonal in $\mathbb{C}^n \times \mathbb{C}^n=$ $\operatorname{Spec}\left(\mathbb{C}\left[x_1, \ldots, x_n, y_1, \ldots, y_n\right]\right)$ is the affine variety $\mathbf{V}\left(x_1-y_1, \ldots, x_n-y_n\right)$. Similarly, any affine variety is separated.
 :::
 
-::: {.front card-id="card-e1b36c9f1c246df3" tags="definition, unsorted"}
+::: {.front card-id="card-e1b36c9f1c246df3" tags="definition, unsorted" cite="[@Har77, II, Theorems 4.3 and 4.7]"}
 What are the three valuative criteria?
 :::
 

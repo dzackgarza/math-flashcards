@@ -61,7 +61,7 @@ What is an affine morphism?
 Inverse images of affines are affine.
 :::
 
-::: {.front card-id="card-50c3a5b5a43dbd56" tags="definition"}
+::: {.front card-id="card-50c3a5b5a43dbd56" tags="definition" cite="[@Har77, II, §3]"}
 What is a **finite morphism**?
 :::
 
@@ -75,7 +75,7 @@ Thus **finite** implies **finite type** but not conversely.
 Equivalently, proper and quasi-finite.
 :::
 
-::: {.front card-id="card-b00d12404bc086fb"}
+::: {.front card-id="card-b00d12404bc086fb" cite="[@Har77, III, §9]"}
 What is a **flat** morphism?
 :::
 
@@ -89,7 +89,7 @@ Hartshorne's definition: for $f:X\to Y$ and $\mcf\in  {}_{{\mathcal{O}}_X}\Mod$,
 $f\in \mathsf{CRing}(A, B)$ is a flat map iff $B\in   {}_{A}\Mod^\flat$, and a morphism $f\in \Sch(X, Y)$ is flat iff flat on local rings, i.e. $f_x: {\mathcal{O}}_{Y, f(x)}\to {\mathcal{O}}_{X, x}$ is flat.
 :::
 
-::: {.front card-id="card-e504a4da2d4624f3"}
+::: {.front card-id="card-e504a4da2d4624f3" cite="[@Har77, III, §10]"}
 What is a **smooth morphism** of relative dimension $n$?
 :::
 

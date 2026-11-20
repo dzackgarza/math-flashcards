@@ -238,12 +238,12 @@ Can write as a ring:
 $${\operatorname{HH}}^*(k[x]) \cong k[x, t]/\left\langle{t^2}\right\rangle,\qquad {\left\lvert {x} \right\rvert} = 0, {\left\lvert {t} \right\rvert} = 1$$
 :::
 
-::: {.front card-id="card-b8860dff0c00259f"}
+::: {.front card-id="card-b8860dff0c00259f" cite="[@Wit19, Example 1.1.21]"}
 What is ${\operatorname{HH}}(k[x]/x^n)$?
 :::
 
 ::: {.back card-id="card-b8860dff0c00259f"}
-See example 1.1.21: set $A\coloneqq k[x]/x^n$. One gets ${\operatorname{HH}}^*(A) \cong \bigoplus_{i\geq 0} A t^i$ if $\operatorname{ch}k \mathrel{\Big|}n$, otherwise
+Set $A\coloneqq k[x]/x^n$. One gets ${\operatorname{HH}}^*(A) \cong \bigoplus_{i\geq 0} A t^i$ if $\operatorname{ch}k \mathrel{\Big|}n$, otherwise
 $${\mathbb{H}}^*(A) = At^0 + \bigoplus_{m\geq 0} \left\langle{x}\right\rangle t^{2m + 1} + \bigoplus_{m\geq 0} A/\left\langle{ x^{n-1} }\right\rangle t^{2m}$$
 :::
 

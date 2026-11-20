@@ -368,7 +368,7 @@ Is $\operatorname{Cl}(X)$ always free?
 No, it can contain torsion: let $Y\subseteq {\mathbf{P}}^2$ be an irreducible curve of degree $d$ and let $X\coloneqq{\mathbf{P}}^2\setminus Y$, then $\ZZ\xrightarrow{\times d}  \operatorname{Cl}({\mathbf{P}}^2)\cong \ZZ\twoheadrightarrow \operatorname{Cl}({\mathbf{P}}^2\setminus Y) \implies  \operatorname{Cl}(X) \cong C_d$
 :::
 
-::: {.front card-id="card-9437c471081d18e9"}
+::: {.front card-id="card-9437c471081d18e9" cite="[@Har77, II, §6]"}
 What are minimal conditions for which it makes sense to discuss Weil divisors?
 :::
 

@@ -976,14 +976,14 @@ Discuss projective embeddings of K3s in arbitrary characteristic.
 If $C\subseteq X$ is smooth irreducible and $L\coloneqq{\mathcal{O}}(C)$, then for $k\geq 2, g>2$ or $k\geq 3, g=2$ the induced embedding $\phi_{L^k}:X\to {\mathbf{P}}^n, n= k^2(g-1)+1$ is birational onto its image.
 :::
 
-::: {.front card-id="card-504dac3b1ca18677"}
+::: {.front card-id="card-504dac3b1ca18677" cite="[@Huy16, Chapter 2, Remark 2.8; @Mum70, Theorem 3]"}
 Discuss $\operatorname{Pic}(X)^\vamp$ for $X$ a K3.
 :::
 
 ::: {.back card-id="card-504dac3b1ca18677"}
 If $L$ is ample and bpf, the $L^k$ is very ample for $k\geq 3$.
 
-Consequence of a general result of Mumford, see 439.Thm.3.
+Consequence of a general result of Mumford.
 :::
 
 ::: {.front card-id="card-b2f808dcef295d55"}

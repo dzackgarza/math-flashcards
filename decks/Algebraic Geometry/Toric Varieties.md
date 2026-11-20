@@ -309,12 +309,12 @@ $V(xy-zw)$ gotten from $(1,0,0), (0, 1,0), (1,0,1), (0,1,1)$.
 Any products of the above.
 :::
 
-::: {.front card-id="card-db955c10e0df4871"}
+::: {.front card-id="card-db955c10e0df4871" cite="[@CLS11, Example 4.1.4]"}
 Show that a divisor class group may not be torsionfree.
 :::
 
 ::: {.back card-id="card-db955c10e0df4871"}
-$\operatorname{Cl}(\widehat{C}_d) = \ZZ/d\ZZ$, see 4.14 Cox.
+$\operatorname{Cl}(\widehat{C}_d) = \ZZ/d\ZZ$.
 :::
 
 ::: {.front card-id="card-fabdf50d8dd729b0" tags="definition"}
