@@ -121,12 +121,19 @@ desktop-test scenario="full": desktop-browser
     scenarios["study-keys"] = "xvfb-run -a uv run --upgrade tests/study-keys.py"
     scenarios["editor"] = "uv run --upgrade tests/editor.py"
     scenarios["quiver"] = "uv run --upgrade tests/quiver.py"
+    # The tools keep their own caches; only the app's files move with HOME.
     environment.setdefault("UV_CACHE_DIR", subprocess.check_output(["uv", "cache", "dir"], text=True).strip())
+    environment.setdefault("UV_PYTHON_INSTALL_DIR", subprocess.check_output(["uv", "python", "dir"], text=True).strip())
+    environment.setdefault("BUN_INSTALL_CACHE_DIR", subprocess.check_output(["bun", "pm", "cache"], text=True).strip())
     environment.setdefault("PLAYWRIGHT_BROWSERS_PATH", str(Path(os.environ.get("XDG_CACHE_HOME", str(Path.home() / ".cache"))) / "ms-playwright"))
     with evidence("browser-{{scenario}}", Path("desktop/tests/fixtures")) as artifacts, tempfile.TemporaryDirectory(prefix="flashcards-browser-cache-") as directory:
         environment["XDG_CACHE_HOME"] = str(Path(directory) / "cache")
         environment["XDG_DATA_HOME"] = str(Path(directory) / "data")
         environment["XDG_STATE_HOME"] = str(Path(directory) / "state")
+        environment["XDG_CONFIG_HOME"] = str(Path(directory) / "config")
+        # The app writes only under its XDG directories (FR-048). An empty HOME
+        # shows a file written anywhere else.
+        environment["HOME"] = str(Path(directory))
         try:
             with (artifacts / "server.log").open("w") as log:
                 subprocess.run(

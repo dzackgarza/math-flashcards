@@ -1054,6 +1054,25 @@ def main(artifacts: Path) -> None:
                     event["error_message"] == unknown["message"] and event["traceback"]
                     for event in failures
                 ), failures
+                # The bridge processes write only under the XDG directories of
+                # the isolated HOME (FR-048, SC-016).
+                home = Path(os.environ["HOME"])
+                directories = {
+                    Path(os.environ[name]).relative_to(home).parts[0]
+                    for name in (
+                        "XDG_CONFIG_HOME",
+                        "XDG_CACHE_HOME",
+                        "XDG_DATA_HOME",
+                        "XDG_STATE_HOME",
+                    )
+                }
+                misplaced = [
+                    str(path.relative_to(home))
+                    for path in home.rglob("*")
+                    if path.is_file()
+                    and path.relative_to(home).parts[0] not in directories
+                ]
+                assert not misplaced, misplaced
             finally:
                 api.dispose()
                 diagnostics = (
