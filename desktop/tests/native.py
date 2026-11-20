@@ -12,11 +12,12 @@ import os
 import re
 import shlex
 import shutil
+import sqlite3
 import subprocess
 import tempfile
 import time
 import zipfile
-from contextlib import suppress
+from contextlib import closing, suppress
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
@@ -1086,6 +1087,7 @@ def main(
                 "XDG_CONFIG_HOME": str(environment / "config"),
                 "XDG_CACHE_HOME": str(environment / "cache"),
                 "XDG_DATA_HOME": str(environment / "data"),
+                "XDG_STATE_HOME": str(environment / "state"),
                 "UV_CACHE_DIR": uv_cache,
             }
             process = subprocess.Popen(
@@ -1116,9 +1118,12 @@ def main(
                 print("Native window:", window, flush=True)
                 if entry is None and not offline and not updates:
                     subprocess.run(["xdotool", "windowfocus", "0"], check=True)
-                    assert subprocess.check_output(
-                        ["xdotool", "getwindowfocus", "-f"], text=True
-                    ).strip() != window
+                    assert (
+                        subprocess.check_output(
+                            ["xdotool", "getwindowfocus", "-f"], text=True
+                        ).strip()
+                        != window
+                    )
                     second = subprocess.Popen(
                         command, stdout=log, stderr=log, env=runtime_environment
                     )
@@ -1200,11 +1205,13 @@ def main(
                         "1",
                         "sleep",
                         "0.5",
+                        # The folder field is below the Study and Statistics
+                        # buttons: two 36 px Mantine buttons with 12 px gaps.
                         "mousemove",
                         "--window",
                         window,
                         "230",
-                        "140",
+                        "236",
                         "click",
                         "1",
                         "key",
@@ -1229,6 +1236,25 @@ def main(
                         shot.size,
                         output=str(artifacts / "native-workspace.png"),
                     )
+                # The first launch made a store for the default workspace, so
+                # the app asks which store this workspace uses (FR-041).
+                wait_for_text("or start a new store")
+                subprocess.run(
+                    [
+                        "xdotool",
+                        "mousemove",
+                        "--window",
+                        window,
+                        "960",
+                        "350",
+                        "click",
+                        "1",
+                    ],
+                    check=True,
+                )
+                # The dialog closes with a transition; a click during it
+                # lands on its overlay.
+                time.sleep(1)
                 subprocess.run(
                     [
                         "xdotool",
@@ -1309,6 +1335,38 @@ def main(
                     )
                 assert package.is_file(), (artifacts / "native.log").read_text()
                 assert zipfile.is_zipfile(package)
+                if offline:
+                    # Study and a grade run inside the traced, offline
+                    # process tree; its trace must show no network
+                    # connection (FR-043).
+                    command_action("Study")
+                    wait_for_text("Return to editor")
+                    subprocess.run(
+                        ["xdotool", "key", "space", "sleep", "0.5", "key", "3"],
+                        check=True,
+                    )
+                    records = list(
+                        (environment / "data").glob(
+                            "math-flashcards/study/*/record.sqlite3"
+                        )
+                    )
+                    # One store for the default workspace, one for this one.
+                    assert len(records) == 2, records
+                    for _ in range(120):
+                        graded = 0
+                        for path in records:
+                            with closing(sqlite3.connect(path)) as record:
+                                graded += record.execute(
+                                    "select count(*) from response"
+                                ).fetchone()[0]
+                        if graded:
+                            break
+                        time.sleep(0.25)
+                    assert graded == 1, (artifacts / "native.log").read_text()
+                    subprocess.run(
+                        ["xdotool", "sleep", "1", "key", "Escape"], check=True
+                    )
+                    wait_for_text("Anki package up to date")
                 if updates:
                     assert_package_assets(package, resources / "assets.json")
                     update_arguments = install_arguments.copy()
@@ -1416,7 +1474,9 @@ def main(
                         if line.split()[0] == app_pid
                         and line.split()[1].startswith(("uv", "python"))
                     ]
-                    assert len(backend_children) <= 2
+                    # One process per request queue of RequestSlots in
+                    # src-tauri/src/lib.rs (4), and the study host.
+                    assert len(backend_children) <= 5, backend_children
                     time.sleep(0.05)
                 time.sleep(2)
                 with mss.MSS() as screen:
@@ -1518,16 +1578,22 @@ def main(
                     text=True,
                     timeout=30,
                 ).splitlines()[0]
+                # The bridge logs each request in its XDG state directory.
+                native_log = (
+                    environment
+                    / "state"
+                    / "math-flashcards"
+                    / "diagnostics"
+                    / "native"
+                    / "native.log"
+                )
+                loaded = "event=request-completed action=manifest outcome=ok"
                 for _ in range(120):
-                    restarted_log = (
-                        (artifacts / "native.log")
-                        .read_text()
-                        .split("Workspace restart\n")[-1]
-                    )
-                    if "Backend result: manifest exit status: 0" in restarted_log:
+                    restarted_log = native_log.read_text().split("event=app-start")[-1]
+                    if loaded in restarted_log:
                         break
                     time.sleep(0.25)
-                assert "Backend result: manifest exit status: 0" in restarted_log
+                assert loaded in restarted_log, restarted_log
                 time.sleep(1)
                 with mss.MSS() as screen:
                     shot = screen.grab(
