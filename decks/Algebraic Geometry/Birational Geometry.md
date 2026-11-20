@@ -1280,7 +1280,7 @@ $$(K_X+\Delta)|_S=K_S+\operatorname{Diff}_S(\Delta-S).$$
 It relates birational changes along $S$ to lower-dimensional log birational geometry. This is the inductive role of special termination. Its definition does not assume that an arbitrary sequence has this property.
 :::
 
-::: {.front card-id="mmp-termination-adjunction" tags="definition theorem application" cite="[@Cor96, §2; @BDPP12]"}
+::: {.front card-id="mmp-termination-adjunction" tags="definition theorem application" cite="[@Cor95, §2; @BDPP12]"}
 Define classical termination of adjunction on a smooth projective complex variety. Relate it to pseudoeffectivity and uniruledness, and compare $\mathbb P^2$ with a K3 surface.
 :::
 
