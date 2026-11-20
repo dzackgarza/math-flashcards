@@ -934,6 +934,65 @@ scheduler's predicted recall with the grades. It shows whether the adaptive sche
 predicts this person's self-graded recall. It cannot show an error of the grades
 themselves; that needs a checked answer.
 
+## R20. One owner of diagram files
+
+**Question**: The user prefers a design in which the figures tree of the Pandoc
+configuration (`~/.pandoc/figures`, the repository `pandoc-config`) holds the diagram
+files, its TikZ filter compiles them, and a card refers to its diagram. What does each
+design require, and what does it do to constitution I (Markdown decks are the only
+authored source)? This entry is for the user's decision.
+
+**Facts in the sources** (pandoc-config `cf39453`, this repository at T096):
+
+- `filters/tikzcd.lua` already resolves a reference. A raw block `\input{name}` is a
+  figure when the named file is `.tikz`, `.tikzcd`, or a `.tex` file whose body opens
+  `tikzcd` or `tikzpicture` (`figure_input`). `find_input_file` looks next to the
+  document, then in `FIGURES_SOURCE_DIR`, its `tikz/` and `tikzcd/` folders, and one
+  level of subfolders. `resolve_inputs` replaces the reference with the file's text
+  before the cache key is computed, so an edit of the file gives a new key and a new
+  compile.
+- `bin/render_figures.py` (`just render-figures`) is the configuration's own job for
+  the figures tree. It renders each figure to `figures/rendered/…` with a cache keyed on
+  the file and the TikZ library.
+- `AGENTS.md` of pandoc-config, rule 6 of "Figures: the dzg TikZ library": each
+  mathematical object is one file in `figures/objects/<family>/<name>.tikz`, and a
+  second drawing of the same object anywhere is a defect.
+- This app sets `FIGURES_SOURCE_DIR` to the deck's own folder, accepts only an inline
+  `\begin{tikzcd}…\end{tikzcd}` block (`TIKZ_ENVIRONMENT` in `desktop/backend.py`), and
+  stages only `styles/`, the filter, and the template into `desktop/tikz-assets/`.
+  The Quiver editor writes inline TikZ-cd into the card.
+
+**Alternatives**:
+
+| | A. Inline source (current) | B. Figures tree owns every diagram (preferred by the user) | C. Inline source, with references to figures-tree objects |
+| --- | --- | --- | --- |
+| Where the diagram text is | In the card Markdown | One file in the figures tree; the card holds `\input{…}` | Card-specific diagrams inline; a reused mathematical object by `\input{objects/…}` |
+| Compile and cache | The filter, through the app's diagram job (T095) | The filter; `render_figures.py` can also compile the tree | As A and B |
+| Constitution I | Holds | Violated: a card change can need an edit outside `decks/`. Needs an amendment (MAJOR: principle I is redefined) | Violated for the referenced objects only. Needs the same amendment, limited to the figures tree |
+| Learning record | The content row holds the diagram as shown | A content row holds only the reference. The record must retain the resolved figure text (and, for display, its SVG) for each content version, and a sync must take the referenced file's bytes into the content digest; otherwise an edit of the figure changes past presentations silently (principle VI) | As B, for referenced objects |
+| Git history of acts of learning | The workspace repository | Diagram edits are in pandoc-config's history, not the workspace's. Principle VI's table must name both | As B, for referenced objects |
+| Quiver editing in the app | Writes the card | Must write a file in another repository and keep the card's reference | Card-specific: as A. Objects: edited in pandoc-config |
+| Offline installed app | Works with the staged assets | Needs the figures tree on disk at run time, or staged with each release (then a release is stale after a figure edit) | As B, for referenced objects |
+| One drawing of each object (pandoc-config rule 6) | A card can hold a second drawing of an object that the library owns | Holds | Holds where a library object exists |
+
+**Recommendation**: C. It gives the user's preferred ownership to every diagram that the
+figures library already owns as an object, keeps pandoc-config rule 6, and keeps the
+cards that hold their own small TikZ-cd diagrams as single files. B is the full form of
+the preference. It moves every diagram, including card-specific ones that no other
+document uses, out of the decks, and the Quiver editor then writes into a second
+repository. Either B or C needs, in the same change:
+
+1. An amendment of constitution I that names the figures tree as an authored source of
+   diagrams referenced from cards.
+2. A record change (additive): the resolved figure text and its referenced file path in
+   each content version, and the referenced bytes in the content digest.
+3. `FIGURES_SOURCE_DIR` set to the figures tree, an accepted `\input{…}` block in the
+   card parser and the backend, and the figures tree in the diagram job's inputs, so an
+   edit of a figure file makes the job compile it again.
+
+**Decision**: Open for the user. Until a decision, A is in effect and T095 compiles
+inline diagrams.
+
 ## Unmeasured
 
 - The size of the learning record over years. An estimate from the row contents is about
