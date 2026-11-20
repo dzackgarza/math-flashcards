@@ -1,0 +1,50 @@
+[{"name":"calibration","title":"Calibration","summary":"Predicted recall and self-graded recall from review grades, grouped in probability bands.","failure":null},{"name":"recall_by_folder","title":"Recall by folder","summary":"Presentations, self-graded Again share, and reveal time for recall of the cards in each folder and month.","failure":null}]
+{"analysis":{"name":"calibration","title":"Calibration","summary":"Predicted recall and self-graded recall from review grades, grouped in probability bands.","failure":null},"columns":[{"name":"Predicted recall band","unit":null},{"name":"Self-graded reviews","unit":null},{"name":"Mean predicted recall","unit":"probability"},{"name":"Self-graded recall","unit":"proportion"}],"rows":[]}
+{"analysis":{"name":"recall_by_folder","title":"Recall by folder","summary":"Presentations, self-graded Again share, and reveal time for recall of the cards in each folder and month.","failure":null},"columns":[{"name":"Folder","unit":null},{"name":"Month","unit":"UTC"},{"name":"Presentations","unit":null},{"name":"Self-graded Again share","unit":"proportion"},{"name":"Mean time to reveal","unit":"ms"}],"rows":[["","2026-11",1,0.0,1200.0]]}
+[{"name":"calibration","title":"Calibration","summary":"Predicted recall and self-graded recall from review grades, grouped in probability bands.","failure":null},{"name":"extra","title":"Extra analysis","summary":"Count retained presentations.","failure":null},{"name":"recall_by_folder","title":"Recall by folder","summary":"Presentations, self-graded Again share, and reveal time for recall of the cards in each folder and month.","failure":null}]
+{"analysis":{"name":"extra","title":"Extra analysis","summary":"Count retained presentations.","failure":null},"columns":[{"name":"Presentations","unit":null}],"rows":[[1]]}
+{"analysis":{"name":"calibration","title":"Calibration","summary":"Predicted recall and self-graded recall from review grades, grouped in probability bands.","failure":null},"columns":[{"name":"Predicted recall band","unit":null},{"name":"Self-graded reviews","unit":null},{"name":"Mean predicted recall","unit":"probability"},{"name":"Self-graded recall","unit":"proportion"}],"rows":[]}
+{"analysis":{"name":"recall_by_folder","title":"Recall by folder","summary":"Presentations, self-graded Again share, and reveal time for recall of the cards in each folder and month.","failure":null},"columns":[{"name":"Folder","unit":null},{"name":"Month","unit":"UTC"},{"name":"Presentations","unit":null},{"name":"Self-graded Again share","unit":"proportion"},{"name":"Mean time to reveal","unit":"ms"}],"rows":[["","2026-11",1,0.0,1200.0]]}
+{"kind":"AnalysisFailed","message":"broken: Broken calculation"}
+Analysis broken failed
+Traceback (most recent call last):
+  File "/tmp/flashcards-analyses-vaf_xoj3/analysis/__init__.py", line 101, in run
+    result = AnalysisTable.model_validate(load(name).run(connection))
+                                          ~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/tmp/flashcards-analyses-vaf_xoj3/analysis/catalog/broken.py", line 4, in run
+    raise ValueError("Broken calculation")
+ValueError: Broken calculation
+{"kind":"AnalysisFailed","message":"writing: attempt to write a readonly database"}
+Analysis writing failed
+Traceback (most recent call last):
+  File "/tmp/flashcards-analyses-vaf_xoj3/analysis/__init__.py", line 101, in run
+    result = AnalysisTable.model_validate(load(name).run(connection))
+                                          ~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/tmp/flashcards-analyses-vaf_xoj3/analysis/catalog/writing.py", line 4, in run
+    connection.execute("insert into setting_change select * from setting_change")
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: attempt to write a readonly database
+[{"name":"broken","title":"Broken","summary":"Raises a calculation error.","failure":null},{"name":"calibration","title":"Calibration","summary":"Predicted recall and self-graded recall from review grades, grouped in probability bands.","failure":null},{"name":"extra","title":"Extra analysis","summary":"Count retained presentations.","failure":null},{"name":"recall_by_folder","title":"Recall by folder","summary":"Presentations, self-graded Again share, and reveal time for recall of the cards in each folder and month.","failure":null},{"name":"writing","title":"Writing","summary":"Attempts a write.","failure":null},{"name":"unavailable","title":"unavailable","summary":"","failure":"Unavailable analysis"}]
+Cannot import analysis unavailable
+Traceback (most recent call last):
+  File "/tmp/flashcards-analyses-vaf_xoj3/analysis/__init__.py", line 76, in list_analyses
+    module = load(name)
+  File "/tmp/flashcards-analyses-vaf_xoj3/analysis/__init__.py", line 69, in load
+    return cast(AnalysisModule, importlib.import_module(f"analysis.catalog.{name}"))
+                                ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzack/.local/share/uv/python/cpython-3.14.7-linux-x86_64-gnu/lib/python3.14/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1406, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1342, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 938, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "/tmp/flashcards-analyses-vaf_xoj3/analysis/catalog/unavailable.py", line 1, in <module>
+    raise RuntimeError("Unavailable analysis")
+RuntimeError: Unavailable analysis
+{"kind":"UnknownAnalysis","message":"Unknown analysis: absent"}
+{"kind":"RecordUnreadable","message":"/tmp/flashcards-analyses-vaf_xoj3/record.sqlite3: Choose record.sqlite3 inside the Study data directory."}
+{"analysis":{"name":"calibration","title":"Calibration","summary":"Predicted recall and self-graded recall from review grades, grouped in probability bands.","failure":null},"columns":[{"name":"Predicted recall band","unit":null},{"name":"Self-graded reviews","unit":null},{"name":"Mean predicted recall","unit":"probability"},{"name":"Self-graded recall","unit":"proportion"}],"rows":[]}
+{"analysis":{"name":"recall_by_folder","title":"Recall by folder","summary":"Presentations, self-graded Again share, and reveal time for recall of the cards in each folder and month.","failure":null},"columns":[{"name":"Folder","unit":null},{"name":"Month","unit":"UTC"},{"name":"Presentations","unit":null},{"name":"Self-graded Again share","unit":"proportion"},{"name":"Mean time to reveal","unit":"ms"}],"rows":[["","2026-11",1,0.0,1200.0]]}

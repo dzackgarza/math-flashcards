@@ -1,0 +1,10 @@
+{
+  "command": [
+    "uv",
+    "run",
+    "--upgrade",
+    "desktop/tests/organization.py"
+  ],
+  "status": 1,
+  "seconds": 40.40232933700099
+}

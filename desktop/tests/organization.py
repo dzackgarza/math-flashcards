@@ -73,6 +73,11 @@ def scenario(root: Path) -> None:
         expect(page.get_by_role("button", name="Workspace", exact=True)).to_have_text(
             root.name, timeout=30000
         )
+        # The default workspace already has a store, so this workspace asks
+        # which store it uses (FR-041).
+        chooser = page.get_by_role("dialog", name="Choose a study store")
+        chooser.get_by_role("button", name="Start new", exact=True).click()
+        expect(chooser).to_have_count(0)
         page.get_by_text("Algebra", exact=True).click()
         page.get_by_text("Analysis", exact=True).click()
         page.get_by_text("Original", exact=True).click()
@@ -350,6 +355,7 @@ def main(*, workspace: Path | None = None) -> None:
             "XDG_DATA_HOME": str(Path(directory) / "data"),
             "XDG_CONFIG_HOME": str(Path(directory) / "config"),
             "XDG_CACHE_HOME": str(Path(directory) / "cache"),
+            "XDG_STATE_HOME": str(Path(directory) / "state"),
             "UV_CACHE_DIR": subprocess.check_output(
                 ["uv", "cache", "dir"], text=True
             ).strip(),

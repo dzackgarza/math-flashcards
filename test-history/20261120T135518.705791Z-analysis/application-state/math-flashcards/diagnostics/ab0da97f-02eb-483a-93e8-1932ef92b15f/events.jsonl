@@ -1,0 +1,2 @@
+{"id": "08901593-e44e-40be-b883-9d30c08df9fd", "operation": "analysis-list", "input_sha256": "d0d29350fe139efa701eb3412207a7d2355b82b6e6fc00f8b3e373705dd366be", "event": "started", "at": "2026-11-20T13:55:21.101326+00:00"}
+{"id": "08901593-e44e-40be-b883-9d30c08df9fd", "operation": "analysis-list", "input_sha256": "d0d29350fe139efa701eb3412207a7d2355b82b6e6fc00f8b3e373705dd366be", "event": "completed", "at": "2026-11-20T13:55:21.109524+00:00", "outcome": "ok", "elapsed_seconds": 0.005136252999363933, "profile": "08901593-e44e-40be-b883-9d30c08df9fd.pstats"}
