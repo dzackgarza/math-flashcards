@@ -750,18 +750,19 @@ behavior.
 | The Python bridge separates learning data, diagnostic state, and regenerable cache through `platformdirs`. | The empty-home native and diagram scenarios check placement and learning preservation. |
 | The installer derives its directories from `XDG_DATA_HOME`, with the specification's default. | Conforms. |
 | The app has two directory names: `math-flashcards` (bridge, installer) and `dev.math.flashcards` (Tauri identifier). | Conforms. Both are under the correct base directories. |
-| `$XDG_DATA_HOME/dev.math.flashcards/` holds `WebKitCache/` and `CacheStorage/`, written by the web view. `$XDG_CACHE_HOME/dev.math.flashcards/` does not exist. | Does not conform: regenerable web view cache is in the data directory. The web view layer of Tauri owns the placement. |
+| The shell creates its webview with `$XDG_CACHE_HOME/dev.math.flashcards/webview/` as its data directory. | Its web storage is disposable; the native scenario removes it and checks every earlier learning row and the due counts after restart. |
 
-**Owner of the defect**: The web view library of Tauri (`wry`). Its Linux code sets one
-directory for both kinds
+**Webview placement**: Tauri's webview library (`wry`) uses one directory for both
+web storage and cache
 (https://github.com/tauri-apps/wry/blob/dev/src/webkitgtk/web_context.rs, read):
-`.base_cache_directory(data_directory)` and `.base_data_directory(data_directory)`, with
-the comment "TODO: Consider taking a cache_directory so this can be in XDG_CACHE_HOME".
-The Tauri window builder has `data_directory` and no cache setting
-(https://docs.rs/tauri/latest/tauri/webview/struct.WebviewWindowBuilder.html, read). The
-app cannot correct the placement with a setting. The web view cache holds no learning
-data. A report to the `wry` project is an action outside this repository; the user
-decides it.
+`.base_cache_directory(data_directory)` and `.base_data_directory(data_directory)`.
+All webview storage in this app is regenerable: preferences use the Tauri store plugin,
+and learning data uses the Python store. Create the configured window in Rust setup
+through `WebviewWindowBuilder::from_config`, then supply the absolute
+`app.path().app_cache_dir()/webview` with
+[`data_directory`](https://docs.rs/tauri/latest/tauri/webview/struct.WebviewWindowBuilder.html#method.data_directory).
+Disable automatic creation for that window. The JSON `dataDirectory` option accepts
+only a path relative to local data, so it cannot express this XDG placement.
 
 ## R17. Three parts: interface, core, analysis
 

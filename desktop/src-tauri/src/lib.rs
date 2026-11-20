@@ -326,6 +326,18 @@ pub fn run() {
                 std::env::consts::ARCH
             );
             log::logger().flush();
+            // Learning data belongs to the Python store; the webview is disposable.
+            // https://docs.rs/tauri/latest/tauri/webview/struct.WebviewWindowBuilder.html#method.data_directory
+            let window = app
+                .config()
+                .app
+                .windows
+                .iter()
+                .find(|window| window.label == "main")
+                .ok_or("The main window configuration is missing.")?;
+            tauri::WebviewWindowBuilder::from_config(app, window)?
+                .data_directory(app.path().app_cache_dir()?.join("webview"))
+                .build()?;
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![request])

@@ -224,6 +224,18 @@ measurement and durable logs to the other operations and test runners. A timing
 optimization starts with the cost table required by constitution XII, in the design that
 owns the operation.
 
+### Timing triage
+
+Read the named run's `run.json`, source hashes, and profiles before reusing a
+measurement. Refresh this table when the owning operation changes. Cold renderer
+setup is distinct from a prepared next-card transition; SC-002 still applies to
+the latter. A test-driver timeout is not a product performance requirement.
+
+| Operation | Cost per call | Multipliers | Aggregate cost | Priority | Remedy or boundary | Remaining measured cost |
+| --- | --- | --- | --- | --- | --- | --- |
+| Empty-home diagram request, including initial LuaTeX font discovery | 33.42 s in `20261117T042647.108160Z-diagram-runtime` | One cold font cache per isolated environment; later requests reuse that cache | 33.42 s for the cold request | Milestone setup; within the local minutes limit | Keep generated TeX state in XDG cache; cold-start acceptance allows compilation to finish and still requires real SVG | 33.42 s |
+| Native release build | 121.19 s in `20261117T042842.781308Z-native-study-backups-build` | One build per integration milestone | 121.19 s per milestone | Deferred from ordinary edit loops | Browser checks use the prepared backend; native checks share the milestone executable | 121.19 s |
+
 The feature's research synthesis belongs in `research.md`, with learning evidence in
 `docs/learning-research.md` and dependency choices in `docs/desktop-dependency-survey.md`.
 Each implementation decision cites its owning synthesis. New evidence updates that owner

@@ -1,0 +1,46 @@
+[2026-11-17][04:38:20][desktop_lib][INFO] event=app-start release=0.1.0 pid=3652248 os=linux arch=x86_64
+[2026-11-17][04:38:21][desktop_lib][INFO] event=request-started action=assets input_bytes=19
+[2026-11-17][04:38:21][desktop_lib][INFO] event=request-started action=cached-manifest input_bytes=105
+[2026-11-17][04:38:21][desktop_lib][INFO] event=backend-started action=assets
+[2026-11-17][04:38:21][desktop_lib][INFO] event=backend-started action=cached-manifest
+[2026-11-17][04:38:21][desktop_lib][INFO] event=backend-exited action=assets status=exit status: 0
+[2026-11-17][04:38:21][desktop_lib][INFO] event=request-completed action=assets outcome=ok elapsed_ms=320.811055
+[2026-11-17][04:38:22][desktop_lib][INFO] event=backend-exited action=cached-manifest status=exit status: 0
+[2026-11-17][04:38:22][desktop_lib][INFO] event=request-completed action=cached-manifest outcome=ok elapsed_ms=1264.114368
+[2026-11-17][04:38:22][desktop_lib][INFO] event=request-started action=manifest input_bytes=98
+[2026-11-17][04:38:22][desktop_lib][INFO] event=backend-started action=manifest
+[2026-11-17][04:38:22][desktop_lib][INFO] event=backend-exited action=manifest status=exit status: 0
+[2026-11-17][04:38:22][desktop_lib][INFO] event=request-completed action=manifest outcome=ok elapsed_ms=223.128351
+[2026-11-17][04:38:22][desktop_lib][INFO] event=request-started action=cache-manifest input_bytes=104
+[2026-11-17][04:38:22][desktop_lib][INFO] event=backend-started action=cache-manifest
+[2026-11-17][04:38:22][desktop_lib][INFO] event=request-started action=cached-checks input_bytes=239
+[2026-11-17][04:38:22][desktop_lib][INFO] event=request-started action=study-open input_bytes=85
+[2026-11-17][04:38:22][desktop_lib][INFO] event=request-started action=study-open input_bytes=85
+[2026-11-17][04:38:22][desktop_lib][INFO] event=study-host-started pid=3652475 elapsed_ms=0.235752
+[2026-11-17][04:38:23][desktop_lib][INFO] event=backend-exited action=cache-manifest status=exit status: 0
+[2026-11-17][04:38:23][desktop_lib][INFO] event=request-completed action=cache-manifest outcome=ok elapsed_ms=474.088995
+[2026-11-17][04:38:23][desktop_lib][INFO] event=backend-started action=cached-checks
+[2026-11-17][04:38:23][desktop_lib][INFO] event=backend-exited action=cached-checks status=exit status: 0
+[2026-11-17][04:38:23][desktop_lib][INFO] event=request-completed action=cached-checks outcome=ok elapsed_ms=652.70641
+[2026-11-17][04:38:23][desktop_lib][INFO] event=request-started action=sources input_bytes=157
+[2026-11-17][04:38:23][desktop_lib][INFO] event=backend-started action=sources
+[2026-11-17][04:38:23][desktop_lib][INFO] event=request-completed action=study-open outcome=ok elapsed_ms=789.902204
+[2026-11-17][04:38:23][desktop_lib][INFO] event=request-completed action=study-open outcome=ok elapsed_ms=791.37131
+[2026-11-17][04:38:23][desktop_lib][INFO] event=request-started action=study-sync input_bytes=232
+[2026-11-17][04:38:23][desktop_lib][INFO] event=request-completed action=study-sync outcome=ok elapsed_ms=7.320837999999999
+[2026-11-17][04:38:23][desktop_lib][INFO] event=request-started action=study-counts input_bytes=87
+[2026-11-17][04:38:23][desktop_lib][INFO] event=request-completed action=study-counts outcome=ok elapsed_ms=1.9778679999999997
+[2026-11-17][04:38:23][desktop_lib][INFO] event=backend-exited action=sources status=exit status: 0
+[2026-11-17][04:38:23][desktop_lib][INFO] event=request-completed action=sources outcome=ok elapsed_ms=176.745464
+[2026-11-17][04:38:23][desktop_lib][INFO] event=request-started action=checks input_bytes=232
+[2026-11-17][04:38:23][desktop_lib][INFO] event=backend-started action=checks
+[2026-11-17][04:38:23][desktop_lib][INFO] event=request-started action=study-open input_bytes=85
+[2026-11-17][04:38:23][desktop_lib][INFO] event=request-started action=search input_bytes=497
+[2026-11-17][04:38:23][desktop_lib][INFO] event=request-started action=problems input_bytes=575
+[2026-11-17][04:38:23][desktop_lib][INFO] event=request-completed action=study-open outcome=ok elapsed_ms=2.3267700000000002
+[2026-11-17][04:38:23][desktop_lib][INFO] event=request-started action=study-sync input_bytes=2928
+[2026-11-17][04:38:23][desktop_lib][INFO] event=request-completed action=study-sync outcome=ok elapsed_ms=5.284638
+[2026-11-17][04:38:23][desktop_lib][INFO] event=request-started action=study-counts input_bytes=87
+[2026-11-17][04:38:23][desktop_lib][INFO] event=request-completed action=study-counts outcome=ok elapsed_ms=2.078583
+[2026-11-17][04:38:23][desktop_lib][INFO] event=request-started action=study-open input_bytes=88
+[2026-11-17][04:38:23][desktop_lib][INFO] event=request-completed action=study-open outcome=ok elapsed_ms=2.206947
