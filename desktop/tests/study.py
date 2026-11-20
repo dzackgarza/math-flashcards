@@ -752,7 +752,31 @@ def main(artifacts: Path) -> None:
                         expect(
                             study.get_by_role("button", name="Easy", exact=False)
                         ).to_be_visible()
-                        page.keyboard.press("4")
+                        # The first card is graded Again; the others Easy.
+                        if remaining == 12:
+                            again = identity
+                        page.keyboard.press("1" if remaining == 12 else "4")
+                        # Each grade has a next card: the last new card is
+                        # followed by the Again card. It is readable within
+                        # 0.5 s of the grade (SC-002).
+                        expect(
+                            study.get_by_role("button", name="Show answer", exact=False)
+                        ).to_be_visible(timeout=500)
+                        expect(
+                            study.locator(".side-editor.front .cm-content")
+                        ).not_to_be_empty(timeout=500)
+                    # Anki shows a learning card early when no other card is
+                    # left, up to its learn-ahead limit (20 minutes by
+                    # default), so the Again card returns in this session.
+                    expect(study.get_by_label("Remaining cards")).to_contain_text(
+                        "Learning: 1"
+                    )
+                    with closing(sqlite3.connect(fresh_record)) as record:
+                        assert record.execute(
+                            "select card_id from presentation order by id desc limit 1"
+                        ).fetchone() == (again,)
+                    page.keyboard.press("Space")
+                    page.keyboard.press("4")
                     expect(
                         study.get_by_role("heading", name="Study complete for now")
                     ).to_be_visible()
@@ -760,7 +784,7 @@ def main(artifacts: Path) -> None:
                     # Unicode isolation marks (U+2068, U+2069) and breaks
                     # its statement into lines.
                     expect(study).to_contain_text(
-                        re.compile("Studied ⁨12⁩ cards\\s.*today", re.S)
+                        re.compile("Studied ⁨13⁩ cards\\s.*today", re.S)
                     )
                     assert {
                         "study-image",
@@ -771,7 +795,7 @@ def main(artifacts: Path) -> None:
                     with closing(sqlite3.connect(fresh_record)) as record:
                         assert record.execute(
                             "select count(*) from response"
-                        ).fetchone() == (12,)
+                        ).fetchone() == (13,)
                         assert record.execute(
                             "select cause from session_end"
                         ).fetchall() == [("finished",)]
@@ -800,7 +824,7 @@ def main(artifacts: Path) -> None:
                     ).click()
                     chooser = page.get_by_role("dialog", name="Choose a study store")
                     expect(chooser).to_be_visible()
-                    expect(chooser).to_contain_text("Grades: 12")
+                    expect(chooser).to_contain_text("Grades: 13")
                     page.screenshot(path=str(artifacts / "study-store-moved.png"))
                     chooser.get_by_role(
                         "button", name=f"Attach {workspace}", exact=True
