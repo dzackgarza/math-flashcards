@@ -894,11 +894,8 @@ earlier rows and appends normal writer, recovery, and attachment facts.
 
 Constitution principle X. The keys refer to `docs/learning-research.md`. Each source
 there states its reading depth. A status that rests on a source at depth Abstract or
-Secondary is provisional. On 2026-11-20, no full text was found in the Zotero library or
-as a legal open-access copy for: `rowland2014`, `adesope2017`, `dunlosky2013`,
-`bahrick1993`, `bahrick1991`, `hopkins2016`, `lyle2020`, `rawson2013`, `rohrer2007`,
-`brunmair2019`, `pan2018`, `hodds2014`. Their DOIs are in the register; when the
-papers are added to Zotero, read them and correct their rows and this section.
+Secondary is provisional. When the full text of such a source is read, correct its row
+and this section.
 
 The distance from the studies to this person's case is the same for most rows. The
 experiments use word pairs, facts, text passages, definitions of key terms, and
