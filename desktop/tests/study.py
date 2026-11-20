@@ -72,6 +72,52 @@ def documented_columns(document: Path) -> set[tuple[str, str]]:
     return columns
 
 
+def synchronized_state(store: Path, snapshot: Path) -> dict[str, object]:
+    """Read the notes, their decks, and each card's current content of a store.
+
+    Anki holds its collection with an exclusive lock, so this stops the
+    scenario's study hosts first; the next request starts a new one.
+    """
+    for process in psutil.process_iter(["cmdline"]):
+        if (
+            process.info["cmdline"] is not None
+            and "study-host" in process.info["cmdline"]
+            and process.environ().get("XDG_DATA_HOME") == os.environ["XDG_DATA_HOME"]
+        ):
+            process.kill()
+            process.wait(timeout=10)
+    # SQLite's backup includes committed WAL contents while a host runs:
+    # https://docs.python.org/3/library/sqlite3.html#sqlite3.Connection.backup
+    with (
+        closing(
+            sqlite3.connect(f"file:{store / 'collection.anki2'}?mode=ro", uri=True)
+        ) as source,
+        closing(sqlite3.connect(snapshot)) as copy,
+    ):
+        source.backup(copy)
+    collection = Collection(str(snapshot))
+    try:
+        notes = {
+            guid: (fields, collection.decks.name(deck))
+            for guid, fields, deck in collection.db.all(
+                "select n.guid, n.flds, c.did from notes n join cards c on c.nid=n.id"
+            )
+        }
+    finally:
+        collection.close()
+    with closing(
+        sqlite3.connect(f"file:{store / 'record.sqlite3'}?mode=ro", uri=True)
+    ) as record:
+        content = dict(
+            record.execute(
+                "select card_id, json_array(c.digest, c.front, c.back, c.assets) "
+                "from card_change k join content c on c.id=k.content "
+                "where k.id in (select max(id) from card_change group by card_id)"
+            ).fetchall()
+        )
+    return {"notes": notes, "content": content}
+
+
 def main(artifacts: Path) -> None:
     desktop = Path(__file__).resolve().parents[1]
     stores = Path(os.environ["XDG_DATA_HOME"]) / "math-flashcards" / "study"
@@ -748,6 +794,11 @@ def main(artifacts: Path) -> None:
                 assert response.json()["store"] != str(store)
                 fresh_record = Path(response.json()["record"])
                 assert (store / "store.json").read_bytes() == metadata_before
+                # A store synchronized anew from the same decks has the same
+                # notes, deck placement, and content records (FR-012).
+                assert synchronized_state(
+                    store, root / "first.anki2"
+                ) == synchronized_state(fresh_record.parent, root / "fresh.anki2")
                 with closing(sqlite3.connect(record_path)) as record:
                     assert (
                         record.execute(
