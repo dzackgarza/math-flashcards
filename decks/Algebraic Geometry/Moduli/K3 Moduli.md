@@ -277,14 +277,14 @@ What is a Kulikov surface?
 $X_0$ the central fiber of a Kulikov model.
 :::
 
-::: {.front card-id="card-34ee9fdbfea0ed5c" cite="[@KKMS73, Chapter II; @Kul77, Theorem I; @Huy16, Chapter 6, §5 and Theorem 5.1]"}
+::: {.front card-id="card-34ee9fdbfea0ed5c" cite="[@KKMS73, Chapter II; @Kul77, Theorem I; @Kul81; @PP81; @Huy16, Chapter 6, §5 and Theorem 5.1]"}
 What is Kulikov's key result on degenerations of K3s?
 :::
 
 ::: {.back card-id="card-34ee9fdbfea0ed5c"}
 Two steps. Mumford's semistable reduction: after a finite base change $z\mapsto z^m$, a degeneration of K3 surfaces over a disk has a semistable modification (smooth total space, reduced normal-crossings central fiber).
 
-Kulikov: a good projective (semistable) degeneration $X\to\Delta$ of K3 surfaces admits a modification $X'\to\Delta$ with $K_{X'}\sim0$, still semistable. This is a Kulikov model. The same holds when only the central-fiber components are algebraic or Kähler (Kulikov 1980, Persson–Pinkham; cited by Huybrechts).
+Kulikov: a good projective (semistable) degeneration $X\to\Delta$ of K3 surfaces admits a modification $X'\to\Delta$ with $K_{X'}\sim0$, still semistable. This is a Kulikov model. The same holds when only the central-fiber components are algebraic or Kähler.
 :::
 
 ::: {.front card-id="card-000de75a6010754a"}
