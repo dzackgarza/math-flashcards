@@ -60,7 +60,7 @@ or explanation belongs there.
 
 # Application architecture
 
-`.specify/memory/constitution.md` states these rules in full (principles VI to X). They
+`.specify/memory/constitution.md` states these rules in full (principles II and VI to X). They
 apply to every change of the desktop app.
 
 - **One person, one running copy.** The app is a singleton for one user. Do not add a
@@ -71,6 +71,12 @@ apply to every change of the desktop app.
 - **Learning data is permanent.** No change deletes or rewrites a record of the user's
   learning, and its format only grows. Each action that bears on the user's learning is
   recoverable from the git history of the workspace or from the learning record.
+- **Diagrams are compiled before display.** The TikZ filter of the Pandoc configuration
+  owns diagram compilation, its cache, recompilation, and macros. The app compiles at
+  start or in a background pass. A card shows a cached SVG and never waits for a compile.
+- **Anki's interface settles open interface questions.** When a specification does not
+  say what a Study screen counts, shows, or names, read Anki's source and do what Anki
+  does. Do not ask the user and do not invent a rule.
 - **Three parts.** The core (scheduling, Anki-based logic, the review store, every write
   of learning data) changes rarely. Analyses (everything computed from recorded history)
   and the interface change often. An analysis reads learning data and cannot change it,

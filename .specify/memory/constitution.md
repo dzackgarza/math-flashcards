@@ -39,11 +39,24 @@ owns equations. The pandoc-config LuaLaTeX renderer owns TikZ-cd diagrams. A fea
 NOT add a second parser of card structure, define a macro by hand, or add a second equation
 or diagram renderer.
 
+The TikZ filter of the user's Pandoc configuration is the one owner of diagram
+compilation, the cache of compiled diagrams, recompilation, and diagram macros. The
+preferred design keeps the diagram files themselves in the figures tree of that
+configuration. A diagram MUST NOT compile when a card is shown. The app compiles
+diagrams when it starts, or in a background pass that the person can start, which finds
+changed diagrams and compiles them again. To show a diagram is to show a cached SVG, so
+a time limit on showing a card has no exception for diagrams.
+
 The core MUST call Anki's library directly for scheduling, queues, grades, undo, and
 scheduler history. Stable native card IDs connect that scheduling state to the app's
 cards. Anki's scheduling notes hold those identities; the app owns content, presentation,
 and the permanent content record. Saving and studying a native card MUST work directly
 through these boundaries, from Markdown source to the shared renderer and scheduler.
+
+Anki's own interface settles each question of the Study interface that a specification
+leaves open: what a screen counts, shows, or names. Anki is open source. Read its source
+and use its answer, through Anki's own function where one exists. Such a question is not
+a decision for the person and not a place for an invented rule.
 
 ### III. Dependencies before hand-written code
 
@@ -268,4 +281,4 @@ change: MAJOR for a removed or redefined principle, MINOR for an added principle
 section, PATCH for a clarification. Every plan records its check against these principles,
 and each violation it keeps is justified in that plan.
 
-**Version**: 2.2.1 | **Ratified**: 2026-11-16 | **Last Amended**: 2026-11-16
+**Version**: 2.3.0 | **Ratified**: 2026-11-16 | **Last Amended**: 2026-11-20
