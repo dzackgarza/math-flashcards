@@ -8,6 +8,9 @@
 Card sides carry citations in a `cite` attribute in Pandoc citation syntax.
 Pandoc parses each deck; its Cite elements give the keys. The running Zotero
 desktop's local API supplies the Better BibTeX citation keys.
+
+A cited item with no PDF attachment also fails the check: nobody can have
+read the source to verify the cited claim and its locator.
 """
 
 import json
@@ -22,8 +25,12 @@ DECKS = ROOT / "decks"
 ZOTERO = "http://127.0.0.1:23119/api/users/0/items"
 
 
-def zotero_keys() -> set[str]:
-    keys: set[str] = set()
+PDF_TYPES = {"application/pdf", "image/vnd.djvu"}
+
+
+def zotero_keys() -> dict[str, str]:
+    """Map each Better BibTeX citation key to its Zotero item key."""
+    keys: dict[str, str] = {}
     start = 0
     while True:
         with urllib.request.urlopen(
@@ -35,7 +42,7 @@ def zotero_keys() -> set[str]:
         if not page:
             return keys
         keys.update(
-            item["data"]["citationKey"]
+            (item["data"]["citationKey"], item["key"])
             for item in page
             if item["data"].get("citationKey")
         )
@@ -79,7 +86,15 @@ def cited_keys(cite: str) -> list[str]:
     return keys
 
 
+def has_pdf(item: str) -> bool:
+    # The children endpoint omits trashed attachments.
+    with urllib.request.urlopen(f"{ZOTERO}/{item}/children?format=json") as response:
+        children = json.loads(response.read().decode(), strict=False)
+    return any(child["data"].get("contentType") in PDF_TYPES for child in children)
+
+
 library = zotero_keys()
+unread: dict[str, list[str]] = {}
 missing: list[str] = []
 count = 0
 for path in sorted(DECKS.rglob("*.md")):
@@ -100,10 +115,26 @@ for path in sorted(DECKS.rglob("*.md")):
             count += 1
             if key not in library:
                 missing.append(f"{path.relative_to(ROOT)}: {card}: @{key}")
+                continue
+            unread.setdefault(key, []).append(f"{path.relative_to(ROOT)}: {card}")
+
+unread = {key: cards for key, cards in unread.items() if not has_pdf(library[key])}
 
 if missing:
     print(f"citation check FAILED ({len(missing)} unknown key(s)):", file=sys.stderr)
     for line in missing:
         print("  " + line, file=sys.stderr)
+if unread:
+    print(
+        f"citation check FAILED ({len(unread)} cited work(s) with no PDF in Zotero):"
+        " these citations may need verification against the source, including"
+        " their locators. Attach the PDF to the Zotero item.",
+        file=sys.stderr,
+    )
+    for key, cards in sorted(unread.items()):
+        print(f"  @{key}:", file=sys.stderr)
+        for line in cards:
+            print("    " + line, file=sys.stderr)
+if missing or unread:
     sys.exit(1)
 print(f"citation check OK: {count} citations resolve in Zotero")

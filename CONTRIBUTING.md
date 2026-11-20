@@ -282,7 +282,9 @@ extracting the answer from an expository paragraph.
   `::: {.front card-id="…" cite="[@AEGS25, §3.7; @Nik80, Prop. 1.4.1]"}`.
   Write no `Reference:` paragraph or prose citation in a card face. Add a
   missing work to Zotero first; `just check-citations` checks every key
-  against the running Zotero library. `just lint-prose-citations` lists lines
+  against the running Zotero library, and fails on each cited work with no
+  PDF attachment: such a citation and its locator may need verification
+  against the source. `just lint-prose-citations` lists lines
   that may still cite in prose. It misses citations in other wordings and
   lists named theorems, so it starts a reading of the cards and does not
   replace it. A remark that a paragraph attaches to a
