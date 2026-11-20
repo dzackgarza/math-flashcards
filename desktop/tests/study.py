@@ -13,6 +13,7 @@ import sqlite3
 import subprocess
 import tempfile
 from contextlib import closing
+from datetime import datetime
 from hashlib import sha256
 from pathlib import Path
 from urllib.parse import urlencode
@@ -23,6 +24,32 @@ from anki.collection import Collection
 from anki.scheduler.v3 import CardAnswer
 from evidence import evidence
 from playwright.sync_api import expect, sync_playwright
+
+
+def authored_facts(workspace: Path, card_id: str) -> dict[str, str]:
+    """Read the deck facts of a card from the fixture text, not from the app."""
+    for deck in sorted(workspace.rglob("*.md")):
+        text = deck.read_text()
+        card = re.search(
+            r'\{\.front card-id="' + re.escape(card_id) + r'"(?: tags="([^"]*)")?\}',
+            text,
+        )
+        if card is None:
+            continue
+        path = deck.relative_to(workspace).as_posix()
+        title = re.search(r"^title: (.*)$", text, re.MULTILINE)
+        deck_tags = re.search(r"^tags: \[(.*)\]$", text, re.MULTILINE)
+        assert title is not None and deck_tags is not None, deck
+        tags = set(deck_tags.group(1).replace(" ", "").split(",")) | set(
+            (card.group(1) or "").split()
+        )
+        return {
+            "deck_path": path,
+            "folder": path.rpartition("/")[0],
+            "deck_title": title.group(1),
+            "tags": json.dumps(sorted(tags)),
+        }
+    raise AssertionError(f"No fixture card {card_id}")
 
 
 def main(artifacts: Path) -> None:
@@ -391,6 +418,12 @@ def main(artifacts: Path) -> None:
                         )
                     page.keyboard.press("Escape")
                     expect(study).to_have_count(0)
+                    # Escape with a card on screen keeps its presentation and
+                    # records no response for it.
+                    with closing(sqlite3.connect(record_path)) as record:
+                        assert record.execute(
+                            "select count(*), count(response) from review"
+                        ).fetchone() == (2, 1)
                 finally:
                     (artifacts / "initial-window.txt").write_text(
                         page.locator("body").inner_text()
@@ -410,6 +443,7 @@ def main(artifacts: Path) -> None:
                 offered = response.json()["next"]
                 assert offered["state"] == "Card", offered
                 first_presentation = offered["presentation"]
+                graded: list[dict[str, object]] = []
                 for grade in ("good", "again", "hard", "easy"):
                     assert offered["state"] == "Card", offered
                     assert set(offered["labels"]) == {"again", "hard", "good", "easy"}
@@ -453,6 +487,37 @@ def main(artifacts: Path) -> None:
                             interval * 86400 if interval > 0 else -interval
                         )
                         assert review["revlog_time_ms"] == 3000
+                        # The deck facts are those of the authored deck.
+                        facts = authored_facts(workspace, review["card_id"])
+                        assert {key: review[key] for key in facts} == facts
+                        offset = datetime.now().astimezone().utcoffset()
+                        assert offset is not None
+                        assert (
+                            review["utc_offset_min"]
+                            == review["response_utc_offset_min"]
+                            == offset.total_seconds() // 60
+                        )
+                        assert (review["session"], review["position"]) == (
+                            session,
+                            len(graded) + 1,
+                        )
+                        assert review["kind"] == (
+                            "new" if review["before_reps"] == 0 else "learning"
+                        ), dict(review)
+                        assert (
+                            review["writer"]
+                            == review["response_writer"]
+                            == record.execute("select max(id) from writer").fetchone()[
+                                0
+                            ]
+                        )
+                        assert (
+                            review["parameter_set"]
+                            == record.execute(
+                                "select max(id) from parameter_set"
+                            ).fetchone()[0]
+                        )
+                        graded.append(dict(review))
                     offered = response.json()
                 stale = api.post(
                     "/api/request",
@@ -533,6 +598,18 @@ def main(artifacts: Path) -> None:
                     assert collection.get_config("fsrs") is True
                     assert collection.get_config("applyAllParentLimits") is True
                     preset = collection.decks.get_config(1)
+                    # Each graded row has Anki's day and the active preset.
+                    for review in graded:
+                        assert review["scheduler_day"] == collection.sched.today
+                        assert (
+                            review["new_per_day"],
+                            review["reviews_per_day"],
+                            review["desired_retention"],
+                        ) == (
+                            preset["new"]["perDay"],
+                            preset["rev"]["perDay"],
+                            preset["desiredRetention"],
+                        ), review
                     assert preset["lapse"]["leechAction"] == 1
                     assert preset["reviewOrder"] == 7
                     assert preset["maxTaken"] == 9999
@@ -686,9 +763,9 @@ def main(artifacts: Path) -> None:
                     )
                     # The app starts the diagram job when the workspace opens
                     # (SC-002, Clarifications 2026-11-20). Its end is the start pass.
-                    expect(
-                        page.get_by_role("status", name="Diagrams")
-                    ).to_have_text("Diagrams compiled", timeout=120000)
+                    expect(page.get_by_role("status", name="Diagrams")).to_have_text(
+                        "Diagrams compiled", timeout=120000
+                    )
                     page.get_by_role("button", name="Workspace", exact=True).click()
                     page.get_by_role("button", name="Study", exact=True).click()
                     study = page.get_by_role("region", name="Study session")
