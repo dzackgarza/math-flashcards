@@ -219,8 +219,11 @@ time, and elapsed time; `python.pstats` records nested calls in the test process
 records failures; native runs also retain WebKit diagnostics and the executable hash. The
 Python profile includes waits for child processes but not their call stacks. The Study
 host separately records operation events and nested Python profiles in XDG state; the
-browser runner retains that state and server output after shutdown. T081 extends
-measurement and durable logs to the other operations and test runners. A timing
+browser runner retains that state and server output after shutdown. Each other test
+recipe runs through `desktop/tests/evidence.py LABEL FIXTURES -- COMMAND`, which keeps the
+same `run.json` with the command's output and wall time. Inside a browser scenario, a
+Playwright trace gives the time of each action; `just trace-costs TRACE` sums it by kind
+of action. Only `workbench.py` records a trace. A timing
 optimization starts with the cost table required by constitution XII, in the design that
 owns the operation.
 
@@ -236,6 +239,16 @@ starts it (T095); a card shows the SVG the job returned. A test-driver timeout i
 | Empty-home diagram request, including initial LuaTeX font discovery | 33.42 s in `20261117T042647.108160Z-diagram-runtime` | One cold font cache per isolated environment; later requests reuse that cache | 33.42 s for the cold request | Milestone setup; within the local minutes limit | Keep generated TeX state in XDG cache; the diagram job compiles, never a shown card (T095) | 33.42 s |
 | Cache-only diagram request (`render-diagram`, `TIKZ_CACHE_ONLY=1`) | 0.80 to 0.87 s, of which 0.66 s is the backend's Python start (measured 2026-11-20) | Each diagram a card or editor shows | Above SC-002's 0.5 s for one card | High: a shown card | The diagram job returns each SVG; the viewer shows it from memory and requests only a source that the last job did not compile | 0 s for a diagram of the last job |
 | Native release build | 121.19 s in `20261117T042842.781308Z-native-study-backups-build` | One build per integration milestone | 121.19 s per milestone | Deferred from ordinary edit loops | Browser checks use the prepared backend; native checks share the milestone executable | 121.19 s |
+| Tier 1 loop, `just test-commit` at 9b4d4456 | 352 s wall (2026-11-20, runs `20261120T1400*` to `T1405*`) | Once per commit | 352 s; the limit is 300 s (constitution V) | High: over the limit | The rows below price its parts | 352 s |
+| `browser-full` (`workbench.py`) | 110 s | Once per loop | 110 s | High: largest part | Rows below, from its trace | 110 s |
+| In `browser-full`: waits for an Anki package build (`.toolbar .status`) | 1.9 s | 11 waits | 20.9 s | Medium: an app cost, not a test cost | Measure the backend's `generate` in the bridge diagnostics before any change | 20.9 s |
+| In `browser-full`: fixed sleeps (`wait_for_timeout`) | 0.2 s | 48 calls | 9.7 s | High: a pure test cost | Wait for the observable condition that each sleep stands for | 9.7 s |
+| In `browser-full`: workspace checks (`.workspace-progress`) | 1.0 s | 11 waits | 11.4 s | Medium | Measure the `checks` request per deck | 11.4 s |
+| `browser-study` (`study.py`) | 58 s | Once per loop | 58 s | High | No trace yet; record one, then price its parts | 58 s |
+| `browser-quiver` (`quiver.py`) | 57 s | Once per loop | 57 s | High | No trace yet | 57 s |
+| `organization` | 51 s | Once per loop | 51 s | High | No trace yet | 51 s |
+| `source` (`bun test`, 4 files, 16 tests) | 48 s | Once per loop | 48 s | High | Bun's per-test times, from `bun test --reporter=junit` | 48 s |
+| Other recipes (`test`, `desktop-frontend`, `boundaries`, `analysis`, `editor`, browser install) | 28 s in total | Once per loop | 28 s | Low | None | 28 s |
 
 The feature's research synthesis belongs in `research.md`, with learning evidence in
 `docs/learning-research.md` and dependency choices in `docs/desktop-dependency-survey.md`.

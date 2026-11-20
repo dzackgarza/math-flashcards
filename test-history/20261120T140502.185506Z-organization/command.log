@@ -1,0 +1,16 @@
+BEWARE: your OS is not officially supported by Playwright; downloading fallback build for ubuntu24.04-x64.
+BEWARE: your OS is not officially supported by Playwright; downloading fallback build for ubuntu24.04-x64.
+BEWARE: your OS is not officially supported by Playwright; downloading fallback build for ubuntu24.04-x64.
+1: starting server using command "bunx vite --host 127.0.0.1 --port 1421"
+and when url "[ 'http-get://127.0.0.1:1421' ]" is responding with HTTP status code 200
+running tests using command "uv run /home/dzack/gitclones/math-flashcards/desktop/tests/organization.py --workspace /tmp/flashcards-organize-mmov957w/workspace"
+
+
+  VITE v8.3.8  ready in 229 ms
+
+  ➜  Local:   http://127.0.0.1:1421/
+[vite-plugin-static-copy] Collected 386 items.
+BEWARE: your OS is not officially supported by Playwright; downloading fallback build for ubuntu24.04-x64.
+BEWARE: your OS is not officially supported by Playwright; downloading fallback build for ubuntu24.04-x64.
+BEWARE: your OS is not officially supported by Playwright; downloading fallback build for ubuntu24.04-x64.
+Tree drag merges decks, moves and reorders cards, and splits through a new deck; the context menu renames and deletes decks; every out-of-date package updates at once.

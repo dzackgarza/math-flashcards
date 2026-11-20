@@ -181,6 +181,10 @@ desktop-installed-test *arguments:
 desktop-update-test:
     uv run --no-project desktop/tests/evidence.py native-update desktop/tests/fixtures -- env -u WAYLAND_DISPLAY xvfb-run -a -s '-screen 0 1600x1200x24' dbus-run-session -- uv run --upgrade desktop/tests/native.py --updates --offline
 
+# Sum the time of each kind of action in a Playwright trace
+trace-costs trace:
+    unzip -p {{trace}} trace.trace | jq --slurp --raw-output --from-file desktop/tests/trace-costs.jq
+
 # Apply the canonical formatters to desktop sources
 desktop-format:
     uvx ruff check --fix desktop/backend.py desktop/tests desktop/linux/install.py
