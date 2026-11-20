@@ -110,6 +110,14 @@ def main(artifacts: Path) -> None:
                 (artifacts / "window.txt").write_text(page.locator("body").inner_text())
                 browser.close()
 
+            # A session of one deck obeys the same daily limits (FR-023): the
+            # three new cards of today are used, and three of six are left.
+            begun = request(
+                "study-begin", scope={"kind": "deck", "path": "Settings.md"}
+            )
+            assert begun["next"]["state"] == "Finished", begun
+            request("study-end", session=begun["session"])
+
             def stop_host():
                 hosts = [
                     p
