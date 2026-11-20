@@ -893,8 +893,12 @@ earlier rows and appends normal writer, recovery, and attachment facts.
 ## R19. Basis of the learning decisions in published research
 
 Constitution principle X. The keys refer to `docs/learning-research.md`. Each source
-there states its reading depth. The statuses remain provisional where the full text
-is unread; task T079 checks the papers and corrects this section.
+there states its reading depth. A status that rests on a source at depth Abstract or
+Secondary is provisional. On 2026-11-20, no full text was found in the Zotero library or
+as a legal open-access copy for: `rowland2014`, `adesope2017`, `dunlosky2013`,
+`bahrick1993`, `bahrick1991`, `hopkins2016`, `lyle2020`, `rawson2013`, `rohrer2007`,
+`brunmair2019`, `pan2018`, `hodds2014`. Their DOIs are in the register; when the
+papers are added to Zotero, read them and correct their rows and this section.
 
 The distance from the studies to this person's case is the same for most rows. The
 experiments use word pairs, facts, text passages, definitions of key terms, and
@@ -907,7 +911,7 @@ material.
 | Learning decision | Requirement | Sources | Status |
 | --- | --- | --- | --- |
 | The person recalls the answer before the app shows it | FR-002 | `roediger2006`, `karpicke2008`, `rowland2014`, `adesope2017`, `dunlosky2013`. Qualification: `soderstrom2015` finds that restudy also improves learning when spacing is controlled. | Supported |
-| Reviews of a card are spread over increasing intervals | FR-005 | `cepeda2006`, `cepeda2008`, `bahrick1993`; for mathematics with college students, `rohrer2006`, `hopkins2016`, `lyle2020` | Supported up to 1 year. Beyond that: `bahrick1993` (4 people) and `bahrick1991` (not read) |
+| Reviews of a card are spread over increasing intervals | FR-005 | `cepeda2006`, `cepeda2008`, `bahrick1993`; for mathematics with college students, `rohrer2006`, `hopkins2016`, `lyle2020` | Spacing: supported up to 1 year (`cepeda2008`, read in full). Beyond that: `bahrick1993` (4 people) and `bahrick1991` (not read). Increasing intervals: open. `cepeda2006` finds no reliable difference between expanding and fixed intervals (p = .61) and states that the data cannot show a benefit of expansion. The increase comes from the scheduler's memory model (`ye2022`), not from an experiment on learning outcomes. |
 | The schedule adapts to each card and to this person, and the person can fit it to their own history | FR-005, FR-046 | `mettler2016` shows the gain of adaptation to item and learner, with a different algorithm. `ye2022` and `su2023` evaluate their scheduler on logs and in simulation, with vocabulary. | Inference. No experiment on learning outcomes with FSRS is in the register |
 | A card graded Again comes back in the same session and at short intervals | FR-005, User Story 1 scenario 7 | `rawson2011`, `rawson2013`: relearning to a correct recall in later sessions gives durable retention at small cost. Their first-session criterion (3 correct recalls) is not Anki's default steps. | Supported in direction. The steps are Anki's defaults |
 | The app has no action that sets a card aside for the rest of a session | Assumptions | `kornell2008` | Inference from vocabulary experiments with short delays. Effects were not significant in every comparison; the paper does not establish a general prohibition on postponing mathematics cards. |
