@@ -24,6 +24,13 @@ test-push: test
 # Commit gate entry point using prepared dependencies
 test-commit: test desktop-boundaries desktop-frontend desktop-source-test desktop-editor-test desktop-test desktop-study-test desktop-analysis-test desktop-diagram-test desktop-organization-test
 
+# Install the Chromium build of the current Playwright release. Each browser
+# scenario runs with `uv run --upgrade`, so a new Playwright release needs its
+# own browser build before the scenario starts.
+[private]
+desktop-browser:
+    uv run --upgrade --no-project --with playwright playwright install chromium
+
 # Install the desktop build dependencies
 desktop-dependencies:
     [ -d desktop/.parser ] || env -u GIT_INDEX_FILE git clone --quiet --filter=tree:0 --sparse --branch develop https://github.com/dzackgarza/Zettlr-pandoc-mathjax desktop/.parser
@@ -78,15 +85,15 @@ desktop-frontend:
     cd desktop && bunx vite build
 
 # Verify the shared editor's rendering, wrapping, and source edits
-desktop-editor-test:
+desktop-editor-test: desktop-browser
     cd desktop && bunx start-server-and-test 'just -f ../justfile desktop-web' http-get://127.0.0.1:1420 'uv run --upgrade tests/editor.py'
 
 # Graphical Quiver import/creation and offline SVG export through real backend
-desktop-diagram-test:
+desktop-diagram-test: desktop-browser
     cd desktop && bunx start-server-and-test 'just -f ../justfile desktop-web' http-get://127.0.0.1:1420 'uv run --upgrade tests/quiver.py'
 
 # Exercise the editor against its real backend with an isolated server
-desktop-test scenario="full":
+desktop-test scenario="full": desktop-browser
     #!/usr/bin/env -S uv run --no-project --script
     import os
     import shutil
@@ -136,7 +143,7 @@ desktop-boundaries:
     uv run --no-project desktop/tests/boundaries.py
 
 # Exercise card organization and real multi-deck file changes
-desktop-organization-test:
+desktop-organization-test: desktop-browser
     uv run --upgrade desktop/tests/organization.py
 
 # Verify source preservation and card boundaries against Pandoc
