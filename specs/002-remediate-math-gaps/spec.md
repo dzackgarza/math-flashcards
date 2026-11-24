@@ -1,6 +1,6 @@
 # Feature Specification: Remediate Mathematical Coverage Gaps
 
-**Feature Branch**: `main`
+**Feature Branch**: `master`
 
 **Created**: 2026-11-23
 

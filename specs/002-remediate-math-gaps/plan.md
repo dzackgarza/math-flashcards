@@ -1,6 +1,6 @@
 # Implementation Plan: Remediate Mathematical Coverage Gaps
 
-**Branch**: `main` | **Date**: 2026-11-23 | **Spec**: [spec.md](spec.md)
+**Branch**: `master` | **Date**: 2026-11-23 | **Spec**: [spec.md](spec.md)
 
 **Input**: Feature specification from `specs/002-remediate-math-gaps/spec.md`
 
