@@ -1,0 +1,14 @@
+{
+  "command": [
+    "bun",
+    "test",
+    "--cwd",
+    "desktop",
+    "tests/source-roundtrip.test.ts",
+    "tests/paired-cards.test.ts",
+    "tests/organization.test.ts",
+    "tests/workspace.test.ts"
+  ],
+  "status": 0,
+  "seconds": 46.39530359697528
+}

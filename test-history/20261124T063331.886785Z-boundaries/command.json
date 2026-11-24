@@ -1,0 +1,10 @@
+{
+  "command": [
+    "uv",
+    "run",
+    "--no-project",
+    "desktop/tests/boundaries.py"
+  ],
+  "status": 0,
+  "seconds": 1.4466384460101835
+}
