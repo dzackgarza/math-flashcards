@@ -1083,3 +1083,38 @@ What is the definition of Wild inertia subgroup?
 ::: {.back card-id="card-3eec070a5bf42fd5"}
 For a local field $K$ of residue characteristic $p$, the wild inertia subgroup $P$ (also denoted $I_p$) is the unique Sylow pro-$p$ subgroup of the inertia group $I=\mathrm{Gal}(K^{\mathrm{sep}}/K^{\mathrm{un}})$. It is normal in $I$, and $I/P$ is the tame inertia group, pro-cyclic of order prime to $p$.
 :::
+
+::: {.front card-id="cft-tate-local-duality" tags="theorem formula" cite="[@Mil06, Chapter I, Corollary 2.3]"}
+State Tate local duality for a finite Galois module over a nonarchimedean local field. Give its coefficient hypothesis, dual module, target pairing, and archimedean caveat.
+:::
+
+::: {.back card-id="cft-tate-local-duality"}
+Let $K$ be a nonarchimedean local field with finite residue field and let $M$ be a finite discrete $G_K$-module with $\#M$ prime to $\operatorname{char}K$. Put
+$$M^D=\operatorname{Hom}(M,\overline K^\times)=M^\vee(1).$$
+Cup product and the invariant isomorphism $H^2(K,\overline K^\times)\cong\mathbb Q/\mathbb Z$ give
+$$H^r(K,M)\times H^{2-r}(K,M^D)\longrightarrow H^2(K,\overline K^\times)\cong\mathbb Q/\mathbb Z,\qquad r=0,1,2.$$
+This is a perfect pairing of finite groups: each side is canonically the Pontryagin dual of the other. The $r=0$ assertion uses ordinary $H^0$ and pairs it with $H^2$; the $r=1$ assertion is self-dual after replacing $M$ by $M^D$. In positive characteristic $p$, modules of $p$-power order are excluded by the hypothesis.
+
+At real places the corresponding formulation uses Tate cohomology $\widehat H^r$, including modification in degree zero. Complex places have trivial absolute Galois group. One cannot substitute the nonarchimedean statement unchanged at every place of a number field.
+:::
+
+::: {.front card-id="cft-poitou-tate-sequence" tags="theorem formula" cite="[@Mil06, Chapter I, Theorem 4.10]"}
+State the nine-term Poitou–Tate sequence for a number field $K$ and finite set $S$ of places. Specify the groups, dual coefficients, and restrictions on $S$.
+:::
+
+::: {.back card-id="cft-poitou-tate-sequence"}
+Let $S$ be a finite set of places containing all archimedean places, all places where the finite $G_K$-module $M$ ramifies, and all places dividing $\#M$. Let $K_S$ be the maximal extension of $K$ unramified outside $S$, $G_S=\operatorname{Gal}(K_S/K)$, and $R_{K,S}$ the ring of $S$-integers; require $\#M$ to be a unit in $R_{K,S}$. Define $M^D=\operatorname{Hom}(M,K_S^\times)$. Write
+$$P_S^r(K,M)=\sideset{}{'}\prod_{v\in S}H^r(K_v,M),$$
+the restricted product with respect to unramified cohomology, using Tate cohomology at real places. For a discrete or compact abelian group $A$, write $A^\vee=\operatorname{Hom}_{\mathrm{cts}}(A,\mathbb Q/\mathbb Z)$.
+
+Poitou–Tate duality gives the exact sequence of continuous maps
+$$\begin{aligned}
+0&\to H^0(G_S,M)\to P_S^0(K,M)
+ \to H^2(G_S,M^D)^\vee\\
+&\to H^1(G_S,M)\to P_S^1(K,M)
+ \to H^1(G_S,M^D)^\vee\\
+&\to H^2(G_S,M)\to P_S^2(K,M)
+ \to H^0(G_S,M^D)^\vee\to0.
+\end{aligned}$$
+The arrows involving duals are adjoints of the appropriate restriction and cup-product maps. The two kernels $\operatorname{Sha}_S^1(K,M)=\ker(H^1(G_S,M)\to P_S^1)$ and $\operatorname{Sha}_S^2(K,M^D)$ are finite and have a nondegenerate pairing. This is the finite-set $G_S$ version: replacing $S$ changes both the group $G_S$ and the local product, and groups outside $S$ do not disappear from the hypotheses.
+:::

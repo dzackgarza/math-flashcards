@@ -564,3 +564,43 @@ What is the definition of Uniformizer?
 ::: {.back card-id="card-ce80871430f96599"}
 A uniformizer of a discrete valuation ring $R$ with maximal ideal $\mathfrak{m}$ is an element $\pi\in R$ with $v(\pi)=1$, equivalently a generator of $\mathfrak{m}$. Every nonzero element of the fraction field is $u\pi^n$ with $u\in R^\times$ and $n\in\mathbb{Z}$.
 :::
+
+::: {.front card-id="ant-general-valuations-places" tags="definition comparison" cite="[@The25, Algebra, §10.50; @Neu99, §II.3]"}
+Define a general valuation and its valuation ring. When are valuations equivalent, and how do valuation rings and places recover them without assuming a discrete value group?
+:::
+
+::: {.back card-id="ant-general-valuations-places"}
+Let $\Gamma$ be a totally ordered abelian group, not necessarily cyclic or archimedean. A valuation on a field $K$ is
+$$v:K^\times\to\Gamma$$
+with $v(xy)=v(x)+v(y)$ and $v(x+y)\ge\min(v(x),v(y))$, together with $v(0)=+\infty$. Its data are
+$$R_v=\{x\in K:v(x)\ge0\},\qquad
+\mathfrak m_v=\{x\in K:v(x)>0\},\qquad
+\kappa_v=R_v/\mathfrak m_v.$$
+The image $\Gamma_v=v(K^\times)$ is the value group; $R_v$ is local with fraction field $K$ and is integrally closed in $K$.
+
+A subring $R\subset K$ is a valuation ring of $K$ iff for every $x\in K^\times$, $x\in R$ or $x^{-1}\in R$. Given such $R$, set $\Gamma_R=K^\times/R^\times$ with $xR^\times\le yR^\times$ iff $y/x\in R$; then $x\mapsto xR^\times$ is a valuation with ring $R$. This construction recovers the valuation from its ring without choosing coordinates on $\Gamma$.
+
+Valuations $v,w$ are equivalent when there is an order-preserving group isomorphism $\theta:\Gamma_v\to\Gamma_w$ such that $\theta\circ v=w$, equivalently $R_v=R_w$. A **place** is this equivalence class. For a rank-one real valuation, $|x|_c=c^{v(x)}$ for fixed $0<c<1$ gives an associated absolute value; changing $c$ gives the same place and topology. On a field of Puiseux series $f=\sum_{q\ge q_0}a_qt^q$, the order $v(f)=\min\{q:a_q\ne0\}$ gives a nondiscrete valuation with value group $\mathbb Q$, not $\mathbb Z$.
+:::
+
+::: {.front card-id="ant-ostrowski-extension-formulas" tags="theorem application formula" cite="[@Neu99, §§II.3–4 and Proposition II.8.2]"}
+Classify the places of $\mathbb Q$. How do valuations extend to algebraic extensions, and when do ramification and residue degrees satisfy the fundamental inequality and identity?
+:::
+
+::: {.back card-id="ant-ostrowski-extension-formulas"}
+Ostrowski: every nontrivial absolute value on $\mathbb Q$ is equivalent either to the usual real absolute value or to exactly one $p$-adic absolute value
+$$|x|_p=p^{-v_p(x)},\qquad p\ \text{prime}.$$
+Thus the places of $\mathbb Q$ are $\infty$ and the finite primes $p$. The usual real normalization can be replaced by $|x|_\infty^a$ for $0<a\le1$, and $|x|_p$ by $|x|_p^t$ for $t>0$, without changing the place.
+
+For any valued field $(K,v)$ and algebraic extension $L/K$, an extension $w$ of $v$ to $L$ exists. At the level of rings, take a valuation ring of $\overline K$ lying over $R_v$, for example through integral closure and the lying-over theorem, and restrict to $L$. Uniqueness need not hold before completion. If $K$ is complete for a rank-one absolute value, the extension to a finite $L/K$ is unique and is
+$$|\alpha|_L=|N_{L/K}(\alpha)|_K^{1/[L:K]};$$
+more generally, Henselian valued fields have unique extensions to algebraic extensions.
+
+For an extension $w\mid v$, put
+$$e(w/v)=[\Gamma_w:\Gamma_v],\qquad f(w/v)=[\kappa_w:\kappa_v].$$
+For finite $L/K$ and extensions $w_1,\ldots,w_g$ of $v$ whose indices are finite,
+$$\sum_{i=1}^g e(w_i/v)f(w_i/v)\le[L:K].$$
+If $K$ is complete discretely valued, the unique extension satisfies $[L:K]=ef$. For a finite separable extension of number fields and $\mathfrak p\mathcal O_L=\prod_{i=1}^g\mathfrak P_i^{e_i}$, the class-field normalization gives the global identity
+$$\sum_{i=1}^g e_i f_i=[L:K].$$
+The general fundamental inequality is not an assertion that equality holds without its standard hypotheses; defects and inseparability require additional care.
+:::

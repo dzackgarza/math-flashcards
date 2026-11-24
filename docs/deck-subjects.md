@@ -13,6 +13,7 @@ collection supplies the main branches; `Logic` supplies Set Theory.
 | Textbooks / Geometry / Differential Geometry | Geometry / Manifolds.md |
 | Textbooks / Topology | Topology |
 | Textbooks / Number Theory / Algebraic | Number Theory / Algebraic Number Theory.md; Class Field Theory.md; Function Fields.md; Lattices and Quadratic Forms.md |
+| Textbooks / Number Theory / Analytic | Number Theory / Analytic Number Theory.md |
 | Textbooks / Algebraic Geometry / Arithmetic Geometry | Algebraic Geometry / Arithmetic Geometry.md |
 | Textbooks / Algebraic Geometry / Schemes | Algebraic Geometry / Schemes.md; Sheaves and Vector Bundles.md |
 | Textbooks / Algebraic Geometry / Cohomology | Algebraic Geometry / Cohomology.md; Etale Cohomology.md |

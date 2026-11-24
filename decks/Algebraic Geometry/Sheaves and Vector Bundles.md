@@ -1262,3 +1262,19 @@ What is the definition of Étalé space?
 ::: {.back card-id="card-fe386c7fc751fa8c"}
 For a presheaf $F$ on $X$, the étalé space is $\coprod_{x\in X}F_x$ with the topology making the projection to $X$ a local homeomorphism; its sheaf of continuous sections is the sheafification $F^+$. A sheaf is equivalent to a local homeomorphism over $X$.
 :::
+
+::: {.front card-id="sheaves-koszul-regular-section" tags="construction theorem application" cite="[@Eis95, §§17.1–17.3]"}
+Construct the Koszul resolution determined by a regular section of a locally free sheaf. What is the complex for two independent linear forms on projective space?
+:::
+
+::: {.back card-id="sheaves-koszul-regular-section"}
+Let $\mathcal E$ be locally free of rank $r$ on a scheme $X$ and let $s\in H^0(X,\mathcal E)$. Contraction with $s$ gives
+$$\cdots\to\bigwedge^2\mathcal E^\vee\to\mathcal E^\vee\xrightarrow{s^\vee}\mathcal O_X.$$
+If the section is regular in the sense that its local component sequence is regular at every point and its zero scheme $Z$ is nonempty of the expected codimension $r$, the augmented complex
+$$0\to\bigwedge^r\mathcal E^\vee\to\cdots\to\mathcal E^\vee\to\mathcal O_X\to\mathcal O_Z\to0$$
+is exact. In local coordinates $s=(f_1,\ldots,f_r)$, this is the algebraic Koszul complex on $(f_1,\ldots,f_r)$ and computes $\mathcal Tor_i^{\mathcal O_X}(\mathcal O_Z,\mathcal F)$ after tensoring with $\mathcal F$.
+
+On $\mathbb P^n$, take $\mathcal E=\mathcal O(1)^{\oplus2}$ and $s=(x_0,x_1)$ for independent coordinate linear forms. Then $Z=V(x_0,x_1)\cong\mathbb P^{n-2}$ and
+$$0\to\mathcal O(-2)\xrightarrow{\binom{-x_1}{x_0}}\mathcal O(-1)^{\oplus2}\xrightarrow{(x_0\ x_1)}\mathcal O_{\mathbb P^n}\to\mathcal O_Z\to0.$$
+The signs ensure that the composite is zero; regularity ensures exactness at the intermediate term as well as locally at the final nonzero term.
+:::

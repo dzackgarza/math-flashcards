@@ -600,3 +600,77 @@ where $a_p=p+1-\#E(\mathbb F_p)$ at good primes. Modularity is a theorem: $L(E,s
 
 The analytic rank is $r_{\mathrm{an}}(E)=\operatorname{ord}_{s=1}L(E,s)$. The BSD rank conjecture asserts $r_{\mathrm{an}}(E)=\operatorname{rank}E(\mathbb Q)$; this equality is not a formal consequence of modularity. The refined conjecture also predicts the leading coefficient using periods, regulator, Tamagawa factors, torsion, and the finite order of $\operatorname{Sha}$.
 :::
+
+::: {.front card-id="arithmetic-integral-model-worked" tags="construction application comparison" cite="[@Liu10, §§3.2, 4.3; @The25, Limits of Schemes, §32.1]"}
+Construct and analyze an integral model of $E:y^2z=x^3+17xz^2$ over $\mathbb Q$. Where is it smooth, and how does one spread out its good properties?
+:::
+
+::: {.back card-id="arithmetic-integral-model-worked"}
+Take
+$$\mathcal E=\operatorname{Proj}\mathbb Z[x,y,z]/(y^2z-x^3-17xz^2)\subset\mathbb P^2_{\mathbb Z}.$$
+This is the scheme-theoretic closure of $E$, so $\mathcal E_{\mathbb Q}=E$, and $\mathcal E\to\operatorname{Spec}\mathbb Z$ is projective and flat. Its special fiber at $p$ is the projective plane curve obtained by reducing the same equation modulo $p$. Projectivity persists under every such base change.
+
+For $y^2z=x^3+Axz^2+Bz^3$, $\Delta=-16(4A^3+27B^2)$. Here
+$$\Delta=-64\cdot17^3=-314432,$$
+so $E$ is an elliptic curve over $\mathbb Q$. Its equations define good reduction over every prime $p\nmid2\cdot17$; the singular fibers at $p=2$ and $p=17$ show that smoothness can fail at special fibers. Spreading out good reduction gives a smooth model $\mathcal E[1/34]\to\operatorname{Spec}\mathbb Z[1/34]$. Integrality and flatness over $\mathbb Z$ do not make every fiber smooth, and the generic map $\operatorname{Spec}\mathbb Q\to\operatorname{Spec}\mathbb Z$ only picks out the dense non-open generic point.
+:::
+
+::: {.front card-id="arithmetic-selmer-local-conditions" tags="definition comparison" cite="[@Sil09, §X.4; @BK07, Definitions 3.7 and 5.1]"}
+Define the Selmer group attached to an isogeny of abelian varieties and compare it with a Bloch–Kato Selmer group of a global Galois representation. What exactly supplies the local conditions?
+:::
+
+::: {.back card-id="arithmetic-selmer-local-conditions"}
+For a separable isogeny $\phi:A\to B$ of abelian varieties over a number field $K$, descent gives the local-to-global diagram
+$$0\to B(K)/\phi A(K)\to H^1(K,A[\phi])\to H^1(K,A)[\phi]\to0,$$
+and its analogue at every completion $K_v$. The $\phi$-Selmer group and Tate–Shafarevich kernel are
+$$\operatorname{Sel}^{\phi}(A/K)=\{\xi\in H^1(K,A[\phi]):\operatorname{res}_v\xi\in\operatorname{im}(B(K_v)/\phi A(K_v))\ \forall v\},$$
+$$\operatorname{Sha}(A/K)[\phi]=\ker(H^1(K,A)[\phi]\to\prod_vH^1(K_v,A)).$$
+The short descent sequence $0\to B(K)/\phi A(K)\to\operatorname{Sel}^{\phi}(A/K)\to\operatorname{Sha}(A/K)[\phi]\to0$ then holds, and $\operatorname{Sel}^{\phi}(A/K)$ is finite. The Kummer images, not arbitrary unramified classes at every place, are the local conditions.
+
+For a continuous $p$-adic representation $V$ of $G_K$, a Bloch–Kato Selmer structure $\mathcal L=(L_v)$ instead chooses $L_v\subset H^1(K_v,V)$ and sets
+$$H^1_{\mathcal L}(K,V)=\{\xi:\operatorname{res}_v\xi\in L_v\ \forall v\}.$$
+For the finite Bloch–Kato conditions, $L_v=H^1_f(K_v,V)$. At a finite place $v\nmid p$,
+$$H^1_f(K_v,V)=H^1(K_v^{\mathrm{ur}}/K_v,V^{I_v}),$$
+the unramified classes. At $v\mid p$, the de Rham hypothesis on $V_v$ gives
+$$H^1_f(K_v,V)=\ker(H^1(K_v,V)\to H^1(K_v,V\otimes B_{\operatorname{cris}})),$$
+while the larger geometric condition uses $B_{\operatorname{dR}}$. At finite-module level, Kummer-theoretic images replace the crystalline comparison where that is the definition. Thus ``Selmer group'' is incomplete without the coefficient module and chosen local subspaces; the abelian-variety Kummer conditions and general Bloch–Kato conditions agree only through their appropriate comparison theorem.
+:::
+
+::: {.front card-id="arithmetic-two-isogeny-descent-p7" tags="application calculation" cite="[@Sil09, §X.4 and Proposition X.6.2]"}
+Perform the $2$-isogeny descent for $E:y^2=x^3+7x$ and $E':Y^2=X^3-28X$. Which local tests eliminate the homogeneous spaces, and what Selmer groups result?
+:::
+
+::: {.back card-id="arithmetic-two-isogeny-descent-p7"}
+Let $\phi:E\to E'$ have kernel $\{O,(0,0)\}$ and let $\widehat\phi$ be its dual. The descent representatives are $d\in\{\pm1,\pm2,\pm7,\pm14\}$ modulo squares. The corresponding principal homogeneous spaces are
+$$C_d:\ d w^2=d^2-28z^4,\qquad C'_d:\ d W^2=d^2+7Z^4.$$
+Only $2$ and $7$ require nonautomatic local tests away from $\mathbb R$.
+
+For $S^{(\phi)}(E/\mathbb Q)$, the class $-7$ comes from the rational $\phi$-torsion point. The other representatives are excluded as follows.
+
+| Class | Local test or group consequence |
+| --- | --- |
+| $1$ | $z=0,w=\pm1$ gives the trivial homogeneous space |
+| $-1$ | No $\mathbb Q_7$-point: $w^2+1=28z^4$ forces $z,w\in\mathbb Z_7$ and $w^2\equiv-1\pmod7$, impossible |
+| $-2$ | No $\mathbb Q_7$-point because $-2$ is not a square modulo $7$ |
+| $2$ | No $\mathbb Q_2$-point: put $w=2W$; then $2W^2=1-28Z^4$, which has no solution modulo $16$ |
+| $7$ | Since $7=(-1)(-7)$ modulo squares, inclusion would force $-1$ to belong |
+| $\pm14$ | Their inclusion would force the excluded classes $2$ or $-2$ after multiplying by the selected class $\pm7$ |
+| $-7$ | Selected; it is the image of $E[\phi](\mathbb Q)$ |
+
+Therefore $S^{(\phi)}(E/\mathbb Q)=\{1,-7\}\cong\mathbb Z/2\mathbb Z$. For $S^{(\widehat\phi)}(E'/\mathbb Q)$, every $d<0$ is excluded over $\mathbb R$ because $d^2+7Z^4\ge0$ but $dW^2<0$ for a nonzero solution. The class $7$ is selected by the rational $\widehat\phi$-torsion point. For $d=2$, integrality at $2$ gives $Z,W\in\mathbb Z_2$ and in turn $Z,W\equiv0\pmod2$, making $2W^2=4+7Z^4$ imply $0\equiv4\pmod8$; hence $2$ is excluded, and $14=2\cdot7$ is also excluded. Thus
+$$S^{(\widehat\phi)}(E'/\mathbb Q)=\{1,7\}\cong\mathbb Z/2\mathbb Z.$$
+This is a $\phi/\widehat\phi$ **two-isogeny descent**, not a computation of the full $2$-Selmer groups $S^{(2)}$. The torsion images and the real and $2,7$-adic exclusions are the arithmetic content; identifying the groups by invoking the proposition alone would not be a descent computation.
+:::
+
+::: {.front card-id="arithmetic-abelian-semistable-nos" tags="definition theorem comparison" cite="[@Gro72, Exposé I.6 and Exposé IX.3; @BLR90, §7.4]"}
+State semistable reduction and Néron–Ogg–Shafarevich for abelian varieties over a nonarchimedean local field. Include the special fiber and the inertia conditions.
+:::
+
+::: {.back card-id="arithmetic-abelian-semistable-nos"}
+Let $A$ be an abelian variety over a nonarchimedean local field $K$ with residue characteristic $p$. It has **semistable reduction** if the identity component of the special fiber of its Néron model is semi-abelian: an extension of an abelian variety by a torus. Good reduction is the special case with no toric or unipotent part. Semistable reduction is attained after a finite separable extension $L/K$, although $A$ need not already have semistable reduction over $K$.
+
+For $\ell\ne p$, Néron–Ogg–Shafarevich characterizes reduction through the action of inertia $I_K$ on $V_\ell A$:
+- $A$ has good reduction iff $I_K$ acts trivially, equivalently the representation is unramified.
+- $A$ has semistable reduction iff $I_K$ acts unipotently: every eigenvalue is $1$, equivalently $(\sigma-1)^2=0$ for every $\sigma\in I_K$ in this abelian-variety setting.
+Potential semistable reduction is therefore the condition that inertia acts unipotently after restriction to an open subgroup. The hypothesis $\ell\ne p$ is essential to this Tate-module criterion. Do not generalize this abelian-variety theorem to a claim that every variety has a semistable model with unchanged generic fiber in mixed characteristic.
+:::

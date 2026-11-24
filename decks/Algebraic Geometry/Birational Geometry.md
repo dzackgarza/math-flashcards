@@ -1315,3 +1315,55 @@ All varieties are smooth projective over $\mathbb C$.
 
 Boundary tests: a $(-2)$-curve need not contract to a smooth point; an Enriques surface has $q=p_g=0$ but is not rational; a nef nontorsion degree-zero bundle on an elliptic curve is not semiample; rational minimal surfaces need not be isomorphic.
 :::
+
+::: {.front card-id="birational-rees-blowup-special-fiber" tags="construction comparison application" cite="[@Eis95, §5.2; @BH98, §§4.5–4.6]"}
+How do the Rees algebra and associated graded algebra of $I\subset A$ describe a blowup and its exceptional fiber? Interpret the two rings for the origin in $\mathbb A^2$.
+:::
+
+::: {.back card-id="birational-rees-blowup-special-fiber"}
+Put $\mathcal R_I(A)=\bigoplus_{n\ge0}I^nt^n$ and $\operatorname{gr}_I(A)=\bigoplus_{n\ge0}I^n/I^{n+1}$. Then
+$$\operatorname{Bl}_{V(I)}(\operatorname{Spec}A)=\operatorname{Proj}\mathcal R_I(A).$$
+Over $\operatorname{Spec}(A/I)$, its exceptional divisor is $\operatorname{Proj}\operatorname{gr}_I(A)$. The ordinary special fiber at a closed base point is obtained from $\mathcal R_I(A)\otimes_AA/\mathfrak m$; its associated projective scheme is the fiber of the blowup. Finite generation of $\mathcal R_I(A)$ follows from a finite generating set of $I$, so these are finite-type constructions under the usual finite-type hypotheses.
+
+For $\mathfrak m=(x,y)\subset A=k[x,y]$, the blowup chart relations yield
+$$\mathcal R_{\mathfrak m}(A)\cong A[U,V]/(xV-yU),$$
+with $U\mapsto xt$ and $V\mapsto yt$. Also $\operatorname{gr}_{\mathfrak m}(A)\cong k[X,Y]$ and the exceptional divisor is $\operatorname{Proj}k[X,Y]=\mathbb P^1_k$. Lengths in $A_{\mathfrak m}$ give $\ell(A_{\mathfrak m}/\mathfrak m^n)=\binom{n+1}{2}$; its degree two and multiplicity one agree with the regular local dimension and two-dimensional tangent cone.
+:::
+
+::: {.front card-id="birational-cox-ring-class-group-torsion" tags="definition construction comparison" cite="[@HK00, Definition 1.8 and §1.4; @CLS11, §5.2]"}
+Define a Cox ring graded by the full divisor class group, allowing torsion. Which choices are needed to make its multiplication well-defined, and what changes when Picard and class groups differ?
+:::
+
+::: {.back card-id="birational-cox-ring-class-group-torsion"}
+Let $X$ be a normal irreducible variety over an algebraically closed field $k$ with $\operatorname{Cl}(X)$ finitely generated and $H^0(X,\mathcal O_X)=k$. For each class $c\in\operatorname{Cl}(X)$, choose a representative Weil divisor $D_c$ and put
+$$\operatorname{Cox}(X)=\bigoplus_{c\in\operatorname{Cl}(X)}H^0(X,\mathcal O_X(D_c)).$$
+Multiplication requires compatible isomorphisms $\mathcal O_X(D_c)\otimes\mathcal O_X(D_{c'})\cong\mathcal O_X(D_{c+c'})$, or equivalently compatible rational-function identifications between $D_c+D_{c'}$ and $D_{c+c'}$. Such a coherent system determines a ring; different systems give isomorphic Cox rings, generally not canonically. Choosing divisors whose classes form a basis of the free part and representatives of the torsion classes helps specify these choices but does not eliminate the compatibility data.
+
+Torsion classes do not vanish from this grading, and torsion graded pieces can contain nonzero sections. One must not simply pass to $\operatorname{Cl}(X)/\operatorname{Cl}(X)_{\mathrm{tors}}$, which would discard those degrees and also remove the torsion action used in quotient constructions. When $\operatorname{Cl}(X)$ is free, a basis and the usual identifications simplify the construction to a $\mathbb Z^r$-graded ring.
+
+For a $\mathbb Q$-factorial normal projective variety, $\operatorname{Pic}(X)\to\operatorname{Cl}(X)$ may have a proper image or torsion cokernel; section sums over line bundles alone then differ from the full class-group construction. The free-Picard Mori-dream-space definition is a special case, not the general definition for all normal varieties. For a simplicial toric variety, $x_\rho$ has degree $[D_\rho]\in\operatorname{Cl}(X_\Sigma)$, so the toric total coordinate ring realizes the class-group grading directly.
+:::
+
+::: {.front card-id="birational-mmp-blowup-p3" tags="application construction" cite="[@KM98, Chapters 1–2; @Bir07, §§4–5]"}
+Run the two extremal $K_X$-negative contractions on $X=\operatorname{Bl}_p\mathbb P^3$. Identify the exceptional loci and a Mori-fiber-space endpoint.
+:::
+
+::: {.back card-id="birational-mmp-blowup-p3"}
+Let $H$ be the pullback of a hyperplane and $E\cong\mathbb P^2$ the exceptional divisor. Then $K_X=-4H+2E$. The extremal curve classes are a line $\ell\subset E$ and the strict transform $L-e$ of a line $L\subset\mathbb P^3$ through $p$, where $e$ is a line in $E$. Intersections give
+$$K_X\cdot\ell=-2,\qquad K_X\cdot(\widetilde L-e)=-2,$$
+because $E|_E=\mathcal O_E(-1)$.
+
+Contracting the $E$-ray is the divisorial contraction $X\to\mathbb P^3$, contracting exactly $E$ to $p$; the target is Fano, and may be regarded as a Fano Mori fiber space over a point. Contracting the other ray is the projection of the projective bundle
+$$X\cong\mathbb P_{\mathbb P^2}(\mathcal O(1)\oplus\mathcal O^{\oplus2})\longrightarrow\mathbb P^2.$$
+Its fibers are the strict transforms of lines through $p$, so every fiber is $\mathbb P^1$, and $E$ maps isomorphically to the base as a section. This second contraction is already a Mori fiber space of relative dimension one. Neither contraction is a flip: both are morphisms, the first divisorial and the second of fiber type.
+:::
+
+::: {.front card-id="birational-atiyah-flop-conifold" tags="construction application comparison" cite="[@Rei80, §§4–5; @KM98, §2.2]"}
+Construct the Atiyah flop of the threefold ordinary double point $xy=zw$. Why is it a flop rather than a flip?
+:::
+
+::: {.back card-id="birational-atiyah-flop-conifold"}
+Let $X_0=V(xy-zw)\subset\mathbb A^4$, an isolated threefold node. The blowups along the non-Cartier Weil divisors $V(x,z)$ and $V(x,w)$ give the two small resolutions $\pi^\pm:X^\pm\to X_0$. Each is an isomorphism away from the node, is smooth, and has exceptional locus $C^\pm\cong\mathbb P^1$ over the node. In the standard local charts the blown-up equations become smooth surface equations times one free variable; the two choices correspond to the two rulings of the projectivized quadric cone.
+
+The induced birational map $X^+\dashrightarrow X^-$ is an isomorphism outside $C^+$ and does not extend across it; it replaces $C^+$ by $C^-$. Since $K_{X^\pm}=(\pi^\pm)^*K_{X_0}$, one has $K_{X^+}\cdot C^+=0$. Thus the map is $K$-trivial and small: an **Atiyah flop**. It is not a flip because a flip has relative Picard number one and changes the sign of the intersection of $K$ with the contracted extremal curve from negative to positive, rather than retaining intersection zero.
+:::

@@ -184,3 +184,21 @@ Proposition: Every free module is projective.
 ::: {.back card-id="card-4b4a17361288fe65"}
 ![](https://i.imgur.com/qZiRxvR.png)
 :::
+
+::: {.front card-id="modules-length-composition-series" tags="definition theorem application" cite="[@AM18, Propositions 6.7–6.9]"}
+Define module length and a composition series. What are the simple factors, and how does length behave in short exact sequences? Compute the length of $k[x,y]/(x^2,y)$.
+:::
+
+::: {.back card-id="modules-length-composition-series"}
+A composition series of an $R$-module $M$ is a finite strict chain
+$$M=M_0\supsetneq M_1\supsetneq\cdots\supsetneq M_n=0$$
+whose successive quotients $M_{i-1}/M_i$ are simple. Its length is $n$, the number of links. Every composition series has the same length and the same simple factors with multiplicities (Jordan–Hölder); the common length is $\ell_R(M)$. A module has finite length exactly when it is both Noetherian and Artinian. Every simple $R$-module is $R/\mathfrak m$ for a maximal ideal $\mathfrak m$.
+
+For a short exact sequence $0\to M'\to M\to M''\to0$ of finite-length modules,
+$$\ell_R(M)=\ell_R(M')+\ell_R(M'').$$
+Composition series for $M'$ and $M''$ concatenate after taking images and inverse images. Finite direct sums therefore add lengths.
+
+Let $S=k[x,y]$ and $M=S/(x^2,y)$. The chain
+$$M\supsetneq(x)M\supsetneq0$$
+has quotients isomorphic to $S/(x,y)=k$, so $\ell_S(M)=2$ and the only simple factor is $k$, twice. Both Noetherian and Artinian are necessary for finite length in general: $k[x]$ is Noetherian but not Artinian and has infinite length, while a Prüfer group is Artinian but not Noetherian as a $\mathbb Z$-module and also has infinite module length.
+:::

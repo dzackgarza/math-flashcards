@@ -1166,3 +1166,41 @@ Every line bundle on this affine toric chart is trivial, so $\operatorname{Pic}(
 
 At $r=1$ the primitive generators form a lattice basis: the chart is $\mathbb A^2$, $\operatorname{Cl}(\mathbb A^2)=0$, and the divisors are Cartier. Simpliciality gives $\mathbb Q$-factoriality; smoothness gives integral Cartier divisors.
 :::
+
+::: {.front card-id="toric-complete-normal-surfaces" tags="theorem construction application" cite="[@CLS11, §§2.6, 3.3–3.4, 10.1–10.2]"}
+Describe every complete normal toric surface through its fan. How do its singularities and minimal resolutions arise, and why is every such surface projective? Illustrate with weighted projective planes.
+:::
+
+::: {.back card-id="toric-complete-normal-surfaces"}
+A normal toric surface over $\mathbb C$ is $X_\Sigma$ for a fan $\Sigma\subset N_{\mathbb R}\cong\mathbb R^2$; it is complete exactly when $|\Sigma|=\mathbb R^2$. Reversing the maximal two-dimensional cones in cyclic order gives the global affine open covering, while adjacent rays glue the charts. There are infinitely many isomorphism classes once singular surfaces are allowed, so the finite smooth classification does not apply.
+
+For a two-dimensional simplicial cone $\sigma$, $\det(u,v)=q\ge1$ for its primitive ray generators. After a $\operatorname{GL}_2(\mathbb Z)$ change of basis, $u=(1,0)$ and $v=(p,q)$ with $0\le p<q$ and $\gcd(p,q)=1$. Then $U_\sigma$ is smooth iff $q=1$; otherwise it has the cyclic quotient singularity $\frac1q(1,p)$. The minimal toric resolution inserts rays according to the Hirzebruch–Jung continued fraction
+$$q/p=[a_1,\ldots,a_s]^-,\qquad a_i\ge2,$$
+and its exceptional chain consists of smooth rational curves of self-intersections $-a_1,\ldots,-a_s$. This resolution needs no blowup of smooth points beyond the subdivisions dictated by the singular cones.
+
+Every complete toric surface is projective: in dimension two a complete fan admits a strictly convex piecewise-linear support function, equivalently a polytopal lattice realization after rational scaling. A corresponding fan can nevertheless have many rays and many cyclic quotient singularities.
+
+For pairwise relatively prime positive integers $a,b$, a fan for the weighted plane $\mathbb P(1,a,b)$ has primitive rays
+$$\rho_1=(1,0),\qquad\rho_2=(0,1),\qquad\rho_3=(-b,-a).$$
+The maximal-cone determinants are
+$$|\det(\rho_1,\rho_2)|=1,\qquad|\det(\rho_2,\rho_3)|=a,\qquad|\det(\rho_3,\rho_1)|=b.$$
+Thus the torus-fixed points of the cones $\langle\rho_2,\rho_3\rangle$ and $\langle\rho_3,\rho_1\rangle$ can be cyclic quotient singularities of orders $a$ and $b$, respectively, while the point of $\langle\rho_1,\rho_2\rangle$ is smooth. Smoothness of the whole weighted plane therefore forces $a=b=1$; otherwise this example lies outside the smooth complete-toric-surface list.
+:::
+
+::: {.front card-id="toric-cox-blown-up-plane" tags="construction application" cite="[@CLS11, §§4.1, 5.2, and Example 5.2.5]"}
+For the fan of $\operatorname{Bl}_p\mathbb P^2\cong\mathbb F_1$ with rays $(1,0),(0,1),(-1,-1),(0,-1)$, compute the Cox ring, all four divisor-class degrees, and the irrelevant ideal.
+:::
+
+::: {.back card-id="toric-cox-blown-up-plane"}
+Order the rays as $\rho_1=(1,0),\rho_2=(0,1),\rho_3=(-1,-1),\rho_4=(0,-1)$, and let $x_i=x_{\rho_i}$. Then
+$$\operatorname{Cox}(X_\Sigma)=\mathbb C[x_1,x_2,x_3,x_4].$$
+Writing $A=H-E$ and $B=H$, the two fan characters give
+$$[D_1]=[D_3]=A=H-E,\qquad[D_2]=B=H,\qquad[D_4]=B-A=E.$$
+Thus
+$$\deg x_1=\deg x_3=H-E,\qquad\deg x_2=H,\qquad\deg x_4=E,$$
+in $\operatorname{Cl}(X_\Sigma)\cong\mathbb Z H\oplus\mathbb Z E$.
+
+The maximal cones are $12,23,34,41$. Hence the monomial generators indexed by missing rays are $x_3x_4,x_1x_4,x_1x_2,x_2x_3$, and
+$$B(\Sigma)=(x_3x_4,x_1x_4,x_1x_2,x_2x_3)=(x_1,x_3)\cap(x_2,x_4).$$
+Equality with the intersection uses squarefree monomial generators; it can also be written with the product generators $(x_1x_2,x_1x_4,x_3x_2,x_3x_4)$. Geometrically $X_\Sigma\cong(\mathbb A^4\setminus V(B(\Sigma)))/(\mathbb C^*)^2$ with the stated weights. The two generators of degree $H-E$ and the degrees $H,E$ are compatible with $H$ pulling back a plane hyperplane and $E$ being the exceptional divisor.
+:::

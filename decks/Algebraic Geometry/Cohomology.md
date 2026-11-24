@@ -849,3 +849,36 @@ What is the definition of Trace map?
 ::: {.back card-id="card-434a8b44fd60b9cd"}
 (1) The map $\operatorname{tr}:Rf_*\omega_{X/Y}[n]\to\mathcal O_Y$, equivalently $H^n(X,\omega_X)\to k$ for proper smooth $X/k$, that defines the Serre duality pairing $H^i(X,L)\times H^{n-i}(X,\omega_X\otimes L^\vee)\to k$. (2) For a dualizable object $M$, the composite $1\to M\otimes M^\vee\cong M^\vee\otimes M\to 1$, which yields traces of endomorphisms of $M$.
 :::
+
+::: {.front card-id="cohomology-cm-regularity-betti" tags="definition formula application" cite="[@BH98, §4.3 and Theorem 4.3.1; @Eis95, §20.5]"}
+Define Castelnuovo–Mumford regularity of a finite graded module by local cohomology and by graded Betti numbers. Compute it for $S/I$ where $I=(x^2,y^2)\subset S=k[x,y]$ and for the homogeneous ideal of the twisted cubic.
+:::
+
+::: {.back card-id="cohomology-cm-regularity-betti"}
+For a finite graded module $M$ over $S=k[x_0,\ldots,x_n]$ with $\mathfrak m=(x_0,\ldots,x_n)$,
+$$\operatorname{reg}M=\max\{i+j:H^i_{\mathfrak m}(M)_j\ne0\}
+=\max\{j-i:\beta_{ij}(M)\ne0\},$$
+using its minimal graded free resolution $\cdots\to\bigoplus_jS(-j)^{\beta_{ij}}\to M\to0$. This numerical invariant is unrelated to regularity of a local ring.
+
+For $I=(x^2,y^2)$,
+$$0\to S(-4)\to S(-2)^2\to S\to S/I\to0.$$
+Thus $\operatorname{reg}(S/I)=\max\{0,2-1,4-2\}=2$. For the ideal $I$ itself, remove the initial $S$ term: its generators occur in homological degree zero at shift two and its syzygy in degree one at shift four, so $\operatorname{reg}I=\max\{2,4-1\}=3$.
+
+The twisted cubic $I\subset k[x,y,z,w]$ has $S(-3)^2\to S(-2)^3\to I\to0$, hence $\operatorname{reg}I=\max\{2,3-1\}=2$. For $S/I$, prepend $S$: the values $0,2-1,3-2$ give $\operatorname{reg}(S/I)=1$. In both cases the regularity of the ideal and of its quotient by one coordinate ring differ by one because their resolutions differ by one homological position.
+:::
+
+::: {.front card-id="cohomology-sheaf-regularity-examples" tags="definition theorem application" cite="[@Eis95, §20.5 and Theorem 20.17; @BH98, §4.3]"}
+Define $m$-regularity for a coherent sheaf on $\mathbb P^n$ and state its standard consequences. Compute $\operatorname{reg}(\mathcal O_{\mathbb P^1}(-2))$ and relate a saturated homogeneous ideal to its ideal sheaf.
+:::
+
+::: {.back card-id="cohomology-sheaf-regularity-examples"}
+A coherent sheaf $\mathcal F$ on $\mathbb P^n_k$ is **$m$-regular** if
+$$H^i(\mathbb P^n,\mathcal F(m-i))=0\qquad\text{for every }i>0.$$
+Its Castelnuovo–Mumford regularity is the least such integer $m$ (when that minimum is taken in the standard nonempty range for projective-space cohomology). If $\mathcal F$ is $m$-regular, it is $(m+1)$-regular, $\mathcal F(m)$ is globally generated, and the multiplication
+$$H^0(\mathcal O(1))\otimes H^0(\mathcal F(q))\to H^0(\mathcal F(q+1))$$
+is surjective for every $q\ge m$.
+
+On $\mathbb P^1$, $H^1(\mathcal O(a))\ne0$ exactly when $a\le-2$ and all higher cohomology vanishes. For $\mathcal F=\mathcal O(-2)$, the only obstruction is $H^1(\mathcal O(m-3))$. Thus $m$-regularity is equivalent to $m\ge2$, so $\operatorname{reg}\mathcal F=2$.
+
+For a saturated graded ideal $I\subset S=k[x_0,\ldots,x_n]$, the regularity of $I$ computed by its graded Betti numbers agrees with the sheaf regularity of $\widetilde I$. Saturation matters: unsaturated ideals with the same sheaf can have different module regularities.
+:::

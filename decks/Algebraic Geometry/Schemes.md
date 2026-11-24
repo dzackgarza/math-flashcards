@@ -2304,3 +2304,31 @@ What is the definition of Zariski topology?
 ::: {.back card-id="card-89e8cfcfea7f0a49"}
 The topology on $\operatorname{Spec}R$, or on a scheme, whose closed sets are $V(I)=\{\mathfrak p:\mathfrak p\supseteq I\}$ for ideals $I$. On $\mathbb A^n_k$ the closed sets are the common zero loci $V(f_1,\dots,f_r)$ of polynomials.
 :::
+
+::: {.front card-id="schemes-catenary-dimension-example" tags="definition theorem application" cite="[@The25, Algebra, §10.140 and Morphisms, §29.22]"}
+What does catenarity say for algebraic schemes? State the local codimension formula and test it on an irreducible component of $V(xy)\subset\mathbb A_k^2$.
+:::
+
+::: {.back card-id="schemes-catenary-dimension-example"}
+A ring is catenary if every saturated chain of primes between fixed $\mathfrak p\subset\mathfrak q$ has the same length; a scheme is catenary when its local rings have this property. Schemes of finite type over a field are catenary. If $X$ is an irreducible finite-type $k$-scheme and $Y\subset X$ is an irreducible closed subscheme with generic point $y$, then
+$$\operatorname{codim}(Y,X)=\dim\mathcal O_{X,y}.$$
+If $z\in Y$ is a closed point, the dimension formula for finitely generated domains over $k$ gives
+$$\dim\mathcal O_{X,z}=\dim\mathcal O_{Y,z}+\operatorname{codim}(Y,X).$$
+For subvarieties $Z\subset Y\subset X$, catenarity makes saturated chains compatible, so $\operatorname{codim}(Z,X)=\operatorname{codim}(Z,Y)+\operatorname{codim}(Y,X)$ in this irreducible algebraic setting.
+
+Let $Y=V(x)\subset V(xy)\subset\mathbb A^2_k$ have origin $z$. Considered in the plane, $Y$ has $\dim\mathcal O_{Y,z}=1$, $\dim\mathcal O_{\mathbb A^2,z}=2$, and codimension one. The whole reducible $V(xy)$ also has local dimension one at $z$, but its coordinate ring is not a domain. Thus statements such as $\dim R/\mathfrak p+\operatorname{ht}\mathfrak p=\dim R$ need fixed components or a catenary-domain hypothesis; naive substitution without tracking components can fail.
+:::
+
+::: {.front card-id="schemes-flat-projective-integral-models" tags="definition construction comparison" cite="[@Liu10, §§3.2, 4.3; @The25, Limits of Schemes, §32.1 and More on Morphisms, §37.16]"}
+Given $X\subset\mathbb P^n_{\mathbb Q}$, construct a flat projective integral model over $\mathbb Z$. Which properties are preserved by base change, and why is $\operatorname{Spec}\mathbb Q\to\operatorname{Spec}\mathbb Z$ not an open immersion?
+:::
+
+::: {.back card-id="schemes-flat-projective-integral-models"}
+Take the scheme-theoretic closure $\mathcal X$ of $X$ in $\mathbb P^n_{\mathbb Z}$. It is projective by construction and has generic fiber $\mathcal X_{\mathbb Q}=X$. It is flat over $\operatorname{Spec}\mathbb Z$: after taking this closure there are no associated points supported in a special fiber, and a module over a Dedekind domain is flat iff it is torsion-free. Clearing denominators in a finite list of equations gives candidate integral equations, but their saturating closure may have more generators; arbitrary cleared equations need not by themselves define the flat model.
+
+For $p$ prime, the special fiber is
+$$\mathcal X_p=\mathcal X\times_{\operatorname{Spec}\mathbb Z}\operatorname{Spec}\mathbb F_p.$$
+Flatness and projectivity are stable under base change, so every $\mathcal X_p\to\operatorname{Spec}\mathbb F_p$ is flat and projective. Smoothness, reducedness, irreducibility, and geometric connectedness need not survive every special fiber.
+
+The structural morphism $\operatorname{Spec}\mathbb Q\to\operatorname{Spec}\mathbb Z$ has image only the generic point $(0)$, which is dense but not open in the one-dimensional Zariski topology. Hence it is not an open immersion despite identifying with the generic fiber. More generally, spreading out chooses a finite presentation and some $N\ge1$ so that the equations and the required finite-type, separated, proper, flat, or smooth properties hold over $\mathbb Z[1/N]$; enlarging $N$ discards finitely many bad primes.
+:::

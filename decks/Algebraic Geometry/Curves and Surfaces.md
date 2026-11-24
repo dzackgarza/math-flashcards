@@ -2031,3 +2031,17 @@ The smallest positive parenthesis is $1/42$, attained by signature $(h;e_i)=(0;2
 
 $\operatorname{Aut}(\mathbb P^1)=\operatorname{PGL}_2$ has positive dimension. An unpointed elliptic curve has translations; fixing its origin leaves a finite group. These cases explain the stability condition $2g-2+n>0$.
 :::
+
+::: {.front card-id="curves-mixed-characteristic-alterations" tags="theorem comparison" cite="[@De96, Definition 6.3, Theorems 6.5 and 8.2]"}
+State de Jong's semistable-alteration theorem over a trait and its arithmetic analogue. Why does neither assert semistable reduction with unchanged generic fiber?
+:::
+
+::: {.back card-id="curves-mixed-characteristic-alterations"}
+Let $S=\operatorname{Spec}R$ be a trait, the spectrum of a discrete valuation ring, possibly of mixed characteristic. In de Jong's terminology, an $S$-variety is integral, separated, of finite type, and flat over $S$. Let $Z\subset X$ be a proper closed subset containing the special fiber. After replacing $S$ by a finite extension of traits $S_1$, there are an alteration $\phi_1:X_1\to X$, an open immersion $j_1:X_1\hookrightarrow\overline X_1$, and a projective $S_1$-variety $\overline X_1$ with geometrically irreducible generic fiber such that
+$$\bigl(\overline X_1,\ \phi_1^{-1}(Z)\cup(\overline X_1\setminus j_1(X_1))\bigr)$$
+is a strict semistable pair over $S_1$: the total scheme has the required semistable local models, the boundary has strict normal crossings, and compatible boundary strata are strict semistable. This is **de Jong's semistable-alteration theorem**, valid without restricting to equal characteristic zero.
+
+In the arithmetic version, $S=\operatorname{Spec}R$ for a Dedekind ring $R$ with global fraction field. After a finite extension of Dedekind schemes $S_1\to S$, one again obtains an alteration and projective regular compactification whose boundary is strict normal crossings and is a strict semistable pair over the completed localizations at the remaining closed points; it is smooth over a nonempty open of $S_1$.
+
+An alteration is proper, dominant, and finite over a nonempty open, but it need not be birational. Both the base field and the generic fiber can change by a finite map. The conclusion therefore does **not** give a strict semistable model of the original generic fiber over the original trait. The semistable reduction theorem for abelian varieties is a different statement: after a finite separable field extension, the identity component of the Néron-model special fiber is an extension of an abelian variety by a torus.
+:::

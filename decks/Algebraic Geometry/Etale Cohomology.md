@@ -1280,3 +1280,40 @@ What is the definition of Étale neighborhood?
 ::: {.back card-id="card-0c5d00b1002bbfcf"}
 A pair $(U,u)$ with $U\to X$ étale and $u$ a geometric point of $U$ mapping to a geometric point $x$ of $X$; the étale stalk is the filtered colimit $F_x=\varinjlim_{(U,u)}F(U)$ over such neighborhoods.
 :::
+
+::: {.front card-id="etale-weil-statement-betti-trace" tags="theorem formula" cite="[@Del74, §1.5 and Théorème 1.6; @Mil25, Chapter 25]"}
+State the Weil conjectures for a smooth projective variety over $\mathbb F_q$, including rationality, Betti degrees, the functional equation, and the Riemann hypothesis. How does the trace formula recover point counts?
+:::
+
+::: {.back card-id="etale-weil-statement-betti-trace"}
+For a finite-type scheme $X/\mathbb F_q$ with $N_r=\#X(\mathbb F_{q^r})$,
+$$Z(X,T)=\exp\left(\sum_{r\ge1}N_r\frac{T^r}{r}\right)\in\mathbb Q[[T]].$$
+Now suppose $X$ is smooth, proper, and geometrically connected of dimension $n$. Then $Z(X,T)$ is rational and
+$$Z(X,T)=\frac{P_1(T)P_3(T)\cdots P_{2n-1}(T)}{P_0(T)P_2(T)\cdots P_{2n}(T)},$$
+where $P_i(T)=\det(1-\operatorname{Fr}^*T\mid H^i_{\acute et}(X_{\overline{\mathbb F}_q},\mathbb Q_\ell))$ for $\ell\nmid q$. Each $P_i$ has integer coefficients independent of $\ell$, and $\deg P_i=b_i$ is the corresponding Betti number. In particular $P_0=1-T$, $P_{2n}=1-q^nT$, and $b_i=b_{2n-i}$ by Poincaré duality.
+
+The functional equation is
+$$Z(X,q^{-n}T^{-1})=\varepsilon\,q^{n\chi/2}T^\chi Z(X,T),\qquad
+\chi=\sum_{i=0}^{2n}(-1)^ib_i,$$
+with $\varepsilon=\pm1$ determined by the middle-dimension determinant. The Riemann hypothesis says every reciprocal root $\alpha$ of $P_i$ is an algebraic integer whose complex conjugates all satisfy $|\alpha|=q^{i/2}$; equivalently the roots of $P_i(T)$ have absolute value $q^{-i/2}$.
+
+Grothendieck's trace formula identifies
+$$N_r=\sum_{i=0}^{2n}(-1)^i\operatorname{Tr}((\operatorname{Fr}^*)^r\mid H^i(X_{\overline{\mathbb F}_q},\mathbb Q_\ell))=\sum_i(-1)^i\sum_{j=1}^{b_i}\alpha_{ij}^r,$$
+so expanding the logarithm of the displayed rational expression reproduces these point counts. Smoothness and properness are essential to this form with degrees $b_i$, weight exactly $i$, and Poincaré-duality functional equation.
+:::
+
+::: {.front card-id="etale-zeta-projective-space-product" tags="application calculation" cite="[@Del74, §1.1 and Théorème 1.6]"}
+Compute $Z(\mathbb P^n_{\mathbb F_q},T)$ and $Z(\mathbb P^1_{\mathbb F_q}\times\mathbb P^1_{\mathbb F_q},T)$ from point counts. Check the counts and Betti degrees for $\mathbb P^2$ and identify each Frobenius weight.
+:::
+
+::: {.back card-id="etale-zeta-projective-space-product"}
+Projective space satisfies
+$$N_r(\mathbb P^n)=\frac{q^{r(n+1)}-1}{q^r-1}=1+q^r+\cdots+q^{rn}.$$
+Consequently
+$$Z(\mathbb P^n_{\mathbb F_q},T)=\prod_{j=0}^n\frac1{1-q^jT}.$$
+For $\mathbb P^2/\mathbb F_5$, $N_1=1+5+25=31$ and $N_2=1+25+625=651$. The denominator degrees are $(1,1,1)$ in cohomological degrees $0,2,4$ and the odd Betti numbers vanish. The reciprocal roots in degree $2j$ are $q^j$, of absolute value $(q^{2j})^{1/2}$.
+
+For $X=\mathbb P^1\times\mathbb P^1$, multiplicativity gives $N_r(X)=(1+q^r)^2=1+2q^r+q^{2r}$, hence
+$$Z(X,T)=\frac1{(1-T)(1-qT)^2(1-q^2T)}.$$
+The cohomology has $b_0=b_4=1$ and $b_2=2$, all other Betti numbers zero, again with weight $q^{i/2}$ in degree $i$. More generally, $\#(X\times Y)(\mathbb F_{q^r})=N_r(X)N_r(Y)$ and Künneth explains the resulting point counts and cohomological weights; equality of point counts does not mean the individual zeta series multiply as formal power series.
+:::
