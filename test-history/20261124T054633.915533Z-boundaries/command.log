@@ -1,0 +1,2 @@
+Import contracts reject every forbidden dependency.
+The window has no file write outside the bridge.

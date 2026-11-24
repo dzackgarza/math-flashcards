@@ -1353,8 +1353,8 @@ Let $H$ be the pullback of a hyperplane and $E\cong\mathbb P^2$ the exceptional 
 $$K_X\cdot\ell=-2,\qquad K_X\cdot(\widetilde L-e)=-2,$$
 because $E|_E=\mathcal O_E(-1)$.
 
-Contracting the $E$-ray is the divisorial contraction $X\to\mathbb P^3$, contracting exactly $E$ to $p$; the target is Fano, and may be regarded as a Fano Mori fiber space over a point. Contracting the other ray is the projection of the projective bundle
-$$X\cong\mathbb P_{\mathbb P^2}(\mathcal O(1)\oplus\mathcal O^{\oplus2})\longrightarrow\mathbb P^2.$$
+Contracting the $E$-ray is the divisorial contraction $X\to\mathbb P^3$, contracting exactly $E$ to $p$; the target is Fano, and may be regarded as a Fano Mori fiber space over a point. Contracting the other ray is the projection of the projectivization of a rank-two bundle
+$$X\cong\mathbb P_{\mathbb P^2}(\mathcal O\oplus\mathcal O(1))\longrightarrow\mathbb P^2.$$
 Its fibers are the strict transforms of lines through $p$, so every fiber is $\mathbb P^1$, and $E$ maps isomorphically to the base as a section. This second contraction is already a Mori fiber space of relative dimension one. Neither contraction is a flip: both are morphisms, the first divisorial and the second of fiber type.
 :::
 

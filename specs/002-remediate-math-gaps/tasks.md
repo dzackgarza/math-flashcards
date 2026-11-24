@@ -49,11 +49,11 @@ description: "Tasks for mathematical coverage remediation"
 
 ### Implementation for User Story 1
 
-- [ ] T006 [US1] Add syzygy modules, higher syzygies, minimal graded resolutions, Betti numbers, Hilbert syzygy, Auslander–Buchsbaum, Hilbert–Burch, and explicit ideal computations to `decks/Algebra/Homological Algebra.md` and `decks/Algebra/Commutative Algebra.md`
-- [ ] T007 [US1] Add module length, composition series, additivity, Artinian modules, and dimension-zero Noetherian rings to `decks/Algebra/Modules and Linear Algebra.md` and `decks/Algebra/Commutative Algebra.md`
-- [ ] T008 [US1] Add the Noetherian local dimension theorem, Krull's general height theorem, catenarity in the geometric setting, and connecting examples to `decks/Algebra/Commutative Algebra.md` and `decks/Algebraic Geometry/Schemes.md`
-- [ ] T009 [US1] Add numerical Castelnuovo–Mumford regularity, the graded Betti formula, and named ideal/sheaf computations to `decks/Algebraic Geometry/Cohomology.md`
-- [ ] T010 [US1] Add the algebraic Koszul complex, differential, homology, regular-sequence exactness, and the correctly hypothesized Tor connection to `decks/Algebra/Homological Algebra.md` and `decks/Algebraic Geometry/Sheaves and Vector Bundles.md`
+- [x] T006 [US1] Add syzygy modules, higher syzygies, minimal graded resolutions, Betti numbers, Hilbert syzygy, Auslander–Buchsbaum, Hilbert–Burch, and explicit ideal computations to `decks/Algebra/Homological Algebra.md` and `decks/Algebra/Commutative Algebra.md`
+- [x] T007 [US1] Add module length, composition series, additivity, Artinian modules, and dimension-zero Noetherian rings to `decks/Algebra/Modules and Linear Algebra.md` and `decks/Algebra/Commutative Algebra.md`
+- [x] T008 [US1] Add the Noetherian local dimension theorem, Krull's general height theorem, catenarity in the geometric setting, and connecting examples to `decks/Algebra/Commutative Algebra.md` and `decks/Algebraic Geometry/Schemes.md`
+- [x] T009 [US1] Add numerical Castelnuovo–Mumford regularity, the graded Betti formula, and named ideal/sheaf computations to `decks/Algebraic Geometry/Cohomology.md`
+- [x] T010 [US1] Add the algebraic Koszul complex, differential, homology, regular-sequence exactness, and the correctly hypothesized Tor connection to `decks/Algebra/Homological Algebra.md` and `decks/Algebraic Geometry/Sheaves and Vector Bundles.md`
 
 **Checkpoint**: FR-001 through FR-005 are complete and all computations are independently checked
 
@@ -67,8 +67,8 @@ description: "Tasks for mathematical coverage remediation"
 
 ### Implementation for User Story 2
 
-- [ ] T011 [US2] Add arithmetic functions, Dirichlet convolution, Möbius inversion, von Mangoldt and Chebyshev functions, and Dirichlet-series identities to `decks/Number Theory/Analytic Number Theory.md`
-- [ ] T012 [US2] Add partial summation, the elementary relations among prime-counting and Chebyshev functions, equivalent asymptotic forms of the prime number theorem, and the zeta nonvanishing input to `decks/Number Theory/Analytic Number Theory.md`
+- [x] T011 [US2] Add arithmetic functions, Dirichlet convolution, Möbius inversion, von Mangoldt and Chebyshev functions, and Dirichlet-series identities to `decks/Number Theory/Analytic Number Theory.md`
+- [x] T012 [US2] Add partial summation, the elementary relations among prime-counting and Chebyshev functions, equivalent asymptotic forms of the prime number theorem, and the zeta nonvanishing input to `decks/Number Theory/Analytic Number Theory.md`
 
 **Checkpoint**: FR-008 is complete and every identity has correct summation ranges and asymptotic hypotheses
 
@@ -82,8 +82,8 @@ description: "Tasks for mathematical coverage remediation"
 
 ### Implementation for User Story 3
 
-- [ ] T013 [US3] Add general Rees algebras, associated graded algebras, special fibers, finite generation, and the Hilbert–Samuel connection with an explicit example to `decks/Algebra/Commutative Algebra.md` and `decks/Algebraic Geometry/Birational Geometry.md`
-- [ ] T014 [US3] Add class-group-graded Cox rings with torsion and choices, plus the graded Cox ring and irrelevant ideal of the plane blown up at a point, to `decks/Algebraic Geometry/Toric Varieties.md` and `decks/Algebraic Geometry/Birational Geometry.md`
+- [x] T013 [US3] Add general Rees algebras, associated graded algebras, special fibers, finite generation, and the Hilbert–Samuel connection with an explicit example to `decks/Algebra/Commutative Algebra.md` and `decks/Algebraic Geometry/Birational Geometry.md`
+- [x] T014 [US3] Add class-group-graded Cox rings with torsion and choices, plus the graded Cox ring and irrelevant ideal of the plane blown up at a point, to `decks/Algebraic Geometry/Toric Varieties.md` and `decks/Algebraic Geometry/Birational Geometry.md`
 
 **Checkpoint**: FR-015 and FR-016 are complete; the fan, grading, and irrelevant ideal agree
 
@@ -97,12 +97,12 @@ description: "Tasks for mathematical coverage remediation"
 
 ### Implementation for User Story 4
 
-- [ ] T015 [US4] Add generic-point base change, flat projective integral models, spreading out, special fibers, projectivity under base change, and a worked equation to `decks/Algebraic Geometry/Schemes.md` and `decks/Algebraic Geometry/Arithmetic Geometry.md`
-- [ ] T016 [P] [US4] Add the point-count definition of finite-field zeta functions, the complete Weil statement including Betti degrees, the trace-formula connection, and projective-space and product computations to `decks/Algebraic Geometry/Etale Cohomology.md`
-- [ ] T017 [US4] Add abelian-variety and Galois-representation Selmer groups with local conditions and a verified explicit elliptic-curve descent to `decks/Algebraic Geometry/Arithmetic Geometry.md`
-- [ ] T018 [P] [US4] Add Tate local duality and the Poitou–Tate sequence with finite-set, dual-module, and cohomological hypotheses to `decks/Number Theory/Class Field Theory.md`
-- [ ] T019 [P] [US4] Add general valuations, valuation rings, equivalence and places, Ostrowski's theorem, and finite-extension valuation formulas to `decks/Number Theory/Algebraic Number Theory.md`
-- [ ] T020 [US4] Add abelian-variety semistable reduction and Néron–Ogg–Shafarevich, plus a precise comparison with mixed-characteristic alteration results, to `decks/Algebraic Geometry/Arithmetic Geometry.md` and `decks/Algebraic Geometry/Curves and Surfaces.md`
+- [x] T015 [US4] Add generic-point base change, flat projective integral models, spreading out, special fibers, projectivity under base change, and a worked equation to `decks/Algebraic Geometry/Schemes.md` and `decks/Algebraic Geometry/Arithmetic Geometry.md`
+- [x] T016 [P] [US4] Add the point-count definition of finite-field zeta functions, the complete Weil statement including Betti degrees, the trace-formula connection, and projective-space and product computations to `decks/Algebraic Geometry/Etale Cohomology.md`
+- [x] T017 [US4] Add abelian-variety and Galois-representation Selmer groups with local conditions and a verified explicit elliptic-curve descent to `decks/Algebraic Geometry/Arithmetic Geometry.md`
+- [x] T018 [P] [US4] Add Tate local duality and the Poitou–Tate sequence with finite-set, dual-module, and cohomological hypotheses to `decks/Number Theory/Class Field Theory.md`
+- [x] T019 [P] [US4] Add general valuations, valuation rings, equivalence and places, Ostrowski's theorem, and finite-extension valuation formulas to `decks/Number Theory/Algebraic Number Theory.md`
+- [x] T020 [US4] Add abelian-variety semistable reduction and Néron–Ogg–Shafarevich, plus a precise comparison with mixed-characteristic alteration results, to `decks/Algebraic Geometry/Arithmetic Geometry.md` and `decks/Algebraic Geometry/Curves and Surfaces.md`
 
 **Checkpoint**: FR-006, FR-007, and FR-009 through FR-012 are complete; no general mixed-characteristic semistable-reduction claim is overstated
 
@@ -116,8 +116,8 @@ description: "Tasks for mathematical coverage remediation"
 
 ### Implementation for User Story 5
 
-- [ ] T021 [US5] Add the higher-dimensional MMP run for the point blowup of projective three-space and a worked Atiyah flop to `decks/Algebraic Geometry/Birational Geometry.md`
-- [ ] T022 [P] [US5] Add the global complete-fan description of normal toric surfaces, cyclic-quotient singularities, minimal resolutions, projectivity, and weighted-projective-plane examples to `decks/Algebraic Geometry/Toric Varieties.md`
+- [x] T021 [US5] Add the higher-dimensional MMP run for the point blowup of projective three-space and a worked Atiyah flop to `decks/Algebraic Geometry/Birational Geometry.md`
+- [x] T022 [P] [US5] Add the global complete-fan description of normal toric surfaces, cyclic-quotient singularities, minimal resolutions, projectivity, and weighted-projective-plane examples to `decks/Algebraic Geometry/Toric Varieties.md`
 
 **Checkpoint**: FR-013 and FR-014 are complete and the smooth classification is not applied to singular surfaces
 
@@ -127,9 +127,10 @@ description: "Tasks for mathematical coverage remediation"
 
 **Purpose**: Check the whole remediation against the specification and the real card pipeline
 
-- [ ] T023 Review every new card against FR-001 through FR-018 and the edge cases in `specs/002-remediate-math-gaps/spec.md`; repair missing hypotheses, ambiguous retrieval tasks, and unsupported claims in the owning `decks/**/*.md` file
-- [ ] T024 Recheck every explicit syzygy, regularity, descent, zeta, Rees, Cox, MMP, and toric computation against its source or independent computation and record the decisive verification in `specs/002-remediate-math-gaps/research.md`
+- [x] T023 Review every new card against FR-001 through FR-018 and the edge cases in `specs/002-remediate-math-gaps/spec.md`; repair missing hypotheses, ambiguous retrieval tasks, and unsupported claims in the owning `decks/**/*.md` file
+- [x] T024 Recheck every explicit syzygy, regularity, descent, zeta, Rees, Cox, MMP, and toric computation against its source or independent computation and record the decisive verification in `specs/002-remediate-math-gaps/research.md`
 - [ ] T025 Run `just check-math`, `just check-citations`, `just lint-prose-citations`, and the milestone `just test`; repair all content failures in the owning files
+  - `just check-math` and `just test` pass. The prose-citation shortlist was reviewed. `just check-citations` still rejects 45 pre-existing cited works without PDF attachments; no source introduced by T006–T022 is among them. The remaining work belongs to those older citation records and is tracked by issue #6.
 
 ---
 

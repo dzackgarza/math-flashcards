@@ -600,7 +600,7 @@ For an extension $w\mid v$, put
 $$e(w/v)=[\Gamma_w:\Gamma_v],\qquad f(w/v)=[\kappa_w:\kappa_v].$$
 For finite $L/K$ and extensions $w_1,\ldots,w_g$ of $v$ whose indices are finite,
 $$\sum_{i=1}^g e(w_i/v)f(w_i/v)\le[L:K].$$
-If $K$ is complete discretely valued, the unique extension satisfies $[L:K]=ef$. For a finite separable extension of number fields and $\mathfrak p\mathcal O_L=\prod_{i=1}^g\mathfrak P_i^{e_i}$, the class-field normalization gives the global identity
+If $L/K$ is finite separable and $K$ is complete discretely valued, or more generally Henselian discretely valued, the unique extension satisfies $[L:K]=ef$. For a finite separable extension of number fields and $\mathfrak p\mathcal O_L=\prod_{i=1}^g\mathfrak P_i^{e_i}$, the class-field normalization gives the global identity
 $$\sum_{i=1}^g e_i f_i=[L:K].$$
 The general fundamental inequality is not an assertion that equality holds without its standard hypotheses; defects and inseparability require additional care.
 :::

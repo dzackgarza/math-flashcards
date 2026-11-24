@@ -643,8 +643,6 @@ Perform the $2$-isogeny descent for $E:y^2=x^3+7x$ and $E':Y^2=X^3-28X$. Which l
 ::: {.back card-id="arithmetic-two-isogeny-descent-p7"}
 Let $\phi:E\to E'$ have kernel $\{O,(0,0)\}$ and let $\widehat\phi$ be its dual. The descent representatives are $d\in\{\pm1,\pm2,\pm7,\pm14\}$ modulo squares. The corresponding principal homogeneous spaces are
 $$C_d:\ d w^2=d^2-28z^4,\qquad C'_d:\ d W^2=d^2+7Z^4.$$
-Only $2$ and $7$ require nonautomatic local tests away from $\mathbb R$.
-
 For $S^{(\phi)}(E/\mathbb Q)$, the class $-7$ comes from the rational $\phi$-torsion point. The other representatives are excluded as follows.
 
 | Class | Local test or group consequence |
@@ -652,7 +650,7 @@ For $S^{(\phi)}(E/\mathbb Q)$, the class $-7$ comes from the rational $\phi$-tor
 | $1$ | $z=0,w=\pm1$ gives the trivial homogeneous space |
 | $-1$ | No $\mathbb Q_7$-point: $w^2+1=28z^4$ forces $z,w\in\mathbb Z_7$ and $w^2\equiv-1\pmod7$, impossible |
 | $-2$ | No $\mathbb Q_7$-point because $-2$ is not a square modulo $7$ |
-| $2$ | No $\mathbb Q_2$-point: put $w=2W$; then $2W^2=1-28Z^4$, which has no solution modulo $16$ |
+| $2$ | Here $C_2:w^2=2-14z^4$. No $\mathbb Q_2$-point: put $w=2W$; then $2W^2=1-7Z^4$, which has no solution modulo $16$ |
 | $7$ | Since $7=(-1)(-7)$ modulo squares, inclusion would force $-1$ to belong |
 | $\pm14$ | Their inclusion would force the excluded classes $2$ or $-2$ after multiplying by the selected class $\pm7$ |
 | $-7$ | Selected; it is the image of $E[\phi](\mathbb Q)$ |

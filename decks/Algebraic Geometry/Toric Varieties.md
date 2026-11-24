@@ -1180,9 +1180,9 @@ and its exceptional chain consists of smooth rational curves of self-intersectio
 
 Every complete toric surface is projective: in dimension two a complete fan admits a strictly convex piecewise-linear support function, equivalently a polytopal lattice realization after rational scaling. A corresponding fan can nevertheless have many rays and many cyclic quotient singularities.
 
-For pairwise relatively prime positive integers $a,b$, a fan for the weighted plane $\mathbb P(1,a,b)$ has primitive rays
-$$\rho_1=(1,0),\qquad\rho_2=(0,1),\qquad\rho_3=(-b,-a).$$
-The maximal-cone determinants are
+For pairwise relatively prime positive integers $a,b$, after permuting the weights a fan for the weighted plane $\mathbb P(1,a,b)$ has primitive rays
+$$\rho_1=(1,0),\qquad\rho_2=(0,1),\qquad\rho_3=(-a,-b).$$
+Their respective weights are $b,a,1$, and $b\rho_1+a\rho_2+\rho_3=0$. The maximal-cone determinants are
 $$|\det(\rho_1,\rho_2)|=1,\qquad|\det(\rho_2,\rho_3)|=a,\qquad|\det(\rho_3,\rho_1)|=b.$$
 Thus the torus-fixed points of the cones $\langle\rho_2,\rho_3\rangle$ and $\langle\rho_3,\rho_1\rangle$ can be cyclic quotient singularities of orders $a$ and $b$, respectively, while the point of $\langle\rho_1,\rho_2\rangle$ is smooth. Smoothness of the whole weighted plane therefore forces $a=b=1$; otherwise this example lies outside the smooth complete-toric-surface list.
 :::

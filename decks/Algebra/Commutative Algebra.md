@@ -313,7 +313,7 @@ For a nonzero commutative ring $A$,
 $$A\text{ is Artinian}\iff A\text{ is Noetherian and }\dim A=0.$$
 Equivalently, $A$ has finite length as an $A$-module. Such a ring has finitely many maximal ideals, nilpotent nilradical, and a unique decomposition up to isomorphism as a finite product of Artinian local rings.
 
-For modules, finite length means both chain conditions, not Artinian alone: a finitely generated module over an Artinian ring has finite length, but an infinite-dimensional discrete valuation group's Prüfer $p$-module is Artinian without being Noetherian. Conversely $k[x]$ is Noetherian but not finite length. Geometrically, a finite $k$-algebra has an Artinian coordinate ring and finitely many points; $k[x,y]/(x^2,y)$ is local with spectrum supported at one point and length two.
+For modules, finite length means both chain conditions, not Artinian alone: a finitely generated module over an Artinian ring has finite length, but a Prüfer $p$-group is Artinian without being Noetherian as a $\mathbb Z$-module. Conversely $k[x]$ is Noetherian but not finite length. Geometrically, a finite $k$-algebra has an Artinian coordinate ring and finitely many points; $k[x,y]/(x^2,y)$ is local with spectrum supported at one point and length two.
 :::
 
 ::: {.front card-id="commutative-local-dimension-height-catenary" tags="theorem comparison application" cite="[@AM18, Chapter 11, especially Theorems 11.14 and 11.22; @The25, Algebra, §10.113 and §10.140]"}
@@ -341,7 +341,7 @@ Define the Rees algebra, associated graded algebra, and special fiber of an idea
 ::: {.back card-id="commutative-rees-associated-graded"}
 $$\mathcal R_I(R)=R[It]=\bigoplus_{n\ge0}I^nt^n\subset R[t],\qquad
 \operatorname{gr}_I(R)=\bigoplus_{n\ge0}I^n/I^{n+1}=\mathcal R_I(R)/I\mathcal R_I(R).$$
-The special fiber is $\mathcal R_I(R)\otimes_RR/\mathfrak m$ when $(R,\mathfrak m)$ is local. It equals $\operatorname{gr}_I(R)\otimes_RR/\mathfrak m$. Proj $\mathcal R_I(R)$ is the blowup of $\operatorname{Spec}R$ along $I$, and $\operatorname{gr}_I(R)$ records its exceptional cone. If $I=(f_1,\ldots,f_r)$, then $\mathcal R_I(R)$ is the quotient of $R[T_1,\ldots,T_r]$ by the kernel of $T_i\mapsto f_it$; thus a finitely generated ideal has a finitely generated Rees algebra, with no Noetherian hypothesis needed for this implication, and $\operatorname{gr}_I(R)$ inherits finite generation.
+For $(R,\mathfrak m)$ local and $I\subset\mathfrak m$, the special fiber is $\mathcal R_I(R)\otimes_RR/\mathfrak m$. It equals $\operatorname{gr}_I(R)\otimes_RR/\mathfrak m$. Proj $\mathcal R_I(R)$ is the blowup of $\operatorname{Spec}R$ along $I$, and $\operatorname{gr}_I(R)$ records its exceptional cone. If $I=(f_1,\ldots,f_r)$, then $\mathcal R_I(R)$ is the quotient of $R[T_1,\ldots,T_r]$ by the kernel of $T_i\mapsto f_it$; thus a finitely generated ideal has a finitely generated Rees algebra, with no Noetherian hypothesis needed for this implication, and $\operatorname{gr}_I(R)$ inherits finite generation.
 
 For Noetherian local $(R,\mathfrak m)$ and $\mathfrak m$-primary $\mathfrak q$, the lengths $\ell_R(R/\mathfrak q^n)$ agree for $n\gg0$ with a polynomial of degree $\dim R$ and leading coefficient $e(\mathfrak q)/(\dim R)!$. The graded pieces $\mathfrak q^n/\mathfrak q^{n+1}$ of $\operatorname{gr}_{\mathfrak q}(R)$ are the local Hilbert-function input.
 
